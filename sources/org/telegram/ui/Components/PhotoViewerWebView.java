@@ -41,7 +41,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.PhotoViewerWebView;
 import org.telegram.ui.PhotoViewer;
@@ -50,7 +50,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
     private float bufferedPosition;
     private int currentAccount;
     private int currentPosition;
-    private TLRPC$WebPage currentWebpage;
+    private TLRPC.WebPage currentWebpage;
     private String currentYoutubeId;
     private TextView errorButton;
     private LinearLayout errorLayout;
@@ -619,7 +619,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
     public void hideControls() {
     }
 
-    public void init(int r9, org.telegram.tgnet.TLRPC$WebPage r10) {
+    public void init(int r9, org.telegram.tgnet.TLRPC.WebPage r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoViewerWebView.init(int, org.telegram.tgnet.TLRPC$WebPage):void");
     }
 
@@ -646,12 +646,12 @@ public abstract class PhotoViewerWebView extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.webView.getParent() == this) {
-            TLRPC$WebPage tLRPC$WebPage = this.currentWebpage;
-            int i3 = tLRPC$WebPage.embed_width;
+            TLRPC.WebPage webPage = this.currentWebpage;
+            int i3 = webPage.embed_width;
             if (i3 == 0) {
                 i3 = 100;
             }
-            int i4 = tLRPC$WebPage.embed_height;
+            int i4 = webPage.embed_height;
             int i5 = i4 != 0 ? i4 : 100;
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
@@ -687,8 +687,8 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         this.progressBarBlackBackground.setVisibility(0);
         Activity activity = (Activity) getContext();
         WebView webView = this.webView;
-        TLRPC$WebPage tLRPC$WebPage = this.currentWebpage;
-        if (PipVideoOverlay.show(isInAppOnly, activity, this, webView, tLRPC$WebPage.embed_width, tLRPC$WebPage.embed_height, false)) {
+        TLRPC.WebPage webPage = this.currentWebpage;
+        if (PipVideoOverlay.show(isInAppOnly, activity, this, webView, webPage.embed_width, webPage.embed_height, false)) {
             PipVideoOverlay.setPhotoViewer(PhotoViewer.getInstance());
         }
         return true;

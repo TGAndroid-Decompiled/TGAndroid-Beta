@@ -34,9 +34,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.Theme;
@@ -650,8 +648,8 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         return this.uiVisible;
     }
 
-    public boolean isVisible(TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant) {
-        return this.attachedPeerIds.get(MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer)) > 0;
+    public boolean isVisible(TLRPC.TL_groupCallParticipant tL_groupCallParticipant) {
+        return this.attachedPeerIds.get(MessageObject.getPeerId(tL_groupCallParticipant.peer)) > 0;
     }
 
     protected abstract void onBackPressed();
@@ -1058,9 +1056,9 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         }
     }
 
-    public void setAmplitude(TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant, float f) {
+    public void setAmplitude(TLRPC.TL_groupCallParticipant tL_groupCallParticipant, float f) {
         for (int i = 0; i < this.attachedRenderers.size(); i++) {
-            if (MessageObject.getPeerId(((GroupCallMiniTextureView) this.attachedRenderers.get(i)).participant.participant.peer) == MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer)) {
+            if (MessageObject.getPeerId(((GroupCallMiniTextureView) this.attachedRenderers.get(i)).participant.participant.peer) == MessageObject.getPeerId(tL_groupCallParticipant.peer)) {
                 ((GroupCallMiniTextureView) this.attachedRenderers.get(i)).setAmplitude(f);
             }
         }
@@ -1132,26 +1130,26 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         SpannableStringBuilder spannableStringBuilder = null;
         int i4 = 0;
         while (i3 < this.call.currentSpeakingPeers.size()) {
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) this.call.currentSpeakingPeers.get(this.call.currentSpeakingPeers.keyAt(i3));
-            if (tLRPC$TL_groupCallParticipant.self || tLRPC$TL_groupCallParticipant.muted_by_you || MessageObject.getPeerId(this.fullscreenParticipant.participant.peer) == MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer)) {
+            TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) this.call.currentSpeakingPeers.get(this.call.currentSpeakingPeers.keyAt(i3));
+            if (tL_groupCallParticipant.self || tL_groupCallParticipant.muted_by_you || MessageObject.getPeerId(this.fullscreenParticipant.participant.peer) == MessageObject.getPeerId(tL_groupCallParticipant.peer)) {
                 i = i3;
             } else {
-                long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
+                long peerId = MessageObject.getPeerId(tL_groupCallParticipant.peer);
                 i = i3;
-                if (SystemClock.uptimeMillis() - tLRPC$TL_groupCallParticipant.lastSpeakTime >= 500) {
+                if (SystemClock.uptimeMillis() - tL_groupCallParticipant.lastSpeakTime >= 500) {
                     continue;
                 } else {
                     if (spannableStringBuilder == null) {
                         spannableStringBuilder = new SpannableStringBuilder();
                     }
                     if (i4 == 0) {
-                        this.speakingToastPeerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
+                        this.speakingToastPeerId = MessageObject.getPeerId(tL_groupCallParticipant.peer);
                     }
                     if (i4 < 3) {
-                        TLRPC$User user = peerId > 0 ? MessagesController.getInstance(currentAccount).getUser(Long.valueOf(peerId)) : null;
-                        TLRPC$Chat chat = peerId <= 0 ? MessagesController.getInstance(currentAccount).getChat(Long.valueOf(peerId)) : null;
+                        TLRPC.User user = peerId > 0 ? MessagesController.getInstance(currentAccount).getUser(Long.valueOf(peerId)) : null;
+                        TLRPC.Chat chat = peerId <= 0 ? MessagesController.getInstance(currentAccount).getChat(Long.valueOf(peerId)) : null;
                         if (user != null || chat != null) {
-                            this.speakingMembersAvatars.setObject(i4, currentAccount, tLRPC$TL_groupCallParticipant);
+                            this.speakingMembersAvatars.setObject(i4, currentAccount, tL_groupCallParticipant);
                             if (i4 != 0) {
                                 spannableStringBuilder.append((CharSequence) ", ");
                             }

@@ -14,9 +14,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stories$TL_myBoost;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
@@ -24,13 +23,13 @@ import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
 import org.telegram.ui.Components.StatusBadgeComponent;
 
 public class SelectorUserCell extends BaseCell {
-    private TL_stories$TL_myBoost boost;
-    private TLRPC$Chat chat;
+    private TL_stories.TL_myBoost boost;
+    private TLRPC.Chat chat;
     private final CheckBox2 checkBox;
     private final boolean[] isOnline;
     private final ImageView optionsView;
     StatusBadgeComponent statusBadgeComponent;
-    private TLRPC$User user;
+    private TLRPC.User user;
 
     public SelectorUserCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2) {
         super(context, resourcesProvider);
@@ -75,15 +74,15 @@ public class SelectorUserCell extends BaseCell {
         return sb.toString();
     }
 
-    public TL_stories$TL_myBoost getBoost() {
+    public TL_stories.TL_myBoost getBoost() {
         return this.boost;
     }
 
-    public TLRPC$Chat getChat() {
+    public TLRPC.Chat getChat() {
         return this.chat;
     }
 
-    public TLRPC$User getUser() {
+    public TLRPC.User getUser() {
         return this.user;
     }
 
@@ -104,18 +103,18 @@ public class SelectorUserCell extends BaseCell {
         this.statusBadgeComponent.onDetachedFromWindow();
     }
 
-    public void setBoost(TL_stories$TL_myBoost tL_stories$TL_myBoost) {
+    public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
         this.optionsView.setVisibility(8);
-        this.boost = tL_stories$TL_myBoost;
-        TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_stories$TL_myBoost.peer)));
+        this.boost = tL_myBoost;
+        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_myBoost.peer)));
         this.chat = chat;
         this.avatarDrawable.setInfo(chat);
         this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         this.imageView.setForUserOrChat(this.chat, this.avatarDrawable);
         this.titleTextView.setText(this.chat.title);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_stories$TL_myBoost.expires * 1000))));
-        int i = tL_stories$TL_myBoost.cooldown_until_date;
+        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_myBoost.expires * 1000))));
+        int i = tL_myBoost.cooldown_until_date;
         if (i <= 0) {
             this.titleTextView.setAlpha(1.0f);
             this.subtitleTextView.setAlpha(1.0f);
@@ -128,19 +127,19 @@ public class SelectorUserCell extends BaseCell {
         }
     }
 
-    public void setChat(TLRPC$Chat tLRPC$Chat, int i) {
+    public void setChat(TLRPC.Chat chat, int i) {
         String string;
         this.optionsView.setVisibility(8);
-        this.chat = tLRPC$Chat;
+        this.chat = chat;
         this.user = null;
-        this.avatarDrawable.setInfo(tLRPC$Chat);
-        this.imageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(tLRPC$Chat) ? 12.0f : 20.0f));
-        this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
-        this.titleTextView.setText(tLRPC$Chat.title);
+        this.avatarDrawable.setInfo(chat);
+        this.imageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(chat) ? 12.0f : 20.0f));
+        this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+        this.titleTextView.setText(chat.title);
         if (i <= 0) {
-            i = tLRPC$Chat.participants_count;
+            i = chat.participants_count;
         }
-        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (i >= 1) {
             string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i, new Object[0]);
         } else {
@@ -182,23 +181,23 @@ public class SelectorUserCell extends BaseCell {
         }
     }
 
-    public void setUser(TLRPC$User tLRPC$User) {
+    public void setUser(TLRPC.User user) {
         this.optionsView.setVisibility(8);
-        this.user = tLRPC$User;
+        this.user = user;
         this.chat = null;
-        this.avatarDrawable.setInfo(tLRPC$User);
+        this.avatarDrawable.setInfo(user);
         this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        this.imageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
-        this.titleTextView.setText(UserObject.getUserName(tLRPC$User));
+        this.imageView.setForUserOrChat(user, this.avatarDrawable);
+        this.titleTextView.setText(UserObject.getUserName(user));
         boolean[] zArr = this.isOnline;
         zArr[0] = false;
-        setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, tLRPC$User, zArr));
+        setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, user, zArr));
         this.subtitleTextView.setTextColor(Theme.getColor(this.isOnline[0] ? Theme.key_dialogTextBlue2 : Theme.key_dialogTextGray3, this.resourcesProvider));
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
             checkBox2.setAlpha(1.0f);
         }
-        this.titleTextView.setRightDrawable(this.statusBadgeComponent.updateDrawable(tLRPC$User, Theme.getColor(Theme.key_chats_verifiedBackground), false));
+        this.titleTextView.setRightDrawable(this.statusBadgeComponent.updateDrawable(user, Theme.getColor(Theme.key_chats_verifiedBackground), false));
     }
 
     public void updateTimer() {

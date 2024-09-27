@@ -22,8 +22,8 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$TL_botCommand;
-import org.telegram.tgnet.tl.TL_bots$BotInfo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.MenuDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -122,12 +122,12 @@ public class BotCommandsMenuView extends View {
             this.newResult.clear();
             this.newResultHelp.clear();
             for (int i = 0; i < longSparseArray.size(); i++) {
-                TL_bots$BotInfo tL_bots$BotInfo = (TL_bots$BotInfo) longSparseArray.valueAt(i);
-                for (int i2 = 0; i2 < tL_bots$BotInfo.commands.size(); i2++) {
-                    TLRPC$TL_botCommand tLRPC$TL_botCommand = (TLRPC$TL_botCommand) tL_bots$BotInfo.commands.get(i2);
-                    if (tLRPC$TL_botCommand != null && tLRPC$TL_botCommand.command != null) {
-                        this.newResult.add("/" + tLRPC$TL_botCommand.command);
-                        this.newResultHelp.add(tLRPC$TL_botCommand.description);
+                TL_bots.BotInfo botInfo = (TL_bots.BotInfo) longSparseArray.valueAt(i);
+                for (int i2 = 0; i2 < botInfo.commands.size(); i2++) {
+                    TLRPC.TL_botCommand tL_botCommand = botInfo.commands.get(i2);
+                    if (tL_botCommand != null && tL_botCommand.command != null) {
+                        this.newResult.add("/" + tL_botCommand.command);
+                        this.newResultHelp.add(tL_botCommand.description);
                     }
                 }
             }

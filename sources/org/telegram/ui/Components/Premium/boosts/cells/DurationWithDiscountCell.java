@@ -5,7 +5,7 @@ import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC$TL_premiumGiftCodeOption;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
@@ -14,7 +14,7 @@ import org.telegram.ui.Components.Premium.boosts.DiscountSpan;
 
 public class DurationWithDiscountCell extends DurationCell {
     protected final CheckBox2 checkBox;
-    private TLRPC$TL_premiumGiftCodeOption option;
+    private TLRPC.TL_premiumGiftCodeOption option;
 
     public DurationWithDiscountCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
@@ -29,7 +29,7 @@ public class DurationWithDiscountCell extends DurationCell {
         updateLayouts();
     }
 
-    public TLRPC$TL_premiumGiftCodeOption getOption() {
+    public TLRPC.TL_premiumGiftCodeOption getOption() {
         return this.option;
     }
 
@@ -45,18 +45,18 @@ public class DurationWithDiscountCell extends DurationCell {
         }
     }
 
-    public void setDuration(TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption2, int i, boolean z, boolean z2) {
-        this.option = tLRPC$TL_premiumGiftCodeOption;
-        long j = tLRPC$TL_premiumGiftCodeOption.amount;
-        String str = tLRPC$TL_premiumGiftCodeOption.currency;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatPluralString("Months", tLRPC$TL_premiumGiftCodeOption.months, new Object[0]));
-        double d = tLRPC$TL_premiumGiftCodeOption.amount;
-        double d2 = tLRPC$TL_premiumGiftCodeOption.months;
+    public void setDuration(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2, int i, boolean z, boolean z2) {
+        this.option = tL_premiumGiftCodeOption;
+        long j = tL_premiumGiftCodeOption.amount;
+        String str = tL_premiumGiftCodeOption.currency;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatPluralString("Months", tL_premiumGiftCodeOption.months, new Object[0]));
+        double d = tL_premiumGiftCodeOption.amount;
+        double d2 = tL_premiumGiftCodeOption.months;
         Double.isNaN(d);
         Double.isNaN(d2);
         double d3 = d / d2;
-        double d4 = tLRPC$TL_premiumGiftCodeOption2.amount;
-        double d5 = tLRPC$TL_premiumGiftCodeOption2.months;
+        double d4 = tL_premiumGiftCodeOption2.amount;
+        double d5 = tL_premiumGiftCodeOption2.months;
         Double.isNaN(d4);
         Double.isNaN(d5);
         int i2 = (int) ((1.0d - (d3 / (d4 / d5))) * 100.0d);

@@ -33,8 +33,7 @@ import org.telegram.messenger.ContactsWidgetProvider;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -446,8 +445,8 @@ public class EditWidgetActivity extends BaseFragment {
     public EditWidgetActivity(int i, int i2) {
         this.widgetType = i;
         this.currentWidgetId = i2;
-        ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-        ArrayList<TLRPC$Chat> arrayList2 = new ArrayList<>();
+        ArrayList<TLRPC.User> arrayList = new ArrayList<>();
+        ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
         getMessagesStorage().getWidgetDialogIds(this.currentWidgetId, this.widgetType, this.selectedDialogs, arrayList, arrayList2, true);
         getMessagesController().putUsers(arrayList, true);
         getMessagesController().putChats(arrayList2, true);
@@ -541,7 +540,7 @@ public class EditWidgetActivity extends BaseFragment {
                         EditWidgetActivity.this.finishActivity();
                         return;
                     } else {
-                        EditWidgetActivity.this.lambda$onBackPressed$307();
+                        EditWidgetActivity.this.lambda$onBackPressed$300();
                         return;
                     }
                 }

@@ -12,15 +12,15 @@ public abstract class HandlerDispatcherKt {
     private static volatile Choreographer choreographer;
 
     static {
-        Object m155constructorimpl;
+        Object m156constructorimpl;
         try {
             Result.Companion companion = Result.Companion;
-            m155constructorimpl = Result.m155constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
+            m156constructorimpl = Result.m156constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            m155constructorimpl = Result.m155constructorimpl(ResultKt.createFailure(th));
+            m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th));
         }
-        Main = (HandlerDispatcher) (Result.m156isFailureimpl(m155constructorimpl) ? null : m155constructorimpl);
+        Main = (HandlerDispatcher) (Result.m157isFailureimpl(m156constructorimpl) ? null : m156constructorimpl);
     }
 
     public static final Handler asHandler(Looper looper, boolean z) {

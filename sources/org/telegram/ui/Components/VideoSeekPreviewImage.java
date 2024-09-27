@@ -22,9 +22,7 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
+import org.telegram.tgnet.TLRPC;
 
 public abstract class VideoSeekPreviewImage extends View {
     private Paint bitmapPaint;
@@ -152,23 +150,23 @@ public abstract class VideoSeekPreviewImage extends View {
         if ("tg".equals(uri.getScheme())) {
             int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
             Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
-            TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
-            tLRPC$TL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
-            tLRPC$TL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
-            tLRPC$TL_document.size = Utilities.parseLong(uri.getQueryParameter("size")).longValue();
-            tLRPC$TL_document.dc_id = Utilities.parseInt((CharSequence) uri.getQueryParameter("dc")).intValue();
-            tLRPC$TL_document.mime_type = uri.getQueryParameter("mime");
-            tLRPC$TL_document.file_reference = Utilities.hexToBytes(uri.getQueryParameter("reference"));
-            TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
-            tLRPC$TL_documentAttributeFilename.file_name = uri.getQueryParameter("name");
-            tLRPC$TL_document.attributes.add(tLRPC$TL_documentAttributeFilename);
-            tLRPC$TL_document.attributes.add(new TLRPC$TL_documentAttributeVideo());
-            if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tLRPC$TL_document))) {
-                pathToAttach = new File(FileLoader.getDirectory(4), tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.id + ".temp");
+            TLRPC.TL_document tL_document = new TLRPC.TL_document();
+            tL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
+            tL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
+            tL_document.size = Utilities.parseLong(uri.getQueryParameter("size")).longValue();
+            tL_document.dc_id = Utilities.parseInt((CharSequence) uri.getQueryParameter("dc")).intValue();
+            tL_document.mime_type = uri.getQueryParameter("mime");
+            tL_document.file_reference = Utilities.hexToBytes(uri.getQueryParameter("reference"));
+            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+            tL_documentAttributeFilename.file_name = uri.getQueryParameter("name");
+            tL_document.attributes.add(tL_documentAttributeFilename);
+            tL_document.attributes.add(new TLRPC.TL_documentAttributeVideo());
+            if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tL_document))) {
+                pathToAttach = new File(FileLoader.getDirectory(4), tL_document.dc_id + "_" + tL_document.id + ".temp");
             } else {
-                pathToAttach = FileLoader.getInstance(intValue).getPathToAttach(tLRPC$TL_document, false);
+                pathToAttach = FileLoader.getInstance(intValue).getPathToAttach(tL_document, false);
             }
-            this.fileDrawable = new AnimatedFileDrawable(new File(pathToAttach.getAbsolutePath()), true, tLRPC$TL_document.size, 1, tLRPC$TL_document, null, parentObject, 0L, intValue, true, null);
+            this.fileDrawable = new AnimatedFileDrawable(new File(pathToAttach.getAbsolutePath()), true, tL_document.size, 1, tL_document, null, parentObject, 0L, intValue, true, null);
         } else {
             this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
         }

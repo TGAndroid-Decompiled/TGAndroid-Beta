@@ -24,10 +24,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
-import org.telegram.tgnet.TLRPC$TL_stickerPack;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -37,9 +34,9 @@ public class LocationMarker extends View {
     private boolean attachedToWindow;
     private final RectF bounds;
     public final float density;
-    private TLRPC$Document flagAnimatedDocument;
+    private TLRPC.Document flagAnimatedDocument;
     private final ImageReceiver flagAnimatedImageReceiver;
-    private TLRPC$Document flagDocument;
+    private TLRPC.Document flagDocument;
     private final float flagIconPadding;
     private final ImageReceiver flagImageReceiver;
     private boolean forceEmoji;
@@ -114,15 +111,15 @@ public class LocationMarker extends View {
         return false;
     }
 
-    private TLRPC$Document findDocument(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, String str) {
-        if (tLRPC$TL_messages_stickerSet != null && tLRPC$TL_messages_stickerSet.packs != null && tLRPC$TL_messages_stickerSet.documents != null) {
-            for (int i = 0; i < tLRPC$TL_messages_stickerSet.packs.size(); i++) {
-                TLRPC$TL_stickerPack tLRPC$TL_stickerPack = (TLRPC$TL_stickerPack) tLRPC$TL_messages_stickerSet.packs.get(i);
-                if (containsEmoji(tLRPC$TL_stickerPack.emoticon, str) && !tLRPC$TL_stickerPack.documents.isEmpty()) {
-                    long longValue = ((Long) tLRPC$TL_stickerPack.documents.get(0)).longValue();
-                    for (int i2 = 0; i2 < tLRPC$TL_messages_stickerSet.documents.size(); i2++) {
-                        if (((TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(i2)).id == longValue) {
-                            return (TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(i2);
+    private TLRPC.Document findDocument(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str) {
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.packs != null && tL_messages_stickerSet.documents != null) {
+            for (int i = 0; i < tL_messages_stickerSet.packs.size(); i++) {
+                TLRPC.TL_stickerPack tL_stickerPack = tL_messages_stickerSet.packs.get(i);
+                if (containsEmoji(tL_stickerPack.emoticon, str) && !tL_stickerPack.documents.isEmpty()) {
+                    long longValue = tL_stickerPack.documents.get(0).longValue();
+                    for (int i2 = 0; i2 < tL_messages_stickerSet.documents.size(); i2++) {
+                        if (tL_messages_stickerSet.documents.get(i2).id == longValue) {
+                            return tL_messages_stickerSet.documents.get(i2);
                         }
                     }
                 }
@@ -177,15 +174,15 @@ public class LocationMarker extends View {
         };
     }
 
-    public void lambda$setCodeEmoji$0(String str, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        TLRPC$Document findDocument = findDocument(tLRPC$TL_messages_stickerSet, str);
+    public void lambda$setCodeEmoji$0(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        TLRPC.Document findDocument = findDocument(tL_messages_stickerSet, str);
         this.flagDocument = findDocument;
         this.flagImageReceiver.setImage(ImageLocation.getForDocument(findDocument), "80_80", getEmojiThumb(str), null, null, 0);
         this.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(this.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(this.flagDocument), "80_80", null, null, getEmojiThumb(str), 0L, null, null, 0);
     }
 
-    public void lambda$setCodeEmoji$1(String str, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        TLRPC$Document findDocument = findDocument(tLRPC$TL_messages_stickerSet, str);
+    public void lambda$setCodeEmoji$1(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        TLRPC.Document findDocument = findDocument(tL_messages_stickerSet, str);
         this.flagAnimatedDocument = findDocument;
         if (findDocument == null) {
             return;
@@ -277,9 +274,9 @@ public class LocationMarker extends View {
         requestLayout();
     }
 
-    public TLRPC$Document getCodeEmojiDocument() {
-        TLRPC$Document tLRPC$Document;
-        return (!this.isVideo || (tLRPC$Document = this.flagAnimatedDocument) == null) ? this.flagDocument : tLRPC$Document;
+    public TLRPC.Document getCodeEmojiDocument() {
+        TLRPC.Document document;
+        return (!this.isVideo || (document = this.flagAnimatedDocument) == null) ? this.flagDocument : document;
     }
 
     public void getEmojiBounds(RectF rectF) {
@@ -341,20 +338,20 @@ public class LocationMarker extends View {
             this.hasFlag = true;
             this.flagDocument = null;
             this.flagAnimatedDocument = null;
-            TLRPC$TL_inputStickerSetShortName tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetShortName();
-            tLRPC$TL_inputStickerSetShortName.short_name = "StaticEmoji";
-            MediaDataController.getInstance(i).getStickerSet(tLRPC$TL_inputStickerSetShortName, 0, false, new Utilities.Callback() {
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName.short_name = "StaticEmoji";
+            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    LocationMarker.this.lambda$setCodeEmoji$0(str, (TLRPC$TL_messages_stickerSet) obj);
+                    LocationMarker.this.lambda$setCodeEmoji$0(str, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
-            TLRPC$TL_inputStickerSetShortName tLRPC$TL_inputStickerSetShortName2 = new TLRPC$TL_inputStickerSetShortName();
-            tLRPC$TL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
-            MediaDataController.getInstance(i).getStickerSet(tLRPC$TL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
+            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    LocationMarker.this.lambda$setCodeEmoji$1(str, (TLRPC$TL_messages_stickerSet) obj);
+                    LocationMarker.this.lambda$setCodeEmoji$1(str, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
             this.flagImageReceiver.setImage(ImageLocation.getForDocument(this.flagDocument), "80_80", getEmojiThumb(str), null, null, 0);

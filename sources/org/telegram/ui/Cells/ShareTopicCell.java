@@ -8,9 +8,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -65,29 +63,29 @@ public class ShareTopicCell extends FrameLayout {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(103.0f), 1073741824));
     }
 
-    public void setTopic(TLRPC$Dialog tLRPC$Dialog, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, boolean z, CharSequence charSequence) {
-        if (tLRPC$Dialog == null) {
+    public void setTopic(TLRPC.Dialog dialog, TLRPC.TL_forumTopic tL_forumTopic, boolean z, CharSequence charSequence) {
+        if (dialog == null) {
             return;
         }
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id));
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
         if (charSequence != null) {
             this.nameTextView.setText(charSequence);
         } else {
             TextView textView = this.nameTextView;
             if (chat != null) {
-                textView.setText(tLRPC$TL_forumTopic.title);
+                textView.setText(tL_forumTopic.title);
             } else {
                 textView.setText("");
             }
         }
-        if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
+        if (tL_forumTopic.icon_emoji_id != 0) {
             this.imageView.setImageDrawable(null);
-            this.imageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(13, UserConfig.selectedAccount, tLRPC$TL_forumTopic.icon_emoji_id));
+            this.imageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(13, UserConfig.selectedAccount, tL_forumTopic.icon_emoji_id));
         } else {
             this.imageView.setAnimatedEmojiDrawable(null);
-            ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(tLRPC$TL_forumTopic.icon_color);
+            ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(tL_forumTopic.icon_color);
             LetterDrawable letterDrawable = new LetterDrawable(null, 1);
-            String upperCase = tLRPC$TL_forumTopic.title.trim().toUpperCase();
+            String upperCase = tL_forumTopic.title.trim().toUpperCase();
             letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
             letterDrawable.scale = 1.8f;
             CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
@@ -95,7 +93,7 @@ public class ShareTopicCell extends FrameLayout {
             this.imageView.setImageDrawable(combinedDrawable);
         }
         this.imageView.setRoundRadius(AndroidUtilities.dp((chat == null || !chat.forum || z) ? 28.0f : 16.0f));
-        this.currentDialog = tLRPC$Dialog.id;
-        this.currentTopic = tLRPC$TL_forumTopic.id;
+        this.currentDialog = dialog.id;
+        this.currentTopic = tL_forumTopic.id;
     }
 }

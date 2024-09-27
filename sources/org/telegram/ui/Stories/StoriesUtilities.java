@@ -38,19 +38,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
-import org.telegram.tgnet.TLRPC$TL_peerColor;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stories$PeerStories;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
-import org.telegram.tgnet.tl.TL_stories$StoryViews;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_getPeerStories;
-import org.telegram.tgnet.tl.TL_stories$TL_storyViews;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -137,7 +126,7 @@ public abstract class StoriesUtilities {
         float startX;
         float startY;
         public int storyId;
-        public TL_stories$StoryItem storyItem;
+        public TL_stories.StoryItem storyItem;
         float sweepAngle;
         public int unreadState;
 
@@ -187,14 +176,14 @@ public abstract class StoriesUtilities {
                 }
                 long j = this.dialogId;
                 if (j > 0) {
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(j));
                     if (user == null || user.stories_unavailable || user.stories_max_id <= 0) {
                         return;
                     }
                     new UserStoriesLoadOperation().load(this.dialogId, view, this);
                     return;
                 }
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
+                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
                 if (chat == null || chat.stories_unavailable || chat.stories_max_id <= 0) {
                     return;
                 }
@@ -225,24 +214,24 @@ public abstract class StoriesUtilities {
         }
 
         public boolean checkOnTouchEvent(MotionEvent motionEvent, final View view) {
-            TLRPC$User tLRPC$User;
+            TLRPC.User user;
             this.child = view;
             StoriesController storiesController = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController();
             boolean z = false;
             if (motionEvent.getAction() == 0 && this.originalAvatarRect.contains(motionEvent.getX(), motionEvent.getY())) {
                 long j = this.dialogId;
-                TLRPC$Chat tLRPC$Chat = null;
+                TLRPC.Chat chat = null;
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                 if (j > 0) {
-                    tLRPC$User = messagesController.getUser(Long.valueOf(this.dialogId));
+                    user = messagesController.getUser(Long.valueOf(this.dialogId));
                 } else {
-                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-this.dialogId));
-                    tLRPC$User = null;
-                    tLRPC$Chat = chat;
+                    TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-this.dialogId));
+                    user = null;
+                    chat = chat2;
                 }
                 if (this.drawHiddenStoriesAsSegments) {
                     z = storiesController.hasHiddenStories();
-                } else if (this.dialogId <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (tLRPC$Chat != null && !tLRPC$Chat.stories_unavailable && tLRPC$Chat.stories_max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (tLRPC$User != null && !tLRPC$User.stories_unavailable && tLRPC$User.stories_max_id > 0)) {
+                } else if (this.dialogId <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (chat != null && !chat.stories_unavailable && chat.stories_max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (user != null && !user.stories_unavailable && user.stories_max_id > 0)) {
                     z = true;
                 }
                 if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z) {
@@ -427,7 +416,7 @@ public abstract class StoriesUtilities {
             return this.tools.paint;
         }
 
-        public void setChat(TLRPC$Chat tLRPC$Chat, boolean z) {
+        public void setChat(TLRPC.Chat chat, boolean z) {
             setColorId(-1, z);
         }
 
@@ -441,9 +430,9 @@ public abstract class StoriesUtilities {
             }
         }
 
-        public void setUser(TLRPC$User tLRPC$User, boolean z) {
-            TLRPC$TL_peerColor tLRPC$TL_peerColor;
-            setColorId((tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.profile_color) == null) ? -1 : tLRPC$TL_peerColor.color, z);
+        public void setUser(TLRPC.User user, boolean z) {
+            TLRPC.TL_peerColor tL_peerColor;
+            setColorId((user == null || (tL_peerColor = user.profile_color) == null) ? -1 : tL_peerColor.color, z);
         }
     }
 
@@ -475,7 +464,7 @@ public abstract class StoriesUtilities {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.UserStoriesLoadOperation.lambda$load$2(org.telegram.tgnet.TLObject, long, android.view.View, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams, org.telegram.messenger.MessagesController):void");
         }
 
-        public void lambda$load$3(final long j, final View view, final AvatarStoryParams avatarStoryParams, final MessagesController messagesController, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$load$3(final long j, final View view, final AvatarStoryParams avatarStoryParams, final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -499,12 +488,12 @@ public abstract class StoriesUtilities {
             final MessagesController messagesController = MessagesController.getInstance(i);
             messagesController.getStoriesController().setLoading(j, true);
             view.invalidate();
-            TL_stories$TL_stories_getPeerStories tL_stories$TL_stories_getPeerStories = new TL_stories$TL_stories_getPeerStories();
-            tL_stories$TL_stories_getPeerStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
-            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_getPeerStories, new RequestDelegate() {
+            TL_stories.TL_stories_getPeerStories tL_stories_getPeerStories = new TL_stories.TL_stories_getPeerStories();
+            tL_stories_getPeerStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getPeerStories, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$3(j, view, avatarStoryParams, messagesController, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$3(j, view, avatarStoryParams, messagesController, tLObject, tL_error);
                 }
             });
         }
@@ -524,17 +513,17 @@ public abstract class StoriesUtilities {
         simpleTextView.setText(str);
     }
 
-    public static void applyViewedUser(TL_stories$StoryItem tL_stories$StoryItem, TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null || tL_stories$StoryItem.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || hasExpiredViews(tL_stories$StoryItem)) {
+    public static void applyViewedUser(TL_stories.StoryItem storyItem, TLRPC.User user) {
+        if (user == null || storyItem.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || hasExpiredViews(storyItem)) {
             return;
         }
-        if (tL_stories$StoryItem.views == null) {
-            tL_stories$StoryItem.views = new TL_stories$TL_storyViews();
+        if (storyItem.views == null) {
+            storyItem.views = new TL_stories.TL_storyViews();
         }
-        TL_stories$StoryViews tL_stories$StoryViews = tL_stories$StoryItem.views;
-        if (tL_stories$StoryViews.views_count == 0) {
-            tL_stories$StoryViews.views_count = 1;
-            tL_stories$StoryViews.recent_viewers.add(Long.valueOf(tLRPC$User.id));
+        TL_stories.StoryViews storyViews = storyItem.views;
+        if (storyViews.views_count == 0) {
+            storyViews.views_count = 1;
+            storyViews.recent_viewers.add(Long.valueOf(user.id));
         }
     }
 
@@ -1003,36 +992,36 @@ public abstract class StoriesUtilities {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.drawSegmentsInternal(android.graphics.Canvas, org.telegram.ui.Stories.StoriesController, org.telegram.messenger.ImageReceiver, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams, android.graphics.Paint, android.graphics.Paint, android.graphics.Paint, boolean):void");
     }
 
-    public static EnsureStoryFileLoadedObject ensureStoryFileLoaded(TL_stories$PeerStories tL_stories$PeerStories, final Runnable runnable) {
-        TL_stories$StoryItem tL_stories$StoryItem;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        TLRPC$Document tLRPC$Document;
-        if (tL_stories$PeerStories == null || tL_stories$PeerStories.stories.isEmpty() || DialogObject.getPeerDialogId(tL_stories$PeerStories.peer) == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+    public static EnsureStoryFileLoadedObject ensureStoryFileLoaded(TL_stories.PeerStories peerStories, final Runnable runnable) {
+        TL_stories.StoryItem storyItem;
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        ArrayList<TLRPC.PhotoSize> arrayList2;
+        TLRPC.Document document;
+        if (peerStories == null || peerStories.stories.isEmpty() || DialogObject.getPeerDialogId(peerStories.peer) == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
             runnable.run();
             return null;
         }
         StoriesController storiesController = MessagesController.getInstance(UserConfig.selectedAccount).storiesController;
-        int i = storiesController.dialogIdToMaxReadId.get(DialogObject.getPeerDialogId(tL_stories$PeerStories.peer));
+        int i = storiesController.dialogIdToMaxReadId.get(DialogObject.getPeerDialogId(peerStories.peer));
         int i2 = 0;
         while (true) {
-            if (i2 >= tL_stories$PeerStories.stories.size()) {
-                tL_stories$StoryItem = null;
+            if (i2 >= peerStories.stories.size()) {
+                storyItem = null;
                 break;
             }
-            if (((TL_stories$StoryItem) tL_stories$PeerStories.stories.get(i2)).id > i) {
-                tL_stories$StoryItem = (TL_stories$StoryItem) tL_stories$PeerStories.stories.get(i2);
+            if (peerStories.stories.get(i2).id > i) {
+                storyItem = peerStories.stories.get(i2);
                 break;
             }
             i2++;
         }
-        if (tL_stories$StoryItem == null) {
-            tL_stories$StoryItem = (TL_stories$StoryItem) tL_stories$PeerStories.stories.get(0);
+        if (storyItem == null) {
+            storyItem = peerStories.stories.get(0);
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        if (tLRPC$MessageMedia == null || tLRPC$MessageMedia.document == null) {
-            TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.photo : null;
-            if (tLRPC$Photo == null || (arrayList = tLRPC$Photo.sizes) == null) {
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia == null || messageMedia.document == null) {
+            TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
+            if (photo == null || (arrayList = photo.sizes) == null) {
                 runnable.run();
                 return null;
             }
@@ -1042,12 +1031,12 @@ public abstract class StoriesUtilities {
                 return null;
             }
         } else {
-            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_stories$StoryItem.media.document, "", false);
+            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(storyItem.media.document, "", false);
             if (pathToAttach2 != null && pathToAttach2.exists()) {
                 runnable.run();
                 return null;
             }
-            File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_stories$StoryItem.media.document, "", true);
+            File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(storyItem.media.document, "", true);
             if (pathToAttach3 != null) {
                 try {
                     int lastIndexOf = pathToAttach3.getName().lastIndexOf(".");
@@ -1062,7 +1051,7 @@ public abstract class StoriesUtilities {
                 }
             }
         }
-        final EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = new EnsureStoryFileLoadedObject(storiesController, DialogObject.getPeerDialogId(tL_stories$PeerStories.peer));
+        final EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = new EnsureStoryFileLoadedObject(storiesController, DialogObject.getPeerDialogId(peerStories.peer));
         ensureStoryFileLoadedObject.runnable = new Runnable() {
             @Override
             public final void run() {
@@ -1099,17 +1088,17 @@ public abstract class StoriesUtilities {
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         ensureStoryFileLoadedObject.imageReceiver.onAttachedToWindow();
         String storyImageFilter = getStoryImageFilter();
-        TLRPC$MessageMedia tLRPC$MessageMedia2 = tL_stories$StoryItem.media;
-        if (tLRPC$MessageMedia2 == null || (tLRPC$Document = tLRPC$MessageMedia2.document) == null) {
-            TLRPC$Photo tLRPC$Photo2 = tLRPC$MessageMedia2 != null ? tLRPC$MessageMedia2.photo : null;
-            if (tLRPC$Photo2 == null || (arrayList2 = tLRPC$Photo2.sizes) == null) {
+        TLRPC.MessageMedia messageMedia2 = storyItem.media;
+        if (messageMedia2 == null || (document = messageMedia2.document) == null) {
+            TLRPC.Photo photo2 = messageMedia2 != null ? messageMedia2.photo : null;
+            if (photo2 == null || (arrayList2 = photo2.sizes) == null) {
                 ensureStoryFileLoadedObject.runnable.run();
                 return null;
             }
-            ensureStoryFileLoadedObject.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList2, Integer.MAX_VALUE), tLRPC$Photo2), storyImageFilter, null, null, null, 0L, null, tL_stories$StoryItem, 0);
+            ensureStoryFileLoadedObject.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList2, Integer.MAX_VALUE), photo2), storyImageFilter, null, null, null, 0L, null, storyItem, 0);
             return ensureStoryFileLoadedObject;
         }
-        ensureStoryFileLoadedObject.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), storyImageFilter + "_pframe", null, null, null, 0L, null, tL_stories$StoryItem, 0);
+        ensureStoryFileLoadedObject.imageReceiver.setImage(ImageLocation.getForDocument(document), storyImageFilter + "_pframe", null, null, null, 0L, null, storyItem, 0);
         return ensureStoryFileLoadedObject;
     }
 
@@ -1200,13 +1189,13 @@ public abstract class StoriesUtilities {
         }
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         if (j <= 0) {
-            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
             if (chat == null || chat.stories_max_id <= 0 || chat.stories_unavailable) {
                 return 0;
             }
             return chat.stories_max_id > storiesController.dialogIdToMaxReadId.get(j, 0) ? 1 : 2;
         }
-        TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+        TLRPC.User user = messagesController.getUser(Long.valueOf(j));
         if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || user == null || user.stories_max_id <= 0 || user.stories_unavailable) {
             return 0;
         }
@@ -1236,12 +1225,12 @@ public abstract class StoriesUtilities {
         return valueOf;
     }
 
-    public static boolean hasExpiredViews(TL_stories$StoryItem tL_stories$StoryItem) {
-        return tL_stories$StoryItem != null && ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime() > tL_stories$StoryItem.expire_date + 86400;
+    public static boolean hasExpiredViews(TL_stories.StoryItem storyItem) {
+        return storyItem != null && ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime() > storyItem.expire_date + 86400;
     }
 
-    public static boolean isExpired(int i, TL_stories$StoryItem tL_stories$StoryItem) {
-        return ConnectionsManager.getInstance(i).getCurrentTime() > tL_stories$StoryItem.expire_date;
+    public static boolean isExpired(int i, TL_stories.StoryItem storyItem) {
+        return ConnectionsManager.getInstance(i).getCurrentTime() > storyItem.expire_date;
     }
 
     public static void lambda$ensureStoryFileLoaded$0(EnsureStoryFileLoadedObject ensureStoryFileLoadedObject, Runnable runnable) {
@@ -1260,35 +1249,35 @@ public abstract class StoriesUtilities {
         }
     }
 
-    public static void setImage(ImageReceiver imageReceiver, TL_stories$StoryItem tL_stories$StoryItem) {
-        setImage(imageReceiver, tL_stories$StoryItem, "320_320");
+    public static void setImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
+        setImage(imageReceiver, storyItem, "320_320");
     }
 
-    public static void setImage(ImageReceiver imageReceiver, TL_stories$StoryItem tL_stories$StoryItem, String str) {
-        ArrayList arrayList;
+    public static void setImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, String str) {
+        ArrayList<TLRPC.PhotoSize> arrayList;
         StoryWidgetsImageDecorator storyWidgetsImageDecorator;
-        TLRPC$Document tLRPC$Document;
-        if (tL_stories$StoryItem == null) {
+        TLRPC.Document document;
+        if (storyItem == null) {
             return;
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        if (tLRPC$MessageMedia == null || (tLRPC$Document = tLRPC$MessageMedia.document) == null) {
-            TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.photo : null;
-            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia == null || (document = messageMedia.document) == null) {
+            TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
+            if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
                 Bitmap createBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
                 createBitmap.eraseColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
                 imageReceiver.setImageBitmap(createBitmap);
-                storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(tL_stories$StoryItem);
-            } else if (tLRPC$Photo == null || (arrayList = tLRPC$Photo.sizes) == null) {
+                storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(storyItem);
+            } else if (photo == null || (arrayList = photo.sizes) == null) {
                 imageReceiver.clearImage();
                 return;
             } else {
-                imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), tLRPC$Photo), str, null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
-                storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(tL_stories$StoryItem);
+                imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), photo), str, null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
+                storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(storyItem);
             }
         } else {
-            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, Integer.MAX_VALUE), tL_stories$StoryItem.media.document), str, null, null, ImageLoader.createStripedBitmap(tL_stories$StoryItem.media.document.thumbs), 0L, null, tL_stories$StoryItem, 0);
-            storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(tL_stories$StoryItem);
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, Integer.MAX_VALUE), storyItem.media.document), str, null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
+            storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(storyItem);
         }
         imageReceiver.addDecorator(storyWidgetsImageDecorator);
     }
@@ -1297,39 +1286,39 @@ public abstract class StoriesUtilities {
         imageReceiver.setImage(ImageLocation.getForPath(uploadingStory.entry.isVideo ? uploadingStory.firstFramePath : uploadingStory.path), "320_180", null, null, null, 0L, null, null, 0);
     }
 
-    public static void setStoryMiniImage(ImageReceiver imageReceiver, TL_stories$StoryItem tL_stories$StoryItem) {
-        ArrayList arrayList;
-        if (tL_stories$StoryItem == null) {
+    public static void setStoryMiniImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        if (storyItem == null) {
             return;
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-        if (tLRPC$Document != null) {
-            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 1000), tL_stories$StoryItem.media.document), "100_100", null, null, ImageLoader.createStripedBitmap(tL_stories$StoryItem.media.document.thumbs), 0L, null, tL_stories$StoryItem, 0);
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        TLRPC.Document document = messageMedia.document;
+        if (document != null) {
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1000), storyItem.media.document), "100_100", null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
             return;
         }
-        TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.photo;
-        if (tLRPC$Photo == null || (arrayList = tLRPC$Photo.sizes) == null) {
+        TLRPC.Photo photo = messageMedia.photo;
+        if (photo == null || (arrayList = photo.sizes) == null) {
             imageReceiver.clearImage();
         } else {
-            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000), tLRPC$Photo), "100_100", null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
+            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000), photo), "100_100", null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
         }
     }
 
-    public static void setThumbImage(ImageReceiver imageReceiver, TL_stories$StoryItem tL_stories$StoryItem, int i, int i2) {
-        ArrayList arrayList;
-        TLRPC$Document tLRPC$Document;
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        if (tLRPC$MessageMedia != null && (tLRPC$Document = tLRPC$MessageMedia.document) != null) {
-            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), tL_stories$StoryItem.media.document), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(tL_stories$StoryItem.media.document.thumbs), 0L, null, tL_stories$StoryItem, 0);
+    public static void setThumbImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, int i, int i2) {
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        TLRPC.Document document;
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia != null && (document = messageMedia.document) != null) {
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), storyItem.media.document), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
             return;
         }
-        TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.photo : null;
-        if (tLRPC$Photo == null || (arrayList = tLRPC$Photo.sizes) == null) {
+        TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
+        if (photo == null || (arrayList = photo.sizes) == null) {
             imageReceiver.clearImage();
             return;
         }
-        imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), tLRPC$Photo), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
+        imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), photo), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
     }
 
     public static void updateColors() {

@@ -132,6 +132,12 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
+    @Override
+    public int getPosition() {
+        return this.len;
+    }
+
+    @Override
     public int length() {
         return !this.justCalc ? this.isOut ? this.outbuf.size() : this.inbuf.available() : this.len;
     }
@@ -211,6 +217,29 @@ public class SerializedData extends AbstractSerializedData {
     @Override
     public NativeByteBuffer readByteBuffer(boolean z) {
         return null;
+    }
+
+    @Override
+    public void readBytes(byte[] bArr, boolean z) {
+        try {
+            this.in.read(bArr);
+            this.len += bArr.length;
+        } catch (Exception e) {
+            if (z) {
+                throw new RuntimeException("read bytes error", e);
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read bytes error");
+                FileLog.e(e);
+            }
+        }
+    }
+
+    @Override
+    public byte[] readData(int i, boolean z) {
+        byte[] bArr = new byte[i];
+        readBytes(bArr, z);
+        return bArr;
     }
 
     @Override
@@ -333,6 +362,31 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
+    protected void set(byte[] bArr) {
+        this.isOut = false;
+        this.inbuf = new ByteArrayInputStream(bArr);
+        this.in = new DataInputStream(this.inbuf);
+    }
+
+    @Override
+    public void skip(int i) {
+        if (i == 0) {
+            return;
+        }
+        if (this.justCalc) {
+            this.len += i;
+            return;
+        }
+        DataInputStream dataInputStream = this.in;
+        if (dataInputStream != null) {
+            try {
+                dataInputStream.skipBytes(i);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+    }
+
     public byte[] toByteArray() {
         return this.outbuf.toByteArray();
     }
@@ -362,6 +416,7 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void writeByte(int i) {
         try {
             if (this.justCalc) {
@@ -424,9 +479,15 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
+    public void writeByteArray(byte[] r6, int r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.SerializedData.writeByteArray(byte[], int, int):void");
+    }
+
+    @Override
     public void writeByteBuffer(NativeByteBuffer nativeByteBuffer) {
     }
 
+    @Override
     public void writeBytes(byte[] bArr) {
         try {
             if (this.justCalc) {
@@ -442,6 +503,7 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void writeBytes(byte[] bArr, int i, int i2) {
         try {
             if (this.justCalc) {

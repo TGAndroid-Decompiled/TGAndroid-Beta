@@ -11,9 +11,7 @@ import java.util.Iterator;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$TL_videoSizeEmojiMarkup;
-import org.telegram.tgnet.TLRPC$TL_videoSizeStickerMarkup;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 
 public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmojiSpan.InvalidateHolder, AttachableDrawable, NotificationCenter.NotificationCenterDelegate {
@@ -26,11 +24,11 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
     boolean isPremium;
     HashSet parents;
     float roundRadius;
-    TLRPC$TL_videoSizeStickerMarkup sizeStickerMarkup;
+    TLRPC.TL_videoSizeStickerMarkup sizeStickerMarkup;
     ImageReceiver stickerPreloadImageReceiver;
     private final int type;
 
-    public VectorAvatarThumbDrawable(TLRPC$VideoSize tLRPC$VideoSize, boolean z, int i) {
+    public VectorAvatarThumbDrawable(TLRPC.VideoSize videoSize, boolean z, int i) {
         GradientTools gradientTools = new GradientTools();
         this.gradientTools = gradientTools;
         this.parents = new HashSet();
@@ -38,15 +36,15 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
         this.currentAccount = UserConfig.selectedAccount;
         this.type = i;
         this.isPremium = z;
-        gradientTools.setColors(ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(0)).intValue(), 255), tLRPC$VideoSize.background_colors.size() > 1 ? ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(1)).intValue(), 255) : 0, tLRPC$VideoSize.background_colors.size() > 2 ? ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(2)).intValue(), 255) : 0, tLRPC$VideoSize.background_colors.size() > 3 ? ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(3)).intValue(), 255) : 0);
-        if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeEmojiMarkup) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable((i == 1 && z) ? 7 : i == 2 ? 15 : 8, UserConfig.selectedAccount, ((TLRPC$TL_videoSizeEmojiMarkup) tLRPC$VideoSize).emoji_id);
+        gradientTools.setColors(ColorUtils.setAlphaComponent(videoSize.background_colors.get(0).intValue(), 255), videoSize.background_colors.size() > 1 ? ColorUtils.setAlphaComponent(videoSize.background_colors.get(1).intValue(), 255) : 0, videoSize.background_colors.size() > 2 ? ColorUtils.setAlphaComponent(videoSize.background_colors.get(2).intValue(), 255) : 0, videoSize.background_colors.size() > 3 ? ColorUtils.setAlphaComponent(videoSize.background_colors.get(3).intValue(), 255) : 0);
+        if (videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable((i == 1 && z) ? 7 : i == 2 ? 15 : 8, UserConfig.selectedAccount, ((TLRPC.TL_videoSizeEmojiMarkup) videoSize).emoji_id);
             this.animatedEmojiDrawable = animatedEmojiDrawable;
             animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             return;
         }
-        if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeStickerMarkup) {
-            this.sizeStickerMarkup = (TLRPC$TL_videoSizeStickerMarkup) tLRPC$VideoSize;
+        if (videoSize instanceof TLRPC.TL_videoSizeStickerMarkup) {
+            this.sizeStickerMarkup = (TLRPC.TL_videoSizeStickerMarkup) videoSize;
             ImageReceiver imageReceiver = new ImageReceiver() {
                 @Override
                 public void invalidate() {
@@ -108,7 +106,7 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
     }
 
     public boolean equals(Object obj) {
-        TLRPC$TL_videoSizeStickerMarkup tLRPC$TL_videoSizeStickerMarkup;
+        TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup;
         if (this == obj) {
             return true;
         }
@@ -123,8 +121,8 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
                     if (animatedEmojiDrawable != null && vectorAvatarThumbDrawable.animatedEmojiDrawable != null) {
                         return animatedEmojiDrawable.getDocumentId() == vectorAvatarThumbDrawable.animatedEmojiDrawable.getDocumentId();
                     }
-                    TLRPC$TL_videoSizeStickerMarkup tLRPC$TL_videoSizeStickerMarkup2 = this.sizeStickerMarkup;
-                    return tLRPC$TL_videoSizeStickerMarkup2 != null && (tLRPC$TL_videoSizeStickerMarkup = vectorAvatarThumbDrawable.sizeStickerMarkup) != null && tLRPC$TL_videoSizeStickerMarkup2.stickerset.id == tLRPC$TL_videoSizeStickerMarkup.stickerset.id && tLRPC$TL_videoSizeStickerMarkup2.sticker_id == tLRPC$TL_videoSizeStickerMarkup.sticker_id;
+                    TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.sizeStickerMarkup;
+                    return tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = vectorAvatarThumbDrawable.sizeStickerMarkup) != null && tL_videoSizeStickerMarkup2.stickerset.id == tL_videoSizeStickerMarkup.stickerset.id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id;
                 }
             }
         }

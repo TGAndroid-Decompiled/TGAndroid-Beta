@@ -24,8 +24,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$TL_theme;
-import org.telegram.tgnet.TLRPC$ThemeSettings;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
@@ -267,8 +266,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         Theme.ThemeInfo themeInfo = chatThemeItem.chatTheme.getThemeInfo(this.themeIndex);
         int accentId = (chatThemeItem.chatTheme.getEmoticon().equals("🏠") || chatThemeItem.chatTheme.getEmoticon().equals("🎨")) ? chatThemeItem.chatTheme.getAccentId(this.themeIndex) : -1;
         if (themeInfo == null) {
-            TLRPC$TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.themeIndex);
-            Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey((TLRPC$ThemeSettings) tlTheme.settings.get(chatThemeItem.chatTheme.getSettingsIndex(this.themeIndex))));
+            TLRPC.TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.themeIndex);
+            Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey(tlTheme.settings.get(chatThemeItem.chatTheme.getSettingsIndex(this.themeIndex))));
             if (theme != null) {
                 Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) theme.accentsByThemeId.get(tlTheme.id);
                 if (themeAccent == null) {
@@ -312,10 +311,10 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         }
         this.selectedPosition = -1;
         for (int i = 0; i < this.adapter.items.size(); i++) {
-            TLRPC$TL_theme tlTheme = ((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getTlTheme(this.themeIndex);
+            TLRPC.TL_theme tlTheme = ((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getTlTheme(this.themeIndex);
             Theme.ThemeInfo themeInfo = ((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getThemeInfo(this.themeIndex);
             if (tlTheme != null) {
-                if (Theme.getActiveTheme().name.equals(Theme.getBaseThemeKey((TLRPC$ThemeSettings) tlTheme.settings.get(((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getSettingsIndex(this.themeIndex))))) {
+                if (Theme.getActiveTheme().name.equals(Theme.getBaseThemeKey(tlTheme.settings.get(((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getSettingsIndex(this.themeIndex))))) {
                     if (Theme.getActiveTheme().accentsByThemeId != null) {
                         Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) Theme.getActiveTheme().accentsByThemeId.get(tlTheme.id);
                         if (themeAccent != null && themeAccent.id == Theme.getActiveTheme().currentAccentId) {

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AttachableDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -139,7 +139,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     List<ImageReceiver> preloadReceivers;
     private float pressedProgress;
     private float previousAlpha;
-    private TLRPC$Document qulityThumbDocument;
+    private TLRPC.Document qulityThumbDocument;
     private Paint roundPaint;
     private final Path roundPath;
     private final int[] roundRadius;
@@ -874,6 +874,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return null;
     }
 
+    public int getAutoRepeat() {
+        return this.autoRepeat;
+    }
+
     public Bitmap getBitmap() {
         RLottieDrawable lottieAnimation = getLottieAnimation();
         if (lottieAnimation != null && lottieAnimation.hasBitmap()) {
@@ -1173,7 +1177,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return this.isPressed != 0;
     }
 
-    public TLRPC$Document getQualityThumbDocument() {
+    public TLRPC.Document getQualityThumbDocument() {
         return this.qulityThumbDocument;
     }
 
@@ -2014,8 +2018,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.isPressed = i;
     }
 
-    public void setQualityThumbDocument(TLRPC$Document tLRPC$Document) {
-        this.qulityThumbDocument = tLRPC$Document;
+    public void setQualityThumbDocument(TLRPC.Document document) {
+        this.qulityThumbDocument = document;
     }
 
     public void setRoundRadius(int i) {

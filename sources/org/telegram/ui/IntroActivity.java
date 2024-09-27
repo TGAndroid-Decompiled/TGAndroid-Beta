@@ -51,11 +51,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$LangPackString;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_langPackString;
-import org.telegram.tgnet.TLRPC$TL_langpack_getStrings;
-import org.telegram.tgnet.TLRPC$Vector;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -587,43 +583,43 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         if (localeInfo == null || localeInfo2 == null || localeInfo == localeInfo2) {
             return;
         }
-        TLRPC$TL_langpack_getStrings tLRPC$TL_langpack_getStrings = new TLRPC$TL_langpack_getStrings();
+        TLRPC.TL_langpack_getStrings tL_langpack_getStrings = new TLRPC.TL_langpack_getStrings();
         if (localeInfo2 != currentLocaleInfo) {
-            tLRPC$TL_langpack_getStrings.lang_code = localeInfo2.getLangCode();
+            tL_langpack_getStrings.lang_code = localeInfo2.getLangCode();
             this.localeInfo = localeInfo2;
         } else {
-            tLRPC$TL_langpack_getStrings.lang_code = localeInfo.getLangCode();
+            tL_langpack_getStrings.lang_code = localeInfo.getLangCode();
             this.localeInfo = localeInfo;
         }
-        tLRPC$TL_langpack_getStrings.keys.add("ContinueOnThisLanguage");
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_langpack_getStrings, new RequestDelegate() {
+        tL_langpack_getStrings.keys.add("ContinueOnThisLanguage");
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                IntroActivity.this.lambda$checkContinueText$4(str, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                IntroActivity.this.lambda$checkContinueText$4(str, tLObject, tL_error);
             }
         }, 8);
     }
 
-    public void lambda$checkContinueText$3(TLRPC$LangPackString tLRPC$LangPackString, String str) {
+    public void lambda$checkContinueText$3(TLRPC.LangPackString langPackString, String str) {
         if (this.destroyed) {
             return;
         }
-        this.switchLanguageTextView.setText(tLRPC$LangPackString.value);
+        this.switchLanguageTextView.setText(langPackString.value);
         MessagesController.getGlobalMainSettings().edit().putString("language_showed2", str.toLowerCase()).apply();
     }
 
-    public void lambda$checkContinueText$4(final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkContinueText$4(final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
-            if (tLRPC$Vector.objects.isEmpty()) {
+            TLRPC.Vector vector = (TLRPC.Vector) tLObject;
+            if (vector.objects.isEmpty()) {
                 return;
             }
-            final TLRPC$LangPackString tLRPC$LangPackString = (TLRPC$LangPackString) tLRPC$Vector.objects.get(0);
-            if (tLRPC$LangPackString instanceof TLRPC$TL_langPackString) {
+            final TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(0);
+            if (langPackString instanceof TLRPC.TL_langPackString) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        IntroActivity.this.lambda$checkContinueText$3(tLRPC$LangPackString, str);
+                        IntroActivity.this.lambda$checkContinueText$3(langPackString, str);
                     }
                 });
             }

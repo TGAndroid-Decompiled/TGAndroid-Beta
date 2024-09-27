@@ -15,12 +15,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatInvite;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_importChatInvite;
-import org.telegram.tgnet.TLRPC$Updates;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -28,8 +23,8 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Bulletin;
 
 public class JoinGroupAlert extends BottomSheet {
-    private TLRPC$ChatInvite chatInvite;
-    private TLRPC$Chat currentChat;
+    private TLRPC.ChatInvite chatInvite;
+    private TLRPC.Chat currentChat;
     private final BaseFragment fragment;
     private final String hash;
     private RadialProgressView requestProgressView;
@@ -43,8 +38,8 @@ public class JoinGroupAlert extends BottomSheet {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.JoinGroupAlert.<init>(android.content.Context, org.telegram.tgnet.TLObject, java.lang.String, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int):void");
     }
 
-    private CharSequence ellipsize(TextView textView, TLRPC$ChatInvite tLRPC$ChatInvite, int i) {
-        String str = ((TLRPC$User) tLRPC$ChatInvite.participants.get(i)).first_name;
+    private CharSequence ellipsize(TextView textView, TLRPC.ChatInvite chatInvite, int i) {
+        String str = chatInvite.participants.get(i).first_name;
         if (str == null) {
             str = "";
         }
@@ -73,12 +68,12 @@ public class JoinGroupAlert extends BottomSheet {
 
     public void lambda$new$10(final int i, View view) {
         dismiss();
-        final TLRPC$TL_messages_importChatInvite tLRPC$TL_messages_importChatInvite = new TLRPC$TL_messages_importChatInvite();
-        tLRPC$TL_messages_importChatInvite.hash = this.hash;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_importChatInvite, new RequestDelegate() {
+        final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
+        tL_messages_importChatInvite.hash = this.hash;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_importChatInvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                JoinGroupAlert.this.lambda$new$9(i, tLRPC$TL_messages_importChatInvite, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                JoinGroupAlert.this.lambda$new$9(i, tL_messages_importChatInvite, tLObject, tL_error);
             }
         }, 2);
     }
@@ -87,8 +82,8 @@ public class JoinGroupAlert extends BottomSheet {
         showBulletin(getContext(), this.fragment, z);
     }
 
-    public boolean lambda$new$3(final boolean z, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error != null && "INVITE_REQUEST_SENT".equals(tLRPC$TL_error.text)) {
+    public boolean lambda$new$3(final boolean z, TLRPC.TL_error tL_error) {
+        if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
@@ -104,13 +99,13 @@ public class JoinGroupAlert extends BottomSheet {
         showBulletin(getContext(), this.fragment, z);
     }
 
-    public void lambda$new$5(TLRPC$TL_error tLRPC$TL_error, final boolean z, TLRPC$TL_messages_importChatInvite tLRPC$TL_messages_importChatInvite) {
+    public void lambda$new$5(TLRPC.TL_error tL_error, final boolean z, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
-        if (tLRPC$TL_error != null) {
-            if ("INVITE_REQUEST_SENT".equals(tLRPC$TL_error.text)) {
+        if (tL_error != null) {
+            if ("INVITE_REQUEST_SENT".equals(tL_error.text)) {
                 setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
@@ -118,17 +113,17 @@ public class JoinGroupAlert extends BottomSheet {
                     }
                 });
             } else {
-                AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this.fragment, tLRPC$TL_messages_importChatInvite, new Object[0]);
+                AlertsCreator.processError(this.currentAccount, tL_error, this.fragment, tL_messages_importChatInvite, new Object[0]);
             }
         }
         dismiss();
     }
 
-    public void lambda$new$6(final boolean z, final TLRPC$TL_messages_importChatInvite tLRPC$TL_messages_importChatInvite, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$6(final boolean z, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinGroupAlert.this.lambda$new$5(tLRPC$TL_error, z, tLRPC$TL_messages_importChatInvite);
+                JoinGroupAlert.this.lambda$new$5(tL_error, z, tL_messages_importChatInvite);
             }
         });
     }
@@ -148,61 +143,61 @@ public class JoinGroupAlert extends BottomSheet {
                 }
             }, new MessagesController.ErrorDelegate() {
                 @Override
-                public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
+                public final boolean run(TLRPC.TL_error tL_error) {
                     boolean lambda$new$3;
-                    lambda$new$3 = JoinGroupAlert.this.lambda$new$3(z, tLRPC$TL_error);
+                    lambda$new$3 = JoinGroupAlert.this.lambda$new$3(z, tL_error);
                     return lambda$new$3;
                 }
             });
             return;
         }
-        final TLRPC$TL_messages_importChatInvite tLRPC$TL_messages_importChatInvite = new TLRPC$TL_messages_importChatInvite();
-        tLRPC$TL_messages_importChatInvite.hash = this.hash;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_importChatInvite, new RequestDelegate() {
+        final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
+        tL_messages_importChatInvite.hash = this.hash;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_importChatInvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                JoinGroupAlert.this.lambda$new$6(z, tLRPC$TL_messages_importChatInvite, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                JoinGroupAlert.this.lambda$new$6(z, tL_messages_importChatInvite, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$new$8(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i, TLRPC$TL_messages_importChatInvite tLRPC$TL_messages_importChatInvite) {
-        TLRPC$ChatInvite tLRPC$ChatInvite;
-        TLRPC$Chat tLRPC$Chat;
+    public void lambda$new$8(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        TLRPC.ChatInvite chatInvite;
+        TLRPC.Chat chat;
         long j;
         BaseFragment baseFragment = this.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
-        if (tLRPC$TL_error == null) {
-            TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
-            if (tLRPC$Updates.chats.isEmpty()) {
+        if (tL_error == null) {
+            TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+            if (updates.chats.isEmpty()) {
                 return;
             }
-            TLRPC$Chat tLRPC$Chat2 = tLRPC$Updates.chats.get(0);
-            tLRPC$Chat2.left = false;
-            tLRPC$Chat2.kicked = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$Updates.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(tLRPC$Updates.chats, false);
-            j = tLRPC$Chat2.id;
+            TLRPC.Chat chat2 = updates.chats.get(0);
+            chat2.left = false;
+            chat2.kicked = false;
+            MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
+            j = chat2.id;
         } else {
-            if (!"USER_ALREADY_PARTICIPANT".equals(tLRPC$TL_error.text) || i != 0 || (tLRPC$ChatInvite = this.chatInvite) == null || (tLRPC$Chat = tLRPC$ChatInvite.chat) == null) {
-                AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this.fragment, tLRPC$TL_messages_importChatInvite, new Object[0]);
+            if (!"USER_ALREADY_PARTICIPANT".equals(tL_error.text) || i != 0 || (chatInvite = this.chatInvite) == null || (chat = chatInvite.chat) == null) {
+                AlertsCreator.processError(this.currentAccount, tL_error, this.fragment, tL_messages_importChatInvite, new Object[0]);
                 return;
             }
-            j = tLRPC$Chat.id;
+            j = chat.id;
         }
         openChat(j);
     }
 
-    public void lambda$new$9(final int i, final TLRPC$TL_messages_importChatInvite tLRPC$TL_messages_importChatInvite, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error == null) {
-            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC$Updates) tLObject, false);
+    public void lambda$new$9(final int i, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinGroupAlert.this.lambda$new$8(tLRPC$TL_error, tLObject, i, tLRPC$TL_messages_importChatInvite);
+                JoinGroupAlert.this.lambda$new$8(tL_error, tLObject, i, tL_messages_importChatInvite);
             }
         });
     }

@@ -18,9 +18,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_exportedChatInvite;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -47,7 +45,7 @@ public class LinkEditActivity extends BaseFragment {
     private TextInfoPrivacyCell dividerUses;
     private boolean finished;
     private boolean ignoreSet;
-    TLRPC$TL_chatInviteExported inviteToEdit;
+    TLRPC.TL_chatInviteExported inviteToEdit;
     boolean loading;
     private EditText nameEditText;
     AlertDialog progressDialog;
@@ -76,11 +74,11 @@ public class LinkEditActivity extends BaseFragment {
     public interface Callback {
         void onLinkCreated(TLObject tLObject);
 
-        void onLinkEdited(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, TLObject tLObject);
+        void onLinkEdited(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
 
-        void onLinkRemoved(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported);
+        void onLinkRemoved(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 
-        void revokeLink(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported);
+        void revokeLink(TLRPC.TL_chatInviteExported tL_chatInviteExported);
     }
 
     public LinkEditActivity(int i, long j) {
@@ -319,7 +317,7 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$9(DialogInterface dialogInterface, int i) {
         this.callback.revokeLink(this.inviteToEdit);
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$getThemeDescriptions$16() {
@@ -352,57 +350,57 @@ public class LinkEditActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onCreateClicked$12(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$onCreateClicked$12(TLRPC.TL_error tL_error, TLObject tLObject) {
         this.loading = false;
         AlertDialog alertDialog = this.progressDialog;
         if (alertDialog != null) {
             alertDialog.dismiss();
         }
-        if (tLRPC$TL_error != null) {
-            AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
+        if (tL_error != null) {
+            AlertsCreator.showSimpleAlert(this, tL_error.text);
             return;
         }
         Callback callback = this.callback;
         if (callback != null) {
             callback.onLinkCreated(tLObject);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$onCreateClicked$13(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onCreateClicked$13(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.this.lambda$onCreateClicked$12(tLRPC$TL_error, tLObject);
+                LinkEditActivity.this.lambda$onCreateClicked$12(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$onCreateClicked$14(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$onCreateClicked$14(TLRPC.TL_error tL_error, TLObject tLObject) {
         this.loading = false;
         AlertDialog alertDialog = this.progressDialog;
         if (alertDialog != null) {
             alertDialog.dismiss();
         }
-        if (tLRPC$TL_error != null) {
-            AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
+        if (tL_error != null) {
+            AlertsCreator.showSimpleAlert(this, tL_error.text);
             return;
         }
-        if (tLObject instanceof TLRPC$TL_messages_exportedChatInvite) {
-            this.inviteToEdit = (TLRPC$TL_chatInviteExported) ((TLRPC$TL_messages_exportedChatInvite) tLObject).invite;
+        if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
+            this.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
         }
         Callback callback = this.callback;
         if (callback != null) {
             callback.onLinkEdited(this.inviteToEdit, tLObject);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$onCreateClicked$15(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onCreateClicked$15(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.this.lambda$onCreateClicked$14(tLRPC$TL_error, tLObject);
+                LinkEditActivity.this.lambda$onCreateClicked$14(tL_error, tLObject);
             }
         });
     }
@@ -450,15 +448,15 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r31) {
+    public android.view.View createView(final android.content.Context r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LinkEditActivity.createView(android.content.Context):android.view.View");
     }
 
     @Override
-    public void lambda$onBackPressed$307() {
+    public void lambda$onBackPressed$300() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
         this.finished = true;
-        super.lambda$onBackPressed$307();
+        super.lambda$onBackPressed$300();
     }
 
     @Override
@@ -511,39 +509,39 @@ public class LinkEditActivity extends BaseFragment {
         this.callback = callback;
     }
 
-    public void setInviteToEdit(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported) {
-        this.inviteToEdit = tLRPC$TL_chatInviteExported;
-        if (this.fragmentView == null || tLRPC$TL_chatInviteExported == null) {
+    public void setInviteToEdit(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+        this.inviteToEdit = tL_chatInviteExported;
+        if (this.fragmentView == null || tL_chatInviteExported == null) {
             return;
         }
-        int i = tLRPC$TL_chatInviteExported.expire_date;
+        int i = tL_chatInviteExported.expire_date;
         if (i > 0) {
             chooseDate(i);
             this.currentInviteDate = ((Integer) this.dispalyedDates.get(this.timeChooseView.getSelectedIndex())).intValue();
         } else {
             this.currentInviteDate = 0;
         }
-        int i2 = tLRPC$TL_chatInviteExported.usage_limit;
+        int i2 = tL_chatInviteExported.usage_limit;
         if (i2 > 0) {
             chooseUses(i2);
-            this.usesEditText.setText(Integer.toString(tLRPC$TL_chatInviteExported.usage_limit));
+            this.usesEditText.setText(Integer.toString(tL_chatInviteExported.usage_limit));
         }
         TextCheckCell textCheckCell = this.approveCell;
         if (textCheckCell != null) {
-            textCheckCell.setBackgroundColor(Theme.getColor(tLRPC$TL_chatInviteExported.request_needed ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
-            this.approveCell.setChecked(tLRPC$TL_chatInviteExported.request_needed);
+            textCheckCell.setBackgroundColor(Theme.getColor(tL_chatInviteExported.request_needed ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+            this.approveCell.setChecked(tL_chatInviteExported.request_needed);
         }
-        setUsesVisible(!tLRPC$TL_chatInviteExported.request_needed);
-        if (!TextUtils.isEmpty(tLRPC$TL_chatInviteExported.title)) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tLRPC$TL_chatInviteExported.title);
+        setUsesVisible(!tL_chatInviteExported.request_needed);
+        if (!TextUtils.isEmpty(tL_chatInviteExported.title)) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_chatInviteExported.title);
             Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.nameEditText.getPaint().getFontMetricsInt(), (int) this.nameEditText.getPaint().getTextSize(), false);
             this.nameEditText.setText(spannableStringBuilder);
         }
         TextCheckCell textCheckCell2 = this.subCell;
         if (textCheckCell2 != null) {
-            textCheckCell2.setChecked(tLRPC$TL_chatInviteExported.subscription_pricing != null);
+            textCheckCell2.setChecked(tL_chatInviteExported.subscription_pricing != null);
         }
-        if (tLRPC$TL_chatInviteExported.subscription_pricing != null) {
+        if (tL_chatInviteExported.subscription_pricing != null) {
             TextCheckCell textCheckCell3 = this.approveCell;
             if (textCheckCell3 != null) {
                 textCheckCell3.setChecked(false);
@@ -556,8 +554,8 @@ public class LinkEditActivity extends BaseFragment {
         }
         EditTextCell editTextCell = this.subEditPriceCell;
         if (editTextCell != null) {
-            editTextCell.setVisibility(tLRPC$TL_chatInviteExported.subscription_pricing != null ? 0 : 8);
-            this.subEditPriceCell.setText(Long.toString(tLRPC$TL_chatInviteExported.subscription_pricing.amount));
+            editTextCell.setVisibility(tL_chatInviteExported.subscription_pricing != null ? 0 : 8);
+            this.subEditPriceCell.setText(Long.toString(tL_chatInviteExported.subscription_pricing.amount));
             this.subEditPriceCell.editText.setClickable(false);
             this.subEditPriceCell.editText.setFocusable(false);
             this.subEditPriceCell.editText.setFocusableInTouchMode(false);

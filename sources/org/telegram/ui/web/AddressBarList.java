@@ -42,9 +42,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
@@ -580,11 +578,11 @@ public class AddressBarList extends FrameLayout {
     }
 
     public static String getLink(MessageObject messageObject) {
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        if (tLRPC$Message != null) {
-            TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
-                return tLRPC$MessageMedia.webpage.url;
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message != null) {
+            TLRPC.MessageMedia messageMedia = message.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                return messageMedia.webpage.url;
             }
         }
         CharSequence charSequence = messageObject.messageText;

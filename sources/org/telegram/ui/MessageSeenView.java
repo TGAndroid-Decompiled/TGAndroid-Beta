@@ -31,18 +31,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsRecent;
-import org.telegram.tgnet.TLRPC$TL_channels_channelParticipants;
-import org.telegram.tgnet.TLRPC$TL_channels_getParticipants;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_chatFull;
-import org.telegram.tgnet.TLRPC$TL_messages_getFullChat;
-import org.telegram.tgnet.TLRPC$TL_messages_getMessageReadParticipants;
-import org.telegram.tgnet.TLRPC$TL_readParticipantDate;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$Vector;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -139,13 +128,13 @@ public class MessageSeenView extends FrameLayout {
         @Override
         public void didReceivedNotification(int i, int i2, Object... objArr) {
             if (i == NotificationCenter.userEmojiStatusUpdated) {
-                TLRPC$User tLRPC$User = (TLRPC$User) objArr[0];
+                TLRPC.User user = (TLRPC.User) objArr[0];
                 TLObject tLObject = this.object;
-                TLRPC$User tLRPC$User2 = tLObject instanceof TLRPC$User ? (TLRPC$User) tLObject : null;
-                if (tLRPC$User2 == null || tLRPC$User == null || tLRPC$User2.id != tLRPC$User.id) {
+                TLRPC.User user2 = tLObject instanceof TLRPC.User ? (TLRPC.User) tLObject : null;
+                if (user2 == null || user == null || user2.id != user.id) {
                     return;
                 }
-                this.object = tLRPC$User;
+                this.object = user;
                 updateStatus(true);
             }
         }
@@ -204,7 +193,7 @@ public class MessageSeenView extends FrameLayout {
         }
     }
 
-    public MessageSeenView(Context context, final int i, MessageObject messageObject, final TLRPC$Chat tLRPC$Chat) {
+    public MessageSeenView(Context context, final int i, MessageObject messageObject, final TLRPC.Chat chat) {
         super(context);
         this.peerIds = new ArrayList();
         this.dates = new ArrayList();
@@ -229,9 +218,9 @@ public class MessageSeenView extends FrameLayout {
         this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
         addView(this.avatarsImageView, LayoutHelper.createFrame(56, -1.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
         this.titleView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
-        TLRPC$TL_messages_getMessageReadParticipants tLRPC$TL_messages_getMessageReadParticipants = new TLRPC$TL_messages_getMessageReadParticipants();
-        tLRPC$TL_messages_getMessageReadParticipants.msg_id = messageObject.getId();
-        tLRPC$TL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(i).getInputPeer(messageObject.getDialogId());
+        TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
+        tL_messages_getMessageReadParticipants.msg_id = messageObject.getId();
+        tL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(i).getInputPeer(messageObject.getDialogId());
         ImageView imageView = new ImageView(context);
         this.iconView = imageView;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
@@ -240,12 +229,12 @@ public class MessageSeenView extends FrameLayout {
         this.iconView.setImageDrawable(mutate);
         this.avatarsImageView.setAlpha(0.0f);
         this.titleView.setAlpha(0.0f);
-        TLRPC$Peer tLRPC$Peer = messageObject.messageOwner.from_id;
-        final long j = tLRPC$Peer != null ? tLRPC$Peer.user_id : 0L;
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getMessageReadParticipants, new RequestDelegate() {
+        TLRPC.Peer peer = messageObject.messageOwner.from_id;
+        final long j = peer != null ? peer.user_id : 0L;
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getMessageReadParticipants, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessageSeenView.this.lambda$new$5(j, i, tLRPC$Chat, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                MessageSeenView.this.lambda$new$5(j, i, chat, tLObject, tL_error);
             }
         });
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector), 6, 0));
@@ -254,11 +243,11 @@ public class MessageSeenView extends FrameLayout {
 
     public void lambda$new$0(TLObject tLObject, int i, HashMap hashMap, ArrayList arrayList) {
         if (tLObject != null) {
-            TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) tLObject;
-            for (int i2 = 0; i2 < tLRPC$TL_channels_channelParticipants.users.size(); i2++) {
-                TLRPC$User tLRPC$User = (TLRPC$User) tLRPC$TL_channels_channelParticipants.users.get(i2);
-                MessagesController.getInstance(i).putUser(tLRPC$User, false);
-                hashMap.put(Long.valueOf(tLRPC$User.id), tLRPC$User);
+            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
+            for (int i2 = 0; i2 < tL_channels_channelParticipants.users.size(); i2++) {
+                TLRPC.User user = tL_channels_channelParticipants.users.get(i2);
+                MessagesController.getInstance(i).putUser(user, false);
+                hashMap.put(Long.valueOf(user.id), user);
             }
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 Pair pair = (Pair) arrayList.get(i3);
@@ -270,7 +259,7 @@ public class MessageSeenView extends FrameLayout {
         updateView();
     }
 
-    public void lambda$new$1(final int i, final HashMap hashMap, final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$1(final int i, final HashMap hashMap, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -281,11 +270,11 @@ public class MessageSeenView extends FrameLayout {
 
     public void lambda$new$2(TLObject tLObject, int i, HashMap hashMap, ArrayList arrayList) {
         if (tLObject != null) {
-            TLRPC$TL_messages_chatFull tLRPC$TL_messages_chatFull = (TLRPC$TL_messages_chatFull) tLObject;
-            for (int i2 = 0; i2 < tLRPC$TL_messages_chatFull.users.size(); i2++) {
-                TLRPC$User tLRPC$User = (TLRPC$User) tLRPC$TL_messages_chatFull.users.get(i2);
-                MessagesController.getInstance(i).putUser(tLRPC$User, false);
-                hashMap.put(Long.valueOf(tLRPC$User.id), tLRPC$User);
+            TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
+            for (int i2 = 0; i2 < tL_messages_chatFull.users.size(); i2++) {
+                TLRPC.User user = tL_messages_chatFull.users.get(i2);
+                MessagesController.getInstance(i).putUser(user, false);
+                hashMap.put(Long.valueOf(user.id), user);
             }
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 Pair pair = (Pair) arrayList.get(i3);
@@ -297,7 +286,7 @@ public class MessageSeenView extends FrameLayout {
         updateView();
     }
 
-    public void lambda$new$3(final int i, final HashMap hashMap, final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$3(final int i, final HashMap hashMap, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -306,24 +295,24 @@ public class MessageSeenView extends FrameLayout {
         });
     }
 
-    public void lambda$new$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, long j, final int i, TLRPC$Chat tLRPC$Chat) {
+    public void lambda$new$4(TLRPC.TL_error tL_error, TLObject tLObject, long j, final int i, TLRPC.Chat chat) {
         RequestDelegate requestDelegate;
-        TLRPC$TL_messages_getFullChat tLRPC$TL_messages_getFullChat;
+        TLRPC.TL_messages_getFullChat tL_messages_getFullChat;
         ConnectionsManager connectionsManager;
         Long l;
-        if (tLRPC$TL_error == null) {
-            TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
+        if (tL_error == null) {
+            TLRPC.Vector vector = (TLRPC.Vector) tLObject;
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             final HashMap hashMap = new HashMap();
             final ArrayList arrayList3 = new ArrayList();
-            int size = tLRPC$Vector.objects.size();
+            int size = vector.objects.size();
             for (int i2 = 0; i2 < size; i2++) {
-                Object obj = tLRPC$Vector.objects.get(i2);
-                if (obj instanceof TLRPC$TL_readParticipantDate) {
-                    TLRPC$TL_readParticipantDate tLRPC$TL_readParticipantDate = (TLRPC$TL_readParticipantDate) obj;
-                    int i3 = tLRPC$TL_readParticipantDate.date;
-                    long j2 = tLRPC$TL_readParticipantDate.user_id;
+                Object obj = vector.objects.get(i2);
+                if (obj instanceof TLRPC.TL_readParticipantDate) {
+                    TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) obj;
+                    int i3 = tL_readParticipantDate.date;
+                    long j2 = tL_readParticipantDate.user_id;
                     l = Long.valueOf(j2);
                     if (j != j2) {
                         MessagesController.getInstance(i).getUser(l);
@@ -350,35 +339,35 @@ public class MessageSeenView extends FrameLayout {
                 }
             }
             if (!arrayList.isEmpty()) {
-                if (ChatObject.isChannel(tLRPC$Chat)) {
-                    TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = new TLRPC$TL_channels_getParticipants();
-                    tLRPC$TL_channels_getParticipants.limit = MessagesController.getInstance(i).chatReadMarkSizeThreshold;
-                    tLRPC$TL_channels_getParticipants.offset = 0;
-                    tLRPC$TL_channels_getParticipants.filter = new TLRPC$TL_channelParticipantsRecent();
-                    tLRPC$TL_channels_getParticipants.channel = MessagesController.getInstance(i).getInputChannel(tLRPC$Chat.id);
+                if (ChatObject.isChannel(chat)) {
+                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                    tL_channels_getParticipants.limit = MessagesController.getInstance(i).chatReadMarkSizeThreshold;
+                    tL_channels_getParticipants.offset = 0;
+                    tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
+                    tL_channels_getParticipants.channel = MessagesController.getInstance(i).getInputChannel(chat.id);
                     ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(i);
                     requestDelegate = new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                            MessageSeenView.this.lambda$new$1(i, hashMap, arrayList3, tLObject2, tLRPC$TL_error2);
+                        public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                            MessageSeenView.this.lambda$new$1(i, hashMap, arrayList3, tLObject2, tL_error2);
                         }
                     };
                     connectionsManager = connectionsManager2;
-                    tLRPC$TL_messages_getFullChat = tLRPC$TL_channels_getParticipants;
+                    tL_messages_getFullChat = tL_channels_getParticipants;
                 } else {
-                    TLRPC$TL_messages_getFullChat tLRPC$TL_messages_getFullChat2 = new TLRPC$TL_messages_getFullChat();
-                    tLRPC$TL_messages_getFullChat2.chat_id = tLRPC$Chat.id;
+                    TLRPC.TL_messages_getFullChat tL_messages_getFullChat2 = new TLRPC.TL_messages_getFullChat();
+                    tL_messages_getFullChat2.chat_id = chat.id;
                     ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(i);
                     requestDelegate = new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                            MessageSeenView.this.lambda$new$3(i, hashMap, arrayList3, tLObject2, tLRPC$TL_error2);
+                        public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                            MessageSeenView.this.lambda$new$3(i, hashMap, arrayList3, tLObject2, tL_error2);
                         }
                     };
                     connectionsManager = connectionsManager3;
-                    tLRPC$TL_messages_getFullChat = tLRPC$TL_messages_getFullChat2;
+                    tL_messages_getFullChat = tL_messages_getFullChat2;
                 }
-                connectionsManager.sendRequest(tLRPC$TL_messages_getFullChat, requestDelegate);
+                connectionsManager.sendRequest(tL_messages_getFullChat, requestDelegate);
                 return;
             }
             for (int i4 = 0; i4 < arrayList3.size(); i4++) {
@@ -391,11 +380,11 @@ public class MessageSeenView extends FrameLayout {
         updateView();
     }
 
-    public void lambda$new$5(final long j, final int i, final TLRPC$Chat tLRPC$Chat, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$5(final long j, final int i, final TLRPC.Chat chat, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSeenView.this.lambda$new$4(tLRPC$TL_error, tLObject, j, i, tLRPC$Chat);
+                MessageSeenView.this.lambda$new$4(tL_error, tLObject, j, i, chat);
             }
         });
     }

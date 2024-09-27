@@ -8,7 +8,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -110,11 +110,11 @@ public class StoriesLikeButton extends View {
     }
 
     public void prepareAnimateReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-        TLRPC$TL_availableReaction tLRPC$TL_availableReaction;
-        if (visibleReaction.documentId != 0 || (tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon)) == null) {
+        TLRPC.TL_availableReaction tL_availableReaction;
+        if (visibleReaction.documentId != 0 || (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon)) == null) {
             return;
         }
-        this.animateReactionImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_nolimit", null, "tgs", tLRPC$TL_availableReaction, 1);
+        this.animateReactionImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction, 1);
         this.animateReactionImageReceiver.setAutoRepeat(0);
     }
 
@@ -149,9 +149,9 @@ public class StoriesLikeButton extends View {
                     animatedEmojiDrawable2.addView(this);
                 }
             } else {
-                TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon);
-                if (tLRPC$TL_availableReaction != null) {
-                    this.reactionImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), "webp", tLRPC$TL_availableReaction, 1);
+                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon);
+                if (tL_availableReaction != null) {
+                    this.reactionImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), "webp", tL_availableReaction, 1);
                 }
             }
         }

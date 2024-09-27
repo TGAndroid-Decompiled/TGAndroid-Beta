@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -23,7 +23,7 @@ import org.telegram.ui.Components.LayoutHelper;
 public abstract class GroupCallInvitedCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;
-    private TLRPC$User currentUser;
+    private TLRPC.User currentUser;
     private Paint dividerPaint;
     private int grayIconColor;
     private ImageView muteButton;
@@ -86,7 +86,7 @@ public abstract class GroupCallInvitedCell extends FrameLayout {
         return this.nameTextView.getText();
     }
 
-    public TLRPC$User getUser() {
+    public TLRPC.User getUser() {
         return this.currentUser;
     }
 
@@ -105,7 +105,7 @@ public abstract class GroupCallInvitedCell extends FrameLayout {
     }
 
     public void setData(int i, Long l) {
-        TLRPC$User user = MessagesController.getInstance(i).getUser(l);
+        TLRPC.User user = MessagesController.getInstance(i).getUser(l);
         this.currentUser = user;
         this.avatarDrawable.setInfo(user);
         this.nameTextView.setText(UserObject.getUserName(this.currentUser));

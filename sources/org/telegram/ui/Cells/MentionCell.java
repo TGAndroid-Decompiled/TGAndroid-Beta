@@ -11,10 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatPhoto;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserProfilePhoto;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -143,16 +140,16 @@ public class MentionCell extends LinearLayout {
         }
     }
 
-    public void setBotCommand(String str, String str2, TLRPC$User tLRPC$User) {
+    public void setBotCommand(String str, String str2, TLRPC.User user) {
         resetEmojiSuggestion();
-        if (tLRPC$User != null) {
+        if (user != null) {
             this.imageView.setVisibility(0);
-            this.avatarDrawable.setInfo(tLRPC$User);
-            TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = tLRPC$User.photo;
-            if (tLRPC$UserProfilePhoto == null || tLRPC$UserProfilePhoto.photo_small == null) {
+            this.avatarDrawable.setInfo(user);
+            TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+            if (userProfilePhoto == null || userProfilePhoto.photo_small == null) {
                 this.imageView.setImageDrawable(this.avatarDrawable);
             } else {
-                this.imageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+                this.imageView.setForUserOrChat(user, this.avatarDrawable);
             }
         } else {
             this.imageView.setVisibility(4);
@@ -163,23 +160,23 @@ public class MentionCell extends LinearLayout {
         textView.setText(Emoji.replaceEmoji((CharSequence) str2, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
     }
 
-    public void setChat(TLRPC$Chat tLRPC$Chat) {
+    public void setChat(TLRPC.Chat chat) {
         resetEmojiSuggestion();
-        if (tLRPC$Chat == null) {
+        if (chat == null) {
             this.nameTextView.setText("");
             this.usernameTextView.setText("");
             this.imageView.setImageDrawable(null);
             return;
         }
-        this.avatarDrawable.setInfo(tLRPC$Chat);
-        TLRPC$ChatPhoto tLRPC$ChatPhoto = tLRPC$Chat.photo;
-        if (tLRPC$ChatPhoto == null || tLRPC$ChatPhoto.photo_small == null) {
+        this.avatarDrawable.setInfo(chat);
+        TLRPC.ChatPhoto chatPhoto = chat.photo;
+        if (chatPhoto == null || chatPhoto.photo_small == null) {
             this.imageView.setImageDrawable(this.avatarDrawable);
         } else {
-            this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
+            this.imageView.setForUserOrChat(chat, this.avatarDrawable);
         }
-        this.nameTextView.setText(tLRPC$Chat.title);
-        String publicUsername = ChatObject.getPublicUsername(tLRPC$Chat);
+        this.nameTextView.setText(chat.title);
+        String publicUsername = ChatObject.getPublicUsername(chat);
         if (publicUsername != null) {
             this.usernameTextView.setText("@" + publicUsername);
         } else {
@@ -223,24 +220,24 @@ public class MentionCell extends LinearLayout {
         this.nameTextView.setText(str);
     }
 
-    public void setUser(TLRPC$User tLRPC$User) {
+    public void setUser(TLRPC.User user) {
         resetEmojiSuggestion();
-        if (tLRPC$User == null) {
+        if (user == null) {
             this.nameTextView.setText("");
             this.usernameTextView.setText("");
             this.imageView.setImageDrawable(null);
             return;
         }
-        this.avatarDrawable.setInfo(tLRPC$User);
-        TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = tLRPC$User.photo;
-        if (tLRPC$UserProfilePhoto == null || tLRPC$UserProfilePhoto.photo_small == null) {
+        this.avatarDrawable.setInfo(user);
+        TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+        if (userProfilePhoto == null || userProfilePhoto.photo_small == null) {
             this.imageView.setImageDrawable(this.avatarDrawable);
         } else {
-            this.imageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+            this.imageView.setForUserOrChat(user, this.avatarDrawable);
         }
-        this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
-        if (UserObject.getPublicUsername(tLRPC$User) != null) {
-            this.usernameTextView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
+        this.nameTextView.setText(UserObject.getUserName(user));
+        if (UserObject.getPublicUsername(user) != null) {
+            this.usernameTextView.setText("@" + UserObject.getPublicUsername(user));
         } else {
             this.usernameTextView.setText("");
         }

@@ -22,7 +22,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -473,9 +473,9 @@ public class CheckBoxCell extends FrameLayout {
     public void setUserOrChat(TLObject tLObject) {
         this.avatarDrawable.setInfo(tLObject);
         this.avatarImageView.setForUserOrChat(tLObject, this.avatarDrawable);
-        boolean z = tLObject instanceof TLRPC$User;
-        String userName = z ? UserObject.getUserName((TLRPC$User) tLObject) : ContactsController.formatName(tLObject);
-        if (z && ((TLRPC$User) tLObject).id == MessagesController.getInstance(UserConfig.selectedAccount).telegramAntispamUserId) {
+        boolean z = tLObject instanceof TLRPC.User;
+        String userName = z ? UserObject.getUserName((TLRPC.User) tLObject) : ContactsController.formatName(tLObject);
+        if (z && ((TLRPC.User) tLObject).id == MessagesController.getInstance(UserConfig.selectedAccount).telegramAntispamUserId) {
             userName = LocaleController.getString(R.string.ChannelAntiSpamUser);
         }
         if (this.textAnimated) {

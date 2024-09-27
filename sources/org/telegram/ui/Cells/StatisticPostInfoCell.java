@@ -16,7 +16,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$ChatFull;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -28,7 +28,7 @@ import org.telegram.ui.Stories.StoriesUtilities;
 
 public abstract class StatisticPostInfoCell extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
-    private final TLRPC$ChatFull chat;
+    private final TLRPC.ChatFull chat;
     private final TextView date;
     private final Paint dividerPaint;
     private final BackupImageView imageView;
@@ -41,12 +41,12 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
     private final StoriesUtilities.AvatarStoryParams storyAvatarParams;
     private final TextView views;
 
-    public StatisticPostInfoCell(Context context, TLRPC$ChatFull tLRPC$ChatFull, final Theme.ResourcesProvider resourcesProvider) {
+    public StatisticPostInfoCell(Context context, TLRPC.ChatFull chatFull, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.dividerPaint = new Paint(1);
         this.avatarDrawable = new AvatarDrawable();
         this.storyAvatarParams = new StoriesUtilities.AvatarStoryParams(false);
-        this.chat = tLRPC$ChatFull;
+        this.chat = chatFull;
         this.resourcesProvider = resourcesProvider;
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override

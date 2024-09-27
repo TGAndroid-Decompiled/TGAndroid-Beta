@@ -38,11 +38,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
-import org.telegram.tgnet.TLRPC$TL_videoSizeEmojiMarkup;
-import org.telegram.tgnet.TLRPC$TL_videoSizeStickerMarkup;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -359,7 +355,7 @@ public class AvatarConstructorFragment extends BaseFragment {
     }
 
     public interface Delegate {
-        void onDone(BackgroundGradient backgroundGradient, long j, TLRPC$Document tLRPC$Document, PreviewView previewView);
+        void onDone(BackgroundGradient backgroundGradient, long j, TLRPC.Document document, PreviewView previewView);
     }
 
     public class GradientSelectorView extends View {
@@ -465,7 +461,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         private ColorFilter colorFilter;
         private float cx;
         private float cy;
-        public TLRPC$Document document;
+        public TLRPC.Document document;
         public long documentId;
         AnimatedFloat expandProgress;
         boolean expanded;
@@ -722,7 +718,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             return;
         }
         if (!this.wasChanged) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
@@ -745,7 +741,7 @@ public class AvatarConstructorFragment extends BaseFragment {
     }
 
     public void lambda$discardEditor$2(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$isLightStatusBar$6(ValueAnimator valueAnimator) {
@@ -822,7 +818,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             delegate.onDone(previewView.backgroundGradient, previewView.documentId, previewView.document, previewView);
         }
         if (this.finishOnDone) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -869,13 +865,13 @@ public class AvatarConstructorFragment extends BaseFragment {
         this.expandAnimator.start();
     }
 
-    public void setPreview(long j, TLRPC$Document tLRPC$Document) {
+    public void setPreview(long j, TLRPC.Document document) {
         PreviewView previewView = this.previewView;
         previewView.documentId = j;
-        previewView.document = tLRPC$Document;
+        previewView.document = document;
         if (j == 0) {
             previewView.backupImageView.setAnimatedEmojiDrawable(null);
-            this.previewView.backupImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$Document), "100_100", null, null, DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", tLRPC$Document, 0);
+            this.previewView.backupImageView.getImageReceiver().setImage(ImageLocation.getForDocument(document), "100_100", null, null, DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", document, 0);
         } else {
             previewView.backupImageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(14, this.currentAccount, j));
             this.previewView.backupImageView.getImageReceiver().clearImage();
@@ -1350,8 +1346,8 @@ public class AvatarConstructorFragment extends BaseFragment {
             private boolean firstLayout = true;
 
             @Override
-            protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
-                AvatarConstructorFragment.this.setPreview(l == null ? 0L : l.longValue(), tLRPC$Document);
+            protected void onEmojiSelected(View view, Long l, TLRPC.Document document, Integer num) {
+                AvatarConstructorFragment.this.setPreview(l == null ? 0L : l.longValue(), document);
             }
 
             @Override
@@ -1482,30 +1478,30 @@ public class AvatarConstructorFragment extends BaseFragment {
         this.delegate = delegate;
     }
 
-    public void startFrom(TLRPC$VideoSize tLRPC$VideoSize) {
+    public void startFrom(TLRPC.VideoSize videoSize) {
         long j;
         BackgroundGradient backgroundGradient = new BackgroundGradient();
-        backgroundGradient.color1 = ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(0)).intValue(), 255);
-        backgroundGradient.color2 = tLRPC$VideoSize.background_colors.size() > 1 ? ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(1)).intValue(), 255) : 0;
-        backgroundGradient.color3 = tLRPC$VideoSize.background_colors.size() > 2 ? ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(2)).intValue(), 255) : 0;
-        backgroundGradient.color4 = tLRPC$VideoSize.background_colors.size() > 3 ? ColorUtils.setAlphaComponent(((Integer) tLRPC$VideoSize.background_colors.get(3)).intValue(), 255) : 0;
+        backgroundGradient.color1 = ColorUtils.setAlphaComponent(videoSize.background_colors.get(0).intValue(), 255);
+        backgroundGradient.color2 = videoSize.background_colors.size() > 1 ? ColorUtils.setAlphaComponent(videoSize.background_colors.get(1).intValue(), 255) : 0;
+        backgroundGradient.color3 = videoSize.background_colors.size() > 2 ? ColorUtils.setAlphaComponent(videoSize.background_colors.get(2).intValue(), 255) : 0;
+        backgroundGradient.color4 = videoSize.background_colors.size() > 3 ? ColorUtils.setAlphaComponent(videoSize.background_colors.get(3).intValue(), 255) : 0;
         this.previewView.setGradient(backgroundGradient);
-        TLRPC$Document tLRPC$Document = null;
-        if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeEmojiMarkup) {
-            j = ((TLRPC$TL_videoSizeEmojiMarkup) tLRPC$VideoSize).emoji_id;
+        TLRPC.Document document = null;
+        if (videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup) {
+            j = ((TLRPC.TL_videoSizeEmojiMarkup) videoSize).emoji_id;
         } else {
-            TLRPC$TL_videoSizeStickerMarkup tLRPC$TL_videoSizeStickerMarkup = new TLRPC$TL_videoSizeStickerMarkup();
-            TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(tLRPC$TL_videoSizeStickerMarkup.stickerset, false);
+            TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup = new TLRPC.TL_videoSizeStickerMarkup();
+            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(tL_videoSizeStickerMarkup.stickerset, false);
             if (stickerSet != null) {
                 for (int i = 0; i < stickerSet.documents.size(); i++) {
-                    if (((TLRPC$Document) stickerSet.documents.get(i)).id == tLRPC$TL_videoSizeStickerMarkup.sticker_id) {
-                        tLRPC$Document = (TLRPC$Document) stickerSet.documents.get(i);
+                    if (stickerSet.documents.get(i).id == tL_videoSizeStickerMarkup.sticker_id) {
+                        document = stickerSet.documents.get(i);
                     }
                 }
             }
             j = 0;
         }
-        setPreview(j, tLRPC$Document);
+        setPreview(j, document);
         this.backgroundSelectView.selectGradient(backgroundGradient);
         this.selectAnimatedEmojiDialog.setForUser(true);
     }

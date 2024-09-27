@@ -27,8 +27,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stories$PeerStories;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -72,7 +71,7 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
     private float newStoryBounceT;
     private Runnable onLongPressRunnable;
     Paint paint;
-    private TL_stories$PeerStories peerStories;
+    private TL_stories.PeerStories peerStories;
     private boolean progressIsDone;
     private float progressToInsets;
     private final AnimatedFloat progressToUploading;
@@ -211,20 +210,20 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         boolean read = false;
         float scale = 1.0f;
 
-        public StoryCircle(TL_stories$StoryItem tL_stories$StoryItem) {
+        public StoryCircle(TL_stories.StoryItem storyItem) {
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.readAnimated = new AnimatedFloat(ProfileStoriesView.this, 420L, cubicBezierInterpolator);
             this.indexAnimated = new AnimatedFloat(ProfileStoriesView.this, 420L, cubicBezierInterpolator);
             this.scaleAnimated = new AnimatedFloat(ProfileStoriesView.this, 420L, cubicBezierInterpolator);
             this.cachedRect = new RectF();
             this.borderRect = new RectF();
-            this.storyId = tL_stories$StoryItem.id;
+            this.storyId = storyItem.id;
             this.imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
             this.imageReceiver.setParentView(ProfileStoriesView.this);
             if (ProfileStoriesView.this.attached) {
                 this.imageReceiver.onAttachedToWindow();
             }
-            StoriesUtilities.setThumbImage(this.imageReceiver, tL_stories$StoryItem, 25, 25);
+            StoriesUtilities.setThumbImage(this.imageReceiver, storyItem, 25, 25);
         }
 
         public void apply() {
@@ -689,8 +688,8 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         invalidate();
     }
 
-    public void setStories(TL_stories$PeerStories tL_stories$PeerStories) {
-        this.peerStories = tL_stories$PeerStories;
+    public void setStories(TL_stories.PeerStories peerStories) {
+        this.peerStories = peerStories;
         updateStories(true, false);
     }
 

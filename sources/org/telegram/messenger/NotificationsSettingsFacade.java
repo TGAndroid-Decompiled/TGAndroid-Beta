@@ -2,13 +2,7 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$NotificationSound;
-import org.telegram.tgnet.TLRPC$PeerNotifySettings;
-import org.telegram.tgnet.TLRPC$TL_notificationSoundDefault;
-import org.telegram.tgnet.TLRPC$TL_notificationSoundLocal;
-import org.telegram.tgnet.TLRPC$TL_notificationSoundNone;
-import org.telegram.tgnet.TLRPC$TL_notificationSoundRingtone;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.NotificationsSoundActivity;
 
 public class NotificationsSettingsFacade {
@@ -32,27 +26,27 @@ public class NotificationsSettingsFacade {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
     }
 
-    public void lambda$applyDialogNotificationsSettings$1(long r20, long r22, org.telegram.tgnet.TLRPC$PeerNotifySettings r24) {
+    public void lambda$applyDialogNotificationsSettings$1(long r20, long r22, org.telegram.tgnet.TLRPC.PeerNotifySettings r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsSettingsFacade.lambda$applyDialogNotificationsSettings$1(long, long, org.telegram.tgnet.TLRPC$PeerNotifySettings):void");
     }
 
-    public void applyDialogNotificationsSettings(final long j, final long j2, final TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings) {
-        if (tLRPC$PeerNotifySettings == null) {
+    public void applyDialogNotificationsSettings(final long j, final long j2, final TLRPC.PeerNotifySettings peerNotifySettings) {
+        if (peerNotifySettings == null) {
             return;
         }
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsSettingsFacade.this.lambda$applyDialogNotificationsSettings$1(j, j2, tLRPC$PeerNotifySettings);
+                NotificationsSettingsFacade.this.lambda$applyDialogNotificationsSettings$1(j, j2, peerNotifySettings);
             }
         });
     }
 
-    public void applySoundSettings(TLRPC$NotificationSound tLRPC$NotificationSound, SharedPreferences.Editor editor, long j, long j2, int i, boolean z) {
+    public void applySoundSettings(TLRPC.NotificationSound notificationSound, SharedPreferences.Editor editor, long j, long j2, int i, boolean z) {
         String str;
         String str2;
         String str3;
-        if (tLRPC$NotificationSound == null) {
+        if (notificationSound == null) {
             return;
         }
         if (j != 0) {
@@ -81,44 +75,44 @@ public class NotificationsSettingsFacade {
             str2 = "ChannelSoundDocId";
             str3 = "ChannelSoundPath";
         }
-        if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundLocal) {
-            TLRPC$TL_notificationSoundLocal tLRPC$TL_notificationSoundLocal = (TLRPC$TL_notificationSoundLocal) tLRPC$NotificationSound;
-            if ("Default".equalsIgnoreCase(tLRPC$TL_notificationSoundLocal.data)) {
-                tLRPC$NotificationSound = new TLRPC$TL_notificationSoundDefault();
-            } else if ("NoSound".equalsIgnoreCase(tLRPC$TL_notificationSoundLocal.data)) {
-                tLRPC$NotificationSound = new TLRPC$TL_notificationSoundNone();
+        if (notificationSound instanceof TLRPC.TL_notificationSoundLocal) {
+            TLRPC.TL_notificationSoundLocal tL_notificationSoundLocal = (TLRPC.TL_notificationSoundLocal) notificationSound;
+            if ("Default".equalsIgnoreCase(tL_notificationSoundLocal.data)) {
+                notificationSound = new TLRPC.TL_notificationSoundDefault();
+            } else if ("NoSound".equalsIgnoreCase(tL_notificationSoundLocal.data)) {
+                notificationSound = new TLRPC.TL_notificationSoundNone();
             } else {
-                String findRingtonePathByName = NotificationsSoundActivity.findRingtonePathByName(tLRPC$TL_notificationSoundLocal.title);
+                String findRingtonePathByName = NotificationsSoundActivity.findRingtonePathByName(tL_notificationSoundLocal.title);
                 if (findRingtonePathByName == null) {
                     return;
                 } else {
-                    tLRPC$TL_notificationSoundLocal.data = findRingtonePathByName;
+                    tL_notificationSoundLocal.data = findRingtonePathByName;
                 }
             }
         }
-        if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundDefault) {
+        if (notificationSound instanceof TLRPC.TL_notificationSoundDefault) {
             editor.putString(str, "Default");
             editor.putString(str3, "Default");
-        } else if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundNone) {
+        } else if (notificationSound instanceof TLRPC.TL_notificationSoundNone) {
             editor.putString(str, "NoSound");
             editor.putString(str3, "NoSound");
         } else {
-            if (!(tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundLocal)) {
-                if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundRingtone) {
-                    TLRPC$TL_notificationSoundRingtone tLRPC$TL_notificationSoundRingtone = (TLRPC$TL_notificationSoundRingtone) tLRPC$NotificationSound;
-                    editor.putLong(str2, tLRPC$TL_notificationSoundRingtone.id);
+            if (!(notificationSound instanceof TLRPC.TL_notificationSoundLocal)) {
+                if (notificationSound instanceof TLRPC.TL_notificationSoundRingtone) {
+                    TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone = (TLRPC.TL_notificationSoundRingtone) notificationSound;
+                    editor.putLong(str2, tL_notificationSoundRingtone.id);
                     MediaDataController.getInstance(this.currentAccount).checkRingtones(true);
                     if (z && j != 0) {
                         editor.putBoolean("custom_" + j, true);
                     }
-                    MediaDataController.getInstance(this.currentAccount).ringtoneDataStore.getDocument(tLRPC$TL_notificationSoundRingtone.id);
+                    MediaDataController.getInstance(this.currentAccount).ringtoneDataStore.getDocument(tL_notificationSoundRingtone.id);
                     return;
                 }
                 return;
             }
-            TLRPC$TL_notificationSoundLocal tLRPC$TL_notificationSoundLocal2 = (TLRPC$TL_notificationSoundLocal) tLRPC$NotificationSound;
-            editor.putString(str, tLRPC$TL_notificationSoundLocal2.title);
-            editor.putString(str3, tLRPC$TL_notificationSoundLocal2.data);
+            TLRPC.TL_notificationSoundLocal tL_notificationSoundLocal2 = (TLRPC.TL_notificationSoundLocal) notificationSound;
+            editor.putString(str, tL_notificationSoundLocal2.title);
+            editor.putString(str3, tL_notificationSoundLocal2.data);
         }
         editor.remove(str2);
     }
@@ -174,29 +168,29 @@ public class NotificationsSettingsFacade {
         getPreferences().edit().remove(str + sharedPrefKey).apply();
     }
 
-    public void setSettingsForDialog(SharedPreferences.Editor editor, TLRPC$Dialog tLRPC$Dialog, TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings) {
-        long peerId = MessageObject.getPeerId(tLRPC$Dialog.peer);
-        if ((tLRPC$Dialog.notify_settings.flags & 2) != 0) {
-            editor.putBoolean("silent_" + peerId, tLRPC$Dialog.notify_settings.silent);
+    public void setSettingsForDialog(SharedPreferences.Editor editor, TLRPC.Dialog dialog, TLRPC.PeerNotifySettings peerNotifySettings) {
+        long peerId = MessageObject.getPeerId(dialog.peer);
+        if ((dialog.notify_settings.flags & 2) != 0) {
+            editor.putBoolean("silent_" + peerId, dialog.notify_settings.silent);
         } else {
             editor.remove("silent_" + peerId);
         }
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
-        TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings2 = tLRPC$Dialog.notify_settings;
-        if ((tLRPC$PeerNotifySettings2.flags & 4) == 0) {
+        TLRPC.PeerNotifySettings peerNotifySettings2 = dialog.notify_settings;
+        if ((peerNotifySettings2.flags & 4) == 0) {
             editor.remove("notify2_" + peerId);
             return;
         }
-        if (tLRPC$PeerNotifySettings2.mute_until <= connectionsManager.getCurrentTime()) {
+        if (peerNotifySettings2.mute_until <= connectionsManager.getCurrentTime()) {
             editor.putInt("notify2_" + peerId, 0);
             return;
         }
-        if (tLRPC$Dialog.notify_settings.mute_until > connectionsManager.getCurrentTime() + 31536000) {
+        if (dialog.notify_settings.mute_until > connectionsManager.getCurrentTime() + 31536000) {
             editor.putInt("notify2_" + peerId, 2);
-            tLRPC$Dialog.notify_settings.mute_until = Integer.MAX_VALUE;
+            dialog.notify_settings.mute_until = Integer.MAX_VALUE;
             return;
         }
         editor.putInt("notify2_" + peerId, 3);
-        editor.putInt("notifyuntil_" + peerId, tLRPC$Dialog.notify_settings.mute_until);
+        editor.putInt("notifyuntil_" + peerId, dialog.notify_settings.mute_until);
     }
 }

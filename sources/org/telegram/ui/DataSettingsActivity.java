@@ -26,7 +26,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -270,7 +270,7 @@ public class DataSettingsActivity extends BaseFragment {
         getMediaDataController().clearAllDrafts(true);
     }
 
-    public void lambda$createView$6(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createView$6(TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -280,20 +280,10 @@ public class DataSettingsActivity extends BaseFragment {
     }
 
     public void lambda$createView$7(DialogInterface dialogInterface, int i) {
-        getConnectionsManager().sendRequest(new TLObject() {
+        getConnectionsManager().sendRequest(new TLRPC.TL_messages_clearAllDrafts(), new RequestDelegate() {
             @Override
-            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
-                return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(2119757468);
-            }
-        }, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                DataSettingsActivity.this.lambda$createView$6(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                DataSettingsActivity.this.lambda$createView$6(tLObject, tL_error);
             }
         });
     }
@@ -482,7 +472,7 @@ public class DataSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DataSettingsActivity.this.lambda$onBackPressed$307();
+                    DataSettingsActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

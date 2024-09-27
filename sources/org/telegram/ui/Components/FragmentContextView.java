@@ -57,13 +57,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$GroupCall;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$ReplyMarkup;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSlider;
@@ -695,7 +689,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 formatPluralString = UserObject.getFirstName(messagesController.getUser(Long.valueOf(dialogId)));
                 i = R.string.AttachLiveLocationIsSharing;
             } else {
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-dialogId));
+                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-dialogId));
                 formatPluralString = chat != null ? chat.title : "";
                 i = R.string.AttachLiveLocationIsSharingChat;
             }
@@ -734,18 +728,18 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             LocationController.getInstance(currentAccount).loadLiveLocations(dialogId);
             this.firstLocationsLoaded = true;
         }
-        TLRPC$User tLRPC$User = null;
+        TLRPC.User user = null;
         if (arrayList != null) {
             long clientUserId = UserConfig.getInstance(currentAccount).getClientUserId();
             int currentTime = ConnectionsManager.getInstance(currentAccount).getCurrentTime();
             i = 0;
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                TLRPC$Message tLRPC$Message = (TLRPC$Message) arrayList.get(i2);
-                TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-                if (tLRPC$MessageMedia != null && tLRPC$Message.date + tLRPC$MessageMedia.period > currentTime) {
-                    long fromChatId = MessageObject.getFromChatId(tLRPC$Message);
-                    if (tLRPC$User == null && fromChatId != clientUserId) {
-                        tLRPC$User = MessagesController.getInstance(currentAccount).getUser(Long.valueOf(fromChatId));
+                TLRPC.Message message = (TLRPC.Message) arrayList.get(i2);
+                TLRPC.MessageMedia messageMedia = message.media;
+                if (messageMedia != null && message.date + messageMedia.period > currentTime) {
+                    long fromChatId = MessageObject.getFromChatId(message);
+                    if (user == null && fromChatId != clientUserId) {
+                        user = MessagesController.getInstance(currentAccount).getUser(Long.valueOf(fromChatId));
                     }
                     i++;
                 }
@@ -765,17 +759,17 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             if (LocationController.getInstance(currentAccount).isSharingLocation(dialogId)) {
                 if (i3 == 0) {
                     format = String.format("%1$s - %2$s", string, LocaleController.getString(R.string.ChatYourSelfName));
-                } else if (i3 != 1 || tLRPC$User == null) {
+                } else if (i3 != 1 || user == null) {
                     format2 = String.format("%1$s - %2$s %3$s", string, LocaleController.getString(R.string.ChatYourSelfName), LocaleController.formatPluralString("AndOther", i3, new Object[0]));
                     format = format2;
                 } else {
-                    format = String.format("%1$s - %2$s", string, LocaleController.formatString("SharingYouAndOtherName", R.string.SharingYouAndOtherName, UserObject.getFirstName(tLRPC$User)));
+                    format = String.format("%1$s - %2$s", string, LocaleController.formatString("SharingYouAndOtherName", R.string.SharingYouAndOtherName, UserObject.getFirstName(user)));
                 }
             } else if (i3 != 0) {
-                format2 = String.format("%1$s - %2$s %3$s", string, UserObject.getFirstName(tLRPC$User), LocaleController.formatPluralString("AndOther", i3, new Object[0]));
+                format2 = String.format("%1$s - %2$s %3$s", string, UserObject.getFirstName(user), LocaleController.formatPluralString("AndOther", i3, new Object[0]));
                 format = format2;
             } else {
-                format = String.format("%1$s - %2$s", string, UserObject.getFirstName(tLRPC$User));
+                format = String.format("%1$s - %2$s", string, UserObject.getFirstName(user));
             }
         }
         if (format.equals(this.lastString)) {
@@ -931,9 +925,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         if (sharedInstance.groupCall != null) {
             AccountInstance.getInstance(sharedInstance.getAccount());
             ChatObject.Call call = sharedInstance.groupCall;
-            TLRPC$Chat chat = sharedInstance.getChat();
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) call.participants.get(sharedInstance.getSelfId());
-            if (tLRPC$TL_groupCallParticipant != null && !tLRPC$TL_groupCallParticipant.can_self_unmute && tLRPC$TL_groupCallParticipant.muted && !ChatObject.canManageCalls(chat)) {
+            TLRPC.Chat chat = sharedInstance.getChat();
+            TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) call.participants.get(sharedInstance.getSelfId());
+            if (tL_groupCallParticipant != null && !tL_groupCallParticipant.can_self_unmute && tL_groupCallParticipant.muted && !ChatObject.canManageCalls(chat)) {
                 return;
             }
         }
@@ -1042,9 +1036,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 if (this.fragment.getParentActivity() == null || (groupCall = this.chatActivity.getGroupCall()) == null) {
                     return;
                 }
-                TLRPC$Chat chat = this.fragment.getMessagesController().getChat(Long.valueOf(groupCall.chatId));
-                TLRPC$GroupCall tLRPC$GroupCall = groupCall.call;
-                Boolean valueOf = Boolean.valueOf((tLRPC$GroupCall == null || tLRPC$GroupCall.rtmp_stream) ? false : true);
+                TLRPC.Chat chat = this.fragment.getMessagesController().getChat(Long.valueOf(groupCall.chatId));
+                TLRPC.GroupCall groupCall2 = groupCall.call;
+                Boolean valueOf = Boolean.valueOf((groupCall2 == null || groupCall2.rtmp_stream) ? false : true);
                 Activity parentActivity = this.fragment.getParentActivity();
                 BaseFragment baseFragment2 = this.fragment;
                 VoIPHelper.startCall(chat, null, null, false, valueOf, parentActivity, baseFragment2, baseFragment2.getAccountInstance());
@@ -1153,8 +1147,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
     }
 
-    public static void lambda$openSharingLocation$14(LocationController.SharingLocationInfo sharingLocationInfo, long j, TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        SendMessagesHelper.getInstance(sharingLocationInfo.messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(tLRPC$MessageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, z, i2));
+    public static void lambda$openSharingLocation$14(LocationController.SharingLocationInfo sharingLocationInfo, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+        SendMessagesHelper.getInstance(sharingLocationInfo.messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2));
     }
 
     public void lambda$startJoinFlickerAnimation$15() {
@@ -1173,11 +1167,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         final long dialogId = sharingLocationInfo.messageObject.getDialogId();
         locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
             @Override
-            public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-                FragmentContextView.lambda$openSharingLocation$14(LocationController.SharingLocationInfo.this, dialogId, tLRPC$MessageMedia, i, z, i2);
+            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+                FragmentContextView.lambda$openSharingLocation$14(LocationController.SharingLocationInfo.this, dialogId, messageMedia, i, z, i2);
             }
         });
-        launchActivity.lambda$runLinkRequest$91(locationActivity);
+        launchActivity.lambda$runLinkRequest$93(locationActivity);
     }
 
     private void playbackSpeedChanged(boolean r8, float r9, float r10) {
@@ -1227,7 +1221,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     private void updateAvatars(boolean z) {
         ChatObject.Call call;
         int i;
-        TLRPC$User tLRPC$User;
+        TLRPC.User user;
         int i2;
         ValueAnimator valueAnimator;
         checkCreateView();
@@ -1250,15 +1244,15 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 call = null;
             }
             i = i2;
-            tLRPC$User = null;
+            user = null;
         } else if (VoIPService.getSharedInstance() != null) {
             call = VoIPService.getSharedInstance().groupCall;
-            tLRPC$User = this.chatActivity != null ? null : VoIPService.getSharedInstance().getUser();
+            user = this.chatActivity != null ? null : VoIPService.getSharedInstance().getUser();
             i = VoIPService.getSharedInstance().getAccount();
         } else {
             call = null;
             i = this.account;
-            tLRPC$User = null;
+            user = null;
         }
         if (call != null) {
             int size = call.sortedParticipants.size();
@@ -1270,8 +1264,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     avatarsImageView2.setObject(i3, i, null);
                 }
             }
-        } else if (tLRPC$User != null) {
-            this.avatars.setObject(0, i, tLRPC$User);
+        } else if (user != null) {
+            this.avatars.setObject(0, i, user);
             for (int i4 = 1; i4 < 3; i4++) {
                 this.avatars.setObject(i4, i, null);
             }
@@ -1322,7 +1316,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 if (sharedInstance.isSwitchingStream() || !(callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
                     if (sharedInstance.getChat() == null) {
                         if (sharedInstance.getUser() != null) {
-                            TLRPC$User user = sharedInstance.getUser();
+                            TLRPC.User user = sharedInstance.getUser();
                             ChatActivityInterface chatActivityInterface = this.chatActivity;
                             if (chatActivityInterface == null || chatActivityInterface.getCurrentUser() == null || this.chatActivity.getCurrentUser().id != user.id) {
                                 this.titleTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
@@ -1340,7 +1334,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                             clippingTextViewSwitcher = this.titleTextView;
                             str = sharedInstance.getChat().title;
                         } else {
-                            TLRPC$Chat currentChat = this.chatActivity.getCurrentChat();
+                            TLRPC.Chat currentChat = this.chatActivity.getCurrentChat();
                             if (VoIPService.hasRtmpStream() || ChatObject.isChannelOrGiga(currentChat)) {
                                 clippingTextViewSwitcher2 = this.titleTextView;
                                 i = R.string.VoipChannelViewVoiceChat;
@@ -1765,7 +1759,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         VoIPService sharedInstance;
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant;
         AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher;
         String string;
         if (i == NotificationCenter.liveLocationsChanged) {
@@ -1800,7 +1794,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 sharedInstance.registerStateListener(this);
             }
             int callState = sharedInstance.getCallState();
-            if (callState == 1 || callState == 2 || callState == 6 || callState == 5 || this.muteButton == null || (tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId())) == null || tLRPC$TL_groupCallParticipant.can_self_unmute || !tLRPC$TL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
+            if (callState == 1 || callState == 2 || callState == 6 || callState == 5 || this.muteButton == null || (tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId())) == null || tL_groupCallParticipant.can_self_unmute || !tL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
                 return;
             }
             sharedInstance.setMicMute(true, false, false);
@@ -1817,13 +1811,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         clippingTextViewSwitcher = this.subtitleTextView;
                         string = LocaleController.formatStartsTime(groupCall.call.schedule_date, 4);
                     } else {
-                        TLRPC$GroupCall tLRPC$GroupCall = groupCall.call;
-                        int i5 = tLRPC$GroupCall.participants_count;
+                        TLRPC.GroupCall groupCall2 = groupCall.call;
+                        int i5 = groupCall2.participants_count;
                         if (i5 == 0) {
                             clippingTextViewSwitcher = this.subtitleTextView;
-                            string = LocaleController.getString(tLRPC$GroupCall.rtmp_stream ? R.string.ViewersWatchingNobody : R.string.MembersTalkingNobody);
+                            string = LocaleController.getString(groupCall2.rtmp_stream ? R.string.ViewersWatchingNobody : R.string.MembersTalkingNobody);
                         } else {
-                            this.subtitleTextView.setText(LocaleController.formatPluralString(tLRPC$GroupCall.rtmp_stream ? "ViewersWatching" : "Participants", i5, new Object[0]), false);
+                            this.subtitleTextView.setText(LocaleController.formatPluralString(groupCall2.rtmp_stream ? "ViewersWatching" : "Participants", i5, new Object[0]), false);
                         }
                     }
                     clippingTextViewSwitcher.setText(string, false);

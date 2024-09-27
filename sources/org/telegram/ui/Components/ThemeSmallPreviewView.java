@@ -38,12 +38,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_theme;
-import org.telegram.tgnet.TLRPC$ThemeSettings;
-import org.telegram.tgnet.TLRPC$WallPaper;
-import org.telegram.tgnet.TLRPC$WallPaperSettings;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatBackgroundDrawable;
@@ -66,7 +61,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
     private final Path clipPath;
     private final int currentAccount;
     private int currentType;
-    public TLRPC$WallPaper fallbackWallpaper;
+    public TLRPC.WallPaper fallbackWallpaper;
     private boolean hasAnimatedEmoji;
     boolean isSelected;
     public int lastThemeIndex;
@@ -298,7 +293,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         return createStaticLayout2;
     }
 
-    private Drawable getPreviewDrawable(TLRPC$TL_theme tLRPC$TL_theme, int i) {
+    private Drawable getPreviewDrawable(TLRPC.TL_theme tL_theme, int i) {
         int i2;
         int i3;
         int i4;
@@ -309,11 +304,11 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
             return null;
         }
         if (i >= 0) {
-            TLRPC$WallPaperSettings tLRPC$WallPaperSettings = ((TLRPC$ThemeSettings) tLRPC$TL_theme.settings.get(i)).wallpaper.settings;
-            int i7 = tLRPC$WallPaperSettings.background_color;
-            int i8 = tLRPC$WallPaperSettings.second_background_color;
-            int i9 = tLRPC$WallPaperSettings.third_background_color;
-            i4 = tLRPC$WallPaperSettings.fourth_background_color;
+            TLRPC.WallPaperSettings wallPaperSettings = tL_theme.settings.get(i).wallpaper.settings;
+            int i7 = wallPaperSettings.background_color;
+            int i8 = wallPaperSettings.second_background_color;
+            int i9 = wallPaperSettings.third_background_color;
+            i4 = wallPaperSettings.fourth_background_color;
             i5 = i7;
             i2 = i8;
             i3 = i9;
@@ -408,7 +403,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         invalidate();
     }
 
-    public void lambda$setItem$1(ChatThemeBottomSheet.ChatThemeItem chatThemeItem, TLRPC$WallPaper tLRPC$WallPaper, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public void lambda$setItem$1(ChatThemeBottomSheet.ChatThemeItem chatThemeItem, TLRPC.WallPaper wallPaper, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         Bitmap bitmap;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (!z || bitmapSafe == null || (bitmap = bitmapSafe.bitmap) == null) {
@@ -417,8 +412,8 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         Drawable drawable = chatThemeItem.previewDrawable;
         if (drawable instanceof MotionBackgroundDrawable) {
             MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) drawable;
-            TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
-            motionBackgroundDrawable.setPatternBitmap((tLRPC$WallPaperSettings == null || tLRPC$WallPaperSettings.intensity >= 0) ? 100 : -100, prescaleBitmap(bitmap), true);
+            TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
+            motionBackgroundDrawable.setPatternBitmap((wallPaperSettings == null || wallPaperSettings.intensity >= 0) ? 100 : -100, prescaleBitmap(bitmap), true);
             motionBackgroundDrawable.setPatternColorFilter(this.patternColor);
             invalidate();
         }
@@ -628,9 +623,9 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         invalidate();
     }
 
-    public void setFallbackWallpaper(TLRPC$WallPaper tLRPC$WallPaper) {
-        if (this.fallbackWallpaper != tLRPC$WallPaper) {
-            this.fallbackWallpaper = tLRPC$WallPaper;
+    public void setFallbackWallpaper(TLRPC.WallPaper wallPaper) {
+        if (this.fallbackWallpaper != wallPaper) {
+            this.fallbackWallpaper = wallPaper;
             ChatThemeBottomSheet.ChatThemeItem chatThemeItem = this.chatThemeItem;
             if (chatThemeItem != null) {
                 EmojiThemes emojiThemes = chatThemeItem.chatTheme;
@@ -643,8 +638,8 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
     }
 
     public void setItem(final ChatThemeBottomSheet.ChatThemeItem chatThemeItem, boolean z) {
-        TLRPC$TL_theme tLRPC$TL_theme;
-        TLRPC$Document tLRPC$Document;
+        TLRPC.TL_theme tL_theme;
+        TLRPC.Document document;
         ChatBackgroundDrawable chatBackgroundDrawable;
         ChatBackgroundDrawable chatBackgroundDrawable2;
         boolean z2 = this.chatThemeItem != chatThemeItem;
@@ -654,7 +649,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         this.lastThemeIndex = i2;
         this.chatThemeItem = chatThemeItem;
         this.hasAnimatedEmoji = false;
-        TLRPC$Document emojiAnimatedSticker = chatThemeItem.chatTheme.getEmoticon() != null ? MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker(chatThemeItem.chatTheme.getEmoticon()) : null;
+        TLRPC.Document emojiAnimatedSticker = chatThemeItem.chatTheme.getEmoticon() != null ? MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker(chatThemeItem.chatTheme.getEmoticon()) : null;
         if (z2) {
             Runnable runnable = this.animationCancelRunnable;
             if (runnable != null) {
@@ -672,15 +667,15 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                 svgThumb = Emoji.getEmojiDrawable(chatThemeItem.chatTheme.getEmoticon());
             }
             this.backupImageView.setImage(ImageLocation.getForDocument(emojiAnimatedSticker), "50_50", svgThumb, (Object) null);
-            TLRPC$WallPaper tLRPC$WallPaper = chatThemeItem.chatTheme.wallpaper;
-            if (tLRPC$WallPaper == null) {
-                tLRPC$WallPaper = this.fallbackWallpaper;
+            TLRPC.WallPaper wallPaper = chatThemeItem.chatTheme.wallpaper;
+            if (wallPaper == null) {
+                wallPaper = this.fallbackWallpaper;
             }
-            if (tLRPC$WallPaper != null) {
+            if (wallPaper != null) {
                 if (this.attached && (chatBackgroundDrawable2 = this.chatBackgroundDrawable) != null) {
                     chatBackgroundDrawable2.onDetachedFromWindow(this);
                 }
-                ChatBackgroundDrawable chatBackgroundDrawable3 = new ChatBackgroundDrawable(tLRPC$WallPaper, false, true);
+                ChatBackgroundDrawable chatBackgroundDrawable3 = new ChatBackgroundDrawable(wallPaper, false, true);
                 this.chatBackgroundDrawable = chatBackgroundDrawable3;
                 chatBackgroundDrawable3.setParent(this);
                 if (this.attached) {
@@ -704,10 +699,10 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                 this.changeThemeProgress = 1.0f;
             }
             updatePreviewBackground(this.themeDrawable);
-            TLRPC$TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.lastThemeIndex);
+            TLRPC.TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.lastThemeIndex);
             if (tlTheme != null) {
                 final long j = tlTheme.id;
-                TLRPC$WallPaper wallpaper = chatThemeItem.chatTheme.getWallpaper(this.lastThemeIndex);
+                TLRPC.WallPaper wallpaper = chatThemeItem.chatTheme.getWallpaper(this.lastThemeIndex);
                 if (wallpaper != null) {
                     final int i3 = wallpaper.settings.intensity;
                     chatThemeItem.chatTheme.loadWallpaperThumb(this.lastThemeIndex, new ResultCallback() {
@@ -722,25 +717,25 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                         }
 
                         @Override
-                        public void onError(TLRPC$TL_error tLRPC$TL_error) {
-                            ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
+                        public void onError(TLRPC.TL_error tL_error) {
+                            ResultCallback.CC.$default$onError(this, tL_error);
                         }
                     });
                 }
             } else {
                 SparseArray sparseArray = chatThemeItem.chatTheme.getThemeInfo(this.lastThemeIndex).themeAccentsMap;
                 Theme.ThemeAccent themeAccent = sparseArray != null ? (Theme.ThemeAccent) sparseArray.get(chatThemeItem.chatTheme.getAccentId(this.lastThemeIndex)) : null;
-                if (themeAccent != null && (tLRPC$TL_theme = themeAccent.info) != null && tLRPC$TL_theme.settings.size() > 0) {
-                    final TLRPC$WallPaper tLRPC$WallPaper2 = ((TLRPC$ThemeSettings) themeAccent.info.settings.get(0)).wallpaper;
-                    if (tLRPC$WallPaper2 != null && (tLRPC$Document = tLRPC$WallPaper2.document) != null) {
-                        ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 120), tLRPC$Document);
+                if (themeAccent != null && (tL_theme = themeAccent.info) != null && tL_theme.settings.size() > 0) {
+                    final TLRPC.WallPaper wallPaper2 = themeAccent.info.settings.get(0).wallpaper;
+                    if (wallPaper2 != null && (document = wallPaper2.document) != null) {
+                        ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120), document);
                         ImageReceiver imageReceiver = new ImageReceiver();
                         imageReceiver.setAllowLoadingOnAttachedOnly(false);
                         imageReceiver.setImage(forDocument, "120_140", null, null, null, 1);
                         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                             @Override
                             public final void didSetImage(ImageReceiver imageReceiver2, boolean z4, boolean z5, boolean z6) {
-                                ThemeSmallPreviewView.this.lambda$setItem$1(chatThemeItem, tLRPC$WallPaper2, imageReceiver2, z4, z5, z6);
+                                ThemeSmallPreviewView.this.lambda$setItem$1(chatThemeItem, wallPaper2, imageReceiver2, z4, z5, z6);
                             }
 
                             @Override
@@ -837,11 +832,11 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         themeDrawable.strokePaint.setColor(themedColor);
         themeDrawable.strokePaint.setAlpha(alpha);
         ChatThemeBottomSheet.ChatThemeItem chatThemeItem2 = this.chatThemeItem;
-        TLRPC$TL_theme tlTheme = chatThemeItem2.chatTheme.getTlTheme(chatThemeItem2.themeIndex);
+        TLRPC.TL_theme tlTheme = chatThemeItem2.chatTheme.getTlTheme(chatThemeItem2.themeIndex);
         if (tlTheme != null) {
             ChatThemeBottomSheet.ChatThemeItem chatThemeItem3 = this.chatThemeItem;
             int settingsIndex = chatThemeItem3.chatTheme.getSettingsIndex(chatThemeItem3.themeIndex);
-            fillOutBubblePaint(themeDrawable.outBubblePaintSecond, ((TLRPC$ThemeSettings) tlTheme.settings.get(settingsIndex)).message_colors);
+            fillOutBubblePaint(themeDrawable.outBubblePaintSecond, tlTheme.settings.get(settingsIndex).message_colors);
             themeDrawable.outBubblePaintSecond.setAlpha(255);
             getPreviewDrawable(tlTheme, settingsIndex);
         } else {

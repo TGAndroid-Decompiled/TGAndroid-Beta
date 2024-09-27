@@ -16,9 +16,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_chatReactionsNone;
-import org.telegram.tgnet.TLRPC$TL_messageReactions;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay;
@@ -201,8 +199,8 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     private MessageObject findPrimaryObject() {
         MessageObject.GroupedMessages group;
         ArrayList<MessageObject> arrayList;
-        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
-        ArrayList arrayList2;
+        TLRPC.TL_messageReactions tL_messageReactions;
+        ArrayList<TLRPC.ReactionCount> arrayList2;
         if (!this.isVisible || this.selectedMessages.isEmpty()) {
             return null;
         }
@@ -211,8 +209,8 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             Iterator<MessageObject> it = arrayList.iterator();
             while (it.hasNext()) {
                 MessageObject next = it.next();
-                TLRPC$Message tLRPC$Message = next.messageOwner;
-                if (tLRPC$Message != null && (tLRPC$TL_messageReactions = tLRPC$Message.reactions) != null && (arrayList2 = tLRPC$TL_messageReactions.results) != null && !arrayList2.isEmpty()) {
+                TLRPC.Message message = next.messageOwner;
+                if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
                     return next;
                 }
             }
@@ -277,7 +275,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     public void setSelectedMessages(List<MessageObject> list) {
         boolean z;
         this.selectedMessages = list;
-        if (!this.parentFragment.isSecretChat() && ((this.parentFragment.getCurrentChatInfo() == null || !(this.parentFragment.getCurrentChatInfo().available_reactions instanceof TLRPC$TL_chatReactionsNone)) && !list.isEmpty())) {
+        if (!this.parentFragment.isSecretChat() && ((this.parentFragment.getCurrentChatInfo() == null || !(this.parentFragment.getCurrentChatInfo().available_reactions instanceof TLRPC.TL_chatReactionsNone)) && !list.isEmpty())) {
             Iterator<MessageObject> it = list.iterator();
             long j = 0;
             boolean z2 = false;

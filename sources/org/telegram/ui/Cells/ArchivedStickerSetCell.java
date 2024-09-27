@@ -18,7 +18,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -35,7 +35,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
     private final BackupImageView imageView;
     private boolean needDivider;
     private OnCheckedChangeListener onCheckedChangeListener;
-    private TLRPC$StickerSetCovered stickersSet;
+    private TLRPC.StickerSetCovered stickersSet;
     private final TextView textView;
     private final TextView valueTextView;
 
@@ -162,7 +162,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         }
     }
 
-    public TLRPC$StickerSetCovered getStickersSet() {
+    public TLRPC.StickerSetCovered getStickersSet() {
         return this.stickersSet;
     }
 
@@ -224,7 +224,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         this.onCheckedChangeListener = onCheckedChangeListener;
     }
 
-    public void setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered r13, boolean r14) {
+    public void setStickersSet(org.telegram.tgnet.TLRPC.StickerSetCovered r13, boolean r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ArchivedStickerSetCell.setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered, boolean):void");
     }
 

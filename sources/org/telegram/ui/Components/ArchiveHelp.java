@@ -16,7 +16,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$TL_globalPrivacySettings;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -94,7 +94,7 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
     }
 
     private void updateText() {
-        TLRPC$TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
+        TLRPC.TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
         String string = LocaleController.getString(globalPrivacySettings != null ? globalPrivacySettings.keep_archived_unmuted : true ? "ArchiveHintSubtitle" : "ArchiveHintSubtitleUnmutedMove");
         int i = Theme.key_chat_messageLinkIn;
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i, 0, this.linkCallback);

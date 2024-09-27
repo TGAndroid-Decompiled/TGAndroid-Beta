@@ -7,12 +7,7 @@ import java.util.HashMap;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_contacts_resolvePhone;
-import org.telegram.tgnet.TLRPC$TL_contacts_resolveUsername;
-import org.telegram.tgnet.TLRPC$TL_contacts_resolvedPeer;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.LaunchActivity;
@@ -36,30 +31,30 @@ public class UserNameResolver {
         this.currentAccount = i;
     }
 
-    public void lambda$resolve$0(String str, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$resolve$0(String str, TLRPC.TL_error tL_error, TLObject tLObject) {
         BaseFragment lastFragment;
         ArrayList<Consumer> remove = this.resolvingConsumers.remove(str);
         if (remove == null) {
             return;
         }
         int i = 0;
-        if (tLRPC$TL_error != null) {
+        if (tL_error != null) {
             while (i < remove.size()) {
                 remove.get(i).accept(null);
                 i++;
             }
-            String str2 = tLRPC$TL_error.text;
+            String str2 = tL_error.text;
             if (str2 == null || !str2.contains("FLOOD_WAIT") || (lastFragment = LaunchActivity.getLastFragment()) == null) {
                 return;
             }
             BulletinFactory.of(lastFragment).createErrorBulletin(LocaleController.getString(R.string.FloodWait)).show();
             return;
         }
-        TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
-        MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_contacts_resolvedPeer.users, false);
-        MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_contacts_resolvedPeer.chats, false);
-        MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$TL_contacts_resolvedPeer.users, tLRPC$TL_contacts_resolvedPeer.chats, false, true);
-        long peerId = MessageObject.getPeerId(tLRPC$TL_contacts_resolvedPeer.peer);
+        TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
+        MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
+        MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
+        MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
+        long peerId = MessageObject.getPeerId(tL_contacts_resolvedPeer.peer);
         this.resolvedCache.put(str, new CachedPeer(peerId));
         while (i < remove.size()) {
             remove.get(i).accept(Long.valueOf(peerId));
@@ -67,17 +62,17 @@ public class UserNameResolver {
         }
     }
 
-    public void lambda$resolve$1(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$resolve$1(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UserNameResolver.this.lambda$resolve$0(str, tLRPC$TL_error, tLObject);
+                UserNameResolver.this.lambda$resolve$0(str, tL_error, tLObject);
             }
         }, 2L);
     }
 
     public void resolve(final String str, Consumer consumer) {
-        TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername;
+        TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
         CachedPeer cachedPeer = this.resolvedCache.get(str);
         if (cachedPeer != null) {
             if (System.currentTimeMillis() - cachedPeer.time < 3600000) {
@@ -96,43 +91,43 @@ public class UserNameResolver {
         arrayList2.add(consumer);
         this.resolvingConsumers.put(str, arrayList2);
         if (AndroidUtilities.isNumeric(str)) {
-            TLRPC$TL_contacts_resolvePhone tLRPC$TL_contacts_resolvePhone = new TLRPC$TL_contacts_resolvePhone();
-            tLRPC$TL_contacts_resolvePhone.phone = str;
-            tLRPC$TL_contacts_resolveUsername = tLRPC$TL_contacts_resolvePhone;
+            TLRPC.TL_contacts_resolvePhone tL_contacts_resolvePhone = new TLRPC.TL_contacts_resolvePhone();
+            tL_contacts_resolvePhone.phone = str;
+            tL_contacts_resolveUsername = tL_contacts_resolvePhone;
         } else {
-            TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername2 = new TLRPC$TL_contacts_resolveUsername();
-            tLRPC$TL_contacts_resolveUsername2.username = str;
-            tLRPC$TL_contacts_resolveUsername = tLRPC$TL_contacts_resolveUsername2;
+            TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername2 = new TLRPC.TL_contacts_resolveUsername();
+            tL_contacts_resolveUsername2.username = str;
+            tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                UserNameResolver.this.lambda$resolve$1(str, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                UserNameResolver.this.lambda$resolve$1(str, tLObject, tL_error);
             }
         });
     }
 
-    public void update(TLRPC$Chat tLRPC$Chat, TLRPC$Chat tLRPC$Chat2) {
+    public void update(TLRPC.Chat chat, TLRPC.Chat chat2) {
         String str;
-        if (tLRPC$Chat == null || tLRPC$Chat2 == null || (str = tLRPC$Chat.username) == null || TextUtils.equals(str, tLRPC$Chat2.username)) {
+        if (chat == null || chat2 == null || (str = chat.username) == null || TextUtils.equals(str, chat2.username)) {
             return;
         }
-        this.resolvedCache.remove(tLRPC$Chat.username);
-        String str2 = tLRPC$Chat2.username;
+        this.resolvedCache.remove(chat.username);
+        String str2 = chat2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(-tLRPC$Chat2.id));
+            this.resolvedCache.put(str2, new CachedPeer(-chat2.id));
         }
     }
 
-    public void update(TLRPC$User tLRPC$User, TLRPC$User tLRPC$User2) {
+    public void update(TLRPC.User user, TLRPC.User user2) {
         String str;
-        if (tLRPC$User == null || tLRPC$User2 == null || (str = tLRPC$User.username) == null || TextUtils.equals(str, tLRPC$User2.username)) {
+        if (user == null || user2 == null || (str = user.username) == null || TextUtils.equals(str, user2.username)) {
             return;
         }
-        this.resolvedCache.remove(tLRPC$User.username);
-        String str2 = tLRPC$User2.username;
+        this.resolvedCache.remove(user.username);
+        String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(tLRPC$User2.id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.id));
         }
     }
 }

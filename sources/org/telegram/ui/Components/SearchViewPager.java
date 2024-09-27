@@ -37,9 +37,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -275,7 +273,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             ArrayList dialogsArray = dialogsActivity.getDialogsArray(this.currentAccount, i2, i3, true);
             ArrayList arrayList = new ArrayList();
             for (int i5 = 0; i5 < dialogsArray.size(); i5++) {
-                arrayList.add(Long.valueOf(((TLRPC$Dialog) dialogsArray.get(i5)).id));
+                arrayList.add(Long.valueOf(((TLRPC.Dialog) dialogsArray.get(i5)).id));
             }
             this.dialogsSearchAdapter.setFilterDialogIds(arrayList);
         }
@@ -596,7 +594,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 }
                 AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0);
             }
-            dialogsActivity.lambda$onBackPressed$307();
+            dialogsActivity.lambda$onBackPressed$300();
         } else {
             long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();
@@ -638,10 +636,10 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             int i4 = mediaFilterData.filterType;
             if (i4 == 4) {
                 TLObject tLObject = mediaFilterData.chat;
-                if (tLObject instanceof TLRPC$User) {
-                    j = ((TLRPC$User) tLObject).id;
-                } else if (tLObject instanceof TLRPC$Chat) {
-                    j = -((TLRPC$Chat) tLObject).id;
+                if (tLObject instanceof TLRPC.User) {
+                    j = ((TLRPC.User) tLObject).id;
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    j = -((TLRPC.Chat) tLObject).id;
                 }
             } else if (i4 == 6) {
                 FiltersView.DateData dateData = mediaFilterData.dateData;
@@ -923,7 +921,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             if (DialogObject.isUserDialog(dialogId)) {
                 str = "user_id";
             } else {
-                TLRPC$Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-dialogId));
+                TLRPC.Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-dialogId));
                 if (chat != null && chat.migrated_to != null) {
                     bundle.putLong("migrated_to", dialogId);
                     dialogId = -chat.migrated_to.channel_id;

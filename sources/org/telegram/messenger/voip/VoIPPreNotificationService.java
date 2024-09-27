@@ -19,40 +19,29 @@ import org.telegram.messenger.voip.VoIPServiceState;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$PhoneCall;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPhoneCall;
-import org.telegram.tgnet.TLRPC$TL_phoneCallDiscardReasonBusy;
-import org.telegram.tgnet.TLRPC$TL_phoneCallDiscardReasonDisconnect;
-import org.telegram.tgnet.TLRPC$TL_phoneCallDiscardReasonHangup;
-import org.telegram.tgnet.TLRPC$TL_phoneCallDiscardReasonMissed;
-import org.telegram.tgnet.TLRPC$TL_phoneCallDiscarded;
-import org.telegram.tgnet.TLRPC$TL_phone_discardCall;
-import org.telegram.tgnet.TLRPC$TL_phone_receivedCall;
-import org.telegram.tgnet.TLRPC$TL_updates;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.VoIPFragment;
 import org.telegram.ui.VoIPPermissionActivity;
 
 public class VoIPPreNotificationService {
     public static State currentState;
-    public static TLRPC$PhoneCall pendingCall;
+    public static TLRPC.PhoneCall pendingCall;
     public static Intent pendingVoIP;
     private static MediaPlayer ringtonePlayer;
     private static final Object sync = new Object();
     private static Vibrator vibrator;
 
     public static final class State implements VoIPServiceState {
-        private final TLRPC$PhoneCall call;
+        private final TLRPC.PhoneCall call;
         private final int currentAccount;
         private boolean destroyed;
         private final long userId;
 
-        public State(int i, long j, TLRPC$PhoneCall tLRPC$PhoneCall) {
+        public State(int i, long j, TLRPC.PhoneCall phoneCall) {
             this.currentAccount = i;
             this.userId = j;
-            this.call = tLRPC$PhoneCall;
+            this.call = phoneCall;
         }
 
         @Override
@@ -86,12 +75,12 @@ public class VoIPPreNotificationService {
         }
 
         @Override
-        public TLRPC$PhoneCall getPrivateCall() {
+        public TLRPC.PhoneCall getPrivateCall() {
             return this.call;
         }
 
         @Override
-        public TLRPC$User getUser() {
+        public TLRPC.User getUser() {
             return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.userId));
         }
 
@@ -106,10 +95,10 @@ public class VoIPPreNotificationService {
         }
     }
 
-    private static void acknowledge(final Context context, int i, TLRPC$PhoneCall tLRPC$PhoneCall, final Runnable runnable) {
-        if (tLRPC$PhoneCall instanceof TLRPC$TL_phoneCallDiscarded) {
+    private static void acknowledge(final Context context, int i, TLRPC.PhoneCall phoneCall, final Runnable runnable) {
+        if (phoneCall instanceof TLRPC.TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.w("Call " + tLRPC$PhoneCall.id + " was discarded before the voip pre notification started, stopping");
+                FileLog.w("Call " + phoneCall.id + " was discarded before the voip pre notification started, stopping");
             }
             pendingVoIP = null;
             pendingCall = null;
@@ -121,15 +110,15 @@ public class VoIPPreNotificationService {
             return;
         }
         if (!XiaomiUtilities.isMIUI() || XiaomiUtilities.isCustomPermissionGranted(10020) || !((KeyguardManager) context.getSystemService("keyguard")).inKeyguardRestrictedInputMode()) {
-            TLRPC$TL_phone_receivedCall tLRPC$TL_phone_receivedCall = new TLRPC$TL_phone_receivedCall();
-            TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
-            tLRPC$TL_phone_receivedCall.peer = tLRPC$TL_inputPhoneCall;
-            tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall.id;
-            tLRPC$TL_inputPhoneCall.access_hash = tLRPC$PhoneCall.access_hash;
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_phone_receivedCall, new RequestDelegate() {
+            TLRPC.TL_phone_receivedCall tL_phone_receivedCall = new TLRPC.TL_phone_receivedCall();
+            TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
+            tL_phone_receivedCall.peer = tL_inputPhoneCall;
+            tL_inputPhoneCall.id = phoneCall.id;
+            tL_inputPhoneCall.access_hash = phoneCall.access_hash;
+            ConnectionsManager.getInstance(i).sendRequest(tL_phone_receivedCall, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    VoIPPreNotificationService.lambda$acknowledge$3(context, runnable, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    VoIPPreNotificationService.lambda$acknowledge$3(context, runnable, tLObject, tL_error);
                 }
             }, 2);
             return;
@@ -188,20 +177,20 @@ public class VoIPPreNotificationService {
             return;
         }
         final int intExtra = intent.getIntExtra("account", UserConfig.selectedAccount);
-        TLRPC$TL_phone_discardCall tLRPC$TL_phone_discardCall = new TLRPC$TL_phone_discardCall();
-        TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
-        tLRPC$TL_phone_discardCall.peer = tLRPC$TL_inputPhoneCall;
-        TLRPC$PhoneCall tLRPC$PhoneCall = pendingCall;
-        tLRPC$TL_inputPhoneCall.access_hash = tLRPC$PhoneCall.access_hash;
-        tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall.id;
-        tLRPC$TL_phone_discardCall.duration = 0;
-        tLRPC$TL_phone_discardCall.connection_id = 0L;
-        tLRPC$TL_phone_discardCall.reason = i != 2 ? i != 3 ? i != 4 ? new TLRPC$TL_phoneCallDiscardReasonHangup() : new TLRPC$TL_phoneCallDiscardReasonBusy() : new TLRPC$TL_phoneCallDiscardReasonMissed() : new TLRPC$TL_phoneCallDiscardReasonDisconnect();
-        FileLog.e("discardCall " + tLRPC$TL_phone_discardCall.reason);
-        ConnectionsManager.getInstance(intExtra).sendRequest(tLRPC$TL_phone_discardCall, new RequestDelegate() {
+        TLRPC.TL_phone_discardCall tL_phone_discardCall = new TLRPC.TL_phone_discardCall();
+        TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
+        tL_phone_discardCall.peer = tL_inputPhoneCall;
+        TLRPC.PhoneCall phoneCall = pendingCall;
+        tL_inputPhoneCall.access_hash = phoneCall.access_hash;
+        tL_inputPhoneCall.id = phoneCall.id;
+        tL_phone_discardCall.duration = 0;
+        tL_phone_discardCall.connection_id = 0L;
+        tL_phone_discardCall.reason = i != 2 ? i != 3 ? i != 4 ? new TLRPC.TL_phoneCallDiscardReasonHangup() : new TLRPC.TL_phoneCallDiscardReasonBusy() : new TLRPC.TL_phoneCallDiscardReasonMissed() : new TLRPC.TL_phoneCallDiscardReasonDisconnect();
+        FileLog.e("discardCall " + tL_phone_discardCall.reason);
+        ConnectionsManager.getInstance(intExtra).sendRequest(tL_phone_discardCall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                VoIPPreNotificationService.lambda$decline$4(intExtra, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                VoIPPreNotificationService.lambda$decline$4(intExtra, tLObject, tL_error);
             }
         }, 2);
         dismiss(context);
@@ -228,11 +217,11 @@ public class VoIPPreNotificationService {
         return intent != null && intent.getBooleanExtra("video", false);
     }
 
-    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, Context context, Runnable runnable) {
+    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC.TL_error tL_error, Context context, Runnable runnable) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.w("(VoIPPreNotification) receivedCall response = " + tLObject);
         }
-        if (tLRPC$TL_error == null) {
+        if (tL_error == null) {
             if (runnable != null) {
                 runnable.run();
                 return;
@@ -240,7 +229,7 @@ public class VoIPPreNotificationService {
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.e("error on receivedCall: " + tLRPC$TL_error);
+            FileLog.e("error on receivedCall: " + tL_error);
         }
         pendingVoIP = null;
         pendingCall = null;
@@ -251,35 +240,35 @@ public class VoIPPreNotificationService {
         dismiss(context);
     }
 
-    public static void lambda$acknowledge$3(final Context context, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$acknowledge$3(final Context context, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPPreNotificationService.lambda$acknowledge$2(TLObject.this, tLRPC$TL_error, context, runnable);
+                VoIPPreNotificationService.lambda$acknowledge$2(TLObject.this, tL_error, context, runnable);
             }
         });
     }
 
-    public static void lambda$decline$4(int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error != null) {
+    public static void lambda$decline$4(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error != null) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("(VoIPPreNotification) error on phone.discardCall: " + tLRPC$TL_error);
+                FileLog.e("(VoIPPreNotification) error on phone.discardCall: " + tL_error);
                 return;
             }
             return;
         }
-        if (tLObject instanceof TLRPC$TL_updates) {
-            MessagesController.getInstance(i).processUpdates((TLRPC$TL_updates) tLObject, false);
+        if (tLObject instanceof TLRPC.TL_updates) {
+            MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("(VoIPPreNotification) phone.discardCall " + tLObject);
         }
     }
 
-    public static void lambda$show$1(Intent intent, TLRPC$PhoneCall tLRPC$PhoneCall, Context context, int i, long j, boolean z) {
+    public static void lambda$show$1(Intent intent, TLRPC.PhoneCall phoneCall, Context context, int i, long j, boolean z) {
         pendingVoIP = intent;
-        pendingCall = tLRPC$PhoneCall;
-        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i, j, tLRPC$PhoneCall.id, z));
+        pendingCall = phoneCall;
+        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i, j, phoneCall.id, z));
         startRinging(context, i, j);
     }
 
@@ -316,26 +305,26 @@ public class VoIPPreNotificationService {
         return true;
     }
 
-    public static void show(final Context context, final Intent intent, final TLRPC$PhoneCall tLRPC$PhoneCall) {
+    public static void show(final Context context, final Intent intent, final TLRPC.PhoneCall phoneCall) {
         FileLog.d("VoIPPreNotification.show()");
-        if (tLRPC$PhoneCall == null || intent == null) {
+        if (phoneCall == null || intent == null) {
             dismiss(context);
             FileLog.d("VoIPPreNotification.show(): call or intent is null");
             return;
         }
-        TLRPC$PhoneCall tLRPC$PhoneCall2 = pendingCall;
-        if (tLRPC$PhoneCall2 == null || tLRPC$PhoneCall2.id != tLRPC$PhoneCall.id) {
+        TLRPC.PhoneCall phoneCall2 = pendingCall;
+        if (phoneCall2 == null || phoneCall2.id != phoneCall.id) {
             dismiss(context);
             pendingVoIP = intent;
-            pendingCall = tLRPC$PhoneCall;
+            pendingCall = phoneCall;
             final int intExtra = intent.getIntExtra("account", UserConfig.selectedAccount);
             final long longExtra = intent.getLongExtra("user_id", 0L);
-            final boolean z = tLRPC$PhoneCall.video;
-            currentState = new State(intExtra, longExtra, tLRPC$PhoneCall);
-            acknowledge(context, intExtra, tLRPC$PhoneCall, new Runnable() {
+            final boolean z = phoneCall.video;
+            currentState = new State(intExtra, longExtra, phoneCall);
+            acknowledge(context, intExtra, phoneCall, new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPPreNotificationService.lambda$show$1(intent, tLRPC$PhoneCall, context, intExtra, longExtra, z);
+                    VoIPPreNotificationService.lambda$show$1(intent, phoneCall, context, intExtra, longExtra, z);
                 }
             });
         }

@@ -21,8 +21,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 
@@ -99,16 +98,16 @@ public class ReactionTabHolderView extends FrameLayout {
         this.reactView.setVisibility(8);
     }
 
-    public void setCounter(int i, TLRPC$ReactionCount tLRPC$ReactionCount) {
-        int i2 = tLRPC$ReactionCount.count;
+    public void setCounter(int i, TLRPC.ReactionCount reactionCount) {
+        int i2 = reactionCount.count;
         this.count = i2;
         this.counterView.setText(String.format("%s", LocaleController.formatShortNumber(i2, null)));
-        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$ReactionCount.reaction);
+        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(reactionCount.reaction);
         this.reaction = fromTL;
         if (fromTL.emojicon != null) {
-            for (TLRPC$TL_availableReaction tLRPC$TL_availableReaction : MediaDataController.getInstance(i).getReactionsList()) {
-                if (tLRPC$TL_availableReaction.reaction.equals(this.reaction.emojicon)) {
-                    this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);
+            for (TLRPC.TL_availableReaction tL_availableReaction : MediaDataController.getInstance(i).getReactionsList()) {
+                if (tL_availableReaction.reaction.equals(this.reaction.emojicon)) {
+                    this.reactView.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tL_availableReaction);
                 }
             }
             return;

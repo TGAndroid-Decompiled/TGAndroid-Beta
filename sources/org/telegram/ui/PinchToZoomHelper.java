@@ -32,15 +32,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_messageActionUserUpdatedPhoto;
-import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
-import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
-import org.telegram.tgnet.TLRPC$TL_messageService;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -546,17 +538,17 @@ public class PinchToZoomHelper {
     }
 
     private ImageLocation getImageLocation(MessageObject messageObject, int[] iArr) {
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        if (!(tLRPC$Message instanceof TLRPC$TL_messageService)) {
-            TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-            if ((!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) || tLRPC$MessageMedia.photo == null) && (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) || tLRPC$MessageMedia.webpage == null)) {
-                if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
-                    return ImageLocation.getForWebFile(WebFile.createWithWebDocument(((TLRPC$TL_messageMediaInvoice) tLRPC$MessageMedia).webPhoto));
+        TLRPC.Message message = messageObject.messageOwner;
+        if (!(message instanceof TLRPC.TL_messageService)) {
+            TLRPC.MessageMedia messageMedia = message.media;
+            if ((!(messageMedia instanceof TLRPC.TL_messageMediaPhoto) || messageMedia.photo == null) && (!(messageMedia instanceof TLRPC.TL_messageMediaWebPage) || messageMedia.webpage == null)) {
+                if (messageMedia instanceof TLRPC.TL_messageMediaInvoice) {
+                    return ImageLocation.getForWebFile(WebFile.createWithWebDocument(((TLRPC.TL_messageMediaInvoice) messageMedia).webPhoto));
                 }
                 if (messageObject.getDocument() != null) {
-                    TLRPC$Document document = messageObject.getDocument();
+                    TLRPC.Document document = messageObject.getDocument();
                     if (MessageObject.isDocumentHasThumb(messageObject.getDocument())) {
-                        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+                        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
                         if (iArr != null) {
                             int i = closestPhotoSizeWithSize.size;
                             iArr[0] = i;
@@ -571,7 +563,7 @@ public class PinchToZoomHelper {
                 if (messageObject.isGif()) {
                     return ImageLocation.getForDocument(messageObject.getDocument());
                 }
-                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(), false, null, true);
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(), false, null, true);
                 if (closestPhotoSizeWithSize2 != null) {
                     if (iArr != null) {
                         int i2 = closestPhotoSizeWithSize2.size;
@@ -587,10 +579,10 @@ public class PinchToZoomHelper {
                 }
             }
         } else {
-            if (tLRPC$Message.action instanceof TLRPC$TL_messageActionUserUpdatedPhoto) {
+            if (message.action instanceof TLRPC.TL_messageActionUserUpdatedPhoto) {
                 return null;
             }
-            TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
+            TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
             if (closestPhotoSizeWithSize3 != null) {
                 if (iArr != null) {
                     int i3 = closestPhotoSizeWithSize3.size;

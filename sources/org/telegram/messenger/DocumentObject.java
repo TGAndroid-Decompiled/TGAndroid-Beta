@@ -4,58 +4,48 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.ArrayList;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeImageSize;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
-import org.telegram.tgnet.TLRPC$TL_photoPathSize;
-import org.telegram.tgnet.TLRPC$TL_photoSize;
-import org.telegram.tgnet.TLRPC$TL_wallPaper;
-import org.telegram.tgnet.TLRPC$ThemeSettings;
-import org.telegram.tgnet.TLRPC$WallPaper;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
 public class DocumentObject {
 
-    public static class ThemeDocument extends TLRPC$TL_document {
+    public static class ThemeDocument extends TLRPC.TL_document {
         public Theme.ThemeAccent accent;
         public Theme.ThemeInfo baseTheme;
-        public TLRPC$ThemeSettings themeSettings;
-        public TLRPC$Document wallpaper;
+        public TLRPC.ThemeSettings themeSettings;
+        public TLRPC.Document wallpaper;
 
-        public ThemeDocument(TLRPC$ThemeSettings tLRPC$ThemeSettings) {
-            this.themeSettings = tLRPC$ThemeSettings;
-            Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey(tLRPC$ThemeSettings));
+        public ThemeDocument(TLRPC.ThemeSettings themeSettings) {
+            this.themeSettings = themeSettings;
+            Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey(themeSettings));
             this.baseTheme = theme;
-            this.accent = theme.createNewAccent(tLRPC$ThemeSettings);
-            TLRPC$WallPaper tLRPC$WallPaper = this.themeSettings.wallpaper;
-            if (!(tLRPC$WallPaper instanceof TLRPC$TL_wallPaper)) {
+            this.accent = theme.createNewAccent(themeSettings);
+            TLRPC.WallPaper wallPaper = this.themeSettings.wallpaper;
+            if (!(wallPaper instanceof TLRPC.TL_wallPaper)) {
                 this.id = -2147483648L;
                 this.dc_id = Integer.MIN_VALUE;
                 return;
             }
-            TLRPC$Document tLRPC$Document = ((TLRPC$TL_wallPaper) tLRPC$WallPaper).document;
-            this.wallpaper = tLRPC$Document;
-            this.id = tLRPC$Document.id;
-            this.access_hash = tLRPC$Document.access_hash;
-            this.file_reference = tLRPC$Document.file_reference;
-            this.user_id = tLRPC$Document.user_id;
-            this.date = tLRPC$Document.date;
-            this.file_name = tLRPC$Document.file_name;
-            this.mime_type = tLRPC$Document.mime_type;
-            this.size = tLRPC$Document.size;
-            this.thumbs = tLRPC$Document.thumbs;
-            this.version = tLRPC$Document.version;
-            this.dc_id = tLRPC$Document.dc_id;
-            this.key = tLRPC$Document.key;
-            this.iv = tLRPC$Document.iv;
-            this.attributes = tLRPC$Document.attributes;
+            TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
+            this.wallpaper = document;
+            this.id = document.id;
+            this.access_hash = document.access_hash;
+            this.file_reference = document.file_reference;
+            this.user_id = document.user_id;
+            this.date = document.date;
+            this.file_name = document.file_name;
+            this.mime_type = document.mime_type;
+            this.size = document.size;
+            this.thumbs = document.thumbs;
+            this.version = document.version;
+            this.dc_id = document.dc_id;
+            this.key = document.key;
+            this.iv = document.iv;
+            this.attributes = document.attributes;
         }
     }
 
-    public static boolean containsPhotoSizeType(ArrayList<TLRPC$PhotoSize> arrayList, String str) {
+    public static boolean containsPhotoSizeType(ArrayList<TLRPC.PhotoSize> arrayList, String str) {
         if (str == null) {
             return false;
         }
@@ -109,65 +99,65 @@ public class DocumentObject {
         return drawable;
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f) {
+    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC.PhotoSize> arrayList, int i, float f) {
         return getSvgThumb(arrayList, i, f, false);
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f, boolean z) {
+    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC.PhotoSize> arrayList, int i, float f, boolean z) {
         int size = arrayList.size();
         int i2 = 512;
-        TLRPC$TL_photoPathSize tLRPC$TL_photoPathSize = null;
+        TLRPC.TL_photoPathSize tL_photoPathSize = null;
         int i3 = 512;
         for (int i4 = 0; i4 < size; i4++) {
-            TLRPC$PhotoSize tLRPC$PhotoSize = arrayList.get(i4);
-            if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
-                tLRPC$TL_photoPathSize = (TLRPC$TL_photoPathSize) tLRPC$PhotoSize;
-            } else if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) && z) {
-                i2 = tLRPC$PhotoSize.w;
-                i3 = tLRPC$PhotoSize.h;
+            TLRPC.PhotoSize photoSize = arrayList.get(i4);
+            if (photoSize instanceof TLRPC.TL_photoPathSize) {
+                tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
+            } else if ((photoSize instanceof TLRPC.TL_photoSize) && z) {
+                i2 = photoSize.w;
+                i3 = photoSize.h;
             }
         }
-        if (tLRPC$TL_photoPathSize == null || i2 == 0 || i3 == 0) {
+        if (tL_photoPathSize == null || i2 == 0 || i3 == 0) {
             return null;
         }
-        SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(tLRPC$TL_photoPathSize.svgPath, i2, i3);
+        SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(tL_photoPathSize.svgPath, i2, i3);
         if (drawableByPath != null) {
             drawableByPath.setupGradient(i, f, false);
         }
         return drawableByPath;
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(TLRPC$Document tLRPC$Document, int i, float f) {
-        return getSvgThumb(tLRPC$Document, i, f, 1.0f, null);
+    public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i, float f) {
+        return getSvgThumb(document, i, f, 1.0f, null);
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(TLRPC$Document tLRPC$Document, int i, float f, float f2, Theme.ResourcesProvider resourcesProvider) {
+    public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i, float f, float f2, Theme.ResourcesProvider resourcesProvider) {
         int i2;
         int i3;
         SvgHelper.SvgDrawable svgDrawable = null;
-        if (tLRPC$Document == null) {
+        if (document == null) {
             return null;
         }
-        int size = tLRPC$Document.thumbs.size();
+        int size = document.thumbs.size();
         int i4 = 0;
         while (true) {
             if (i4 >= size) {
                 break;
             }
-            TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$Document.thumbs.get(i4);
-            if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
-                int size2 = tLRPC$Document.attributes.size();
+            TLRPC.PhotoSize photoSize = document.thumbs.get(i4);
+            if (photoSize instanceof TLRPC.TL_photoPathSize) {
+                int size2 = document.attributes.size();
                 for (int i5 = 0; i5 < size2; i5++) {
-                    TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i5);
-                    if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo)) {
-                        i2 = tLRPC$DocumentAttribute.w;
-                        i3 = tLRPC$DocumentAttribute.h;
+                    TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i5);
+                    if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i2 = documentAttribute.w;
+                        i3 = documentAttribute.h;
                         break;
                     }
                 }
                 i2 = 512;
                 i3 = 512;
-                if (i2 != 0 && i3 != 0 && (svgDrawable = SvgHelper.getDrawableByPath(((TLRPC$TL_photoPathSize) tLRPC$PhotoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2))) != null) {
+                if (i2 != 0 && i3 != 0 && (svgDrawable = SvgHelper.getDrawableByPath(((TLRPC.TL_photoPathSize) photoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2))) != null) {
                     svgDrawable.setupGradient(i, resourcesProvider, f, false);
                 }
             } else {

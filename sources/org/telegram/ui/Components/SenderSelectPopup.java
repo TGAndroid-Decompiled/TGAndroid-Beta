@@ -35,12 +35,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_channels_sendAsPeers;
-import org.telegram.tgnet.TLRPC$TL_sendAsPeer;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
@@ -52,7 +47,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
     private FrameLayout bulletinContainer;
     private Runnable bulletinHideCallback;
     private List bulletins;
-    private TLRPC$ChatFull chatFull;
+    private TLRPC.ChatFull chatFull;
     private boolean clicked;
     private final int currentAccount;
     public View dimView;
@@ -68,7 +63,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
     private RecyclerListView recyclerView;
     protected boolean runningCustomSprings;
     private FrameLayout scrimPopupContainerLayout;
-    private TLRPC$TL_channels_sendAsPeers sendAsPeers;
+    private TLRPC.TL_channels_sendAsPeers sendAsPeers;
     protected List springAnimations;
 
     private class BackButtonFrameLayout extends FrameLayout {
@@ -86,7 +81,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
     }
 
     public interface OnSelectCallback {
-        void onPeerSelected(RecyclerView recyclerView, SenderView senderView, TLRPC$Peer tLRPC$Peer);
+        void onPeerSelected(RecyclerView recyclerView, SenderView senderView, TLRPC.Peer peer);
     }
 
     public static final class SenderView extends LinearLayout {
@@ -127,12 +122,12 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         }
     }
 
-    public SenderSelectPopup(final Context context, final ChatActivity chatActivity, final MessagesController messagesController, final TLRPC$ChatFull tLRPC$ChatFull, TLRPC$TL_channels_sendAsPeers tLRPC$TL_channels_sendAsPeers, final OnSelectCallback onSelectCallback) {
+    public SenderSelectPopup(final Context context, final ChatActivity chatActivity, final MessagesController messagesController, final TLRPC.ChatFull chatFull, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final OnSelectCallback onSelectCallback) {
         super(context);
         this.springAnimations = new ArrayList();
         this.bulletins = new ArrayList();
-        this.chatFull = tLRPC$ChatFull;
-        this.sendAsPeers = tLRPC$TL_channels_sendAsPeers;
+        this.chatFull = chatFull;
+        this.sendAsPeers = tL_channels_sendAsPeers;
         this.currentAccount = chatActivity == null ? UserConfig.selectedAccount : chatActivity.getCurrentAccount();
         BackButtonFrameLayout backButtonFrameLayout = new BackButtonFrameLayout(context);
         this.scrimPopupContainerLayout = backButtonFrameLayout;
@@ -175,7 +170,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         this.headerText.setPadding(dp2, AndroidUtilities.dp(12.0f), dp2, AndroidUtilities.dp(12.0f));
         this.recyclerContainer.addView(this.headerText);
         FrameLayout frameLayout = new FrameLayout(context);
-        final ArrayList arrayList = tLRPC$TL_channels_sendAsPeers.peers;
+        final ArrayList<TLRPC.TL_sendAsPeer> arrayList = tL_channels_sendAsPeers.peers;
         this.recyclerView = new RecyclerListView(context);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         this.layoutManager = linearLayoutManager;
@@ -195,21 +190,21 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 SimpleAvatarView simpleAvatarView;
                 SenderView senderView = (SenderView) viewHolder.itemView;
-                TLRPC$TL_sendAsPeer tLRPC$TL_sendAsPeer = (TLRPC$TL_sendAsPeer) arrayList.get(i);
-                TLRPC$Peer tLRPC$Peer = tLRPC$TL_sendAsPeer.peer;
-                long j = tLRPC$Peer.channel_id;
+                TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) arrayList.get(i);
+                TLRPC.Peer peer = tL_sendAsPeer.peer;
+                long j = peer.channel_id;
                 long j2 = j != 0 ? -j : 0L;
                 if (j2 == 0) {
-                    long j3 = tLRPC$Peer.user_id;
+                    long j3 = peer.user_id;
                     if (j3 != 0) {
                         j2 = j3;
                     }
                 }
                 boolean z = true;
                 if (j2 < 0) {
-                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j2));
+                    TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j2));
                     if (chat != null) {
-                        if (tLRPC$TL_sendAsPeer.premium_required) {
+                        if (tL_sendAsPeer.premium_required) {
                             SpannableString spannableString = new SpannableString(((Object) TextUtils.ellipsize(chat.title, senderView.title.getPaint(), width - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END)) + " d");
                             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_premiumlock);
                             coloredImageSpan.setTopOffset(1);
@@ -226,18 +221,18 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                         senderView.avatar.setAvatar(chat);
                     }
                     simpleAvatarView = senderView.avatar;
-                    TLRPC$Peer tLRPC$Peer2 = tLRPC$ChatFull.default_send_as;
-                    z = tLRPC$Peer2 == null ? false : false;
+                    TLRPC.Peer peer2 = chatFull.default_send_as;
+                    z = peer2 == null ? false : false;
                 } else {
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(j2));
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(j2));
                     if (user != null) {
                         senderView.title.setText(UserObject.getUserName(user));
                         senderView.subtitle.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
                         senderView.avatar.setAvatar(user);
                     }
                     simpleAvatarView = senderView.avatar;
-                    TLRPC$Peer tLRPC$Peer3 = tLRPC$ChatFull.default_send_as;
-                    if (tLRPC$Peer3 == null) {
+                    TLRPC.Peer peer3 = chatFull.default_send_as;
+                    if (peer3 == null) {
                     }
                 }
                 simpleAvatarView.setSelected(z, false);
@@ -262,7 +257,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         this.recyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i) {
-                SenderSelectPopup.this.lambda$new$2(arrayList, context, tLRPC$ChatFull, chatActivity, onSelectCallback, view2, i);
+                SenderSelectPopup.this.lambda$new$2(arrayList, context, chatFull, chatActivity, onSelectCallback, view2, i);
             }
         });
         this.recyclerView.setOverScrollMode(2);
@@ -288,14 +283,14 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         windowManager.removeView(this.bulletinContainer);
     }
 
-    public void lambda$new$2(List list, Context context, TLRPC$ChatFull tLRPC$ChatFull, final ChatActivity chatActivity, OnSelectCallback onSelectCallback, View view, int i) {
-        TLRPC$TL_sendAsPeer tLRPC$TL_sendAsPeer = (TLRPC$TL_sendAsPeer) list.get(i);
+    public void lambda$new$2(List list, Context context, TLRPC.ChatFull chatFull, final ChatActivity chatActivity, OnSelectCallback onSelectCallback, View view, int i) {
+        TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) list.get(i);
         if (this.clicked) {
             return;
         }
-        if (!tLRPC$TL_sendAsPeer.premium_required || UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+        if (!tL_sendAsPeer.premium_required || UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
             this.clicked = true;
-            onSelectCallback.onPeerSelected(this.recyclerView, (SenderView) view, tLRPC$TL_sendAsPeer.peer);
+            onSelectCallback.onPeerSelected(this.recyclerView, (SenderView) view, tL_sendAsPeer.peer);
             return;
         }
         try {
@@ -343,7 +338,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
             AndroidUtilities.setPreferredMaxRefreshRate(windowManager, this.bulletinContainer, layoutParams);
             windowManager.addView(this.bulletinContainer, layoutParams);
         }
-        final Bulletin make = Bulletin.make(this.bulletinContainer, new SelectSendAsPremiumHintBulletinLayout(context, chatActivity.themeDelegate, ChatObject.isChannelAndNotMegaGroup(tLRPC$ChatFull == null ? null : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$ChatFull.id))), new Runnable() {
+        final Bulletin make = Bulletin.make(this.bulletinContainer, new SelectSendAsPremiumHintBulletinLayout(context, chatActivity.themeDelegate, ChatObject.isChannelAndNotMegaGroup(chatFull == null ? null : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chatFull.id))), new Runnable() {
             @Override
             public final void run() {
                 SenderSelectPopup.this.lambda$new$0(chatActivity);
@@ -541,23 +536,23 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         this.scrimPopupContainerLayout.setPivotY(r4.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
         this.recyclerContainer.setPivotX(0.0f);
         this.recyclerContainer.setPivotY(0.0f);
-        ArrayList arrayList = this.sendAsPeers.peers;
-        TLRPC$Peer tLRPC$Peer = this.chatFull.default_send_as;
-        if (tLRPC$Peer == null) {
-            tLRPC$Peer = null;
+        ArrayList<TLRPC.TL_sendAsPeer> arrayList = this.sendAsPeers.peers;
+        TLRPC.Peer peer = this.chatFull.default_send_as;
+        if (peer == null) {
+            peer = null;
         }
-        if (tLRPC$Peer != null) {
+        if (peer != null) {
             int dp = AndroidUtilities.dp(54.0f);
             int size = arrayList.size() * dp;
             int i = 0;
             while (i < arrayList.size()) {
-                TLRPC$Peer tLRPC$Peer2 = ((TLRPC$TL_sendAsPeer) arrayList.get(i)).peer;
-                long j = tLRPC$Peer2.channel_id;
-                if (j == 0 || j != tLRPC$Peer.channel_id) {
-                    long j2 = tLRPC$Peer2.user_id;
-                    if (j2 == 0 || j2 != tLRPC$Peer.user_id) {
-                        long j3 = tLRPC$Peer2.chat_id;
-                        if (j3 == 0 || j3 != tLRPC$Peer.chat_id) {
+                TLRPC.Peer peer2 = arrayList.get(i).peer;
+                long j = peer2.channel_id;
+                if (j == 0 || j != peer.channel_id) {
+                    long j2 = peer2.user_id;
+                    if (j2 == 0 || j2 != peer.user_id) {
+                        long j3 = peer2.chat_id;
+                        if (j3 == 0 || j3 != peer.chat_id) {
                             i++;
                         }
                     }

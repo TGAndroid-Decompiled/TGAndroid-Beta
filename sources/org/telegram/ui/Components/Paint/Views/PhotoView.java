@@ -37,7 +37,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Photo;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -253,9 +253,9 @@ public class PhotoView extends EntityView {
         imageReceiver.setParentView(frameLayoutDrawer);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
         TLObject tLObject2 = this.object;
-        if (tLObject2 instanceof TLRPC$Photo) {
-            TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject2;
-            imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 1000), tLRPC$Photo), getImageFilter(), ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 90), tLRPC$Photo), getImageFilter(), (String) null, (Object) null, 1);
+        if (tLObject2 instanceof TLRPC.Photo) {
+            TLRPC.Photo photo = (TLRPC.Photo) tLObject2;
+            imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1000), photo), getImageFilter(), ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 90), photo), getImageFilter(), (String) null, (Object) null, 1);
         }
         updatePosition();
     }
@@ -366,9 +366,9 @@ public class PhotoView extends EntityView {
 
     public String getPath(int i) {
         TLObject tLObject = this.object;
-        if (tLObject instanceof TLRPC$Photo) {
+        if (tLObject instanceof TLRPC.Photo) {
             try {
-                return FileLoader.getInstance(i).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC$Photo) tLObject).sizes, 1000), true).getAbsolutePath();
+                return FileLoader.getInstance(i).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
             } catch (Exception unused) {
             }
         }

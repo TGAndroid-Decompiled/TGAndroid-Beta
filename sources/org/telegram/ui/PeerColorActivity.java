@@ -48,12 +48,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_account_updateColor;
-import org.telegram.tgnet.TLRPC$TL_peerColor;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -141,7 +136,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.userTextBackgroundPaint = new Paint(1);
             this.userTextColorKey = -1;
             MessagesController messagesController = MessagesController.getInstance(i);
-            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
             this.currentAccount = i;
             boolean z = j < 0;
             this.isChannelOrGroup = z;
@@ -206,11 +201,11 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
         }
 
-        public void set(org.telegram.tgnet.TLRPC$Chat r5, boolean r6) {
+        public void set(org.telegram.tgnet.TLRPC.Chat r5, boolean r6) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.ChangeNameColorCell.set(org.telegram.tgnet.TLRPC$Chat, boolean):void");
         }
 
-        public void set(org.telegram.tgnet.TLRPC$User r6) {
+        public void set(org.telegram.tgnet.TLRPC.User r6) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.ChangeNameColorCell.set(org.telegram.tgnet.TLRPC$User):void");
         }
 
@@ -679,20 +674,20 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             long j = PeerColorActivity.this.dialogId;
             if (i == 1) {
                 if (j < 0) {
-                    TLRPC$Chat chat = PeerColorActivity.this.getMessagesController().getChat(Long.valueOf(-PeerColorActivity.this.dialogId));
+                    TLRPC.Chat chat = PeerColorActivity.this.getMessagesController().getChat(Long.valueOf(-PeerColorActivity.this.dialogId));
                     this.selectedColor = ChatObject.getProfileColorId(chat);
                     emojiId = ChatObject.getProfileEmojiId(chat);
                 } else {
-                    TLRPC$User currentUser = PeerColorActivity.this.getUserConfig().getCurrentUser();
+                    TLRPC.User currentUser = PeerColorActivity.this.getUserConfig().getCurrentUser();
                     this.selectedColor = UserObject.getProfileColorId(currentUser);
                     emojiId = UserObject.getProfileEmojiId(currentUser);
                 }
             } else if (j < 0) {
-                TLRPC$Chat chat2 = PeerColorActivity.this.getMessagesController().getChat(Long.valueOf(-PeerColorActivity.this.dialogId));
+                TLRPC.Chat chat2 = PeerColorActivity.this.getMessagesController().getChat(Long.valueOf(-PeerColorActivity.this.dialogId));
                 this.selectedColor = ChatObject.getColorId(chat2);
                 emojiId = ChatObject.getEmojiId(chat2);
             } else {
-                TLRPC$User currentUser2 = PeerColorActivity.this.getUserConfig().getCurrentUser();
+                TLRPC.User currentUser2 = PeerColorActivity.this.getUserConfig().getCurrentUser();
                 this.selectedColor = UserObject.getColorId(currentUser2);
                 emojiId = UserObject.getEmojiId(currentUser2);
             }
@@ -920,13 +915,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         public boolean hasUnsavedChanged() {
             if (PeerColorActivity.this.isChannel) {
-                TLRPC$Chat chat = PeerColorActivity.this.getMessagesController().getChat(Long.valueOf(-PeerColorActivity.this.dialogId));
+                TLRPC.Chat chat = PeerColorActivity.this.getMessagesController().getChat(Long.valueOf(-PeerColorActivity.this.dialogId));
                 if (chat == null) {
                     return false;
                 }
                 return this.type == 0 ? (this.selectedColor == ChatObject.getColorId(chat) && this.selectedEmoji == ChatObject.getEmojiId(chat)) ? false : true : (this.selectedColor == ChatObject.getProfileColorId(chat) && this.selectedEmoji == ChatObject.getProfileEmojiId(chat)) ? false : true;
             }
-            TLRPC$User currentUser = PeerColorActivity.this.getUserConfig().getCurrentUser();
+            TLRPC.User currentUser = PeerColorActivity.this.getUserConfig().getCurrentUser();
             if (currentUser == null) {
                 return false;
             }
@@ -983,7 +978,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
 
                 @Override
-                protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
+                protected void onEmojiSelected(View view, Long l, TLRPC.Document document, Integer num) {
                     Page.this.selectedEmoji = l == null ? 0L : l.longValue();
                     SetReplyIconCell setReplyIconCell2 = setReplyIconCell;
                     if (setReplyIconCell2 != null) {
@@ -1590,7 +1585,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         public ProfilePreview(Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             CharSequence userName;
-            TLRPC$User tLRPC$User;
+            TLRPC.User user;
             SimpleTextView simpleTextView;
             String string;
             int i2;
@@ -1640,17 +1635,17 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             addView(simpleTextView4, LayoutHelper.createFrame(-1, -2.0f, 83, 97.0f, 0.0f, 16.0f, 30.66f));
             imageReceiver.setRoundRadius(AndroidUtilities.dp(54.0f));
             if (z) {
-                TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
                 userName = chat == null ? "" : chat.title;
                 avatarDrawable.setInfo(i, chat);
-                tLRPC$User = chat;
+                user = chat;
             } else {
-                TLRPC$User currentUser = UserConfig.getInstance(i).getCurrentUser();
+                TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
                 userName = UserObject.getUserName(currentUser);
                 avatarDrawable.setInfo(i, currentUser);
-                tLRPC$User = currentUser;
+                user = currentUser;
             }
-            imageReceiver.setForUserOrChat(tLRPC$User, avatarDrawable);
+            imageReceiver.setForUserOrChat(user, avatarDrawable);
             try {
                 userName = Emoji.replaceEmoji(userName, null, false);
             } catch (Exception unused) {
@@ -1658,8 +1653,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.titleView.setText(userName);
             if (this.isChannel) {
                 long j2 = -j;
-                TLRPC$Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(j2));
-                TLRPC$ChatFull chatFull = MessagesController.getInstance(i).getChatFull(j2);
+                TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(j2));
+                TLRPC.ChatFull chatFull = MessagesController.getInstance(i).getChatFull(j2);
                 if (chatFull == null || chatFull.participants_count <= 0) {
                     if (chat2 != null && chat2.participants_count > 0) {
                         if (ChatObject.isChannelAndNotMegaGroup(chat2)) {
@@ -1932,73 +1927,73 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         if (this.isChannel || getUserConfig().isPremium()) {
             if (this.isChannel) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
             } else {
-                TLRPC$User currentUser = getUserConfig().getCurrentUser();
+                TLRPC.User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser.color == null) {
-                    TLRPC$TL_peerColor tLRPC$TL_peerColor = new TLRPC$TL_peerColor();
-                    currentUser.color = tLRPC$TL_peerColor;
-                    tLRPC$TL_peerColor.color = (int) (currentUser.id % 7);
+                    TLRPC.TL_peerColor tL_peerColor = new TLRPC.TL_peerColor();
+                    currentUser.color = tL_peerColor;
+                    tL_peerColor.color = (int) (currentUser.id % 7);
                 }
                 if (this.namePage.selectedColor != UserObject.getColorId(currentUser) || this.namePage.selectedEmoji != UserObject.getEmojiId(currentUser)) {
                     this.applyingName = true;
-                    TLRPC$TL_account_updateColor tLRPC$TL_account_updateColor = new TLRPC$TL_account_updateColor();
+                    TLRPC.TL_account_updateColor tL_account_updateColor = new TLRPC.TL_account_updateColor();
                     currentUser.flags2 |= 256;
-                    TLRPC$TL_peerColor tLRPC$TL_peerColor2 = currentUser.color;
-                    tLRPC$TL_peerColor2.flags |= 1;
-                    tLRPC$TL_account_updateColor.flags |= 4;
+                    TLRPC.TL_peerColor tL_peerColor2 = currentUser.color;
+                    tL_peerColor2.flags |= 1;
+                    tL_account_updateColor.flags |= 4;
                     int i = this.namePage.selectedColor;
-                    tLRPC$TL_peerColor2.color = i;
-                    tLRPC$TL_account_updateColor.color = i;
+                    tL_peerColor2.color = i;
+                    tL_account_updateColor.color = i;
                     if (this.namePage.selectedEmoji != 0) {
-                        tLRPC$TL_account_updateColor.flags |= 1;
-                        TLRPC$TL_peerColor tLRPC$TL_peerColor3 = currentUser.color;
-                        tLRPC$TL_peerColor3.flags |= 2;
+                        tL_account_updateColor.flags |= 1;
+                        TLRPC.TL_peerColor tL_peerColor3 = currentUser.color;
+                        tL_peerColor3.flags |= 2;
                         long j = this.namePage.selectedEmoji;
-                        tLRPC$TL_peerColor3.background_emoji_id = j;
-                        tLRPC$TL_account_updateColor.background_emoji_id = j;
+                        tL_peerColor3.background_emoji_id = j;
+                        tL_account_updateColor.background_emoji_id = j;
                     } else {
-                        TLRPC$TL_peerColor tLRPC$TL_peerColor4 = currentUser.color;
-                        tLRPC$TL_peerColor4.flags &= -3;
-                        tLRPC$TL_peerColor4.background_emoji_id = 0L;
+                        TLRPC.TL_peerColor tL_peerColor4 = currentUser.color;
+                        tL_peerColor4.flags &= -3;
+                        tL_peerColor4.background_emoji_id = 0L;
                     }
-                    getConnectionsManager().sendRequest(tLRPC$TL_account_updateColor, null);
+                    getConnectionsManager().sendRequest(tL_account_updateColor, null);
                 }
                 if (this.profilePage.selectedColor != UserObject.getProfileColorId(currentUser) || this.profilePage.selectedEmoji != UserObject.getProfileEmojiId(currentUser)) {
                     this.applyingProfile = true;
                     if (currentUser.profile_color == null) {
-                        currentUser.profile_color = new TLRPC$TL_peerColor();
+                        currentUser.profile_color = new TLRPC.TL_peerColor();
                     }
-                    TLRPC$TL_account_updateColor tLRPC$TL_account_updateColor2 = new TLRPC$TL_account_updateColor();
-                    tLRPC$TL_account_updateColor2.for_profile = true;
+                    TLRPC.TL_account_updateColor tL_account_updateColor2 = new TLRPC.TL_account_updateColor();
+                    tL_account_updateColor2.for_profile = true;
                     currentUser.flags2 |= 512;
                     if (this.profilePage.selectedColor < 0) {
                         currentUser.profile_color.flags &= -2;
                     } else {
-                        TLRPC$TL_peerColor tLRPC$TL_peerColor5 = currentUser.profile_color;
-                        tLRPC$TL_peerColor5.flags |= 1;
-                        tLRPC$TL_account_updateColor2.flags |= 4;
+                        TLRPC.TL_peerColor tL_peerColor5 = currentUser.profile_color;
+                        tL_peerColor5.flags |= 1;
+                        tL_account_updateColor2.flags |= 4;
                         int i2 = this.profilePage.selectedColor;
-                        tLRPC$TL_peerColor5.color = i2;
-                        tLRPC$TL_account_updateColor2.color = i2;
+                        tL_peerColor5.color = i2;
+                        tL_account_updateColor2.color = i2;
                     }
                     if (this.profilePage.selectedEmoji != 0) {
-                        tLRPC$TL_account_updateColor2.flags |= 1;
-                        TLRPC$TL_peerColor tLRPC$TL_peerColor6 = currentUser.profile_color;
-                        tLRPC$TL_peerColor6.flags |= 2;
+                        tL_account_updateColor2.flags |= 1;
+                        TLRPC.TL_peerColor tL_peerColor6 = currentUser.profile_color;
+                        tL_peerColor6.flags |= 2;
                         long j2 = this.profilePage.selectedEmoji;
-                        tLRPC$TL_peerColor6.background_emoji_id = j2;
-                        tLRPC$TL_account_updateColor2.background_emoji_id = j2;
+                        tL_peerColor6.background_emoji_id = j2;
+                        tL_account_updateColor2.background_emoji_id = j2;
                     } else {
-                        TLRPC$TL_peerColor tLRPC$TL_peerColor7 = currentUser.profile_color;
-                        tLRPC$TL_peerColor7.flags &= -3;
-                        tLRPC$TL_peerColor7.background_emoji_id = 0L;
+                        TLRPC.TL_peerColor tL_peerColor7 = currentUser.profile_color;
+                        tL_peerColor7.flags &= -3;
+                        tL_peerColor7.background_emoji_id = 0L;
                     }
-                    getConnectionsManager().sendRequest(tLRPC$TL_account_updateColor2, null);
+                    getConnectionsManager().sendRequest(tL_account_updateColor2, null);
                 }
                 getMessagesController().putUser(currentUser, false);
                 getUserConfig().saveConfig(true);
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 showBulletin();
             }
             this.applying = true;
@@ -2011,13 +2006,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
         }
         apply();
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
         showBulletin();
     }
 
@@ -2042,7 +2037,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -2051,7 +2046,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$showUnsavedAlert$4(DialogInterface dialogInterface, int i) {

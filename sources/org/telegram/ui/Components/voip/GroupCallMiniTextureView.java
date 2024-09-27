@@ -45,9 +45,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -371,7 +369,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         int dp = AndroidUtilities.dp(400.0f);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
         final StaticLayout staticLayout = new StaticLayout(string2, textPaint, dp, alignment, 1.0f, 0.0f, false);
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(call.chatId));
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(call.chatId));
         final StaticLayout staticLayout2 = new StaticLayout(LocaleController.formatString("VoipVideoNotAvailable", R.string.VoipVideoNotAvailable, LocaleController.formatPluralString("Participants", MessagesController.getInstance(this.currentAccount).groupCallVideoMaxParticipants, new Object[0])), textPaint, AndroidUtilities.dp(400.0f), alignment, 1.0f, 0.0f, false);
         final String string3 = LocaleController.getString(R.string.VoipVideoScreenSharing);
         final float measureText = textPaint.measureText(string);
@@ -868,8 +866,8 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         HashMap<String, Bitmap> hashMap = this.call.thumbs;
         ChatObject.VideoParticipant videoParticipant = this.participant;
         boolean z = videoParticipant.presentation;
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = videoParticipant.participant;
-        hashMap.put(z ? tLRPC$TL_groupCallParticipant.presentationEndpoint : tLRPC$TL_groupCallParticipant.videoEndpoint, bitmap);
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = videoParticipant.participant;
+        hashMap.put(z ? tL_groupCallParticipant.presentationEndpoint : tL_groupCallParticipant.videoEndpoint, bitmap);
     }
 
     public void lambda$saveThumb$5(final Bitmap bitmap, int i) {
@@ -929,15 +927,15 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
     private void loadThumb() {
         ImageLocation forChat;
         GradientDrawable gradientDrawable;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
         if (this.thumb != null) {
             return;
         }
         HashMap<String, Bitmap> hashMap = this.call.thumbs;
         ChatObject.VideoParticipant videoParticipant = this.participant;
         boolean z = videoParticipant.presentation;
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = videoParticipant.participant;
-        Bitmap bitmap = hashMap.get(z ? tLRPC$TL_groupCallParticipant.presentationEndpoint : tLRPC$TL_groupCallParticipant.videoEndpoint);
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = videoParticipant.participant;
+        Bitmap bitmap = hashMap.get(z ? tL_groupCallParticipant.presentationEndpoint : tL_groupCallParticipant.videoEndpoint);
         this.thumb = bitmap;
         this.textureView.setThumb(bitmap);
         if (this.thumb == null) {
@@ -949,19 +947,19 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
             if (peerId > 0) {
-                TLRPC$User user = messagesController.getUser(Long.valueOf(peerId));
+                TLRPC.User user = messagesController.getUser(Long.valueOf(peerId));
                 forChat = ImageLocation.getForUser(user, 1);
                 int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
                 gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)});
-                tLRPC$Chat = user;
+                chat = user;
             } else {
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-peerId));
-                forChat = ImageLocation.getForChat(chat, 1);
-                int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
+                TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-peerId));
+                forChat = ImageLocation.getForChat(chat2, 1);
+                int colorForId2 = chat2 != null ? AvatarDrawable.getColorForId(chat2.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
                 gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)});
-                tLRPC$Chat = chat;
+                chat = chat2;
             }
-            this.imageReceiver.setImage(forChat, "50_50_b", gradientDrawable, null, tLRPC$Chat, 0);
+            this.imageReceiver.setImage(forChat, "50_50_b", gradientDrawable, null, chat, 0);
         }
     }
 
@@ -1268,7 +1266,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             if (DialogObject.isUserDialog(peerId)) {
                 str = UserObject.getUserName(AccountInstance.getInstance(this.currentAccount).getMessagesController().getUser(Long.valueOf(peerId)));
             } else {
-                TLRPC$Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-peerId));
+                TLRPC.Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-peerId));
                 str = chat != null ? chat.title : null;
             }
             this.nameView.setText(str);

@@ -30,22 +30,7 @@ import org.telegram.messenger.time.FastDateFormat;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$LangPackString;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_langPackDifference;
-import org.telegram.tgnet.TLRPC$TL_langPackLanguage;
-import org.telegram.tgnet.TLRPC$TL_langPackString;
-import org.telegram.tgnet.TLRPC$TL_langPackStringDeleted;
-import org.telegram.tgnet.TLRPC$TL_langPackStringPluralized;
-import org.telegram.tgnet.TLRPC$TL_langpack_getDifference;
-import org.telegram.tgnet.TLRPC$TL_langpack_getLangPack;
-import org.telegram.tgnet.TLRPC$TL_userEmpty;
-import org.telegram.tgnet.TLRPC$TL_userStatusLastMonth;
-import org.telegram.tgnet.TLRPC$TL_userStatusLastWeek;
-import org.telegram.tgnet.TLRPC$TL_userStatusRecently;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserStatus;
-import org.telegram.tgnet.TLRPC$Vector;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -702,9 +687,9 @@ public class LocaleController {
     private int applyRemoteLanguage(final LocaleInfo localeInfo, String str, boolean z, final int i, final Runnable runnable) {
         RequestDelegate requestDelegate;
         ConnectionsManager connectionsManager;
-        TLRPC$TL_langpack_getLangPack tLRPC$TL_langpack_getLangPack;
+        TLRPC.TL_langpack_getLangPack tL_langpack_getLangPack;
         RequestDelegate requestDelegate2;
-        TLRPC$TL_langpack_getLangPack tLRPC$TL_langpack_getLangPack2;
+        TLRPC.TL_langpack_getLangPack tL_langpack_getLangPack2;
         ConnectionsManager connectionsManager2;
         if (localeInfo == null || !(localeInfo.isRemote() || localeInfo.isUnofficial())) {
             return 0;
@@ -724,36 +709,36 @@ public class LocaleController {
         if (localeInfo.hasBaseLang() && (str == null || str.equals(localeInfo.baseLangCode))) {
             if (localeInfo.baseVersion == 0 || z) {
                 FileLog.d("applyRemoteLanguage getLangPack of base");
-                TLRPC$TL_langpack_getLangPack tLRPC$TL_langpack_getLangPack3 = new TLRPC$TL_langpack_getLangPack();
-                tLRPC$TL_langpack_getLangPack3.lang_code = localeInfo.getBaseLangCode();
+                TLRPC.TL_langpack_getLangPack tL_langpack_getLangPack3 = new TLRPC.TL_langpack_getLangPack();
+                tL_langpack_getLangPack3.lang_code = localeInfo.getBaseLangCode();
                 iArr2[0] = iArr2[0] + 1;
                 ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(i);
                 requestDelegate2 = new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        LocaleController.this.lambda$applyRemoteLanguage$17(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        LocaleController.this.lambda$applyRemoteLanguage$17(localeInfo, i, runnable2, tLObject, tL_error);
                     }
                 };
                 connectionsManager2 = connectionsManager3;
-                tLRPC$TL_langpack_getLangPack2 = tLRPC$TL_langpack_getLangPack3;
+                tL_langpack_getLangPack2 = tL_langpack_getLangPack3;
             } else if (localeInfo.hasBaseLang()) {
                 FileLog.d("applyRemoteLanguage getDifference of base");
-                TLRPC$TL_langpack_getDifference tLRPC$TL_langpack_getDifference = new TLRPC$TL_langpack_getDifference();
-                tLRPC$TL_langpack_getDifference.from_version = localeInfo.baseVersion;
-                tLRPC$TL_langpack_getDifference.lang_code = localeInfo.getBaseLangCode();
-                tLRPC$TL_langpack_getDifference.lang_pack = "";
+                TLRPC.TL_langpack_getDifference tL_langpack_getDifference = new TLRPC.TL_langpack_getDifference();
+                tL_langpack_getDifference.from_version = localeInfo.baseVersion;
+                tL_langpack_getDifference.lang_code = localeInfo.getBaseLangCode();
+                tL_langpack_getDifference.lang_pack = "";
                 iArr2[0] = iArr2[0] + 1;
                 ConnectionsManager connectionsManager4 = ConnectionsManager.getInstance(i);
                 requestDelegate2 = new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        LocaleController.this.lambda$applyRemoteLanguage$15(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        LocaleController.this.lambda$applyRemoteLanguage$15(localeInfo, i, runnable2, tLObject, tL_error);
                     }
                 };
                 connectionsManager2 = connectionsManager4;
-                tLRPC$TL_langpack_getLangPack2 = tLRPC$TL_langpack_getDifference;
+                tL_langpack_getLangPack2 = tL_langpack_getDifference;
             }
-            connectionsManager2.sendRequest(tLRPC$TL_langpack_getLangPack2, requestDelegate2, 8);
+            connectionsManager2.sendRequest(tL_langpack_getLangPack2, requestDelegate2, 8);
         }
         if (str != null && !str.equals(localeInfo.shortName)) {
             return 0;
@@ -763,36 +748,36 @@ public class LocaleController {
                 ConnectionsManager.setLangCode(localeInfo.getLangCode());
             }
             FileLog.d("applyRemoteLanguage getLangPack");
-            TLRPC$TL_langpack_getLangPack tLRPC$TL_langpack_getLangPack4 = new TLRPC$TL_langpack_getLangPack();
-            tLRPC$TL_langpack_getLangPack4.lang_code = localeInfo.getLangCode();
+            TLRPC.TL_langpack_getLangPack tL_langpack_getLangPack4 = new TLRPC.TL_langpack_getLangPack();
+            tL_langpack_getLangPack4.lang_code = localeInfo.getLangCode();
             iArr2[0] = iArr2[0] + 1;
             ConnectionsManager connectionsManager5 = ConnectionsManager.getInstance(i);
             requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LocaleController.this.lambda$applyRemoteLanguage$21(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    LocaleController.this.lambda$applyRemoteLanguage$21(localeInfo, i, runnable2, tLObject, tL_error);
                 }
             };
-            tLRPC$TL_langpack_getLangPack = tLRPC$TL_langpack_getLangPack4;
+            tL_langpack_getLangPack = tL_langpack_getLangPack4;
             connectionsManager = connectionsManager5;
         } else {
             FileLog.d("applyRemoteLanguage getDifference");
-            TLRPC$TL_langpack_getDifference tLRPC$TL_langpack_getDifference2 = new TLRPC$TL_langpack_getDifference();
-            tLRPC$TL_langpack_getDifference2.from_version = localeInfo.version;
-            tLRPC$TL_langpack_getDifference2.lang_code = localeInfo.getLangCode();
-            tLRPC$TL_langpack_getDifference2.lang_pack = "";
+            TLRPC.TL_langpack_getDifference tL_langpack_getDifference2 = new TLRPC.TL_langpack_getDifference();
+            tL_langpack_getDifference2.from_version = localeInfo.version;
+            tL_langpack_getDifference2.lang_code = localeInfo.getLangCode();
+            tL_langpack_getDifference2.lang_pack = "";
             iArr2[0] = iArr2[0] + 1;
             ConnectionsManager connectionsManager6 = ConnectionsManager.getInstance(i);
             requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LocaleController.this.lambda$applyRemoteLanguage$19(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    LocaleController.this.lambda$applyRemoteLanguage$19(localeInfo, i, runnable2, tLObject, tL_error);
                 }
             };
-            tLRPC$TL_langpack_getLangPack = tLRPC$TL_langpack_getDifference2;
+            tL_langpack_getLangPack = tL_langpack_getDifference2;
             connectionsManager = connectionsManager6;
         }
-        return connectionsManager.sendRequest(tLRPC$TL_langpack_getLangPack, requestDelegate, 8);
+        return connectionsManager.sendRequest(tL_langpack_getLangPack, requestDelegate, 8);
     }
 
     private FastDateFormat createFormatter(Locale locale, String str, String str2) {
@@ -1457,40 +1442,40 @@ public class LocaleController {
         return i % 7 == 0 ? formatPluralString("Weeks", i2 / 7, new Object[0]) : String.format("%s %s", formatPluralString("Weeks", i2 / 7, new Object[0]), formatPluralString("Days", i2 % 7, new Object[0]));
     }
 
-    public static String formatUserStatus(int i, TLRPC$User tLRPC$User) {
-        return formatUserStatus(i, tLRPC$User, null);
+    public static String formatUserStatus(int i, TLRPC.User user) {
+        return formatUserStatus(i, user, null);
     }
 
-    public static String formatUserStatus(int i, TLRPC$User tLRPC$User, boolean[] zArr) {
-        return formatUserStatus(i, tLRPC$User, zArr, null);
+    public static String formatUserStatus(int i, TLRPC.User user, boolean[] zArr) {
+        return formatUserStatus(i, user, zArr, null);
     }
 
-    public static String formatUserStatus(int i, TLRPC$User tLRPC$User, boolean[] zArr, boolean[] zArr2) {
-        TLRPC$UserStatus tLRPC$UserStatus;
-        TLRPC$UserStatus tLRPC$UserStatus2;
-        TLRPC$UserStatus tLRPC$UserStatus3;
+    public static String formatUserStatus(int i, TLRPC.User user, boolean[] zArr, boolean[] zArr2) {
+        TLRPC.UserStatus userStatus;
+        TLRPC.UserStatus userStatus2;
+        TLRPC.UserStatus userStatus3;
         int i2;
-        if (tLRPC$User != null && (tLRPC$UserStatus3 = tLRPC$User.status) != null && tLRPC$UserStatus3.expires == 0) {
-            if (tLRPC$UserStatus3 instanceof TLRPC$TL_userStatusRecently) {
-                i2 = tLRPC$UserStatus3.by_me ? -1000 : -100;
-            } else if (tLRPC$UserStatus3 instanceof TLRPC$TL_userStatusLastWeek) {
-                i2 = tLRPC$UserStatus3.by_me ? -1001 : -101;
-            } else if (tLRPC$UserStatus3 instanceof TLRPC$TL_userStatusLastMonth) {
-                i2 = tLRPC$UserStatus3.by_me ? -1002 : -102;
+        if (user != null && (userStatus3 = user.status) != null && userStatus3.expires == 0) {
+            if (userStatus3 instanceof TLRPC.TL_userStatusRecently) {
+                i2 = userStatus3.by_me ? -1000 : -100;
+            } else if (userStatus3 instanceof TLRPC.TL_userStatusLastWeek) {
+                i2 = userStatus3.by_me ? -1001 : -101;
+            } else if (userStatus3 instanceof TLRPC.TL_userStatusLastMonth) {
+                i2 = userStatus3.by_me ? -1002 : -102;
             }
-            tLRPC$UserStatus3.expires = i2;
+            userStatus3.expires = i2;
         }
-        if (tLRPC$User != null && (tLRPC$UserStatus2 = tLRPC$User.status) != null && tLRPC$UserStatus2.expires <= 0 && MessagesController.getInstance(i).onlinePrivacy.containsKey(Long.valueOf(tLRPC$User.id))) {
+        if (user != null && (userStatus2 = user.status) != null && userStatus2.expires <= 0 && MessagesController.getInstance(i).onlinePrivacy.containsKey(Long.valueOf(user.id))) {
             if (zArr != null) {
                 zArr[0] = true;
             }
             return getString("Online", R.string.Online);
         }
-        if (tLRPC$User == null || (tLRPC$UserStatus = tLRPC$User.status) == null || tLRPC$UserStatus.expires == 0 || UserObject.isDeleted(tLRPC$User) || (tLRPC$User instanceof TLRPC$TL_userEmpty)) {
+        if (user == null || (userStatus = user.status) == null || userStatus.expires == 0 || UserObject.isDeleted(user) || (user instanceof TLRPC.TL_userEmpty)) {
             return getString("ALongTimeAgo", R.string.ALongTimeAgo);
         }
         int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
-        int i3 = tLRPC$User.status.expires;
+        int i3 = user.status.expires;
         if (i3 <= currentTime) {
             return i3 == -1 ? getString("Invisible", R.string.Invisible) : (i3 == -100 || i3 == -1000) ? getString("Lately", R.string.Lately) : (i3 == -101 || i3 == -1001) ? getString("WithinAWeek", R.string.WithinAWeek) : (i3 == -102 || i3 == -1002) ? getString("WithinAMonth", R.string.WithinAMonth) : formatDateOnline(i3, zArr2);
         }
@@ -2194,7 +2179,7 @@ public class LocaleController {
         runnable.run();
     }
 
-    public void lambda$applyRemoteLanguage$15(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$applyRemoteLanguage$15(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2205,7 +2190,7 @@ public class LocaleController {
         }
     }
 
-    public void lambda$applyRemoteLanguage$17(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$applyRemoteLanguage$17(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2216,7 +2201,7 @@ public class LocaleController {
         }
     }
 
-    public void lambda$applyRemoteLanguage$19(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$applyRemoteLanguage$19(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2227,7 +2212,7 @@ public class LocaleController {
         }
     }
 
-    public void lambda$applyRemoteLanguage$21(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$applyRemoteLanguage$21(final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2271,25 +2256,25 @@ public class LocaleController {
 
     public void lambda$loadRemoteLanguages$11(TLObject tLObject, boolean z, int i) {
         this.loadingRemoteLanguages = false;
-        TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
+        TLRPC.Vector vector = (TLRPC.Vector) tLObject;
         int size = this.remoteLanguages.size();
         for (int i2 = 0; i2 < size; i2++) {
             this.remoteLanguages.get(i2).serverIndex = Integer.MAX_VALUE;
         }
-        int size2 = tLRPC$Vector.objects.size();
+        int size2 = vector.objects.size();
         for (int i3 = 0; i3 < size2; i3++) {
-            TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage = (TLRPC$TL_langPackLanguage) tLRPC$Vector.objects.get(i3);
+            TLRPC.TL_langPackLanguage tL_langPackLanguage = (TLRPC.TL_langPackLanguage) vector.objects.get(i3);
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("loaded lang " + tLRPC$TL_langPackLanguage.name);
+                FileLog.d("loaded lang " + tL_langPackLanguage.name);
             }
             LocaleInfo localeInfo = new LocaleInfo();
-            localeInfo.nameEnglish = tLRPC$TL_langPackLanguage.name;
-            localeInfo.name = tLRPC$TL_langPackLanguage.native_name;
-            localeInfo.shortName = tLRPC$TL_langPackLanguage.lang_code.replace('-', '_').toLowerCase();
-            String str = tLRPC$TL_langPackLanguage.base_lang_code;
+            localeInfo.nameEnglish = tL_langPackLanguage.name;
+            localeInfo.name = tL_langPackLanguage.native_name;
+            localeInfo.shortName = tL_langPackLanguage.lang_code.replace('-', '_').toLowerCase();
+            String str = tL_langPackLanguage.base_lang_code;
             localeInfo.baseLangCode = str != null ? str.replace('-', '_').toLowerCase() : "";
-            localeInfo.pluralLangCode = tLRPC$TL_langPackLanguage.plural_code.replace('-', '_').toLowerCase();
-            localeInfo.isRtl = tLRPC$TL_langPackLanguage.rtl;
+            localeInfo.pluralLangCode = tL_langPackLanguage.plural_code.replace('-', '_').toLowerCase();
+            localeInfo.isRtl = tL_langPackLanguage.rtl;
             localeInfo.pathToFile = "remote";
             localeInfo.serverIndex = i3;
             LocaleInfo languageFromDict = getLanguageFromDict(localeInfo.getKey());
@@ -2332,7 +2317,7 @@ public class LocaleController {
         }
     }
 
-    public void lambda$loadRemoteLanguages$12(final boolean z, final int i, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadRemoteLanguages$12(final boolean z, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2351,11 +2336,11 @@ public class LocaleController {
         this.currentSystemLocale = getSystemLocaleStringIso639();
     }
 
-    public void lambda$saveRemoteLocaleStrings$10(int i, LocaleInfo localeInfo, TLRPC$TL_langPackDifference tLRPC$TL_langPackDifference, HashMap hashMap, Runnable runnable) {
+    public void lambda$saveRemoteLocaleStrings$10(int i, LocaleInfo localeInfo, TLRPC.TL_langPackDifference tL_langPackDifference, HashMap hashMap, Runnable runnable) {
         if (i == 0) {
-            localeInfo.version = tLRPC$TL_langPackDifference.version;
+            localeInfo.version = tL_langPackDifference.version;
         } else {
-            localeInfo.baseVersion = tLRPC$TL_langPackDifference.version;
+            localeInfo.baseVersion = tL_langPackDifference.version;
         }
         saveOtherLanguages();
         try {
@@ -4340,29 +4325,10 @@ public class LocaleController {
             return;
         }
         this.loadingRemoteLanguages = true;
-        ConnectionsManager.getInstance(i).sendRequest(new TLObject() {
+        ConnectionsManager.getInstance(i).sendRequest(new TLRPC.TL_langpack_getLanguages(), new RequestDelegate() {
             @Override
-            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z2) {
-                TLRPC$Vector tLRPC$Vector = new TLRPC$Vector();
-                int readInt32 = abstractSerializedData.readInt32(z2);
-                for (int i3 = 0; i3 < readInt32; i3++) {
-                    TLRPC$TL_langPackLanguage TLdeserialize = TLRPC$TL_langPackLanguage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
-                    if (TLdeserialize == null) {
-                        return tLRPC$Vector;
-                    }
-                    tLRPC$Vector.objects.add(TLdeserialize);
-                }
-                return tLRPC$Vector;
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(-2146445955);
-            }
-        }, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LocaleController.this.lambda$loadRemoteLanguages$12(z, i, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                LocaleController.this.lambda$loadRemoteLanguages$12(z, i, tLObject, tL_error);
             }
         }, 8);
     }
@@ -4466,13 +4432,13 @@ public class LocaleController {
         applyRemoteLanguage(this.currentLocaleInfo, str2, z, i, runnable);
     }
 
-    public void lambda$applyRemoteLanguage$20(final LocaleInfo localeInfo, final TLRPC$TL_langPackDifference tLRPC$TL_langPackDifference, int i, final Runnable runnable) {
+    public void lambda$applyRemoteLanguage$20(final LocaleInfo localeInfo, final TLRPC.TL_langPackDifference tL_langPackDifference, int i, final Runnable runnable) {
         HashMap<String, String> localeFileStrings;
         boolean z = true;
-        if (tLRPC$TL_langPackDifference == null || tLRPC$TL_langPackDifference.strings.isEmpty() || localeInfo == null || localeInfo.isLocal()) {
+        if (tL_langPackDifference == null || tL_langPackDifference.strings.isEmpty() || localeInfo == null || localeInfo.isLocal()) {
             StringBuilder sb = new StringBuilder();
             sb.append("saveRemoteLocaleStrings: empty difference=");
-            sb.append(tLRPC$TL_langPackDifference == null || tLRPC$TL_langPackDifference.strings.isEmpty());
+            sb.append(tL_langPackDifference == null || tL_langPackDifference.strings.isEmpty());
             sb.append("; locale is local or null=");
             if (localeInfo != null && !localeInfo.isLocal()) {
                 z = false;
@@ -4487,7 +4453,7 @@ public class LocaleController {
             }
             return;
         }
-        String lowerCase = tLRPC$TL_langPackDifference.lang_code.replace('-', '_').toLowerCase();
+        String lowerCase = tL_langPackDifference.lang_code.replace('-', '_').toLowerCase();
         final int i2 = lowerCase.equals(localeInfo.shortName) ? 0 : lowerCase.equals(localeInfo.baseLangCode) ? 1 : -1;
         if (i2 == -1) {
             FileLog.d("saveRemoteLocaleStrings: unknown language " + lowerCase + " (locale short=" + localeInfo.shortName + ", base=" + localeInfo.baseLangCode + ")");
@@ -4495,38 +4461,38 @@ public class LocaleController {
         }
         File pathToFile = i2 == 0 ? localeInfo.getPathToFile() : localeInfo.getPathToBaseFile();
         try {
-            if (tLRPC$TL_langPackDifference.from_version == 0) {
+            if (tL_langPackDifference.from_version == 0) {
                 FileLog.d("saveRemoteLocaleStrings: difference is straight from the beginning");
                 localeFileStrings = new HashMap<>();
             } else {
-                FileLog.d("saveRemoteLocaleStrings: difference is from version " + tLRPC$TL_langPackDifference.from_version + " ours " + localeInfo.version + " (base version " + localeInfo.baseLangCode + ")");
+                FileLog.d("saveRemoteLocaleStrings: difference is from version " + tL_langPackDifference.from_version + " ours " + localeInfo.version + " (base version " + localeInfo.baseLangCode + ")");
                 localeFileStrings = getLocaleFileStrings(pathToFile, true);
             }
-            for (int i3 = 0; i3 < tLRPC$TL_langPackDifference.strings.size(); i3++) {
-                TLRPC$LangPackString tLRPC$LangPackString = (TLRPC$LangPackString) tLRPC$TL_langPackDifference.strings.get(i3);
-                if (tLRPC$LangPackString instanceof TLRPC$TL_langPackString) {
-                    localeFileStrings.put(tLRPC$LangPackString.key, escapeString(tLRPC$LangPackString.value));
-                } else if (tLRPC$LangPackString instanceof TLRPC$TL_langPackStringPluralized) {
-                    String str = tLRPC$LangPackString.key + "_zero";
-                    String str2 = tLRPC$LangPackString.zero_value;
+            for (int i3 = 0; i3 < tL_langPackDifference.strings.size(); i3++) {
+                TLRPC.LangPackString langPackString = tL_langPackDifference.strings.get(i3);
+                if (langPackString instanceof TLRPC.TL_langPackString) {
+                    localeFileStrings.put(langPackString.key, escapeString(langPackString.value));
+                } else if (langPackString instanceof TLRPC.TL_langPackStringPluralized) {
+                    String str = langPackString.key + "_zero";
+                    String str2 = langPackString.zero_value;
                     localeFileStrings.put(str, str2 != null ? escapeString(str2) : "");
-                    String str3 = tLRPC$LangPackString.key + "_one";
-                    String str4 = tLRPC$LangPackString.one_value;
+                    String str3 = langPackString.key + "_one";
+                    String str4 = langPackString.one_value;
                     localeFileStrings.put(str3, str4 != null ? escapeString(str4) : "");
-                    String str5 = tLRPC$LangPackString.key + "_two";
-                    String str6 = tLRPC$LangPackString.two_value;
+                    String str5 = langPackString.key + "_two";
+                    String str6 = langPackString.two_value;
                     localeFileStrings.put(str5, str6 != null ? escapeString(str6) : "");
-                    String str7 = tLRPC$LangPackString.key + "_few";
-                    String str8 = tLRPC$LangPackString.few_value;
+                    String str7 = langPackString.key + "_few";
+                    String str8 = langPackString.few_value;
                     localeFileStrings.put(str7, str8 != null ? escapeString(str8) : "");
-                    String str9 = tLRPC$LangPackString.key + "_many";
-                    String str10 = tLRPC$LangPackString.many_value;
+                    String str9 = langPackString.key + "_many";
+                    String str10 = langPackString.many_value;
                     localeFileStrings.put(str9, str10 != null ? escapeString(str10) : "");
-                    String str11 = tLRPC$LangPackString.key + "_other";
-                    String str12 = tLRPC$LangPackString.other_value;
+                    String str11 = langPackString.key + "_other";
+                    String str12 = langPackString.other_value;
                     localeFileStrings.put(str11, str12 != null ? escapeString(str12) : "");
-                } else if (tLRPC$LangPackString instanceof TLRPC$TL_langPackStringDeleted) {
-                    localeFileStrings.remove(tLRPC$LangPackString.key);
+                } else if (langPackString instanceof TLRPC.TL_langPackStringDeleted) {
+                    localeFileStrings.remove(langPackString.key);
                 }
             }
             FileLog.d("save locale file to " + pathToFile);
@@ -4547,7 +4513,7 @@ public class LocaleController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LocaleController.this.lambda$saveRemoteLocaleStrings$10(i2, localeInfo, tLRPC$TL_langPackDifference, localeFileStrings2, runnable);
+                    LocaleController.this.lambda$saveRemoteLocaleStrings$10(i2, localeInfo, tL_langPackDifference, localeFileStrings2, runnable);
                 }
             });
         } catch (Exception e) {
@@ -4555,13 +4521,13 @@ public class LocaleController {
         }
     }
 
-    public void saveRemoteLocaleStringsForCurrentLocale(TLRPC$TL_langPackDifference tLRPC$TL_langPackDifference, int i) {
+    public void saveRemoteLocaleStringsForCurrentLocale(TLRPC.TL_langPackDifference tL_langPackDifference, int i) {
         if (this.currentLocaleInfo == null) {
             return;
         }
-        String lowerCase = tLRPC$TL_langPackDifference.lang_code.replace('-', '_').toLowerCase();
+        String lowerCase = tL_langPackDifference.lang_code.replace('-', '_').toLowerCase();
         if (lowerCase.equals(this.currentLocaleInfo.shortName) || lowerCase.equals(this.currentLocaleInfo.baseLangCode)) {
-            lambda$applyRemoteLanguage$20(this.currentLocaleInfo, tLRPC$TL_langPackDifference, i, null);
+            lambda$applyRemoteLanguage$20(this.currentLocaleInfo, tL_langPackDifference, i, null);
         }
     }
 }

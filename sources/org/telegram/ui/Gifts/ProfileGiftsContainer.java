@@ -1,0 +1,258 @@
+package org.telegram.ui.Gifts;
+
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.FrameLayout;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BirthdayController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
+import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Gifts.GiftSheet;
+import org.telegram.ui.Stars.StarsController;
+import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
+public class ProfileGiftsContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    private final ButtonWithCounterView button;
+    private final FrameLayout buttonContainer;
+    private final int currentAccount;
+    private final StarsController.GiftsList list;
+    private final UniversalRecyclerView listView;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final long userId;
+    private int visibleHeight;
+
+    public static class TextFactory extends UItem.UItemFactory {
+        static {
+            UItem.UItemFactory.setup(new TextFactory());
+        }
+
+        public static UItem asText(int i, int i2, float f, CharSequence charSequence, boolean z, int i3) {
+            UItem ofFactory = UItem.ofFactory(TextFactory.class);
+            ofFactory.text = charSequence;
+            ofFactory.intValue = i2;
+            ofFactory.longValue = i;
+            ofFactory.floatValue = f;
+            ofFactory.pad = i3;
+            ofFactory.checked = z;
+            return ofFactory;
+        }
+
+        @Override
+        public void bindView(View view, UItem uItem, boolean z) {
+            LinkSpanDrawable.LinksTextView linksTextView = (LinkSpanDrawable.LinksTextView) view;
+            linksTextView.setGravity(uItem.intValue);
+            linksTextView.setTextColor((int) uItem.longValue);
+            linksTextView.setTextSize(1, uItem.floatValue);
+            linksTextView.setTypeface(uItem.checked ? null : AndroidUtilities.bold());
+            int i = uItem.pad;
+            linksTextView.setPadding(i, 0, i, 0);
+            linksTextView.setText(uItem.text);
+        }
+
+        @Override
+        public LinkSpanDrawable.LinksTextView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return new LinkSpanDrawable.LinksTextView(context) {
+                @Override
+                public void onMeasure(int i3, int i4) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
+                }
+            };
+        }
+    }
+
+    public ProfileGiftsContainer(Context context, final int i, long j, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        this.visibleHeight = AndroidUtilities.displaySize.y;
+        this.currentAccount = i;
+        this.userId = j;
+        this.list = StarsController.getInstance(i).getProfileGiftsList(j);
+        this.resourcesProvider = resourcesProvider;
+        int i2 = Theme.key_windowBackgroundWhite;
+        setBackgroundColor(Theme.blendOver(Theme.getColor(i2, resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 0.04f)));
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, false, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                ProfileGiftsContainer.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, new Utilities.Callback5() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                ProfileGiftsContainer.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+            }
+        }, new Utilities.Callback5Return() {
+            @Override
+            public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                return Boolean.valueOf(ProfileGiftsContainer.this.onItemLongPress((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
+            }
+        }, resourcesProvider, 3);
+        this.listView = universalRecyclerView;
+        universalRecyclerView.adapter.setApplyBackground(false);
+        universalRecyclerView.setSelectorType(9);
+        universalRecyclerView.setSelectorDrawableColor(0);
+        universalRecyclerView.setPadding(AndroidUtilities.dp(9.0f), 0, AndroidUtilities.dp(9.0f), 0);
+        addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 119));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.buttonContainer = frameLayout;
+        frameLayout.setBackgroundColor(Theme.getColor(i2, resourcesProvider));
+        addView(frameLayout, LayoutHelper.createFrame(-1, -2, 87));
+        View view = new View(context);
+        view.setBackgroundColor(Theme.getColor(Theme.key_dialogGrayLine, resourcesProvider));
+        frameLayout.addView(view, LayoutHelper.createFrame(-1.0f, 1.0f / AndroidUtilities.density, 55));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        this.button = buttonWithCounterView;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("G  " + LocaleController.getString(R.string.ProfileGiftsSend));
+        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_gift_premium), 0, 1, 33);
+        buttonWithCounterView.setText(spannableStringBuilder, false);
+        frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                ProfileGiftsContainer.lambda$new$0(i, view2);
+            }
+        });
+    }
+
+    private long getRandomUserId() {
+        ConcurrentHashMap<Long, TLRPC.User> users = MessagesController.getInstance(this.currentAccount).getUsers();
+        int size = users.size();
+        if (size == 0) {
+            return 0L;
+        }
+        int nextInt = Utilities.fastRandom.nextInt(size);
+        int i = 0;
+        for (Map.Entry<Long, TLRPC.User> entry : users.entrySet()) {
+            if (i == nextInt) {
+                return entry.getValue().id;
+            }
+            i++;
+        }
+        return 0L;
+    }
+
+    public static void lambda$new$0(int i, View view) {
+        UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        UniversalRecyclerView universalRecyclerView;
+        UniversalAdapter universalAdapter;
+        if (i != NotificationCenter.starUserGiftsLoaded || ((Long) objArr[0]).longValue() != this.userId || (universalRecyclerView = this.listView) == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+            return;
+        }
+        universalAdapter.update(true);
+    }
+
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        int i;
+        int i2;
+        StarsController.GiftsList giftsList = this.list;
+        int i3 = 3;
+        if (giftsList != null && (i2 = giftsList.totalCount) != 0) {
+            i3 = Math.min(3, i2);
+        }
+        int max = Math.max(1, i3);
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            universalRecyclerView.setSpanCount(max);
+        }
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(12.0f)));
+        StarsController.GiftsList giftsList2 = this.list;
+        if (giftsList2 != null) {
+            Iterator it = giftsList2.gifts.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                } else {
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.UserStarGift) it.next()));
+                }
+            }
+            if (this.list.loading) {
+                for (i = 0; i < max; i++) {
+                    arrayList.add(UItem.asFlicker(i, 34).setSpanCount(1));
+                }
+            }
+        }
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(20.0f)));
+        if (this.userId == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            arrayList.add(TextFactory.asText(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), 17, 14.0f, LocaleController.getString(R.string.ProfileGiftsInfo), true, AndroidUtilities.dp(24.0f)));
+        }
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(82.0f)));
+    }
+
+    public RecyclerListView getCurrentListView() {
+        return this.listView;
+    }
+
+    public int getGiftsCount() {
+        int i;
+        StarsController.GiftsList giftsList = this.list;
+        if (giftsList != null && (i = giftsList.totalCount) > 0) {
+            return i;
+        }
+        TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.userId);
+        if (userFull != null) {
+            return userFull.stargifts_count;
+        }
+        return 0;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        UniversalAdapter universalAdapter;
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+            return;
+        }
+        universalAdapter.update(false);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+    }
+
+    public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
+        Object obj = uItem.object;
+        if (obj instanceof TL_stars.UserStarGift) {
+            TL_stars.UserStarGift userStarGift = (TL_stars.UserStarGift) obj;
+            Context context = getContext();
+            int i2 = this.currentAccount;
+            long j = this.userId;
+            StarsIntroActivity.showGiftSheet(context, i2, j, j == UserConfig.getInstance(i2).getClientUserId(), userStarGift, this.resourcesProvider);
+        }
+    }
+
+    public boolean onItemLongPress(UItem uItem, View view, int i, float f, float f2) {
+        return false;
+    }
+
+    public void setVisibleHeight(int i) {
+        this.visibleHeight = i;
+        this.buttonContainer.setTranslationY(((-r0.getTop()) + i) - AndroidUtilities.dp((1.0f / AndroidUtilities.density) + 68.0f));
+    }
+}

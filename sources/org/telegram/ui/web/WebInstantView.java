@@ -46,43 +46,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Page;
-import org.telegram.tgnet.TLRPC$PageBlock;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$RichText;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_getWebPage;
-import org.telegram.tgnet.TLRPC$TL_page;
-import org.telegram.tgnet.TLRPC$TL_pageBlockBlockquote;
-import org.telegram.tgnet.TLRPC$TL_pageBlockDetails;
-import org.telegram.tgnet.TLRPC$TL_pageBlockDivider;
-import org.telegram.tgnet.TLRPC$TL_pageBlockHeader;
-import org.telegram.tgnet.TLRPC$TL_pageBlockList;
-import org.telegram.tgnet.TLRPC$TL_pageBlockOrderedList;
-import org.telegram.tgnet.TLRPC$TL_pageBlockParagraph;
-import org.telegram.tgnet.TLRPC$TL_pageBlockPhoto;
-import org.telegram.tgnet.TLRPC$TL_pageBlockPreformatted;
-import org.telegram.tgnet.TLRPC$TL_pageBlockSubheader;
-import org.telegram.tgnet.TLRPC$TL_pageBlockTable;
-import org.telegram.tgnet.TLRPC$TL_pageBlockTitle;
-import org.telegram.tgnet.TLRPC$TL_pageCaption;
-import org.telegram.tgnet.TLRPC$TL_pageListItemBlocks;
-import org.telegram.tgnet.TLRPC$TL_pageListItemText;
-import org.telegram.tgnet.TLRPC$TL_pageListOrderedItemBlocks;
-import org.telegram.tgnet.TLRPC$TL_pageListOrderedItemText;
-import org.telegram.tgnet.TLRPC$TL_pageTableCell;
-import org.telegram.tgnet.TLRPC$TL_pageTableRow;
-import org.telegram.tgnet.TLRPC$TL_textAnchor;
-import org.telegram.tgnet.TLRPC$TL_textBold;
-import org.telegram.tgnet.TLRPC$TL_textConcat;
-import org.telegram.tgnet.TLRPC$TL_textEmpty;
-import org.telegram.tgnet.TLRPC$TL_textFixed;
-import org.telegram.tgnet.TLRPC$TL_textImage;
-import org.telegram.tgnet.TLRPC$TL_textItalic;
-import org.telegram.tgnet.TLRPC$TL_textPlain;
-import org.telegram.tgnet.TLRPC$TL_textUrl;
-import org.telegram.tgnet.TLRPC$TL_webPage;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.BotWebViewContainer;
@@ -95,7 +59,7 @@ public class WebInstantView {
     public final HashMap loadedPhotos = new HashMap();
     public MHTML mhtml;
     public String url;
-    public TLRPC$WebPage webpage;
+    public TLRPC.WebPage webpage;
 
     public class AnonymousClass4 {
         final boolean[] val$done;
@@ -156,8 +120,8 @@ public class WebInstantView {
         private boolean gotLocal;
         private boolean gotRemote;
         private final ArrayList listeners = new ArrayList();
-        private TLRPC$WebPage localPage;
-        private TLRPC$WebPage remotePage;
+        private TLRPC.WebPage localPage;
+        private TLRPC.WebPage remotePage;
         private int reqId;
         private boolean started;
 
@@ -172,9 +136,9 @@ public class WebInstantView {
         public void lambda$retryLocal$0(WebInstantView webInstantView) {
             this.cancelLocal = null;
             this.gotLocal = true;
-            TLRPC$WebPage tLRPC$WebPage = this.localPage;
-            if (tLRPC$WebPage != null) {
-                WebInstantView.recycle(tLRPC$WebPage);
+            TLRPC.WebPage webPage = this.localPage;
+            if (webPage != null) {
+                WebInstantView.recycle(webPage);
             }
             this.localPage = webInstantView.webpage;
             notifyUpdate();
@@ -183,9 +147,9 @@ public class WebInstantView {
         public void lambda$start$1(WebInstantView webInstantView) {
             this.cancelLocal = null;
             this.gotLocal = true;
-            TLRPC$WebPage tLRPC$WebPage = this.localPage;
-            if (tLRPC$WebPage != null) {
-                WebInstantView.recycle(tLRPC$WebPage);
+            TLRPC.WebPage webPage = this.localPage;
+            if (webPage != null) {
+                WebInstantView.recycle(webPage);
             }
             this.localPage = webInstantView.webpage;
             notifyUpdate();
@@ -195,7 +159,7 @@ public class WebInstantView {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebInstantView.Loader.lambda$start$2(org.telegram.tgnet.TLObject):void");
         }
 
-        public void lambda$start$3(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$start$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -226,14 +190,14 @@ public class WebInstantView {
             runnable.run();
         }
 
-        public TLRPC$WebPage getWebPage() {
-            TLRPC$WebPage tLRPC$WebPage;
-            if (!SharedConfig.onlyLocalInstantView && (tLRPC$WebPage = this.remotePage) != null) {
-                return tLRPC$WebPage;
+        public TLRPC.WebPage getWebPage() {
+            TLRPC.WebPage webPage;
+            if (!SharedConfig.onlyLocalInstantView && (webPage = this.remotePage) != null) {
+                return webPage;
             }
-            TLRPC$WebPage tLRPC$WebPage2 = this.localPage;
-            if (tLRPC$WebPage2 != null) {
-                return tLRPC$WebPage2;
+            TLRPC.WebPage webPage2 = this.localPage;
+            if (webPage2 != null) {
+                return webPage2;
             }
             return null;
         }
@@ -253,9 +217,9 @@ public class WebInstantView {
         }
 
         public void recycle() {
-            TLRPC$WebPage tLRPC$WebPage = this.localPage;
-            if (tLRPC$WebPage != null) {
-                WebInstantView.recycle(tLRPC$WebPage);
+            TLRPC.WebPage webPage = this.localPage;
+            if (webPage != null) {
+                WebInstantView.recycle(webPage);
                 this.localPage = null;
             }
         }
@@ -264,9 +228,9 @@ public class WebInstantView {
             if (this.cancelled) {
                 return;
             }
-            TLRPC$WebPage tLRPC$WebPage = this.localPage;
-            if (tLRPC$WebPage != null) {
-                WebInstantView.recycle(tLRPC$WebPage);
+            TLRPC.WebPage webPage = this.localPage;
+            if (webPage != null) {
+                WebInstantView.recycle(webPage);
                 this.localPage = null;
             }
             this.gotLocal = false;
@@ -299,21 +263,21 @@ public class WebInstantView {
                     WebInstantView.Loader.this.lambda$start$1((WebInstantView) obj);
                 }
             });
-            TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage = new TLRPC$TL_messages_getWebPage();
-            tLRPC$TL_messages_getWebPage.url = this.currentUrl;
-            tLRPC$TL_messages_getWebPage.hash = 0;
-            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getWebPage, new RequestDelegate() {
+            TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
+            tL_messages_getWebPage.url = this.currentUrl;
+            tL_messages_getWebPage.hash = 0;
+            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getWebPage, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    WebInstantView.Loader.this.lambda$start$3(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    WebInstantView.Loader.this.lambda$start$3(tLObject, tL_error);
                 }
             });
         }
     }
 
-    public class WebPhoto extends TLRPC$Photo {
+    public class WebPhoto extends TLRPC.Photo {
         public int h;
-        public TLRPC$TL_textImage inlineImage;
+        public TLRPC.TL_textImage inlineImage;
         public WebInstantView instantView;
         public String url;
         public HashSet urls = new HashSet();
@@ -323,60 +287,60 @@ public class WebInstantView {
         }
     }
 
-    public static TLRPC$RichText addLastSpace(TLRPC$RichText tLRPC$RichText) {
-        TLRPC$TL_textPlain tLRPC$TL_textPlain;
+    public static TLRPC.RichText addLastSpace(TLRPC.RichText richText) {
+        TLRPC.TL_textPlain tL_textPlain;
         String str;
-        if (tLRPC$RichText == null) {
-            return tLRPC$RichText;
+        if (richText == null) {
+            return richText;
         }
-        TLRPC$RichText tLRPC$RichText2 = tLRPC$RichText.text;
-        if (tLRPC$RichText2 == null) {
-            if (tLRPC$RichText.texts.isEmpty()) {
-                if ((tLRPC$RichText instanceof TLRPC$TL_textPlain) && (str = (tLRPC$TL_textPlain = (TLRPC$TL_textPlain) tLRPC$RichText).text) != null && !str.endsWith(" ")) {
-                    tLRPC$TL_textPlain.text += ' ';
+        TLRPC.RichText richText2 = richText.text;
+        if (richText2 == null) {
+            if (richText.texts.isEmpty()) {
+                if ((richText instanceof TLRPC.TL_textPlain) && (str = (tL_textPlain = (TLRPC.TL_textPlain) richText).text) != null && !str.endsWith(" ")) {
+                    tL_textPlain.text += ' ';
                 }
-                return tLRPC$RichText;
+                return richText;
             }
-            tLRPC$RichText2 = (TLRPC$RichText) tLRPC$RichText.texts.get(r0.size() - 1);
+            richText2 = richText.texts.get(r0.size() - 1);
         }
-        addLastSpace(tLRPC$RichText2);
-        return tLRPC$RichText;
+        addLastSpace(richText2);
+        return richText;
     }
 
-    public static TLRPC$RichText addNewLine(TLRPC$RichText tLRPC$RichText) {
-        if (tLRPC$RichText == null) {
-            return tLRPC$RichText;
+    public static TLRPC.RichText addNewLine(TLRPC.RichText richText) {
+        if (richText == null) {
+            return richText;
         }
-        TLRPC$RichText tLRPC$RichText2 = tLRPC$RichText.text;
-        if (tLRPC$RichText2 == null) {
-            if (tLRPC$RichText.texts.isEmpty()) {
-                if (tLRPC$RichText instanceof TLRPC$TL_textPlain) {
+        TLRPC.RichText richText2 = richText.text;
+        if (richText2 == null) {
+            if (richText.texts.isEmpty()) {
+                if (richText instanceof TLRPC.TL_textPlain) {
                     StringBuilder sb = new StringBuilder();
-                    TLRPC$TL_textPlain tLRPC$TL_textPlain = (TLRPC$TL_textPlain) tLRPC$RichText;
-                    sb.append(tLRPC$TL_textPlain.text);
+                    TLRPC.TL_textPlain tL_textPlain = (TLRPC.TL_textPlain) richText;
+                    sb.append(tL_textPlain.text);
                     sb.append('\n');
-                    tLRPC$TL_textPlain.text = sb.toString();
+                    tL_textPlain.text = sb.toString();
                 }
-                return tLRPC$RichText;
+                return richText;
             }
-            tLRPC$RichText2 = (TLRPC$RichText) tLRPC$RichText.texts.get(r0.size() - 1);
+            richText2 = richText.texts.get(r0.size() - 1);
         }
-        addNewLine(tLRPC$RichText2);
-        return tLRPC$RichText;
+        addNewLine(richText2);
+        return richText;
     }
 
-    public static TLRPC$RichText applyAnchor(TLRPC$RichText tLRPC$RichText, JSONObject jSONObject) {
+    public static TLRPC.RichText applyAnchor(TLRPC.RichText richText, JSONObject jSONObject) {
         if (jSONObject == null) {
-            return tLRPC$RichText;
+            return richText;
         }
         String optString = jSONObject.optString("id");
         if (TextUtils.isEmpty(optString)) {
-            return tLRPC$RichText;
+            return richText;
         }
-        TLRPC$TL_textAnchor tLRPC$TL_textAnchor = new TLRPC$TL_textAnchor();
-        tLRPC$TL_textAnchor.text = tLRPC$RichText;
-        tLRPC$TL_textAnchor.name = optString;
-        return tLRPC$TL_textAnchor;
+        TLRPC.TL_textAnchor tL_textAnchor = new TLRPC.TL_textAnchor();
+        tL_textAnchor.text = richText;
+        tL_textAnchor.name = optString;
+        return tL_textAnchor;
     }
 
     public static void cancelLoadPhoto(ImageReceiver imageReceiver) {
@@ -405,29 +369,29 @@ public class WebInstantView {
         }
     }
 
-    public static TLRPC$RichText filterRecursiveAnchorLinks(TLRPC$RichText tLRPC$RichText, String str, String str2) {
-        TLRPC$TL_textUrl tLRPC$TL_textUrl;
+    public static TLRPC.RichText filterRecursiveAnchorLinks(TLRPC.RichText richText, String str, String str2) {
+        TLRPC.TL_textUrl tL_textUrl;
         String str3;
-        if (tLRPC$RichText == null) {
-            return tLRPC$RichText;
+        if (richText == null) {
+            return richText;
         }
-        if (tLRPC$RichText instanceof TLRPC$TL_textConcat) {
-            TLRPC$TL_textConcat tLRPC$TL_textConcat = (TLRPC$TL_textConcat) tLRPC$RichText;
-            TLRPC$TL_textConcat tLRPC$TL_textConcat2 = new TLRPC$TL_textConcat();
-            for (int i = 0; i < tLRPC$TL_textConcat.texts.size(); i++) {
-                TLRPC$RichText filterRecursiveAnchorLinks = filterRecursiveAnchorLinks((TLRPC$RichText) tLRPC$TL_textConcat.texts.get(i), str, str2);
+        if (richText instanceof TLRPC.TL_textConcat) {
+            TLRPC.TL_textConcat tL_textConcat = (TLRPC.TL_textConcat) richText;
+            TLRPC.TL_textConcat tL_textConcat2 = new TLRPC.TL_textConcat();
+            for (int i = 0; i < tL_textConcat.texts.size(); i++) {
+                TLRPC.RichText filterRecursiveAnchorLinks = filterRecursiveAnchorLinks(tL_textConcat.texts.get(i), str, str2);
                 if (filterRecursiveAnchorLinks != null) {
-                    tLRPC$TL_textConcat2.texts.add(filterRecursiveAnchorLinks);
+                    tL_textConcat2.texts.add(filterRecursiveAnchorLinks);
                 }
             }
-            return tLRPC$TL_textConcat2;
+            return tL_textConcat2;
         }
-        if (!(tLRPC$RichText instanceof TLRPC$TL_textUrl) || (str3 = (tLRPC$TL_textUrl = (TLRPC$TL_textUrl) tLRPC$RichText).url) == null) {
-            return tLRPC$RichText;
+        if (!(richText instanceof TLRPC.TL_textUrl) || (str3 = (tL_textUrl = (TLRPC.TL_textUrl) richText).url) == null) {
+            return richText;
         }
         if (!str3.toLowerCase().equals("#" + str2)) {
-            if (!TextUtils.equals(tLRPC$TL_textUrl.url.toLowerCase(), str + "#" + str2)) {
-                return tLRPC$RichText;
+            if (!TextUtils.equals(tL_textUrl.url.toLowerCase(), str + "#" + str2)) {
+                return richText;
             }
         }
         return null;
@@ -474,9 +438,9 @@ public class WebInstantView {
         }
         Timer.done(start);
         callback.run(webInstantView);
-        TLRPC$WebPage tLRPC$WebPage = webInstantView.webpage;
-        if (tLRPC$WebPage != null) {
-            instants.put(tLRPC$WebPage, webInstantView);
+        TLRPC.WebPage webPage = webInstantView.webpage;
+        if (webPage != null) {
+            instants.put(webPage, webInstantView);
         }
         Timer.finish(timer);
     }
@@ -569,81 +533,81 @@ public class WebInstantView {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebInstantView.loadPhotoInternal(org.telegram.ui.web.WebInstantView$WebPhoto, org.telegram.messenger.ImageReceiver, java.lang.Runnable):void");
     }
 
-    public static TLRPC$RichText parseRichText(String str) {
-        TLRPC$TL_textPlain tLRPC$TL_textPlain = new TLRPC$TL_textPlain();
-        tLRPC$TL_textPlain.text = str;
-        return tLRPC$TL_textPlain;
+    public static TLRPC.RichText parseRichText(String str) {
+        TLRPC.TL_textPlain tL_textPlain = new TLRPC.TL_textPlain();
+        tL_textPlain.text = str;
+        return tL_textPlain;
     }
 
-    public static void recycle(TLRPC$WebPage tLRPC$WebPage) {
-        WebInstantView webInstantView = (WebInstantView) instants.remove(tLRPC$WebPage);
+    public static void recycle(TLRPC.WebPage webPage) {
+        WebInstantView webInstantView = (WebInstantView) instants.remove(webPage);
         if (webInstantView != null) {
             webInstantView.recycle();
         }
     }
 
-    public static TLRPC$RichText trim(TLRPC$RichText tLRPC$RichText) {
-        TLRPC$TL_textPlain tLRPC$TL_textPlain;
+    public static TLRPC.RichText trim(TLRPC.RichText richText) {
+        TLRPC.TL_textPlain tL_textPlain;
         String str;
-        if (tLRPC$RichText == null) {
-            return tLRPC$RichText;
+        if (richText == null) {
+            return richText;
         }
-        TLRPC$RichText tLRPC$RichText2 = tLRPC$RichText.text;
-        if (tLRPC$RichText2 == null) {
-            if (tLRPC$RichText.texts.size() != 1) {
-                if (!tLRPC$RichText.texts.isEmpty()) {
-                    trimStart((TLRPC$RichText) tLRPC$RichText.texts.get(0));
-                    ArrayList arrayList = tLRPC$RichText.texts;
-                    trimEnd((TLRPC$RichText) arrayList.get(arrayList.size() - 1));
-                } else if ((tLRPC$RichText instanceof TLRPC$TL_textPlain) && (str = (tLRPC$TL_textPlain = (TLRPC$TL_textPlain) tLRPC$RichText).text) != null) {
-                    tLRPC$TL_textPlain.text = str.trim();
+        TLRPC.RichText richText2 = richText.text;
+        if (richText2 == null) {
+            if (richText.texts.size() != 1) {
+                if (!richText.texts.isEmpty()) {
+                    trimStart(richText.texts.get(0));
+                    ArrayList<TLRPC.RichText> arrayList = richText.texts;
+                    trimEnd(arrayList.get(arrayList.size() - 1));
+                } else if ((richText instanceof TLRPC.TL_textPlain) && (str = (tL_textPlain = (TLRPC.TL_textPlain) richText).text) != null) {
+                    tL_textPlain.text = str.trim();
                 }
-                return tLRPC$RichText;
+                return richText;
             }
-            tLRPC$RichText2 = (TLRPC$RichText) tLRPC$RichText.texts.get(0);
+            richText2 = richText.texts.get(0);
         }
-        trim(tLRPC$RichText2);
-        return tLRPC$RichText;
+        trim(richText2);
+        return richText;
     }
 
-    public static TLRPC$RichText trimEnd(TLRPC$RichText tLRPC$RichText) {
-        TLRPC$TL_textPlain tLRPC$TL_textPlain;
+    public static TLRPC.RichText trimEnd(TLRPC.RichText richText) {
+        TLRPC.TL_textPlain tL_textPlain;
         String str;
-        if (tLRPC$RichText == null) {
-            return tLRPC$RichText;
+        if (richText == null) {
+            return richText;
         }
-        TLRPC$RichText tLRPC$RichText2 = tLRPC$RichText.text;
-        if (tLRPC$RichText2 == null) {
-            if (tLRPC$RichText.texts.isEmpty()) {
-                if ((tLRPC$RichText instanceof TLRPC$TL_textPlain) && (str = (tLRPC$TL_textPlain = (TLRPC$TL_textPlain) tLRPC$RichText).text) != null) {
-                    tLRPC$TL_textPlain.text = str.replaceAll("\\s+$", "");
+        TLRPC.RichText richText2 = richText.text;
+        if (richText2 == null) {
+            if (richText.texts.isEmpty()) {
+                if ((richText instanceof TLRPC.TL_textPlain) && (str = (tL_textPlain = (TLRPC.TL_textPlain) richText).text) != null) {
+                    tL_textPlain.text = str.replaceAll("\\s+$", "");
                 }
-                return tLRPC$RichText;
+                return richText;
             }
-            tLRPC$RichText2 = (TLRPC$RichText) tLRPC$RichText.texts.get(r0.size() - 1);
+            richText2 = richText.texts.get(r0.size() - 1);
         }
-        trimEnd(tLRPC$RichText2);
-        return tLRPC$RichText;
+        trimEnd(richText2);
+        return richText;
     }
 
-    public static TLRPC$RichText trimStart(TLRPC$RichText tLRPC$RichText) {
-        TLRPC$TL_textPlain tLRPC$TL_textPlain;
+    public static TLRPC.RichText trimStart(TLRPC.RichText richText) {
+        TLRPC.TL_textPlain tL_textPlain;
         String str;
-        if (tLRPC$RichText == null) {
-            return tLRPC$RichText;
+        if (richText == null) {
+            return richText;
         }
-        TLRPC$RichText tLRPC$RichText2 = tLRPC$RichText.text;
-        if (tLRPC$RichText2 == null) {
-            if (tLRPC$RichText.texts.isEmpty()) {
-                if ((tLRPC$RichText instanceof TLRPC$TL_textPlain) && (str = (tLRPC$TL_textPlain = (TLRPC$TL_textPlain) tLRPC$RichText).text) != null) {
-                    tLRPC$TL_textPlain.text = str.replaceAll("^\\s+", "");
+        TLRPC.RichText richText2 = richText.text;
+        if (richText2 == null) {
+            if (richText.texts.isEmpty()) {
+                if ((richText instanceof TLRPC.TL_textPlain) && (str = (tL_textPlain = (TLRPC.TL_textPlain) richText).text) != null) {
+                    tL_textPlain.text = str.replaceAll("^\\s+", "");
                 }
-                return tLRPC$RichText;
+                return richText;
             }
-            tLRPC$RichText2 = (TLRPC$RichText) tLRPC$RichText.texts.get(0);
+            richText2 = richText.texts.get(0);
         }
-        trimStart(tLRPC$RichText2);
-        return tLRPC$RichText;
+        trimStart(richText2);
+        return richText;
     }
 
     public void getHTML(final WebView webView, boolean z, final Utilities.Callback callback) {
@@ -693,8 +657,8 @@ public class WebInstantView {
         return true;
     }
 
-    public TLRPC$TL_pageBlockDetails parseDetails(String str, JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
-        TLRPC$TL_pageBlockDetails tLRPC$TL_pageBlockDetails = new TLRPC$TL_pageBlockDetails();
+    public TLRPC.TL_pageBlockDetails parseDetails(String str, JSONObject jSONObject, TLRPC.TL_page tL_page) {
+        TLRPC.TL_pageBlockDetails tL_pageBlockDetails = new TLRPC.TL_pageBlockDetails();
         JSONArray optJSONArray = jSONObject.optJSONArray("content");
         if (optJSONArray == null) {
             return null;
@@ -708,34 +672,34 @@ public class WebInstantView {
             if (obj instanceof JSONObject) {
                 JSONObject jSONObject2 = (JSONObject) obj;
                 if ("summary".equals(jSONObject2.optString("tag"))) {
-                    tLRPC$TL_pageBlockDetails.title = trim(parseRichText(jSONObject2, tLRPC$TL_page));
+                    tL_pageBlockDetails.title = trim(parseRichText(jSONObject2, tL_page));
                     optJSONArray.remove(i);
                     break;
                 }
             }
             i++;
         }
-        tLRPC$TL_pageBlockDetails.blocks.addAll(parsePageBlocks(str, optJSONArray, tLRPC$TL_page));
-        tLRPC$TL_pageBlockDetails.open = jSONObject.has("open");
-        return tLRPC$TL_pageBlockDetails;
+        tL_pageBlockDetails.blocks.addAll(parsePageBlocks(str, optJSONArray, tL_page));
+        tL_pageBlockDetails.open = jSONObject.has("open");
+        return tL_pageBlockDetails;
     }
 
-    public TLRPC$TL_pageBlockPhoto parseFigure(JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
+    public TLRPC.TL_pageBlockPhoto parseFigure(JSONObject jSONObject, TLRPC.TL_page tL_page) {
         JSONArray optJSONArray = jSONObject.optJSONArray("content");
         ArrayList arrayList = new ArrayList();
         WebPhoto webPhoto = null;
         int i = 0;
-        TLRPC$TL_pageBlockPhoto tLRPC$TL_pageBlockPhoto = null;
-        TLRPC$RichText tLRPC$RichText = null;
+        TLRPC.TL_pageBlockPhoto tL_pageBlockPhoto = null;
+        TLRPC.RichText richText = null;
         for (int i2 = 0; i2 < optJSONArray.length(); i2++) {
             Object obj = optJSONArray.get(i2);
             if (obj instanceof JSONObject) {
                 JSONObject jSONObject2 = (JSONObject) obj;
                 String optString = jSONObject2.optString("tag");
                 if ("figurecaption".equalsIgnoreCase(optString) || "caption".equalsIgnoreCase(optString)) {
-                    tLRPC$RichText = trim(parseRichText(jSONObject2, tLRPC$TL_page));
+                    richText = trim(parseRichText(jSONObject2, tL_page));
                 } else if ("img".equalsIgnoreCase(optString)) {
-                    tLRPC$TL_pageBlockPhoto = parseImage(jSONObject2, tLRPC$TL_page);
+                    tL_pageBlockPhoto = parseImage(jSONObject2, tL_page);
                 } else if ("source".equalsIgnoreCase(optString)) {
                     String optString2 = jSONObject2.optString("src");
                     if (TextUtils.isEmpty(optString2)) {
@@ -751,21 +715,21 @@ public class WebInstantView {
                 }
             }
         }
-        if (tLRPC$TL_pageBlockPhoto == null) {
+        if (tL_pageBlockPhoto == null) {
             return null;
         }
-        if (tLRPC$RichText != null) {
-            TLRPC$TL_pageCaption tLRPC$TL_pageCaption = new TLRPC$TL_pageCaption();
-            tLRPC$TL_pageBlockPhoto.caption = tLRPC$TL_pageCaption;
-            tLRPC$TL_pageCaption.text = tLRPC$RichText;
-            tLRPC$TL_pageCaption.credit = new TLRPC$TL_textEmpty();
+        if (richText != null) {
+            TLRPC.TL_pageCaption tL_pageCaption = new TLRPC.TL_pageCaption();
+            tL_pageBlockPhoto.caption = tL_pageCaption;
+            tL_pageCaption.text = richText;
+            tL_pageCaption.credit = new TLRPC.TL_textEmpty();
         }
         while (true) {
-            if (i >= tLRPC$TL_page.photos.size()) {
+            if (i >= tL_page.photos.size()) {
                 break;
             }
-            if ((tLRPC$TL_page.photos.get(i) instanceof WebPhoto) && ((TLRPC$Photo) tLRPC$TL_page.photos.get(i)).id == tLRPC$TL_pageBlockPhoto.photo_id) {
-                webPhoto = (WebPhoto) tLRPC$TL_page.photos.get(i);
+            if ((tL_page.photos.get(i) instanceof WebPhoto) && tL_page.photos.get(i).id == tL_pageBlockPhoto.photo_id) {
+                webPhoto = (WebPhoto) tL_page.photos.get(i);
                 break;
             }
             i++;
@@ -773,16 +737,16 @@ public class WebInstantView {
         if (webPhoto != null) {
             webPhoto.urls.addAll(arrayList);
         }
-        return tLRPC$TL_pageBlockPhoto;
+        return tL_pageBlockPhoto;
     }
 
-    public TLRPC$TL_pageBlockPhoto parseImage(JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
-        TLRPC$TL_pageBlockPhoto tLRPC$TL_pageBlockPhoto = new TLRPC$TL_pageBlockPhoto();
-        tLRPC$TL_pageBlockPhoto.caption = new TLRPC$TL_pageCaption();
+    public TLRPC.TL_pageBlockPhoto parseImage(JSONObject jSONObject, TLRPC.TL_page tL_page) {
+        TLRPC.TL_pageBlockPhoto tL_pageBlockPhoto = new TLRPC.TL_pageBlockPhoto();
+        tL_pageBlockPhoto.caption = new TLRPC.TL_pageCaption();
         String optString = jSONObject.optString("alt");
         if (optString != null) {
-            tLRPC$TL_pageBlockPhoto.caption.text = trim(parseRichText(optString));
-            tLRPC$TL_pageBlockPhoto.caption.credit = trim(parseRichText(""));
+            tL_pageBlockPhoto.caption.text = trim(parseRichText(optString));
+            tL_pageBlockPhoto.caption.credit = trim(parseRichText(""));
         }
         String optString2 = jSONObject.optString("src");
         if (optString2 == null) {
@@ -790,7 +754,7 @@ public class WebInstantView {
         }
         WebPhoto webPhoto = new WebPhoto();
         webPhoto.instantView = this;
-        webPhoto.id = (-1) - tLRPC$TL_page.photos.size();
+        webPhoto.id = (-1) - tL_page.photos.size();
         webPhoto.url = optString2;
         webPhoto.urls.add(optString2);
         try {
@@ -807,21 +771,21 @@ public class WebInstantView {
         if (webPhoto.h == 0) {
             webPhoto.h = webPhoto.w;
         }
-        tLRPC$TL_pageBlockPhoto.photo_id = webPhoto.id;
-        tLRPC$TL_pageBlockPhoto.url = optString2;
-        tLRPC$TL_page.photos.add(webPhoto);
-        return tLRPC$TL_pageBlockPhoto;
+        tL_pageBlockPhoto.photo_id = webPhoto.id;
+        tL_pageBlockPhoto.url = optString2;
+        tL_page.photos.add(webPhoto);
+        return tL_pageBlockPhoto;
     }
 
-    public TLRPC$TL_textImage parseInlineImage(JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
-        TLRPC$TL_textImage tLRPC$TL_textImage = new TLRPC$TL_textImage();
+    public TLRPC.TL_textImage parseInlineImage(JSONObject jSONObject, TLRPC.TL_page tL_page) {
+        TLRPC.TL_textImage tL_textImage = new TLRPC.TL_textImage();
         String optString = jSONObject.optString("src");
         if (optString == null) {
             return null;
         }
         WebPhoto webPhoto = new WebPhoto();
         webPhoto.instantView = this;
-        webPhoto.id = (-1) - tLRPC$TL_page.photos.size();
+        webPhoto.id = (-1) - tL_page.photos.size();
         webPhoto.url = optString;
         webPhoto.urls.add(optString);
         try {
@@ -832,8 +796,8 @@ public class WebInstantView {
             webPhoto.h = Integer.parseInt(jSONObject.optString("height"));
         } catch (Exception unused2) {
         }
-        tLRPC$TL_textImage.url = optString;
-        tLRPC$TL_page.photos.add(webPhoto);
+        tL_textImage.url = optString;
+        tL_page.photos.add(webPhoto);
         if (webPhoto.w == 0) {
             webPhoto.w = webPhoto.h;
         }
@@ -841,62 +805,62 @@ public class WebInstantView {
             webPhoto.h = webPhoto.w;
         }
         try {
-            tLRPC$TL_textImage.w = Integer.parseInt(jSONObject.optString("width"));
+            tL_textImage.w = Integer.parseInt(jSONObject.optString("width"));
         } catch (Exception unused3) {
         }
         try {
-            tLRPC$TL_textImage.h = Integer.parseInt(jSONObject.optString("height"));
+            tL_textImage.h = Integer.parseInt(jSONObject.optString("height"));
         } catch (Exception unused4) {
         }
-        if (tLRPC$TL_textImage.w == 0) {
-            tLRPC$TL_textImage.w = tLRPC$TL_textImage.h;
+        if (tL_textImage.w == 0) {
+            tL_textImage.w = tL_textImage.h;
         }
-        if (tLRPC$TL_textImage.h == 0) {
-            tLRPC$TL_textImage.h = tLRPC$TL_textImage.w;
+        if (tL_textImage.h == 0) {
+            tL_textImage.h = tL_textImage.w;
         }
-        tLRPC$TL_textImage.photo_id = webPhoto.id;
-        return tLRPC$TL_textImage;
+        tL_textImage.photo_id = webPhoto.id;
+        return tL_textImage;
     }
 
-    public TLRPC$TL_webPage parseJSON(String str, JSONObject jSONObject) {
-        TLRPC$TL_webPage tLRPC$TL_webPage = new TLRPC$TL_webPage();
-        tLRPC$TL_webPage.id = 0L;
-        tLRPC$TL_webPage.url = str;
-        tLRPC$TL_webPage.display_url = str;
+    public TLRPC.TL_webPage parseJSON(String str, JSONObject jSONObject) {
+        TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
+        tL_webPage.id = 0L;
+        tL_webPage.url = str;
+        tL_webPage.display_url = str;
         String string = jSONObject.getString("siteName");
         if (string != null && !"null".equals(string)) {
-            tLRPC$TL_webPage.flags |= 2;
-            tLRPC$TL_webPage.site_name = string;
+            tL_webPage.flags |= 2;
+            tL_webPage.site_name = string;
         }
         String optString = jSONObject.optString("title");
         if (optString != null && !"null".equals(optString)) {
-            tLRPC$TL_webPage.flags |= 4;
-            tLRPC$TL_webPage.title = optString;
+            tL_webPage.flags |= 4;
+            tL_webPage.title = optString;
         }
         String optString2 = jSONObject.optString("byline");
         if (optString2 != null && !"null".equals(optString2) && !"by".equalsIgnoreCase(optString2)) {
-            tLRPC$TL_webPage.flags |= 256;
-            tLRPC$TL_webPage.author = optString2;
+            tL_webPage.flags |= 256;
+            tL_webPage.author = optString2;
         }
         String optString3 = jSONObject.optString("excerpt");
         if (optString3 != null && !"null".equals(optString3)) {
-            tLRPC$TL_webPage.flags |= 8;
-            tLRPC$TL_webPage.description = optString3;
+            tL_webPage.flags |= 8;
+            tL_webPage.description = optString3;
         }
         JSONArray optJSONArray = jSONObject.optJSONArray("content");
         if (optJSONArray != null && !"null".equals(optJSONArray)) {
-            tLRPC$TL_webPage.flags |= 1024;
-            tLRPC$TL_webPage.cached_page = parsePage(str, jSONObject);
+            tL_webPage.flags |= 1024;
+            tL_webPage.cached_page = parsePage(str, jSONObject);
         }
-        return tLRPC$TL_webPage;
+        return tL_webPage;
     }
 
-    public TLRPC$PageBlock parseList(String str, JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
-        TLRPC$TL_pageListItemBlocks tLRPC$TL_pageListItemBlocks;
-        TLRPC$TL_pageListOrderedItemBlocks tLRPC$TL_pageListOrderedItemBlocks;
+    public TLRPC.PageBlock parseList(String str, JSONObject jSONObject, TLRPC.TL_page tL_page) {
+        TLRPC.TL_pageListItemBlocks tL_pageListItemBlocks;
+        TLRPC.TL_pageListOrderedItemBlocks tL_pageListOrderedItemBlocks;
         int i = 0;
         if ("ol".equals(jSONObject.optString("tag"))) {
-            TLRPC$TL_pageBlockOrderedList tLRPC$TL_pageBlockOrderedList = new TLRPC$TL_pageBlockOrderedList();
+            TLRPC.TL_pageBlockOrderedList tL_pageBlockOrderedList = new TLRPC.TL_pageBlockOrderedList();
             JSONArray jSONArray = jSONObject.getJSONArray("content");
             while (i < jSONArray.length()) {
                 Object obj = jSONArray.get(i);
@@ -905,22 +869,22 @@ public class WebInstantView {
                     if ("li".equals(jSONObject2.optString("tag"))) {
                         JSONArray optJSONArray = jSONObject2.optJSONArray("content");
                         if (isInline(optJSONArray)) {
-                            TLRPC$TL_pageListOrderedItemText tLRPC$TL_pageListOrderedItemText = new TLRPC$TL_pageListOrderedItemText();
-                            tLRPC$TL_pageListOrderedItemText.text = parseRichText(optJSONArray, tLRPC$TL_page);
-                            tLRPC$TL_pageListOrderedItemBlocks = tLRPC$TL_pageListOrderedItemText;
+                            TLRPC.TL_pageListOrderedItemText tL_pageListOrderedItemText = new TLRPC.TL_pageListOrderedItemText();
+                            tL_pageListOrderedItemText.text = parseRichText(optJSONArray, tL_page);
+                            tL_pageListOrderedItemBlocks = tL_pageListOrderedItemText;
                         } else {
-                            TLRPC$TL_pageListOrderedItemBlocks tLRPC$TL_pageListOrderedItemBlocks2 = new TLRPC$TL_pageListOrderedItemBlocks();
-                            tLRPC$TL_pageListOrderedItemBlocks2.blocks.addAll(parsePageBlocks(str, optJSONArray, tLRPC$TL_page));
-                            tLRPC$TL_pageListOrderedItemBlocks = tLRPC$TL_pageListOrderedItemBlocks2;
+                            TLRPC.TL_pageListOrderedItemBlocks tL_pageListOrderedItemBlocks2 = new TLRPC.TL_pageListOrderedItemBlocks();
+                            tL_pageListOrderedItemBlocks2.blocks.addAll(parsePageBlocks(str, optJSONArray, tL_page));
+                            tL_pageListOrderedItemBlocks = tL_pageListOrderedItemBlocks2;
                         }
-                        tLRPC$TL_pageBlockOrderedList.items.add(tLRPC$TL_pageListOrderedItemBlocks);
+                        tL_pageBlockOrderedList.items.add(tL_pageListOrderedItemBlocks);
                     }
                 }
                 i++;
             }
-            return tLRPC$TL_pageBlockOrderedList;
+            return tL_pageBlockOrderedList;
         }
-        TLRPC$TL_pageBlockList tLRPC$TL_pageBlockList = new TLRPC$TL_pageBlockList();
+        TLRPC.TL_pageBlockList tL_pageBlockList = new TLRPC.TL_pageBlockList();
         JSONArray jSONArray2 = jSONObject.getJSONArray("content");
         while (i < jSONArray2.length()) {
             Object obj2 = jSONArray2.get(i);
@@ -929,53 +893,53 @@ public class WebInstantView {
                 if ("li".equals(jSONObject3.optString("tag"))) {
                     JSONArray optJSONArray2 = jSONObject3.optJSONArray("content");
                     if (isInline(optJSONArray2)) {
-                        TLRPC$TL_pageListItemText tLRPC$TL_pageListItemText = new TLRPC$TL_pageListItemText();
-                        tLRPC$TL_pageListItemText.text = parseRichText(optJSONArray2, tLRPC$TL_page);
-                        tLRPC$TL_pageListItemBlocks = tLRPC$TL_pageListItemText;
+                        TLRPC.TL_pageListItemText tL_pageListItemText = new TLRPC.TL_pageListItemText();
+                        tL_pageListItemText.text = parseRichText(optJSONArray2, tL_page);
+                        tL_pageListItemBlocks = tL_pageListItemText;
                     } else {
-                        TLRPC$TL_pageListItemBlocks tLRPC$TL_pageListItemBlocks2 = new TLRPC$TL_pageListItemBlocks();
-                        tLRPC$TL_pageListItemBlocks2.blocks.addAll(parsePageBlocks(str, optJSONArray2, tLRPC$TL_page));
-                        tLRPC$TL_pageListItemBlocks = tLRPC$TL_pageListItemBlocks2;
+                        TLRPC.TL_pageListItemBlocks tL_pageListItemBlocks2 = new TLRPC.TL_pageListItemBlocks();
+                        tL_pageListItemBlocks2.blocks.addAll(parsePageBlocks(str, optJSONArray2, tL_page));
+                        tL_pageListItemBlocks = tL_pageListItemBlocks2;
                     }
-                    tLRPC$TL_pageBlockList.items.add(tLRPC$TL_pageListItemBlocks);
+                    tL_pageBlockList.items.add(tL_pageListItemBlocks);
                 }
             }
             i++;
         }
-        return tLRPC$TL_pageBlockList;
+        return tL_pageBlockList;
     }
 
-    public TLRPC$TL_page parsePage(String str, JSONObject jSONObject) {
+    public TLRPC.TL_page parsePage(String str, JSONObject jSONObject) {
         String optString = jSONObject.optString("title");
         if ("null".equals(optString)) {
             optString = null;
         }
         "null".equals(jSONObject.optString("publishedTime"));
         JSONArray optJSONArray = jSONObject.optJSONArray("content");
-        TLRPC$TL_page tLRPC$TL_page = new TLRPC$TL_page();
-        tLRPC$TL_page.web = true;
-        tLRPC$TL_page.url = str;
-        tLRPC$TL_page.blocks.addAll(parsePageBlocks(str, optJSONArray, tLRPC$TL_page));
-        if (tLRPC$TL_page.blocks.isEmpty() || !(tLRPC$TL_page.blocks.get(0) instanceof TLRPC$TL_pageBlockHeader)) {
-            TLRPC$TL_pageBlockTitle tLRPC$TL_pageBlockTitle = new TLRPC$TL_pageBlockTitle();
-            tLRPC$TL_pageBlockTitle.text = trim(parseRichText(optString));
-            tLRPC$TL_page.blocks.add(0, tLRPC$TL_pageBlockTitle);
+        TLRPC.TL_page tL_page = new TLRPC.TL_page();
+        tL_page.web = true;
+        tL_page.url = str;
+        tL_page.blocks.addAll(parsePageBlocks(str, optJSONArray, tL_page));
+        if (tL_page.blocks.isEmpty() || !(tL_page.blocks.get(0) instanceof TLRPC.TL_pageBlockHeader)) {
+            TLRPC.TL_pageBlockTitle tL_pageBlockTitle = new TLRPC.TL_pageBlockTitle();
+            tL_pageBlockTitle.text = trim(parseRichText(optString));
+            tL_page.blocks.add(0, tL_pageBlockTitle);
         }
-        return tLRPC$TL_page;
+        return tL_page;
     }
 
-    public ArrayList parsePageBlocks(String str, JSONArray jSONArray, TLRPC$TL_page tLRPC$TL_page) {
-        TLRPC$RichText trim;
-        TLRPC$TL_pageBlockPhoto tLRPC$TL_pageBlockPhoto;
-        TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph;
-        TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph2;
+    public ArrayList parsePageBlocks(String str, JSONArray jSONArray, TLRPC.TL_page tL_page) {
+        TLRPC.RichText trim;
+        TLRPC.TL_pageBlockPhoto tL_pageBlockPhoto;
+        TLRPC.TL_pageBlockParagraph tL_pageBlockParagraph;
+        TLRPC.TL_pageBlockParagraph tL_pageBlockParagraph2;
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < jSONArray.length(); i++) {
             Object obj = jSONArray.get(i);
             if (obj instanceof String) {
-                TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph3 = new TLRPC$TL_pageBlockParagraph();
+                TLRPC.TL_pageBlockParagraph tL_pageBlockParagraph3 = new TLRPC.TL_pageBlockParagraph();
                 trim = parseRichText((String) obj);
-                tLRPC$TL_pageBlockParagraph2 = tLRPC$TL_pageBlockParagraph3;
+                tL_pageBlockParagraph2 = tL_pageBlockParagraph3;
             } else {
                 if (obj instanceof JSONObject) {
                     JSONObject jSONObject = (JSONObject) obj;
@@ -1150,12 +1114,12 @@ public class WebInstantView {
                     switch (c) {
                         case 0:
                         case 2:
-                            TLRPC$TL_pageBlockPhoto parseFigure = parseFigure(jSONObject, tLRPC$TL_page);
-                            tLRPC$TL_pageBlockPhoto = parseFigure;
+                            TLRPC.TL_pageBlockPhoto parseFigure = parseFigure(jSONObject, tL_page);
+                            tL_pageBlockPhoto = parseFigure;
                             if (parseFigure == null) {
                                 break;
                             }
-                            arrayList.add(tLRPC$TL_pageBlockPhoto);
+                            arrayList.add(tL_pageBlockPhoto);
                             break;
                         case 1:
                         case 3:
@@ -1169,82 +1133,82 @@ public class WebInstantView {
                         case 23:
                             JSONArray jSONArray2 = new JSONArray();
                             jSONArray2.put(jSONObject);
-                            ?? tLRPC$TL_pageBlockParagraph4 = new TLRPC$TL_pageBlockParagraph();
-                            tLRPC$TL_pageBlockParagraph4.text = parseRichText(jSONArray2, tLRPC$TL_page);
-                            tLRPC$TL_pageBlockPhoto = tLRPC$TL_pageBlockParagraph4;
-                            arrayList.add(tLRPC$TL_pageBlockPhoto);
+                            ?? tL_pageBlockParagraph4 = new TLRPC.TL_pageBlockParagraph();
+                            tL_pageBlockParagraph4.text = parseRichText(jSONArray2, tL_page);
+                            tL_pageBlockPhoto = tL_pageBlockParagraph4;
+                            arrayList.add(tL_pageBlockPhoto);
                             break;
                         case 6:
-                            TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph5 = new TLRPC$TL_pageBlockParagraph();
-                            trim = trim(parseRichText(jSONObject, tLRPC$TL_page));
-                            tLRPC$TL_pageBlockParagraph2 = tLRPC$TL_pageBlockParagraph5;
+                            TLRPC.TL_pageBlockParagraph tL_pageBlockParagraph5 = new TLRPC.TL_pageBlockParagraph();
+                            trim = trim(parseRichText(jSONObject, tL_page));
+                            tL_pageBlockParagraph2 = tL_pageBlockParagraph5;
                             break;
                         case '\b':
                         case '\t':
-                            ?? tLRPC$TL_pageBlockHeader = new TLRPC$TL_pageBlockHeader();
-                            tLRPC$TL_pageBlockHeader.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
-                            tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockHeader;
-                            arrayList.add(tLRPC$TL_pageBlockParagraph);
+                            ?? tL_pageBlockHeader = new TLRPC.TL_pageBlockHeader();
+                            tL_pageBlockHeader.text = trim(parseRichText(jSONObject, tL_page));
+                            tL_pageBlockParagraph = tL_pageBlockHeader;
+                            arrayList.add(tL_pageBlockParagraph);
                             break;
                         case '\n':
                         case 11:
                         case '\f':
                         case '\r':
-                            ?? tLRPC$TL_pageBlockSubheader = new TLRPC$TL_pageBlockSubheader();
-                            tLRPC$TL_pageBlockSubheader.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
-                            tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockSubheader;
-                            arrayList.add(tLRPC$TL_pageBlockParagraph);
+                            ?? tL_pageBlockSubheader = new TLRPC.TL_pageBlockSubheader();
+                            tL_pageBlockSubheader.text = trim(parseRichText(jSONObject, tL_page));
+                            tL_pageBlockParagraph = tL_pageBlockSubheader;
+                            arrayList.add(tL_pageBlockParagraph);
                             break;
                         case 14:
-                            tLRPC$TL_pageBlockPhoto = new TLRPC$TL_pageBlockDivider();
-                            arrayList.add(tLRPC$TL_pageBlockPhoto);
+                            tL_pageBlockPhoto = new TLRPC.TL_pageBlockDivider();
+                            arrayList.add(tL_pageBlockPhoto);
                             break;
                         case 15:
                         case 16:
-                            tLRPC$TL_pageBlockPhoto = parseList(str, jSONObject, tLRPC$TL_page);
-                            arrayList.add(tLRPC$TL_pageBlockPhoto);
+                            tL_pageBlockPhoto = parseList(str, jSONObject, tL_page);
+                            arrayList.add(tL_pageBlockPhoto);
                             break;
                         case 17:
-                            TLRPC$TL_pageBlockPhoto parseImage = parseImage(jSONObject, tLRPC$TL_page);
-                            tLRPC$TL_pageBlockPhoto = parseImage;
+                            TLRPC.TL_pageBlockPhoto parseImage = parseImage(jSONObject, tL_page);
+                            tL_pageBlockPhoto = parseImage;
                             if (parseImage == null) {
                                 break;
                             }
-                            arrayList.add(tLRPC$TL_pageBlockPhoto);
+                            arrayList.add(tL_pageBlockPhoto);
                             break;
                         case 18:
-                            ?? tLRPC$TL_pageBlockPreformatted = new TLRPC$TL_pageBlockPreformatted();
-                            TLRPC$TL_textFixed tLRPC$TL_textFixed = new TLRPC$TL_textFixed();
-                            tLRPC$TL_textFixed.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
-                            tLRPC$TL_pageBlockPreformatted.text = tLRPC$TL_textFixed;
-                            tLRPC$TL_pageBlockPreformatted.language = "";
-                            tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockPreformatted;
-                            arrayList.add(tLRPC$TL_pageBlockParagraph);
+                            ?? tL_pageBlockPreformatted = new TLRPC.TL_pageBlockPreformatted();
+                            TLRPC.TL_textFixed tL_textFixed = new TLRPC.TL_textFixed();
+                            tL_textFixed.text = trim(parseRichText(jSONObject, tL_page));
+                            tL_pageBlockPreformatted.text = tL_textFixed;
+                            tL_pageBlockPreformatted.language = "";
+                            tL_pageBlockParagraph = tL_pageBlockPreformatted;
+                            arrayList.add(tL_pageBlockParagraph);
                             break;
                         case 24:
-                            tLRPC$TL_pageBlockPhoto = parseTable(str, jSONObject, tLRPC$TL_page);
-                            arrayList.add(tLRPC$TL_pageBlockPhoto);
+                            tL_pageBlockPhoto = parseTable(str, jSONObject, tL_page);
+                            arrayList.add(tL_pageBlockPhoto);
                             break;
                         case 25:
-                            ?? tLRPC$TL_pageBlockBlockquote = new TLRPC$TL_pageBlockBlockquote();
-                            tLRPC$TL_pageBlockBlockquote.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
-                            TLRPC$TL_textItalic tLRPC$TL_textItalic = new TLRPC$TL_textItalic();
-                            tLRPC$TL_textItalic.text = tLRPC$TL_pageBlockBlockquote.text;
-                            tLRPC$TL_pageBlockBlockquote.text = tLRPC$TL_textItalic;
-                            tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockBlockquote;
-                            arrayList.add(tLRPC$TL_pageBlockParagraph);
+                            ?? tL_pageBlockBlockquote = new TLRPC.TL_pageBlockBlockquote();
+                            tL_pageBlockBlockquote.text = trim(parseRichText(jSONObject, tL_page));
+                            TLRPC.TL_textItalic tL_textItalic = new TLRPC.TL_textItalic();
+                            tL_textItalic.text = tL_pageBlockBlockquote.text;
+                            tL_pageBlockBlockquote.text = tL_textItalic;
+                            tL_pageBlockParagraph = tL_pageBlockBlockquote;
+                            arrayList.add(tL_pageBlockParagraph);
                             break;
                         case 26:
-                            TLRPC$TL_pageBlockDetails parseDetails = parseDetails(str, jSONObject, tLRPC$TL_page);
-                            tLRPC$TL_pageBlockPhoto = parseDetails;
+                            TLRPC.TL_pageBlockDetails parseDetails = parseDetails(str, jSONObject, tL_page);
+                            tL_pageBlockPhoto = parseDetails;
                             if (parseDetails == null) {
                                 break;
                             }
-                            arrayList.add(tLRPC$TL_pageBlockPhoto);
+                            arrayList.add(tL_pageBlockPhoto);
                             break;
                         default:
                             if (optJSONArray != null) {
-                                arrayList.addAll(parsePageBlocks(str, optJSONArray, tLRPC$TL_page));
+                                arrayList.addAll(parsePageBlocks(str, optJSONArray, tL_page));
                                 break;
                             } else {
                                 break;
@@ -1252,84 +1216,84 @@ public class WebInstantView {
                     }
                 }
             }
-            tLRPC$TL_pageBlockParagraph2.text = trim;
-            tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockParagraph2;
-            arrayList.add(tLRPC$TL_pageBlockParagraph);
+            tL_pageBlockParagraph2.text = trim;
+            tL_pageBlockParagraph = tL_pageBlockParagraph2;
+            arrayList.add(tL_pageBlockParagraph);
         }
         return arrayList;
     }
 
-    public org.telegram.tgnet.TLRPC$RichText parseRichText(org.json.JSONArray r11, org.telegram.tgnet.TLRPC$TL_page r12) {
+    public org.telegram.tgnet.TLRPC.RichText parseRichText(org.json.JSONArray r11, org.telegram.tgnet.TLRPC.TL_page r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebInstantView.parseRichText(org.json.JSONArray, org.telegram.tgnet.TLRPC$TL_page):org.telegram.tgnet.TLRPC$RichText");
     }
 
-    public TLRPC$RichText parseRichText(JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
-        TLRPC$RichText applyAnchor = applyAnchor(parseRichText(jSONObject.getJSONArray("content"), tLRPC$TL_page), jSONObject);
+    public TLRPC.RichText parseRichText(JSONObject jSONObject, TLRPC.TL_page tL_page) {
+        TLRPC.RichText applyAnchor = applyAnchor(parseRichText(jSONObject.getJSONArray("content"), tL_page), jSONObject);
         if (jSONObject.has("bold")) {
-            TLRPC$TL_textBold tLRPC$TL_textBold = new TLRPC$TL_textBold();
-            tLRPC$TL_textBold.text = applyAnchor;
-            applyAnchor = tLRPC$TL_textBold;
+            TLRPC.TL_textBold tL_textBold = new TLRPC.TL_textBold();
+            tL_textBold.text = applyAnchor;
+            applyAnchor = tL_textBold;
         }
         if (!jSONObject.has("italic")) {
             return applyAnchor;
         }
-        TLRPC$TL_textItalic tLRPC$TL_textItalic = new TLRPC$TL_textItalic();
-        tLRPC$TL_textItalic.text = applyAnchor;
-        return tLRPC$TL_textItalic;
+        TLRPC.TL_textItalic tL_textItalic = new TLRPC.TL_textItalic();
+        tL_textItalic.text = applyAnchor;
+        return tL_textItalic;
     }
 
-    public TLRPC$TL_pageBlockTable parseTable(String str, JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
-        TLRPC$TL_pageBlockTable tLRPC$TL_pageBlockTable = new TLRPC$TL_pageBlockTable();
-        tLRPC$TL_pageBlockTable.bordered = true;
-        tLRPC$TL_pageBlockTable.striped = true;
+    public TLRPC.TL_pageBlockTable parseTable(String str, JSONObject jSONObject, TLRPC.TL_page tL_page) {
+        TLRPC.TL_pageBlockTable tL_pageBlockTable = new TLRPC.TL_pageBlockTable();
+        tL_pageBlockTable.bordered = true;
+        tL_pageBlockTable.striped = true;
         String optString = jSONObject.optString("title");
         if (optString == null) {
             optString = "";
         }
-        tLRPC$TL_pageBlockTable.title = trim(applyAnchor(parseRichText(optString), jSONObject));
-        tLRPC$TL_pageBlockTable.rows.addAll(parseTableRows(str, jSONObject.getJSONArray("content"), tLRPC$TL_page));
-        return tLRPC$TL_pageBlockTable;
+        tL_pageBlockTable.title = trim(applyAnchor(parseRichText(optString), jSONObject));
+        tL_pageBlockTable.rows.addAll(parseTableRows(str, jSONObject.getJSONArray("content"), tL_page));
+        return tL_pageBlockTable;
     }
 
-    public TLRPC$TL_pageTableRow parseTableRow(String str, JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
+    public TLRPC.TL_pageTableRow parseTableRow(String str, JSONObject jSONObject, TLRPC.TL_page tL_page) {
         JSONObject jSONObject2;
         String optString;
-        TLRPC$TL_pageTableRow tLRPC$TL_pageTableRow = new TLRPC$TL_pageTableRow();
+        TLRPC.TL_pageTableRow tL_pageTableRow = new TLRPC.TL_pageTableRow();
         JSONArray jSONArray = jSONObject.getJSONArray("content");
         for (int i = 0; i < jSONArray.length(); i++) {
             Object obj = jSONArray.get(i);
             if ((obj instanceof JSONObject) && (optString = (jSONObject2 = (JSONObject) obj).optString("tag")) != null && ("td".equals(optString) || "th".equals(optString))) {
-                TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell = new TLRPC$TL_pageTableCell();
-                tLRPC$TL_pageTableCell.header = "th".equals(optString);
+                TLRPC.TL_pageTableCell tL_pageTableCell = new TLRPC.TL_pageTableCell();
+                tL_pageTableCell.header = "th".equals(optString);
                 try {
-                    tLRPC$TL_pageTableCell.colspan = Integer.parseInt(jSONObject2.optString("colspan"));
-                    tLRPC$TL_pageTableCell.flags |= 2;
+                    tL_pageTableCell.colspan = Integer.parseInt(jSONObject2.optString("colspan"));
+                    tL_pageTableCell.flags |= 2;
                 } catch (Exception unused) {
                 }
                 try {
-                    tLRPC$TL_pageTableCell.rowspan = Integer.parseInt(jSONObject2.optString("rowspan"));
-                    tLRPC$TL_pageTableCell.flags |= 4;
+                    tL_pageTableCell.rowspan = Integer.parseInt(jSONObject2.optString("rowspan"));
+                    tL_pageTableCell.flags |= 4;
                 } catch (Exception unused2) {
                 }
-                tLRPC$TL_pageTableCell.text = trim(parseRichText(jSONObject2.getJSONArray("content"), tLRPC$TL_page));
-                if (jSONObject2.has("bold") || tLRPC$TL_pageTableCell.header) {
-                    TLRPC$TL_textBold tLRPC$TL_textBold = new TLRPC$TL_textBold();
-                    tLRPC$TL_textBold.text = tLRPC$TL_pageTableCell.text;
-                    tLRPC$TL_pageTableCell.text = tLRPC$TL_textBold;
+                tL_pageTableCell.text = trim(parseRichText(jSONObject2.getJSONArray("content"), tL_page));
+                if (jSONObject2.has("bold") || tL_pageTableCell.header) {
+                    TLRPC.TL_textBold tL_textBold = new TLRPC.TL_textBold();
+                    tL_textBold.text = tL_pageTableCell.text;
+                    tL_pageTableCell.text = tL_textBold;
                 }
                 if (jSONObject2.has("italic")) {
-                    TLRPC$TL_textItalic tLRPC$TL_textItalic = new TLRPC$TL_textItalic();
-                    tLRPC$TL_textItalic.text = tLRPC$TL_pageTableCell.text;
-                    tLRPC$TL_pageTableCell.text = tLRPC$TL_textItalic;
+                    TLRPC.TL_textItalic tL_textItalic = new TLRPC.TL_textItalic();
+                    tL_textItalic.text = tL_pageTableCell.text;
+                    tL_pageTableCell.text = tL_textItalic;
                 }
-                tLRPC$TL_pageTableCell.align_center = jSONObject2.has("xcenter");
-                tLRPC$TL_pageTableRow.cells.add(tLRPC$TL_pageTableCell);
+                tL_pageTableCell.align_center = jSONObject2.has("xcenter");
+                tL_pageTableRow.cells.add(tL_pageTableCell);
             }
         }
-        return tLRPC$TL_pageTableRow;
+        return tL_pageTableRow;
     }
 
-    public ArrayList parseTableRows(String str, JSONArray jSONArray, TLRPC$TL_page tLRPC$TL_page) {
+    public ArrayList parseTableRows(String str, JSONArray jSONArray, TLRPC.TL_page tL_page) {
         ArrayList arrayList = new ArrayList();
         new ArrayList();
         for (int i = 0; i < jSONArray.length(); i++) {
@@ -1337,11 +1301,11 @@ public class WebInstantView {
             if (obj instanceof JSONObject) {
                 JSONObject jSONObject = (JSONObject) obj;
                 if ("tr".equals(jSONObject.optString("tag"))) {
-                    arrayList.add(parseTableRow(str, jSONObject, tLRPC$TL_page));
+                    arrayList.add(parseTableRow(str, jSONObject, tL_page));
                 } else {
                     JSONArray optJSONArray = jSONObject.optJSONArray("content");
                     if (optJSONArray != null) {
-                        arrayList.addAll(parseTableRows(str, optJSONArray, tLRPC$TL_page));
+                        arrayList.addAll(parseTableRows(str, optJSONArray, tL_page));
                     }
                 }
             }
@@ -1463,23 +1427,23 @@ public class WebInstantView {
     }
 
     public void recycle() {
-        TLRPC$Page tLRPC$Page;
-        ArrayList arrayList;
+        TLRPC.Page page;
+        ArrayList<TLRPC.Photo> arrayList;
         instants.remove(this.webpage);
         Iterator it = this.loadedPhotos.entrySet().iterator();
         while (it.hasNext()) {
             AndroidUtilities.recycleBitmap((Bitmap) ((Map.Entry) it.next()).getValue());
         }
         this.loadedPhotos.clear();
-        TLRPC$WebPage tLRPC$WebPage = this.webpage;
-        if (tLRPC$WebPage == null || (tLRPC$Page = tLRPC$WebPage.cached_page) == null || (arrayList = tLRPC$Page.photos) == null) {
+        TLRPC.WebPage webPage = this.webpage;
+        if (webPage == null || (page = webPage.cached_page) == null || (arrayList = page.photos) == null) {
             return;
         }
-        Iterator it2 = arrayList.iterator();
+        Iterator<TLRPC.Photo> it2 = arrayList.iterator();
         while (it2.hasNext()) {
-            TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) it2.next();
-            if (tLRPC$Photo instanceof WebPhoto) {
-                WebPhoto webPhoto = (WebPhoto) tLRPC$Photo;
+            TLRPC.Photo next = it2.next();
+            if (next instanceof WebPhoto) {
+                WebPhoto webPhoto = (WebPhoto) next;
                 HashMap hashMap = loadingPhotos;
                 if (hashMap != null) {
                     hashMap.remove(webPhoto.url);

@@ -29,9 +29,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -68,7 +66,7 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
     public float drawPremiumProgress;
     PremiumGradient.PremiumGradientTools gradientTools;
     private int lastAccount;
-    private TLRPC$User lastUser;
+    private TLRPC.User lastUser;
     private SimpleTextView nameTextView;
     private Paint paint;
     private TextView phoneTextView;
@@ -114,27 +112,27 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
         }
 
         public void animateChange(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-            TLRPC$TL_availableReaction tLRPC$TL_availableReaction;
+            TLRPC.TL_availableReaction tL_availableReaction;
             AnimatedEmojiEffect animatedEmojiEffect;
             String findAnimatedEmojiEmoticon;
             if (visibleReaction == null) {
                 detach();
                 return;
             }
-            TLRPC$Document tLRPC$Document = null;
-            TLRPC$TL_availableReaction tLRPC$TL_availableReaction2 = visibleReaction.emojicon != null ? MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon) : null;
-            if (tLRPC$TL_availableReaction2 == null) {
-                TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, visibleReaction.documentId);
+            TLRPC.Document document = null;
+            TLRPC.TL_availableReaction tL_availableReaction2 = visibleReaction.emojicon != null ? MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon) : null;
+            if (tL_availableReaction2 == null) {
+                TLRPC.Document findDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, visibleReaction.documentId);
                 if (findDocument != null && (findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(findDocument, null)) != null) {
-                    tLRPC$TL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(findAnimatedEmojiEmoticon);
+                    tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(findAnimatedEmojiEmoticon);
                 }
-                tLRPC$TL_availableReaction = tLRPC$TL_availableReaction2;
-                tLRPC$Document = findDocument;
+                tL_availableReaction = tL_availableReaction2;
+                document = findDocument;
             } else {
-                tLRPC$TL_availableReaction = tLRPC$TL_availableReaction2;
+                tL_availableReaction = tL_availableReaction2;
             }
-            if (tLRPC$Document != null || tLRPC$TL_availableReaction == null) {
-                AnimatedEmojiDrawable make = tLRPC$Document == null ? AnimatedEmojiDrawable.make(2, UserConfig.selectedAccount, visibleReaction.documentId) : AnimatedEmojiDrawable.make(2, UserConfig.selectedAccount, tLRPC$Document);
+            if (document != null || tL_availableReaction == null) {
+                AnimatedEmojiDrawable make = document == null ? AnimatedEmojiDrawable.make(2, UserConfig.selectedAccount, visibleReaction.documentId) : AnimatedEmojiDrawable.make(2, UserConfig.selectedAccount, document);
                 if (this.color != null) {
                     make.setColorFilter(new PorterDuffColorFilter(this.color.intValue(), PorterDuff.Mode.MULTIPLY));
                 }
@@ -147,7 +145,7 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
                 int i = this.animationUniq;
                 this.animationUniq = i + 1;
                 imageReceiver.setUniqKeyPrefix(Integer.toString(i));
-                imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), this.effectsSize + "_" + this.effectsSize + "_nolimit", null, "tgs", tLRPC$TL_availableReaction, 1);
+                imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), this.effectsSize + "_" + this.effectsSize + "_nolimit", null, "tgs", tL_availableReaction, 1);
                 imageReceiver.setAutoRepeat(0);
                 imageReceiver.onAttachedToWindow();
                 animatedEmojiEffect = imageReceiver;
@@ -383,8 +381,8 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
     }
 
     public void lambda$new$0(View view) {
-        TLRPC$User tLRPC$User = this.lastUser;
-        if (tLRPC$User == null || !tLRPC$User.premium) {
+        TLRPC.User user = this.lastUser;
+        if (user == null || !user.premium) {
             return;
         }
         onPremiumClick();
@@ -444,13 +442,13 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        TLRPC$User currentUser;
+        TLRPC.User currentUser;
         if (i == NotificationCenter.emojiLoaded) {
             this.nameTextView.invalidate();
             return;
         }
         if (i == NotificationCenter.userEmojiStatusUpdated) {
-            currentUser = (TLRPC$User) objArr[0];
+            currentUser = (TLRPC.User) objArr[0];
         } else {
             if (i != NotificationCenter.currentUserPremiumStatusChanged) {
                 if (i != NotificationCenter.updateInterfaces) {
@@ -572,7 +570,7 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
         setArrowState(z2);
     }
 
-    public void setUser(TLRPC$User tLRPC$User, boolean z) {
+    public void setUser(TLRPC.User user, boolean z) {
         Drawable drawable;
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable;
         int i = UserConfig.selectedAccount;
@@ -587,26 +585,26 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
             this.lastAccount = i;
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.updateInterfaces);
         }
-        this.lastUser = tLRPC$User;
-        if (tLRPC$User == null) {
+        this.lastUser = user;
+        if (user == null) {
             return;
         }
         this.accountsShown = z;
         setArrowState(false);
-        CharSequence userName = UserObject.getUserName(tLRPC$User);
+        CharSequence userName = UserObject.getUserName(user);
         try {
             userName = Emoji.replaceEmoji(userName, this.nameTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(22.0f), false);
         } catch (Exception unused) {
         }
         this.drawPremium = false;
         this.nameTextView.setText(userName);
-        Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(tLRPC$User);
+        Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(user);
         if (emojiStatusDocumentId != null) {
             this.animatedStatus.animate().alpha(1.0f).setDuration(200L).start();
             this.nameTextView.setDrawablePadding(AndroidUtilities.dp(4.0f));
             this.status.set(emojiStatusDocumentId.longValue(), true);
         } else {
-            if (tLRPC$User.premium) {
+            if (user.premium) {
                 this.animatedStatus.animate().alpha(1.0f).setDuration(200L).start();
                 this.nameTextView.setDrawablePadding(AndroidUtilities.dp(4.0f));
                 if (this.premiumStar == null) {
@@ -625,10 +623,10 @@ public abstract class DrawerProfileCell extends FrameLayout implements Notificat
         }
         this.animatedStatus.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats));
         this.status.setColor(Integer.valueOf(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats)));
-        this.phoneTextView.setText(PhoneFormat.getInstance().format("+" + tLRPC$User.phone));
-        AvatarDrawable avatarDrawable = new AvatarDrawable(tLRPC$User);
+        this.phoneTextView.setText(PhoneFormat.getInstance().format("+" + user.phone));
+        AvatarDrawable avatarDrawable = new AvatarDrawable(user);
         avatarDrawable.setColor(Theme.getColor(Theme.key_avatar_backgroundInProfileBlue));
-        this.avatarImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
+        this.avatarImageView.setForUserOrChat(user, avatarDrawable);
         applyBackground(true);
         this.updateRightDrawable = true;
     }

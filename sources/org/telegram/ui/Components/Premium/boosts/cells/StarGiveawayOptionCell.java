@@ -14,7 +14,7 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$TL_starsGiveawayOption;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -25,7 +25,7 @@ import org.telegram.ui.Components.RadioButton;
 
 public class StarGiveawayOptionCell extends FrameLayout {
     private final AnimatedFloat animatedStarsCount;
-    private TLRPC$TL_starsGiveawayOption currentOption;
+    private TL_stars.TL_starsGiveawayOption currentOption;
     private long currentOptionStarsPerUser;
     private SpannableString loading1;
     private SpannableString loading2;
@@ -78,7 +78,7 @@ public class StarGiveawayOptionCell extends FrameLayout {
         addView(this.radioButton, LayoutHelper.createFrame(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    public TLRPC$TL_starsGiveawayOption getOption() {
+    public TL_stars.TL_starsGiveawayOption getOption() {
         return this.currentOption;
     }
 
@@ -114,22 +114,22 @@ public class StarGiveawayOptionCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 
-    public void setOption(TLRPC$TL_starsGiveawayOption tLRPC$TL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
-        boolean z3 = this.currentOption == tLRPC$TL_starsGiveawayOption;
+    public void setOption(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
+        boolean z3 = this.currentOption == tL_starsGiveawayOption;
         this.radioButton.setChecked(z, z3);
-        this.currentOption = tLRPC$TL_starsGiveawayOption;
+        this.currentOption = tL_starsGiveawayOption;
         this.currentOptionStarsPerUser = j;
         if (z3) {
             this.subtitleView.cancelAnimation();
         }
-        if (tLRPC$TL_starsGiveawayOption == null) {
+        if (tL_starsGiveawayOption == null) {
             this.titleView.setText(this.loading1, false);
             this.subtitleView.setText(this.loading2, z3);
             this.priceView.setText("");
         } else {
-            this.titleView.setText(LocaleController.formatPluralStringComma("GiveawayStars", (int) tLRPC$TL_starsGiveawayOption.stars, ' '), false);
+            this.titleView.setText(LocaleController.formatPluralStringComma("GiveawayStars", (int) tL_starsGiveawayOption.stars, ' '), false);
             this.subtitleView.setText(LocaleController.formatPluralStringComma("BoostingStarOptionPerUser", (int) j, ','), z3);
-            this.priceView.setText(BillingController.getInstance().formatCurrency(tLRPC$TL_starsGiveawayOption.amount, tLRPC$TL_starsGiveawayOption.currency));
+            this.priceView.setText(BillingController.getInstance().formatCurrency(tL_starsGiveawayOption.amount, tL_starsGiveawayOption.currency));
         }
         int i2 = i + 1;
         this.starsCount = i2;

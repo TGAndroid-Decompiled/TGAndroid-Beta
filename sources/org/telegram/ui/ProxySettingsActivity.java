@@ -124,7 +124,7 @@ public class ProxySettingsActivity extends BaseFragment {
             if (i != 6) {
                 return false;
             }
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return true;
         }
         int intValue = ((Integer) textView.getTag()).intValue() + 1;

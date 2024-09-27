@@ -13,7 +13,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
-import org.telegram.tgnet.TLRPC$TL_businessLocation;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingDrawable;
@@ -77,11 +77,11 @@ public class ProfileLocationCell extends LinearLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 
-    public void set(TLRPC$TL_businessLocation tLRPC$TL_businessLocation, boolean z) {
-        if (tLRPC$TL_businessLocation != null) {
-            this.textView1.setText(tLRPC$TL_businessLocation.address);
-            if (tLRPC$TL_businessLocation.geo_point != null) {
-                this.imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$TL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.thumbDrawable, 0L, (String) null, (Object) null, 0);
+    public void set(TLRPC.TL_businessLocation tL_businessLocation, boolean z) {
+        if (tL_businessLocation != null) {
+            this.textView1.setText(tL_businessLocation.address);
+            if (tL_businessLocation.geo_point != null) {
+                this.imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.thumbDrawable, 0L, (String) null, (Object) null, 0);
             } else {
                 this.imageReceiver.setImageBitmap((Drawable) null);
             }

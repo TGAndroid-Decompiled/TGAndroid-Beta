@@ -27,12 +27,7 @@ import java.io.File;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.audioinfo.AudioInfo;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_peerChannel;
-import org.telegram.tgnet.TLRPC$TL_peerChat;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 
 public class MusicPlayerService extends Service implements NotificationCenter.NotificationCenterDelegate {
@@ -79,7 +74,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         Bitmap bitmap;
         Bitmap bitmap2;
         Bitmap bitmap3;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
         Bitmap bitmap4;
         String str2;
         Bitmap bitmap5;
@@ -117,9 +112,9 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             intent.addCategory("android.intent.category.LAUNCHER");
         } else if (messageObject.isVoice() || messageObject.isRoundVideo()) {
             intent.setAction("android.intent.action.VIEW");
-            TLRPC$Peer tLRPC$Peer = messageObject.messageOwner.peer_id;
-            boolean z2 = tLRPC$Peer instanceof TLRPC$TL_peerUser;
-            long j = z2 ? tLRPC$Peer.user_id : tLRPC$Peer instanceof TLRPC$TL_peerChat ? tLRPC$Peer.chat_id : tLRPC$Peer instanceof TLRPC$TL_peerChannel ? tLRPC$Peer.channel_id : 0L;
+            TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+            boolean z2 = peer instanceof TLRPC.TL_peerUser;
+            long j = z2 ? peer.user_id : peer instanceof TLRPC.TL_peerChat ? peer.chat_id : peer instanceof TLRPC.TL_peerChannel ? peer.channel_id : 0L;
             if (j != 0) {
                 if (z2) {
                     sb = new StringBuilder();
@@ -160,24 +155,24 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         } else if (messageObject.isVoice() || messageObject.isRoundVideo()) {
             long senderId = messageObject.getSenderId();
             if (messageObject.isFromUser()) {
-                TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(senderId));
+                TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(senderId));
                 if (user != 0) {
                     musicTitle = UserObject.getUserName(user);
-                    tLRPC$Chat = user;
+                    chat = user;
                     boolean z4 = !z;
-                    bitmap = getAvatarBitmap(tLRPC$Chat, true, z4);
-                    bitmap2 = getAvatarBitmap(tLRPC$Chat, false, z4);
+                    bitmap = getAvatarBitmap(chat, true, z4);
+                    bitmap2 = getAvatarBitmap(chat, false, z4);
                 }
                 bitmap = null;
                 bitmap2 = null;
             } else {
-                TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-senderId));
-                if (chat != null) {
-                    musicTitle = chat.title;
-                    tLRPC$Chat = chat;
+                TLRPC.Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-senderId));
+                if (chat2 != null) {
+                    musicTitle = chat2.title;
+                    chat = chat2;
                     boolean z42 = !z;
-                    bitmap = getAvatarBitmap(tLRPC$Chat, true, z42);
-                    bitmap2 = getAvatarBitmap(tLRPC$Chat, false, z42);
+                    bitmap = getAvatarBitmap(chat, true, z42);
+                    bitmap2 = getAvatarBitmap(chat, false, z42);
                 }
                 bitmap = null;
                 bitmap2 = null;

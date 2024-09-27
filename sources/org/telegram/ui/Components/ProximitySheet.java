@@ -30,7 +30,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.NumberPicker;
 import org.telegram.ui.Components.ProximitySheet;
@@ -43,7 +43,7 @@ public class ProximitySheet extends FrameLayout {
     private AnimatorSet currentAnimation;
     private AnimatorSet currentSheetAnimation;
     private int currentSheetAnimationType;
-    private TLRPC$User currentUser;
+    private TLRPC.User currentUser;
     private LinearLayout customView;
     private boolean dismissed;
     private TextView infoTextView;
@@ -107,7 +107,7 @@ public class ProximitySheet extends FrameLayout {
         boolean run(boolean z, int i);
     }
 
-    public ProximitySheet(Context context, TLRPC$User tLRPC$User, onRadiusPickerChange onradiuspickerchange, final onRadiusPickerChange onradiuspickerchange2, Runnable runnable) {
+    public ProximitySheet(Context context, TLRPC.User user, onRadiusPickerChange onradiuspickerchange, final onRadiusPickerChange onradiuspickerchange2, Runnable runnable) {
         super(context);
         this.velocityTracker = null;
         this.startedTrackingPointerId = -1;
@@ -138,7 +138,7 @@ public class ProximitySheet extends FrameLayout {
         this.containerView.setVisibility(4);
         addView(this.containerView, 0, LayoutHelper.createFrame(-1, -2, 80));
         this.useImperialSystem = LocaleController.getUseImperialSystemType();
-        this.currentUser = tLRPC$User;
+        this.currentUser = user;
         this.onRadiusChange = onradiuspickerchange;
         NumberPicker numberPicker = new NumberPicker(context);
         this.kmPicker = numberPicker;

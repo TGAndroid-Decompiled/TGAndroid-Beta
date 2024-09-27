@@ -28,9 +28,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -44,7 +42,7 @@ public class TableCell extends FrameLayout {
     private final BackupImageView fromImageView;
     private final TextView fromNameTextView;
     private final TextView fromTextView;
-    private TLRPC$TL_payments_checkedGiftCode giftCode;
+    private TLRPC.TL_payments_checkedGiftCode giftCode;
     private final TextView giftNameTextView;
     private final TextView giftTextView;
     private final Paint linePaint;
@@ -236,18 +234,18 @@ public class TableCell extends FrameLayout {
         return createTextView(null, z);
     }
 
-    public void setData(final TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, final Utilities.Callback callback) {
+    public void setData(final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, final Utilities.Callback callback) {
         TextView textView;
         View.OnClickListener onClickListener;
         FrameLayout frameLayout;
         View.OnClickListener onClickListener2;
-        this.giftCode = tLRPC$TL_payments_checkedGiftCode;
-        Date date = new Date(tLRPC$TL_payments_checkedGiftCode.date * 1000);
+        this.giftCode = tL_payments_checkedGiftCode;
+        Date date = new Date(tL_payments_checkedGiftCode.date * 1000);
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
-        this.reasonTextView.setTextColor(Theme.getColor(tLRPC$TL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
-        final TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_payments_checkedGiftCode.from_id)));
+        this.reasonTextView.setTextColor(Theme.getColor(tL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
+        final TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id)));
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-        if (tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
+        if (tL_payments_checkedGiftCode.via_giveaway) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "**");
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.BoostingGiveaway));
@@ -255,14 +253,14 @@ public class TableCell extends FrameLayout {
             this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
+                    Utilities.Callback.this.run(tL_payments_checkedGiftCode);
                 }
             }, this.resourcesProvider));
             textView = this.reasonTextView;
             onClickListener = new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
+                    Utilities.Callback.this.run(tL_payments_checkedGiftCode);
                 }
             };
         } else {
@@ -271,7 +269,7 @@ public class TableCell extends FrameLayout {
             onClickListener = null;
         }
         textView.setOnClickListener(onClickListener);
-        int i = tLRPC$TL_payments_checkedGiftCode.months;
+        int i = tL_payments_checkedGiftCode.months;
         this.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i, new Object[0])));
         if (chat != null) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
@@ -295,7 +293,7 @@ public class TableCell extends FrameLayout {
                 }
             };
         } else {
-            final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.from_id.user_id));
+            final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode.from_id.user_id));
             this.fromTextView.setText(Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
             this.fromImageView.setForUserOrChat(user, new AvatarDrawable(user));
             frameLayout = this.fromFrameLayout;
@@ -307,7 +305,7 @@ public class TableCell extends FrameLayout {
             };
         }
         frameLayout.setOnClickListener(onClickListener2);
-        if (tLRPC$TL_payments_checkedGiftCode.to_id == -1 && tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
+        if (tL_payments_checkedGiftCode.to_id == -1 && tL_payments_checkedGiftCode.via_giveaway) {
             SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
             spannableStringBuilder3.append((CharSequence) "**");
             spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
@@ -315,7 +313,7 @@ public class TableCell extends FrameLayout {
             this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
+                    Utilities.Callback.this.run(tL_payments_checkedGiftCode);
                 }
             }, this.resourcesProvider));
             this.toTextView.setText(LocaleController.getString(R.string.BoostingNoRecipient));
@@ -324,7 +322,7 @@ public class TableCell extends FrameLayout {
             ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).rightMargin = 0;
             this.toImageView.setVisibility(8);
         } else {
-            final TLRPC$User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.to_id));
+            final TLRPC.User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode.to_id));
             if (user2 != null) {
                 SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
                 spannableStringBuilder4.append((CharSequence) "**");
@@ -347,7 +345,7 @@ public class TableCell extends FrameLayout {
                 });
             }
         }
-        if (tLRPC$TL_payments_checkedGiftCode.boost != null) {
+        if (tL_payments_checkedGiftCode.boost != null) {
             this.tableRow4.setVisibility(8);
         }
     }

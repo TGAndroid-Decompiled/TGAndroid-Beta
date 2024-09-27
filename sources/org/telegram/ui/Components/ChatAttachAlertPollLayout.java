@@ -44,17 +44,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
-import org.telegram.tgnet.TLRPC$TL_poll;
-import org.telegram.tgnet.TLRPC$TL_pollAnswer;
-import org.telegram.tgnet.TLRPC$TL_pollResults;
-import org.telegram.tgnet.TLRPC$TL_textWithEntities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -220,7 +210,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onCustomEmojiSelected(long j, TLRPC$Document tLRPC$Document, String str, boolean z) {
+        public void onCustomEmojiSelected(long j, TLRPC.Document document, String str, boolean z) {
             EditTextBoldCursor editField;
             if (ChatAttachAlertPollLayout.this.currentCell == null || (editField = ChatAttachAlertPollLayout.this.currentCell.getEditField()) == null) {
                 return;
@@ -231,7 +221,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
             try {
                 SpannableString spannableString = new SpannableString(str);
-                AnimatedEmojiSpan animatedEmojiSpan = tLRPC$Document != null ? new AnimatedEmojiSpan(tLRPC$Document, editField.getPaint().getFontMetricsInt()) : new AnimatedEmojiSpan(j, editField.getPaint().getFontMetricsInt());
+                AnimatedEmojiSpan animatedEmojiSpan = document != null ? new AnimatedEmojiSpan(document, editField.getPaint().getFontMetricsInt()) : new AnimatedEmojiSpan(j, editField.getPaint().getFontMetricsInt());
                 animatedEmojiSpan.cacheType = 3;
                 spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
                 editField.setText(editField.getText().insert(selectionEnd, spannableString));
@@ -280,23 +270,23 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
-            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, tLRPC$StickerSet, tLRPC$InputStickerSet, z);
+        public void onShowStickerSet(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, stickerSet, inputStickerSet, z);
         }
 
         @Override
-        public void onStickerSelected(View view, TLRPC$Document tLRPC$Document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, tLRPC$Document, str, obj, sendAnimationData, z, i);
+        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i);
         }
 
         @Override
-        public void onStickerSetAdd(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, tLRPC$StickerSetCovered);
+        public void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, stickerSetCovered);
         }
 
         @Override
-        public void onStickerSetRemove(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, tLRPC$StickerSetCovered);
+        public void onStickerSetRemove(TLRPC.StickerSetCovered stickerSetCovered) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, stickerSetCovered);
         }
 
         @Override
@@ -801,7 +791,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public interface PollCreateActivityDelegate {
-        void sendPoll(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i);
+        void sendPoll(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i);
     }
 
     public class TouchHelperCallback extends ItemTouchHelper.Callback {
@@ -1310,8 +1300,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$onMenuItemClick$1(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
-        this.delegate.sendPoll(tLRPC$TL_messageMediaPoll, hashMap, z, i);
+    public void lambda$onMenuItemClick$1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
+        this.delegate.sendPoll(tL_messageMediaPoll, hashMap, z, i);
         this.parentAlert.dismiss(true);
     }
 
@@ -1507,7 +1497,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.answerSectionRow = i3;
         this.rowCount = i3 + 2;
         this.settingsHeaderRow = i3 + 1;
-        TLRPC$Chat currentChat = ((ChatActivity) this.parentAlert.baseFragment).getCurrentChat();
+        TLRPC.Chat currentChat = ((ChatActivity) this.parentAlert.baseFragment).getCurrentChat();
         if (!ChatObject.isChannel(currentChat) || currentChat.megagroup) {
             int i4 = this.rowCount;
             this.rowCount = i4 + 1;
@@ -1745,24 +1735,24 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 return;
             }
             CharSequence[] charSequenceArr = {getFixedString(this.questionString)};
-            ArrayList<TLRPC$MessageEntity> entities = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr, true);
+            ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr, true);
             CharSequence charSequence = charSequenceArr[0];
             int size = entities.size();
             for (int i4 = 0; i4 < size; i4++) {
-                TLRPC$MessageEntity tLRPC$MessageEntity = entities.get(i4);
-                if (tLRPC$MessageEntity.offset + tLRPC$MessageEntity.length > charSequence.length()) {
-                    tLRPC$MessageEntity.length = charSequence.length() - tLRPC$MessageEntity.offset;
+                TLRPC.MessageEntity messageEntity = entities.get(i4);
+                if (messageEntity.offset + messageEntity.length > charSequence.length()) {
+                    messageEntity.length = charSequence.length() - messageEntity.offset;
                 }
             }
-            final TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = new TLRPC$TL_messageMediaPoll();
-            TLRPC$TL_poll tLRPC$TL_poll = new TLRPC$TL_poll();
-            tLRPC$TL_messageMediaPoll.poll = tLRPC$TL_poll;
-            tLRPC$TL_poll.multiple_choice = this.multipleChoise;
-            tLRPC$TL_poll.quiz = this.quizPoll;
-            tLRPC$TL_poll.public_voters = !this.anonymousPoll;
-            tLRPC$TL_poll.question = new TLRPC$TL_textWithEntities();
-            tLRPC$TL_messageMediaPoll.poll.question.text = charSequence.toString();
-            tLRPC$TL_messageMediaPoll.poll.question.entities = entities;
+            final TLRPC.TL_messageMediaPoll tL_messageMediaPoll = new TLRPC.TL_messageMediaPoll();
+            TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
+            tL_messageMediaPoll.poll = tL_poll;
+            tL_poll.multiple_choice = this.multipleChoise;
+            tL_poll.quiz = this.quizPoll;
+            tL_poll.public_voters = !this.anonymousPoll;
+            tL_poll.question = new TLRPC.TL_textWithEntities();
+            tL_messageMediaPoll.poll.question.text = charSequence.toString();
+            tL_messageMediaPoll.poll.question.entities = entities;
             SerializedData serializedData = new SerializedData(10);
             int i5 = 0;
             while (true) {
@@ -1772,41 +1762,41 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 }
                 if (!TextUtils.isEmpty(getFixedString(charSequenceArr2[i5]))) {
                     CharSequence[] charSequenceArr3 = {getFixedString(this.answers[i5])};
-                    ArrayList<TLRPC$MessageEntity> entities2 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr3, true);
+                    ArrayList<TLRPC.MessageEntity> entities2 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr3, true);
                     CharSequence charSequence2 = charSequenceArr3[0];
                     int size2 = entities2.size();
                     for (int i6 = 0; i6 < size2; i6++) {
-                        TLRPC$MessageEntity tLRPC$MessageEntity2 = entities2.get(i6);
-                        if (tLRPC$MessageEntity2.offset + tLRPC$MessageEntity2.length > charSequence2.length()) {
-                            tLRPC$MessageEntity2.length = charSequence2.length() - tLRPC$MessageEntity2.offset;
+                        TLRPC.MessageEntity messageEntity2 = entities2.get(i6);
+                        if (messageEntity2.offset + messageEntity2.length > charSequence2.length()) {
+                            messageEntity2.length = charSequence2.length() - messageEntity2.offset;
                         }
                     }
-                    TLRPC$TL_pollAnswer tLRPC$TL_pollAnswer = new TLRPC$TL_pollAnswer();
-                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
-                    tLRPC$TL_pollAnswer.text = tLRPC$TL_textWithEntities;
-                    tLRPC$TL_textWithEntities.text = charSequence2.toString();
-                    tLRPC$TL_pollAnswer.text.entities = entities2;
-                    tLRPC$TL_pollAnswer.option = r4;
-                    byte[] bArr = {(byte) (tLRPC$TL_messageMediaPoll.poll.answers.size() + 48)};
-                    tLRPC$TL_messageMediaPoll.poll.answers.add(tLRPC$TL_pollAnswer);
+                    TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
+                    TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+                    tL_pollAnswer.text = tL_textWithEntities;
+                    tL_textWithEntities.text = charSequence2.toString();
+                    tL_pollAnswer.text.entities = entities2;
+                    tL_pollAnswer.option = r4;
+                    byte[] bArr = {(byte) (tL_messageMediaPoll.poll.answers.size() + 48)};
+                    tL_messageMediaPoll.poll.answers.add(tL_pollAnswer);
                     if ((this.multipleChoise || this.quizPoll) && this.answersChecks[i5]) {
-                        serializedData.writeByte(tLRPC$TL_pollAnswer.option[0]);
+                        serializedData.writeByte(tL_pollAnswer.option[0]);
                     }
                 }
                 i5++;
             }
             final HashMap hashMap = new HashMap();
             hashMap.put("answers", Utilities.bytesToHex(serializedData.toByteArray()));
-            tLRPC$TL_messageMediaPoll.results = new TLRPC$TL_pollResults();
+            tL_messageMediaPoll.results = new TLRPC.TL_pollResults();
             CharSequence fixedString = getFixedString(this.solutionString);
             if (fixedString != null) {
-                tLRPC$TL_messageMediaPoll.results.solution = fixedString.toString();
-                ArrayList<TLRPC$MessageEntity> entities3 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(new CharSequence[]{fixedString}, true);
+                tL_messageMediaPoll.results.solution = fixedString.toString();
+                ArrayList<TLRPC.MessageEntity> entities3 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(new CharSequence[]{fixedString}, true);
                 if (entities3 != null && !entities3.isEmpty()) {
-                    tLRPC$TL_messageMediaPoll.results.solution_entities = entities3;
+                    tL_messageMediaPoll.results.solution_entities = entities3;
                 }
-                if (!TextUtils.isEmpty(tLRPC$TL_messageMediaPoll.results.solution)) {
-                    tLRPC$TL_messageMediaPoll.results.flags |= 16;
+                if (!TextUtils.isEmpty(tL_messageMediaPoll.results.solution)) {
+                    tL_messageMediaPoll.results.flags |= 16;
                 }
             }
             ChatActivity chatActivity = (ChatActivity) this.parentAlert.baseFragment;
@@ -1814,11 +1804,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i7) {
-                        ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$1(tLRPC$TL_messageMediaPoll, hashMap, z, i7);
+                        ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$1(tL_messageMediaPoll, hashMap, z, i7);
                     }
                 });
             } else {
-                this.delegate.sendPoll(tLRPC$TL_messageMediaPoll, hashMap, true, 0);
+                this.delegate.sendPoll(tL_messageMediaPoll, hashMap, true, 0);
                 this.parentAlert.dismiss(true);
             }
         }

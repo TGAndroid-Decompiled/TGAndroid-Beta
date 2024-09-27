@@ -11,14 +11,7 @@ import android.util.SparseBooleanArray;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$MessageFwdHeader;
-import org.telegram.tgnet.TLRPC$TL_messageEntitySpoiler;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
-import org.telegram.tgnet.TLRPC$TL_pollAnswerVoters;
-import org.telegram.tgnet.TLRPC$TL_pollResults;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.MessagePreviewView;
 
@@ -33,7 +26,7 @@ public class MessagePreviewParams {
     public boolean hideForwardSendersName;
     public boolean isSecret;
     public boolean isVideo;
-    public TLRPC$WebPage linkMedia;
+    public TLRPC.WebPage linkMedia;
     public Messages linkMessage;
     public boolean multipleUsers;
     public boolean noforwards;
@@ -43,7 +36,7 @@ public class MessagePreviewParams {
     public int quoteStart;
     public Messages replyMessage;
     public boolean singleLink;
-    public TLRPC$WebPage webpage;
+    public TLRPC.WebPage webpage;
     public boolean webpagePhoto;
     public boolean webpageSmall;
     public boolean webpageTop;
@@ -56,7 +49,7 @@ public class MessagePreviewParams {
         public boolean hasText;
         public ArrayList<MessageObject> messages;
         private Boolean out;
-        public ArrayList<TLRPC$TL_pollAnswerVoters> pollChosenAnswers;
+        public ArrayList<TLRPC.TL_pollAnswerVoters> pollChosenAnswers;
         public ArrayList<MessageObject> previewMessages;
         public SparseBooleanArray selectedIds;
         private int type;
@@ -82,10 +75,10 @@ public class MessagePreviewParams {
                 }
                 MessageObject previewMessage = MessagePreviewParams.this.toPreviewMessage(messageObject, bool, i);
                 if (!this.hasSpoilers) {
-                    Iterator it = previewMessage.messageOwner.entities.iterator();
+                    Iterator<TLRPC.MessageEntity> it = previewMessage.messageOwner.entities.iterator();
                     while (true) {
                         if (it.hasNext()) {
-                            if (((TLRPC$MessageEntity) it.next()) instanceof TLRPC$TL_messageEntitySpoiler) {
+                            if (it.next() instanceof TLRPC.TL_messageEntitySpoiler) {
                                 this.hasSpoilers = true;
                                 break;
                             }
@@ -105,31 +98,31 @@ public class MessagePreviewParams {
                 }
                 this.previewMessages.add(i2, previewMessage);
                 if (messageObject.isPoll()) {
-                    TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) messageObject.messageOwner.media;
+                    TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media;
                     PreviewMediaPoll previewMediaPoll = new PreviewMediaPoll();
-                    previewMediaPoll.poll = tLRPC$TL_messageMediaPoll.poll;
-                    previewMediaPoll.provider = tLRPC$TL_messageMediaPoll.provider;
-                    TLRPC$TL_pollResults tLRPC$TL_pollResults = new TLRPC$TL_pollResults();
-                    previewMediaPoll.results = tLRPC$TL_pollResults;
-                    int i4 = tLRPC$TL_messageMediaPoll.results.total_voters;
-                    tLRPC$TL_pollResults.total_voters = i4;
+                    previewMediaPoll.poll = tL_messageMediaPoll.poll;
+                    previewMediaPoll.provider = tL_messageMediaPoll.provider;
+                    TLRPC.TL_pollResults tL_pollResults = new TLRPC.TL_pollResults();
+                    previewMediaPoll.results = tL_pollResults;
+                    int i4 = tL_messageMediaPoll.results.total_voters;
+                    tL_pollResults.total_voters = i4;
                     previewMediaPoll.totalVotersCached = i4;
                     previewMessage.messageOwner.media = previewMediaPoll;
                     if (messageObject.canUnvote()) {
-                        int size = tLRPC$TL_messageMediaPoll.results.results.size();
+                        int size = tL_messageMediaPoll.results.results.size();
                         for (int i5 = 0; i5 < size; i5++) {
-                            TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters = (TLRPC$TL_pollAnswerVoters) tLRPC$TL_messageMediaPoll.results.results.get(i5);
-                            if (tLRPC$TL_pollAnswerVoters.chosen) {
-                                TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters2 = new TLRPC$TL_pollAnswerVoters();
-                                tLRPC$TL_pollAnswerVoters2.chosen = tLRPC$TL_pollAnswerVoters.chosen;
-                                tLRPC$TL_pollAnswerVoters2.correct = tLRPC$TL_pollAnswerVoters.correct;
-                                tLRPC$TL_pollAnswerVoters2.flags = tLRPC$TL_pollAnswerVoters.flags;
-                                tLRPC$TL_pollAnswerVoters2.option = tLRPC$TL_pollAnswerVoters.option;
-                                tLRPC$TL_pollAnswerVoters2.voters = tLRPC$TL_pollAnswerVoters.voters;
-                                this.pollChosenAnswers.add(tLRPC$TL_pollAnswerVoters2);
-                                previewMediaPoll.results.results.add(tLRPC$TL_pollAnswerVoters2);
+                            TLRPC.TL_pollAnswerVoters tL_pollAnswerVoters = tL_messageMediaPoll.results.results.get(i5);
+                            if (tL_pollAnswerVoters.chosen) {
+                                TLRPC.TL_pollAnswerVoters tL_pollAnswerVoters2 = new TLRPC.TL_pollAnswerVoters();
+                                tL_pollAnswerVoters2.chosen = tL_pollAnswerVoters.chosen;
+                                tL_pollAnswerVoters2.correct = tL_pollAnswerVoters.correct;
+                                tL_pollAnswerVoters2.flags = tL_pollAnswerVoters.flags;
+                                tL_pollAnswerVoters2.option = tL_pollAnswerVoters.option;
+                                tL_pollAnswerVoters2.voters = tL_pollAnswerVoters.voters;
+                                this.pollChosenAnswers.add(tL_pollAnswerVoters2);
+                                previewMediaPoll.results.results.add(tL_pollAnswerVoters2);
                             } else {
-                                previewMediaPoll.results.results.add(tLRPC$TL_pollAnswerVoters);
+                                previewMediaPoll.results.results.add(tL_pollAnswerVoters);
                             }
                         }
                     }
@@ -197,7 +190,7 @@ public class MessagePreviewParams {
         }
     }
 
-    public static class PreviewMediaPoll extends TLRPC$TL_messageMediaPoll {
+    public static class PreviewMediaPoll extends TLRPC.TL_messageMediaPoll {
         public int totalVotersCached;
     }
 
@@ -252,11 +245,11 @@ public class MessagePreviewParams {
     }
 
     public void checkCurrentLink(MessageObject messageObject) {
-        TLRPC$WebPage tLRPC$WebPage;
+        TLRPC.WebPage webPage;
         this.currentLink = null;
         if (messageObject != null) {
             CharSequence charSequence = messageObject.messageText;
-            if (!(charSequence instanceof Spanned) || (tLRPC$WebPage = this.webpage) == null || tLRPC$WebPage.url == null) {
+            if (!(charSequence instanceof Spanned) || (webPage = this.webpage) == null || webPage.url == null) {
                 return;
             }
             Spanned spanned = (Spanned) charSequence;
@@ -334,7 +327,7 @@ public class MessagePreviewParams {
 
     public void updateForward(ArrayList<MessageObject> arrayList, long j) {
         long j2;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
+        TLRPC.MessageFwdHeader messageFwdHeader;
         this.hasCaption = false;
         this.hasSenders = false;
         this.isSecret = DialogObject.isEncryptedDialog(j);
@@ -349,8 +342,8 @@ public class MessagePreviewParams {
             if (!TextUtils.isEmpty(messageObject.caption)) {
                 this.hasCaption = true;
             }
-            if (!this.isSecret && (tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from) != null && tLRPC$MessageFwdHeader.from_id == null && !arrayList2.contains(tLRPC$MessageFwdHeader.from_name)) {
-                arrayList2.add(tLRPC$MessageFwdHeader.from_name);
+            if (!this.isSecret && (messageFwdHeader = messageObject.messageOwner.fwd_from) != null && messageFwdHeader.from_id == null && !arrayList2.contains(messageFwdHeader.from_name)) {
+                arrayList2.add(messageFwdHeader.from_name);
             }
         }
         Boolean bool = Boolean.TRUE;
@@ -366,7 +359,7 @@ public class MessagePreviewParams {
             if (messageObject2.isFromUser()) {
                 j2 = messageObject2.messageOwner.from_id.user_id;
             } else {
-                TLRPC$Chat chat = MessagesController.getInstance(messageObject2.currentAccount).getChat(Long.valueOf(messageObject2.messageOwner.peer_id.channel_id));
+                TLRPC.Chat chat = MessagesController.getInstance(messageObject2.currentAccount).getChat(Long.valueOf(messageObject2.messageOwner.peer_id.channel_id));
                 j2 = -((ChatObject.isChannel(chat) && chat.megagroup && messageObject2.isForwardedChannelPost()) ? messageObject2.messageOwner.fwd_from.from_id : messageObject2.messageOwner.peer_id).channel_id;
             }
             if (!arrayList3.contains(Long.valueOf(j2))) {
@@ -378,7 +371,7 @@ public class MessagePreviewParams {
         }
     }
 
-    public void updateLink(int r8, org.telegram.tgnet.TLRPC$WebPage r9, java.lang.CharSequence r10, org.telegram.messenger.MessageObject r11, org.telegram.ui.ChatActivity.ReplyQuote r12, org.telegram.messenger.MessageObject r13) {
+    public void updateLink(int r8, org.telegram.tgnet.TLRPC.WebPage r9, java.lang.CharSequence r10, org.telegram.messenger.MessageObject r11, org.telegram.ui.ChatActivity.ReplyQuote r12, org.telegram.messenger.MessageObject r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagePreviewParams.updateLink(int, org.telegram.tgnet.TLRPC$WebPage, java.lang.CharSequence, org.telegram.messenger.MessageObject, org.telegram.ui.ChatActivity$ReplyQuote, org.telegram.messenger.MessageObject):void");
     }
 

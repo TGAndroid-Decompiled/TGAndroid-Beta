@@ -10,7 +10,7 @@ import androidx.core.app.NotificationManagerCompat;
 import java.util.ArrayList;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 
 public class LocationSharingService extends Service implements NotificationCenter.NotificationCenterDelegate {
@@ -74,7 +74,7 @@ public class LocationSharingService extends Service implements NotificationCente
                 formatPluralString = UserObject.getFirstName(messagesController.getUser(Long.valueOf(dialogId)));
                 i = R.string.AttachLiveLocationIsSharing;
             } else {
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-dialogId));
+                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-dialogId));
                 formatPluralString = chat != null ? chat.title : "";
                 i = R.string.AttachLiveLocationIsSharingChat;
             }

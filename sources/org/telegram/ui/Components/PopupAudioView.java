@@ -14,8 +14,7 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.SeekBar;
@@ -307,9 +306,9 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
                 if (i2 >= this.currentMessageObject.getDocument().attributes.size()) {
                     break;
                 }
-                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = this.currentMessageObject.getDocument().attributes.get(i2);
-                if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) {
-                    i = (int) tLRPC$DocumentAttribute.duration;
+                TLRPC.DocumentAttribute documentAttribute = this.currentMessageObject.getDocument().attributes.get(i2);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                    i = (int) documentAttribute.duration;
                     break;
                 }
                 i2++;

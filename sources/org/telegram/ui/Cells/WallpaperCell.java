@@ -25,11 +25,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_wallPaper;
-import org.telegram.tgnet.TLRPC$WallPaperSettings;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox;
@@ -177,7 +173,7 @@ public abstract class WallpaperCell extends FrameLayout {
         }
 
         public void setWallpaper(Object obj, Object obj2, Drawable drawable, boolean z) {
-            TLRPC$PhotoSize tLRPC$PhotoSize;
+            TLRPC.PhotoSize photoSize;
             BackupImageView backupImageView;
             ImageLocation forPhoto;
             ImageLocation forPhoto2;
@@ -205,25 +201,25 @@ public abstract class WallpaperCell extends FrameLayout {
             this.isSelected = obj == obj2;
             String str2 = "180_180";
             String str3 = "100_100_b";
-            if (obj instanceof TLRPC$TL_wallPaper) {
-                ?? r1 = (TLRPC$TL_wallPaper) obj;
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(r1.document.thumbs, AndroidUtilities.dp(100));
-                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(r1.document.thumbs, AndroidUtilities.dp(180));
-                tLRPC$PhotoSize = closestPhotoSizeWithSize2 != closestPhotoSizeWithSize ? closestPhotoSizeWithSize2 : null;
-                j = tLRPC$PhotoSize != null ? tLRPC$PhotoSize.size : r1.document.size;
+            if (obj instanceof TLRPC.TL_wallPaper) {
+                ?? r1 = (TLRPC.TL_wallPaper) obj;
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(r1.document.thumbs, AndroidUtilities.dp(100));
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(r1.document.thumbs, AndroidUtilities.dp(180));
+                photoSize = closestPhotoSizeWithSize2 != closestPhotoSizeWithSize ? closestPhotoSizeWithSize2 : null;
+                j = photoSize != null ? photoSize.size : r1.document.size;
                 if (!r1.pattern) {
                     backupImageView = this.imageView;
-                    TLRPC$Document tLRPC$Document = r1.document;
-                    forPhoto = tLRPC$PhotoSize != null ? ImageLocation.getForDocument(tLRPC$PhotoSize, tLRPC$Document) : ImageLocation.getForDocument(tLRPC$Document);
+                    TLRPC.Document document = r1.document;
+                    forPhoto = photoSize != null ? ImageLocation.getForDocument(photoSize, document) : ImageLocation.getForDocument(document);
                     forPhoto2 = ImageLocation.getForDocument(closestPhotoSizeWithSize, r1.document);
                     searchImage = r1;
                     backupImageView.setImage(forPhoto, str2, forPhoto2, str3, "jpg", j, 1, searchImage);
                     return;
                 }
-                TLRPC$WallPaperSettings tLRPC$WallPaperSettings = r1.settings;
-                if (tLRPC$WallPaperSettings.third_background_color != 0) {
-                    TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = r1.settings;
-                    MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(tLRPC$WallPaperSettings2.background_color, tLRPC$WallPaperSettings2.second_background_color, tLRPC$WallPaperSettings2.third_background_color, tLRPC$WallPaperSettings2.fourth_background_color, true);
+                TLRPC.WallPaperSettings wallPaperSettings = r1.settings;
+                if (wallPaperSettings.third_background_color != 0) {
+                    TLRPC.WallPaperSettings wallPaperSettings2 = r1.settings;
+                    MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color, true);
                     if (r1.settings.intensity >= 0 || !Theme.getActiveTheme().isDark()) {
                         this.imageView.setBackground(motionBackgroundDrawable);
                         if (Build.VERSION.SDK_INT >= 29) {
@@ -234,24 +230,24 @@ public abstract class WallpaperCell extends FrameLayout {
                     } else {
                         this.imageView.getImageReceiver().setGradientBitmap(motionBackgroundDrawable.getBitmap());
                     }
-                    TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = r1.settings;
-                    patternColor2 = MotionBackgroundDrawable.getPatternColor(tLRPC$WallPaperSettings3.background_color, tLRPC$WallPaperSettings3.second_background_color, tLRPC$WallPaperSettings3.third_background_color, tLRPC$WallPaperSettings3.fourth_background_color);
+                    TLRPC.WallPaperSettings wallPaperSettings3 = r1.settings;
+                    patternColor2 = MotionBackgroundDrawable.getPatternColor(wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
                 } else {
-                    this.imageView.setBackgroundColor(Theme.getWallpaperColor(tLRPC$WallPaperSettings.background_color));
+                    this.imageView.setBackgroundColor(Theme.getWallpaperColor(wallPaperSettings.background_color));
                     patternColor2 = AndroidUtilities.getPatternColor(r1.settings.background_color);
                 }
                 if (Build.VERSION.SDK_INT < 29 || r1.settings.third_background_color == 0) {
                     this.imageView.getImageReceiver().setColorFilter(new PorterDuffColorFilter(AndroidUtilities.getPatternColor(patternColor2), PorterDuff.Mode.SRC_IN));
                 }
                 ?? r8 = this.imageView;
-                TLRPC$Document tLRPC$Document2 = r1.document;
-                if (tLRPC$PhotoSize != null) {
-                    forDocument = ImageLocation.getForDocument(tLRPC$PhotoSize, tLRPC$Document2);
+                TLRPC.Document document2 = r1.document;
+                if (photoSize != null) {
+                    forDocument = ImageLocation.getForDocument(photoSize, document2);
                     imageLocation = ImageLocation.getForDocument(closestPhotoSizeWithSize, r1.document);
                     str = "jpg";
                     i = 1;
                 } else {
-                    forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document2);
+                    forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize, document2);
                     str = "jpg";
                     i = 1;
                     imageLocation = null;
@@ -305,7 +301,7 @@ public abstract class WallpaperCell extends FrameLayout {
                 }
                 file = colorWallpaper.path;
                 if (file == null) {
-                    TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(colorWallpaper.pattern.document.thumbs, 100);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(colorWallpaper.pattern.document.thumbs, 100);
                     this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize3, colorWallpaper.pattern.document), str2, null, null, "jpg", closestPhotoSizeWithSize3 != null ? closestPhotoSizeWithSize3.size : colorWallpaper.pattern.document.size, 1, colorWallpaper.pattern);
                     this.imageView.getImageReceiver().setAlpha(Math.abs(colorWallpaper.intensity));
                     if (Build.VERSION.SDK_INT < 29 || colorWallpaper.gradientColor2 == 0) {
@@ -321,17 +317,17 @@ public abstract class WallpaperCell extends FrameLayout {
                         return;
                     }
                     MediaController.SearchImage searchImage2 = (MediaController.SearchImage) obj;
-                    TLRPC$Photo tLRPC$Photo = searchImage2.photo;
-                    if (tLRPC$Photo == null) {
+                    TLRPC.Photo photo = searchImage2.photo;
+                    if (photo == null) {
                         this.imageView.setImage(searchImage2.thumbUrl, str2, null);
                         return;
                     }
-                    TLRPC$PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.dp(100));
-                    TLRPC$PhotoSize closestPhotoSizeWithSize5 = FileLoader.getClosestPhotoSizeWithSize(searchImage2.photo.sizes, AndroidUtilities.dp(180));
-                    tLRPC$PhotoSize = closestPhotoSizeWithSize5 != closestPhotoSizeWithSize4 ? closestPhotoSizeWithSize5 : null;
-                    int i2 = tLRPC$PhotoSize != null ? tLRPC$PhotoSize.size : 0;
+                    TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(100));
+                    TLRPC.PhotoSize closestPhotoSizeWithSize5 = FileLoader.getClosestPhotoSizeWithSize(searchImage2.photo.sizes, AndroidUtilities.dp(180));
+                    photoSize = closestPhotoSizeWithSize5 != closestPhotoSizeWithSize4 ? closestPhotoSizeWithSize5 : null;
+                    int i2 = photoSize != null ? photoSize.size : 0;
                     backupImageView = this.imageView;
-                    forPhoto = ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage2.photo);
+                    forPhoto = ImageLocation.getForPhoto(photoSize, searchImage2.photo);
                     forPhoto2 = ImageLocation.getForPhoto(closestPhotoSizeWithSize4, searchImage2.photo);
                     j = i2;
                     searchImage = searchImage2;

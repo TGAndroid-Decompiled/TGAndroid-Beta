@@ -32,10 +32,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_theme;
-import org.telegram.tgnet.TLRPC$TL_wallPaper;
-import org.telegram.tgnet.TLRPC$WallPaper;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
@@ -127,20 +124,20 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         }
 
         public void lambda$parseTheme$0(TLObject tLObject) {
-            if (!(tLObject instanceof TLRPC$TL_wallPaper)) {
+            if (!(tLObject instanceof TLRPC.TL_wallPaper)) {
                 this.themeInfo.badWallpaper = true;
                 return;
             }
-            TLRPC$WallPaper tLRPC$WallPaper = (TLRPC$WallPaper) tLObject;
-            String attachFileName = FileLoader.getAttachFileName(tLRPC$WallPaper.document);
+            TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
+            String attachFileName = FileLoader.getAttachFileName(wallPaper.document);
             if (ThemesHorizontalListCell.this.loadingThemes.containsKey(attachFileName)) {
                 return;
             }
             ThemesHorizontalListCell.this.loadingThemes.put(attachFileName, this.themeInfo);
-            FileLoader.getInstance(this.themeInfo.account).loadFile(tLRPC$WallPaper.document, tLRPC$WallPaper, 1, 1);
+            FileLoader.getInstance(this.themeInfo.account).loadFile(wallPaper.document, wallPaper, 1, 1);
         }
 
-        public void lambda$parseTheme$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$parseTheme$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -155,14 +152,14 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
 
         @Override
         protected void onAttachedToWindow() {
-            TLRPC$TL_theme tLRPC$TL_theme;
+            TLRPC.TL_theme tL_theme;
             super.onAttachedToWindow();
             this.button.setChecked(this.themeInfo == (ThemesHorizontalListCell.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme()), false);
             Theme.ThemeInfo themeInfo = this.themeInfo;
-            if (themeInfo == null || (tLRPC$TL_theme = themeInfo.info) == null || themeInfo.themeLoaded) {
+            if (themeInfo == null || (tL_theme = themeInfo.info) == null || themeInfo.themeLoaded) {
                 return;
             }
-            if (ThemesHorizontalListCell.this.loadingThemes.containsKey(FileLoader.getAttachFileName(tLRPC$TL_theme.document)) || ThemesHorizontalListCell.this.loadingWallpapers.containsKey(this.themeInfo)) {
+            if (ThemesHorizontalListCell.this.loadingThemes.containsKey(FileLoader.getAttachFileName(tL_theme.document)) || ThemesHorizontalListCell.this.loadingWallpapers.containsKey(this.themeInfo)) {
                 return;
             }
             this.themeInfo.themeLoaded = true;
@@ -230,7 +227,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
 
         public void setTheme(Theme.ThemeInfo themeInfo, boolean z, boolean z2) {
             Theme.ThemeInfo themeInfo2;
-            TLRPC$TL_theme tLRPC$TL_theme;
+            TLRPC.TL_theme tL_theme;
             this.themeInfo = themeInfo;
             this.isFirst = z2;
             this.isLast = z;
@@ -244,8 +241,8 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                 themeInfo3.setPreviewInColor(Theme.getDefaultColor(Theme.key_chat_inBubble));
                 this.themeInfo.setPreviewOutColor(Theme.getDefaultColor(Theme.key_chat_outBubble));
                 boolean exists = new File(this.themeInfo.pathToFile).exists();
-                if ((!exists || !parseTheme() || !exists) && (tLRPC$TL_theme = (themeInfo2 = this.themeInfo).info) != null) {
-                    if (tLRPC$TL_theme.document != null) {
+                if ((!exists || !parseTheme() || !exists) && (tL_theme = (themeInfo2 = this.themeInfo).info) != null) {
+                    if (tL_theme.document != null) {
                         themeInfo2.themeLoaded = false;
                         this.placeholderAlpha = 1.0f;
                         Drawable mutate = getResources().getDrawable(R.drawable.msg_theme).mutate();
@@ -258,8 +255,8 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                             if (!ThemesHorizontalListCell.this.loadingThemes.containsKey(attachFileName)) {
                                 ThemesHorizontalListCell.this.loadingThemes.put(attachFileName, this.themeInfo);
                                 FileLoader fileLoader = FileLoader.getInstance(this.themeInfo.account);
-                                TLRPC$TL_theme tLRPC$TL_theme2 = this.themeInfo.info;
-                                fileLoader.loadFile(tLRPC$TL_theme2.document, tLRPC$TL_theme2, 1, 1);
+                                TLRPC.TL_theme tL_theme2 = this.themeInfo.info;
+                                fileLoader.loadFile(tL_theme2.document, tL_theme2, 1, 1);
                             }
                         }
                     } else {
@@ -535,12 +532,12 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
     }
 
     public void selectTheme(Theme.ThemeInfo themeInfo) {
-        TLRPC$TL_theme tLRPC$TL_theme = themeInfo.info;
-        if (tLRPC$TL_theme != null) {
+        TLRPC.TL_theme tL_theme = themeInfo.info;
+        if (tL_theme != null) {
             if (!themeInfo.themeLoaded) {
                 return;
             }
-            if (tLRPC$TL_theme.document == null) {
+            if (tL_theme.document == null) {
                 BaseFragment baseFragment = this.fragment;
                 if (baseFragment != null) {
                     baseFragment.presentFragment(new ThemeSetUrlActivity(themeInfo, null, true));

@@ -88,8 +88,7 @@ import org.telegram.messenger.camera.CameraInfo;
 import org.telegram.messenger.camera.CameraSession;
 import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
-import org.telegram.tgnet.TLRPC$InputEncryptedFile;
-import org.telegram.tgnet.TLRPC$InputFile;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.InstantCameraView;
@@ -123,8 +122,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     private int currentAccount;
     private Delegate delegate;
     public boolean drawBlur;
-    private TLRPC$InputEncryptedFile encryptedFile;
-    private TLRPC$InputFile file;
+    private TLRPC.InputEncryptedFile encryptedFile;
+    private TLRPC.InputFile file;
     ValueAnimator finishZoomTransition;
     private Bitmap firstFrameThumb;
     private final FlashViews.ImageViewInvertable flashButton;
@@ -3128,8 +3127,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             if (file == null || !file.getAbsolutePath().equals(str)) {
                 return;
             }
-            this.file = (TLRPC$InputFile) objArr[1];
-            this.encryptedFile = (TLRPC$InputEncryptedFile) objArr[2];
+            this.file = (TLRPC.InputFile) objArr[1];
+            this.encryptedFile = (TLRPC.InputEncryptedFile) objArr[2];
             this.size = ((Long) objArr[5]).longValue();
             if (this.encryptedFile != null) {
                 this.key = (byte[]) objArr[3];

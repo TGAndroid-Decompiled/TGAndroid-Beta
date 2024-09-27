@@ -144,7 +144,7 @@ public class StoryPrivacyButton extends View {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    public boolean set(boolean r5, org.telegram.tgnet.tl.TL_stories$StoryItem r6, boolean r7) {
+    public boolean set(boolean r5, org.telegram.tgnet.tl.TL_stories.StoryItem r6, boolean r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryPrivacyButton.set(boolean, org.telegram.tgnet.tl.TL_stories$StoryItem, boolean):boolean");
     }
 

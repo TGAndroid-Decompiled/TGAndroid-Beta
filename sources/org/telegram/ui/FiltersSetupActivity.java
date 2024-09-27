@@ -32,13 +32,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$DialogFilter;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$TL_dialogFilterSuggested;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_toggleDialogFilterTags;
-import org.telegram.tgnet.TLRPC$TL_messages_updateDialogFilter;
-import org.telegram.tgnet.TLRPC$TL_messages_updateDialogFiltersOrder;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -360,7 +354,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
     public static class ItemInner extends AdapterWithDiffUtils.Item {
         MessagesController.DialogFilter filter;
-        TLRPC$TL_dialogFilterSuggested suggested;
+        TLRPC.TL_dialogFilterSuggested suggested;
         CharSequence text;
 
         public ItemInner(int i) {
@@ -401,9 +395,9 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             return itemInner;
         }
 
-        public static ItemInner asSuggested(TLRPC$TL_dialogFilterSuggested tLRPC$TL_dialogFilterSuggested) {
+        public static ItemInner asSuggested(TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested) {
             ItemInner itemInner = new ItemInner(5);
-            itemInner.suggested = tLRPC$TL_dialogFilterSuggested;
+            itemInner.suggested = tL_dialogFilterSuggested;
             return itemInner;
         }
 
@@ -436,13 +430,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 }
             }
             if (i3 == 5) {
-                TLRPC$TL_dialogFilterSuggested tLRPC$TL_dialogFilterSuggested = this.suggested;
-                boolean z2 = tLRPC$TL_dialogFilterSuggested == null;
-                TLRPC$TL_dialogFilterSuggested tLRPC$TL_dialogFilterSuggested2 = itemInner.suggested;
-                if (z2 != (tLRPC$TL_dialogFilterSuggested2 == null)) {
+                TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.suggested;
+                boolean z2 = tL_dialogFilterSuggested == null;
+                TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = itemInner.suggested;
+                if (z2 != (tL_dialogFilterSuggested2 == null)) {
                     return false;
                 }
-                if (tLRPC$TL_dialogFilterSuggested != null && tLRPC$TL_dialogFilterSuggested.filter.id != tLRPC$TL_dialogFilterSuggested2.filter.id) {
+                if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.id != tL_dialogFilterSuggested2.filter.id) {
                     return false;
                 }
             }
@@ -491,7 +485,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             FiltersSetupActivity.this.getMessagesStorage().deleteDialogFilter(dialogFilter);
         }
 
-        public void lambda$onCreateViewHolder$4(final AlertDialog alertDialog, final MessagesController.DialogFilter dialogFilter, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onCreateViewHolder$4(final AlertDialog alertDialog, final MessagesController.DialogFilter dialogFilter, TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -509,12 +503,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             } else {
                 alertDialog = null;
             }
-            TLRPC$TL_messages_updateDialogFilter tLRPC$TL_messages_updateDialogFilter = new TLRPC$TL_messages_updateDialogFilter();
-            tLRPC$TL_messages_updateDialogFilter.id = dialogFilter.id;
-            FiltersSetupActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFilter, new RequestDelegate() {
+            TLRPC.TL_messages_updateDialogFilter tL_messages_updateDialogFilter = new TLRPC.TL_messages_updateDialogFilter();
+            tL_messages_updateDialogFilter.id = dialogFilter.id;
+            FiltersSetupActivity.this.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$4(alertDialog, dialogFilter, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$4(alertDialog, dialogFilter, tLObject, tL_error);
                 }
             });
         }
@@ -569,13 +563,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             makeOptions.show();
         }
 
-        public void lambda$onCreateViewHolder$8(TLRPC$TL_dialogFilterSuggested tLRPC$TL_dialogFilterSuggested) {
-            FiltersSetupActivity.this.getMessagesController().suggestedFilters.remove(tLRPC$TL_dialogFilterSuggested);
+        public void lambda$onCreateViewHolder$8(TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested) {
+            FiltersSetupActivity.this.getMessagesController().suggestedFilters.remove(tL_dialogFilterSuggested);
             FiltersSetupActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
         }
 
         public void lambda$onCreateViewHolder$9(SuggestedFilterCell suggestedFilterCell, View view) {
-            final TLRPC$TL_dialogFilterSuggested suggestedFilter = suggestedFilterCell.getSuggestedFilter();
+            final TLRPC.TL_dialogFilterSuggested suggestedFilter = suggestedFilterCell.getSuggestedFilter();
             MessagesController.DialogFilter dialogFilter = new MessagesController.DialogFilter();
             dialogFilter.name = suggestedFilter.filter.title;
             dialogFilter.id = 2;
@@ -587,44 +581,44 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             dialogFilter.pendingUnreadCount = -1;
             int i = 0;
             while (i < 2) {
-                TLRPC$DialogFilter tLRPC$DialogFilter = suggestedFilter.filter;
-                ArrayList arrayList = i == 0 ? tLRPC$DialogFilter.include_peers : tLRPC$DialogFilter.exclude_peers;
+                TLRPC.DialogFilter dialogFilter2 = suggestedFilter.filter;
+                ArrayList<TLRPC.InputPeer> arrayList = i == 0 ? dialogFilter2.include_peers : dialogFilter2.exclude_peers;
                 ArrayList<Long> arrayList2 = i == 0 ? dialogFilter.alwaysShow : dialogFilter.neverShow;
                 int size = arrayList.size();
                 for (int i2 = 0; i2 < size; i2++) {
-                    TLRPC$InputPeer tLRPC$InputPeer = (TLRPC$InputPeer) arrayList.get(i2);
-                    long j = tLRPC$InputPeer.user_id;
+                    TLRPC.InputPeer inputPeer = arrayList.get(i2);
+                    long j = inputPeer.user_id;
                     if (j == 0) {
-                        long j2 = tLRPC$InputPeer.chat_id;
-                        j = j2 != 0 ? -j2 : -tLRPC$InputPeer.channel_id;
+                        long j2 = inputPeer.chat_id;
+                        j = j2 != 0 ? -j2 : -inputPeer.channel_id;
                     }
                     arrayList2.add(Long.valueOf(j));
                 }
                 i++;
             }
-            TLRPC$DialogFilter tLRPC$DialogFilter2 = suggestedFilter.filter;
-            if (tLRPC$DialogFilter2.groups) {
+            TLRPC.DialogFilter dialogFilter3 = suggestedFilter.filter;
+            if (dialogFilter3.groups) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_GROUPS;
             }
-            if (tLRPC$DialogFilter2.bots) {
+            if (dialogFilter3.bots) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_BOTS;
             }
-            if (tLRPC$DialogFilter2.contacts) {
+            if (dialogFilter3.contacts) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
             }
-            if (tLRPC$DialogFilter2.non_contacts) {
+            if (dialogFilter3.non_contacts) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
             }
-            if (tLRPC$DialogFilter2.broadcasts) {
+            if (dialogFilter3.broadcasts) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
             }
-            if (tLRPC$DialogFilter2.exclude_archived) {
+            if (dialogFilter3.exclude_archived) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED;
             }
-            if (tLRPC$DialogFilter2.exclude_read) {
+            if (dialogFilter3.exclude_read) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ;
             }
-            if (tLRPC$DialogFilter2.exclude_muted) {
+            if (dialogFilter3.exclude_muted) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
             }
             FilterCreateActivity.saveFilterToServer(dialogFilter, dialogFilter.flags, dialogFilter.name, dialogFilter.color, dialogFilter.alwaysShow, dialogFilter.neverShow, dialogFilter.pinnedDialogs, true, true, true, true, true, FiltersSetupActivity.this, new Runnable() {
@@ -803,7 +797,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     public static class SuggestedFilterCell extends FrameLayout {
         private ProgressButton addButton;
         private boolean needDivider;
-        private TLRPC$TL_dialogFilterSuggested suggestedFilter;
+        private TLRPC.TL_dialogFilterSuggested suggestedFilter;
         private TextView textView;
         private TextView valueTextView;
 
@@ -840,7 +834,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             addView(this.addButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
         }
 
-        public TLRPC$TL_dialogFilterSuggested getSuggestedFilter() {
+        public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
             return this.suggestedFilter;
         }
 
@@ -871,12 +865,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.addButton.setOnClickListener(onClickListener);
         }
 
-        public void setFilter(TLRPC$TL_dialogFilterSuggested tLRPC$TL_dialogFilterSuggested, boolean z) {
+        public void setFilter(TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested, boolean z) {
             this.needDivider = z;
-            this.suggestedFilter = tLRPC$TL_dialogFilterSuggested;
+            this.suggestedFilter = tL_dialogFilterSuggested;
             setWillNotDraw(!z);
-            this.textView.setText(tLRPC$TL_dialogFilterSuggested.filter.title);
-            this.valueTextView.setText(tLRPC$TL_dialogFilterSuggested.description);
+            this.textView.setText(tL_dialogFilterSuggested.filter.title);
+            this.valueTextView.setText(tL_dialogFilterSuggested.description);
         }
     }
 
@@ -1009,8 +1003,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$createView$2(TLRPC$TL_messages_toggleDialogFilterTags tLRPC$TL_messages_toggleDialogFilterTags) {
-        if (!tLRPC$TL_messages_toggleDialogFilterTags.enabled || this.loadedColors) {
+    public void lambda$createView$2(TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags) {
+        if (!tL_messages_toggleDialogFilterTags.enabled || this.loadedColors) {
             return;
         }
         this.loadingFiltersForColors = true;
@@ -1018,11 +1012,11 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         this.loadedColors = true;
     }
 
-    public void lambda$createView$3(final TLRPC$TL_messages_toggleDialogFilterTags tLRPC$TL_messages_toggleDialogFilterTags, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createView$3(final TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FiltersSetupActivity.this.lambda$createView$2(tLRPC$TL_messages_toggleDialogFilterTags);
+                FiltersSetupActivity.this.lambda$createView$2(tL_messages_toggleDialogFilterTags);
             }
         });
     }
@@ -1040,13 +1034,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 showDialog(new PremiumFeatureBottomSheet(this, 35, true));
                 return;
             }
-            final TLRPC$TL_messages_toggleDialogFilterTags tLRPC$TL_messages_toggleDialogFilterTags = new TLRPC$TL_messages_toggleDialogFilterTags();
-            tLRPC$TL_messages_toggleDialogFilterTags.enabled = true ^ getMessagesController().folderTags;
-            getMessagesController().setFolderTags(tLRPC$TL_messages_toggleDialogFilterTags.enabled);
-            getConnectionsManager().sendRequest(tLRPC$TL_messages_toggleDialogFilterTags, new RequestDelegate() {
+            final TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags = new TLRPC.TL_messages_toggleDialogFilterTags();
+            tL_messages_toggleDialogFilterTags.enabled = true ^ getMessagesController().folderTags;
+            getMessagesController().setFolderTags(tL_messages_toggleDialogFilterTags.enabled);
+            getConnectionsManager().sendRequest(tL_messages_toggleDialogFilterTags, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    FiltersSetupActivity.this.lambda$createView$3(tLRPC$TL_messages_toggleDialogFilterTags, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    FiltersSetupActivity.this.lambda$createView$3(tL_messages_toggleDialogFilterTags, tLObject, tL_error);
                 }
             });
             ((TextCheckCell) view).setChecked(getMessagesController().folderTags);
@@ -1099,7 +1093,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         showDialog(new PremiumFeatureBottomSheet(this, 9, true));
     }
 
-    public static void lambda$onFragmentDestroy$1(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$onFragmentDestroy$1(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public void lambda$updateRows$0() {
@@ -1110,7 +1104,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
-        ArrayList<TLRPC$TL_dialogFilterSuggested> arrayList = getMessagesController().suggestedFilters;
+        ArrayList<TLRPC.TL_dialogFilterSuggested> arrayList = getMessagesController().suggestedFilters;
         ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
         this.items.add(ItemInner.asHint());
         if (!arrayList.isEmpty() && dialogFilters.size() < 10) {
@@ -1166,7 +1160,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    FiltersSetupActivity.this.lambda$onBackPressed$307();
+                    FiltersSetupActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -1314,16 +1308,16 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         if (this.orderChanged) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
             getMessagesStorage().saveDialogFiltersOrder();
-            TLRPC$TL_messages_updateDialogFiltersOrder tLRPC$TL_messages_updateDialogFiltersOrder = new TLRPC$TL_messages_updateDialogFiltersOrder();
+            TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
             ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
             int size = dialogFilters.size();
             for (int i2 = 0; i2 < size; i2++) {
-                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(dialogFilters.get(i2).id));
+                tL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(dialogFilters.get(i2).id));
             }
-            getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tL_messages_updateDialogFiltersOrder, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    FiltersSetupActivity.lambda$onFragmentDestroy$1(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    FiltersSetupActivity.lambda$onFragmentDestroy$1(tLObject, tL_error);
                 }
             });
         }

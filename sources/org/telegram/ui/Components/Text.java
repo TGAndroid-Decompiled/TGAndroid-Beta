@@ -33,12 +33,19 @@ public class Text {
     }
 
     public Text(CharSequence charSequence, float f, Typeface typeface) {
-        TextPaint textPaint = new TextPaint(1);
-        this.paint = textPaint;
         this.maxWidth = 999999.0f;
         this.ellipsizeWidth = -1;
+        TextPaint textPaint = new TextPaint(1);
+        this.paint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(f));
         textPaint.setTypeface(typeface);
+        setText(charSequence);
+    }
+
+    public Text(CharSequence charSequence, TextPaint textPaint) {
+        this.maxWidth = 999999.0f;
+        this.ellipsizeWidth = -1;
+        this.paint = textPaint;
         setText(charSequence);
     }
 

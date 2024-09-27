@@ -45,9 +45,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stories$PeerStories;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -190,7 +189,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         public ImageReceiver avatarImage;
         private float bounceScale;
         public StoriesUtilities.EnsureStoryFileLoadedObject cancellable;
-        TLRPC$Chat chat;
+        TLRPC.Chat chat;
         AvatarDrawable crossfadeAvatarDrawable;
         boolean crossfadeToDialog;
         long crossfadeToDialogId;
@@ -219,7 +218,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         float textAlphaTransition;
         SimpleTextView textView;
         FrameLayout textViewContainer;
-        TLRPC$User user;
+        TLRPC.User user;
         private Drawable verifiedDrawable;
 
         public StoryCell(Context context) {
@@ -673,7 +672,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         }
 
         public void setCrossfadeTo(long j) {
-            TLRPC$Chat tLRPC$Chat;
+            TLRPC.Chat chat;
             if (this.crossfadeToDialogId != j) {
                 this.crossfadeToDialogId = j;
                 boolean z = j != -1;
@@ -684,25 +683,25 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                 }
                 MessagesController messagesController = MessagesController.getInstance(DialogStoriesCell.this.currentAccount);
                 if (j > 0) {
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(j));
                     this.user = user;
                     this.chat = null;
-                    tLRPC$Chat = user;
+                    chat = user;
                 } else {
-                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
-                    this.chat = chat;
+                    TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-j));
+                    this.chat = chat2;
                     this.user = null;
-                    tLRPC$Chat = chat;
+                    chat = chat2;
                 }
-                if (tLRPC$Chat != null) {
-                    this.crossfadeAvatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) tLRPC$Chat);
-                    this.crossfageToAvatarImage.setForUserOrChat(tLRPC$Chat, this.crossfadeAvatarDrawable);
+                if (chat != null) {
+                    this.crossfadeAvatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) chat);
+                    this.crossfageToAvatarImage.setForUserOrChat(chat, this.crossfadeAvatarDrawable);
                 }
             }
         }
 
         public void setDialogId(long j) {
-            TLRPC$Chat tLRPC$Chat;
+            TLRPC.Chat chat;
             CharSequence replaceEmoji;
             long j2 = this.dialogId;
             boolean z = j2 == j;
@@ -716,23 +715,23 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             this.isFail = DialogStoriesCell.this.storiesController.isLastUploadingFailed(j);
             MessagesController messagesController = MessagesController.getInstance(DialogStoriesCell.this.currentAccount);
             if (j > 0) {
-                TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+                TLRPC.User user = messagesController.getUser(Long.valueOf(j));
                 this.user = user;
                 this.chat = null;
-                tLRPC$Chat = user;
+                chat = user;
             } else {
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
-                this.chat = chat;
+                TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-j));
+                this.chat = chat2;
                 this.user = null;
-                tLRPC$Chat = chat;
+                chat = chat2;
             }
-            if (tLRPC$Chat == null) {
+            if (chat == null) {
                 this.textView.setText("");
                 this.avatarImage.clearImage();
                 return;
             }
-            this.avatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) tLRPC$Chat);
-            this.avatarImage.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
+            this.avatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) chat);
+            this.avatarImage.setForUserOrChat(chat, this.avatarDrawable);
             if (this.mini) {
                 return;
             }
@@ -1228,7 +1227,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             }
         }
         if (this.storiesController.hasStories(storyCell.dialogId) || this.storiesController.hasUploadingStories(storyCell.dialogId)) {
-            TL_stories$PeerStories stories = this.storiesController.getStories(storyCell.dialogId);
+            TL_stories.PeerStories stories = this.storiesController.getStories(storyCell.dialogId);
             final long j = storyCell.dialogId;
             StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = this.globalCancelable;
             if (ensureStoryFileLoadedObject != null) {
@@ -1563,7 +1562,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     public void onResume() {
         this.storiesController.checkExpiredStories();
         for (int i = 0; i < this.items.size(); i++) {
-            TL_stories$PeerStories stories = this.storiesController.getStories(((Item) this.items.get(i)).dialogId);
+            TL_stories.PeerStories stories = this.storiesController.getStories(((Item) this.items.get(i)).dialogId);
             if (stories != null) {
                 this.storiesController.preloadUserStories(stories);
             }
@@ -1854,7 +1853,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         }
         ArrayList hiddenList = this.type == 1 ? this.storiesController.getHiddenList() : this.storiesController.getDialogListStories();
         for (int i = 0; i < hiddenList.size(); i++) {
-            long peerDialogId = DialogObject.getPeerDialogId(((TL_stories$PeerStories) hiddenList.get(i)).peer);
+            long peerDialogId = DialogObject.getPeerDialogId(((TL_stories.PeerStories) hiddenList.get(i)).peer);
             if (peerDialogId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 this.items.add(new Item(peerDialogId));
             }

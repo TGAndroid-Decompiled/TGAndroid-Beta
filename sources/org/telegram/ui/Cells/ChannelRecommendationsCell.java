@@ -26,7 +26,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -43,7 +43,7 @@ public class ChannelRecommendationsCell {
     public long chatId;
     private final ButtonBounce closeBounce;
     private int currentAccount;
-    private TLRPC$Chat currentChat;
+    private TLRPC.Chat currentChat;
     private long dialogId;
     private Text headerText;
     private final AnimatedFloat loadingAlpha;
@@ -79,7 +79,7 @@ public class ChannelRecommendationsCell {
         public final ImageReceiver[] avatarImageReceiver;
         public final ButtonBounce bounce;
         private final ChatMessageCell cell;
-        public final TLRPC$Chat chat;
+        public final TLRPC.Chat chat;
         public final boolean isLock;
         private final CharSequence name;
         private StaticLayout nameText;
@@ -96,7 +96,7 @@ public class ChannelRecommendationsCell {
         private final Paint subscribersStrokePaint;
         private final Text subscribersText;
 
-        public ChannelBlock(int i, final ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat) {
+        public ChannelBlock(int i, final ChatMessageCell chatMessageCell, TLRPC.Chat chat) {
             int i2;
             TextPaint textPaint = new TextPaint(1);
             this.nameTextPaint = textPaint;
@@ -104,7 +104,7 @@ public class ChannelRecommendationsCell {
             this.subscribersBackgroundPaint = new Paint(1);
             this.subscribersBackgroundDimPaint = new Paint(1);
             this.cell = chatMessageCell;
-            this.chat = tLRPC$Chat;
+            this.chat = chat;
             this.bounce = new ButtonBounce(chatMessageCell) {
                 @Override
                 public void invalidate() {
@@ -122,10 +122,10 @@ public class ChannelRecommendationsCell {
             this.avatarDrawable = r3;
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             AvatarDrawable[] avatarDrawableArr = {avatarDrawable};
-            avatarDrawable.setInfo(i, tLRPC$Chat);
-            imageReceiverArr[0].setForUserOrChat(tLRPC$Chat, avatarDrawableArr[0]);
+            avatarDrawable.setInfo(i, chat);
+            imageReceiverArr[0].setForUserOrChat(chat, avatarDrawableArr[0]);
             textPaint.setTextSize(AndroidUtilities.dp(11.0f));
-            String str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
+            String str = chat != null ? chat.title : "";
             try {
                 str = Emoji.replaceEmoji(str, textPaint.getFontMetricsInt(), false);
             } catch (Exception unused) {
@@ -134,21 +134,21 @@ public class ChannelRecommendationsCell {
             this.subscribersStrokePaint.setStyle(Paint.Style.STROKE);
             this.isLock = false;
             this.subscribersDrawable = chatMessageCell.getContext().getResources().getDrawable(R.drawable.mini_reply_user).mutate();
-            if (tLRPC$Chat == null || (i2 = tLRPC$Chat.participants_count) <= 1) {
+            if (chat == null || (i2 = chat.participants_count) <= 1) {
                 this.subscribersText = null;
             } else {
                 this.subscribersText = new Text(LocaleController.formatShortNumber(i2, null), 9.33f, AndroidUtilities.bold());
             }
         }
 
-        public ChannelBlock(int i, final ChatMessageCell chatMessageCell, TLRPC$Chat[] tLRPC$ChatArr, int i2) {
-            TLRPC$Chat tLRPC$Chat;
+        public ChannelBlock(int i, final ChatMessageCell chatMessageCell, TLRPC.Chat[] chatArr, int i2) {
+            TLRPC.Chat chat;
             this.nameTextPaint = new TextPaint(1);
             this.subscribersStrokePaint = new Paint(1);
             this.subscribersBackgroundPaint = new Paint(1);
             this.subscribersBackgroundDimPaint = new Paint(1);
             this.cell = chatMessageCell;
-            this.chat = tLRPC$ChatArr[0];
+            this.chat = chatArr[0];
             this.bounce = new ButtonBounce(chatMessageCell) {
                 @Override
                 public void invalidate() {
@@ -162,7 +162,7 @@ public class ChannelRecommendationsCell {
                 this.avatarImageReceiver[i3].setParentView(chatMessageCell);
                 this.avatarImageReceiver[i3].setRoundRadius(avatarSize());
                 this.avatarDrawable[i3] = new AvatarDrawable();
-                if (i3 >= tLRPC$ChatArr.length || (tLRPC$Chat = tLRPC$ChatArr[i3]) == null) {
+                if (i3 >= chatArr.length || (chat = chatArr[i3]) == null) {
                     final Paint paint = new Paint(1);
                     final int blendOver = Theme.blendOver(chatMessageCell.getThemedColor(Theme.key_chat_inBubble), Theme.multAlpha(chatMessageCell.getThemedColor(Theme.key_windowBackgroundWhiteGrayText), 0.5f));
                     paint.setColor(blendOver);
@@ -188,8 +188,8 @@ public class ChannelRecommendationsCell {
                         }
                     });
                 } else {
-                    this.avatarDrawable[i3].setInfo(i, tLRPC$Chat);
-                    this.avatarImageReceiver[i3].setForUserOrChat(tLRPC$ChatArr[i3], this.avatarDrawable[i3]);
+                    this.avatarDrawable[i3].setInfo(i, chat);
+                    this.avatarImageReceiver[i3].setForUserOrChat(chatArr[i3], this.avatarDrawable[i3]);
                 }
             }
             if (chatMessageCell.isCellAttachedToWindow()) {
@@ -201,8 +201,8 @@ public class ChannelRecommendationsCell {
             this.subscribersStrokePaint.setStyle(Paint.Style.STROKE);
             this.isLock = true;
             this.subscribersDrawable = isPremium ? null : chatMessageCell.getContext().getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-            TLRPC$Chat tLRPC$Chat2 = this.chat;
-            if (tLRPC$Chat2 == null || tLRPC$Chat2.participants_count <= 1) {
+            TLRPC.Chat chat2 = this.chat;
+            if (chat2 == null || chat2.participants_count <= 1) {
                 this.subscribersText = null;
                 return;
             }
@@ -409,9 +409,9 @@ public class ChannelRecommendationsCell {
         }
     }
 
-    public void didClickChannel(TLRPC$Chat tLRPC$Chat, boolean z) {
+    public void didClickChannel(TLRPC.Chat chat, boolean z) {
         if (this.cell.getDelegate() != null) {
-            this.cell.getDelegate().didPressChannelRecommendation(this.cell, tLRPC$Chat, z);
+            this.cell.getDelegate().didPressChannelRecommendation(this.cell, chat, z);
         }
     }
 
@@ -561,7 +561,7 @@ public class ChannelRecommendationsCell {
         ArrayList arrayList = (channelRecommendations == null || channelRecommendations.chats == null) ? new ArrayList() : new ArrayList(channelRecommendations.chats);
         int i5 = 0;
         while (i5 < arrayList.size()) {
-            if (!ChatObject.isNotInChat((TLRPC$Chat) arrayList.get(i5))) {
+            if (!ChatObject.isNotInChat((TLRPC.Chat) arrayList.get(i5))) {
                 arrayList.remove(i5);
                 i5--;
             }
@@ -576,16 +576,16 @@ public class ChannelRecommendationsCell {
             }
             int min = Math.min(size, 10);
             for (int i6 = 0; i6 < min; i6++) {
-                this.channels.add(new ChannelBlock(this.currentAccount, this.cell, (TLRPC$Chat) arrayList.get(i6)));
+                this.channels.add(new ChannelBlock(this.currentAccount, this.cell, (TLRPC.Chat) arrayList.get(i6)));
             }
             if (min < arrayList.size()) {
-                TLRPC$Chat tLRPC$Chat = null;
-                TLRPC$Chat tLRPC$Chat2 = (min < 0 || min >= arrayList.size()) ? null : (TLRPC$Chat) arrayList.get(min);
-                TLRPC$Chat tLRPC$Chat3 = (min < 0 || (i2 = min + 1) >= arrayList.size()) ? null : (TLRPC$Chat) arrayList.get(i2);
+                TLRPC.Chat chat = null;
+                TLRPC.Chat chat2 = (min < 0 || min >= arrayList.size()) ? null : (TLRPC.Chat) arrayList.get(min);
+                TLRPC.Chat chat3 = (min < 0 || (i2 = min + 1) >= arrayList.size()) ? null : (TLRPC.Chat) arrayList.get(i2);
                 if (min >= 0 && (i = min + 2) < arrayList.size()) {
-                    tLRPC$Chat = (TLRPC$Chat) arrayList.get(i);
+                    chat = (TLRPC.Chat) arrayList.get(i);
                 }
-                this.channels.add(new ChannelBlock(this.currentAccount, this.cell, new TLRPC$Chat[]{tLRPC$Chat2, tLRPC$Chat3, tLRPC$Chat}, (arrayList.size() + channelRecommendations.more) - min));
+                this.channels.add(new ChannelBlock(this.currentAccount, this.cell, new TLRPC.Chat[]{chat2, chat3, chat}, (arrayList.size() + channelRecommendations.more) - min));
             }
         }
         if (isExpanded()) {

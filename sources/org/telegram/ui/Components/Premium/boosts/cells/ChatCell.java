@@ -10,18 +10,18 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class ChatCell extends BaseCell {
-    private TLRPC$Chat chat;
+    private TLRPC.Chat chat;
     private ChatDeleteListener chatDeleteListener;
     private final ImageView deleteImageView;
     private boolean removable;
 
     public interface ChatDeleteListener {
-        void onChatDeleted(TLRPC$Chat tLRPC$Chat);
+        void onChatDeleted(TLRPC.Chat chat);
     }
 
     public ChatCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -40,14 +40,14 @@ public class ChatCell extends BaseCell {
         this.titleTextView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
     }
 
-    public void lambda$setChat$0(TLRPC$Chat tLRPC$Chat, View view) {
+    public void lambda$setChat$0(TLRPC.Chat chat, View view) {
         ChatDeleteListener chatDeleteListener = this.chatDeleteListener;
         if (chatDeleteListener != null) {
-            chatDeleteListener.onChatDeleted(tLRPC$Chat);
+            chatDeleteListener.onChatDeleted(chat);
         }
     }
 
-    public TLRPC$Chat getChat() {
+    public TLRPC.Chat getChat() {
         return this.chat;
     }
 
@@ -62,15 +62,15 @@ public class ChatCell extends BaseCell {
         this.deleteImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
-    public void setChat(final TLRPC$Chat tLRPC$Chat, int i, boolean z, int i2) {
+    public void setChat(final TLRPC.Chat chat, int i, boolean z, int i2) {
         String formatPluralString;
         this.removable = z;
-        this.chat = tLRPC$Chat;
-        this.avatarDrawable.setInfo(tLRPC$Chat);
+        this.chat = chat;
+        this.avatarDrawable.setInfo(chat);
         this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
-        this.titleTextView.setText(Emoji.replaceEmoji(tLRPC$Chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
-        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
+        this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+        this.titleTextView.setText(Emoji.replaceEmoji(chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
+        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (!z) {
             formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]);
         } else if (i2 >= 1) {
@@ -90,7 +90,7 @@ public class ChatCell extends BaseCell {
         this.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatCell.this.lambda$setChat$0(tLRPC$Chat, view);
+                ChatCell.this.lambda$setChat$0(chat, view);
             }
         });
     }

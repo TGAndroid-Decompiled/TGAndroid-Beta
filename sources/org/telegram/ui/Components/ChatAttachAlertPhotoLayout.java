@@ -67,11 +67,7 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraSessionWrapper;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -220,7 +216,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
-        public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i, boolean z) {
+        public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z) {
             PhotoAttachPhotoCell cellForIndex = ChatAttachAlertPhotoLayout.this.getCellForIndex(i);
             if (cellForIndex == null) {
                 return null;
@@ -244,7 +240,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
-        public ImageReceiver.BitmapHolder getThumbForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i) {
+        public ImageReceiver.BitmapHolder getThumbForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i) {
             PhotoAttachPhotoCell cellForIndex = ChatAttachAlertPhotoLayout.this.getCellForIndex(i);
             if (cellForIndex != null) {
                 return cellForIndex.getImageView().getImageReceiver().getBitmapSafe();
@@ -255,7 +251,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         @Override
         public void onApplyCaption(CharSequence charSequence) {
             CharSequence charSequence2;
-            ArrayList<TLRPC$MessageEntity> arrayList;
+            ArrayList<TLRPC.MessageEntity> arrayList;
             if (ChatAttachAlertPhotoLayout.selectedPhotos.size() <= 0 || ChatAttachAlertPhotoLayout.selectedPhotosOrder.size() <= 0) {
                 return;
             }
@@ -273,7 +269,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 charSequence2 = searchImage.caption;
                 arrayList = searchImage.entities;
             }
-            ArrayList<TLRPC$MessageEntity> arrayList2 = arrayList;
+            ArrayList<TLRPC.MessageEntity> arrayList2 = arrayList;
             if (charSequence2 != null && arrayList2 != null) {
                 if (!(charSequence2 instanceof Spannable)) {
                     charSequence2 = new SpannableStringBuilder(charSequence2);
@@ -409,7 +405,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
-        public void willSwitchFromPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i) {
+        public void willSwitchFromPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i) {
             PhotoAttachPhotoCell cellForIndex = ChatAttachAlertPhotoLayout.this.getCellForIndex(i);
             if (cellForIndex != null) {
                 cellForIndex.showCheck(true);
@@ -710,7 +706,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
-        public ImageReceiver.BitmapHolder getThumbForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i) {
+        public ImageReceiver.BitmapHolder getThumbForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i) {
             return null;
         }
 
@@ -919,7 +915,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         public void lambda$createHolder$0(PhotoAttachPhotoCell photoAttachPhotoCell, PhotoAttachPhotoCell photoAttachPhotoCell2) {
             PhotoAttachAdapter photoAttachAdapter;
-            TLRPC$Chat currentChat;
+            TLRPC.Chat currentChat;
             if (ChatAttachAlertPhotoLayout.this.mediaEnabled && ChatAttachAlertPhotoLayout.this.parentAlert.avatarPicker == 0) {
                 int intValue = ((Integer) photoAttachPhotoCell2.getTag()).intValue();
                 MediaController.PhotoEntry photoEntry = photoAttachPhotoCell2.getPhotoEntry();
@@ -2246,7 +2242,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public void lambda$showAvatarConstructorFragment$10(org.telegram.ui.Components.AvatarConstructorFragment r29, org.telegram.ui.Components.AvatarConstructorFragment.BackgroundGradient r30, long r31, org.telegram.tgnet.TLRPC$Document r33, org.telegram.ui.Components.AvatarConstructorFragment.PreviewView r34) {
+    public void lambda$showAvatarConstructorFragment$10(org.telegram.ui.Components.AvatarConstructorFragment r29, org.telegram.ui.Components.AvatarConstructorFragment.BackgroundGradient r30, long r31, org.telegram.tgnet.TLRPC.Document r33, org.telegram.ui.Components.AvatarConstructorFragment.PreviewView r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayout.lambda$showAvatarConstructorFragment$10(org.telegram.ui.Components.AvatarConstructorFragment, org.telegram.ui.Components.AvatarConstructorFragment$BackgroundGradient, long, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.Components.AvatarConstructorFragment$PreviewView):void");
     }
 
@@ -3572,7 +3568,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     @Override
     public void onMenuItemClick(int i) {
-        TLRPC$Chat chat;
+        TLRPC.Chat chat;
         boolean z;
         ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate;
         boolean z2;
@@ -4120,7 +4116,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         invalidate();
     }
 
-    public void showAvatarConstructorFragment(AvatarConstructorPreviewCell avatarConstructorPreviewCell, TLRPC$VideoSize tLRPC$VideoSize) {
+    public void showAvatarConstructorFragment(AvatarConstructorPreviewCell avatarConstructorPreviewCell, TLRPC.VideoSize videoSize) {
         ChatAttachAlert chatAttachAlert = this.parentAlert;
         final AvatarConstructorFragment avatarConstructorFragment = new AvatarConstructorFragment(chatAttachAlert.parentImageUpdater, chatAttachAlert.getAvatarFor());
         avatarConstructorFragment.finishOnDone = this.parentAlert.getAvatarFor() == null || this.parentAlert.getAvatarFor().type != 2;
@@ -4128,13 +4124,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (avatarConstructorPreviewCell != null) {
             avatarConstructorFragment.startFrom(avatarConstructorPreviewCell);
         }
-        if (tLRPC$VideoSize != null) {
-            avatarConstructorFragment.startFrom(tLRPC$VideoSize);
+        if (videoSize != null) {
+            avatarConstructorFragment.startFrom(videoSize);
         }
         avatarConstructorFragment.setDelegate(new AvatarConstructorFragment.Delegate() {
             @Override
-            public final void onDone(AvatarConstructorFragment.BackgroundGradient backgroundGradient, long j, TLRPC$Document tLRPC$Document, AvatarConstructorFragment.PreviewView previewView) {
-                ChatAttachAlertPhotoLayout.this.lambda$showAvatarConstructorFragment$10(avatarConstructorFragment, backgroundGradient, j, tLRPC$Document, previewView);
+            public final void onDone(AvatarConstructorFragment.BackgroundGradient backgroundGradient, long j, TLRPC.Document document, AvatarConstructorFragment.PreviewView previewView) {
+                ChatAttachAlertPhotoLayout.this.lambda$showAvatarConstructorFragment$10(avatarConstructorFragment, backgroundGradient, j, document, previewView);
             }
         });
     }

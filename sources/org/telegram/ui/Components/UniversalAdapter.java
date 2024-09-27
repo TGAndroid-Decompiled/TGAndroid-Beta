@@ -22,10 +22,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stats$BroadcastRevenueTransaction;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesActivity;
@@ -389,8 +387,8 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             case 3:
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 Object obj = item.object;
-                if (obj instanceof TLRPC$Document) {
-                    textCell.setTextAndSticker(item.text, (TLRPC$Document) obj, hasDivider);
+                if (obj instanceof TLRPC.Document) {
+                    textCell.setTextAndSticker(item.text, (TLRPC.Document) obj, hasDivider);
                 } else if (obj instanceof String) {
                     textCell.setTextAndSticker(item.text, (String) obj, hasDivider);
                 } else if (TextUtils.isEmpty(item.textValue)) {
@@ -584,13 +582,13 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 ((ChannelMonetizationLayout.ProceedOverviewCell) viewHolder.itemView).set((ChannelMonetizationLayout.ProceedOverview) item.object);
                 return;
             case 25:
-                ((ChannelMonetizationLayout.TransactionCell) viewHolder.itemView).set((TL_stats$BroadcastRevenueTransaction) item.object, hasDivider);
+                ((ChannelMonetizationLayout.TransactionCell) viewHolder.itemView).set((TL_stats.BroadcastRevenueTransaction) item.object, hasDivider);
                 return;
             case 27:
                 StoryPrivacyBottomSheet.UserCell userCell3 = (StoryPrivacyBottomSheet.UserCell) viewHolder.itemView;
                 long j = userCell3.dialogId;
                 Object obj6 = item.object;
-                boolean z5 = j == (obj6 instanceof TLRPC$User ? ((TLRPC$User) obj6).id : obj6 instanceof TLRPC$Chat ? -((TLRPC$Chat) obj6).id : 0L);
+                boolean z5 = j == (obj6 instanceof TLRPC.User ? ((TLRPC.User) obj6).id : obj6 instanceof TLRPC.Chat ? -((TLRPC.Chat) obj6).id : 0L);
                 userCell3.setIsSendAs(false, true);
                 userCell3.set(item.object);
                 userCell3.checkBox.setVisibility(8);
@@ -631,17 +629,17 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             case 32:
                 ProfileSearchCell profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
                 Object obj8 = item.object;
-                if (item.accent && (obj8 instanceof TLRPC$User) && (i5 = ((TLRPC$User) obj8).bot_active_users) != 0) {
+                if (item.accent && (obj8 instanceof TLRPC.User) && (i5 = ((TLRPC.User) obj8).bot_active_users) != 0) {
                     if (i5 != 0) {
                         charSequence = LocaleController.formatPluralStringSpaced("BotUsers", i5);
                     }
                     charSequence = "";
                 } else {
                     if (item.withUsername) {
-                        if (obj8 instanceof TLRPC$User) {
-                            publicUsername = UserObject.getPublicUsername((TLRPC$User) obj8);
-                        } else if (obj8 instanceof TLRPC$Chat) {
-                            publicUsername = ChatObject.getPublicUsername((TLRPC$Chat) obj8);
+                        if (obj8 instanceof TLRPC.User) {
+                            publicUsername = UserObject.getPublicUsername((TLRPC.User) obj8);
+                        } else if (obj8 instanceof TLRPC.Chat) {
+                            publicUsername = ChatObject.getPublicUsername((TLRPC.Chat) obj8);
                         }
                         if (publicUsername != null) {
                             charSequence = ((Object) "") + "@" + publicUsername;
@@ -649,14 +647,14 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                     charSequence = "";
                 }
-                if (obj8 instanceof TLRPC$Chat) {
-                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) obj8;
-                    if (tLRPC$Chat.participants_count != 0) {
-                        if (!ChatObject.isChannel(tLRPC$Chat) || tLRPC$Chat.megagroup) {
-                            i4 = tLRPC$Chat.participants_count;
+                if (obj8 instanceof TLRPC.Chat) {
+                    TLRPC.Chat chat = (TLRPC.Chat) obj8;
+                    if (chat.participants_count != 0) {
+                        if (!ChatObject.isChannel(chat) || chat.megagroup) {
+                            i4 = chat.participants_count;
                             str = "Members";
                         } else {
-                            i4 = tLRPC$Chat.participants_count;
+                            i4 = chat.participants_count;
                             str = "Subscribers";
                         }
                         String formatPluralStringSpaced = LocaleController.formatPluralStringSpaced(str, i4);
@@ -666,9 +664,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                             charSequence = !TextUtils.isEmpty(charSequence) ? TextUtils.concat(charSequence, ", ", formatPluralStringSpaced) : formatPluralStringSpaced;
                         }
                     }
-                    str2 = tLRPC$Chat.title;
-                } else if (obj8 instanceof TLRPC$User) {
-                    str2 = UserObject.getUserName((TLRPC$User) obj8);
+                    str2 = chat.title;
+                } else if (obj8 instanceof TLRPC.User) {
+                    str2 = UserObject.getUserName((TLRPC.User) obj8);
                 }
                 profileSearchCell.setData(obj8, null, str2, charSequence, false, false);
                 profileSearchCell.useSeparator = hasDivider;

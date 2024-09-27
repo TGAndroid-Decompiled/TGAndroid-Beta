@@ -30,11 +30,8 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
-import org.telegram.tgnet.tl.TL_stories$StoryViews;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -241,12 +238,12 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         return this.currentParentColumnsCount == 9 ? AndroidUtilities.dpf2(0.5f) : AndroidUtilities.dpf2(1.0f);
     }
 
-    private TLRPC$MessageMedia getStoryMedia(MessageObject messageObject) {
-        TL_stories$StoryItem tL_stories$StoryItem;
-        if (messageObject == null || (tL_stories$StoryItem = messageObject.storyItem) == null) {
+    private TLRPC.MessageMedia getStoryMedia(MessageObject messageObject) {
+        TL_stories.StoryItem storyItem;
+        if (messageObject == null || (storyItem = messageObject.storyItem) == null) {
             return null;
         }
-        return tL_stories$StoryItem.media;
+        return storyItem.media;
     }
 
     public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
@@ -281,19 +278,19 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         invalidate();
     }
 
-    private boolean mediaEqual(TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MessageMedia tLRPC$MessageMedia2) {
-        TLRPC$Photo tLRPC$Photo;
-        if (tLRPC$MessageMedia == null && tLRPC$MessageMedia2 == null) {
+    private boolean mediaEqual(TLRPC.MessageMedia messageMedia, TLRPC.MessageMedia messageMedia2) {
+        TLRPC.Photo photo;
+        if (messageMedia == null && messageMedia2 == null) {
             return true;
         }
-        if (tLRPC$MessageMedia != null && tLRPC$MessageMedia2 != null) {
-            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document != null) {
-                TLRPC$Document tLRPC$Document2 = tLRPC$MessageMedia2.document;
-                return tLRPC$Document2 != null && tLRPC$Document2.id == tLRPC$Document.id;
+        if (messageMedia != null && messageMedia2 != null) {
+            TLRPC.Document document = messageMedia.document;
+            if (document != null) {
+                TLRPC.Document document2 = messageMedia2.document;
+                return document2 != null && document2.id == document.id;
             }
-            TLRPC$Photo tLRPC$Photo2 = tLRPC$MessageMedia.photo;
-            return (tLRPC$Photo2 == null || (tLRPC$Photo = tLRPC$MessageMedia2.photo) == null || tLRPC$Photo.id != tLRPC$Photo2.id) ? false : true;
+            TLRPC.Photo photo2 = messageMedia.photo;
+            return (photo2 == null || (photo = messageMedia2.photo) == null || photo.id != photo2.id) ? false : true;
         }
         return false;
     }
@@ -675,13 +672,13 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
 
     public void updateViews() {
         MessageObject messageObject;
-        TL_stories$StoryItem tL_stories$StoryItem;
-        TL_stories$StoryViews tL_stories$StoryViews;
-        if (!this.isStory || (messageObject = this.currentMessageObject) == null || (tL_stories$StoryItem = messageObject.storyItem) == null || (tL_stories$StoryViews = tL_stories$StoryItem.views) == null) {
+        TL_stories.StoryItem storyItem;
+        TL_stories.StoryViews storyViews;
+        if (!this.isStory || (messageObject = this.currentMessageObject) == null || (storyItem = messageObject.storyItem) == null || (storyViews = storyItem.views) == null) {
             this.drawViews = false;
             this.viewsText.setText("", false);
         } else {
-            int i = tL_stories$StoryViews.views_count;
+            int i = storyViews.views_count;
             this.drawViews = i > 0;
             this.viewsText.setText(AndroidUtilities.formatWholeNumber(i, 0), true);
         }

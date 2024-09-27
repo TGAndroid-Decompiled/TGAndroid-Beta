@@ -55,28 +55,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$EmojiStatus;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$TL_channels_updateColor;
-import org.telegram.tgnet.TLRPC$TL_channels_updateEmojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusEmpty;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputWallPaper;
-import org.telegram.tgnet.TLRPC$TL_inputWallPaperNoFile;
-import org.telegram.tgnet.TLRPC$TL_messages_setChatWallPaper;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
-import org.telegram.tgnet.TLRPC$TL_peerColor;
-import org.telegram.tgnet.TLRPC$TL_wallPaper;
-import org.telegram.tgnet.TLRPC$TL_wallPaperNoFile;
-import org.telegram.tgnet.TLRPC$TL_wallPaperSettings;
-import org.telegram.tgnet.TLRPC$Updates;
-import org.telegram.tgnet.TLRPC$WallPaper;
-import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -114,7 +94,7 @@ import org.telegram.ui.ThemePreviewActivity;
 public class ChannelColorActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     protected Adapter adapter;
     public Drawable backgroundDrawable;
-    public TL_stories$TL_premium_boostsStatus boostsStatus;
+    public TL_stories.TL_premium_boostsStatus boostsStatus;
     private BaseFragment bulletinFragment;
     protected ButtonWithCounterView button;
     protected FrameLayout buttonContainer;
@@ -127,13 +107,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     public long currentProfileEmoji;
     public int currentReplyColor;
     public long currentReplyEmoji;
-    public TLRPC$EmojiStatus currentStatusEmoji;
-    public TLRPC$WallPaper currentWallpaper;
+    public TLRPC.EmojiStatus currentStatusEmoji;
+    public TLRPC.WallPaper currentWallpaper;
     private ActionBarMenuItem dayNightItem;
     public final long dialogId;
     private final Paint dividerPaint;
     private boolean forceDark;
-    public TLRPC$WallPaper galleryWallpaper;
+    public TLRPC.WallPaper galleryWallpaper;
     private boolean isDark;
     protected boolean isGroup;
     protected RecyclerListView listView;
@@ -165,8 +145,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     public long selectedProfileEmoji;
     public int selectedReplyColor;
     public long selectedReplyEmoji;
-    public TLRPC$EmojiStatus selectedStatusEmoji;
-    public TLRPC$WallPaper selectedWallpaper;
+    public TLRPC.EmojiStatus selectedStatusEmoji;
+    public TLRPC.WallPaper selectedWallpaper;
     protected int statusEmojiRow;
     protected int statusHintRow;
     private RLottieDrawable sunDrawable;
@@ -180,25 +160,25 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
 
         public void lambda$onCreateViewHolder$0(String str) {
             ChannelColorActivity channelColorActivity;
-            TLRPC$WallPaper tLRPC$WallPaper;
+            TLRPC.WallPaper wallPaper;
             if (str == null) {
                 channelColorActivity = ChannelColorActivity.this;
-                tLRPC$WallPaper = channelColorActivity.galleryWallpaper;
+                wallPaper = channelColorActivity.galleryWallpaper;
             } else {
                 if (!str.equals("❌")) {
-                    ChannelColorActivity.this.selectedWallpaper = new TLRPC$TL_wallPaperNoFile();
-                    TLRPC$WallPaper tLRPC$WallPaper2 = ChannelColorActivity.this.selectedWallpaper;
-                    tLRPC$WallPaper2.id = 0L;
-                    tLRPC$WallPaper2.flags |= 4;
-                    tLRPC$WallPaper2.settings = new TLRPC$TL_wallPaperSettings();
+                    ChannelColorActivity.this.selectedWallpaper = new TLRPC.TL_wallPaperNoFile();
+                    TLRPC.WallPaper wallPaper2 = ChannelColorActivity.this.selectedWallpaper;
+                    wallPaper2.id = 0L;
+                    wallPaper2.flags |= 4;
+                    wallPaper2.settings = new TLRPC.TL_wallPaperSettings();
                     ChannelColorActivity.this.selectedWallpaper.settings.emoticon = str;
                     ChannelColorActivity.this.updateButton(true);
                     ChannelColorActivity.this.updateMessagesPreview(true);
                 }
                 channelColorActivity = ChannelColorActivity.this;
-                tLRPC$WallPaper = null;
+                wallPaper = null;
             }
-            channelColorActivity.selectedWallpaper = tLRPC$WallPaper;
+            channelColorActivity.selectedWallpaper = wallPaper;
             ChannelColorActivity.this.updateButton(true);
             ChannelColorActivity.this.updateMessagesPreview(true);
         }
@@ -459,9 +439,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             }
         }
 
-        public void setEmoji(TLRPC$Document tLRPC$Document, boolean z) {
-            if (tLRPC$Document != null) {
-                this.imageDrawable.set(tLRPC$Document, z);
+        public void setEmoji(TLRPC.Document document, boolean z) {
+            if (document != null) {
+                this.imageDrawable.set(document, z);
                 this.offText = null;
             } else {
                 this.imageDrawable.set((Drawable) null, z);
@@ -793,8 +773,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 textView2.setTextSize(1, 12.0f);
                 this.textInfo2.setTextColor(-1);
                 TextView textView3 = this.textInfo1;
-                TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = ChannelColorActivity.this.boostsStatus;
-                textView3.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGroupBoostCount", tL_stories$TL_premium_boostsStatus != null ? tL_stories$TL_premium_boostsStatus.boosts : 0, new Object[0])));
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = ChannelColorActivity.this.boostsStatus;
+                textView3.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGroupBoostCount", tL_premium_boostsStatus != null ? tL_premium_boostsStatus.boosts : 0, new Object[0])));
                 this.textInfo2.setText(LocaleController.getString(R.string.BoostingGroupBoostWhatAreBoosts));
                 this.infoLayout.addView(this.textInfo1);
                 this.infoLayout.addView(this.textInfo2, LayoutHelper.createLinear(-2, -2, 3.0f, 0.0f, 0.0f, 0.0f));
@@ -811,8 +791,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             this.profileView.setEmoji(j, z);
         }
 
-        public void setEmojiStatus(TLRPC$EmojiStatus tLRPC$EmojiStatus, boolean z) {
-            this.profileView.setStatusEmoji(DialogObject.getEmojiStatusDocumentId(tLRPC$EmojiStatus), z);
+        public void setEmojiStatus(TLRPC.EmojiStatus emojiStatus, boolean z) {
+            this.profileView.setStatusEmoji(DialogObject.getEmojiStatusDocumentId(emojiStatus), z);
         }
 
         public void setTitleSize() {
@@ -834,7 +814,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         private final int currentAccount;
         private String currentEmoticon;
         private boolean dataLoaded;
-        private TLRPC$WallPaper fallbackWallpaper;
+        private TLRPC.WallPaper fallbackWallpaper;
         public final List items;
         private final RecyclerListView listView;
         private final HashMap loadingThemes;
@@ -871,8 +851,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             }
 
             @Override
-            public void onError(TLRPC$TL_error tLRPC$TL_error) {
-                Toast.makeText(ThemeChooser.this.getContext(), tLRPC$TL_error.text, 0).show();
+            public void onError(TLRPC.TL_error tL_error) {
+                Toast.makeText(ThemeChooser.this.getContext(), tL_error.text, 0).show();
             }
         }
 
@@ -950,7 +930,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         }
 
                         @Override
-                        public int noThemeStringTextSize() {
+                        protected int noThemeStringTextSize() {
                             if (z) {
                                 return super.noThemeStringTextSize();
                             }
@@ -1009,20 +989,20 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
 
         public void lambda$parseTheme$3(TLObject tLObject, Theme.ThemeInfo themeInfo) {
-            if (!(tLObject instanceof TLRPC$TL_wallPaper)) {
+            if (!(tLObject instanceof TLRPC.TL_wallPaper)) {
                 themeInfo.badWallpaper = true;
                 return;
             }
-            TLRPC$WallPaper tLRPC$WallPaper = (TLRPC$WallPaper) tLObject;
-            String attachFileName = FileLoader.getAttachFileName(tLRPC$WallPaper.document);
+            TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
+            String attachFileName = FileLoader.getAttachFileName(wallPaper.document);
             if (this.loadingThemes.containsKey(attachFileName)) {
                 return;
             }
             this.loadingThemes.put(attachFileName, themeInfo);
-            FileLoader.getInstance(themeInfo.account).loadFile(tLRPC$WallPaper.document, tLRPC$WallPaper, 1, 1);
+            FileLoader.getInstance(themeInfo.account).loadFile(wallPaper.document, wallPaper, 1, 1);
         }
 
-        public void lambda$parseTheme$4(final Theme.ThemeInfo themeInfo, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$parseTheme$4(final Theme.ThemeInfo themeInfo, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1114,8 +1094,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
         }
 
-        public void setGalleryWallpaper(TLRPC$WallPaper tLRPC$WallPaper) {
-            this.fallbackWallpaper = tLRPC$WallPaper;
+        public void setGalleryWallpaper(TLRPC.WallPaper wallPaper) {
+            this.fallbackWallpaper = wallPaper;
             AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
@@ -1276,14 +1256,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         this.msgOutCheckReadDrawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_check_s).mutate();
         this.msgOutHalfCheckDrawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_halfcheck).mutate();
         this.dialogId = j;
-        final TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-j));
+        final TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-j));
         if (chat != null) {
             this.currentLevel = chat.level;
         }
         MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(j, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChannelColorActivity.this.lambda$new$0(chat, (TL_stories$TL_premium_boostsStatus) obj);
+                ChannelColorActivity.this.lambda$new$0(chat, (TL_stories.TL_premium_boostsStatus) obj);
             }
         });
         this.resourceProvider = new ThemeDelegate();
@@ -1295,7 +1275,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
 
     private void buttonClick() {
         ?? r2;
-        TLRPC$TL_inputWallPaperNoFile tLRPC$TL_inputWallPaperNoFile;
+        TLRPC.TL_inputWallPaperNoFile tL_inputWallPaperNoFile;
         if (this.boostsStatus == null || this.button.isLoading()) {
             return;
         }
@@ -1310,10 +1290,10 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChannelColorActivity.this.lambda$buttonClick$7(zArr, iArr2, iArr, (TLRPC$TL_error) obj);
+                ChannelColorActivity.this.lambda$buttonClick$7(zArr, iArr2, iArr, (TLRPC.TL_error) obj);
             }
         };
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
+        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
         if (chat == null) {
             FileLog.e("channel is null in ChannelColorAcitivity");
             BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError)).show();
@@ -1321,128 +1301,128 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
         this.button.setLoading(true);
         if (this.currentReplyColor != this.selectedReplyColor || this.currentReplyEmoji != this.selectedReplyEmoji) {
-            TLRPC$TL_channels_updateColor tLRPC$TL_channels_updateColor = new TLRPC$TL_channels_updateColor();
-            tLRPC$TL_channels_updateColor.channel = getMessagesController().getInputChannel(-this.dialogId);
-            tLRPC$TL_channels_updateColor.for_profile = false;
+            TLRPC.TL_channels_updateColor tL_channels_updateColor = new TLRPC.TL_channels_updateColor();
+            tL_channels_updateColor.channel = getMessagesController().getInputChannel(-this.dialogId);
+            tL_channels_updateColor.for_profile = false;
             if (chat.color == null) {
-                chat.color = new TLRPC$TL_peerColor();
+                chat.color = new TLRPC.TL_peerColor();
                 chat.flags2 |= 128;
             }
-            int i = tLRPC$TL_channels_updateColor.flags;
-            tLRPC$TL_channels_updateColor.flags = i | 4;
+            int i = tL_channels_updateColor.flags;
+            tL_channels_updateColor.flags = i | 4;
             int i2 = this.selectedReplyColor;
-            tLRPC$TL_channels_updateColor.color = i2;
-            TLRPC$TL_peerColor tLRPC$TL_peerColor = chat.color;
-            int i3 = tLRPC$TL_peerColor.flags;
+            tL_channels_updateColor.color = i2;
+            TLRPC.TL_peerColor tL_peerColor = chat.color;
+            int i3 = tL_peerColor.flags;
             int i4 = i3 | 1;
-            tLRPC$TL_peerColor.flags = i4;
-            tLRPC$TL_peerColor.color = i2;
+            tL_peerColor.flags = i4;
+            tL_peerColor.color = i2;
             long j = this.selectedReplyEmoji;
             if (j != 0) {
-                tLRPC$TL_channels_updateColor.flags = i | 5;
-                tLRPC$TL_channels_updateColor.background_emoji_id = j;
-                tLRPC$TL_peerColor.flags = i3 | 3;
-                tLRPC$TL_peerColor.background_emoji_id = j;
+                tL_channels_updateColor.flags = i | 5;
+                tL_channels_updateColor.background_emoji_id = j;
+                tL_peerColor.flags = i3 | 3;
+                tL_peerColor.background_emoji_id = j;
             } else {
-                tLRPC$TL_peerColor.flags = i4 & (-3);
-                tLRPC$TL_peerColor.background_emoji_id = 0L;
+                tL_peerColor.flags = i4 & (-3);
+                tL_peerColor.background_emoji_id = 0L;
             }
             iArr[0] = iArr[0] + 1;
-            getConnectionsManager().sendRequest(tLRPC$TL_channels_updateColor, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChannelColorActivity.this.lambda$buttonClick$8(callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelColorActivity.this.lambda$buttonClick$8(callback, tLObject, tL_error);
                 }
             });
         }
         if (this.currentProfileColor != this.selectedProfileColor || this.currentProfileEmoji != this.selectedProfileEmoji) {
-            TLRPC$TL_channels_updateColor tLRPC$TL_channels_updateColor2 = new TLRPC$TL_channels_updateColor();
-            tLRPC$TL_channels_updateColor2.channel = getMessagesController().getInputChannel(-this.dialogId);
-            tLRPC$TL_channels_updateColor2.for_profile = true;
+            TLRPC.TL_channels_updateColor tL_channels_updateColor2 = new TLRPC.TL_channels_updateColor();
+            tL_channels_updateColor2.channel = getMessagesController().getInputChannel(-this.dialogId);
+            tL_channels_updateColor2.for_profile = true;
             if (chat.profile_color == null) {
-                chat.profile_color = new TLRPC$TL_peerColor();
+                chat.profile_color = new TLRPC.TL_peerColor();
                 chat.flags2 |= 256;
             }
             int i5 = this.selectedProfileColor;
             if (i5 >= 0) {
-                tLRPC$TL_channels_updateColor2.flags |= 4;
-                tLRPC$TL_channels_updateColor2.color = i5;
-                TLRPC$TL_peerColor tLRPC$TL_peerColor2 = chat.profile_color;
-                tLRPC$TL_peerColor2.flags |= 1;
-                tLRPC$TL_peerColor2.color = i5;
+                tL_channels_updateColor2.flags |= 4;
+                tL_channels_updateColor2.color = i5;
+                TLRPC.TL_peerColor tL_peerColor2 = chat.profile_color;
+                tL_peerColor2.flags |= 1;
+                tL_peerColor2.color = i5;
             } else {
                 chat.profile_color.flags &= -2;
             }
             long j2 = this.selectedProfileEmoji;
             if (j2 != 0) {
-                tLRPC$TL_channels_updateColor2.flags |= 1;
-                tLRPC$TL_channels_updateColor2.background_emoji_id = j2;
-                TLRPC$TL_peerColor tLRPC$TL_peerColor3 = chat.profile_color;
-                tLRPC$TL_peerColor3.flags |= 2;
-                tLRPC$TL_peerColor3.background_emoji_id = j2;
+                tL_channels_updateColor2.flags |= 1;
+                tL_channels_updateColor2.background_emoji_id = j2;
+                TLRPC.TL_peerColor tL_peerColor3 = chat.profile_color;
+                tL_peerColor3.flags |= 2;
+                tL_peerColor3.background_emoji_id = j2;
             } else {
-                TLRPC$TL_peerColor tLRPC$TL_peerColor4 = chat.profile_color;
-                tLRPC$TL_peerColor4.flags &= -3;
-                tLRPC$TL_peerColor4.background_emoji_id = 0L;
+                TLRPC.TL_peerColor tL_peerColor4 = chat.profile_color;
+                tL_peerColor4.flags &= -3;
+                tL_peerColor4.background_emoji_id = 0L;
             }
             iArr[0] = iArr[0] + 1;
-            getConnectionsManager().sendRequest(tLRPC$TL_channels_updateColor2, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tL_channels_updateColor2, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChannelColorActivity.this.lambda$buttonClick$9(callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelColorActivity.this.lambda$buttonClick$9(callback, tLObject, tL_error);
                 }
             });
         }
         if (!ChatThemeController.wallpaperEquals(this.currentWallpaper, this.selectedWallpaper)) {
-            TLRPC$TL_messages_setChatWallPaper tLRPC$TL_messages_setChatWallPaper = new TLRPC$TL_messages_setChatWallPaper();
-            tLRPC$TL_messages_setChatWallPaper.peer = getMessagesController().getInputPeer(this.dialogId);
-            TLRPC$WallPaper tLRPC$WallPaper = this.selectedWallpaper;
-            if (tLRPC$WallPaper != null) {
-                if (TextUtils.isEmpty(ChatThemeController.getWallpaperEmoticon(tLRPC$WallPaper))) {
-                    tLRPC$TL_messages_setChatWallPaper.flags |= 1;
-                    TLRPC$WallPaper tLRPC$WallPaper2 = this.selectedWallpaper;
-                    if (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaper) {
-                        TLRPC$TL_inputWallPaper tLRPC$TL_inputWallPaper = new TLRPC$TL_inputWallPaper();
-                        TLRPC$WallPaper tLRPC$WallPaper3 = this.selectedWallpaper;
-                        tLRPC$TL_inputWallPaper.id = tLRPC$WallPaper3.id;
-                        tLRPC$TL_inputWallPaper.access_hash = tLRPC$WallPaper3.access_hash;
-                        tLRPC$TL_inputWallPaperNoFile = tLRPC$TL_inputWallPaper;
-                    } else if (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaperNoFile) {
-                        TLRPC$TL_inputWallPaperNoFile tLRPC$TL_inputWallPaperNoFile2 = new TLRPC$TL_inputWallPaperNoFile();
-                        tLRPC$TL_inputWallPaperNoFile2.id = this.selectedWallpaper.id;
-                        tLRPC$TL_inputWallPaperNoFile = tLRPC$TL_inputWallPaperNoFile2;
+            TLRPC.TL_messages_setChatWallPaper tL_messages_setChatWallPaper = new TLRPC.TL_messages_setChatWallPaper();
+            tL_messages_setChatWallPaper.peer = getMessagesController().getInputPeer(this.dialogId);
+            TLRPC.WallPaper wallPaper = this.selectedWallpaper;
+            if (wallPaper != null) {
+                if (TextUtils.isEmpty(ChatThemeController.getWallpaperEmoticon(wallPaper))) {
+                    tL_messages_setChatWallPaper.flags |= 1;
+                    TLRPC.WallPaper wallPaper2 = this.selectedWallpaper;
+                    if (wallPaper2 instanceof TLRPC.TL_wallPaper) {
+                        TLRPC.TL_inputWallPaper tL_inputWallPaper = new TLRPC.TL_inputWallPaper();
+                        TLRPC.WallPaper wallPaper3 = this.selectedWallpaper;
+                        tL_inputWallPaper.id = wallPaper3.id;
+                        tL_inputWallPaper.access_hash = wallPaper3.access_hash;
+                        tL_inputWallPaperNoFile = tL_inputWallPaper;
+                    } else if (wallPaper2 instanceof TLRPC.TL_wallPaperNoFile) {
+                        TLRPC.TL_inputWallPaperNoFile tL_inputWallPaperNoFile2 = new TLRPC.TL_inputWallPaperNoFile();
+                        tL_inputWallPaperNoFile2.id = this.selectedWallpaper.id;
+                        tL_inputWallPaperNoFile = tL_inputWallPaperNoFile2;
                     }
-                    tLRPC$TL_messages_setChatWallPaper.wallpaper = tLRPC$TL_inputWallPaperNoFile;
+                    tL_messages_setChatWallPaper.wallpaper = tL_inputWallPaperNoFile;
                 } else {
-                    tLRPC$TL_messages_setChatWallPaper.flags |= 1;
-                    TLRPC$TL_inputWallPaperNoFile tLRPC$TL_inputWallPaperNoFile3 = new TLRPC$TL_inputWallPaperNoFile();
-                    tLRPC$TL_messages_setChatWallPaper.wallpaper = tLRPC$TL_inputWallPaperNoFile3;
-                    tLRPC$TL_inputWallPaperNoFile3.id = 0L;
-                    tLRPC$TL_messages_setChatWallPaper.flags |= 4;
-                    TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings = new TLRPC$TL_wallPaperSettings();
-                    tLRPC$TL_messages_setChatWallPaper.settings = tLRPC$TL_wallPaperSettings;
-                    tLRPC$TL_wallPaperSettings.flags |= 128;
-                    tLRPC$TL_wallPaperSettings.emoticon = ChatThemeController.getWallpaperEmoticon(this.selectedWallpaper);
+                    tL_messages_setChatWallPaper.flags |= 1;
+                    TLRPC.TL_inputWallPaperNoFile tL_inputWallPaperNoFile3 = new TLRPC.TL_inputWallPaperNoFile();
+                    tL_messages_setChatWallPaper.wallpaper = tL_inputWallPaperNoFile3;
+                    tL_inputWallPaperNoFile3.id = 0L;
+                    tL_messages_setChatWallPaper.flags |= 4;
+                    TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
+                    tL_messages_setChatWallPaper.settings = tL_wallPaperSettings;
+                    tL_wallPaperSettings.flags |= 128;
+                    tL_wallPaperSettings.emoticon = ChatThemeController.getWallpaperEmoticon(this.selectedWallpaper);
                 }
             }
             iArr[0] = iArr[0] + 1;
-            getConnectionsManager().sendRequest(tLRPC$TL_messages_setChatWallPaper, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChannelColorActivity.this.lambda$buttonClick$10(callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelColorActivity.this.lambda$buttonClick$10(callback, tLObject, tL_error);
                 }
             });
-            TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
+            TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
             ChatThemeController.getInstance(this.currentAccount).saveChatWallpaper(this.dialogId, this.selectedWallpaper);
             if (chatFull != null) {
-                TLRPC$WallPaper tLRPC$WallPaper4 = this.selectedWallpaper;
-                if (tLRPC$WallPaper4 == null) {
+                TLRPC.WallPaper wallPaper4 = this.selectedWallpaper;
+                if (wallPaper4 == null) {
                     chatFull.flags2 &= -129;
-                    tLRPC$WallPaper4 = null;
+                    wallPaper4 = null;
                 } else {
                     chatFull.flags2 |= 128;
                 }
-                chatFull.wallpaper = tLRPC$WallPaper4;
+                chatFull.wallpaper = wallPaper4;
                 getMessagesController().putChatFull(chatFull);
                 NotificationCenter notificationCenter = getNotificationCenter();
                 int i6 = NotificationCenter.chatInfoDidLoad;
@@ -1453,30 +1433,30 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         if (DialogObject.emojiStatusesEqual(this.currentStatusEmoji, this.selectedStatusEmoji)) {
             r2 = 0;
         } else {
-            TLRPC$TL_channels_updateEmojiStatus tLRPC$TL_channels_updateEmojiStatus = new TLRPC$TL_channels_updateEmojiStatus();
-            tLRPC$TL_channels_updateEmojiStatus.channel = getMessagesController().getInputChannel(-this.dialogId);
-            TLRPC$EmojiStatus tLRPC$EmojiStatus = this.selectedStatusEmoji;
-            if (tLRPC$EmojiStatus == null || (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusEmpty)) {
-                tLRPC$TL_channels_updateEmojiStatus.emoji_status = new TLRPC$TL_emojiStatusEmpty();
-                chat.emoji_status = new TLRPC$TL_emojiStatusEmpty();
+            TLRPC.TL_channels_updateEmojiStatus tL_channels_updateEmojiStatus = new TLRPC.TL_channels_updateEmojiStatus();
+            tL_channels_updateEmojiStatus.channel = getMessagesController().getInputChannel(-this.dialogId);
+            TLRPC.EmojiStatus emojiStatus = this.selectedStatusEmoji;
+            if (emojiStatus == null || (emojiStatus instanceof TLRPC.TL_emojiStatusEmpty)) {
+                tL_channels_updateEmojiStatus.emoji_status = new TLRPC.TL_emojiStatusEmpty();
+                chat.emoji_status = new TLRPC.TL_emojiStatusEmpty();
                 chat.flags2 &= -513;
             } else {
-                tLRPC$TL_channels_updateEmojiStatus.emoji_status = tLRPC$EmojiStatus;
-                chat.emoji_status = tLRPC$EmojiStatus;
+                tL_channels_updateEmojiStatus.emoji_status = emojiStatus;
+                chat.emoji_status = emojiStatus;
                 chat.flags |= 512;
             }
             getMessagesController().updateEmojiStatusUntilUpdate(this.dialogId, this.selectedStatusEmoji);
             r2 = 0;
             iArr[0] = iArr[0] + 1;
-            getConnectionsManager().sendRequest(tLRPC$TL_channels_updateEmojiStatus, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tL_channels_updateEmojiStatus, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChannelColorActivity.this.lambda$buttonClick$11(callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelColorActivity.this.lambda$buttonClick$11(callback, tLObject, tL_error);
                 }
             });
         }
         if (iArr[r2] == 0) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             this.button.setLoading(r2);
             return;
         }
@@ -1488,26 +1468,26 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         notificationCenter2.lambda$postNotificationNameOnUIThread$1(i7, objArr);
     }
 
-    public TLRPC$Document getEmojiSetThumb(TLRPC$StickerSet tLRPC$StickerSet) {
-        if (tLRPC$StickerSet != null && tLRPC$StickerSet.thumb_document_id == 0) {
-            TLRPC$TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(tLRPC$StickerSet);
+    public TLRPC.Document getEmojiSetThumb(TLRPC.StickerSet stickerSet) {
+        if (stickerSet != null && stickerSet.thumb_document_id == 0) {
+            TLRPC.TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(stickerSet);
             if (!groupStickerSetById.documents.isEmpty()) {
-                return (TLRPC$Document) groupStickerSetById.documents.get(0);
+                return groupStickerSetById.documents.get(0);
             }
         }
         return null;
     }
 
-    public long getEmojiSetThumbId(TLRPC$StickerSet tLRPC$StickerSet) {
-        if (tLRPC$StickerSet == null) {
+    public long getEmojiSetThumbId(TLRPC.StickerSet stickerSet) {
+        if (stickerSet == null) {
             return 0L;
         }
-        long j = tLRPC$StickerSet.thumb_document_id;
+        long j = stickerSet.thumb_document_id;
         if (j != 0) {
             return j;
         }
-        TLRPC$TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(tLRPC$StickerSet);
-        return !groupStickerSetById.documents.isEmpty() ? ((TLRPC$Document) groupStickerSetById.documents.get(0)).id : j;
+        TLRPC.TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(stickerSet);
+        return !groupStickerSetById.documents.isEmpty() ? groupStickerSetById.documents.get(0).id : j;
     }
 
     public String getThemeChooserEmoticon() {
@@ -1515,73 +1495,73 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         return (wallpaperEmoticon == null && this.selectedWallpaper == null && this.galleryWallpaper != null) ? "❌" : wallpaperEmoticon;
     }
 
-    public void lambda$buttonClick$10(Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$Updates) {
-            getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+    public void lambda$buttonClick$10(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.Updates) {
+            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
         if (callback != null) {
-            callback.run(tLRPC$TL_error);
+            callback.run(tL_error);
         }
     }
 
-    public void lambda$buttonClick$11(Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$Updates) {
-            getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+    public void lambda$buttonClick$11(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.Updates) {
+            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
         if (callback != null) {
-            callback.run(tLRPC$TL_error);
+            callback.run(tL_error);
         }
     }
 
-    public void lambda$buttonClick$6(boolean[] zArr, int[] iArr, int[] iArr2, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$buttonClick$6(boolean[] zArr, int[] iArr, int[] iArr2, TLRPC.TL_error tL_error) {
         int i;
         if (zArr[0] || (i = iArr[0]) >= iArr2[0]) {
             return;
         }
-        if (tLRPC$TL_error != null) {
+        if (tL_error != null) {
             zArr[0] = true;
-            if ("BOOSTS_REQUIRED".equals(tLRPC$TL_error.text)) {
+            if ("BOOSTS_REQUIRED".equals(tL_error.text)) {
                 showLimit();
                 return;
             } else {
                 this.button.setLoading(false);
-                BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
+                BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text)).show();
                 return;
             }
         }
         int i2 = i + 1;
         iArr[0] = i2;
         if (i2 == iArr2[0]) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             showBulletin();
             this.button.setLoading(false);
         }
     }
 
-    public void lambda$buttonClick$7(final boolean[] zArr, final int[] iArr, final int[] iArr2, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$buttonClick$7(final boolean[] zArr, final int[] iArr, final int[] iArr2, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelColorActivity.this.lambda$buttonClick$6(zArr, iArr, iArr2, tLRPC$TL_error);
+                ChannelColorActivity.this.lambda$buttonClick$6(zArr, iArr, iArr2, tL_error);
             }
         });
     }
 
-    public void lambda$buttonClick$8(Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$Updates) {
-            getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+    public void lambda$buttonClick$8(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.Updates) {
+            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
         if (callback != null) {
-            callback.run(tLRPC$TL_error);
+            callback.run(tL_error);
         }
     }
 
-    public void lambda$buttonClick$9(Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$Updates) {
-            getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+    public void lambda$buttonClick$9(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.Updates) {
+            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
         if (callback != null) {
-            callback.run(tLRPC$TL_error);
+            callback.run(tL_error);
         }
     }
 
@@ -1596,14 +1576,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 if (l.longValue() == 0) {
                     this.selectedStatusEmoji = null;
                 } else if (num != null) {
-                    TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = new TLRPC$TL_emojiStatusUntil();
-                    this.selectedStatusEmoji = tLRPC$TL_emojiStatusUntil;
-                    tLRPC$TL_emojiStatusUntil.until = num.intValue();
-                    ((TLRPC$TL_emojiStatusUntil) this.selectedStatusEmoji).document_id = l.longValue();
+                    TLRPC.TL_emojiStatusUntil tL_emojiStatusUntil = new TLRPC.TL_emojiStatusUntil();
+                    this.selectedStatusEmoji = tL_emojiStatusUntil;
+                    tL_emojiStatusUntil.until = num.intValue();
+                    ((TLRPC.TL_emojiStatusUntil) this.selectedStatusEmoji).document_id = l.longValue();
                 } else {
-                    TLRPC$TL_emojiStatus tLRPC$TL_emojiStatus = new TLRPC$TL_emojiStatus();
-                    this.selectedStatusEmoji = tLRPC$TL_emojiStatus;
-                    tLRPC$TL_emojiStatus.document_id = l.longValue();
+                    TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+                    this.selectedStatusEmoji = tL_emojiStatus;
+                    tL_emojiStatus.document_id = l.longValue();
                 }
             }
             updateProfilePreview(true);
@@ -1616,10 +1596,10 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         BulletinFactory.of(this).createSimpleBulletin(R.raw.done, LocaleController.getString(R.string.ChannelWallpaperUpdated)).show();
     }
 
-    public void lambda$createView$3(TLRPC$WallPaper tLRPC$WallPaper) {
-        this.currentWallpaper = tLRPC$WallPaper;
-        this.selectedWallpaper = tLRPC$WallPaper;
-        this.galleryWallpaper = tLRPC$WallPaper;
+    public void lambda$createView$3(TLRPC.WallPaper wallPaper) {
+        this.currentWallpaper = wallPaper;
+        this.selectedWallpaper = wallPaper;
+        this.galleryWallpaper = wallPaper;
         updateButton(false);
         updateMessagesPreview(false);
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1630,7 +1610,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }, 350L);
     }
 
-    public void lambda$createView$4(TLRPC$ChatFull tLRPC$ChatFull, final View view, final int i) {
+    public void lambda$createView$4(TLRPC.ChatFull chatFull, final View view, final int i) {
         long j = 0;
         if (!(view instanceof EmojiCell)) {
             if (i != this.removeProfileColorRow) {
@@ -1638,7 +1618,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     ChatThemeBottomSheet.openGalleryForBackground(getParentActivity(), this, this.dialogId, this.resourceProvider, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            ChannelColorActivity.this.lambda$createView$3((TLRPC$WallPaper) obj);
+                            ChannelColorActivity.this.lambda$createView$3((TLRPC.WallPaper) obj);
                         }
                     }, new ThemePreviewActivity.DayNightSwitchDelegate() {
                         @Override
@@ -1673,11 +1653,11 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             }
         }
         if (i == this.packStickerRow) {
-            if (tLRPC$ChatFull == null) {
+            if (chatFull == null) {
                 return;
             }
             GroupStickersActivity groupStickersActivity = new GroupStickersActivity(-this.dialogId);
-            groupStickersActivity.setInfo(tLRPC$ChatFull);
+            groupStickersActivity.setInfo(chatFull);
             presentFragment(groupStickersActivity);
             return;
         }
@@ -1699,13 +1679,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             return;
         }
         int emojiStickersLevelMin = getEmojiStickersLevelMin();
-        TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
-        if (tL_stories$TL_premium_boostsStatus != null && tL_stories$TL_premium_boostsStatus.level < emojiStickersLevelMin) {
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.boostsStatus;
+        if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < emojiStickersLevelMin) {
             openBoostDialog(29);
             return;
         }
         GroupStickersActivity groupStickersActivity2 = new GroupStickersActivity(-this.dialogId, true);
-        groupStickersActivity2.setInfo(tLRPC$ChatFull);
+        groupStickersActivity2.setInfo(chatFull);
         presentFragment(groupStickersActivity2);
     }
 
@@ -1713,14 +1693,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         buttonClick();
     }
 
-    public void lambda$new$0(TLRPC$Chat tLRPC$Chat, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
-        this.boostsStatus = tL_stories$TL_premium_boostsStatus;
-        if (tL_stories$TL_premium_boostsStatus != null) {
-            int i = tL_stories$TL_premium_boostsStatus.level;
+    public void lambda$new$0(TLRPC.Chat chat, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        this.boostsStatus = tL_premium_boostsStatus;
+        if (tL_premium_boostsStatus != null) {
+            int i = tL_premium_boostsStatus.level;
             this.currentLevel = i;
-            if (tLRPC$Chat != null) {
-                tLRPC$Chat.flags |= 1024;
-                tLRPC$Chat.level = i;
+            if (chat != null) {
+                chat.flags |= 1024;
+                chat.level = i;
             }
         }
         updateButton(true);
@@ -1730,8 +1710,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$showLimit$12(TLRPC$Chat tLRPC$Chat) {
-        presentFragment(StatisticActivity.create(tLRPC$Chat));
+    public void lambda$showLimit$12(TLRPC.Chat chat) {
+        presentFragment(StatisticActivity.create(chat));
     }
 
     public void lambda$showLimit$13(org.telegram.messenger.ChannelBoostsController.CanApplyBoost r13) {
@@ -1739,7 +1719,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$showUnsavedAlert$14(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$showUnsavedAlert$15(DialogInterface dialogInterface, int i) {
@@ -1801,11 +1781,11 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         ((TextView) create.getButton(-2)).setTextColor(getThemedColor(Theme.key_text_RedBold));
     }
 
-    public void updateBoostsAndLevels(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
-        if (tL_stories$TL_premium_boostsStatus != null) {
-            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
-            this.boostsStatus = tL_stories$TL_premium_boostsStatus;
-            int i = tL_stories$TL_premium_boostsStatus.level;
+    public void updateBoostsAndLevels(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        if (tL_premium_boostsStatus != null) {
+            TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
+            this.boostsStatus = tL_premium_boostsStatus;
+            int i = tL_premium_boostsStatus.level;
             this.currentLevel = i;
             if (chat != null) {
                 chat.level = i;
@@ -1843,7 +1823,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
 
     @Override
     public View createView(Context context) {
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
+        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
         if (chat != null) {
             int colorId = ChatObject.getColorId(chat);
             this.selectedReplyColor = colorId;
@@ -1857,16 +1837,16 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             long profileEmojiId = ChatObject.getProfileEmojiId(chat);
             this.selectedProfileEmoji = profileEmojiId;
             this.currentProfileEmoji = profileEmojiId;
-            TLRPC$EmojiStatus tLRPC$EmojiStatus = chat.emoji_status;
-            this.selectedStatusEmoji = tLRPC$EmojiStatus;
-            this.currentStatusEmoji = tLRPC$EmojiStatus;
+            TLRPC.EmojiStatus emojiStatus = chat.emoji_status;
+            this.selectedStatusEmoji = emojiStatus;
+            this.currentStatusEmoji = emojiStatus;
         }
-        final TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
+        final TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
         if (chatFull != null) {
-            TLRPC$WallPaper tLRPC$WallPaper = chatFull.wallpaper;
-            this.selectedWallpaper = tLRPC$WallPaper;
-            this.currentWallpaper = tLRPC$WallPaper;
-            if (ChatThemeController.isNotEmoticonWallpaper(tLRPC$WallPaper)) {
+            TLRPC.WallPaper wallPaper = chatFull.wallpaper;
+            this.selectedWallpaper = wallPaper;
+            this.currentWallpaper = wallPaper;
+            if (ChatThemeController.isNotEmoticonWallpaper(wallPaper)) {
                 this.galleryWallpaper = this.currentWallpaper;
             }
         }
@@ -1882,7 +1862,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 } else {
                     ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
                     if (channelColorActivity.currentLevel < channelColorActivity.minLevelRequired() || !ChannelColorActivity.this.hasUnsavedChanged()) {
-                        ChannelColorActivity.this.lambda$onBackPressed$307();
+                        ChannelColorActivity.this.lambda$onBackPressed$300();
                     } else {
                         ChannelColorActivity.this.showUnsavedAlert();
                     }
@@ -1995,7 +1975,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatWasBoostedByUser) {
             if (this.dialogId == ((Long) objArr[2]).longValue()) {
-                updateBoostsAndLevels((TL_stories$TL_premium_boostsStatus) objArr[0]);
+                updateBoostsAndLevels((TL_stories.TL_premium_boostsStatus) objArr[0]);
             }
         } else {
             if (i != NotificationCenter.boostByChannelCreated || ((Boolean) objArr[1]).booleanValue()) {
@@ -2004,7 +1984,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChannelColorActivity.this.updateBoostsAndLevels((TL_stories$TL_premium_boostsStatus) obj);
+                    ChannelColorActivity.this.updateBoostsAndLevels((TL_stories.TL_premium_boostsStatus) obj);
                 }
             });
         }
@@ -2218,7 +2198,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             }
 
             @Override
-            protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
+            protected void onEmojiSelected(View view, Long l, TLRPC.Document document, Integer num) {
                 Utilities.Callback2 callback22 = callback2;
                 if (callback22 != null) {
                     callback22.run(Long.valueOf(l == null ? 0L : l.longValue()), num);
@@ -2420,8 +2400,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public void updateProfilePreview(boolean z) {
-        TLRPC$StickerSet tLRPC$StickerSet;
-        TLRPC$StickerSet tLRPC$StickerSet2;
+        TLRPC.StickerSet stickerSet;
+        TLRPC.StickerSet stickerSet2;
         View findChildAt = findChildAt(this.profilePreviewRow);
         View findChildAt2 = findChildAt(this.profileColorGridRow);
         View findChildAt3 = findChildAt(this.profileEmojiRow);
@@ -2453,19 +2433,19 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         if (findChildAt5 instanceof EmojiCell) {
             EmojiCell emojiCell3 = (EmojiCell) findChildAt5;
             emojiCell3.setAdaptiveEmojiColor(this.currentAccount, this.selectedProfileColor, false);
-            TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
-            if (chatFull == null || (tLRPC$StickerSet2 = chatFull.emojiset) == null) {
+            TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
+            if (chatFull == null || (stickerSet2 = chatFull.emojiset) == null) {
                 emojiCell3.setEmoji(0L, false);
             } else {
-                emojiCell3.setEmoji(getEmojiSetThumbId(tLRPC$StickerSet2), false);
+                emojiCell3.setEmoji(getEmojiSetThumbId(stickerSet2), false);
             }
         }
         if (findChildAt6 instanceof EmojiCell) {
-            TLRPC$ChatFull chatFull2 = getMessagesController().getChatFull(-this.dialogId);
-            if (chatFull2 == null || (tLRPC$StickerSet = chatFull2.stickerset) == null) {
+            TLRPC.ChatFull chatFull2 = getMessagesController().getChatFull(-this.dialogId);
+            if (chatFull2 == null || (stickerSet = chatFull2.stickerset) == null) {
                 ((EmojiCell) findChildAt6).setEmoji(0L, false);
             } else {
-                ((EmojiCell) findChildAt6).setEmoji(getEmojiSetThumb(tLRPC$StickerSet), false);
+                ((EmojiCell) findChildAt6).setEmoji(getEmojiSetThumb(stickerSet), false);
             }
         }
         updateRows();

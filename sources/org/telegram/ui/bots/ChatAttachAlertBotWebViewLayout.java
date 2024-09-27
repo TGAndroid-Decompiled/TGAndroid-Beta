@@ -43,15 +43,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
-import org.telegram.tgnet.TLRPC$TL_dataJSON;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_prolongWebView;
-import org.telegram.tgnet.TLRPC$TL_messages_requestWebView;
-import org.telegram.tgnet.TLRPC$TL_webViewResultUrl;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -691,49 +683,49 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
     }
 
-    public void lambda$new$0(TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$0(TLRPC.TL_error tL_error) {
         if (this.destroyed) {
             return;
         }
-        if (tLRPC$TL_error != null) {
+        if (tL_error != null) {
             this.parentAlert.dismiss();
         } else {
             AndroidUtilities.runOnUIThread(this.pollRunnable, 60000L);
         }
     }
 
-    public void lambda$new$1(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$1(TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$0(tLRPC$TL_error);
+                ChatAttachAlertBotWebViewLayout.this.lambda$new$0(tL_error);
             }
         });
     }
 
     public void lambda$new$2() {
-        TLRPC$ChatFull chatFull;
-        TLRPC$Peer tLRPC$Peer;
+        TLRPC.ChatFull chatFull;
+        TLRPC.Peer peer;
         if (this.destroyed) {
             return;
         }
-        TLRPC$TL_messages_prolongWebView tLRPC$TL_messages_prolongWebView = new TLRPC$TL_messages_prolongWebView();
-        tLRPC$TL_messages_prolongWebView.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
-        tLRPC$TL_messages_prolongWebView.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.peerId);
-        tLRPC$TL_messages_prolongWebView.query_id = this.queryId;
-        tLRPC$TL_messages_prolongWebView.silent = this.silent;
+        TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
+        tL_messages_prolongWebView.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
+        tL_messages_prolongWebView.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.peerId);
+        tL_messages_prolongWebView.query_id = this.queryId;
+        tL_messages_prolongWebView.silent = this.silent;
         if (this.replyToMsgId != 0) {
-            tLRPC$TL_messages_prolongWebView.reply_to = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
-            tLRPC$TL_messages_prolongWebView.flags |= 1;
+            tL_messages_prolongWebView.reply_to = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
+            tL_messages_prolongWebView.flags |= 1;
         }
-        if (this.peerId < 0 && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.peerId)) != null && (tLRPC$Peer = chatFull.default_send_as) != null) {
-            tLRPC$TL_messages_prolongWebView.send_as = MessagesController.getInstance(this.currentAccount).getInputPeer(tLRPC$Peer);
-            tLRPC$TL_messages_prolongWebView.flags |= 8192;
+        if (this.peerId < 0 && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.peerId)) != null && (peer = chatFull.default_send_as) != null) {
+            tL_messages_prolongWebView.send_as = MessagesController.getInstance(this.currentAccount).getInputPeer(peer);
+            tL_messages_prolongWebView.flags |= 8192;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_prolongWebView, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_prolongWebView, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatAttachAlertBotWebViewLayout.this.lambda$new$1(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChatAttachAlertBotWebViewLayout.this.lambda$new$1(tLObject, tL_error);
             }
         });
     }
@@ -801,15 +793,15 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public void lambda$requestWebView$12(TLObject tLObject, int i) {
-        if (tLObject instanceof TLRPC$TL_webViewResultUrl) {
-            TLRPC$TL_webViewResultUrl tLRPC$TL_webViewResultUrl = (TLRPC$TL_webViewResultUrl) tLObject;
-            this.queryId = tLRPC$TL_webViewResultUrl.query_id;
-            this.webViewContainer.loadUrl(i, tLRPC$TL_webViewResultUrl.url);
+        if (tLObject instanceof TLRPC.TL_webViewResultUrl) {
+            TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject;
+            this.queryId = tL_webViewResultUrl.query_id;
+            this.webViewContainer.loadUrl(i, tL_webViewResultUrl.url);
             AndroidUtilities.runOnUIThread(this.pollRunnable);
         }
     }
 
-    public void lambda$requestWebView$13(final int i, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$13(final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -941,7 +933,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             this.parentAlert.dismiss();
             return true;
         }
-        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
@@ -1032,11 +1024,11 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             return;
         }
         if (i == R.id.menu_delete_bot) {
-            Iterator it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
+            Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
             while (it.hasNext()) {
-                TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) it.next();
-                if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
-                    this.parentAlert.onLongClickBotButton(tLRPC$TL_attachMenuBot, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)));
+                TLRPC.TL_attachMenuBot next = it.next();
+                if (next.bot_id == this.botId) {
+                    this.parentAlert.onLongClickBotButton(next, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)));
                     return;
                 }
             }
@@ -1163,8 +1155,8 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public void requestWebView(final int i, long j, long j2, boolean z, int i2, String str) {
-        TLRPC$ChatFull chatFull;
-        TLRPC$Peer tLRPC$Peer;
+        TLRPC.ChatFull chatFull;
+        TLRPC.Peer peer;
         this.currentAccount = i;
         this.peerId = j;
         this.botId = j2;
@@ -1180,34 +1172,34 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         }
         this.webViewContainer.setBotUser(MessagesController.getInstance(i).getUser(Long.valueOf(j2)));
         this.webViewContainer.loadFlickerAndSettingsItem(i, j2, this.settingsItem);
-        TLRPC$TL_messages_requestWebView tLRPC$TL_messages_requestWebView = new TLRPC$TL_messages_requestWebView();
-        tLRPC$TL_messages_requestWebView.peer = MessagesController.getInstance(i).getInputPeer(j);
-        tLRPC$TL_messages_requestWebView.bot = MessagesController.getInstance(i).getInputUser(j2);
-        tLRPC$TL_messages_requestWebView.silent = z;
-        tLRPC$TL_messages_requestWebView.platform = "android";
-        if (j < 0 && (chatFull = MessagesController.getInstance(i).getChatFull(-j)) != null && (tLRPC$Peer = chatFull.default_send_as) != null) {
-            tLRPC$TL_messages_requestWebView.send_as = MessagesController.getInstance(i).getInputPeer(tLRPC$Peer);
-            tLRPC$TL_messages_requestWebView.flags |= 8192;
+        TLRPC.TL_messages_requestWebView tL_messages_requestWebView = new TLRPC.TL_messages_requestWebView();
+        tL_messages_requestWebView.peer = MessagesController.getInstance(i).getInputPeer(j);
+        tL_messages_requestWebView.bot = MessagesController.getInstance(i).getInputUser(j2);
+        tL_messages_requestWebView.silent = z;
+        tL_messages_requestWebView.platform = "android";
+        if (j < 0 && (chatFull = MessagesController.getInstance(i).getChatFull(-j)) != null && (peer = chatFull.default_send_as) != null) {
+            tL_messages_requestWebView.send_as = MessagesController.getInstance(i).getInputPeer(peer);
+            tL_messages_requestWebView.flags |= 8192;
         }
         if (str != null) {
-            tLRPC$TL_messages_requestWebView.start_param = str;
-            tLRPC$TL_messages_requestWebView.flags |= 8;
+            tL_messages_requestWebView.start_param = str;
+            tL_messages_requestWebView.flags |= 8;
         }
         if (i2 != 0) {
-            tLRPC$TL_messages_requestWebView.reply_to = SendMessagesHelper.getInstance(i).createReplyInput(i2);
-            tLRPC$TL_messages_requestWebView.flags |= 1;
+            tL_messages_requestWebView.reply_to = SendMessagesHelper.getInstance(i).createReplyInput(i2);
+            tL_messages_requestWebView.flags |= 1;
         }
         JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(this.resourcesProvider);
         if (makeThemeParams != null) {
-            TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
-            tLRPC$TL_messages_requestWebView.theme_params = tLRPC$TL_dataJSON;
-            tLRPC$TL_dataJSON.data = makeThemeParams.toString();
-            tLRPC$TL_messages_requestWebView.flags |= 4;
+            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
+            tL_messages_requestWebView.theme_params = tL_dataJSON;
+            tL_dataJSON.data = makeThemeParams.toString();
+            tL_messages_requestWebView.flags |= 4;
         }
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestWebView, new RequestDelegate() {
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_requestWebView, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatAttachAlertBotWebViewLayout.this.lambda$requestWebView$13(i, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChatAttachAlertBotWebViewLayout.this.lambda$requestWebView$13(i, tLObject, tL_error);
             }
         });
         NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.webViewResultSent);
@@ -1258,25 +1250,25 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public void showJustAddedBulletin() {
-        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
-        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
-        Iterator it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
+        TLRPC.TL_attachMenuBot tL_attachMenuBot;
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
+        Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
-                tLRPC$TL_attachMenuBot = null;
+                tL_attachMenuBot = null;
                 break;
             } else {
-                tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) it.next();
-                if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
+                tL_attachMenuBot = it.next();
+                if (tL_attachMenuBot.bot_id == this.botId) {
                     break;
                 }
             }
         }
-        if (tLRPC$TL_attachMenuBot == null) {
+        if (tL_attachMenuBot == null) {
             return;
         }
-        boolean z = tLRPC$TL_attachMenuBot.show_in_side_menu;
-        final String formatString = (z && tLRPC$TL_attachMenuBot.show_in_attach_menu) ? LocaleController.formatString("BotAttachMenuShortcatAddedAttachAndSide", R.string.BotAttachMenuShortcatAddedAttachAndSide, user.first_name) : z ? LocaleController.formatString("BotAttachMenuShortcatAddedSide", R.string.BotAttachMenuShortcatAddedSide, user.first_name) : LocaleController.formatString("BotAttachMenuShortcatAddedAttach", R.string.BotAttachMenuShortcatAddedAttach, user.first_name);
+        boolean z = tL_attachMenuBot.show_in_side_menu;
+        final String formatString = (z && tL_attachMenuBot.show_in_attach_menu) ? LocaleController.formatString("BotAttachMenuShortcatAddedAttachAndSide", R.string.BotAttachMenuShortcatAddedAttachAndSide, user.first_name) : z ? LocaleController.formatString("BotAttachMenuShortcatAddedSide", R.string.BotAttachMenuShortcatAddedSide, user.first_name) : LocaleController.formatString("BotAttachMenuShortcatAddedAttach", R.string.BotAttachMenuShortcatAddedAttach, user.first_name);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

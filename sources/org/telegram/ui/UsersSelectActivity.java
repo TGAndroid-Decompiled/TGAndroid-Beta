@@ -41,8 +41,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -644,7 +643,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                             break;
                     }
                 } else {
-                    j = object instanceof TLRPC$User ? ((TLRPC$User) object).id : object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).id : 0L;
+                    j = object instanceof TLRPC.User ? ((TLRPC.User) object).id : object instanceof TLRPC.Chat ? -((TLRPC.Chat) object).id : 0L;
                 }
                 if (j != 0) {
                     groupCreateUserCell.setChecked(this.selectedContacts.indexOfKey(j) >= 0, true);
@@ -702,7 +701,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         if (filterUsersActivityDelegate != null) {
             filterUsersActivityDelegate.didSelectChats(arrayList, this.filterFlags);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
         return true;
     }
 
@@ -797,7 +796,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i5) {
                 if (i5 == -1) {
-                    UsersSelectActivity.this.lambda$onBackPressed$307();
+                    UsersSelectActivity.this.lambda$onBackPressed$300();
                 } else if (i5 == 1) {
                     UsersSelectActivity.this.onDonePressed(true);
                 }

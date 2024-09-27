@@ -11,7 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
@@ -48,7 +48,7 @@ public class WebAppDisclaimerAlert {
         }
     }
 
-    public static void show(final Context context, final Consumer consumer, TLRPC$User tLRPC$User, final Runnable runnable) {
+    public static void show(final Context context, final Consumer consumer, TLRPC.User user, final Runnable runnable) {
         final WebAppDisclaimerAlert webAppDisclaimerAlert = new WebAppDisclaimerAlert();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(LocaleController.getString(R.string.TermsOfUse));

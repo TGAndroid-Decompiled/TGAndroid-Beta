@@ -39,7 +39,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
@@ -115,25 +115,28 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
-            if (this.val$baseFragment != null && this.val$reactionsContainerLayout.getWindowType() != 13 && !UserConfig.getInstance(this.val$baseFragment.getCurrentAccount()).isPremium()) {
-                CustomEmojiReactionsWindow.this.windowView.performHapticFeedback(3);
-                BulletinFactory.of(CustomEmojiReactionsWindow.this.windowView, null).createEmojiBulletin(tLRPC$Document, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiReaction)), LocaleController.getString(R.string.PremiumMore), new Runnable() {
-                    @Override
-                    public final void run() {
-                        CustomEmojiReactionsWindow.AnonymousClass2.this.lambda$onEmojiSelected$0();
-                    }
-                }).show();
-            } else {
-                if (l == null && tLRPC$Document == null) {
+        protected void onEmojiSelected(View view, Long l, TLRPC.Document document, Integer num) {
+            if (this.val$baseFragment != null) {
+                ReactionsContainerLayout reactionsContainerLayout = this.val$reactionsContainerLayout;
+                if (!reactionsContainerLayout.channelReactions && reactionsContainerLayout.getWindowType() != 13 && !UserConfig.getInstance(this.val$baseFragment.getCurrentAccount()).isPremium()) {
+                    CustomEmojiReactionsWindow.this.windowView.performHapticFeedback(3);
+                    BulletinFactory.of(CustomEmojiReactionsWindow.this.windowView, null).createEmojiBulletin(document, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiReaction)), LocaleController.getString(R.string.PremiumMore), new Runnable() {
+                        @Override
+                        public final void run() {
+                            CustomEmojiReactionsWindow.AnonymousClass2.this.lambda$onEmojiSelected$0();
+                        }
+                    }).show();
                     return;
                 }
-                if (tLRPC$Document != null) {
-                    AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).putDocument(tLRPC$Document);
-                }
-                this.val$reactionsContainerLayout.onReactionClicked(view, ReactionsLayoutInBubble.VisibleReaction.fromCustomEmoji(Long.valueOf(l == null ? tLRPC$Document.id : l.longValue())), false);
-                AndroidUtilities.hideKeyboard(CustomEmojiReactionsWindow.this.windowView);
             }
+            if (l == null && document == null) {
+                return;
+            }
+            if (document != null) {
+                AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).putDocument(document);
+            }
+            this.val$reactionsContainerLayout.onReactionClicked(view, ReactionsLayoutInBubble.VisibleReaction.fromCustomEmoji(Long.valueOf(l == null ? document.id : l.longValue())), false);
+            AndroidUtilities.hideKeyboard(CustomEmojiReactionsWindow.this.windowView);
         }
 
         @Override

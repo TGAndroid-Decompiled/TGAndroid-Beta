@@ -23,7 +23,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC$GroupCall;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.VoIPButtonsLayout;
 import org.telegram.ui.Components.voip.VoIPToggleButton;
@@ -219,8 +219,8 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
             return;
         }
         TextView textView = this.subtitleView;
-        TLRPC$GroupCall tLRPC$GroupCall = sharedInstance.groupCall.call;
-        textView.setText(LocaleController.formatPluralString(tLRPC$GroupCall.rtmp_stream ? "ViewersWatching" : "Participants", tLRPC$GroupCall.participants_count, new Object[0]));
+        TLRPC.GroupCall groupCall = sharedInstance.groupCall.call;
+        textView.setText(LocaleController.formatPluralString(groupCall.rtmp_stream ? "ViewersWatching" : "Participants", groupCall.participants_count, new Object[0]));
     }
 
     @Override

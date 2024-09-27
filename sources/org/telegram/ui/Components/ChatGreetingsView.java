@@ -33,10 +33,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.utils.BitmapsCache;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeImageSize;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -55,7 +52,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
     boolean ignoreLayot;
     private Listener listener;
     public BackupImageView nextStickerToSendView;
-    private TLRPC$Document preloadedGreetingsSticker;
+    private TLRPC.Document preloadedGreetingsSticker;
     private TextView premiumButtonView;
     private RLottieImageView premiumIconView;
     private boolean premiumLock;
@@ -124,10 +121,10 @@ public abstract class ChatGreetingsView extends LinearLayout {
     }
 
     public interface Listener {
-        void onGreetings(TLRPC$Document tLRPC$Document);
+        void onGreetings(TLRPC.Document document);
     }
 
-    public ChatGreetingsView(Context context, TLRPC$User tLRPC$User, int i, TLRPC$Document tLRPC$Document, Theme.ResourcesProvider resourcesProvider) {
+    public ChatGreetingsView(Context context, TLRPC.User user, int i, TLRPC.Document document, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         setOrientation(1);
         this.currentAccount = i;
@@ -160,18 +157,14 @@ public abstract class ChatGreetingsView extends LinearLayout {
         ScaleStateListAnimator.apply(this.nextStickerToSendView);
         updateLayout();
         updateColors();
-        this.titleView.setText(LocaleController.getString(R.string.NoMessages));
-        this.descriptionView.setText(LocaleController.getString(R.string.NoMessagesGreetingsDescription));
-        TextView textView3 = this.descriptionView;
-        textView3.setMaxWidth(HintView2.cutInFancyHalf(textView3.getText(), this.descriptionView.getPaint()));
-        this.stickerToSendView.setContentDescription(this.descriptionView.getText());
-        this.preloadedGreetingsSticker = tLRPC$Document;
-        if (tLRPC$Document == null) {
+        setText(LocaleController.getString(R.string.NoMessages), LocaleController.getString(R.string.NoMessagesGreetingsDescription));
+        this.preloadedGreetingsSticker = document;
+        if (document == null) {
             this.preloadedGreetingsSticker = MediaDataController.getInstance(i).getGreetingsSticker();
         }
     }
 
-    public static String createFilter(TLRPC$Document tLRPC$Document) {
+    public static String createFilter(TLRPC.Document document) {
         float min;
         float f;
         int i;
@@ -187,20 +180,20 @@ public abstract class ChatGreetingsView extends LinearLayout {
         float f2 = min * f;
         int i3 = 0;
         while (true) {
-            if (i3 >= tLRPC$Document.attributes.size()) {
+            if (i3 >= document.attributes.size()) {
                 i = 0;
                 i2 = 0;
                 break;
             }
-            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i3);
-            if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) {
-                i = tLRPC$DocumentAttribute.w;
-                i2 = tLRPC$DocumentAttribute.h;
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i3);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) {
+                i = documentAttribute.w;
+                i2 = documentAttribute.h;
                 break;
             }
             i3++;
         }
-        if (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) && i == 0 && i2 == 0) {
+        if (MessageObject.isAnimatedStickerDocument(document, true) && i == 0 && i2 == 0) {
             i = 512;
             i2 = 512;
         }
@@ -222,7 +215,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
 
     private void fetchSticker() {
         if (this.preloadedGreetingsSticker == null) {
-            TLRPC$Document greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
+            TLRPC.Document greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
             this.preloadedGreetingsSticker = greetingsSticker;
             if (this.wasDraw) {
                 setSticker(greetingsSticker);
@@ -234,10 +227,10 @@ public abstract class ChatGreetingsView extends LinearLayout {
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public void lambda$setNextSticker$3(TLRPC$Document tLRPC$Document, View view) {
+    public void lambda$setNextSticker$3(TLRPC.Document document, View view) {
         Listener listener = this.listener;
         if (listener != null) {
-            listener.onGreetings(tLRPC$Document);
+            listener.onGreetings(document);
         }
     }
 
@@ -253,10 +246,10 @@ public abstract class ChatGreetingsView extends LinearLayout {
         }
     }
 
-    public void lambda$setSticker$2(TLRPC$Document tLRPC$Document, View view) {
+    public void lambda$setSticker$2(TLRPC.Document document, View view) {
         Listener listener = this.listener;
         if (listener != null) {
-            listener.onGreetings(tLRPC$Document);
+            listener.onGreetings(document);
         }
     }
 
@@ -479,8 +472,8 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.listener = listener;
     }
 
-    public void setNextSticker(final TLRPC$Document tLRPC$Document, Runnable runnable) {
-        if (tLRPC$Document == null) {
+    public void setNextSticker(final TLRPC.Document document, Runnable runnable) {
+        if (document == null) {
             return;
         }
         AnimatorSet animatorSet = this.togglingStickersAnimator;
@@ -488,22 +481,22 @@ public abstract class ChatGreetingsView extends LinearLayout {
             animatorSet.cancel();
         }
         this.nextStickerToSendView.getImageReceiver().setDelegate(new AnonymousClass2(runnable));
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_chat_serviceBackground, 1.0f);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_chat_serviceBackground, 1.0f);
         if (svgThumb != null) {
-            this.nextStickerToSendView.setImage(ImageLocation.getForDocument(tLRPC$Document), createFilter(tLRPC$Document), svgThumb, 0, tLRPC$Document);
+            this.nextStickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), svgThumb, 0, document);
         } else {
-            this.nextStickerToSendView.setImage(ImageLocation.getForDocument(tLRPC$Document), createFilter(tLRPC$Document), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), (String) null, 0, tLRPC$Document);
+            this.nextStickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, 0, document);
         }
         this.nextStickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatGreetingsView.this.lambda$setNextSticker$3(tLRPC$Document, view);
+                ChatGreetingsView.this.lambda$setNextSticker$3(document, view);
             }
         });
     }
 
     public void setPremiumLock(boolean z, long j) {
-        TLRPC$User user;
+        TLRPC.User user;
         if (this.premiumLock == z) {
             return;
         }
@@ -631,24 +624,32 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.stickerToSendView.setImage(ImageLocation.getForPath(str), "256_256", (ImageLocation) null, (String) null, 0, (Object) null);
     }
 
-    public void setSticker(final TLRPC$Document tLRPC$Document) {
-        if (tLRPC$Document == null) {
+    public void setSticker(final TLRPC.Document document) {
+        if (document == null) {
             return;
         }
         this.wasDraw = true;
         this.nextStickerToSendView.clearImage();
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_chat_serviceBackground, 1.0f);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_chat_serviceBackground, 1.0f);
         if (svgThumb != null) {
-            this.stickerToSendView.setImage(ImageLocation.getForDocument(tLRPC$Document), createFilter(tLRPC$Document), svgThumb, 0, tLRPC$Document);
+            this.stickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), svgThumb, 0, document);
         } else {
-            this.stickerToSendView.setImage(ImageLocation.getForDocument(tLRPC$Document), createFilter(tLRPC$Document), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), (String) null, 0, tLRPC$Document);
+            this.stickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, 0, document);
         }
         this.stickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatGreetingsView.this.lambda$setSticker$2(tLRPC$Document, view);
+                ChatGreetingsView.this.lambda$setSticker$2(document, view);
             }
         });
+    }
+
+    public void setText(CharSequence charSequence, CharSequence charSequence2) {
+        this.titleView.setText(charSequence);
+        this.descriptionView.setText(charSequence2);
+        TextView textView = this.descriptionView;
+        textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), this.descriptionView.getPaint()));
+        this.stickerToSendView.setContentDescription(this.descriptionView.getText());
     }
 
     public void setVisiblePart(float f, int i) {

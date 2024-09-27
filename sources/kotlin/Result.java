@@ -37,11 +37,11 @@ public abstract class Result implements Serializable {
         }
     }
 
-    public static Object m155constructorimpl(Object obj) {
+    public static Object m156constructorimpl(Object obj) {
         return obj;
     }
 
-    public static final boolean m156isFailureimpl(Object obj) {
+    public static final boolean m157isFailureimpl(Object obj) {
         return obj instanceof Failure;
     }
 }

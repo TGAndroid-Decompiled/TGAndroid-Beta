@@ -70,16 +70,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$InputDocument;
-import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
-import org.telegram.tgnet.TLRPC$TL_inputDocument;
-import org.telegram.tgnet.TLRPC$TL_maskCoords;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -312,7 +303,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
 
         @Override
-        public void onCustomEmojiSelected(long j, TLRPC$Document tLRPC$Document, String str, boolean z) {
+        public void onCustomEmojiSelected(long j, TLRPC.Document document, String str, boolean z) {
             EditTextOutline editText = ((TextPaintView) LPhotoPaintView.this.currentEntityView).getEditText();
             if (editText == null) {
                 return;
@@ -325,7 +316,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 try {
                     this.innerTextChange = 2;
                     SpannableString spannableString = new SpannableString(str);
-                    spannableString.setSpan(tLRPC$Document != null ? new AnimatedEmojiSpan(tLRPC$Document, editText.getPaint().getFontMetricsInt()) : new AnimatedEmojiSpan(j, editText.getPaint().getFontMetricsInt()), 0, spannableString.length(), 33);
+                    spannableString.setSpan(document != null ? new AnimatedEmojiSpan(document, editText.getPaint().getFontMetricsInt()) : new AnimatedEmojiSpan(j, editText.getPaint().getFontMetricsInt()), 0, spannableString.length(), 33);
                     editText.setText(editText.getText().insert(selectionEnd, spannableString));
                     int length = selectionEnd + spannableString.length();
                     editText.setSelection(length, length);
@@ -388,23 +379,23 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
 
         @Override
-        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
-            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, tLRPC$StickerSet, tLRPC$InputStickerSet, z);
+        public void onShowStickerSet(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, stickerSet, inputStickerSet, z);
         }
 
         @Override
-        public void onStickerSelected(View view, TLRPC$Document tLRPC$Document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, tLRPC$Document, str, obj, sendAnimationData, z, i);
+        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i);
         }
 
         @Override
-        public void onStickerSetAdd(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, tLRPC$StickerSetCovered);
+        public void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, stickerSetCovered);
         }
 
         @Override
-        public void onStickerSetRemove(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, tLRPC$StickerSetCovered);
+        public void onStickerSetRemove(TLRPC.StickerSetCovered stickerSetCovered) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, stickerSetCovered);
         }
 
         @Override
@@ -1303,21 +1294,21 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return popupButton;
     }
 
-    private StickerPosition calculateStickerPosition(TLRPC$Document tLRPC$Document) {
-        TLRPC$TL_maskCoords tLRPC$TL_maskCoords;
+    private StickerPosition calculateStickerPosition(TLRPC.Document document) {
+        TLRPC.TL_maskCoords tL_maskCoords;
         float f;
         ArrayList arrayList;
         int i;
         PhotoFace randomFaceWithVacantAnchor;
         int i2 = 0;
         while (true) {
-            if (i2 >= tLRPC$Document.attributes.size()) {
-                tLRPC$TL_maskCoords = null;
+            if (i2 >= document.attributes.size()) {
+                tL_maskCoords = null;
                 break;
             }
-            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i2);
-            if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) {
-                tLRPC$TL_maskCoords = tLRPC$DocumentAttribute.mask_coords;
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i2);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                tL_maskCoords = documentAttribute.mask_coords;
                 break;
             }
             i2++;
@@ -1331,14 +1322,14 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             f = 0.0f;
         }
         StickerPosition stickerPosition = new StickerPosition(centerPositionForEntity(), f2, f);
-        if (tLRPC$TL_maskCoords == null || (arrayList = this.faces) == null || arrayList.size() == 0 || (randomFaceWithVacantAnchor = getRandomFaceWithVacantAnchor((i = tLRPC$TL_maskCoords.n), tLRPC$Document.id, tLRPC$TL_maskCoords)) == null) {
+        if (tL_maskCoords == null || (arrayList = this.faces) == null || arrayList.size() == 0 || (randomFaceWithVacantAnchor = getRandomFaceWithVacantAnchor((i = tL_maskCoords.n), document.id, tL_maskCoords)) == null) {
             return stickerPosition;
         }
         Point pointForAnchor = randomFaceWithVacantAnchor.getPointForAnchor(i);
         float widthForAnchor = randomFaceWithVacantAnchor.getWidthForAnchor(i);
         float angle = randomFaceWithVacantAnchor.getAngle();
         double d = widthForAnchor / baseStickerSize().width;
-        double d2 = tLRPC$TL_maskCoords.zoom;
+        double d2 = tL_maskCoords.zoom;
         Double.isNaN(d);
         double radians = (float) Math.toRadians(angle);
         Double.isNaN(radians);
@@ -1346,18 +1337,18 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         double sin = Math.sin(d3);
         double d4 = widthForAnchor;
         Double.isNaN(d4);
-        float f3 = (float) (sin * d4 * tLRPC$TL_maskCoords.x);
+        float f3 = (float) (sin * d4 * tL_maskCoords.x);
         double cos = Math.cos(d3);
         Double.isNaN(d4);
-        float f4 = (float) (cos * d4 * tLRPC$TL_maskCoords.x);
+        float f4 = (float) (cos * d4 * tL_maskCoords.x);
         Double.isNaN(radians);
         double d5 = radians + 1.5707963267948966d;
         double cos2 = Math.cos(d5);
         Double.isNaN(d4);
-        float f5 = (float) (cos2 * d4 * tLRPC$TL_maskCoords.y);
+        float f5 = (float) (cos2 * d4 * tL_maskCoords.y);
         double sin2 = Math.sin(d5);
         Double.isNaN(d4);
-        return new StickerPosition(new Point(pointForAnchor.x + f3 + f5, pointForAnchor.y + f4 + ((float) (sin2 * d4 * tLRPC$TL_maskCoords.y))), (float) (d * d2), angle);
+        return new StickerPosition(new Point(pointForAnchor.x + f3 + f5, pointForAnchor.y + f4 + ((float) (sin2 * d4 * tL_maskCoords.y))), (float) (d * d2), angle);
     }
 
     private Point centerPositionForEntity() {
@@ -1388,15 +1379,15 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return new Point(f, f2);
     }
 
-    private StickerView createSticker(Object obj, TLRPC$Document tLRPC$Document, boolean z) {
-        StickerPosition calculateStickerPosition = calculateStickerPosition(tLRPC$Document);
-        StickerView stickerView = new StickerView(getContext(), calculateStickerPosition.position, calculateStickerPosition.angle, calculateStickerPosition.scale, baseStickerSize(), tLRPC$Document, obj) {
+    private StickerView createSticker(Object obj, TLRPC.Document document, boolean z) {
+        StickerPosition calculateStickerPosition = calculateStickerPosition(document);
+        StickerView stickerView = new StickerView(getContext(), calculateStickerPosition.position, calculateStickerPosition.angle, calculateStickerPosition.scale, baseStickerSize(), document, obj) {
             @Override
             protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
                 LPhotoPaintView.this.didSetAnimatedSticker(rLottieDrawable);
             }
         };
-        if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
+        if (MessageObject.isTextColorEmoji(document)) {
             stickerView.centerImage.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
         stickerView.centerImage.setLayerNum(12);
@@ -1599,13 +1590,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return size2;
     }
 
-    private PhotoFace getRandomFaceWithVacantAnchor(int i, long j, TLRPC$TL_maskCoords tLRPC$TL_maskCoords) {
+    private PhotoFace getRandomFaceWithVacantAnchor(int i, long j, TLRPC.TL_maskCoords tL_maskCoords) {
         if (i >= 0 && i <= 3 && !this.faces.isEmpty()) {
             int size = this.faces.size();
             int nextInt = Utilities.random.nextInt(size);
             for (int i2 = size; i2 > 0; i2--) {
                 PhotoFace photoFace = (PhotoFace) this.faces.get(nextInt);
-                if (!isFaceAnchorOccupied(photoFace, i, j, tLRPC$TL_maskCoords)) {
+                if (!isFaceAnchorOccupied(photoFace, i, j, tL_maskCoords)) {
                     return photoFace;
                 }
                 nextInt = (nextInt + 1) % size;
@@ -1663,7 +1654,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.emojiPadding = 0;
     }
 
-    private boolean isFaceAnchorOccupied(PhotoFace photoFace, int i, long j, TLRPC$TL_maskCoords tLRPC$TL_maskCoords) {
+    private boolean isFaceAnchorOccupied(PhotoFace photoFace, int i, long j, TLRPC.TL_maskCoords tL_maskCoords) {
         if (photoFace.getPointForAnchor(i) == null) {
             return true;
         }
@@ -2033,8 +2024,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
     }
 
-    public Boolean lambda$openStickersView$19(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
-        StickerView createSticker = createSticker(obj, tLRPC$Document, true);
+    public Boolean lambda$openStickersView$19(Object obj, TLRPC.Document document, Boolean bool) {
+        StickerView createSticker = createSticker(obj, document, true);
         if (bool.booleanValue()) {
             createSticker.setScale(1.5f);
         }
@@ -2382,7 +2373,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {
                 Boolean lambda$openStickersView$19;
-                lambda$openStickersView$19 = LPhotoPaintView.this.lambda$openStickersView$19(obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                lambda$openStickersView$19 = LPhotoPaintView.this.lambda$openStickersView$19(obj, (TLRPC.Document) obj2, (Boolean) obj3);
                 return lambda$openStickersView$19;
             }
         });
@@ -2833,7 +2824,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     private void showPhotoAlert() {
         final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new ChatActivity(null) {
             @Override
-            public TLRPC$User getCurrentUser() {
+            public TLRPC.User getCurrentUser() {
                 return UserConfig.getInstance(this.currentAccount).getCurrentUser();
             }
 
@@ -2888,8 +2879,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             }
 
             @Override
-            public void didSelectBot(TLRPC$User tLRPC$User) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
+            public void didSelectBot(TLRPC.User user) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
             }
 
             @Override
@@ -3302,48 +3293,48 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return this.lcm.longValue();
     }
 
-    public List<TLRPC$InputDocument> getMasks() {
+    public List<TLRPC.InputDocument> getMasks() {
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         int childCount = this.entitiesView.getChildCount();
         ArrayList arrayList = null;
         for (int i = 0; i < childCount; i++) {
             View childAt = this.entitiesView.getChildAt(i);
             if (childAt instanceof StickerView) {
-                TLRPC$Document sticker = ((StickerView) childAt).getSticker();
+                TLRPC.Document sticker = ((StickerView) childAt).getSticker();
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                TLRPC$TL_inputDocument tLRPC$TL_inputDocument = new TLRPC$TL_inputDocument();
-                tLRPC$TL_inputDocument.id = sticker.id;
-                tLRPC$TL_inputDocument.access_hash = sticker.access_hash;
+                TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                tL_inputDocument.id = sticker.id;
+                tL_inputDocument.access_hash = sticker.access_hash;
                 byte[] bArr = sticker.file_reference;
-                tLRPC$TL_inputDocument.file_reference = bArr;
+                tL_inputDocument.file_reference = bArr;
                 if (bArr == null) {
-                    tLRPC$TL_inputDocument.file_reference = new byte[0];
+                    tL_inputDocument.file_reference = new byte[0];
                 }
-                arrayList.add(tLRPC$TL_inputDocument);
+                arrayList.add(tL_inputDocument);
             } else if (childAt instanceof TextPaintView) {
                 CharSequence text = ((TextPaintView) childAt).getText();
                 if ((text instanceof Spanned) && (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) text).getSpans(0, text.length(), AnimatedEmojiSpan.class)) != null) {
                     for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
                         if (animatedEmojiSpan != null) {
-                            TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
-                            if (tLRPC$Document == null) {
-                                tLRPC$Document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                            TLRPC.Document document = animatedEmojiSpan.document;
+                            if (document == null) {
+                                document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                             }
-                            if (tLRPC$Document != null) {
+                            if (document != null) {
                                 if (arrayList == null) {
                                     arrayList = new ArrayList();
                                 }
-                                TLRPC$TL_inputDocument tLRPC$TL_inputDocument2 = new TLRPC$TL_inputDocument();
-                                tLRPC$TL_inputDocument2.id = tLRPC$Document.id;
-                                tLRPC$TL_inputDocument2.access_hash = tLRPC$Document.access_hash;
-                                byte[] bArr2 = tLRPC$Document.file_reference;
-                                tLRPC$TL_inputDocument2.file_reference = bArr2;
+                                TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
+                                tL_inputDocument2.id = document.id;
+                                tL_inputDocument2.access_hash = document.access_hash;
+                                byte[] bArr2 = document.file_reference;
+                                tL_inputDocument2.file_reference = bArr2;
                                 if (bArr2 == null) {
-                                    tLRPC$TL_inputDocument2.file_reference = new byte[0];
+                                    tL_inputDocument2.file_reference = new byte[0];
                                 }
-                                arrayList.add(tLRPC$TL_inputDocument2);
+                                arrayList.add(tL_inputDocument2);
                             }
                         }
                     }

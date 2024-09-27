@@ -51,28 +51,8 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DraftMessage;
-import org.telegram.tgnet.TLRPC$EncryptedChat;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageAction;
-import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
-import org.telegram.tgnet.TLRPC$MessageFwdHeader;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_dialogFolder;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$TL_messageActionSetChatTheme;
-import org.telegram.tgnet.TLRPC$TL_messageExtendedMedia;
-import org.telegram.tgnet.TLRPC$TL_messageExtendedMediaPreview;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPaidMedia;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserStatus;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -122,7 +102,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int buttonLeft;
     private int buttonTop;
     CanvasButton canvasButton;
-    private TLRPC$Chat chat;
+    private TLRPC.Chat chat;
     private float chatCallProgress;
     protected CheckBox2 checkBox;
     private int checkDrawLeft;
@@ -163,7 +143,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean dialogMuted;
     private float dialogMutedProgress;
     private int dialogsType;
-    private TLRPC$DraftMessage draftMessage;
+    private TLRPC.DraftMessage draftMessage;
     private boolean draftVoice;
     public boolean drawArchive;
     public boolean drawAvatar;
@@ -191,7 +171,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean drawVerified;
     public boolean drawingForBlur;
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatus;
-    private TLRPC$EncryptedChat encryptedChat;
+    private TLRPC.EncryptedChat encryptedChat;
     private int errorLeft;
     private int errorTop;
     private Paint fadePaint;
@@ -199,7 +179,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int folderId;
     protected boolean forbidDraft;
     protected boolean forbidVerified;
-    public TLRPC$TL_forumTopic forumTopic;
+    public TLRPC.TL_forumTopic forumTopic;
     public boolean fullSeparator;
     public boolean fullSeparator2;
     private ArrayList groupMessages;
@@ -346,7 +326,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public boolean useFromUserAsAvatar;
     private boolean useMeForMyMessages;
     public boolean useSeparator;
-    private TLRPC$User user;
+    private TLRPC.User user;
     private boolean visibleOnScreen;
     private boolean wasDrawnOnline;
     protected float xOffset;
@@ -484,12 +464,12 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         private ForumFormattedNames() {
         }
 
-        public void formatTopicsNames(int r12, org.telegram.messenger.MessageObject r13, org.telegram.tgnet.TLRPC$Chat r14) {
+        public void formatTopicsNames(int r12, org.telegram.messenger.MessageObject r13, org.telegram.tgnet.TLRPC.Chat r14) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.ForumFormattedNames.formatTopicsNames(int, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$Chat):void");
         }
 
-        public static int lambda$formatTopicsNames$0(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
-            return -tLRPC$TL_forumTopic.top_message;
+        public static int lambda$formatTopicsNames$0(TLRPC.TL_forumTopic tL_forumTopic) {
+            return -tL_forumTopic.top_message;
         }
     }
 
@@ -599,26 +579,26 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private void checkChatTheme() {
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         MessageObject messageObject = this.message;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
             return;
         }
-        TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
-        if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetChatTheme) && this.lastUnreadState) {
-            ChatThemeController.getInstance(this.currentAccount).setDialogTheme(this.currentDialogId, ((TLRPC$TL_messageActionSetChatTheme) tLRPC$MessageAction).emoticon, false);
+        TLRPC.MessageAction messageAction = message.action;
+        if ((messageAction instanceof TLRPC.TL_messageActionSetChatTheme) && this.lastUnreadState) {
+            ChatThemeController.getInstance(this.currentAccount).setDialogTheme(this.currentDialogId, ((TLRPC.TL_messageActionSetChatTheme) messageAction).emoticon, false);
         }
     }
 
     private void checkGroupCall() {
-        TLRPC$Chat tLRPC$Chat = this.chat;
-        boolean z = tLRPC$Chat != null && tLRPC$Chat.call_active && tLRPC$Chat.call_not_empty;
+        TLRPC.Chat chat = this.chat;
+        boolean z = chat != null && chat.call_active && chat.call_not_empty;
         this.hasCall = z;
         this.chatCallProgress = z ? 1.0f : 0.0f;
     }
 
     private void checkOnline() {
-        TLRPC$User user;
+        TLRPC.User user;
         if (this.user != null && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.user.id))) != null) {
             this.user = user;
         }
@@ -772,15 +752,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         int size = dialogsArray.size();
         MessageObject messageObject = null;
         for (int i = 0; i < size; i++) {
-            TLRPC$Dialog tLRPC$Dialog = (TLRPC$Dialog) dialogsArray.get(i);
+            TLRPC.Dialog dialog = (TLRPC.Dialog) dialogsArray.get(i);
             LongSparseArray longSparseArray = MessagesController.getInstance(this.currentAccount).dialogMessage;
             if (longSparseArray != null) {
-                ArrayList arrayList = (ArrayList) longSparseArray.get(tLRPC$Dialog.id);
+                ArrayList arrayList = (ArrayList) longSparseArray.get(dialog.id);
                 MessageObject messageObject2 = (arrayList == null || arrayList.isEmpty()) ? null : (MessageObject) arrayList.get(0);
                 if (messageObject2 != null && (messageObject == null || messageObject2.messageOwner.date > messageObject.messageOwner.date)) {
                     messageObject = messageObject2;
                 }
-                if (tLRPC$Dialog.pinnedNum == 0 && messageObject != null) {
+                if (dialog.pinnedNum == 0 && messageObject != null) {
                     break;
                 }
             }
@@ -878,22 +858,22 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     public int getTopicId() {
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = this.forumTopic;
-        if (tLRPC$TL_forumTopic == null) {
+        TLRPC.TL_forumTopic tL_forumTopic = this.forumTopic;
+        if (tL_forumTopic == null) {
             return 0;
         }
-        return tLRPC$TL_forumTopic.id;
+        return tL_forumTopic.id;
     }
 
     private boolean isOnline() {
-        TLRPC$User tLRPC$User;
-        if (!isForumCell() && (tLRPC$User = this.user) != null && !tLRPC$User.self) {
-            TLRPC$UserStatus tLRPC$UserStatus = tLRPC$User.status;
-            if (tLRPC$UserStatus != null && tLRPC$UserStatus.expires <= 0 && MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.id))) {
+        TLRPC.User user;
+        if (!isForumCell() && (user = this.user) != null && !user.self) {
+            TLRPC.UserStatus userStatus = user.status;
+            if (userStatus != null && userStatus.expires <= 0 && MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.id))) {
                 return true;
             }
-            TLRPC$UserStatus tLRPC$UserStatus2 = this.user.status;
-            if (tLRPC$UserStatus2 != null && tLRPC$UserStatus2.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
+            TLRPC.UserStatus userStatus2 = this.user.status;
+            if (userStatus2 != null && userStatus2.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
                 return true;
             }
         }
@@ -934,31 +914,31 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private void setThumb(int i, MessageObject messageObject) {
-        TLRPC$MessageMedia tLRPC$MessageMedia;
-        ArrayList<TLRPC$PhotoSize> arrayList = messageObject.photoThumbs;
+        TLRPC.MessageMedia messageMedia;
+        ArrayList<TLRPC.PhotoSize> arrayList = messageObject.photoThumbs;
         TLObject tLObject = messageObject.photoThumbsObject;
         if (messageObject.isStoryMedia()) {
-            TL_stories$StoryItem tL_stories$StoryItem = messageObject.messageOwner.media.storyItem;
-            if (tL_stories$StoryItem == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null) {
+            TL_stories.StoryItem storyItem = messageObject.messageOwner.media.storyItem;
+            if (storyItem == null || (messageMedia = storyItem.media) == null) {
                 return;
             }
-            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document != null) {
-                arrayList = tLRPC$Document.thumbs;
-                tLObject = tLRPC$Document;
+            TLRPC.Document document = messageMedia.document;
+            if (document != null) {
+                arrayList = document.thumbs;
+                tLObject = document;
             } else {
-                TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.photo;
-                if (tLRPC$Photo != null) {
-                    arrayList = tLRPC$Photo.sizes;
-                    tLObject = tLRPC$Photo;
+                TLRPC.Photo photo = messageMedia.photo;
+                if (photo != null) {
+                    arrayList = photo.sizes;
+                    tLObject = photo;
                 }
             }
         }
-        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 40);
-        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize(), false, null, true);
-        TLRPC$PhotoSize tLRPC$PhotoSize = closestPhotoSizeWithSize != closestPhotoSizeWithSize2 ? closestPhotoSizeWithSize2 : null;
-        if (tLRPC$PhotoSize == null || DownloadController.getInstance(this.currentAccount).canDownloadMedia(messageObject.messageOwner) == 0) {
-            tLRPC$PhotoSize = closestPhotoSizeWithSize;
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 40);
+        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize(), false, null, true);
+        TLRPC.PhotoSize photoSize = closestPhotoSizeWithSize != closestPhotoSizeWithSize2 ? closestPhotoSizeWithSize2 : null;
+        if (photoSize == null || DownloadController.getInstance(this.currentAccount).canDownloadMedia(messageObject.messageOwner) == 0) {
+            photoSize = closestPhotoSizeWithSize;
         }
         if (closestPhotoSizeWithSize != null) {
             this.hasVideoThumb = this.hasVideoThumb || messageObject.isVideo() || messageObject.isRoundVideo();
@@ -967,28 +947,28 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 this.thumbsCount = i2 + 1;
                 this.drawPlay[i] = (messageObject.isVideo() || messageObject.isRoundVideo()) && !messageObject.hasMediaSpoilers();
                 this.drawSpoiler[i] = messageObject.hasMediaSpoilers();
-                int i3 = (messageObject.type != 1 || tLRPC$PhotoSize == null) ? 0 : tLRPC$PhotoSize.size;
+                int i3 = (messageObject.type != 1 || photoSize == null) ? 0 : photoSize.size;
                 String str = messageObject.hasMediaSpoilers() ? "5_5_b" : "20_20";
-                this.thumbImage[i].setImage(ImageLocation.getForObject(tLRPC$PhotoSize, tLObject), str, ImageLocation.getForObject(closestPhotoSizeWithSize, tLObject), str, i3, null, messageObject, 0);
+                this.thumbImage[i].setImage(ImageLocation.getForObject(photoSize, tLObject), str, ImageLocation.getForObject(closestPhotoSizeWithSize, tLObject), str, i3, null, messageObject, 0);
                 this.thumbImage[i].setRoundRadius(AndroidUtilities.dp(messageObject.isRoundVideo() ? 18.0f : 2.0f));
                 this.needEmoji = false;
             }
         }
     }
 
-    private void setThumb(int r19, org.telegram.tgnet.TLRPC$MessageMedia r20) {
+    private void setThumb(int r19, org.telegram.tgnet.TLRPC.MessageMedia r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.setThumb(int, org.telegram.tgnet.TLRPC$MessageMedia):void");
     }
 
-    private void setThumb(int i, TLRPC$PhotoSize tLRPC$PhotoSize) {
-        if (tLRPC$PhotoSize != null) {
+    private void setThumb(int i, TLRPC.PhotoSize photoSize) {
+        if (photoSize != null) {
             this.hasVideoThumb = false;
             int i2 = this.thumbsCount;
             if (i2 < 3) {
                 this.thumbsCount = i2 + 1;
                 this.drawPlay[i] = false;
                 this.drawSpoiler[i] = true;
-                this.thumbImage[i].setImage(ImageLocation.getForObject(tLRPC$PhotoSize, this.message.messageOwner), "2_2_b", null, null, 0, null, this.message, 0);
+                this.thumbImage[i].setImage(ImageLocation.getForObject(photoSize, this.message.messageOwner), "2_2_b", null, null, 0, null, this.message, 0);
                 this.thumbImage[i].setRoundRadius(AndroidUtilities.dp(2.0f));
                 this.needEmoji = false;
             }
@@ -1124,23 +1104,26 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     public String getMessageNameString() {
-        TLRPC$Chat chat;
-        TLRPC$User tLRPC$User;
+        TLRPC.Chat chat;
+        TLRPC.User user;
         String str;
-        TLRPC$Message tLRPC$Message;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
+        TLRPC.Message message;
+        TLRPC.MessageFwdHeader messageFwdHeader;
         String str2;
         MessageObject messageObject;
-        TLRPC$Message tLRPC$Message2;
-        TLRPC$User user;
-        TLRPC$Message tLRPC$Message3;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader3;
-        MessageObject messageObject2 = this.message;
-        if (messageObject2 == null) {
+        TLRPC.Message message2;
+        TLRPC.User user2;
+        MessageObject messageObject2;
+        TLRPC.Message message3;
+        TLRPC.MessageFwdHeader messageFwdHeader2;
+        TLRPC.Message message4;
+        TLRPC.MessageFwdHeader messageFwdHeader3;
+        TLRPC.MessageFwdHeader messageFwdHeader4;
+        MessageObject messageObject3 = this.message;
+        if (messageObject3 == null) {
             return null;
         }
-        long fromChatId = messageObject2.getFromChatId();
+        long fromChatId = messageObject3.getFromChatId();
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         if (!this.isSavedDialog && this.currentDialogId == clientUserId) {
             long savedDialogId = this.message.getSavedDialogId();
@@ -1148,9 +1131,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 return null;
             }
             if (savedDialogId != 2666000) {
-                TLRPC$Message tLRPC$Message4 = this.message.messageOwner;
-                if (tLRPC$Message4 != null && (tLRPC$MessageFwdHeader3 = tLRPC$Message4.fwd_from) != null) {
-                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader3.saved_from_id);
+                TLRPC.Message message5 = this.message.messageOwner;
+                if (message5 != null && (messageFwdHeader4 = message5.fwd_from) != null) {
+                    long peerDialogId = DialogObject.getPeerDialogId(messageFwdHeader4.saved_from_id);
                     if (peerDialogId == 0) {
                         peerDialogId = DialogObject.getPeerDialogId(this.message.messageOwner.fwd_from.from_id);
                     }
@@ -1161,36 +1144,49 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 fromChatId = savedDialogId;
             }
         }
-        if (this.isSavedDialog && (tLRPC$Message3 = this.message.messageOwner) != null && (tLRPC$MessageFwdHeader2 = tLRPC$Message3.fwd_from) != null) {
-            fromChatId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader2.saved_from_id);
+        if (this.isSavedDialog && (message4 = this.message.messageOwner) != null && (messageFwdHeader3 = message4.fwd_from) != null) {
+            fromChatId = DialogObject.getPeerDialogId(messageFwdHeader3.saved_from_id);
             if (fromChatId == 0) {
                 fromChatId = DialogObject.getPeerDialogId(this.message.messageOwner.fwd_from.from_id);
             }
         }
         if (DialogObject.isUserDialog(fromChatId)) {
-            tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
+            user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
             chat = null;
         } else {
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-fromChatId));
-            tLRPC$User = null;
+            user = null;
         }
-        if (this.currentDialogId == clientUserId) {
-            if (tLRPC$User != null) {
-                return AndroidUtilities.removeDiacritics(UserObject.getFirstName(tLRPC$User).replace("\n", ""));
+        long j = this.currentDialogId;
+        if (j == clientUserId) {
+            if (user != null) {
+                return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user).replace("\n", ""));
             }
             if (chat != null) {
                 return AndroidUtilities.removeDiacritics(chat.title.replace("\n", ""));
             }
             return null;
         }
-        if (this.message.isOutOwner() && tLRPC$User != null) {
+        if (j == 489000 && (messageObject2 = this.message) != null && (message3 = messageObject2.messageOwner) != null && (messageFwdHeader2 = message3.fwd_from) != null) {
+            String str3 = messageFwdHeader2.from_name;
+            if (str3 != null) {
+                return AndroidUtilities.removeDiacritics(str3);
+            }
+            long peerDialogId2 = DialogObject.getPeerDialogId(messageFwdHeader2.from_id);
+            if (DialogObject.isUserDialog(peerDialogId2)) {
+                return UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId2)));
+            }
+            TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId2));
+            return chat2 == null ? "" : chat2.title;
+        }
+        if (this.message.isOutOwner() && user != null) {
             return LocaleController.getString(R.string.FromYou);
         }
-        if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user).replace("\n", ""));
+        if (!this.isSavedDialog && (messageObject = this.message) != null && (message2 = messageObject.messageOwner) != null && (message2.from_id instanceof TLRPC.TL_peerUser) && (user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
+            return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user2).replace("\n", ""));
         }
-        MessageObject messageObject3 = this.message;
-        return (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) ? tLRPC$User != null ? (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? UserObject.isDeleted(tLRPC$User) ? LocaleController.getString(R.string.HiddenName) : AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "")) : AndroidUtilities.removeDiacritics(UserObject.getFirstName(tLRPC$User).replace("\n", "")) : (chat == null || (str = chat.title) == null) ? "DELETED" : AndroidUtilities.removeDiacritics(str.replace("\n", "")) : AndroidUtilities.removeDiacritics(str2);
+        MessageObject messageObject4 = this.message;
+        return (messageObject4 == null || (message = messageObject4.messageOwner) == null || (messageFwdHeader = message.fwd_from) == null || (str2 = messageFwdHeader.from_name) == null) ? user != null ? (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? UserObject.isDeleted(user) ? LocaleController.getString(R.string.HiddenName) : AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name).replace("\n", "")) : AndroidUtilities.removeDiacritics(UserObject.getFirstName(user).replace("\n", "")) : (chat == null || (str = chat.title) == null) ? "DELETED" : AndroidUtilities.removeDiacritics(str.replace("\n", "")) : AndroidUtilities.removeDiacritics(str2);
     }
 
     public android.text.SpannableStringBuilder getMessageStringFormatted(int r17, java.lang.String r18, java.lang.CharSequence r19, boolean r20) {
@@ -1250,8 +1246,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     public boolean isForumCell() {
-        TLRPC$Chat tLRPC$Chat;
-        return (isDialogFolder() || (tLRPC$Chat = this.chat) == null || !tLRPC$Chat.forum || this.isTopic) ? false : true;
+        TLRPC.Chat chat;
+        return (isDialogFolder() || (chat = this.chat) == null || !chat.forum || this.isTopic) ? false : true;
     }
 
     public boolean isMoving() {
@@ -1531,8 +1527,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         update(0, z2);
     }
 
-    public void setDialog(TLRPC$Dialog tLRPC$Dialog, int i, int i2) {
-        if (this.currentDialogId != tLRPC$Dialog.id) {
+    public void setDialog(TLRPC.Dialog dialog, int i, int i2) {
+        if (this.currentDialogId != dialog.id) {
             ValueAnimator valueAnimator = this.statusDrawableAnimator;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -1541,11 +1537,11 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             this.statusDrawableAnimationInProgress = false;
             this.lastStatusDrawableParams = -1;
         }
-        this.currentDialogId = tLRPC$Dialog.id;
+        this.currentDialogId = dialog.id;
         this.lastDialogChangedTime = System.currentTimeMillis();
         this.isDialogCell = true;
-        if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
-            this.currentDialogFolderId = ((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.id;
+        if (dialog instanceof TLRPC.TL_dialogFolder) {
+            this.currentDialogFolderId = ((TLRPC.TL_dialogFolder) dialog).folder.id;
             PullForegroundDrawable pullForegroundDrawable = this.archivedChatsDrawable;
             if (pullForegroundDrawable != null) {
                 pullForegroundDrawable.setCell(this);
@@ -1590,25 +1586,25 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.isSelected = z;
     }
 
-    public void setForumTopic(TLRPC$TL_forumTopic tLRPC$TL_forumTopic, long j, MessageObject messageObject, boolean z, boolean z2) {
+    public void setForumTopic(TLRPC.TL_forumTopic tL_forumTopic, long j, MessageObject messageObject, boolean z, boolean z2) {
         PullForegroundDrawable pullForegroundDrawable;
-        this.forumTopic = tLRPC$TL_forumTopic;
-        this.isTopic = tLRPC$TL_forumTopic != null;
+        this.forumTopic = tL_forumTopic;
+        this.isTopic = tL_forumTopic != null;
         if (this.currentDialogId != j) {
             this.lastStatusDrawableParams = -1;
         }
         Drawable drawable = messageObject.topicIconDrawable[0];
         if (drawable instanceof ForumBubbleDrawable) {
-            ((ForumBubbleDrawable) drawable).setColor(tLRPC$TL_forumTopic.icon_color);
+            ((ForumBubbleDrawable) drawable).setColor(tL_forumTopic.icon_color);
         }
         this.currentDialogId = j;
         this.lastDialogChangedTime = System.currentTimeMillis();
         this.message = messageObject;
         this.isDialogCell = false;
         this.showTopicIconInName = z;
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        this.lastMessageDate = tLRPC$Message.date;
-        this.currentEditDate = tLRPC$Message.edit_date;
+        TLRPC.Message message = messageObject.messageOwner;
+        this.lastMessageDate = message.date;
+        this.currentEditDate = message.edit_date;
         this.markUnread = false;
         this.messageId = messageObject.getId();
         this.lastUnreadState = messageObject.isUnread();
@@ -1619,11 +1615,11 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (!z2) {
             this.lastStatusDrawableParams = -1;
         }
-        if (tLRPC$TL_forumTopic != null) {
-            this.groupMessages = tLRPC$TL_forumTopic.groupedMessages;
+        if (tL_forumTopic != null) {
+            this.groupMessages = tL_forumTopic.groupedMessages;
         }
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = this.forumTopic;
-        if (tLRPC$TL_forumTopic2 != null && tLRPC$TL_forumTopic2.id == 1 && (pullForegroundDrawable = this.archivedChatsDrawable) != null) {
+        TLRPC.TL_forumTopic tL_forumTopic2 = this.forumTopic;
+        if (tL_forumTopic2 != null && tL_forumTopic2.id == 1 && (pullForegroundDrawable = this.archivedChatsDrawable) != null) {
             pullForegroundDrawable.setCell(this);
         }
         update(0, z2);
@@ -1769,7 +1765,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     public void updateMessageThumbs() {
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         int i;
         MessageObject messageObject = this.message;
         if (messageObject == null) {
@@ -1778,21 +1774,21 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         String restrictionReason = MessagesController.getInstance(messageObject.currentAccount).getRestrictionReason(this.message.messageOwner.restriction_reason);
         MessageObject messageObject2 = this.message;
         int i2 = 0;
-        if (messageObject2 != null && (tLRPC$Message = messageObject2.messageOwner) != null) {
-            TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPaidMedia) {
+        if (messageObject2 != null && (message = messageObject2.messageOwner) != null) {
+            TLRPC.MessageMedia messageMedia = message.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) {
                 this.thumbsCount = 0;
                 this.hasVideoThumb = false;
-                TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia = (TLRPC$TL_messageMediaPaidMedia) tLRPC$MessageMedia;
+                TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) messageMedia;
                 int i3 = 0;
-                while (i2 < tLRPC$TL_messageMediaPaidMedia.extended_media.size() && this.thumbsCount < 3) {
-                    TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(i2);
-                    if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMediaPreview) {
+                while (i2 < tL_messageMediaPaidMedia.extended_media.size() && this.thumbsCount < 3) {
+                    TLRPC.MessageExtendedMedia messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i2);
+                    if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
                         i = i3 + 1;
-                        setThumb(i3, ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia).thumb);
-                    } else if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
+                        setThumb(i3, ((TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia).thumb);
+                    } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
                         i = i3 + 1;
-                        setThumb(i3, ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media);
+                        setThumb(i3, ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media);
                     } else {
                         i2++;
                     }

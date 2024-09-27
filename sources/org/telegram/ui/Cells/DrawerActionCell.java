@@ -19,8 +19,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -109,22 +108,22 @@ public class DrawerActionCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
-    public void setBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+    public void setBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
         TextView textView;
         CharSequence charSequence;
-        this.currentId = (int) tLRPC$TL_attachMenuBot.bot_id;
+        this.currentId = (int) tL_attachMenuBot.bot_id;
         try {
-            if (tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed) {
+            if (tL_attachMenuBot.side_menu_disclaimer_needed) {
                 textView = this.textView;
-                charSequence = applyNewSpan(tLRPC$TL_attachMenuBot.short_name);
+                charSequence = applyNewSpan(tL_attachMenuBot.short_name);
             } else {
                 textView = this.textView;
-                charSequence = tLRPC$TL_attachMenuBot.short_name;
+                charSequence = tL_attachMenuBot.short_name;
             }
             textView.setText(charSequence);
-            TLRPC$TL_attachMenuBotIcon sideAttachMenuBotIcon = MediaDataController.getSideAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+            TLRPC.TL_attachMenuBotIcon sideAttachMenuBotIcon = MediaDataController.getSideAttachMenuBotIcon(tL_attachMenuBot);
             if (sideAttachMenuBotIcon != null) {
-                this.imageView.setImage(ImageLocation.getForDocument(sideAttachMenuBotIcon.icon), "24_24", (Drawable) null, tLRPC$TL_attachMenuBot);
+                this.imageView.setImage(ImageLocation.getForDocument(sideAttachMenuBotIcon.icon), "24_24", (Drawable) null, tL_attachMenuBot);
             } else {
                 this.imageView.setImageResource(R.drawable.msg_bot);
             }

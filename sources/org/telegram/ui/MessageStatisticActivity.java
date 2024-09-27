@@ -41,24 +41,9 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$MessageFwdHeader;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$TL_chatReactionsNone;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.tl.TL_stats$StatsGraph;
-import org.telegram.tgnet.tl.TL_stats$TL_getMessagePublicForwards;
-import org.telegram.tgnet.tl.TL_stats$TL_getMessageStats;
-import org.telegram.tgnet.tl.TL_stats$TL_getStoryPublicForwards;
-import org.telegram.tgnet.tl.TL_stats$TL_loadAsyncGraph;
-import org.telegram.tgnet.tl.TL_stats$TL_messageStats;
-import org.telegram.tgnet.tl.TL_stats$TL_statsGraph;
-import org.telegram.tgnet.tl.TL_stats$TL_statsGraphError;
-import org.telegram.tgnet.tl.TL_stories$TL_stats_getStoryStats;
-import org.telegram.tgnet.tl.TL_stories$TL_stats_storyStats;
-import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stats;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -89,7 +74,7 @@ import org.telegram.ui.Stories.StoriesListPlaceProvider;
 
 public class MessageStatisticActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ChatAvatarContainer avatarContainer;
-    private TLRPC$ChatFull chat;
+    private TLRPC.ChatFull chat;
     private final long chatId;
     private LruCache childDataCache;
     boolean drawPlay;
@@ -154,11 +139,11 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 zoomCanceled();
             }
 
-            public void lambda$onZoomed$1(final String str, final StatisticActivity.ZoomCancelable zoomCancelable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            public void lambda$onZoomed$1(final String str, final StatisticActivity.ZoomCancelable zoomCancelable, TLObject tLObject, TLRPC.TL_error tL_error) {
                 final ChartData chartData;
-                if (tLObject instanceof TL_stats$TL_statsGraph) {
+                if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        chartData = StatisticActivity.createChartData(new JSONObject(((TL_stats$TL_statsGraph) tLObject).json.data), this.data.graphType, false);
+                        chartData = StatisticActivity.createChartData(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), this.data.graphType, false);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -169,8 +154,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         }
                     });
                 }
-                if (tLObject instanceof TL_stats$TL_statsGraphError) {
-                    Toast.makeText(getContext(), ((TL_stats$TL_statsGraphError) tLObject).error, 1).show();
+                if (tLObject instanceof TL_stats.TL_statsGraphError) {
+                    Toast.makeText(getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
                 }
                 chartData = null;
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -211,21 +196,21 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         zoomChart(false);
                         return;
                     }
-                    TL_stats$TL_loadAsyncGraph tL_stats$TL_loadAsyncGraph = new TL_stats$TL_loadAsyncGraph();
-                    tL_stats$TL_loadAsyncGraph.token = this.data.zoomToken;
+                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+                    tL_loadAsyncGraph.token = this.data.zoomToken;
                     if (selectedDate != 0) {
-                        tL_stats$TL_loadAsyncGraph.x = selectedDate;
-                        tL_stats$TL_loadAsyncGraph.flags |= 1;
+                        tL_loadAsyncGraph.x = selectedDate;
+                        tL_loadAsyncGraph.flags |= 1;
                     }
                     MessageStatisticActivity messageStatisticActivity = MessageStatisticActivity.this;
                     final StatisticActivity.ZoomCancelable zoomCancelable = new StatisticActivity.ZoomCancelable();
                     messageStatisticActivity.lastCancelable = zoomCancelable;
                     zoomCancelable.adapterPosition = MessageStatisticActivity.this.listView.getChildAdapterPosition(this);
                     this.chartView.legendSignatureView.showProgress(true, false);
-                    ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).sendRequest(tL_stats$TL_loadAsyncGraph, new RequestDelegate() {
+                    ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).sendRequest(tL_loadAsyncGraph, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            MessageStatisticActivity.ListAdapter.AnonymousClass1.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            MessageStatisticActivity.ListAdapter.AnonymousClass1.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tL_error);
                         }
                     }, null, null, 0, MessageStatisticActivity.this.chat.stats_dc, 1, true), ((BaseFragment) MessageStatisticActivity.this).classGuid);
                 }
@@ -420,7 +405,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 } else if (MessageStatisticActivity.this.messageObject.messageOwner.reactions != null) {
                     i3 = 0;
                     for (int i4 = 0; i4 < MessageStatisticActivity.this.messageObject.messageOwner.reactions.results.size(); i4++) {
-                        i3 += ((TLRPC$ReactionCount) MessageStatisticActivity.this.messageObject.messageOwner.reactions.results.get(i4)).count;
+                        i3 += MessageStatisticActivity.this.messageObject.messageOwner.reactions.results.get(i4).count;
                     }
                 } else {
                     i3 = 0;
@@ -432,7 +417,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             this.title[1].setText(LocaleController.formatString("PublicShares", R.string.PublicShares, new Object[0]));
             this.primary[2].setText(AndroidUtilities.formatWholeNumber(i3, 0));
             this.title[2].setText(LocaleController.formatString("Reactions", R.string.Reactions, new Object[0]));
-            if (MessageStatisticActivity.this.chat != null && (MessageStatisticActivity.this.chat.available_reactions instanceof TLRPC$TL_chatReactionsNone) && i3 == 0) {
+            if (MessageStatisticActivity.this.chat != null && (MessageStatisticActivity.this.chat.available_reactions instanceof TLRPC.TL_chatReactionsNone) && i3 == 0) {
                 ((ViewGroup) this.title[2].getParent()).setVisibility(8);
             }
             this.primary[3].setText(AndroidUtilities.formatWholeNumber(Math.max(0, i2 - MessageStatisticActivity.this.publicChats), 0));
@@ -489,7 +474,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     public boolean checkIsDeletedStory(MessageObject messageObject) {
-        if (messageObject == null || !messageObject.isStory() || !(messageObject.storyItem instanceof TL_stories$TL_storyItemDeleted)) {
+        if (messageObject == null || !messageObject.isStory() || !(messageObject.storyItem instanceof TL_stories.TL_storyItemDeleted)) {
             return false;
         }
         BulletinFactory.of(this).createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString(R.string.StoryNotFound)).show();
@@ -589,7 +574,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (getParentLayout().getFragmentStack().size() > 1) {
             BaseFragment baseFragment = (BaseFragment) getParentLayout().getFragmentStack().get(getParentLayout().getFragmentStack().size() - 2);
             if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getCurrentChat().id == this.chatId) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             }
         }
@@ -631,37 +616,37 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
     }
 
-    public void lambda$loadChats$4(org.telegram.tgnet.TLRPC$TL_error r6, org.telegram.tgnet.TLObject r7) {
+    public void lambda$loadChats$4(org.telegram.tgnet.TLRPC.TL_error r6, org.telegram.tgnet.TLObject r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageStatisticActivity.lambda$loadChats$4(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject):void");
     }
 
-    public void lambda$loadChats$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadChats$5(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadChats$4(tLRPC$TL_error, tLObject);
+                MessageStatisticActivity.this.lambda$loadChats$4(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadChats$6(org.telegram.tgnet.TLRPC$TL_error r6, org.telegram.tgnet.TLObject r7) {
+    public void lambda$loadChats$6(org.telegram.tgnet.TLRPC.TL_error r6, org.telegram.tgnet.TLObject r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageStatisticActivity.lambda$loadChats$6(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject):void");
     }
 
-    public void lambda$loadChats$7(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadChats$7(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadChats$6(tLRPC$TL_error, tLObject);
+                MessageStatisticActivity.this.lambda$loadChats$6(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadStat$10(final String str, final TL_stats$TL_loadAsyncGraph tL_stats$TL_loadAsyncGraph, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStat$10(final String str, final TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         ChartData chartData;
-        if (tLObject instanceof TL_stats$TL_statsGraph) {
+        if (tLObject instanceof TL_stats.TL_statsGraph) {
             try {
-                chartData = StatisticActivity.createChartData(new JSONObject(((TL_stats$TL_statsGraph) tLObject).json.data), 1, false);
+                chartData = StatisticActivity.createChartData(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), 1, false);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -669,11 +654,11 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessageStatisticActivity.this.lambda$loadStat$9(tLRPC$TL_error, chartData2, str, tL_stats$TL_loadAsyncGraph);
+                    MessageStatisticActivity.this.lambda$loadStat$9(tL_error, chartData2, str, tL_loadAsyncGraph);
                 }
             });
         }
-        if (tLObject instanceof TL_stats$TL_statsGraphError) {
+        if (tLObject instanceof TL_stats.TL_statsGraphError) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -686,76 +671,76 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadStat$9(tLRPC$TL_error, chartData22, str, tL_stats$TL_loadAsyncGraph);
+                MessageStatisticActivity.this.lambda$loadStat$9(tL_error, chartData22, str, tL_loadAsyncGraph);
             }
         });
     }
 
-    public void lambda$loadStat$11(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        TL_stats$StatsGraph tL_stats$StatsGraph;
-        TL_stats$StatsGraph tL_stats$StatsGraph2;
+    public void lambda$loadStat$11(TLRPC.TL_error tL_error, TLObject tLObject) {
+        TL_stats.StatsGraph statsGraph;
+        TL_stats.StatsGraph statsGraph2;
         this.statsLoaded = true;
-        if (tLRPC$TL_error != null) {
+        if (tL_error != null) {
             updateRows();
             return;
         }
-        if (tLObject instanceof TL_stories$TL_stats_storyStats) {
-            TL_stories$TL_stats_storyStats tL_stories$TL_stats_storyStats = (TL_stories$TL_stats_storyStats) tLObject;
-            tL_stats$StatsGraph = tL_stories$TL_stats_storyStats.views_graph;
-            tL_stats$StatsGraph2 = tL_stories$TL_stats_storyStats.reactions_by_emotion_graph;
+        if (tLObject instanceof TL_stories.TL_stats_storyStats) {
+            TL_stories.TL_stats_storyStats tL_stats_storyStats = (TL_stories.TL_stats_storyStats) tLObject;
+            statsGraph = tL_stats_storyStats.views_graph;
+            statsGraph2 = tL_stats_storyStats.reactions_by_emotion_graph;
         } else {
-            TL_stats$TL_messageStats tL_stats$TL_messageStats = (TL_stats$TL_messageStats) tLObject;
-            tL_stats$StatsGraph = tL_stats$TL_messageStats.views_graph;
-            tL_stats$StatsGraph2 = tL_stats$TL_messageStats.reactions_by_emotion_graph;
+            TL_stats.TL_messageStats tL_messageStats = (TL_stats.TL_messageStats) tLObject;
+            statsGraph = tL_messageStats.views_graph;
+            statsGraph2 = tL_messageStats.reactions_by_emotion_graph;
         }
-        this.interactionsViewData = StatisticActivity.createViewData(tL_stats$StatsGraph, LocaleController.getString(R.string.ViewsAndSharesChartTitle), 1, false);
-        this.reactionsByEmotionData = StatisticActivity.createViewData(tL_stats$StatsGraph2, LocaleController.getString(R.string.ReactionsByEmotionChartTitle), 2, false);
+        this.interactionsViewData = StatisticActivity.createViewData(statsGraph, LocaleController.getString(R.string.ViewsAndSharesChartTitle), 1, false);
+        this.reactionsByEmotionData = StatisticActivity.createViewData(statsGraph2, LocaleController.getString(R.string.ReactionsByEmotionChartTitle), 2, false);
         StatisticActivity.ChartViewData chartViewData = this.interactionsViewData;
         if (chartViewData == null || chartViewData.chartData.x.length > 5) {
             updateRows();
             return;
         }
         this.statsLoaded = false;
-        final TL_stats$TL_loadAsyncGraph tL_stats$TL_loadAsyncGraph = new TL_stats$TL_loadAsyncGraph();
+        final TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
         StatisticActivity.ChartViewData chartViewData2 = this.interactionsViewData;
-        tL_stats$TL_loadAsyncGraph.token = chartViewData2.zoomToken;
+        tL_loadAsyncGraph.token = chartViewData2.zoomToken;
         long[] jArr = chartViewData2.chartData.x;
-        tL_stats$TL_loadAsyncGraph.x = jArr[jArr.length - 1];
-        tL_stats$TL_loadAsyncGraph.flags |= 1;
-        final String str = this.interactionsViewData.zoomToken + "_" + tL_stats$TL_loadAsyncGraph.x;
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stats$TL_loadAsyncGraph, new RequestDelegate() {
+        tL_loadAsyncGraph.x = jArr[jArr.length - 1];
+        tL_loadAsyncGraph.flags |= 1;
+        final String str = this.interactionsViewData.zoomToken + "_" + tL_loadAsyncGraph.x;
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_loadAsyncGraph, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                MessageStatisticActivity.this.lambda$loadStat$10(str, tL_stats$TL_loadAsyncGraph, tLObject2, tLRPC$TL_error2);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                MessageStatisticActivity.this.lambda$loadStat$10(str, tL_loadAsyncGraph, tLObject2, tL_error2);
             }
         }, null, null, 0, this.chat.stats_dc, 1, true), this.classGuid);
     }
 
-    public void lambda$loadStat$12(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStat$12(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadStat$11(tLRPC$TL_error, tLObject);
+                MessageStatisticActivity.this.lambda$loadStat$11(tL_error, tLObject);
             }
         });
     }
 
     public void lambda$loadStat$8(TLObject tLObject) {
         if (getParentActivity() != null) {
-            Toast.makeText(getParentActivity(), ((TL_stats$TL_statsGraphError) tLObject).error, 1).show();
+            Toast.makeText(getParentActivity(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
         }
     }
 
-    public void lambda$loadStat$9(TLRPC$TL_error tLRPC$TL_error, ChartData chartData, String str, TL_stats$TL_loadAsyncGraph tL_stats$TL_loadAsyncGraph) {
+    public void lambda$loadStat$9(TLRPC.TL_error tL_error, ChartData chartData, String str, TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph) {
         this.statsLoaded = true;
-        if (tLRPC$TL_error != null || chartData == null) {
+        if (tL_error != null || chartData == null) {
             updateRows();
             return;
         }
         this.childDataCache.put(str, chartData);
         StatisticActivity.ChartViewData chartViewData = this.interactionsViewData;
         chartViewData.childChartData = chartData;
-        chartViewData.activeZoom = tL_stats$TL_loadAsyncGraph.x;
+        chartViewData.activeZoom = tL_loadAsyncGraph.x;
         updateRows();
     }
 
@@ -763,7 +748,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         MessagesController messagesController;
         long dialogId;
         RequestDelegate requestDelegate;
-        TL_stats$TL_getMessagePublicForwards tL_stats$TL_getMessagePublicForwards;
+        TL_stats.TL_getMessagePublicForwards tL_getMessagePublicForwards;
         ConnectionsManager connectionsManager;
         if (this.loading) {
             return;
@@ -774,80 +759,80 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             listAdapter.notifyDataSetChanged();
         }
         if (this.messageObject.isStory()) {
-            TL_stats$TL_getStoryPublicForwards tL_stats$TL_getStoryPublicForwards = new TL_stats$TL_getStoryPublicForwards();
-            tL_stats$TL_getStoryPublicForwards.limit = i;
-            tL_stats$TL_getStoryPublicForwards.id = this.messageObject.storyItem.id;
-            tL_stats$TL_getStoryPublicForwards.peer = getMessagesController().getInputPeer(-this.chatId);
+            TL_stats.TL_getStoryPublicForwards tL_getStoryPublicForwards = new TL_stats.TL_getStoryPublicForwards();
+            tL_getStoryPublicForwards.limit = i;
+            tL_getStoryPublicForwards.id = this.messageObject.storyItem.id;
+            tL_getStoryPublicForwards.peer = getMessagesController().getInputPeer(-this.chatId);
             String str = this.nextOffset;
-            tL_stats$TL_getStoryPublicForwards.offset = str != null ? str : "";
+            tL_getStoryPublicForwards.offset = str != null ? str : "";
             ConnectionsManager connectionsManager2 = getConnectionsManager();
             requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessageStatisticActivity.this.lambda$loadChats$5(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    MessageStatisticActivity.this.lambda$loadChats$5(tLObject, tL_error);
                 }
             };
             connectionsManager = connectionsManager2;
-            tL_stats$TL_getMessagePublicForwards = tL_stats$TL_getStoryPublicForwards;
+            tL_getMessagePublicForwards = tL_getStoryPublicForwards;
         } else {
-            TL_stats$TL_getMessagePublicForwards tL_stats$TL_getMessagePublicForwards2 = new TL_stats$TL_getMessagePublicForwards();
-            tL_stats$TL_getMessagePublicForwards2.limit = i;
+            TL_stats.TL_getMessagePublicForwards tL_getMessagePublicForwards2 = new TL_stats.TL_getMessagePublicForwards();
+            tL_getMessagePublicForwards2.limit = i;
             MessageObject messageObject = this.messageObject;
-            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from;
-            if (tLRPC$MessageFwdHeader != null) {
-                tL_stats$TL_getMessagePublicForwards2.msg_id = tLRPC$MessageFwdHeader.saved_from_msg_id;
+            TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
+            if (messageFwdHeader != null) {
+                tL_getMessagePublicForwards2.msg_id = messageFwdHeader.saved_from_msg_id;
                 messagesController = getMessagesController();
                 dialogId = this.messageObject.getFromChatId();
             } else {
-                tL_stats$TL_getMessagePublicForwards2.msg_id = messageObject.getId();
+                tL_getMessagePublicForwards2.msg_id = messageObject.getId();
                 messagesController = getMessagesController();
                 dialogId = this.messageObject.getDialogId();
             }
-            tL_stats$TL_getMessagePublicForwards2.channel = messagesController.getInputChannel(-dialogId);
+            tL_getMessagePublicForwards2.channel = messagesController.getInputChannel(-dialogId);
             String str2 = this.nextOffset;
-            tL_stats$TL_getMessagePublicForwards2.offset = str2 != null ? str2 : "";
+            tL_getMessagePublicForwards2.offset = str2 != null ? str2 : "";
             ConnectionsManager connectionsManager3 = getConnectionsManager();
             requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessageStatisticActivity.this.lambda$loadChats$7(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    MessageStatisticActivity.this.lambda$loadChats$7(tLObject, tL_error);
                 }
             };
             connectionsManager = connectionsManager3;
-            tL_stats$TL_getMessagePublicForwards = tL_stats$TL_getMessagePublicForwards2;
+            tL_getMessagePublicForwards = tL_getMessagePublicForwards2;
         }
-        getConnectionsManager().bindRequestToGuid(connectionsManager.sendRequest(tL_stats$TL_getMessagePublicForwards, requestDelegate, null, null, 0, this.chat.stats_dc, 1, true), this.classGuid);
+        getConnectionsManager().bindRequestToGuid(connectionsManager.sendRequest(tL_getMessagePublicForwards, requestDelegate, null, null, 0, this.chat.stats_dc, 1, true), this.classGuid);
     }
 
     private void loadStat() {
         MessagesController messagesController;
         long dialogId;
-        TL_stats$TL_getMessageStats tL_stats$TL_getMessageStats;
+        TL_stats.TL_getMessageStats tL_getMessageStats;
         if (this.messageObject.isStory()) {
-            TL_stories$TL_stats_getStoryStats tL_stories$TL_stats_getStoryStats = new TL_stories$TL_stats_getStoryStats();
-            tL_stories$TL_stats_getStoryStats.id = this.messageObject.storyItem.id;
-            tL_stories$TL_stats_getStoryStats.peer = getMessagesController().getInputPeer(-this.chatId);
-            tL_stats$TL_getMessageStats = tL_stories$TL_stats_getStoryStats;
+            TL_stories.TL_stats_getStoryStats tL_stats_getStoryStats = new TL_stories.TL_stats_getStoryStats();
+            tL_stats_getStoryStats.id = this.messageObject.storyItem.id;
+            tL_stats_getStoryStats.peer = getMessagesController().getInputPeer(-this.chatId);
+            tL_getMessageStats = tL_stats_getStoryStats;
         } else {
-            TL_stats$TL_getMessageStats tL_stats$TL_getMessageStats2 = new TL_stats$TL_getMessageStats();
+            TL_stats.TL_getMessageStats tL_getMessageStats2 = new TL_stats.TL_getMessageStats();
             MessageObject messageObject = this.messageObject;
-            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from;
-            if (tLRPC$MessageFwdHeader != null) {
-                tL_stats$TL_getMessageStats2.msg_id = tLRPC$MessageFwdHeader.saved_from_msg_id;
+            TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
+            if (messageFwdHeader != null) {
+                tL_getMessageStats2.msg_id = messageFwdHeader.saved_from_msg_id;
                 messagesController = getMessagesController();
                 dialogId = this.messageObject.getFromChatId();
             } else {
-                tL_stats$TL_getMessageStats2.msg_id = messageObject.getId();
+                tL_getMessageStats2.msg_id = messageObject.getId();
                 messagesController = getMessagesController();
                 dialogId = this.messageObject.getDialogId();
             }
-            tL_stats$TL_getMessageStats2.channel = messagesController.getInputChannel(-dialogId);
-            tL_stats$TL_getMessageStats = tL_stats$TL_getMessageStats2;
+            tL_getMessageStats2.channel = messagesController.getInputChannel(-dialogId);
+            tL_getMessageStats = tL_getMessageStats2;
         }
-        getConnectionsManager().sendRequest(tL_stats$TL_getMessageStats, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tL_getMessageStats, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessageStatisticActivity.this.lambda$loadStat$12(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                MessageStatisticActivity.this.lambda$loadStat$12(tLObject, tL_error);
             }
         }, null, null, 0, this.chat.stats_dc, 1, true);
     }
@@ -877,7 +862,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     private void setAvatarAndTitle() {
         if (!this.messageObject.isStory()) {
             this.avatarContainer.setTitle(LocaleController.getString(R.string.PostStatistics));
-            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+            TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
             if (chat == null || this.hasThumb) {
                 return;
             }
@@ -889,7 +874,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         ChatAvatarContainer chatAvatarContainer = this.avatarContainer;
         chatAvatarContainer.allowDrawStories = true;
         chatAvatarContainer.setStoriesForceState(1);
-        ArrayList<TLRPC$PhotoSize> arrayList = this.messageObject.photoThumbs;
+        ArrayList<TLRPC.PhotoSize> arrayList = this.messageObject.photoThumbs;
         if (arrayList != null) {
             this.avatarContainer.getAvatarImageView().setImage(ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize()), this.messageObject.photoThumbsObject), "50_50", ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(this.messageObject.photoThumbs, 50), this.messageObject.photoThumbsObject), "b1", 0, this.messageObject);
             this.avatarContainer.setClipChildren(false);
@@ -899,8 +884,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     private void updateMenu() {
-        TLRPC$ChatFull tLRPC$ChatFull;
-        if (this.needActionbarMenu && (tLRPC$ChatFull = this.chat) != null && tLRPC$ChatFull.can_view_stats) {
+        TLRPC.ChatFull chatFull;
+        if (this.needActionbarMenu && (chatFull = this.chat) != null && chatFull.can_view_stats) {
             ActionBarMenu createMenu = this.actionBar.createMenu();
             createMenu.clearItems();
             createMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(1, R.drawable.msg_stats, LocaleController.getString(R.string.ViewChannelStats));
@@ -1112,16 +1097,16 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             if (!this.messageObject.needDrawBluredPreview() && (this.messageObject.isPhoto() || this.messageObject.isNewGif() || this.messageObject.isVideo())) {
                 String str = this.messageObject.isWebpage() ? this.messageObject.messageOwner.media.webpage.type : null;
                 if (!"app".equals(str) && !"profile".equals(str) && !"article".equals(str) && (str == null || !str.startsWith("telegram_"))) {
-                    TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.messageObject.photoThumbs, 50);
-                    TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
-                    TLRPC$PhotoSize tLRPC$PhotoSize = closestPhotoSizeWithSize != closestPhotoSizeWithSize2 ? closestPhotoSizeWithSize2 : null;
+                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.messageObject.photoThumbs, 50);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
+                    TLRPC.PhotoSize photoSize = closestPhotoSizeWithSize != closestPhotoSizeWithSize2 ? closestPhotoSizeWithSize2 : null;
                     if (closestPhotoSizeWithSize != null) {
                         this.hasThumb = true;
                         this.drawPlay = this.messageObject.isVideo();
-                        String attachFileName = FileLoader.getAttachFileName(tLRPC$PhotoSize);
+                        String attachFileName = FileLoader.getAttachFileName(photoSize);
                         if (this.messageObject.mediaExists || DownloadController.getInstance(this.currentAccount).canDownloadMedia(this.messageObject) || FileLoader.getInstance(this.currentAccount).isLoadingFile(attachFileName)) {
                             MessageObject messageObject = this.messageObject;
-                            this.thumbImage.setImage(ImageLocation.getForObject(tLRPC$PhotoSize, messageObject.photoThumbsObject), "50_50", ImageLocation.getForObject(closestPhotoSizeWithSize, this.messageObject.photoThumbsObject), "50_50", (messageObject.type != 1 || tLRPC$PhotoSize == null) ? 0 : tLRPC$PhotoSize.size, null, this.messageObject, 0);
+                            this.thumbImage.setImage(ImageLocation.getForObject(photoSize, messageObject.photoThumbsObject), "50_50", ImageLocation.getForObject(closestPhotoSizeWithSize, this.messageObject.photoThumbsObject), "50_50", (messageObject.type != 1 || photoSize == null) ? 0 : photoSize.size, null, this.messageObject, 0);
                         } else {
                             this.thumbImage.setImage((ImageLocation) null, (String) null, ImageLocation.getForObject(closestPhotoSizeWithSize, this.messageObject.photoThumbsObject), "50_50", (Drawable) null, this.messageObject, 0);
                         }
@@ -1157,7 +1142,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i4) {
                 if (i4 == -1) {
-                    MessageStatisticActivity.this.lambda$onBackPressed$307();
+                    MessageStatisticActivity.this.lambda$onBackPressed$300();
                 } else if (i4 == 1) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", MessageStatisticActivity.this.chatId);
@@ -1186,10 +1171,10 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
-            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (this.chat == null && tLRPC$ChatFull.id == this.chatId) {
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+            if (this.chat == null && chatFull.id == this.chatId) {
                 setAvatarAndTitle();
-                this.chat = tLRPC$ChatFull;
+                this.chat = chatFull;
                 loadStat();
                 loadChats(100);
                 updateMenu();

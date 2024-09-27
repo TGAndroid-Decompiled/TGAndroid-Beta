@@ -149,13 +149,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.utils.CustomHtml;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestTimeDelegate;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$RestrictionReason;
-import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
-import org.telegram.tgnet.TLRPC$TL_userContact_old2;
-import org.telegram.tgnet.TLRPC$TL_wallPaper;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$WallPaperSettings;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -2550,21 +2544,21 @@ public class AndroidUtilities {
     }
 
     public static String getWallPaperUrl(Object obj) {
-        if (!(obj instanceof TLRPC$TL_wallPaper)) {
+        if (!(obj instanceof TLRPC.TL_wallPaper)) {
             if (obj instanceof WallpapersListActivity.ColorWallpaper) {
                 return ((WallpapersListActivity.ColorWallpaper) obj).getUrl();
             }
             return null;
         }
-        TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) obj;
-        String str = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + tLRPC$TL_wallPaper.slug;
+        TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj;
+        String str = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + tL_wallPaper.slug;
         StringBuilder sb = new StringBuilder();
-        TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$TL_wallPaper.settings;
-        if (tLRPC$WallPaperSettings != null) {
-            if (tLRPC$WallPaperSettings.blur) {
+        TLRPC.WallPaperSettings wallPaperSettings = tL_wallPaper.settings;
+        if (wallPaperSettings != null) {
+            if (wallPaperSettings.blur) {
                 sb.append("blur");
             }
-            if (tLRPC$TL_wallPaper.settings.motion) {
+            if (tL_wallPaper.settings.motion) {
                 if (sb.length() > 0) {
                     sb.append("+");
                 }
@@ -2766,8 +2760,8 @@ public class AndroidUtilities {
         return Settings.Global.getInt(ApplicationLoader.applicationContext.getContentResolver(), "airplane_mode_on", 0) != 0;
     }
 
-    public static boolean isBannedForever(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
-        return tLRPC$TL_chatBannedRights == null || Math.abs(((long) tLRPC$TL_chatBannedRights.until_date) - (System.currentTimeMillis() / 1000)) > 157680000;
+    public static boolean isBannedForever(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
+        return tL_chatBannedRights == null || Math.abs(((long) tL_chatBannedRights.until_date) - (System.currentTimeMillis() / 1000)) > 157680000;
     }
 
     public static boolean isDarkColor(int i) {
@@ -3045,7 +3039,7 @@ public class AndroidUtilities {
                 }
                 String stringExtra2 = intent.getStringExtra("com.google.android.voicesearch.extra.RECIPIENT_CONTACT_URI");
                 long parseLong = Long.parseLong(intent.getStringExtra("com.google.android.voicesearch.extra.RECIPIENT_CONTACT_CHAT_ID"));
-                TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(parseLong));
+                TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(parseLong));
                 if (user == null && (user = MessagesStorage.getInstance(i).getUserSync(parseLong)) != null) {
                     MessagesController.getInstance(i).putUser(user, true);
                 }
@@ -3307,13 +3301,13 @@ public class AndroidUtilities {
         rectF3.set(lerp - lerp3, lerp2 - lerp4, lerp + lerp3, lerp2 + lerp4);
     }
 
-    public static ArrayList<TLRPC$User> loadVCardFromStream(Uri uri, int i, boolean z, ArrayList<VcardItem> arrayList, String str) {
+    public static ArrayList<TLRPC.User> loadVCardFromStream(Uri uri, int i, boolean z, ArrayList<VcardItem> arrayList, String str) {
         InputStream createInputStream;
         String str2;
         byte[] decodeQuotedPrintable;
         VcardItem vcardItem;
         ArrayList<VcardItem> arrayList2 = arrayList;
-        ArrayList<TLRPC$User> arrayList3 = 0;
+        ArrayList<TLRPC.User> arrayList3 = 0;
         arrayList3 = 0;
         if (z) {
             try {
@@ -3473,12 +3467,12 @@ public class AndroidUtilities {
         }
         bufferedReader.close();
         createInputStream.close();
-        ArrayList<TLRPC$User> arrayList5 = null;
+        ArrayList<TLRPC.User> arrayList5 = null;
         for (int i4 = 0; i4 < arrayList4.size(); i4++) {
             try {
                 VcardData vcardData2 = (VcardData) arrayList4.get(i4);
                 if (vcardData2.name != null && !vcardData2.phones.isEmpty()) {
-                    ArrayList<TLRPC$User> arrayList6 = arrayList5 == null ? new ArrayList<>() : arrayList5;
+                    ArrayList<TLRPC.User> arrayList6 = arrayList5 == null ? new ArrayList<>() : arrayList5;
                     try {
                         String str8 = vcardData2.phones.get(0);
                         int i5 = 0;
@@ -3493,17 +3487,17 @@ public class AndroidUtilities {
                             }
                             i5++;
                         }
-                        TLRPC$TL_userContact_old2 tLRPC$TL_userContact_old2 = new TLRPC$TL_userContact_old2();
-                        tLRPC$TL_userContact_old2.phone = str8;
-                        tLRPC$TL_userContact_old2.first_name = vcardData2.name;
-                        tLRPC$TL_userContact_old2.last_name = "";
-                        tLRPC$TL_userContact_old2.id = 0L;
-                        TLRPC$RestrictionReason tLRPC$RestrictionReason = new TLRPC$RestrictionReason();
-                        tLRPC$RestrictionReason.text = vcardData2.vcard.toString();
-                        tLRPC$RestrictionReason.platform = "";
-                        tLRPC$RestrictionReason.reason = "";
-                        tLRPC$TL_userContact_old2.restriction_reason.add(tLRPC$RestrictionReason);
-                        arrayList6.add(tLRPC$TL_userContact_old2);
+                        TLRPC.TL_userContact_old2 tL_userContact_old2 = new TLRPC.TL_userContact_old2();
+                        tL_userContact_old2.phone = str8;
+                        tL_userContact_old2.first_name = vcardData2.name;
+                        tL_userContact_old2.last_name = "";
+                        tL_userContact_old2.id = 0L;
+                        TLRPC.RestrictionReason restrictionReason = new TLRPC.RestrictionReason();
+                        restrictionReason.text = vcardData2.vcard.toString();
+                        restrictionReason.platform = "";
+                        restrictionReason.reason = "";
+                        tL_userContact_old2.restriction_reason.add(restrictionReason);
+                        arrayList6.add(tL_userContact_old2);
                         arrayList5 = arrayList6;
                     } catch (Throwable th3) {
                         th = th3;
@@ -3567,6 +3561,45 @@ public class AndroidUtilities {
         view.draw(canvas);
         Utilities.stackBlurBitmap(createBitmap, Math.max(i, Math.max(width, height) / 180));
         return createBitmap;
+    }
+
+    public static SpannableStringBuilder makeClickable(String str, final int i, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        if (i == 0 || i == 3 || i == 2 || i == 4) {
+            spannableStringBuilder.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    Runnable runnable2 = runnable;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                }
+
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    super.updateDrawState(textPaint);
+                    textPaint.setUnderlineText(i == 4);
+                    if (i == 2) {
+                        textPaint.setTypeface(AndroidUtilities.bold());
+                    }
+                }
+            }, 0, spannableStringBuilder.length(), 0);
+        } else {
+            spannableStringBuilder.setSpan(new CharacterStyle() {
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    textPaint.setTypeface(AndroidUtilities.bold());
+                    int alpha = textPaint.getAlpha();
+                    textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, Theme.ResourcesProvider.this));
+                    textPaint.setAlpha(alpha);
+                }
+            }, 0, spannableStringBuilder.length(), 0);
+        }
+        return spannableStringBuilder;
+    }
+
+    public static SpannableStringBuilder makeClickable(String str, Runnable runnable) {
+        return makeClickable(str, 0, runnable, null);
     }
 
     public static void makeGlobalBlurBitmap(Utilities.Callback<Bitmap> callback, float f) {
@@ -3771,8 +3804,8 @@ public class AndroidUtilities {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.openForView(org.telegram.tgnet.TLObject, android.app.Activity):boolean");
     }
 
-    public static boolean openForView(TLRPC$Document tLRPC$Document, boolean z, Activity activity) {
-        return openForView(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true), FileLoader.getAttachFileName(tLRPC$Document), tLRPC$Document.mime_type, activity, null, false);
+    public static boolean openForView(TLRPC.Document document, boolean z, Activity activity) {
+        return openForView(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), FileLoader.getAttachFileName(document), document.mime_type, activity, null, false);
     }
 
     public static void openSharing(BaseFragment baseFragment, String str) {
@@ -4157,7 +4190,7 @@ public class AndroidUtilities {
             i3 = i4 - 2;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replace);
-        if (indexOf >= 0) {
+        if (runnable != null && indexOf >= 0) {
             if (i2 == 3) {
                 int i5 = indexOf + i3;
                 spannableStringBuilder.replace(indexOf, i5, replaceMultipleCharSequence(" ", spannableStringBuilder.subSequence(indexOf, i5), " "));

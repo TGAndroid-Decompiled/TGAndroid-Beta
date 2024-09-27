@@ -8,11 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$JSONValue;
-import org.telegram.tgnet.TLRPC$TL_jsonArray;
-import org.telegram.tgnet.TLRPC$TL_jsonNumber;
-import org.telegram.tgnet.TLRPC$TL_jsonObject;
-import org.telegram.tgnet.TLRPC$TL_jsonObjectValue;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 
@@ -252,29 +248,29 @@ public class LiteMode {
         setAllFlags(value2);
     }
 
-    public static void updatePresets(TLRPC$TL_jsonObject tLRPC$TL_jsonObject) {
-        for (int i = 0; i < tLRPC$TL_jsonObject.value.size(); i++) {
-            TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = (TLRPC$TL_jsonObjectValue) tLRPC$TL_jsonObject.value.get(i);
-            if ("settings_mask".equals(tLRPC$TL_jsonObjectValue.key)) {
-                TLRPC$JSONValue tLRPC$JSONValue = tLRPC$TL_jsonObjectValue.value;
-                if (tLRPC$JSONValue instanceof TLRPC$TL_jsonArray) {
-                    ArrayList arrayList = ((TLRPC$TL_jsonArray) tLRPC$JSONValue).value;
+    public static void updatePresets(TLRPC.TL_jsonObject tL_jsonObject) {
+        for (int i = 0; i < tL_jsonObject.value.size(); i++) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
+            if ("settings_mask".equals(tL_jsonObjectValue.key)) {
+                TLRPC.JSONValue jSONValue = tL_jsonObjectValue.value;
+                if (jSONValue instanceof TLRPC.TL_jsonArray) {
+                    ArrayList<TLRPC.JSONValue> arrayList = ((TLRPC.TL_jsonArray) jSONValue).value;
                     try {
-                        PRESET_LOW = (int) ((TLRPC$TL_jsonNumber) arrayList.get(0)).value;
-                        PRESET_MEDIUM = (int) ((TLRPC$TL_jsonNumber) arrayList.get(1)).value;
-                        PRESET_HIGH = (int) ((TLRPC$TL_jsonNumber) arrayList.get(2)).value;
+                        PRESET_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
+                        PRESET_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
+                        PRESET_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
                 }
             }
-            if ("battery_low".equals(tLRPC$TL_jsonObjectValue.key)) {
-                TLRPC$JSONValue tLRPC$JSONValue2 = tLRPC$TL_jsonObjectValue.value;
-                if (tLRPC$JSONValue2 instanceof TLRPC$TL_jsonArray) {
-                    ArrayList arrayList2 = ((TLRPC$TL_jsonArray) tLRPC$JSONValue2).value;
-                    BATTERY_LOW = (int) ((TLRPC$TL_jsonNumber) arrayList2.get(0)).value;
-                    BATTERY_MEDIUM = (int) ((TLRPC$TL_jsonNumber) arrayList2.get(1)).value;
-                    BATTERY_HIGH = (int) ((TLRPC$TL_jsonNumber) arrayList2.get(2)).value;
+            if ("battery_low".equals(tL_jsonObjectValue.key)) {
+                TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue.value;
+                if (jSONValue2 instanceof TLRPC.TL_jsonArray) {
+                    ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue2).value;
+                    BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
+                    BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
+                    BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
                 }
             }
         }

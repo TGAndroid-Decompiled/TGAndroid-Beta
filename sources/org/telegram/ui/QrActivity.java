@@ -69,15 +69,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$PrivacyRule;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_exportedContactToken;
-import org.telegram.tgnet.TLRPC$TL_privacyValueAllowAll;
-import org.telegram.tgnet.TLRPC$TL_privacyValueAllowContacts;
-import org.telegram.tgnet.TLRPC$TL_privacyValueDisallowAll;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$WallPaper;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.INavigationLayout;
@@ -263,12 +255,12 @@ public class QrActivity extends BaseFragment {
             }
         }
 
-        public void lambda$new$3(TLRPC$TL_exportedContactToken tLRPC$TL_exportedContactToken) {
-            if (tLRPC$TL_exportedContactToken == null) {
+        public void lambda$new$3(TLRPC.TL_exportedContactToken tL_exportedContactToken) {
+            if (tL_exportedContactToken == null) {
                 return;
             }
             int i = this.linkExpires;
-            if (i != 0 && i < tLRPC$TL_exportedContactToken.expires) {
+            if (i != 0 && i < tL_exportedContactToken.expires) {
                 try {
                     Vibrator vibrator = (Vibrator) getContext().getSystemService("vibrator");
                     if (vibrator != null) {
@@ -281,15 +273,15 @@ public class QrActivity extends BaseFragment {
                     }
                 }
             }
-            this.linkExpires = tLRPC$TL_exportedContactToken.expires;
-            setData(tLRPC$TL_exportedContactToken.url, null, false, true);
+            this.linkExpires = tL_exportedContactToken.expires;
+            setData(tL_exportedContactToken.url, null, false, true);
         }
 
-        public void lambda$new$4(final TLRPC$TL_exportedContactToken tLRPC$TL_exportedContactToken) {
+        public void lambda$new$4(final TLRPC.TL_exportedContactToken tL_exportedContactToken) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.QrView.this.lambda$new$3(tLRPC$TL_exportedContactToken);
+                    QrActivity.QrView.this.lambda$new$3(tL_exportedContactToken);
                 }
             });
         }
@@ -322,7 +314,7 @@ public class QrActivity extends BaseFragment {
                     MessagesController.getInstance(UserConfig.selectedAccount).requestContactToken(this.linkExpires == 0 ? 750L : 1750L, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            QrActivity.QrView.this.lambda$new$4((TLRPC$TL_exportedContactToken) obj);
+                            QrActivity.QrView.this.lambda$new$4((TLRPC.TL_exportedContactToken) obj);
                         }
                     });
                 }
@@ -462,7 +454,7 @@ public class QrActivity extends BaseFragment {
             this.username = str2;
             this.isPhone = z;
             if (z2) {
-                TLRPC$TL_exportedContactToken cachedContactToken = MessagesController.getInstance(UserConfig.selectedAccount).getCachedContactToken();
+                TLRPC.TL_exportedContactToken cachedContactToken = MessagesController.getInstance(UserConfig.selectedAccount).getCachedContactToken();
                 if (cachedContactToken != null) {
                     this.link = cachedContactToken.url;
                     this.linkExpires = cachedContactToken.expires;
@@ -1192,7 +1184,7 @@ public class QrActivity extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$2(EmojiThemes emojiThemes, int i) {
@@ -1240,8 +1232,8 @@ public class QrActivity extends BaseFragment {
                 }
 
                 @Override
-                public void onError(TLRPC$TL_error tLRPC$TL_error) {
-                    Toast.makeText(QrActivity.this.getParentActivity(), tLRPC$TL_error.text, 0).show();
+                public void onError(TLRPC.TL_error tL_error) {
+                    Toast.makeText(QrActivity.this.getParentActivity(), tL_error.text, 0).show();
                 }
             }, true);
         } else {
@@ -1393,7 +1385,7 @@ public class QrActivity extends BaseFragment {
             this.currMotionDrawable.posAnimationProgress = motionBackgroundDrawable3.posAnimationProgress;
         }
         this.qrView.setPosAnimationProgress(this.currMotionDrawable.posAnimationProgress);
-        TLRPC$WallPaper wallpaper = this.currentTheme.getWallpaper(z2 ? 1 : 0);
+        TLRPC.WallPaper wallpaper = this.currentTheme.getWallpaper(z2 ? 1 : 0);
         if (wallpaper != null) {
             this.currMotionDrawable.setPatternBitmap(wallpaper.settings.intensity);
             final long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -1409,8 +1401,8 @@ public class QrActivity extends BaseFragment {
                 }
 
                 @Override
-                public void onError(TLRPC$TL_error tLRPC$TL_error) {
-                    ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
+                public void onError(TLRPC.TL_error tL_error) {
+                    ResultCallback.CC.$default$onError(this, tL_error);
                 }
             });
         } else {
@@ -1566,36 +1558,36 @@ public class QrActivity extends BaseFragment {
 
     private boolean phoneIsPublic() {
         char c;
-        ArrayList<TLRPC$PrivacyRule> privacyRules = ContactsController.getInstance(this.currentAccount).getPrivacyRules(6);
+        ArrayList<TLRPC.PrivacyRule> privacyRules = ContactsController.getInstance(this.currentAccount).getPrivacyRules(6);
         if (privacyRules == null) {
             return false;
         }
         for (int i = 0; i < privacyRules.size(); i++) {
-            TLRPC$PrivacyRule tLRPC$PrivacyRule = privacyRules.get(i);
-            if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowAll) {
+            TLRPC.PrivacyRule privacyRule = privacyRules.get(i);
+            if (privacyRule instanceof TLRPC.TL_privacyValueAllowAll) {
                 c = 0;
                 break;
             }
-            if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueDisallowAll) {
+            if (privacyRule instanceof TLRPC.TL_privacyValueDisallowAll) {
                 break;
             }
-            if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowContacts) {
+            if (privacyRule instanceof TLRPC.TL_privacyValueAllowContacts) {
                 c = 1;
                 break;
             }
         }
         c = 2;
         if (c == 2) {
-            ArrayList<TLRPC$PrivacyRule> privacyRules2 = ContactsController.getInstance(this.currentAccount).getPrivacyRules(7);
+            ArrayList<TLRPC.PrivacyRule> privacyRules2 = ContactsController.getInstance(this.currentAccount).getPrivacyRules(7);
             if (privacyRules2 == null || privacyRules2.size() == 0) {
                 return true;
             }
             for (int i2 = 0; i2 < privacyRules2.size(); i2++) {
-                TLRPC$PrivacyRule tLRPC$PrivacyRule2 = privacyRules2.get(i2);
-                if (tLRPC$PrivacyRule2 instanceof TLRPC$TL_privacyValueAllowAll) {
+                TLRPC.PrivacyRule privacyRule2 = privacyRules2.get(i2);
+                if (privacyRule2 instanceof TLRPC.TL_privacyValueAllowAll) {
                     return true;
                 }
-                if ((tLRPC$PrivacyRule2 instanceof TLRPC$TL_privacyValueDisallowAll) || (tLRPC$PrivacyRule2 instanceof TLRPC$TL_privacyValueAllowContacts)) {
+                if ((privacyRule2 instanceof TLRPC.TL_privacyValueDisallowAll) || (privacyRule2 instanceof TLRPC.TL_privacyValueAllowContacts)) {
                     return false;
                 }
             }
@@ -1611,7 +1603,7 @@ public class QrActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        TLRPC$Chat chat;
+        TLRPC.Chat chat;
         String publicUsername;
         String str;
         AvatarDrawable avatarDrawable;
@@ -1719,7 +1711,7 @@ public class QrActivity extends BaseFragment {
         this.backgroundView = view;
         frameLayout.addView(view);
         if (this.userId != 0) {
-            TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.userId));
+            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.userId));
             if (user != null) {
                 publicUsername = UserObject.getPublicUsername(user);
                 if (publicUsername == null) {

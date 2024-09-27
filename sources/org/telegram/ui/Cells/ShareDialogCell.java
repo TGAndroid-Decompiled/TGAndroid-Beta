@@ -32,9 +32,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -66,7 +64,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     public final Theme.ResourcesProvider resourcesProvider;
     private final SimpleTextView topicTextView;
     private boolean topicWasVisible;
-    private TLRPC$User user;
+    private TLRPC.User user;
 
     public static class RepostStoryDrawable extends Drawable {
         int alpha;
@@ -340,10 +338,10 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                     if (charSequence != null) {
                         textView = this.nameTextView;
                     } else {
-                        TLRPC$User tLRPC$User = this.user;
-                        if (tLRPC$User != null) {
+                        TLRPC.User user = this.user;
+                        if (user != null) {
                             textView = this.nameTextView;
-                            charSequence = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                            charSequence = ContactsController.formatName(user.first_name, user.last_name);
                         } else {
                             this.nameTextView.setText("");
                             this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
@@ -363,7 +361,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 this.user = null;
                 this.premiumBlocked = false;
                 this.premiumBlockedT.set(0.0f, true);
-                TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
                 if (charSequence != null) {
                     this.nameTextView.setText(charSequence);
                 } else {
@@ -389,9 +387,9 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         this.checkBox.setChecked(z, false);
     }
 
-    public void setTopic(TLRPC$TL_forumTopic tLRPC$TL_forumTopic, boolean z) {
+    public void setTopic(TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
         boolean z2 = this.topicWasVisible;
-        boolean z3 = tLRPC$TL_forumTopic != null;
+        boolean z3 = tL_forumTopic != null;
         if (z2 == z3 && z) {
             return;
         }
@@ -403,7 +401,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         }
         if (z3) {
             SimpleTextView simpleTextView2 = this.topicTextView;
-            simpleTextView2.setText(ForumUtilities.getTopicSpannedName(tLRPC$TL_forumTopic, simpleTextView2.getTextPaint(), false));
+            simpleTextView2.setText(ForumUtilities.getTopicSpannedName(tL_forumTopic, simpleTextView2.getTextPaint(), false));
             this.topicTextView.requestLayout();
         }
         if (z) {

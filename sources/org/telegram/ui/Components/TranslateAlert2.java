@@ -44,17 +44,7 @@ import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_messageEntityMention;
-import org.telegram.tgnet.TLRPC$TL_messageEntityPre;
-import org.telegram.tgnet.TLRPC$TL_messageEntityTextUrl;
-import org.telegram.tgnet.TLRPC$TL_messageEntityUrl;
-import org.telegram.tgnet.TLRPC$TL_messages_translateResult;
-import org.telegram.tgnet.TLRPC$TL_messages_translateText;
-import org.telegram.tgnet.TLRPC$TL_textWithEntities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -84,7 +74,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     private Integer reqId;
     private ArrayList reqMessageEntities;
     private int reqMessageId;
-    private TLRPC$InputPeer reqPeer;
+    private TLRPC.InputPeer reqPeer;
     private CharSequence reqText;
     private AnimatedFloat sheetTopAnimated;
     private boolean sheetTopNotAnimate;
@@ -560,7 +550,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         }
     }
 
-    private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC$InputPeer tLRPC$InputPeer, int i, Theme.ResourcesProvider resourcesProvider) {
+    private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC.InputPeer inputPeer, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         Drawable textSelectHandleLeft;
         Drawable textSelectHandleRight;
@@ -568,7 +558,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.backgroundPaddingLeft = 0;
         fixNavigationBar();
         this.reqText = charSequence;
-        this.reqPeer = tLRPC$InputPeer;
+        this.reqPeer = inputPeer;
         this.reqMessageId = i;
         this.fromLanguage = str;
         this.toLanguage = str2;
@@ -794,13 +784,13 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         dismiss();
     }
 
-    public void lambda$translate$1(TLObject tLObject, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities) {
+    public void lambda$translate$1(TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
         this.reqId = null;
-        if (tLObject instanceof TLRPC$TL_messages_translateResult) {
-            TLRPC$TL_messages_translateResult tLRPC$TL_messages_translateResult = (TLRPC$TL_messages_translateResult) tLObject;
-            if (!tLRPC$TL_messages_translateResult.result.isEmpty() && tLRPC$TL_messages_translateResult.result.get(0) != null && ((TLRPC$TL_textWithEntities) tLRPC$TL_messages_translateResult.result.get(0)).text != null) {
+        if (tLObject instanceof TLRPC.TL_messages_translateResult) {
+            TLRPC.TL_messages_translateResult tL_messages_translateResult = (TLRPC.TL_messages_translateResult) tLObject;
+            if (!tL_messages_translateResult.result.isEmpty() && tL_messages_translateResult.result.get(0) != null && tL_messages_translateResult.result.get(0).text != null) {
                 this.firstTranslation = false;
-                TLRPC$TL_textWithEntities preprocess = preprocess(tLRPC$TL_textWithEntities, (TLRPC$TL_textWithEntities) tLRPC$TL_messages_translateResult.result.get(0));
+                TLRPC.TL_textWithEntities preprocess = preprocess(tL_textWithEntities, tL_messages_translateResult.result.get(0));
                 SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(preprocess.text);
                 MessageObject.addEntitiesToText(valueOf, preprocess.entities, false, true, false, false);
                 this.textView.setText(preprocessText(valueOf));
@@ -820,11 +810,11 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.adapter.updateMainView(this.textViewContainer);
     }
 
-    public void lambda$translate$2(final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$translate$2(final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateAlert2.this.lambda$translate$1(tLObject, tLRPC$TL_textWithEntities);
+                TranslateAlert2.this.lambda$translate$1(tLObject, tL_textWithEntities);
             }
         });
     }
@@ -875,42 +865,42 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         return languageName.substring(0, 1).toUpperCase() + languageName.substring(1);
     }
 
-    public static TLRPC$TL_textWithEntities preprocess(TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2) {
+    public static TLRPC.TL_textWithEntities preprocess(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2) {
         Emoji.EmojiSpanRange emojiSpanRange;
-        ArrayList arrayList;
-        TLRPC$MessageEntity tLRPC$TL_messageEntityMention;
-        if (tLRPC$TL_textWithEntities2 == null || tLRPC$TL_textWithEntities2.text == null) {
+        ArrayList<TLRPC.MessageEntity> arrayList;
+        TLRPC.MessageEntity tL_messageEntityMention;
+        if (tL_textWithEntities2 == null || tL_textWithEntities2.text == null) {
             return null;
         }
-        for (int i = 0; i < tLRPC$TL_textWithEntities2.entities.size(); i++) {
-            TLRPC$MessageEntity tLRPC$MessageEntity = (TLRPC$MessageEntity) tLRPC$TL_textWithEntities2.entities.get(i);
-            if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityTextUrl) {
-                if (tLRPC$MessageEntity.url != null) {
-                    String str = tLRPC$TL_textWithEntities2.text;
-                    int i2 = tLRPC$MessageEntity.offset;
-                    String substring = str.substring(i2, tLRPC$MessageEntity.length + i2);
-                    if (TextUtils.equals(substring, tLRPC$MessageEntity.url)) {
-                        tLRPC$TL_messageEntityMention = new TLRPC$TL_messageEntityUrl();
-                    } else if (tLRPC$MessageEntity.url.startsWith("https://t.me/") && substring.startsWith("@") && TextUtils.equals(substring.substring(1), tLRPC$MessageEntity.url.substring(13))) {
-                        tLRPC$TL_messageEntityMention = new TLRPC$TL_messageEntityMention();
+        for (int i = 0; i < tL_textWithEntities2.entities.size(); i++) {
+            TLRPC.MessageEntity messageEntity = tL_textWithEntities2.entities.get(i);
+            if (messageEntity instanceof TLRPC.TL_messageEntityTextUrl) {
+                if (messageEntity.url != null) {
+                    String str = tL_textWithEntities2.text;
+                    int i2 = messageEntity.offset;
+                    String substring = str.substring(i2, messageEntity.length + i2);
+                    if (TextUtils.equals(substring, messageEntity.url)) {
+                        tL_messageEntityMention = new TLRPC.TL_messageEntityUrl();
+                    } else if (messageEntity.url.startsWith("https://t.me/") && substring.startsWith("@") && TextUtils.equals(substring.substring(1), messageEntity.url.substring(13))) {
+                        tL_messageEntityMention = new TLRPC.TL_messageEntityMention();
                     }
-                    tLRPC$TL_messageEntityMention.offset = tLRPC$MessageEntity.offset;
-                    tLRPC$TL_messageEntityMention.length = tLRPC$MessageEntity.length;
-                    tLRPC$TL_textWithEntities2.entities.set(i, tLRPC$TL_messageEntityMention);
+                    tL_messageEntityMention.offset = messageEntity.offset;
+                    tL_messageEntityMention.length = messageEntity.length;
+                    tL_textWithEntities2.entities.set(i, tL_messageEntityMention);
                 }
-            } else if ((tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityPre) && tLRPC$TL_textWithEntities != null && (arrayList = tLRPC$TL_textWithEntities.entities) != null && i < arrayList.size() && (tLRPC$TL_textWithEntities.entities.get(i) instanceof TLRPC$TL_messageEntityPre)) {
-                tLRPC$MessageEntity.language = ((TLRPC$MessageEntity) tLRPC$TL_textWithEntities.entities.get(i)).language;
+            } else if ((messageEntity instanceof TLRPC.TL_messageEntityPre) && tL_textWithEntities != null && (arrayList = tL_textWithEntities.entities) != null && i < arrayList.size() && (tL_textWithEntities.entities.get(i) instanceof TLRPC.TL_messageEntityPre)) {
+                messageEntity.language = tL_textWithEntities.entities.get(i).language;
             }
         }
-        if (tLRPC$TL_textWithEntities != null && tLRPC$TL_textWithEntities.text != null && !tLRPC$TL_textWithEntities.entities.isEmpty()) {
-            HashMap groupEmojiRanges = groupEmojiRanges(tLRPC$TL_textWithEntities.text);
-            HashMap groupEmojiRanges2 = groupEmojiRanges(tLRPC$TL_textWithEntities2.text);
-            for (int i3 = 0; i3 < tLRPC$TL_textWithEntities.entities.size(); i3++) {
-                TLRPC$MessageEntity tLRPC$MessageEntity2 = (TLRPC$MessageEntity) tLRPC$TL_textWithEntities.entities.get(i3);
-                if (tLRPC$MessageEntity2 instanceof TLRPC$TL_messageEntityCustomEmoji) {
-                    String str2 = tLRPC$TL_textWithEntities.text;
-                    int i4 = tLRPC$MessageEntity2.offset;
-                    String substring2 = str2.substring(i4, tLRPC$MessageEntity2.length + i4);
+        if (tL_textWithEntities != null && tL_textWithEntities.text != null && !tL_textWithEntities.entities.isEmpty()) {
+            HashMap groupEmojiRanges = groupEmojiRanges(tL_textWithEntities.text);
+            HashMap groupEmojiRanges2 = groupEmojiRanges(tL_textWithEntities2.text);
+            for (int i3 = 0; i3 < tL_textWithEntities.entities.size(); i3++) {
+                TLRPC.MessageEntity messageEntity2 = tL_textWithEntities.entities.get(i3);
+                if (messageEntity2 instanceof TLRPC.TL_messageEntityCustomEmoji) {
+                    String str2 = tL_textWithEntities.text;
+                    int i4 = messageEntity2.offset;
+                    String substring2 = str2.substring(i4, messageEntity2.length + i4);
                     if (!TextUtils.isEmpty(substring2)) {
                         ArrayList arrayList2 = (ArrayList) groupEmojiRanges.get(substring2);
                         ArrayList arrayList3 = (ArrayList) groupEmojiRanges2.get(substring2);
@@ -923,8 +913,8 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                                 }
                                 Emoji.EmojiSpanRange emojiSpanRange2 = (Emoji.EmojiSpanRange) arrayList2.get(i5);
                                 int i6 = emojiSpanRange2.start;
-                                int i7 = tLRPC$MessageEntity2.offset;
-                                if (i6 == i7 && emojiSpanRange2.end == i7 + tLRPC$MessageEntity2.length) {
+                                int i7 = messageEntity2.offset;
+                                if (i6 == i7 && emojiSpanRange2.end == i7 + messageEntity2.length) {
                                     break;
                                 }
                                 i5++;
@@ -932,23 +922,23 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                             if (i5 >= 0 && i5 < arrayList3.size() && (emojiSpanRange = (Emoji.EmojiSpanRange) arrayList3.get(i5)) != null) {
                                 int i8 = 0;
                                 while (true) {
-                                    if (i8 >= tLRPC$TL_textWithEntities2.entities.size()) {
-                                        TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
-                                        TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji2 = (TLRPC$TL_messageEntityCustomEmoji) tLRPC$MessageEntity2;
-                                        tLRPC$TL_messageEntityCustomEmoji.document_id = tLRPC$TL_messageEntityCustomEmoji2.document_id;
-                                        tLRPC$TL_messageEntityCustomEmoji.document = tLRPC$TL_messageEntityCustomEmoji2.document;
+                                    if (i8 >= tL_textWithEntities2.entities.size()) {
+                                        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
+                                        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji2 = (TLRPC.TL_messageEntityCustomEmoji) messageEntity2;
+                                        tL_messageEntityCustomEmoji.document_id = tL_messageEntityCustomEmoji2.document_id;
+                                        tL_messageEntityCustomEmoji.document = tL_messageEntityCustomEmoji2.document;
                                         int i9 = emojiSpanRange.start;
-                                        tLRPC$TL_messageEntityCustomEmoji.offset = i9;
-                                        tLRPC$TL_messageEntityCustomEmoji.length = emojiSpanRange.end - i9;
-                                        tLRPC$TL_textWithEntities2.entities.add(tLRPC$TL_messageEntityCustomEmoji);
+                                        tL_messageEntityCustomEmoji.offset = i9;
+                                        tL_messageEntityCustomEmoji.length = emojiSpanRange.end - i9;
+                                        tL_textWithEntities2.entities.add(tL_messageEntityCustomEmoji);
                                         break;
                                     }
-                                    TLRPC$MessageEntity tLRPC$MessageEntity3 = (TLRPC$MessageEntity) tLRPC$TL_textWithEntities2.entities.get(i8);
-                                    if (tLRPC$MessageEntity3 instanceof TLRPC$TL_messageEntityCustomEmoji) {
+                                    TLRPC.MessageEntity messageEntity3 = tL_textWithEntities2.entities.get(i8);
+                                    if (messageEntity3 instanceof TLRPC.TL_messageEntityCustomEmoji) {
                                         int i10 = emojiSpanRange.start;
                                         int i11 = emojiSpanRange.end;
-                                        int i12 = tLRPC$MessageEntity3.offset;
-                                        if (AndroidUtilities.intersect1d(i10, i11, i12, tLRPC$MessageEntity3.length + i12)) {
+                                        int i12 = messageEntity3.offset;
+                                        if (AndroidUtilities.intersect1d(i10, i11, i12, messageEntity3.length + i12)) {
                                             break;
                                         }
                                     }
@@ -960,7 +950,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                 }
             }
         }
-        return tLRPC$TL_textWithEntities2;
+        return tL_textWithEntities2;
     }
 
     private CharSequence preprocessText(CharSequence charSequence) {
@@ -1028,8 +1018,8 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         return translateAlert2;
     }
 
-    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC$InputPeer tLRPC$InputPeer, int i2, String str, String str2, CharSequence charSequence, ArrayList arrayList, boolean z, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
-        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, tLRPC$InputPeer, i2, null) {
+    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC.InputPeer inputPeer, int i2, String str, String str2, CharSequence charSequence, ArrayList arrayList, boolean z, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
+        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, inputPeer, i2, null) {
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1159,22 +1149,22 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId.intValue(), true);
             this.reqId = null;
         }
-        TLRPC$TL_messages_translateText tLRPC$TL_messages_translateText = new TLRPC$TL_messages_translateText();
-        final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
+        TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
+        final TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence charSequence = this.reqText;
-        tLRPC$TL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
-        ArrayList arrayList = this.reqMessageEntities;
+        tL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
+        ArrayList<TLRPC.MessageEntity> arrayList = this.reqMessageEntities;
         if (arrayList != null) {
-            tLRPC$TL_textWithEntities.entities = arrayList;
+            tL_textWithEntities.entities = arrayList;
         }
-        TLRPC$InputPeer tLRPC$InputPeer = this.reqPeer;
-        if (tLRPC$InputPeer != null) {
-            tLRPC$TL_messages_translateText.flags = 1 | tLRPC$TL_messages_translateText.flags;
-            tLRPC$TL_messages_translateText.peer = tLRPC$InputPeer;
-            tLRPC$TL_messages_translateText.id.add(Integer.valueOf(this.reqMessageId));
+        TLRPC.InputPeer inputPeer = this.reqPeer;
+        if (inputPeer != null) {
+            tL_messages_translateText.flags = 1 | tL_messages_translateText.flags;
+            tL_messages_translateText.peer = inputPeer;
+            tL_messages_translateText.id.add(Integer.valueOf(this.reqMessageId));
         } else {
-            tLRPC$TL_messages_translateText.flags |= 2;
-            tLRPC$TL_messages_translateText.text.add(tLRPC$TL_textWithEntities);
+            tL_messages_translateText.flags |= 2;
+            tL_messages_translateText.text.add(tL_textWithEntities);
         }
         String str = this.toLanguage;
         if (str != null) {
@@ -1183,11 +1173,11 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         if ("nb".equals(str)) {
             str = "no";
         }
-        tLRPC$TL_messages_translateText.to_lang = str;
-        this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_translateText, new RequestDelegate() {
+        tL_messages_translateText.to_lang = str;
+        this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                TranslateAlert2.this.lambda$translate$2(tLRPC$TL_textWithEntities, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                TranslateAlert2.this.lambda$translate$2(tL_textWithEntities, tLObject, tL_error);
             }
         }));
     }

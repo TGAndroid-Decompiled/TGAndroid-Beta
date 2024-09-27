@@ -11,7 +11,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
@@ -69,16 +69,16 @@ public class StoryFailView extends FrameLayout {
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.whitePaint);
     }
 
-    public void set(TLRPC$TL_error tLRPC$TL_error) {
+    public void set(TLRPC.TL_error tL_error) {
         TextView textView;
         int i;
-        if (tLRPC$TL_error == null || TextUtils.isEmpty(tLRPC$TL_error.text)) {
+        if (tL_error == null || TextUtils.isEmpty(tL_error.text)) {
             this.titleTextView.setTranslationY(0.0f);
             textView = this.subtitleTextView;
             i = 8;
         } else {
             this.titleTextView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
-            this.subtitleTextView.setText(tLRPC$TL_error.text);
+            this.subtitleTextView.setText(tL_error.text);
             textView = this.subtitleTextView;
             i = 0;
         }

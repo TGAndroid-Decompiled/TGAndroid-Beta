@@ -20,7 +20,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BackupImageView;
@@ -43,7 +43,7 @@ public class PreviewHighlightView extends FrameLayout {
         this.shownTop = false;
         this.shownBottom = false;
         this.currentAccount = i;
-        TLRPC$User currentUser = UserConfig.getInstance(i).getCurrentUser();
+        TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
         FrameLayout frameLayout = new FrameLayout(getContext()) {
             private RectF rectF = new RectF();
             private Paint barPaint = new Paint(1);

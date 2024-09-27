@@ -6,7 +6,7 @@ import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC;
 
 public class CacheByChatsController {
     public static int KEEP_MEDIA_DELETE = 4;
@@ -124,7 +124,7 @@ public class CacheByChatsController {
                 i = 0;
             } else {
                 long j = -keyAt;
-                TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
+                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
                 if (chat == null) {
                     chat = MessagesStorage.getInstance(this.currentAccount).getChatSync(j);
                 }

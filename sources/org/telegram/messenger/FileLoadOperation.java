@@ -14,29 +14,8 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$InputFileLocation;
-import org.telegram.tgnet.TLRPC$InputWebFileLocation;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_fileHash;
-import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
-import org.telegram.tgnet.TLRPC$TL_inputDocumentFileLocation;
-import org.telegram.tgnet.TLRPC$TL_inputPeerPhotoFileLocation;
-import org.telegram.tgnet.TLRPC$TL_inputPhotoFileLocation;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetThumb;
-import org.telegram.tgnet.TLRPC$TL_secureFile;
-import org.telegram.tgnet.TLRPC$TL_upload_cdnFile;
-import org.telegram.tgnet.TLRPC$TL_upload_cdnFileReuploadNeeded;
-import org.telegram.tgnet.TLRPC$TL_upload_file;
-import org.telegram.tgnet.TLRPC$TL_upload_fileCdnRedirect;
-import org.telegram.tgnet.TLRPC$TL_upload_getCdnFile;
-import org.telegram.tgnet.TLRPC$TL_upload_getCdnFileHashes;
-import org.telegram.tgnet.TLRPC$TL_upload_reuploadCdnFile;
-import org.telegram.tgnet.TLRPC$TL_upload_webFile;
-import org.telegram.tgnet.TLRPC$Vector;
-import org.telegram.tgnet.TLRPC$WebPage;
-import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Storage.CacheModel;
 
@@ -57,6 +36,7 @@ public class FileLoadOperation {
     private int bigFileSizeFrom;
     private long bytesCountPadding;
     private File cacheFileFinal;
+    private boolean cacheFileFinalReady;
     private File cacheFileGzipTemp;
     private File cacheFileParts;
     private File cacheFilePreload;
@@ -67,7 +47,7 @@ public class FileLoadOperation {
     private byte[] cdnCheckBytes;
     private int cdnChunkCheckSize;
     private int cdnDatacenterId;
-    private HashMap<Long, TLRPC$TL_fileHash> cdnHashes;
+    private HashMap<Long, TLRPC.TL_fileHash> cdnHashes;
     private byte[] cdnIv;
     private byte[] cdnKey;
     private byte[] cdnToken;
@@ -105,7 +85,7 @@ public class FileLoadOperation {
     private byte[] iv;
     private byte[] key;
     protected long lastProgressUpdateTime;
-    protected TLRPC$InputFileLocation location;
+    protected TLRPC.InputFileLocation location;
     private int maxCdnParts;
     private int maxDownloadRequests;
     private int maxDownloadRequestsAnimation;
@@ -160,7 +140,7 @@ public class FileLoadOperation {
     public final ArrayList<Integer> uiRequestTokens;
     private boolean ungzip;
     private WebFile webFile;
-    private TLRPC$InputWebFileLocation webLocation;
+    private TLRPC.InputWebFileLocation webLocation;
     private volatile boolean writingToFilePartsStream;
     public static volatile DispatchQueue filesQueue = new DispatchQueue("writeFileQueue");
     private static final Object lockObject = new Object();
@@ -214,9 +194,9 @@ public class FileLoadOperation {
         private long offset;
         public long requestStartTime;
         public int requestToken;
-        private TLRPC$TL_upload_file response;
-        private TLRPC$TL_upload_cdnFile responseCdn;
-        private TLRPC$TL_upload_webFile responseWeb;
+        private TLRPC.TL_upload_file response;
+        private TLRPC.TL_upload_cdnFile responseCdn;
+        private TLRPC.TL_upload_webFile responseWeb;
         public Runnable whenCancelled;
 
         protected RequestInfo() {
@@ -252,7 +232,7 @@ public class FileLoadOperation {
     }
 
     public FileLoadOperation(ImageLocation imageLocation, Object obj, String str, long j) {
-        TLRPC$TL_inputStickerSetThumb tLRPC$TL_inputStickerSetThumb;
+        TLRPC.TL_inputStickerSetThumb tL_inputStickerSetThumb;
         this.FULL_LOGS = false;
         this.downloadChunkSize = 32768;
         this.downloadChunkSizeBig = 131072;
@@ -268,118 +248,88 @@ public class FileLoadOperation {
         this.uiRequestTokens = new ArrayList<>();
         updateParams();
         this.parentObject = obj;
-        this.isStory = obj instanceof TL_stories$TL_storyItem;
+        this.isStory = obj instanceof TL_stories.TL_storyItem;
         this.fileMetadata = FileLoader.getFileMetadataFromParent(this.currentAccount, obj);
         this.isStream = imageLocation.imageType == 2;
         if (imageLocation.isEncrypted()) {
-            TLRPC$InputFileLocation tLRPC$InputFileLocation = new TLRPC$InputFileLocation() {
-                @Override
-                public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                    this.id = abstractSerializedData.readInt64(z);
-                    this.access_hash = abstractSerializedData.readInt64(z);
-                }
-
-                @Override
-                public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(-182231723);
-                    abstractSerializedData.writeInt64(this.id);
-                    abstractSerializedData.writeInt64(this.access_hash);
-                }
-            };
-            this.location = tLRPC$InputFileLocation;
-            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = imageLocation.location;
-            long j2 = tLRPC$TL_fileLocationToBeDeprecated.volume_id;
-            tLRPC$InputFileLocation.id = j2;
-            tLRPC$InputFileLocation.volume_id = j2;
-            tLRPC$InputFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated.local_id;
-            tLRPC$InputFileLocation.access_hash = imageLocation.access_hash;
+            TLRPC.TL_inputEncryptedFileLocation tL_inputEncryptedFileLocation = new TLRPC.TL_inputEncryptedFileLocation();
+            this.location = tL_inputEncryptedFileLocation;
+            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = imageLocation.location;
+            long j2 = tL_fileLocationToBeDeprecated.volume_id;
+            tL_inputEncryptedFileLocation.id = j2;
+            tL_inputEncryptedFileLocation.volume_id = j2;
+            tL_inputEncryptedFileLocation.local_id = tL_fileLocationToBeDeprecated.local_id;
+            tL_inputEncryptedFileLocation.access_hash = imageLocation.access_hash;
             byte[] bArr = new byte[32];
             this.iv = bArr;
             System.arraycopy(imageLocation.iv, 0, bArr, 0, 32);
             this.key = imageLocation.key;
         } else {
             if (imageLocation.photoPeer != null) {
-                TLRPC$TL_inputPeerPhotoFileLocation tLRPC$TL_inputPeerPhotoFileLocation = new TLRPC$TL_inputPeerPhotoFileLocation();
-                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated2 = imageLocation.location;
-                long j3 = tLRPC$TL_fileLocationToBeDeprecated2.volume_id;
-                tLRPC$TL_inputPeerPhotoFileLocation.id = j3;
-                tLRPC$TL_inputPeerPhotoFileLocation.volume_id = j3;
-                tLRPC$TL_inputPeerPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated2.local_id;
-                tLRPC$TL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
-                tLRPC$TL_inputPeerPhotoFileLocation.big = imageLocation.photoPeerType == 0;
-                tLRPC$TL_inputPeerPhotoFileLocation.peer = imageLocation.photoPeer;
-                tLRPC$TL_inputStickerSetThumb = tLRPC$TL_inputPeerPhotoFileLocation;
+                TLRPC.TL_inputPeerPhotoFileLocation tL_inputPeerPhotoFileLocation = new TLRPC.TL_inputPeerPhotoFileLocation();
+                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = imageLocation.location;
+                long j3 = tL_fileLocationToBeDeprecated2.volume_id;
+                tL_inputPeerPhotoFileLocation.id = j3;
+                tL_inputPeerPhotoFileLocation.volume_id = j3;
+                tL_inputPeerPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated2.local_id;
+                tL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
+                tL_inputPeerPhotoFileLocation.big = imageLocation.photoPeerType == 0;
+                tL_inputPeerPhotoFileLocation.peer = imageLocation.photoPeer;
+                tL_inputStickerSetThumb = tL_inputPeerPhotoFileLocation;
             } else if (imageLocation.stickerSet != null) {
-                TLRPC$TL_inputStickerSetThumb tLRPC$TL_inputStickerSetThumb2 = new TLRPC$TL_inputStickerSetThumb();
-                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated3 = imageLocation.location;
-                long j4 = tLRPC$TL_fileLocationToBeDeprecated3.volume_id;
-                tLRPC$TL_inputStickerSetThumb2.id = j4;
-                tLRPC$TL_inputStickerSetThumb2.volume_id = j4;
-                tLRPC$TL_inputStickerSetThumb2.local_id = tLRPC$TL_fileLocationToBeDeprecated3.local_id;
-                tLRPC$TL_inputStickerSetThumb2.thumb_version = imageLocation.thumbVersion;
-                tLRPC$TL_inputStickerSetThumb2.stickerset = imageLocation.stickerSet;
-                tLRPC$TL_inputStickerSetThumb = tLRPC$TL_inputStickerSetThumb2;
+                TLRPC.TL_inputStickerSetThumb tL_inputStickerSetThumb2 = new TLRPC.TL_inputStickerSetThumb();
+                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = imageLocation.location;
+                long j4 = tL_fileLocationToBeDeprecated3.volume_id;
+                tL_inputStickerSetThumb2.id = j4;
+                tL_inputStickerSetThumb2.volume_id = j4;
+                tL_inputStickerSetThumb2.local_id = tL_fileLocationToBeDeprecated3.local_id;
+                tL_inputStickerSetThumb2.thumb_version = imageLocation.thumbVersion;
+                tL_inputStickerSetThumb2.stickerset = imageLocation.stickerSet;
+                tL_inputStickerSetThumb = tL_inputStickerSetThumb2;
             } else if (imageLocation.thumbSize != null) {
                 if (imageLocation.photoId != 0) {
-                    TLRPC$TL_inputPhotoFileLocation tLRPC$TL_inputPhotoFileLocation = new TLRPC$TL_inputPhotoFileLocation();
-                    this.location = tLRPC$TL_inputPhotoFileLocation;
-                    tLRPC$TL_inputPhotoFileLocation.id = imageLocation.photoId;
-                    TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated4 = imageLocation.location;
-                    tLRPC$TL_inputPhotoFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated4.volume_id;
-                    tLRPC$TL_inputPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated4.local_id;
-                    tLRPC$TL_inputPhotoFileLocation.access_hash = imageLocation.access_hash;
-                    tLRPC$TL_inputPhotoFileLocation.file_reference = imageLocation.file_reference;
-                    tLRPC$TL_inputPhotoFileLocation.thumb_size = imageLocation.thumbSize;
+                    TLRPC.TL_inputPhotoFileLocation tL_inputPhotoFileLocation = new TLRPC.TL_inputPhotoFileLocation();
+                    this.location = tL_inputPhotoFileLocation;
+                    tL_inputPhotoFileLocation.id = imageLocation.photoId;
+                    TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated4 = imageLocation.location;
+                    tL_inputPhotoFileLocation.volume_id = tL_fileLocationToBeDeprecated4.volume_id;
+                    tL_inputPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated4.local_id;
+                    tL_inputPhotoFileLocation.access_hash = imageLocation.access_hash;
+                    tL_inputPhotoFileLocation.file_reference = imageLocation.file_reference;
+                    tL_inputPhotoFileLocation.thumb_size = imageLocation.thumbSize;
                     if (imageLocation.imageType == 2) {
                         this.allowDisordererFileSave = true;
                     }
                 } else {
-                    TLRPC$TL_inputDocumentFileLocation tLRPC$TL_inputDocumentFileLocation = new TLRPC$TL_inputDocumentFileLocation();
-                    this.location = tLRPC$TL_inputDocumentFileLocation;
-                    tLRPC$TL_inputDocumentFileLocation.id = imageLocation.documentId;
-                    TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated5 = imageLocation.location;
-                    tLRPC$TL_inputDocumentFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated5.volume_id;
-                    tLRPC$TL_inputDocumentFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated5.local_id;
-                    tLRPC$TL_inputDocumentFileLocation.access_hash = imageLocation.access_hash;
-                    tLRPC$TL_inputDocumentFileLocation.file_reference = imageLocation.file_reference;
-                    tLRPC$TL_inputDocumentFileLocation.thumb_size = imageLocation.thumbSize;
+                    TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation = new TLRPC.TL_inputDocumentFileLocation();
+                    this.location = tL_inputDocumentFileLocation;
+                    tL_inputDocumentFileLocation.id = imageLocation.documentId;
+                    TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated5 = imageLocation.location;
+                    tL_inputDocumentFileLocation.volume_id = tL_fileLocationToBeDeprecated5.volume_id;
+                    tL_inputDocumentFileLocation.local_id = tL_fileLocationToBeDeprecated5.local_id;
+                    tL_inputDocumentFileLocation.access_hash = imageLocation.access_hash;
+                    tL_inputDocumentFileLocation.file_reference = imageLocation.file_reference;
+                    tL_inputDocumentFileLocation.thumb_size = imageLocation.thumbSize;
                 }
-                TLRPC$InputFileLocation tLRPC$InputFileLocation2 = this.location;
-                if (tLRPC$InputFileLocation2.file_reference == null) {
-                    tLRPC$InputFileLocation2.file_reference = new byte[0];
+                TLRPC.InputFileLocation inputFileLocation = this.location;
+                if (inputFileLocation.file_reference == null) {
+                    inputFileLocation.file_reference = new byte[0];
                 }
             } else {
-                TLRPC$InputFileLocation tLRPC$InputFileLocation3 = new TLRPC$InputFileLocation() {
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                        this.volume_id = abstractSerializedData.readInt64(z);
-                        this.local_id = abstractSerializedData.readInt32(z);
-                        this.secret = abstractSerializedData.readInt64(z);
-                        this.file_reference = abstractSerializedData.readByteArray(z);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                        abstractSerializedData.writeInt32(-539317279);
-                        abstractSerializedData.writeInt64(this.volume_id);
-                        abstractSerializedData.writeInt32(this.local_id);
-                        abstractSerializedData.writeInt64(this.secret);
-                        abstractSerializedData.writeByteArray(this.file_reference);
-                    }
-                };
-                this.location = tLRPC$InputFileLocation3;
-                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated6 = imageLocation.location;
-                tLRPC$InputFileLocation3.volume_id = tLRPC$TL_fileLocationToBeDeprecated6.volume_id;
-                tLRPC$InputFileLocation3.local_id = tLRPC$TL_fileLocationToBeDeprecated6.local_id;
-                tLRPC$InputFileLocation3.secret = imageLocation.access_hash;
+                TLRPC.TL_inputFileLocation tL_inputFileLocation = new TLRPC.TL_inputFileLocation();
+                this.location = tL_inputFileLocation;
+                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated6 = imageLocation.location;
+                tL_inputFileLocation.volume_id = tL_fileLocationToBeDeprecated6.volume_id;
+                tL_inputFileLocation.local_id = tL_fileLocationToBeDeprecated6.local_id;
+                tL_inputFileLocation.secret = imageLocation.access_hash;
                 byte[] bArr2 = imageLocation.file_reference;
-                tLRPC$InputFileLocation3.file_reference = bArr2;
+                tL_inputFileLocation.file_reference = bArr2;
                 if (bArr2 == null) {
-                    tLRPC$InputFileLocation3.file_reference = new byte[0];
+                    tL_inputFileLocation.file_reference = new byte[0];
                 }
                 this.allowDisordererFileSave = true;
             }
-            this.location = tLRPC$TL_inputStickerSetThumb;
+            this.location = tL_inputStickerSetThumb;
         }
         int i = imageLocation.imageType;
         this.ungzip = i == 1 || i == 3;
@@ -406,32 +356,19 @@ public class FileLoadOperation {
         this.state = 0;
         this.uiRequestTokens = new ArrayList<>();
         updateParams();
-        TLRPC$InputFileLocation tLRPC$InputFileLocation = new TLRPC$InputFileLocation() {
-            @Override
-            public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                this.id = abstractSerializedData.readInt64(z);
-                this.access_hash = abstractSerializedData.readInt64(z);
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(-876089816);
-                abstractSerializedData.writeInt64(this.id);
-                abstractSerializedData.writeInt64(this.access_hash);
-            }
-        };
-        this.location = tLRPC$InputFileLocation;
-        TLRPC$TL_secureFile tLRPC$TL_secureFile = secureDocument.secureFile;
-        tLRPC$InputFileLocation.id = tLRPC$TL_secureFile.id;
-        tLRPC$InputFileLocation.access_hash = tLRPC$TL_secureFile.access_hash;
-        this.datacenterId = tLRPC$TL_secureFile.dc_id;
-        this.totalBytesCount = tLRPC$TL_secureFile.size;
+        TLRPC.TL_inputSecureFileLocation tL_inputSecureFileLocation = new TLRPC.TL_inputSecureFileLocation();
+        this.location = tL_inputSecureFileLocation;
+        TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
+        tL_inputSecureFileLocation.id = tL_secureFile.id;
+        tL_inputSecureFileLocation.access_hash = tL_secureFile.access_hash;
+        this.datacenterId = tL_secureFile.dc_id;
+        this.totalBytesCount = tL_secureFile.size;
         this.allowDisordererFileSave = true;
         this.currentType = 67108864;
         this.ext = ".jpg";
     }
 
-    public FileLoadOperation(org.telegram.tgnet.TLRPC$Document r12, java.lang.Object r13) {
+    public FileLoadOperation(org.telegram.tgnet.TLRPC.Document r12, java.lang.Object r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.<init>(org.telegram.tgnet.TLRPC$Document, java.lang.Object):void");
     }
 
@@ -1123,20 +1060,20 @@ public class FileLoadOperation {
         this.streamListeners.remove(fileLoadOperationStream);
     }
 
-    public void lambda$requestFileOffsets$20(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error != null) {
+    public void lambda$requestFileOffsets$20(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error != null) {
             onFail(false, 0);
             return;
         }
         this.requestingCdnOffsets = false;
-        TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
-        if (!tLRPC$Vector.objects.isEmpty()) {
+        TLRPC.Vector vector = (TLRPC.Vector) tLObject;
+        if (!vector.objects.isEmpty()) {
             if (this.cdnHashes == null) {
                 this.cdnHashes = new HashMap<>();
             }
-            for (int i = 0; i < tLRPC$Vector.objects.size(); i++) {
-                TLRPC$TL_fileHash tLRPC$TL_fileHash = (TLRPC$TL_fileHash) tLRPC$Vector.objects.get(i);
-                this.cdnHashes.put(Long.valueOf(tLRPC$TL_fileHash.offset), tLRPC$TL_fileHash);
+            for (int i = 0; i < vector.objects.size(); i++) {
+                TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i);
+                this.cdnHashes.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
             }
         }
         for (int i2 = 0; i2 < this.delayedRequestInfos.size(); i2++) {
@@ -1267,20 +1204,20 @@ public class FileLoadOperation {
         requestInfo.response.freeResources();
     }
 
-    public void lambda$startDownloadRequest$27(int i, RequestInfo requestInfo, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$startDownloadRequest$27(int i, RequestInfo requestInfo, TLObject tLObject, TLRPC.TL_error tL_error) {
         this.reuploadingCdn = false;
-        if (tLRPC$TL_error == null) {
-            TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
-            if (!tLRPC$Vector.objects.isEmpty()) {
+        if (tL_error == null) {
+            TLRPC.Vector vector = (TLRPC.Vector) tLObject;
+            if (!vector.objects.isEmpty()) {
                 if (this.cdnHashes == null) {
                     this.cdnHashes = new HashMap<>();
                 }
-                for (int i2 = 0; i2 < tLRPC$Vector.objects.size(); i2++) {
-                    TLRPC$TL_fileHash tLRPC$TL_fileHash = (TLRPC$TL_fileHash) tLRPC$Vector.objects.get(i2);
-                    this.cdnHashes.put(Long.valueOf(tLRPC$TL_fileHash.offset), tLRPC$TL_fileHash);
+                for (int i2 = 0; i2 < vector.objects.size(); i2++) {
+                    TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i2);
+                    this.cdnHashes.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
                 }
             }
-        } else if (!tLRPC$TL_error.text.equals("FILE_TOKEN_INVALID") && !tLRPC$TL_error.text.equals("REQUEST_TOKEN_INVALID")) {
+        } else if (!tL_error.text.equals("FILE_TOKEN_INVALID") && !tL_error.text.equals("REQUEST_TOKEN_INVALID")) {
             onFail(false, 0);
             return;
         } else {
@@ -1290,7 +1227,7 @@ public class FileLoadOperation {
         startDownloadRequest(i);
     }
 
-    public void lambda$startDownloadRequest$28(final RequestInfo requestInfo, int i, final int i2, TLObject tLObject, TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$startDownloadRequest$28(final RequestInfo requestInfo, int i, final int i2, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) {
         StatsController statsController;
         int i3;
         long objectSize;
@@ -1343,47 +1280,47 @@ public class FileLoadOperation {
             }
             this.priorityRequestInfo = null;
         }
-        if (tLRPC$TL_error != null) {
+        if (tL_error != null) {
             Runnable runnable = requestInfo.whenCancelled;
             if (runnable != null) {
                 runnable.run();
             }
-            if (tLRPC$TL_error.code == -2000) {
+            if (tL_error.code == -2000) {
                 this.requestInfos.remove(requestInfo);
                 this.requestedBytesCount -= requestInfo.chunkSize;
                 removePart(this.notRequestedBytesRanges, requestInfo.offset, requestInfo.offset + requestInfo.chunkSize);
                 return;
-            } else if (FileRefController.isFileRefError(tLRPC$TL_error.text)) {
+            } else if (FileRefController.isFileRefError(tL_error.text)) {
                 requestReference(requestInfo);
                 return;
-            } else if ((tLObject instanceof TLRPC$TL_upload_getCdnFile) && tLRPC$TL_error.text.equals("FILE_TOKEN_INVALID")) {
+            } else if ((tLObject instanceof TLRPC.TL_upload_getCdnFile) && tL_error.text.equals("FILE_TOKEN_INVALID")) {
                 this.isCdn = false;
                 clearOperation(requestInfo, false, false);
                 startDownloadRequest(i2);
                 return;
             }
         }
-        if (tLObject2 instanceof TLRPC$TL_upload_fileCdnRedirect) {
-            TLRPC$TL_upload_fileCdnRedirect tLRPC$TL_upload_fileCdnRedirect = (TLRPC$TL_upload_fileCdnRedirect) tLObject2;
-            if (!tLRPC$TL_upload_fileCdnRedirect.file_hashes.isEmpty()) {
+        if (tLObject2 instanceof TLRPC.TL_upload_fileCdnRedirect) {
+            TLRPC.TL_upload_fileCdnRedirect tL_upload_fileCdnRedirect = (TLRPC.TL_upload_fileCdnRedirect) tLObject2;
+            if (!tL_upload_fileCdnRedirect.file_hashes.isEmpty()) {
                 if (this.cdnHashes == null) {
                     this.cdnHashes = new HashMap<>();
                 }
-                for (int i7 = 0; i7 < tLRPC$TL_upload_fileCdnRedirect.file_hashes.size(); i7++) {
-                    TLRPC$TL_fileHash tLRPC$TL_fileHash = (TLRPC$TL_fileHash) tLRPC$TL_upload_fileCdnRedirect.file_hashes.get(i7);
-                    this.cdnHashes.put(Long.valueOf(tLRPC$TL_fileHash.offset), tLRPC$TL_fileHash);
+                for (int i7 = 0; i7 < tL_upload_fileCdnRedirect.file_hashes.size(); i7++) {
+                    TLRPC.TL_fileHash tL_fileHash = tL_upload_fileCdnRedirect.file_hashes.get(i7);
+                    this.cdnHashes.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
                 }
             }
-            byte[] bArr2 = tLRPC$TL_upload_fileCdnRedirect.encryption_iv;
-            if (bArr2 == null || (bArr = tLRPC$TL_upload_fileCdnRedirect.encryption_key) == null || bArr2.length != 16 || bArr.length != 32) {
+            byte[] bArr2 = tL_upload_fileCdnRedirect.encryption_iv;
+            if (bArr2 == null || (bArr = tL_upload_fileCdnRedirect.encryption_key) == null || bArr2.length != 16 || bArr.length != 32) {
                 Runnable runnable2 = requestInfo.whenCancelled;
                 if (runnable2 != null) {
                     runnable2.run();
                 }
-                TLRPC$TL_error tLRPC$TL_error2 = new TLRPC$TL_error();
-                tLRPC$TL_error2.text = "bad redirect response";
-                tLRPC$TL_error2.code = 400;
-                processRequestResult(requestInfo, tLRPC$TL_error2);
+                TLRPC.TL_error tL_error2 = new TLRPC.TL_error();
+                tL_error2.text = "bad redirect response";
+                tL_error2.code = 400;
+                processRequestResult(requestInfo, tL_error2);
                 return;
             }
             this.isCdn = true;
@@ -1392,40 +1329,40 @@ public class FileLoadOperation {
                 this.notCheckedCdnRanges = arrayList;
                 arrayList.add(new Range(0L, this.maxCdnParts));
             }
-            this.cdnDatacenterId = tLRPC$TL_upload_fileCdnRedirect.dc_id;
-            this.cdnIv = tLRPC$TL_upload_fileCdnRedirect.encryption_iv;
-            this.cdnKey = tLRPC$TL_upload_fileCdnRedirect.encryption_key;
-            this.cdnToken = tLRPC$TL_upload_fileCdnRedirect.file_token;
+            this.cdnDatacenterId = tL_upload_fileCdnRedirect.dc_id;
+            this.cdnIv = tL_upload_fileCdnRedirect.encryption_iv;
+            this.cdnKey = tL_upload_fileCdnRedirect.encryption_key;
+            this.cdnToken = tL_upload_fileCdnRedirect.file_token;
             clearOperation(requestInfo, false, false);
             startDownloadRequest(i2);
             return;
         }
-        if (tLObject2 instanceof TLRPC$TL_upload_cdnFileReuploadNeeded) {
+        if (tLObject2 instanceof TLRPC.TL_upload_cdnFileReuploadNeeded) {
             if (this.reuploadingCdn) {
                 return;
             }
             clearOperation(requestInfo, false, false);
             this.reuploadingCdn = true;
-            TLRPC$TL_upload_reuploadCdnFile tLRPC$TL_upload_reuploadCdnFile = new TLRPC$TL_upload_reuploadCdnFile();
-            tLRPC$TL_upload_reuploadCdnFile.file_token = this.cdnToken;
-            tLRPC$TL_upload_reuploadCdnFile.request_token = ((TLRPC$TL_upload_cdnFileReuploadNeeded) tLObject2).request_token;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_upload_reuploadCdnFile, new RequestDelegate() {
+            TLRPC.TL_upload_reuploadCdnFile tL_upload_reuploadCdnFile = new TLRPC.TL_upload_reuploadCdnFile();
+            tL_upload_reuploadCdnFile.file_token = this.cdnToken;
+            tL_upload_reuploadCdnFile.request_token = ((TLRPC.TL_upload_cdnFileReuploadNeeded) tLObject2).request_token;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_reuploadCdnFile, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject3, TLRPC$TL_error tLRPC$TL_error3) {
-                    FileLoadOperation.this.lambda$startDownloadRequest$27(i2, requestInfo, tLObject3, tLRPC$TL_error3);
+                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error3) {
+                    FileLoadOperation.this.lambda$startDownloadRequest$27(i2, requestInfo, tLObject3, tL_error3);
                 }
             }, null, null, 0, this.datacenterId, 1, true);
             return;
         }
-        if (tLObject2 instanceof TLRPC$TL_upload_file) {
-            requestInfo.response = (TLRPC$TL_upload_file) tLObject2;
-        } else if (tLObject2 instanceof TLRPC$TL_upload_webFile) {
-            requestInfo.responseWeb = (TLRPC$TL_upload_webFile) tLObject2;
+        if (tLObject2 instanceof TLRPC.TL_upload_file) {
+            requestInfo.response = (TLRPC.TL_upload_file) tLObject2;
+        } else if (tLObject2 instanceof TLRPC.TL_upload_webFile) {
+            requestInfo.responseWeb = (TLRPC.TL_upload_webFile) tLObject2;
             if (this.totalBytesCount == 0 && requestInfo.responseWeb.size != 0) {
                 this.totalBytesCount = requestInfo.responseWeb.size;
             }
         } else {
-            requestInfo.responseCdn = (TLRPC$TL_upload_cdnFile) tLObject2;
+            requestInfo.responseCdn = (TLRPC.TL_upload_cdnFile) tLObject2;
         }
         if (tLObject2 != null) {
             int i8 = this.currentType;
@@ -1457,7 +1394,7 @@ public class FileLoadOperation {
             }
             statsController.incrementReceivedBytesCount(i3, i4, objectSize);
         }
-        processRequestResult(requestInfo, tLRPC$TL_error);
+        processRequestResult(requestInfo, tL_error);
         Runnable runnable3 = requestInfo.whenCancelled;
         if (runnable3 != null) {
             runnable3.run();
@@ -1580,21 +1517,21 @@ public class FileLoadOperation {
             return;
         }
         this.requestingCdnOffsets = true;
-        TLRPC$TL_upload_getCdnFileHashes tLRPC$TL_upload_getCdnFileHashes = new TLRPC$TL_upload_getCdnFileHashes();
-        tLRPC$TL_upload_getCdnFileHashes.file_token = this.cdnToken;
-        tLRPC$TL_upload_getCdnFileHashes.offset = j;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_upload_getCdnFileHashes, new RequestDelegate() {
+        TLRPC.TL_upload_getCdnFileHashes tL_upload_getCdnFileHashes = new TLRPC.TL_upload_getCdnFileHashes();
+        tL_upload_getCdnFileHashes.file_token = this.cdnToken;
+        tL_upload_getCdnFileHashes.offset = j;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_getCdnFileHashes, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FileLoadOperation.this.lambda$requestFileOffsets$20(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                FileLoadOperation.this.lambda$requestFileOffsets$20(tLObject, tL_error);
             }
         }, null, null, 0, this.datacenterId, 1, true);
     }
 
     private void requestReference(RequestInfo requestInfo) {
-        TLRPC$Message tLRPC$Message;
-        TLRPC$MessageMedia tLRPC$MessageMedia;
-        TLRPC$WebPage tLRPC$WebPage;
+        TLRPC.Message message;
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.WebPage webPage;
         if (this.requestingReference) {
             return;
         }
@@ -1603,8 +1540,8 @@ public class FileLoadOperation {
         Object obj = this.parentObject;
         if (obj instanceof MessageObject) {
             MessageObject messageObject = (MessageObject) obj;
-            if (messageObject.getId() < 0 && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null && (tLRPC$WebPage = tLRPC$MessageMedia.webpage) != null) {
-                this.parentObject = tLRPC$WebPage;
+            if (messageObject.getId() < 0 && (message = messageObject.messageOwner) != null && (messageMedia = message.media) != null && (webPage = messageMedia.webpage) != null) {
+                this.parentObject = webPage;
                 this.isStory = false;
             }
         }
@@ -1677,7 +1614,7 @@ public class FileLoadOperation {
     }
 
     public File getCurrentFileFast() {
-        return (this.state != 3 || this.preloadFinished) ? this.cacheFileTemp : this.cacheFileFinal;
+        return (this.state == 3 && !this.preloadFinished && this.cacheFileFinalReady) ? this.cacheFileFinal : this.cacheFileTemp;
     }
 
     public int getCurrentType() {
@@ -1803,7 +1740,7 @@ public class FileLoadOperation {
         });
     }
 
-    protected boolean processRequestResult(org.telegram.messenger.FileLoadOperation.RequestInfo r45, org.telegram.tgnet.TLRPC$TL_error r46) {
+    protected boolean processRequestResult(org.telegram.messenger.FileLoadOperation.RequestInfo r45, org.telegram.tgnet.TLRPC.TL_error r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.processRequestResult(org.telegram.messenger.FileLoadOperation$RequestInfo, org.telegram.tgnet.TLRPC$TL_error):boolean");
     }
 
@@ -1872,7 +1809,6 @@ public class FileLoadOperation {
     }
 
     public void setStream(final FileLoadOperationStream fileLoadOperationStream, boolean z, long j) {
-        FileLog.e("FileLoadOperation " + getFileName() + " setStream(" + fileLoadOperationStream + ")");
         this.stream = fileLoadOperationStream;
         this.streamOffset = j;
         this.streamPriority = z;

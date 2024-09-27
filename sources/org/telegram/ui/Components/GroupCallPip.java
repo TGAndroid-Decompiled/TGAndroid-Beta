@@ -28,7 +28,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.GroupCallPip;
 import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
 import org.telegram.ui.GroupCallActivity;
@@ -119,8 +119,8 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
                     if (sharedInstance == null || !sharedInstance.isMicMute()) {
                         return;
                     }
-                    TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId());
-                    if (tLRPC$TL_groupCallParticipant == null || tLRPC$TL_groupCallParticipant.can_self_unmute || !tLRPC$TL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
+                    TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId());
+                    if (tL_groupCallParticipant == null || tL_groupCallParticipant.can_self_unmute || !tL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
                         AndroidUtilities.runOnUIThread(AnonymousClass3.this.micRunnable, 90L);
                         AnonymousClass3.this.performHapticFeedback(3, 2);
                         AnonymousClass3.this.pressed = true;
@@ -740,9 +740,9 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             int i2 = 0;
             while (i < 2) {
                 if (i2 < size) {
-                    TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = call.sortedParticipants.get(i2);
-                    if (MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer) != selfId && SystemClock.uptimeMillis() - tLRPC$TL_groupCallParticipant.lastSpeakTime <= 500) {
-                        this.avatarsImageView.setObject(i, this.currentAccount, tLRPC$TL_groupCallParticipant);
+                    TLRPC.TL_groupCallParticipant tL_groupCallParticipant = call.sortedParticipants.get(i2);
+                    if (MessageObject.getPeerId(tL_groupCallParticipant.peer) != selfId && SystemClock.uptimeMillis() - tL_groupCallParticipant.lastSpeakTime <= 500) {
+                        this.avatarsImageView.setObject(i, this.currentAccount, tL_groupCallParticipant);
                     }
                     i2++;
                 } else {

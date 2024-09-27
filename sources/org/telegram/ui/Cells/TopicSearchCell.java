@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -18,7 +18,7 @@ public class TopicSearchCell extends FrameLayout {
     BackupImageView backupImageView;
     public boolean drawDivider;
     TextView textView;
-    TLRPC$TL_forumTopic topic;
+    TLRPC.TL_forumTopic topic;
 
     public TopicSearchCell(Context context) {
         super(context);
@@ -73,7 +73,7 @@ public class TopicSearchCell extends FrameLayout {
         }
     }
 
-    public TLRPC$TL_forumTopic getTopic() {
+    public TLRPC.TL_forumTopic getTopic() {
         return this.topic;
     }
 
@@ -82,19 +82,19 @@ public class TopicSearchCell extends FrameLayout {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
-    public void setTopic(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+    public void setTopic(TLRPC.TL_forumTopic tL_forumTopic) {
         TextView textView;
         CharSequence highlightText;
-        this.topic = tLRPC$TL_forumTopic;
-        if (TextUtils.isEmpty(tLRPC$TL_forumTopic.searchQuery)) {
+        this.topic = tL_forumTopic;
+        if (TextUtils.isEmpty(tL_forumTopic.searchQuery)) {
             textView = this.textView;
-            highlightText = AndroidUtilities.removeDiacritics(tLRPC$TL_forumTopic.title);
+            highlightText = AndroidUtilities.removeDiacritics(tL_forumTopic.title);
         } else {
             textView = this.textView;
-            highlightText = AndroidUtilities.highlightText(AndroidUtilities.removeDiacritics(tLRPC$TL_forumTopic.title), tLRPC$TL_forumTopic.searchQuery, (Theme.ResourcesProvider) null);
+            highlightText = AndroidUtilities.highlightText(AndroidUtilities.removeDiacritics(tL_forumTopic.title), tL_forumTopic.searchQuery, (Theme.ResourcesProvider) null);
         }
         textView.setText(highlightText);
-        ForumUtilities.setTopicIcon(this.backupImageView, tLRPC$TL_forumTopic);
+        ForumUtilities.setTopicIcon(this.backupImageView, tL_forumTopic);
         BackupImageView backupImageView = this.backupImageView;
         if (backupImageView == null || backupImageView.getImageReceiver() == null || !(this.backupImageView.getImageReceiver().getDrawable() instanceof ForumUtilities.GeneralTopicDrawable)) {
             return;

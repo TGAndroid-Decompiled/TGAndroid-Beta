@@ -32,17 +32,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$GeoPoint;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$TL_account_updateBusinessLocation;
-import org.telegram.tgnet.TLRPC$TL_boolFalse;
-import org.telegram.tgnet.TLRPC$TL_businessLocation;
-import org.telegram.tgnet.TLRPC$TL_channelLocation;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_geoPoint;
-import org.telegram.tgnet.TLRPC$TL_geoPointEmpty;
-import org.telegram.tgnet.TLRPC$TL_inputGeoPoint;
-import org.telegram.tgnet.TLRPC$UserFull;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -67,12 +57,12 @@ import org.telegram.ui.LocationActivity;
 public class LocationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private String address;
     private boolean clearVisible;
-    private TLRPC$TL_businessLocation currentLocation;
+    private TLRPC.TL_businessLocation currentLocation;
     private ActionBarMenuItem doneButton;
     private CrossfadeDrawable doneButtonDrawable;
     private EditTextBoldCursor editText;
     private FrameLayout editTextContainer;
-    private TLRPC$GeoPoint geo;
+    private TLRPC.GeoPoint geo;
     private boolean ignoreEditText;
     private UniversalRecyclerView listView;
     private boolean mapAddress;
@@ -134,68 +124,68 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$onBackPressed$3(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$onClick$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$onClick$4(TLRPC.TL_error tL_error, TLObject tLObject) {
         this.doneButtonDrawable.animateToProgress(0.0f);
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
+        if (tL_error != null) {
+            BulletinFactory.showError(tL_error);
+        } else if (tLObject instanceof TLRPC.TL_boolFalse) {
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
-    public void lambda$onClick$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onClick$5(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationActivity.this.lambda$onClick$4(tLRPC$TL_error, tLObject);
+                LocationActivity.this.lambda$onClick$4(tL_error, tLObject);
             }
         });
     }
 
     public void lambda$onClick$6(DialogInterface dialogInterface, int i) {
         this.doneButtonDrawable.animateToProgress(1.0f);
-        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        TLRPC$TL_account_updateBusinessLocation tLRPC$TL_account_updateBusinessLocation = new TLRPC$TL_account_updateBusinessLocation();
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        TLRPC.TL_account_updateBusinessLocation tL_account_updateBusinessLocation = new TLRPC.TL_account_updateBusinessLocation();
         if (userFull != null) {
             userFull.business_location = null;
             userFull.flags2 &= -3;
         }
-        getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessLocation, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tL_account_updateBusinessLocation, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LocationActivity.this.lambda$onClick$5(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                LocationActivity.this.lambda$onClick$5(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$processDone$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
+    public void lambda$processDone$0(TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.showError(tLRPC$TL_error);
-        } else if (!(tLObject instanceof TLRPC$TL_boolFalse)) {
-            lambda$onBackPressed$307();
+            BulletinFactory.showError(tL_error);
+        } else if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
+            lambda$onBackPressed$300();
         } else {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         }
     }
 
-    public void lambda$processDone$1(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processDone$1(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationActivity.this.lambda$processDone$0(tLRPC$TL_error, tLObject);
+                LocationActivity.this.lambda$processDone$0(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$showLocationAlert$7(org.telegram.ui.LocationActivity locationActivity, TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        this.geo = tLRPC$MessageMedia.geo;
+    public void lambda$showLocationAlert$7(org.telegram.ui.LocationActivity locationActivity, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+        this.geo = messageMedia.geo;
         if ((TextUtils.isEmpty(this.address) && !TextUtils.isEmpty(locationActivity.getAddressName())) || this.mapAddress) {
             this.mapAddress = true;
             String addressName = locationActivity.getAddressName();
@@ -227,13 +217,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             List<Address> fromLocationName = new Geocoder(getContext(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(this.address, 1);
             if (!fromLocationName.isEmpty()) {
                 Address address = fromLocationName.get(0);
-                TLRPC$TL_channelLocation tLRPC$TL_channelLocation = new TLRPC$TL_channelLocation();
-                tLRPC$TL_channelLocation.address = this.address;
-                TLRPC$TL_geoPoint tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint();
-                tLRPC$TL_channelLocation.geo_point = tLRPC$TL_geoPoint;
-                tLRPC$TL_geoPoint.lat = address.getLatitude();
-                tLRPC$TL_channelLocation.geo_point._long = address.getLongitude();
-                locationActivity.setInitialLocation(tLRPC$TL_channelLocation);
+                TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+                tL_channelLocation.address = this.address;
+                TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                tL_channelLocation.geo_point = tL_geoPoint;
+                tL_geoPoint.lat = address.getLatitude();
+                tL_channelLocation.geo_point._long = address.getLongitude();
+                locationActivity.setInitialLocation(tL_channelLocation);
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -280,7 +270,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         boolean z = this.geo == null && TextUtils.isEmpty(this.address);
         if (!z) {
             if (!hasChanges()) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             }
             String str = this.address;
@@ -295,41 +285,41 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
         }
         this.doneButtonDrawable.animateToProgress(1.0f);
-        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        TLRPC$TL_account_updateBusinessLocation tLRPC$TL_account_updateBusinessLocation = new TLRPC$TL_account_updateBusinessLocation();
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        TLRPC.TL_account_updateBusinessLocation tL_account_updateBusinessLocation = new TLRPC.TL_account_updateBusinessLocation();
         if (!z) {
             if (this.geo != null) {
-                tLRPC$TL_account_updateBusinessLocation.flags |= 2;
-                TLRPC$TL_inputGeoPoint tLRPC$TL_inputGeoPoint = new TLRPC$TL_inputGeoPoint();
-                tLRPC$TL_account_updateBusinessLocation.geo_point = tLRPC$TL_inputGeoPoint;
-                TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
-                tLRPC$TL_inputGeoPoint.lat = tLRPC$GeoPoint.lat;
-                tLRPC$TL_inputGeoPoint._long = tLRPC$GeoPoint._long;
+                tL_account_updateBusinessLocation.flags |= 2;
+                TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+                tL_account_updateBusinessLocation.geo_point = tL_inputGeoPoint;
+                TLRPC.GeoPoint geoPoint = this.geo;
+                tL_inputGeoPoint.lat = geoPoint.lat;
+                tL_inputGeoPoint._long = geoPoint._long;
             }
-            tLRPC$TL_account_updateBusinessLocation.flags |= 1;
-            tLRPC$TL_account_updateBusinessLocation.address = this.address;
+            tL_account_updateBusinessLocation.flags |= 1;
+            tL_account_updateBusinessLocation.address = this.address;
             if (userFull != null) {
                 userFull.flags2 |= 2;
-                TLRPC$TL_businessLocation tLRPC$TL_businessLocation = new TLRPC$TL_businessLocation();
-                userFull.business_location = tLRPC$TL_businessLocation;
-                tLRPC$TL_businessLocation.address = this.address;
+                TLRPC.TL_businessLocation tL_businessLocation = new TLRPC.TL_businessLocation();
+                userFull.business_location = tL_businessLocation;
+                tL_businessLocation.address = this.address;
                 if (this.geo != null) {
-                    tLRPC$TL_businessLocation.flags = 1 | tLRPC$TL_businessLocation.flags;
-                    tLRPC$TL_businessLocation.geo_point = new TLRPC$TL_geoPoint();
-                    TLRPC$GeoPoint tLRPC$GeoPoint2 = userFull.business_location.geo_point;
-                    TLRPC$GeoPoint tLRPC$GeoPoint3 = this.geo;
-                    tLRPC$GeoPoint2.lat = tLRPC$GeoPoint3.lat;
-                    tLRPC$GeoPoint2._long = tLRPC$GeoPoint3._long;
+                    tL_businessLocation.flags = 1 | tL_businessLocation.flags;
+                    tL_businessLocation.geo_point = new TLRPC.TL_geoPoint();
+                    TLRPC.GeoPoint geoPoint2 = userFull.business_location.geo_point;
+                    TLRPC.GeoPoint geoPoint3 = this.geo;
+                    geoPoint2.lat = geoPoint3.lat;
+                    geoPoint2._long = geoPoint3._long;
                 }
             }
         } else if (userFull != null) {
             userFull.flags2 &= -3;
             userFull.business_location = null;
         }
-        getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessLocation, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tL_account_updateBusinessLocation, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LocationActivity.this.lambda$processDone$1(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                LocationActivity.this.lambda$processDone$1(tLObject, tL_error);
             }
         });
         getMessagesStorage().updateUserInfo(userFull, false);
@@ -341,16 +331,16 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         if (this.valueSet) {
             return;
         }
-        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
         if (userFull == null) {
             getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
             return;
         }
-        TLRPC$TL_businessLocation tLRPC$TL_businessLocation = userFull.business_location;
-        this.currentLocation = tLRPC$TL_businessLocation;
-        if (tLRPC$TL_businessLocation != null) {
-            this.geo = tLRPC$TL_businessLocation.geo_point;
-            str = tLRPC$TL_businessLocation.address;
+        TLRPC.TL_businessLocation tL_businessLocation = userFull.business_location;
+        this.currentLocation = tL_businessLocation;
+        if (tL_businessLocation != null) {
+            this.geo = tL_businessLocation.geo_point;
+            str = tL_businessLocation.address;
         } else {
             this.geo = null;
             str = "";
@@ -375,15 +365,15 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private void showLocationAlert() {
         final org.telegram.ui.LocationActivity locationActivity = new org.telegram.ui.LocationActivity(8);
         if (this.geo != null) {
-            TLRPC$TL_channelLocation tLRPC$TL_channelLocation = new TLRPC$TL_channelLocation();
-            tLRPC$TL_channelLocation.address = this.address;
-            tLRPC$TL_channelLocation.geo_point = this.geo;
-            locationActivity.setInitialLocation(tLRPC$TL_channelLocation);
+            TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+            tL_channelLocation.address = this.address;
+            tL_channelLocation.geo_point = this.geo;
+            locationActivity.setInitialLocation(tL_channelLocation);
         }
         locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
             @Override
-            public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-                LocationActivity.this.lambda$showLocationAlert$7(locationActivity, tLRPC$MessageMedia, i, z, i2);
+            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+                LocationActivity.this.lambda$showLocationAlert$7(locationActivity, messageMedia, i, z, i2);
             }
         });
         if (this.geo != null || TextUtils.isEmpty(this.address)) {
@@ -418,8 +408,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         int i = (int) (measuredWidth / f);
         int min = Math.min(2, (int) Math.ceil(f));
         BackupImageView backupImageView2 = this.mapPreview;
-        TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
-        backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, 0L, min * i, min * 240, 15, min)), i + "_240", this.mapLoadingDrawable, 0, (Object) null);
+        TLRPC.GeoPoint geoPoint = this.geo;
+        backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint.lat, geoPoint._long, 0L, min * i, min * 240, 15, min)), i + "_240", this.mapLoadingDrawable, 0, (Object) null);
     }
 
     @Override
@@ -432,7 +422,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (LocationActivity.this.onBackPressed()) {
-                        LocationActivity.this.lambda$onBackPressed$307();
+                        LocationActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i == 1) {
                     LocationActivity.this.processDone();
@@ -642,25 +632,25 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public boolean hasChanges() {
-        TLRPC$GeoPoint tLRPC$GeoPoint;
+        TLRPC.GeoPoint geoPoint;
         if (((this.geo == null && TextUtils.isEmpty(this.address)) ? false : true) != (this.currentLocation != null)) {
             return true;
         }
         boolean z = (this.geo == null && TextUtils.isEmpty(this.address)) ? false : true;
-        TLRPC$TL_businessLocation tLRPC$TL_businessLocation = this.currentLocation;
-        if (z != ((tLRPC$TL_businessLocation == null || (tLRPC$TL_businessLocation.geo_point instanceof TLRPC$TL_geoPointEmpty)) ? false : true)) {
+        TLRPC.TL_businessLocation tL_businessLocation = this.currentLocation;
+        if (z != ((tL_businessLocation == null || (tL_businessLocation.geo_point instanceof TLRPC.TL_geoPointEmpty)) ? false : true)) {
             return true;
         }
-        if (!TextUtils.equals(this.address, tLRPC$TL_businessLocation != null ? tLRPC$TL_businessLocation.address : "")) {
+        if (!TextUtils.equals(this.address, tL_businessLocation != null ? tL_businessLocation.address : "")) {
             return true;
         }
-        TLRPC$GeoPoint tLRPC$GeoPoint2 = this.geo;
-        boolean z2 = tLRPC$GeoPoint2 != null;
-        TLRPC$TL_businessLocation tLRPC$TL_businessLocation2 = this.currentLocation;
-        if (z2 != ((tLRPC$TL_businessLocation2 == null || tLRPC$TL_businessLocation2.geo_point == null) ? false : true)) {
+        TLRPC.GeoPoint geoPoint2 = this.geo;
+        boolean z2 = geoPoint2 != null;
+        TLRPC.TL_businessLocation tL_businessLocation2 = this.currentLocation;
+        if (z2 != ((tL_businessLocation2 == null || tL_businessLocation2.geo_point == null) ? false : true)) {
             return true;
         }
-        return tLRPC$GeoPoint2 != null && (tLRPC$TL_businessLocation2 == null || (tLRPC$GeoPoint = tLRPC$TL_businessLocation2.geo_point) == null || !((tLRPC$GeoPoint instanceof TLRPC$TL_geoPointEmpty) || (tLRPC$GeoPoint2.lat == tLRPC$GeoPoint.lat && tLRPC$GeoPoint2._long == tLRPC$GeoPoint._long)));
+        return geoPoint2 != null && (tL_businessLocation2 == null || (geoPoint = tL_businessLocation2.geo_point) == null || !((geoPoint instanceof TLRPC.TL_geoPointEmpty) || (geoPoint2.lat == geoPoint.lat && geoPoint2._long == geoPoint._long)));
     }
 
     @Override

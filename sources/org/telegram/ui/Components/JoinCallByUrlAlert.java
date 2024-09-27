@@ -45,7 +45,7 @@ public abstract class JoinCallByUrlAlert extends BottomSheet {
         }
     }
 
-    public JoinCallByUrlAlert(android.content.Context r14, org.telegram.tgnet.TLRPC$Chat r15) {
+    public JoinCallByUrlAlert(android.content.Context r14, org.telegram.tgnet.TLRPC.Chat r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.JoinCallByUrlAlert.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat):void");
     }
 

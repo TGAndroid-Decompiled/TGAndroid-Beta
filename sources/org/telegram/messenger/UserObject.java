@@ -3,89 +3,76 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC$EmojiStatus;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$TL_emojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
-import org.telegram.tgnet.TLRPC$TL_peerColor;
-import org.telegram.tgnet.TLRPC$TL_photoEmpty;
-import org.telegram.tgnet.TLRPC$TL_userContact_old2;
-import org.telegram.tgnet.TLRPC$TL_userDeleted_old2;
-import org.telegram.tgnet.TLRPC$TL_userEmpty;
-import org.telegram.tgnet.TLRPC$TL_userProfilePhotoEmpty;
-import org.telegram.tgnet.TLRPC$TL_userSelf_old3;
-import org.telegram.tgnet.TLRPC$TL_username;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.TLRPC$UserProfilePhoto;
+import org.telegram.tgnet.TLRPC;
 
 public class UserObject {
     public static final long ANONYMOUS = 2666000;
     public static final long REPLY_BOT = 1271266957;
+    public static final long VERIFY = 489000;
 
-    public static int getColorId(TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null) {
+    public static int getColorId(TLRPC.User user) {
+        if (user == null) {
             return 0;
         }
-        TLRPC$TL_peerColor tLRPC$TL_peerColor = tLRPC$User.color;
-        return (tLRPC$TL_peerColor == null || (tLRPC$TL_peerColor.flags & 1) == 0) ? (int) (tLRPC$User.id % 7) : tLRPC$TL_peerColor.color;
+        TLRPC.TL_peerColor tL_peerColor = user.color;
+        return (tL_peerColor == null || (tL_peerColor.flags & 1) == 0) ? (int) (user.id % 7) : tL_peerColor.color;
     }
 
-    public static long getEmojiId(TLRPC$User tLRPC$User) {
-        TLRPC$TL_peerColor tLRPC$TL_peerColor;
-        if (tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.color) == null || (tLRPC$TL_peerColor.flags & 2) == 0) {
+    public static long getEmojiId(TLRPC.User user) {
+        TLRPC.TL_peerColor tL_peerColor;
+        if (user == null || (tL_peerColor = user.color) == null || (tL_peerColor.flags & 2) == 0) {
             return 0L;
         }
-        return tLRPC$TL_peerColor.background_emoji_id;
+        return tL_peerColor.background_emoji_id;
     }
 
-    public static Long getEmojiStatusDocumentId(TLRPC$EmojiStatus tLRPC$EmojiStatus) {
+    public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
         long j;
-        if (tLRPC$EmojiStatus == null) {
+        if (emojiStatus == null || MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
             return null;
         }
-        if (!(tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatus)) {
-            if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) {
-                TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
-                if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
-                    j = tLRPC$TL_emojiStatusUntil.document_id;
+        if (!(emojiStatus instanceof TLRPC.TL_emojiStatus)) {
+            if (emojiStatus instanceof TLRPC.TL_emojiStatusUntil) {
+                TLRPC.TL_emojiStatusUntil tL_emojiStatusUntil = (TLRPC.TL_emojiStatusUntil) emojiStatus;
+                if (tL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
+                    j = tL_emojiStatusUntil.document_id;
                 }
             }
             return null;
         }
-        j = ((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus).document_id;
+        j = ((TLRPC.TL_emojiStatus) emojiStatus).document_id;
         return Long.valueOf(j);
     }
 
-    public static Long getEmojiStatusDocumentId(TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null) {
+    public static Long getEmojiStatusDocumentId(TLRPC.User user) {
+        if (user == null) {
             return null;
         }
-        return getEmojiStatusDocumentId(tLRPC$User.emoji_status);
+        return getEmojiStatusDocumentId(user.emoji_status);
     }
 
-    public static String getFirstName(TLRPC$User tLRPC$User) {
-        return getFirstName(tLRPC$User, true);
+    public static String getFirstName(TLRPC.User user) {
+        return getFirstName(user, true);
     }
 
-    public static String getFirstName(TLRPC$User tLRPC$User, boolean z) {
-        if (tLRPC$User == null || isDeleted(tLRPC$User)) {
+    public static String getFirstName(TLRPC.User user, boolean z) {
+        if (user == null || isDeleted(user)) {
             return "DELETED";
         }
-        String str = tLRPC$User.first_name;
+        String str = user.first_name;
         if (TextUtils.isEmpty(str)) {
-            str = tLRPC$User.last_name;
+            str = user.last_name;
         } else if (!z && str.length() <= 2) {
-            return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+            return ContactsController.formatName(user.first_name, user.last_name);
         }
         return !TextUtils.isEmpty(str) ? str : LocaleController.getString(R.string.HiddenName);
     }
 
-    public static String getForcedFirstName(TLRPC$User tLRPC$User) {
-        if (tLRPC$User != null && !isDeleted(tLRPC$User)) {
-            String str = tLRPC$User.first_name;
+    public static String getForcedFirstName(TLRPC.User user) {
+        if (user != null && !isDeleted(user)) {
+            String str = user.first_name;
             if (TextUtils.isEmpty(str)) {
-                str = tLRPC$User.last_name;
+                str = user.last_name;
             }
             if (str != null) {
                 int indexOf = str.indexOf(" ", 2);
@@ -95,88 +82,88 @@ public class UserObject {
         return LocaleController.getString(R.string.HiddenName);
     }
 
-    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC$User tLRPC$User) {
+    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC.User user) {
         return null;
     }
 
-    public static TLRPC$UserProfilePhoto getPhoto(TLRPC$User tLRPC$User) {
-        if (hasPhoto(tLRPC$User)) {
-            return tLRPC$User.photo;
+    public static TLRPC.UserProfilePhoto getPhoto(TLRPC.User user) {
+        if (hasPhoto(user)) {
+            return user.photo;
         }
         return null;
     }
 
-    public static int getProfileColorId(TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null) {
+    public static int getProfileColorId(TLRPC.User user) {
+        if (user == null) {
             return 0;
         }
-        TLRPC$TL_peerColor tLRPC$TL_peerColor = tLRPC$User.profile_color;
-        if (tLRPC$TL_peerColor == null || (tLRPC$TL_peerColor.flags & 1) == 0) {
+        TLRPC.TL_peerColor tL_peerColor = user.profile_color;
+        if (tL_peerColor == null || (tL_peerColor.flags & 1) == 0) {
             return -1;
         }
-        return tLRPC$TL_peerColor.color;
+        return tL_peerColor.color;
     }
 
-    public static long getProfileEmojiId(TLRPC$User tLRPC$User) {
-        TLRPC$TL_peerColor tLRPC$TL_peerColor;
-        if (tLRPC$User == null || (tLRPC$TL_peerColor = tLRPC$User.profile_color) == null || (tLRPC$TL_peerColor.flags & 2) == 0) {
+    public static long getProfileEmojiId(TLRPC.User user) {
+        TLRPC.TL_peerColor tL_peerColor;
+        if (user == null || (tL_peerColor = user.profile_color) == null || (tL_peerColor.flags & 2) == 0) {
             return 0L;
         }
-        return tLRPC$TL_peerColor.background_emoji_id;
+        return tL_peerColor.background_emoji_id;
     }
 
-    public static String getPublicUsername(TLRPC$User tLRPC$User) {
-        return getPublicUsername(tLRPC$User, false);
+    public static String getPublicUsername(TLRPC.User user) {
+        return getPublicUsername(user, false);
     }
 
-    public static String getPublicUsername(TLRPC$User tLRPC$User, boolean z) {
-        if (tLRPC$User == null) {
+    public static String getPublicUsername(TLRPC.User user, boolean z) {
+        if (user == null) {
             return null;
         }
-        if (!TextUtils.isEmpty(tLRPC$User.username)) {
-            return tLRPC$User.username;
+        if (!TextUtils.isEmpty(user.username)) {
+            return user.username;
         }
-        if (tLRPC$User.usernames != null) {
-            for (int i = 0; i < tLRPC$User.usernames.size(); i++) {
-                TLRPC$TL_username tLRPC$TL_username = (TLRPC$TL_username) tLRPC$User.usernames.get(i);
-                if (tLRPC$TL_username != null && (((tLRPC$TL_username.active && !z) || tLRPC$TL_username.editable) && !TextUtils.isEmpty(tLRPC$TL_username.username))) {
-                    return tLRPC$TL_username.username;
+        if (user.usernames != null) {
+            for (int i = 0; i < user.usernames.size(); i++) {
+                TLRPC.TL_username tL_username = user.usernames.get(i);
+                if (tL_username != null && (((tL_username.active && !z) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
+                    return tL_username.username;
                 }
             }
         }
         return null;
     }
 
-    public static String getUserName(TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null || isDeleted(tLRPC$User)) {
+    public static String getUserName(TLRPC.User user) {
+        if (user == null || isDeleted(user)) {
             return LocaleController.getString(R.string.HiddenName);
         }
-        String formatName = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
-        if (formatName.length() != 0 || TextUtils.isEmpty(tLRPC$User.phone)) {
+        String formatName = ContactsController.formatName(user.first_name, user.last_name);
+        if (formatName.length() != 0 || TextUtils.isEmpty(user.phone)) {
             return formatName;
         }
-        return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
+        return PhoneFormat.getInstance().format("+" + user.phone);
     }
 
-    public static boolean hasFallbackPhoto(TLRPC$UserFull tLRPC$UserFull) {
-        TLRPC$Photo tLRPC$Photo;
-        return (tLRPC$UserFull == null || (tLRPC$Photo = tLRPC$UserFull.fallback_photo) == null || (tLRPC$Photo instanceof TLRPC$TL_photoEmpty)) ? false : true;
+    public static boolean hasFallbackPhoto(TLRPC.UserFull userFull) {
+        TLRPC.Photo photo;
+        return (userFull == null || (photo = userFull.fallback_photo) == null || (photo instanceof TLRPC.TL_photoEmpty)) ? false : true;
     }
 
-    public static boolean hasPhoto(TLRPC$User tLRPC$User) {
-        TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
-        return (tLRPC$User == null || (tLRPC$UserProfilePhoto = tLRPC$User.photo) == null || (tLRPC$UserProfilePhoto instanceof TLRPC$TL_userProfilePhotoEmpty)) ? false : true;
+    public static boolean hasPhoto(TLRPC.User user) {
+        TLRPC.UserProfilePhoto userProfilePhoto;
+        return (user == null || (userProfilePhoto = user.photo) == null || (userProfilePhoto instanceof TLRPC.TL_userProfilePhotoEmpty)) ? false : true;
     }
 
-    public static boolean hasPublicUsername(TLRPC$User tLRPC$User, String str) {
-        if (tLRPC$User != null && str != null) {
-            if (str.equalsIgnoreCase(tLRPC$User.username)) {
+    public static boolean hasPublicUsername(TLRPC.User user, String str) {
+        if (user != null && str != null) {
+            if (str.equalsIgnoreCase(user.username)) {
                 return true;
             }
-            if (tLRPC$User.usernames != null) {
-                for (int i = 0; i < tLRPC$User.usernames.size(); i++) {
-                    TLRPC$TL_username tLRPC$TL_username = (TLRPC$TL_username) tLRPC$User.usernames.get(i);
-                    if (tLRPC$TL_username != null && tLRPC$TL_username.active && str.equalsIgnoreCase(tLRPC$TL_username.username)) {
+            if (user.usernames != null) {
+                for (int i = 0; i < user.usernames.size(); i++) {
+                    TLRPC.TL_username tL_username = user.usernames.get(i);
+                    if (tL_username != null && tL_username.active && str.equalsIgnoreCase(tL_username.username)) {
                         return true;
                     }
                 }
@@ -185,25 +172,25 @@ public class UserObject {
         return false;
     }
 
-    public static boolean isAnonymous(TLRPC$User tLRPC$User) {
-        return tLRPC$User != null && tLRPC$User.id == 2666000;
+    public static boolean isAnonymous(TLRPC.User user) {
+        return user != null && user.id == 2666000;
     }
 
-    public static boolean isContact(TLRPC$User tLRPC$User) {
-        return tLRPC$User != null && ((tLRPC$User instanceof TLRPC$TL_userContact_old2) || tLRPC$User.contact || tLRPC$User.mutual_contact);
+    public static boolean isContact(TLRPC.User user) {
+        return user != null && ((user instanceof TLRPC.TL_userContact_old2) || user.contact || user.mutual_contact);
     }
 
-    public static boolean isDeleted(TLRPC$User tLRPC$User) {
-        return tLRPC$User == null || (tLRPC$User instanceof TLRPC$TL_userDeleted_old2) || (tLRPC$User instanceof TLRPC$TL_userEmpty) || tLRPC$User.deleted;
+    public static boolean isDeleted(TLRPC.User user) {
+        return user == null || (user instanceof TLRPC.TL_userDeleted_old2) || (user instanceof TLRPC.TL_userEmpty) || user.deleted;
     }
 
     public static boolean isReplyUser(long j) {
         return j == 708513 || j == 1271266957;
     }
 
-    public static boolean isReplyUser(TLRPC$User tLRPC$User) {
-        if (tLRPC$User != null) {
-            long j = tLRPC$User.id;
+    public static boolean isReplyUser(TLRPC.User user) {
+        if (user != null) {
+            long j = user.id;
             if (j == 708513 || j == 1271266957) {
                 return true;
             }
@@ -215,7 +202,7 @@ public class UserObject {
         return j == 333000 || j == 777000 || j == 42777;
     }
 
-    public static boolean isUserSelf(TLRPC$User tLRPC$User) {
-        return tLRPC$User != null && ((tLRPC$User instanceof TLRPC$TL_userSelf_old3) || tLRPC$User.self);
+    public static boolean isUserSelf(TLRPC.User user) {
+        return user != null && ((user instanceof TLRPC.TL_userSelf_old3) || user.self);
     }
 }

@@ -1,8 +1,7 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -12,7 +11,7 @@ public interface ChatActivityInterface {
         public static void $default$checkAndUpdateAvatar(ChatActivityInterface chatActivityInterface) {
         }
 
-        public static TLRPC$User $default$getCurrentUser(ChatActivityInterface chatActivityInterface) {
+        public static TLRPC.User $default$getCurrentUser(ChatActivityInterface chatActivityInterface) {
             return null;
         }
 
@@ -44,9 +43,9 @@ public interface ChatActivityInterface {
 
     SizeNotifierFrameLayout getContentView();
 
-    TLRPC$Chat getCurrentChat();
+    TLRPC.Chat getCurrentChat();
 
-    TLRPC$User getCurrentUser();
+    TLRPC.User getCurrentUser();
 
     long getDialogId();
 

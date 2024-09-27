@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.os.Build;
 import com.android.billingclient.api.ProductDetails;
+import java.lang.Thread;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION_STRING = "11.1.4";
+        BUILD_VERSION_STRING = "11.2.0";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -43,6 +44,14 @@ public class BuildVars {
                 z = false;
             }
             LOGS_ENABLED = z;
+            if (z) {
+                Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                    @Override
+                    public final void uncaughtException(Thread thread, Throwable th) {
+                        FileLog.fatal(th, true);
+                    }
+                });
+            }
         }
     }
 

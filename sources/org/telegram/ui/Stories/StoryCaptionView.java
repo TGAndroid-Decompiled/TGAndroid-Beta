@@ -52,8 +52,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -130,14 +130,14 @@ public class StoryCaptionView extends NestedScrollView {
         private final Path clipRipple = new Path();
         public final RectF bounds = new RectF();
 
-        public static org.telegram.ui.Stories.StoryCaptionView.Reply from(int r8, org.telegram.tgnet.tl.TL_stories$StoryItem r9) {
+        public static org.telegram.ui.Stories.StoryCaptionView.Reply from(int r8, org.telegram.tgnet.tl.TL_stories.StoryItem r9) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryCaptionView.Reply.from(int, org.telegram.tgnet.tl.TL_stories$StoryItem):org.telegram.ui.Stories.StoryCaptionView$Reply");
         }
 
         public static Reply from(StoriesController.UploadingStory uploadingStory) {
             StoryEntry storyEntry;
             ArrayList arrayList;
-            TLRPC$Chat chat;
+            TLRPC.Chat chat;
             Reply reply = null;
             if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null) {
                 if (storyEntry.isRepost) {
@@ -166,10 +166,10 @@ public class StoryCaptionView extends NestedScrollView {
             return reply;
         }
 
-        public void lambda$load$0(TL_stories$StoryItem tL_stories$StoryItem) {
+        public void lambda$load$0(TL_stories.StoryItem storyItem) {
             String str;
             this.loaded = true;
-            if (tL_stories$StoryItem == null || (str = tL_stories$StoryItem.caption) == null) {
+            if (storyItem == null || (str = storyItem.caption) == null) {
                 return;
             }
             this.updateText = true;
@@ -257,7 +257,7 @@ public class StoryCaptionView extends NestedScrollView {
             MessagesController.getInstance(this.currentAccount).getStoriesController().resolveStoryLink(this.peerId.longValue(), this.storyId.intValue(), new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    StoryCaptionView.Reply.this.lambda$load$0((TL_stories$StoryItem) obj);
+                    StoryCaptionView.Reply.this.lambda$load$0((TL_stories.StoryItem) obj);
                 }
             });
         }
@@ -487,7 +487,7 @@ public class StoryCaptionView extends NestedScrollView {
                 if (list.isEmpty()) {
                     staticLayout.draw(canvas);
                 } else {
-                    SpoilerEffect.renderWithRipple(StoryCaptionTextView.this, false, -1, 0, this.patchedLayout, staticLayout, list, canvas, false);
+                    SpoilerEffect.renderWithRipple(StoryCaptionTextView.this, false, -1, 0, this.patchedLayout, 0, staticLayout, list, canvas, false);
                 }
             }
 

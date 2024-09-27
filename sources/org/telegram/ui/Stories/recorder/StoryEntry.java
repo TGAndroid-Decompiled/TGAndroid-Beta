@@ -40,34 +40,8 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$InputMedia;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageFwdHeader;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
-import org.telegram.tgnet.TLRPC$TL_inputDocument;
-import org.telegram.tgnet.TLRPC$TL_inputPhoto;
-import org.telegram.tgnet.TLRPC$TL_inputStickeredMediaDocument;
-import org.telegram.tgnet.TLRPC$TL_inputStickeredMediaPhoto;
-import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
-import org.telegram.tgnet.TLRPC$TL_messages_getAttachedStickers;
-import org.telegram.tgnet.TLRPC$TL_photoSize_layer127;
-import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
-import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
-import org.telegram.tgnet.TLRPC$TL_videoSize_layer127;
-import org.telegram.tgnet.TLRPC$Vector;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.PhotoFilterView;
@@ -104,9 +78,9 @@ public class StoryEntry {
     public boolean editedMedia;
     public ArrayList editedMediaAreas;
     public boolean editedPrivacy;
-    public TLRPC$InputMedia editingBotPreview;
-    public TLRPC$Document editingCoverDocument;
-    public TLRPC$TL_error error;
+    public TLRPC.InputMedia editingBotPreview;
+    public TLRPC.Document editingCoverDocument;
+    public TLRPC.TL_error error;
     public File file;
     public boolean fileDeletable;
     public File filterFile;
@@ -135,11 +109,11 @@ public class StoryEntry {
     public File paintBlurFile;
     public File paintEntitiesFile;
     public File paintFile;
-    public TLRPC$InputPeer peer;
+    public TLRPC.InputPeer peer;
     public StoryPrivacyBottomSheet.StoryPrivacy privacy;
     public String repostCaption;
-    public TLRPC$MessageMedia repostMedia;
-    public TLRPC$Peer repostPeer;
+    public TLRPC.MessageMedia repostMedia;
+    public TLRPC.Peer repostPeer;
     public CharSequence repostPeerName;
     public int repostStoryId;
     public File round;
@@ -208,22 +182,22 @@ public class StoryEntry {
     }
 
     public static boolean canRepostMessage(MessageObject messageObject) {
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         int i;
-        TLRPC$Peer tLRPC$Peer;
-        if (messageObject != null && !messageObject.isSponsored() && (((tLRPC$Message = messageObject.messageOwner) == null || !tLRPC$Message.noforwards) && (i = messageObject.type) != 17 && i != 12)) {
+        TLRPC.Peer peer;
+        if (messageObject != null && !messageObject.isSponsored() && (((message = messageObject.messageOwner) == null || !message.noforwards) && (i = messageObject.type) != 17 && i != 12)) {
             long dialogId = messageObject.getDialogId();
-            TLRPC$Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
+            TLRPC.Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
             if (chat != null && chat.noforwards) {
                 return false;
             }
             if (dialogId < 0 && ChatObject.isChannelAndNotMegaGroup(chat)) {
                 return true;
             }
-            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from;
-            if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null && (tLRPC$MessageFwdHeader.flags & 4) != 0) {
-                long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
-                TLRPC$Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
+            TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
+            if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
+                long peerDialogId = DialogObject.getPeerDialogId(peer);
+                TLRPC.Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
                 if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2) && ChatObject.isPublic(chat2))) {
                     return true;
                 }
@@ -297,60 +271,60 @@ public class StoryEntry {
         return storyEntry;
     }
 
-    public static StoryEntry fromStoryItem(File file, TL_stories$StoryItem tL_stories$StoryItem) {
+    public static StoryEntry fromStoryItem(File file, TL_stories.StoryItem storyItem) {
         StoryEntry storyEntry = new StoryEntry();
         storyEntry.isEdit = true;
-        storyEntry.editStoryId = tL_stories$StoryItem.id;
+        storyEntry.editStoryId = storyItem.id;
         storyEntry.file = file;
         int i = 0;
         storyEntry.fileDeletable = false;
         storyEntry.width = 720;
         storyEntry.height = 1280;
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
             storyEntry.isVideo = false;
             if (file != null) {
                 storyEntry.decodeBounds(file.getAbsolutePath());
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
             storyEntry.isVideo = true;
-            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document != null && tLRPC$Document.attributes != null) {
+            TLRPC.Document document = messageMedia.document;
+            if (document != null && document.attributes != null) {
                 int i2 = 0;
                 while (true) {
-                    if (i2 >= tL_stories$StoryItem.media.document.attributes.size()) {
+                    if (i2 >= storyItem.media.document.attributes.size()) {
                         break;
                     }
-                    TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tL_stories$StoryItem.media.document.attributes.get(i2);
-                    if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
-                        storyEntry.width = tLRPC$DocumentAttribute.w;
-                        storyEntry.height = tLRPC$DocumentAttribute.h;
-                        storyEntry.fileDuration = tLRPC$DocumentAttribute.duration;
+                    TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i2);
+                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                        storyEntry.width = documentAttribute.w;
+                        storyEntry.height = documentAttribute.h;
+                        storyEntry.fileDuration = documentAttribute.duration;
                         break;
                     }
                     i2++;
                 }
             }
-            TLRPC$Document tLRPC$Document2 = tL_stories$StoryItem.media.document;
-            if (tLRPC$Document2 != null) {
-                String str = tL_stories$StoryItem.firstFramePath;
+            TLRPC.Document document2 = storyItem.media.document;
+            if (document2 != null) {
+                String str = storyItem.firstFramePath;
                 if (str != null) {
                     storyEntry.thumbPath = str;
-                } else if (tLRPC$Document2.thumbs != null) {
+                } else if (document2.thumbs != null) {
                     while (true) {
-                        if (i >= tL_stories$StoryItem.media.document.thumbs.size()) {
+                        if (i >= storyItem.media.document.thumbs.size()) {
                             break;
                         }
-                        TLRPC$PhotoSize tLRPC$PhotoSize = tL_stories$StoryItem.media.document.thumbs.get(i);
-                        if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize)) {
-                            File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(tLRPC$PhotoSize, true);
+                        TLRPC.PhotoSize photoSize = storyItem.media.document.thumbs.get(i);
+                        if (!(photoSize instanceof TLRPC.TL_photoStrippedSize)) {
+                            File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(photoSize, true);
                             if (pathToAttach != null && pathToAttach.exists()) {
                                 storyEntry.thumbPath = pathToAttach.getAbsolutePath();
                                 break;
                             }
                             i++;
                         } else {
-                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, null);
+                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(photoSize.bytes, null);
                             break;
                         }
                     }
@@ -358,18 +332,18 @@ public class StoryEntry {
             }
         }
         storyEntry.privacyRules.clear();
-        storyEntry.privacyRules.addAll(StoryPrivacyBottomSheet.StoryPrivacy.toInput(storyEntry.currentAccount, tL_stories$StoryItem.privacy));
-        storyEntry.period = tL_stories$StoryItem.expire_date - tL_stories$StoryItem.date;
+        storyEntry.privacyRules.addAll(StoryPrivacyBottomSheet.StoryPrivacy.toInput(storyEntry.currentAccount, storyItem.privacy));
+        storyEntry.period = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(tL_stories$StoryItem.caption), Theme.chat_msgTextPaint.getFontMetricsInt(), true);
-            MessageObject.addEntitiesToText(replaceEmoji, tL_stories$StoryItem.entities, true, false, true, false);
-            storyEntry.caption = MessageObject.replaceAnimatedEmoji(replaceEmoji, tL_stories$StoryItem.entities, Theme.chat_msgTextPaint.getFontMetricsInt());
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), Theme.chat_msgTextPaint.getFontMetricsInt(), true);
+            MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
+            storyEntry.caption = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, Theme.chat_msgTextPaint.getFontMetricsInt());
         } catch (Exception unused) {
         }
         storyEntry.setupMatrix();
-        storyEntry.checkStickers(tL_stories$StoryItem);
-        storyEntry.editedMediaAreas = tL_stories$StoryItem.media_areas;
-        storyEntry.peer = MessagesController.getInstance(storyEntry.currentAccount).getInputPeer(tL_stories$StoryItem.dialogId);
+        storyEntry.checkStickers(storyItem);
+        storyEntry.editedMediaAreas = storyItem.media_areas;
+        storyEntry.peer = MessagesController.getInstance(storyEntry.currentAccount).getInputPeer(storyItem.dialogId);
         return storyEntry;
     }
 
@@ -388,29 +362,29 @@ public class StoryEntry {
         return storyEntry;
     }
 
-    public static long getCoverTime(TL_stories$StoryItem tL_stories$StoryItem) {
-        TLRPC$MessageMedia tLRPC$MessageMedia;
-        TLRPC$Document tLRPC$Document;
-        TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo;
-        if (tL_stories$StoryItem == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || (tLRPC$Document = tLRPC$MessageMedia.document) == null) {
+    public static long getCoverTime(TL_stories.StoryItem storyItem) {
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.Document document;
+        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
+        if (storyItem == null || (messageMedia = storyItem.media) == null || (document = messageMedia.document) == null) {
             return 0L;
         }
         int i = 0;
         while (true) {
-            if (i >= tLRPC$Document.attributes.size()) {
-                tLRPC$TL_documentAttributeVideo = null;
+            if (i >= document.attributes.size()) {
+                tL_documentAttributeVideo = null;
                 break;
             }
-            if (tLRPC$Document.attributes.get(i) instanceof TLRPC$TL_documentAttributeVideo) {
-                tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$Document.attributes.get(i);
+            if (document.attributes.get(i) instanceof TLRPC.TL_documentAttributeVideo) {
+                tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) document.attributes.get(i);
                 break;
             }
             i++;
         }
-        if (tLRPC$TL_documentAttributeVideo == null) {
+        if (tL_documentAttributeVideo == null) {
             return 0L;
         }
-        return (long) (tLRPC$TL_documentAttributeVideo.video_start_ts * 1000.0d);
+        return (long) (tL_documentAttributeVideo.video_start_ts * 1000.0d);
     }
 
     public static long getRepostDialogId(MessageObject messageObject) {
@@ -470,12 +444,12 @@ public class StoryEntry {
         return createBitmap;
     }
 
-    public static boolean isAnimated(TLRPC$Document tLRPC$Document, String str) {
-        if (tLRPC$Document != null) {
-            if ("video/webm".equals(tLRPC$Document.mime_type) || "video/mp4".equals(tLRPC$Document.mime_type)) {
+    public static boolean isAnimated(TLRPC.Document document, String str) {
+        if (document != null) {
+            if ("video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type)) {
                 return true;
             }
-            if (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) && RLottieDrawable.getFramesCount(str, null) > 1) {
+            if (MessageObject.isAnimatedStickerDocument(document, true) && RLottieDrawable.getFramesCount(str, null) > 1) {
                 return true;
             }
         }
@@ -504,33 +478,33 @@ public class StoryEntry {
 
     public void lambda$checkStickers$12(TLObject tLObject) {
         this.checkStickersReqId = 0;
-        if (tLObject instanceof TLRPC$Vector) {
+        if (tLObject instanceof TLRPC.Vector) {
             this.editStickers = new ArrayList();
-            TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
-            for (int i = 0; i < tLRPC$Vector.objects.size(); i++) {
-                TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) tLRPC$Vector.objects.get(i);
-                TLRPC$Document tLRPC$Document = tLRPC$StickerSetCovered.cover;
-                if (tLRPC$Document == null && !tLRPC$StickerSetCovered.covers.isEmpty()) {
-                    tLRPC$Document = (TLRPC$Document) tLRPC$StickerSetCovered.covers.get(0);
+            TLRPC.Vector vector = (TLRPC.Vector) tLObject;
+            for (int i = 0; i < vector.objects.size(); i++) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) vector.objects.get(i);
+                TLRPC.Document document = stickerSetCovered.cover;
+                if (document == null && !stickerSetCovered.covers.isEmpty()) {
+                    document = stickerSetCovered.covers.get(0);
                 }
-                if (tLRPC$Document == null && (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered)) {
-                    TLRPC$TL_stickerSetFullCovered tLRPC$TL_stickerSetFullCovered = (TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered;
-                    if (!tLRPC$TL_stickerSetFullCovered.documents.isEmpty()) {
-                        tLRPC$Document = (TLRPC$Document) tLRPC$TL_stickerSetFullCovered.documents.get(0);
+                if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
+                    TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
+                    if (!tL_stickerSetFullCovered.documents.isEmpty()) {
+                        document = tL_stickerSetFullCovered.documents.get(0);
                     }
                 }
-                if (tLRPC$Document != null) {
-                    TLRPC$TL_inputDocument tLRPC$TL_inputDocument = new TLRPC$TL_inputDocument();
-                    tLRPC$TL_inputDocument.id = tLRPC$Document.id;
-                    tLRPC$TL_inputDocument.access_hash = tLRPC$Document.access_hash;
-                    tLRPC$TL_inputDocument.file_reference = tLRPC$Document.file_reference;
-                    this.editStickers.add(tLRPC$TL_inputDocument);
+                if (document != null) {
+                    TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                    tL_inputDocument.id = document.id;
+                    tL_inputDocument.access_hash = document.access_hash;
+                    tL_inputDocument.file_reference = document.file_reference;
+                    this.editStickers.add(tL_inputDocument);
                 }
             }
         }
     }
 
-    public void lambda$checkStickers$13(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkStickers$13(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -539,11 +513,11 @@ public class StoryEntry {
         });
     }
 
-    public void lambda$checkStickers$14(TL_stories$StoryItem tL_stories$StoryItem, TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error == null || !FileRefController.isFileRefError(tLRPC$TL_error.text) || tL_stories$StoryItem == null) {
-            requestDelegate.run(tLObject, tLRPC$TL_error);
+    public void lambda$checkStickers$14(TL_stories.StoryItem storyItem, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error == null || !FileRefController.isFileRefError(tL_error.text) || storyItem == null) {
+            requestDelegate.run(tLObject, tL_error);
         } else {
-            FileRefController.getInstance(this.currentAccount).requestReference(tL_stories$StoryItem, tLRPC$TL_messages_getAttachedStickers, requestDelegate);
+            FileRefController.getInstance(this.currentAccount).requestReference(storyItem, tL_messages_getAttachedStickers, requestDelegate);
         }
     }
 
@@ -650,22 +624,22 @@ public class StoryEntry {
     }
 
     public static File makeCacheFile(int i, String str) {
-        TLRPC$TL_videoSize_layer127 tLRPC$TL_videoSize_layer127;
-        TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
-        tLRPC$TL_fileLocationToBeDeprecated.volume_id = -2147483648L;
-        tLRPC$TL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
-        tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
-        tLRPC$TL_fileLocationToBeDeprecated.file_reference = new byte[0];
+        TLRPC.TL_videoSize_layer127 tL_videoSize_layer127;
+        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
+        tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
+        tL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
+        tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
+        tL_fileLocationToBeDeprecated.file_reference = new byte[0];
         if ("mp4".equals(str) || "webm".equals(str)) {
-            TLRPC$TL_videoSize_layer127 tLRPC$TL_videoSize_layer1272 = new TLRPC$TL_videoSize_layer127();
-            tLRPC$TL_videoSize_layer1272.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_videoSize_layer127 = tLRPC$TL_videoSize_layer1272;
+            TLRPC.TL_videoSize_layer127 tL_videoSize_layer1272 = new TLRPC.TL_videoSize_layer127();
+            tL_videoSize_layer1272.location = tL_fileLocationToBeDeprecated;
+            tL_videoSize_layer127 = tL_videoSize_layer1272;
         } else {
-            ?? tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
-            tLRPC$TL_photoSize_layer127.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_videoSize_layer127 = tLRPC$TL_photoSize_layer127;
+            ?? tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
+            tL_photoSize_layer127.location = tL_fileLocationToBeDeprecated;
+            tL_videoSize_layer127 = tL_photoSize_layer127;
         }
-        return FileLoader.getInstance(i).getPathToAttach(tLRPC$TL_videoSize_layer127, str, true);
+        return FileLoader.getInstance(i).getPathToAttach(tL_videoSize_layer127, str, true);
     }
 
     public static File makeCacheFile(int i, boolean z) {
@@ -689,8 +663,8 @@ public class StoryEntry {
         storyEntry.mediaEntities = arrayList2;
         arrayList2.add(mediaEntity);
         if (arrayList.size() == 1 && (messageObject = (MessageObject) arrayList.get(0)) != null && ((i = messageObject.type) == 8 || i == 3 || i == 5)) {
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if (tLRPC$Message != null && tLRPC$Message.attachPath != null) {
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message != null && message.attachPath != null) {
                 storyEntry.file = new File(messageObject.messageOwner.attachPath);
             }
             File file = storyEntry.file;
@@ -712,54 +686,54 @@ public class StoryEntry {
         return storyEntry;
     }
 
-    public static StoryEntry repostStoryItem(File file, TL_stories$StoryItem tL_stories$StoryItem) {
+    public static StoryEntry repostStoryItem(File file, TL_stories.StoryItem storyItem) {
         StoryEntry storyEntry = new StoryEntry();
         storyEntry.isRepost = true;
-        storyEntry.repostMedia = tL_stories$StoryItem.media;
-        storyEntry.repostPeer = MessagesController.getInstance(storyEntry.currentAccount).getPeer(tL_stories$StoryItem.dialogId);
-        storyEntry.repostStoryId = tL_stories$StoryItem.id;
-        storyEntry.repostCaption = tL_stories$StoryItem.caption;
+        storyEntry.repostMedia = storyItem.media;
+        storyEntry.repostPeer = MessagesController.getInstance(storyEntry.currentAccount).getPeer(storyItem.dialogId);
+        storyEntry.repostStoryId = storyItem.id;
+        storyEntry.repostCaption = storyItem.caption;
         storyEntry.file = file;
         storyEntry.fileDeletable = false;
         storyEntry.width = 720;
         storyEntry.height = 1280;
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
             storyEntry.isVideo = false;
             if (file != null) {
                 storyEntry.decodeBounds(file.getAbsolutePath());
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
             storyEntry.isVideo = true;
-            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document != null && tLRPC$Document.attributes != null) {
+            TLRPC.Document document = messageMedia.document;
+            if (document != null && document.attributes != null) {
                 int i = 0;
                 while (true) {
-                    if (i >= tL_stories$StoryItem.media.document.attributes.size()) {
+                    if (i >= storyItem.media.document.attributes.size()) {
                         break;
                     }
-                    TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tL_stories$StoryItem.media.document.attributes.get(i);
-                    if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
-                        storyEntry.width = tLRPC$DocumentAttribute.w;
-                        storyEntry.height = tLRPC$DocumentAttribute.h;
-                        storyEntry.fileDuration = tLRPC$DocumentAttribute.duration;
+                    TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i);
+                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                        storyEntry.width = documentAttribute.w;
+                        storyEntry.height = documentAttribute.h;
+                        storyEntry.fileDuration = documentAttribute.duration;
                         break;
                     }
                     i++;
                 }
             }
-            TLRPC$Document tLRPC$Document2 = tL_stories$StoryItem.media.document;
-            if (tLRPC$Document2 != null) {
-                String str = tL_stories$StoryItem.firstFramePath;
+            TLRPC.Document document2 = storyItem.media.document;
+            if (document2 != null) {
+                String str = storyItem.firstFramePath;
                 if (str != null) {
                     storyEntry.thumbPath = str;
-                } else if (tLRPC$Document2.thumbs != null) {
-                    for (int i2 = 0; i2 < tL_stories$StoryItem.media.document.thumbs.size(); i2++) {
-                        TLRPC$PhotoSize tLRPC$PhotoSize = tL_stories$StoryItem.media.document.thumbs.get(i2);
-                        if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
-                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, null);
+                } else if (document2.thumbs != null) {
+                    for (int i2 = 0; i2 < storyItem.media.document.thumbs.size(); i2++) {
+                        TLRPC.PhotoSize photoSize = storyItem.media.document.thumbs.get(i2);
+                        if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
+                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(photoSize.bytes, null);
                         } else {
-                            File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(tLRPC$PhotoSize, true);
+                            File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(photoSize, true);
                             if (pathToAttach != null && pathToAttach.exists()) {
                                 storyEntry.thumbPath = pathToAttach.getAbsolutePath();
                             }
@@ -769,7 +743,7 @@ public class StoryEntry {
             }
         }
         storyEntry.setupMatrix();
-        storyEntry.checkStickers(tL_stories$StoryItem);
+        storyEntry.checkStickers(storyItem);
         return storyEntry;
     }
 
@@ -786,19 +760,19 @@ public class StoryEntry {
     }
 
     public static Boolean useForwardForRepost(MessageObject messageObject) {
-        TLRPC$Message tLRPC$Message;
-        TLRPC$Peer tLRPC$Peer;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
+        TLRPC.Message message;
+        TLRPC.Peer peer;
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
             return null;
         }
-        TLRPC$Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$Message.peer_id)));
+        TLRPC.Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(message.peer_id)));
         if ((chat == null || !chat.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat)) {
             return Boolean.FALSE;
         }
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from;
-        if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null && (tLRPC$MessageFwdHeader.flags & 4) != 0) {
-            long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
-            TLRPC$Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
+        TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
+        if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
+            long peerDialogId = DialogObject.getPeerDialogId(peer);
+            TLRPC.Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
             if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2))) {
                 return Boolean.TRUE;
             }
@@ -834,55 +808,55 @@ public class StoryEntry {
         }
     }
 
-    public void checkStickers(final TL_stories$StoryItem tL_stories$StoryItem) {
-        if (tL_stories$StoryItem == null || tL_stories$StoryItem.media == null) {
+    public void checkStickers(final TL_stories.StoryItem storyItem) {
+        if (storyItem == null || storyItem.media == null) {
             return;
         }
-        final TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers = new TLRPC$TL_messages_getAttachedStickers();
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.photo;
-        if (tLRPC$Photo == null) {
-            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document == null || !MessageObject.isDocumentHasAttachedStickers(tLRPC$Document)) {
+        final TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = new TLRPC.TL_messages_getAttachedStickers();
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        TLRPC.Photo photo = messageMedia.photo;
+        if (photo == null) {
+            TLRPC.Document document = messageMedia.document;
+            if (document == null || !MessageObject.isDocumentHasAttachedStickers(document)) {
                 return;
             }
-            TLRPC$TL_inputStickeredMediaDocument tLRPC$TL_inputStickeredMediaDocument = new TLRPC$TL_inputStickeredMediaDocument();
-            TLRPC$TL_inputDocument tLRPC$TL_inputDocument = new TLRPC$TL_inputDocument();
-            tLRPC$TL_inputStickeredMediaDocument.id = tLRPC$TL_inputDocument;
-            tLRPC$TL_inputDocument.id = tLRPC$Document.id;
-            tLRPC$TL_inputDocument.access_hash = tLRPC$Document.access_hash;
-            byte[] bArr = tLRPC$Document.file_reference;
-            tLRPC$TL_inputDocument.file_reference = bArr;
+            TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
+            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+            tL_inputStickeredMediaDocument.id = tL_inputDocument;
+            tL_inputDocument.id = document.id;
+            tL_inputDocument.access_hash = document.access_hash;
+            byte[] bArr = document.file_reference;
+            tL_inputDocument.file_reference = bArr;
             if (bArr == null) {
-                tLRPC$TL_inputDocument.file_reference = new byte[0];
+                tL_inputDocument.file_reference = new byte[0];
             }
-            tLRPC$TL_messages_getAttachedStickers.media = tLRPC$TL_inputStickeredMediaDocument;
+            tL_messages_getAttachedStickers.media = tL_inputStickeredMediaDocument;
         } else {
-            if (!tLRPC$Photo.has_stickers) {
+            if (!photo.has_stickers) {
                 return;
             }
-            TLRPC$TL_inputStickeredMediaPhoto tLRPC$TL_inputStickeredMediaPhoto = new TLRPC$TL_inputStickeredMediaPhoto();
-            TLRPC$TL_inputPhoto tLRPC$TL_inputPhoto = new TLRPC$TL_inputPhoto();
-            tLRPC$TL_inputStickeredMediaPhoto.id = tLRPC$TL_inputPhoto;
-            tLRPC$TL_inputPhoto.id = tLRPC$Photo.id;
-            tLRPC$TL_inputPhoto.access_hash = tLRPC$Photo.access_hash;
-            byte[] bArr2 = tLRPC$Photo.file_reference;
-            tLRPC$TL_inputPhoto.file_reference = bArr2;
+            TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
+            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+            tL_inputStickeredMediaPhoto.id = tL_inputPhoto;
+            tL_inputPhoto.id = photo.id;
+            tL_inputPhoto.access_hash = photo.access_hash;
+            byte[] bArr2 = photo.file_reference;
+            tL_inputPhoto.file_reference = bArr2;
             if (bArr2 == null) {
-                tLRPC$TL_inputPhoto.file_reference = new byte[0];
+                tL_inputPhoto.file_reference = new byte[0];
             }
-            tLRPC$TL_messages_getAttachedStickers.media = tLRPC$TL_inputStickeredMediaPhoto;
+            tL_messages_getAttachedStickers.media = tL_inputStickeredMediaPhoto;
         }
         final RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoryEntry.this.lambda$checkStickers$13(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                StoryEntry.this.lambda$checkStickers$13(tLObject, tL_error);
             }
         };
-        this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getAttachedStickers, new RequestDelegate() {
+        this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoryEntry.this.lambda$checkStickers$14(tL_stories$StoryItem, tLRPC$TL_messages_getAttachedStickers, requestDelegate, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                StoryEntry.this.lambda$checkStickers$14(storyItem, tL_messages_getAttachedStickers, requestDelegate, tLObject, tL_error);
             }
         });
     }

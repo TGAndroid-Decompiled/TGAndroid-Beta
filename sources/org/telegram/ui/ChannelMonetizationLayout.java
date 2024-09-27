@@ -51,39 +51,10 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BroadcastRevenueBalances;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$InputCheckPasswordSRP;
-import org.telegram.tgnet.TLRPC$StarsTransaction;
-import org.telegram.tgnet.TLRPC$TL_account_getPassword;
-import org.telegram.tgnet.TLRPC$TL_channels_restrictSponsoredMessages;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordEmpty;
-import org.telegram.tgnet.TLRPC$TL_payments_getStarsRevenueAdsAccountUrl;
-import org.telegram.tgnet.TLRPC$TL_payments_getStarsRevenueStats;
-import org.telegram.tgnet.TLRPC$TL_payments_getStarsRevenueWithdrawalUrl;
-import org.telegram.tgnet.TLRPC$TL_payments_getStarsTransactions;
-import org.telegram.tgnet.TLRPC$TL_payments_starsRevenueAdsAccountUrl;
-import org.telegram.tgnet.TLRPC$TL_payments_starsRevenueStats;
-import org.telegram.tgnet.TLRPC$TL_payments_starsRevenueWithdrawalUrl;
-import org.telegram.tgnet.TLRPC$TL_payments_starsStatus;
-import org.telegram.tgnet.TLRPC$TL_starsRevenueStatus;
-import org.telegram.tgnet.TLRPC$Updates;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$account_Password;
-import org.telegram.tgnet.tl.TL_stats$BroadcastRevenueTransaction;
-import org.telegram.tgnet.tl.TL_stats$StatsGraph;
-import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueStats;
-import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueTransactionProceeds;
-import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueTransactionRefund;
-import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueTransactionWithdrawal;
-import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueTransactions;
-import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueWithdrawalUrl;
-import org.telegram.tgnet.tl.TL_stats$TL_getBroadcastRevenueStats;
-import org.telegram.tgnet.tl.TL_stats$TL_getBroadcastRevenueTransactions;
-import org.telegram.tgnet.tl.TL_stats$TL_getBroadcastRevenueWithdrawalUrl;
-import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stats;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -130,7 +101,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     private final AnimatedTextView balanceSubtitle;
     private final AnimatedTextView balanceTitle;
     private final RelativeSizeSpan balanceTitleSizeSpan;
-    private TL_stories$TL_premium_boostsStatus boostsStatus;
+    private TL_stories.TL_premium_boostsStatus boostsStatus;
     private final int currentAccount;
     private int currentBoostLevel;
     public final long dialogId;
@@ -233,7 +204,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 if (i == 0) {
                     Iterator it = ChannelTransactionsView.this.starsTransactions.iterator();
                     while (it.hasNext()) {
-                        arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TLRPC$StarsTransaction) it.next(), true));
+                        arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TL_stars.StarsTransaction) it.next(), true));
                     }
                     if (TextUtils.isEmpty(ChannelTransactionsView.this.starsLastOffset)) {
                         return;
@@ -244,7 +215,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                     }
                     Iterator it2 = ChannelTransactionsView.this.tonTransactions.iterator();
                     while (it2.hasNext()) {
-                        arrayList.add(UItem.asTransaction((TL_stats$BroadcastRevenueTransaction) it2.next()));
+                        arrayList.add(UItem.asTransaction((TL_stats.BroadcastRevenueTransaction) it2.next()));
                     }
                     if (ChannelTransactionsView.this.tonTransactionsTotalCount - ChannelTransactionsView.this.tonTransactions.size() <= 0) {
                         return;
@@ -257,10 +228,10 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
 
             public void onClick(UItem uItem, View view, int i, float f, float f2) {
                 Object obj = uItem.object;
-                if (obj instanceof TLRPC$StarsTransaction) {
-                    StarsIntroActivity.showTransactionSheet(getContext(), true, ChannelTransactionsView.this.dialogId, this.currentAccount, (TLRPC$StarsTransaction) uItem.object, this.resourcesProvider);
-                } else if (obj instanceof TL_stats$BroadcastRevenueTransaction) {
-                    ChannelMonetizationLayout.showTransactionSheet(getContext(), this.currentAccount, (TL_stats$BroadcastRevenueTransaction) uItem.object, ChannelTransactionsView.this.dialogId, this.resourcesProvider);
+                if (obj instanceof TL_stars.StarsTransaction) {
+                    StarsIntroActivity.showTransactionSheet(getContext(), true, ChannelTransactionsView.this.dialogId, this.currentAccount, (TL_stars.StarsTransaction) uItem.object, this.resourcesProvider);
+                } else if (obj instanceof TL_stats.BroadcastRevenueTransaction) {
+                    ChannelMonetizationLayout.showTransactionSheet(getContext(), this.currentAccount, (TL_stats.BroadcastRevenueTransaction) uItem.object, ChannelTransactionsView.this.dialogId, this.resourcesProvider);
                 }
             }
 
@@ -388,16 +359,16 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             loadTransactions(0);
         }
 
-        public void lambda$loadTransactions$0(TLObject tLObject, int i, TLRPC$TL_error tLRPC$TL_error, boolean z, boolean z2) {
+        public void lambda$loadTransactions$0(TLObject tLObject, int i, TLRPC.TL_error tL_error, boolean z, boolean z2) {
             Runnable runnable;
-            if (tLObject instanceof TL_stats$TL_broadcastRevenueTransactions) {
-                TL_stats$TL_broadcastRevenueTransactions tL_stats$TL_broadcastRevenueTransactions = (TL_stats$TL_broadcastRevenueTransactions) tLObject;
-                this.tonTransactionsTotalCount = tL_stats$TL_broadcastRevenueTransactions.count;
-                this.tonTransactions.addAll(tL_stats$TL_broadcastRevenueTransactions.transactions);
+            if (tLObject instanceof TL_stats.TL_broadcastRevenueTransactions) {
+                TL_stats.TL_broadcastRevenueTransactions tL_broadcastRevenueTransactions = (TL_stats.TL_broadcastRevenueTransactions) tLObject;
+                this.tonTransactionsTotalCount = tL_broadcastRevenueTransactions.count;
+                this.tonTransactions.addAll(tL_broadcastRevenueTransactions.transactions);
                 updateLists(true, true);
                 this.loadingTransactions[i] = false;
-            } else if (tLRPC$TL_error != null) {
-                BulletinFactory.showError(tLRPC$TL_error);
+            } else if (tL_error != null) {
+                BulletinFactory.showError(tL_error);
             }
             if (hasTransactions() != z && (runnable = this.updateParentList) != null) {
                 runnable.run();
@@ -407,27 +378,27 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         }
 
-        public void lambda$loadTransactions$1(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$loadTransactions$1(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$0(tLObject, i, tLRPC$TL_error, z, z2);
+                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$0(tLObject, i, tL_error, z, z2);
                 }
             });
         }
 
-        public void lambda$loadTransactions$2(TLObject tLObject, int i, TLRPC$TL_error tLRPC$TL_error, boolean z, boolean z2) {
+        public void lambda$loadTransactions$2(TLObject tLObject, int i, TLRPC.TL_error tL_error, boolean z, boolean z2) {
             Runnable runnable;
-            if (tLObject instanceof TLRPC$TL_payments_starsStatus) {
-                TLRPC$TL_payments_starsStatus tLRPC$TL_payments_starsStatus = (TLRPC$TL_payments_starsStatus) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_payments_starsStatus.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_payments_starsStatus.chats, false);
-                this.starsTransactions.addAll(tLRPC$TL_payments_starsStatus.history);
-                this.starsLastOffset = tLRPC$TL_payments_starsStatus.next_offset;
+            if (tLObject instanceof TL_stars.TL_payments_starsStatus) {
+                TL_stars.TL_payments_starsStatus tL_payments_starsStatus = (TL_stars.TL_payments_starsStatus) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(tL_payments_starsStatus.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(tL_payments_starsStatus.chats, false);
+                this.starsTransactions.addAll(tL_payments_starsStatus.history);
+                this.starsLastOffset = tL_payments_starsStatus.next_offset;
                 updateLists(true, true);
                 this.loadingTransactions[i] = false;
-            } else if (tLRPC$TL_error != null) {
-                BulletinFactory.showError(tLRPC$TL_error);
+            } else if (tL_error != null) {
+                BulletinFactory.showError(tL_error);
             }
             if (hasTransactions() != z && (runnable = this.updateParentList) != null) {
                 runnable.run();
@@ -437,11 +408,11 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         }
 
-        public void lambda$loadTransactions$3(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$loadTransactions$3(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$2(tLObject, i, tLRPC$TL_error, z, z2);
+                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$2(tLObject, i, tL_error, z, z2);
                 }
             });
         }
@@ -449,7 +420,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         public void loadTransactions(final int i) {
             RequestDelegate requestDelegate;
             ConnectionsManager connectionsManager;
-            TLRPC$TL_payments_getStarsTransactions tLRPC$TL_payments_getStarsTransactions;
+            TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions;
             if (this.loadingTransactions[i]) {
                 return;
             }
@@ -462,38 +433,38 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                     return;
                 }
                 this.loadingTransactions[i] = true;
-                TL_stats$TL_getBroadcastRevenueTransactions tL_stats$TL_getBroadcastRevenueTransactions = new TL_stats$TL_getBroadcastRevenueTransactions();
-                tL_stats$TL_getBroadcastRevenueTransactions.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
-                tL_stats$TL_getBroadcastRevenueTransactions.offset = this.tonTransactions.size();
-                tL_stats$TL_getBroadcastRevenueTransactions.limit = this.tonTransactions.isEmpty() ? 5 : 20;
+                TL_stats.TL_getBroadcastRevenueTransactions tL_getBroadcastRevenueTransactions = new TL_stats.TL_getBroadcastRevenueTransactions();
+                tL_getBroadcastRevenueTransactions.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
+                tL_getBroadcastRevenueTransactions.offset = this.tonTransactions.size();
+                tL_getBroadcastRevenueTransactions.limit = this.tonTransactions.isEmpty() ? 5 : 20;
                 ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.currentAccount);
                 requestDelegate = new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$1(i, hasTransactions, hasTransactions2, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$1(i, hasTransactions, hasTransactions2, tLObject, tL_error);
                     }
                 };
-                tLRPC$TL_payments_getStarsTransactions = tL_stats$TL_getBroadcastRevenueTransactions;
+                tL_payments_getStarsTransactions = tL_getBroadcastRevenueTransactions;
                 connectionsManager = connectionsManager2;
             } else {
                 if (i != 0 || this.starsLastOffset == null || !ChannelMonetizationLayout.this.starsRevenueAvailable) {
                     return;
                 }
                 this.loadingTransactions[i] = true;
-                TLRPC$TL_payments_getStarsTransactions tLRPC$TL_payments_getStarsTransactions2 = new TLRPC$TL_payments_getStarsTransactions();
-                tLRPC$TL_payments_getStarsTransactions2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                tLRPC$TL_payments_getStarsTransactions2.offset = this.starsLastOffset;
+                TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions2 = new TL_stars.TL_payments_getStarsTransactions();
+                tL_payments_getStarsTransactions2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                tL_payments_getStarsTransactions2.offset = this.starsLastOffset;
                 ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(this.currentAccount);
                 requestDelegate = new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$3(i, hasTransactions, hasTransactions2, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$3(i, hasTransactions, hasTransactions2, tLObject, tL_error);
                     }
                 };
-                tLRPC$TL_payments_getStarsTransactions = tLRPC$TL_payments_getStarsTransactions2;
+                tL_payments_getStarsTransactions = tL_payments_getStarsTransactions2;
                 connectionsManager = connectionsManager3;
             }
-            connectionsManager.sendRequest(tLRPC$TL_payments_getStarsTransactions, requestDelegate);
+            connectionsManager.sendRequest(tL_payments_getStarsTransactions, requestDelegate);
         }
 
         private void updateLists(boolean z, boolean z2) {
@@ -778,22 +749,22 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
         }
 
-        public void set(TL_stats$BroadcastRevenueTransaction tL_stats$BroadcastRevenueTransaction, boolean z) {
+        public void set(TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction, boolean z) {
             long j;
             char c;
             boolean z2;
             String str;
-            if (tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionWithdrawal) {
-                TL_stats$TL_broadcastRevenueTransactionWithdrawal tL_stats$TL_broadcastRevenueTransactionWithdrawal = (TL_stats$TL_broadcastRevenueTransactionWithdrawal) tL_stats$BroadcastRevenueTransaction;
+            if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionWithdrawal) {
+                TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
                 this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionWithdraw));
-                if (tL_stats$TL_broadcastRevenueTransactionWithdrawal.pending) {
+                if (tL_broadcastRevenueTransactionWithdrawal.pending) {
                     this.dateView.setText(LocaleController.getString(R.string.MonetizationTransactionPending));
                     z2 = false;
                 } else {
-                    z2 = tL_stats$TL_broadcastRevenueTransactionWithdrawal.failed;
+                    z2 = tL_broadcastRevenueTransactionWithdrawal.failed;
                     TextView textView = this.dateView;
                     StringBuilder sb = new StringBuilder();
-                    sb.append(LocaleController.formatShortDateTime(tL_stats$TL_broadcastRevenueTransactionWithdrawal.date));
+                    sb.append(LocaleController.formatShortDateTime(tL_broadcastRevenueTransactionWithdrawal.date));
                     if (z2) {
                         str = " — " + LocaleController.getString(R.string.MonetizationTransactionNotCompleted);
                     } else {
@@ -802,20 +773,20 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                     sb.append(str);
                     textView.setText(sb.toString());
                 }
-                j = tL_stats$TL_broadcastRevenueTransactionWithdrawal.amount;
+                j = tL_broadcastRevenueTransactionWithdrawal.amount;
                 c = 65535;
             } else {
-                if (tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionProceeds) {
+                if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
                     this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionProceed));
                     this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date) + " - " + LocaleController.formatShortDateTime(r9.to_date));
-                    j = ((TL_stats$TL_broadcastRevenueTransactionProceeds) tL_stats$BroadcastRevenueTransaction).amount;
+                    j = ((TL_stats.TL_broadcastRevenueTransactionProceeds) broadcastRevenueTransaction).amount;
                 } else {
-                    if (!(tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionRefund)) {
+                    if (!(broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionRefund)) {
                         return;
                     }
                     this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionRefund));
                     this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date));
-                    j = ((TL_stats$TL_broadcastRevenueTransactionRefund) tL_stats$BroadcastRevenueTransaction).amount;
+                    j = ((TL_stats.TL_broadcastRevenueTransactionRefund) broadcastRevenueTransaction).amount;
                 }
                 c = 1;
                 z2 = false;
@@ -1155,18 +1126,18 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
     }
 
-    public void lambda$loadStarsStats$25(TLRPC$TL_payments_starsRevenueStats tLRPC$TL_payments_starsRevenueStats) {
+    public void lambda$loadStarsStats$25(TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats) {
         FrameLayout frameLayout;
         ChartData chartData;
         ArrayList arrayList;
-        this.stars_rate = tLRPC$TL_payments_starsRevenueStats.usd_rate;
-        StatisticActivity.ChartViewData createViewData = StatisticActivity.createViewData(tLRPC$TL_payments_starsRevenueStats.revenue_graph, LocaleController.getString(R.string.MonetizationGraphStarsRevenue), 2);
+        this.stars_rate = tL_payments_starsRevenueStats.usd_rate;
+        StatisticActivity.ChartViewData createViewData = StatisticActivity.createViewData(tL_payments_starsRevenueStats.revenue_graph, LocaleController.getString(R.string.MonetizationGraphStarsRevenue), 2);
         this.starsRevenueChart = createViewData;
         if (createViewData != null && (chartData = createViewData.chartData) != null && (arrayList = chartData.lines) != null && !arrayList.isEmpty() && this.starsRevenueChart.chartData.lines.get(0) != null) {
             ((ChartData.Line) this.starsRevenueChart.chartData.lines.get(0)).colorKey = Theme.key_statisticChartLine_golden;
             this.starsRevenueChart.chartData.yRate = (float) ((1.0d / this.stars_rate) / 100.0d);
         }
-        setupBalances(tLRPC$TL_payments_starsRevenueStats.status);
+        setupBalances(tL_payments_starsRevenueStats.status);
         if (!this.tonRevenueAvailable && (frameLayout = this.progress) != null) {
             frameLayout.animate().alpha(0.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                 @Override
@@ -1190,8 +1161,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         StatisticActivity.ChartViewData chartViewData;
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-        TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
         int i = chatFull != null ? chatFull.stats_dc : -1;
         if (this.tonRevenueAvailable) {
             arrayList.add(UItem.asCenterShadow(this.titleInfo));
@@ -1237,24 +1208,24 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
 
     private void initLevel() {
         int i;
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
         if (chat != null) {
             this.currentBoostLevel = chat.level;
         }
         MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChannelMonetizationLayout.this.lambda$initLevel$30((TL_stories$TL_premium_boostsStatus) obj);
+                ChannelMonetizationLayout.this.lambda$initLevel$30((TL_stories.TL_premium_boostsStatus) obj);
             }
         });
         loadStarsStats();
         if (!this.tonRevenueAvailable || ChatObject.isMegagroup(chat)) {
             return;
         }
-        TL_stats$TL_getBroadcastRevenueStats tL_stats$TL_getBroadcastRevenueStats = new TL_stats$TL_getBroadcastRevenueStats();
-        tL_stats$TL_getBroadcastRevenueStats.dark = Theme.isCurrentThemeDark();
-        tL_stats$TL_getBroadcastRevenueStats.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
-        TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
+        TL_stats.TL_getBroadcastRevenueStats tL_getBroadcastRevenueStats = new TL_stats.TL_getBroadcastRevenueStats();
+        tL_getBroadcastRevenueStats.dark = Theme.isCurrentThemeDark();
+        tL_getBroadcastRevenueStats.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
         if (chatFull != null) {
             int i2 = chatFull.stats_dc;
             boolean z = chatFull.restricted_sponsored;
@@ -1267,47 +1238,47 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         if (i == -1) {
             return;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stats$TL_getBroadcastRevenueStats, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getBroadcastRevenueStats, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelMonetizationLayout.this.lambda$initLevel$33(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelMonetizationLayout.this.lambda$initLevel$33(tLObject, tL_error);
             }
         }, null, null, 0, i, 1, true);
     }
 
-    private void initWithdraw(final boolean z, TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
-        TL_stats$TL_getBroadcastRevenueWithdrawalUrl tL_stats$TL_getBroadcastRevenueWithdrawalUrl;
+    private void initWithdraw(final boolean z, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
+        TL_stats.TL_getBroadcastRevenueWithdrawalUrl tL_getBroadcastRevenueWithdrawalUrl;
         BaseFragment baseFragment = this.fragment;
         if (baseFragment == null) {
             return;
         }
         final Activity parentActivity = baseFragment.getParentActivity();
-        TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+        TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         if (parentActivity == null || currentUser == null) {
             return;
         }
         if (z) {
-            TLRPC$TL_payments_getStarsRevenueWithdrawalUrl tLRPC$TL_payments_getStarsRevenueWithdrawalUrl = new TLRPC$TL_payments_getStarsRevenueWithdrawalUrl();
-            tLRPC$TL_payments_getStarsRevenueWithdrawalUrl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            if (tLRPC$InputCheckPasswordSRP == null) {
-                tLRPC$InputCheckPasswordSRP = new TLRPC$TL_inputCheckPasswordEmpty();
+            TLRPC.TL_payments_getStarsRevenueWithdrawalUrl tL_payments_getStarsRevenueWithdrawalUrl = new TLRPC.TL_payments_getStarsRevenueWithdrawalUrl();
+            tL_payments_getStarsRevenueWithdrawalUrl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            if (inputCheckPasswordSRP == null) {
+                inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordEmpty();
             }
-            tLRPC$TL_payments_getStarsRevenueWithdrawalUrl.password = tLRPC$InputCheckPasswordSRP;
-            tLRPC$TL_payments_getStarsRevenueWithdrawalUrl.stars = this.starsBalanceEditTextValue;
-            tL_stats$TL_getBroadcastRevenueWithdrawalUrl = tLRPC$TL_payments_getStarsRevenueWithdrawalUrl;
+            tL_payments_getStarsRevenueWithdrawalUrl.password = inputCheckPasswordSRP;
+            tL_payments_getStarsRevenueWithdrawalUrl.stars = this.starsBalanceEditTextValue;
+            tL_getBroadcastRevenueWithdrawalUrl = tL_payments_getStarsRevenueWithdrawalUrl;
         } else {
-            TL_stats$TL_getBroadcastRevenueWithdrawalUrl tL_stats$TL_getBroadcastRevenueWithdrawalUrl2 = new TL_stats$TL_getBroadcastRevenueWithdrawalUrl();
-            tL_stats$TL_getBroadcastRevenueWithdrawalUrl2.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
-            if (tLRPC$InputCheckPasswordSRP == null) {
-                tLRPC$InputCheckPasswordSRP = new TLRPC$TL_inputCheckPasswordEmpty();
+            TL_stats.TL_getBroadcastRevenueWithdrawalUrl tL_getBroadcastRevenueWithdrawalUrl2 = new TL_stats.TL_getBroadcastRevenueWithdrawalUrl();
+            tL_getBroadcastRevenueWithdrawalUrl2.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
+            if (inputCheckPasswordSRP == null) {
+                inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordEmpty();
             }
-            tL_stats$TL_getBroadcastRevenueWithdrawalUrl2.password = tLRPC$InputCheckPasswordSRP;
-            tL_stats$TL_getBroadcastRevenueWithdrawalUrl = tL_stats$TL_getBroadcastRevenueWithdrawalUrl2;
+            tL_getBroadcastRevenueWithdrawalUrl2.password = inputCheckPasswordSRP;
+            tL_getBroadcastRevenueWithdrawalUrl = tL_getBroadcastRevenueWithdrawalUrl2;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stats$TL_getBroadcastRevenueWithdrawalUrl, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getBroadcastRevenueWithdrawalUrl, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelMonetizationLayout.this.lambda$initWithdraw$24(twoStepVerificationActivity, parentActivity, z, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelMonetizationLayout.this.lambda$initWithdraw$24(twoStepVerificationActivity, parentActivity, z, tLObject, tL_error);
             }
         });
     }
@@ -1316,11 +1287,11 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.progress.setVisibility(8);
     }
 
-    public void lambda$initLevel$29(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$initLevel$29(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         UniversalAdapter universalAdapter;
-        this.boostsStatus = tL_stories$TL_premium_boostsStatus;
-        if (tL_stories$TL_premium_boostsStatus != null) {
-            this.currentBoostLevel = tL_stories$TL_premium_boostsStatus.level;
+        this.boostsStatus = tL_premium_boostsStatus;
+        if (tL_premium_boostsStatus != null) {
+            this.currentBoostLevel = tL_premium_boostsStatus.level;
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
@@ -1329,11 +1300,11 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         universalAdapter.update(true);
     }
 
-    public void lambda$initLevel$30(final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$initLevel$30(final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelMonetizationLayout.this.lambda$initLevel$29(tL_stories$TL_premium_boostsStatus);
+                ChannelMonetizationLayout.this.lambda$initLevel$29(tL_premium_boostsStatus);
             }
         });
     }
@@ -1343,20 +1314,20 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     }
 
     public void lambda$initLevel$32(TLObject tLObject) {
-        if (tLObject instanceof TL_stats$TL_broadcastRevenueStats) {
-            TL_stats$TL_broadcastRevenueStats tL_stats$TL_broadcastRevenueStats = (TL_stats$TL_broadcastRevenueStats) tLObject;
-            this.impressionsChart = StatisticActivity.createViewData(tL_stats$TL_broadcastRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0);
-            TL_stats$StatsGraph tL_stats$StatsGraph = tL_stats$TL_broadcastRevenueStats.revenue_graph;
-            if (tL_stats$StatsGraph != null) {
-                tL_stats$StatsGraph.rate = (float) (1.0E7d / tL_stats$TL_broadcastRevenueStats.usd_rate);
+        if (tLObject instanceof TL_stats.TL_broadcastRevenueStats) {
+            TL_stats.TL_broadcastRevenueStats tL_broadcastRevenueStats = (TL_stats.TL_broadcastRevenueStats) tLObject;
+            this.impressionsChart = StatisticActivity.createViewData(tL_broadcastRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0);
+            TL_stats.StatsGraph statsGraph = tL_broadcastRevenueStats.revenue_graph;
+            if (statsGraph != null) {
+                statsGraph.rate = (float) (1.0E7d / tL_broadcastRevenueStats.usd_rate);
             }
-            this.revenueChart = StatisticActivity.createViewData(tL_stats$StatsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2);
+            this.revenueChart = StatisticActivity.createViewData(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2);
             StatisticActivity.ChartViewData chartViewData = this.impressionsChart;
             if (chartViewData != null) {
                 chartViewData.useHourFormat = true;
             }
-            this.ton_rate = tL_stats$TL_broadcastRevenueStats.usd_rate;
-            setupBalances(tL_stats$TL_broadcastRevenueStats.balances);
+            this.ton_rate = tL_broadcastRevenueStats.usd_rate;
+            setupBalances(tL_broadcastRevenueStats.balances);
             this.progress.animate().alpha(0.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
@@ -1367,7 +1338,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
     }
 
-    public void lambda$initLevel$33(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$initLevel$33(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1380,57 +1351,57 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.fragment.presentFragment(new TwoStepVerificationSetupActivity(6, null));
     }
 
-    public void lambda$initWithdraw$21(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z) {
-        if (tLRPC$TL_error == null) {
-            TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
-            twoStepVerificationActivity.setCurrentPasswordInfo(null, tLRPC$account_Password);
-            TwoStepVerificationActivity.initPasswordNewAlgo(tLRPC$account_Password);
+    public void lambda$initWithdraw$21(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z) {
+        if (tL_error == null) {
+            TLRPC.account_Password account_password = (TLRPC.account_Password) tLObject;
+            twoStepVerificationActivity.setCurrentPasswordInfo(null, account_password);
+            TwoStepVerificationActivity.initPasswordNewAlgo(account_password);
             initWithdraw(z, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
         }
     }
 
-    public void lambda$initWithdraw$22(final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$initWithdraw$22(final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelMonetizationLayout.this.lambda$initWithdraw$21(tLRPC$TL_error, tLObject, twoStepVerificationActivity, z);
+                ChannelMonetizationLayout.this.lambda$initWithdraw$21(tL_error, tLObject, twoStepVerificationActivity, z);
             }
         });
     }
 
-    public void lambda$initWithdraw$23(TLRPC$TL_error tLRPC$TL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, TLObject tLObject) {
+    public void lambda$initWithdraw$23(TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, TLObject tLObject) {
         int i;
         int i2;
-        if (tLRPC$TL_error == null) {
+        if (tL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$307();
-            if (tLObject instanceof TL_stats$TL_broadcastRevenueWithdrawalUrl) {
-                Browser.openUrl(getContext(), ((TL_stats$TL_broadcastRevenueWithdrawalUrl) tLObject).url);
+            twoStepVerificationActivity.lambda$onBackPressed$300();
+            if (tLObject instanceof TL_stats.TL_broadcastRevenueWithdrawalUrl) {
+                Browser.openUrl(getContext(), ((TL_stats.TL_broadcastRevenueWithdrawalUrl) tLObject).url);
                 return;
             } else {
-                if (tLObject instanceof TLRPC$TL_payments_starsRevenueWithdrawalUrl) {
-                    Browser.openUrl(getContext(), ((TLRPC$TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
+                if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
+                    Browser.openUrl(getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
                     loadStarsStats();
                     return;
                 }
                 return;
             }
         }
-        if (!"PASSWORD_MISSING".equals(tLRPC$TL_error.text) && !tLRPC$TL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tLRPC$TL_error.text.startsWith("SESSION_TOO_FRESH_")) {
-            if ("SRP_ID_INVALID".equals(tLRPC$TL_error.text)) {
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
+        if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
+            if ("SRP_ID_INVALID".equals(tL_error.text)) {
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_account_getPassword(), new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                        ChannelMonetizationLayout.this.lambda$initWithdraw$22(twoStepVerificationActivity, z, tLObject2, tLRPC$TL_error2);
+                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                        ChannelMonetizationLayout.this.lambda$initWithdraw$22(twoStepVerificationActivity, z, tLObject2, tL_error2);
                     }
                 }, 8);
                 return;
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$307();
+                twoStepVerificationActivity.lambda$onBackPressed$300();
             }
-            BulletinFactory.showError(tLRPC$TL_error);
+            BulletinFactory.showError(tL_error);
             return;
         }
         if (twoStepVerificationActivity != null) {
@@ -1492,7 +1463,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
             linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
         }
-        if ("PASSWORD_MISSING".equals(tLRPC$TL_error.text)) {
+        if ("PASSWORD_MISSING".equals(tL_error.text)) {
             builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i5) {
@@ -1520,22 +1491,22 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
     }
 
-    public void lambda$initWithdraw$24(final TwoStepVerificationActivity twoStepVerificationActivity, final Activity activity, final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$initWithdraw$24(final TwoStepVerificationActivity twoStepVerificationActivity, final Activity activity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelMonetizationLayout.this.lambda$initWithdraw$23(tLRPC$TL_error, twoStepVerificationActivity, activity, z, tLObject);
+                ChannelMonetizationLayout.this.lambda$initWithdraw$23(tL_error, twoStepVerificationActivity, activity, z, tLObject);
             }
         });
     }
 
     public void lambda$loadStarsStats$26(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$TL_payments_starsRevenueStats) {
-            lambda$loadStarsStats$25((TLRPC$TL_payments_starsRevenueStats) tLObject);
+        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
+            lambda$loadStarsStats$25((TLRPC.TL_payments_starsRevenueStats) tLObject);
         }
     }
 
-    public void lambda$loadStarsStats$27(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStarsStats$27(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1574,8 +1545,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
-            public final void didEnterPassword(TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
-                ChannelMonetizationLayout.this.lambda$new$9(twoStepVerificationActivity, tLRPC$InputCheckPasswordSRP);
+            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+                ChannelMonetizationLayout.this.lambda$new$9(twoStepVerificationActivity, inputCheckPasswordSRP);
             }
         });
         this.starsBalanceButton.setLoading(true);
@@ -1592,8 +1563,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     }
 
     public void lambda$new$13(TLObject tLObject, Context context) {
-        if (tLObject instanceof TLRPC$TL_payments_starsRevenueAdsAccountUrl) {
-            Browser.openUrl(context, ((TLRPC$TL_payments_starsRevenueAdsAccountUrl) tLObject).url);
+        if (tLObject instanceof TLRPC.TL_payments_starsRevenueAdsAccountUrl) {
+            Browser.openUrl(context, ((TLRPC.TL_payments_starsRevenueAdsAccountUrl) tLObject).url);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1603,7 +1574,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }, 1000L);
     }
 
-    public void lambda$new$14(final Context context, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$14(final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1617,18 +1588,18 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             return;
         }
         this.starsAdsButton.setLoading(true);
-        TLRPC$TL_payments_getStarsRevenueAdsAccountUrl tLRPC$TL_payments_getStarsRevenueAdsAccountUrl = new TLRPC$TL_payments_getStarsRevenueAdsAccountUrl();
-        tLRPC$TL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i).getInputPeer(j);
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_payments_getStarsRevenueAdsAccountUrl, new RequestDelegate() {
+        TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
+        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i).getInputPeer(j);
+        ConnectionsManager.getInstance(i).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelMonetizationLayout.this.lambda$new$14(context, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelMonetizationLayout.this.lambda$new$14(context, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$16(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
-        initWithdraw(true, tLRPC$InputCheckPasswordSRP, twoStepVerificationActivity);
+    public void lambda$new$16(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+        initWithdraw(true, inputCheckPasswordSRP, twoStepVerificationActivity);
     }
 
     public void lambda$new$17(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
@@ -1643,8 +1614,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
-            public final void didEnterPassword(TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
-                ChannelMonetizationLayout.this.lambda$new$16(twoStepVerificationActivity, tLRPC$InputCheckPasswordSRP);
+            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+                ChannelMonetizationLayout.this.lambda$new$16(twoStepVerificationActivity, inputCheckPasswordSRP);
             }
         });
         this.starsBalanceButton.setLoading(true);
@@ -1691,8 +1662,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
     }
 
-    public void lambda$new$4(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
-        initWithdraw(false, tLRPC$InputCheckPasswordSRP, twoStepVerificationActivity);
+    public void lambda$new$4(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+        initWithdraw(false, inputCheckPasswordSRP, twoStepVerificationActivity);
     }
 
     public void lambda$new$5(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
@@ -1709,8 +1680,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
             twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
                 @Override
-                public final void didEnterPassword(TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
-                    ChannelMonetizationLayout.this.lambda$new$4(twoStepVerificationActivity, tLRPC$InputCheckPasswordSRP);
+                public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+                    ChannelMonetizationLayout.this.lambda$new$4(twoStepVerificationActivity, inputCheckPasswordSRP);
                 }
             });
             this.balanceButton.setLoading(true);
@@ -1746,8 +1717,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.setStarsBalanceButtonText.run();
     }
 
-    public void lambda$new$9(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
-        initWithdraw(true, tLRPC$InputCheckPasswordSRP, twoStepVerificationActivity);
+    public void lambda$new$9(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+        initWithdraw(true, inputCheckPasswordSRP, twoStepVerificationActivity);
     }
 
     public void lambda$onClick$34(LimitReachedBottomSheet limitReachedBottomSheet, ChannelBoostsController.CanApplyBoost canApplyBoost) {
@@ -1766,20 +1737,20 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
     }
 
-    public void lambda$sendCpmUpdate$35(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$Updates) {
+    public void lambda$sendCpmUpdate$35(TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error != null) {
+            BulletinFactory.showError(tL_error);
+        } else if (tLObject instanceof TLRPC.Updates) {
             this.initialSwitchOffValue = this.switchOffValue;
-            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC$Updates) tLObject, false);
+            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
     }
 
-    public void lambda$sendCpmUpdate$36(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$sendCpmUpdate$36(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelMonetizationLayout.this.lambda$sendCpmUpdate$35(tLRPC$TL_error, tLObject);
+                ChannelMonetizationLayout.this.lambda$sendCpmUpdate$35(tL_error, tLObject);
             }
         });
     }
@@ -1788,13 +1759,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationInfoTONLink));
     }
 
-    public static void lambda$showTransactionSheet$37(Context context, TL_stats$TL_broadcastRevenueTransactionWithdrawal tL_stats$TL_broadcastRevenueTransactionWithdrawal, View view) {
-        Browser.openUrl(context, tL_stats$TL_broadcastRevenueTransactionWithdrawal.transaction_url);
+    public static void lambda$showTransactionSheet$37(Context context, TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal, View view) {
+        Browser.openUrl(context, tL_broadcastRevenueTransactionWithdrawal.transaction_url);
     }
 
     private void loadStarsStats() {
         if (this.starsRevenueAvailable) {
-            final TLRPC$TL_payments_starsRevenueStats revenueStats = BotStarsController.getInstance(this.currentAccount).getRevenueStats(this.dialogId);
+            final TLRPC.TL_payments_starsRevenueStats revenueStats = BotStarsController.getInstance(this.currentAccount).getRevenueStats(this.dialogId);
             if (revenueStats != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -1804,13 +1775,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 });
                 return;
             }
-            TLRPC$TL_payments_getStarsRevenueStats tLRPC$TL_payments_getStarsRevenueStats = new TLRPC$TL_payments_getStarsRevenueStats();
-            tLRPC$TL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            tLRPC$TL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_getStarsRevenueStats, new RequestDelegate() {
+            TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
+            tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChannelMonetizationLayout.this.lambda$loadStarsStats$27(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelMonetizationLayout.this.lambda$loadStarsStats$27(tLObject, tL_error);
                 }
             });
         }
@@ -1884,13 +1855,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         if (this.switchOffValue == this.initialSwitchOffValue) {
             return;
         }
-        TLRPC$TL_channels_restrictSponsoredMessages tLRPC$TL_channels_restrictSponsoredMessages = new TLRPC$TL_channels_restrictSponsoredMessages();
-        tLRPC$TL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
-        tLRPC$TL_channels_restrictSponsoredMessages.restricted = this.switchOffValue;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_restrictSponsoredMessages, new RequestDelegate() {
+        TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
+        tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
+        tL_channels_restrictSponsoredMessages.restricted = this.switchOffValue;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_restrictSponsoredMessages, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelMonetizationLayout.this.lambda$sendCpmUpdate$36(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelMonetizationLayout.this.lambda$sendCpmUpdate$36(tLObject, tL_error);
             }
         });
     }
@@ -2020,7 +1991,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.fragment.showDialog(bottomSheet);
     }
 
-    public static void showTransactionSheet(final Context context, int i, TL_stats$BroadcastRevenueTransaction tL_stats$BroadcastRevenueTransaction, long j, Theme.ResourcesProvider resourcesProvider) {
+    public static void showTransactionSheet(final Context context, int i, TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction, long j, Theme.ResourcesProvider resourcesProvider) {
         boolean z;
         ViewGroup viewGroup;
         long j2;
@@ -2033,43 +2004,43 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         String str2;
         BottomSheet bottomSheet;
         String userName;
-        TLRPC$User tLRPC$User;
+        TLRPC.User user;
         BottomSheet bottomSheet2 = new BottomSheet(context, false, resourcesProvider);
         bottomSheet2.fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        boolean z4 = tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionWithdrawal;
+        boolean z4 = broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionWithdrawal;
         if (z4) {
-            TL_stats$TL_broadcastRevenueTransactionWithdrawal tL_stats$TL_broadcastRevenueTransactionWithdrawal = (TL_stats$TL_broadcastRevenueTransactionWithdrawal) tL_stats$BroadcastRevenueTransaction;
+            TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
             String string = LocaleController.getString(R.string.MonetizationTransactionDetailWithdraw);
-            j2 = tL_stats$TL_broadcastRevenueTransactionWithdrawal.date;
+            j2 = tL_broadcastRevenueTransactionWithdrawal.date;
             z = z4;
-            j3 = tL_stats$TL_broadcastRevenueTransactionWithdrawal.amount;
+            j3 = tL_broadcastRevenueTransactionWithdrawal.amount;
             viewGroup = linearLayout;
-            z3 = tL_stats$TL_broadcastRevenueTransactionWithdrawal.pending;
+            z3 = tL_broadcastRevenueTransactionWithdrawal.pending;
             j4 = 0;
             c = 65535;
             str = string;
-            z2 = tL_stats$TL_broadcastRevenueTransactionWithdrawal.failed;
+            z2 = tL_broadcastRevenueTransactionWithdrawal.failed;
         } else {
             z = z4;
-            if (tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionProceeds) {
-                TL_stats$TL_broadcastRevenueTransactionProceeds tL_stats$TL_broadcastRevenueTransactionProceeds = (TL_stats$TL_broadcastRevenueTransactionProceeds) tL_stats$BroadcastRevenueTransaction;
+            if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
+                TL_stats.TL_broadcastRevenueTransactionProceeds tL_broadcastRevenueTransactionProceeds = (TL_stats.TL_broadcastRevenueTransactionProceeds) broadcastRevenueTransaction;
                 String string2 = LocaleController.getString(R.string.MonetizationTransactionDetailProceed);
-                j2 = tL_stats$TL_broadcastRevenueTransactionProceeds.from_date;
+                j2 = tL_broadcastRevenueTransactionProceeds.from_date;
                 viewGroup = linearLayout;
-                j4 = tL_stats$TL_broadcastRevenueTransactionProceeds.to_date;
-                j3 = tL_stats$TL_broadcastRevenueTransactionProceeds.amount;
+                j4 = tL_broadcastRevenueTransactionProceeds.to_date;
+                j3 = tL_broadcastRevenueTransactionProceeds.amount;
                 str = string2;
             } else {
                 viewGroup = linearLayout;
-                if (!(tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionRefund)) {
+                if (!(broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionRefund)) {
                     return;
                 }
-                TL_stats$TL_broadcastRevenueTransactionRefund tL_stats$TL_broadcastRevenueTransactionRefund = (TL_stats$TL_broadcastRevenueTransactionRefund) tL_stats$BroadcastRevenueTransaction;
+                TL_stats.TL_broadcastRevenueTransactionRefund tL_broadcastRevenueTransactionRefund = (TL_stats.TL_broadcastRevenueTransactionRefund) broadcastRevenueTransaction;
                 String string3 = LocaleController.getString(R.string.MonetizationTransactionDetailRefund);
-                j2 = tL_stats$TL_broadcastRevenueTransactionRefund.from_date;
-                j3 = tL_stats$TL_broadcastRevenueTransactionRefund.amount;
+                j2 = tL_broadcastRevenueTransactionRefund.from_date;
+                j3 = tL_broadcastRevenueTransactionRefund.amount;
                 str = string3;
                 j4 = 0;
             }
@@ -2130,29 +2101,29 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         textView3.setText(str3);
         viewGroup2.addView(textView3, LayoutHelper.createLinear(-1, -2, 49, 0, 27, 0, 0));
-        if (tL_stats$BroadcastRevenueTransaction instanceof TL_stats$TL_broadcastRevenueTransactionProceeds) {
+        if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
             FrameLayout frameLayout = new FrameLayout(context);
             frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_groupcreate_spanBackground, resourcesProvider)));
             MessagesController messagesController = MessagesController.getInstance(i);
             if (j < 0) {
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
+                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
                 if (chat == null) {
                     userName = "";
-                    tLRPC$User = chat;
+                    user = chat;
                 } else {
                     userName = chat.title;
-                    tLRPC$User = chat;
+                    user = chat;
                 }
             } else {
-                TLRPC$User user = messagesController.getUser(Long.valueOf(j));
-                userName = UserObject.getUserName(user);
-                tLRPC$User = user;
+                TLRPC.User user2 = messagesController.getUser(Long.valueOf(j));
+                userName = UserObject.getUserName(user2);
+                user = user2;
             }
             BackupImageView backupImageView = new BackupImageView(context);
             backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
             AvatarDrawable avatarDrawable = new AvatarDrawable();
-            avatarDrawable.setInfo((TLObject) tLRPC$User);
-            backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
+            avatarDrawable.setInfo((TLObject) user);
+            backupImageView.setForUserOrChat(user, avatarDrawable);
             frameLayout.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
             TextView textView4 = new TextView(context);
             textView4.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
@@ -2164,13 +2135,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         if (z) {
-            final TL_stats$TL_broadcastRevenueTransactionWithdrawal tL_stats$TL_broadcastRevenueTransactionWithdrawal2 = (TL_stats$TL_broadcastRevenueTransactionWithdrawal) tL_stats$BroadcastRevenueTransaction;
-            if ((tL_stats$TL_broadcastRevenueTransactionWithdrawal2.flags & 2) != 0) {
+            final TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal2 = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
+            if ((tL_broadcastRevenueTransactionWithdrawal2.flags & 2) != 0) {
                 buttonWithCounterView.setText(LocaleController.getString(R.string.MonetizationTransactionDetailWithdrawButton), false);
                 buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ChannelMonetizationLayout.lambda$showTransactionSheet$37(context, tL_stats$TL_broadcastRevenueTransactionWithdrawal2, view);
+                        ChannelMonetizationLayout.lambda$showTransactionSheet$37(context, tL_broadcastRevenueTransactionWithdrawal2, view);
                     }
                 });
                 bottomSheet = bottomSheet2;
@@ -2323,7 +2294,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.actionBar = actionBar;
     }
 
-    public void setupBalances(TLRPC$BroadcastRevenueBalances tLRPC$BroadcastRevenueBalances) {
+    public void setupBalances(TLRPC.BroadcastRevenueBalances broadcastRevenueBalances) {
         UniversalAdapter universalAdapter;
         double d = this.ton_rate;
         if (d == 0.0d) {
@@ -2331,7 +2302,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
         ProceedOverview proceedOverview = this.availableValue;
         proceedOverview.contains1 = true;
-        long j = tLRPC$BroadcastRevenueBalances.available_balance;
+        long j = broadcastRevenueBalances.available_balance;
         proceedOverview.crypto_amount = j;
         double d2 = j;
         Double.isNaN(d2);
@@ -2341,7 +2312,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.availableValue.currency = "USD";
         ProceedOverview proceedOverview2 = this.lastWithdrawalValue;
         proceedOverview2.contains1 = true;
-        long j3 = tLRPC$BroadcastRevenueBalances.current_balance;
+        long j3 = broadcastRevenueBalances.current_balance;
         proceedOverview2.crypto_amount = j3;
         double d3 = j3;
         Double.isNaN(d3);
@@ -2350,14 +2321,14 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         proceedOverview2.currency = "USD";
         ProceedOverview proceedOverview3 = this.lifetimeValue;
         proceedOverview3.contains1 = true;
-        long j4 = tLRPC$BroadcastRevenueBalances.overall_revenue;
+        long j4 = broadcastRevenueBalances.overall_revenue;
         proceedOverview3.crypto_amount = j4;
         double d5 = j4;
         Double.isNaN(d5);
         proceedOverview3.amount = (long) ((d5 / 1.0E9d) * d4 * 100.0d);
         proceedOverview3.currency = "USD";
         this.proceedsAvailable = true;
-        this.balanceButton.setVisibility((tLRPC$BroadcastRevenueBalances.available_balance <= 0 || !tLRPC$BroadcastRevenueBalances.withdrawal_enabled) ? 8 : 0);
+        this.balanceButton.setVisibility((broadcastRevenueBalances.available_balance <= 0 || !broadcastRevenueBalances.withdrawal_enabled) ? 8 : 0);
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
             return;
@@ -2365,7 +2336,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         universalAdapter.update(true);
     }
 
-    public void setupBalances(TLRPC$TL_starsRevenueStatus tLRPC$TL_starsRevenueStatus) {
+    public void setupBalances(TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus) {
         UniversalAdapter universalAdapter;
         double d = this.stars_rate;
         if (d == 0.0d) {
@@ -2373,16 +2344,16 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
         ProceedOverview proceedOverview = this.availableValue;
         proceedOverview.contains2 = true;
-        long j = tLRPC$TL_starsRevenueStatus.available_balance;
+        long j = tL_starsRevenueStatus.available_balance;
         proceedOverview.crypto_amount2 = j;
         double d2 = j;
         Double.isNaN(d2);
         proceedOverview.amount2 = (long) (d2 * d * 100.0d);
-        setStarsBalance(j, tLRPC$TL_starsRevenueStatus.next_withdrawal_at);
+        setStarsBalance(j, tL_starsRevenueStatus.next_withdrawal_at);
         this.availableValue.currency = "USD";
         ProceedOverview proceedOverview2 = this.lastWithdrawalValue;
         proceedOverview2.contains2 = true;
-        long j2 = tLRPC$TL_starsRevenueStatus.current_balance;
+        long j2 = tL_starsRevenueStatus.current_balance;
         proceedOverview2.crypto_amount2 = j2;
         double d3 = j2;
         double d4 = this.stars_rate;
@@ -2391,7 +2362,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         proceedOverview2.currency = "USD";
         ProceedOverview proceedOverview3 = this.lifetimeValue;
         proceedOverview3.contains2 = true;
-        long j3 = tLRPC$TL_starsRevenueStatus.overall_revenue;
+        long j3 = tL_starsRevenueStatus.overall_revenue;
         proceedOverview3.crypto_amount2 = j3;
         double d5 = j3;
         Double.isNaN(d5);
@@ -2400,11 +2371,11 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.proceedsAvailable = true;
         LinearLayout linearLayout = this.starsBalanceButtonsLayout;
         if (linearLayout != null) {
-            linearLayout.setVisibility(tLRPC$TL_starsRevenueStatus.withdrawal_enabled ? 0 : 8);
+            linearLayout.setVisibility(tL_starsRevenueStatus.withdrawal_enabled ? 0 : 8);
         }
         ButtonWithCounterView buttonWithCounterView = this.starsBalanceButton;
         if (buttonWithCounterView != null) {
-            buttonWithCounterView.setVisibility((tLRPC$TL_starsRevenueStatus.available_balance > 0 || BuildVars.DEBUG_PRIVATE_VERSION) ? 0 : 8);
+            buttonWithCounterView.setVisibility((tL_starsRevenueStatus.available_balance > 0 || BuildVars.DEBUG_PRIVATE_VERSION) ? 0 : 8);
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {

@@ -24,12 +24,7 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
-import org.telegram.tgnet.TLRPC$TL_inputAppEvent;
-import org.telegram.tgnet.TLRPC$TL_jsonObject;
-import org.telegram.tgnet.TLRPC$TL_jsonObjectValue;
-import org.telegram.tgnet.TLRPC$TL_jsonString;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 
 public abstract class DualCameraView extends CameraView {
@@ -251,31 +246,31 @@ public abstract class DualCameraView extends CameraView {
         focusToPoint((int) this.tapX, (int) this.tapY);
     }
 
-    public static void lambda$log$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$log$0(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     private void log(boolean z) {
         boolean dualAvailableDefault = dualAvailableDefault(ApplicationLoader.applicationContext, false);
         if (MessagesController.getInstance(UserConfig.selectedAccount).collectDeviceStats) {
             try {
-                TLRPC$TL_help_saveAppLog tLRPC$TL_help_saveAppLog = new TLRPC$TL_help_saveAppLog();
-                TLRPC$TL_inputAppEvent tLRPC$TL_inputAppEvent = new TLRPC$TL_inputAppEvent();
-                tLRPC$TL_inputAppEvent.time = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
-                tLRPC$TL_inputAppEvent.type = "android_dual_camera";
-                TLRPC$TL_jsonObject tLRPC$TL_jsonObject = new TLRPC$TL_jsonObject();
-                TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = new TLRPC$TL_jsonObjectValue();
-                tLRPC$TL_jsonObjectValue.key = "device";
-                TLRPC$TL_jsonString tLRPC$TL_jsonString = new TLRPC$TL_jsonString();
-                tLRPC$TL_jsonString.value = "" + Build.MANUFACTURER + Build.MODEL;
-                tLRPC$TL_jsonObjectValue.value = tLRPC$TL_jsonString;
-                tLRPC$TL_jsonObject.value.add(tLRPC$TL_jsonObjectValue);
-                tLRPC$TL_inputAppEvent.data = tLRPC$TL_jsonObject;
-                tLRPC$TL_inputAppEvent.peer = (dualAvailableDefault ? 2 : 0) | (z ? 1 : 0);
-                tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent);
-                ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
+                TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
+                TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
+                tL_inputAppEvent.time = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
+                tL_inputAppEvent.type = "android_dual_camera";
+                TLRPC.TL_jsonObject tL_jsonObject = new TLRPC.TL_jsonObject();
+                TLRPC.TL_jsonObjectValue tL_jsonObjectValue = new TLRPC.TL_jsonObjectValue();
+                tL_jsonObjectValue.key = "device";
+                TLRPC.TL_jsonString tL_jsonString = new TLRPC.TL_jsonString();
+                tL_jsonString.value = "" + Build.MANUFACTURER + Build.MODEL;
+                tL_jsonObjectValue.value = tL_jsonString;
+                tL_jsonObject.value.add(tL_jsonObjectValue);
+                tL_inputAppEvent.data = tL_jsonObject;
+                tL_inputAppEvent.peer = (dualAvailableDefault ? 2 : 0) | (z ? 1 : 0);
+                tL_help_saveAppLog.events.add(tL_inputAppEvent);
+                ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_help_saveAppLog, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        DualCameraView.lambda$log$0(tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        DualCameraView.lambda$log$0(tLObject, tL_error);
                     }
                 });
             } catch (Exception unused) {

@@ -81,20 +81,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$EncryptedChat;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_channels_exportMessageLink;
-import org.telegram.tgnet.TLRPC$TL_dialog;
-import org.telegram.tgnet.TLRPC$TL_encryptedChat;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_exportedMessageLink;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$TL_topPeer;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -131,7 +119,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private float currentPanTranslationY;
     private boolean darkTheme;
     private ShareAlertDelegate delegate;
-    private TLRPC$TL_exportedMessageLink exportedMessageLink;
+    private TLRPC.TL_exportedMessageLink exportedMessageLink;
     public boolean forceDarkThemeForHint;
     private FrameLayout frameLayout;
     private FrameLayout frameLayout2;
@@ -168,7 +156,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private View selectedCountView;
     protected Map selectedDialogTopics;
     protected LongSparseArray selectedDialogs;
-    private TLRPC$Dialog selectedTopicDialog;
+    private TLRPC.Dialog selectedTopicDialog;
     private ActionBarPopupWindow sendPopupWindow;
     protected ArrayList sendingMessageObjects;
     private String[] sendingText;
@@ -180,7 +168,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private int shiftDp;
     private boolean showSendersName;
     private SizeNotifierFrameLayout sizeNotifierFrameLayout;
-    TL_stories$StoryItem storyItem;
+    TL_stories.StoryItem storyItem;
     private SwitchView switchView;
     private TextPaint textPaint;
     private ValueAnimator topBackgroundAnimator;
@@ -969,7 +957,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 int i = 0;
                 while (i < arrayList.size()) {
                     TLObject tLObject = ((DialogsSearchAdapter.RecentSearchObject) arrayList.get(i)).object;
-                    if ((tLObject instanceof TLRPC$Chat) && !ChatObject.canWriteToChat((TLRPC$Chat) tLObject)) {
+                    if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
                         arrayList.remove(i);
                         i--;
                     }
@@ -981,12 +969,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             for (int i2 = 0; i2 < ShareAlert.this.recentSearchObjects.size(); i2++) {
                 DialogsSearchAdapter.RecentSearchObject recentSearchObject = (DialogsSearchAdapter.RecentSearchObject) ShareAlert.this.recentSearchObjects.get(i2);
                 TLObject tLObject2 = recentSearchObject.object;
-                if (tLObject2 instanceof TLRPC$User) {
-                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putUser((TLRPC$User) recentSearchObject.object, true);
-                } else if (tLObject2 instanceof TLRPC$Chat) {
-                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putChat((TLRPC$Chat) recentSearchObject.object, true);
-                } else if (tLObject2 instanceof TLRPC$EncryptedChat) {
-                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putEncryptedChat((TLRPC$EncryptedChat) recentSearchObject.object, true);
+                if (tLObject2 instanceof TLRPC.User) {
+                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putUser((TLRPC.User) recentSearchObject.object, true);
+                } else if (tLObject2 instanceof TLRPC.Chat) {
+                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putChat((TLRPC.Chat) recentSearchObject.object, true);
+                } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
+                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putEncryptedChat((TLRPC.EncryptedChat) recentSearchObject.object, true);
                 }
             }
             ShareAlert.this.searchAdapter.notifyDataSetChanged();
@@ -995,11 +983,11 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
     public class AnonymousClass22 implements NotificationCenter.NotificationCenterDelegate {
         final View val$cell;
-        final TLRPC$Dialog val$dialog;
+        final TLRPC.Dialog val$dialog;
         final AtomicReference val$timeoutRef;
 
-        AnonymousClass22(TLRPC$Dialog tLRPC$Dialog, AtomicReference atomicReference, View view) {
-            this.val$dialog = tLRPC$Dialog;
+        AnonymousClass22(TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
+            this.val$dialog = dialog;
             this.val$timeoutRef = atomicReference;
             this.val$cell = view;
         }
@@ -1276,7 +1264,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
     public static class DialogSearchResult {
         public int date;
-        public TLRPC$Dialog dialog = new TLRPC$TL_dialog();
+        public TLRPC.Dialog dialog = new TLRPC.TL_dialog();
         public CharSequence name;
         public TLObject object;
     }
@@ -1514,7 +1502,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         }
 
-        public class MyStoryDialog extends TLRPC$Dialog {
+        public class MyStoryDialog extends TLRPC.Dialog {
             private MyStoryDialog() {
                 this.id = Long.MAX_VALUE;
             }
@@ -1533,12 +1521,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShareAlert.ShareDialogsAdapter.fetchDialogs():void");
         }
 
-        public TLRPC$Dialog getItem(int i) {
+        public TLRPC.Dialog getItem(int i) {
             int i2 = i - 1;
             if (i2 < 0 || i2 >= this.dialogs.size()) {
                 return null;
             }
-            return (TLRPC$Dialog) this.dialogs.get(i2);
+            return (TLRPC.Dialog) this.dialogs.get(i2);
         }
 
         @Override
@@ -1561,11 +1549,11 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder.getItemViewType() == 0) {
                 ShareDialogCell shareDialogCell = (ShareDialogCell) viewHolder.itemView;
-                TLRPC$Dialog item = getItem(i);
+                TLRPC.Dialog item = getItem(i);
                 if (item == null) {
                     return;
                 }
-                shareDialogCell.setTopic((TLRPC$TL_forumTopic) ShareAlert.this.selectedDialogTopics.get(item), false);
+                shareDialogCell.setTopic((TLRPC.TL_forumTopic) ShareAlert.this.selectedDialogTopics.get(item), false);
                 long j = item.id;
                 shareDialogCell.setDialog(j, ShareAlert.this.selectedDialogs.indexOfKey(j) >= 0, null);
             }
@@ -1628,7 +1616,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
             @Override
             protected boolean filter(TLObject tLObject) {
-                return !(tLObject instanceof TLRPC$Chat) || ChatObject.canWriteToChat((TLRPC$Chat) tLObject);
+                return !(tLObject instanceof TLRPC.Chat) || ChatObject.canWriteToChat((TLRPC.Chat) tLObject);
             }
         }
 
@@ -1718,42 +1706,42 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                TLRPC$Chat tLRPC$Chat;
+                TLRPC.Chat chat;
                 MessagesController messagesController;
                 long j;
                 HintDialogCell hintDialogCell = (HintDialogCell) viewHolder.itemView;
                 if (ShareAlert.this.darkTheme || ShareAlert.this.forceDarkThemeForHint) {
                     hintDialogCell.setColors(Theme.key_voipgroup_nameText, Theme.key_voipgroup_inviteMembersBackground);
                 }
-                TLRPC$TL_topPeer tLRPC$TL_topPeer = MediaDataController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).hints.get(i);
-                TLRPC$Peer tLRPC$Peer = tLRPC$TL_topPeer.peer;
-                long j2 = tLRPC$Peer.user_id;
-                TLRPC$User tLRPC$User = null;
+                TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).hints.get(i);
+                TLRPC.Peer peer = tL_topPeer.peer;
+                long j2 = peer.user_id;
+                TLRPC.User user = null;
                 if (j2 != 0) {
-                    tLRPC$User = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getUser(Long.valueOf(tLRPC$TL_topPeer.peer.user_id));
-                    tLRPC$Chat = null;
+                    user = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getUser(Long.valueOf(tL_topPeer.peer.user_id));
+                    chat = null;
                 } else {
-                    long j3 = tLRPC$Peer.channel_id;
+                    long j3 = peer.channel_id;
                     if (j3 != 0) {
                         j2 = -j3;
                         messagesController = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount);
-                        j = tLRPC$TL_topPeer.peer.channel_id;
+                        j = tL_topPeer.peer.channel_id;
                     } else {
-                        long j4 = tLRPC$Peer.chat_id;
+                        long j4 = peer.chat_id;
                         if (j4 != 0) {
                             j2 = -j4;
                             messagesController = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount);
-                            j = tLRPC$TL_topPeer.peer.chat_id;
+                            j = tL_topPeer.peer.chat_id;
                         } else {
-                            tLRPC$Chat = null;
+                            chat = null;
                             j2 = 0;
                         }
                     }
-                    tLRPC$Chat = messagesController.getChat(Long.valueOf(j));
+                    chat = messagesController.getChat(Long.valueOf(j));
                 }
                 boolean z = j2 == hintDialogCell.getDialogId();
                 hintDialogCell.setTag(Long.valueOf(j2));
-                hintDialogCell.setDialog(j2, true, tLRPC$User != null ? UserObject.getFirstName(tLRPC$User) : tLRPC$Chat != null ? tLRPC$Chat.title : "");
+                hintDialogCell.setDialog(j2, true, user != null ? UserObject.getFirstName(user) : chat != null ? chat.title : "");
                 hintDialogCell.setChecked(ShareAlert.this.selectedDialogs.indexOfKey(j2) >= 0, z);
             }
         }
@@ -1781,7 +1769,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
                 @Override
                 protected boolean filter(TLObject tLObject) {
-                    return !(tLObject instanceof TLRPC$Chat) || ChatObject.canWriteToChat((TLRPC$Chat) tLObject);
+                    return !(tLObject instanceof TLRPC.Chat) || ChatObject.canWriteToChat((TLRPC.Chat) tLObject);
                 }
             };
             this.searchAdapterHelper = anonymousClass1;
@@ -1837,14 +1825,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         public void lambda$onCreateViewHolder$5(View view, int i) {
             HintDialogCell hintDialogCell = (HintDialogCell) view;
-            TLRPC$TL_topPeer tLRPC$TL_topPeer = MediaDataController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).hints.get(i);
-            TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-            TLRPC$Peer tLRPC$Peer = tLRPC$TL_topPeer.peer;
-            long j = tLRPC$Peer.user_id;
+            TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).hints.get(i);
+            TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
+            TLRPC.Peer peer = tL_topPeer.peer;
+            long j = peer.user_id;
             if (j == 0) {
-                long j2 = tLRPC$Peer.channel_id;
+                long j2 = peer.channel_id;
                 if (j2 == 0) {
-                    j2 = tLRPC$Peer.chat_id;
+                    j2 = peer.chat_id;
                     if (j2 == 0) {
                         j = 0;
                     }
@@ -1855,8 +1843,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 ShareAlert.this.showPremiumBlockedToast(hintDialogCell, j);
                 return;
             }
-            tLRPC$TL_dialog.id = j;
-            ShareAlert.this.selectDialog(null, tLRPC$TL_dialog);
+            tL_dialog.id = j;
+            ShareAlert.this.selectDialog(null, tL_dialog);
             hintDialogCell.setChecked(ShareAlert.this.selectedDialogs.indexOfKey(j) >= 0, true);
         }
 
@@ -1911,10 +1899,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 TLObject tLObject = ((DialogSearchResult) arrayList.get(i2)).object;
-                if (tLObject instanceof TLRPC$User) {
-                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putUser((TLRPC$User) tLObject, true);
-                } else if (tLObject instanceof TLRPC$Chat) {
-                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putChat((TLRPC$Chat) tLObject, true);
+                if (tLObject instanceof TLRPC.User) {
+                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putUser((TLRPC.User) tLObject, true);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putChat((TLRPC.Chat) tLObject, true);
                 }
             }
             boolean z = !this.searchResult.isEmpty() && arrayList.isEmpty();
@@ -1955,7 +1943,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             });
         }
 
-        public TLRPC$Dialog getItem(int i) {
+        public TLRPC.Dialog getItem(int i) {
             long j;
             long j2;
             int i2 = this.recentDialogsStartRow;
@@ -1963,14 +1951,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 int i3 = i - i2;
                 if (i3 >= 0 && i3 < ShareAlert.this.recentSearchObjects.size()) {
                     TLObject tLObject = ((DialogsSearchAdapter.RecentSearchObject) ShareAlert.this.recentSearchObjects.get(i3)).object;
-                    TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-                    if (tLObject instanceof TLRPC$User) {
-                        j2 = ((TLRPC$User) tLObject).id;
-                    } else if (tLObject instanceof TLRPC$Chat) {
-                        j2 = -((TLRPC$Chat) tLObject).id;
+                    TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
+                    if (tLObject instanceof TLRPC.User) {
+                        j2 = ((TLRPC.User) tLObject).id;
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        j2 = -((TLRPC.Chat) tLObject).id;
                     }
-                    tLRPC$TL_dialog.id = j2;
-                    return tLRPC$TL_dialog;
+                    tL_dialog.id = j2;
+                    return tL_dialog;
                 }
                 return null;
             }
@@ -1985,14 +1973,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             ArrayList localServerSearch = this.searchAdapterHelper.getLocalServerSearch();
             if (size < localServerSearch.size()) {
                 TLObject tLObject2 = (TLObject) localServerSearch.get(size);
-                TLRPC$TL_dialog tLRPC$TL_dialog2 = new TLRPC$TL_dialog();
-                if (tLObject2 instanceof TLRPC$User) {
-                    j = ((TLRPC$User) tLObject2).id;
-                } else if (tLObject2 instanceof TLRPC$Chat) {
-                    j = -((TLRPC$Chat) tLObject2).id;
+                TLRPC.TL_dialog tL_dialog2 = new TLRPC.TL_dialog();
+                if (tLObject2 instanceof TLRPC.User) {
+                    j = ((TLRPC.User) tLObject2).id;
+                } else if (tLObject2 instanceof TLRPC.Chat) {
+                    j = -((TLRPC.Chat) tLObject2).id;
                 }
-                tLRPC$TL_dialog2.id = j;
-                return tLRPC$TL_dialog2;
+                tL_dialog2.id = j;
+                return tL_dialog2;
             }
             return null;
         }
@@ -2094,7 +2082,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             r6 = null;
             r6 = null;
             String str3 = null;
-            TLRPC$TL_encryptedChat tLRPC$TL_encryptedChat = null;
+            TLRPC.TL_encryptedChat tL_encryptedChat = null;
             if (!TextUtils.isEmpty(this.lastSearchText)) {
                 int i2 = i - 1;
                 if (i2 < this.searchResult.size()) {
@@ -2104,14 +2092,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 } else {
                     i2 -= this.searchResult.size();
                     tLObject2 = (TLObject) this.searchAdapterHelper.getLocalServerSearch().get(i2);
-                    if (tLObject2 instanceof TLRPC$User) {
-                        TLRPC$User tLRPC$User = (TLRPC$User) tLObject2;
-                        j = tLRPC$User.id;
-                        str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                    if (tLObject2 instanceof TLRPC.User) {
+                        TLRPC.User user = (TLRPC.User) tLObject2;
+                        j = user.id;
+                        str = ContactsController.formatName(user.first_name, user.last_name);
                     } else {
-                        TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject2;
-                        j = -tLRPC$Chat.id;
-                        str = tLRPC$Chat.title;
+                        TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
+                        j = -chat.id;
+                        str = chat.title;
                     }
                     String lastFoundUsername = this.searchAdapterHelper.getLastFoundUsername();
                     if (TextUtils.isEmpty(lastFoundUsername) || str == null || (indexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str.toString(), lastFoundUsername)) == -1) {
@@ -2143,20 +2131,20 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 tLObject = null;
             } else {
                 TLObject tLObject4 = ((DialogsSearchAdapter.RecentSearchObject) ShareAlert.this.recentSearchObjects.get(i - i3)).object;
-                if (tLObject4 instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User2 = (TLRPC$User) tLObject4;
-                    j3 = tLRPC$User2.id;
-                    str3 = ContactsController.formatName(tLRPC$User2.first_name, tLRPC$User2.last_name);
-                } else if (tLObject4 instanceof TLRPC$Chat) {
-                    TLRPC$Chat tLRPC$Chat2 = (TLRPC$Chat) tLObject4;
-                    j3 = -tLRPC$Chat2.id;
-                    str3 = tLRPC$Chat2.title;
-                } else if (tLObject4 instanceof TLRPC$TL_encryptedChat) {
-                    tLRPC$TL_encryptedChat = (TLRPC$TL_encryptedChat) tLObject4;
-                    TLRPC$User user = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getUser(Long.valueOf(tLRPC$TL_encryptedChat.user_id));
-                    if (user != null) {
-                        j3 = user.id;
-                        str3 = ContactsController.formatName(user.first_name, user.last_name);
+                if (tLObject4 instanceof TLRPC.User) {
+                    TLRPC.User user2 = (TLRPC.User) tLObject4;
+                    j3 = user2.id;
+                    str3 = ContactsController.formatName(user2.first_name, user2.last_name);
+                } else if (tLObject4 instanceof TLRPC.Chat) {
+                    TLRPC.Chat chat2 = (TLRPC.Chat) tLObject4;
+                    j3 = -chat2.id;
+                    str3 = chat2.title;
+                } else if (tLObject4 instanceof TLRPC.TL_encryptedChat) {
+                    tL_encryptedChat = (TLRPC.TL_encryptedChat) tLObject4;
+                    TLRPC.User user3 = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getUser(Long.valueOf(tL_encryptedChat.user_id));
+                    if (user3 != null) {
+                        j3 = user3.id;
+                        str3 = ContactsController.formatName(user3.first_name, user3.last_name);
                     }
                 }
                 String lastFoundUsername2 = this.searchAdapterHelper.getLastFoundUsername();
@@ -2169,10 +2157,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     str3 = spannableStringBuilder2;
                 }
             }
-            TLRPC$TL_encryptedChat tLRPC$TL_encryptedChat2 = tLRPC$TL_encryptedChat;
+            TLRPC.TL_encryptedChat tL_encryptedChat2 = tL_encryptedChat;
             View view2 = viewHolder.itemView;
             if (view2 instanceof ProfileSearchCell) {
-                ((ProfileSearchCell) view2).setData(tLObject, tLRPC$TL_encryptedChat2, str3, null, false, false);
+                ((ProfileSearchCell) view2).setData(tLObject, tL_encryptedChat2, str3, null, false, false);
                 ((ProfileSearchCell) viewHolder.itemView).useSeparator = i < getItemCount() - 2;
             } else if (view2 instanceof ShareDialogCell) {
                 ((ShareDialogCell) view2).setDialog(j3, ShareAlert.this.selectedDialogs.indexOfKey(j3) >= 0, str3);
@@ -2225,42 +2213,42 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
                     @Override
                     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
-                        TLRPC$Chat tLRPC$Chat;
+                        TLRPC.Chat chat;
                         MessagesController messagesController;
                         long j;
                         HintDialogCell hintDialogCell = (HintDialogCell) viewHolder.itemView;
                         if (ShareAlert.this.darkTheme || ShareAlert.this.forceDarkThemeForHint) {
                             hintDialogCell.setColors(Theme.key_voipgroup_nameText, Theme.key_voipgroup_inviteMembersBackground);
                         }
-                        TLRPC$TL_topPeer tLRPC$TL_topPeer = MediaDataController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).hints.get(i2);
-                        TLRPC$Peer tLRPC$Peer = tLRPC$TL_topPeer.peer;
-                        long j2 = tLRPC$Peer.user_id;
-                        TLRPC$User tLRPC$User = null;
+                        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).hints.get(i2);
+                        TLRPC.Peer peer = tL_topPeer.peer;
+                        long j2 = peer.user_id;
+                        TLRPC.User user = null;
                         if (j2 != 0) {
-                            tLRPC$User = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getUser(Long.valueOf(tLRPC$TL_topPeer.peer.user_id));
-                            tLRPC$Chat = null;
+                            user = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getUser(Long.valueOf(tL_topPeer.peer.user_id));
+                            chat = null;
                         } else {
-                            long j3 = tLRPC$Peer.channel_id;
+                            long j3 = peer.channel_id;
                             if (j3 != 0) {
                                 j2 = -j3;
                                 messagesController = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount);
-                                j = tLRPC$TL_topPeer.peer.channel_id;
+                                j = tL_topPeer.peer.channel_id;
                             } else {
-                                long j4 = tLRPC$Peer.chat_id;
+                                long j4 = peer.chat_id;
                                 if (j4 != 0) {
                                     j2 = -j4;
                                     messagesController = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount);
-                                    j = tLRPC$TL_topPeer.peer.chat_id;
+                                    j = tL_topPeer.peer.chat_id;
                                 } else {
-                                    tLRPC$Chat = null;
+                                    chat = null;
                                     j2 = 0;
                                 }
                             }
-                            tLRPC$Chat = messagesController.getChat(Long.valueOf(j));
+                            chat = messagesController.getChat(Long.valueOf(j));
                         }
                         boolean z = j2 == hintDialogCell.getDialogId();
                         hintDialogCell.setTag(Long.valueOf(j2));
-                        hintDialogCell.setDialog(j2, true, tLRPC$User != null ? UserObject.getFirstName(tLRPC$User) : tLRPC$Chat != null ? tLRPC$Chat.title : "");
+                        hintDialogCell.setDialog(j2, true, user != null ? UserObject.getFirstName(user) : chat != null ? chat.title : "");
                         hintDialogCell.setChecked(ShareAlert.this.selectedDialogs.indexOfKey(j2) >= 0, z);
                     }
                 };
@@ -2353,13 +2341,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             this.context = context;
         }
 
-        public TLRPC$TL_forumTopic getItem(int i) {
+        public TLRPC.TL_forumTopic getItem(int i) {
             int i2 = i - 1;
             List list = this.topics;
             if (list == null || i2 < 0 || i2 >= list.size()) {
                 return null;
             }
-            return (TLRPC$TL_forumTopic) this.topics.get(i2);
+            return (TLRPC.TL_forumTopic) this.topics.get(i2);
         }
 
         @Override
@@ -2385,7 +2373,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder.getItemViewType() == 0) {
                 ShareTopicCell shareTopicCell = (ShareTopicCell) viewHolder.itemView;
-                TLRPC$TL_forumTopic item = getItem(i);
+                TLRPC.TL_forumTopic item = getItem(i);
                 shareTopicCell.setTopic(ShareAlert.this.selectedTopicDialog, item, ShareAlert.this.selectedDialogs.indexOfKey((long) item.id) >= 0, null);
             }
         }
@@ -2657,13 +2645,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
         if (z) {
             this.loadingLink = true;
-            TLRPC$TL_channels_exportMessageLink tLRPC$TL_channels_exportMessageLink = new TLRPC$TL_channels_exportMessageLink();
-            tLRPC$TL_channels_exportMessageLink.id = ((MessageObject) arrayList.get(0)).getId();
-            tLRPC$TL_channels_exportMessageLink.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(((MessageObject) arrayList.get(0)).messageOwner.peer_id.channel_id);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_exportMessageLink, new RequestDelegate() {
+            TLRPC.TL_channels_exportMessageLink tL_channels_exportMessageLink = new TLRPC.TL_channels_exportMessageLink();
+            tL_channels_exportMessageLink.id = ((MessageObject) arrayList.get(0)).getId();
+            tL_channels_exportMessageLink.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(((MessageObject) arrayList.get(0)).messageOwner.peer_id.channel_id);
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_exportMessageLink, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ShareAlert.this.lambda$new$1(context, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ShareAlert.this.lambda$new$1(context, tLObject, tL_error);
                 }
             });
         }
@@ -3676,7 +3664,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     int i10 = 0;
                     while (i10 < arrayList3.size()) {
                         TLObject tLObject = ((DialogsSearchAdapter.RecentSearchObject) arrayList3.get(i10)).object;
-                        if ((tLObject instanceof TLRPC$Chat) && !ChatObject.canWriteToChat((TLRPC$Chat) tLObject)) {
+                        if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
                             arrayList3.remove(i10);
                             i10--;
                         }
@@ -3688,12 +3676,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 for (int i22 = 0; i22 < ShareAlert.this.recentSearchObjects.size(); i22++) {
                     DialogsSearchAdapter.RecentSearchObject recentSearchObject = (DialogsSearchAdapter.RecentSearchObject) ShareAlert.this.recentSearchObjects.get(i22);
                     TLObject tLObject2 = recentSearchObject.object;
-                    if (tLObject2 instanceof TLRPC$User) {
-                        MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putUser((TLRPC$User) recentSearchObject.object, true);
-                    } else if (tLObject2 instanceof TLRPC$Chat) {
-                        MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putChat((TLRPC$Chat) recentSearchObject.object, true);
-                    } else if (tLObject2 instanceof TLRPC$EncryptedChat) {
-                        MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putEncryptedChat((TLRPC$EncryptedChat) recentSearchObject.object, true);
+                    if (tLObject2 instanceof TLRPC.User) {
+                        MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putUser((TLRPC.User) recentSearchObject.object, true);
+                    } else if (tLObject2 instanceof TLRPC.Chat) {
+                        MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putChat((TLRPC.Chat) recentSearchObject.object, true);
+                    } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
+                        MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).putEncryptedChat((TLRPC.EncryptedChat) recentSearchObject.object, true);
                     }
                 }
                 ShareAlert.this.searchAdapter.notifyDataSetChanged();
@@ -3742,15 +3730,15 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     private void collapseTopics() {
-        TLRPC$Dialog tLRPC$Dialog = this.selectedTopicDialog;
-        if (tLRPC$Dialog == null) {
+        TLRPC.Dialog dialog = this.selectedTopicDialog;
+        if (dialog == null) {
             return;
         }
         final View view = null;
         this.selectedTopicDialog = null;
         for (int i = 0; i < getMainGridView().getChildCount(); i++) {
             View childAt = getMainGridView().getChildAt(i);
-            if ((childAt instanceof ShareDialogCell) && ((ShareDialogCell) childAt).getCurrentDialog() == tLRPC$Dialog.id) {
+            if ((childAt instanceof ShareDialogCell) && ((ShareDialogCell) childAt).getCurrentDialog() == dialog.id) {
                 view = childAt;
             }
         }
@@ -3804,8 +3792,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             clipboardManager.setPrimaryClip(ClipData.newPlainText("label", str));
             ShareAlertDelegate shareAlertDelegate = this.delegate;
             if ((shareAlertDelegate == null || !shareAlertDelegate.didCopy()) && (this.parentActivity instanceof LaunchActivity)) {
-                TLRPC$TL_exportedMessageLink tLRPC$TL_exportedMessageLink = this.exportedMessageLink;
-                if (tLRPC$TL_exportedMessageLink != null && tLRPC$TL_exportedMessageLink.link.contains("/c/")) {
+                TLRPC.TL_exportedMessageLink tL_exportedMessageLink = this.exportedMessageLink;
+                if (tL_exportedMessageLink != null && tL_exportedMessageLink.link.contains("/c/")) {
                     z = true;
                 }
                 ((LaunchActivity) this.parentActivity).showBulletin(new Function() {
@@ -3931,7 +3919,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
     public void lambda$new$0(TLObject tLObject, Context context) {
         if (tLObject != null) {
-            this.exportedMessageLink = (TLRPC$TL_exportedMessageLink) tLObject;
+            this.exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject;
             if (this.copyLinkOnEnd) {
                 copyLink(context);
             }
@@ -3939,7 +3927,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.loadingLink = false;
     }
 
-    public void lambda$new$1(final Context context, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$1(final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -3965,18 +3953,18 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void lambda$new$3(View view, int i) {
-        TLRPC$Dialog tLRPC$Dialog;
-        TLRPC$TL_forumTopic item = this.shareTopicsAdapter.getItem(i);
-        if (item == null || (tLRPC$Dialog = this.selectedTopicDialog) == null) {
+        TLRPC.Dialog dialog;
+        TLRPC.TL_forumTopic item = this.shareTopicsAdapter.getItem(i);
+        if (item == null || (dialog = this.selectedTopicDialog) == null) {
             return;
         }
-        this.selectedDialogs.put(tLRPC$Dialog.id, tLRPC$Dialog);
-        this.selectedDialogTopics.put(tLRPC$Dialog, item);
+        this.selectedDialogs.put(dialog.id, dialog);
+        this.selectedDialogTopics.put(dialog, item);
         updateSelectedCount(2);
         if (this.searchIsVisible || this.searchWasVisibleBeforeTopics) {
-            if (((TLRPC$Dialog) this.listAdapter.dialogsMap.get(tLRPC$Dialog.id)) == null) {
-                this.listAdapter.dialogsMap.put(tLRPC$Dialog.id, tLRPC$Dialog);
-                this.listAdapter.dialogs.add(!this.listAdapter.dialogs.isEmpty() ? 1 : 0, tLRPC$Dialog);
+            if (((TLRPC.Dialog) this.listAdapter.dialogsMap.get(dialog.id)) == null) {
+                this.listAdapter.dialogsMap.put(dialog.id, dialog);
+                this.listAdapter.dialogs.add(!this.listAdapter.dialogs.isEmpty() ? 1 : 0, dialog);
             }
             this.listAdapter.notifyDataSetChanged();
             this.updateSearchAdapter = false;
@@ -4001,7 +3989,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void lambda$new$5(View view, int i) {
-        TLRPC$Dialog item;
+        TLRPC.Dialog item;
         if (i >= 0 && (item = this.listAdapter.getItem(i)) != null) {
             selectDialog(view, item);
         }
@@ -4012,7 +4000,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void lambda$new$7(View view, int i) {
-        TLRPC$Dialog item;
+        TLRPC.Dialog item;
         if (i >= 0 && (item = this.searchAdapter.getItem(i)) != null) {
             selectDialog(view, item);
         }
@@ -4078,9 +4066,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         sendInternal(true);
     }
 
-    public void lambda$selectDialog$15(AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC$Dialog tLRPC$Dialog) {
+    public void lambda$selectDialog$15(AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC.Dialog dialog) {
         atomicReference.set(null);
-        notificationCenterDelegate.didReceivedNotification(NotificationCenter.topicsDidLoaded, this.currentAccount, Long.valueOf(-tLRPC$Dialog.id));
+        notificationCenterDelegate.didReceivedNotification(NotificationCenter.topicsDidLoaded, this.currentAccount, Long.valueOf(-dialog.id));
     }
 
     public static void lambda$showPremiumBlockedToast$13() {
@@ -4307,22 +4295,22 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.shadowAnimation[i2].start();
     }
 
-    public void selectDialog(View view, final TLRPC$Dialog tLRPC$Dialog) {
+    public void selectDialog(View view, final TLRPC.Dialog dialog) {
         DialogsSearchAdapter.CategoryAdapterRecycler categoryAdapterRecycler;
-        if (tLRPC$Dialog instanceof ShareDialogsAdapter.MyStoryDialog) {
+        if (dialog instanceof ShareDialogsAdapter.MyStoryDialog) {
             onShareStory(view);
             return;
         }
-        if (tLRPC$Dialog != null && (((view instanceof ShareDialogCell) && ((ShareDialogCell) view).isBlocked()) || ((view instanceof ProfileSearchCell) && ((ProfileSearchCell) view).isBlocked()))) {
-            showPremiumBlockedToast(view, tLRPC$Dialog.id);
+        if (dialog != null && (((view instanceof ShareDialogCell) && ((ShareDialogCell) view).isBlocked()) || ((view instanceof ProfileSearchCell) && ((ProfileSearchCell) view).isBlocked()))) {
+            showPremiumBlockedToast(view, dialog.id);
             return;
         }
         if (this.topicsGridView.getVisibility() != 8 || this.parentActivity == null) {
             return;
         }
-        if (DialogObject.isChatDialog(tLRPC$Dialog.id)) {
-            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id));
-            if (ChatObject.isChannel(chat) && !chat.megagroup && (!ChatObject.isCanWriteToChannel(-tLRPC$Dialog.id, this.currentAccount) || this.hasPoll == 2)) {
+        if (DialogObject.isChatDialog(dialog.id)) {
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
+            if (ChatObject.isChannel(chat) && !chat.megagroup && (!ChatObject.isCanWriteToChannel(-dialog.id, this.currentAccount) || this.hasPoll == 2)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this.parentActivity);
                 builder.setTitle(LocaleController.getString(R.string.SendMessageTitle));
                 builder.setMessage(LocaleController.getString(this.hasPoll == 2 ? this.isChannel ? R.string.PublicPollCantForward : ChatObject.isActionBannedByDefault(chat, 10) ? R.string.ErrorSendRestrictedPollsAll : R.string.ErrorSendRestrictedPolls : R.string.ChannelCantSendMessage));
@@ -4330,7 +4318,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 builder.show();
                 return;
             }
-        } else if (DialogObject.isEncryptedDialog(tLRPC$Dialog.id) && this.hasPoll != 0) {
+        } else if (DialogObject.isEncryptedDialog(dialog.id) && this.hasPoll != 0) {
             AlertDialog.Builder builder2 = new AlertDialog.Builder(this.parentActivity);
             builder2.setTitle(LocaleController.getString(R.string.SendMessageTitle));
             builder2.setMessage(LocaleController.getString(this.hasPoll != 0 ? R.string.PollCantForwardSecretChat : R.string.InvoiceCantForwardSecretChat));
@@ -4338,9 +4326,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             builder2.show();
             return;
         }
-        if (this.selectedDialogs.indexOfKey(tLRPC$Dialog.id) >= 0) {
-            this.selectedDialogs.remove(tLRPC$Dialog.id);
-            this.selectedDialogTopics.remove(tLRPC$Dialog);
+        if (this.selectedDialogs.indexOfKey(dialog.id) >= 0) {
+            this.selectedDialogs.remove(dialog.id);
+            this.selectedDialogTopics.remove(dialog);
             if (view instanceof ProfileSearchCell) {
                 ((ProfileSearchCell) view).setChecked(false, true);
             } else if (view instanceof ShareDialogCell) {
@@ -4348,30 +4336,30 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
             updateSelectedCount(1);
         } else {
-            if (DialogObject.isChatDialog(tLRPC$Dialog.id) && MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id)) != null && MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id)).forum) {
-                this.selectedTopicDialog = tLRPC$Dialog;
+            if (DialogObject.isChatDialog(dialog.id) && MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id)) != null && MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id)).forum) {
+                this.selectedTopicDialog = dialog;
                 this.topicsLayoutManager.scrollToPositionWithOffset(0, this.scrollOffsetY - this.topicsGridView.getPaddingTop());
                 final AtomicReference atomicReference = new AtomicReference();
-                final AnonymousClass22 anonymousClass22 = new AnonymousClass22(tLRPC$Dialog, atomicReference, view);
+                final AnonymousClass22 anonymousClass22 = new AnonymousClass22(dialog, atomicReference, view);
                 atomicReference.set(new Runnable() {
                     @Override
                     public final void run() {
-                        ShareAlert.this.lambda$selectDialog$15(atomicReference, anonymousClass22, tLRPC$Dialog);
+                        ShareAlert.this.lambda$selectDialog$15(atomicReference, anonymousClass22, dialog);
                     }
                 });
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
                 int i = NotificationCenter.topicsDidLoaded;
                 notificationCenter.addObserver(anonymousClass22, i);
-                if (MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-tLRPC$Dialog.id) != null) {
-                    anonymousClass22.didReceivedNotification(i, this.currentAccount, Long.valueOf(-tLRPC$Dialog.id));
+                if (MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-dialog.id) != null) {
+                    anonymousClass22.didReceivedNotification(i, this.currentAccount, Long.valueOf(-dialog.id));
                     return;
                 } else {
-                    MessagesController.getInstance(this.currentAccount).getTopicsController().loadTopics(-tLRPC$Dialog.id);
+                    MessagesController.getInstance(this.currentAccount).getTopicsController().loadTopics(-dialog.id);
                     AndroidUtilities.runOnUIThread((Runnable) atomicReference.get(), 300L);
                     return;
                 }
             }
-            this.selectedDialogs.put(tLRPC$Dialog.id, tLRPC$Dialog);
+            this.selectedDialogs.put(dialog.id, dialog);
             if (view instanceof ProfileSearchCell) {
                 ((ProfileSearchCell) view).setChecked(true, true);
             } else if (view instanceof ShareDialogCell) {
@@ -4380,13 +4368,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             updateSelectedCount(2);
             long j = UserConfig.getInstance(this.currentAccount).clientUserId;
             if (this.searchIsVisible) {
-                TLRPC$Dialog tLRPC$Dialog2 = (TLRPC$Dialog) this.listAdapter.dialogsMap.get(tLRPC$Dialog.id);
-                if (tLRPC$Dialog2 == null) {
-                    this.listAdapter.dialogsMap.put(tLRPC$Dialog.id, tLRPC$Dialog);
-                    this.listAdapter.dialogs.add(1 ^ (this.listAdapter.dialogs.isEmpty() ? 1 : 0), tLRPC$Dialog);
-                } else if (tLRPC$Dialog2.id != j) {
-                    this.listAdapter.dialogs.remove(tLRPC$Dialog2);
-                    this.listAdapter.dialogs.add(1 ^ (this.listAdapter.dialogs.isEmpty() ? 1 : 0), tLRPC$Dialog2);
+                TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.listAdapter.dialogsMap.get(dialog.id);
+                if (dialog2 == null) {
+                    this.listAdapter.dialogsMap.put(dialog.id, dialog);
+                    this.listAdapter.dialogs.add(1 ^ (this.listAdapter.dialogs.isEmpty() ? 1 : 0), dialog);
+                } else if (dialog2.id != j) {
+                    this.listAdapter.dialogs.remove(dialog2);
+                    this.listAdapter.dialogs.add(1 ^ (this.listAdapter.dialogs.isEmpty() ? 1 : 0), dialog2);
                 }
                 this.listAdapter.notifyDataSetChanged();
                 this.updateSearchAdapter = false;
@@ -4619,7 +4607,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+    public void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic) {
     }
 
     protected void onShareStory(View view) {
@@ -4633,7 +4621,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         char c2;
         MessageObject messageObject2;
         int i2;
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic;
+        TLRPC.TL_forumTopic tL_forumTopic;
         SendMessagesHelper.SendMessageParams of;
         ArrayList arrayList;
         MessageObject messageObject3;
@@ -4648,8 +4636,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         }
         CharSequence[] charSequenceArr = {this.commentTextView.getText()};
-        ArrayList<TLRPC$MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = null;
+        ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
+        TLRPC.TL_forumTopic tL_forumTopic2 = null;
         if (this.sendingMessageObjects != null) {
             ArrayList arrayList3 = new ArrayList();
             int i6 = 0;
@@ -4659,8 +4647,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     break;
                 }
                 long keyAt = this.selectedDialogs.keyAt(i6);
-                TLRPC$TL_forumTopic tLRPC$TL_forumTopic3 = (TLRPC$TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt));
-                MessageObject messageObject4 = tLRPC$TL_forumTopic3 != null ? new MessageObject(this.currentAccount, tLRPC$TL_forumTopic3.topicStartMessage, r2, r2) : tLRPC$TL_forumTopic2;
+                TLRPC.TL_forumTopic tL_forumTopic3 = (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt));
+                MessageObject messageObject4 = tL_forumTopic3 != null ? new MessageObject(this.currentAccount, tL_forumTopic3.topicStartMessage, r2, r2) : tL_forumTopic2;
                 if (messageObject4 != 0) {
                     messageObject4.isTopicMainMessage = true;
                 }
@@ -4676,7 +4664,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     j2 = keyAt;
                     i3 = i6;
                     arrayList2 = arrayList3;
-                    sendMessagesHelper.sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence == null ? tLRPC$TL_forumTopic2 : charSequence.toString(), keyAt, messageObject4, messageObject4, null, true, entities, null, null, z, 0, null, false));
+                    sendMessagesHelper.sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence == null ? tL_forumTopic2 : charSequence.toString(), keyAt, messageObject4, messageObject4, null, true, entities, null, null, z, 0, null, false));
                 }
                 int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j2, !this.showSendersName, false, z, 0, messageObject3);
                 if (sendMessage != 0) {
@@ -4686,13 +4674,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     arrayList = arrayList2;
                 }
                 if (this.selectedDialogs.size() == 1) {
-                    tLRPC$TL_forumTopic2 = null;
+                    tL_forumTopic2 = null;
                     AlertsCreator.showSendMediaAlert(sendMessage, this.parentFragment, null);
                     if (sendMessage != 0) {
                         break;
                     }
                 } else {
-                    tLRPC$TL_forumTopic2 = null;
+                    tL_forumTopic2 = null;
                 }
                 i6 = i3 + 1;
                 arrayList3 = arrayList;
@@ -4701,19 +4689,19 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
                 long longValue = ((Long) it.next()).longValue();
-                TLRPC$Dialog tLRPC$Dialog = (TLRPC$Dialog) this.selectedDialogs.get(longValue);
+                TLRPC.Dialog dialog = (TLRPC.Dialog) this.selectedDialogs.get(longValue);
                 this.selectedDialogs.remove(longValue);
-                if (tLRPC$Dialog != null) {
-                    this.selectedDialogTopics.remove(tLRPC$Dialog);
+                if (dialog != null) {
+                    this.selectedDialogTopics.remove(dialog);
                 }
             }
             if (!this.selectedDialogs.isEmpty()) {
                 LongSparseArray longSparseArray = this.selectedDialogs;
                 int size = this.sendingMessageObjects.size();
                 if (this.selectedDialogs.size() == 1) {
-                    tLRPC$TL_forumTopic2 = (TLRPC$TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.valueAt(0));
+                    tL_forumTopic2 = (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.valueAt(0));
                 }
-                onSend(longSparseArray, size, tLRPC$TL_forumTopic2);
+                onSend(longSparseArray, size, tL_forumTopic2);
             }
         } else {
             SwitchView switchView = this.switchView;
@@ -4722,17 +4710,17 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 int i8 = 0;
                 while (i8 < this.selectedDialogs.size()) {
                     long keyAt2 = this.selectedDialogs.keyAt(i8);
-                    TLRPC$TL_forumTopic tLRPC$TL_forumTopic4 = (TLRPC$TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt2));
-                    if (tLRPC$TL_forumTopic4 != null) {
+                    TLRPC.TL_forumTopic tL_forumTopic4 = (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt2));
+                    if (tL_forumTopic4 != null) {
                         c2 = 0;
-                        messageObject2 = new MessageObject(this.currentAccount, tLRPC$TL_forumTopic4.topicStartMessage, false, false);
+                        messageObject2 = new MessageObject(this.currentAccount, tL_forumTopic4.topicStartMessage, false, false);
                     } else {
                         c2 = 0;
-                        messageObject2 = tLRPC$TL_forumTopic2;
+                        messageObject2 = tL_forumTopic2;
                     }
                     if (this.storyItem != null) {
                         i2 = i8;
-                        tLRPC$TL_forumTopic = tLRPC$TL_forumTopic2;
+                        tL_forumTopic = tL_forumTopic2;
                         if (this.frameLayout2.getTag() != null && this.commentTextView.length() > 0 && charSequenceArr[0] != null) {
                             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequenceArr[0].toString(), keyAt2, null, messageObject2, null, true, null, null, null, z, 0, null, false));
                         }
@@ -4740,26 +4728,26 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                         of.sendingStory = this.storyItem;
                     } else if (this.frameLayout2.getTag() == null || this.commentTextView.length() <= 0) {
                         i2 = i8;
-                        tLRPC$TL_forumTopic = tLRPC$TL_forumTopic2;
+                        tL_forumTopic = tL_forumTopic2;
                         of = SendMessagesHelper.SendMessageParams.of(this.sendingText[i7], keyAt2, messageObject2, messageObject2, null, true, null, null, null, z, 0, null, false);
                     } else {
                         CharSequence charSequence2 = charSequenceArr[c2];
                         i2 = i8;
-                        tLRPC$TL_forumTopic = tLRPC$TL_forumTopic2;
-                        of = SendMessagesHelper.SendMessageParams.of(charSequence2 == null ? tLRPC$TL_forumTopic2 : charSequence2.toString(), keyAt2, messageObject2, messageObject2, null, true, entities, null, null, z, 0, null, false);
+                        tL_forumTopic = tL_forumTopic2;
+                        of = SendMessagesHelper.SendMessageParams.of(charSequence2 == null ? tL_forumTopic2 : charSequence2.toString(), keyAt2, messageObject2, messageObject2, null, true, entities, null, null, z, 0, null, false);
                     }
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
                     i8 = i2 + 1;
-                    tLRPC$TL_forumTopic2 = tLRPC$TL_forumTopic;
+                    tL_forumTopic2 = tL_forumTopic;
                 }
             } else if (this.sendingText[i7] != null) {
                 int i9 = 0;
                 while (i9 < this.selectedDialogs.size()) {
                     long keyAt3 = this.selectedDialogs.keyAt(i9);
-                    TLRPC$TL_forumTopic tLRPC$TL_forumTopic5 = (TLRPC$TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt3));
-                    if (tLRPC$TL_forumTopic5 != null) {
+                    TLRPC.TL_forumTopic tL_forumTopic5 = (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt3));
+                    if (tL_forumTopic5 != null) {
                         c = 0;
-                        messageObject = new MessageObject(this.currentAccount, tLRPC$TL_forumTopic5.topicStartMessage, false, false);
+                        messageObject = new MessageObject(this.currentAccount, tL_forumTopic5.topicStartMessage, false, false);
                     } else {
                         c = 0;
                         messageObject = null;
@@ -4780,7 +4768,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 }
             }
             LongSparseArray longSparseArray2 = this.selectedDialogs;
-            onSend(longSparseArray2, i4, (TLRPC$TL_forumTopic) this.selectedDialogTopics.get(longSparseArray2.valueAt(0)));
+            onSend(longSparseArray2, i4, (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(longSparseArray2.valueAt(0)));
         }
         ShareAlertDelegate shareAlertDelegate = this.delegate;
         if (shareAlertDelegate != null) {
@@ -4793,8 +4781,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.delegate = shareAlertDelegate;
     }
 
-    public void setStoryToShare(TL_stories$StoryItem tL_stories$StoryItem) {
-        this.storyItem = tL_stories$StoryItem;
+    public void setStoryToShare(TL_stories.StoryItem storyItem) {
+        this.storyItem = storyItem;
     }
 
     public void updateSelectedCount(int i) {

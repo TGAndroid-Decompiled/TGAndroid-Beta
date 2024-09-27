@@ -17,14 +17,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
+import org.telegram.tgnet.TLRPC;
 
 public abstract class BillingUtilities {
 
     public static class TL_savedPurpose extends TLObject {
         public int flags;
         public long id;
-        public TLRPC$InputStorePaymentPurpose purpose;
+        public TLRPC.InputStorePaymentPurpose purpose;
 
         public static TL_savedPurpose TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
             TL_savedPurpose tL_savedPurpose = i != 495638674 ? null : new TL_savedPurpose();
@@ -42,7 +42,7 @@ public abstract class BillingUtilities {
             this.flags = abstractSerializedData.readInt32(z);
             this.id = abstractSerializedData.readInt64(z);
             if ((this.flags & 1) != 0) {
-                this.purpose = TLRPC$InputStorePaymentPurpose.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                this.purpose = TLRPC.InputStorePaymentPurpose.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
         }
 
@@ -77,8 +77,8 @@ public abstract class BillingUtilities {
         }
     }
 
-    public static Pair createDeveloperPayload(TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose, AccountInstance accountInstance) {
-        return Pair.create(Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(Charsets.UTF_8), 0), savePurpose(tLRPC$InputStorePaymentPurpose));
+    public static Pair createDeveloperPayload(TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose, AccountInstance accountInstance) {
+        return Pair.create(Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(Charsets.UTF_8), 0), savePurpose(inputStorePaymentPurpose));
     }
 
     public static void extractCurrencyExp(Map map) {
@@ -99,7 +99,7 @@ public abstract class BillingUtilities {
     }
 
     public static Pair extractDeveloperPayload(Purchase purchase) {
-        TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose;
+        TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose;
         AccountIdentifiers accountIdentifiers = purchase.getAccountIdentifiers();
         if (accountIdentifiers == null) {
             FileLog.d("Billing: Extract payload. No AccountIdentifiers");
@@ -111,14 +111,14 @@ public abstract class BillingUtilities {
             try {
                 if (!obfuscatedProfileId.isEmpty()) {
                     try {
-                        tLRPC$InputStorePaymentPurpose = getPurpose(obfuscatedProfileId);
+                        inputStorePaymentPurpose = getPurpose(obfuscatedProfileId);
                     } catch (Exception e) {
                         FileLog.e("Billing: Extract payload, failed to get purpose", e);
-                        tLRPC$InputStorePaymentPurpose = null;
+                        inputStorePaymentPurpose = null;
                     }
                     AccountInstance findAccountById = findAccountById(Long.parseLong(new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8)));
                     if (findAccountById != null) {
-                        return Pair.create(findAccountById, tLRPC$InputStorePaymentPurpose);
+                        return Pair.create(findAccountById, inputStorePaymentPurpose);
                     }
                     FileLog.d("Billing: Extract payload. AccountInstance not found");
                     return null;
@@ -142,7 +142,7 @@ public abstract class BillingUtilities {
         return null;
     }
 
-    public static TLRPC$InputStorePaymentPurpose getPurpose(String str) {
+    public static TLRPC.InputStorePaymentPurpose getPurpose(String str) {
         FileLog.d("BillingUtilities.getPurpose " + str);
         SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
         TL_savedPurpose TLdeserialize = TL_savedPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
@@ -168,18 +168,18 @@ public abstract class BillingUtilities {
         throw new RuntimeException("no purpose under " + bytesToHex + " found :(");
     }
 
-    public static String savePurpose(TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose) {
+    public static String savePurpose(TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose) {
         long nextLong = Utilities.random.nextLong();
-        FileLog.d("BillingUtilities.savePurpose id=" + nextLong + " paymentPurpose=" + tLRPC$InputStorePaymentPurpose);
+        FileLog.d("BillingUtilities.savePurpose id=" + nextLong + " paymentPurpose=" + inputStorePaymentPurpose);
         SerializedData serializedData = new SerializedData(8);
         serializedData.writeInt64(nextLong);
         String bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
         serializedData.cleanup();
-        FileLog.d("BillingUtilities.savePurpose id_hex=" + bytesToHex + " paymentPurpose=" + tLRPC$InputStorePaymentPurpose);
+        FileLog.d("BillingUtilities.savePurpose id_hex=" + bytesToHex + " paymentPurpose=" + inputStorePaymentPurpose);
         TL_savedPurpose tL_savedPurpose = new TL_savedPurpose();
         tL_savedPurpose.id = nextLong;
         tL_savedPurpose.flags = 1;
-        tL_savedPurpose.purpose = tLRPC$InputStorePaymentPurpose;
+        tL_savedPurpose.purpose = inputStorePaymentPurpose;
         SerializedData serializedData2 = new SerializedData(tL_savedPurpose.getObjectSize());
         tL_savedPurpose.serializeToStream(serializedData2);
         String bytesToHex2 = Utilities.bytesToHex(serializedData2.toByteArray());

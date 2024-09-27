@@ -51,22 +51,8 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotApp;
-import org.telegram.tgnet.TLRPC$InputInvoice;
-import org.telegram.tgnet.TLRPC$PaymentForm;
-import org.telegram.tgnet.TLRPC$PaymentReceipt;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
-import org.telegram.tgnet.TLRPC$TL_botCommand;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_prolongWebView;
-import org.telegram.tgnet.TLRPC$TL_messages_sendWebViewData;
-import org.telegram.tgnet.TLRPC$TL_messages_toggleBotInAttachMenu;
-import org.telegram.tgnet.TLRPC$TL_payments_paymentFormStars;
-import org.telegram.tgnet.TLRPC$TL_updates;
-import org.telegram.tgnet.TLRPC$TL_webViewResultUrl;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.tl.TL_bots$BotInfo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -125,7 +111,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     private String buttonText;
     private final Context context;
     private int currentAccount;
-    private TLRPC$BotApp currentWebApp;
+    private TLRPC.BotApp currentWebApp;
     private BottomSheetTabDialog dialog;
     private boolean dismissed;
     private boolean forceExpnaded;
@@ -180,9 +166,9 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         AnonymousClass3() {
         }
 
-        public void lambda$onSendWebViewData$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-            if (tLObject instanceof TLRPC$TL_updates) {
-                MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).processUpdates((TLRPC$TL_updates) tLObject, false);
+        public void lambda$onSendWebViewData$0(TLObject tLObject, TLRPC.TL_error tL_error) {
+            if (tLObject instanceof TLRPC.TL_updates) {
+                MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
             }
             final BotWebViewAttachedSheet botWebViewAttachedSheet = BotWebViewAttachedSheet.this;
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -204,7 +190,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             BotWebViewAttachedSheet.this.webViewContainer.onInvoiceStatusUpdate(str, invoiceStatus.name().toLowerCase(Locale.ROOT));
         }
 
-        public boolean lambda$onWebAppSwitchInlineQuery$4(TLRPC$User tLRPC$User, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+        public boolean lambda$onWebAppSwitchInlineQuery$4(TLRPC.User user, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
             String str2;
             long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();
@@ -220,7 +206,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 }
                 bundle.putLong(str2, j);
             }
-            bundle.putString("start_text", "@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
+            bundle.putString("start_text", "@" + UserObject.getPublicUsername(user) + " " + str);
             if (BotWebViewAttachedSheet.this.parentActivity instanceof LaunchActivity) {
                 BaseFragment lastFragment = ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).getActionBarLayout().getLastFragment();
                 if (MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).checkCanOpenChat(bundle, lastFragment)) {
@@ -263,15 +249,15 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 return;
             }
             this.sentWebViewData = true;
-            TLRPC$TL_messages_sendWebViewData tLRPC$TL_messages_sendWebViewData = new TLRPC$TL_messages_sendWebViewData();
-            tLRPC$TL_messages_sendWebViewData.bot = MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).getInputUser(BotWebViewAttachedSheet.this.botId);
-            tLRPC$TL_messages_sendWebViewData.random_id = Utilities.random.nextLong();
-            tLRPC$TL_messages_sendWebViewData.button_text = BotWebViewAttachedSheet.this.buttonText;
-            tLRPC$TL_messages_sendWebViewData.data = str;
-            ConnectionsManager.getInstance(BotWebViewAttachedSheet.this.currentAccount).sendRequest(tLRPC$TL_messages_sendWebViewData, new RequestDelegate() {
+            TLRPC.TL_messages_sendWebViewData tL_messages_sendWebViewData = new TLRPC.TL_messages_sendWebViewData();
+            tL_messages_sendWebViewData.bot = MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).getInputUser(BotWebViewAttachedSheet.this.botId);
+            tL_messages_sendWebViewData.random_id = Utilities.random.nextLong();
+            tL_messages_sendWebViewData.button_text = BotWebViewAttachedSheet.this.buttonText;
+            tL_messages_sendWebViewData.data = str;
+            ConnectionsManager.getInstance(BotWebViewAttachedSheet.this.currentAccount).sendRequest(tL_messages_sendWebViewData, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewAttachedSheet.AnonymousClass3.this.lambda$onSendWebViewData$0(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    BotWebViewAttachedSheet.AnonymousClass3.this.lambda$onSendWebViewData$0(tLObject, tL_error);
                 }
             });
         }
@@ -313,17 +299,17 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
 
         @Override
-        public void onWebAppOpenInvoice(TLRPC$InputInvoice tLRPC$InputInvoice, final String str, TLObject tLObject) {
+        public void onWebAppOpenInvoice(TLRPC.InputInvoice inputInvoice, final String str, TLObject tLObject) {
             PaymentFormActivity paymentFormActivity;
             if (BotWebViewAttachedSheet.this.getContext() == null) {
                 return;
             }
             BaseFragment lastFragment = ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).getActionBarLayout().getLastFragment();
-            if (tLObject instanceof TLRPC$TL_payments_paymentFormStars) {
+            if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
                 AndroidUtilities.hideKeyboard(BotWebViewAttachedSheet.this.windowView);
                 final AlertDialog alertDialog = new AlertDialog(BotWebViewAttachedSheet.this.getContext(), 3);
                 alertDialog.showDelayed(150L);
-                StarsController.getInstance(BotWebViewAttachedSheet.this.currentAccount).openPaymentForm(null, tLRPC$InputInvoice, (TLRPC$TL_payments_paymentFormStars) tLObject, new Runnable() {
+                StarsController.getInstance(BotWebViewAttachedSheet.this.currentAccount).openPaymentForm(null, inputInvoice, (TLRPC.TL_payments_paymentFormStars) tLObject, new Runnable() {
                     @Override
                     public final void run() {
                         AlertDialog.this.dismiss();
@@ -336,12 +322,12 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 });
                 return;
             }
-            if (tLObject instanceof TLRPC$PaymentForm) {
-                TLRPC$PaymentForm tLRPC$PaymentForm = (TLRPC$PaymentForm) tLObject;
-                MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).putUsers(tLRPC$PaymentForm.users, false);
-                paymentFormActivity = new PaymentFormActivity(tLRPC$PaymentForm, str, lastFragment);
+            if (tLObject instanceof TLRPC.PaymentForm) {
+                TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
+                MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).putUsers(paymentForm.users, false);
+                paymentFormActivity = new PaymentFormActivity(paymentForm, str, lastFragment);
             } else {
-                paymentFormActivity = tLObject instanceof TLRPC$PaymentReceipt ? new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject) : null;
+                paymentFormActivity = tLObject instanceof TLRPC.PaymentReceipt ? new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject) : null;
             }
             if (paymentFormActivity != null) {
                 BotWebViewAttachedSheet.this.swipeContainer.stickTo((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY());
@@ -391,12 +377,12 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
 
         @Override
-        public void onWebAppSwitchInlineQuery(final TLRPC$User tLRPC$User, final String str, List list) {
+        public void onWebAppSwitchInlineQuery(final TLRPC.User user, final String str, List list) {
             if (list.isEmpty()) {
                 if (BotWebViewAttachedSheet.this.parentActivity instanceof LaunchActivity) {
                     BaseFragment lastFragment = ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).getActionBarLayout().getLastFragment();
                     if (lastFragment instanceof ChatActivity) {
-                        ((ChatActivity) lastFragment).getChatActivityEnterView().setFieldText("@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
+                        ((ChatActivity) lastFragment).getChatActivityEnterView().setFieldText("@" + UserObject.getPublicUsername(user) + " " + str);
                         BotWebViewAttachedSheet.this.dismiss();
                         return;
                     }
@@ -420,7 +406,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                     boolean lambda$onWebAppSwitchInlineQuery$4;
-                    lambda$onWebAppSwitchInlineQuery$4 = BotWebViewAttachedSheet.AnonymousClass3.this.lambda$onWebAppSwitchInlineQuery$4(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
+                    lambda$onWebAppSwitchInlineQuery$4 = BotWebViewAttachedSheet.AnonymousClass3.this.lambda$onWebAppSwitchInlineQuery$4(user, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                     return lambda$onWebAppSwitchInlineQuery$4;
                 }
             });
@@ -439,7 +425,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
 
         @Override
         public void onItemClick(int i) {
-            TLRPC$User user;
+            TLRPC.User user;
             if (i == -1) {
                 if (BotWebViewAttachedSheet.this.webViewContainer.onBackPressed()) {
                     return;
@@ -451,7 +437,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", BotWebViewAttachedSheet.this.botId);
                 if (BotWebViewAttachedSheet.this.parentActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).lambda$runLinkRequest$91(new ChatActivity(bundle));
+                    ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).lambda$runLinkRequest$93(new ChatActivity(bundle));
                 }
                 BotWebViewAttachedSheet.this.dismiss();
                 return;
@@ -911,26 +897,26 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     public static void deleteBot(final int i, final long j, final Runnable runnable) {
-        final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
-        Iterator it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
+        final TLRPC.TL_attachMenuBot tL_attachMenuBot;
+        Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
-                tLRPC$TL_attachMenuBot = null;
+                tL_attachMenuBot = null;
                 break;
             }
-            TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot2 = (TLRPC$TL_attachMenuBot) it.next();
-            if (tLRPC$TL_attachMenuBot2.bot_id == j) {
-                tLRPC$TL_attachMenuBot = tLRPC$TL_attachMenuBot2;
+            TLRPC.TL_attachMenuBot next = it.next();
+            if (next.bot_id == j) {
+                tL_attachMenuBot = next;
                 break;
             }
         }
-        if (tLRPC$TL_attachMenuBot == null) {
+        if (tL_attachMenuBot == null) {
             return;
         }
-        new AlertDialog.Builder(LaunchActivity.getLastFragment().getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, tLRPC$TL_attachMenuBot.short_name))).setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(LaunchActivity.getLastFragment().getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, tL_attachMenuBot.short_name))).setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                BotWebViewAttachedSheet.lambda$deleteBot$28(i, j, tLRPC$TL_attachMenuBot, runnable, dialogInterface, i2);
+                BotWebViewAttachedSheet.lambda$deleteBot$28(i, j, tL_attachMenuBot, runnable, dialogInterface, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
@@ -943,39 +929,39 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         if (callback == null) {
             return;
         }
-        TLRPC$UserFull userFull = MessagesController.getInstance(i).getUserFull(j);
+        TLRPC.UserFull userFull = MessagesController.getInstance(i).getUserFull(j);
         if (userFull != null) {
             callback.run(Boolean.valueOf(hasPrivacy(userFull)));
             return;
         }
-        TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+        TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
         if (user == null) {
             callback.run(Boolean.FALSE);
         } else {
             MessagesController.getInstance(i).loadFullUser(user, 0, true, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BotWebViewAttachedSheet.lambda$hasPrivacy$35(Utilities.Callback.this, (TLRPC$UserFull) obj);
+                    BotWebViewAttachedSheet.lambda$hasPrivacy$35(Utilities.Callback.this, (TLRPC.UserFull) obj);
                 }
             });
         }
     }
 
-    public static boolean hasPrivacy(TLRPC$UserFull tLRPC$UserFull) {
-        return (tLRPC$UserFull == null || tLRPC$UserFull.bot_info == null) ? false : true;
+    public static boolean hasPrivacy(TLRPC.UserFull userFull) {
+        return (userFull == null || userFull.bot_info == null) ? false : true;
     }
 
-    public static boolean hasPrivacyCommand(TLRPC$UserFull tLRPC$UserFull) {
-        TL_bots$BotInfo tL_bots$BotInfo;
-        if (tLRPC$UserFull == null || (tL_bots$BotInfo = tLRPC$UserFull.bot_info) == null) {
+    public static boolean hasPrivacyCommand(TLRPC.UserFull userFull) {
+        TL_bots.BotInfo botInfo;
+        if (userFull == null || (botInfo = userFull.bot_info) == null) {
             return false;
         }
-        if (tL_bots$BotInfo.privacy_policy_url != null) {
+        if (botInfo.privacy_policy_url != null) {
             return true;
         }
-        Iterator it = tL_bots$BotInfo.commands.iterator();
+        Iterator<TLRPC.TL_botCommand> it = botInfo.commands.iterator();
         while (it.hasNext()) {
-            if ("privacy".equals(((TLRPC$TL_botCommand) it.next()).command)) {
+            if ("privacy".equals(it.next().command)) {
                 return true;
             }
         }
@@ -986,7 +972,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         MediaDataController.getInstance(i).loadAttachMenuBots(false, true);
     }
 
-    public static void lambda$deleteBot$27(final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$deleteBot$27(final int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -995,17 +981,17 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         });
     }
 
-    public static void lambda$deleteBot$28(final int i, long j, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, Runnable runnable, DialogInterface dialogInterface, int i2) {
-        TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
-        tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(j);
-        tLRPC$TL_messages_toggleBotInAttachMenu.enabled = false;
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
+    public static void lambda$deleteBot$28(final int i, long j, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable, DialogInterface dialogInterface, int i2) {
+        TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
+        tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(j);
+        tL_messages_toggleBotInAttachMenu.enabled = false;
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BotWebViewAttachedSheet.lambda$deleteBot$27(i, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                BotWebViewAttachedSheet.lambda$deleteBot$27(i, tLObject, tL_error);
             }
         }, 66);
-        tLRPC$TL_attachMenuBot.show_in_side_menu = false;
+        tL_attachMenuBot.show_in_side_menu = false;
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.attachMenuBotsDidLoad, new Object[0]);
         MediaDataController.getInstance(i).uninstallShortcut(j, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT);
         if (runnable != null) {
@@ -1025,8 +1011,8 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public static void lambda$hasPrivacy$35(Utilities.Callback callback, TLRPC$UserFull tLRPC$UserFull) {
-        callback.run(Boolean.valueOf(hasPrivacy(tLRPC$UserFull)));
+    public static void lambda$hasPrivacy$35(Utilities.Callback callback, TLRPC.UserFull userFull) {
+        callback.run(Boolean.valueOf(hasPrivacy(userFull)));
     }
 
     public void lambda$new$10(Float f) {
@@ -1089,22 +1075,22 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         return Boolean.valueOf(this.windowView.getKeyboardHeight() >= AndroidUtilities.dp(20.0f));
     }
 
-    public void lambda$new$3(TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$3(TLRPC.TL_error tL_error) {
         if (this.dismissed) {
             return;
         }
-        if (tLRPC$TL_error != null) {
+        if (tL_error != null) {
             dismiss();
         } else {
             AndroidUtilities.runOnUIThread(this.pollRunnable, 60000L);
         }
     }
 
-    public void lambda$new$4(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$4(TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$new$3(tLRPC$TL_error);
+                BotWebViewAttachedSheet.this.lambda$new$3(tL_error);
             }
         });
     }
@@ -1113,19 +1099,19 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         if (this.dismissed || this.queryId == 0) {
             return;
         }
-        TLRPC$TL_messages_prolongWebView tLRPC$TL_messages_prolongWebView = new TLRPC$TL_messages_prolongWebView();
-        tLRPC$TL_messages_prolongWebView.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
-        tLRPC$TL_messages_prolongWebView.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.peerId);
-        tLRPC$TL_messages_prolongWebView.query_id = this.queryId;
-        tLRPC$TL_messages_prolongWebView.silent = this.silent;
+        TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
+        tL_messages_prolongWebView.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
+        tL_messages_prolongWebView.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.peerId);
+        tL_messages_prolongWebView.query_id = this.queryId;
+        tL_messages_prolongWebView.silent = this.silent;
         if (this.replyToMsgId != 0) {
-            tLRPC$TL_messages_prolongWebView.reply_to = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
-            tLRPC$TL_messages_prolongWebView.flags |= 1;
+            tL_messages_prolongWebView.reply_to = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
+            tL_messages_prolongWebView.flags |= 1;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_prolongWebView, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_prolongWebView, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BotWebViewAttachedSheet.this.lambda$new$4(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                BotWebViewAttachedSheet.this.lambda$new$4(tLObject, tL_error);
             }
         });
     }
@@ -1171,87 +1157,87 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public void lambda$requestWebView$16(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$16(TLRPC.TL_error tL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
-        if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
+        if (tL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
             loadFromResponse(false);
         }
     }
 
-    public void lambda$requestWebView$17(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$17(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$16(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$16(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$18(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$18(TLRPC.TL_error tL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
-        if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
+        if (tL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
             loadFromResponse(false);
         }
     }
 
-    public void lambda$requestWebView$19(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$19(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$18(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$18(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$20(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$20(TLRPC.TL_error tL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
-        if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
+        if (tL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
             loadFromResponse(false);
         }
     }
 
-    public void lambda$requestWebView$21(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$21(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$20(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$20(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$22(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$22(TLRPC.TL_error tL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
-        if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
+        if (tL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
             loadFromResponse(false);
         }
     }
 
-    public void lambda$requestWebView$23(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$23(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$22(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$22(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$24(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$24(TLRPC.TL_error tL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
-        if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
+        if (tL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
             loadFromResponse(false);
         }
     }
 
-    public void lambda$requestWebView$25(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$25(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$24(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$24(tL_error, tLObject);
             }
         });
     }
@@ -1302,11 +1288,17 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         String str = null;
         this.fullsize = null;
         TLObject tLObject = this.requestProps.response;
-        if (tLObject instanceof TLRPC$TL_webViewResultUrl) {
-            TLRPC$TL_webViewResultUrl tLRPC$TL_webViewResultUrl = (TLRPC$TL_webViewResultUrl) tLObject;
-            this.queryId = tLRPC$TL_webViewResultUrl.query_id;
-            str = tLRPC$TL_webViewResultUrl.url;
-            this.fullsize = Boolean.valueOf(tLRPC$TL_webViewResultUrl.fullsize);
+        if (tLObject instanceof TLRPC.TL_webViewResultUrl) {
+            TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject;
+            this.queryId = tL_webViewResultUrl.query_id;
+            str = tL_webViewResultUrl.url;
+            this.fullsize = Boolean.valueOf(tL_webViewResultUrl.fullsize);
+        } else if (tLObject instanceof TLRPC.TL_appWebViewResultUrl) {
+            this.queryId = 0L;
+            str = ((TLRPC.TL_appWebViewResultUrl) tLObject).url;
+        } else if (tLObject instanceof TLRPC.TL_simpleWebViewResultUrl) {
+            this.queryId = 0L;
+            str = ((TLRPC.TL_simpleWebViewResultUrl) tLObject).url;
         }
         if (str != null && !z) {
             MediaDataController.getInstance(this.currentAccount).increaseWebappRating(this.requestProps.botId);
@@ -1347,12 +1339,12 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     public static boolean openPrivacy(final int i, final long j) {
-        TL_bots$BotInfo tL_bots$BotInfo;
-        TLRPC$UserFull userFull = MessagesController.getInstance(i).getUserFull(j);
-        if (userFull == null || (tL_bots$BotInfo = userFull.bot_info) == null) {
+        TL_bots.BotInfo botInfo;
+        TLRPC.UserFull userFull = MessagesController.getInstance(i).getUserFull(j);
+        if (userFull == null || (botInfo = userFull.bot_info) == null) {
             return false;
         }
-        String str = tL_bots$BotInfo.privacy_policy_url;
+        String str = botInfo.privacy_policy_url;
         if (str == null && !hasPrivacyCommand(userFull)) {
             str = LocaleController.getString(R.string.BotDefaultPrivacyPolicy);
         }
@@ -1376,17 +1368,17 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         return true;
     }
 
-    private void preloadShortcutBotIcon(TLRPC$User tLRPC$User, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
-        if (tLRPC$TL_attachMenuBot == null || !tLRPC$TL_attachMenuBot.show_in_side_menu || MediaDataController.getInstance(this.currentAccount).isShortcutAdded(this.botId, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT)) {
+    private void preloadShortcutBotIcon(TLRPC.User user, TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        if (tL_attachMenuBot == null || !tL_attachMenuBot.show_in_side_menu || MediaDataController.getInstance(this.currentAccount).isShortcutAdded(this.botId, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT)) {
             return;
         }
-        if (tLRPC$User == null) {
-            tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
+        if (user == null) {
+            user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         }
-        if (tLRPC$User == null || tLRPC$User.photo == null || FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$User.photo.photo_small, true).exists()) {
+        if (user == null || user.photo == null || FileLoader.getInstance(this.currentAccount).getPathToAttach(user.photo.photo_small, true).exists()) {
             return;
         }
-        MediaDataController.getInstance(this.currentAccount).preloadImage(ImageLocation.getForUser(tLRPC$User, 1), 0);
+        MediaDataController.getInstance(this.currentAccount).preloadImage(ImageLocation.getForUser(user, 1), 0);
     }
 
     private void updateActionBarColors() {
@@ -1537,7 +1529,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     @Override
-    public WindowView mo989getWindowView() {
+    public WindowView mo990getWindowView() {
         return this.windowView;
     }
 
@@ -1579,7 +1571,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             dismiss();
             return true;
         }
-        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
@@ -1824,25 +1816,25 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     public void showJustAddedBulletin() {
-        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
-        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
-        Iterator it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
+        TLRPC.TL_attachMenuBot tL_attachMenuBot;
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
+        Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
-                tLRPC$TL_attachMenuBot = null;
+                tL_attachMenuBot = null;
                 break;
             } else {
-                tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) it.next();
-                if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
+                tL_attachMenuBot = it.next();
+                if (tL_attachMenuBot.bot_id == this.botId) {
                     break;
                 }
             }
         }
-        if (tLRPC$TL_attachMenuBot == null) {
+        if (tL_attachMenuBot == null) {
             return;
         }
-        boolean z = tLRPC$TL_attachMenuBot.show_in_side_menu;
-        final String formatString = (z && tLRPC$TL_attachMenuBot.show_in_attach_menu) ? LocaleController.formatString("BotAttachMenuShortcatAddedAttachAndSide", R.string.BotAttachMenuShortcatAddedAttachAndSide, user.first_name) : z ? LocaleController.formatString("BotAttachMenuShortcatAddedSide", R.string.BotAttachMenuShortcatAddedSide, user.first_name) : LocaleController.formatString("BotAttachMenuShortcatAddedAttach", R.string.BotAttachMenuShortcatAddedAttach, user.first_name);
+        boolean z = tL_attachMenuBot.show_in_side_menu;
+        final String formatString = (z && tL_attachMenuBot.show_in_attach_menu) ? LocaleController.formatString("BotAttachMenuShortcatAddedAttachAndSide", R.string.BotAttachMenuShortcatAddedAttachAndSide, user.first_name) : z ? LocaleController.formatString("BotAttachMenuShortcatAddedSide", R.string.BotAttachMenuShortcatAddedSide, user.first_name) : LocaleController.formatString("BotAttachMenuShortcatAddedAttach", R.string.BotAttachMenuShortcatAddedAttach, user.first_name);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

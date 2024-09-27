@@ -27,9 +27,7 @@ import java.util.Map;
 import java.util.Objects;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ColoredImageSpan;
 
@@ -717,15 +715,15 @@ public class Emoji {
     }
 
     public static CharSequence replaceWithRestrictedEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, final Runnable runnable) {
-        TLRPC$Document tLRPC$Document;
+        TLRPC.Document document;
         int i;
         if (SharedConfig.useSystemEmoji || charSequence == null || charSequence.length() == 0) {
             return charSequence;
         }
         int i2 = UserConfig.selectedAccount;
-        TLRPC$TL_inputStickerSetShortName tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetShortName();
-        tLRPC$TL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-        TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i2).getStickerSet(tLRPC$TL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new Utilities.Callback() {
+        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+        tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
+        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i2).getStickerSet(tL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 runnable.run();
@@ -748,16 +746,16 @@ public class Emoji {
                     }
                 }
                 if (stickerSet != null) {
-                    Iterator it = stickerSet.documents.iterator();
+                    Iterator<TLRPC.Document> it = stickerSet.documents.iterator();
                     while (it.hasNext()) {
-                        tLRPC$Document = (TLRPC$Document) it.next();
-                        if (MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document, null).contains(emojiSpanRange.code)) {
+                        document = it.next();
+                        if (MessageObject.findAnimatedEmojiEmoticon(document, null).contains(emojiSpanRange.code)) {
                             break;
                         }
                     }
                 }
-                tLRPC$Document = null;
-                AnimatedEmojiSpan animatedEmojiSpan2 = tLRPC$Document != null ? new AnimatedEmojiSpan(tLRPC$Document, fontMetricsInt) : new AnimatedEmojiSpan(0L, fontMetricsInt);
+                document = null;
+                AnimatedEmojiSpan animatedEmojiSpan2 = document != null ? new AnimatedEmojiSpan(document, fontMetricsInt) : new AnimatedEmojiSpan(0L, fontMetricsInt);
                 animatedEmojiSpan2.emoji = emojiSpanRange.code.toString();
                 animatedEmojiSpan2.cacheType = 20;
                 newSpannable.setSpan(animatedEmojiSpan2, emojiSpanRange.start, emojiSpanRange.end, 33);

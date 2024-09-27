@@ -4,9 +4,7 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories$PrepaidGiveaway;
-import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
-import org.telegram.tgnet.tl.TL_stories$TL_prepaidStarsGiveaway;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -22,18 +20,18 @@ public class BoostTypeSingleCell extends BoostTypeCell {
         return false;
     }
 
-    public void setGiveaway(TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway) {
+    public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
         AvatarDrawable avatarDrawable;
         int i;
         int i2;
         String formatPluralString;
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-        if (!(tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidStarsGiveaway)) {
-            if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidGiveaway) {
+        if (!(prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway)) {
+            if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                 this.titleTextView.setText(LocaleController.getString(R.string.BoostingPreparedGiveawayOne));
                 this.avatarDrawable.setAvatarType(16);
-                TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway = (TL_stories$TL_prepaidGiveaway) tL_stories$PrepaidGiveaway;
-                int i3 = tL_stories$TL_prepaidGiveaway.months;
+                TL_stories.TL_prepaidGiveaway tL_prepaidGiveaway = (TL_stories.TL_prepaidGiveaway) prepaidGiveaway;
+                int i3 = tL_prepaidGiveaway.months;
                 if (i3 == 12) {
                     avatarDrawable = this.avatarDrawable;
                     i = -31392;
@@ -48,15 +46,15 @@ public class BoostTypeSingleCell extends BoostTypeCell {
                     i2 = -11945404;
                 }
                 avatarDrawable.setColor(i, i2);
-                formatPluralString = LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", tL_stories$PrepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_stories$TL_prepaidGiveaway.months, new Object[0]));
+                formatPluralString = LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_prepaidGiveaway.months, new Object[0]));
             }
             this.imageView.setImageDrawable(this.avatarDrawable);
             this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         }
-        TL_stories$TL_prepaidStarsGiveaway tL_stories$TL_prepaidStarsGiveaway = (TL_stories$TL_prepaidStarsGiveaway) tL_stories$PrepaidGiveaway;
+        TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
         this.avatarDrawable.setAvatarType(26);
-        this.titleTextView.setText(LocaleController.formatPluralStringComma("BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_stories$TL_prepaidStarsGiveaway.stars));
-        formatPluralString = LocaleController.formatPluralString("AmongWinners", tL_stories$TL_prepaidStarsGiveaway.quantity, new Object[0]);
+        this.titleTextView.setText(LocaleController.formatPluralStringComma("BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
+        formatPluralString = LocaleController.formatPluralString("AmongWinners", tL_prepaidStarsGiveaway.quantity, new Object[0]);
         setSubtitle(formatPluralString);
         this.imageView.setImageDrawable(this.avatarDrawable);
         this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));

@@ -26,12 +26,8 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_photo;
-import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
-import org.telegram.tgnet.tl.TL_bots$BotInfo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -209,7 +205,7 @@ public class BotHelpCell extends View {
         setText(z, str, null, null);
     }
 
-    public void setText(boolean z, String str, TLObject tLObject, TL_bots$BotInfo tL_bots$BotInfo) {
+    public void setText(boolean z, String str, TLObject tLObject, TL_bots.BotInfo botInfo) {
         int min;
         boolean z2 = tLObject != null;
         boolean z3 = !TextUtils.isEmpty(str);
@@ -224,26 +220,26 @@ public class BotHelpCell extends View {
         this.isPhotoVisible = z2;
         this.isTextVisible = z3;
         if (z2) {
-            String keyForParentObject = FileRefController.getKeyForParentObject(tL_bots$BotInfo);
+            String keyForParentObject = FileRefController.getKeyForParentObject(botInfo);
             if (!Objects.equals(this.currentPhotoKey, keyForParentObject)) {
                 this.currentPhotoKey = keyForParentObject;
-                if (tLObject instanceof TLRPC$TL_photo) {
-                    TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
-                    this.imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 400), tLRPC$Photo), "400_400", null, "jpg", tL_bots$BotInfo, 0);
-                } else if (tLObject instanceof TLRPC$Document) {
-                    TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
-                    TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 400);
+                if (tLObject instanceof TLRPC.TL_photo) {
+                    TLRPC.Photo photo = (TLRPC.Photo) tLObject;
+                    this.imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 400), photo), "400_400", null, "jpg", botInfo, 0);
+                } else if (tLObject instanceof TLRPC.Document) {
+                    TLRPC.Document document = (TLRPC.Document) tLObject;
+                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 400);
                     BitmapDrawable bitmapDrawable = null;
                     if (SharedConfig.getDevicePerformanceClass() != 0) {
-                        Iterator<TLRPC$PhotoSize> it = tLRPC$Document.thumbs.iterator();
+                        Iterator<TLRPC.PhotoSize> it = document.thumbs.iterator();
                         while (it.hasNext()) {
-                            TLRPC$PhotoSize next = it.next();
-                            if (next instanceof TLRPC$TL_photoStrippedSize) {
+                            TLRPC.PhotoSize next = it.next();
+                            if (next instanceof TLRPC.TL_photoStrippedSize) {
                                 bitmapDrawable = new BitmapDrawable(getResources(), ImageLoader.getStrippedPhotoBitmap(next.bytes, "b"));
                             }
                         }
                     }
-                    this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "g", ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(tLRPC$Document), tLRPC$Document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "86_86_b", bitmapDrawable, tLRPC$Document.size, "mp4", tL_bots$BotInfo, 0);
+                    this.imageReceiver.setImage(ImageLocation.getForDocument(document), "g", ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(document), document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "86_86_b", bitmapDrawable, document.size, "mp4", botInfo, 0);
                 }
                 int dp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(2.0f);
                 int dp2 = AndroidUtilities.dp(4.0f);

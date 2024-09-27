@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -43,7 +43,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            ((ArchivedStickerSetCell) viewHolder.itemView).setStickersSet((TLRPC$StickerSetCovered) StickersArchiveAlert.this.stickerSets.get(i), i != StickersArchiveAlert.this.stickerSets.size() - 1);
+            ((ArchivedStickerSetCell) viewHolder.itemView).setStickersSet((TLRPC.StickerSetCovered) StickersArchiveAlert.this.stickerSets.get(i), i != StickersArchiveAlert.this.stickerSets.size() - 1);
         }
 
         @Override
@@ -57,8 +57,8 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
     public StickersArchiveAlert(Context context, BaseFragment baseFragment, ArrayList arrayList) {
         super(context);
         int i;
-        TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) arrayList.get(0);
-        if (tLRPC$StickerSetCovered.set.masks) {
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(0);
+        if (stickerSetCovered.set.masks) {
             this.currentType = 1;
             i = R.string.ArchivedMasksAlertTitle;
         } else {
@@ -76,7 +76,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         textView.setGravity(LayoutHelper.getAbsoluteGravityStart());
         textView.setTextSize(1, 16.0f);
         textView.setPadding(AndroidUtilities.dp(23.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(23.0f), 0);
-        textView.setText(LocaleController.getString(tLRPC$StickerSetCovered.set.masks ? R.string.ArchivedMasksAlertInfo : R.string.ArchivedStickersAlertInfo));
+        textView.setText(LocaleController.getString(stickerSetCovered.set.masks ? R.string.ArchivedMasksAlertInfo : R.string.ArchivedStickersAlertInfo));
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         recyclerListView.setLayoutManager(new LinearLayoutManager(getContext(), 1, false));

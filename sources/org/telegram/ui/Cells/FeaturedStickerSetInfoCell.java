@@ -22,8 +22,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.ColorSpanUnderline;
@@ -45,7 +44,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
     private boolean needDivider;
     private Paint paint;
     private final Theme.ResourcesProvider resourcesProvider;
-    private TLRPC$StickerSetCovered set;
+    private TLRPC.StickerSetCovered set;
     private int stickerSetNameSearchIndex;
     private int stickerSetNameSearchLength;
     float unreadProgress;
@@ -140,7 +139,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         }
     }
 
-    public TLRPC$StickerSetCovered getStickerSet() {
+    public TLRPC.StickerSetCovered getStickerSet() {
         return this.set;
     }
 
@@ -220,15 +219,15 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         this.needDivider = z;
     }
 
-    public void setStickerSet(TLRPC$StickerSetCovered tLRPC$StickerSetCovered, boolean z) {
-        setStickerSet(tLRPC$StickerSetCovered, z, false, 0, 0, false);
+    public void setStickerSet(TLRPC.StickerSetCovered stickerSetCovered, boolean z) {
+        setStickerSet(stickerSetCovered, z, false, 0, 0, false);
     }
 
-    public void setStickerSet(TLRPC$StickerSetCovered tLRPC$StickerSetCovered, boolean z, boolean z2, int i, int i2) {
-        setStickerSet(tLRPC$StickerSetCovered, z, z2, i, i2, false);
+    public void setStickerSet(TLRPC.StickerSetCovered stickerSetCovered, boolean z, boolean z2, int i, int i2) {
+        setStickerSet(stickerSetCovered, z, z2, i, i2, false);
     }
 
-    public void setStickerSet(TLRPC$StickerSetCovered tLRPC$StickerSetCovered, boolean z, boolean z2, int i, int i2, boolean z3) {
+    public void setStickerSet(TLRPC.StickerSetCovered stickerSetCovered, boolean z, boolean z2, int i, int i2, boolean z3) {
         TextView textView;
         String formatPluralString;
         View view;
@@ -237,25 +236,25 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
             animatorSet.cancel();
             this.animatorSet = null;
         }
-        if (this.set != tLRPC$StickerSetCovered) {
+        if (this.set != stickerSetCovered) {
             this.unreadProgress = z ? 1.0f : 0.0f;
             invalidate();
         }
-        this.set = tLRPC$StickerSetCovered;
+        this.set = stickerSetCovered;
         this.stickerSetNameSearchIndex = i;
         this.stickerSetNameSearchLength = i2;
         if (i2 != 0) {
             updateStickerSetNameSearchSpan();
         } else {
-            this.nameTextView.setText(tLRPC$StickerSetCovered.set.title);
+            this.nameTextView.setText(stickerSetCovered.set.title);
         }
-        TLRPC$StickerSet tLRPC$StickerSet = tLRPC$StickerSetCovered.set;
-        if (tLRPC$StickerSet.emojis) {
+        TLRPC.StickerSet stickerSet = stickerSetCovered.set;
+        if (stickerSet.emojis) {
             textView = this.infoTextView;
-            formatPluralString = LocaleController.formatPluralString("EmojiCount", tLRPC$StickerSet.count, new Object[0]);
+            formatPluralString = LocaleController.formatPluralString("EmojiCount", stickerSet.count, new Object[0]);
         } else {
             textView = this.infoTextView;
-            formatPluralString = LocaleController.formatPluralString("Stickers", tLRPC$StickerSet.count, new Object[0]);
+            formatPluralString = LocaleController.formatPluralString("Stickers", stickerSet.count, new Object[0]);
         }
         textView.setText(formatPluralString);
         this.isUnread = z;
@@ -265,7 +264,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
                 return;
             }
             this.addButton.setVisibility(0);
-            boolean z4 = z3 || MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.id);
+            boolean z4 = z3 || MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(stickerSetCovered.set.id);
             this.isInstalled = z4;
             if (z2) {
                 (z4 ? this.delButton : this.addButton).setVisibility(0);

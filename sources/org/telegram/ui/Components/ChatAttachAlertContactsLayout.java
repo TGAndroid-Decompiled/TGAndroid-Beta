@@ -33,8 +33,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -78,8 +77,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             if (obj instanceof ContactsController.Contact) {
                 return new ListItemID(Type.CONTACT, ((ContactsController.Contact) obj).contact_id);
             }
-            if (obj instanceof TLRPC$User) {
-                return new ListItemID(Type.USER, ((TLRPC$User) obj).id);
+            if (obj instanceof TLRPC.User) {
+                return new ListItemID(Type.USER, ((TLRPC.User) obj).id);
             }
             return null;
         }
@@ -107,7 +106,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
         }
 
-        void didSelectContact(TLRPC$User tLRPC$User, boolean z, int i, long j, boolean z2);
+        void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2);
 
         void didSelectContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2);
     }
@@ -124,8 +123,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             return contact.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
-        public static CharSequence lambda$onBindViewHolder$1(TLRPC$User tLRPC$User) {
-            return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
+        public static CharSequence lambda$onBindViewHolder$1(TLRPC.User user) {
+            return PhoneFormat.getInstance().format("+" + user.phone);
         }
 
         @Override
@@ -204,7 +203,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
 
         @Override
         public void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
-            final TLRPC$User tLRPC$User;
+            final TLRPC.User user;
             if (viewHolder.getItemViewType() == 0) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 Object item = getItem(i, i2);
@@ -214,10 +213,10 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 }
                 if (item instanceof ContactsController.Contact) {
                     final ContactsController.Contact contact = (ContactsController.Contact) item;
-                    tLRPC$User = contact.user;
-                    if (tLRPC$User == null) {
+                    user = contact.user;
+                    if (user == null) {
                         userCell.setCurrentId(contact.contact_id);
-                        userCell.setData((TLRPC$User) null, ContactsController.formatName(contact.first_name, contact.last_name), new UserCell.CharSequenceCallback() {
+                        userCell.setData((TLRPC.User) null, ContactsController.formatName(contact.first_name, contact.last_name), new UserCell.CharSequenceCallback() {
                             @Override
                             public final CharSequence run() {
                                 CharSequence lambda$onBindViewHolder$0;
@@ -225,17 +224,17 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                                 return lambda$onBindViewHolder$0;
                             }
                         }, z);
-                        tLRPC$User = null;
+                        user = null;
                     }
                 } else {
-                    tLRPC$User = (TLRPC$User) item;
+                    user = (TLRPC.User) item;
                 }
-                if (tLRPC$User != null) {
-                    userCell.setData(tLRPC$User, (CharSequence) null, new UserCell.CharSequenceCallback() {
+                if (user != null) {
+                    userCell.setData(user, (CharSequence) null, new UserCell.CharSequenceCallback() {
                         @Override
                         public final CharSequence run() {
                             CharSequence lambda$onBindViewHolder$1;
-                            lambda$onBindViewHolder$1 = ChatAttachAlertContactsLayout.ShareAdapter.lambda$onBindViewHolder$1(TLRPC$User.this);
+                            lambda$onBindViewHolder$1 = ChatAttachAlertContactsLayout.ShareAdapter.lambda$onBindViewHolder$1(TLRPC.User.this);
                             return lambda$onBindViewHolder$1;
                         }
                     }, z);
@@ -274,8 +273,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             return contact.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
-        public static CharSequence lambda$onBindViewHolder$5(TLRPC$User tLRPC$User) {
-            return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
+        public static CharSequence lambda$onBindViewHolder$5(TLRPC.User user) {
+            return PhoneFormat.getInstance().format("+" + user.phone);
         }
 
         public void lambda$processSearch$1(java.lang.String r19, java.util.ArrayList r20, java.util.ArrayList r21, int r22, int r23) {
@@ -358,17 +357,17 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            final TLRPC$User tLRPC$User;
+            final TLRPC.User user;
             if (viewHolder.getItemViewType() == 0) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 boolean z = i != getItemCount() + (-2);
                 Object item = getItem(i);
                 if (item instanceof ContactsController.Contact) {
                     final ContactsController.Contact contact = (ContactsController.Contact) item;
-                    tLRPC$User = contact.user;
-                    if (tLRPC$User == null) {
+                    user = contact.user;
+                    if (user == null) {
                         userCell.setCurrentId(contact.contact_id);
-                        userCell.setData((TLRPC$User) null, (CharSequence) this.searchResultNames.get(i - 1), new UserCell.CharSequenceCallback() {
+                        userCell.setData((TLRPC.User) null, (CharSequence) this.searchResultNames.get(i - 1), new UserCell.CharSequenceCallback() {
                             @Override
                             public final CharSequence run() {
                                 CharSequence lambda$onBindViewHolder$4;
@@ -376,17 +375,17 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                                 return lambda$onBindViewHolder$4;
                             }
                         }, z);
-                        tLRPC$User = null;
+                        user = null;
                     }
                 } else {
-                    tLRPC$User = (TLRPC$User) item;
+                    user = (TLRPC.User) item;
                 }
-                if (tLRPC$User != null) {
-                    userCell.setData(tLRPC$User, (CharSequence) this.searchResultNames.get(i - 1), new UserCell.CharSequenceCallback() {
+                if (user != null) {
+                    userCell.setData(user, (CharSequence) this.searchResultNames.get(i - 1), new UserCell.CharSequenceCallback() {
                         @Override
                         public final CharSequence run() {
                             CharSequence lambda$onBindViewHolder$5;
-                            lambda$onBindViewHolder$5 = ChatAttachAlertContactsLayout.ShareSearchAdapter.lambda$onBindViewHolder$5(TLRPC$User.this);
+                            lambda$onBindViewHolder$5 = ChatAttachAlertContactsLayout.ShareSearchAdapter.lambda$onBindViewHolder$5(TLRPC.User.this);
                             return lambda$onBindViewHolder$5;
                         }
                     }, z);
@@ -442,10 +441,10 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         private int currentId;
         private CharSequence currentName;
         private CharSequence currentStatus;
-        private TLRPC$User currentUser;
+        private TLRPC.User currentUser;
         private CharSequence formattedPhoneNumber;
-        private TLRPC$User formattedPhoneNumberUser;
-        private TLRPC$FileLocation lastAvatar;
+        private TLRPC.User formattedPhoneNumberUser;
+        private TLRPC.FileLocation lastAvatar;
         private String lastName;
         private int lastStatus;
         private SimpleTextView nameTextView;
@@ -560,8 +559,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             this.currentId = i;
         }
 
-        public void setData(TLRPC$User tLRPC$User, CharSequence charSequence, CharSequence charSequence2, boolean z) {
-            if (tLRPC$User == null && charSequence == null && charSequence2 == null) {
+        public void setData(TLRPC.User user, CharSequence charSequence, CharSequence charSequence2, boolean z) {
+            if (user == null && charSequence == null && charSequence2 == null) {
                 this.currentStatus = null;
                 this.currentName = null;
                 this.nameTextView.setText("");
@@ -571,14 +570,14 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
             this.currentStatus = charSequence2;
             this.currentName = charSequence;
-            this.currentUser = tLRPC$User;
+            this.currentUser = user;
             this.needDivider = z;
             setWillNotDraw(!z);
             update(0);
         }
 
-        public void setData(TLRPC$User tLRPC$User, CharSequence charSequence, final CharSequenceCallback charSequenceCallback, boolean z) {
-            setData(tLRPC$User, charSequence, (CharSequence) null, z);
+        public void setData(TLRPC.User user, CharSequence charSequence, final CharSequenceCallback charSequenceCallback, boolean z) {
+            setData(user, charSequence, (CharSequence) null, z);
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
@@ -590,11 +589,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         public void lambda$setData$0(CharSequence charSequence) {
             this.currentStatus = charSequence;
             if (charSequence == null) {
-                TLRPC$User tLRPC$User = this.currentUser;
-                if (tLRPC$User == null) {
+                TLRPC.User user = this.currentUser;
+                if (user == null) {
                     return;
                 }
-                if (TextUtils.isEmpty(tLRPC$User.phone)) {
+                if (TextUtils.isEmpty(user.phone)) {
                     this.statusTextView.setText(LocaleController.getString(R.string.NumberUnknown));
                     return;
                 } else if (this.formattedPhoneNumberUser == this.currentUser || (charSequence = this.formattedPhoneNumber) == null) {
@@ -779,9 +778,9 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$new$0(TLRPC$User tLRPC$User, boolean z, int i, long j, boolean z2) {
+    public void lambda$new$0(TLRPC.User user, boolean z, int i, long j, boolean z2) {
         this.parentAlert.dismiss(true);
-        this.delegate.didSelectContact(tLRPC$User, z, i, j, z2);
+        this.delegate.didSelectContact(user, z, i, j, z2);
     }
 
     public void lambda$new$1(Theme.ResourcesProvider resourcesProvider, View view, int i) {
@@ -811,10 +810,10 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
             if (item instanceof ContactsController.Contact) {
                 ContactsController.Contact contact2 = (ContactsController.Contact) item;
-                TLRPC$User tLRPC$User = contact2.user;
-                if (tLRPC$User != null) {
-                    str3 = tLRPC$User.first_name;
-                    str4 = tLRPC$User.last_name;
+                TLRPC.User user = contact2.user;
+                if (user != null) {
+                    str3 = user.first_name;
+                    str4 = user.last_name;
                 } else {
                     str3 = contact2.first_name;
                     str4 = contact2.last_name;
@@ -823,23 +822,23 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 str2 = str4;
                 str = str3;
             } else {
-                TLRPC$User tLRPC$User2 = (TLRPC$User) item;
+                TLRPC.User user2 = (TLRPC.User) item;
                 ContactsController.Contact contact3 = new ContactsController.Contact();
-                String str5 = tLRPC$User2.first_name;
+                String str5 = user2.first_name;
                 contact3.first_name = str5;
-                String str6 = tLRPC$User2.last_name;
+                String str6 = user2.last_name;
                 contact3.last_name = str6;
-                contact3.phones.add(tLRPC$User2.phone);
-                contact3.user = tLRPC$User2;
+                contact3.phones.add(user2.phone);
+                contact3.user = user2;
                 contact = contact3;
                 str = str5;
                 str2 = str6;
             }
-            PhonebookShareAlert phonebookShareAlert = new PhonebookShareAlert(this.parentAlert.baseFragment, contact, (TLRPC$User) null, (Uri) null, (File) null, str, str2, resourcesProvider);
+            PhonebookShareAlert phonebookShareAlert = new PhonebookShareAlert(this.parentAlert.baseFragment, contact, (TLRPC.User) null, (Uri) null, (File) null, str, str2, resourcesProvider);
             phonebookShareAlert.setDelegate(new PhonebookShareAlertDelegate() {
                 @Override
-                public final void didSelectContact(TLRPC$User tLRPC$User3, boolean z, int i2, long j, boolean z2) {
-                    ChatAttachAlertContactsLayout.this.lambda$new$0(tLRPC$User3, z, i2, j, z2);
+                public final void didSelectContact(TLRPC.User user3, boolean z, int i2, long j, boolean z2) {
+                    ChatAttachAlertContactsLayout.this.lambda$new$0(user3, z, i2, j, z2);
                 }
 
                 @Override
@@ -862,7 +861,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         return true;
     }
 
-    private org.telegram.tgnet.TLRPC$User prepareContact(java.lang.Object r15) {
+    private org.telegram.tgnet.TLRPC.User prepareContact(java.lang.Object r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertContactsLayout.prepareContact(java.lang.Object):org.telegram.tgnet.TLRPC$User");
     }
 
@@ -978,8 +977,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         return this.listView.getPaddingTop();
     }
 
-    public ArrayList<TLRPC$User> getSelected() {
-        ArrayList<TLRPC$User> arrayList = new ArrayList<>(this.selectedContacts.size());
+    public ArrayList<TLRPC.User> getSelected() {
+        ArrayList<TLRPC.User> arrayList = new ArrayList<>(this.selectedContacts.size());
         Iterator it = this.selectedContactsOrder.iterator();
         while (it.hasNext()) {
             arrayList.add(prepareContact(this.selectedContacts.get((ListItemID) it.next())));

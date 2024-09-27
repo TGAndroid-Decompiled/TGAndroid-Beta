@@ -38,14 +38,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$EmojiStatus;
-import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$TL_emojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusEmpty;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
@@ -98,8 +91,8 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         AnonymousClass1() {
         }
 
-        public void lambda$setAsEmojiStatus$0(TLRPC$EmojiStatus tLRPC$EmojiStatus) {
-            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(tLRPC$EmojiStatus);
+        public void lambda$setAsEmojiStatus$0(TLRPC.EmojiStatus emojiStatus) {
+            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(emojiStatus);
         }
 
         @Override
@@ -113,8 +106,8 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public boolean canDeleteSticker(TLRPC$Document tLRPC$Document) {
-            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canDeleteSticker(this, tLRPC$Document);
+        public boolean canDeleteSticker(TLRPC.Document document) {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canDeleteSticker(this, document);
         }
 
         @Override
@@ -128,19 +121,19 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public Boolean canSetAsStatus(TLRPC$Document tLRPC$Document) {
-            TLRPC$User currentUser;
+        public Boolean canSetAsStatus(TLRPC.Document document) {
+            TLRPC.User currentUser;
             if (SuggestEmojiView.this.isSetAsStatusForbidden || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
                 return null;
             }
             Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-            return Boolean.valueOf(tLRPC$Document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != tLRPC$Document.id));
+            return Boolean.valueOf(document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.id));
         }
 
         @Override
-        public void copyEmoji(TLRPC$Document tLRPC$Document) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document));
-            valueOf.setSpan(new AnimatedEmojiSpan(tLRPC$Document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
+        public void copyEmoji(TLRPC.Document document) {
+            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
+            valueOf.setSpan(new AnimatedEmojiSpan(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
             if (!AndroidUtilities.addToClipboard(valueOf) || SuggestEmojiView.this.enterView == null) {
                 return;
             }
@@ -148,13 +141,13 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void deleteSticker(TLRPC$Document tLRPC$Document) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$deleteSticker(this, tLRPC$Document);
+        public void deleteSticker(TLRPC.Document document) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$deleteSticker(this, document);
         }
 
         @Override
-        public void editSticker(TLRPC$Document tLRPC$Document) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$editSticker(this, tLRPC$Document);
+        public void editSticker(TLRPC.Document document) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$editSticker(this, document);
         }
 
         @Override
@@ -205,7 +198,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public boolean needCopy(TLRPC$Document tLRPC$Document) {
+        public boolean needCopy(TLRPC.Document document) {
             if (SuggestEmojiView.this.isCopyForbidden) {
                 return false;
             }
@@ -228,8 +221,8 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public boolean needRemoveFromRecent(TLRPC$Document tLRPC$Document) {
-            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needRemoveFromRecent(this, tLRPC$Document);
+        public boolean needRemoveFromRecent(TLRPC.Document document) {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needRemoveFromRecent(this, document);
         }
 
         @Override
@@ -254,7 +247,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void openSet(TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
+        public void openSet(TLRPC.InputStickerSet inputStickerSet, boolean z) {
         }
 
         @Override
@@ -263,8 +256,8 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void removeFromRecent(TLRPC$Document tLRPC$Document) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$removeFromRecent(this, tLRPC$Document);
+        public void removeFromRecent(TLRPC.Document document) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$removeFromRecent(this, document);
         }
 
         @Override
@@ -273,13 +266,13 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void sendEmoji(TLRPC$Document tLRPC$Document) {
+        public void sendEmoji(TLRPC.Document document) {
             if (SuggestEmojiView.this.enterView == null) {
                 return;
             }
             BaseFragment parentFragment = SuggestEmojiView.this.enterView.getParentFragment();
             if (parentFragment instanceof ChatActivity) {
-                ((ChatActivity) parentFragment).sendAnimatedEmoji(tLRPC$Document, true, 0);
+                ((ChatActivity) parentFragment).sendAnimatedEmoji(document, true, 0);
                 SuggestEmojiView.this.enterView.setFieldText("");
             }
         }
@@ -295,38 +288,38 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void sendSticker(TLRPC$Document tLRPC$Document, String str, Object obj, boolean z, int i) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, tLRPC$Document, str, obj, z, i);
+        public void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, document, str, obj, z, i);
         }
 
         @Override
-        public void setAsEmojiStatus(TLRPC$Document tLRPC$Document, Integer num) {
-            TLRPC$EmojiStatus tLRPC$EmojiStatus;
+        public void setAsEmojiStatus(TLRPC.Document document, Integer num) {
+            TLRPC.EmojiStatus emojiStatus;
             Bulletin createEmojiBulletin;
-            if (tLRPC$Document == null) {
-                tLRPC$EmojiStatus = new TLRPC$TL_emojiStatusEmpty();
+            if (document == null) {
+                emojiStatus = new TLRPC.TL_emojiStatusEmpty();
             } else if (num != null) {
-                TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = new TLRPC$TL_emojiStatusUntil();
-                tLRPC$TL_emojiStatusUntil.document_id = tLRPC$Document.id;
-                tLRPC$TL_emojiStatusUntil.until = num.intValue();
-                tLRPC$EmojiStatus = tLRPC$TL_emojiStatusUntil;
+                TLRPC.TL_emojiStatusUntil tL_emojiStatusUntil = new TLRPC.TL_emojiStatusUntil();
+                tL_emojiStatusUntil.document_id = document.id;
+                tL_emojiStatusUntil.until = num.intValue();
+                emojiStatus = tL_emojiStatusUntil;
             } else {
-                TLRPC$TL_emojiStatus tLRPC$TL_emojiStatus = new TLRPC$TL_emojiStatus();
-                tLRPC$TL_emojiStatus.document_id = tLRPC$Document.id;
-                tLRPC$EmojiStatus = tLRPC$TL_emojiStatus;
+                TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+                tL_emojiStatus.document_id = document.id;
+                emojiStatus = tL_emojiStatus;
             }
-            TLRPC$User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
-            final TLRPC$EmojiStatus tLRPC$TL_emojiStatusEmpty = currentUser == null ? new TLRPC$TL_emojiStatusEmpty() : currentUser.emoji_status;
-            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(tLRPC$EmojiStatus);
+            TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
+            final TLRPC.EmojiStatus tL_emojiStatusEmpty = currentUser == null ? new TLRPC.TL_emojiStatusEmpty() : currentUser.emoji_status;
+            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(emojiStatus);
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SuggestEmojiView.AnonymousClass1.this.lambda$setAsEmojiStatus$0(tLRPC$TL_emojiStatusEmpty);
+                    SuggestEmojiView.AnonymousClass1.this.lambda$setAsEmojiStatus$0(tL_emojiStatusEmpty);
                 }
             };
             BaseFragment parentFragment = SuggestEmojiView.this.enterView == null ? null : SuggestEmojiView.this.enterView.getParentFragment();
             if (parentFragment != null) {
-                if (tLRPC$Document == null) {
+                if (document == null) {
                     Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(SuggestEmojiView.this.getContext(), SuggestEmojiView.this.resourcesProvider);
                     simpleLayout.textView.setText(LocaleController.getString(R.string.RemoveStatusInfo));
                     simpleLayout.imageView.setImageResource(R.drawable.msg_settings_premium);
@@ -335,7 +328,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                     simpleLayout.setButton(undoButton);
                     createEmojiBulletin = Bulletin.make(parentFragment, simpleLayout, 1500);
                 } else {
-                    createEmojiBulletin = BulletinFactory.of(parentFragment).createEmojiBulletin(tLRPC$Document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.Undo), runnable);
+                    createEmojiBulletin = BulletinFactory.of(parentFragment).createEmojiBulletin(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.Undo), runnable);
                 }
                 createEmojiBulletin.show();
             }
@@ -347,8 +340,8 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void stickerSetSelected(TLRPC$StickerSet tLRPC$StickerSet, String str) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$stickerSetSelected(this, tLRPC$StickerSet, str);
+        public void stickerSetSelected(TLRPC.StickerSet stickerSet, String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$stickerSetSelected(this, stickerSet, str);
         }
     }
 
@@ -884,7 +877,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         try {
             long parseLong = Long.parseLong(str.substring(9));
-            TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, parseLong);
+            TLRPC.Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, parseLong);
             SpannableString spannableString = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(findDocument));
             spannableString.setSpan(findDocument == null ? new AnimatedEmojiSpan(parseLong, fontMetricsInt) : new AnimatedEmojiSpan(findDocument, fontMetricsInt), 0, spannableString.length(), 33);
             return spannableString;

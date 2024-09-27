@@ -11,6 +11,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -88,19 +89,8 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$InputInvoice;
-import org.telegram.tgnet.TLRPC$ReplyMarkup;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBotsBot;
-import org.telegram.tgnet.TLRPC$TL_boolTrue;
-import org.telegram.tgnet.TLRPC$TL_dataJSON;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputInvoiceSlug;
-import org.telegram.tgnet.TLRPC$TL_messages_getAttachMenuBot;
-import org.telegram.tgnet.TLRPC$Updates;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_bots$allowSendMessage;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -137,7 +127,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private BotBiometry biometry;
     private long blockedDialogsUntil;
     public final boolean bot;
-    private TLRPC$User botUser;
+    private TLRPC.User botUser;
     private BotWebViewProxy botWebViewProxy;
     private String buttonData;
     private BottomSheet cameraBottomSheet;
@@ -448,10 +438,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 return false;
             }
 
-            public static void $default$onCloseToTabs(Delegate delegate) {
-                delegate.onCloseRequested(null);
-            }
-
             public static void $default$onInstantClose(Delegate delegate) {
                 delegate.onCloseRequested(null);
             }
@@ -491,7 +477,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         void onWebAppExpand();
 
-        void onWebAppOpenInvoice(TLRPC$InputInvoice tLRPC$InputInvoice, String str, TLObject tLObject);
+        void onWebAppOpenInvoice(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
 
         void onWebAppReady();
 
@@ -505,7 +491,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         void onWebAppSwipingBehavior(boolean z);
 
-        void onWebAppSwitchInlineQuery(TLRPC$User tLRPC$User, String str, List list);
+        void onWebAppSwitchInlineQuery(TLRPC.User user, String str, List list);
     }
 
     public static class MyWebView extends WebView {
@@ -2486,6 +2472,16 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return new JSONObject();
     }
 
+    private static String capitalizeFirst(String str) {
+        if (str == null) {
+            return "";
+        }
+        if (str.length() <= 1) {
+            return str.toUpperCase();
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+    }
+
     private boolean checkPermissions(String[] strArr) {
         int checkSelfPermission;
         for (String str : strArr) {
@@ -2569,11 +2565,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public void lambda$loadFlickerAndSettingsItem$1(TLObject tLObject) {
         boolean z;
-        if (tLObject instanceof TLRPC$TL_attachMenuBotsBot) {
-            TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = ((TLRPC$TL_attachMenuBotsBot) tLObject).bot;
-            TLRPC$TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+        if (tLObject instanceof TLRPC.TL_attachMenuBotsBot) {
+            TLRPC.TL_attachMenuBot tL_attachMenuBot = ((TLRPC.TL_attachMenuBotsBot) tLObject).bot;
+            TLRPC.TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(tL_attachMenuBot);
             if (placeholderStaticAttachMenuBotIcon == null) {
-                placeholderStaticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+                placeholderStaticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
                 z = true;
             } else {
                 z = false;
@@ -2581,13 +2577,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (placeholderStaticAttachMenuBotIcon != null) {
                 this.flickerView.setVisibility(0);
                 this.flickerView.setAlpha(1.0f);
-                this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, tLRPC$TL_attachMenuBot);
+                this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, tL_attachMenuBot);
                 setupFlickerParams(z);
             }
         }
     }
 
-    public void lambda$loadFlickerAndSettingsItem$2(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadFlickerAndSettingsItem$2(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -2622,52 +2618,52 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.lastDialogClosed = System.currentTimeMillis();
     }
 
-    public void lambda$onEventReceived$11(TLRPC$TL_error tLRPC$TL_error, String str, TLRPC$TL_inputInvoiceSlug tLRPC$TL_inputInvoiceSlug, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
+    public void lambda$onEventReceived$11(TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
+        if (tL_error != null) {
             onInvoiceStatusUpdate(str, "failed");
         } else {
-            this.delegate.onWebAppOpenInvoice(tLRPC$TL_inputInvoiceSlug, str, tLObject);
+            this.delegate.onWebAppOpenInvoice(tL_inputInvoiceSlug, str, tLObject);
         }
     }
 
-    public void lambda$onEventReceived$12(final String str, final TLRPC$TL_inputInvoiceSlug tLRPC$TL_inputInvoiceSlug, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onEventReceived$12(final String str, final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$11(tLRPC$TL_error, str, tLRPC$TL_inputInvoiceSlug, tLObject);
+                BotWebViewContainer.this.lambda$onEventReceived$11(tL_error, str, tL_inputInvoiceSlug, tLObject);
             }
         });
     }
 
-    public void lambda$onEventReceived$13(TLObject tLObject, String[] strArr, TLRPC$TL_error tLRPC$TL_error, DialogInterface dialogInterface) {
+    public void lambda$onEventReceived$13(TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, DialogInterface dialogInterface) {
         if (tLObject != null) {
             strArr[0] = "allowed";
-            if (tLObject instanceof TLRPC$Updates) {
-                MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC$Updates) tLObject, false);
+            if (tLObject instanceof TLRPC.Updates) {
+                MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             }
         }
-        if (tLRPC$TL_error != null) {
-            unknownError(tLRPC$TL_error.text);
+        if (tL_error != null) {
+            unknownError(tL_error.text);
         }
         dialogInterface.dismiss();
     }
 
-    public void lambda$onEventReceived$14(final String[] strArr, final DialogInterface dialogInterface, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onEventReceived$14(final String[] strArr, final DialogInterface dialogInterface, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$13(tLObject, strArr, tLRPC$TL_error, dialogInterface);
+                BotWebViewContainer.this.lambda$onEventReceived$13(tLObject, strArr, tL_error, dialogInterface);
             }
         });
     }
 
     public void lambda$onEventReceived$15(final String[] strArr, final DialogInterface dialogInterface, int i) {
-        TL_bots$allowSendMessage tL_bots$allowSendMessage = new TL_bots$allowSendMessage();
-        tL_bots$allowSendMessage.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botUser);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_bots$allowSendMessage, new RequestDelegate() {
+        TL_bots.allowSendMessage allowsendmessage = new TL_bots.allowSendMessage();
+        allowsendmessage.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botUser);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(allowsendmessage, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BotWebViewContainer.this.lambda$onEventReceived$14(strArr, dialogInterface, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                BotWebViewContainer.this.lambda$onEventReceived$14(strArr, dialogInterface, tLObject, tL_error);
             }
         });
     }
@@ -2682,10 +2678,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$18(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC$TL_error tLRPC$TL_error) {
-        if (!(tLObject instanceof TLRPC$TL_boolTrue)) {
-            if (tLRPC$TL_error != null) {
-                unknownError(tLRPC$TL_error.text);
+    public void lambda$onEventReceived$18(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC.TL_error tL_error) {
+        if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
+            if (tL_error != null) {
+                unknownError(tL_error.text);
                 return;
             } else {
                 final String[] strArr = {"cancelled"};
@@ -2717,23 +2713,23 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$19(final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onEventReceived$19(final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$18(tLObject, i, myWebView, tLRPC$TL_error);
+                BotWebViewContainer.this.lambda$onEventReceived$18(tLObject, i, myWebView, tL_error);
             }
         });
     }
 
-    public void lambda$onEventReceived$20(String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, int i, MyWebView myWebView) {
+    public void lambda$onEventReceived$20(String str, TLObject tLObject, TLRPC.TL_error tL_error, int i, MyWebView myWebView) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("req_id", str);
-            if (tLObject instanceof TLRPC$TL_dataJSON) {
-                jSONObject.put("result", new JSONTokener(((TLRPC$TL_dataJSON) tLObject).data).nextValue());
-            } else if (tLRPC$TL_error != null) {
-                jSONObject.put("error", tLRPC$TL_error.text);
+            if (tLObject instanceof TLRPC.TL_dataJSON) {
+                jSONObject.put("result", new JSONTokener(((TLRPC.TL_dataJSON) tLObject).data).nextValue());
+            } else if (tL_error != null) {
+                jSONObject.put("error", tL_error.text);
             }
             notifyEvent(i, myWebView, "custom_method_invoked", jSONObject);
         } catch (Exception e) {
@@ -2742,17 +2738,17 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$21(final String str, final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onEventReceived$21(final String str, final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$20(str, tLObject, tLRPC$TL_error, i, myWebView);
+                BotWebViewContainer.this.lambda$onEventReceived$20(str, tLObject, tL_error, i, myWebView);
             }
         });
     }
 
     public void lambda$onEventReceived$22(int i, MyWebView myWebView) {
-        SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, true, 0));
+        SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0));
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("status", "sent");
@@ -2775,7 +2771,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             });
             return;
         }
-        SendMessagesHelper.getInstance(i3).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, true, 0));
+        SendMessagesHelper.getInstance(i3).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0));
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("status", "sent");
@@ -3369,7 +3365,19 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
         }
         try {
-            settings.setUserAgentString(settings.getUserAgentString().replace("; wv)", ")").replaceAll("\\(Linux; Android.+;[^)]+\\)", "(Linux; Android " + Build.VERSION.RELEASE + "; K)").replaceAll("Version/[\\d\\.]+ ", ""));
+            String replace = settings.getUserAgentString().replace("; wv)", ")");
+            StringBuilder sb = new StringBuilder();
+            sb.append("(Linux; Android ");
+            String str = Build.VERSION.RELEASE;
+            sb.append(str);
+            sb.append("; K)");
+            String replaceAll = replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", sb.toString()).replaceAll("Version/[\\d\\.]+ ", "");
+            if (this.bot) {
+                PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
+                int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                replaceAll = replaceAll + " Telegram-Android/" + packageInfo.versionName + " (" + capitalizeFirst(Build.MANUFACTURER) + " " + Build.MODEL + "; Android " + str + "; SDK " + Build.VERSION.SDK_INT + "; " + (devicePerformanceClass == 0 ? "LOW" : devicePerformanceClass == 1 ? "AVERAGE" : "HIGH") + ")";
+            }
+            settings.setUserAgentString(replaceAll);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -3645,7 +3653,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void loadFlickerAndSettingsItem(int i, long j, ActionBarMenuSubItem actionBarMenuSubItem) {
-        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
+        TLRPC.TL_attachMenuBot tL_attachMenuBot;
         boolean z;
         String publicUsername = UserObject.getPublicUsername(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
         if (publicUsername != null && publicUsername.equals("DurgerKingBot")) {
@@ -3655,32 +3663,32 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             setupFlickerParams(false);
             return;
         }
-        Iterator it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
+        Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
-                tLRPC$TL_attachMenuBot = null;
+                tL_attachMenuBot = null;
                 break;
             } else {
-                tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) it.next();
-                if (tLRPC$TL_attachMenuBot.bot_id == j) {
+                tL_attachMenuBot = it.next();
+                if (tL_attachMenuBot.bot_id == j) {
                     break;
                 }
             }
         }
-        if (tLRPC$TL_attachMenuBot == null) {
-            TLRPC$TL_messages_getAttachMenuBot tLRPC$TL_messages_getAttachMenuBot = new TLRPC$TL_messages_getAttachMenuBot();
-            tLRPC$TL_messages_getAttachMenuBot.bot = MessagesController.getInstance(i).getInputUser(j);
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getAttachMenuBot, new RequestDelegate() {
+        if (tL_attachMenuBot == null) {
+            TLRPC.TL_messages_getAttachMenuBot tL_messages_getAttachMenuBot = new TLRPC.TL_messages_getAttachMenuBot();
+            tL_messages_getAttachMenuBot.bot = MessagesController.getInstance(i).getInputUser(j);
+            ConnectionsManager.getInstance(i).sendRequest(tL_messages_getAttachMenuBot, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$2(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$2(tLObject, tL_error);
                 }
             });
             return;
         }
-        TLRPC$TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+        TLRPC.TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(tL_attachMenuBot);
         if (placeholderStaticAttachMenuBotIcon == null) {
-            placeholderStaticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+            placeholderStaticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
             z = true;
         } else {
             z = false;
@@ -3688,7 +3696,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (placeholderStaticAttachMenuBotIcon != null) {
             this.flickerView.setVisibility(0);
             this.flickerView.setAlpha(1.0f);
-            this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, tLRPC$TL_attachMenuBot);
+            this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, tL_attachMenuBot);
             setupFlickerParams(z);
         }
     }
@@ -3897,8 +3905,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void setBotUser(TLRPC$User tLRPC$User) {
-        this.botUser = tLRPC$User;
+    public void setBotUser(TLRPC.User user) {
+        this.botUser = user;
     }
 
     public void setDelegate(Delegate delegate) {

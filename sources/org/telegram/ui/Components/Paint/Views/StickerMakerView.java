@@ -60,25 +60,7 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputMediaUploadedDocument;
-import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmpty;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetItem;
-import org.telegram.tgnet.TLRPC$TL_inputUserSelf;
-import org.telegram.tgnet.TLRPC$TL_message;
-import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
-import org.telegram.tgnet.TLRPC$TL_messages_uploadMedia;
-import org.telegram.tgnet.TLRPC$TL_stickers_addStickerToSet;
-import org.telegram.tgnet.TLRPC$TL_stickers_createStickerSet;
-import org.telegram.tgnet.TLRPC$TL_stickers_replaceSticker;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BulletinFactory;
@@ -380,17 +362,17 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         public boolean addToFavorite;
         public Utilities.Callback2 customHandler;
         public String emoji;
-        public TLRPC$InputFile file;
+        public TLRPC.InputFile file;
         public String finalPath;
-        public TLRPC$TL_messageMediaDocument mediaDocument;
+        public TLRPC.TL_messageMediaDocument mediaDocument;
         public MessageObject messageObject;
         public String path;
-        public TLRPC$Document replacedSticker;
+        public TLRPC.Document replacedSticker;
         public int reqId;
         public CharSequence stickerPackName;
-        public TLRPC$StickerSet stickerSet;
+        public TLRPC.StickerSet stickerSet;
         public String thumbPath;
-        public TLRPC$TL_inputStickerSetItem tlInputStickerSetItem;
+        public TLRPC.TL_inputStickerSetItem tlInputStickerSetItem;
         public boolean uploaded;
         public VideoEditedInfo videoEditedInfo;
         public Utilities.Callback whenDone;
@@ -557,7 +539,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     private void afterUploadingMedia() {
         RequestDelegate requestDelegate;
         ConnectionsManager connectionsManager;
-        TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet;
+        TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet;
         final StickerUploader stickerUploader = this.stickerUploader;
         if (stickerUploader == null) {
             return;
@@ -576,32 +558,32 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             return;
         }
         if (stickerUploader.replacedSticker != null) {
-            TLRPC$TL_stickers_replaceSticker tLRPC$TL_stickers_replaceSticker = new TLRPC$TL_stickers_replaceSticker();
-            tLRPC$TL_stickers_replaceSticker.sticker = MediaDataController.getInputStickerSetItem(stickerUploader.replacedSticker, stickerUploader.emoji).document;
-            tLRPC$TL_stickers_replaceSticker.new_sticker = stickerUploader.tlInputStickerSetItem;
+            TLRPC.TL_stickers_replaceSticker tL_stickers_replaceSticker = new TLRPC.TL_stickers_replaceSticker();
+            tL_stickers_replaceSticker.sticker = MediaDataController.getInputStickerSetItem(stickerUploader.replacedSticker, stickerUploader.emoji).document;
+            tL_stickers_replaceSticker.new_sticker = stickerUploader.tlInputStickerSetItem;
             ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(i);
             requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StickerMakerView.this.lambda$afterUploadingMedia$19(i, stickerUploader, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StickerMakerView.this.lambda$afterUploadingMedia$19(i, stickerUploader, tLObject, tL_error);
                 }
             };
-            tLRPC$TL_stickers_addStickerToSet = tLRPC$TL_stickers_replaceSticker;
+            tL_stickers_addStickerToSet = tL_stickers_replaceSticker;
             connectionsManager = connectionsManager2;
         } else if (stickerUploader.stickerPackName != null) {
-            TLRPC$TL_stickers_createStickerSet tLRPC$TL_stickers_createStickerSet = new TLRPC$TL_stickers_createStickerSet();
-            tLRPC$TL_stickers_createStickerSet.user_id = new TLRPC$TL_inputUserSelf();
-            tLRPC$TL_stickers_createStickerSet.title = stickerUploader.stickerPackName.toString();
-            tLRPC$TL_stickers_createStickerSet.short_name = "";
-            tLRPC$TL_stickers_createStickerSet.stickers.add(stickerUploader.tlInputStickerSetItem);
+            TLRPC.TL_stickers_createStickerSet tL_stickers_createStickerSet = new TLRPC.TL_stickers_createStickerSet();
+            tL_stickers_createStickerSet.user_id = new TLRPC.TL_inputUserSelf();
+            tL_stickers_createStickerSet.title = stickerUploader.stickerPackName.toString();
+            tL_stickers_createStickerSet.short_name = "";
+            tL_stickers_createStickerSet.stickers.add(stickerUploader.tlInputStickerSetItem);
             ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(i);
             requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StickerMakerView.this.lambda$afterUploadingMedia$22(i, stickerUploader, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StickerMakerView.this.lambda$afterUploadingMedia$22(i, stickerUploader, tLObject, tL_error);
                 }
             };
-            tLRPC$TL_stickers_addStickerToSet = tLRPC$TL_stickers_createStickerSet;
+            tL_stickers_addStickerToSet = tL_stickers_createStickerSet;
             connectionsManager = connectionsManager3;
         } else {
             if (stickerUploader.addToFavorite) {
@@ -623,20 +605,20 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             if (stickerUploader.stickerSet == null) {
                 return;
             }
-            TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet2 = new TLRPC$TL_stickers_addStickerToSet();
-            tLRPC$TL_stickers_addStickerToSet2.stickerset = MediaDataController.getInputStickerSet(stickerUploader.stickerSet);
-            tLRPC$TL_stickers_addStickerToSet2.sticker = stickerUploader.tlInputStickerSetItem;
+            TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet2 = new TLRPC.TL_stickers_addStickerToSet();
+            tL_stickers_addStickerToSet2.stickerset = MediaDataController.getInputStickerSet(stickerUploader.stickerSet);
+            tL_stickers_addStickerToSet2.sticker = stickerUploader.tlInputStickerSetItem;
             ConnectionsManager connectionsManager4 = ConnectionsManager.getInstance(i);
             requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StickerMakerView.this.lambda$afterUploadingMedia$26(i, stickerUploader, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StickerMakerView.this.lambda$afterUploadingMedia$26(i, stickerUploader, tLObject, tL_error);
                 }
             };
-            tLRPC$TL_stickers_addStickerToSet = tLRPC$TL_stickers_addStickerToSet2;
+            tL_stickers_addStickerToSet = tL_stickers_addStickerToSet2;
             connectionsManager = connectionsManager4;
         }
-        connectionsManager.sendRequest(tLRPC$TL_stickers_addStickerToSet, requestDelegate);
+        connectionsManager.sendRequest(tL_stickers_addStickerToSet, requestDelegate);
     }
 
     private void createSegmentImagePath(SegmentedObject segmentedObject, int i, int i2) {
@@ -866,12 +848,12 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         hideLoadingDialog();
     }
 
-    public void lambda$afterUploadingMedia$18(final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$afterUploadingMedia$18(final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
         boolean z;
-        if (tLObject instanceof TLRPC$TL_messages_stickerSet) {
-            TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) tLObject;
-            MediaDataController.getInstance(i).putStickerSet(tLRPC$TL_messages_stickerSet);
-            if (!MediaDataController.getInstance(i).isStickerPackInstalled(tLRPC$TL_messages_stickerSet.set.id)) {
+        if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
+            MediaDataController.getInstance(i).putStickerSet(tL_messages_stickerSet);
+            if (!MediaDataController.getInstance(i).isStickerPackInstalled(tL_messages_stickerSet.set.id)) {
                 MediaDataController.getInstance(i).toggleStickerSet(null, tLObject, 2, null, false, false);
             }
             DownloadButton.PreparingVideoToast preparingVideoToast = this.loadingToast;
@@ -886,7 +868,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             }, 450L);
             z = true;
         } else {
-            showError(tLRPC$TL_error);
+            showError(tL_error);
             hideLoadingDialog();
             z = false;
         }
@@ -897,11 +879,11 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public void lambda$afterUploadingMedia$19(final int i, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$afterUploadingMedia$19(final int i, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$afterUploadingMedia$18(tLObject, i, stickerUploader, tLRPC$TL_error);
+                StickerMakerView.this.lambda$afterUploadingMedia$18(tLObject, i, stickerUploader, tL_error);
             }
         });
     }
@@ -909,17 +891,17 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     public void lambda$afterUploadingMedia$20(TLObject tLObject, StickerUploader stickerUploader) {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
         int i = NotificationCenter.customStickerCreated;
-        TLRPC$Document tLRPC$Document = stickerUploader.mediaDocument.document;
+        TLRPC.Document document = stickerUploader.mediaDocument.document;
         String str = stickerUploader.thumbPath;
         Boolean bool = Boolean.FALSE;
-        notificationCenter.postNotificationNameOnUIThread(i, bool, tLObject, tLRPC$Document, str, bool);
+        notificationCenter.postNotificationNameOnUIThread(i, bool, tLObject, document, str, bool);
         hideLoadingDialog();
     }
 
-    public void lambda$afterUploadingMedia$21(final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$afterUploadingMedia$21(final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
         boolean z;
-        if (tLObject instanceof TLRPC$TL_messages_stickerSet) {
-            MediaDataController.getInstance(i).putStickerSet((TLRPC$TL_messages_stickerSet) tLObject);
+        if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+            MediaDataController.getInstance(i).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject);
             MediaDataController.getInstance(i).toggleStickerSet(null, tLObject, 2, null, false, false);
             DownloadButton.PreparingVideoToast preparingVideoToast = this.loadingToast;
             if (preparingVideoToast != null) {
@@ -933,7 +915,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             }, 250L);
             z = true;
         } else {
-            showError(tLRPC$TL_error);
+            showError(tL_error);
             hideLoadingDialog();
             z = false;
         }
@@ -944,11 +926,11 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public void lambda$afterUploadingMedia$22(final int i, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$afterUploadingMedia$22(final int i, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$afterUploadingMedia$21(tLObject, i, stickerUploader, tLRPC$TL_error);
+                StickerMakerView.this.lambda$afterUploadingMedia$21(tLObject, i, stickerUploader, tL_error);
             }
         });
     }
@@ -960,19 +942,19 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     public void lambda$afterUploadingMedia$24(TLObject tLObject, StickerUploader stickerUploader) {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
         int i = NotificationCenter.customStickerCreated;
-        TLRPC$Document tLRPC$Document = stickerUploader.mediaDocument.document;
+        TLRPC.Document document = stickerUploader.mediaDocument.document;
         String str = stickerUploader.thumbPath;
         Boolean bool = Boolean.FALSE;
-        notificationCenter.postNotificationNameOnUIThread(i, bool, tLObject, tLRPC$Document, str, bool);
+        notificationCenter.postNotificationNameOnUIThread(i, bool, tLObject, document, str, bool);
         hideLoadingDialog();
     }
 
-    public void lambda$afterUploadingMedia$25(final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$afterUploadingMedia$25(final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
         boolean z;
-        if (tLObject instanceof TLRPC$TL_messages_stickerSet) {
-            TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) tLObject;
-            MediaDataController.getInstance(i).putStickerSet(tLRPC$TL_messages_stickerSet);
-            if (!MediaDataController.getInstance(i).isStickerPackInstalled(tLRPC$TL_messages_stickerSet.set.id)) {
+        if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
+            MediaDataController.getInstance(i).putStickerSet(tL_messages_stickerSet);
+            if (!MediaDataController.getInstance(i).isStickerPackInstalled(tL_messages_stickerSet.set.id)) {
                 MediaDataController.getInstance(i).toggleStickerSet(null, tLObject, 2, null, false, false);
             }
             DownloadButton.PreparingVideoToast preparingVideoToast = this.loadingToast;
@@ -987,7 +969,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             }, 450L);
             z = true;
         } else {
-            showError(tLRPC$TL_error);
+            showError(tL_error);
             hideLoadingDialog();
             z = false;
         }
@@ -998,11 +980,11 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public void lambda$afterUploadingMedia$26(final int i, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$afterUploadingMedia$26(final int i, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$afterUploadingMedia$25(tLObject, i, stickerUploader, tLRPC$TL_error);
+                StickerMakerView.this.lambda$afterUploadingMedia$25(tLObject, i, stickerUploader, tL_error);
             }
         });
     }
@@ -1188,28 +1170,28 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         this.loadingToast = null;
     }
 
-    public void lambda$uploadMedia$14(TLObject tLObject, StickerUploader stickerUploader, TLRPC$TL_error tLRPC$TL_error) {
-        if (!(tLObject instanceof TLRPC$TL_messageMediaDocument)) {
+    public void lambda$uploadMedia$14(TLObject tLObject, StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
+        if (!(tLObject instanceof TLRPC.TL_messageMediaDocument)) {
             hideLoadingDialog();
-            showError(tLRPC$TL_error);
+            showError(tL_error);
         } else {
-            TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = (TLRPC$TL_messageMediaDocument) tLObject;
-            stickerUploader.tlInputStickerSetItem = MediaDataController.getInputStickerSetItem(tLRPC$TL_messageMediaDocument.document, stickerUploader.emoji);
-            stickerUploader.mediaDocument = tLRPC$TL_messageMediaDocument;
+            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) tLObject;
+            stickerUploader.tlInputStickerSetItem = MediaDataController.getInputStickerSetItem(tL_messageMediaDocument.document, stickerUploader.emoji);
+            stickerUploader.mediaDocument = tL_messageMediaDocument;
             afterUploadingMedia();
         }
     }
 
-    public void lambda$uploadMedia$15(final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$uploadMedia$15(final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$uploadMedia$14(tLObject, stickerUploader, tLRPC$TL_error);
+                StickerMakerView.this.lambda$uploadMedia$14(tLObject, stickerUploader, tL_error);
             }
         });
     }
 
-    public void lambda$uploadStickerFile$12(Utilities.Callback callback, String str, String str2, CharSequence charSequence, boolean z, TLRPC$StickerSet tLRPC$StickerSet, TLRPC$Document tLRPC$Document, VideoEditedInfo videoEditedInfo, String str3, Utilities.Callback2 callback2) {
+    public void lambda$uploadStickerFile$12(Utilities.Callback callback, String str, String str2, CharSequence charSequence, boolean z, TLRPC.StickerSet stickerSet, TLRPC.Document document, VideoEditedInfo videoEditedInfo, String str3, Utilities.Callback2 callback2) {
         StickerUploader stickerUploader;
         boolean z2 = callback == null || (stickerUploader = this.stickerUploader) == null || !stickerUploader.uploaded;
         if (z2) {
@@ -1225,8 +1207,8 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         stickerUploader3.path = str2;
         stickerUploader3.stickerPackName = charSequence;
         stickerUploader3.addToFavorite = z;
-        stickerUploader3.stickerSet = tLRPC$StickerSet;
-        stickerUploader3.replacedSticker = tLRPC$Document;
+        stickerUploader3.stickerSet = stickerSet;
+        stickerUploader3.replacedSticker = document;
         stickerUploader3.videoEditedInfo = videoEditedInfo;
         stickerUploader3.thumbPath = str3;
         stickerUploader3.whenDone = callback;
@@ -1235,15 +1217,15 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         if (!z2) {
             afterUploadingMedia();
         } else if (videoEditedInfo != null) {
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.id = 1;
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.id = 1;
             StickerUploader stickerUploader4 = this.stickerUploader;
             String absolutePath = StoryEntry.makeCacheFile(UserConfig.selectedAccount, "webm").getAbsolutePath();
-            tLRPC$TL_message.attachPath = absolutePath;
+            tL_message.attachPath = absolutePath;
             stickerUploader4.finalPath = absolutePath;
-            this.stickerUploader.messageObject = new MessageObject(UserConfig.selectedAccount, (TLRPC$Message) tLRPC$TL_message, (MessageObject) null, false, false);
+            this.stickerUploader.messageObject = new MessageObject(UserConfig.selectedAccount, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
             this.stickerUploader.messageObject.videoEditedInfo = videoEditedInfo;
-            MediaController.getInstance().scheduleVideoConvert(this.stickerUploader.messageObject, false, false);
+            MediaController.getInstance().scheduleVideoConvert(this.stickerUploader.messageObject, false, false, false);
         } else {
             FileLoader.getInstance(this.currentAccount).uploadFile(str2, false, true, 67108864);
         }
@@ -1305,17 +1287,17 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 }
             });
         }
-        List<TLRPC$TL_availableReaction> enabledReactionsList = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
+        List<TLRPC.TL_availableReaction> enabledReactionsList = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
         for (int i2 = 0; i2 < Math.min(enabledReactionsList.size(), 9); i2++) {
             Emoji.getEmojiDrawable(enabledReactionsList.get(i2).reaction);
         }
     }
 
-    private void showError(TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error == null || "PACK_TITLE_INVALID".equals(tLRPC$TL_error.text)) {
+    private void showError(TLRPC.TL_error tL_error) {
+        if (tL_error == null || "PACK_TITLE_INVALID".equals(tL_error.text)) {
             return;
         }
-        BulletinFactory.of((FrameLayout) getParent(), this.resourcesProvider).createErrorBulletin(tLRPC$TL_error.text).show();
+        BulletinFactory.of((FrameLayout) getParent(), this.resourcesProvider).createErrorBulletin(tL_error.text).show();
     }
 
     private void showLoadingDialog() {
@@ -1339,20 +1321,20 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         if (stickerUploader == null) {
             return;
         }
-        TLRPC$TL_messages_uploadMedia tLRPC$TL_messages_uploadMedia = new TLRPC$TL_messages_uploadMedia();
-        tLRPC$TL_messages_uploadMedia.peer = new TLRPC$TL_inputPeerSelf();
-        TLRPC$TL_inputMediaUploadedDocument tLRPC$TL_inputMediaUploadedDocument = new TLRPC$TL_inputMediaUploadedDocument();
-        tLRPC$TL_messages_uploadMedia.media = tLRPC$TL_inputMediaUploadedDocument;
-        tLRPC$TL_inputMediaUploadedDocument.file = stickerUploader.file;
-        tLRPC$TL_inputMediaUploadedDocument.mime_type = stickerUploader.videoEditedInfo != null ? "video/webm" : "image/webp";
-        TLRPC$TL_documentAttributeSticker tLRPC$TL_documentAttributeSticker = new TLRPC$TL_documentAttributeSticker();
-        tLRPC$TL_documentAttributeSticker.alt = stickerUploader.emoji;
-        tLRPC$TL_documentAttributeSticker.stickerset = new TLRPC$TL_inputStickerSetEmpty();
-        tLRPC$TL_messages_uploadMedia.media.attributes.add(tLRPC$TL_documentAttributeSticker);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_uploadMedia, new RequestDelegate() {
+        TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
+        tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
+        TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
+        tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
+        tL_inputMediaUploadedDocument.file = stickerUploader.file;
+        tL_inputMediaUploadedDocument.mime_type = stickerUploader.videoEditedInfo != null ? "video/webm" : "image/webp";
+        TLRPC.TL_documentAttributeSticker tL_documentAttributeSticker = new TLRPC.TL_documentAttributeSticker();
+        tL_documentAttributeSticker.alt = stickerUploader.emoji;
+        tL_documentAttributeSticker.stickerset = new TLRPC.TL_inputStickerSetEmpty();
+        tL_messages_uploadMedia.media.attributes.add(tL_documentAttributeSticker);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_uploadMedia, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StickerMakerView.this.lambda$uploadMedia$15(stickerUploader, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                StickerMakerView.this.lambda$uploadMedia$15(stickerUploader, tLObject, tL_error);
             }
         }, 2);
     }
@@ -1439,12 +1421,12 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         DownloadButton.PreparingVideoToast preparingVideoToast;
         if (i == NotificationCenter.fileUploaded) {
             String str = (String) objArr[0];
-            TLRPC$InputFile tLRPC$InputFile = (TLRPC$InputFile) objArr[1];
+            TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
             StickerUploader stickerUploader2 = this.stickerUploader;
             if (stickerUploader2 == null || !str.equalsIgnoreCase(stickerUploader2.finalPath)) {
                 return;
             }
-            this.stickerUploader.file = tLRPC$InputFile;
+            this.stickerUploader.file = inputFile;
             uploadMedia();
             return;
         }
@@ -1960,11 +1942,11 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         createSegmentImagePath(this.selectedObject, this.containerWidth, this.containerHeight);
     }
 
-    public void uploadStickerFile(final String str, final VideoEditedInfo videoEditedInfo, final String str2, final CharSequence charSequence, final boolean z, final TLRPC$StickerSet tLRPC$StickerSet, final TLRPC$Document tLRPC$Document, final String str3, final Utilities.Callback callback, final Utilities.Callback2 callback2) {
+    public void uploadStickerFile(final String str, final VideoEditedInfo videoEditedInfo, final String str2, final CharSequence charSequence, final boolean z, final TLRPC.StickerSet stickerSet, final TLRPC.Document document, final String str3, final Utilities.Callback callback, final Utilities.Callback2 callback2) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.this.lambda$uploadStickerFile$12(callback, str2, str, charSequence, z, tLRPC$StickerSet, tLRPC$Document, videoEditedInfo, str3, callback2);
+                StickerMakerView.this.lambda$uploadStickerFile$12(callback, str2, str, charSequence, z, stickerSet, document, videoEditedInfo, str3, callback2);
             }
         }, 300L);
     }

@@ -19,10 +19,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -41,7 +38,7 @@ public class StickerCell extends FrameLayout {
     private float scale;
     private boolean scaled;
     private boolean showPremiumLock;
-    private TLRPC$Document sticker;
+    private TLRPC.Document sticker;
     private long time;
 
     public StickerCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -149,7 +146,7 @@ public class StickerCell extends FrameLayout {
         return sendAnimationData;
     }
 
-    public TLRPC$Document getSticker() {
+    public TLRPC.Document getSticker() {
         return this.sticker;
     }
 
@@ -165,10 +162,10 @@ public class StickerCell extends FrameLayout {
         }
         String str = null;
         for (int i = 0; i < this.sticker.attributes.size(); i++) {
-            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = this.sticker.attributes.get(i);
-            if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) {
-                String str2 = tLRPC$DocumentAttribute.alt;
-                str = (str2 == null || str2.length() <= 0) ? null : tLRPC$DocumentAttribute.alt;
+            TLRPC.DocumentAttribute documentAttribute = this.sticker.attributes.get(i);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                String str2 = documentAttribute.alt;
+                str = (str2 == null || str2.length() <= 0) ? null : documentAttribute.alt;
             }
         }
         accessibilityNodeInfo.setText(str != null ? str + " " + LocaleController.getString(R.string.AttachSticker) : LocaleController.getString(R.string.AttachSticker));
@@ -199,47 +196,47 @@ public class StickerCell extends FrameLayout {
         invalidate();
     }
 
-    public void setSticker(TLRPC$Document tLRPC$Document, Object obj) {
+    public void setSticker(TLRPC.Document document, Object obj) {
         BackupImageView backupImageView;
         ImageLocation forDocument;
         Object obj2;
         String str;
         String str2;
         this.parentObject = obj;
-        boolean isPremiumSticker = MessageObject.isPremiumSticker(tLRPC$Document);
+        boolean isPremiumSticker = MessageObject.isPremiumSticker(document);
         this.isPremiumSticker = isPremiumSticker;
         if (isPremiumSticker) {
             this.premiumIconView.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             this.premiumIconView.setWaitingImage();
         }
-        if (tLRPC$Document != null) {
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 1.0f, 1.0f, this.resourcesProvider);
-            if (MessageObject.canAutoplayAnimatedSticker(tLRPC$Document)) {
+        if (document != null) {
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 1.0f, 1.0f, this.resourcesProvider);
+            if (MessageObject.canAutoplayAnimatedSticker(document)) {
                 if (svgThumb != null) {
                     backupImageView = this.imageView;
-                    forDocument = ImageLocation.getForDocument(tLRPC$Document);
+                    forDocument = ImageLocation.getForDocument(document);
                     obj2 = this.parentObject;
                     str = "80_80";
                     str2 = null;
                     backupImageView.setImage(forDocument, str, str2, svgThumb, obj2);
                 } else if (closestPhotoSizeWithSize != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), (String) null, 0, this.parentObject);
+                    this.imageView.setImage(ImageLocation.getForDocument(document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), (String) null, 0, this.parentObject);
                 } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", (String) null, (Drawable) null, this.parentObject);
+                    this.imageView.setImage(ImageLocation.getForDocument(document), "80_80", (String) null, (Drawable) null, this.parentObject);
                 }
             } else if (svgThumb != null) {
                 backupImageView = this.imageView;
-                forDocument = closestPhotoSizeWithSize != null ? ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document) : ImageLocation.getForDocument(tLRPC$Document);
+                forDocument = closestPhotoSizeWithSize != null ? ImageLocation.getForDocument(closestPhotoSizeWithSize, document) : ImageLocation.getForDocument(document);
                 obj2 = this.parentObject;
                 str = null;
                 str2 = "webp";
                 backupImageView.setImage(forDocument, str, str2, svgThumb, obj2);
             } else {
-                this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), (String) null, "webp", (Drawable) null, this.parentObject);
+                this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), (String) null, "webp", (Drawable) null, this.parentObject);
             }
         }
-        this.sticker = tLRPC$Document;
+        this.sticker = document;
         Drawable background = getBackground();
         if (background != null) {
             background.setAlpha(230);

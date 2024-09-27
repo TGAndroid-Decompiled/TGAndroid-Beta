@@ -29,16 +29,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
-import org.telegram.tgnet.TLRPC$TL_messageService;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
-import org.telegram.tgnet.TLRPC$TL_peerNotifySettings;
-import org.telegram.tgnet.TLRPC$TL_updateMessageID;
-import org.telegram.tgnet.TLRPC$Updates;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -75,7 +66,7 @@ public class TopicCreateFragment extends BaseFragment {
     ReplaceableIconDrawable replaceableIconDrawable;
     SelectAnimatedEmojiDialog selectAnimatedEmojiDialog;
     long selectedEmojiDocumentId;
-    TLRPC$TL_forumTopic topicForEdit;
+    TLRPC.TL_forumTopic topicForEdit;
     long topicId;
 
     public class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
@@ -84,47 +75,47 @@ public class TopicCreateFragment extends BaseFragment {
 
         public void lambda$onItemClick$0(TLObject tLObject, String str, AlertDialog alertDialog) {
             if (tLObject != null) {
-                TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
-                for (int i = 0; i < tLRPC$Updates.updates.size(); i++) {
-                    if (tLRPC$Updates.updates.get(i) instanceof TLRPC$TL_updateMessageID) {
-                        TLRPC$TL_updateMessageID tLRPC$TL_updateMessageID = (TLRPC$TL_updateMessageID) tLRPC$Updates.updates.get(i);
+                TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                for (int i = 0; i < updates.updates.size(); i++) {
+                    if (updates.updates.get(i) instanceof TLRPC.TL_updateMessageID) {
+                        TLRPC.TL_updateMessageID tL_updateMessageID = (TLRPC.TL_updateMessageID) updates.updates.get(i);
                         Bundle bundle = new Bundle();
                         bundle.putLong("chat_id", TopicCreateFragment.this.chatId);
                         bundle.putInt("message_id", 1);
                         bundle.putInt("unread_count", 0);
                         bundle.putBoolean("historyPreloaded", false);
                         ChatActivity chatActivity = new ChatActivity(bundle);
-                        TLRPC$TL_messageActionTopicCreate tLRPC$TL_messageActionTopicCreate = new TLRPC$TL_messageActionTopicCreate();
-                        tLRPC$TL_messageActionTopicCreate.title = str;
-                        TLRPC$TL_messageService tLRPC$TL_messageService = new TLRPC$TL_messageService();
-                        tLRPC$TL_messageService.action = tLRPC$TL_messageActionTopicCreate;
-                        tLRPC$TL_messageService.peer_id = TopicCreateFragment.this.getMessagesController().getPeer(-TopicCreateFragment.this.chatId);
-                        tLRPC$TL_messageService.dialog_id = -TopicCreateFragment.this.chatId;
-                        tLRPC$TL_messageService.id = tLRPC$TL_updateMessageID.id;
-                        tLRPC$TL_messageService.date = (int) (System.currentTimeMillis() / 1000);
+                        TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = new TLRPC.TL_messageActionTopicCreate();
+                        tL_messageActionTopicCreate.title = str;
+                        TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
+                        tL_messageService.action = tL_messageActionTopicCreate;
+                        tL_messageService.peer_id = TopicCreateFragment.this.getMessagesController().getPeer(-TopicCreateFragment.this.chatId);
+                        tL_messageService.dialog_id = -TopicCreateFragment.this.chatId;
+                        tL_messageService.id = tL_updateMessageID.id;
+                        tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
                         ArrayList arrayList = new ArrayList();
-                        arrayList.add(new MessageObject(((BaseFragment) TopicCreateFragment.this).currentAccount, tLRPC$TL_messageService, false, false));
-                        TLRPC$Chat chat = TopicCreateFragment.this.getMessagesController().getChat(Long.valueOf(TopicCreateFragment.this.chatId));
-                        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = new TLRPC$TL_forumTopic();
-                        tLRPC$TL_forumTopic.id = tLRPC$TL_updateMessageID.id;
+                        arrayList.add(new MessageObject(((BaseFragment) TopicCreateFragment.this).currentAccount, tL_messageService, false, false));
+                        TLRPC.Chat chat = TopicCreateFragment.this.getMessagesController().getChat(Long.valueOf(TopicCreateFragment.this.chatId));
+                        TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
+                        tL_forumTopic.id = tL_updateMessageID.id;
                         TopicCreateFragment topicCreateFragment = TopicCreateFragment.this;
                         long j = topicCreateFragment.selectedEmojiDocumentId;
                         if (j != 0) {
-                            tLRPC$TL_forumTopic.icon_emoji_id = j;
-                            tLRPC$TL_forumTopic.flags |= 1;
+                            tL_forumTopic.icon_emoji_id = j;
+                            tL_forumTopic.flags |= 1;
                         }
-                        tLRPC$TL_forumTopic.my = true;
-                        tLRPC$TL_forumTopic.flags |= 2;
-                        tLRPC$TL_forumTopic.topicStartMessage = tLRPC$TL_messageService;
-                        tLRPC$TL_forumTopic.title = str;
-                        tLRPC$TL_forumTopic.top_message = tLRPC$TL_messageService.id;
-                        tLRPC$TL_forumTopic.topMessage = tLRPC$TL_messageService;
-                        tLRPC$TL_forumTopic.from_id = topicCreateFragment.getMessagesController().getPeer(TopicCreateFragment.this.getUserConfig().clientUserId);
-                        tLRPC$TL_forumTopic.notify_settings = new TLRPC$TL_peerNotifySettings();
-                        tLRPC$TL_forumTopic.icon_color = TopicCreateFragment.this.iconColor;
-                        chatActivity.setThreadMessages(arrayList, chat, tLRPC$TL_messageService.id, 1, 1, tLRPC$TL_forumTopic);
+                        tL_forumTopic.my = true;
+                        tL_forumTopic.flags |= 2;
+                        tL_forumTopic.topicStartMessage = tL_messageService;
+                        tL_forumTopic.title = str;
+                        tL_forumTopic.top_message = tL_messageService.id;
+                        tL_forumTopic.topMessage = tL_messageService;
+                        tL_forumTopic.from_id = topicCreateFragment.getMessagesController().getPeer(TopicCreateFragment.this.getUserConfig().clientUserId);
+                        tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
+                        tL_forumTopic.icon_color = TopicCreateFragment.this.iconColor;
+                        chatActivity.setThreadMessages(arrayList, chat, tL_messageService.id, 1, 1, tL_forumTopic);
                         chatActivity.justCreatedTopic = true;
-                        TopicCreateFragment.this.getMessagesController().getTopicsController().onTopicCreated(-TopicCreateFragment.this.chatId, tLRPC$TL_forumTopic, true);
+                        TopicCreateFragment.this.getMessagesController().getTopicsController().onTopicCreated(-TopicCreateFragment.this.chatId, tL_forumTopic, true);
                         TopicCreateFragment.this.presentFragment(chatActivity);
                     }
                 }
@@ -132,7 +123,7 @@ public class TopicCreateFragment extends BaseFragment {
             alertDialog.dismiss();
         }
 
-        public void lambda$onItemClick$1(final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onItemClick$1(final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -141,10 +132,10 @@ public class TopicCreateFragment extends BaseFragment {
             });
         }
 
-        public static void lambda$onItemClick$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public static void lambda$onItemClick$2(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
-        public static void lambda$onItemClick$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public static void lambda$onItemClick$3(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         @Override
@@ -264,7 +255,7 @@ public class TopicCreateFragment extends BaseFragment {
             return;
         }
         if (!z && longValue != 0 && !getUserConfig().isPremium()) {
-            TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, l.longValue());
+            TLRPC.Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, l.longValue());
             if (findDocument != null) {
                 BulletinFactory.of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiHint)), LocaleController.getString(R.string.PremiumMore), new Runnable() {
                     @Override
@@ -340,8 +331,8 @@ public class TopicCreateFragment extends BaseFragment {
         linearLayout.setOrientation(1);
         sizeNotifierFrameLayout.addView(linearLayout);
         HeaderCell headerCell = new HeaderCell(context);
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = this.topicForEdit;
-        headerCell.setText(LocaleController.getString((tLRPC$TL_forumTopic == null || tLRPC$TL_forumTopic.id != 1) ? R.string.CreateTopicTitle : R.string.CreateGeneralTopicTitle));
+        TLRPC.TL_forumTopic tL_forumTopic = this.topicForEdit;
+        headerCell.setText(LocaleController.getString((tL_forumTopic == null || tL_forumTopic.id != 1) ? R.string.CreateTopicTitle : R.string.CreateGeneralTopicTitle));
         FrameLayout frameLayout = new FrameLayout(context);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editTextBoldCursor = editTextBoldCursor;
@@ -404,17 +395,17 @@ public class TopicCreateFragment extends BaseFragment {
         combinedDrawable.setFullsize(true);
         frameLayout2.setBackgroundDrawable(combinedDrawable);
         frameLayout2.setClipChildren(false);
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = this.topicForEdit;
-        if (tLRPC$TL_forumTopic2 == null || tLRPC$TL_forumTopic2.id != 1) {
+        TLRPC.TL_forumTopic tL_forumTopic2 = this.topicForEdit;
+        if (tL_forumTopic2 == null || tL_forumTopic2.id != 1) {
             SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, null, 3, null) {
                 private boolean firstLayout = true;
 
                 @Override
-                protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
+                protected void onEmojiSelected(View view, Long l, TLRPC.Document document, Integer num) {
                     boolean z = false;
                     if (!TextUtils.isEmpty(UserConfig.getInstance(((BaseFragment) TopicCreateFragment.this).currentAccount).defaultTopicIcons)) {
-                        TLRPC$TL_messages_stickerSet stickerSetByEmojiOrName = TopicCreateFragment.this.getMediaDataController().getStickerSetByEmojiOrName(UserConfig.getInstance(((BaseFragment) TopicCreateFragment.this).currentAccount).defaultTopicIcons);
-                        if ((stickerSetByEmojiOrName == null ? 0L : stickerSetByEmojiOrName.set.id) == MediaDataController.getStickerSetId(tLRPC$Document)) {
+                        TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = TopicCreateFragment.this.getMediaDataController().getStickerSetByEmojiOrName(UserConfig.getInstance(((BaseFragment) TopicCreateFragment.this).currentAccount).defaultTopicIcons);
+                        if ((stickerSetByEmojiOrName == null ? 0L : stickerSetByEmojiOrName.set.id) == MediaDataController.getStickerSetId(document)) {
                             z = true;
                         }
                     }
@@ -472,9 +463,9 @@ public class TopicCreateFragment extends BaseFragment {
             frameLayout2.addView(textInfoPrivacyCell, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 58.0f, 0.0f, 0.0f));
         }
         linearLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic3 = this.topicForEdit;
-        if (tLRPC$TL_forumTopic3 != null) {
-            this.editTextBoldCursor.setText(tLRPC$TL_forumTopic3.title);
+        TLRPC.TL_forumTopic tL_forumTopic3 = this.topicForEdit;
+        if (tL_forumTopic3 != null) {
+            this.editTextBoldCursor.setText(tL_forumTopic3.title);
             j = this.topicForEdit.icon_emoji_id;
         } else {
             j = 0;
@@ -490,7 +481,7 @@ public class TopicCreateFragment extends BaseFragment {
         long j = this.arguments.getLong("topic_id", 0L);
         this.topicId = j;
         if (j != 0) {
-            TLRPC$TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, this.topicId);
+            TLRPC.TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, this.topicId);
             this.topicForEdit = findTopic;
             if (findTopic == null) {
                 return false;

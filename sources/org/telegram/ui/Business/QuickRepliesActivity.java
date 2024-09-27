@@ -46,12 +46,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -108,7 +103,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         public void onItemClick(int i) {
             if (i == -1) {
                 if (QuickRepliesActivity.this.selected.isEmpty()) {
-                    QuickRepliesActivity.this.lambda$onBackPressed$307();
+                    QuickRepliesActivity.this.lambda$onBackPressed$300();
                     return;
                 } else {
                     QuickRepliesActivity.this.clearSelection();
@@ -226,11 +221,11 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         public void set(QuickRepliesController.QuickReply quickReply, boolean z) {
             ImageReceiver imageReceiver;
             int dp;
-            TLRPC$Document tLRPC$Document;
+            TLRPC.Document document;
             long j;
             String str;
             ImageLocation imageLocation;
-            TLRPC$Photo tLRPC$Photo;
+            TLRPC.Photo photo;
             int i = UserConfig.selectedAccount;
             this.titleView.setText(MessagesController.getInstance(i).getPeerName(UserConfig.getInstance(i).getClientUserId()));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -250,15 +245,15 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                 spannableStringBuilder = spannableStringBuilder2;
             }
             this.textView.setText(spannableStringBuilder);
-            TLRPC$MessageMedia media = MessageObject.getMedia(quickReply.topMessage);
-            if (media != null && (tLRPC$Photo = media.photo) != null) {
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
+            TLRPC.MessageMedia media = MessageObject.getMedia(quickReply.topMessage);
+            if (media != null && (photo = media.photo) != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
                 ImageReceiver imageReceiver2 = this.imageReceiver;
                 ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
                 MessageObject messageObject2 = quickReply.topMessage;
                 imageReceiver2.setImage(forObject, "36_36", messageObject2.strippedThumb, closestPhotoSizeWithSize == null ? 0L : closestPhotoSizeWithSize.size, (String) null, messageObject2, 0);
             } else {
-                if (media == null || (tLRPC$Document = media.document) == null) {
+                if (media == null || (document = media.document) == null) {
                     this.avatarDrawable.setInfo(UserConfig.getInstance(i).getCurrentUser());
                     this.imageReceiver.setForUserOrChat(UserConfig.getInstance(i).getCurrentUser(), this.avatarDrawable);
                     imageReceiver = this.imageReceiver;
@@ -267,7 +262,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     this.needDivider = z;
                     invalidate();
                 }
-                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
                 if (closestPhotoSizeWithSize2 == null) {
                     ImageLocation forDocument = ImageLocation.getForDocument(media.document);
                     j = media.document.size;
@@ -408,17 +403,17 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         public void set(QuickRepliesController.QuickReply quickReply, String str, boolean z) {
             ImageReceiver imageReceiver;
             int dp;
-            TLRPC$WebPage tLRPC$WebPage;
-            TLRPC$Photo tLRPC$Photo;
+            TLRPC.WebPage webPage;
+            TLRPC.Photo photo;
             ImageLocation forObject;
             BitmapDrawable bitmapDrawable;
             long j;
             long j2;
             String str2;
             ImageLocation imageLocation;
-            TLRPC$WebPage tLRPC$WebPage2;
+            TLRPC.WebPage webPage2;
             ImageReceiver imageReceiver2;
-            TLRPC$Photo tLRPC$Photo2;
+            TLRPC.Photo photo2;
             String str3 = str;
             this.local = quickReply != null ? quickReply.local : false;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -438,9 +433,9 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     charSequence = quickReply.topMessage.messageText;
                 }
                 CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(charSequence), this.textView.getPaint().getFontMetricsInt(), false);
-                TLRPC$Message tLRPC$Message = quickReply.topMessage.messageOwner;
-                if (tLRPC$Message != null) {
-                    MessageObject.replaceAnimatedEmoji(replaceEmoji, tLRPC$Message.entities, this.textView.getPaint().getFontMetricsInt());
+                TLRPC.Message message = quickReply.topMessage.messageOwner;
+                if (message != null) {
+                    MessageObject.replaceAnimatedEmoji(replaceEmoji, message.entities, this.textView.getPaint().getFontMetricsInt());
                 }
                 spannableStringBuilder.append(replaceEmoji);
             }
@@ -457,19 +452,19 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             }
             this.textView.setText(spannableStringBuilder);
             int i = UserConfig.selectedAccount;
-            TLRPC$MessageMedia media = MessageObject.getMedia(quickReply.topMessage);
-            if (media != null && (tLRPC$Photo2 = media.photo) != null) {
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
+            TLRPC.MessageMedia media = MessageObject.getMedia(quickReply.topMessage);
+            if (media != null && (photo2 = media.photo) != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
                 ImageReceiver imageReceiver3 = this.imageReceiver;
                 forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
                 MessageObject messageObject = quickReply.topMessage;
                 bitmapDrawable = messageObject.strippedThumb;
                 j = closestPhotoSizeWithSize != null ? closestPhotoSizeWithSize.size : 0L;
                 imageReceiver2 = imageReceiver3;
-                tLRPC$WebPage2 = messageObject;
+                webPage2 = messageObject;
             } else {
                 if (media != null && media.document != null && (quickReply.topMessage.isVideo() || quickReply.topMessage.isSticker())) {
-                    TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(media.document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(media.document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
                     if (closestPhotoSizeWithSize2 == null) {
                         ImageLocation forDocument = ImageLocation.getForDocument(media.document);
                         j2 = media.document.size;
@@ -491,7 +486,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     this.needDivider = z;
                     invalidate();
                 }
-                if (media == null || (tLRPC$WebPage = media.webpage) == null || (tLRPC$Photo = tLRPC$WebPage.photo) == null) {
+                if (media == null || (webPage = media.webpage) == null || (photo = webPage.photo) == null) {
                     this.avatarDrawable.setInfo(UserConfig.getInstance(i).getCurrentUser());
                     this.imageReceiver.setForUserOrChat(UserConfig.getInstance(i).getCurrentUser(), this.avatarDrawable);
                     imageReceiver = this.imageReceiver;
@@ -500,15 +495,15 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     this.needDivider = z;
                     invalidate();
                 }
-                TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
+                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
                 ImageReceiver imageReceiver5 = this.imageReceiver;
                 forObject = ImageLocation.getForObject(closestPhotoSizeWithSize3, media.webpage.photo);
                 bitmapDrawable = quickReply.topMessage.strippedThumb;
                 j = closestPhotoSizeWithSize3 != null ? closestPhotoSizeWithSize3.size : 0L;
                 imageReceiver2 = imageReceiver5;
-                tLRPC$WebPage2 = media.webpage;
+                webPage2 = media.webpage;
             }
-            imageReceiver2.setImage(forObject, "36_36", bitmapDrawable, j, (String) null, tLRPC$WebPage2, 0);
+            imageReceiver2.setImage(forObject, "36_36", bitmapDrawable, j, (String) null, webPage2, 0);
             imageReceiver = this.imageReceiver;
             dp = AndroidUtilities.dp(4.0f);
             imageReceiver.setRoundRadius(dp);

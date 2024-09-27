@@ -11,7 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.web.WebInstantView;
 
 public class TextPaintImageReceiverSpan extends ReplacementSpan {
@@ -20,7 +20,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     private ImageReceiver imageReceiver;
     private int width;
 
-    public TextPaintImageReceiverSpan(View view, TLRPC$Document tLRPC$Document, Object obj, int i, int i2, boolean z, boolean z2) {
+    public TextPaintImageReceiverSpan(View view, TLRPC.Document document, Object obj, int i, int i2, boolean z, boolean z2) {
         String format = String.format(Locale.US, "%d_%d_i", Integer.valueOf(i), Integer.valueOf(i2));
         this.width = i;
         this.height = i2;
@@ -45,7 +45,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
                 }
             });
         }
-        this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), format, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), format, -1L, null, obj, 1);
+        this.imageReceiver.setImage(ImageLocation.getForDocument(document), format, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), format, -1L, null, obj, 1);
         this.alignTop = z;
     }
 

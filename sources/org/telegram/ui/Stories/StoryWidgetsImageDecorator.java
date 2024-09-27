@@ -8,10 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stories$MediaAreaCoordinates;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
-import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
-import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaWeather;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.Paint.Views.LocationMarker;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
@@ -34,23 +31,23 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
 
     public class ReactionWidget extends DrawingObject {
         private final ReactionImageHolder imageHolder;
-        private final TL_stories$TL_mediaAreaSuggestedReaction mediaArea;
+        private final TL_stories.TL_mediaAreaSuggestedReaction mediaArea;
         private final StoryReactionWidgetBackground storyReactionWidgetBackground;
 
-        public ReactionWidget(TL_stories$TL_mediaAreaSuggestedReaction tL_stories$TL_mediaAreaSuggestedReaction) {
+        public ReactionWidget(TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction) {
             StoryReactionWidgetBackground storyReactionWidgetBackground = new StoryReactionWidgetBackground(null);
             this.storyReactionWidgetBackground = storyReactionWidgetBackground;
             ReactionImageHolder reactionImageHolder = new ReactionImageHolder(null);
             this.imageHolder = reactionImageHolder;
-            this.mediaArea = tL_stories$TL_mediaAreaSuggestedReaction;
-            if (tL_stories$TL_mediaAreaSuggestedReaction.flipped) {
+            this.mediaArea = tL_mediaAreaSuggestedReaction;
+            if (tL_mediaAreaSuggestedReaction.flipped) {
                 storyReactionWidgetBackground.setMirror(true, false);
             }
-            if (tL_stories$TL_mediaAreaSuggestedReaction.dark) {
+            if (tL_mediaAreaSuggestedReaction.dark) {
                 storyReactionWidgetBackground.nextStyle();
             }
             reactionImageHolder.setStatic();
-            reactionImageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_stories$TL_mediaAreaSuggestedReaction.reaction));
+            reactionImageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_mediaAreaSuggestedReaction.reaction));
         }
 
         @Override
@@ -59,21 +56,21 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                 StoryWidgetsImageDecorator storyWidgetsImageDecorator = StoryWidgetsImageDecorator.this;
                 double d = storyWidgetsImageDecorator.imageX;
                 double d2 = storyWidgetsImageDecorator.imageW;
-                TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = this.mediaArea.coordinates;
-                double d3 = tL_stories$MediaAreaCoordinates.x;
+                TL_stories.MediaAreaCoordinates mediaAreaCoordinates = this.mediaArea.coordinates;
+                double d3 = mediaAreaCoordinates.x;
                 Double.isNaN(d2);
                 Double.isNaN(d);
                 float f2 = (float) (d + ((d3 * d2) / 100.0d));
                 double d4 = storyWidgetsImageDecorator.imageY;
                 double d5 = storyWidgetsImageDecorator.imageH;
-                double d6 = tL_stories$MediaAreaCoordinates.y;
+                double d6 = mediaAreaCoordinates.y;
                 Double.isNaN(d5);
                 Double.isNaN(d4);
                 float f3 = (float) (d4 + ((d6 * d5) / 100.0d));
-                double d7 = tL_stories$MediaAreaCoordinates.w;
+                double d7 = mediaAreaCoordinates.w;
                 Double.isNaN(d2);
                 float f4 = (float) ((d2 * d7) / 100.0d);
-                double d8 = tL_stories$MediaAreaCoordinates.h;
+                double d8 = mediaAreaCoordinates.h;
                 Double.isNaN(d5);
                 float f5 = f4 / 2.0f;
                 float f6 = ((float) ((d5 * d8) / 100.0d)) / 2.0f;
@@ -110,14 +107,14 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
 
     public class WeatherWidget extends DrawingObject {
         private final LocationMarker marker;
-        private final TL_stories$TL_mediaAreaWeather mediaArea;
+        private final TL_stories.TL_mediaAreaWeather mediaArea;
         private View parentView;
 
-        public WeatherWidget(TL_stories$TL_mediaAreaWeather tL_stories$TL_mediaAreaWeather) {
-            this.mediaArea = tL_stories$TL_mediaAreaWeather;
+        public WeatherWidget(TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather) {
+            this.mediaArea = tL_mediaAreaWeather;
             Weather.State state = new Weather.State();
-            state.emoji = tL_stories$TL_mediaAreaWeather.emoji;
-            state.temperature = (float) tL_stories$TL_mediaAreaWeather.temperature_c;
+            state.emoji = tL_mediaAreaWeather.emoji;
+            state.temperature = (float) tL_mediaAreaWeather.temperature_c;
             LocationMarker locationMarker = new LocationMarker(ApplicationLoader.applicationContext, 1, AndroidUtilities.density, 0) {
                 @Override
                 public void invalidate() {
@@ -131,7 +128,7 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             locationMarker.setIsVideo(false);
             locationMarker.setCodeEmoji(UserConfig.selectedAccount, state.getEmoji());
             locationMarker.setText(state.getTemperature());
-            locationMarker.setType(3, tL_stories$TL_mediaAreaWeather.color);
+            locationMarker.setType(3, tL_mediaAreaWeather.color);
             locationMarker.setupLayout();
         }
 
@@ -140,21 +137,21 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             StoryWidgetsImageDecorator storyWidgetsImageDecorator = StoryWidgetsImageDecorator.this;
             double d = storyWidgetsImageDecorator.imageX;
             double d2 = storyWidgetsImageDecorator.imageW;
-            TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = this.mediaArea.coordinates;
-            double d3 = tL_stories$MediaAreaCoordinates.x;
+            TL_stories.MediaAreaCoordinates mediaAreaCoordinates = this.mediaArea.coordinates;
+            double d3 = mediaAreaCoordinates.x;
             Double.isNaN(d2);
             Double.isNaN(d);
             float f2 = (float) (d + ((d3 * d2) / 100.0d));
             double d4 = storyWidgetsImageDecorator.imageY;
             double d5 = storyWidgetsImageDecorator.imageH;
-            double d6 = tL_stories$MediaAreaCoordinates.y;
+            double d6 = mediaAreaCoordinates.y;
             Double.isNaN(d5);
             Double.isNaN(d4);
             float f3 = (float) (d4 + ((d6 * d5) / 100.0d));
-            double d7 = tL_stories$MediaAreaCoordinates.w;
+            double d7 = mediaAreaCoordinates.w;
             Double.isNaN(d2);
             float f4 = (float) ((d2 * d7) / 100.0d);
-            double d8 = tL_stories$MediaAreaCoordinates.h;
+            double d8 = mediaAreaCoordinates.h;
             Double.isNaN(d5);
             canvas.save();
             canvas.translate(f2, f3);
@@ -184,22 +181,22 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         }
     }
 
-    public StoryWidgetsImageDecorator(TL_stories$StoryItem tL_stories$StoryItem) {
+    public StoryWidgetsImageDecorator(TL_stories.StoryItem storyItem) {
         ArrayList arrayList;
         DrawingObject weatherWidget;
-        for (int i = 0; i < tL_stories$StoryItem.media_areas.size(); i++) {
-            if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
+        for (int i = 0; i < storyItem.media_areas.size(); i++) {
+            if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
                 if (this.drawingObjects == null) {
                     this.drawingObjects = new ArrayList();
                 }
                 arrayList = this.drawingObjects;
-                weatherWidget = new ReactionWidget((TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$StoryItem.media_areas.get(i));
-            } else if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaWeather) {
+                weatherWidget = new ReactionWidget((TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i));
+            } else if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaWeather) {
                 if (this.drawingObjects == null) {
                     this.drawingObjects = new ArrayList();
                 }
                 arrayList = this.drawingObjects;
-                weatherWidget = new WeatherWidget((TL_stories$TL_mediaAreaWeather) tL_stories$StoryItem.media_areas.get(i));
+                weatherWidget = new WeatherWidget((TL_stories.TL_mediaAreaWeather) storyItem.media_areas.get(i));
             }
             arrayList.add(weatherWidget);
         }

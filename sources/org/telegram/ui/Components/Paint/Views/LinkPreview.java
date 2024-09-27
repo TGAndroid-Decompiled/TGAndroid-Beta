@@ -20,7 +20,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
@@ -90,7 +90,7 @@ public class LinkPreview extends View {
         public String name;
         public int photoSize;
         public String url;
-        public TLRPC$WebPage webpage;
+        public TLRPC.WebPage webpage;
 
         public static WebPagePreview TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
             if (-625858389 != i) {
@@ -112,7 +112,7 @@ public class LinkPreview extends View {
             this.captionAbove = (readInt32 & 16) != 0;
             this.url = abstractSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.webpage = TLRPC$WebPage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                this.webpage = TLRPC.WebPage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
             if ((this.flags & 2) != 0) {
                 this.name = abstractSerializedData.readString(z);

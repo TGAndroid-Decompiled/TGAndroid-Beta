@@ -13,9 +13,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.EmojiAnimationsOverlay;
@@ -216,8 +214,8 @@ public class AnimatedEmojiEffect {
 
     public void setView(View view) {
         boolean z;
-        TLRPC$TL_availableReaction tLRPC$TL_availableReaction;
-        TLRPC$Document tLRPC$Document;
+        TLRPC.TL_availableReaction tL_availableReaction;
+        TLRPC.Document document;
         this.animatedEmojiDrawable.addView(view);
         this.parentView = view;
         ImageReceiver imageReceiver = this.effectImageReceiver;
@@ -225,9 +223,9 @@ public class AnimatedEmojiEffect {
             return;
         }
         imageReceiver.onAttachedToWindow();
-        TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = null;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
         String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(this.animatedEmojiDrawable.getDocument(), null);
-        if (findAnimatedEmojiEmoticon == null || (tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(findAnimatedEmojiEmoticon)) == null || (tLRPC$Document = tLRPC$TL_availableReaction.around_animation) == null) {
+        if (findAnimatedEmojiEmoticon == null || (tL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(findAnimatedEmojiEmoticon)) == null || (document = tL_availableReaction.around_animation) == null) {
             z = false;
         } else {
             if (this.longAnimation) {
@@ -239,20 +237,20 @@ public class AnimatedEmojiEffect {
                 sb.append(" ");
                 imageReceiver2.setUniqKeyPrefix(sb.toString());
                 int filterWidth = EmojiAnimationsOverlay.getFilterWidth();
-                this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), filterWidth + "_" + filterWidth + "_pcache_compress", null, null, tLRPC$TL_availableReaction.around_animation, 0);
+                this.effectImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), filterWidth + "_" + filterWidth + "_pcache_compress", null, null, tL_availableReaction.around_animation, 0);
             } else {
-                this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, tLRPC$TL_availableReaction.around_animation, 0);
+                this.effectImageReceiver.setImage(ImageLocation.getForDocument(document), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, tL_availableReaction.around_animation, 0);
             }
             z = true;
         }
         if (!z) {
             String str = UserConfig.getInstance(this.currentAccount).genericAnimationsStickerPack;
-            if (str != null && (tLRPC$TL_messages_stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(str)) == null) {
-                tLRPC$TL_messages_stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(str);
+            if (str != null && (tL_messages_stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(str)) == null) {
+                tL_messages_stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(str);
             }
-            if (tLRPC$TL_messages_stickerSet != null) {
+            if (tL_messages_stickerSet != null) {
                 if (this.animationIndex < 0) {
-                    this.animationIndex = Math.abs(Utilities.fastRandom.nextInt() % tLRPC$TL_messages_stickerSet.documents.size());
+                    this.animationIndex = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
                 }
                 if (this.longAnimation) {
                     ImageReceiver imageReceiver3 = this.effectImageReceiver;
@@ -263,9 +261,9 @@ public class AnimatedEmojiEffect {
                     sb2.append(" ");
                     imageReceiver3.setUniqKeyPrefix(sb2.toString());
                     int filterWidth2 = EmojiAnimationsOverlay.getFilterWidth();
-                    this.effectImageReceiver.setImage(ImageLocation.getForDocument((TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex)), filterWidth2 + "_" + filterWidth2 + "_pcache_compress", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.animationIndex)), filterWidth2 + "_" + filterWidth2 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.animationIndex), 0);
                 } else {
-                    this.effectImageReceiver.setImage(ImageLocation.getForDocument((TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex)), "60_60", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.animationIndex)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.animationIndex), 0);
                 }
                 z = true;
             }

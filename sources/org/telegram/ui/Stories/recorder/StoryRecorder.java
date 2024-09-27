@@ -94,14 +94,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$InputMedia;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -171,7 +164,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private Runnable audioGrantedCallback;
     private FlashViews.ImageViewInvertable backButton;
     private BlurringShader.BlurManager blurManager;
-    private TLRPC$InputMedia botEdit;
+    private TLRPC.InputMedia botEdit;
     private long botId;
     private String botLang;
     private HintView2 cameraHint;
@@ -3770,7 +3763,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             for (URLSpanUserMention uRLSpanUserMention : (URLSpanUserMention[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), URLSpanUserMention.class)) {
                 if (uRLSpanUserMention != null) {
                     try {
-                        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(Long.parseLong(uRLSpanUserMention.getURL())));
+                        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(Long.parseLong(uRLSpanUserMention.getURL())));
                         if (user != null && !UserObject.isUserSelf(user) && UserObject.getPublicUsername(user) != null && !arrayList.contains(user)) {
                             arrayList.add(UserObject.getPublicUsername(user));
                         }
@@ -3789,9 +3782,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     if (i != -1) {
                         String charSequence2 = charSequence.subSequence(i, i2).toString();
                         TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(charSequence2);
-                        if (userOrChat instanceof TLRPC$User) {
-                            TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
-                            if (!tLRPC$User.bot && !UserObject.isUserSelf(tLRPC$User) && tLRPC$User.id != 777000 && !UserObject.isReplyUser(tLRPC$User) && !arrayList.contains(charSequence2)) {
+                        if (userOrChat instanceof TLRPC.User) {
+                            TLRPC.User user2 = (TLRPC.User) userOrChat;
+                            if (!user2.bot && !UserObject.isUserSelf(user2) && user2.id != 777000 && !UserObject.isReplyUser(user2) && !arrayList.contains(charSequence2)) {
                                 arrayList.add(charSequence2);
                             }
                         }
@@ -3802,9 +3795,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (i != -1) {
                 String charSequence3 = charSequence.subSequence(i, charSequence.length()).toString();
                 TLObject userOrChat2 = MessagesController.getInstance(this.currentAccount).getUserOrChat(charSequence3);
-                if (userOrChat2 instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User2 = (TLRPC$User) userOrChat2;
-                    if (!tLRPC$User2.bot && !UserObject.isUserSelf(tLRPC$User2) && tLRPC$User2.id != 777000 && !UserObject.isReplyUser(tLRPC$User2) && !arrayList.contains(charSequence3)) {
+                if (userOrChat2 instanceof TLRPC.User) {
+                    TLRPC.User user3 = (TLRPC.User) userOrChat2;
+                    if (!user3.bot && !UserObject.isUserSelf(user3) && user3.id != 777000 && !UserObject.isReplyUser(user3) && !arrayList.contains(charSequence3)) {
                         arrayList.add(charSequence3);
                     }
                 }
@@ -5147,15 +5140,15 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$processDone$30(TLRPC$InputPeer tLRPC$InputPeer) {
+    public void lambda$processDone$30(TLRPC.InputPeer inputPeer) {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry == null) {
             return;
         }
-        if (tLRPC$InputPeer == null) {
-            tLRPC$InputPeer = new TLRPC$TL_inputPeerSelf();
+        if (inputPeer == null) {
+            inputPeer = new TLRPC.TL_inputPeerSelf();
         }
-        storyEntry.peer = tLRPC$InputPeer;
+        storyEntry.peer = inputPeer;
     }
 
     public void lambda$processDone$31(Runnable runnable) {
@@ -5163,7 +5156,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         upload(true);
     }
 
-    public void lambda$processDone$32(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, final Runnable runnable) {
+    public void lambda$processDone$32(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC.InputPeer inputPeer, final Runnable runnable) {
         if (this.outputEntry == null) {
             return;
         }
@@ -5177,7 +5170,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.outputEntry.privacyRules.addAll(storyPrivacy.rules);
         StoryEntry storyEntry2 = this.outputEntry;
         storyEntry2.editedPrivacy = true;
-        storyEntry2.peer = tLRPC$InputPeer;
+        storyEntry2.peer = inputPeer;
         applyFilter(new Runnable() {
             @Override
             public final void run() {
@@ -5722,13 +5715,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     this.titleTextView.setTranslationX(-AndroidUtilities.dp(6.0f));
                     SpannableString spannableString = new SpannableString("a");
                     spannableString.setSpan(avatarSpan, 0, 1, 33);
-                    if (this.outputEntry.repostPeer instanceof TLRPC$TL_peerUser) {
-                        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.outputEntry.repostPeer.user_id));
+                    if (this.outputEntry.repostPeer instanceof TLRPC.TL_peerUser) {
+                        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.outputEntry.repostPeer.user_id));
                         avatarSpan.setUser(user);
                         spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) "  ");
                         str = UserObject.getUserName(user);
                     } else {
-                        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(this.outputEntry.repostPeer)));
+                        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(this.outputEntry.repostPeer)));
                         avatarSpan.setChat(chat);
                         spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) "  ");
                         if (chat != null) {
@@ -6428,12 +6421,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }).isEdit(false).setWarnUsers(getUsersFrom(this.captionEdit.getText())).whenSelectedPeer(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StoryRecorder.this.lambda$processDone$30((TLRPC$InputPeer) obj);
+                StoryRecorder.this.lambda$processDone$30((TLRPC.InputPeer) obj);
             }
         }).whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
             @Override
-            public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable) {
-                StoryRecorder.this.lambda$processDone$32(storyPrivacy, z, z2, tLRPC$InputPeer, runnable);
+            public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC.InputPeer inputPeer, Runnable runnable) {
+                StoryRecorder.this.lambda$processDone$32(storyPrivacy, z, z2, inputPeer, runnable);
             }
         }, false);
         StoryEntry storyEntry3 = this.outputEntry;
@@ -6665,13 +6658,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             captionStory.setReply(null, null);
             return;
         }
-        TLRPC$Peer tLRPC$Peer = storyEntry2.repostPeer;
-        if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
-            str = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Peer.user_id)));
+        TLRPC.Peer peer = storyEntry2.repostPeer;
+        if (peer instanceof TLRPC.TL_peerUser) {
+            str = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peer.user_id)));
             storyEntry = this.outputEntry;
             spannableStringBuilder = new SpannableStringBuilder(MessageObject.userSpan());
         } else {
-            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$Peer)));
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(peer)));
             str = chat == null ? "" : chat.title;
             storyEntry = this.outputEntry;
             spannableStringBuilder = new SpannableStringBuilder(MessageObject.userSpan());
@@ -6950,8 +6943,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         destroyPhotoFilterView();
         prepareThumb(this.outputEntry, false);
         CharSequence[] charSequenceArr = {this.captionEdit.getText()};
-        ArrayList<TLRPC$MessageEntity> entities = MessagesController.getInstance(this.currentAccount).storyEntitiesAllowed() ? MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true) : new ArrayList<>();
-        ArrayList<TLRPC$MessageEntity> entities2 = MessagesController.getInstance(this.currentAccount).storyEntitiesAllowed() ? MediaDataController.getInstance(this.currentAccount).getEntities(new CharSequence[]{this.outputEntry.caption}, true) : new ArrayList<>();
+        ArrayList<TLRPC.MessageEntity> entities = MessagesController.getInstance(this.currentAccount).storyEntitiesAllowed() ? MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true) : new ArrayList<>();
+        ArrayList<TLRPC.MessageEntity> entities2 = MessagesController.getInstance(this.currentAccount).storyEntitiesAllowed() ? MediaDataController.getInstance(this.currentAccount).getEntities(new CharSequence[]{this.outputEntry.caption}, true) : new ArrayList<>();
         StoryEntry storyEntry = this.outputEntry;
         storyEntry.editedCaption = (TextUtils.equals(storyEntry.caption, charSequenceArr[0]) && MediaDataController.entitiesEqual(entities, entities2)) ? false : true;
         this.outputEntry.caption = new SpannableString(this.captionEdit.getText());
@@ -6962,9 +6955,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
         this.outputEntry.cancelCheckStickers();
         final long j = UserConfig.getInstance(this.currentAccount).clientUserId;
-        TLRPC$InputPeer tLRPC$InputPeer = this.outputEntry.peer;
-        if (tLRPC$InputPeer != null && !(tLRPC$InputPeer instanceof TLRPC$TL_inputPeerSelf)) {
-            j = DialogObject.getPeerDialogId(tLRPC$InputPeer);
+        TLRPC.InputPeer inputPeer = this.outputEntry.peer;
+        if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerSelf)) {
+            j = DialogObject.getPeerDialogId(inputPeer);
         }
         this.outputEntry = null;
         this.wasSend = true;

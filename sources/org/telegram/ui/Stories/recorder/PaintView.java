@@ -77,26 +77,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$GeoPoint;
-import org.telegram.tgnet.TLRPC$InputDocument;
-import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
-import org.telegram.tgnet.TLRPC$TL_inputDocument;
-import org.telegram.tgnet.TLRPC$TL_maskCoords;
-import org.telegram.tgnet.TLRPC$TL_messageMediaGeo;
-import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stories$MediaArea;
-import org.telegram.tgnet.tl.TL_stories$TL_geoPointAddress;
-import org.telegram.tgnet.tl.TL_stories$TL_inputMediaAreaVenue;
-import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaGeoPoint;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -295,59 +277,59 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.val$onLocationSelected = callback2;
         }
 
-        public static void lambda$didSelectLocation$0(TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$TL_mediaAreaGeoPoint tL_stories$TL_mediaAreaGeoPoint) {
+        public static void lambda$didSelectLocation$0(TLRPC.MessageMedia messageMedia, TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint) {
             try {
-                List<Address> fromLocationName = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocationName(tLRPC$MessageMedia.title, 1);
+                List<Address> fromLocationName = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocationName(messageMedia.title, 1);
                 if (fromLocationName.size() <= 0) {
                     return;
                 }
-                tL_stories$TL_mediaAreaGeoPoint.geo.lat = fromLocationName.get(0).getLatitude();
-                tL_stories$TL_mediaAreaGeoPoint.geo._long = fromLocationName.get(0).getLongitude();
+                tL_mediaAreaGeoPoint.geo.lat = fromLocationName.get(0).getLatitude();
+                tL_mediaAreaGeoPoint.geo._long = fromLocationName.get(0).getLongitude();
             } catch (Exception unused) {
             }
         }
 
         @Override
-        public void didSelectLocation(final TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-            TL_stories$TL_mediaAreaGeoPoint tL_stories$TL_mediaAreaGeoPoint;
-            TL_stories$TL_mediaAreaGeoPoint tL_stories$TL_mediaAreaGeoPoint2;
-            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGeo) {
-                tL_stories$TL_mediaAreaGeoPoint2 = new TL_stories$TL_mediaAreaGeoPoint();
-                tL_stories$TL_mediaAreaGeoPoint2.geo = tLRPC$MessageMedia.geo;
+        public void didSelectLocation(final TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+            TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint;
+            TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint2;
+            if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
+                tL_mediaAreaGeoPoint2 = new TL_stories.TL_mediaAreaGeoPoint();
+                tL_mediaAreaGeoPoint2.geo = messageMedia.geo;
             } else {
-                if (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaVenue)) {
+                if (!(messageMedia instanceof TLRPC.TL_messageMediaVenue)) {
                     return;
                 }
-                TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue = (TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia;
-                long j = tLRPC$TL_messageMediaVenue.query_id;
+                TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) messageMedia;
+                long j = tL_messageMediaVenue.query_id;
                 if (j == -1 || j == -2) {
-                    final TL_stories$TL_mediaAreaGeoPoint tL_stories$TL_mediaAreaGeoPoint3 = new TL_stories$TL_mediaAreaGeoPoint();
-                    tL_stories$TL_mediaAreaGeoPoint3.geo = tLRPC$MessageMedia.geo;
-                    TL_stories$TL_geoPointAddress tL_stories$TL_geoPointAddress = tLRPC$TL_messageMediaVenue.geoAddress;
-                    tL_stories$TL_mediaAreaGeoPoint3.address = tL_stories$TL_geoPointAddress;
-                    if (tL_stories$TL_geoPointAddress != null) {
-                        tL_stories$TL_mediaAreaGeoPoint3.flags |= 1;
+                    final TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint3 = new TL_stories.TL_mediaAreaGeoPoint();
+                    tL_mediaAreaGeoPoint3.geo = messageMedia.geo;
+                    TL_stories.TL_geoPointAddress tL_geoPointAddress = tL_messageMediaVenue.geoAddress;
+                    tL_mediaAreaGeoPoint3.address = tL_geoPointAddress;
+                    if (tL_geoPointAddress != null) {
+                        tL_mediaAreaGeoPoint3.flags |= 1;
                     }
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            PaintView.AnonymousClass24.lambda$didSelectLocation$0(TLRPC$MessageMedia.this, tL_stories$TL_mediaAreaGeoPoint3);
+                            PaintView.AnonymousClass24.lambda$didSelectLocation$0(TLRPC.MessageMedia.this, tL_mediaAreaGeoPoint3);
                         }
                     });
-                    tL_stories$TL_mediaAreaGeoPoint = tL_stories$TL_mediaAreaGeoPoint3;
+                    tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
                 } else {
-                    TL_stories$TL_inputMediaAreaVenue tL_stories$TL_inputMediaAreaVenue = new TL_stories$TL_inputMediaAreaVenue();
-                    tL_stories$TL_inputMediaAreaVenue.query_id = tLRPC$TL_messageMediaVenue.query_id;
-                    tL_stories$TL_inputMediaAreaVenue.result_id = tLRPC$TL_messageMediaVenue.result_id;
-                    tL_stories$TL_mediaAreaGeoPoint = tL_stories$TL_inputMediaAreaVenue;
+                    TL_stories.TL_inputMediaAreaVenue tL_inputMediaAreaVenue = new TL_stories.TL_inputMediaAreaVenue();
+                    tL_inputMediaAreaVenue.query_id = tL_messageMediaVenue.query_id;
+                    tL_inputMediaAreaVenue.result_id = tL_messageMediaVenue.result_id;
+                    tL_mediaAreaGeoPoint = tL_inputMediaAreaVenue;
                 }
-                tL_stories$TL_mediaAreaGeoPoint2 = tL_stories$TL_mediaAreaGeoPoint;
+                tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
             }
-            this.val$onLocationSelected.run(tLRPC$MessageMedia, tL_stories$TL_mediaAreaGeoPoint2);
+            this.val$onLocationSelected.run(messageMedia, tL_mediaAreaGeoPoint2);
         }
 
         @Override
-        public TLRPC$User getCurrentUser() {
+        public TLRPC.User getCurrentUser() {
             return UserConfig.getInstance(this.currentAccount).getCurrentUser();
         }
 
@@ -462,7 +444,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
 
         @Override
-        public void onCustomEmojiSelected(long j, TLRPC$Document tLRPC$Document, String str, boolean z) {
+        public void onCustomEmojiSelected(long j, TLRPC.Document document, String str, boolean z) {
             EditTextOutline editText = ((TextPaintView) PaintView.this.currentEntityView).getEditText();
             if (editText == null) {
                 return;
@@ -475,7 +457,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 try {
                     this.innerTextChange = 2;
                     SpannableString spannableString = new SpannableString(str);
-                    spannableString.setSpan(tLRPC$Document != null ? new AnimatedEmojiSpan(tLRPC$Document, 1.0f, editText.getPaint().getFontMetricsInt()) : new AnimatedEmojiSpan(j, 1.0f, editText.getPaint().getFontMetricsInt()), 0, spannableString.length(), 33);
+                    spannableString.setSpan(document != null ? new AnimatedEmojiSpan(document, 1.0f, editText.getPaint().getFontMetricsInt()) : new AnimatedEmojiSpan(j, 1.0f, editText.getPaint().getFontMetricsInt()), 0, spannableString.length(), 33);
                     editText.setText(editText.getText().insert(selectionEnd, spannableString));
                     int length = selectionEnd + spannableString.length();
                     editText.setSelection(length, length);
@@ -538,23 +520,23 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
 
         @Override
-        public void onShowStickerSet(TLRPC$StickerSet tLRPC$StickerSet, TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
-            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, tLRPC$StickerSet, tLRPC$InputStickerSet, z);
+        public void onShowStickerSet(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+            EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, stickerSet, inputStickerSet, z);
         }
 
         @Override
-        public void onStickerSelected(View view, TLRPC$Document tLRPC$Document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, tLRPC$Document, str, obj, sendAnimationData, z, i);
+        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i);
         }
 
         @Override
-        public void onStickerSetAdd(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, tLRPC$StickerSetCovered);
+        public void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, stickerSetCovered);
         }
 
         @Override
-        public void onStickerSetRemove(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, tLRPC$StickerSetCovered);
+        public void onStickerSetRemove(TLRPC.StickerSetCovered stickerSetCovered) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, stickerSetCovered);
         }
 
         @Override
@@ -1546,21 +1528,21 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return popupButton;
     }
 
-    private StickerPosition calculateStickerPosition(TLRPC$Document tLRPC$Document) {
-        TLRPC$TL_maskCoords tLRPC$TL_maskCoords;
+    private StickerPosition calculateStickerPosition(TLRPC.Document document) {
+        TLRPC.TL_maskCoords tL_maskCoords;
         float f;
         ArrayList arrayList;
         int i;
         PhotoFace randomFaceWithVacantAnchor;
         int i2 = 0;
         while (true) {
-            if (i2 >= tLRPC$Document.attributes.size()) {
-                tLRPC$TL_maskCoords = null;
+            if (i2 >= document.attributes.size()) {
+                tL_maskCoords = null;
                 break;
             }
-            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i2);
-            if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) {
-                tLRPC$TL_maskCoords = tLRPC$DocumentAttribute.mask_coords;
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i2);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                tL_maskCoords = documentAttribute.mask_coords;
                 break;
             }
             i2++;
@@ -1574,14 +1556,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             f = 0.0f;
         }
         StickerPosition stickerPosition = new StickerPosition(centerPositionForEntity(), f2, f);
-        if (tLRPC$TL_maskCoords == null || (arrayList = this.faces) == null || arrayList.size() == 0 || (randomFaceWithVacantAnchor = getRandomFaceWithVacantAnchor((i = tLRPC$TL_maskCoords.n), tLRPC$Document.id, tLRPC$TL_maskCoords)) == null) {
+        if (tL_maskCoords == null || (arrayList = this.faces) == null || arrayList.size() == 0 || (randomFaceWithVacantAnchor = getRandomFaceWithVacantAnchor((i = tL_maskCoords.n), document.id, tL_maskCoords)) == null) {
             return stickerPosition;
         }
         Point pointForAnchor = randomFaceWithVacantAnchor.getPointForAnchor(i);
         float widthForAnchor = randomFaceWithVacantAnchor.getWidthForAnchor(i);
         float angle = randomFaceWithVacantAnchor.getAngle();
         double d = widthForAnchor / baseStickerSize().width;
-        double d2 = tLRPC$TL_maskCoords.zoom;
+        double d2 = tL_maskCoords.zoom;
         Double.isNaN(d);
         return new StickerPosition(new Point(pointForAnchor.x, pointForAnchor.y), (float) (d * d2), angle);
     }
@@ -1623,7 +1605,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return textView;
     }
 
-    private LinkView createLinkSticker(LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea, boolean z) {
+    private LinkView createLinkSticker(LinkPreview.WebPagePreview webPagePreview, TL_stories.MediaArea mediaArea, boolean z) {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1631,7 +1613,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
         float measuredWidth = this.entitiesView.getMeasuredWidth() <= 0 ? this.w : this.entitiesView.getMeasuredWidth();
         int dp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
-        LinkView linkView = new LinkView(getContext(), startPositionRelativeToEntity, this.currentAccount, webPagePreview, tL_stories$MediaArea, measuredWidth / 360.0f, dp, 3);
+        LinkView linkView = new LinkView(getContext(), startPositionRelativeToEntity, this.currentAccount, webPagePreview, mediaArea, measuredWidth / 360.0f, dp, 3);
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             linkView.setStickyX(2);
         }
@@ -1658,7 +1640,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return linkView;
     }
 
-    private LocationView createLocationSticker(TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea, boolean z) {
+    private LocationView createLocationSticker(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, boolean z) {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1666,7 +1648,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
         float measuredWidth = this.entitiesView.getMeasuredWidth() <= 0 ? this.w : this.entitiesView.getMeasuredWidth();
         int dp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
-        LocationView locationView = new LocationView(getContext(), startPositionRelativeToEntity, this.currentAccount, tLRPC$MessageMedia, tL_stories$MediaArea, measuredWidth / 240.0f, dp);
+        LocationView locationView = new LocationView(getContext(), startPositionRelativeToEntity, this.currentAccount, messageMedia, mediaArea, measuredWidth / 240.0f, dp);
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             locationView.setStickyX(2);
         }
@@ -1721,15 +1703,15 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return reactionWidgetEntityView;
     }
 
-    private StickerView createSticker(Object obj, TLRPC$Document tLRPC$Document, boolean z) {
-        StickerPosition calculateStickerPosition = calculateStickerPosition(tLRPC$Document);
-        StickerView stickerView = new StickerView(getContext(), calculateStickerPosition.position, calculateStickerPosition.angle, calculateStickerPosition.scale, baseStickerSize(), tLRPC$Document, obj) {
+    private StickerView createSticker(Object obj, TLRPC.Document document, boolean z) {
+        StickerPosition calculateStickerPosition = calculateStickerPosition(document);
+        StickerView stickerView = new StickerView(getContext(), calculateStickerPosition.position, calculateStickerPosition.angle, calculateStickerPosition.scale, baseStickerSize(), document, obj) {
             @Override
             protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
                 PaintView.this.didSetAnimatedSticker(rLottieDrawable);
             }
         };
-        if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
+        if (MessageObject.isTextColorEmoji(document)) {
             stickerView.centerImage.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
         stickerView.centerImage.setLayerNum(12);
@@ -1901,13 +1883,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return size2;
     }
 
-    private PhotoFace getRandomFaceWithVacantAnchor(int i, long j, TLRPC$TL_maskCoords tLRPC$TL_maskCoords) {
+    private PhotoFace getRandomFaceWithVacantAnchor(int i, long j, TLRPC.TL_maskCoords tL_maskCoords) {
         if (i >= 0 && i <= 3 && !this.faces.isEmpty()) {
             int size = this.faces.size();
             int nextInt = Utilities.random.nextInt(size);
             for (int i2 = size; i2 > 0; i2--) {
                 PhotoFace photoFace = (PhotoFace) this.faces.get(nextInt);
-                if (!isFaceAnchorOccupied(photoFace, i, j, tLRPC$TL_maskCoords)) {
+                if (!isFaceAnchorOccupied(photoFace, i, j, tL_maskCoords)) {
                     return photoFace;
                 }
                 nextInt = (nextInt + 1) % size;
@@ -1964,7 +1946,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    private boolean isFaceAnchorOccupied(PhotoFace photoFace, int i, long j, TLRPC$TL_maskCoords tLRPC$TL_maskCoords) {
+    private boolean isFaceAnchorOccupied(PhotoFace photoFace, int i, long j, TLRPC.TL_maskCoords tL_maskCoords) {
         if (photoFace.getPointForAnchor(i) == null) {
             return true;
         }
@@ -1992,14 +1974,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return i == 90 || i == 270;
     }
 
-    public static boolean isVideoStickerDocument(TLRPC$Document tLRPC$Document) {
-        if (tLRPC$Document == null) {
+    public static boolean isVideoStickerDocument(TLRPC.Document document) {
+        if (document == null) {
             return false;
         }
-        for (int i = 0; i < tLRPC$Document.attributes.size(); i++) {
-            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i);
-            if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeCustomEmoji) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo)) {
-                return "video/webm".equals(tLRPC$Document.mime_type) || "video/mp4".equals(tLRPC$Document.mime_type);
+        for (int i = 0; i < document.attributes.size(); i++) {
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+            if ((documentAttribute instanceof TLRPC.TL_documentAttributeSticker) || (documentAttribute instanceof TLRPC.TL_documentAttributeCustomEmoji) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                return "video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type);
             }
         }
         return false;
@@ -2295,9 +2277,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         switchTab(i);
     }
 
-    public Boolean lambda$openStickersView$23(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
+    public Boolean lambda$openStickersView$23(Object obj, TLRPC.Document document, Boolean bool) {
         this.forceChanges = true;
-        StickerView createSticker = createSticker(obj, tLRPC$Document, false);
+        StickerView createSticker = createSticker(obj, document, false);
         if (bool.booleanValue()) {
             createSticker.setScale(1.5f);
         }
@@ -2305,8 +2287,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return Boolean.TRUE;
     }
 
-    public void lambda$openStickersView$24(TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea) {
-        appearAnimation(createLocationSticker(tLRPC$MessageMedia, tL_stories$MediaArea, false));
+    public void lambda$openStickersView$24(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
+        appearAnimation(createLocationSticker(messageMedia, mediaArea, false));
     }
 
     public void lambda$openStickersView$25(EmojiBottomSheet emojiBottomSheet, Weather.State state) {
@@ -2360,7 +2342,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             showLocationAlert(null, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PaintView.this.lambda$openStickersView$24((TLRPC$MessageMedia) obj, (TL_stories$MediaArea) obj2);
+                    PaintView.this.lambda$openStickersView$24((TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
                 }
             });
             return Boolean.TRUE;
@@ -2564,8 +2546,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$48(EntityView entityView, TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea) {
-        ((LocationView) entityView).setLocation(this.currentAccount, tLRPC$MessageMedia, tL_stories$MediaArea);
+    public void lambda$showMenuForEntity$48(EntityView entityView, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
+        ((LocationView) entityView).setLocation(this.currentAccount, messageMedia, mediaArea);
         appearAnimation(entityView);
     }
 
@@ -2574,7 +2556,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PaintView.this.lambda$showMenuForEntity$48(entityView, (TLRPC$MessageMedia) obj, (TL_stories$MediaArea) obj2);
+                PaintView.this.lambda$showMenuForEntity$48(entityView, (TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
             }
         });
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
@@ -2823,7 +2805,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {
                 Boolean lambda$openStickersView$23;
-                lambda$openStickersView$23 = PaintView.this.lambda$openStickersView$23(obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                lambda$openStickersView$23 = PaintView.this.lambda$openStickersView$23(obj, (TLRPC.Document) obj2, (Boolean) obj3);
                 return lambda$openStickersView$23;
             }
         });
@@ -3240,7 +3222,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     private void showAudioAlert(final Utilities.Callback callback) {
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new ChatActivity(null) {
             @Override
-            public TLRPC$User getCurrentUser() {
+            public TLRPC.User getCurrentUser() {
                 return UserConfig.getInstance(this.currentAccount).getCurrentUser();
             }
 
@@ -3289,8 +3271,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }
 
             @Override
-            public void didSelectBot(TLRPC$User tLRPC$User) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
+            public void didSelectBot(TLRPC.User user) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
             }
 
             @Override
@@ -3472,8 +3454,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     private void showLocationAlert(LocationView locationView, Utilities.Callback2 callback2) {
-        TLRPC$MessageMedia tLRPC$MessageMedia;
-        TLRPC$GeoPoint tLRPC$GeoPoint;
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.GeoPoint geoPoint;
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new AnonymousClass24(null, callback2), false, true, false, this.resourcesProvider);
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
@@ -3481,8 +3463,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }
 
             @Override
-            public void didSelectBot(TLRPC$User tLRPC$User) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
+            public void didSelectBot(TLRPC.User user) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
             }
 
             @Override
@@ -3520,8 +3502,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
             }
         });
-        if (locationView != null && (tLRPC$MessageMedia = locationView.location) != null && (tLRPC$GeoPoint = tLRPC$MessageMedia.geo) != null) {
-            chatAttachAlert.setStoryLocationPicker(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long);
+        if (locationView != null && (messageMedia = locationView.location) != null && (geoPoint = messageMedia.geo) != null) {
+            chatAttachAlert.setStoryLocationPicker(geoPoint.lat, geoPoint._long);
         } else if (this.fileFromGallery) {
             chatAttachAlert.setStoryLocationPicker(this.isVideo, this.file);
         } else {
@@ -4192,48 +4174,48 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return this.lcm.longValue();
     }
 
-    public List<TLRPC$InputDocument> getMasks() {
+    public List<TLRPC.InputDocument> getMasks() {
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         int childCount = this.entitiesView.getChildCount();
         ArrayList arrayList = null;
         for (int i = 0; i < childCount; i++) {
             View childAt = this.entitiesView.getChildAt(i);
             if (childAt instanceof StickerView) {
-                TLRPC$Document sticker = ((StickerView) childAt).getSticker();
+                TLRPC.Document sticker = ((StickerView) childAt).getSticker();
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                TLRPC$TL_inputDocument tLRPC$TL_inputDocument = new TLRPC$TL_inputDocument();
-                tLRPC$TL_inputDocument.id = sticker.id;
-                tLRPC$TL_inputDocument.access_hash = sticker.access_hash;
+                TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                tL_inputDocument.id = sticker.id;
+                tL_inputDocument.access_hash = sticker.access_hash;
                 byte[] bArr = sticker.file_reference;
-                tLRPC$TL_inputDocument.file_reference = bArr;
+                tL_inputDocument.file_reference = bArr;
                 if (bArr == null) {
-                    tLRPC$TL_inputDocument.file_reference = new byte[0];
+                    tL_inputDocument.file_reference = new byte[0];
                 }
-                arrayList.add(tLRPC$TL_inputDocument);
+                arrayList.add(tL_inputDocument);
             } else if (childAt instanceof TextPaintView) {
                 CharSequence text = ((TextPaintView) childAt).getText();
                 if ((text instanceof Spanned) && (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) text).getSpans(0, text.length(), AnimatedEmojiSpan.class)) != null) {
                     for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
                         if (animatedEmojiSpan != null) {
-                            TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
-                            if (tLRPC$Document == null) {
-                                tLRPC$Document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                            TLRPC.Document document = animatedEmojiSpan.document;
+                            if (document == null) {
+                                document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                             }
-                            if (tLRPC$Document != null) {
+                            if (document != null) {
                                 if (arrayList == null) {
                                     arrayList = new ArrayList();
                                 }
-                                TLRPC$TL_inputDocument tLRPC$TL_inputDocument2 = new TLRPC$TL_inputDocument();
-                                tLRPC$TL_inputDocument2.id = tLRPC$Document.id;
-                                tLRPC$TL_inputDocument2.access_hash = tLRPC$Document.access_hash;
-                                byte[] bArr2 = tLRPC$Document.file_reference;
-                                tLRPC$TL_inputDocument2.file_reference = bArr2;
+                                TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
+                                tL_inputDocument2.id = document.id;
+                                tL_inputDocument2.access_hash = document.access_hash;
+                                byte[] bArr2 = document.file_reference;
+                                tL_inputDocument2.file_reference = bArr2;
                                 if (bArr2 == null) {
-                                    tLRPC$TL_inputDocument2.file_reference = new byte[0];
+                                    tL_inputDocument2.file_reference = new byte[0];
                                 }
-                                arrayList.add(tLRPC$TL_inputDocument2);
+                                arrayList.add(tL_inputDocument2);
                             }
                         }
                     }
@@ -4825,14 +4807,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 CharSequence text = ((TextPaintView) childAt).getText();
                 if (text instanceof Spanned) {
                     for (AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) ((Spanned) text).getSpans(0, text.length(), AnimatedEmojiSpan.class)) {
-                        TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
-                        if (tLRPC$Document == null) {
-                            tLRPC$Document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                        TLRPC.Document document = animatedEmojiSpan.document;
+                        if (document == null) {
+                            document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                         }
-                        if (tLRPC$Document != null) {
-                            AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).putDocument(tLRPC$Document);
+                        if (document != null) {
+                            AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).putDocument(document);
                         }
-                        if (StoryEntry.isAnimated(tLRPC$Document, FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$Document, true).getAbsolutePath())) {
+                        if (StoryEntry.isAnimated(document, FileLoader.getInstance(this.currentAccount).getPathToAttach(document, true).getAbsolutePath())) {
                             return true;
                         }
                     }
@@ -4840,7 +4822,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     continue;
                 }
             } else if (childAt instanceof StickerView) {
-                TLRPC$Document sticker = ((StickerView) childAt).getSticker();
+                TLRPC.Document sticker = ((StickerView) childAt).getSticker();
                 if (StoryEntry.isAnimated(sticker, FileLoader.getInstance(this.currentAccount).getPathToAttach(sticker, true).getAbsolutePath())) {
                     return true;
                 }

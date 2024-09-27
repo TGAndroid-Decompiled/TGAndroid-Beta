@@ -17,14 +17,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$TL_messageEntityBold;
-import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_messageEntityItalic;
-import org.telegram.tgnet.TLRPC$TL_messageEntityPre;
-import org.telegram.tgnet.TLRPC$TL_messageEntitySpoiler;
-import org.telegram.tgnet.TLRPC$TL_messageEntityStrike;
-import org.telegram.tgnet.TLRPC$TL_messageEntityUnderline;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.URLSpanReplacement;
@@ -270,8 +263,8 @@ public abstract class CopyUtilities {
     }
 
     public static Spannable fromHTML(String str) {
-        TLRPC$MessageEntity entityStartEnd;
-        TLRPC$MessageEntity tLRPC$TL_messageEntityPre;
+        TLRPC.MessageEntity entityStartEnd;
+        TLRPC.MessageEntity tL_messageEntityPre;
         try {
             Spanned fromHtml = Build.VERSION.SDK_INT >= 24 ? Html.fromHtml("<inject>" + str + "</inject>", 63, null, new HTMLTagAttributesHandler(new HTMLTagHandler())) : Html.fromHtml("<inject>" + str + "</inject>", null, new HTMLTagAttributesHandler(new HTMLTagHandler()));
             if (fromHtml == null) {
@@ -287,26 +280,26 @@ public abstract class CopyUtilities {
                 if (obj instanceof StyleSpan) {
                     int style = ((StyleSpan) obj).getStyle();
                     if ((style & 1) > 0) {
-                        arrayList.add(setEntityStartEnd(new TLRPC$TL_messageEntityBold(), spanStart, spanEnd));
+                        arrayList.add(setEntityStartEnd(new TLRPC.TL_messageEntityBold(), spanStart, spanEnd));
                     }
                     if ((style & 2) > 0) {
-                        tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityItalic();
-                        entityStartEnd = setEntityStartEnd(tLRPC$TL_messageEntityPre, spanStart, spanEnd);
+                        tL_messageEntityPre = new TLRPC.TL_messageEntityItalic();
+                        entityStartEnd = setEntityStartEnd(tL_messageEntityPre, spanStart, spanEnd);
                     }
                 } else {
                     if (obj instanceof UnderlineSpan) {
-                        tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityUnderline();
+                        tL_messageEntityPre = new TLRPC.TL_messageEntityUnderline();
                     } else if (obj instanceof StrikethroughSpan) {
-                        tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityStrike();
+                        tL_messageEntityPre = new TLRPC.TL_messageEntityStrike();
                     } else {
                         if (obj instanceof ParsedSpan) {
                             ParsedSpan parsedSpan = (ParsedSpan) obj;
                             int i = parsedSpan.type;
                             if (i == 0) {
-                                tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntitySpoiler();
+                                tL_messageEntityPre = new TLRPC.TL_messageEntitySpoiler();
                             } else if (i == 1) {
                                 if (TextUtils.isEmpty(parsedSpan.lng)) {
-                                    tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityPre();
+                                    tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
                                 } else {
                                     arrayList2.add(parsedSpan);
                                 }
@@ -314,19 +307,19 @@ public abstract class CopyUtilities {
                                 arrayList3.add(parsedSpan);
                             }
                         } else if (obj instanceof AnimatedEmojiSpan) {
-                            TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
+                            TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
                             AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) obj;
-                            tLRPC$TL_messageEntityCustomEmoji.document_id = animatedEmojiSpan.documentId;
-                            tLRPC$TL_messageEntityCustomEmoji.document = animatedEmojiSpan.document;
-                            entityStartEnd = setEntityStartEnd(tLRPC$TL_messageEntityCustomEmoji, spanStart, spanEnd);
+                            tL_messageEntityCustomEmoji.document_id = animatedEmojiSpan.documentId;
+                            tL_messageEntityCustomEmoji.document = animatedEmojiSpan.document;
+                            entityStartEnd = setEntityStartEnd(tL_messageEntityCustomEmoji, spanStart, spanEnd);
                         }
                     }
-                    entityStartEnd = setEntityStartEnd(tLRPC$TL_messageEntityPre, spanStart, spanEnd);
+                    entityStartEnd = setEntityStartEnd(tL_messageEntityPre, spanStart, spanEnd);
                 }
                 arrayList.add(entityStartEnd);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(fromHtml.toString());
-            MediaDataController.addTextStyleRuns((ArrayList<TLRPC$MessageEntity>) arrayList, spannableStringBuilder, spannableStringBuilder);
+            MediaDataController.addTextStyleRuns((ArrayList<TLRPC.MessageEntity>) arrayList, spannableStringBuilder, spannableStringBuilder);
             for (Object obj2 : spans) {
                 if (obj2 instanceof URLSpan) {
                     int spanStart2 = fromHtml.getSpanStart(obj2);
@@ -354,9 +347,9 @@ public abstract class CopyUtilities {
         }
     }
 
-    private static TLRPC$MessageEntity setEntityStartEnd(TLRPC$MessageEntity tLRPC$MessageEntity, int i, int i2) {
-        tLRPC$MessageEntity.offset = i;
-        tLRPC$MessageEntity.length = i2 - i;
-        return tLRPC$MessageEntity;
+    private static TLRPC.MessageEntity setEntityStartEnd(TLRPC.MessageEntity messageEntity, int i, int i2) {
+        messageEntity.offset = i;
+        messageEntity.length = i2 - i;
+        return messageEntity;
     }
 }

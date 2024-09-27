@@ -31,9 +31,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.SharedAudioCell;
@@ -360,7 +358,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         if (view instanceof Cell) {
             SharedDocumentCell sharedDocumentCell = ((Cell) view).sharedDocumentCell;
             MessageObject message2 = sharedDocumentCell.getMessage();
-            TLRPC$Document document = message2.getDocument();
+            TLRPC.Document document = message2.getDocument();
             if (sharedDocumentCell.isLoaded()) {
                 if (message2.isRoundVideo() || message2.isVoice()) {
                     MediaController.getInstance().playMessage(message2);
@@ -370,17 +368,17 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
                 if (canPreviewDocument) {
                     z = canPreviewDocument;
                 } else {
-                    TLRPC$Message tLRPC$Message = message2.messageOwner;
-                    boolean z2 = tLRPC$Message != null && tLRPC$Message.noforwards;
-                    TLRPC$Chat tLRPC$Chat = null;
-                    TLRPC$Chat chat = message.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.channel_id)) : null;
-                    if (chat != null) {
-                        tLRPC$Chat = chat;
+                    TLRPC.Message message3 = message2.messageOwner;
+                    boolean z2 = message3 != null && message3.noforwards;
+                    TLRPC.Chat chat = null;
+                    TLRPC.Chat chat2 = message.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.channel_id)) : null;
+                    if (chat2 != null) {
+                        chat = chat2;
                     } else if (message.messageOwner.peer_id.chat_id != 0) {
-                        tLRPC$Chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.chat_id));
+                        chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.chat_id));
                     }
-                    if (tLRPC$Chat != null) {
-                        z2 = tLRPC$Chat.noforwards;
+                    if (chat != null) {
+                        z2 = chat.noforwards;
                     }
                     if (canPreviewDocument || z2) {
                         z = true;

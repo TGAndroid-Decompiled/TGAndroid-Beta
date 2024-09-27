@@ -32,8 +32,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$RestrictionReason;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -50,7 +49,7 @@ public class PhonebookShareAlert extends BottomSheet {
     private View actionBarShadow;
     private Paint backgroundPaint;
     private TextView buttonTextView;
-    private TLRPC$User currentUser;
+    private TLRPC.User currentUser;
     private ChatAttachAlertContactsLayout.PhonebookShareAlertDelegate delegate;
     private boolean inLayout;
     private boolean isImport;
@@ -299,20 +298,20 @@ public class PhonebookShareAlert extends BottomSheet {
         }
     }
 
-    public PhonebookShareAlert(BaseFragment baseFragment, ContactsController.Contact contact, TLRPC$User tLRPC$User, Uri uri, File file, String str, String str2) {
-        this(baseFragment, contact, tLRPC$User, uri, file, (String) null, str, str2);
+    public PhonebookShareAlert(BaseFragment baseFragment, ContactsController.Contact contact, TLRPC.User user, Uri uri, File file, String str, String str2) {
+        this(baseFragment, contact, user, uri, file, (String) null, str, str2);
     }
 
-    public PhonebookShareAlert(BaseFragment baseFragment, ContactsController.Contact contact, TLRPC$User tLRPC$User, Uri uri, File file, String str, String str2, String str3) {
-        this(baseFragment, contact, tLRPC$User, uri, file, str, str2, str3, null);
+    public PhonebookShareAlert(BaseFragment baseFragment, ContactsController.Contact contact, TLRPC.User user, Uri uri, File file, String str, String str2, String str3) {
+        this(baseFragment, contact, user, uri, file, str, str2, str3, null);
     }
 
-    public PhonebookShareAlert(org.telegram.ui.ActionBar.BaseFragment r16, org.telegram.messenger.ContactsController.Contact r17, org.telegram.tgnet.TLRPC$User r18, android.net.Uri r19, java.io.File r20, java.lang.String r21, java.lang.String r22, java.lang.String r23, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
+    public PhonebookShareAlert(org.telegram.ui.ActionBar.BaseFragment r16, org.telegram.messenger.ContactsController.Contact r17, org.telegram.tgnet.TLRPC.User r18, android.net.Uri r19, java.io.File r20, java.lang.String r21, java.lang.String r22, java.lang.String r23, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhonebookShareAlert.<init>(org.telegram.ui.ActionBar.BaseFragment, org.telegram.messenger.ContactsController$Contact, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
-    public PhonebookShareAlert(BaseFragment baseFragment, ContactsController.Contact contact, TLRPC$User tLRPC$User, Uri uri, File file, String str, String str2, Theme.ResourcesProvider resourcesProvider) {
-        this(baseFragment, contact, tLRPC$User, uri, file, null, str, str2, resourcesProvider);
+    public PhonebookShareAlert(BaseFragment baseFragment, ContactsController.Contact contact, TLRPC.User user, Uri uri, File file, String str, String str2, Theme.ResourcesProvider resourcesProvider) {
+        this(baseFragment, contact, user, uri, file, null, str, str2, resourcesProvider);
     }
 
     public void lambda$new$0(NestedScrollView nestedScrollView, int i, int i2, int i3, int i4) {
@@ -432,10 +431,10 @@ public class PhonebookShareAlert extends BottomSheet {
         }
         if (this.currentUser.restriction_reason.isEmpty()) {
             Locale locale = Locale.US;
-            TLRPC$User tLRPC$User = this.currentUser;
-            sb = new StringBuilder(String.format(locale, "BEGIN:VCARD\nVERSION:3.0\nFN:%1$s\nEND:VCARD", ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name)));
+            TLRPC.User user = this.currentUser;
+            sb = new StringBuilder(String.format(locale, "BEGIN:VCARD\nVERSION:3.0\nFN:%1$s\nEND:VCARD", ContactsController.formatName(user.first_name, user.last_name)));
         } else {
-            sb = new StringBuilder(((TLRPC$RestrictionReason) this.currentUser.restriction_reason.get(0)).text);
+            sb = new StringBuilder(this.currentUser.restriction_reason.get(0).text);
         }
         int lastIndexOf = sb.lastIndexOf("END:VCARD");
         if (lastIndexOf >= 0) {
@@ -443,9 +442,9 @@ public class PhonebookShareAlert extends BottomSheet {
             for (int size = this.phones.size() - 1; size >= 0; size--) {
                 AndroidUtilities.VcardItem vcardItem = (AndroidUtilities.VcardItem) this.phones.get(size);
                 if (vcardItem.checked) {
-                    TLRPC$User tLRPC$User2 = this.currentUser;
-                    if (tLRPC$User2.phone == null) {
-                        tLRPC$User2.phone = vcardItem.getValue(false);
+                    TLRPC.User user2 = this.currentUser;
+                    if (user2.phone == null) {
+                        user2.phone = vcardItem.getValue(false);
                     }
                     for (int i = 0; i < vcardItem.vcardData.size(); i++) {
                         sb.insert(lastIndexOf, vcardItem.vcardData.get(i) + "\n");
@@ -461,11 +460,11 @@ public class PhonebookShareAlert extends BottomSheet {
                 }
             }
             this.currentUser.restriction_reason.clear();
-            TLRPC$RestrictionReason tLRPC$RestrictionReason = new TLRPC$RestrictionReason();
-            tLRPC$RestrictionReason.text = sb.toString();
-            tLRPC$RestrictionReason.reason = "";
-            tLRPC$RestrictionReason.platform = "";
-            this.currentUser.restriction_reason.add(tLRPC$RestrictionReason);
+            TLRPC.RestrictionReason restrictionReason = new TLRPC.RestrictionReason();
+            restrictionReason.text = sb.toString();
+            restrictionReason.reason = "";
+            restrictionReason.platform = "";
+            this.currentUser.restriction_reason.add(restrictionReason);
         }
         BaseFragment baseFragment = this.parentFragment;
         if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).isInScheduleMode()) {

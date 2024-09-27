@@ -9,8 +9,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 
@@ -85,9 +84,9 @@ public class AvatarSpan extends ReplacementSpan {
         return AndroidUtilities.dp(this.sz);
     }
 
-    public void setChat(TLRPC$Chat tLRPC$Chat) {
-        this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
-        this.imageReceiver.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
+    public void setChat(TLRPC.Chat chat) {
+        this.avatarDrawable.setInfo(this.currentAccount, chat);
+        this.imageReceiver.setForUserOrChat(chat, this.avatarDrawable);
     }
 
     public void setDialogId(long j) {
@@ -130,9 +129,9 @@ public class AvatarSpan extends ReplacementSpan {
         this.sz = f;
     }
 
-    public void setUser(TLRPC$User tLRPC$User) {
-        this.avatarDrawable.setInfo(this.currentAccount, tLRPC$User);
-        this.imageReceiver.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+    public void setUser(TLRPC.User user) {
+        this.avatarDrawable.setInfo(this.currentAccount, user);
+        this.imageReceiver.setForUserOrChat(user, this.avatarDrawable);
     }
 
     public void translate(float f, float f2) {

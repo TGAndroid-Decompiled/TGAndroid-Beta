@@ -40,15 +40,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.TLRPC$WallPaper;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -657,26 +649,26 @@ public abstract class PreviewView extends FrameLayout {
     }
 
     public static Drawable getBackgroundDrawable(Drawable drawable, int i, long j, boolean z) {
-        TLRPC$WallPaper tLRPC$WallPaper = null;
+        TLRPC.WallPaper wallPaper = null;
         if (j == Long.MIN_VALUE) {
             return null;
         }
         MessagesController messagesController = MessagesController.getInstance(i);
         if (j >= 0) {
-            TLRPC$UserFull userFull = messagesController.getUserFull(j);
+            TLRPC.UserFull userFull = messagesController.getUserFull(j);
             if (userFull != null) {
-                tLRPC$WallPaper = userFull.wallpaper;
+                wallPaper = userFull.wallpaper;
             }
         } else {
-            TLRPC$ChatFull chatFull = messagesController.getChatFull(-j);
+            TLRPC.ChatFull chatFull = messagesController.getChatFull(-j);
             if (chatFull != null) {
-                tLRPC$WallPaper = chatFull.wallpaper;
+                wallPaper = chatFull.wallpaper;
             }
         }
-        return getBackgroundDrawable(drawable, i, tLRPC$WallPaper, z);
+        return getBackgroundDrawable(drawable, i, wallPaper, z);
     }
 
-    public static android.graphics.drawable.Drawable getBackgroundDrawable(android.graphics.drawable.Drawable r5, int r6, org.telegram.tgnet.TLRPC$WallPaper r7, boolean r8) {
+    public static android.graphics.drawable.Drawable getBackgroundDrawable(android.graphics.drawable.Drawable r5, int r6, org.telegram.tgnet.TLRPC.WallPaper r7, boolean r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.getBackgroundDrawable(android.graphics.drawable.Drawable, int, org.telegram.tgnet.TLRPC$WallPaper, boolean):android.graphics.drawable.Drawable");
     }
 
@@ -725,8 +717,8 @@ public abstract class PreviewView extends FrameLayout {
             }
 
             @Override
-            public void onError(TLRPC$TL_error tLRPC$TL_error) {
-                ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
+            public void onError(TLRPC.TL_error tL_error) {
+                ResultCallback.CC.$default$onError(this, tL_error);
             }
         });
         return motionBackgroundDrawable;
@@ -1753,11 +1745,11 @@ public abstract class PreviewView extends FrameLayout {
     }
 
     public void setupAudio(MessageObject messageObject, boolean z) {
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         StoryEntry storyEntry = this.entry;
         if (storyEntry != null) {
             storyEntry.editedMedia = true;
-            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
+            if (messageObject == null || (message = messageObject.messageOwner) == null) {
                 storyEntry.audioPath = null;
                 storyEntry.audioAuthor = null;
                 storyEntry.audioTitle = null;
@@ -1766,24 +1758,24 @@ public abstract class PreviewView extends FrameLayout {
                 storyEntry.audioLeft = 0.0f;
                 storyEntry.audioRight = 1.0f;
             } else {
-                storyEntry.audioPath = tLRPC$Message.attachPath;
+                storyEntry.audioPath = message.attachPath;
                 storyEntry.audioAuthor = null;
                 storyEntry.audioTitle = null;
-                TLRPC$Document document = messageObject.getDocument();
+                TLRPC.Document document = messageObject.getDocument();
                 if (document != null) {
-                    Iterator<TLRPC$DocumentAttribute> it = document.attributes.iterator();
+                    Iterator<TLRPC.DocumentAttribute> it = document.attributes.iterator();
                     while (true) {
                         if (!it.hasNext()) {
                             break;
                         }
-                        TLRPC$DocumentAttribute next = it.next();
-                        if (next instanceof TLRPC$TL_documentAttributeAudio) {
+                        TLRPC.DocumentAttribute next = it.next();
+                        if (next instanceof TLRPC.TL_documentAttributeAudio) {
                             this.entry.audioAuthor = next.performer;
                             if (!TextUtils.isEmpty(next.title)) {
                                 this.entry.audioTitle = next.title;
                             }
                             this.entry.audioDuration = (long) (next.duration * 1000.0d);
-                        } else if (next instanceof TLRPC$TL_documentAttributeFilename) {
+                        } else if (next instanceof TLRPC.TL_documentAttributeFilename) {
                             this.entry.audioTitle = next.file_name;
                         }
                     }

@@ -76,7 +76,7 @@ public class ClearHistoryAlert extends BottomSheet {
         void onClearHistory(boolean z);
     }
 
-    public ClearHistoryAlert(android.content.Context r26, org.telegram.tgnet.TLRPC$User r27, org.telegram.tgnet.TLRPC$Chat r28, boolean r29, org.telegram.ui.ActionBar.Theme.ResourcesProvider r30) {
+    public ClearHistoryAlert(android.content.Context r26, org.telegram.tgnet.TLRPC.User r27, org.telegram.tgnet.TLRPC.Chat r28, boolean r29, org.telegram.ui.ActionBar.Theme.ResourcesProvider r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ClearHistoryAlert.<init>(android.content.Context, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

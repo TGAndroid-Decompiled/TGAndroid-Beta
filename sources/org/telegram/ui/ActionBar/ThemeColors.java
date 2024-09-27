@@ -572,6 +572,7 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_voipgroup_unmuteButton, "voipgroup_unmuteButton");
         sparseArray.put(Theme.key_voipgroup_unmuteButton2, "voipgroup_unmuteButton2");
         sparseArray.put(Theme.key_voipgroup_disabledButton, "voipgroup_disabledButton");
+        sparseArray.put(Theme.key_voipgroup_rtmpButton, "voipgroup_rtmpButton");
         sparseArray.put(Theme.key_voipgroup_disabledButtonActive, "voipgroup_disabledButtonActive");
         sparseArray.put(Theme.key_voipgroup_disabledButtonActiveScrolled, "voipgroup_disabledButtonActiveScrolled");
         sparseArray.put(Theme.key_voipgroup_connectingProgress, "voipgroup_connectingProgress");
@@ -756,6 +757,10 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_iv_navigationBackground, "iv_navigationBackground");
         sparseArray.put(Theme.key_iv_ab_progress, "iv_ab_progress");
         sparseArray.put(Theme.key_reactionStarSelector, "reactionStarSelector");
+        sparseArray.put(Theme.key_dialogCardBackground, "dialogCardBackground");
+        sparseArray.put(Theme.key_dialogCardShadow, "dialogCardShadow");
+        sparseArray.put(Theme.key_dialogGiftsBackground, "dialogGiftsBackground");
+        sparseArray.put(Theme.key_dialogGiftsTabText, "dialogGiftsTabText");
         return sparseArray;
     }
 
@@ -819,6 +824,10 @@ public abstract class ThemeColors {
         iArr[Theme.key_dialogEmptyText] = -7565164;
         iArr[Theme.key_dialogSwipeRemove] = -1743531;
         iArr[Theme.key_dialogReactionMentionBackground] = -1026983;
+        iArr[Theme.key_dialogCardBackground] = -1;
+        iArr[Theme.key_dialogCardShadow] = 815372697;
+        iArr[Theme.key_dialogGiftsBackground] = -657673;
+        iArr[Theme.key_dialogGiftsTabText] = -11118244;
         iArr[Theme.key_windowBackgroundWhite] = -1;
         iArr[Theme.key_windowBackgroundUnchecked] = -6445135;
         iArr[Theme.key_windowBackgroundChecked] = -11034919;
@@ -1409,6 +1418,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_voipgroup_leaveButtonScrolled] = -2100212396;
         iArr[Theme.key_voipgroup_connectingProgress] = -14107905;
         iArr[Theme.key_voipgroup_disabledButton] = -14933463;
+        iArr[Theme.key_voipgroup_rtmpButton] = -14010285;
         iArr[Theme.key_voipgroup_disabledButtonActive] = -13878715;
         iArr[Theme.key_voipgroup_disabledButtonActiveScrolled] = -2106088964;
         iArr[Theme.key_voipgroup_unmuteButton] = -11297032;

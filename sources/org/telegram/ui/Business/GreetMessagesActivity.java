@@ -17,12 +17,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_updateBusinessGreetingMessage;
-import org.telegram.tgnet.TLRPC$TL_boolFalse;
-import org.telegram.tgnet.TLRPC$TL_businessGreetingMessage;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputBusinessGreetingMessage;
-import org.telegram.tgnet.TLRPC$UserFull;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -39,7 +34,7 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 
 public class GreetMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    public TLRPC$TL_businessGreetingMessage currentValue;
+    public TLRPC.TL_businessGreetingMessage currentValue;
     private ActionBarMenuItem doneButton;
     private CrossfadeDrawable doneButtonDrawable;
     public boolean enabled;
@@ -131,26 +126,26 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
     }
 
     public void lambda$onBackPressed$4(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$processDone$1(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
+    public void lambda$processDone$1(TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.showError(tLRPC$TL_error);
-        } else if (!(tLObject instanceof TLRPC$TL_boolFalse)) {
-            lambda$onBackPressed$307();
+            BulletinFactory.showError(tL_error);
+        } else if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
+            lambda$onBackPressed$300();
         } else {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         }
     }
 
-    public void lambda$processDone$2(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processDone$2(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GreetMessagesActivity.this.lambda$processDone$1(tLRPC$TL_error, tLObject);
+                GreetMessagesActivity.this.lambda$processDone$1(tL_error, tLObject);
             }
         });
     }
@@ -191,7 +186,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
@@ -206,31 +201,31 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         }
         if (!z || this.recipientsHelper.validate(this.listView)) {
             this.doneButtonDrawable.animateToProgress(1.0f);
-            TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-            TLRPC$TL_account_updateBusinessGreetingMessage tLRPC$TL_account_updateBusinessGreetingMessage = new TLRPC$TL_account_updateBusinessGreetingMessage();
+            TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+            TLRPC.TL_account_updateBusinessGreetingMessage tL_account_updateBusinessGreetingMessage = new TLRPC.TL_account_updateBusinessGreetingMessage();
             if (this.enabled) {
-                TLRPC$TL_inputBusinessGreetingMessage tLRPC$TL_inputBusinessGreetingMessage = new TLRPC$TL_inputBusinessGreetingMessage();
-                tLRPC$TL_account_updateBusinessGreetingMessage.message = tLRPC$TL_inputBusinessGreetingMessage;
-                tLRPC$TL_inputBusinessGreetingMessage.shortcut_id = findReply.id;
-                tLRPC$TL_inputBusinessGreetingMessage.recipients = this.recipientsHelper.getInputValue();
-                tLRPC$TL_account_updateBusinessGreetingMessage.message.no_activity_days = this.inactivityDays;
-                tLRPC$TL_account_updateBusinessGreetingMessage.flags |= 1;
+                TLRPC.TL_inputBusinessGreetingMessage tL_inputBusinessGreetingMessage = new TLRPC.TL_inputBusinessGreetingMessage();
+                tL_account_updateBusinessGreetingMessage.message = tL_inputBusinessGreetingMessage;
+                tL_inputBusinessGreetingMessage.shortcut_id = findReply.id;
+                tL_inputBusinessGreetingMessage.recipients = this.recipientsHelper.getInputValue();
+                tL_account_updateBusinessGreetingMessage.message.no_activity_days = this.inactivityDays;
+                tL_account_updateBusinessGreetingMessage.flags |= 1;
                 if (userFull != null) {
                     userFull.flags2 |= 4;
-                    TLRPC$TL_businessGreetingMessage tLRPC$TL_businessGreetingMessage = new TLRPC$TL_businessGreetingMessage();
-                    userFull.business_greeting_message = tLRPC$TL_businessGreetingMessage;
-                    tLRPC$TL_businessGreetingMessage.shortcut_id = findReply.id;
-                    tLRPC$TL_businessGreetingMessage.recipients = this.recipientsHelper.getValue();
+                    TLRPC.TL_businessGreetingMessage tL_businessGreetingMessage = new TLRPC.TL_businessGreetingMessage();
+                    userFull.business_greeting_message = tL_businessGreetingMessage;
+                    tL_businessGreetingMessage.shortcut_id = findReply.id;
+                    tL_businessGreetingMessage.recipients = this.recipientsHelper.getValue();
                     userFull.business_greeting_message.no_activity_days = this.inactivityDays;
                 }
             } else if (userFull != null) {
                 userFull.flags2 &= -5;
                 userFull.business_greeting_message = null;
             }
-            getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessGreetingMessage, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tL_account_updateBusinessGreetingMessage, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    GreetMessagesActivity.this.lambda$processDone$2(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    GreetMessagesActivity.this.lambda$processDone$2(tLObject, tL_error);
                 }
             });
             getMessagesStorage().updateUserInfo(userFull, false);
@@ -242,19 +237,19 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         if (this.valueSet) {
             return;
         }
-        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
         if (userFull == null) {
             getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
             return;
         }
-        TLRPC$TL_businessGreetingMessage tLRPC$TL_businessGreetingMessage = userFull.business_greeting_message;
-        this.currentValue = tLRPC$TL_businessGreetingMessage;
-        this.enabled = tLRPC$TL_businessGreetingMessage != null;
-        this.inactivityDays = tLRPC$TL_businessGreetingMessage != null ? tLRPC$TL_businessGreetingMessage.no_activity_days : 7;
-        this.exclude = tLRPC$TL_businessGreetingMessage != null ? tLRPC$TL_businessGreetingMessage.recipients.exclude_selected : true;
+        TLRPC.TL_businessGreetingMessage tL_businessGreetingMessage = userFull.business_greeting_message;
+        this.currentValue = tL_businessGreetingMessage;
+        this.enabled = tL_businessGreetingMessage != null;
+        this.inactivityDays = tL_businessGreetingMessage != null ? tL_businessGreetingMessage.no_activity_days : 7;
+        this.exclude = tL_businessGreetingMessage != null ? tL_businessGreetingMessage.recipients.exclude_selected : true;
         BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
         if (businessRecipientsHelper != null) {
-            businessRecipientsHelper.setValue(tLRPC$TL_businessGreetingMessage == null ? null : tLRPC$TL_businessGreetingMessage.recipients);
+            businessRecipientsHelper.setValue(tL_businessGreetingMessage == null ? null : tL_businessGreetingMessage.recipients);
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
@@ -274,7 +269,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (GreetMessagesActivity.this.onBackPressed()) {
-                        GreetMessagesActivity.this.lambda$onBackPressed$307();
+                        GreetMessagesActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i == 1) {
                     GreetMessagesActivity.this.processDone();
@@ -298,8 +293,8 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         this.recipientsHelper = businessRecipientsHelper;
         businessRecipientsHelper.doNotExcludeNewChats();
         BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
-        TLRPC$TL_businessGreetingMessage tLRPC$TL_businessGreetingMessage = this.currentValue;
-        businessRecipientsHelper2.setValue(tLRPC$TL_businessGreetingMessage == null ? null : tLRPC$TL_businessGreetingMessage.recipients);
+        TLRPC.TL_businessGreetingMessage tL_businessGreetingMessage = this.currentValue;
+        businessRecipientsHelper2.setValue(tL_businessGreetingMessage == null ? null : tL_businessGreetingMessage.recipients);
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
@@ -339,12 +334,12 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             return false;
         }
         boolean z = this.enabled;
-        TLRPC$TL_businessGreetingMessage tLRPC$TL_businessGreetingMessage = this.currentValue;
-        if (z != (tLRPC$TL_businessGreetingMessage != null)) {
+        TLRPC.TL_businessGreetingMessage tL_businessGreetingMessage = this.currentValue;
+        if (z != (tL_businessGreetingMessage != null)) {
             return true;
         }
-        if (z && tLRPC$TL_businessGreetingMessage != null) {
-            if (tLRPC$TL_businessGreetingMessage.no_activity_days != this.inactivityDays || tLRPC$TL_businessGreetingMessage.recipients.exclude_selected != this.exclude) {
+        if (z && tL_businessGreetingMessage != null) {
+            if (tL_businessGreetingMessage.no_activity_days != this.inactivityDays || tL_businessGreetingMessage.recipients.exclude_selected != this.exclude) {
                 return true;
             }
             BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;

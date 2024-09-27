@@ -46,22 +46,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_boolTrue;
-import org.telegram.tgnet.TLRPC$TL_channels_checkUsername;
-import org.telegram.tgnet.TLRPC$TL_channels_getAdminedPublicChannels;
-import org.telegram.tgnet.TLRPC$TL_channels_updateUsername;
-import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputChannelEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_chats;
-import org.telegram.tgnet.TLRPC$TL_messages_exportedChatInvites;
-import org.telegram.tgnet.TLRPC$TL_messages_getExportedChatInvites;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -98,9 +83,9 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     private ArrayList adminedChannelCells;
     private TextInfoPrivacyCell adminedInfoCell;
     private LinearLayout adminnedChannelsLayout;
-    private TLRPC$FileLocation avatar;
+    private TLRPC.FileLocation avatar;
     private AnimatorSet avatarAnimation;
-    private TLRPC$FileLocation avatarBig;
+    private TLRPC.FileLocation avatarBig;
     private AvatarDrawable avatarDrawable;
     private RLottieImageView avatarEditor;
     private BackupImageView avatarImage;
@@ -128,11 +113,11 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     private HeaderCell headerCell2;
     private TextView helpTextView;
     private ImageUpdater imageUpdater;
-    private TLRPC$VideoSize inputEmojiMarkup;
-    private TLRPC$InputFile inputPhoto;
-    private TLRPC$InputFile inputVideo;
+    private TLRPC.VideoSize inputEmojiMarkup;
+    private TLRPC.InputFile inputPhoto;
+    private TLRPC.InputFile inputVideo;
     private String inputVideoPath;
-    private TLRPC$TL_chatInviteExported invite;
+    private TLRPC.TL_chatInviteExported invite;
     private boolean isGroup;
     private boolean isPrivate;
     private String lastCheckName;
@@ -184,7 +169,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     ChannelCreateActivity.this.showDoneCancelDialog();
                     return;
                 } else {
-                    ChannelCreateActivity.this.lambda$onBackPressed$307();
+                    ChannelCreateActivity.this.lambda$onBackPressed$300();
                     return;
                 }
             }
@@ -285,13 +270,13 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         if (i == 0) {
             this.avatarDrawable = new AvatarDrawable();
             this.imageUpdater = new ImageUpdater(true, 1, true);
-            TLRPC$TL_channels_checkUsername tLRPC$TL_channels_checkUsername = new TLRPC$TL_channels_checkUsername();
-            tLRPC$TL_channels_checkUsername.username = "1";
-            tLRPC$TL_channels_checkUsername.channel = new TLRPC$TL_inputChannelEmpty();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_checkUsername, new RequestDelegate() {
+            TLRPC.TL_channels_checkUsername tL_channels_checkUsername = new TLRPC.TL_channels_checkUsername();
+            tL_channels_checkUsername.username = "1";
+            tL_channels_checkUsername.channel = new TLRPC.TL_inputChannelEmpty();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_checkUsername, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChannelCreateActivity.this.lambda$new$1(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelCreateActivity.this.lambda$new$1(tLObject, tL_error);
                 }
             });
             return;
@@ -383,7 +368,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         if (this.loadingInvite || this.invite != null) {
             return;
         }
-        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
+        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
         if (chatFull != null) {
             this.invite = chatFull.exported_invite;
         }
@@ -391,19 +376,19 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             return;
         }
         this.loadingInvite = true;
-        TLRPC$TL_messages_getExportedChatInvites tLRPC$TL_messages_getExportedChatInvites = new TLRPC$TL_messages_getExportedChatInvites();
-        tLRPC$TL_messages_getExportedChatInvites.peer = getMessagesController().getInputPeer(-this.chatId);
-        tLRPC$TL_messages_getExportedChatInvites.admin_id = getMessagesController().getInputUser(getUserConfig().getCurrentUser());
-        tLRPC$TL_messages_getExportedChatInvites.limit = 1;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getExportedChatInvites, new RequestDelegate() {
+        TLRPC.TL_messages_getExportedChatInvites tL_messages_getExportedChatInvites = new TLRPC.TL_messages_getExportedChatInvites();
+        tL_messages_getExportedChatInvites.peer = getMessagesController().getInputPeer(-this.chatId);
+        tL_messages_getExportedChatInvites.admin_id = getMessagesController().getInputUser(getUserConfig().getCurrentUser());
+        tL_messages_getExportedChatInvites.limit = 1;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getExportedChatInvites, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelCreateActivity.this.lambda$generateLink$14(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelCreateActivity.this.lambda$generateLink$14(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$checkUserName$22(String str, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLRPC$TL_channels_checkUsername tLRPC$TL_channels_checkUsername) {
+    public void lambda$checkUserName$22(String str, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_checkUsername tL_channels_checkUsername) {
         TextView textView;
         int i;
         TextView textView2;
@@ -413,7 +398,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         if (str2 == null || !str2.equals(str)) {
             return;
         }
-        if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_boolTrue)) {
+        if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
             this.checkTextView.setText(LocaleController.formatString("LinkAvailable", R.string.LinkAvailable, str));
             TextView textView3 = this.checkTextView;
             int i3 = Theme.key_windowBackgroundWhiteGreenText;
@@ -422,13 +407,13 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.lastNameAvailable = true;
             return;
         }
-        if (tLRPC$TL_error != null && "USERNAME_INVALID".equals(tLRPC$TL_error.text) && tLRPC$TL_channels_checkUsername.username.length() == 4) {
+        if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && tL_channels_checkUsername.username.length() == 4) {
             this.checkTextView.setText(LocaleController.getString(R.string.UsernameInvalidShort));
             textView2 = this.checkTextView;
             i2 = Theme.key_text_RedRegular;
         } else {
-            if (tLRPC$TL_error == null || !"USERNAME_PURCHASE_AVAILABLE".equals(tLRPC$TL_error.text)) {
-                if (tLRPC$TL_error == null || !"CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tLRPC$TL_error.text)) {
+            if (tL_error == null || !"USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
+                if (tL_error == null || !"CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tL_error.text)) {
                     this.checkTextView.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
                     this.checkTextView.setText(LocaleController.getString(R.string.LinkInUse));
                 } else {
@@ -438,7 +423,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 }
                 this.lastNameAvailable = false;
             }
-            if (tLRPC$TL_channels_checkUsername.username.length() == 4) {
+            if (tL_channels_checkUsername.username.length() == 4) {
                 textView = this.checkTextView;
                 i = R.string.UsernameInvalidShortPurchase;
             } else {
@@ -453,23 +438,23 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         this.lastNameAvailable = false;
     }
 
-    public void lambda$checkUserName$23(final String str, final TLRPC$TL_channels_checkUsername tLRPC$TL_channels_checkUsername, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkUserName$23(final String str, final TLRPC.TL_channels_checkUsername tL_channels_checkUsername, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$checkUserName$22(str, tLRPC$TL_error, tLObject, tLRPC$TL_channels_checkUsername);
+                ChannelCreateActivity.this.lambda$checkUserName$22(str, tL_error, tLObject, tL_channels_checkUsername);
             }
         });
     }
 
     public void lambda$checkUserName$24(final String str) {
-        final TLRPC$TL_channels_checkUsername tLRPC$TL_channels_checkUsername = new TLRPC$TL_channels_checkUsername();
-        tLRPC$TL_channels_checkUsername.username = str;
-        tLRPC$TL_channels_checkUsername.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
-        this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_checkUsername, new RequestDelegate() {
+        final TLRPC.TL_channels_checkUsername tL_channels_checkUsername = new TLRPC.TL_channels_checkUsername();
+        tL_channels_checkUsername.username = str;
+        tL_channels_checkUsername.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
+        this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_checkUsername, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelCreateActivity.this.lambda$checkUserName$23(str, tLRPC$TL_channels_checkUsername, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelCreateActivity.this.lambda$checkUserName$23(str, tL_channels_checkUsername, tLObject, tL_error);
             }
         }, 2);
     }
@@ -552,18 +537,18 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         return true;
     }
 
-    public void lambda$didUploadPhoto$15(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, TLRPC$VideoSize tLRPC$VideoSize, String str, double d, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2) {
-        if (tLRPC$InputFile == null && tLRPC$InputFile2 == null) {
-            TLRPC$FileLocation tLRPC$FileLocation = tLRPC$PhotoSize.location;
-            this.avatar = tLRPC$FileLocation;
-            this.avatarBig = tLRPC$PhotoSize2.location;
-            this.avatarImage.setImage(ImageLocation.getForLocal(tLRPC$FileLocation), "50_50", this.avatarDrawable, (Object) null);
+    public void lambda$didUploadPhoto$15(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+        if (inputFile == null && inputFile2 == null) {
+            TLRPC.FileLocation fileLocation = photoSize.location;
+            this.avatar = fileLocation;
+            this.avatarBig = photoSize2.location;
+            this.avatarImage.setImage(ImageLocation.getForLocal(fileLocation), "50_50", this.avatarDrawable, (Object) null);
             showAvatarProgress(true, false);
             return;
         }
-        this.inputPhoto = tLRPC$InputFile;
-        this.inputVideo = tLRPC$InputFile2;
-        this.inputEmojiMarkup = tLRPC$VideoSize;
+        this.inputPhoto = inputFile;
+        this.inputVideo = inputFile2;
+        this.inputEmojiMarkup = videoSize;
         this.inputVideoPath = str;
         this.videoTimestamp = d;
         if (this.createAfterUpload) {
@@ -584,21 +569,21 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         this.avatarEditor.setImageDrawable(null);
     }
 
-    public void lambda$generateLink$13(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error == null) {
-            this.invite = (TLRPC$TL_chatInviteExported) ((TLRPC$TL_messages_exportedChatInvites) tLObject).invites.get(0);
+    public void lambda$generateLink$13(TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error == null) {
+            this.invite = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvites) tLObject).invites.get(0);
         }
         this.loadingInvite = false;
         LinkActionView linkActionView = this.permanentLinkView;
-        TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported = this.invite;
-        linkActionView.setLink(tLRPC$TL_chatInviteExported != null ? tLRPC$TL_chatInviteExported.link : null);
+        TLRPC.TL_chatInviteExported tL_chatInviteExported = this.invite;
+        linkActionView.setLink(tL_chatInviteExported != null ? tL_chatInviteExported.link : null);
     }
 
-    public void lambda$generateLink$14(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$generateLink$14(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$generateLink$13(tLRPC$TL_error, tLObject);
+                ChannelCreateActivity.this.lambda$generateLink$13(tL_error, tLObject);
             }
         });
     }
@@ -624,8 +609,8 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         updatePrivatePublic();
     }
 
-    public void lambda$loadAdminedChannels$17(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$TL_boolTrue) {
+    public void lambda$loadAdminedChannels$17(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.TL_boolTrue) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -635,21 +620,21 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
     }
 
-    public void lambda$loadAdminedChannels$18(TLRPC$Chat tLRPC$Chat, DialogInterface dialogInterface, int i) {
-        TLRPC$TL_channels_updateUsername tLRPC$TL_channels_updateUsername = new TLRPC$TL_channels_updateUsername();
-        tLRPC$TL_channels_updateUsername.channel = MessagesController.getInputChannel(tLRPC$Chat);
-        tLRPC$TL_channels_updateUsername.username = "";
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_updateUsername, new RequestDelegate() {
+    public void lambda$loadAdminedChannels$18(TLRPC.Chat chat, DialogInterface dialogInterface, int i) {
+        TLRPC.TL_channels_updateUsername tL_channels_updateUsername = new TLRPC.TL_channels_updateUsername();
+        tL_channels_updateUsername.channel = MessagesController.getInputChannel(chat);
+        tL_channels_updateUsername.username = "";
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_updateUsername, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelCreateActivity.this.lambda$loadAdminedChannels$17(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelCreateActivity.this.lambda$loadAdminedChannels$17(tLObject, tL_error);
             }
         }, 64);
     }
 
     public void lambda$loadAdminedChannels$19(View view) {
         String formatString;
-        final TLRPC$Chat currentChannel = ((AdminedChannelCell) view.getParent()).getCurrentChannel();
+        final TLRPC.Chat currentChannel = ((AdminedChannelCell) view.getParent()).getCurrentChannel();
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.AppName));
         if (currentChannel.megagroup) {
@@ -677,27 +662,27 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.linearLayout.removeView((View) this.adminedChannelCells.get(i));
         }
         this.adminedChannelCells.clear();
-        TLRPC$TL_messages_chats tLRPC$TL_messages_chats = (TLRPC$TL_messages_chats) tLObject;
-        for (int i2 = 0; i2 < tLRPC$TL_messages_chats.chats.size(); i2++) {
+        TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
+        for (int i2 = 0; i2 < tL_messages_chats.chats.size(); i2++) {
             AdminedChannelCell adminedChannelCell = new AdminedChannelCell(getParentActivity(), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     ChannelCreateActivity.this.lambda$loadAdminedChannels$19(view);
                 }
             }, false, 0);
-            TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLRPC$TL_messages_chats.chats.get(i2);
+            TLRPC.Chat chat = tL_messages_chats.chats.get(i2);
             boolean z = true;
-            if (i2 != tLRPC$TL_messages_chats.chats.size() - 1) {
+            if (i2 != tL_messages_chats.chats.size() - 1) {
                 z = false;
             }
-            adminedChannelCell.setChannel(tLRPC$Chat, z);
+            adminedChannelCell.setChannel(chat, z);
             this.adminedChannelCells.add(adminedChannelCell);
             this.adminnedChannelsLayout.addView(adminedChannelCell, LayoutHelper.createLinear(-1, 72));
         }
         updatePrivatePublic();
     }
 
-    public void lambda$loadAdminedChannels$21(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadAdminedChannels$21(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -706,15 +691,15 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         });
     }
 
-    public void lambda$new$0(TLRPC$TL_error tLRPC$TL_error) {
-        this.canCreatePublic = tLRPC$TL_error == null || !tLRPC$TL_error.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH");
+    public void lambda$new$0(TLRPC.TL_error tL_error) {
+        this.canCreatePublic = tL_error == null || !tL_error.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH");
     }
 
-    public void lambda$new$1(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$1(TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$new$0(tLRPC$TL_error);
+                ChannelCreateActivity.this.lambda$new$0(tL_error);
             }
         });
     }
@@ -750,10 +735,10 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
         this.loadingAdminedChannels = true;
         updatePrivatePublic();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelCreateActivity.this.lambda$loadAdminedChannels$21(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelCreateActivity.this.lambda$loadAdminedChannels$21(tLObject, tL_error);
             }
         });
     }
@@ -1141,7 +1126,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.linearLayout = linearLayout2;
             linearLayout2.setOrientation(1);
             scrollView.addView(this.linearLayout, new FrameLayout.LayoutParams(-1, -2));
-            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+            TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
             boolean z6 = chat != null && (!ChatObject.isChannel(chat) || ChatObject.isMegagroup(chat));
             this.isGroup = z6;
             this.actionBar.setTitle(LocaleController.getString(z6 ? R.string.GroupSettingsTitle : R.string.ChannelSettingsTitle));
@@ -1412,11 +1397,11 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     }
 
     @Override
-    public void didUploadPhoto(final TLRPC$InputFile tLRPC$InputFile, final TLRPC$InputFile tLRPC$InputFile2, final double d, final String str, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, final TLRPC$VideoSize tLRPC$VideoSize) {
+    public void didUploadPhoto(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, final String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z, final TLRPC.VideoSize videoSize) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.this.lambda$didUploadPhoto$15(tLRPC$InputFile, tLRPC$InputFile2, tLRPC$VideoSize, str, d, tLRPC$PhotoSize2, tLRPC$PhotoSize);
+                ChannelCreateActivity.this.lambda$didUploadPhoto$15(inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
             }
         });
     }

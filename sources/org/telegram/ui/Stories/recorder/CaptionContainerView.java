@@ -41,8 +41,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$BotInlineResult;
-import org.telegram.tgnet.TLRPC$TL_document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -697,8 +696,8 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
 
             @Override
-            public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
-                MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tLRPC$TL_document, str, obj);
+            public void onStickerSelected(TLRPC.TL_document tL_document, String str, Object obj) {
+                MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tL_document, str, obj);
             }
 
             @Override
@@ -707,8 +706,8 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
 
             @Override
-            public void sendBotInlineResult(TLRPC$BotInlineResult tLRPC$BotInlineResult, boolean z, int i) {
-                MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, tLRPC$BotInlineResult, z, i);
+            public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i) {
+                MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, botInlineResult, z, i);
             }
         });
         this.containerView.addView(this.mentionContainer, LayoutHelper.createFrame(-1, -1, 83));

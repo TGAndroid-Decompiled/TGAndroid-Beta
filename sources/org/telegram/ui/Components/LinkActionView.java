@@ -34,14 +34,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$TL_inputUserEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_chatInviteImporters;
-import org.telegram.tgnet.TLRPC$TL_messages_getChatInviteImporters;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -260,27 +253,27 @@ public class LinkActionView extends LinearLayout {
         fArr[1] = f2 - frameLayout2.getPaddingTop();
     }
 
-    public void lambda$loadUsers$11(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$loadUsers$11(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject) {
         this.loadingImporters = false;
-        this.loadedInviteLink = tLRPC$TL_chatInviteExported.link;
-        if (tLRPC$TL_error == null) {
-            TLRPC$TL_messages_chatInviteImporters tLRPC$TL_messages_chatInviteImporters = (TLRPC$TL_messages_chatInviteImporters) tLObject;
-            if (tLRPC$TL_chatInviteExported.importers == null) {
-                tLRPC$TL_chatInviteExported.importers = new ArrayList(3);
+        this.loadedInviteLink = tL_chatInviteExported.link;
+        if (tL_error == null) {
+            TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) tLObject;
+            if (tL_chatInviteExported.importers == null) {
+                tL_chatInviteExported.importers = new ArrayList<>(3);
             }
-            tLRPC$TL_chatInviteExported.importers.clear();
-            for (int i = 0; i < tLRPC$TL_messages_chatInviteImporters.users.size(); i++) {
-                tLRPC$TL_chatInviteExported.importers.addAll(tLRPC$TL_messages_chatInviteImporters.users);
+            tL_chatInviteExported.importers.clear();
+            for (int i = 0; i < tL_messages_chatInviteImporters.users.size(); i++) {
+                tL_chatInviteExported.importers.addAll(tL_messages_chatInviteImporters.users);
             }
-            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, true);
+            setUsers(tL_chatInviteExported.usage, tL_chatInviteExported.importers, true);
         }
     }
 
-    public void lambda$loadUsers$12(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadUsers$12(final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkActionView.this.lambda$loadUsers$11(tLRPC$TL_chatInviteExported, tLRPC$TL_error, tLObject);
+                LinkActionView.this.lambda$loadUsers$11(tL_chatInviteExported, tL_error, tLObject);
             }
         });
     }
@@ -310,12 +303,12 @@ public class LinkActionView extends LinearLayout {
             String str = this.link;
             baseFragment.showDialog(new ShareAlert(context, null, str, false, str, false, baseFragment.getResourceProvider()) {
                 @Override
-                public void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic) {
                     String formatString;
                     if (longSparseArray == null || longSparseArray.size() != 1) {
                         formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0]));
                     } else {
-                        long j = ((TLRPC$Dialog) longSparseArray.valueAt(0)).id;
+                        long j = ((TLRPC.Dialog) longSparseArray.valueAt(0)).id;
                         formatString = (j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId()) ? LocaleController.getString(R.string.InvLinkToSavedMessages) : LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j, true));
                     }
                     LinkActionView.this.showBulletin(R.raw.forward, AndroidUtilities.replaceTags(formatString));
@@ -551,32 +544,32 @@ public class LinkActionView extends LinearLayout {
         }
     }
 
-    public void loadUsers(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, long j) {
-        if (tLRPC$TL_chatInviteExported == null) {
+    public void loadUsers(final TLRPC.TL_chatInviteExported tL_chatInviteExported, long j) {
+        if (tL_chatInviteExported == null) {
             setUsers(0, null, false);
             return;
         }
-        if (TextUtils.equals(this.loadedInviteLink, tLRPC$TL_chatInviteExported.link)) {
+        if (TextUtils.equals(this.loadedInviteLink, tL_chatInviteExported.link)) {
             return;
         }
-        setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, false);
-        if (tLRPC$TL_chatInviteExported.usage <= 0 || tLRPC$TL_chatInviteExported.importers != null || this.loadingImporters) {
+        setUsers(tL_chatInviteExported.usage, tL_chatInviteExported.importers, false);
+        if (tL_chatInviteExported.usage <= 0 || tL_chatInviteExported.importers != null || this.loadingImporters) {
             return;
         }
-        TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();
-        String str = tLRPC$TL_chatInviteExported.link;
+        TLRPC.TL_messages_getChatInviteImporters tL_messages_getChatInviteImporters = new TLRPC.TL_messages_getChatInviteImporters();
+        String str = tL_chatInviteExported.link;
         if (str != null) {
-            tLRPC$TL_messages_getChatInviteImporters.flags |= 2;
-            tLRPC$TL_messages_getChatInviteImporters.link = str;
+            tL_messages_getChatInviteImporters.flags |= 2;
+            tL_messages_getChatInviteImporters.link = str;
         }
-        tLRPC$TL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
-        tLRPC$TL_messages_getChatInviteImporters.offset_user = new TLRPC$TL_inputUserEmpty();
-        tLRPC$TL_messages_getChatInviteImporters.limit = Math.min(tLRPC$TL_chatInviteExported.usage, 3);
+        tL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
+        tL_messages_getChatInviteImporters.offset_user = new TLRPC.TL_inputUserEmpty();
+        tL_messages_getChatInviteImporters.limit = Math.min(tL_chatInviteExported.usage, 3);
         this.loadingImporters = true;
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_getChatInviteImporters, new RequestDelegate() {
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_getChatInviteImporters, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LinkActionView.this.lambda$loadUsers$12(tLRPC$TL_chatInviteExported, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                LinkActionView.this.lambda$loadUsers$12(tL_chatInviteExported, tLObject, tL_error);
             }
         });
     }
@@ -646,7 +639,7 @@ public class LinkActionView extends LinearLayout {
         }
         if (arrayList != null) {
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                MessagesController.getInstance(UserConfig.selectedAccount).putUser((TLRPC$User) arrayList.get(i2), false);
+                MessagesController.getInstance(UserConfig.selectedAccount).putUser((TLRPC.User) arrayList.get(i2), false);
             }
             int min = Math.min(3, Math.min(i, arrayList.size()));
             this.avatarsContainer.avatarsImageView.setCount(min);

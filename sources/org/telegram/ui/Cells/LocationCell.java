@@ -18,7 +18,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BackupImageView;
@@ -112,19 +112,19 @@ public class LocationCell extends FrameLayout {
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    private CharSequence getTitle(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue) {
-        if (tLRPC$TL_messageMediaVenue == null) {
+    private CharSequence getTitle(TLRPC.TL_messageMediaVenue tL_messageMediaVenue) {
+        if (tL_messageMediaVenue == null) {
             return "";
         }
-        if (TextUtils.equals(this.lastEmoji, tLRPC$TL_messageMediaVenue.emoji) && TextUtils.equals(this.lastTitle, tLRPC$TL_messageMediaVenue.title)) {
+        if (TextUtils.equals(this.lastEmoji, tL_messageMediaVenue.emoji) && TextUtils.equals(this.lastTitle, tL_messageMediaVenue.title)) {
             return this.lastCompleteTitle;
         }
-        CharSequence charSequence = tLRPC$TL_messageMediaVenue.title;
-        if (!TextUtils.isEmpty(tLRPC$TL_messageMediaVenue.emoji)) {
-            charSequence = Emoji.replaceEmoji(tLRPC$TL_messageMediaVenue.emoji + " " + ((Object) charSequence), this.nameTextView.getPaint().getFontMetricsInt(), false);
+        CharSequence charSequence = tL_messageMediaVenue.title;
+        if (!TextUtils.isEmpty(tL_messageMediaVenue.emoji)) {
+            charSequence = Emoji.replaceEmoji(tL_messageMediaVenue.emoji + " " + ((Object) charSequence), this.nameTextView.getPaint().getFontMetricsInt(), false);
         }
-        this.lastEmoji = tLRPC$TL_messageMediaVenue.emoji;
-        this.lastTitle = tLRPC$TL_messageMediaVenue.title;
+        this.lastEmoji = tL_messageMediaVenue.emoji;
+        this.lastTitle = tL_messageMediaVenue.title;
         this.lastCompleteTitle = charSequence;
         return charSequence;
     }
@@ -180,24 +180,24 @@ public class LocationCell extends FrameLayout {
         this.allowTextAnimation = z;
     }
 
-    public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, int i, boolean z) {
-        setLocation(tLRPC$TL_messageMediaVenue, null, i, z, false);
+    public void setLocation(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, int i, boolean z) {
+        setLocation(tL_messageMediaVenue, null, i, z, false);
     }
 
-    public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, String str, int i, boolean z, boolean z2) {
+    public void setLocation(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, String str, int i, boolean z, boolean z2) {
         String str2;
         this.needDivider = z;
-        if (tLRPC$TL_messageMediaVenue != null) {
-            this.nameTextView.setText(getTitle(tLRPC$TL_messageMediaVenue), this.allowTextAnimation && !LocaleController.isRTL && z2);
+        if (tL_messageMediaVenue != null) {
+            this.nameTextView.setText(getTitle(tL_messageMediaVenue), this.allowTextAnimation && !LocaleController.isRTL && z2);
         }
         if (str != null) {
             this.addressTextView.setText(str, this.allowTextAnimation && !LocaleController.isRTL);
-        } else if (tLRPC$TL_messageMediaVenue != null) {
-            this.addressTextView.setText(tLRPC$TL_messageMediaVenue.address, this.allowTextAnimation && !LocaleController.isRTL && z2);
+        } else if (tL_messageMediaVenue != null) {
+            this.addressTextView.setText(tL_messageMediaVenue.address, this.allowTextAnimation && !LocaleController.isRTL && z2);
         }
         int colorForIndex = getColorForIndex(i);
-        if (tLRPC$TL_messageMediaVenue != null && (str2 = tLRPC$TL_messageMediaVenue.icon) != null) {
-            if ("pin".equals(str2) || tLRPC$TL_messageMediaVenue.icon.startsWith("emoji")) {
+        if (tL_messageMediaVenue != null && (str2 = tL_messageMediaVenue.icon) != null) {
+            if ("pin".equals(str2) || tL_messageMediaVenue.icon.startsWith("emoji")) {
                 Drawable mutate = getResources().getDrawable(R.drawable.pin).mutate();
                 mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLocationIcon), PorterDuff.Mode.MULTIPLY));
                 CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), 0), mutate);
@@ -205,17 +205,17 @@ public class LocationCell extends FrameLayout {
                 combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                 this.imageView.setImageDrawable(combinedDrawable);
             } else {
-                this.imageView.setImage(tLRPC$TL_messageMediaVenue.icon, null, null);
+                this.imageView.setImage(tL_messageMediaVenue.icon, null, null);
             }
         }
         this.circleDrawable.getPaint().setColor(colorForIndex);
         setWillNotDraw(false);
-        setClickable(tLRPC$TL_messageMediaVenue == null);
+        setClickable(tL_messageMediaVenue == null);
         ValueAnimator valueAnimator = this.enterAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        boolean z3 = tLRPC$TL_messageMediaVenue == null;
+        boolean z3 = tL_messageMediaVenue == null;
         final float f = this.enterAlpha;
         final float f2 = z3 ? 0.0f : 1.0f;
         final long abs = Math.abs(f - f2) * 150.0f;

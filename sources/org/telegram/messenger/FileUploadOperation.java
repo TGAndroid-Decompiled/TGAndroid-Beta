@@ -7,12 +7,7 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$InputEncryptedFile;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$TL_boolTrue;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputFile;
-import org.telegram.tgnet.TLRPC$TL_inputFileBig;
+import org.telegram.tgnet.TLRPC;
 
 public class FileUploadOperation {
     private static final int initialRequestsCount = 8;
@@ -71,7 +66,7 @@ public class FileUploadOperation {
 
         void didFailedUploadingFile(FileUploadOperation fileUploadOperation);
 
-        void didFinishUploadingFile(FileUploadOperation fileUploadOperation, TLRPC$InputFile tLRPC$InputFile, TLRPC$InputEncryptedFile tLRPC$InputEncryptedFile, byte[] bArr, byte[] bArr2);
+        void didFinishUploadingFile(FileUploadOperation fileUploadOperation, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2);
     }
 
     public static class UploadCachedResult {
@@ -203,21 +198,21 @@ public class FileUploadOperation {
         this.uiRequestTokens.remove(Integer.valueOf(iArr[0]));
     }
 
-    public void lambda$startUploadRequest$6(int i, final int[] iArr, int i2, byte[] bArr, int i3, int i4, int i5, long j, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$startUploadRequest$6(int i, final int[] iArr, int i2, byte[] bArr, int i3, int i4, int i5, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         StatsController statsController;
         long j2;
         int i6;
-        TLRPC$InputEncryptedFile tLRPC$InputEncryptedFile;
+        TLRPC.InputEncryptedFile tL_inputEncryptedFileUploaded;
         byte[] bArr2;
         byte[] bArr3;
         FileUploadOperationDelegate fileUploadOperationDelegate;
         FileUploadOperation fileUploadOperation;
-        TLRPC$InputFile tLRPC$InputFile;
-        TLRPC$InputEncryptedFile tLRPC$InputEncryptedFile2;
+        TLRPC.InputFile inputFile;
+        TLRPC.InputEncryptedFile inputEncryptedFile;
         StatsController statsController2;
         int currentNetworkType;
         int i7;
-        TLRPC$InputFile tLRPC$TL_inputFile;
+        TLRPC.InputFile tL_inputFile;
         byte[] bArr4 = bArr;
         if (i != this.operationGuid) {
             return;
@@ -260,7 +255,7 @@ public class FileUploadOperation {
                 FileUploadOperation.this.lambda$startUploadRequest$5(iArr);
             }
         });
-        if (!(tLObject instanceof TLRPC$TL_boolTrue)) {
+        if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             this.state = 4;
             this.delegate.didFailedUploadingFile(this);
             cleanup();
@@ -322,72 +317,40 @@ public class FileUploadOperation {
         this.state = 3;
         if (this.key == null) {
             if (this.isBigFile) {
-                tLRPC$TL_inputFile = new TLRPC$TL_inputFileBig();
+                tL_inputFile = new TLRPC.TL_inputFileBig();
             } else {
-                tLRPC$TL_inputFile = new TLRPC$TL_inputFile();
-                tLRPC$TL_inputFile.md5_checksum = "";
+                tL_inputFile = new TLRPC.TL_inputFile();
+                tL_inputFile.md5_checksum = "";
             }
-            tLRPC$TL_inputFile.parts = this.currentPartNum;
-            tLRPC$TL_inputFile.id = this.currentFileId;
+            tL_inputFile.parts = this.currentPartNum;
+            tL_inputFile.id = this.currentFileId;
             String str2 = this.uploadingFilePath;
-            tLRPC$TL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
+            tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
             bArr2 = null;
             bArr3 = null;
             fileUploadOperationDelegate = this.delegate;
             fileUploadOperation = this;
-            tLRPC$InputFile = tLRPC$TL_inputFile;
-            tLRPC$InputEncryptedFile2 = null;
+            inputFile = tL_inputFile;
+            inputEncryptedFile = null;
         } else {
             if (this.isBigFile) {
-                tLRPC$InputEncryptedFile = new TLRPC$InputEncryptedFile() {
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData, boolean z2) {
-                        this.id = abstractSerializedData.readInt64(z2);
-                        this.parts = abstractSerializedData.readInt32(z2);
-                        this.key_fingerprint = abstractSerializedData.readInt32(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                        abstractSerializedData.writeInt32(767652808);
-                        abstractSerializedData.writeInt64(this.id);
-                        abstractSerializedData.writeInt32(this.parts);
-                        abstractSerializedData.writeInt32(this.key_fingerprint);
-                    }
-                };
+                tL_inputEncryptedFileUploaded = new TLRPC.TL_inputEncryptedFileBigUploaded();
             } else {
-                tLRPC$InputEncryptedFile = new TLRPC$InputEncryptedFile() {
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData, boolean z2) {
-                        this.id = abstractSerializedData.readInt64(z2);
-                        this.parts = abstractSerializedData.readInt32(z2);
-                        this.md5_checksum = abstractSerializedData.readString(z2);
-                        this.key_fingerprint = abstractSerializedData.readInt32(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                        abstractSerializedData.writeInt32(1690108678);
-                        abstractSerializedData.writeInt64(this.id);
-                        abstractSerializedData.writeInt32(this.parts);
-                        abstractSerializedData.writeString(this.md5_checksum);
-                        abstractSerializedData.writeInt32(this.key_fingerprint);
-                    }
-                };
-                tLRPC$InputEncryptedFile.md5_checksum = "";
+                tL_inputEncryptedFileUploaded = new TLRPC.TL_inputEncryptedFileUploaded();
+                tL_inputEncryptedFileUploaded.md5_checksum = "";
             }
-            tLRPC$InputEncryptedFile.parts = this.currentPartNum;
-            tLRPC$InputEncryptedFile.id = this.currentFileId;
-            tLRPC$InputEncryptedFile.key_fingerprint = this.fingerprint;
+            tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
+            tL_inputEncryptedFileUploaded.id = this.currentFileId;
+            tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
             FileUploadOperationDelegate fileUploadOperationDelegate2 = this.delegate;
             bArr2 = this.key;
             bArr3 = this.iv;
             fileUploadOperationDelegate = fileUploadOperationDelegate2;
             fileUploadOperation = this;
-            tLRPC$InputFile = null;
-            tLRPC$InputEncryptedFile2 = tLRPC$InputEncryptedFile;
+            inputFile = null;
+            inputEncryptedFile = tL_inputEncryptedFileUploaded;
         }
-        fileUploadOperationDelegate.didFinishUploadingFile(fileUploadOperation, tLRPC$InputFile, tLRPC$InputEncryptedFile2, bArr2, bArr3);
+        fileUploadOperationDelegate.didFinishUploadingFile(fileUploadOperation, inputFile, inputEncryptedFile, bArr2, bArr3);
         cleanup();
         int i11 = this.currentType;
         if (i11 == 50331648) {

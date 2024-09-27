@@ -33,20 +33,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_channels_setEmojiStickers;
-import org.telegram.tgnet.TLRPC$TL_channels_setStickers;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmpty;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetID;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
-import org.telegram.tgnet.TLRPC$TL_messages_foundStickerSets;
-import org.telegram.tgnet.TLRPC$TL_messages_getStickerSet;
-import org.telegram.tgnet.TLRPC$TL_messages_searchEmojiStickerSets;
-import org.telegram.tgnet.TLRPC$TL_messages_searchStickerSets;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -78,7 +65,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
     private FrameLayout emptyFrameView;
     private StickerEmptyView emptyView;
     private int headerRow;
-    private TLRPC$ChatFull info;
+    private TLRPC.ChatFull info;
     private int infoRow;
     private boolean isEmoji;
     private LinearLayoutManager layoutManager;
@@ -90,18 +77,18 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
     private SearchAdapter searchAdapter;
     private ActionBarMenuItem searchItem;
     private boolean searching;
-    private TLRPC$TL_messages_stickerSet selectedStickerSet;
+    private TLRPC.TL_messages_stickerSet selectedStickerSet;
     private int selectedStickerSetIndex = -1;
     private int stickersEndRow;
     private int stickersStartRow;
 
     public class AnonymousClass4 implements StickersAlert.StickersAlertCustomButtonDelegate {
         final boolean val$isSelected;
-        final TLRPC$TL_messages_stickerSet val$stickerSet;
+        final TLRPC.TL_messages_stickerSet val$stickerSet;
 
-        AnonymousClass4(boolean z, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+        AnonymousClass4(boolean z, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
             this.val$isSelected = z;
-            this.val$stickerSet = tLRPC$TL_messages_stickerSet;
+            this.val$stickerSet = tL_messages_stickerSet;
         }
 
         public void lambda$onCustomButtonPressed$0() {
@@ -210,13 +197,13 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
 
             public void lambda$afterTextChanged$0(TLObject tLObject) {
                 if (tLObject != null) {
-                    GroupStickersActivity.this.selectSetAfterSearch((TLRPC$TL_messages_stickerSet) tLObject);
+                    GroupStickersActivity.this.selectSetAfterSearch((TLRPC.TL_messages_stickerSet) tLObject);
                 } else {
                     GroupStickersActivity.this.selectSetAfterSearch(null);
                 }
             }
 
-            public void lambda$afterTextChanged$1(String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            public void lambda$afterTextChanged$1(String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
                 if (Objects.equals(AddEmojiCell.this.lastQuery, str)) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -229,15 +216,15 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
 
             public void lambda$afterTextChanged$2(final String str) {
                 AddEmojiCell.this.lastQuery = str;
-                TLRPC$TL_messages_getStickerSet tLRPC$TL_messages_getStickerSet = new TLRPC$TL_messages_getStickerSet();
-                TLRPC$TL_inputStickerSetShortName tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetShortName();
-                tLRPC$TL_messages_getStickerSet.stickerset = tLRPC$TL_inputStickerSetShortName;
-                tLRPC$TL_inputStickerSetShortName.short_name = str;
+                TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
+                TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+                tL_messages_getStickerSet.stickerset = tL_inputStickerSetShortName;
+                tL_inputStickerSetShortName.short_name = str;
                 AddEmojiCell addEmojiCell = AddEmojiCell.this;
-                addEmojiCell.reqId = GroupStickersActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_getStickerSet, new RequestDelegate() {
+                addEmojiCell.reqId = GroupStickersActivity.this.getConnectionsManager().sendRequest(tL_messages_getStickerSet, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        GroupStickersActivity.AddEmojiCell.AnonymousClass1.this.lambda$afterTextChanged$1(str, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        GroupStickersActivity.AddEmojiCell.AnonymousClass1.this.lambda$afterTextChanged$1(str, tLObject, tL_error);
                     }
                 }, 66);
             }
@@ -304,13 +291,13 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             setWillNotDraw(false);
         }
 
-        public void bind(boolean z, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+        public void bind(boolean z, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
             this.needDivider = z;
             this.editText.removeTextChangedListener(this.textWatcher);
-            if (tLRPC$TL_messages_stickerSet == null) {
+            if (tL_messages_stickerSet == null) {
                 this.editText.setText("");
             } else {
-                String str = tLRPC$TL_messages_stickerSet.set.short_name;
+                String str = tL_messages_stickerSet.set.short_name;
                 this.editText.setText(str);
                 this.editText.setSelection(str.length());
             }
@@ -425,28 +412,28 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             GroupStickersActivity.this.emptyView.showProgress(false, true);
         }
 
-        public void lambda$onSearchStickers$1(String str, final String str2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-            if (Objects.equals(this.lastQuery, str) && (tLObject instanceof TLRPC$TL_messages_foundStickerSets)) {
+        public void lambda$onSearchStickers$1(String str, final String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
+            if (Objects.equals(this.lastQuery, str) && (tLObject instanceof TLRPC.TL_messages_foundStickerSets)) {
                 final ArrayList arrayList = new ArrayList();
-                Iterator it = ((TLRPC$TL_messages_foundStickerSets) tLObject).sets.iterator();
+                Iterator<TLRPC.StickerSetCovered> it = ((TLRPC.TL_messages_foundStickerSets) tLObject).sets.iterator();
                 while (it.hasNext()) {
-                    TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) it.next();
-                    TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = new TLRPC$TL_messages_stickerSet();
-                    tLRPC$TL_messages_stickerSet.set = tLRPC$StickerSetCovered.set;
-                    tLRPC$TL_messages_stickerSet.documents = tLRPC$StickerSetCovered.covers;
-                    if (!GroupStickersActivity.this.isEmoji || tLRPC$TL_messages_stickerSet.set.emojis) {
-                        arrayList.add(tLRPC$TL_messages_stickerSet);
+                    TLRPC.StickerSetCovered next = it.next();
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = new TLRPC.TL_messages_stickerSet();
+                    tL_messages_stickerSet.set = next.set;
+                    tL_messages_stickerSet.documents = next.covers;
+                    if (!GroupStickersActivity.this.isEmoji || tL_messages_stickerSet.set.emojis) {
+                        arrayList.add(tL_messages_stickerSet);
                     }
                 }
                 String trim = str2.toLowerCase(Locale.ROOT).trim();
                 final ArrayList arrayList2 = new ArrayList();
-                Iterator<TLRPC$TL_messages_stickerSet> it2 = MediaDataController.getInstance(((BaseFragment) GroupStickersActivity.this).currentAccount).getStickerSets(GroupStickersActivity.this.getStickerSetType()).iterator();
+                Iterator<TLRPC.TL_messages_stickerSet> it2 = MediaDataController.getInstance(((BaseFragment) GroupStickersActivity.this).currentAccount).getStickerSets(GroupStickersActivity.this.getStickerSetType()).iterator();
                 while (it2.hasNext()) {
-                    TLRPC$TL_messages_stickerSet next = it2.next();
-                    String str3 = next.set.short_name;
+                    TLRPC.TL_messages_stickerSet next2 = it2.next();
+                    String str3 = next2.set.short_name;
                     Locale locale = Locale.ROOT;
-                    if (str3.toLowerCase(locale).contains(trim) || next.set.title.toLowerCase(locale).contains(trim)) {
-                        arrayList2.add(next);
+                    if (str3.toLowerCase(locale).contains(trim) || next2.set.title.toLowerCase(locale).contains(trim)) {
+                        arrayList2.add(next2);
                     }
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -459,21 +446,21 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         }
 
         public void lambda$onSearchStickers$2(final String str) {
-            TLRPC$TL_messages_searchStickerSets tLRPC$TL_messages_searchStickerSets;
+            TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets;
             this.lastQuery = str;
             if (GroupStickersActivity.this.isEmoji) {
-                TLRPC$TL_messages_searchEmojiStickerSets tLRPC$TL_messages_searchEmojiStickerSets = new TLRPC$TL_messages_searchEmojiStickerSets();
-                tLRPC$TL_messages_searchEmojiStickerSets.q = str;
-                tLRPC$TL_messages_searchStickerSets = tLRPC$TL_messages_searchEmojiStickerSets;
+                TLRPC.TL_messages_searchEmojiStickerSets tL_messages_searchEmojiStickerSets = new TLRPC.TL_messages_searchEmojiStickerSets();
+                tL_messages_searchEmojiStickerSets.q = str;
+                tL_messages_searchStickerSets = tL_messages_searchEmojiStickerSets;
             } else {
-                TLRPC$TL_messages_searchStickerSets tLRPC$TL_messages_searchStickerSets2 = new TLRPC$TL_messages_searchStickerSets();
-                tLRPC$TL_messages_searchStickerSets2.q = str;
-                tLRPC$TL_messages_searchStickerSets = tLRPC$TL_messages_searchStickerSets2;
+                TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets2 = new TLRPC.TL_messages_searchStickerSets();
+                tL_messages_searchStickerSets2.q = str;
+                tL_messages_searchStickerSets = tL_messages_searchStickerSets2;
             }
-            this.reqId = GroupStickersActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_searchStickerSets, new RequestDelegate() {
+            this.reqId = GroupStickersActivity.this.getConnectionsManager().sendRequest(tL_messages_searchStickerSets, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    GroupStickersActivity.SearchAdapter.this.lambda$onSearchStickers$1(str, str, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    GroupStickersActivity.SearchAdapter.this.lambda$onSearchStickers$1(str, str, tLObject, tL_error);
                 }
             }, 66);
         }
@@ -531,7 +518,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             if (i > this.searchEntries.size()) {
                 i = (i - this.searchEntries.size()) - 1;
             }
-            return ((TLRPC$TL_messages_stickerSet) list.get(i)).set.id;
+            return ((TLRPC.TL_messages_stickerSet) list.get(i)).set.id;
         }
 
         @Override
@@ -578,11 +565,11 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.isEmoji = z;
     }
 
-    public TLRPC$StickerSet getStickerSet(TLRPC$ChatFull tLRPC$ChatFull) {
-        if (tLRPC$ChatFull == null) {
+    public TLRPC.StickerSet getStickerSet(TLRPC.ChatFull chatFull) {
+        if (chatFull == null) {
             return null;
         }
-        return this.isEmoji ? tLRPC$ChatFull.emojiset : tLRPC$ChatFull.stickerset;
+        return this.isEmoji ? chatFull.emojiset : chatFull.stickerset;
     }
 
     public int getStickerSetType() {
@@ -595,11 +582,11 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         }
         if (this.searching) {
             if (i > this.searchAdapter.searchEntries.size()) {
-                onStickerSetClicked(((StickerSetCell) view).isChecked(), (TLRPC$TL_messages_stickerSet) this.searchAdapter.localSearchEntries.get((i - this.searchAdapter.searchEntries.size()) - 1), false);
+                onStickerSetClicked(((StickerSetCell) view).isChecked(), (TLRPC.TL_messages_stickerSet) this.searchAdapter.localSearchEntries.get((i - this.searchAdapter.searchEntries.size()) - 1), false);
                 return;
             } else {
                 if (i != this.searchAdapter.searchEntries.size()) {
-                    onStickerSetClicked(((StickerSetCell) view).isChecked(), (TLRPC$TL_messages_stickerSet) this.searchAdapter.searchEntries.get(i), true);
+                    onStickerSetClicked(((StickerSetCell) view).isChecked(), (TLRPC.TL_messages_stickerSet) this.searchAdapter.searchEntries.get(i), true);
                     return;
                 }
                 return;
@@ -613,122 +600,122 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         }
     }
 
-    public void lambda$saveStickerSet$1(TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error != null) {
+    public void lambda$saveStickerSet$1(TLRPC.TL_error tL_error) {
+        if (tL_error != null) {
             if (getParentActivity() != null) {
-                Toast.makeText(getParentActivity(), LocaleController.getString(R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
+                Toast.makeText(getParentActivity(), LocaleController.getString(R.string.ErrorOccurred) + "\n" + tL_error.text, 0).show();
                 return;
             }
             return;
         }
-        TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.selectedStickerSet;
-        if (tLRPC$TL_messages_stickerSet == null) {
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.selectedStickerSet;
+        if (tL_messages_stickerSet == null) {
             setStickerSet(null);
         } else {
-            setStickerSet(tLRPC$TL_messages_stickerSet.set);
+            setStickerSet(tL_messages_stickerSet.set);
             MediaDataController.getInstance(this.currentAccount).putGroupStickerSet(this.selectedStickerSet);
         }
         updateSelectedStickerSetIndex();
         if (this.isEmoji) {
-            TLRPC$ChatFull tLRPC$ChatFull = this.info;
-            tLRPC$ChatFull.flags2 = tLRPC$ChatFull.emojiset != null ? tLRPC$ChatFull.flags2 | 1024 : tLRPC$ChatFull.flags2 & (-1025);
+            TLRPC.ChatFull chatFull = this.info;
+            chatFull.flags2 = chatFull.emojiset != null ? chatFull.flags2 | 1024 : chatFull.flags2 & (-1025);
         } else {
-            TLRPC$ChatFull tLRPC$ChatFull2 = this.info;
-            tLRPC$ChatFull2.flags = tLRPC$ChatFull2.stickerset == null ? tLRPC$ChatFull2.flags | 256 : tLRPC$ChatFull2.flags & (-257);
+            TLRPC.ChatFull chatFull2 = this.info;
+            chatFull2.flags = chatFull2.stickerset == null ? chatFull2.flags | 256 : chatFull2.flags & (-257);
         }
         MessagesStorage.getInstance(this.currentAccount).updateChatInfo(this.info, false);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.chatInfoDidLoad, this.info, 0, Boolean.TRUE, Boolean.FALSE);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupPackUpdated, Long.valueOf(this.info.id), Boolean.valueOf(this.isEmoji));
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$saveStickerSet$2(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$saveStickerSet$2(TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupStickersActivity.this.lambda$saveStickerSet$1(tLRPC$TL_error);
+                GroupStickersActivity.this.lambda$saveStickerSet$1(tL_error);
             }
         });
     }
 
-    private void onStickerSetClicked(boolean z, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, boolean z2) {
-        TLRPC$TL_inputStickerSetShortName tLRPC$TL_inputStickerSetShortName;
+    private void onStickerSetClicked(boolean z, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, boolean z2) {
+        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName;
         if (z2) {
-            TLRPC$TL_inputStickerSetShortName tLRPC$TL_inputStickerSetShortName2 = new TLRPC$TL_inputStickerSetShortName();
-            tLRPC$TL_inputStickerSetShortName2.short_name = tLRPC$TL_messages_stickerSet.set.short_name;
-            tLRPC$TL_inputStickerSetShortName = tLRPC$TL_inputStickerSetShortName2;
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName2.short_name = tL_messages_stickerSet.set.short_name;
+            tL_inputStickerSetShortName = tL_inputStickerSetShortName2;
         } else {
-            tLRPC$TL_inputStickerSetShortName = null;
+            tL_inputStickerSetShortName = null;
         }
-        StickersAlert stickersAlert = new StickersAlert(getParentActivity(), this, tLRPC$TL_inputStickerSetShortName, !z2 ? tLRPC$TL_messages_stickerSet : null, (StickersAlert.StickersAlertDelegate) null);
-        stickersAlert.setCustomButtonDelegate(new AnonymousClass4(z, tLRPC$TL_messages_stickerSet));
+        StickersAlert stickersAlert = new StickersAlert(getParentActivity(), this, tL_inputStickerSetShortName, !z2 ? tL_messages_stickerSet : null, (StickersAlert.StickersAlertDelegate) null);
+        stickersAlert.setCustomButtonDelegate(new AnonymousClass4(z, tL_messages_stickerSet));
         AndroidUtilities.hideKeyboard(getParentActivity().getCurrentFocus());
         stickersAlert.show();
     }
 
     private void saveStickerSet() {
-        TLRPC$TL_inputStickerSetID tLRPC$TL_inputStickerSetID;
-        TLRPC$TL_channels_setStickers tLRPC$TL_channels_setStickers;
-        TLRPC$TL_channels_setStickers tLRPC$TL_channels_setStickers2;
-        TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet;
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        if (tLRPC$ChatFull != null) {
-            if (getStickerSet(tLRPC$ChatFull) == null || (tLRPC$TL_messages_stickerSet = this.selectedStickerSet) == null || tLRPC$TL_messages_stickerSet.set.id != getStickerSet(this.info).id) {
+        TLRPC.TL_inputStickerSetID tL_inputStickerSetID;
+        TLRPC.TL_channels_setStickers tL_channels_setStickers;
+        TLRPC.TL_channels_setStickers tL_channels_setStickers2;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
+        TLRPC.ChatFull chatFull = this.info;
+        if (chatFull != null) {
+            if (getStickerSet(chatFull) == null || (tL_messages_stickerSet = this.selectedStickerSet) == null || tL_messages_stickerSet.set.id != getStickerSet(this.info).id) {
                 if (getStickerSet(this.info) == null && this.selectedStickerSet == null) {
                     return;
                 }
                 if (this.isEmoji) {
-                    TLRPC$TL_channels_setEmojiStickers tLRPC$TL_channels_setEmojiStickers = new TLRPC$TL_channels_setEmojiStickers();
-                    tLRPC$TL_channels_setEmojiStickers.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
+                    TLRPC.TL_channels_setEmojiStickers tL_channels_setEmojiStickers = new TLRPC.TL_channels_setEmojiStickers();
+                    tL_channels_setEmojiStickers.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
                     if (this.removeStickerSet) {
-                        tLRPC$TL_channels_setEmojiStickers.stickerset = new TLRPC$TL_inputStickerSetEmpty();
-                        tLRPC$TL_channels_setStickers2 = tLRPC$TL_channels_setEmojiStickers;
+                        tL_channels_setEmojiStickers.stickerset = new TLRPC.TL_inputStickerSetEmpty();
+                        tL_channels_setStickers2 = tL_channels_setEmojiStickers;
                     } else {
-                        tLRPC$TL_inputStickerSetID = new TLRPC$TL_inputStickerSetID();
-                        tLRPC$TL_channels_setEmojiStickers.stickerset = tLRPC$TL_inputStickerSetID;
-                        tLRPC$TL_channels_setStickers = tLRPC$TL_channels_setEmojiStickers;
-                        TLRPC$StickerSet tLRPC$StickerSet = this.selectedStickerSet.set;
-                        tLRPC$TL_inputStickerSetID.id = tLRPC$StickerSet.id;
-                        tLRPC$TL_inputStickerSetID.access_hash = tLRPC$StickerSet.access_hash;
-                        tLRPC$TL_channels_setStickers2 = tLRPC$TL_channels_setStickers;
+                        tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                        tL_channels_setEmojiStickers.stickerset = tL_inputStickerSetID;
+                        tL_channels_setStickers = tL_channels_setEmojiStickers;
+                        TLRPC.StickerSet stickerSet = this.selectedStickerSet.set;
+                        tL_inputStickerSetID.id = stickerSet.id;
+                        tL_inputStickerSetID.access_hash = stickerSet.access_hash;
+                        tL_channels_setStickers2 = tL_channels_setStickers;
                     }
                 } else {
-                    TLRPC$TL_channels_setStickers tLRPC$TL_channels_setStickers3 = new TLRPC$TL_channels_setStickers();
-                    tLRPC$TL_channels_setStickers3.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
+                    TLRPC.TL_channels_setStickers tL_channels_setStickers3 = new TLRPC.TL_channels_setStickers();
+                    tL_channels_setStickers3.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
                     if (this.removeStickerSet) {
-                        tLRPC$TL_channels_setStickers3.stickerset = new TLRPC$TL_inputStickerSetEmpty();
-                        tLRPC$TL_channels_setStickers2 = tLRPC$TL_channels_setStickers3;
+                        tL_channels_setStickers3.stickerset = new TLRPC.TL_inputStickerSetEmpty();
+                        tL_channels_setStickers2 = tL_channels_setStickers3;
                     } else {
                         MessagesController.getEmojiSettings(this.currentAccount).edit().remove("group_hide_stickers_" + this.info.id).apply();
-                        tLRPC$TL_inputStickerSetID = new TLRPC$TL_inputStickerSetID();
-                        tLRPC$TL_channels_setStickers3.stickerset = tLRPC$TL_inputStickerSetID;
-                        tLRPC$TL_channels_setStickers = tLRPC$TL_channels_setStickers3;
-                        TLRPC$StickerSet tLRPC$StickerSet2 = this.selectedStickerSet.set;
-                        tLRPC$TL_inputStickerSetID.id = tLRPC$StickerSet2.id;
-                        tLRPC$TL_inputStickerSetID.access_hash = tLRPC$StickerSet2.access_hash;
-                        tLRPC$TL_channels_setStickers2 = tLRPC$TL_channels_setStickers;
+                        tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                        tL_channels_setStickers3.stickerset = tL_inputStickerSetID;
+                        tL_channels_setStickers = tL_channels_setStickers3;
+                        TLRPC.StickerSet stickerSet2 = this.selectedStickerSet.set;
+                        tL_inputStickerSetID.id = stickerSet2.id;
+                        tL_inputStickerSetID.access_hash = stickerSet2.access_hash;
+                        tL_channels_setStickers2 = tL_channels_setStickers;
                     }
                 }
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_setStickers2, new RequestDelegate() {
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_setStickers2, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        GroupStickersActivity.this.lambda$saveStickerSet$2(tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        GroupStickersActivity.this.lambda$saveStickerSet$2(tLObject, tL_error);
                     }
                 });
             }
         }
     }
 
-    public void selectSetAfterSearch(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+    public void selectSetAfterSearch(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         int i = this.selectedStickerSetIndex;
-        if (tLRPC$TL_messages_stickerSet == null) {
+        if (tL_messages_stickerSet == null) {
             if (this.selectedStickerSet != null) {
                 BulletinFactory.of(this).createSimpleBulletin(R.raw.done, LocaleController.getString(R.string.GroupsEmojiPackUpdated)).show();
             }
             this.selectedStickerSet = null;
             this.removeStickerSet = true;
         } else {
-            this.selectedStickerSet = tLRPC$TL_messages_stickerSet;
+            this.selectedStickerSet = tL_messages_stickerSet;
             this.removeStickerSet = false;
             BulletinFactory.of(this).createSimpleBulletin(R.raw.done, LocaleController.getString(R.string.GroupsEmojiPackUpdated)).show();
         }
@@ -760,17 +747,17 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         }
     }
 
-    private void setStickerSet(TLRPC$StickerSet tLRPC$StickerSet) {
+    private void setStickerSet(TLRPC.StickerSet stickerSet) {
         if (this.isEmoji) {
-            this.info.emojiset = tLRPC$StickerSet;
+            this.info.emojiset = stickerSet;
         } else {
-            this.info.stickerset = tLRPC$StickerSet;
+            this.info.stickerset = stickerSet;
         }
     }
 
-    public void updateCurrentPackVisibility(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, boolean z) {
+    public void updateCurrentPackVisibility(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, boolean z) {
         if (this.isEmoji) {
-            if (tLRPC$TL_messages_stickerSet == null) {
+            if (tL_messages_stickerSet == null) {
                 int i = this.currentEmojiPackRow;
                 boolean z2 = i > 0;
                 this.selectedStickerSet = null;
@@ -785,7 +772,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                 return;
             }
             boolean z3 = this.currentEmojiPackRow == -1;
-            this.selectedStickerSet = tLRPC$TL_messages_stickerSet;
+            this.selectedStickerSet = tL_messages_stickerSet;
             updateRows(false);
             ListAdapter listAdapter = this.listAdapter;
             int i2 = this.currentEmojiPackRow;
@@ -824,7 +811,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             this.rowCount = i + 1;
             this.addEmojiPackHintRow = i;
         }
-        ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(this.currentAccount).getStickerSets(getStickerSetType());
+        ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(this.currentAccount).getStickerSets(getStickerSetType());
         if (stickerSets.isEmpty()) {
             this.headerRow = -1;
             this.stickersStartRow = -1;
@@ -861,7 +848,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupStickersActivity.this.lambda$onBackPressed$307();
+                    GroupStickersActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -951,14 +938,14 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                 return;
             }
         } else if (i == NotificationCenter.chatInfoDidLoad) {
-            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (tLRPC$ChatFull.id != this.chatId) {
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+            if (chatFull.id != this.chatId) {
                 return;
             }
-            if (this.info == null && getStickerSet(tLRPC$ChatFull) != null) {
-                this.selectedStickerSet = MediaDataController.getInstance(this.currentAccount).getGroupStickerSetById(getStickerSet(tLRPC$ChatFull));
+            if (this.info == null && getStickerSet(chatFull) != null) {
+                this.selectedStickerSet = MediaDataController.getInstance(this.currentAccount).getGroupStickerSetById(getStickerSet(chatFull));
             }
-            this.info = tLRPC$ChatFull;
+            this.info = chatFull;
         } else {
             if (i != NotificationCenter.groupStickersDidLoad) {
                 return;
@@ -1023,9 +1010,9 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         }
     }
 
-    public void setInfo(TLRPC$ChatFull tLRPC$ChatFull) {
-        this.info = tLRPC$ChatFull;
-        if (getStickerSet(tLRPC$ChatFull) != null) {
+    public void setInfo(TLRPC.ChatFull chatFull) {
+        this.info = chatFull;
+        if (getStickerSet(chatFull) != null) {
             this.selectedStickerSet = MediaDataController.getInstance(this.currentAccount).getGroupStickerSetById(getStickerSet(this.info));
         }
     }

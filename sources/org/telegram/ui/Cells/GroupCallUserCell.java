@@ -22,9 +22,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -45,10 +43,10 @@ public class GroupCallUserCell extends FrameLayout {
     private AvatarWavesDrawable avatarWavesDrawable;
     private Runnable checkRaiseRunnable;
     private ChatObject.Call currentCall;
-    private TLRPC$Chat currentChat;
+    private TLRPC.Chat currentChat;
     private boolean currentIconGray;
     private int currentStatus;
-    private TLRPC$User currentUser;
+    private TLRPC.User currentUser;
     private Paint dividerPaint;
     private SimpleTextView fullAboutTextView;
     private int grayIconColor;
@@ -61,7 +59,7 @@ public class GroupCallUserCell extends FrameLayout {
     private RLottieDrawable muteDrawable;
     private SimpleTextView nameTextView;
     private boolean needDivider;
-    private TLRPC$TL_groupCallParticipant participant;
+    private TLRPC.TL_groupCallParticipant participant;
     private Drawable premiumDrawable;
     private float progressToAvatarPreview;
     private Runnable raiseHandCallback;
@@ -404,16 +402,16 @@ public class GroupCallUserCell extends FrameLayout {
         return this.nameTextView.getText();
     }
 
-    public TLRPC$TL_groupCallParticipant getParticipant() {
+    public TLRPC.TL_groupCallParticipant getParticipant() {
         return this.participant;
     }
 
     public long getPeerId() {
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.participant;
-        if (tLRPC$TL_groupCallParticipant == null) {
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = this.participant;
+        if (tL_groupCallParticipant == null) {
             return 0L;
         }
-        return MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
+        return MessageObject.getPeerId(tL_groupCallParticipant.peer);
     }
 
     public boolean hasAvatarSet() {
@@ -432,11 +430,11 @@ public class GroupCallUserCell extends FrameLayout {
     public boolean isSelfUser() {
         long j = this.selfId;
         if (j > 0) {
-            TLRPC$User tLRPC$User = this.currentUser;
-            return tLRPC$User != null && tLRPC$User.id == j;
+            TLRPC.User user = this.currentUser;
+            return user != null && user.id == j;
         }
-        TLRPC$Chat tLRPC$Chat = this.currentChat;
-        return tLRPC$Chat != null && tLRPC$Chat.id == (-j);
+        TLRPC.Chat chat = this.currentChat;
+        return chat != null && chat.id == (-j);
     }
 
     @Override
@@ -476,8 +474,8 @@ public class GroupCallUserCell extends FrameLayout {
         if (!accessibilityNodeInfo.isEnabled() || Build.VERSION.SDK_INT < 21) {
             return;
         }
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.participant;
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString((!tLRPC$TL_groupCallParticipant.muted || tLRPC$TL_groupCallParticipant.can_self_unmute) ? R.string.VoipMute : R.string.VoipUnmute)));
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = this.participant;
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString((!tL_groupCallParticipant.muted || tL_groupCallParticipant.can_self_unmute) ? R.string.VoipMute : R.string.VoipUnmute)));
     }
 
     @Override
@@ -523,7 +521,7 @@ public class GroupCallUserCell extends FrameLayout {
         this.updateRunnableScheduled = true;
     }
 
-    public void setData(org.telegram.messenger.AccountInstance r6, org.telegram.tgnet.TLRPC$TL_groupCallParticipant r7, org.telegram.messenger.ChatObject.Call r8, long r9, org.telegram.tgnet.TLRPC$FileLocation r11, boolean r12) {
+    public void setData(org.telegram.messenger.AccountInstance r6, org.telegram.tgnet.TLRPC.TL_groupCallParticipant r7, org.telegram.messenger.ChatObject.Call r8, long r9, org.telegram.tgnet.TLRPC.FileLocation r11, boolean r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCallUserCell.setData(org.telegram.messenger.AccountInstance, org.telegram.tgnet.TLRPC$TL_groupCallParticipant, org.telegram.messenger.ChatObject$Call, long, org.telegram.tgnet.TLRPC$FileLocation, boolean):void");
     }
 

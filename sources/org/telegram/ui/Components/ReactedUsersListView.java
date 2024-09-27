@@ -27,19 +27,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$MessagePeerReaction;
-import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messagePeerReaction;
-import org.telegram.tgnet.TLRPC$TL_messages_getMessageReactionsList;
-import org.telegram.tgnet.TLRPC$TL_messages_messageReactionsList;
-import org.telegram.tgnet.TLRPC$TL_peerChat;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ReactedUserHolderView;
 import org.telegram.ui.Components.ReactedHeaderView;
@@ -52,7 +40,7 @@ public class ReactedUsersListView extends FrameLayout {
     private int currentAccount;
     ArrayList customEmojiStickerSets;
     ArrayList customReactionsEmoji;
-    private TLRPC$Reaction filter;
+    private TLRPC.Reaction filter;
     public boolean isLoaded;
     public boolean isLoading;
     public RecyclerListView listView;
@@ -132,12 +120,12 @@ public class ReactedUsersListView extends FrameLayout {
     }
 
     public interface OnProfileSelectedListener {
-        void onProfileSelected(ReactedUsersListView reactedUsersListView, long j, TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction);
+        void onProfileSelected(ReactedUsersListView reactedUsersListView, long j, TLRPC.MessagePeerReaction messagePeerReaction);
     }
 
-    public ReactedUsersListView(final Context context, final Theme.ResourcesProvider resourcesProvider, final int i, MessageObject messageObject, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, final boolean z2) {
+    public ReactedUsersListView(final Context context, final Theme.ResourcesProvider resourcesProvider, final int i, MessageObject messageObject, TLRPC.ReactionCount reactionCount, boolean z, final boolean z2) {
         super(context);
-        TLRPC$Reaction tLRPC$Reaction;
+        TLRPC.Reaction reaction;
         this.userReactions = new ArrayList();
         this.peerReactionMap = new LongSparseArray();
         this.canLoadMore = true;
@@ -145,10 +133,10 @@ public class ReactedUsersListView extends FrameLayout {
         this.customEmojiStickerSets = new ArrayList();
         this.currentAccount = i;
         this.message = messageObject;
-        this.filter = tLRPC$ReactionCount == null ? null : tLRPC$ReactionCount.reaction;
+        this.filter = reactionCount == null ? null : reactionCount.reaction;
         this.resourcesProvider = resourcesProvider;
         this.showReactionPreview = z2;
-        this.predictiveCount = tLRPC$ReactionCount == null ? 6 : tLRPC$ReactionCount.count;
+        this.predictiveCount = reactionCount == null ? 6 : reactionCount.count;
         this.listView = new RecyclerListView(context, resourcesProvider) {
             @Override
             public void onMeasure(int i2, int i3) {
@@ -184,7 +172,7 @@ public class ReactedUsersListView extends FrameLayout {
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
                 if (viewHolder.getItemViewType() == 0) {
-                    ((ReactedUserHolderView) viewHolder.itemView).setUserReaction((TLRPC$MessagePeerReaction) ReactedUsersListView.this.userReactions.get(i2));
+                    ((ReactedUserHolderView) viewHolder.itemView).setUserReaction((TLRPC.MessagePeerReaction) ReactedUsersListView.this.userReactions.get(i2));
                 }
             }
 
@@ -246,7 +234,7 @@ public class ReactedUsersListView extends FrameLayout {
         this.loadingView.setIsSingleCell(true);
         this.loadingView.setItemsCount(this.predictiveCount);
         addView(this.loadingView, LayoutHelper.createFrame(-1, -1.0f));
-        if (!z && (tLRPC$Reaction = this.filter) != null && (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && !MessagesController.getInstance(i).premiumFeaturesBlocked()) {
+        if (!z && (reaction = this.filter) != null && (reaction instanceof TLRPC.TL_reactionCustomEmoji) && !MessagesController.getInstance(i).premiumFeaturesBlocked()) {
             this.customReactionsEmoji.clear();
             this.customReactionsEmoji.add(ReactionsLayoutInBubble.VisibleReaction.fromTL(this.filter));
             updateCustomReactionsButton();
@@ -258,9 +246,9 @@ public class ReactedUsersListView extends FrameLayout {
         return this.filter == null ? 100 : 50;
     }
 
-    public static int lambda$load$2(TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
-        int i = tLRPC$MessagePeerReaction.date;
-        if (i <= 0 || tLRPC$MessagePeerReaction.reaction != null) {
+    public static int lambda$load$2(TLRPC.MessagePeerReaction messagePeerReaction) {
+        int i = messagePeerReaction.date;
+        if (i <= 0 || messagePeerReaction.reaction != null) {
             return Integer.MIN_VALUE;
         }
         return -i;
@@ -273,31 +261,31 @@ public class ReactedUsersListView extends FrameLayout {
     }
 
     public void lambda$load$4(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$TL_messages_messageReactionsList) {
-            TLRPC$TL_messages_messageReactionsList tLRPC$TL_messages_messageReactionsList = (TLRPC$TL_messages_messageReactionsList) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_messages_messageReactionsList.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_messages_messageReactionsList.chats, false);
+        if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
+            TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_messages_messageReactionsList.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_messages_messageReactionsList.chats, false);
             HashSet hashSet = new HashSet();
-            for (int i = 0; i < tLRPC$TL_messages_messageReactionsList.reactions.size(); i++) {
-                this.userReactions.add((TLRPC$MessagePeerReaction) tLRPC$TL_messages_messageReactionsList.reactions.get(i));
-                long peerId = MessageObject.getPeerId(((TLRPC$MessagePeerReaction) tLRPC$TL_messages_messageReactionsList.reactions.get(i)).peer_id);
+            for (int i = 0; i < tL_messages_messageReactionsList.reactions.size(); i++) {
+                this.userReactions.add(tL_messages_messageReactionsList.reactions.get(i));
+                long peerId = MessageObject.getPeerId(tL_messages_messageReactionsList.reactions.get(i).peer_id);
                 ArrayList arrayList = (ArrayList) this.peerReactionMap.get(peerId);
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
                 int i2 = 0;
                 while (i2 < arrayList.size()) {
-                    if (((TLRPC$MessagePeerReaction) arrayList.get(i2)).reaction == null) {
+                    if (((TLRPC.MessagePeerReaction) arrayList.get(i2)).reaction == null) {
                         arrayList.remove(i2);
                         i2--;
                     }
                     i2++;
                 }
-                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(((TLRPC$MessagePeerReaction) tLRPC$TL_messages_messageReactionsList.reactions.get(i)).reaction);
+                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_messages_messageReactionsList.reactions.get(i).reaction);
                 if (fromTL.documentId != 0) {
                     hashSet.add(fromTL);
                 }
-                arrayList.add((TLRPC$MessagePeerReaction) tLRPC$TL_messages_messageReactionsList.reactions.get(i));
+                arrayList.add(tL_messages_messageReactionsList.reactions.get(i));
                 this.peerReactionMap.put(peerId, arrayList);
             }
             if (this.filter == null) {
@@ -309,7 +297,7 @@ public class ReactedUsersListView extends FrameLayout {
                 @Override
                 public final int applyAsInt(Object obj) {
                     int lambda$load$2;
-                    lambda$load$2 = ReactedUsersListView.lambda$load$2((TLRPC$MessagePeerReaction) obj);
+                    lambda$load$2 = ReactedUsersListView.lambda$load$2((TLRPC.MessagePeerReaction) obj);
                     return lambda$load$2;
                 }
             }));
@@ -333,7 +321,7 @@ public class ReactedUsersListView extends FrameLayout {
                 updateHeight();
                 this.isLoaded = true;
             }
-            String str = tLRPC$TL_messages_messageReactionsList.next_offset;
+            String str = tL_messages_messageReactionsList.next_offset;
             this.offset = str;
             if (str == null) {
                 this.canLoadMore = false;
@@ -351,7 +339,7 @@ public class ReactedUsersListView extends FrameLayout {
         });
     }
 
-    public void lambda$load$6(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$load$6(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -366,7 +354,7 @@ public class ReactedUsersListView extends FrameLayout {
         if (itemViewType == 0) {
             OnProfileSelectedListener onProfileSelectedListener = this.onProfileSelectedListener;
             if (onProfileSelectedListener != null) {
-                onProfileSelectedListener.onProfileSelected(this, MessageObject.getPeerId(((TLRPC$MessagePeerReaction) this.userReactions.get(i)).peer_id), (TLRPC$MessagePeerReaction) this.userReactions.get(i));
+                onProfileSelectedListener.onProfileSelected(this, MessageObject.getPeerId(((TLRPC.MessagePeerReaction) this.userReactions.get(i)).peer_id), (TLRPC.MessagePeerReaction) this.userReactions.get(i));
                 return;
             }
             return;
@@ -377,9 +365,9 @@ public class ReactedUsersListView extends FrameLayout {
         onCustomEmojiSelectedListener.showCustomEmojiAlert(this, this.customEmojiStickerSets);
     }
 
-    public static int lambda$setSeenUsers$1(TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
-        int i = tLRPC$MessagePeerReaction.date;
-        if (i <= 0 || tLRPC$MessagePeerReaction.reaction != null) {
+    public static int lambda$setSeenUsers$1(TLRPC.MessagePeerReaction messagePeerReaction) {
+        int i = messagePeerReaction.date;
+        if (i <= 0 || messagePeerReaction.reaction != null) {
             return Integer.MIN_VALUE;
         }
         return -i;
@@ -388,24 +376,24 @@ public class ReactedUsersListView extends FrameLayout {
     public void load() {
         this.isLoading = true;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        TLRPC$TL_messages_getMessageReactionsList tLRPC$TL_messages_getMessageReactionsList = new TLRPC$TL_messages_getMessageReactionsList();
-        tLRPC$TL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
-        tLRPC$TL_messages_getMessageReactionsList.id = this.message.getId();
-        tLRPC$TL_messages_getMessageReactionsList.limit = getLoadCount();
-        TLRPC$Reaction tLRPC$Reaction = this.filter;
-        tLRPC$TL_messages_getMessageReactionsList.reaction = tLRPC$Reaction;
+        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
+        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
+        tL_messages_getMessageReactionsList.id = this.message.getId();
+        tL_messages_getMessageReactionsList.limit = getLoadCount();
+        TLRPC.Reaction reaction = this.filter;
+        tL_messages_getMessageReactionsList.reaction = reaction;
         String str = this.offset;
-        tLRPC$TL_messages_getMessageReactionsList.offset = str;
-        if (tLRPC$Reaction != null) {
-            tLRPC$TL_messages_getMessageReactionsList.flags = 1 | tLRPC$TL_messages_getMessageReactionsList.flags;
+        tL_messages_getMessageReactionsList.offset = str;
+        if (reaction != null) {
+            tL_messages_getMessageReactionsList.flags = 1 | tL_messages_getMessageReactionsList.flags;
         }
         if (str != null) {
-            tLRPC$TL_messages_getMessageReactionsList.flags |= 2;
+            tL_messages_getMessageReactionsList.flags |= 2;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getMessageReactionsList, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ReactedUsersListView.this.lambda$load$6(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ReactedUsersListView.this.lambda$load$6(tLObject, tL_error);
             }
         }, 64);
     }
@@ -415,7 +403,7 @@ public class ReactedUsersListView extends FrameLayout {
         ArrayList arrayList = new ArrayList();
         HashSet hashSet = new HashSet();
         for (int i = 0; i < this.customReactionsEmoji.size(); i++) {
-            TLRPC$InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(AnimatedEmojiDrawable.findDocument(this.currentAccount, ((ReactionsLayoutInBubble.VisibleReaction) this.customReactionsEmoji.get(i)).documentId));
+            TLRPC.InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(AnimatedEmojiDrawable.findDocument(this.currentAccount, ((ReactionsLayoutInBubble.VisibleReaction) this.customReactionsEmoji.get(i)).documentId));
             if (inputStickerSet != null && !hashSet.contains(Long.valueOf(inputStickerSet.id))) {
                 arrayList.add(inputStickerSet);
                 hashSet.add(Long.valueOf(inputStickerSet.id));
@@ -487,10 +475,10 @@ public class ReactedUsersListView extends FrameLayout {
                     int i = 0;
                     while (true) {
                         if (i < this.userReactions.size()) {
-                            TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction = (TLRPC$MessagePeerReaction) this.userReactions.get(i);
-                            if (tLRPC$MessagePeerReaction != null && tLRPC$MessagePeerReaction.date <= 0 && MessageObject.getPeerId(tLRPC$MessagePeerReaction.peer_id) == userSeen.dialogId) {
-                                tLRPC$MessagePeerReaction.date = userSeen.date;
-                                tLRPC$MessagePeerReaction.dateIsSeen = true;
+                            TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) this.userReactions.get(i);
+                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && MessageObject.getPeerId(messagePeerReaction.peer_id) == userSeen.dialogId) {
+                                messagePeerReaction.date = userSeen.date;
+                                messagePeerReaction.dateIsSeen = true;
                                 break;
                             }
                             i++;
@@ -506,24 +494,24 @@ public class ReactedUsersListView extends FrameLayout {
         while (it2.hasNext()) {
             ReactedHeaderView.UserSeen userSeen2 = (ReactedHeaderView.UserSeen) it2.next();
             if (((ArrayList) this.peerReactionMap.get(userSeen2.dialogId)) == null) {
-                TLRPC$TL_messagePeerReaction tLRPC$TL_messagePeerReaction = new TLRPC$TL_messagePeerReaction();
-                tLRPC$TL_messagePeerReaction.reaction = null;
+                TLRPC.TL_messagePeerReaction tL_messagePeerReaction = new TLRPC.TL_messagePeerReaction();
+                tL_messagePeerReaction.reaction = null;
                 TLObject tLObject = userSeen2.user;
-                if (tLObject instanceof TLRPC$User) {
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-                    tLRPC$TL_messagePeerReaction.peer_id = tLRPC$TL_peerUser;
-                    tLRPC$TL_peerUser.user_id = ((TLRPC$User) userSeen2.user).id;
-                } else if (tLObject instanceof TLRPC$Chat) {
-                    TLRPC$TL_peerChat tLRPC$TL_peerChat = new TLRPC$TL_peerChat();
-                    tLRPC$TL_messagePeerReaction.peer_id = tLRPC$TL_peerChat;
-                    tLRPC$TL_peerChat.chat_id = ((TLRPC$Chat) userSeen2.user).id;
+                if (tLObject instanceof TLRPC.User) {
+                    TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                    tL_messagePeerReaction.peer_id = tL_peerUser;
+                    tL_peerUser.user_id = ((TLRPC.User) userSeen2.user).id;
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
+                    tL_messagePeerReaction.peer_id = tL_peerChat;
+                    tL_peerChat.chat_id = ((TLRPC.Chat) userSeen2.user).id;
                 }
-                tLRPC$TL_messagePeerReaction.date = userSeen2.date;
-                tLRPC$TL_messagePeerReaction.dateIsSeen = true;
+                tL_messagePeerReaction.date = userSeen2.date;
+                tL_messagePeerReaction.dateIsSeen = true;
                 ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(tLRPC$TL_messagePeerReaction);
-                this.peerReactionMap.put(MessageObject.getPeerId(tLRPC$TL_messagePeerReaction.peer_id), arrayList2);
-                arrayList.add(tLRPC$TL_messagePeerReaction);
+                arrayList2.add(tL_messagePeerReaction);
+                this.peerReactionMap.put(MessageObject.getPeerId(tL_messagePeerReaction.peer_id), arrayList2);
+                arrayList.add(tL_messagePeerReaction);
             }
         }
         if (this.userReactions.isEmpty()) {
@@ -534,7 +522,7 @@ public class ReactedUsersListView extends FrameLayout {
             @Override
             public final int applyAsInt(Object obj) {
                 int lambda$setSeenUsers$1;
-                lambda$setSeenUsers$1 = ReactedUsersListView.lambda$setSeenUsers$1((TLRPC$MessagePeerReaction) obj);
+                lambda$setSeenUsers$1 = ReactedUsersListView.lambda$setSeenUsers$1((TLRPC.MessagePeerReaction) obj);
                 return lambda$setSeenUsers$1;
             }
         }));

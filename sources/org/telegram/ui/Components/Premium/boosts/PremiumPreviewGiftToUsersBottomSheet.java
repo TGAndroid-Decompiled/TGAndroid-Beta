@@ -27,9 +27,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_premiumGiftCodeOption;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
@@ -93,7 +91,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         AvatarDrawable fromAvatarDrawable;
         protected final AdditionalCounterView iconView;
         private final BackupImageView imageView;
-        public TLRPC$User user;
+        public TLRPC.User user;
 
         public AvatarHolderView(Context context, float f) {
             super(context);
@@ -121,15 +119,15 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
                 frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 94.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
                 AvatarHolderView avatarHolderView = new AvatarHolderView(context, 47.0f);
                 avatarHolderView.drawCycle = false;
-                avatarHolderView.setUser((TLRPC$User) list.get(0));
+                avatarHolderView.setUser((TLRPC.User) list.get(0));
                 frameLayout2.addView(avatarHolderView, 0, LayoutHelper.createFrame(94, 94, 17));
             } else {
                 frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
                 int i = 0;
                 for (int i2 = 0; i2 < list.size(); i2++) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) list.get(i2);
+                    TLRPC.User user = (TLRPC.User) list.get(i2);
                     AvatarHolderView avatarHolderView2 = new AvatarHolderView(context, 41.5f);
-                    avatarHolderView2.setUser(tLRPC$User);
+                    avatarHolderView2.setUser(user);
                     frameLayout2.addView(avatarHolderView2, 0, LayoutHelper.createFrame(83, 83, 17));
                     avatarHolderView2.setTranslationX((-i2) * AndroidUtilities.dp(29.0f));
                     if (i2 == 0 && list.size() > 3) {
@@ -154,10 +152,10 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
             super.dispatchDraw(canvas);
         }
 
-        public void setUser(TLRPC$User tLRPC$User) {
-            this.user = tLRPC$User;
-            this.fromAvatarDrawable.setInfo(tLRPC$User);
-            this.imageView.setForUserOrChat(tLRPC$User, this.fromAvatarDrawable);
+        public void setUser(TLRPC.User user) {
+            this.user = user;
+            this.fromAvatarDrawable.setInfo(user);
+            this.imageView.setForUserOrChat(user, this.fromAvatarDrawable);
         }
     }
 
@@ -174,7 +172,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
             @Override
             public final long applyAsLong(Object obj) {
                 long j;
-                j = ((TLRPC$TL_premiumGiftCodeOption) obj).amount;
+                j = ((TLRPC.TL_premiumGiftCodeOption) obj).amount;
                 return j;
             }
         }));
@@ -184,17 +182,17 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     private void chooseMaxSelectedMonths() {
         Iterator it = this.giftCodeOptions.iterator();
         while (it.hasNext()) {
-            this.selectedMonths = Math.max(((TLRPC$TL_premiumGiftCodeOption) it.next()).months, this.selectedMonths);
+            this.selectedMonths = Math.max(((TLRPC.TL_premiumGiftCodeOption) it.next()).months, this.selectedMonths);
         }
     }
 
-    private TLRPC$TL_premiumGiftCodeOption getSelectedOption() {
-        for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption : this.giftCodeOptions) {
-            if (tLRPC$TL_premiumGiftCodeOption.months == this.selectedMonths) {
-                return tLRPC$TL_premiumGiftCodeOption;
+    private TLRPC.TL_premiumGiftCodeOption getSelectedOption() {
+        for (TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption : this.giftCodeOptions) {
+            if (tL_premiumGiftCodeOption.months == this.selectedMonths) {
+                return tL_premiumGiftCodeOption;
             }
         }
-        return (TLRPC$TL_premiumGiftCodeOption) this.giftCodeOptions.get(0);
+        return (TLRPC.TL_premiumGiftCodeOption) this.giftCodeOptions.get(0);
     }
 
     private void init() {
@@ -247,9 +245,9 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         }, 250L);
     }
 
-    public void lambda$init$3(TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$init$3(TLRPC.TL_error tL_error) {
         this.actionBtn.setLoading(false);
-        BoostDialogs.showToastError(getContext(), tLRPC$TL_error);
+        BoostDialogs.showToastError(getContext(), tL_error);
     }
 
     public void lambda$init$4(View view) {
@@ -268,7 +266,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PremiumPreviewGiftToUsersBottomSheet.this.lambda$init$3((TLRPC$TL_error) obj);
+                    PremiumPreviewGiftToUsersBottomSheet.this.lambda$init$3((TLRPC.TL_error) obj);
                 }
             });
         }
@@ -285,7 +283,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     private void updateActionButton(boolean z) {
         GradientButtonWithCounterView gradientButtonWithCounterView;
         String formatPluralString;
-        TLRPC$TL_premiumGiftCodeOption selectedOption = getSelectedOption();
+        TLRPC.TL_premiumGiftCodeOption selectedOption = getSelectedOption();
         String formatCurrency = BillingController.getInstance().formatCurrency(selectedOption.amount, selectedOption.currency);
         if (this.selectedUsers.size() == 1) {
             gradientButtonWithCounterView = this.actionBtn;
@@ -337,7 +335,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     }
 
     public boolean isSelf() {
-        return this.selectedUsers.size() == 1 && this.selectedUsers.get(0) != null && ((TLRPC$User) this.selectedUsers.get(0)).id == UserConfig.getInstance(getCurrentAccount()).getClientUserId();
+        return this.selectedUsers.size() == 1 && this.selectedUsers.get(0) != null && ((TLRPC.User) this.selectedUsers.get(0)).id == UserConfig.getInstance(getCurrentAccount()).getClientUserId();
     }
 
     @Override
@@ -359,10 +357,10 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     protected void onBindAdditionCell(View view, int i) {
         if (view instanceof DurationWithDiscountCell) {
             int i2 = i - 1;
-            TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption = (TLRPC$TL_premiumGiftCodeOption) this.giftCodeOptions.get(i2);
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) this.giftCodeOptions.get(i2);
             DurationWithDiscountCell durationWithDiscountCell = (DurationWithDiscountCell) view;
             List list = this.giftCodeOptions;
-            durationWithDiscountCell.setDuration(tLRPC$TL_premiumGiftCodeOption, (TLRPC$TL_premiumGiftCodeOption) list.get(list.size() - 1), this.selectedUsers.size(), i2 != this.giftCodeOptions.size() - 1, this.selectedMonths == tLRPC$TL_premiumGiftCodeOption.months);
+            durationWithDiscountCell.setDuration(tL_premiumGiftCodeOption, (TLRPC.TL_premiumGiftCodeOption) list.get(list.size() - 1), this.selectedUsers.size(), i2 != this.giftCodeOptions.size() - 1, this.selectedMonths == tL_premiumGiftCodeOption.months);
         }
     }
 
@@ -395,13 +393,13 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         ((PremiumPreviewBottomSheet) this).titleView[0].setText(LocaleController.getString("GiftTelegramPremiumTitle", R.string.GiftTelegramPremiumTitle));
         int size = this.selectedUsers.size();
         if (size == 1) {
-            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersOne", R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0))));
+            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersOne", R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0))));
         } else if (size == 2) {
-            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(1))));
+            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1))));
         } else if (size != 3) {
-            formatString = LocaleController.formatPluralString("GiftPremiumUsersGiveAccessMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(2))));
+            formatString = LocaleController.formatPluralString("GiftPremiumUsersGiveAccessMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
         } else {
-            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(2))));
+            formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
         }
         this.subtitleView.setText(AndroidUtilities.replaceTags(formatString));
         this.subtitleView.append("\n");

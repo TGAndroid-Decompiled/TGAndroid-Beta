@@ -12,10 +12,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
-import org.telegram.tgnet.TLRPC$TL_inputAppEvent;
-import org.telegram.tgnet.TLRPC$TL_jsonNull;
-import org.telegram.tgnet.TLRPC$TL_updates;
+import org.telegram.tgnet.TLRPC;
 
 public class PushListenerController {
     public static final int NOTIFICATION_ID = 1;
@@ -466,8 +463,8 @@ public class PushListenerController {
         }
     }
 
-    public static void lambda$processRemoteMessage$2(int i, TLRPC$TL_updates tLRPC$TL_updates) {
-        MessagesController.getInstance(i).processUpdates(tLRPC$TL_updates, false);
+    public static void lambda$processRemoteMessage$2(int i, TLRPC.TL_updates tL_updates) {
+        MessagesController.getInstance(i).processUpdates(tL_updates, false);
     }
 
     public static void lambda$processRemoteMessage$3(int i) {
@@ -526,22 +523,22 @@ public class PushListenerController {
             if (userConfig.getClientUserId() != 0) {
                 if (z) {
                     String str2 = i == 2 ? "fcm" : "hcm";
-                    TLRPC$TL_help_saveAppLog tLRPC$TL_help_saveAppLog = new TLRPC$TL_help_saveAppLog();
-                    TLRPC$TL_inputAppEvent tLRPC$TL_inputAppEvent = new TLRPC$TL_inputAppEvent();
-                    tLRPC$TL_inputAppEvent.time = SharedConfig.pushStringGetTimeStart;
-                    tLRPC$TL_inputAppEvent.type = str2 + "_token_request";
-                    tLRPC$TL_inputAppEvent.peer = 0L;
-                    tLRPC$TL_inputAppEvent.data = new TLRPC$TL_jsonNull();
-                    tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent);
-                    TLRPC$TL_inputAppEvent tLRPC$TL_inputAppEvent2 = new TLRPC$TL_inputAppEvent();
-                    tLRPC$TL_inputAppEvent2.time = SharedConfig.pushStringGetTimeEnd;
-                    tLRPC$TL_inputAppEvent2.type = str2 + "_token_response";
-                    tLRPC$TL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
-                    tLRPC$TL_inputAppEvent2.data = new TLRPC$TL_jsonNull();
-                    tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent2);
+                    TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
+                    TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
+                    tL_inputAppEvent.time = SharedConfig.pushStringGetTimeStart;
+                    tL_inputAppEvent.type = str2 + "_token_request";
+                    tL_inputAppEvent.peer = 0L;
+                    tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
+                    tL_help_saveAppLog.events.add(tL_inputAppEvent);
+                    TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
+                    tL_inputAppEvent2.time = SharedConfig.pushStringGetTimeEnd;
+                    tL_inputAppEvent2.type = str2 + "_token_response";
+                    tL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
+                    tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
+                    tL_help_saveAppLog.events.add(tL_inputAppEvent2);
                     SharedConfig.pushStatSent = true;
                     SharedConfig.saveConfig();
-                    ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_help_saveAppLog, null);
+                    ConnectionsManager.getInstance(i2).sendRequest(tL_help_saveAppLog, null);
                     z = false;
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {

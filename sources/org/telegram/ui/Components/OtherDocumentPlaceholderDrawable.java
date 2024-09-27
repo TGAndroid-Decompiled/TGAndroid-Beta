@@ -18,8 +18,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC;
 
 public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable implements DownloadController.FileDownloadProgressListener {
     private int TAG;
@@ -76,7 +75,7 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         this.parentView = view;
         this.parentMessageObject = messageObject;
         this.TAG = DownloadController.getInstance(messageObject.currentAccount).generateObserverTag();
-        TLRPC$Document document = messageObject.getDocument();
+        TLRPC.Document document = messageObject.getDocument();
         if (document != null) {
             String documentFileName = FileLoader.getDocumentFileName(messageObject.getDocument());
             this.fileName = documentFileName;
@@ -139,9 +138,9 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
     public void checkFileExist() {
         MessageObject messageObject = this.parentMessageObject;
         if (messageObject != null) {
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if (tLRPC$Message.media != null) {
-                String attachFileName = ((TextUtils.isEmpty(tLRPC$Message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.parentMessageObject.messageOwner).exists()) ? FileLoader.getAttachFileName(this.parentMessageObject.getDocument()) : null;
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message.media != null) {
+                String attachFileName = ((TextUtils.isEmpty(message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.parentMessageObject.messageOwner).exists()) ? FileLoader.getAttachFileName(this.parentMessageObject.getDocument()) : null;
                 this.loaded = false;
                 if (attachFileName == null) {
                     this.progressVisible = false;

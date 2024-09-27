@@ -11,9 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.WebFile;
-import org.telegram.tgnet.TLRPC$PaymentReceipt;
-import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
-import org.telegram.tgnet.TLRPC$WebDocument;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -84,7 +82,7 @@ public class PaymentInfoCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i3);
     }
 
-    public void setInfo(String str, String str2, TLRPC$WebDocument tLRPC$WebDocument, String str3, Object obj) {
+    public void setInfo(String str, String str2, TLRPC.WebDocument webDocument, String str3, Object obj) {
         int min;
         this.nameTextView.setText(str);
         this.detailTextView.setText(str2);
@@ -99,7 +97,7 @@ public class PaymentInfoCell extends FrameLayout {
         float dp = f / (((int) (min * 0.7f)) - AndroidUtilities.dp(2.0f));
         int i = (int) (f / dp);
         int i2 = (int) (360 / dp);
-        if (tLRPC$WebDocument == null || !tLRPC$WebDocument.mime_type.startsWith("image/")) {
+        if (webDocument == null || !webDocument.mime_type.startsWith("image/")) {
             this.nameTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 9.0f, 17.0f, 0.0f));
             this.detailTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 33.0f, 17.0f, 0.0f));
             this.detailExTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 90.0f, 17.0f, 9.0f));
@@ -116,14 +114,14 @@ public class PaymentInfoCell extends FrameLayout {
         boolean z3 = LocaleController.isRTL;
         textView3.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 10.0f : 123.0f, 90.0f, z3 ? 123.0f : 10.0f, 0.0f));
         this.imageView.setVisibility(0);
-        this.imageView.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$WebDocument)), String.format(Locale.US, "%d_%d", Integer.valueOf(i), Integer.valueOf(i2)), null, null, -1L, null, obj, 1);
+        this.imageView.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), String.format(Locale.US, "%d_%d", Integer.valueOf(i), Integer.valueOf(i2)), null, null, -1L, null, obj, 1);
     }
 
-    public void setInvoice(TLRPC$TL_messageMediaInvoice tLRPC$TL_messageMediaInvoice, String str) {
-        setInfo(tLRPC$TL_messageMediaInvoice.title, tLRPC$TL_messageMediaInvoice.description, tLRPC$TL_messageMediaInvoice.webPhoto, str, tLRPC$TL_messageMediaInvoice);
+    public void setInvoice(TLRPC.TL_messageMediaInvoice tL_messageMediaInvoice, String str) {
+        setInfo(tL_messageMediaInvoice.title, tL_messageMediaInvoice.description, tL_messageMediaInvoice.webPhoto, str, tL_messageMediaInvoice);
     }
 
-    public void setReceipt(TLRPC$PaymentReceipt tLRPC$PaymentReceipt, String str) {
-        setInfo(tLRPC$PaymentReceipt.title, tLRPC$PaymentReceipt.description, tLRPC$PaymentReceipt.photo, str, tLRPC$PaymentReceipt);
+    public void setReceipt(TLRPC.PaymentReceipt paymentReceipt, String str) {
+        setInfo(paymentReceipt.title, paymentReceipt.description, paymentReceipt.photo, str, paymentReceipt);
     }
 }

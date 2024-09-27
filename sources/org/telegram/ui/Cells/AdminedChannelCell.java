@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -27,7 +27,7 @@ public class AdminedChannelCell extends FrameLayout {
     private BackupImageView avatarImageView;
     CheckBox2 checkBox;
     private int currentAccount;
-    private TLRPC$Chat currentChannel;
+    private TLRPC.Chat currentChannel;
     private ImageView deleteButton;
     private boolean isLast;
     private SimpleTextView nameTextView;
@@ -87,7 +87,7 @@ public class AdminedChannelCell extends FrameLayout {
         }
     }
 
-    public TLRPC$Chat getCurrentChannel() {
+    public TLRPC.Chat getCurrentChannel() {
         return this.currentChannel;
     }
 
@@ -113,15 +113,15 @@ public class AdminedChannelCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((this.isLast ? 12 : 0) + 60), 1073741824));
     }
 
-    public void setChannel(TLRPC$Chat tLRPC$Chat, boolean z) {
+    public void setChannel(TLRPC.Chat chat, boolean z) {
         String str = MessagesController.getInstance(this.currentAccount).linkPrefix + "/";
-        this.currentChannel = tLRPC$Chat;
-        this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
-        this.nameTextView.setText(tLRPC$Chat.title);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str + ChatObject.getPublicUsername(tLRPC$Chat));
+        this.currentChannel = chat;
+        this.avatarDrawable.setInfo(this.currentAccount, chat);
+        this.nameTextView.setText(chat.title);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str + ChatObject.getPublicUsername(chat));
         spannableStringBuilder.setSpan(new URLSpanNoUnderline(""), str.length(), spannableStringBuilder.length(), 33);
         this.statusTextView.setText(spannableStringBuilder);
-        this.avatarImageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
+        this.avatarImageView.setForUserOrChat(chat, this.avatarDrawable);
         this.isLast = z;
     }
 

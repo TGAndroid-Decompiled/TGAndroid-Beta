@@ -60,17 +60,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotInlineResult;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$TL_contacts_resolveUsername;
-import org.telegram.tgnet.TLRPC$TL_contacts_resolvedPeer;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPeerEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_getInlineBotResults;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$WebDocument;
-import org.telegram.tgnet.TLRPC$messages_BotResults;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -892,7 +882,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
     }
 
     public class SearchAdapter extends RecyclerListView.SelectionAdapter {
-        private TLRPC$User bot;
+        private TLRPC.User bot;
         private int currentReqId;
         private String lastOffset;
         private boolean loading;
@@ -918,16 +908,16 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         public void lambda$loadInternal$0(TLObject tLObject, MessagesController messagesController) {
             this.triedResolvingBot = true;
             this.loading = false;
-            if (tLObject instanceof TLRPC$TL_contacts_resolvedPeer) {
-                TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
-                messagesController.putUsers(tLRPC$TL_contacts_resolvedPeer.users, false);
-                messagesController.putChats(tLRPC$TL_contacts_resolvedPeer.chats, false);
-                MessagesStorage.getInstance(GalleryListView.this.currentAccount).putUsersAndChats(tLRPC$TL_contacts_resolvedPeer.users, tLRPC$TL_contacts_resolvedPeer.chats, true, true);
+            if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
+                TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
+                messagesController.putUsers(tL_contacts_resolvedPeer.users, false);
+                messagesController.putChats(tL_contacts_resolvedPeer.chats, false);
+                MessagesStorage.getInstance(GalleryListView.this.currentAccount).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                 loadInternal();
             }
         }
 
-        public void lambda$loadInternal$1(final MessagesController messagesController, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$loadInternal$1(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -937,19 +927,19 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         }
 
         public void lambda$loadInternal$2(TLObject tLObject, boolean z) {
-            if (tLObject instanceof TLRPC$messages_BotResults) {
-                TLRPC$messages_BotResults tLRPC$messages_BotResults = (TLRPC$messages_BotResults) tLObject;
-                this.lastOffset = tLRPC$messages_BotResults.next_offset;
+            if (tLObject instanceof TLRPC.messages_BotResults) {
+                TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
+                this.lastOffset = messages_botresults.next_offset;
                 if (z) {
                     this.results.clear();
                 }
-                for (int i = 0; i < tLRPC$messages_BotResults.results.size(); i++) {
-                    TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) tLRPC$messages_BotResults.results.get(i);
-                    TLObject tLObject2 = tLRPC$BotInlineResult.document;
-                    if (tLObject2 != null || (tLObject2 = tLRPC$BotInlineResult.photo) != null) {
+                for (int i = 0; i < messages_botresults.results.size(); i++) {
+                    TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(i);
+                    TLObject tLObject2 = botInlineResult.document;
+                    if (tLObject2 != null || (tLObject2 = botInlineResult.photo) != null) {
                         this.results.add(tLObject2);
-                    } else if (tLRPC$BotInlineResult.content != null) {
-                        this.results.add(tLRPC$BotInlineResult);
+                    } else if (botInlineResult.content != null) {
+                        this.results.add(botInlineResult);
                     }
                 }
                 this.loading = false;
@@ -958,7 +948,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             }
         }
 
-        public void lambda$loadInternal$3(final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$loadInternal$3(final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -978,40 +968,40 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             String str = this.type == 1 ? messagesController.gifSearchBot : messagesController.imageSearchBot;
             if (this.bot == null) {
                 TLObject userOrChat = messagesController.getUserOrChat(str);
-                if (userOrChat instanceof TLRPC$User) {
-                    this.bot = (TLRPC$User) userOrChat;
+                if (userOrChat instanceof TLRPC.User) {
+                    this.bot = (TLRPC.User) userOrChat;
                 }
             }
-            TLRPC$User tLRPC$User = this.bot;
-            if (tLRPC$User == null && !this.triedResolvingBot) {
-                TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
-                tLRPC$TL_contacts_resolveUsername.username = str;
-                sendRequest = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
+            TLRPC.User user = this.bot;
+            if (user == null && !this.triedResolvingBot) {
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                tL_contacts_resolveUsername.username = str;
+                sendRequest = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        GalleryListView.SearchAdapter.this.lambda$loadInternal$1(messagesController, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        GalleryListView.SearchAdapter.this.lambda$loadInternal$1(messagesController, tLObject, tL_error);
                     }
                 });
             } else {
-                if (tLRPC$User == null) {
+                if (user == null) {
                     return;
                 }
-                TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
-                tLRPC$TL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.bot);
+                TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.bot);
                 String str2 = this.query;
                 if (str2 == null) {
                     str2 = "";
                 }
-                tLRPC$TL_messages_getInlineBotResults.query = str2;
-                tLRPC$TL_messages_getInlineBotResults.peer = new TLRPC$TL_inputPeerEmpty();
+                tL_messages_getInlineBotResults.query = str2;
+                tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
                 String str3 = this.lastOffset;
                 String str4 = str3 != null ? str3 : "";
-                tLRPC$TL_messages_getInlineBotResults.offset = str4;
+                tL_messages_getInlineBotResults.offset = str4;
                 final boolean isEmpty = TextUtils.isEmpty(str4);
-                sendRequest = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tLRPC$TL_messages_getInlineBotResults, new RequestDelegate() {
+                sendRequest = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        GalleryListView.SearchAdapter.this.lambda$loadInternal$3(isEmpty, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        GalleryListView.SearchAdapter.this.lambda$loadInternal$3(isEmpty, tLObject, tL_error);
                     }
                 });
             }
@@ -1051,25 +1041,25 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            TLRPC$BotInlineResult tLRPC$BotInlineResult;
-            TLRPC$WebDocument tLRPC$WebDocument;
+            TLRPC.BotInlineResult botInlineResult;
+            TLRPC.WebDocument webDocument;
             ImageLocation forPhoto;
             BackupImageView backupImageView = (BackupImageView) viewHolder.itemView;
             TLObject tLObject = (TLObject) this.results.get(i);
-            if (tLObject instanceof TLRPC$Document) {
-                forPhoto = ImageLocation.getForDocument((TLRPC$Document) tLObject);
+            if (tLObject instanceof TLRPC.Document) {
+                forPhoto = ImageLocation.getForDocument((TLRPC.Document) tLObject);
             } else {
-                if (!(tLObject instanceof TLRPC$Photo)) {
-                    if (!(tLObject instanceof TLRPC$BotInlineResult) || (tLRPC$WebDocument = (tLRPC$BotInlineResult = (TLRPC$BotInlineResult) tLObject).thumb) == null) {
+                if (!(tLObject instanceof TLRPC.Photo)) {
+                    if (!(tLObject instanceof TLRPC.BotInlineResult) || (webDocument = (botInlineResult = (TLRPC.BotInlineResult) tLObject).thumb) == null) {
                         backupImageView.clearImage();
                         return;
                     } else {
-                        backupImageView.setImage(ImageLocation.getForPath(tLRPC$WebDocument.url), "200_200", this.loadingDrawable, tLRPC$BotInlineResult);
+                        backupImageView.setImage(ImageLocation.getForPath(webDocument.url), "200_200", this.loadingDrawable, botInlineResult);
                         return;
                     }
                 }
-                TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
-                forPhoto = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 320), tLRPC$Photo);
+                TLRPC.Photo photo = (TLRPC.Photo) tLObject;
+                forPhoto = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 320), photo);
             }
             backupImageView.setImage(forPhoto, "200_200", this.loadingDrawable, (Object) null);
         }

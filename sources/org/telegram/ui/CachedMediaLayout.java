@@ -34,17 +34,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
-import org.telegram.tgnet.TLRPC$TL_message;
-import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -92,40 +83,6 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         private ActionBarPopupWindow popupWindow;
         final Context val$context;
         final BaseFragment val$parentFragment;
-
-        class C00101 implements RecyclerListView.OnItemClickListener {
-            final RecyclerListView val$recyclerListView;
-
-            C00101(RecyclerListView recyclerListView) {
-                r2 = recyclerListView;
-            }
-
-            @Override
-            public void onItemClick(View view, int i) {
-                BaseAdapter baseAdapter = (BaseAdapter) r2.getAdapter();
-                ItemInner itemInner = (ItemInner) baseAdapter.itemInners.get(i);
-                if (!(view instanceof SharedPhotoVideoCell2)) {
-                    Delegate delegate = CachedMediaLayout.this.delegate;
-                    if (delegate != null) {
-                        delegate.onItemSelected(itemInner.entities, itemInner.file, false);
-                        return;
-                    }
-                    return;
-                }
-                MediaAdapter mediaAdapter = (MediaAdapter) baseAdapter;
-                if (!mediaAdapter.isStories) {
-                    CachedMediaLayout.this.openPhoto(itemInner, mediaAdapter, r2, (SharedPhotoVideoCell2) view);
-                    return;
-                }
-                TL_stories$TL_storyItem tL_stories$TL_storyItem = new TL_stories$TL_storyItem();
-                CacheModel.FileInfo fileInfo = itemInner.file;
-                tL_stories$TL_storyItem.dialogId = fileInfo.dialogId;
-                tL_stories$TL_storyItem.id = Objects.hash(fileInfo.file.getAbsolutePath());
-                tL_stories$TL_storyItem.attachPath = itemInner.file.file.getAbsolutePath();
-                tL_stories$TL_storyItem.date = -1;
-                AnonymousClass1.this.val$parentFragment.getOrCreateStoryViewer().open(AnonymousClass1.this.val$context, tL_stories$TL_storyItem, StoriesListPlaceProvider.of(r2));
-            }
-        }
 
         AnonymousClass1(Context context, BaseFragment baseFragment) {
             this.val$context = context;
@@ -264,15 +221,9 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             recyclerListView.setClipToPadding(false);
             recyclerListView.setPadding(0, 0, 0, CachedMediaLayout.this.bottomPadding);
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-                final RecyclerListView val$recyclerListView;
-
-                C00101(final RecyclerListView recyclerListView2) {
-                    r2 = recyclerListView2;
-                }
-
                 @Override
                 public void onItemClick(View view, int i2) {
-                    BaseAdapter baseAdapter = (BaseAdapter) r2.getAdapter();
+                    BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
                     ItemInner itemInner = (ItemInner) baseAdapter.itemInners.get(i2);
                     if (!(view instanceof SharedPhotoVideoCell2)) {
                         Delegate delegate = CachedMediaLayout.this.delegate;
@@ -284,24 +235,24 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     }
                     MediaAdapter mediaAdapter = (MediaAdapter) baseAdapter;
                     if (!mediaAdapter.isStories) {
-                        CachedMediaLayout.this.openPhoto(itemInner, mediaAdapter, r2, (SharedPhotoVideoCell2) view);
+                        CachedMediaLayout.this.openPhoto(itemInner, mediaAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
                         return;
                     }
-                    TL_stories$TL_storyItem tL_stories$TL_storyItem = new TL_stories$TL_storyItem();
+                    TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
                     CacheModel.FileInfo fileInfo = itemInner.file;
-                    tL_stories$TL_storyItem.dialogId = fileInfo.dialogId;
-                    tL_stories$TL_storyItem.id = Objects.hash(fileInfo.file.getAbsolutePath());
-                    tL_stories$TL_storyItem.attachPath = itemInner.file.file.getAbsolutePath();
-                    tL_stories$TL_storyItem.date = -1;
-                    AnonymousClass1.this.val$parentFragment.getOrCreateStoryViewer().open(AnonymousClass1.this.val$context, tL_stories$TL_storyItem, StoriesListPlaceProvider.of(r2));
+                    tL_storyItem.dialogId = fileInfo.dialogId;
+                    tL_storyItem.id = Objects.hash(fileInfo.file.getAbsolutePath());
+                    tL_storyItem.attachPath = itemInner.file.file.getAbsolutePath();
+                    tL_storyItem.date = -1;
+                    AnonymousClass1.this.val$parentFragment.getOrCreateStoryViewer().open(AnonymousClass1.this.val$context, tL_storyItem, StoriesListPlaceProvider.of(recyclerListView));
                 }
             });
             final BaseFragment baseFragment = this.val$parentFragment;
-            recyclerListView2.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
+            recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
                 public final boolean onItemClick(View view, int i2, float f, float f2) {
                     boolean lambda$createView$5;
-                    lambda$createView$5 = CachedMediaLayout.AnonymousClass1.this.lambda$createView$5(recyclerListView2, baseFragment, view, i2, f, f2);
+                    lambda$createView$5 = CachedMediaLayout.AnonymousClass1.this.lambda$createView$5(recyclerListView, baseFragment, view, i2, f, f2);
                     return lambda$createView$5;
                 }
 
@@ -315,7 +266,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     RecyclerListView.OnItemLongClickListenerExtended.CC.$default$onMove(this, f, f2);
                 }
             });
-            return recyclerListView2;
+            return recyclerListView;
         }
 
         @Override
@@ -360,7 +311,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         abstract void update();
     }
 
-    public abstract class BaseFilesAdapter extends BaseAdapter {
+    private abstract class BaseFilesAdapter extends BaseAdapter {
         ArrayList oldItems;
 
         protected BaseFilesAdapter(int i) {
@@ -403,7 +354,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         }
 
         @Override
-        public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i, boolean z) {
+        public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z) {
             SharedPhotoVideoCell2 cellForIndex = CachedMediaLayout.this.getCellForIndex(i);
             if (cellForIndex == null) {
                 return null;
@@ -534,7 +485,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         void onItemSelected(CacheControlActivity.DialogFileEntities dialogFileEntities, CacheModel.FileInfo fileInfo, boolean z);
     }
 
-    public class DialogsAdapter extends BaseAdapter {
+    private class DialogsAdapter extends BaseAdapter {
         ArrayList old;
 
         private DialogsAdapter() {
@@ -570,7 +521,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 dialogPhotoTitle = DialogObject.setDialogPhotoTitle(userCell.getImageView(), userOrChat);
             }
             userCell.dialogFileEntities = dialogFileEntities;
-            userCell.getImageView().setRoundRadius(AndroidUtilities.dp(((userOrChat instanceof TLRPC$Chat) && ((TLRPC$Chat) userOrChat).forum) ? 12.0f : 19.0f));
+            userCell.getImageView().setRoundRadius(AndroidUtilities.dp(((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) ? 12.0f : 19.0f));
             userCell.setTextAndValue(dialogPhotoTitle, AndroidUtilities.formatFileSize(dialogFileEntities.totalSize), i < getItemCount() - 1);
             userCell.setChecked(CachedMediaLayout.this.cacheModel.isSelected(dialogFileEntities.dialogId), z);
         }
@@ -605,17 +556,6 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
     public class DocumentsAdapter extends BaseFilesAdapter {
         ArrayList photoEntries;
 
-        class AnonymousClass1 extends CacheCell {
-            AnonymousClass1(Context context) {
-                super(context);
-            }
-
-            @Override
-            public void onCheckBoxPressed() {
-                CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
-            }
-        }
-
         private DocumentsAdapter() {
             super(2);
             this.photoEntries = new ArrayList();
@@ -645,9 +585,9 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            AnonymousClass1 anonymousClass1 = new CacheCell(viewGroup.getContext()) {
-                AnonymousClass1(Context context) {
-                    super(context);
+            CacheCell cacheCell = new CacheCell(viewGroup.getContext()) {
+                {
+                    CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
                 }
 
                 @Override
@@ -655,9 +595,9 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
                 }
             };
-            anonymousClass1.type = 2;
-            anonymousClass1.container.addView(new SharedDocumentCell(viewGroup.getContext(), 3, null));
-            return new RecyclerListView.Holder(anonymousClass1);
+            cacheCell.type = 2;
+            cacheCell.container.addView(new SharedDocumentCell(viewGroup.getContext(), 3, null));
+            return new RecyclerListView.Holder(cacheCell);
         }
 
         @Override
@@ -713,17 +653,6 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         ArrayList photoEntries;
         private SharedPhotoVideoCell2.SharedResources sharedResources;
         CombinedDrawable thumb;
-
-        class AnonymousClass1 extends SharedPhotoVideoCell2 {
-            AnonymousClass1(Context context, SharedPhotoVideoCell2.SharedResources sharedResources, int i) {
-                super(context, sharedResources, i);
-            }
-
-            @Override
-            public void lambda$setStyle$1() {
-                CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
-            }
-        }
 
         private MediaAdapter(boolean z) {
             super(z ? 4 : 1);
@@ -781,18 +710,14 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             if (this.sharedResources == null) {
                 this.sharedResources = new SharedPhotoVideoCell2.SharedResources(viewGroup.getContext(), null);
             }
-            AnonymousClass1 anonymousClass1 = new SharedPhotoVideoCell2(viewGroup.getContext(), this.sharedResources, CachedMediaLayout.this.parentFragment.getCurrentAccount()) {
-                AnonymousClass1(Context context, SharedPhotoVideoCell2.SharedResources sharedResources, int i2) {
-                    super(context, sharedResources, i2);
-                }
-
+            SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(viewGroup.getContext(), this.sharedResources, CachedMediaLayout.this.parentFragment.getCurrentAccount()) {
                 @Override
                 public void lambda$setStyle$1() {
                     CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
                 }
             };
-            anonymousClass1.setStyle(1);
-            return new RecyclerListView.Holder(anonymousClass1);
+            sharedPhotoVideoCell2.setStyle(1);
+            return new RecyclerListView.Holder(sharedPhotoVideoCell2);
         }
 
         @Override
@@ -805,33 +730,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         }
     }
 
-    public class MusicAdapter extends BaseFilesAdapter {
-
-        class AnonymousClass1 extends CacheCell {
-            AnonymousClass1(Context context) {
-                super(context);
-            }
-
-            @Override
-            public void onCheckBoxPressed() {
-                CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
-            }
-        }
-
-        class AnonymousClass2 extends SharedAudioCell {
-            final CacheCell val$cacheCell;
-
-            AnonymousClass2(Context context, int i, Theme.ResourcesProvider resourcesProvider, CacheCell cacheCell) {
-                super(context, i, resourcesProvider);
-                r5 = cacheCell;
-            }
-
-            @Override
-            public void didPressedButton() {
-                CachedMediaLayout.this.openItem((CacheModel.FileInfo) r5.getTag(), r5);
-            }
-        }
-
+    private class MusicAdapter extends BaseFilesAdapter {
         private MusicAdapter() {
             super(3);
         }
@@ -858,9 +757,9 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            AnonymousClass1 anonymousClass1 = new CacheCell(viewGroup.getContext()) {
-                AnonymousClass1(Context context) {
-                    super(context);
+            final CacheCell cacheCell = new CacheCell(viewGroup.getContext()) {
+                {
+                    CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
                 }
 
                 @Override
@@ -868,23 +767,16 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
                 }
             };
-            anonymousClass1.type = 3;
-            AnonymousClass2 anonymousClass2 = new SharedAudioCell(viewGroup.getContext(), 0, null) {
-                final CacheCell val$cacheCell;
-
-                AnonymousClass2(Context context, int i2, Theme.ResourcesProvider resourcesProvider, CacheCell anonymousClass12) {
-                    super(context, i2, resourcesProvider);
-                    r5 = anonymousClass12;
-                }
-
+            cacheCell.type = 3;
+            SharedAudioCell sharedAudioCell = new SharedAudioCell(viewGroup.getContext(), 0, null) {
                 @Override
                 public void didPressedButton() {
-                    CachedMediaLayout.this.openItem((CacheModel.FileInfo) r5.getTag(), r5);
+                    CachedMediaLayout.this.openItem((CacheModel.FileInfo) cacheCell.getTag(), cacheCell);
                 }
             };
-            anonymousClass2.setCheckForButtonPress(true);
-            anonymousClass12.container.addView(anonymousClass2);
-            return new RecyclerListView.Holder(anonymousClass12);
+            sharedAudioCell.setCheckForButtonPress(true);
+            cacheCell.container.addView(sharedAudioCell);
+            return new RecyclerListView.Holder(cacheCell);
         }
     }
 
@@ -911,10 +803,12 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         Page[] pageArr = new Page[5];
         this.allPages = pageArr;
         this.parentFragment = baseFragment;
-        pageArr[0] = new Page(this, LocaleController.getString(R.string.FilterChats), 0, new DialogsAdapter(this, null), null);
-        this.allPages[1] = new Page(this, LocaleController.getString(R.string.MediaTab), 1, new MediaAdapter(this, false, null), null);
-        this.allPages[2] = new Page(this, LocaleController.getString(R.string.SharedFilesTab2), 2, new DocumentsAdapter(this, null), null);
-        this.allPages[3] = new Page(this, LocaleController.getString(R.string.Music), 3, new MusicAdapter(this, null), null);
+        AnonymousClass1 anonymousClass1 = null;
+        AnonymousClass1 anonymousClass12 = null;
+        pageArr[0] = new Page(this, LocaleController.getString(R.string.FilterChats), 0, new DialogsAdapter(this, anonymousClass1), anonymousClass12);
+        this.allPages[1] = new Page(this, LocaleController.getString(R.string.MediaTab), 1, new MediaAdapter(this, false, anonymousClass1), anonymousClass12);
+        this.allPages[2] = new Page(this, LocaleController.getString(R.string.SharedFilesTab2), 2, new DocumentsAdapter(this, anonymousClass1), anonymousClass12);
+        this.allPages[3] = new Page(this, LocaleController.getString(R.string.Music), 3, new MusicAdapter(this, anonymousClass1), anonymousClass12);
         int i = 0;
         while (true) {
             Page[] pageArr2 = this.allPages;
@@ -990,42 +884,42 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
 
     public void checkMessageObjectForAudio(final CacheModel.FileInfo fileInfo, int i) {
         if (fileInfo.messageObject == null) {
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.out = true;
-            tLRPC$TL_message.id = i;
-            tLRPC$TL_message.peer_id = new TLRPC$TL_peerUser();
-            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-            tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
-            TLRPC$Peer tLRPC$Peer = tLRPC$TL_message.peer_id;
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.out = true;
+            tL_message.id = i;
+            tL_message.peer_id = new TLRPC.TL_peerUser();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_message.from_id = tL_peerUser;
+            TLRPC.Peer peer = tL_message.peer_id;
             long clientUserId = UserConfig.getInstance(this.parentFragment.getCurrentAccount()).getClientUserId();
-            tLRPC$TL_peerUser.user_id = clientUserId;
-            tLRPC$Peer.user_id = clientUserId;
-            tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-            tLRPC$TL_message.message = "";
-            tLRPC$TL_message.attachPath = fileInfo.file.getPath();
-            TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
-            tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
-            tLRPC$TL_messageMediaDocument.flags |= 3;
-            tLRPC$TL_messageMediaDocument.document = new TLRPC$TL_document();
-            tLRPC$TL_message.flags |= 768;
-            tLRPC$TL_message.dialog_id = fileInfo.dialogId;
+            tL_peerUser.user_id = clientUserId;
+            peer.user_id = clientUserId;
+            tL_message.date = (int) (System.currentTimeMillis() / 1000);
+            tL_message.message = "";
+            tL_message.attachPath = fileInfo.file.getPath();
+            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+            tL_message.media = tL_messageMediaDocument;
+            tL_messageMediaDocument.flags |= 3;
+            tL_messageMediaDocument.document = new TLRPC.TL_document();
+            tL_message.flags |= 768;
+            tL_message.dialog_id = fileInfo.dialogId;
             String fileExtension = FileLoader.getFileExtension(fileInfo.file);
-            TLRPC$Document tLRPC$Document = tLRPC$TL_message.media.document;
-            tLRPC$Document.id = 0L;
-            tLRPC$Document.access_hash = 0L;
-            tLRPC$Document.file_reference = new byte[0];
-            tLRPC$Document.date = tLRPC$TL_message.date;
+            TLRPC.Document document = tL_message.media.document;
+            document.id = 0L;
+            document.access_hash = 0L;
+            document.file_reference = new byte[0];
+            document.date = tL_message.date;
             StringBuilder sb = new StringBuilder();
             sb.append("audio/");
             if (fileExtension.length() <= 0) {
                 fileExtension = "mp3";
             }
             sb.append(fileExtension);
-            tLRPC$Document.mime_type = sb.toString();
-            TLRPC$Document tLRPC$Document2 = tLRPC$TL_message.media.document;
-            tLRPC$Document2.size = fileInfo.size;
-            tLRPC$Document2.dc_id = 0;
-            final TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
+            document.mime_type = sb.toString();
+            TLRPC.Document document2 = tL_message.media.document;
+            document2.size = fileInfo.size;
+            document2.dc_id = 0;
+            final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
             if (fileInfo.metadata == null) {
                 CacheModel.FileInfo.FileMetadata fileMetadata = new CacheModel.FileInfo.FileMetadata();
                 fileInfo.metadata = fileMetadata;
@@ -1033,16 +927,16 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        CachedMediaLayout.this.lambda$checkMessageObjectForAudio$3(fileInfo, tLRPC$TL_documentAttributeAudio);
+                        CachedMediaLayout.this.lambda$checkMessageObjectForAudio$3(fileInfo, tL_documentAttributeAudio);
                     }
                 });
             }
-            tLRPC$TL_documentAttributeAudio.flags |= 3;
-            tLRPC$TL_message.media.document.attributes.add(tLRPC$TL_documentAttributeAudio);
-            TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
-            tLRPC$TL_documentAttributeFilename.file_name = fileInfo.file.getName();
-            tLRPC$TL_message.media.document.attributes.add(tLRPC$TL_documentAttributeFilename);
-            MessageObject messageObject = new MessageObject(this.parentFragment.getCurrentAccount(), tLRPC$TL_message, false, false);
+            tL_documentAttributeAudio.flags |= 3;
+            tL_message.media.document.attributes.add(tL_documentAttributeAudio);
+            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+            tL_documentAttributeFilename.file_name = fileInfo.file.getName();
+            tL_message.media.document.attributes.add(tL_documentAttributeFilename);
+            MessageObject messageObject = new MessageObject(this.parentFragment.getCurrentAccount(), tL_message, false, false);
             fileInfo.messageObject = messageObject;
             messageObject.mediaExists = true;
         }
@@ -1064,17 +958,17 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         return null;
     }
 
-    public void lambda$checkMessageObjectForAudio$2(CacheModel.FileInfo fileInfo, TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio, String str, String str2) {
+    public void lambda$checkMessageObjectForAudio$2(CacheModel.FileInfo fileInfo, TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio, String str, String str2) {
         CacheModel.FileInfo.FileMetadata fileMetadata = fileInfo.metadata;
         fileMetadata.loading = false;
         fileMetadata.title = str;
-        tLRPC$TL_documentAttributeAudio.title = str;
+        tL_documentAttributeAudio.title = str;
         fileMetadata.author = str2;
-        tLRPC$TL_documentAttributeAudio.performer = str2;
+        tL_documentAttributeAudio.performer = str2;
         updateRow(fileInfo, 3);
     }
 
-    public void lambda$checkMessageObjectForAudio$3(final CacheModel.FileInfo fileInfo, final TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio) {
+    public void lambda$checkMessageObjectForAudio$3(final CacheModel.FileInfo fileInfo, final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio) {
         MediaMetadataRetriever mediaMetadataRetriever;
         String str;
         String str2;
@@ -1128,7 +1022,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            CachedMediaLayout.this.lambda$checkMessageObjectForAudio$2(fileInfo, tLRPC$TL_documentAttributeAudio, str4, str3);
+                            CachedMediaLayout.this.lambda$checkMessageObjectForAudio$2(fileInfo, tL_documentAttributeAudio, str4, str3);
                         }
                     });
                 }
@@ -1139,7 +1033,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CachedMediaLayout.this.lambda$checkMessageObjectForAudio$2(fileInfo, tLRPC$TL_documentAttributeAudio, str4, str3);
+                    CachedMediaLayout.this.lambda$checkMessageObjectForAudio$2(fileInfo, tL_documentAttributeAudio, str4, str3);
                 }
             });
         } catch (Throwable th2) {

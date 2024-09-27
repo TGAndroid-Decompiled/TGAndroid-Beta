@@ -36,99 +36,15 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChannelParticipant;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$ChatParticipant;
-import org.telegram.tgnet.TLRPC$ChatParticipants;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$DialogFilter;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$EncryptedChat;
-import org.telegram.tgnet.TLRPC$InputChannel;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageAction;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$MessageFwdHeader;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$MessageReactor;
-import org.telegram.tgnet.TLRPC$MessageReplies;
-import org.telegram.tgnet.TLRPC$MessageReplyHeader;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$Poll;
-import org.telegram.tgnet.TLRPC$PollResults;
-import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$ReplyMarkup;
-import org.telegram.tgnet.TLRPC$TL_channelFull;
-import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
-import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
-import org.telegram.tgnet.TLRPC$TL_chatFull;
-import org.telegram.tgnet.TLRPC$TL_chatParticipant;
-import org.telegram.tgnet.TLRPC$TL_chatParticipantAdmin;
-import org.telegram.tgnet.TLRPC$TL_contact;
-import org.telegram.tgnet.TLRPC$TL_dialog;
-import org.telegram.tgnet.TLRPC$TL_folderPeer;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$TL_inputFolderPeer;
-import org.telegram.tgnet.TLRPC$TL_inputMessageEntityMentionName;
-import org.telegram.tgnet.TLRPC$TL_message;
-import org.telegram.tgnet.TLRPC$TL_messageActionChatAddUser;
-import org.telegram.tgnet.TLRPC$TL_messageActionGeoProximityReached;
-import org.telegram.tgnet.TLRPC$TL_messageActionGiftCode;
-import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
-import org.telegram.tgnet.TLRPC$TL_messageActionTopicEdit;
-import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_messageEntityMentionName;
-import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
-import org.telegram.tgnet.TLRPC$TL_messageMediaGiveaway;
-import org.telegram.tgnet.TLRPC$TL_messageMediaGiveawayResults;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
-import org.telegram.tgnet.TLRPC$TL_messageMediaStory;
-import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
-import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported_old;
-import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
-import org.telegram.tgnet.TLRPC$TL_messageReactions;
-import org.telegram.tgnet.TLRPC$TL_message_secret;
-import org.telegram.tgnet.TLRPC$TL_messages_botCallbackAnswer;
-import org.telegram.tgnet.TLRPC$TL_messages_botResults;
-import org.telegram.tgnet.TLRPC$TL_messages_messages;
-import org.telegram.tgnet.TLRPC$TL_peerChannel;
-import org.telegram.tgnet.TLRPC$TL_peerChat;
-import org.telegram.tgnet.TLRPC$TL_peerNotifySettings;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
-import org.telegram.tgnet.TLRPC$TL_replyInlineMarkup;
-import org.telegram.tgnet.TLRPC$TL_updates;
-import org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong;
-import org.telegram.tgnet.TLRPC$TL_userStatusLastMonth;
-import org.telegram.tgnet.TLRPC$TL_userStatusLastWeek;
-import org.telegram.tgnet.TLRPC$TL_userStatusRecently;
-import org.telegram.tgnet.TLRPC$TL_username;
-import org.telegram.tgnet.TLRPC$TL_webPageAttributeStory;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.TLRPC$UserProfilePhoto;
-import org.telegram.tgnet.TLRPC$UserStatus;
-import org.telegram.tgnet.TLRPC$WallPaper;
-import org.telegram.tgnet.TLRPC$WebPage;
-import org.telegram.tgnet.TLRPC$messages_Dialogs;
-import org.telegram.tgnet.TLRPC$messages_Messages;
-import org.telegram.tgnet.tl.TL_stories$StoryFwdHeader;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
-import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaChannelPost;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 
 public class MessagesStorage extends BaseController {
     public static final String[] DATABASE_TABLES;
-    public static final int LAST_DB_VERSION = 156;
+    public static final int LAST_DB_VERSION = 158;
     private int archiveUnreadCount;
     private int[][] bots;
     private File cacheFile;
@@ -211,14 +127,14 @@ public class MessagesStorage extends BaseController {
     }
 
     public class SavedReactionsUpdate {
-        TLRPC$TL_messageReactions last;
-        TLRPC$TL_messageReactions old;
+        TLRPC.TL_messageReactions last;
+        TLRPC.TL_messageReactions old;
         long topic_id;
 
-        public SavedReactionsUpdate(long j, TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
-            this.topic_id = MessageObject.getSavedDialogId(j, tLRPC$Message2);
-            this.old = tLRPC$Message.reactions;
-            this.last = tLRPC$Message2.reactions;
+        public SavedReactionsUpdate(long j, TLRPC.Message message, TLRPC.Message message2) {
+            this.topic_id = MessageObject.getSavedDialogId(j, message2);
+            this.old = message.reactions;
+            this.last = message2.reactions;
         }
     }
 
@@ -304,22 +220,22 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    private boolean addFilesToDelete(TLRPC$Message tLRPC$Message, ArrayList<File> arrayList, ArrayList<Pair<Long, Integer>> arrayList2, ArrayList<String> arrayList3, boolean z) {
+    private boolean addFilesToDelete(TLRPC.Message message, ArrayList<File> arrayList, ArrayList<Pair<Long, Integer>> arrayList2, ArrayList<String> arrayList3, boolean z) {
         long j;
         int i;
         int i2 = 0;
-        if (tLRPC$Message == null) {
+        if (message == null) {
             return false;
         }
-        TLRPC$Document document = MessageObject.getDocument(tLRPC$Message);
-        TLRPC$Photo photo = MessageObject.getPhoto(tLRPC$Message);
-        if (!MessageObject.isVoiceMessage(tLRPC$Message)) {
-            if (MessageObject.isStickerMessage(tLRPC$Message) || MessageObject.isAnimatedStickerMessage(tLRPC$Message)) {
+        TLRPC.Document document = MessageObject.getDocument(message);
+        TLRPC.Photo photo = MessageObject.getPhoto(message);
+        if (!MessageObject.isVoiceMessage(message)) {
+            if (MessageObject.isStickerMessage(message) || MessageObject.isAnimatedStickerMessage(message)) {
                 if (document == null) {
                     return false;
                 }
                 j = document.id;
-            } else if (MessageObject.isVideoMessage(tLRPC$Message) || MessageObject.isRoundVideoMessage(tLRPC$Message) || MessageObject.isGifMessage(tLRPC$Message)) {
+            } else if (MessageObject.isVideoMessage(message) || MessageObject.isRoundVideoMessage(message) || MessageObject.isGifMessage(message)) {
                 if (document == null) {
                     return false;
                 }
@@ -351,12 +267,12 @@ public class MessagesStorage extends BaseController {
         if (photo != null) {
             int size = photo.sizes.size();
             while (i2 < size) {
-                TLRPC$PhotoSize tLRPC$PhotoSize = (TLRPC$PhotoSize) photo.sizes.get(i2);
-                String attachFileName = FileLoader.getAttachFileName(tLRPC$PhotoSize);
+                TLRPC.PhotoSize photoSize = photo.sizes.get(i2);
+                String attachFileName = FileLoader.getAttachFileName(photoSize);
                 if (!TextUtils.isEmpty(attachFileName)) {
                     arrayList3.add(attachFileName);
                 }
-                File pathToAttach = getFileLoader().getPathToAttach(tLRPC$PhotoSize, z);
+                File pathToAttach = getFileLoader().getPathToAttach(photoSize, z);
                 if (pathToAttach.toString().length() > 0) {
                     arrayList.add(pathToAttach);
                 }
@@ -386,32 +302,32 @@ public class MessagesStorage extends BaseController {
         return true;
     }
 
-    public static void addLoadPeerInfo(TLRPC$Peer tLRPC$Peer, ArrayList<Long> arrayList, ArrayList<Long> arrayList2) {
+    public static void addLoadPeerInfo(TLRPC.Peer peer, ArrayList<Long> arrayList, ArrayList<Long> arrayList2) {
         long j;
-        if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
-            if (arrayList.contains(Long.valueOf(tLRPC$Peer.user_id))) {
+        if (peer instanceof TLRPC.TL_peerUser) {
+            if (arrayList.contains(Long.valueOf(peer.user_id))) {
                 return;
             }
-            arrayList.add(Long.valueOf(tLRPC$Peer.user_id));
+            arrayList.add(Long.valueOf(peer.user_id));
             return;
         }
-        if (tLRPC$Peer instanceof TLRPC$TL_peerChannel) {
-            if (arrayList2.contains(Long.valueOf(tLRPC$Peer.channel_id))) {
+        if (peer instanceof TLRPC.TL_peerChannel) {
+            if (arrayList2.contains(Long.valueOf(peer.channel_id))) {
                 return;
             } else {
-                j = tLRPC$Peer.channel_id;
+                j = peer.channel_id;
             }
-        } else if (!(tLRPC$Peer instanceof TLRPC$TL_peerChat) || arrayList2.contains(Long.valueOf(tLRPC$Peer.chat_id))) {
+        } else if (!(peer instanceof TLRPC.TL_peerChat) || arrayList2.contains(Long.valueOf(peer.chat_id))) {
             return;
         } else {
-            j = tLRPC$Peer.chat_id;
+            j = peer.chat_id;
         }
         arrayList2.add(Long.valueOf(j));
     }
 
-    public static void addReplyMessages(TLRPC$Message tLRPC$Message, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
-        int i = tLRPC$Message.reply_to.reply_to_msg_id;
-        long replyToDialogId = (tLRPC$Message.flags & 1073741824) != 0 ? tLRPC$Message.quick_reply_shortcut_id : MessageObject.getReplyToDialogId(tLRPC$Message);
+    public static void addReplyMessages(TLRPC.Message message, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
+        int i = message.reply_to.reply_to_msg_id;
+        long replyToDialogId = (message.flags & 1073741824) != 0 ? message.quick_reply_shortcut_id : MessageObject.getReplyToDialogId(message);
         SparseArray sparseArray = (SparseArray) longSparseArray.get(replyToDialogId);
         ArrayList arrayList = (ArrayList) longSparseArray2.get(replyToDialogId);
         if (sparseArray == null) {
@@ -422,30 +338,30 @@ public class MessagesStorage extends BaseController {
             arrayList = new ArrayList();
             longSparseArray2.put(replyToDialogId, arrayList);
         }
-        ArrayList arrayList2 = (ArrayList) sparseArray.get(tLRPC$Message.reply_to.reply_to_msg_id);
+        ArrayList arrayList2 = (ArrayList) sparseArray.get(message.reply_to.reply_to_msg_id);
         if (arrayList2 == null) {
             arrayList2 = new ArrayList();
-            sparseArray.put(tLRPC$Message.reply_to.reply_to_msg_id, arrayList2);
-            if (!arrayList.contains(Integer.valueOf(tLRPC$Message.reply_to.reply_to_msg_id))) {
-                arrayList.add(Integer.valueOf(tLRPC$Message.reply_to.reply_to_msg_id));
+            sparseArray.put(message.reply_to.reply_to_msg_id, arrayList2);
+            if (!arrayList.contains(Integer.valueOf(message.reply_to.reply_to_msg_id))) {
+                arrayList.add(Integer.valueOf(message.reply_to.reply_to_msg_id));
             }
         }
-        arrayList2.add(tLRPC$Message);
+        arrayList2.add(message);
     }
 
-    public static void addUsersAndChatsFromMessage(TLRPC$Message tLRPC$Message, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
-        TLRPC$Peer tLRPC$Peer;
+    public static void addUsersAndChatsFromMessage(TLRPC.Message message, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
+        TLRPC.Peer peer;
         String str;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
-        TLRPC$Peer tLRPC$Peer2;
-        TLRPC$Peer tLRPC$Peer3;
-        TLRPC$WebPage tLRPC$WebPage;
-        TLRPC$Peer tLRPC$Peer4;
-        TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader;
-        TL_stories$StoryItem tL_stories$StoryItem;
-        TLRPC$Peer tLRPC$Peer5;
+        TLRPC.MessageFwdHeader messageFwdHeader;
+        TLRPC.Peer peer2;
+        TLRPC.Peer peer3;
+        TLRPC.WebPage webPage;
+        TLRPC.Peer peer4;
+        TL_stories.StoryFwdHeader storyFwdHeader;
+        TL_stories.StoryItem storyItem;
+        TLRPC.Peer peer5;
         long j;
-        long fromChatId = MessageObject.getFromChatId(tLRPC$Message);
+        long fromChatId = MessageObject.getFromChatId(message);
         if (DialogObject.isUserDialog(fromChatId)) {
             if (!arrayList.contains(Long.valueOf(fromChatId))) {
                 arrayList.add(Long.valueOf(fromChatId));
@@ -456,169 +372,169 @@ public class MessagesStorage extends BaseController {
                 arrayList2.add(Long.valueOf(j2));
             }
         }
-        long j3 = tLRPC$Message.via_bot_id;
+        long j3 = message.via_bot_id;
         if (j3 != 0 && !arrayList.contains(Long.valueOf(j3))) {
-            arrayList.add(Long.valueOf(tLRPC$Message.via_bot_id));
+            arrayList.add(Long.valueOf(message.via_bot_id));
         }
-        TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
-        if (tLRPC$MessageAction != null) {
-            long j4 = tLRPC$MessageAction.user_id;
+        TLRPC.MessageAction messageAction = message.action;
+        if (messageAction != null) {
+            long j4 = messageAction.user_id;
             if (j4 != 0 && !arrayList.contains(Long.valueOf(j4))) {
-                arrayList.add(Long.valueOf(tLRPC$Message.action.user_id));
+                arrayList.add(Long.valueOf(message.action.user_id));
             }
-            long j5 = tLRPC$Message.action.channel_id;
+            long j5 = message.action.channel_id;
             if (j5 != 0 && !arrayList2.contains(Long.valueOf(j5))) {
-                arrayList2.add(Long.valueOf(tLRPC$Message.action.channel_id));
+                arrayList2.add(Long.valueOf(message.action.channel_id));
             }
-            long j6 = tLRPC$Message.action.chat_id;
+            long j6 = message.action.chat_id;
             if (j6 != 0 && !arrayList2.contains(Long.valueOf(j6))) {
-                arrayList2.add(Long.valueOf(tLRPC$Message.action.chat_id));
+                arrayList2.add(Long.valueOf(message.action.chat_id));
             }
-            TLRPC$MessageAction tLRPC$MessageAction2 = tLRPC$Message.action;
-            if (tLRPC$MessageAction2 instanceof TLRPC$TL_messageActionGiftCode) {
-                addLoadPeerInfo(((TLRPC$TL_messageActionGiftCode) tLRPC$MessageAction2).boost_peer, arrayList, arrayList2);
+            TLRPC.MessageAction messageAction2 = message.action;
+            if (messageAction2 instanceof TLRPC.TL_messageActionGiftCode) {
+                addLoadPeerInfo(((TLRPC.TL_messageActionGiftCode) messageAction2).boost_peer, arrayList, arrayList2);
             }
-            TLRPC$MessageAction tLRPC$MessageAction3 = tLRPC$Message.action;
-            if (tLRPC$MessageAction3 instanceof TLRPC$TL_messageActionGeoProximityReached) {
-                TLRPC$TL_messageActionGeoProximityReached tLRPC$TL_messageActionGeoProximityReached = (TLRPC$TL_messageActionGeoProximityReached) tLRPC$MessageAction3;
-                addLoadPeerInfo(tLRPC$TL_messageActionGeoProximityReached.from_id, arrayList, arrayList2);
-                addLoadPeerInfo(tLRPC$TL_messageActionGeoProximityReached.to_id, arrayList, arrayList2);
+            TLRPC.MessageAction messageAction3 = message.action;
+            if (messageAction3 instanceof TLRPC.TL_messageActionGeoProximityReached) {
+                TLRPC.TL_messageActionGeoProximityReached tL_messageActionGeoProximityReached = (TLRPC.TL_messageActionGeoProximityReached) messageAction3;
+                addLoadPeerInfo(tL_messageActionGeoProximityReached.from_id, arrayList, arrayList2);
+                addLoadPeerInfo(tL_messageActionGeoProximityReached.to_id, arrayList, arrayList2);
             }
-            if (!tLRPC$Message.action.users.isEmpty()) {
-                for (int i = 0; i < tLRPC$Message.action.users.size(); i++) {
-                    Long l = (Long) tLRPC$Message.action.users.get(i);
+            if (!message.action.users.isEmpty()) {
+                for (int i = 0; i < message.action.users.size(); i++) {
+                    Long l = message.action.users.get(i);
                     if (!arrayList.contains(l)) {
                         arrayList.add(l);
                     }
                 }
             }
         }
-        if (!tLRPC$Message.entities.isEmpty()) {
-            for (int i2 = 0; i2 < tLRPC$Message.entities.size(); i2++) {
-                TLRPC$MessageEntity tLRPC$MessageEntity = (TLRPC$MessageEntity) tLRPC$Message.entities.get(i2);
-                if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityMentionName) {
-                    j = ((TLRPC$TL_messageEntityMentionName) tLRPC$MessageEntity).user_id;
-                } else if (tLRPC$MessageEntity instanceof TLRPC$TL_inputMessageEntityMentionName) {
-                    j = ((TLRPC$TL_inputMessageEntityMentionName) tLRPC$MessageEntity).user_id.user_id;
+        if (!message.entities.isEmpty()) {
+            for (int i2 = 0; i2 < message.entities.size(); i2++) {
+                TLRPC.MessageEntity messageEntity = message.entities.get(i2);
+                if (messageEntity instanceof TLRPC.TL_messageEntityMentionName) {
+                    j = ((TLRPC.TL_messageEntityMentionName) messageEntity).user_id;
+                } else if (messageEntity instanceof TLRPC.TL_inputMessageEntityMentionName) {
+                    j = ((TLRPC.TL_inputMessageEntityMentionName) messageEntity).user_id.user_id;
                 } else {
-                    if (arrayList3 != null && (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityCustomEmoji)) {
-                        arrayList3.add(Long.valueOf(((TLRPC$TL_messageEntityCustomEmoji) tLRPC$MessageEntity).document_id));
+                    if (arrayList3 != null && (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji)) {
+                        arrayList3.add(Long.valueOf(((TLRPC.TL_messageEntityCustomEmoji) messageEntity).document_id));
                     }
                 }
                 arrayList.add(Long.valueOf(j));
             }
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-        if (tLRPC$MessageMedia != null) {
-            long j7 = tLRPC$MessageMedia.user_id;
+        TLRPC.MessageMedia messageMedia = message.media;
+        if (messageMedia != null) {
+            long j7 = messageMedia.user_id;
             if (j7 != 0 && !arrayList.contains(Long.valueOf(j7))) {
-                arrayList.add(Long.valueOf(tLRPC$Message.media.user_id));
+                arrayList.add(Long.valueOf(message.media.user_id));
             }
-            TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message.media;
-            if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaGiveaway) {
-                Iterator it = ((TLRPC$TL_messageMediaGiveaway) tLRPC$MessageMedia2).channels.iterator();
+            TLRPC.MessageMedia messageMedia2 = message.media;
+            if (messageMedia2 instanceof TLRPC.TL_messageMediaGiveaway) {
+                Iterator<Long> it = ((TLRPC.TL_messageMediaGiveaway) messageMedia2).channels.iterator();
                 while (it.hasNext()) {
-                    Long l2 = (Long) it.next();
-                    if (!arrayList2.contains(l2)) {
-                        arrayList2.add(l2);
+                    Long next = it.next();
+                    if (!arrayList2.contains(next)) {
+                        arrayList2.add(next);
                     }
                 }
             }
-            TLRPC$MessageMedia tLRPC$MessageMedia3 = tLRPC$Message.media;
-            if (tLRPC$MessageMedia3 instanceof TLRPC$TL_messageMediaGiveawayResults) {
-                Iterator it2 = ((TLRPC$TL_messageMediaGiveawayResults) tLRPC$MessageMedia3).winners.iterator();
+            TLRPC.MessageMedia messageMedia3 = message.media;
+            if (messageMedia3 instanceof TLRPC.TL_messageMediaGiveawayResults) {
+                Iterator<Long> it2 = ((TLRPC.TL_messageMediaGiveawayResults) messageMedia3).winners.iterator();
                 while (it2.hasNext()) {
-                    Long l3 = (Long) it2.next();
-                    if (!arrayList.contains(l3)) {
-                        arrayList.add(l3);
+                    Long next2 = it2.next();
+                    if (!arrayList.contains(next2)) {
+                        arrayList.add(next2);
                     }
                 }
             }
-            TLRPC$MessageMedia tLRPC$MessageMedia4 = tLRPC$Message.media;
-            if (tLRPC$MessageMedia4 instanceof TLRPC$TL_messageMediaPoll) {
-                TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia4;
-                if (!tLRPC$TL_messageMediaPoll.results.recent_voters.isEmpty()) {
-                    for (int i3 = 0; i3 < tLRPC$TL_messageMediaPoll.results.recent_voters.size(); i3++) {
-                        addLoadPeerInfo((TLRPC$Peer) tLRPC$TL_messageMediaPoll.results.recent_voters.get(i3), arrayList, arrayList2);
+            TLRPC.MessageMedia messageMedia4 = message.media;
+            if (messageMedia4 instanceof TLRPC.TL_messageMediaPoll) {
+                TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia4;
+                if (!tL_messageMediaPoll.results.recent_voters.isEmpty()) {
+                    for (int i3 = 0; i3 < tL_messageMediaPoll.results.recent_voters.size(); i3++) {
+                        addLoadPeerInfo(tL_messageMediaPoll.results.recent_voters.get(i3), arrayList, arrayList2);
                     }
                 }
             }
-            TLRPC$MessageMedia tLRPC$MessageMedia5 = tLRPC$Message.media;
-            if ((tLRPC$MessageMedia5 instanceof TLRPC$TL_messageMediaStory) && (tL_stories$StoryItem = tLRPC$MessageMedia5.storyItem) != null) {
-                TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader2 = tL_stories$StoryItem.fwd_from;
-                if (tL_stories$StoryFwdHeader2 != null) {
-                    addLoadPeerInfo(tL_stories$StoryFwdHeader2.from, arrayList, arrayList2);
+            TLRPC.MessageMedia messageMedia5 = message.media;
+            if ((messageMedia5 instanceof TLRPC.TL_messageMediaStory) && (storyItem = messageMedia5.storyItem) != null) {
+                TL_stories.StoryFwdHeader storyFwdHeader2 = storyItem.fwd_from;
+                if (storyFwdHeader2 != null) {
+                    addLoadPeerInfo(storyFwdHeader2.from, arrayList, arrayList2);
                 }
-                TL_stories$StoryItem tL_stories$StoryItem2 = tLRPC$Message.media.storyItem;
-                if (tL_stories$StoryItem2 != null && tL_stories$StoryItem2.media_areas != null) {
-                    for (int i4 = 0; i4 < tLRPC$Message.media.storyItem.media_areas.size(); i4++) {
-                        if (tLRPC$Message.media.storyItem.media_areas.get(i4) instanceof TL_stories$TL_mediaAreaChannelPost) {
-                            long j8 = ((TL_stories$TL_mediaAreaChannelPost) tLRPC$Message.media.storyItem.media_areas.get(i4)).channel_id;
+                TL_stories.StoryItem storyItem2 = message.media.storyItem;
+                if (storyItem2 != null && storyItem2.media_areas != null) {
+                    for (int i4 = 0; i4 < message.media.storyItem.media_areas.size(); i4++) {
+                        if (message.media.storyItem.media_areas.get(i4) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                            long j8 = ((TL_stories.TL_mediaAreaChannelPost) message.media.storyItem.media_areas.get(i4)).channel_id;
                             if (!arrayList2.contains(Long.valueOf(j8))) {
                                 arrayList2.add(Long.valueOf(j8));
                             }
                         }
                     }
                 }
-                TL_stories$StoryItem tL_stories$StoryItem3 = tLRPC$Message.media.storyItem;
-                if (tL_stories$StoryItem3 != null && (tLRPC$Peer5 = tL_stories$StoryItem3.from_id) != null) {
-                    addLoadPeerInfo(tLRPC$Peer5, arrayList, arrayList2);
+                TL_stories.StoryItem storyItem3 = message.media.storyItem;
+                if (storyItem3 != null && (peer5 = storyItem3.from_id) != null) {
+                    addLoadPeerInfo(peer5, arrayList, arrayList2);
                 }
             }
-            TLRPC$MessageMedia tLRPC$MessageMedia6 = tLRPC$Message.media;
-            if ((tLRPC$MessageMedia6 instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = tLRPC$MessageMedia6.webpage) != null && tLRPC$WebPage.attributes != null) {
-                for (int i5 = 0; i5 < tLRPC$Message.media.webpage.attributes.size(); i5++) {
-                    if (tLRPC$Message.media.webpage.attributes.get(i5) instanceof TLRPC$TL_webPageAttributeStory) {
-                        TLRPC$TL_webPageAttributeStory tLRPC$TL_webPageAttributeStory = (TLRPC$TL_webPageAttributeStory) tLRPC$Message.media.webpage.attributes.get(i5);
-                        TL_stories$StoryItem tL_stories$StoryItem4 = tLRPC$TL_webPageAttributeStory.storyItem;
-                        if (tL_stories$StoryItem4 != null && (tL_stories$StoryFwdHeader = tL_stories$StoryItem4.fwd_from) != null) {
-                            addLoadPeerInfo(tL_stories$StoryFwdHeader.from, arrayList, arrayList2);
+            TLRPC.MessageMedia messageMedia6 = message.media;
+            if ((messageMedia6 instanceof TLRPC.TL_messageMediaWebPage) && (webPage = messageMedia6.webpage) != null && webPage.attributes != null) {
+                for (int i5 = 0; i5 < message.media.webpage.attributes.size(); i5++) {
+                    if (message.media.webpage.attributes.get(i5) instanceof TLRPC.TL_webPageAttributeStory) {
+                        TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) message.media.webpage.attributes.get(i5);
+                        TL_stories.StoryItem storyItem4 = tL_webPageAttributeStory.storyItem;
+                        if (storyItem4 != null && (storyFwdHeader = storyItem4.fwd_from) != null) {
+                            addLoadPeerInfo(storyFwdHeader.from, arrayList, arrayList2);
                         }
-                        TL_stories$StoryItem tL_stories$StoryItem5 = tLRPC$TL_webPageAttributeStory.storyItem;
-                        if (tL_stories$StoryItem5 != null && tL_stories$StoryItem5.media_areas != null) {
-                            for (int i6 = 0; i6 < tLRPC$TL_webPageAttributeStory.storyItem.media_areas.size(); i6++) {
-                                if (tLRPC$TL_webPageAttributeStory.storyItem.media_areas.get(i6) instanceof TL_stories$TL_mediaAreaChannelPost) {
-                                    long j9 = ((TL_stories$TL_mediaAreaChannelPost) tLRPC$TL_webPageAttributeStory.storyItem.media_areas.get(i6)).channel_id;
+                        TL_stories.StoryItem storyItem5 = tL_webPageAttributeStory.storyItem;
+                        if (storyItem5 != null && storyItem5.media_areas != null) {
+                            for (int i6 = 0; i6 < tL_webPageAttributeStory.storyItem.media_areas.size(); i6++) {
+                                if (tL_webPageAttributeStory.storyItem.media_areas.get(i6) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                                    long j9 = ((TL_stories.TL_mediaAreaChannelPost) tL_webPageAttributeStory.storyItem.media_areas.get(i6)).channel_id;
                                     if (!arrayList2.contains(Long.valueOf(j9))) {
                                         arrayList2.add(Long.valueOf(j9));
                                     }
                                 }
                             }
                         }
-                        TL_stories$StoryItem tL_stories$StoryItem6 = tLRPC$TL_webPageAttributeStory.storyItem;
-                        if (tL_stories$StoryItem6 != null && (tLRPC$Peer4 = tL_stories$StoryItem6.from_id) != null) {
-                            addLoadPeerInfo(tLRPC$Peer4, arrayList, arrayList2);
+                        TL_stories.StoryItem storyItem6 = tL_webPageAttributeStory.storyItem;
+                        if (storyItem6 != null && (peer4 = storyItem6.from_id) != null) {
+                            addLoadPeerInfo(peer4, arrayList, arrayList2);
                         }
                     }
                 }
             }
-            TLRPC$Peer tLRPC$Peer6 = tLRPC$Message.media.peer;
-            if (tLRPC$Peer6 != null) {
-                addLoadPeerInfo(tLRPC$Peer6, arrayList, arrayList2);
+            TLRPC.Peer peer6 = message.media.peer;
+            if (peer6 != null) {
+                addLoadPeerInfo(peer6, arrayList, arrayList2);
             }
         }
-        TLRPC$MessageReplies tLRPC$MessageReplies = tLRPC$Message.replies;
-        if (tLRPC$MessageReplies != null) {
-            int size = tLRPC$MessageReplies.recent_repliers.size();
+        TLRPC.MessageReplies messageReplies = message.replies;
+        if (messageReplies != null) {
+            int size = messageReplies.recent_repliers.size();
             for (int i7 = 0; i7 < size; i7++) {
-                addLoadPeerInfo((TLRPC$Peer) tLRPC$Message.replies.recent_repliers.get(i7), arrayList, arrayList2);
+                addLoadPeerInfo(message.replies.recent_repliers.get(i7), arrayList, arrayList2);
             }
         }
-        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$Message.reply_to;
-        if (tLRPC$MessageReplyHeader != null && (tLRPC$Peer3 = tLRPC$MessageReplyHeader.reply_to_peer_id) != null) {
-            addLoadPeerInfo(tLRPC$Peer3, arrayList, arrayList2);
+        TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
+        if (messageReplyHeader != null && (peer3 = messageReplyHeader.reply_to_peer_id) != null) {
+            addLoadPeerInfo(peer3, arrayList, arrayList2);
         }
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2 = tLRPC$Message.fwd_from;
-        if (tLRPC$MessageFwdHeader2 != null) {
-            addLoadPeerInfo(tLRPC$MessageFwdHeader2.from_id, arrayList, arrayList2);
-            addLoadPeerInfo(tLRPC$Message.fwd_from.saved_from_peer, arrayList, arrayList2);
+        TLRPC.MessageFwdHeader messageFwdHeader2 = message.fwd_from;
+        if (messageFwdHeader2 != null) {
+            addLoadPeerInfo(messageFwdHeader2.from_id, arrayList, arrayList2);
+            addLoadPeerInfo(message.fwd_from.saved_from_peer, arrayList, arrayList2);
         }
-        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader2 = tLRPC$Message.reply_to;
-        if (tLRPC$MessageReplyHeader2 != null && (tLRPC$MessageFwdHeader = tLRPC$MessageReplyHeader2.reply_from) != null && (tLRPC$Peer2 = tLRPC$MessageFwdHeader.from_id) != null) {
-            addLoadPeerInfo(tLRPC$Peer2, arrayList, arrayList2);
+        TLRPC.MessageReplyHeader messageReplyHeader2 = message.reply_to;
+        if (messageReplyHeader2 != null && (messageFwdHeader = messageReplyHeader2.reply_from) != null && (peer2 = messageFwdHeader.from_id) != null) {
+            addLoadPeerInfo(peer2, arrayList, arrayList2);
         }
-        HashMap hashMap = tLRPC$Message.params;
-        if (hashMap != null && (str = (String) hashMap.get("fwd_peer")) != null) {
+        HashMap<String, String> hashMap = message.params;
+        if (hashMap != null && (str = hashMap.get("fwd_peer")) != null) {
             long longValue = Utilities.parseLong(str).longValue();
             if (longValue < 0) {
                 long j10 = -longValue;
@@ -627,41 +543,41 @@ public class MessagesStorage extends BaseController {
                 }
             }
         }
-        TLRPC$TL_messageReactions tLRPC$TL_messageReactions = tLRPC$Message.reactions;
-        if (tLRPC$TL_messageReactions == null || tLRPC$TL_messageReactions.top_reactors == null) {
+        TLRPC.TL_messageReactions tL_messageReactions = message.reactions;
+        if (tL_messageReactions == null || tL_messageReactions.top_reactors == null) {
             return;
         }
-        for (int i8 = 0; i8 < tLRPC$Message.reactions.top_reactors.size(); i8++) {
-            TLRPC$MessageReactor tLRPC$MessageReactor = (TLRPC$MessageReactor) tLRPC$Message.reactions.top_reactors.get(i8);
-            if (tLRPC$MessageReactor != null && (tLRPC$Peer = tLRPC$MessageReactor.peer_id) != null) {
-                addLoadPeerInfo(tLRPC$Peer, arrayList, arrayList2);
+        for (int i8 = 0; i8 < message.reactions.top_reactors.size(); i8++) {
+            TLRPC.MessageReactor messageReactor = message.reactions.top_reactors.get(i8);
+            if (messageReactor != null && (peer = messageReactor.peer_id) != null) {
+                addLoadPeerInfo(peer, arrayList, arrayList2);
             }
         }
     }
 
-    private void bindMessageTags(SQLitePreparedStatement sQLitePreparedStatement, TLRPC$Message tLRPC$Message) {
-        ArrayList arrayList;
+    private void bindMessageTags(SQLitePreparedStatement sQLitePreparedStatement, TLRPC.Message message) {
+        ArrayList<TLRPC.ReactionCount> arrayList;
         long clientUserId = getUserConfig().getClientUserId();
-        TLRPC$TL_messageReactions tLRPC$TL_messageReactions = tLRPC$Message.reactions;
-        if (tLRPC$TL_messageReactions == null || !tLRPC$TL_messageReactions.reactions_as_tags || (arrayList = tLRPC$TL_messageReactions.results) == null || arrayList.isEmpty()) {
+        TLRPC.TL_messageReactions tL_messageReactions = message.reactions;
+        if (tL_messageReactions == null || !tL_messageReactions.reactions_as_tags || (arrayList = tL_messageReactions.results) == null || arrayList.isEmpty()) {
             return;
         }
         LocaleController localeController = LocaleController.getInstance();
-        String str = tLRPC$Message.message;
+        String str = message.message;
         if (str == null) {
             str = "";
         }
         String translitString = localeController.getTranslitString(str);
-        Iterator it = tLRPC$Message.reactions.results.iterator();
+        Iterator<TLRPC.ReactionCount> it = message.reactions.results.iterator();
         while (it.hasNext()) {
-            TLRPC$ReactionCount tLRPC$ReactionCount = (TLRPC$ReactionCount) it.next();
-            TLRPC$Reaction tLRPC$Reaction = tLRPC$ReactionCount.reaction;
-            if ((tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) || (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji)) {
+            TLRPC.ReactionCount next = it.next();
+            TLRPC.Reaction reaction = next.reaction;
+            if ((reaction instanceof TLRPC.TL_reactionEmoji) || (reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
                 sQLitePreparedStatement.requery();
-                sQLitePreparedStatement.bindLong(1, tLRPC$Message.id);
-                sQLitePreparedStatement.bindLong(2, MessageObject.getSavedDialogId(clientUserId, tLRPC$Message));
-                TLRPC$Reaction tLRPC$Reaction2 = tLRPC$ReactionCount.reaction;
-                sQLitePreparedStatement.bindLong(3, tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon.hashCode() : tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji ? ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id : 0L);
+                sQLitePreparedStatement.bindLong(1, message.id);
+                sQLitePreparedStatement.bindLong(2, MessageObject.getSavedDialogId(clientUserId, message));
+                TLRPC.Reaction reaction2 = next.reaction;
+                sQLitePreparedStatement.bindLong(3, reaction2 instanceof TLRPC.TL_reactionEmoji ? ((TLRPC.TL_reactionEmoji) reaction2).emoticon.hashCode() : reaction2 instanceof TLRPC.TL_reactionCustomEmoji ? ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id : 0L);
                 sQLitePreparedStatement.bindString(4, translitString == null ? "" : translitString);
                 sQLitePreparedStatement.step();
             }
@@ -732,7 +648,7 @@ public class MessagesStorage extends BaseController {
                     }
                     long longValue = sQLiteCursor.longValue(0);
                     if (!DialogObject.isUserDialog(longValue) && !DialogObject.isEncryptedDialog(longValue)) {
-                        TLRPC$Chat chat = getChat(-longValue);
+                        TLRPC.Chat chat = getChat(-longValue);
                         if (!ChatObject.isNotInChat(chat) && chat.migrated_to == null) {
                             break;
                         }
@@ -862,44 +778,44 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void createOrEditTopic(final long j, TLRPC$Message tLRPC$Message) {
-        final TLRPC$TL_forumTopic tLRPC$TL_forumTopic = new TLRPC$TL_forumTopic();
-        tLRPC$TL_forumTopic.topicStartMessage = tLRPC$Message;
-        tLRPC$TL_forumTopic.top_message = tLRPC$Message.id;
-        tLRPC$TL_forumTopic.topMessage = tLRPC$Message;
-        tLRPC$TL_forumTopic.from_id = tLRPC$Message.from_id;
-        tLRPC$TL_forumTopic.notify_settings = new TLRPC$TL_peerNotifySettings();
-        tLRPC$TL_forumTopic.unread_count = 0;
-        TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
-        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionTopicCreate) {
-            TLRPC$TL_messageActionTopicCreate tLRPC$TL_messageActionTopicCreate = (TLRPC$TL_messageActionTopicCreate) tLRPC$MessageAction;
-            tLRPC$TL_forumTopic.id = tLRPC$Message.id;
-            long j2 = tLRPC$TL_messageActionTopicCreate.icon_emoji_id;
-            tLRPC$TL_forumTopic.icon_emoji_id = j2;
-            tLRPC$TL_forumTopic.title = tLRPC$TL_messageActionTopicCreate.title;
-            tLRPC$TL_forumTopic.icon_color = tLRPC$TL_messageActionTopicCreate.icon_color;
+    private void createOrEditTopic(final long j, TLRPC.Message message) {
+        final TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
+        tL_forumTopic.topicStartMessage = message;
+        tL_forumTopic.top_message = message.id;
+        tL_forumTopic.topMessage = message;
+        tL_forumTopic.from_id = message.from_id;
+        tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
+        tL_forumTopic.unread_count = 0;
+        TLRPC.MessageAction messageAction = message.action;
+        if (messageAction instanceof TLRPC.TL_messageActionTopicCreate) {
+            TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = (TLRPC.TL_messageActionTopicCreate) messageAction;
+            tL_forumTopic.id = message.id;
+            long j2 = tL_messageActionTopicCreate.icon_emoji_id;
+            tL_forumTopic.icon_emoji_id = j2;
+            tL_forumTopic.title = tL_messageActionTopicCreate.title;
+            tL_forumTopic.icon_color = tL_messageActionTopicCreate.icon_color;
             if (j2 != 0) {
-                tLRPC$TL_forumTopic.flags |= 1;
+                tL_forumTopic.flags |= 1;
             }
             ArrayList arrayList = new ArrayList();
-            arrayList.add(tLRPC$TL_forumTopic);
-            saveTopics(j, arrayList, false, false, tLRPC$Message.date);
+            arrayList.add(tL_forumTopic);
+            saveTopics(j, arrayList, false, false, message.date);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$createOrEditTopic$191(j, tLRPC$TL_forumTopic);
+                    MessagesStorage.this.lambda$createOrEditTopic$191(j, tL_forumTopic);
                 }
             });
             return;
         }
-        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionTopicEdit) {
-            TLRPC$TL_messageActionTopicEdit tLRPC$TL_messageActionTopicEdit = (TLRPC$TL_messageActionTopicEdit) tLRPC$MessageAction;
-            tLRPC$TL_forumTopic.id = (int) MessageObject.getTopicId(this.currentAccount, tLRPC$Message, true);
-            tLRPC$TL_forumTopic.icon_emoji_id = tLRPC$TL_messageActionTopicEdit.icon_emoji_id;
-            tLRPC$TL_forumTopic.title = tLRPC$TL_messageActionTopicEdit.title;
-            tLRPC$TL_forumTopic.closed = tLRPC$TL_messageActionTopicEdit.closed;
-            tLRPC$TL_forumTopic.hidden = tLRPC$TL_messageActionTopicEdit.hidden;
-            int i = tLRPC$TL_messageActionTopicEdit.flags;
+        if (messageAction instanceof TLRPC.TL_messageActionTopicEdit) {
+            TLRPC.TL_messageActionTopicEdit tL_messageActionTopicEdit = (TLRPC.TL_messageActionTopicEdit) messageAction;
+            tL_forumTopic.id = (int) MessageObject.getTopicId(this.currentAccount, message, true);
+            tL_forumTopic.icon_emoji_id = tL_messageActionTopicEdit.icon_emoji_id;
+            tL_forumTopic.title = tL_messageActionTopicEdit.title;
+            tL_forumTopic.closed = tL_messageActionTopicEdit.closed;
+            tL_forumTopic.hidden = tL_messageActionTopicEdit.hidden;
+            int i = tL_messageActionTopicEdit.flags;
             int i2 = (i & 1) != 0 ? 1 : 0;
             if ((i & 2) != 0) {
                 i2 += 2;
@@ -910,7 +826,7 @@ public class MessagesStorage extends BaseController {
             if ((i & 8) != 0) {
                 i2 += 32;
             }
-            updateTopicData(j, tLRPC$TL_forumTopic, i2, tLRPC$Message.date);
+            updateTopicData(j, tL_forumTopic, i2, message.date);
         }
     }
 
@@ -1077,7 +993,8 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE TABLE business_links(data BLOB, order_value INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 156").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE star_gifts2(id INTEGER PRIMARY KEY, data BLOB, hash INTEGER, time INTEGER);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 158").stepThis().dispose();
     }
 
     private void createTaskForSecretMedia(long r17, android.util.SparseArray<java.util.ArrayList<java.lang.Integer>> r19) {
@@ -1163,51 +1080,51 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void fixUnsupportedMedia(TLRPC$Message tLRPC$Message) {
-        if (tLRPC$Message == null) {
+    private void fixUnsupportedMedia(TLRPC.Message message) {
+        if (message == null) {
             return;
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
-            if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(187);
+        TLRPC.MessageMedia messageMedia = message.media;
+        if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
+            if (messageMedia.bytes.length == 0) {
+                messageMedia.bytes = Utilities.intToBytes(189);
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
-            TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
-            tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(187);
-            tLRPC$Message.flags |= 512;
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
+            TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
+            message.media = tL_messageMediaUnsupported_old;
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(189);
+            message.flags |= 512;
         }
     }
 
-    private String formatUserSearchName(TLRPC$User tLRPC$User) {
+    private String formatUserSearchName(TLRPC.User user) {
         StringBuilder sb = new StringBuilder();
-        String str = tLRPC$User.first_name;
+        String str = user.first_name;
         if (str != null && str.length() > 0) {
-            sb.append(tLRPC$User.first_name);
+            sb.append(user.first_name);
         }
-        String str2 = tLRPC$User.last_name;
+        String str2 = user.last_name;
         if (str2 != null && str2.length() > 0) {
             if (sb.length() > 0) {
                 sb.append(" ");
             }
-            sb.append(tLRPC$User.last_name);
+            sb.append(user.last_name);
         }
         sb.append(";;;");
-        String str3 = tLRPC$User.username;
+        String str3 = user.username;
         if (str3 == null || str3.length() <= 0) {
-            ArrayList arrayList = tLRPC$User.usernames;
+            ArrayList<TLRPC.TL_username> arrayList = user.usernames;
             if (arrayList != null && arrayList.size() > 0) {
-                for (int i = 0; i < tLRPC$User.usernames.size(); i++) {
-                    TLRPC$TL_username tLRPC$TL_username = (TLRPC$TL_username) tLRPC$User.usernames.get(i);
-                    if (tLRPC$TL_username != null && tLRPC$TL_username.active) {
-                        sb.append(tLRPC$TL_username.username);
+                for (int i = 0; i < user.usernames.size(); i++) {
+                    TLRPC.TL_username tL_username = user.usernames.get(i);
+                    if (tL_username != null && tL_username.active) {
+                        sb.append(tL_username.username);
                         sb.append(";;");
                     }
                 }
             }
         } else {
-            sb.append(tLRPC$User.username);
+            sb.append(user.username);
         }
         return sb.toString().toLowerCase();
     }
@@ -1254,27 +1171,27 @@ public class MessagesStorage extends BaseController {
     private boolean isForum(long j) {
         int i = this.dialogIsForum.get(j, -1);
         if (i == -1) {
-            TLRPC$Chat chat = getChat(-j);
+            TLRPC.Chat chat = getChat(-j);
             i = (chat == null || !chat.forum) ? 0 : 1;
             this.dialogIsForum.put(j, i);
         }
         return i == 1;
     }
 
-    private boolean isValidKeyboardToSave(TLRPC$Message tLRPC$Message) {
-        TLRPC$ReplyMarkup tLRPC$ReplyMarkup = tLRPC$Message.reply_markup;
-        return (tLRPC$ReplyMarkup == null || (tLRPC$ReplyMarkup instanceof TLRPC$TL_replyInlineMarkup) || (tLRPC$ReplyMarkup.selective && !tLRPC$Message.mentioned)) ? false : true;
+    private boolean isValidKeyboardToSave(TLRPC.Message message) {
+        TLRPC.ReplyMarkup replyMarkup = message.reply_markup;
+        return (replyMarkup == null || (replyMarkup instanceof TLRPC.TL_replyInlineMarkup) || (replyMarkup.selective && !message.mentioned)) ? false : true;
     }
 
-    public void lambda$addRecentLocalFile$79(TLRPC$Document tLRPC$Document, String str, String str2) {
+    public void lambda$addRecentLocalFile$79(TLRPC.Document document, String str, String str2) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                if (tLRPC$Document != null) {
+                if (document != null) {
                     sQLitePreparedStatement = this.database.executeFast("UPDATE web_recent_v3 SET document = ? WHERE image_url = ?");
                     sQLitePreparedStatement.requery();
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Document.getObjectSize());
-                    tLRPC$Document.serializeToStream(nativeByteBuffer);
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(document.getObjectSize());
+                    document.serializeToStream(nativeByteBuffer);
                     sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
                     sQLitePreparedStatement.bindString(2, str);
                     sQLitePreparedStatement.step();
@@ -1424,8 +1341,8 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$containsLocalDialog$172(long, java.lang.Boolean[], java.util.concurrent.CountDownLatch):void");
     }
 
-    public void lambda$createOrEditTopic$191(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
-        getMessagesController().getTopicsController().onTopicCreated(j, tLRPC$TL_forumTopic, false);
+    public void lambda$createOrEditTopic$191(long j, TLRPC.TL_forumTopic tL_forumTopic) {
+        getMessagesController().getTopicsController().onTopicCreated(j, tL_forumTopic, false);
     }
 
     public void lambda$createPendingTask$10(long j, NativeByteBuffer nativeByteBuffer) {
@@ -1588,7 +1505,7 @@ public class MessagesStorage extends BaseController {
                 int intValue = queryFinalized.intValue(0);
                 if (!arrayList.contains(Integer.valueOf(intValue))) {
                     NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(1);
-                    if (MessageObject.getSavedDialogId(clientUserId, TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false)) == j) {
+                    if (MessageObject.getSavedDialogId(clientUserId, TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false)) == j) {
                         arrayList.add(Integer.valueOf(intValue));
                     }
                     byteBufferValue.reuse();
@@ -1745,8 +1662,8 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getChannelPtsSync$237(long, java.lang.Integer[], java.util.concurrent.CountDownLatch):void");
     }
 
-    public void lambda$getChatSync$239(TLRPC$Chat[] tLRPC$ChatArr, long j, CountDownLatch countDownLatch) {
-        tLRPC$ChatArr[0] = getChat(j);
+    public void lambda$getChatSync$239(TLRPC.Chat[] chatArr, long j, CountDownLatch countDownLatch) {
+        chatArr[0] = getChat(j);
         countDownLatch.countDown();
     }
 
@@ -1826,10 +1743,10 @@ public class MessagesStorage extends BaseController {
         try {
             try {
                 ArrayList<Long> arrayList2 = new ArrayList<>();
-                ArrayList<TLRPC$EncryptedChat> arrayList3 = new ArrayList<>();
+                ArrayList<TLRPC.EncryptedChat> arrayList3 = new ArrayList<>();
                 getEncryptedChatsInternal("" + j, arrayList3, arrayList2);
                 if (!arrayList3.isEmpty() && !arrayList2.isEmpty()) {
-                    ArrayList<TLRPC$User> arrayList4 = new ArrayList<>();
+                    ArrayList<TLRPC.User> arrayList4 = new ArrayList<>();
                     getUsersInternal(arrayList2, arrayList4);
                     if (!arrayList4.isEmpty()) {
                         arrayList.add(arrayList3.get(0));
@@ -1852,7 +1769,7 @@ public class MessagesStorage extends BaseController {
                 while (sQLiteCursor.next()) {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     if (byteBufferValue != null) {
-                        TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                        TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         byteBufferValue.reuse();
                         atomicReference.set(TLdeserialize);
                     }
@@ -1921,32 +1838,32 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static int lambda$getMessagesInternal$153(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
+    public static int lambda$getMessagesInternal$153(TLRPC.Message message, TLRPC.Message message2) {
         int i;
         int i2;
-        int i3 = tLRPC$Message.id;
-        if (i3 > 0 && (i2 = tLRPC$Message2.id) > 0) {
+        int i3 = message.id;
+        if (i3 > 0 && (i2 = message2.id) > 0) {
             if (i3 > i2) {
                 return -1;
             }
             return i3 < i2 ? 1 : 0;
         }
-        if (i3 < 0 && (i = tLRPC$Message2.id) < 0) {
+        if (i3 < 0 && (i = message2.id) < 0) {
             if (i3 < i) {
                 return -1;
             }
             return i3 > i ? 1 : 0;
         }
-        int i4 = tLRPC$Message.date;
-        int i5 = tLRPC$Message2.date;
+        int i4 = message.date;
+        int i5 = message2.date;
         if (i4 > i5) {
             return -1;
         }
         return i4 < i5 ? 1 : 0;
     }
 
-    public void lambda$getMessagesInternal$154(TLRPC$TL_messages_messages tLRPC$TL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, int i11, long j3, int i12, boolean z2, int i13, boolean z3, boolean z4, Timer timer) {
-        getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, i11, j3, i12, z2, i13, z3, z4, timer);
+    public void lambda$getMessagesInternal$154(TLRPC.TL_messages_messages tL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, int i11, long j3, int i12, boolean z2, int i13, boolean z3, boolean z4, Timer timer) {
+        getMessagesController().processLoadedMessages(tL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, i11, j3, i12, z2, i13, z3, z4, timer);
     }
 
     public void lambda$getNewTask$105(androidx.collection.LongSparseArray r14, androidx.collection.LongSparseArray r15) {
@@ -1969,12 +1886,12 @@ public class MessagesStorage extends BaseController {
                 if (MD5 != null) {
                     SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data, parent FROM sent_files_v2 WHERE uid = '%s' AND type = %d", MD5, Integer.valueOf(i)), new Object[0]);
                     if (queryFinalized.next() && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
-                        TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                        TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         byteBufferValue.reuse();
-                        if (TLdeserialize instanceof TLRPC$TL_messageMediaDocument) {
-                            objArr[0] = ((TLRPC$TL_messageMediaDocument) TLdeserialize).document;
-                        } else if (TLdeserialize instanceof TLRPC$TL_messageMediaPhoto) {
-                            objArr[0] = ((TLRPC$TL_messageMediaPhoto) TLdeserialize).photo;
+                        if (TLdeserialize instanceof TLRPC.TL_messageMediaDocument) {
+                            objArr[0] = ((TLRPC.TL_messageMediaDocument) TLdeserialize).document;
+                        } else if (TLdeserialize instanceof TLRPC.TL_messageMediaPhoto) {
+                            objArr[0] = ((TLRPC.TL_messageMediaPhoto) TLdeserialize).photo;
                         }
                         if (objArr[0] != null) {
                             objArr[1] = queryFinalized.stringValue(1);
@@ -2024,8 +1941,8 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getUnsentMessages$146(int):void");
     }
 
-    public void lambda$getUserSync$238(TLRPC$User[] tLRPC$UserArr, long j, CountDownLatch countDownLatch) {
-        tLRPC$UserArr[0] = getUser(j);
+    public void lambda$getUserSync$238(TLRPC.User[] userArr, long j, CountDownLatch countDownLatch) {
+        userArr[0] = getUser(j);
         countDownLatch.countDown();
     }
 
@@ -2042,7 +1959,7 @@ public class MessagesStorage extends BaseController {
                 while (sQLiteCursor.next()) {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     if (byteBufferValue != null) {
-                        TLRPC$WallPaper TLdeserialize = TLRPC$WallPaper.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                        TLRPC.WallPaper TLdeserialize = TLRPC.WallPaper.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         byteBufferValue.reuse();
                         if (TLdeserialize != null) {
                             arrayList.add(TLdeserialize);
@@ -2161,7 +2078,7 @@ public class MessagesStorage extends BaseController {
                         getChatsInternal(TextUtils.join(",", arrayList8), arrayList3);
                     }
                     if (!arrayList7.isEmpty()) {
-                        getUsersInternal(arrayList7, (ArrayList<TLRPC$User>) arrayList2);
+                        getUsersInternal(arrayList7, (ArrayList<TLRPC.User>) arrayList2);
                     }
                 }
             } catch (Exception e2) {
@@ -2247,15 +2164,15 @@ public class MessagesStorage extends BaseController {
                         if (z) {
                             arrayList.add(Long.valueOf(longValue3));
                         }
-                        TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-                        tLRPC$TL_dialog.id = longValue3;
-                        tLRPC$TL_dialog.top_message = queryFinalized.intValue(1);
-                        tLRPC$TL_dialog.unread_count = queryFinalized.intValue(2);
-                        tLRPC$TL_dialog.last_message_date = queryFinalized.intValue(3);
-                        longSparseArray.put(tLRPC$TL_dialog.id, tLRPC$TL_dialog);
+                        TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
+                        tL_dialog.id = longValue3;
+                        tL_dialog.top_message = queryFinalized.intValue(1);
+                        tL_dialog.unread_count = queryFinalized.intValue(2);
+                        tL_dialog.last_message_date = queryFinalized.intValue(3);
+                        longSparseArray.put(tL_dialog.id, tL_dialog);
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(4);
                         if (byteBufferValue != null) {
-                            TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
                             byteBufferValue.reuse();
                             MessageObject.setUnreadFlags(TLdeserialize, queryFinalized.intValue(5));
@@ -2263,9 +2180,9 @@ public class MessagesStorage extends BaseController {
                             TLdeserialize.send_state = queryFinalized.intValue(7);
                             int intValue = queryFinalized.intValue(8);
                             if (intValue != 0) {
-                                tLRPC$TL_dialog.last_message_date = intValue;
+                                tL_dialog.last_message_date = intValue;
                             }
-                            long j = tLRPC$TL_dialog.id;
+                            long j = tL_dialog.id;
                             TLdeserialize.dialog_id = j;
                             longSparseArray2.put(j, TLdeserialize);
                             addUsersAndChatsFromMessage(TLdeserialize, arrayList6, arrayList7, null);
@@ -2279,9 +2196,9 @@ public class MessagesStorage extends BaseController {
                         Long l = (Long) arrayList.get(i3);
                         long longValue4 = l.longValue();
                         if (longSparseArray.get(((Long) arrayList.get(i3)).longValue()) == null) {
-                            TLRPC$TL_dialog tLRPC$TL_dialog2 = new TLRPC$TL_dialog();
-                            tLRPC$TL_dialog2.id = longValue4;
-                            longSparseArray.put(longValue4, tLRPC$TL_dialog2);
+                            TLRPC.TL_dialog tL_dialog2 = new TLRPC.TL_dialog();
+                            tL_dialog2.id = longValue4;
+                            longSparseArray.put(longValue4, tL_dialog2);
                             if (DialogObject.isChatDialog(longValue4)) {
                                 long j2 = -longValue4;
                                 if (arrayList7.contains(Long.valueOf(j2))) {
@@ -2297,7 +2214,7 @@ public class MessagesStorage extends BaseController {
                     getChatsInternal(TextUtils.join(",", arrayList7), arrayList2);
                 }
                 if (!arrayList6.isEmpty()) {
-                    getUsersInternal(arrayList6, (ArrayList<TLRPC$User>) arrayList3);
+                    getUsersInternal(arrayList6, (ArrayList<TLRPC.User>) arrayList3);
                 }
             } catch (Throwable th2) {
                 th = th2;
@@ -2324,10 +2241,10 @@ public class MessagesStorage extends BaseController {
                     }
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     if (byteBufferValue != null) {
-                        TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                        TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         byteBufferValue.reuse();
-                        TLRPC$MessageAction tLRPC$MessageAction = TLdeserialize.action;
-                        if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionChatAddUser) && tLRPC$MessageAction.users.contains(Long.valueOf(clientUserId))) {
+                        TLRPC.MessageAction messageAction = TLdeserialize.action;
+                        if ((messageAction instanceof TLRPC.TL_messageActionChatAddUser) && messageAction.users.contains(Long.valueOf(clientUserId))) {
                             zArr[0] = true;
                             break;
                         }
@@ -2356,7 +2273,7 @@ public class MessagesStorage extends BaseController {
 
     public void lambda$isMigratedChat$135(long j, boolean[] zArr, CountDownLatch countDownLatch) {
         SQLiteCursor queryFinalized;
-        TLRPC$ChatFull tLRPC$ChatFull;
+        TLRPC.ChatFull chatFull;
         NativeByteBuffer byteBufferValue;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -2371,13 +2288,13 @@ public class MessagesStorage extends BaseController {
         try {
             new ArrayList();
             if (!queryFinalized.next() || (byteBufferValue = queryFinalized.byteBufferValue(0)) == null) {
-                tLRPC$ChatFull = null;
+                chatFull = null;
             } else {
-                tLRPC$ChatFull = TLRPC$ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                chatFull = TLRPC.ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                 byteBufferValue.reuse();
             }
             queryFinalized.dispose();
-            zArr[0] = (tLRPC$ChatFull instanceof TLRPC$TL_channelFull) && tLRPC$ChatFull.migrated_from_chat_id != 0;
+            zArr[0] = (chatFull instanceof TLRPC.TL_channelFull) && chatFull.migrated_from_chat_id != 0;
             countDownLatch.countDown();
         } catch (Exception e2) {
             e = e2;
@@ -2416,7 +2333,7 @@ public class MessagesStorage extends BaseController {
             while (queryFinalized.next()) {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(1);
                 if (byteBufferValue != null) {
-                    TLRPC$ChannelParticipant TLdeserialize = TLRPC$ChannelParticipant.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.ChannelParticipant TLdeserialize = TLRPC.ChannelParticipant.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     byteBufferValue.reuse();
                     if (TLdeserialize != null) {
                         longSparseArray.put(queryFinalized.longValue(0), TLdeserialize);
@@ -2442,8 +2359,8 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$loadChatInfo$138(TLRPC$ChatFull[] tLRPC$ChatFullArr, long j, boolean z, boolean z2, boolean z3, int i, CountDownLatch countDownLatch) {
-        tLRPC$ChatFullArr[0] = loadChatInfoInternal(j, z, z2, z3, i);
+    public void lambda$loadChatInfo$138(TLRPC.ChatFull[] chatFullArr, long j, boolean z, boolean z2, boolean z3, int i, CountDownLatch countDownLatch) {
+        chatFullArr[0] = loadChatInfoInternal(j, z, z2, z3, i);
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
@@ -2474,7 +2391,7 @@ public class MessagesStorage extends BaseController {
                     try {
                         sQLiteCursor = this.database.queryFinalized("SELECT data FROM messages_v2 WHERE uid = ? AND mid = ?", Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()));
                         if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(0)) != null) {
-                            TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             TLdeserialize.readAttachPath(byteBufferValue, clientUserId);
                             byteBufferValue.reuse();
                             messageObject.messageOwner.attachPath = TLdeserialize.attachPath;
@@ -2497,28 +2414,28 @@ public class MessagesStorage extends BaseController {
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public void lambda$loadPendingTasks$12(TLRPC$Chat tLRPC$Chat, long j) {
-        getMessagesController().loadUnknownChannel(tLRPC$Chat, j);
+    public void lambda$loadPendingTasks$12(TLRPC.Chat chat, long j) {
+        getMessagesController().loadUnknownChannel(chat, j);
     }
 
     public void lambda$loadPendingTasks$13(long j, int i, long j2) {
         getMessagesController().getChannelDifference(j, i, j2, null);
     }
 
-    public void lambda$loadPendingTasks$14(TLRPC$Dialog tLRPC$Dialog, TLRPC$InputPeer tLRPC$InputPeer, long j) {
-        getMessagesController().checkLastDialogMessage(tLRPC$Dialog, tLRPC$InputPeer, j);
+    public void lambda$loadPendingTasks$14(TLRPC.Dialog dialog, TLRPC.InputPeer inputPeer, long j) {
+        getMessagesController().checkLastDialogMessage(dialog, inputPeer, j);
     }
 
-    public void lambda$loadPendingTasks$15(long j, boolean z, TLRPC$InputPeer tLRPC$InputPeer, long j2) {
-        getMessagesController().pinDialog(j, z, tLRPC$InputPeer, j2);
+    public void lambda$loadPendingTasks$15(long j, boolean z, TLRPC.InputPeer inputPeer, long j2) {
+        getMessagesController().pinDialog(j, z, inputPeer, j2);
     }
 
-    public void lambda$loadPendingTasks$16(long j, int i, long j2, TLRPC$InputChannel tLRPC$InputChannel) {
-        getMessagesController().getChannelDifference(j, i, j2, tLRPC$InputChannel);
+    public void lambda$loadPendingTasks$16(long j, int i, long j2, TLRPC.InputChannel inputChannel) {
+        getMessagesController().getChannelDifference(j, i, j2, inputChannel);
     }
 
-    public void lambda$loadPendingTasks$17(long j, int i, long j2, TLRPC$InputChannel tLRPC$InputChannel) {
-        getMessagesController().getChannelDifference(j, i, j2, tLRPC$InputChannel);
+    public void lambda$loadPendingTasks$17(long j, int i, long j2, TLRPC.InputChannel inputChannel) {
+        getMessagesController().getChannelDifference(j, i, j2, inputChannel);
     }
 
     public void lambda$loadPendingTasks$18(long j, long j2, TLObject tLObject) {
@@ -2533,28 +2450,28 @@ public class MessagesStorage extends BaseController {
         getMessagesController().deleteMessages(null, null, null, j, true, 0, false, j2, tLObject, i);
     }
 
-    public void lambda$loadPendingTasks$21(long j, TLRPC$InputPeer tLRPC$InputPeer, long j2) {
-        getMessagesController().markDialogAsUnread(j, tLRPC$InputPeer, j2);
+    public void lambda$loadPendingTasks$21(long j, TLRPC.InputPeer inputPeer, long j2) {
+        getMessagesController().markDialogAsUnread(j, inputPeer, j2);
     }
 
-    public void lambda$loadPendingTasks$22(long j, int i, TLRPC$InputChannel tLRPC$InputChannel, int i2, long j2) {
-        getMessagesController().markMessageAsRead2(-j, i, tLRPC$InputChannel, i2, j2);
+    public void lambda$loadPendingTasks$22(long j, int i, TLRPC.InputChannel inputChannel, int i2, long j2) {
+        getMessagesController().markMessageAsRead2(-j, i, inputChannel, i2, j2);
     }
 
-    public void lambda$loadPendingTasks$23(long j, int i, TLRPC$InputChannel tLRPC$InputChannel, int i2, long j2, int i3) {
-        getMessagesController().markMessageAsRead2(j, i, tLRPC$InputChannel, i2, j2, i3 == 23);
+    public void lambda$loadPendingTasks$23(long j, int i, TLRPC.InputChannel inputChannel, int i2, long j2, int i3) {
+        getMessagesController().markMessageAsRead2(j, i, inputChannel, i2, j2, i3 == 23);
     }
 
     public void lambda$loadPendingTasks$24(Theme.OverrideWallpaperInfo overrideWallpaperInfo, boolean z, long j) {
         getMessagesController().saveWallpaperToServer(null, overrideWallpaperInfo, z, j);
     }
 
-    public void lambda$loadPendingTasks$25(long j, boolean z, int i, int i2, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, long j2) {
-        getMessagesController().deleteDialog(j, z ? 1 : 0, i, i2, z2, tLRPC$InputPeer, j2);
+    public void lambda$loadPendingTasks$25(long j, boolean z, int i, int i2, boolean z2, TLRPC.InputPeer inputPeer, long j2) {
+        getMessagesController().deleteDialog(j, z ? 1 : 0, i, i2, z2, inputPeer, j2);
     }
 
-    public void lambda$loadPendingTasks$26(TLRPC$InputPeer tLRPC$InputPeer, long j) {
-        getMessagesController().loadUnknownDialog(tLRPC$InputPeer, j);
+    public void lambda$loadPendingTasks$26(TLRPC.InputPeer inputPeer, long j) {
+        getMessagesController().loadUnknownDialog(inputPeer, j);
     }
 
     public void lambda$loadPendingTasks$27(int i, ArrayList arrayList, long j) {
@@ -2569,8 +2486,8 @@ public class MessagesStorage extends BaseController {
         getMessagesController().deleteMessages(null, null, null, j, true, 1, false, j2, tLObject, 0);
     }
 
-    public void lambda$loadPendingTasks$30(TLRPC$InputPeer tLRPC$InputPeer, long j) {
-        getMessagesController().reloadMentionsCountForChannel(tLRPC$InputPeer, j);
+    public void lambda$loadPendingTasks$30(TLRPC.InputPeer inputPeer, long j) {
+        getMessagesController().reloadMentionsCountForChannel(inputPeer, j);
     }
 
     public void lambda$loadPendingTasks$31(int i, boolean z, long j) {
@@ -2611,7 +2528,7 @@ public class MessagesStorage extends BaseController {
         getMessagesController().putChats(arrayList, true);
     }
 
-    public void lambda$loadUserInfo$123(org.telegram.tgnet.TLRPC$User r20, boolean r21, int r22) {
+    public void lambda$loadUserInfo$123(org.telegram.tgnet.TLRPC.User r20, boolean r21, int r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadUserInfo$123(org.telegram.tgnet.TLRPC$User, boolean, int):void");
     }
 
@@ -2648,7 +2565,7 @@ public class MessagesStorage extends BaseController {
                     while (queryFinalized.next()) {
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                         if (byteBufferValue != null) {
-                            TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             byteBufferValue.reuse();
                             j3 = MessageObject.getTopicId(this.currentAccount, TLdeserialize, isForum(j));
                         }
@@ -2702,22 +2619,22 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$markMessageAsSendError$193(int i, TLRPC$Message tLRPC$Message) {
+    public void lambda$markMessageAsSendError$193(int i, TLRPC.Message message) {
         SQLitePreparedStatement executeFast;
         try {
-            long j = tLRPC$Message.id;
-            if (MessageObject.isQuickReply(tLRPC$Message)) {
+            long j = message.id;
+            if (MessageObject.isQuickReply(message)) {
                 i = 5;
             }
             if (i == 5) {
-                executeFast = this.database.executeFast(String.format(Locale.US, "UPDATE quick_replies_messages SET send_state = 2 WHERE mid = %d AND topic_id = %d", Long.valueOf(j), Integer.valueOf(MessageObject.getQuickReplyId(this.currentAccount, tLRPC$Message))));
+                executeFast = this.database.executeFast(String.format(Locale.US, "UPDATE quick_replies_messages SET send_state = 2 WHERE mid = %d AND topic_id = %d", Long.valueOf(j), Integer.valueOf(MessageObject.getQuickReplyId(this.currentAccount, message))));
             } else if (i == 1) {
-                executeFast = this.database.executeFast(String.format(Locale.US, "UPDATE scheduled_messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(tLRPC$Message))));
+                executeFast = this.database.executeFast(String.format(Locale.US, "UPDATE scheduled_messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message))));
             } else {
                 SQLiteDatabase sQLiteDatabase = this.database;
                 Locale locale = Locale.US;
-                sQLiteDatabase.executeFast(String.format(locale, "UPDATE messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(tLRPC$Message)))).stepThis().dispose();
-                executeFast = this.database.executeFast(String.format(locale, "UPDATE messages_topics SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(tLRPC$Message))));
+                sQLiteDatabase.executeFast(String.format(locale, "UPDATE messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
+                executeFast = this.database.executeFast(String.format(locale, "UPDATE messages_topics SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message))));
             }
             executeFast.stepThis().dispose();
         } catch (Exception e) {
@@ -2806,9 +2723,9 @@ public class MessagesStorage extends BaseController {
         Iterator it = arrayList.iterator();
         boolean z = false;
         while (it.hasNext()) {
-            TLRPC$Message tLRPC$Message = (TLRPC$Message) it.next();
-            if (getMessagesController().processDeletedReactionTags(tLRPC$Message)) {
-                hashSet.add(Long.valueOf(MessageObject.getSavedDialogId(j, tLRPC$Message)));
+            TLRPC.Message message = (TLRPC.Message) it.next();
+            if (getMessagesController().processDeletedReactionTags(message)) {
+                hashSet.add(Long.valueOf(MessageObject.getSavedDialogId(j, message)));
                 z = true;
             }
         }
@@ -2852,18 +2769,18 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$onReactionsUpdate$100(TLRPC$TL_messageReactions tLRPC$TL_messageReactions, TLRPC$TL_messageReactions tLRPC$TL_messageReactions2, long j) {
+    public void lambda$onReactionsUpdate$100(TLRPC.TL_messageReactions tL_messageReactions, TLRPC.TL_messageReactions tL_messageReactions2, long j) {
         LongSparseArray longSparseArray = new LongSparseArray();
         LongSparseArray longSparseArray2 = new LongSparseArray();
-        if (tLRPC$TL_messageReactions != null && tLRPC$TL_messageReactions.results != null && tLRPC$TL_messageReactions.reactions_as_tags) {
-            for (int i = 0; i < tLRPC$TL_messageReactions.results.size(); i++) {
-                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(((TLRPC$ReactionCount) tLRPC$TL_messageReactions.results.get(i)).reaction);
+        if (tL_messageReactions != null && tL_messageReactions.results != null && tL_messageReactions.reactions_as_tags) {
+            for (int i = 0; i < tL_messageReactions.results.size(); i++) {
+                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_messageReactions.results.get(i).reaction);
                 longSparseArray.put(fromTL.hash, fromTL);
             }
         }
-        if (tLRPC$TL_messageReactions2 != null && tLRPC$TL_messageReactions2.results != null && tLRPC$TL_messageReactions2.reactions_as_tags) {
-            for (int i2 = 0; i2 < tLRPC$TL_messageReactions2.results.size(); i2++) {
-                ReactionsLayoutInBubble.VisibleReaction fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(((TLRPC$ReactionCount) tLRPC$TL_messageReactions2.results.get(i2)).reaction);
+        if (tL_messageReactions2 != null && tL_messageReactions2.results != null && tL_messageReactions2.reactions_as_tags) {
+            for (int i2 = 0; i2 < tL_messageReactions2.results.size(); i2++) {
+                ReactionsLayoutInBubble.VisibleReaction fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_messageReactions2.results.get(i2).reaction);
                 longSparseArray2.put(fromTL2.hash, fromTL2);
             }
         }
@@ -2897,21 +2814,21 @@ public class MessagesStorage extends BaseController {
         boolean z = false;
         for (int i = 0; i < arrayList.size(); i++) {
             SavedReactionsUpdate savedReactionsUpdate = (SavedReactionsUpdate) arrayList.get(i);
-            TLRPC$TL_messageReactions tLRPC$TL_messageReactions = savedReactionsUpdate.old;
-            TLRPC$TL_messageReactions tLRPC$TL_messageReactions2 = savedReactionsUpdate.last;
+            TLRPC.TL_messageReactions tL_messageReactions = savedReactionsUpdate.old;
+            TLRPC.TL_messageReactions tL_messageReactions2 = savedReactionsUpdate.last;
             longSparseArray.clear();
             longSparseArray2.clear();
-            if (tLRPC$TL_messageReactions != null && tLRPC$TL_messageReactions.results != null && tLRPC$TL_messageReactions.reactions_as_tags) {
-                for (int i2 = 0; i2 < tLRPC$TL_messageReactions.results.size(); i2++) {
-                    ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(((TLRPC$ReactionCount) tLRPC$TL_messageReactions.results.get(i2)).reaction);
+            if (tL_messageReactions != null && tL_messageReactions.results != null && tL_messageReactions.reactions_as_tags) {
+                for (int i2 = 0; i2 < tL_messageReactions.results.size(); i2++) {
+                    ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_messageReactions.results.get(i2).reaction);
                     if (fromTL != null) {
                         longSparseArray.put(fromTL.hash, fromTL);
                     }
                 }
             }
-            if (tLRPC$TL_messageReactions2 != null && tLRPC$TL_messageReactions2.results != null && tLRPC$TL_messageReactions2.reactions_as_tags) {
-                for (int i3 = 0; i3 < tLRPC$TL_messageReactions2.results.size(); i3++) {
-                    ReactionsLayoutInBubble.VisibleReaction fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(((TLRPC$ReactionCount) tLRPC$TL_messageReactions2.results.get(i3)).reaction);
+            if (tL_messageReactions2 != null && tL_messageReactions2.results != null && tL_messageReactions2.reactions_as_tags) {
+                for (int i3 = 0; i3 < tL_messageReactions2.results.size(); i3++) {
+                    ReactionsLayoutInBubble.VisibleReaction fromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_messageReactions2.results.get(i3).reaction);
                     if (fromTL2 != null) {
                         longSparseArray2.put(fromTL2.hash, fromTL2);
                     }
@@ -2952,11 +2869,11 @@ public class MessagesStorage extends BaseController {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDatabaseOpened, new Object[0]);
     }
 
-    public void lambda$overwriteChannel$182(long j, TLRPC$TL_updates_channelDifferenceTooLong tLRPC$TL_updates_channelDifferenceTooLong) {
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.removeAllMessagesFromDialog, Long.valueOf(j), Boolean.TRUE, tLRPC$TL_updates_channelDifferenceTooLong);
+    public void lambda$overwriteChannel$182(long j, TLRPC.TL_updates_channelDifferenceTooLong tL_updates_channelDifferenceTooLong) {
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.removeAllMessagesFromDialog, Long.valueOf(j), Boolean.TRUE, tL_updates_channelDifferenceTooLong);
     }
 
-    public void lambda$overwriteChannel$183(long r20, int r22, final org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong r23, java.lang.Runnable r24) {
+    public void lambda$overwriteChannel$183(long r20, int r22, final org.telegram.tgnet.TLRPC.TL_updates_channelDifferenceTooLong r23, java.lang.Runnable r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$overwriteChannel$183(long, int, org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong, java.lang.Runnable):void");
     }
 
@@ -2989,9 +2906,9 @@ public class MessagesStorage extends BaseController {
                         executeFast.requery();
                         executeFast.bindLong(1, j);
                         executeFast.bindLong(2, longSparseArray.keyAt(i));
-                        TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) longSparseArray.valueAt(i);
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$ChannelParticipant.getObjectSize());
-                        tLRPC$ChannelParticipant.serializeToStream(nativeByteBuffer);
+                        TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) longSparseArray.valueAt(i);
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(channelParticipant.getObjectSize());
+                        channelParticipant.serializeToStream(nativeByteBuffer);
                         executeFast.bindByteBuffer(3, nativeByteBuffer);
                         executeFast.step();
                         nativeByteBuffer.reuse();
@@ -3043,8 +2960,8 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putContacts$140(boolean, java.util.ArrayList):void");
     }
 
-    public void lambda$putDialogs$233(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, int i) {
-        putDialogsInternal(tLRPC$messages_Dialogs, i);
+    public void lambda$putDialogs$233(TLRPC.messages_Dialogs messages_dialogs, int i) {
+        putDialogsInternal(messages_dialogs, i);
         try {
             loadUnreadMessages();
         } catch (Exception e) {
@@ -3052,7 +2969,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$putEncryptedChat$171(org.telegram.tgnet.TLRPC$EncryptedChat r17, org.telegram.tgnet.TLRPC$User r18, org.telegram.tgnet.TLRPC$Dialog r19) {
+    public void lambda$putEncryptedChat$171(org.telegram.tgnet.TLRPC.EncryptedChat r17, org.telegram.tgnet.TLRPC.User r18, org.telegram.tgnet.TLRPC.Dialog r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putEncryptedChat$171(org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Dialog):void");
     }
 
@@ -3066,7 +2983,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$putMessages$218(int r50, org.telegram.tgnet.TLRPC$messages_Messages r51, long r52, long r54, int r56, int r57, boolean r58) {
+    public void lambda$putMessages$218(int r50, org.telegram.tgnet.TLRPC.messages_Messages r51, long r52, long r54, int r56, int r57, boolean r58) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$218(int, org.telegram.tgnet.TLRPC$messages_Messages, long, long, int, int, boolean):void");
     }
 
@@ -3269,9 +3186,9 @@ public class MessagesStorage extends BaseController {
                     }
                 }
                 queryFinalized.dispose();
-                final ArrayList<TLRPC$User> arrayList5 = new ArrayList<>();
-                final ArrayList<TLRPC$Chat> arrayList6 = new ArrayList<>();
-                final ArrayList<TLRPC$EncryptedChat> arrayList7 = new ArrayList<>();
+                final ArrayList<TLRPC.User> arrayList5 = new ArrayList<>();
+                final ArrayList<TLRPC.Chat> arrayList6 = new ArrayList<>();
+                final ArrayList<TLRPC.EncryptedChat> arrayList7 = new ArrayList<>();
                 if (!arrayList4.isEmpty()) {
                     getEncryptedChatsInternal(TextUtils.join(",", arrayList4), arrayList7, arrayList2);
                 }
@@ -3390,7 +3307,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$replaceMessageIfExists$214(org.telegram.tgnet.TLRPC$Message r25, boolean r26, java.util.ArrayList r27, java.util.ArrayList r28) {
+    public void lambda$replaceMessageIfExists$214(org.telegram.tgnet.TLRPC.Message r25, boolean r26, java.util.ArrayList r27, java.util.ArrayList r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$replaceMessageIfExists$214(org.telegram.tgnet.TLRPC$Message, boolean, java.util.ArrayList, java.util.ArrayList):void");
     }
 
@@ -3427,7 +3344,7 @@ public class MessagesStorage extends BaseController {
         return i > i2 ? -1 : 0;
     }
 
-    public void lambda$resetDialogs$90(org.telegram.tgnet.TLRPC$messages_Dialogs r35, int r36, int r37, int r38, int r39, int r40, org.telegram.tgnet.TLRPC$Message r41, int r42, androidx.collection.LongSparseArray r43, androidx.collection.LongSparseArray r44) {
+    public void lambda$resetDialogs$90(org.telegram.tgnet.TLRPC.messages_Dialogs r35, int r36, int r37, int r38, int r39, int r40, org.telegram.tgnet.TLRPC.Message r41, int r42, androidx.collection.LongSparseArray r43, androidx.collection.LongSparseArray r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$resetDialogs$90(org.telegram.tgnet.TLRPC$messages_Dialogs, int, int, int, int, int, org.telegram.tgnet.TLRPC$Message, int, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 
@@ -3450,9 +3367,9 @@ public class MessagesStorage extends BaseController {
             e = e;
         }
         try {
-            if (!(tLObject instanceof TLRPC$TL_messages_botCallbackAnswer)) {
-                if (tLObject instanceof TLRPC$TL_messages_botResults) {
-                    i = ((TLRPC$TL_messages_botResults) tLObject).cache_time;
+            if (!(tLObject instanceof TLRPC.TL_messages_botCallbackAnswer)) {
+                if (tLObject instanceof TLRPC.TL_messages_botResults) {
+                    i = ((TLRPC.TL_messages_botResults) tLObject).cache_time;
                 }
                 executeFast = this.database.executeFast("REPLACE INTO botcache VALUES(?, ?, ?)");
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
@@ -3465,7 +3382,7 @@ public class MessagesStorage extends BaseController {
                 nativeByteBuffer.reuse();
                 return;
             }
-            i = ((TLRPC$TL_messages_botCallbackAnswer) tLObject).cache_time;
+            i = ((TLRPC.TL_messages_botCallbackAnswer) tLObject).cache_time;
             NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tLObject.getObjectSize());
             tLObject.serializeToStream(nativeByteBuffer2);
             executeFast.bindString(1, str);
@@ -3612,7 +3529,7 @@ public class MessagesStorage extends BaseController {
         saveTopicsInternal(j, list, z, true, i);
     }
 
-    public void lambda$searchSavedByTag$97(java.lang.String r38, long r39, org.telegram.tgnet.TLRPC$Reaction r41, int r42, int r43, boolean r44, final org.telegram.messenger.Utilities.Callback4 r45) {
+    public void lambda$searchSavedByTag$97(java.lang.String r38, long r39, org.telegram.tgnet.TLRPC.Reaction r41, int r42, int r43, boolean r44, final org.telegram.messenger.Utilities.Callback4 r45) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$searchSavedByTag$97(java.lang.String, long, org.telegram.tgnet.TLRPC$Reaction, int, int, boolean, org.telegram.messenger.Utilities$Callback4):void");
     }
 
@@ -3689,11 +3606,11 @@ public class MessagesStorage extends BaseController {
                 int size = arrayList.size();
                 z = false;
                 for (int i2 = 0; i2 < size; i2++) {
-                    TLRPC$TL_folderPeer tLRPC$TL_folderPeer = (TLRPC$TL_folderPeer) arrayList.get(i2);
-                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$TL_folderPeer.peer);
+                    TLRPC.TL_folderPeer tL_folderPeer = (TLRPC.TL_folderPeer) arrayList.get(i2);
+                    long peerDialogId = DialogObject.getPeerDialogId(tL_folderPeer.peer);
                     executeFast.requery();
-                    executeFast.bindInteger(1, tLRPC$TL_folderPeer.folder_id);
-                    if (tLRPC$TL_folderPeer.folder_id == 1) {
+                    executeFast.bindInteger(1, tL_folderPeer.folder_id);
+                    if (tL_folderPeer.folder_id == 1) {
                         z = true;
                     }
                     executeFast.bindInteger(2, 0);
@@ -3705,11 +3622,11 @@ public class MessagesStorage extends BaseController {
                 int size2 = arrayList2.size();
                 z = false;
                 for (int i3 = 0; i3 < size2; i3++) {
-                    TLRPC$TL_inputFolderPeer tLRPC$TL_inputFolderPeer = (TLRPC$TL_inputFolderPeer) arrayList2.get(i3);
-                    long peerDialogId2 = DialogObject.getPeerDialogId(tLRPC$TL_inputFolderPeer.peer);
+                    TLRPC.TL_inputFolderPeer tL_inputFolderPeer = (TLRPC.TL_inputFolderPeer) arrayList2.get(i3);
+                    long peerDialogId2 = DialogObject.getPeerDialogId(tL_inputFolderPeer.peer);
                     executeFast.requery();
-                    executeFast.bindInteger(1, tLRPC$TL_inputFolderPeer.folder_id);
-                    if (tLRPC$TL_inputFolderPeer.folder_id == 1) {
+                    executeFast.bindInteger(1, tL_inputFolderPeer.folder_id);
+                    if (tL_inputFolderPeer.folder_id == 1) {
                         z = true;
                     }
                     executeFast.bindInteger(2, 0);
@@ -3835,13 +3752,13 @@ public class MessagesStorage extends BaseController {
         try {
             int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) arrayList.get(i);
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) arrayList.get(i);
                 executeFast.requery();
                 executeFast.bindLong(1, j2);
-                executeFast.bindLong(2, MessageObject.getPeerId(tLRPC$ChannelParticipant.peer));
+                executeFast.bindLong(2, MessageObject.getPeerId(channelParticipant.peer));
                 executeFast.bindInteger(3, currentTimeMillis);
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$ChannelParticipant.getObjectSize());
-                tLRPC$ChannelParticipant.serializeToStream(nativeByteBuffer);
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(channelParticipant.getObjectSize());
+                channelParticipant.serializeToStream(nativeByteBuffer);
                 executeFast.bindByteBuffer(4, nativeByteBuffer);
                 executeFast.step();
                 nativeByteBuffer.reuse();
@@ -3879,25 +3796,25 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateChatDefaultBannedRights$173(long r8, int r10, org.telegram.tgnet.TLRPC$TL_chatBannedRights r11) {
+    public void lambda$updateChatDefaultBannedRights$173(long r8, int r10, org.telegram.tgnet.TLRPC.TL_chatBannedRights r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateChatDefaultBannedRights$173(long, int, org.telegram.tgnet.TLRPC$TL_chatBannedRights):void");
     }
 
-    public void lambda$updateChatInfo$128(org.telegram.tgnet.TLRPC$ChatFull r12, boolean r13) {
+    public void lambda$updateChatInfo$128(org.telegram.tgnet.TLRPC.ChatFull r12, boolean r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateChatInfo$128(org.telegram.tgnet.TLRPC$ChatFull, boolean):void");
     }
 
-    public void lambda$updateChatInfo$133(TLRPC$ChatFull tLRPC$ChatFull) {
+    public void lambda$updateChatInfo$133(TLRPC.ChatFull chatFull) {
         NotificationCenter notificationCenter = getNotificationCenter();
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
-        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, tLRPC$ChatFull, 0, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, chatFull, 0, bool, bool);
     }
 
     public void lambda$updateChatInfo$134(long j, int i, long j2, long j3, int i2) {
         int i3;
         SQLiteCursor queryFinalized;
-        final TLRPC$ChatFull tLRPC$ChatFull;
+        final TLRPC.ChatFull chatFull;
         NativeByteBuffer byteBufferValue;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -3913,73 +3830,73 @@ public class MessagesStorage extends BaseController {
         try {
             new ArrayList();
             if (!queryFinalized.next() || (byteBufferValue = queryFinalized.byteBufferValue(0)) == null) {
-                tLRPC$ChatFull = null;
+                chatFull = null;
             } else {
-                tLRPC$ChatFull = TLRPC$ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                chatFull = TLRPC.ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                 byteBufferValue.reuse();
-                tLRPC$ChatFull.pinned_msg_id = queryFinalized.intValue(1);
-                tLRPC$ChatFull.online_count = queryFinalized.intValue(2);
-                tLRPC$ChatFull.inviterId = queryFinalized.longValue(3);
+                chatFull.pinned_msg_id = queryFinalized.intValue(1);
+                chatFull.online_count = queryFinalized.intValue(2);
+                chatFull.inviterId = queryFinalized.longValue(3);
             }
             queryFinalized.dispose();
-            if (tLRPC$ChatFull instanceof TLRPC$TL_chatFull) {
+            if (chatFull instanceof TLRPC.TL_chatFull) {
                 if (i == 1) {
                     while (true) {
-                        if (i3 >= tLRPC$ChatFull.participants.participants.size()) {
+                        if (i3 >= chatFull.participants.participants.size()) {
                             break;
                         }
-                        if (((TLRPC$ChatParticipant) tLRPC$ChatFull.participants.participants.get(i3)).user_id == j2) {
-                            tLRPC$ChatFull.participants.participants.remove(i3);
+                        if (chatFull.participants.participants.get(i3).user_id == j2) {
+                            chatFull.participants.participants.remove(i3);
                             break;
                         }
                         i3++;
                     }
                 } else if (i == 0) {
-                    Iterator it = tLRPC$ChatFull.participants.participants.iterator();
+                    Iterator<TLRPC.ChatParticipant> it = chatFull.participants.participants.iterator();
                     while (it.hasNext()) {
-                        if (((TLRPC$ChatParticipant) it.next()).user_id == j2) {
+                        if (it.next().user_id == j2) {
                             return;
                         }
                     }
-                    TLRPC$TL_chatParticipant tLRPC$TL_chatParticipant = new TLRPC$TL_chatParticipant();
-                    tLRPC$TL_chatParticipant.user_id = j2;
-                    tLRPC$TL_chatParticipant.inviter_id = j3;
-                    tLRPC$TL_chatParticipant.date = getConnectionsManager().getCurrentTime();
-                    tLRPC$ChatFull.participants.participants.add(tLRPC$TL_chatParticipant);
+                    TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
+                    tL_chatParticipant.user_id = j2;
+                    tL_chatParticipant.inviter_id = j3;
+                    tL_chatParticipant.date = getConnectionsManager().getCurrentTime();
+                    chatFull.participants.participants.add(tL_chatParticipant);
                 } else if (i == 2) {
                     while (true) {
-                        if (i3 >= tLRPC$ChatFull.participants.participants.size()) {
+                        if (i3 >= chatFull.participants.participants.size()) {
                             break;
                         }
-                        TLRPC$ChatParticipant tLRPC$ChatParticipant = (TLRPC$ChatParticipant) tLRPC$ChatFull.participants.participants.get(i3);
-                        if (tLRPC$ChatParticipant.user_id == j2) {
-                            TLRPC$ChatParticipant tLRPC$TL_chatParticipantAdmin = j3 == 1 ? new TLRPC$TL_chatParticipantAdmin() : new TLRPC$TL_chatParticipant();
-                            tLRPC$TL_chatParticipantAdmin.user_id = tLRPC$ChatParticipant.user_id;
-                            tLRPC$TL_chatParticipantAdmin.date = tLRPC$ChatParticipant.date;
-                            tLRPC$TL_chatParticipantAdmin.inviter_id = tLRPC$ChatParticipant.inviter_id;
-                            tLRPC$ChatFull.participants.participants.set(i3, tLRPC$TL_chatParticipantAdmin);
+                        TLRPC.ChatParticipant chatParticipant = chatFull.participants.participants.get(i3);
+                        if (chatParticipant.user_id == j2) {
+                            TLRPC.ChatParticipant tL_chatParticipantAdmin = j3 == 1 ? new TLRPC.TL_chatParticipantAdmin() : new TLRPC.TL_chatParticipant();
+                            tL_chatParticipantAdmin.user_id = chatParticipant.user_id;
+                            tL_chatParticipantAdmin.date = chatParticipant.date;
+                            tL_chatParticipantAdmin.inviter_id = chatParticipant.inviter_id;
+                            chatFull.participants.participants.set(i3, tL_chatParticipantAdmin);
                         } else {
                             i3++;
                         }
                     }
                 }
-                tLRPC$ChatFull.participants.version = i2;
+                chatFull.participants.version = i2;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$updateChatInfo$133(tLRPC$ChatFull);
+                        MessagesStorage.this.lambda$updateChatInfo$133(chatFull);
                     }
                 });
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$ChatFull.getObjectSize());
-                tLRPC$ChatFull.serializeToStream(nativeByteBuffer);
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chatFull.getObjectSize());
+                chatFull.serializeToStream(nativeByteBuffer);
                 executeFast.bindLong(1, j);
                 executeFast.bindByteBuffer(2, nativeByteBuffer);
-                executeFast.bindInteger(3, tLRPC$ChatFull.pinned_msg_id);
-                executeFast.bindInteger(4, tLRPC$ChatFull.online_count);
-                executeFast.bindLong(5, tLRPC$ChatFull.inviterId);
-                executeFast.bindInteger(6, tLRPC$ChatFull.invitesCount);
-                executeFast.bindInteger(7, tLRPC$ChatFull.participants_count);
+                executeFast.bindInteger(3, chatFull.pinned_msg_id);
+                executeFast.bindInteger(4, chatFull.online_count);
+                executeFast.bindLong(5, chatFull.inviterId);
+                executeFast.bindInteger(6, chatFull.invitesCount);
+                executeFast.bindInteger(7, chatFull.participants_count);
                 executeFast.step();
                 executeFast.dispose();
                 nativeByteBuffer.reuse();
@@ -4025,21 +3942,21 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateChatParticipants$115(TLRPC$ChatFull tLRPC$ChatFull) {
+    public void lambda$updateChatParticipants$115(TLRPC.ChatFull chatFull) {
         NotificationCenter notificationCenter = getNotificationCenter();
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
-        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, tLRPC$ChatFull, 0, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, chatFull, 0, bool, bool);
     }
 
-    public void lambda$updateChatParticipants$116(TLRPC$ChatParticipants tLRPC$ChatParticipants) {
+    public void lambda$updateChatParticipants$116(TLRPC.ChatParticipants chatParticipants) {
         SQLiteCursor queryFinalized;
-        final TLRPC$ChatFull tLRPC$ChatFull;
+        final TLRPC.ChatFull chatFull;
         NativeByteBuffer byteBufferValue;
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                queryFinalized = this.database.queryFinalized("SELECT info, pinned, online, inviter FROM chat_settings_v2 WHERE uid = " + tLRPC$ChatParticipants.chat_id, new Object[0]);
+                queryFinalized = this.database.queryFinalized("SELECT info, pinned, online, inviter FROM chat_settings_v2 WHERE uid = " + chatParticipants.chat_id, new Object[0]);
             } catch (Exception e) {
                 e = e;
             }
@@ -4049,33 +3966,33 @@ public class MessagesStorage extends BaseController {
         try {
             new ArrayList();
             if (!queryFinalized.next() || (byteBufferValue = queryFinalized.byteBufferValue(0)) == null) {
-                tLRPC$ChatFull = null;
+                chatFull = null;
             } else {
-                tLRPC$ChatFull = TLRPC$ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                chatFull = TLRPC.ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                 byteBufferValue.reuse();
-                tLRPC$ChatFull.pinned_msg_id = queryFinalized.intValue(1);
-                tLRPC$ChatFull.online_count = queryFinalized.intValue(2);
-                tLRPC$ChatFull.inviterId = queryFinalized.longValue(3);
+                chatFull.pinned_msg_id = queryFinalized.intValue(1);
+                chatFull.online_count = queryFinalized.intValue(2);
+                chatFull.inviterId = queryFinalized.longValue(3);
             }
             queryFinalized.dispose();
-            if (tLRPC$ChatFull instanceof TLRPC$TL_chatFull) {
-                tLRPC$ChatFull.participants = tLRPC$ChatParticipants;
+            if (chatFull instanceof TLRPC.TL_chatFull) {
+                chatFull.participants = chatParticipants;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$updateChatParticipants$115(tLRPC$ChatFull);
+                        MessagesStorage.this.lambda$updateChatParticipants$115(chatFull);
                     }
                 });
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$ChatFull.getObjectSize());
-                tLRPC$ChatFull.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, tLRPC$ChatFull.id);
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chatFull.getObjectSize());
+                chatFull.serializeToStream(nativeByteBuffer);
+                executeFast.bindLong(1, chatFull.id);
                 executeFast.bindByteBuffer(2, nativeByteBuffer);
-                executeFast.bindInteger(3, tLRPC$ChatFull.pinned_msg_id);
-                executeFast.bindInteger(4, tLRPC$ChatFull.online_count);
-                executeFast.bindLong(5, tLRPC$ChatFull.inviterId);
-                executeFast.bindInteger(6, tLRPC$ChatFull.invitesCount);
-                executeFast.bindInteger(7, tLRPC$ChatFull.participants_count);
+                executeFast.bindInteger(3, chatFull.pinned_msg_id);
+                executeFast.bindInteger(4, chatFull.online_count);
+                executeFast.bindLong(5, chatFull.inviterId);
+                executeFast.bindInteger(6, chatFull.invitesCount);
+                executeFast.bindInteger(7, chatFull.participants_count);
                 executeFast.step();
                 executeFast.dispose();
                 nativeByteBuffer.reuse();
@@ -4107,7 +4024,7 @@ public class MessagesStorage extends BaseController {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDatabaseMigration, Boolean.FALSE);
     }
 
-    public void lambda$updateDialogData$221(org.telegram.tgnet.TLRPC$Dialog r7) {
+    public void lambda$updateDialogData$221(org.telegram.tgnet.TLRPC.Dialog r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogData$221(org.telegram.tgnet.TLRPC$Dialog):void");
     }
 
@@ -4119,17 +4036,17 @@ public class MessagesStorage extends BaseController {
         updateDialogsWithReadMessagesInternal(null, longSparseIntArray, longSparseIntArray2, longSparseArray, longSparseIntArray3);
     }
 
-    public void lambda$updateEncryptedChat$167(org.telegram.tgnet.TLRPC$EncryptedChat r11) {
+    public void lambda$updateEncryptedChat$167(org.telegram.tgnet.TLRPC.EncryptedChat r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateEncryptedChat$167(org.telegram.tgnet.TLRPC$EncryptedChat):void");
     }
 
-    public void lambda$updateEncryptedChatLayer$166(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
+    public void lambda$updateEncryptedChatLayer$166(TLRPC.EncryptedChat encryptedChat) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET layer = ? WHERE uid = ?");
-                sQLitePreparedStatement.bindInteger(1, tLRPC$EncryptedChat.layer);
-                sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.id);
+                sQLitePreparedStatement.bindInteger(1, encryptedChat.layer);
+                sQLitePreparedStatement.bindInteger(2, encryptedChat.id);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
                 checkSQLException(e);
@@ -4146,21 +4063,21 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateEncryptedChatSeq$164(TLRPC$EncryptedChat tLRPC$EncryptedChat, boolean z) {
+    public void lambda$updateEncryptedChatSeq$164(TLRPC.EncryptedChat encryptedChat, boolean z) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET seq_in = ?, seq_out = ?, use_count = ?, in_seq_no = ?, mtproto_seq = ? WHERE uid = ?");
-                sQLitePreparedStatement.bindInteger(1, tLRPC$EncryptedChat.seq_in);
-                sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.seq_out);
-                sQLitePreparedStatement.bindInteger(3, (tLRPC$EncryptedChat.key_use_count_in << 16) | tLRPC$EncryptedChat.key_use_count_out);
-                sQLitePreparedStatement.bindInteger(4, tLRPC$EncryptedChat.in_seq_no);
-                sQLitePreparedStatement.bindInteger(5, tLRPC$EncryptedChat.mtproto_seq);
-                sQLitePreparedStatement.bindInteger(6, tLRPC$EncryptedChat.id);
+                sQLitePreparedStatement.bindInteger(1, encryptedChat.seq_in);
+                sQLitePreparedStatement.bindInteger(2, encryptedChat.seq_out);
+                sQLitePreparedStatement.bindInteger(3, (encryptedChat.key_use_count_in << 16) | encryptedChat.key_use_count_out);
+                sQLitePreparedStatement.bindInteger(4, encryptedChat.in_seq_no);
+                sQLitePreparedStatement.bindInteger(5, encryptedChat.mtproto_seq);
+                sQLitePreparedStatement.bindInteger(6, encryptedChat.id);
                 sQLitePreparedStatement.step();
-                if (z && tLRPC$EncryptedChat.in_seq_no != 0) {
-                    long encryptedChatId = DialogObject.getEncryptedChatId(tLRPC$EncryptedChat.id);
-                    this.database.executeFast(String.format(Locale.US, "DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = %d AND m.date = 0 AND m.mid < 0 AND s.seq_out <= %d) AND uid = %d", Long.valueOf(encryptedChatId), Integer.valueOf(tLRPC$EncryptedChat.in_seq_no), Long.valueOf(encryptedChatId))).stepThis().dispose();
+                if (z && encryptedChat.in_seq_no != 0) {
+                    long encryptedChatId = DialogObject.getEncryptedChatId(encryptedChat.id);
+                    this.database.executeFast(String.format(Locale.US, "DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = %d AND m.date = 0 AND m.mid < 0 AND s.seq_out <= %d) AND uid = %d", Long.valueOf(encryptedChatId), Integer.valueOf(encryptedChat.in_seq_no), Long.valueOf(encryptedChatId))).stepThis().dispose();
                 }
             } catch (Exception e) {
                 checkSQLException(e);
@@ -4177,13 +4094,13 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateEncryptedChatTTL$165(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
+    public void lambda$updateEncryptedChatTTL$165(TLRPC.EncryptedChat encryptedChat) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET ttl = ? WHERE uid = ?");
-                sQLitePreparedStatement.bindInteger(1, tLRPC$EncryptedChat.ttl);
-                sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.id);
+                sQLitePreparedStatement.bindInteger(1, encryptedChat.ttl);
+                sQLitePreparedStatement.bindInteger(2, encryptedChat.id);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
                 checkSQLException(e);
@@ -4210,15 +4127,15 @@ public class MessagesStorage extends BaseController {
         this.archiveUnreadCount = this.pendingArchiveUnreadCount;
     }
 
-    public void lambda$updateMessageCustomParams$104(TLRPC$Message tLRPC$Message, long j) {
+    public void lambda$updateMessageCustomParams$104(TLRPC.Message message, long j) {
         SQLiteDatabase sQLiteDatabase;
         String str;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 this.database.beginTransaction();
-                TLRPC$Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(tLRPC$Message.id, j);
-                MessageCustomParamsHelper.copyParams(tLRPC$Message, messageWithCustomParamsOnlyInternal);
+                TLRPC.Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(message.id, j);
+                MessageCustomParamsHelper.copyParams(message, messageWithCustomParamsOnlyInternal);
                 for (int i = 0; i < 2; i++) {
                     if (i == 0) {
                         sQLiteDatabase = this.database;
@@ -4236,7 +4153,7 @@ public class MessagesStorage extends BaseController {
                         } else {
                             executeFast.bindNull(1);
                         }
-                        executeFast.bindInteger(2, tLRPC$Message.id);
+                        executeFast.bindInteger(2, message.id);
                         executeFast.bindLong(3, j);
                         executeFast.step();
                         executeFast.dispose();
@@ -4282,16 +4199,16 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateMessagePollResults$95(long r23, org.telegram.tgnet.TLRPC$Poll r25, org.telegram.tgnet.TLRPC$PollResults r26) {
+    public void lambda$updateMessagePollResults$95(long r23, org.telegram.tgnet.TLRPC.Poll r25, org.telegram.tgnet.TLRPC.PollResults r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessagePollResults$95(long, org.telegram.tgnet.TLRPC$Poll, org.telegram.tgnet.TLRPC$PollResults):void");
     }
 
-    public void lambda$updateMessageReactions$98(int r22, long r23, org.telegram.tgnet.TLRPC$TL_messageReactions r25) {
+    public void lambda$updateMessageReactions$98(int r22, long r23, org.telegram.tgnet.TLRPC.TL_messageReactions r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageReactions$98(int, long, org.telegram.tgnet.TLRPC$TL_messageReactions):void");
     }
 
-    public void lambda$updateMessageStateAndIdInternal$195(TLRPC$TL_updates tLRPC$TL_updates) {
-        getMessagesController().processUpdates(tLRPC$TL_updates, false);
+    public void lambda$updateMessageStateAndIdInternal$195(TLRPC.TL_updates tL_updates) {
+        getMessagesController().processUpdates(tL_updates, false);
     }
 
     public void lambda$updateMessageVerifyFlags$188(ArrayList arrayList) {
@@ -4307,12 +4224,12 @@ public class MessagesStorage extends BaseController {
                     try {
                         int size = arrayList.size();
                         for (int i = 0; i < size; i++) {
-                            TLRPC$Message tLRPC$Message = (TLRPC$Message) arrayList.get(i);
+                            TLRPC.Message message = (TLRPC.Message) arrayList.get(i);
                             executeFast.requery();
-                            int i2 = tLRPC$Message.stickerVerified;
+                            int i2 = message.stickerVerified;
                             executeFast.bindInteger(1, i2 == 0 ? 1 : i2 == 2 ? 2 : 0);
-                            executeFast.bindInteger(2, tLRPC$Message.id);
-                            executeFast.bindLong(3, MessageObject.getDialogId(tLRPC$Message));
+                            executeFast.bindInteger(2, message.id);
+                            executeFast.bindLong(3, MessageObject.getDialogId(message));
                             executeFast.step();
                         }
                         executeFast.dispose();
@@ -4354,7 +4271,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$updateMessageVoiceTranscription$102(int i, long j, boolean z, long j2, String str) {
-        TLRPC$Message messageWithCustomParamsOnlyInternal;
+        TLRPC.Message messageWithCustomParamsOnlyInternal;
         SQLitePreparedStatement executeFast;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -4416,19 +4333,19 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateMessageVoiceTranscription$103(int i, long j, TLRPC$Message tLRPC$Message, String str) {
+    public void lambda$updateMessageVoiceTranscription$103(int i, long j, TLRPC.Message message, String str) {
         SQLiteDatabase sQLiteDatabase;
         String str2;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 this.database.beginTransaction();
-                TLRPC$Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(i, j);
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionOpen = tLRPC$Message.voiceTranscriptionOpen;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionRated = tLRPC$Message.voiceTranscriptionRated;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionFinal = tLRPC$Message.voiceTranscriptionFinal;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionForce = tLRPC$Message.voiceTranscriptionForce;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionId = tLRPC$Message.voiceTranscriptionId;
+                TLRPC.Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(i, j);
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionRated = message.voiceTranscriptionRated;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionForce = message.voiceTranscriptionForce;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionId = message.voiceTranscriptionId;
                 messageWithCustomParamsOnlyInternal.voiceTranscription = str;
                 for (int i2 = 0; i2 < 2; i2++) {
                     if (i2 == 0) {
@@ -4493,19 +4410,19 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateMessageVoiceTranscriptionOpen$101(int i, long j, TLRPC$Message tLRPC$Message) {
+    public void lambda$updateMessageVoiceTranscriptionOpen$101(int i, long j, TLRPC.Message message) {
         SQLiteDatabase sQLiteDatabase;
         String str;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 this.database.beginTransaction();
-                TLRPC$Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(i, j);
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionOpen = tLRPC$Message.voiceTranscriptionOpen;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionRated = tLRPC$Message.voiceTranscriptionRated;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionFinal = tLRPC$Message.voiceTranscriptionFinal;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionForce = tLRPC$Message.voiceTranscriptionForce;
-                messageWithCustomParamsOnlyInternal.voiceTranscriptionId = tLRPC$Message.voiceTranscriptionId;
+                TLRPC.Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(i, j);
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionRated = message.voiceTranscriptionRated;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionForce = message.voiceTranscriptionForce;
+                messageWithCustomParamsOnlyInternal.voiceTranscriptionId = message.voiceTranscriptionId;
                 for (int i2 = 0; i2 < 2; i2++) {
                     if (i2 == 0) {
                         sQLiteDatabase = this.database;
@@ -4593,11 +4510,11 @@ public class MessagesStorage extends BaseController {
         getMessagesController().getTopicsController().updateMaxReadId(j, i, i2, i3, i4);
     }
 
-    public void lambda$updateTopicData$46(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
-        getMessagesController().getTopicsController().updateTopicInUi(j, tLRPC$TL_forumTopic, i);
+    public void lambda$updateTopicData$46(long j, TLRPC.TL_forumTopic tL_forumTopic, int i) {
+        getMessagesController().getTopicsController().updateTopicInUi(j, tL_forumTopic, i);
     }
 
-    public void lambda$updateTopicData$47(final int r19, final org.telegram.tgnet.TLRPC$TL_forumTopic r20, final long r21, int r23) {
+    public void lambda$updateTopicData$47(final int r19, final org.telegram.tgnet.TLRPC.TL_forumTopic r20, final long r21, int r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateTopicData$47(int, org.telegram.tgnet.TLRPC$TL_forumTopic, long, int):void");
     }
 
@@ -4617,13 +4534,13 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUnreadReactionsCount$241(long, boolean, long, int):void");
     }
 
-    public void lambda$updateUserInfo$124(org.telegram.tgnet.TLRPC$UserFull r10, boolean r11) {
+    public void lambda$updateUserInfo$124(org.telegram.tgnet.TLRPC.UserFull r10, boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUserInfo$124(org.telegram.tgnet.TLRPC$UserFull, boolean):void");
     }
 
     public void lambda$updateUserInfoPremiumBlocked$125(long j, boolean z) {
         SQLiteCursor sQLiteCursor;
-        TLRPC$UserFull tLRPC$UserFull;
+        TLRPC.UserFull userFull;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             sQLiteCursor = this.database.queryFinalized("SELECT uid, info, pinned FROM user_settings WHERE uid = " + j, new Object[0]);
@@ -4632,24 +4549,24 @@ public class MessagesStorage extends BaseController {
                     boolean next = sQLiteCursor.next();
                     if (next) {
                         NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(1);
-                        tLRPC$UserFull = TLRPC$UserFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        if (tLRPC$UserFull != null) {
-                            tLRPC$UserFull.pinned_msg_id = sQLiteCursor.intValue(2);
+                        userFull = TLRPC.UserFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
+                        if (userFull != null) {
+                            userFull.pinned_msg_id = sQLiteCursor.intValue(2);
                         }
                         byteBufferValue.reuse();
                     } else {
-                        tLRPC$UserFull = null;
+                        userFull = null;
                     }
                     sQLiteCursor.dispose();
-                    if (next && tLRPC$UserFull != null && tLRPC$UserFull.contact_require_premium != z) {
-                        tLRPC$UserFull.contact_require_premium = z;
+                    if (next && userFull != null && userFull.contact_require_premium != z) {
+                        userFull.contact_require_premium = z;
                         SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO user_settings VALUES(?, ?, ?)");
                         try {
-                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$UserFull.getObjectSize());
-                            tLRPC$UserFull.serializeToStream(nativeByteBuffer);
+                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(userFull.getObjectSize());
+                            userFull.serializeToStream(nativeByteBuffer);
                             executeFast.bindLong(1, j);
                             executeFast.bindByteBuffer(2, nativeByteBuffer);
-                            executeFast.bindInteger(3, tLRPC$UserFull.pinned_msg_id);
+                            executeFast.bindInteger(3, userFull.pinned_msg_id);
                             executeFast.step();
                             executeFast.dispose();
                             nativeByteBuffer.reuse();
@@ -4692,7 +4609,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private org.telegram.tgnet.TLRPC$ChatFull loadChatInfoInternal(long r22, boolean r24, boolean r25, boolean r26, int r27) {
+    private org.telegram.tgnet.TLRPC.ChatFull loadChatInfoInternal(long r22, boolean r24, boolean r25, boolean r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.loadChatInfoInternal(long, boolean, boolean, boolean, int):org.telegram.tgnet.TLRPC$ChatFull");
     }
 
@@ -4705,7 +4622,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    private org.telegram.tgnet.TLRPC$messages_Dialogs loadDialogsByIds(java.lang.String r19, java.util.ArrayList<java.lang.Long> r20, java.util.ArrayList<java.lang.Long> r21, java.util.ArrayList<java.lang.Integer> r22) {
+    private org.telegram.tgnet.TLRPC.messages_Dialogs loadDialogsByIds(java.lang.String r19, java.util.ArrayList<java.lang.Long> r20, java.util.ArrayList<java.lang.Long> r21, java.util.ArrayList<java.lang.Integer> r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.loadDialogsByIds(java.lang.String, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList):org.telegram.tgnet.TLRPC$messages_Dialogs");
     }
 
@@ -4779,18 +4696,18 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void onReactionsUpdate(final long j, final TLRPC$TL_messageReactions tLRPC$TL_messageReactions, final TLRPC$TL_messageReactions tLRPC$TL_messageReactions2) {
-        ArrayList arrayList;
-        if (tLRPC$TL_messageReactions == null || (arrayList = tLRPC$TL_messageReactions.results) == null) {
+    private void onReactionsUpdate(final long j, final TLRPC.TL_messageReactions tL_messageReactions, final TLRPC.TL_messageReactions tL_messageReactions2) {
+        ArrayList<TLRPC.ReactionCount> arrayList;
+        if (tL_messageReactions == null || (arrayList = tL_messageReactions.results) == null) {
             return;
         }
-        if (arrayList.isEmpty() && tLRPC$TL_messageReactions2 != null && tLRPC$TL_messageReactions2.results.isEmpty()) {
+        if (arrayList.isEmpty() && tL_messageReactions2 != null && tL_messageReactions2.results.isEmpty()) {
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$onReactionsUpdate$100(tLRPC$TL_messageReactions, tLRPC$TL_messageReactions2, j);
+                MessagesStorage.this.lambda$onReactionsUpdate$100(tL_messageReactions, tL_messageReactions2, j);
             }
         });
     }
@@ -4807,7 +4724,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$processLoadedFilterPeers$68(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, ArrayList<TLRPC$User> arrayList, ArrayList<TLRPC$Chat> arrayList2, ArrayList<MessagesController.DialogFilter> arrayList3, SparseArray<MessagesController.DialogFilter> sparseArray, ArrayList<Integer> arrayList4, HashMap<Integer, HashSet<Long>> hashMap, HashSet<Integer> hashSet, Runnable runnable) {
+    public void lambda$processLoadedFilterPeers$68(TLRPC.messages_Dialogs messages_dialogs, TLRPC.messages_Dialogs messages_dialogs2, ArrayList<TLRPC.User> arrayList, ArrayList<TLRPC.Chat> arrayList2, ArrayList<MessagesController.DialogFilter> arrayList3, SparseArray<MessagesController.DialogFilter> sparseArray, ArrayList<Integer> arrayList4, HashMap<Integer, HashSet<Long>> hashMap, HashSet<Integer> hashSet, Runnable runnable) {
         putUsersAndChats(arrayList, arrayList2, true, false);
         int size = sparseArray.size();
         int i = 0;
@@ -4865,49 +4782,49 @@ public class MessagesStorage extends BaseController {
         }
         int i4 = z ? 1 : 2;
         calcUnreadCounters(true);
-        getMessagesController().processLoadedDialogFilters(new ArrayList<>(this.dialogFilters), tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, null, i4, runnable);
+        getMessagesController().processLoadedDialogFilters(new ArrayList<>(this.dialogFilters), messages_dialogs, messages_dialogs2, arrayList, arrayList2, null, i4, runnable);
     }
 
-    private void putChatsInternal(List<TLRPC$Chat> list) {
+    private void putChatsInternal(List<TLRPC.Chat> list) {
         int i;
         if (list == null || list.isEmpty()) {
             return;
         }
         SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chats VALUES(?, ?, ?)");
         for (int i2 = 0; i2 < list.size(); i2++) {
-            TLRPC$Chat tLRPC$Chat = list.get(i2);
-            if (tLRPC$Chat.min) {
-                SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM chats WHERE uid = %d", Long.valueOf(tLRPC$Chat.id)), new Object[0]);
+            TLRPC.Chat chat = list.get(i2);
+            if (chat.min) {
+                SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM chats WHERE uid = %d", Long.valueOf(chat.id)), new Object[0]);
                 if (queryFinalized.next()) {
                     try {
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                         if (byteBufferValue != null) {
-                            TLRPC$Chat TLdeserialize = TLRPC$Chat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            TLRPC.Chat TLdeserialize = TLRPC.Chat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             byteBufferValue.reuse();
                             if (TLdeserialize != null) {
-                                TLdeserialize.title = tLRPC$Chat.title;
-                                TLdeserialize.photo = tLRPC$Chat.photo;
-                                TLdeserialize.broadcast = tLRPC$Chat.broadcast;
-                                TLdeserialize.verified = tLRPC$Chat.verified;
-                                TLdeserialize.megagroup = tLRPC$Chat.megagroup;
-                                TLdeserialize.call_not_empty = tLRPC$Chat.call_not_empty;
-                                TLdeserialize.call_active = tLRPC$Chat.call_active;
-                                TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = tLRPC$Chat.default_banned_rights;
-                                if (tLRPC$TL_chatBannedRights != null) {
-                                    TLdeserialize.default_banned_rights = tLRPC$TL_chatBannedRights;
+                                TLdeserialize.title = chat.title;
+                                TLdeserialize.photo = chat.photo;
+                                TLdeserialize.broadcast = chat.broadcast;
+                                TLdeserialize.verified = chat.verified;
+                                TLdeserialize.megagroup = chat.megagroup;
+                                TLdeserialize.call_not_empty = chat.call_not_empty;
+                                TLdeserialize.call_active = chat.call_active;
+                                TLRPC.TL_chatBannedRights tL_chatBannedRights = chat.default_banned_rights;
+                                if (tL_chatBannedRights != null) {
+                                    TLdeserialize.default_banned_rights = tL_chatBannedRights;
                                     TLdeserialize.flags |= 262144;
                                 }
-                                TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights;
-                                if (tLRPC$TL_chatAdminRights != null) {
-                                    TLdeserialize.admin_rights = tLRPC$TL_chatAdminRights;
+                                TLRPC.TL_chatAdminRights tL_chatAdminRights = chat.admin_rights;
+                                if (tL_chatAdminRights != null) {
+                                    TLdeserialize.admin_rights = tL_chatAdminRights;
                                     TLdeserialize.flags |= 16384;
                                 }
-                                TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2 = tLRPC$Chat.banned_rights;
-                                if (tLRPC$TL_chatBannedRights2 != null) {
-                                    TLdeserialize.banned_rights = tLRPC$TL_chatBannedRights2;
+                                TLRPC.TL_chatBannedRights tL_chatBannedRights2 = chat.banned_rights;
+                                if (tL_chatBannedRights2 != null) {
+                                    TLdeserialize.banned_rights = tL_chatBannedRights2;
                                     TLdeserialize.flags |= 32768;
                                 }
-                                String str = tLRPC$Chat.username;
+                                String str = chat.username;
                                 if (str != null) {
                                     TLdeserialize.username = str;
                                     i = TLdeserialize.flags | 64;
@@ -4916,11 +4833,11 @@ public class MessagesStorage extends BaseController {
                                     i = TLdeserialize.flags & (-65);
                                 }
                                 TLdeserialize.flags = i;
-                                int i3 = tLRPC$Chat.participants_count;
+                                int i3 = chat.participants_count;
                                 if (i3 > 0) {
                                     TLdeserialize.participants_count = i3;
                                 }
-                                tLRPC$Chat = TLdeserialize;
+                                chat = TLdeserialize;
                             }
                         }
                     } catch (Exception e) {
@@ -4930,29 +4847,29 @@ public class MessagesStorage extends BaseController {
                 queryFinalized.dispose();
             }
             executeFast.requery();
-            tLRPC$Chat.flags |= 131072;
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Chat.getObjectSize());
-            tLRPC$Chat.serializeToStream(nativeByteBuffer);
-            executeFast.bindLong(1, tLRPC$Chat.id);
-            String str2 = tLRPC$Chat.title;
+            chat.flags |= 131072;
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chat.getObjectSize());
+            chat.serializeToStream(nativeByteBuffer);
+            executeFast.bindLong(1, chat.id);
+            String str2 = chat.title;
             executeFast.bindString(2, str2 != null ? str2.toLowerCase() : "");
             executeFast.bindByteBuffer(3, nativeByteBuffer);
             executeFast.step();
             nativeByteBuffer.reuse();
-            this.dialogIsForum.put(-tLRPC$Chat.id, tLRPC$Chat.forum ? 1 : 0);
+            this.dialogIsForum.put(-chat.id, chat.forum ? 1 : 0);
         }
         executeFast.dispose();
     }
 
-    private void putDialogsInternal(org.telegram.tgnet.TLRPC$messages_Dialogs r36, int r37) {
+    private void putDialogsInternal(org.telegram.tgnet.TLRPC.messages_Dialogs r36, int r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.putDialogsInternal(org.telegram.tgnet.TLRPC$messages_Dialogs, int):void");
     }
 
-    public void lambda$putMessages$192(java.util.ArrayList<org.telegram.tgnet.TLRPC$Message> r61, boolean r62, boolean r63, int r64, boolean r65, int r66, long r67) {
+    public void lambda$putMessages$192(java.util.ArrayList<org.telegram.tgnet.TLRPC.Message> r61, boolean r62, boolean r63, int r64, boolean r65, int r66, long r67) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$192(java.util.ArrayList, boolean, boolean, int, boolean, int, long):void");
     }
 
-    public void lambda$putUsersAndChats$174(List<TLRPC$User> list, List<TLRPC$Chat> list2, boolean z) {
+    public void lambda$putUsersAndChats$174(List<TLRPC.User> list, List<TLRPC.Chat> list2, boolean z) {
         SQLiteDatabase sQLiteDatabase;
         if (z) {
             try {
@@ -4982,7 +4899,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.commitTransaction();
     }
 
-    private void putUsersInternal(List<TLRPC$User> list) {
+    private void putUsersInternal(List<TLRPC.User> list) {
         int i;
         int i2;
         int i3;
@@ -4991,18 +4908,18 @@ public class MessagesStorage extends BaseController {
         }
         SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO users VALUES(?, ?, ?, ?)");
         for (int i4 = 0; i4 < list.size(); i4++) {
-            TLRPC$User tLRPC$User = list.get(i4);
-            if (tLRPC$User != null) {
-                if (tLRPC$User.min) {
-                    SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM users WHERE uid = %d", Long.valueOf(tLRPC$User.id)), new Object[0]);
+            TLRPC.User user = list.get(i4);
+            if (user != null) {
+                if (user.min) {
+                    SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM users WHERE uid = %d", Long.valueOf(user.id)), new Object[0]);
                     if (queryFinalized.next()) {
                         try {
                             NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                             if (byteBufferValue != null) {
-                                TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                                TLRPC.User TLdeserialize = TLRPC.User.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                                 byteBufferValue.reuse();
                                 if (TLdeserialize != null) {
-                                    String str = tLRPC$User.username;
+                                    String str = user.username;
                                     if (str != null) {
                                         TLdeserialize.username = str;
                                         i2 = TLdeserialize.flags | 8;
@@ -5011,10 +4928,10 @@ public class MessagesStorage extends BaseController {
                                         i2 = TLdeserialize.flags & (-9);
                                     }
                                     TLdeserialize.flags = i2;
-                                    if (tLRPC$User.apply_min_photo) {
-                                        TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = tLRPC$User.photo;
-                                        if (tLRPC$UserProfilePhoto != null) {
-                                            TLdeserialize.photo = tLRPC$UserProfilePhoto;
+                                    if (user.apply_min_photo) {
+                                        TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+                                        if (userProfilePhoto != null) {
+                                            TLdeserialize.photo = userProfilePhoto;
                                             i3 = i2 | 32;
                                         } else {
                                             TLdeserialize.photo = null;
@@ -5022,7 +4939,7 @@ public class MessagesStorage extends BaseController {
                                         }
                                         TLdeserialize.flags = i3;
                                     }
-                                    tLRPC$User = TLdeserialize;
+                                    user = TLdeserialize;
                                 }
                             }
                         } catch (Exception e) {
@@ -5032,24 +4949,24 @@ public class MessagesStorage extends BaseController {
                     queryFinalized.dispose();
                 }
                 executeFast.requery();
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$User.getObjectSize());
-                tLRPC$User.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, tLRPC$User.id);
-                executeFast.bindString(2, formatUserSearchName(tLRPC$User));
-                TLRPC$UserStatus tLRPC$UserStatus = tLRPC$User.status;
-                if (tLRPC$UserStatus != null) {
-                    if (tLRPC$UserStatus instanceof TLRPC$TL_userStatusRecently) {
-                        i = tLRPC$UserStatus.by_me ? -1000 : -100;
-                    } else if (tLRPC$UserStatus instanceof TLRPC$TL_userStatusLastWeek) {
-                        i = tLRPC$UserStatus.by_me ? -1001 : -101;
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(user.getObjectSize());
+                user.serializeToStream(nativeByteBuffer);
+                executeFast.bindLong(1, user.id);
+                executeFast.bindString(2, formatUserSearchName(user));
+                TLRPC.UserStatus userStatus = user.status;
+                if (userStatus != null) {
+                    if (userStatus instanceof TLRPC.TL_userStatusRecently) {
+                        i = userStatus.by_me ? -1000 : -100;
+                    } else if (userStatus instanceof TLRPC.TL_userStatusLastWeek) {
+                        i = userStatus.by_me ? -1001 : -101;
                     } else {
-                        if (tLRPC$UserStatus instanceof TLRPC$TL_userStatusLastMonth) {
-                            i = tLRPC$UserStatus.by_me ? -1002 : -102;
+                        if (userStatus instanceof TLRPC.TL_userStatusLastMonth) {
+                            i = userStatus.by_me ? -1002 : -102;
                         }
-                        executeFast.bindInteger(3, tLRPC$UserStatus.expires);
+                        executeFast.bindInteger(3, userStatus.expires);
                     }
-                    tLRPC$UserStatus.expires = i;
-                    executeFast.bindInteger(3, tLRPC$UserStatus.expires);
+                    userStatus.expires = i;
+                    executeFast.bindInteger(3, userStatus.expires);
                 } else {
                     executeFast.bindInteger(3, 0);
                 }
@@ -5245,24 +5162,24 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void saveTopicsInternal(long r21, java.util.List<org.telegram.tgnet.TLRPC$TL_forumTopic> r23, boolean r24, boolean r25, int r26) {
+    private void saveTopicsInternal(long r21, java.util.List<org.telegram.tgnet.TLRPC.TL_forumTopic> r23, boolean r24, boolean r25, int r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.saveTopicsInternal(long, java.util.List, boolean, boolean, int):void");
     }
 
-    private ArrayList<Long> toPeerIds(ArrayList<TLRPC$InputPeer> arrayList) {
+    private ArrayList<Long> toPeerIds(ArrayList<TLRPC.InputPeer> arrayList) {
         ArrayList<Long> arrayList2 = new ArrayList<>();
         if (arrayList == null) {
             return arrayList2;
         }
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
-            TLRPC$InputPeer tLRPC$InputPeer = arrayList.get(i);
-            if (tLRPC$InputPeer != null) {
-                long j = tLRPC$InputPeer.user_id;
+            TLRPC.InputPeer inputPeer = arrayList.get(i);
+            if (inputPeer != null) {
+                long j = inputPeer.user_id;
                 if (j == 0) {
-                    long j2 = tLRPC$InputPeer.chat_id;
+                    long j2 = inputPeer.chat_id;
                     if (j2 == 0) {
-                        j2 = tLRPC$InputPeer.channel_id;
+                        j2 = inputPeer.channel_id;
                     }
                     j = -j2;
                 }
@@ -5279,7 +5196,7 @@ public class MessagesStorage extends BaseController {
                 MessagesStorage.this.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to 156");
+        FileLog.d("MessagesStorage start db migration from " + i + " to 158");
         int migrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -5313,7 +5230,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesMaxReadId$186(long, int, int, int):void");
     }
 
-    public void lambda$updateUsers$197(java.util.ArrayList<org.telegram.tgnet.TLRPC$User> r9, boolean r10, boolean r11) {
+    public void lambda$updateUsers$197(java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r9, boolean r10, boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUsers$197(java.util.ArrayList, boolean, boolean):void");
     }
 
@@ -5343,17 +5260,17 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void addRecentLocalFile(final String str, final String str2, final TLRPC$Document tLRPC$Document) {
+    public void addRecentLocalFile(final String str, final String str2, final TLRPC.Document document) {
         if (str == null || str.length() == 0) {
             return;
         }
-        if ((str2 == null || str2.length() == 0) && tLRPC$Document == null) {
+        if ((str2 == null || str2.length() == 0) && document == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$addRecentLocalFile$79(tLRPC$Document, str, str2);
+                MessagesStorage.this.lambda$addRecentLocalFile$79(document, str, str2);
             }
         });
     }
@@ -5400,7 +5317,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void checkLoadedRemoteFilters(final ArrayList<TLRPC$DialogFilter> arrayList, final Runnable runnable) {
+    public void checkLoadedRemoteFilters(final ArrayList<TLRPC.DialogFilter> arrayList, final Runnable runnable) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -5726,7 +5643,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void getAnimatedEmoji(String str, ArrayList<TLRPC$Document> arrayList) {
+    public void getAnimatedEmoji(String str, ArrayList<TLRPC.Document> arrayList) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -5734,7 +5651,7 @@ public class MessagesStorage extends BaseController {
                 while (sQLiteCursor.next()) {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     try {
-                        TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
+                        TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
                         if (TLdeserialize != null && TLdeserialize.id != 0) {
                             arrayList.add(TLdeserialize);
                         }
@@ -5807,9 +5724,9 @@ public class MessagesStorage extends BaseController {
         return numArr[0].intValue();
     }
 
-    public TLRPC$Chat getChat(long j) {
+    public TLRPC.Chat getChat(long j) {
         try {
-            ArrayList<TLRPC$Chat> arrayList = new ArrayList<>();
+            ArrayList<TLRPC.Chat> arrayList = new ArrayList<>();
             getChatsInternal("" + j, arrayList);
             if (!arrayList.isEmpty()) {
                 return arrayList.get(0);
@@ -5820,13 +5737,13 @@ public class MessagesStorage extends BaseController {
         return null;
     }
 
-    public TLRPC$Chat getChatSync(final long j) {
+    public TLRPC.Chat getChatSync(final long j) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
-        final TLRPC$Chat[] tLRPC$ChatArr = new TLRPC$Chat[1];
+        final TLRPC.Chat[] chatArr = new TLRPC.Chat[1];
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getChatSync$239(tLRPC$ChatArr, j, countDownLatch);
+                MessagesStorage.this.lambda$getChatSync$239(chatArr, j, countDownLatch);
             }
         });
         try {
@@ -5834,11 +5751,11 @@ public class MessagesStorage extends BaseController {
         } catch (Exception e) {
             checkSQLException(e);
         }
-        return tLRPC$ChatArr[0];
+        return chatArr[0];
     }
 
-    public ArrayList<TLRPC$Chat> getChats(ArrayList<Long> arrayList) {
-        ArrayList<TLRPC$Chat> arrayList2 = new ArrayList<>();
+    public ArrayList<TLRPC.Chat> getChats(ArrayList<Long> arrayList) {
+        ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
         try {
             getChatsInternal(TextUtils.join(",", arrayList), arrayList2);
         } catch (Exception e) {
@@ -5848,11 +5765,11 @@ public class MessagesStorage extends BaseController {
         return arrayList2;
     }
 
-    public void getChatsInternal(String str, ArrayList<TLRPC$Chat> arrayList) {
+    public void getChatsInternal(String str, ArrayList<TLRPC.Chat> arrayList) {
         getChatsInternal(str, arrayList, true);
     }
 
-    public void getChatsInternal(String str, ArrayList<TLRPC$Chat> arrayList, boolean z) {
+    public void getChatsInternal(String str, ArrayList<TLRPC.Chat> arrayList, boolean z) {
         if (str == null || str.length() == 0 || arrayList == null) {
             return;
         }
@@ -5861,7 +5778,7 @@ public class MessagesStorage extends BaseController {
             try {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 if (byteBufferValue != null) {
-                    TLRPC$Chat TLdeserialize = TLRPC$Chat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false, z);
+                    TLRPC.Chat TLdeserialize = TLRPC.Chat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false, z);
                     byteBufferValue.reuse();
                     if (TLdeserialize != null) {
                         arrayList.add(TLdeserialize);
@@ -5969,9 +5886,9 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public TLRPC$EncryptedChat getEncryptedChat(long j) {
+    public TLRPC.EncryptedChat getEncryptedChat(long j) {
         try {
-            ArrayList<TLRPC$EncryptedChat> arrayList = new ArrayList<>();
+            ArrayList<TLRPC.EncryptedChat> arrayList = new ArrayList<>();
             getEncryptedChatsInternal("" + j, arrayList, null);
             if (arrayList.isEmpty()) {
                 return null;
@@ -5995,7 +5912,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void getEncryptedChatsInternal(String str, ArrayList<TLRPC$EncryptedChat> arrayList, ArrayList<Long> arrayList2) {
+    public void getEncryptedChatsInternal(String str, ArrayList<TLRPC.EncryptedChat> arrayList, ArrayList<Long> arrayList2) {
         if (str == null || str.length() == 0 || arrayList == null) {
             return;
         }
@@ -6004,7 +5921,7 @@ public class MessagesStorage extends BaseController {
             try {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 if (byteBufferValue != null) {
-                    TLRPC$EncryptedChat TLdeserialize = TLRPC$EncryptedChat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.EncryptedChat TLdeserialize = TLRPC.EncryptedChat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     byteBufferValue.reuse();
                     if (TLdeserialize != null) {
                         long longValue = queryFinalized.longValue(1);
@@ -6071,7 +5988,7 @@ public class MessagesStorage extends BaseController {
         return this.mainUnreadCount;
     }
 
-    public TLRPC$Message getMessage(final long j, final long j2) {
+    public TLRPC.Message getMessage(final long j, final long j2) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         final AtomicReference atomicReference = new AtomicReference();
         this.storageQueue.postRunnable(new Runnable() {
@@ -6085,30 +6002,30 @@ public class MessagesStorage extends BaseController {
         } catch (Exception e) {
             checkSQLException(e);
         }
-        return (TLRPC$Message) atomicReference.get();
+        return (TLRPC.Message) atomicReference.get();
     }
 
-    public int getMessageMediaType(TLRPC$Message tLRPC$Message) {
-        if (!(tLRPC$Message instanceof TLRPC$TL_message_secret)) {
-            if (tLRPC$Message instanceof TLRPC$TL_message) {
-                TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-                if (((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) || (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument)) && tLRPC$MessageMedia.ttl_seconds != 0) {
+    public int getMessageMediaType(TLRPC.Message message) {
+        if (!(message instanceof TLRPC.TL_message_secret)) {
+            if (message instanceof TLRPC.TL_message) {
+                TLRPC.MessageMedia messageMedia = message.media;
+                if (((messageMedia instanceof TLRPC.TL_messageMediaPhoto) || (messageMedia instanceof TLRPC.TL_messageMediaDocument)) && messageMedia.ttl_seconds != 0) {
                     return 1;
                 }
             }
-            return ((tLRPC$Message.media instanceof TLRPC$TL_messageMediaPhoto) || MessageObject.isVideoMessage(tLRPC$Message)) ? 0 : -1;
+            return ((message.media instanceof TLRPC.TL_messageMediaPhoto) || MessageObject.isVideoMessage(message)) ? 0 : -1;
         }
-        if (!(tLRPC$Message.media instanceof TLRPC$TL_messageMediaPhoto) && !MessageObject.isGifMessage(tLRPC$Message) && !MessageObject.isVoiceMessage(tLRPC$Message) && !MessageObject.isVideoMessage(tLRPC$Message) && !MessageObject.isRoundVideoMessage(tLRPC$Message)) {
+        if (!(message.media instanceof TLRPC.TL_messageMediaPhoto) && !MessageObject.isGifMessage(message) && !MessageObject.isVoiceMessage(message) && !MessageObject.isVideoMessage(message) && !MessageObject.isRoundVideoMessage(message)) {
             return -1;
         }
-        int i = tLRPC$Message.ttl;
+        int i = message.ttl;
         return (i <= 0 || i > 60) ? 0 : 1;
     }
 
-    public TLRPC$Message getMessageWithCustomParamsOnlyInternal(int i, long j) {
+    public TLRPC.Message getMessageWithCustomParamsOnlyInternal(int i, long j) {
         SQLiteCursor queryFinalized;
         boolean z;
-        TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
+        TLRPC.TL_message tL_message = new TLRPC.TL_message();
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -6121,7 +6038,7 @@ public class MessagesStorage extends BaseController {
         }
         try {
             if (queryFinalized.next()) {
-                MessageCustomParamsHelper.readLocalParams(tLRPC$TL_message, queryFinalized.byteBufferValue(0));
+                MessageCustomParamsHelper.readLocalParams(tL_message, queryFinalized.byteBufferValue(0));
                 z = true;
             } else {
                 z = false;
@@ -6130,7 +6047,7 @@ public class MessagesStorage extends BaseController {
             if (!z) {
                 sQLiteCursor = this.database.queryFinalized("SELECT custom_params FROM messages_topics WHERE mid = ? AND uid = ?", Integer.valueOf(i), Long.valueOf(j));
                 if (sQLiteCursor.next()) {
-                    MessageCustomParamsHelper.readLocalParams(tLRPC$TL_message, sQLiteCursor.byteBufferValue(0));
+                    MessageCustomParamsHelper.readLocalParams(tL_message, sQLiteCursor.byteBufferValue(0));
                 }
                 sQLiteCursor.dispose();
             }
@@ -6141,7 +6058,7 @@ public class MessagesStorage extends BaseController {
             if (sQLiteCursor != null) {
                 sQLiteCursor.dispose();
             }
-            return tLRPC$TL_message;
+            return tL_message;
         } catch (Throwable th2) {
             th = th2;
             sQLiteCursor = queryFinalized;
@@ -6150,7 +6067,7 @@ public class MessagesStorage extends BaseController {
             }
             throw th;
         }
-        return tLRPC$TL_message;
+        return tL_message;
     }
 
     public void getMessages(final long j, final long j2, boolean z, final int i, final int i2, final int i3, final int i4, final int i5, final int i6, final int i7, final long j3, final int i8, final boolean z2, final boolean z3, final Timer timer) {
@@ -6238,9 +6155,9 @@ public class MessagesStorage extends BaseController {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(1);
                     int intValue = sQLiteCursor.intValue(2);
                     if (byteBufferValue != null) {
-                        TLRPC$ChatFull TLdeserialize = TLRPC$ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                        TLRPC.ChatFull TLdeserialize = TLRPC.ChatFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         byteBufferValue.reuse();
-                        if (TLdeserialize instanceof TLRPC$TL_channelFull) {
+                        if (TLdeserialize instanceof TLRPC.TL_channelFull) {
                             hashMap.put(Long.valueOf(longValue), Integer.valueOf(intValue));
                         }
                     }
@@ -6283,9 +6200,9 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public TLRPC$User getUser(long j) {
+    public TLRPC.User getUser(long j) {
         try {
-            ArrayList<TLRPC$User> arrayList = new ArrayList<>();
+            ArrayList<TLRPC.User> arrayList = new ArrayList<>();
             ArrayList<Long> arrayList2 = new ArrayList<>();
             arrayList2.add(Long.valueOf(j));
             getUsersInternal(arrayList2, arrayList);
@@ -6298,13 +6215,13 @@ public class MessagesStorage extends BaseController {
         return null;
     }
 
-    public TLRPC$User getUserSync(final long j) {
+    public TLRPC.User getUserSync(final long j) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
-        final TLRPC$User[] tLRPC$UserArr = new TLRPC$User[1];
+        final TLRPC.User[] userArr = new TLRPC.User[1];
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getUserSync$238(tLRPC$UserArr, j, countDownLatch);
+                MessagesStorage.this.lambda$getUserSync$238(userArr, j, countDownLatch);
             }
         });
         try {
@@ -6312,11 +6229,11 @@ public class MessagesStorage extends BaseController {
         } catch (Exception e) {
             checkSQLException(e);
         }
-        return tLRPC$UserArr[0];
+        return userArr[0];
     }
 
-    public ArrayList<TLRPC$User> getUsers(ArrayList<Long> arrayList) {
-        ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
+    public ArrayList<TLRPC.User> getUsers(ArrayList<Long> arrayList) {
+        ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
         try {
             getUsersInternal(arrayList, arrayList2);
         } catch (Exception e) {
@@ -6326,11 +6243,11 @@ public class MessagesStorage extends BaseController {
         return arrayList2;
     }
 
-    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC$User> arrayList2) {
+    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC.User> arrayList2) {
         getUsersInternal(arrayList, arrayList2, false);
     }
 
-    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC$User> arrayList2, boolean z) {
+    public void getUsersInternal(ArrayList<Long> arrayList, ArrayList<TLRPC.User> arrayList2, boolean z) {
         if (arrayList == null || arrayList.isEmpty() || arrayList2 == null) {
             return;
         }
@@ -6339,7 +6256,7 @@ public class MessagesStorage extends BaseController {
             while (i < arrayList.size()) {
                 Long l = arrayList.get(i);
                 l.longValue();
-                TLRPC$User user = getMessagesController().getUser(l);
+                TLRPC.User user = getMessagesController().getUser(l);
                 if (user != null) {
                     arrayList2.add(user);
                     arrayList.remove(i);
@@ -6356,12 +6273,12 @@ public class MessagesStorage extends BaseController {
             try {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 if (byteBufferValue != null) {
-                    TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.User TLdeserialize = TLRPC.User.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     byteBufferValue.reuse();
                     if (TLdeserialize != null) {
-                        TLRPC$UserStatus tLRPC$UserStatus = TLdeserialize.status;
-                        if (tLRPC$UserStatus != null) {
-                            tLRPC$UserStatus.expires = queryFinalized.intValue(1);
+                        TLRPC.UserStatus userStatus = TLdeserialize.status;
+                        if (userStatus != null) {
+                            userStatus.expires = queryFinalized.intValue(1);
                         }
                         arrayList2.add(TLdeserialize);
                         if (arrayList.size() > 50 && z) {
@@ -6376,14 +6293,14 @@ public class MessagesStorage extends BaseController {
         queryFinalized.dispose();
     }
 
-    public void getUsersInternal(HashSet<Long> hashSet, ArrayList<TLRPC$User> arrayList) {
+    public void getUsersInternal(HashSet<Long> hashSet, ArrayList<TLRPC.User> arrayList) {
         if (hashSet == null || hashSet.isEmpty() || arrayList == null) {
             return;
         }
         if (hashSet.size() > 50) {
             Iterator<Long> it = hashSet.iterator();
             while (it.hasNext()) {
-                TLRPC$User user = getMessagesController().getUser(it.next());
+                TLRPC.User user = getMessagesController().getUser(it.next());
                 if (user != null) {
                     arrayList.add(user);
                     it.remove();
@@ -6398,12 +6315,12 @@ public class MessagesStorage extends BaseController {
             try {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 if (byteBufferValue != null) {
-                    TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.User TLdeserialize = TLRPC.User.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     byteBufferValue.reuse();
                     if (TLdeserialize != null) {
-                        TLRPC$UserStatus tLRPC$UserStatus = TLdeserialize.status;
-                        if (tLRPC$UserStatus != null) {
-                            tLRPC$UserStatus.expires = queryFinalized.intValue(1);
+                        TLRPC.UserStatus userStatus = TLdeserialize.status;
+                        if (userStatus != null) {
+                            userStatus.expires = queryFinalized.intValue(1);
                         }
                         arrayList.add(TLdeserialize);
                     }
@@ -6424,7 +6341,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void getWidgetDialogIds(final int i, final int i2, final ArrayList<Long> arrayList, final ArrayList<TLRPC$User> arrayList2, final ArrayList<TLRPC$Chat> arrayList3, final boolean z) {
+    public void getWidgetDialogIds(final int i, final int i2, final ArrayList<Long> arrayList, final ArrayList<TLRPC.User> arrayList2, final ArrayList<TLRPC.Chat> arrayList3, final boolean z) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         this.storageQueue.postRunnable(new Runnable() {
             @Override
@@ -6439,7 +6356,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void getWidgetDialogs(final int i, final int i2, final ArrayList<Long> arrayList, final LongSparseArray longSparseArray, final LongSparseArray longSparseArray2, final ArrayList<TLRPC$User> arrayList2, final ArrayList<TLRPC$Chat> arrayList3) {
+    public void getWidgetDialogs(final int i, final int i2, final ArrayList<Long> arrayList, final LongSparseArray longSparseArray, final LongSparseArray longSparseArray2, final ArrayList<TLRPC.User> arrayList2, final ArrayList<TLRPC.Chat> arrayList3) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         this.storageQueue.postRunnable(new Runnable() {
             @Override
@@ -6527,16 +6444,16 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public TLRPC$ChatFull loadChatInfo(long j, boolean z, CountDownLatch countDownLatch, boolean z2, boolean z3) {
+    public TLRPC.ChatFull loadChatInfo(long j, boolean z, CountDownLatch countDownLatch, boolean z2, boolean z3) {
         return loadChatInfo(j, z, countDownLatch, z2, z3, 0);
     }
 
-    public TLRPC$ChatFull loadChatInfo(final long j, final boolean z, final CountDownLatch countDownLatch, final boolean z2, final boolean z3, final int i) {
-        final TLRPC$ChatFull[] tLRPC$ChatFullArr = new TLRPC$ChatFull[1];
+    public TLRPC.ChatFull loadChatInfo(final long j, final boolean z, final CountDownLatch countDownLatch, final boolean z2, final boolean z3, final int i) {
+        final TLRPC.ChatFull[] chatFullArr = new TLRPC.ChatFull[1];
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadChatInfo$138(tLRPC$ChatFullArr, j, z, z2, z3, i, countDownLatch);
+                MessagesStorage.this.lambda$loadChatInfo$138(chatFullArr, j, z, z2, z3, i, countDownLatch);
             }
         });
         if (countDownLatch != null) {
@@ -6545,10 +6462,10 @@ public class MessagesStorage extends BaseController {
             } catch (Throwable unused) {
             }
         }
-        return tLRPC$ChatFullArr[0];
+        return chatFullArr[0];
     }
 
-    public TLRPC$ChatFull loadChatInfoInQueue(long j, boolean z, boolean z2, boolean z3, int i) {
+    public TLRPC.ChatFull loadChatInfoInQueue(long j, boolean z, boolean z2, boolean z3, int i) {
         return loadChatInfoInternal(j, z, z2, z3, i);
     }
 
@@ -6578,7 +6495,7 @@ public class MessagesStorage extends BaseController {
                 ArrayList<MessageObject> arrayList4 = null;
                 while (queryFinalized.next()) {
                     NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
-                    TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     if (TLdeserialize != null) {
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
                     }
@@ -6597,7 +6514,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void loadGroupedMessagesForTopics(long j, ArrayList<TLRPC$TL_forumTopic> arrayList) {
+    public void loadGroupedMessagesForTopics(long j, ArrayList<TLRPC.TL_forumTopic> arrayList) {
         if (arrayList == null) {
             return;
         }
@@ -6620,21 +6537,21 @@ public class MessagesStorage extends BaseController {
                 long keyAt = longSparseArray.keyAt(i2);
                 ArrayList arrayList3 = (ArrayList) longSparseArray.valueAt(i2);
                 SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM messages_v2 WHERE uid = %s AND group_id = %s ORDER BY date DESC", Long.valueOf(j), Long.valueOf(keyAt)), new Object[0]);
-                ArrayList arrayList4 = null;
+                ArrayList<MessageObject> arrayList4 = null;
                 while (queryFinalized.next()) {
                     NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
-                    TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     if (TLdeserialize != null) {
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
                     }
                     if (arrayList4 == null) {
-                        arrayList4 = new ArrayList();
+                        arrayList4 = new ArrayList<>();
                     }
                     arrayList4.add(new MessageObject(this.currentAccount, TLdeserialize, false, false));
                 }
                 queryFinalized.dispose();
                 for (int i3 = 0; i3 < arrayList3.size(); i3++) {
-                    ((TLRPC$TL_forumTopic) arrayList3.get(i3)).groupedMessages = arrayList4;
+                    ((TLRPC.TL_forumTopic) arrayList3.get(i3)).groupedMessages = arrayList4;
                 }
             }
         } catch (Throwable th) {
@@ -6655,7 +6572,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.loadReplyMessages(androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
-    public void loadTopics(final long j, final Consumer<ArrayList<TLRPC$TL_forumTopic>> consumer) {
+    public void loadTopics(final long j, final Consumer<ArrayList<TLRPC.TL_forumTopic>> consumer) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -6673,27 +6590,27 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void loadUserInfo(final TLRPC$User tLRPC$User, final boolean z, final int i, int i2) {
-        if (tLRPC$User == null) {
+    public void loadUserInfo(final TLRPC.User user, final boolean z, final int i, int i2) {
+        if (user == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadUserInfo$123(tLRPC$User, z, i);
+                MessagesStorage.this.lambda$loadUserInfo$123(user, z, i);
             }
         });
     }
 
-    public ArrayList<TLRPC$UserFull> loadUserInfos(HashSet<Long> hashSet) {
-        ArrayList<TLRPC$UserFull> arrayList = new ArrayList<>();
+    public ArrayList<TLRPC.UserFull> loadUserInfos(HashSet<Long> hashSet) {
+        ArrayList<TLRPC.UserFull> arrayList = new ArrayList<>();
         try {
             String join = TextUtils.join(",", hashSet);
             SQLiteCursor queryFinalized = this.database.queryFinalized("SELECT info, pinned FROM user_settings WHERE uid IN(" + join + ")", new Object[0]);
             while (queryFinalized.next()) {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 if (byteBufferValue != null) {
-                    TLRPC$UserFull TLdeserialize = TLRPC$UserFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.UserFull TLdeserialize = TLRPC.UserFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     TLdeserialize.pinned_msg_id = queryFinalized.intValue(1);
                     arrayList.add(TLdeserialize);
                     byteBufferValue.reuse();
@@ -6706,7 +6623,7 @@ public class MessagesStorage extends BaseController {
         return arrayList;
     }
 
-    public void localSearch(int r30, java.lang.String r31, java.util.ArrayList<java.lang.Object> r32, java.util.ArrayList<java.lang.CharSequence> r33, java.util.ArrayList<org.telegram.tgnet.TLRPC$User> r34, java.util.ArrayList<java.lang.Long> r35, int r36) {
+    public void localSearch(int r30, java.lang.String r31, java.util.ArrayList<java.lang.Object> r32, java.util.ArrayList<java.lang.CharSequence> r33, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r34, java.util.ArrayList<java.lang.Long> r35, int r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.localSearch(int, java.lang.String, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
@@ -6728,11 +6645,11 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void markMessageAsSendError(final TLRPC$Message tLRPC$Message, final int i) {
+    public void markMessageAsSendError(final TLRPC.Message message, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$markMessageAsSendError$193(i, tLRPC$Message);
+                MessagesStorage.this.lambda$markMessageAsSendError$193(i, message);
             }
         });
     }
@@ -6833,20 +6750,20 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.openDatabase(int):void");
     }
 
-    public void overwriteChannel(final long j, final TLRPC$TL_updates_channelDifferenceTooLong tLRPC$TL_updates_channelDifferenceTooLong, final int i, final Runnable runnable) {
+    public void overwriteChannel(final long j, final TLRPC.TL_updates_channelDifferenceTooLong tL_updates_channelDifferenceTooLong, final int i, final Runnable runnable) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$overwriteChannel$183(j, i, tLRPC$TL_updates_channelDifferenceTooLong, runnable);
+                MessagesStorage.this.lambda$overwriteChannel$183(j, i, tL_updates_channelDifferenceTooLong, runnable);
             }
         });
     }
 
-    public void processLoadedFilterPeers(final TLRPC$messages_Dialogs tLRPC$messages_Dialogs, final TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, final ArrayList<TLRPC$User> arrayList, final ArrayList<TLRPC$Chat> arrayList2, final ArrayList<MessagesController.DialogFilter> arrayList3, final SparseArray<MessagesController.DialogFilter> sparseArray, final ArrayList<Integer> arrayList4, final HashMap<Integer, HashSet<Long>> hashMap, final HashSet<Integer> hashSet, final Runnable runnable) {
+    public void processLoadedFilterPeers(final TLRPC.messages_Dialogs messages_dialogs, final TLRPC.messages_Dialogs messages_dialogs2, final ArrayList<TLRPC.User> arrayList, final ArrayList<TLRPC.Chat> arrayList2, final ArrayList<MessagesController.DialogFilter> arrayList3, final SparseArray<MessagesController.DialogFilter> sparseArray, final ArrayList<Integer> arrayList4, final HashMap<Integer, HashSet<Long>> hashMap, final HashSet<Integer> hashSet, final Runnable runnable) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$processLoadedFilterPeers$68(tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, hashMap, hashSet, runnable);
+                MessagesStorage.this.lambda$processLoadedFilterPeers$68(messages_dialogs, messages_dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, hashMap, hashSet, runnable);
             }
         });
     }
@@ -6895,7 +6812,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void putContacts(ArrayList<TLRPC$TL_contact> arrayList, final boolean z) {
+    public void putContacts(ArrayList<TLRPC.TL_contact> arrayList, final boolean z) {
         if (!arrayList.isEmpty() || z) {
             final ArrayList arrayList2 = new ArrayList(arrayList);
             this.storageQueue.postRunnable(new Runnable() {
@@ -6907,35 +6824,35 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void putDialogs(final TLRPC$messages_Dialogs tLRPC$messages_Dialogs, final int i) {
-        if (tLRPC$messages_Dialogs.dialogs.isEmpty()) {
+    public void putDialogs(final TLRPC.messages_Dialogs messages_dialogs, final int i) {
+        if (messages_dialogs.dialogs.isEmpty()) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putDialogs$233(tLRPC$messages_Dialogs, i);
+                MessagesStorage.this.lambda$putDialogs$233(messages_dialogs, i);
             }
         });
     }
 
-    public void putEncryptedChat(final TLRPC$EncryptedChat tLRPC$EncryptedChat, final TLRPC$User tLRPC$User, final TLRPC$Dialog tLRPC$Dialog) {
-        if (tLRPC$EncryptedChat == null) {
+    public void putEncryptedChat(final TLRPC.EncryptedChat encryptedChat, final TLRPC.User user, final TLRPC.Dialog dialog) {
+        if (encryptedChat == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putEncryptedChat$171(tLRPC$EncryptedChat, tLRPC$User, tLRPC$Dialog);
+                MessagesStorage.this.lambda$putEncryptedChat$171(encryptedChat, user, dialog);
             }
         });
     }
 
-    public void putMessages(ArrayList<TLRPC$Message> arrayList, boolean z, boolean z2, boolean z3, int i, int i2, long j) {
+    public void putMessages(ArrayList<TLRPC.Message> arrayList, boolean z, boolean z2, boolean z3, int i, int i2, long j) {
         putMessages(arrayList, z, z2, z3, i, false, i2, j);
     }
 
-    public void putMessages(final ArrayList<TLRPC$Message> arrayList, final boolean z, boolean z2, final boolean z3, final int i, final boolean z4, final int i2, final long j) {
+    public void putMessages(final ArrayList<TLRPC.Message> arrayList, final boolean z, boolean z2, final boolean z3, final int i, final boolean z4, final int i2, final long j) {
         if (arrayList.size() == 0) {
             return;
         }
@@ -6951,11 +6868,11 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void putMessages(final TLRPC$messages_Messages tLRPC$messages_Messages, final long j, final int i, final int i2, final boolean z, final int i3, final long j2) {
+    public void putMessages(final TLRPC.messages_Messages messages_messages, final long j, final int i, final int i2, final boolean z, final int i3, final long j2) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putMessages$218(i3, tLRPC$messages_Messages, j, j2, i, i2, z);
+                MessagesStorage.this.lambda$putMessages$218(i3, messages_messages, j, j2, i, i2, z);
             }
         });
     }
@@ -6990,7 +6907,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void putUsersAndChats(final List<TLRPC$User> list, final List<TLRPC$Chat> list2, final boolean z, boolean z2) {
+    public void putUsersAndChats(final List<TLRPC.User> list, final List<TLRPC.Chat> list2, final boolean z, boolean z2) {
         if (list == null || !list.isEmpty() || list2 == null || !list2.isEmpty()) {
             if (z2) {
                 this.storageQueue.postRunnable(new Runnable() {
@@ -7005,7 +6922,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void putWallpapers(final ArrayList<TLRPC$WallPaper> arrayList, final int i) {
+    public void putWallpapers(final ArrayList<TLRPC.WallPaper> arrayList, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -7080,14 +6997,14 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void replaceMessageIfExists(final TLRPC$Message tLRPC$Message, final ArrayList<TLRPC$User> arrayList, final ArrayList<TLRPC$Chat> arrayList2, final boolean z) {
-        if (tLRPC$Message == null) {
+    public void replaceMessageIfExists(final TLRPC.Message message, final ArrayList<TLRPC.User> arrayList, final ArrayList<TLRPC.Chat> arrayList2, final boolean z) {
+        if (message == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$replaceMessageIfExists$214(tLRPC$Message, z, arrayList, arrayList2);
+                MessagesStorage.this.lambda$replaceMessageIfExists$214(message, z, arrayList, arrayList2);
             }
         });
     }
@@ -7119,11 +7036,11 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void resetDialogs(final TLRPC$messages_Dialogs tLRPC$messages_Dialogs, final int i, final int i2, final int i3, final int i4, final int i5, final LongSparseArray longSparseArray, final LongSparseArray longSparseArray2, final TLRPC$Message tLRPC$Message, final int i6) {
+    public void resetDialogs(final TLRPC.messages_Dialogs messages_dialogs, final int i, final int i2, final int i3, final int i4, final int i5, final LongSparseArray longSparseArray, final LongSparseArray longSparseArray2, final TLRPC.Message message, final int i6) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$resetDialogs$90(tLRPC$messages_Dialogs, i6, i2, i3, i4, i5, tLRPC$Message, i, longSparseArray, longSparseArray2);
+                MessagesStorage.this.lambda$resetDialogs$90(messages_dialogs, i6, i2, i3, i4, i5, message, i, longSparseArray, longSparseArray2);
             }
         });
     }
@@ -7242,7 +7159,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void saveTopics(final long j, final List<TLRPC$TL_forumTopic> list, final boolean z, boolean z2, final int i) {
+    public void saveTopics(final long j, final List<TLRPC.TL_forumTopic> list, final boolean z, boolean z2, final int i) {
         if (z2) {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
@@ -7255,14 +7172,14 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void searchSavedByTag(final TLRPC$Reaction tLRPC$Reaction, final long j, final String str, final int i, final int i2, final Utilities.Callback4<ArrayList<MessageObject>, ArrayList<TLRPC$User>, ArrayList<TLRPC$Chat>, ArrayList<TLRPC$Document>> callback4, final boolean z) {
+    public void searchSavedByTag(final TLRPC.Reaction reaction, final long j, final String str, final int i, final int i2, final Utilities.Callback4<ArrayList<MessageObject>, ArrayList<TLRPC.User>, ArrayList<TLRPC.Chat>, ArrayList<TLRPC.Document>> callback4, final boolean z) {
         if (callback4 == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$searchSavedByTag$97(str, j, tLRPC$Reaction, i, i2, z, callback4);
+                MessagesStorage.this.lambda$searchSavedByTag$97(str, j, reaction, i, i2, z, callback4);
             }
         });
     }
@@ -7312,7 +7229,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void setDialogsFolderId(final ArrayList<TLRPC$TL_folderPeer> arrayList, final ArrayList<TLRPC$TL_inputFolderPeer> arrayList2, final long j, final int i) {
+    public void setDialogsFolderId(final ArrayList<TLRPC.TL_folderPeer> arrayList, final ArrayList<TLRPC.TL_inputFolderPeer> arrayList2, final long j, final int i) {
         if (arrayList == null && arrayList2 == null && j == 0) {
             return;
         }
@@ -7386,7 +7303,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateChannelUsers(final long j, final ArrayList<TLRPC$ChannelParticipant> arrayList) {
+    public void updateChannelUsers(final long j, final ArrayList<TLRPC.ChannelParticipant> arrayList) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -7395,14 +7312,14 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateChatDefaultBannedRights(final long j, final TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, final int i) {
-        if (tLRPC$TL_chatBannedRights == null || j == 0) {
+    public void updateChatDefaultBannedRights(final long j, final TLRPC.TL_chatBannedRights tL_chatBannedRights, final int i) {
+        if (tL_chatBannedRights == null || j == 0) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatDefaultBannedRights$173(j, i, tLRPC$TL_chatBannedRights);
+                MessagesStorage.this.lambda$updateChatDefaultBannedRights$173(j, i, tL_chatBannedRights);
             }
         });
     }
@@ -7416,11 +7333,11 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateChatInfo(final TLRPC$ChatFull tLRPC$ChatFull, final boolean z) {
+    public void updateChatInfo(final TLRPC.ChatFull chatFull, final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatInfo$128(tLRPC$ChatFull, z);
+                MessagesStorage.this.lambda$updateChatInfo$128(chatFull, z);
             }
         });
     }
@@ -7434,26 +7351,26 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateChatParticipants(final TLRPC$ChatParticipants tLRPC$ChatParticipants) {
-        if (tLRPC$ChatParticipants == null) {
+    public void updateChatParticipants(final TLRPC.ChatParticipants chatParticipants) {
+        if (chatParticipants == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatParticipants$116(tLRPC$ChatParticipants);
+                MessagesStorage.this.lambda$updateChatParticipants$116(chatParticipants);
             }
         });
     }
 
-    public void updateDialogData(final TLRPC$Dialog tLRPC$Dialog) {
-        if (tLRPC$Dialog == null) {
+    public void updateDialogData(final TLRPC.Dialog dialog) {
+        if (dialog == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateDialogData$221(tLRPC$Dialog);
+                MessagesStorage.this.lambda$updateDialogData$221(dialog);
             }
         });
     }
@@ -7496,77 +7413,77 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void updateEncryptedChat(final TLRPC$EncryptedChat tLRPC$EncryptedChat) {
-        if (tLRPC$EncryptedChat == null) {
+    public void updateEncryptedChat(final TLRPC.EncryptedChat encryptedChat) {
+        if (encryptedChat == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChat$167(tLRPC$EncryptedChat);
+                MessagesStorage.this.lambda$updateEncryptedChat$167(encryptedChat);
             }
         });
     }
 
-    public void updateEncryptedChatLayer(final TLRPC$EncryptedChat tLRPC$EncryptedChat) {
-        if (tLRPC$EncryptedChat == null) {
+    public void updateEncryptedChatLayer(final TLRPC.EncryptedChat encryptedChat) {
+        if (encryptedChat == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChatLayer$166(tLRPC$EncryptedChat);
+                MessagesStorage.this.lambda$updateEncryptedChatLayer$166(encryptedChat);
             }
         });
     }
 
-    public void updateEncryptedChatSeq(final TLRPC$EncryptedChat tLRPC$EncryptedChat, final boolean z) {
-        if (tLRPC$EncryptedChat == null) {
+    public void updateEncryptedChatSeq(final TLRPC.EncryptedChat encryptedChat, final boolean z) {
+        if (encryptedChat == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChatSeq$164(tLRPC$EncryptedChat, z);
+                MessagesStorage.this.lambda$updateEncryptedChatSeq$164(encryptedChat, z);
             }
         });
     }
 
-    public void updateEncryptedChatTTL(final TLRPC$EncryptedChat tLRPC$EncryptedChat) {
-        if (tLRPC$EncryptedChat == null) {
+    public void updateEncryptedChatTTL(final TLRPC.EncryptedChat encryptedChat) {
+        if (encryptedChat == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChatTTL$165(tLRPC$EncryptedChat);
+                MessagesStorage.this.lambda$updateEncryptedChatTTL$165(encryptedChat);
             }
         });
     }
 
-    public void updateMessageCustomParams(final long j, final TLRPC$Message tLRPC$Message) {
+    public void updateMessageCustomParams(final long j, final TLRPC.Message message) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageCustomParams$104(tLRPC$Message, j);
+                MessagesStorage.this.lambda$updateMessageCustomParams$104(message, j);
             }
         });
     }
 
-    public void updateMessagePollResults(final long j, final TLRPC$Poll tLRPC$Poll, final TLRPC$PollResults tLRPC$PollResults) {
+    public void updateMessagePollResults(final long j, final TLRPC.Poll poll, final TLRPC.PollResults pollResults) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessagePollResults$95(j, tLRPC$Poll, tLRPC$PollResults);
+                MessagesStorage.this.lambda$updateMessagePollResults$95(j, poll, pollResults);
             }
         });
     }
 
-    public void updateMessageReactions(final long j, final int i, final TLRPC$TL_messageReactions tLRPC$TL_messageReactions) {
+    public void updateMessageReactions(final long j, final int i, final TLRPC.TL_messageReactions tL_messageReactions) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageReactions$98(i, j, tLRPC$TL_messageReactions);
+                MessagesStorage.this.lambda$updateMessageReactions$98(i, j, tL_messageReactions);
             }
         });
     }
@@ -7584,7 +7501,7 @@ public class MessagesStorage extends BaseController {
         return null;
     }
 
-    public void updateMessageVerifyFlags(final ArrayList<TLRPC$Message> arrayList) {
+    public void updateMessageVerifyFlags(final ArrayList<TLRPC.Message> arrayList) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -7602,20 +7519,20 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateMessageVoiceTranscription(final long j, final int i, final String str, final TLRPC$Message tLRPC$Message) {
+    public void updateMessageVoiceTranscription(final long j, final int i, final String str, final TLRPC.Message message) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageVoiceTranscription$103(i, j, tLRPC$Message, str);
+                MessagesStorage.this.lambda$updateMessageVoiceTranscription$103(i, j, message, str);
             }
         });
     }
 
-    public void updateMessageVoiceTranscriptionOpen(final long j, final int i, final TLRPC$Message tLRPC$Message) {
+    public void updateMessageVoiceTranscriptionOpen(final long j, final int i, final TLRPC.Message message) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageVoiceTranscriptionOpen$101(i, j, tLRPC$Message);
+                MessagesStorage.this.lambda$updateMessageVoiceTranscriptionOpen$101(i, j, message);
             }
         });
     }
@@ -7638,7 +7555,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateRepliesCount(final long j, final int i, final ArrayList<TLRPC$Peer> arrayList, final int i2, final int i3) {
+    public void updateRepliesCount(final long j, final int i, final ArrayList<TLRPC.Peer> arrayList, final int i2, final int i3) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -7660,18 +7577,18 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void updateTopicData(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
-        updateTopicData(j, tLRPC$TL_forumTopic, i, getConnectionsManager().getCurrentTime());
+    public void updateTopicData(long j, TLRPC.TL_forumTopic tL_forumTopic, int i) {
+        updateTopicData(j, tL_forumTopic, i, getConnectionsManager().getCurrentTime());
     }
 
-    public void updateTopicData(final long j, final TLRPC$TL_forumTopic tLRPC$TL_forumTopic, final int i, final int i2) {
-        if (tLRPC$TL_forumTopic == null) {
+    public void updateTopicData(final long j, final TLRPC.TL_forumTopic tL_forumTopic, final int i, final int i2) {
+        if (tL_forumTopic == null) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateTopicData$47(i, tLRPC$TL_forumTopic, j, i2);
+                MessagesStorage.this.lambda$updateTopicData$47(i, tL_forumTopic, j, i2);
             }
         });
     }
@@ -7698,11 +7615,11 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateUserInfo(final TLRPC$UserFull tLRPC$UserFull, final boolean z) {
+    public void updateUserInfo(final TLRPC.UserFull userFull, final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateUserInfo$124(tLRPC$UserFull, z);
+                MessagesStorage.this.lambda$updateUserInfo$124(userFull, z);
             }
         });
     }
@@ -7716,7 +7633,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateUsers(final ArrayList<TLRPC$User> arrayList, final boolean z, final boolean z2, boolean z3) {
+    public void updateUsers(final ArrayList<TLRPC.User> arrayList, final boolean z, final boolean z2, boolean z3) {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }

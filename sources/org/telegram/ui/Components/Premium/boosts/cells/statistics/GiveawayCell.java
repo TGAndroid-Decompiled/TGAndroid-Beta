@@ -4,9 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_stories$PrepaidGiveaway;
-import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
-import org.telegram.tgnet.tl.TL_stories$TL_prepaidStarsGiveaway;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -14,7 +12,7 @@ import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 
 public class GiveawayCell extends UserCell {
     private CounterDrawable counterDrawable;
-    private TL_stories$PrepaidGiveaway prepaidGiveaway;
+    private TL_stories.PrepaidGiveaway prepaidGiveaway;
 
     public GiveawayCell(Context context, int i, int i2, boolean z) {
         super(context, i, i2, z);
@@ -25,7 +23,7 @@ public class GiveawayCell extends UserCell {
         this.counterDrawable = new CounterDrawable(context);
     }
 
-    public TL_stories$PrepaidGiveaway getPrepaidGiveaway() {
+    public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
         return this.prepaidGiveaway;
     }
 
@@ -36,16 +34,16 @@ public class GiveawayCell extends UserCell {
         }
     }
 
-    public void setImage(TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway) {
+    public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
         AvatarDrawable avatarDrawable;
         int i;
         int i2;
         String valueOf;
-        this.prepaidGiveaway = tL_stories$PrepaidGiveaway;
-        if (!(tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidStarsGiveaway)) {
-            if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidGiveaway) {
+        this.prepaidGiveaway = prepaidGiveaway;
+        if (!(prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway)) {
+            if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                 this.avatarDrawable.setAvatarType(16);
-                int i3 = ((TL_stories$TL_prepaidGiveaway) tL_stories$PrepaidGiveaway).months;
+                int i3 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
                 if (i3 == 12) {
                     avatarDrawable = this.avatarDrawable;
                     i = -31392;
@@ -60,12 +58,12 @@ public class GiveawayCell extends UserCell {
                     i2 = -11945404;
                 }
                 avatarDrawable.setColor(i, i2);
-                valueOf = String.valueOf(tL_stories$PrepaidGiveaway.quantity * BoostRepository.giveawayBoostsPerPremium());
+                valueOf = String.valueOf(prepaidGiveaway.quantity * BoostRepository.giveawayBoostsPerPremium());
             }
             this.nameTextView.setRightDrawable(this.counterDrawable);
         }
         this.avatarDrawable.setAvatarType(26);
-        valueOf = String.valueOf(((TL_stories$TL_prepaidStarsGiveaway) tL_stories$PrepaidGiveaway).stars / 500);
+        valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
         this.counterDrawable.setText(valueOf);
         this.nameTextView.setRightDrawable(this.counterDrawable);
     }

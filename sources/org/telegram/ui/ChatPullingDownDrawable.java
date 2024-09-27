@@ -26,10 +26,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -67,9 +64,9 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     int layout1Width;
     StaticLayout layout2;
     int layout2Width;
-    TLRPC$Chat nextChat;
+    TLRPC.Chat nextChat;
     public long nextDialogId;
-    TLRPC$TL_forumTopic nextTopic;
+    TLRPC.TL_forumTopic nextTopic;
     Runnable onAnimationFinishRunnable;
     View parentView;
     float progressToBottomPanel;
@@ -210,10 +207,10 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         }
     }
 
-    public static TLRPC$Dialog getNextUnreadDialog(long j, int i, int i2, boolean z, int[] iArr) {
-        ArrayList<TLRPC$Dialog> dialogs;
-        TLRPC$Dialog nextUnreadDialog;
-        TLRPC$Dialog nextUnreadDialog2;
+    public static TLRPC.Dialog getNextUnreadDialog(long j, int i, int i2, boolean z, int[] iArr) {
+        ArrayList<TLRPC.Dialog> dialogs;
+        TLRPC.Dialog nextUnreadDialog;
+        TLRPC.Dialog nextUnreadDialog2;
         MessagesController messagesController = AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController();
         if (iArr != null) {
             iArr[0] = 0;
@@ -233,10 +230,10 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             return null;
         }
         for (int i3 = 0; i3 < dialogs.size(); i3++) {
-            TLRPC$Dialog tLRPC$Dialog = dialogs.get(i3);
-            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id));
-            if (chat != null && tLRPC$Dialog.id != j && tLRPC$Dialog.unread_count > 0 && DialogObject.isChannel(tLRPC$Dialog) && !chat.megagroup && !messagesController.isPromoDialog(tLRPC$Dialog.id, false) && messagesController.getRestrictionReason(chat.restriction_reason) == null) {
-                return tLRPC$Dialog;
+            TLRPC.Dialog dialog = dialogs.get(i3);
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-dialog.id));
+            if (chat != null && dialog.id != j && dialog.unread_count > 0 && DialogObject.isChannel(dialog) && !chat.megagroup && !messagesController.isPromoDialog(dialog.id, false) && messagesController.getRestrictionReason(chat.restriction_reason) == null) {
+                return dialog;
             }
         }
         if (z) {
@@ -264,20 +261,20 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         return null;
     }
 
-    private TLRPC$TL_forumTopic getNextUnreadTopic(long j) {
-        TLRPC$Message tLRPC$Message;
-        TLRPC$Message tLRPC$Message2;
-        ArrayList<TLRPC$TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(j);
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = null;
+    private TLRPC.TL_forumTopic getNextUnreadTopic(long j) {
+        TLRPC.Message message;
+        TLRPC.Message message2;
+        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(j);
+        TLRPC.TL_forumTopic tL_forumTopic = null;
         if (topics != null && topics.size() > 1) {
             for (int i = 0; i < topics.size(); i++) {
-                TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = topics.get(i);
-                if (tLRPC$TL_forumTopic2.id != this.topicId && !tLRPC$TL_forumTopic2.hidden && tLRPC$TL_forumTopic2.unread_count > 0 && (tLRPC$TL_forumTopic == null || ((tLRPC$Message = tLRPC$TL_forumTopic2.topMessage) != null && (tLRPC$Message2 = tLRPC$TL_forumTopic.topMessage) != null && tLRPC$Message.date > tLRPC$Message2.date))) {
-                    tLRPC$TL_forumTopic = tLRPC$TL_forumTopic2;
+                TLRPC.TL_forumTopic tL_forumTopic2 = topics.get(i);
+                if (tL_forumTopic2.id != this.topicId && !tL_forumTopic2.hidden && tL_forumTopic2.unread_count > 0 && (tL_forumTopic == null || ((message = tL_forumTopic2.topMessage) != null && (message2 = tL_forumTopic.topMessage) != null && message.date > message2.date))) {
+                    tL_forumTopic = tL_forumTopic2;
                 }
             }
         }
-        return tLRPC$TL_forumTopic;
+        return tL_forumTopic;
     }
 
     private int getThemedColor(int i) {
@@ -427,11 +424,11 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        TLRPC$Dialog tLRPC$Dialog;
-        if (this.nextDialogId == 0 || (tLRPC$Dialog = (TLRPC$Dialog) MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.nextDialogId)) == null) {
+        TLRPC.Dialog dialog;
+        if (this.nextDialogId == 0 || (dialog = (TLRPC.Dialog) MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.nextDialogId)) == null) {
             return;
         }
-        int i3 = tLRPC$Dialog.unread_count;
+        int i3 = dialog.unread_count;
         this.counterDrawable.setCount(i3, true);
         this.visibleCounterDrawable = i3 > 0;
         View view = this.parentView;
@@ -613,14 +610,14 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     }
 
     public long getChatId() {
-        TLRPC$Chat tLRPC$Chat = this.nextChat;
-        if (tLRPC$Chat == null) {
+        TLRPC.Chat chat = this.nextChat;
+        if (chat == null) {
             return 0L;
         }
-        return tLRPC$Chat.id;
+        return chat.id;
     }
 
-    public TLRPC$TL_forumTopic getTopic() {
+    public TLRPC.TL_forumTopic getTopic() {
         return this.nextTopic;
     }
 
@@ -706,18 +703,18 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         String string;
         int i2;
         int i3;
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic;
-        if (i == this.lastWidth && (!this.isTopic || (tLRPC$TL_forumTopic = this.nextTopic) == null || this.lastWidthTopicId == tLRPC$TL_forumTopic.id)) {
+        TLRPC.TL_forumTopic tL_forumTopic;
+        if (i == this.lastWidth && (!this.isTopic || (tL_forumTopic = this.nextTopic) == null || this.lastWidthTopicId == tL_forumTopic.id)) {
             return;
         }
         this.circleRadius = AndroidUtilities.dp(56.0f) / 2.0f;
         this.lastWidth = i;
-        TLRPC$Chat tLRPC$Chat = this.nextChat;
-        if (tLRPC$Chat != null) {
-            formatString = tLRPC$Chat.title;
+        TLRPC.Chat chat = this.nextChat;
+        if (chat != null) {
+            formatString = chat.title;
         } else {
-            TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = this.nextTopic;
-            formatString = tLRPC$TL_forumTopic2 != null ? tLRPC$TL_forumTopic2.title : this.isTopic ? LocaleController.formatString(R.string.SwipeToGoNextTopicEnd, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.currentDialog)).title) : LocaleController.getString(R.string.SwipeToGoNextChannelEnd);
+            TLRPC.TL_forumTopic tL_forumTopic2 = this.nextTopic;
+            formatString = tL_forumTopic2 != null ? tL_forumTopic2.title : this.isTopic ? LocaleController.formatString(R.string.SwipeToGoNextTopicEnd, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.currentDialog)).title) : LocaleController.getString(R.string.SwipeToGoNextChannelEnd);
         }
         String str = formatString;
         int measureText = (int) this.textPaint.measureText((CharSequence) str, 0, str.length());
@@ -773,7 +770,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     public void updateDialog() {
         this.recommendedChannel = false;
         this.nextTopic = null;
-        TLRPC$Dialog nextUnreadDialog = getNextUnreadDialog(this.currentDialog, this.folderId, this.filterId, true, this.params);
+        TLRPC.Dialog nextUnreadDialog = getNextUnreadDialog(this.currentDialog, this.folderId, this.filterId, true, this.params);
         if (nextUnreadDialog == null) {
             this.nextChat = null;
             this.drawFolderBackground = false;
@@ -786,7 +783,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         this.dialogFolderId = iArr[1];
         this.dialogFilterId = iArr[2];
         this.emptyStub = false;
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-nextUnreadDialog.id));
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-nextUnreadDialog.id));
         this.nextChat = chat;
         if (chat == null) {
             this.nextChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(nextUnreadDialog.id));
@@ -800,23 +797,23 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         this.visibleCounterDrawable = i > 0;
     }
 
-    public void updateDialog(TLRPC$Chat tLRPC$Chat) {
-        if (tLRPC$Chat == null) {
+    public void updateDialog(TLRPC.Chat chat) {
+        if (chat == null) {
             updateDialog();
             return;
         }
-        this.nextDialogId = -tLRPC$Chat.id;
+        this.nextDialogId = -chat.id;
         int[] iArr = this.params;
         this.drawFolderBackground = iArr[0] == 1;
         this.dialogFolderId = iArr[1];
         this.dialogFilterId = iArr[2];
         this.emptyStub = false;
-        this.nextChat = tLRPC$Chat;
+        this.nextChat = chat;
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         avatarDrawable.setInfo(this.currentAccount, this.nextChat);
         this.imageReceiver.setImage(ImageLocation.getForChat(this.nextChat, 1), "50_50", avatarDrawable, null, UserConfig.getInstance(0).getCurrentUser(), 0);
-        MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(-tLRPC$Chat.id, 0, null);
-        TLRPC$Dialog dialog = MessagesController.getInstance(this.currentAccount).getDialog(-tLRPC$Chat.id);
+        MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(-chat.id, 0, null);
+        TLRPC.Dialog dialog = MessagesController.getInstance(this.currentAccount).getDialog(-chat.id);
         int i = dialog == null ? 0 : dialog.unread_count;
         this.counterDrawable.setCount(i, false);
         this.visibleCounterDrawable = i > 0;

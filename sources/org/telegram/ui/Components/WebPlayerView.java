@@ -1708,7 +1708,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         return this.isInline || this.switchingInlineMode;
     }
 
-    public boolean loadVideo(java.lang.String r27, org.telegram.tgnet.TLRPC$Photo r28, java.lang.Object r29, java.lang.String r30, boolean r31) {
+    public boolean loadVideo(java.lang.String r27, org.telegram.tgnet.TLRPC.Photo r28, java.lang.Object r29, java.lang.String r30, boolean r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.WebPlayerView.loadVideo(java.lang.String, org.telegram.tgnet.TLRPC$Photo, java.lang.Object, java.lang.String, boolean):boolean");
     }
 

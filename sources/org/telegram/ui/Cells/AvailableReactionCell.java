@@ -15,7 +15,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
@@ -29,7 +29,7 @@ public class AvailableReactionCell extends FrameLayout {
     private BackupImageView imageView;
     public boolean locked;
     private View overlaySelectorView;
-    public TLRPC$TL_availableReaction react;
+    public TLRPC.TL_availableReaction react;
     private Switch switchView;
     private SimpleTextView textView;
 
@@ -84,13 +84,13 @@ public class AvailableReactionCell extends FrameLayout {
         setWillNotDraw(false);
     }
 
-    public void bind(TLRPC$TL_availableReaction tLRPC$TL_availableReaction, boolean z, int i) {
-        TLRPC$TL_availableReaction tLRPC$TL_availableReaction2;
-        boolean z2 = (tLRPC$TL_availableReaction == null || (tLRPC$TL_availableReaction2 = this.react) == null || !tLRPC$TL_availableReaction.reaction.equals(tLRPC$TL_availableReaction2.reaction)) ? false : true;
-        this.react = tLRPC$TL_availableReaction;
-        this.textView.setText(tLRPC$TL_availableReaction.title);
-        this.imageView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.activate_animation), "30_30_pcache", "tgs", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);
-        boolean z3 = this.canLock && tLRPC$TL_availableReaction.premium && !UserConfig.getInstance(i).isPremium();
+    public void bind(TLRPC.TL_availableReaction tL_availableReaction, boolean z, int i) {
+        TLRPC.TL_availableReaction tL_availableReaction2;
+        boolean z2 = (tL_availableReaction == null || (tL_availableReaction2 = this.react) == null || !tL_availableReaction.reaction.equals(tL_availableReaction2.reaction)) ? false : true;
+        this.react = tL_availableReaction;
+        this.textView.setText(tL_availableReaction.title);
+        this.imageView.setImage(ImageLocation.getForDocument(tL_availableReaction.activate_animation), "30_30_pcache", "tgs", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tL_availableReaction);
+        boolean z3 = this.canLock && tL_availableReaction.premium && !UserConfig.getInstance(i).isPremium();
         this.locked = z3;
         if (z3) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.other_lockedfolders2);

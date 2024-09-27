@@ -6,7 +6,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextCell;
@@ -33,7 +33,7 @@ public class BoostTypeCell extends BaseCell {
         return true;
     }
 
-    public void setType(int i, int i2, TLRPC$User tLRPC$User, boolean z) {
+    public void setType(int i, int i2, TLRPC.User user, boolean z) {
         Context context;
         int i3;
         boolean z2 = this.selectedType == i;
@@ -41,7 +41,7 @@ public class BoostTypeCell extends BaseCell {
         if (i != TYPE_GIVEAWAY) {
             if (i == TYPE_SPECIFIC_USERS) {
                 this.titleTextView.setText(LocaleController.getString(R.string.BoostingAwardSpecificUsers));
-                setSubtitle(withArrow((i2 != 1 || tLRPC$User == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingSelectRecipients) : Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
+                setSubtitle(withArrow((i2 != 1 || user == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingSelectRecipients) : Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
                 this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
                 this.avatarDrawable.setAvatarType(6);
                 this.avatarDrawable.setColor(-3905294, -6923014);
@@ -59,7 +59,7 @@ public class BoostTypeCell extends BaseCell {
                     this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
                 }
                 this.titleTextView.setText(LocaleController.getString(R.string.BoostingPremium));
-                setSubtitle(withArrow((i2 != 1 || tLRPC$User == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingWinnersRandomly) : Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
+                setSubtitle(withArrow((i2 != 1 || user == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingWinnersRandomly) : Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
                 this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
                 this.avatarDrawable.setAvatarType(25);
                 this.avatarDrawable.setColor(-3905294, -6923014);

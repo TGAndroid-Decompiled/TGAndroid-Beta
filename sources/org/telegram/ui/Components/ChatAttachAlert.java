@@ -84,22 +84,7 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotInlineResult;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$InputInvoice;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$PaymentForm;
-import org.telegram.tgnet.TLRPC$PaymentReceipt;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBotIconColor;
-import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
-import org.telegram.tgnet.TLRPC$TL_messages_toggleBotInAttachMenu;
-import org.telegram.tgnet.TLRPC$TL_payments_paymentFormStars;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -380,7 +365,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             botWebViewMenuContainer$ActionBarColorsAnimating.updateActionBar(ChatAttachAlert.this.actionBar, floatValue);
         }
 
-        public boolean lambda$onWebAppSwitchInlineQuery$5(TLRPC$User tLRPC$User, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+        public boolean lambda$onWebAppSwitchInlineQuery$5(TLRPC.User user, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
             String str2;
             long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();
@@ -396,7 +381,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
                 bundle.putLong(str2, j);
             }
-            bundle.putString("start_text", "@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
+            bundle.putString("start_text", "@" + UserObject.getPublicUsername(user) + " " + str);
             ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
             BaseFragment baseFragment = chatAttachAlert.baseFragment;
             if (MessagesController.getInstance(chatAttachAlert.currentAccount).checkCanOpenChat(bundle, baseFragment)) {
@@ -567,15 +552,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void onWebAppOpenInvoice(TLRPC$InputInvoice tLRPC$InputInvoice, final String str, TLObject tLObject) {
+        public void onWebAppOpenInvoice(TLRPC.InputInvoice inputInvoice, final String str, TLObject tLObject) {
             PaymentFormActivity paymentFormActivity;
             ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
             BaseFragment baseFragment = chatAttachAlert.baseFragment;
-            if (tLObject instanceof TLRPC$TL_payments_paymentFormStars) {
+            if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
                 final AlertDialog alertDialog = new AlertDialog(ChatAttachAlert.this.getContext(), 3);
                 alertDialog.showDelayed(150L);
                 StarsController starsController = StarsController.getInstance(ChatAttachAlert.this.currentAccount);
-                TLRPC$TL_payments_paymentFormStars tLRPC$TL_payments_paymentFormStars = (TLRPC$TL_payments_paymentFormStars) tLObject;
+                TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = (TLRPC.TL_payments_paymentFormStars) tLObject;
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -583,7 +568,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     }
                 };
                 final ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = this.val$webViewLayout;
-                starsController.openPaymentForm(null, tLRPC$InputInvoice, tLRPC$TL_payments_paymentFormStars, runnable, new Utilities.Callback() {
+                starsController.openPaymentForm(null, inputInvoice, tL_payments_paymentFormStars, runnable, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
                         ChatAttachAlert.AnonymousClass1.lambda$onWebAppOpenInvoice$3(ChatAttachAlertBotWebViewLayout.this, str, (String) obj);
@@ -592,12 +577,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 AndroidUtilities.hideKeyboard(this.val$webViewLayout);
                 return;
             }
-            if (tLObject instanceof TLRPC$PaymentForm) {
-                TLRPC$PaymentForm tLRPC$PaymentForm = (TLRPC$PaymentForm) tLObject;
-                MessagesController.getInstance(chatAttachAlert.currentAccount).putUsers(tLRPC$PaymentForm.users, false);
-                paymentFormActivity = new PaymentFormActivity(tLRPC$PaymentForm, str, baseFragment);
+            if (tLObject instanceof TLRPC.PaymentForm) {
+                TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
+                MessagesController.getInstance(chatAttachAlert.currentAccount).putUsers(paymentForm.users, false);
+                paymentFormActivity = new PaymentFormActivity(paymentForm, str, baseFragment);
             } else {
-                paymentFormActivity = tLObject instanceof TLRPC$PaymentReceipt ? new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject) : null;
+                paymentFormActivity = tLObject instanceof TLRPC.PaymentReceipt ? new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject) : null;
             }
             if (paymentFormActivity != null) {
                 this.val$webViewLayout.scrollToTop();
@@ -661,11 +646,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void onWebAppSwitchInlineQuery(final TLRPC$User tLRPC$User, final String str, List list) {
+        public void onWebAppSwitchInlineQuery(final TLRPC.User user, final String str, List list) {
             if (list.isEmpty()) {
                 BaseFragment baseFragment = ChatAttachAlert.this.baseFragment;
                 if (baseFragment instanceof ChatActivity) {
-                    ((ChatActivity) baseFragment).getChatActivityEnterView().setFieldText("@" + UserObject.getPublicUsername(tLRPC$User) + " " + str);
+                    ((ChatActivity) baseFragment).getChatActivityEnterView().setFieldText("@" + UserObject.getPublicUsername(user) + " " + str);
                 }
                 ChatAttachAlert.this.dismiss(true);
                 return;
@@ -685,7 +670,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                     boolean lambda$onWebAppSwitchInlineQuery$5;
-                    lambda$onWebAppSwitchInlineQuery$5 = ChatAttachAlert.AnonymousClass1.this.lambda$onWebAppSwitchInlineQuery$5(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
+                    lambda$onWebAppSwitchInlineQuery$5 = ChatAttachAlert.AnonymousClass1.this.lambda$onWebAppSwitchInlineQuery$5(user, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                     return lambda$onWebAppSwitchInlineQuery$5;
                 }
             });
@@ -1121,8 +1106,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void didSelectContact(TLRPC$User tLRPC$User, boolean z, int i, long j, boolean z2) {
-            ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContact(tLRPC$User, z, i, j, z2);
+        public void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2) {
+            ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContact(user, z, i, j, z2);
         }
 
         @Override
@@ -1446,8 +1431,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
-            MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tLRPC$TL_document, str, obj);
+        public void onStickerSelected(TLRPC.TL_document tL_document, String str, Object obj) {
+            MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tL_document, str, obj);
         }
 
         @Override
@@ -1456,8 +1441,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void sendBotInlineResult(TLRPC$BotInlineResult tLRPC$BotInlineResult, boolean z, int i) {
-            MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, tLRPC$BotInlineResult, z, i);
+        public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i) {
+            MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, botInlineResult, z, i);
         }
     }
 
@@ -2153,9 +2138,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 sendingMediaInfo.entities = searchImage.entities;
                 sendingMediaInfo.masks = searchImage.stickers;
                 sendingMediaInfo.ttl = searchImage.ttl;
-                TLRPC$BotInlineResult tLRPC$BotInlineResult = searchImage.inlineResult;
-                if (tLRPC$BotInlineResult != null && searchImage.type == 1) {
-                    sendingMediaInfo.inlineResult = tLRPC$BotInlineResult;
+                TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                if (botInlineResult != null && searchImage.type == 1) {
+                    sendingMediaInfo.inlineResult = botInlineResult;
                     sendingMediaInfo.params = searchImage.params;
                 }
                 searchImage.date = (int) (System.currentTimeMillis() / 1000);
@@ -2395,12 +2380,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public class AttachBotButton extends FrameLayout {
-        private TLRPC$TL_attachMenuBot attachMenuBot;
+        private TLRPC.TL_attachMenuBot attachMenuBot;
         private AvatarDrawable avatarDrawable;
         private ValueAnimator checkAnimator;
         private Boolean checked;
         private float checkedState;
-        private TLRPC$User currentUser;
+        private TLRPC.User currentUser;
         private int iconBackgroundColor;
         private BackupImageView imageView;
         private TextView nameTextView;
@@ -2523,18 +2508,18 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(ChatAttachAlert.this.attachItemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
         }
 
-        public void setAttachBot(TLRPC$User tLRPC$User, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+        public void setAttachBot(TLRPC.User user, TLRPC.TL_attachMenuBot tL_attachMenuBot) {
             boolean z;
-            if (tLRPC$User == null || tLRPC$TL_attachMenuBot == null) {
+            if (user == null || tL_attachMenuBot == null) {
                 return;
             }
             this.nameTextView.setTextColor(ChatAttachAlert.this.getThemedColor(Theme.key_dialogTextGray2));
-            this.currentUser = tLRPC$User;
-            this.nameTextView.setText(tLRPC$TL_attachMenuBot.short_name);
-            this.avatarDrawable.setInfo(ChatAttachAlert.this.currentAccount, tLRPC$User);
-            TLRPC$TL_attachMenuBotIcon animatedAttachMenuBotIcon = MediaDataController.getAnimatedAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+            this.currentUser = user;
+            this.nameTextView.setText(tL_attachMenuBot.short_name);
+            this.avatarDrawable.setInfo(ChatAttachAlert.this.currentAccount, user);
+            TLRPC.TL_attachMenuBotIcon animatedAttachMenuBotIcon = MediaDataController.getAnimatedAttachMenuBotIcon(tL_attachMenuBot);
             if (animatedAttachMenuBotIcon == null) {
-                animatedAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+                animatedAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
                 z = false;
             } else {
                 z = true;
@@ -2542,10 +2527,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             if (animatedAttachMenuBotIcon != null) {
                 this.textColor = ChatAttachAlert.this.getThemedColor(Theme.key_chat_attachContactText);
                 this.iconBackgroundColor = ChatAttachAlert.this.getThemedColor(Theme.key_chat_attachContactBackground);
-                Iterator it = animatedAttachMenuBotIcon.colors.iterator();
+                Iterator<TLRPC.TL_attachMenuBotIconColor> it = animatedAttachMenuBotIcon.colors.iterator();
                 while (it.hasNext()) {
-                    TLRPC$TL_attachMenuBotIconColor tLRPC$TL_attachMenuBotIconColor = (TLRPC$TL_attachMenuBotIconColor) it.next();
-                    String str = tLRPC$TL_attachMenuBotIconColor.name;
+                    TLRPC.TL_attachMenuBotIconColor next = it.next();
+                    String str = next.name;
                     str.hashCode();
                     char c = 65535;
                     switch (str.hashCode()) {
@@ -2579,26 +2564,26 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                             if (!Theme.getCurrentTheme().isDark()) {
                                 break;
                             } else {
-                                this.iconBackgroundColor = tLRPC$TL_attachMenuBotIconColor.color;
+                                this.iconBackgroundColor = next.color;
                                 break;
                             }
                         case 1:
                             if (!Theme.getCurrentTheme().isDark()) {
                                 break;
                             } else {
-                                this.textColor = tLRPC$TL_attachMenuBotIconColor.color;
+                                this.textColor = next.color;
                                 break;
                             }
                         case 2:
                             if (!Theme.getCurrentTheme().isDark()) {
-                                this.iconBackgroundColor = tLRPC$TL_attachMenuBotIconColor.color;
+                                this.iconBackgroundColor = next.color;
                                 break;
                             } else {
                                 break;
                             }
                         case 3:
                             if (!Theme.getCurrentTheme().isDark()) {
-                                this.textColor = tLRPC$TL_attachMenuBotIconColor.color;
+                                this.textColor = next.color;
                                 break;
                             } else {
                                 break;
@@ -2607,13 +2592,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
                 this.textColor = ColorUtils.setAlphaComponent(this.textColor, 255);
                 this.iconBackgroundColor = ColorUtils.setAlphaComponent(this.iconBackgroundColor, 255);
-                TLRPC$Document tLRPC$Document = animatedAttachMenuBotIcon.icon;
+                TLRPC.Document document = animatedAttachMenuBotIcon.icon;
                 this.imageView.getImageReceiver().setAllowStartLottieAnimation(false);
-                this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), String.valueOf(tLRPC$TL_attachMenuBot.bot_id), z ? "tgs" : "svg", DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_attachMenuBot);
+                this.imageView.setImage(ImageLocation.getForDocument(document), String.valueOf(tL_attachMenuBot.bot_id), z ? "tgs" : "svg", DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 1.0f), tL_attachMenuBot);
             }
             this.imageView.setSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
             this.imageView.setColorFilter(new PorterDuffColorFilter(ChatAttachAlert.this.getThemedColor(Theme.key_chat_attachIcon), PorterDuff.Mode.SRC_IN));
-            this.attachMenuBot = tLRPC$TL_attachMenuBot;
+            this.attachMenuBot = tL_attachMenuBot;
             this.selector.setVisibility(8);
             updateMargins();
             setCheckedState(0.0f);
@@ -2629,15 +2614,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             invalidate();
         }
 
-        public void setUser(TLRPC$User tLRPC$User) {
-            if (tLRPC$User == null) {
+        public void setUser(TLRPC.User user) {
+            if (user == null) {
                 return;
             }
             this.nameTextView.setTextColor(ChatAttachAlert.this.getThemedColor(Theme.key_dialogTextGray2));
-            this.currentUser = tLRPC$User;
-            this.nameTextView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
-            this.avatarDrawable.setInfo(ChatAttachAlert.this.currentAccount, tLRPC$User);
-            this.imageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+            this.currentUser = user;
+            this.nameTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
+            this.avatarDrawable.setInfo(ChatAttachAlert.this.currentAccount, user);
+            this.imageView.setForUserOrChat(user, this.avatarDrawable);
             this.imageView.setSize(-1, -1);
             this.imageView.setColorFilter(null);
             this.attachMenuBot = null;
@@ -2900,12 +2885,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                             ChatActivity chatActivity = (ChatActivity) ChatAttachAlert.this.baseFragment;
                             this.attachBotsStartRow = this.buttonsCount;
                             this.attachMenuBots.clear();
-                            Iterator it = MediaDataController.getInstance(ChatAttachAlert.this.currentAccount).getAttachMenuBots().bots.iterator();
+                            Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(ChatAttachAlert.this.currentAccount).getAttachMenuBots().bots.iterator();
                             while (it.hasNext()) {
-                                TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) it.next();
-                                if (tLRPC$TL_attachMenuBot.show_in_attach_menu) {
-                                    if (MediaDataController.canShowAttachMenuBot(tLRPC$TL_attachMenuBot, chatActivity.getCurrentChat() != null ? chatActivity.getCurrentChat() : chatActivity.getCurrentUser())) {
-                                        this.attachMenuBots.add(tLRPC$TL_attachMenuBot);
+                                TLRPC.TL_attachMenuBot next = it.next();
+                                if (next.show_in_attach_menu) {
+                                    if (MediaDataController.canShowAttachMenuBot(next, chatActivity.getCurrentChat() != null ? chatActivity.getCurrentChat() : chatActivity.getCurrentUser())) {
+                                        this.attachMenuBots.add(next);
                                     }
                                 }
                             }
@@ -2933,7 +2918,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         this.contactButton = i5;
                     }
                     BaseFragment baseFragment2 = ChatAttachAlert.this.baseFragment;
-                    TLRPC$User currentUser = baseFragment2 instanceof ChatActivity ? ((ChatActivity) baseFragment2).getCurrentUser() : null;
+                    TLRPC.User currentUser = baseFragment2 instanceof ChatActivity ? ((ChatActivity) baseFragment2).getCurrentUser() : null;
                     BaseFragment baseFragment3 = ChatAttachAlert.this.baseFragment;
                     if ((baseFragment3 instanceof ChatActivity) && ((ChatActivity) baseFragment3).getChatMode() == 0 && currentUser != null && !currentUser.bot && QuickRepliesController.getInstance(ChatAttachAlert.this.currentAccount).hasReplies()) {
                         int i6 = this.buttonsCount;
@@ -2997,8 +2982,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 } else {
                     int i12 = i - i10;
                     attachBotButton.setTag(Integer.valueOf(i12));
-                    TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) this.attachMenuBots.get(i12);
-                    attachBotButton.setAttachBot(MessagesController.getInstance(ChatAttachAlert.this.currentAccount).getUser(Long.valueOf(tLRPC$TL_attachMenuBot.bot_id)), tLRPC$TL_attachMenuBot);
+                    TLRPC.TL_attachMenuBot tL_attachMenuBot = (TLRPC.TL_attachMenuBot) this.attachMenuBots.get(i12);
+                    attachBotButton.setAttachBot(MessagesController.getInstance(ChatAttachAlert.this.currentAccount).getUser(Long.valueOf(tL_attachMenuBot.bot_id)), tL_attachMenuBot);
                     return;
                 }
             }
@@ -3076,7 +3061,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     public interface ChatAttachViewDelegate {
 
         public abstract class CC {
-            public static void $default$didSelectBot(ChatAttachViewDelegate chatAttachViewDelegate, TLRPC$User tLRPC$User) {
+            public static void $default$didSelectBot(ChatAttachViewDelegate chatAttachViewDelegate, TLRPC.User user) {
             }
 
             public static void $default$doOnIdle(ChatAttachViewDelegate chatAttachViewDelegate, Runnable runnable) {
@@ -3106,7 +3091,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
         void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4);
 
-        void didSelectBot(TLRPC$User tLRPC$User);
+        void didSelectBot(TLRPC.User user);
 
         void doOnIdle(Runnable runnable);
 
@@ -3931,8 +3916,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
-                MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tLRPC$TL_document, str, obj);
+            public void onStickerSelected(TLRPC.TL_document tL_document, String str, Object obj) {
+                MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tL_document, str, obj);
             }
 
             @Override
@@ -3941,8 +3926,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            public void sendBotInlineResult(TLRPC$BotInlineResult tLRPC$BotInlineResult, boolean z, int i) {
-                MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, tLRPC$BotInlineResult, z, i);
+            public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i) {
+                MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, botInlineResult, z, i);
             }
         });
         ViewGroup viewGroup = this.containerView;
@@ -3996,8 +3981,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.containerView.invalidate();
     }
 
-    public void lambda$init$43(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        ((ChatActivity) this.baseFragment).didSelectLocation(tLRPC$MessageMedia, i, z, i2);
+    public void lambda$init$43(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+        ((ChatActivity) this.baseFragment).didSelectLocation(messageMedia, i, z, i2);
     }
 
     public void lambda$makeFocusable$42(final EditTextBoldCursor editTextBoldCursor, boolean z) {
@@ -4021,7 +4006,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.selectedMenuItem.toggleSubMenu();
     }
 
-    public void lambda$new$10(final AttachBotButton attachBotButton, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$10(final AttachBotButton attachBotButton, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -4031,14 +4016,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void lambda$new$11(final AttachBotButton attachBotButton, Boolean bool) {
-        TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
-        tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(attachBotButton.attachMenuBot.bot_id);
-        tLRPC$TL_messages_toggleBotInAttachMenu.enabled = true;
-        tLRPC$TL_messages_toggleBotInAttachMenu.write_allowed = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
+        TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
+        tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(attachBotButton.attachMenuBot.bot_id);
+        tL_messages_toggleBotInAttachMenu.enabled = true;
+        tL_messages_toggleBotInAttachMenu.write_allowed = true;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatAttachAlert.this.lambda$new$10(attachBotButton, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChatAttachAlert.this.lambda$new$10(attachBotButton, tLObject, tL_error);
             }
         }, 66);
     }
@@ -4309,9 +4294,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     sendingMediaInfo.entities = searchImage.entities;
                     sendingMediaInfo.masks = searchImage.stickers;
                     sendingMediaInfo.ttl = searchImage.ttl;
-                    TLRPC$BotInlineResult tLRPC$BotInlineResult = searchImage.inlineResult;
-                    if (tLRPC$BotInlineResult != null && searchImage.type == 1) {
-                        sendingMediaInfo.inlineResult = tLRPC$BotInlineResult;
+                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                    if (botInlineResult != null && searchImage.type == 1) {
+                        sendingMediaInfo.inlineResult = botInlineResult;
                         sendingMediaInfo.params = searchImage.params;
                     }
                     searchImage.date = (int) (System.currentTimeMillis() / 1000);
@@ -4418,18 +4403,18 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         updatePhotoPreview(this.currentAttachLayout != this.photoPreviewLayout);
     }
 
-    public void lambda$new$7(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        ((ChatActivity) this.baseFragment).didSelectLocation(tLRPC$MessageMedia, i, z, i2);
+    public void lambda$new$7(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+        ((ChatActivity) this.baseFragment).didSelectLocation(messageMedia, i, z, i2);
     }
 
-    public void lambda$new$8(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
-        ((ChatActivity) this.baseFragment).sendPoll(tLRPC$TL_messageMediaPoll, hashMap, z, i);
+    public void lambda$new$8(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
+        ((ChatActivity) this.baseFragment).sendPoll(tL_messageMediaPoll, hashMap, z, i);
     }
 
     public void lambda$new$9(AttachBotButton attachBotButton) {
-        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = attachBotButton.attachMenuBot;
+        TLRPC.TL_attachMenuBot tL_attachMenuBot = attachBotButton.attachMenuBot;
         attachBotButton.attachMenuBot.side_menu_disclaimer_needed = false;
-        tLRPC$TL_attachMenuBot.inactive = false;
+        tL_attachMenuBot.inactive = false;
         showBotLayout(attachBotButton.attachMenuBot.bot_id, true);
         MediaDataController.getInstance(this.currentAccount).updateAttachMenuBotsInCache();
     }
@@ -4473,34 +4458,34 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         setNavBarAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void lambda$onLongClickBotButton$28(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+    public void lambda$onLongClickBotButton$28(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
         MediaDataController.getInstance(this.currentAccount).loadAttachMenuBots(false, true);
-        if (this.currentAttachLayout == this.botAttachLayouts.get(tLRPC$TL_attachMenuBot.bot_id)) {
+        if (this.currentAttachLayout == this.botAttachLayouts.get(tL_attachMenuBot.bot_id)) {
             showLayout(this.photoLayout);
         }
     }
 
-    public void lambda$onLongClickBotButton$29(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onLongClickBotButton$29(final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlert.this.lambda$onLongClickBotButton$28(tLRPC$TL_attachMenuBot);
+                ChatAttachAlert.this.lambda$onLongClickBotButton$28(tL_attachMenuBot);
             }
         });
     }
 
-    public void lambda$onLongClickBotButton$30(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
-        if (tLRPC$TL_attachMenuBot == null) {
-            MediaDataController.getInstance(this.currentAccount).removeInline(tLRPC$User.id);
+    public void lambda$onLongClickBotButton$30(final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, DialogInterface dialogInterface, int i) {
+        if (tL_attachMenuBot == null) {
+            MediaDataController.getInstance(this.currentAccount).removeInline(user.id);
             return;
         }
-        TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
-        tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User);
-        tLRPC$TL_messages_toggleBotInAttachMenu.enabled = false;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
+        TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
+        tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(user);
+        tL_messages_toggleBotInAttachMenu.enabled = false;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatAttachAlert.this.lambda$onLongClickBotButton$29(tLRPC$TL_attachMenuBot, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChatAttachAlert.this.lambda$onLongClickBotButton$29(tL_attachMenuBot, tLObject, tL_error);
             }
         }, 66);
     }
@@ -4622,7 +4607,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         BaseFragment baseFragment = this.baseFragment;
         if (baseFragment instanceof ChatActivity) {
-            TLRPC$Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
+            TLRPC.Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
             this.audioLayout.setMaxSelectedFiles(((currentChat == null || ChatObject.hasAdminRights(currentChat) || !currentChat.slowmode_enabled) && this.editingMessageObject == null) ? -1 : 1);
         }
         if (z) {
@@ -4646,8 +4631,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
 
                 @Override
-                public void didSelectContact(TLRPC$User tLRPC$User, boolean z, int i, long j, boolean z2) {
-                    ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContact(tLRPC$User, z, i, j, z2);
+                public void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2) {
+                    ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContact(user, z, i, j, z2);
                 }
 
                 @Override
@@ -4658,7 +4643,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         BaseFragment baseFragment = this.baseFragment;
         if (baseFragment instanceof ChatActivity) {
-            TLRPC$Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
+            TLRPC.Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
             this.contactsLayout.setMultipleSelectionAllowed(currentChat == null || ChatObject.hasAdminRights(currentChat) || !currentChat.slowmode_enabled);
         }
         showLayout(this.contactsLayout);
@@ -4737,7 +4722,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         BaseFragment baseFragment = this.baseFragment;
         int i2 = 1;
         if (baseFragment instanceof ChatActivity) {
-            TLRPC$Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
+            TLRPC.Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
             ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout2 = this.documentLayout;
             if ((currentChat == null || ChatObject.hasAdminRights(currentChat) || !currentChat.slowmode_enabled) && this.editingMessageObject == null) {
                 i2 = -1;
@@ -4824,7 +4809,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         BaseFragment baseFragment = this.baseFragment;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
-            TLRPC$Chat currentChat = chatActivity.getCurrentChat();
+            TLRPC.Chat currentChat = chatActivity.getCurrentChat();
             if (chatActivity.getCurrentUser() != null || ((ChatObject.isChannel(currentChat) && currentChat.megagroup) || !ChatObject.isChannel(currentChat))) {
                 MessagesController.getNotificationsSettings(this.currentAccount).edit().putBoolean("silent_" + chatActivity.getDialogId(), !z).commit();
             }
@@ -5248,7 +5233,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return this.baseFragment;
     }
 
-    public TLRPC$Chat getChat() {
+    public TLRPC.Chat getChat() {
         BaseFragment baseFragment = this.baseFragment;
         return baseFragment instanceof ChatActivity ? ((ChatActivity) baseFragment).getCurrentChat() : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
     }
@@ -5553,20 +5538,20 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return super.onKeyDown(i, keyEvent);
     }
 
-    public void onLongClickBotButton(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User) {
-        String userName = tLRPC$TL_attachMenuBot != null ? tLRPC$TL_attachMenuBot.short_name : UserObject.getUserName(tLRPC$User);
-        Iterator it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
-        while (it.hasNext() && ((TLRPC$TL_attachMenuBot) it.next()).bot_id != tLRPC$User.id) {
+    public void onLongClickBotButton(final TLRPC.TL_attachMenuBot tL_attachMenuBot, final TLRPC.User user) {
+        String userName = tL_attachMenuBot != null ? tL_attachMenuBot.short_name : UserObject.getUserName(user);
+        Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
+        while (it.hasNext() && it.next().bot_id != user.id) {
         }
         String formatString = LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, userName);
         AlertDialog.Builder title = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle));
-        if (tLRPC$TL_attachMenuBot == null) {
+        if (tL_attachMenuBot == null) {
             formatString = LocaleController.formatString("BotRemoveInlineFromMenu", R.string.BotRemoveInlineFromMenu, userName);
         }
         title.setMessage(AndroidUtilities.replaceTags(formatString)).setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ChatAttachAlert.this.lambda$onLongClickBotButton$30(tLRPC$TL_attachMenuBot, tLRPC$User, dialogInterface, i);
+                ChatAttachAlert.this.lambda$onLongClickBotButton$30(tL_attachMenuBot, user, dialogInterface, i);
             }
         }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).show();
     }

@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -672,7 +672,7 @@ public class TextCell extends FrameLayout {
         setValueSticker(str);
     }
 
-    public void setTextAndSticker(CharSequence charSequence, TLRPC$Document tLRPC$Document, boolean z) {
+    public void setTextAndSticker(CharSequence charSequence, TLRPC.Document document, boolean z) {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(charSequence);
@@ -691,7 +691,7 @@ public class TextCell extends FrameLayout {
         if (r4 != null) {
             r4.setVisibility(8);
         }
-        setValueSticker(tLRPC$Document);
+        setValueSticker(document);
     }
 
     public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z) {
@@ -916,7 +916,7 @@ public class TextCell extends FrameLayout {
         invalidate();
     }
 
-    public void setValueSticker(TLRPC$Document tLRPC$Document) {
+    public void setValueSticker(TLRPC.Document document) {
         if (this.emojiDrawable == null) {
             AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(30.0f));
             this.emojiDrawable = swapAnimatedEmojiDrawable;
@@ -924,7 +924,7 @@ public class TextCell extends FrameLayout {
                 swapAnimatedEmojiDrawable.attach();
             }
         }
-        this.emojiDrawable.set(tLRPC$Document, 1, true);
+        this.emojiDrawable.set(document, 1, true);
         invalidate();
     }
 

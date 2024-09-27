@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import java.util.concurrent.CountDownLatch;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 
 public class AnimatedFileDrawableStream implements FileLoadOperationStream {
     private volatile boolean canceled;
@@ -9,7 +9,7 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
     private int currentAccount;
     private int debugCanceledCount;
     private boolean debugReportSend;
-    private TLRPC$Document document;
+    private TLRPC.Document document;
     private String finishedFilePath;
     private boolean finishedLoadingFile;
     private long lastOffset;
@@ -21,8 +21,8 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
     private final Object sync = new Object();
     private boolean waitingForLoad;
 
-    public AnimatedFileDrawableStream(TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, int i, boolean z, int i2, int i3) {
-        this.document = tLRPC$Document;
+    public AnimatedFileDrawableStream(TLRPC.Document document, ImageLocation imageLocation, Object obj, int i, boolean z, int i2, int i3) {
+        this.document = document;
         this.location = imageLocation;
         this.parentObject = obj;
         this.currentAccount = i;
@@ -77,7 +77,7 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
         return this.currentAccount;
     }
 
-    public TLRPC$Document getDocument() {
+    public TLRPC.Document getDocument() {
         return this.document;
     }
 

@@ -18,7 +18,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ShareAlert;
 
 public class ShareActivity extends Activity {
@@ -60,7 +60,7 @@ public class ShareActivity extends Activity {
             return;
         }
         SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-        TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(serializedData, serializedData.readInt32(false), false);
         if (TLdeserialize == null) {
             finish();
             return;

@@ -11,8 +11,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.ChatMessageCell;
 
 public class SlotsDrawable extends RLottieDrawable {
@@ -213,9 +212,9 @@ public class SlotsDrawable extends RLottieDrawable {
         recycle(true);
     }
 
-    public static void lambda$setBaseDice$2(TLRPC$Document tLRPC$Document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        DownloadController.getInstance(i).addLoadingFileObserver(FileLoader.getAttachFileName(tLRPC$Document), messageObject, chatMessageCell);
-        FileLoader.getInstance(i).loadFile(tLRPC$Document, tLRPC$TL_messages_stickerSet, 1, 1);
+    public static void lambda$setBaseDice$2(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        DownloadController.getInstance(i).addLoadingFileObserver(FileLoader.getAttachFileName(document), messageObject, chatMessageCell);
+        FileLoader.getInstance(i).loadFile(document, tL_messages_stickerSet, 1, 1);
     }
 
     public void lambda$setBaseDice$3() {
@@ -235,7 +234,7 @@ public class SlotsDrawable extends RLottieDrawable {
         invalidateInternal();
     }
 
-    public void lambda$setBaseDice$5(final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, final int i, final MessageObject messageObject, final ChatMessageCell chatMessageCell) {
+    public void lambda$setBaseDice$5(final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final int i, final MessageObject messageObject, final ChatMessageCell chatMessageCell) {
         Runnable runnable;
         int i2;
         if (this.destroyAfterLoading) {
@@ -266,13 +265,13 @@ public class SlotsDrawable extends RLottieDrawable {
                             i2 = 20;
                         }
                     }
-                    final TLRPC$Document tLRPC$Document = (TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(i2);
-                    String readRes = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true), 0);
+                    final TLRPC.Document document = tL_messages_stickerSet.documents.get(i2);
+                    String readRes = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
                     if (TextUtils.isEmpty(readRes)) {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                SlotsDrawable.lambda$setBaseDice$2(TLRPC$Document.this, i, messageObject, chatMessageCell, tLRPC$TL_messages_stickerSet);
+                                SlotsDrawable.lambda$setBaseDice$2(TLRPC.Document.this, i, messageObject, chatMessageCell, tL_messages_stickerSet);
                             }
                         });
                         z = true;
@@ -298,7 +297,7 @@ public class SlotsDrawable extends RLottieDrawable {
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public void lambda$setDiceNumber$10(final org.telegram.tgnet.TLRPC$TL_messages_stickerSet r18, final int r19, final org.telegram.messenger.MessageObject r20, final org.telegram.ui.Cells.ChatMessageCell r21, final boolean r22) {
+    public void lambda$setDiceNumber$10(final org.telegram.tgnet.TLRPC.TL_messages_stickerSet r18, final int r19, final org.telegram.messenger.MessageObject r20, final org.telegram.ui.Cells.ChatMessageCell r21, final boolean r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SlotsDrawable.lambda$setDiceNumber$10(org.telegram.tgnet.TLRPC$TL_messages_stickerSet, int, org.telegram.messenger.MessageObject, org.telegram.ui.Cells.ChatMessageCell, boolean):void");
     }
 
@@ -310,9 +309,9 @@ public class SlotsDrawable extends RLottieDrawable {
         recycle(true);
     }
 
-    public static void lambda$setDiceNumber$7(TLRPC$Document tLRPC$Document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        DownloadController.getInstance(i).addLoadingFileObserver(FileLoader.getAttachFileName(tLRPC$Document), messageObject, chatMessageCell);
-        FileLoader.getInstance(i).loadFile(tLRPC$Document, tLRPC$TL_messages_stickerSet, 1, 1);
+    public static void lambda$setDiceNumber$7(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        DownloadController.getInstance(i).addLoadingFileObserver(FileLoader.getAttachFileName(document), messageObject, chatMessageCell);
+        FileLoader.getInstance(i).loadFile(document, tL_messages_stickerSet, 1, 1);
     }
 
     public void lambda$setDiceNumber$8() {
@@ -432,7 +431,7 @@ public class SlotsDrawable extends RLottieDrawable {
         }
     }
 
-    public boolean setBaseDice(final ChatMessageCell chatMessageCell, final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+    public boolean setBaseDice(final ChatMessageCell chatMessageCell, final TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         if (this.nativePtr == 0 && !this.loadingInBackground) {
             this.loadingInBackground = true;
             final MessageObject messageObject = chatMessageCell.getMessageObject();
@@ -440,14 +439,14 @@ public class SlotsDrawable extends RLottieDrawable {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.this.lambda$setBaseDice$5(tLRPC$TL_messages_stickerSet, i, messageObject, chatMessageCell);
+                    SlotsDrawable.this.lambda$setBaseDice$5(tL_messages_stickerSet, i, messageObject, chatMessageCell);
                 }
             });
         }
         return true;
     }
 
-    public boolean setDiceNumber(final ChatMessageCell chatMessageCell, int i, final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, final boolean z) {
+    public boolean setDiceNumber(final ChatMessageCell chatMessageCell, int i, final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final boolean z) {
         if (this.secondNativePtr == 0 && !this.secondLoadingInBackground) {
             init(i);
             final MessageObject messageObject = chatMessageCell.getMessageObject();
@@ -456,7 +455,7 @@ public class SlotsDrawable extends RLottieDrawable {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.this.lambda$setDiceNumber$10(tLRPC$TL_messages_stickerSet, i2, messageObject, chatMessageCell, z);
+                    SlotsDrawable.this.lambda$setDiceNumber$10(tL_messages_stickerSet, i2, messageObject, chatMessageCell, z);
                 }
             });
         }

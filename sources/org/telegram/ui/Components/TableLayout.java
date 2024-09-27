@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC$TL_pageTableCell;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.TextSelectionHelper;
 
@@ -737,7 +737,7 @@ public class TableLayout extends View {
     }
 
     public class Child {
-        private TLRPC$TL_pageTableCell cell;
+        private TLRPC.TL_pageTableCell cell;
         private int fixedHeight;
         private int index;
         private LayoutParams layoutParams;
@@ -1014,10 +1014,10 @@ public class TableLayout extends View {
             int i2;
             int i3 = this.fixedHeight;
             this.measuredHeight = i3;
-            TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell = this.cell;
-            if (tLRPC$TL_pageTableCell.valign_middle) {
+            TLRPC.TL_pageTableCell tL_pageTableCell = this.cell;
+            if (tL_pageTableCell.valign_middle) {
                 i2 = (i3 - this.textHeight) / 2;
-            } else if (!tLRPC$TL_pageTableCell.valign_bottom) {
+            } else if (!tL_pageTableCell.valign_bottom) {
                 return;
             } else {
                 i2 = (i3 - this.textHeight) - TableLayout.this.itemPaddingTop;
@@ -1244,7 +1244,7 @@ public class TableLayout extends View {
     }
 
     public interface TableLayoutDelegate {
-        ArticleViewer.DrawingText createTextLayout(TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell, int i);
+        ArticleViewer.DrawingText createTextLayout(TLRPC.TL_pageTableCell tL_pageTableCell, int i);
 
         Paint getHeaderPaint();
 
@@ -1667,12 +1667,12 @@ public class TableLayout extends View {
         invalidateStructure();
     }
 
-    public void addChild(TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell, int i, int i2, int i3) {
+    public void addChild(TLRPC.TL_pageTableCell tL_pageTableCell, int i, int i2, int i3) {
         int i4 = i3 == 0 ? 1 : i3;
         Child child = new Child(this.childrens.size());
-        child.cell = tLRPC$TL_pageTableCell;
+        child.cell = tL_pageTableCell;
         LayoutParams layoutParams = new LayoutParams();
-        int i5 = tLRPC$TL_pageTableCell.rowspan;
+        int i5 = tL_pageTableCell.rowspan;
         if (i5 == 0) {
             i5 = 1;
         }
@@ -1683,7 +1683,7 @@ public class TableLayout extends View {
         child.layoutParams = layoutParams;
         child.rowspan = i2;
         this.childrens.add(child);
-        if (tLRPC$TL_pageTableCell.rowspan > 1) {
+        if (tL_pageTableCell.rowspan > 1) {
             this.rowSpans.add(new Point(i2, r1 + i2));
         }
         invalidateStructure();

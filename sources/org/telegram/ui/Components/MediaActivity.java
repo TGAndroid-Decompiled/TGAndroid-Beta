@@ -26,10 +26,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -55,8 +53,8 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     private ButtonWithCounterView button;
     private FrameLayout buttonContainer;
     private ActionBarMenuSubItem calendarItem;
-    private TLRPC$ChatFull currentChatInfo;
-    private TLRPC$UserFull currentUserInfo;
+    private TLRPC.ChatFull currentChatInfo;
+    private TLRPC.UserFull currentUserInfo;
     private ActionBarMenuItem deleteItem;
     private long dialogId;
     private boolean filterPhotos;
@@ -96,7 +94,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
                 }
-                MediaActivity.this.lambda$onBackPressed$307();
+                MediaActivity.this.lambda$onBackPressed$300();
                 return;
             }
             if (i != 2) {
@@ -116,9 +114,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             if (MediaActivity.this.actionModeMessageObjects != null) {
                 final ArrayList arrayList = new ArrayList();
                 for (int i2 = 0; i2 < MediaActivity.this.actionModeMessageObjects.size(); i2++) {
-                    TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i2)).storyItem;
-                    if (tL_stories$StoryItem != null) {
-                        arrayList.add(tL_stories$StoryItem);
+                    TL_stories.StoryItem storyItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i2)).storyItem;
+                    if (storyItem != null) {
+                        arrayList.add(storyItem);
                     }
                 }
                 if (arrayList.isEmpty()) {
@@ -190,9 +188,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         if (this.actionModeMessageObjects != null) {
             i = 0;
             for (int i2 = 0; i2 < this.actionModeMessageObjects.size(); i2++) {
-                TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) this.actionModeMessageObjects.valueAt(i2)).storyItem;
-                if (tL_stories$StoryItem != null) {
-                    arrayList.add(tL_stories$StoryItem);
+                TL_stories.StoryItem storyItem = ((MessageObject) this.actionModeMessageObjects.valueAt(i2)).storyItem;
+                if (storyItem != null) {
+                    arrayList.add(storyItem);
                     i++;
                 }
             }
@@ -208,9 +206,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
         final boolean[] zArr = new boolean[arrayList.size()];
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            TL_stories$StoryItem tL_stories$StoryItem2 = (TL_stories$StoryItem) arrayList.get(i3);
-            zArr[i3] = tL_stories$StoryItem2.pinned;
-            tL_stories$StoryItem2.pinned = z;
+            TL_stories.StoryItem storyItem2 = (TL_stories.StoryItem) arrayList.get(i3);
+            zArr[i3] = storyItem2.pinned;
+            storyItem2.pinned = z;
         }
         getMessagesController().getStoriesController().updateStoriesInLists(this.dialogId, arrayList);
         final boolean[] zArr2 = {false};
@@ -304,7 +302,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         zArr[0] = true;
         AndroidUtilities.cancelRunOnUIThread(this.applyBulletin);
         for (int i = 0; i < arrayList.size(); i++) {
-            ((TL_stories$StoryItem) arrayList.get(i)).pinned = zArr2[i];
+            ((TL_stories.StoryItem) arrayList.get(i)).pinned = zArr2[i];
         }
         getMessagesController().getStoriesController().updateStoriesInLists(this.dialogId, arrayList);
     }
@@ -571,11 +569,11 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.userInfoDidLoad && ((Long) objArr[0]).longValue() == this.dialogId) {
-            TLRPC$UserFull tLRPC$UserFull = (TLRPC$UserFull) objArr[1];
-            this.currentUserInfo = tLRPC$UserFull;
+            TLRPC.UserFull userFull = (TLRPC.UserFull) objArr[1];
+            this.currentUserInfo = userFull;
             SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
             if (sharedMediaLayout != null) {
-                sharedMediaLayout.setUserInfo(tLRPC$UserFull);
+                sharedMediaLayout.setUserInfo(userFull);
             }
         }
     }
@@ -666,7 +664,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().addObserver(this, NotificationCenter.storiesEnabledUpdate);
         if (DialogObject.isUserDialog(this.dialogId) && this.topicId == 0) {
-            TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.dialogId));
+            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.dialogId));
             if (UserObject.isUserSelf(user)) {
                 getMessagesController().loadUserInfo(user, false, this.classGuid);
                 this.currentUserInfo = getMessagesController().getUserFull(this.dialogId);
@@ -705,7 +703,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }));
     }
 
-    public void setChatInfo(TLRPC$ChatFull tLRPC$ChatFull) {
-        this.currentChatInfo = tLRPC$ChatFull;
+    public void setChatInfo(TLRPC.ChatFull chatFull) {
+        this.currentChatInfo = chatFull;
     }
 }

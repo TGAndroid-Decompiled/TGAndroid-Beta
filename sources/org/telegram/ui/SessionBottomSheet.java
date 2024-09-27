@@ -25,9 +25,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_changeAuthorizationSettings;
-import org.telegram.tgnet.TLRPC$TL_authorization;
-import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -41,21 +39,21 @@ import org.telegram.ui.SessionBottomSheet;
 public class SessionBottomSheet extends BottomSheet {
     RLottieImageView imageView;
     BaseFragment parentFragment;
-    TLRPC$TL_authorization session;
+    TLRPC.TL_authorization session;
 
     public class AnonymousClass8 implements View.OnClickListener {
         final Callback val$callback;
         final BaseFragment val$fragment;
-        final TLRPC$TL_authorization val$session;
+        final TLRPC.TL_authorization val$session;
 
-        AnonymousClass8(Callback callback, TLRPC$TL_authorization tLRPC$TL_authorization, BaseFragment baseFragment) {
+        AnonymousClass8(Callback callback, TLRPC.TL_authorization tL_authorization, BaseFragment baseFragment) {
             this.val$callback = callback;
-            this.val$session = tLRPC$TL_authorization;
+            this.val$session = tL_authorization;
             this.val$fragment = baseFragment;
         }
 
-        public void lambda$onClick$0(Callback callback, TLRPC$TL_authorization tLRPC$TL_authorization, DialogInterface dialogInterface, int i) {
-            callback.onSessionTerminated(tLRPC$TL_authorization);
+        public void lambda$onClick$0(Callback callback, TLRPC.TL_authorization tL_authorization, DialogInterface dialogInterface, int i) {
+            callback.onSessionTerminated(tL_authorization);
             SessionBottomSheet.this.dismiss();
         }
 
@@ -66,11 +64,11 @@ public class SessionBottomSheet extends BottomSheet {
             builder.setTitle(LocaleController.getString(R.string.AreYouSureSessionTitle));
             String string = LocaleController.getString(R.string.Terminate);
             final Callback callback = this.val$callback;
-            final TLRPC$TL_authorization tLRPC$TL_authorization = this.val$session;
+            final TLRPC.TL_authorization tL_authorization = this.val$session;
             builder.setPositiveButton(string, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    SessionBottomSheet.AnonymousClass8.this.lambda$onClick$0(callback, tLRPC$TL_authorization, dialogInterface, i);
+                    SessionBottomSheet.AnonymousClass8.this.lambda$onClick$0(callback, tL_authorization, dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -84,7 +82,7 @@ public class SessionBottomSheet extends BottomSheet {
     }
 
     public interface Callback {
-        void onSessionTerminated(TLRPC$TL_authorization tLRPC$TL_authorization);
+        void onSessionTerminated(TLRPC.TL_authorization tL_authorization);
     }
 
     private static class ItemView extends FrameLayout {
@@ -151,11 +149,11 @@ public class SessionBottomSheet extends BottomSheet {
         }
     }
 
-    public SessionBottomSheet(BaseFragment baseFragment, final TLRPC$TL_authorization tLRPC$TL_authorization, boolean z, Callback callback) {
+    public SessionBottomSheet(BaseFragment baseFragment, final TLRPC.TL_authorization tL_authorization, boolean z, Callback callback) {
         super(baseFragment.getParentActivity(), false);
         setOpenNoDelay(true);
         Activity parentActivity = baseFragment.getParentActivity();
-        this.session = tLRPC$TL_authorization;
+        this.session = tL_authorization;
         this.parentFragment = baseFragment;
         fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(parentActivity);
@@ -185,29 +183,29 @@ public class SessionBottomSheet extends BottomSheet {
         textView2.setTextSize(2, 13.0f);
         textView2.setGravity(17);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 21, 4, 21, 21));
-        textView2.setText((tLRPC$TL_authorization.flags & 1) != 0 ? LocaleController.getString(R.string.Online) : LocaleController.formatDateTime(tLRPC$TL_authorization.date_active, true));
+        textView2.setText((tL_authorization.flags & 1) != 0 ? LocaleController.getString(R.string.Online) : LocaleController.formatDateTime(tL_authorization.date_active, true));
         StringBuilder sb = new StringBuilder();
-        if (tLRPC$TL_authorization.device_model.length() != 0) {
-            sb.append(tLRPC$TL_authorization.device_model);
+        if (tL_authorization.device_model.length() != 0) {
+            sb.append(tL_authorization.device_model);
         }
         if (sb.length() == 0) {
-            if (tLRPC$TL_authorization.platform.length() != 0) {
-                sb.append(tLRPC$TL_authorization.platform);
+            if (tL_authorization.platform.length() != 0) {
+                sb.append(tL_authorization.platform);
             }
-            if (tLRPC$TL_authorization.system_version.length() != 0) {
-                if (tLRPC$TL_authorization.platform.length() != 0) {
+            if (tL_authorization.system_version.length() != 0) {
+                if (tL_authorization.platform.length() != 0) {
                     sb.append(" ");
                 }
-                sb.append(tLRPC$TL_authorization.system_version);
+                sb.append(tL_authorization.system_version);
             }
         }
         textView.setText(sb);
-        setAnimation(tLRPC$TL_authorization, this.imageView);
+        setAnimation(tL_authorization, this.imageView);
         ItemView itemView = new ItemView(parentActivity, false);
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(tLRPC$TL_authorization.app_name);
+        sb2.append(tL_authorization.app_name);
         sb2.append(" ");
-        sb2.append(tLRPC$TL_authorization.app_version);
+        sb2.append(tL_authorization.app_version);
         itemView.valueText.setText(sb2);
         Drawable mutate = ContextCompat.getDrawable(parentActivity, R.drawable.menu_devices).mutate();
         int i = Theme.key_windowBackgroundWhiteGrayIcon;
@@ -217,9 +215,9 @@ public class SessionBottomSheet extends BottomSheet {
         itemView.iconView.setImageDrawable(mutate);
         itemView.descriptionText.setText(LocaleController.getString(R.string.Application));
         linearLayout.addView(itemView);
-        if (tLRPC$TL_authorization.country.length() != 0) {
+        if (tL_authorization.country.length() != 0) {
             ItemView itemView2 = new ItemView(parentActivity, false);
-            itemView2.valueText.setText(tLRPC$TL_authorization.country);
+            itemView2.valueText.setText(tL_authorization.country);
             Drawable mutate2 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_location).mutate();
             mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
             itemView2.iconView.setImageDrawable(mutate2);
@@ -227,13 +225,13 @@ public class SessionBottomSheet extends BottomSheet {
             itemView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SessionBottomSheet.this.copyText(tLRPC$TL_authorization.country);
+                    SessionBottomSheet.this.copyText(tL_authorization.country);
                 }
             });
             itemView2.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    SessionBottomSheet.this.copyText(tLRPC$TL_authorization.country);
+                    SessionBottomSheet.this.copyText(tL_authorization.country);
                     return true;
                 }
             });
@@ -242,9 +240,9 @@ public class SessionBottomSheet extends BottomSheet {
             itemView.needDivider = true;
             itemView = itemView2;
         }
-        if (tLRPC$TL_authorization.ip.length() != 0) {
+        if (tL_authorization.ip.length() != 0) {
             ItemView itemView3 = new ItemView(parentActivity, false);
-            itemView3.valueText.setText(tLRPC$TL_authorization.ip);
+            itemView3.valueText.setText(tL_authorization.ip);
             Drawable mutate3 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_language).mutate();
             mutate3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
             itemView3.iconView.setImageDrawable(mutate3);
@@ -252,13 +250,13 @@ public class SessionBottomSheet extends BottomSheet {
             itemView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SessionBottomSheet.this.copyText(tLRPC$TL_authorization.ip);
+                    SessionBottomSheet.this.copyText(tL_authorization.ip);
                 }
             });
             itemView3.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    SessionBottomSheet.this.copyText(tLRPC$TL_authorization.country);
+                    SessionBottomSheet.this.copyText(tL_authorization.country);
                     return true;
                 }
             });
@@ -267,19 +265,19 @@ public class SessionBottomSheet extends BottomSheet {
             itemView.needDivider = true;
             itemView = itemView3;
         }
-        if (secretChatsEnabled(tLRPC$TL_authorization)) {
+        if (secretChatsEnabled(tL_authorization)) {
             final ItemView itemView4 = new ItemView(parentActivity, true);
             itemView4.valueText.setText(LocaleController.getString(R.string.AcceptSecretChats));
             Drawable mutate4 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_secret).mutate();
             mutate4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
             itemView4.iconView.setImageDrawable(mutate4);
-            itemView4.switchView.setChecked(!tLRPC$TL_authorization.encrypted_requests_disabled, false);
+            itemView4.switchView.setChecked(!tL_authorization.encrypted_requests_disabled, false);
             itemView4.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
             itemView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     itemView4.switchView.setChecked(!r3.isChecked(), true);
-                    tLRPC$TL_authorization.encrypted_requests_disabled = !itemView4.switchView.isChecked();
+                    tL_authorization.encrypted_requests_disabled = !itemView4.switchView.isChecked();
                     SessionBottomSheet.this.uploadSessionSettings();
                 }
             });
@@ -293,13 +291,13 @@ public class SessionBottomSheet extends BottomSheet {
         Drawable mutate5 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_calls).mutate();
         mutate5.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
         itemView5.iconView.setImageDrawable(mutate5);
-        itemView5.switchView.setChecked(!tLRPC$TL_authorization.call_requests_disabled, false);
+        itemView5.switchView.setChecked(!tL_authorization.call_requests_disabled, false);
         itemView5.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
         itemView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 itemView5.switchView.setChecked(!r3.isChecked(), true);
-                tLRPC$TL_authorization.call_requests_disabled = !itemView5.switchView.isChecked();
+                tL_authorization.call_requests_disabled = !itemView5.switchView.isChecked();
                 SessionBottomSheet.this.uploadSessionSettings();
             }
         });
@@ -316,7 +314,7 @@ public class SessionBottomSheet extends BottomSheet {
             textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
             linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new AnonymousClass8(callback, tLRPC$TL_authorization, baseFragment));
+            textView3.setOnClickListener(new AnonymousClass8(callback, tL_authorization, baseFragment));
         }
         ScrollView scrollView = new ScrollView(parentActivity);
         scrollView.addView(linearLayout);
@@ -339,29 +337,29 @@ public class SessionBottomSheet extends BottomSheet {
         BulletinFactory.of(getContainer(), null).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();
     }
 
-    public static void lambda$uploadSessionSettings$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$uploadSessionSettings$0(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    private boolean secretChatsEnabled(TLRPC$TL_authorization tLRPC$TL_authorization) {
-        int i = tLRPC$TL_authorization.api_id;
+    private boolean secretChatsEnabled(TLRPC.TL_authorization tL_authorization) {
+        int i = tL_authorization.api_id;
         return (i == 2040 || i == 2496) ? false : true;
     }
 
-    private void setAnimation(org.telegram.tgnet.TLRPC$TL_authorization r8, org.telegram.ui.Components.RLottieImageView r9) {
+    private void setAnimation(org.telegram.tgnet.TLRPC.TL_authorization r8, org.telegram.ui.Components.RLottieImageView r9) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SessionBottomSheet.setAnimation(org.telegram.tgnet.TLRPC$TL_authorization, org.telegram.ui.Components.RLottieImageView):void");
     }
 
     public void uploadSessionSettings() {
-        TLRPC$TL_account_changeAuthorizationSettings tLRPC$TL_account_changeAuthorizationSettings = new TLRPC$TL_account_changeAuthorizationSettings();
-        TLRPC$TL_authorization tLRPC$TL_authorization = this.session;
-        tLRPC$TL_account_changeAuthorizationSettings.encrypted_requests_disabled = tLRPC$TL_authorization.encrypted_requests_disabled;
-        tLRPC$TL_account_changeAuthorizationSettings.call_requests_disabled = tLRPC$TL_authorization.call_requests_disabled;
-        tLRPC$TL_account_changeAuthorizationSettings.flags = 3;
-        tLRPC$TL_account_changeAuthorizationSettings.hash = tLRPC$TL_authorization.hash;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_changeAuthorizationSettings, new RequestDelegate() {
+        TLRPC.TL_account_changeAuthorizationSettings tL_account_changeAuthorizationSettings = new TLRPC.TL_account_changeAuthorizationSettings();
+        TLRPC.TL_authorization tL_authorization = this.session;
+        tL_account_changeAuthorizationSettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
+        tL_account_changeAuthorizationSettings.call_requests_disabled = tL_authorization.call_requests_disabled;
+        tL_account_changeAuthorizationSettings.flags = 3;
+        tL_account_changeAuthorizationSettings.hash = tL_authorization.hash;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_account_changeAuthorizationSettings, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                SessionBottomSheet.lambda$uploadSessionSettings$0(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                SessionBottomSheet.lambda$uploadSessionSettings$0(tLObject, tL_error);
             }
         });
     }

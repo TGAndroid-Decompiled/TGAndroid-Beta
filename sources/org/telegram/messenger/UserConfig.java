@@ -10,11 +10,7 @@ import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_tmpPassword;
-import org.telegram.tgnet.TLRPC$TL_defaultHistoryTTL;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_help_termsOfService;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 
 public class UserConfig extends BaseController {
     private static volatile UserConfig[] Instance = new UserConfig[4];
@@ -34,7 +30,7 @@ public class UserConfig extends BaseController {
     private volatile boolean configLoaded;
     public boolean contactsReimported;
     public int contactsSavedCount;
-    private TLRPC$User currentUser;
+    private TLRPC.User currentUser;
     public String defaultTopicIcons;
     public boolean draftsLoaded;
     public boolean filtersLoaded;
@@ -71,9 +67,9 @@ public class UserConfig extends BaseController {
     public boolean suggestContacts;
     private final Object sync;
     public boolean syncContacts;
-    public TLRPC$TL_account_tmpPassword tmpPassword;
+    public TLRPC.TL_account_tmpPassword tmpPassword;
     boolean ttlIsLoading;
-    public TLRPC$TL_help_termsOfService unacceptedTermsOfService;
+    public TLRPC.TL_help_termsOfService unacceptedTermsOfService;
     public boolean unreadDialogsLoaded;
     LongSparseArray<SaveToGallerySettingsHelper.DialogException> userSaveGalleryExceptions;
     public int webappRatingLoadTime;
@@ -96,12 +92,12 @@ public class UserConfig extends BaseController {
         this.ttlIsLoading = false;
     }
 
-    private void checkPremiumSelf(TLRPC$User tLRPC$User, final TLRPC$User tLRPC$User2) {
-        if (tLRPC$User == null || !(tLRPC$User2 == null || tLRPC$User.premium == tLRPC$User2.premium)) {
+    private void checkPremiumSelf(TLRPC.User user, final TLRPC.User user2) {
+        if (user == null || !(user2 == null || user.premium == user2.premium)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserConfig.this.lambda$checkPremiumSelf$1(tLRPC$User2);
+                    UserConfig.this.lambda$checkPremiumSelf$1(user2);
                 }
             });
         }
@@ -153,8 +149,8 @@ public class UserConfig extends BaseController {
         return i >= 0 && i < 4 && getInstance(i).isClientActivated();
     }
 
-    public void lambda$checkPremiumSelf$1(TLRPC$User tLRPC$User) {
-        getMessagesController().updatePremium(tLRPC$User.premium);
+    public void lambda$checkPremiumSelf$1(TLRPC.User user) {
+        getMessagesController().updatePremium(user.premium);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumStatusChangedGlobal, new Object[0]);
         getMediaDataController().loadPremiumPromo(false);
@@ -164,14 +160,14 @@ public class UserConfig extends BaseController {
 
     public void lambda$loadGlobalTTl$2(TLObject tLObject) {
         if (tLObject != null) {
-            this.globalTtl = ((TLRPC$TL_defaultHistoryTTL) tLObject).period / 60;
+            this.globalTtl = ((TLRPC.TL_defaultHistoryTTL) tLObject).period / 60;
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
             this.ttlIsLoading = false;
             this.lastLoadingTime = System.currentTimeMillis();
         }
     }
 
-    public void lambda$loadGlobalTTl$3(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadGlobalTTl$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -224,10 +220,10 @@ public class UserConfig extends BaseController {
                             edit.putLong("6migrateOffsetChannelId", this.migrateOffsetChannelId);
                             edit.putLong("6migrateOffsetAccess", this.migrateOffsetAccess);
                         }
-                        TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService = this.unacceptedTermsOfService;
-                        if (tLRPC$TL_help_termsOfService != null) {
+                        TLRPC.TL_help_termsOfService tL_help_termsOfService = this.unacceptedTermsOfService;
+                        if (tL_help_termsOfService != null) {
                             try {
-                                SerializedData serializedData = new SerializedData(tLRPC$TL_help_termsOfService.getObjectSize());
+                                SerializedData serializedData = new SerializedData(tL_help_termsOfService.getObjectSize());
                                 this.unacceptedTermsOfService.serializeToStream(serializedData);
                                 edit.putString("terms", Base64.encodeToString(serializedData.toByteArray(), 0));
                                 serializedData.cleanup();
@@ -337,8 +333,8 @@ public class UserConfig extends BaseController {
         String str;
         synchronized (this.sync) {
             try {
-                TLRPC$User tLRPC$User = this.currentUser;
-                if (tLRPC$User == null || (str = tLRPC$User.phone) == null) {
+                TLRPC.User user = this.currentUser;
+                if (user == null || (str = user.phone) == null) {
                     str = "";
                 }
             } finally {
@@ -351,8 +347,8 @@ public class UserConfig extends BaseController {
         long j;
         synchronized (this.sync) {
             try {
-                TLRPC$User tLRPC$User = this.currentUser;
-                j = tLRPC$User != null ? tLRPC$User.id : 0L;
+                TLRPC.User user = this.currentUser;
+                j = user != null ? user.id : 0L;
             } catch (Throwable th) {
                 throw th;
             }
@@ -360,12 +356,12 @@ public class UserConfig extends BaseController {
         return j;
     }
 
-    public TLRPC$User getCurrentUser() {
-        TLRPC$User tLRPC$User;
+    public TLRPC.User getCurrentUser() {
+        TLRPC.User user;
         synchronized (this.sync) {
-            tLRPC$User = this.currentUser;
+            user = this.currentUser;
         }
-        return tLRPC$User;
+        return user;
     }
 
     public long[] getDialogLoadOffsets(int i) {
@@ -473,11 +469,11 @@ public class UserConfig extends BaseController {
     }
 
     public boolean isPremium() {
-        TLRPC$User tLRPC$User = this.currentUser;
-        if (tLRPC$User == null) {
+        TLRPC.User user = this.currentUser;
+        if (user == null) {
             return false;
         }
-        return tLRPC$User.premium;
+        return user.premium;
     }
 
     public void loadConfig() {
@@ -489,20 +485,10 @@ public class UserConfig extends BaseController {
             return;
         }
         this.ttlIsLoading = true;
-        getConnectionsManager().sendRequest(new TLObject() {
+        getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDefaultHistoryTTL(), new RequestDelegate() {
             @Override
-            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-                return TLRPC$TL_defaultHistoryTTL.TLdeserialize(abstractSerializedData, i, z);
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(1703637384);
-            }
-        }, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                UserConfig.this.lambda$loadGlobalTTl$3(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                UserConfig.this.lambda$loadGlobalTTl$3(tLObject, tL_error);
             }
         });
     }
@@ -534,12 +520,12 @@ public class UserConfig extends BaseController {
         this.savedSaltedPassword = bArr2;
     }
 
-    public void setCurrentUser(TLRPC$User tLRPC$User) {
+    public void setCurrentUser(TLRPC.User user) {
         synchronized (this.sync) {
-            TLRPC$User tLRPC$User2 = this.currentUser;
-            this.currentUser = tLRPC$User;
-            this.clientUserId = tLRPC$User.id;
-            checkPremiumSelf(tLRPC$User2, tLRPC$User);
+            TLRPC.User user2 = this.currentUser;
+            this.currentUser = user;
+            this.clientUserId = user.id;
+            checkPremiumSelf(user2, user);
         }
     }
 

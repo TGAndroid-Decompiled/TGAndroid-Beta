@@ -26,15 +26,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotInlineResult;
-import org.telegram.tgnet.TLRPC$TL_contacts_resolveUsername;
-import org.telegram.tgnet.TLRPC$TL_contacts_resolvedPeer;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputGeoPoint;
-import org.telegram.tgnet.TLRPC$TL_inputPeerEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_getInlineBotResults;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$messages_BotResults;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.PermissionRequest;
@@ -112,20 +104,20 @@ public abstract class Weather {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         final ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         String str2 = messagesController.weatherSearchUsername;
-        final TLRPC$User[] tLRPC$UserArr = {messagesController.getUser(str2)};
+        final TLRPC.User[] userArr = {messagesController.getUser(str2)};
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                Weather.lambda$fetch$5(MessagesController.this, tLRPC$UserArr, d, d2, iArr, connectionsManager, callback, str);
+                Weather.lambda$fetch$5(MessagesController.this, userArr, d, d2, iArr, connectionsManager, callback, str);
             }
         };
-        if (tLRPC$UserArr[0] == null) {
-            TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
-            tLRPC$TL_contacts_resolveUsername.username = str2;
-            iArr[0] = connectionsManager.sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
+        if (userArr[0] == null) {
+            TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+            tL_contacts_resolveUsername.username = str2;
+            iArr[0] = connectionsManager.sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    Weather.lambda$fetch$7(iArr, messagesController, tLRPC$UserArr, runnable, callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    Weather.lambda$fetch$7(iArr, messagesController, userArr, runnable, callback, tLObject, tL_error);
                 }
             });
         } else {
@@ -215,13 +207,13 @@ public abstract class Weather {
 
     public static void lambda$fetch$3(int[] iArr, TLObject tLObject, Utilities.Callback callback, double d, double d2, String str) {
         iArr[0] = 0;
-        if (tLObject instanceof TLRPC$messages_BotResults) {
-            TLRPC$messages_BotResults tLRPC$messages_BotResults = (TLRPC$messages_BotResults) tLObject;
-            if (!tLRPC$messages_BotResults.results.isEmpty()) {
-                TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) tLRPC$messages_BotResults.results.get(0);
-                String str2 = tLRPC$BotInlineResult.title;
+        if (tLObject instanceof TLRPC.messages_BotResults) {
+            TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
+            if (!messages_botresults.results.isEmpty()) {
+                TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(0);
+                String str2 = botInlineResult.title;
                 try {
-                    float parseFloat = Float.parseFloat(tLRPC$BotInlineResult.description);
+                    float parseFloat = Float.parseFloat(botInlineResult.description);
                     State state = new State();
                     state.lat = d;
                     state.lng = d2;
@@ -240,7 +232,7 @@ public abstract class Weather {
         callback.run(null);
     }
 
-    public static void lambda$fetch$4(final int[] iArr, final Utilities.Callback callback, final double d, final double d2, final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$fetch$4(final int[] iArr, final Utilities.Callback callback, final double d, final double d2, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -249,33 +241,33 @@ public abstract class Weather {
         });
     }
 
-    public static void lambda$fetch$5(MessagesController messagesController, TLRPC$User[] tLRPC$UserArr, final double d, final double d2, final int[] iArr, ConnectionsManager connectionsManager, final Utilities.Callback callback, final String str) {
-        TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
-        tLRPC$TL_messages_getInlineBotResults.bot = messagesController.getInputUser(tLRPC$UserArr[0]);
-        tLRPC$TL_messages_getInlineBotResults.query = "";
-        tLRPC$TL_messages_getInlineBotResults.offset = "";
-        tLRPC$TL_messages_getInlineBotResults.flags |= 1;
-        TLRPC$TL_inputGeoPoint tLRPC$TL_inputGeoPoint = new TLRPC$TL_inputGeoPoint();
-        tLRPC$TL_messages_getInlineBotResults.geo_point = tLRPC$TL_inputGeoPoint;
-        tLRPC$TL_inputGeoPoint.lat = d;
-        tLRPC$TL_inputGeoPoint._long = d2;
-        tLRPC$TL_messages_getInlineBotResults.peer = new TLRPC$TL_inputPeerEmpty();
-        iArr[0] = connectionsManager.sendRequest(tLRPC$TL_messages_getInlineBotResults, new RequestDelegate() {
+    public static void lambda$fetch$5(MessagesController messagesController, TLRPC.User[] userArr, final double d, final double d2, final int[] iArr, ConnectionsManager connectionsManager, final Utilities.Callback callback, final String str) {
+        TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+        tL_messages_getInlineBotResults.bot = messagesController.getInputUser(userArr[0]);
+        tL_messages_getInlineBotResults.query = "";
+        tL_messages_getInlineBotResults.offset = "";
+        tL_messages_getInlineBotResults.flags |= 1;
+        TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+        tL_messages_getInlineBotResults.geo_point = tL_inputGeoPoint;
+        tL_inputGeoPoint.lat = d;
+        tL_inputGeoPoint._long = d2;
+        tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+        iArr[0] = connectionsManager.sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                Weather.lambda$fetch$4(iArr, callback, d, d2, str, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                Weather.lambda$fetch$4(iArr, callback, d, d2, str, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$fetch$6(int[] iArr, TLObject tLObject, MessagesController messagesController, TLRPC$User[] tLRPC$UserArr, Runnable runnable, Utilities.Callback callback) {
+    public static void lambda$fetch$6(int[] iArr, TLObject tLObject, MessagesController messagesController, TLRPC.User[] userArr, Runnable runnable, Utilities.Callback callback) {
         iArr[0] = 0;
-        if (tLObject instanceof TLRPC$TL_contacts_resolvedPeer) {
-            TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
-            messagesController.putUsers(tLRPC$TL_contacts_resolvedPeer.users, false);
-            messagesController.putChats(tLRPC$TL_contacts_resolvedPeer.chats, false);
-            TLRPC$User user = messagesController.getUser(Long.valueOf(DialogObject.getPeerDialogId(tLRPC$TL_contacts_resolvedPeer.peer)));
-            tLRPC$UserArr[0] = user;
+        if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
+            TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
+            messagesController.putUsers(tL_contacts_resolvedPeer.users, false);
+            messagesController.putChats(tL_contacts_resolvedPeer.chats, false);
+            TLRPC.User user = messagesController.getUser(Long.valueOf(DialogObject.getPeerDialogId(tL_contacts_resolvedPeer.peer)));
+            userArr[0] = user;
             if (user != null) {
                 runnable.run();
                 return;
@@ -284,11 +276,11 @@ public abstract class Weather {
         callback.run(null);
     }
 
-    public static void lambda$fetch$7(final int[] iArr, final MessagesController messagesController, final TLRPC$User[] tLRPC$UserArr, final Runnable runnable, final Utilities.Callback callback, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$fetch$7(final int[] iArr, final MessagesController messagesController, final TLRPC.User[] userArr, final Runnable runnable, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Weather.lambda$fetch$6(iArr, tLObject, messagesController, tLRPC$UserArr, runnable, callback);
+                Weather.lambda$fetch$6(iArr, tLObject, messagesController, userArr, runnable, callback);
             }
         });
     }

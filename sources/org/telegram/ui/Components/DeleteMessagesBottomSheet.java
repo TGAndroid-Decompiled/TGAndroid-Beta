@@ -27,26 +27,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChannelParticipant;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantAdmin;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantBanned;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantCreator;
-import org.telegram.tgnet.TLRPC$TL_channels_reportSpam;
-import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_channelMessages;
-import org.telegram.tgnet.TLRPC$TL_messages_search;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CollapseTextCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda283;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda282;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -56,12 +43,12 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     private UniversalAdapter adapter;
     private boolean[] banFilter;
     private Action banOrRestrict;
-    private TLRPC$TL_chatBannedRights bannedRights;
+    private TLRPC.TL_chatBannedRights bannedRights;
     private SelectorBtnCell buttonContainer;
     private boolean canRestrict;
-    private TLRPC$TL_chatBannedRights defaultBannedRights;
+    private TLRPC.TL_chatBannedRights defaultBannedRights;
     private Action deleteAll;
-    private TLRPC$Chat inChat;
+    private TLRPC.Chat inChat;
     private boolean isForum;
     private long mergeDialogId;
     private ArrayList messages;
@@ -214,7 +201,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 return;
             }
             TLObject first = first();
-            String forcedFirstName = first instanceof TLRPC$User ? UserObject.getForcedFirstName((TLRPC$User) first) : ContactsController.formatName(first);
+            String forcedFirstName = first instanceof TLRPC.User ? UserObject.getForcedFirstName((TLRPC.User) first) : ContactsController.formatName(first);
             int i2 = this.type;
             if (i2 == 0) {
                 i = R.string.DeleteReportSpam;
@@ -247,10 +234,10 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public DeleteMessagesBottomSheet(BaseFragment baseFragment, TLRPC$Chat tLRPC$Chat, ArrayList arrayList, ArrayList arrayList2, TLRPC$ChannelParticipant[] tLRPC$ChannelParticipantArr, long j, int i, int i2, Runnable runnable) {
+    public DeleteMessagesBottomSheet(BaseFragment baseFragment, TLRPC.Chat chat, ArrayList arrayList, ArrayList arrayList2, TLRPC.ChannelParticipant[] channelParticipantArr, long j, int i, int i2, Runnable runnable) {
         super(baseFragment.getContext(), baseFragment, false, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, baseFragment.getResourceProvider());
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights;
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights2;
         this.restrict = false;
         this.participantMessageCountsLoading = false;
         this.participantMessageCountsLoaded = false;
@@ -320,85 +307,85 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         SelectorBtnCell selectorBtnCell2 = this.buttonContainer;
         int i4 = this.backgroundPaddingLeft;
         viewGroup.addView(selectorBtnCell2, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i4, 0, i4, 0));
-        this.inChat = tLRPC$Chat;
-        this.isForum = ChatObject.isForum(tLRPC$Chat);
+        this.inChat = chat;
+        this.isForum = ChatObject.isForum(chat);
         this.messages = arrayList;
         this.mergeDialogId = j;
         this.topicId = i;
         this.mode = i2;
         this.onDelete = runnable;
-        this.defaultBannedRights = tLRPC$Chat.default_banned_rights;
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights3 = new TLRPC$TL_chatBannedRights();
-        this.bannedRights = tLRPC$TL_chatBannedRights3;
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights4 = this.defaultBannedRights;
-        if (tLRPC$TL_chatBannedRights4.view_messages) {
-            tLRPC$TL_chatBannedRights3.view_messages = true;
+        this.defaultBannedRights = chat.default_banned_rights;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights3 = new TLRPC.TL_chatBannedRights();
+        this.bannedRights = tL_chatBannedRights3;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights4 = this.defaultBannedRights;
+        if (tL_chatBannedRights4.view_messages) {
+            tL_chatBannedRights3.view_messages = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_messages) {
-            tLRPC$TL_chatBannedRights3.send_messages = true;
+        if (tL_chatBannedRights4.send_messages) {
+            tL_chatBannedRights3.send_messages = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_media) {
-            tLRPC$TL_chatBannedRights3.send_media = true;
+        if (tL_chatBannedRights4.send_media) {
+            tL_chatBannedRights3.send_media = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_stickers) {
-            tLRPC$TL_chatBannedRights3.send_stickers = true;
+        if (tL_chatBannedRights4.send_stickers) {
+            tL_chatBannedRights3.send_stickers = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_gifs) {
-            tLRPC$TL_chatBannedRights3.send_gifs = true;
+        if (tL_chatBannedRights4.send_gifs) {
+            tL_chatBannedRights3.send_gifs = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_games) {
-            tLRPC$TL_chatBannedRights3.send_games = true;
+        if (tL_chatBannedRights4.send_games) {
+            tL_chatBannedRights3.send_games = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_inline) {
-            tLRPC$TL_chatBannedRights3.send_inline = true;
+        if (tL_chatBannedRights4.send_inline) {
+            tL_chatBannedRights3.send_inline = true;
         }
-        if (tLRPC$TL_chatBannedRights4.embed_links) {
-            tLRPC$TL_chatBannedRights3.embed_links = true;
+        if (tL_chatBannedRights4.embed_links) {
+            tL_chatBannedRights3.embed_links = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_polls) {
-            tLRPC$TL_chatBannedRights3.send_polls = true;
+        if (tL_chatBannedRights4.send_polls) {
+            tL_chatBannedRights3.send_polls = true;
         }
-        if (tLRPC$TL_chatBannedRights4.invite_users) {
-            tLRPC$TL_chatBannedRights3.invite_users = true;
+        if (tL_chatBannedRights4.invite_users) {
+            tL_chatBannedRights3.invite_users = true;
         }
-        if (tLRPC$TL_chatBannedRights4.change_info) {
-            tLRPC$TL_chatBannedRights3.change_info = true;
+        if (tL_chatBannedRights4.change_info) {
+            tL_chatBannedRights3.change_info = true;
         }
-        if (tLRPC$TL_chatBannedRights4.pin_messages) {
-            tLRPC$TL_chatBannedRights3.pin_messages = true;
+        if (tL_chatBannedRights4.pin_messages) {
+            tL_chatBannedRights3.pin_messages = true;
         }
-        if (tLRPC$TL_chatBannedRights4.manage_topics) {
-            tLRPC$TL_chatBannedRights3.manage_topics = true;
+        if (tL_chatBannedRights4.manage_topics) {
+            tL_chatBannedRights3.manage_topics = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_photos) {
-            tLRPC$TL_chatBannedRights3.send_photos = true;
+        if (tL_chatBannedRights4.send_photos) {
+            tL_chatBannedRights3.send_photos = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_videos) {
-            tLRPC$TL_chatBannedRights3.send_videos = true;
+        if (tL_chatBannedRights4.send_videos) {
+            tL_chatBannedRights3.send_videos = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_audios) {
-            tLRPC$TL_chatBannedRights3.send_audios = true;
+        if (tL_chatBannedRights4.send_audios) {
+            tL_chatBannedRights3.send_audios = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_docs) {
-            tLRPC$TL_chatBannedRights3.send_docs = true;
+        if (tL_chatBannedRights4.send_docs) {
+            tL_chatBannedRights3.send_docs = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_voices) {
-            tLRPC$TL_chatBannedRights3.send_voices = true;
+        if (tL_chatBannedRights4.send_voices) {
+            tL_chatBannedRights3.send_voices = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_roundvideos) {
-            tLRPC$TL_chatBannedRights3.send_roundvideos = true;
+        if (tL_chatBannedRights4.send_roundvideos) {
+            tL_chatBannedRights3.send_roundvideos = true;
         }
-        if (tLRPC$TL_chatBannedRights4.send_plain) {
-            tLRPC$TL_chatBannedRights3.send_plain = true;
+        if (tL_chatBannedRights4.send_plain) {
+            tL_chatBannedRights3.send_plain = true;
         }
         this.report = new Action(0, arrayList2);
         this.deleteAll = new Action(1, arrayList2);
-        if (ChatObject.canBlockUsers(tLRPC$Chat)) {
+        if (ChatObject.canBlockUsers(chat)) {
             this.banFilter = new boolean[arrayList2.size()];
             int i5 = 0;
             while (i5 < arrayList2.size()) {
-                TLRPC$ChannelParticipant tLRPC$ChannelParticipant = i5 < tLRPC$ChannelParticipantArr.length ? tLRPC$ChannelParticipantArr[i5] : null;
-                if ((tLRPC$Chat.creator || (!(tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantAdmin) && !(tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantCreator))) && (!(tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantBanned) || (tLRPC$TL_chatBannedRights2 = tLRPC$ChannelParticipant.banned_rights) == null || !isBanned(tLRPC$TL_chatBannedRights2))) {
+                TLRPC.ChannelParticipant channelParticipant = i5 < channelParticipantArr.length ? channelParticipantArr[i5] : null;
+                if ((chat.creator || (!(channelParticipant instanceof TLRPC.TL_channelParticipantAdmin) && !(channelParticipant instanceof TLRPC.TL_channelParticipantCreator))) && (!(channelParticipant instanceof TLRPC.TL_channelParticipantBanned) || (tL_chatBannedRights2 = channelParticipant.banned_rights) == null || !isBanned(tL_chatBannedRights2))) {
                     this.banFilter[i5] = true;
                 }
                 i5++;
@@ -407,15 +394,15 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             if (hasAnyDefaultRights()) {
                 int i6 = 0;
                 while (i6 < arrayList2.size()) {
-                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant2 = i6 < tLRPC$ChannelParticipantArr.length ? tLRPC$ChannelParticipantArr[i6] : null;
-                    if (!(arrayList2.get(i6) instanceof TLRPC$Chat) && ((!(tLRPC$ChannelParticipant2 instanceof TLRPC$TL_channelParticipantBanned) || (tLRPC$TL_chatBannedRights = tLRPC$ChannelParticipant2.banned_rights) == null || canBeRestricted(tLRPC$TL_chatBannedRights)) && this.banFilter[i6])) {
+                    TLRPC.ChannelParticipant channelParticipant2 = i6 < channelParticipantArr.length ? channelParticipantArr[i6] : null;
+                    if (!(arrayList2.get(i6) instanceof TLRPC.Chat) && ((!(channelParticipant2 instanceof TLRPC.TL_channelParticipantBanned) || (tL_chatBannedRights = channelParticipant2.banned_rights) == null || canBeRestricted(tL_chatBannedRights)) && this.banFilter[i6])) {
                         this.restrictFilter[i6] = true;
                         this.canRestrict = true;
                     }
                     i6++;
                 }
             }
-            this.participantsBannedRights = (ArrayList) DesugarArrays.stream(tLRPC$ChannelParticipantArr).map(new Function() {
+            this.participantsBannedRights = (ArrayList) DesugarArrays.stream(channelParticipantArr).map(new Function() {
                 @Override
                 public Function andThen(Function function) {
                     return Function.CC.$default$andThen(this, function);
@@ -423,8 +410,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
                 @Override
                 public final Object apply(Object obj) {
-                    TLRPC$TL_chatBannedRights lambda$new$2;
-                    lambda$new$2 = DeleteMessagesBottomSheet.lambda$new$2((TLRPC$ChannelParticipant) obj);
+                    TLRPC.TL_chatBannedRights lambda$new$2;
+                    lambda$new$2 = DeleteMessagesBottomSheet.lambda$new$2((TLRPC.ChannelParticipant) obj);
                     return lambda$new$2;
                 }
 
@@ -432,7 +419,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 public Function compose(Function function) {
                     return Function.CC.$default$compose(this, function);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda283()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda282()));
             Action action = new Action(2, arrayList2);
             this.banOrRestrict = action;
             action.setFilter(this.banFilter);
@@ -444,46 +431,46 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     private boolean allDefaultMediaBanned() {
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.defaultBannedRights;
-        return tLRPC$TL_chatBannedRights.send_photos && tLRPC$TL_chatBannedRights.send_videos && tLRPC$TL_chatBannedRights.send_stickers && tLRPC$TL_chatBannedRights.send_audios && tLRPC$TL_chatBannedRights.send_docs && tLRPC$TL_chatBannedRights.send_voices && tLRPC$TL_chatBannedRights.send_roundvideos && tLRPC$TL_chatBannedRights.embed_links && tLRPC$TL_chatBannedRights.send_polls;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
+        return tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls;
     }
 
-    public static TLRPC$TL_chatBannedRights bannedRightsOr(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2) {
-        if (tLRPC$TL_chatBannedRights == null) {
-            return tLRPC$TL_chatBannedRights2;
+    public static TLRPC.TL_chatBannedRights bannedRightsOr(TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2) {
+        if (tL_chatBannedRights == null) {
+            return tL_chatBannedRights2;
         }
-        if (tLRPC$TL_chatBannedRights2 == null) {
-            return tLRPC$TL_chatBannedRights;
+        if (tL_chatBannedRights2 == null) {
+            return tL_chatBannedRights;
         }
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights3 = new TLRPC$TL_chatBannedRights();
+        TLRPC.TL_chatBannedRights tL_chatBannedRights3 = new TLRPC.TL_chatBannedRights();
         boolean z = true;
-        tLRPC$TL_chatBannedRights3.view_messages = tLRPC$TL_chatBannedRights.view_messages || tLRPC$TL_chatBannedRights2.view_messages;
-        tLRPC$TL_chatBannedRights3.send_messages = tLRPC$TL_chatBannedRights.send_messages || tLRPC$TL_chatBannedRights2.send_messages;
-        tLRPC$TL_chatBannedRights3.send_media = tLRPC$TL_chatBannedRights.send_media || tLRPC$TL_chatBannedRights2.send_media;
-        tLRPC$TL_chatBannedRights3.send_stickers = tLRPC$TL_chatBannedRights.send_stickers || tLRPC$TL_chatBannedRights2.send_stickers;
-        tLRPC$TL_chatBannedRights3.send_gifs = tLRPC$TL_chatBannedRights.send_gifs || tLRPC$TL_chatBannedRights2.send_gifs;
-        tLRPC$TL_chatBannedRights3.send_games = tLRPC$TL_chatBannedRights.send_games || tLRPC$TL_chatBannedRights2.send_games;
-        tLRPC$TL_chatBannedRights3.send_inline = tLRPC$TL_chatBannedRights.send_inline || tLRPC$TL_chatBannedRights2.send_inline;
-        tLRPC$TL_chatBannedRights3.embed_links = tLRPC$TL_chatBannedRights.embed_links || tLRPC$TL_chatBannedRights2.embed_links;
-        tLRPC$TL_chatBannedRights3.send_polls = tLRPC$TL_chatBannedRights.send_polls || tLRPC$TL_chatBannedRights2.send_polls;
-        tLRPC$TL_chatBannedRights3.change_info = tLRPC$TL_chatBannedRights.change_info || tLRPC$TL_chatBannedRights2.change_info;
-        tLRPC$TL_chatBannedRights3.invite_users = tLRPC$TL_chatBannedRights.invite_users || tLRPC$TL_chatBannedRights2.invite_users;
-        tLRPC$TL_chatBannedRights3.pin_messages = tLRPC$TL_chatBannedRights.pin_messages || tLRPC$TL_chatBannedRights2.pin_messages;
-        tLRPC$TL_chatBannedRights3.manage_topics = tLRPC$TL_chatBannedRights.manage_topics || tLRPC$TL_chatBannedRights2.manage_topics;
-        tLRPC$TL_chatBannedRights3.send_photos = tLRPC$TL_chatBannedRights.send_photos || tLRPC$TL_chatBannedRights2.send_photos;
-        tLRPC$TL_chatBannedRights3.send_videos = tLRPC$TL_chatBannedRights.send_videos || tLRPC$TL_chatBannedRights2.send_videos;
-        tLRPC$TL_chatBannedRights3.send_roundvideos = tLRPC$TL_chatBannedRights.send_roundvideos || tLRPC$TL_chatBannedRights2.send_roundvideos;
-        tLRPC$TL_chatBannedRights3.send_audios = tLRPC$TL_chatBannedRights.send_audios || tLRPC$TL_chatBannedRights2.send_audios;
-        tLRPC$TL_chatBannedRights3.send_voices = tLRPC$TL_chatBannedRights.send_voices || tLRPC$TL_chatBannedRights2.send_voices;
-        tLRPC$TL_chatBannedRights3.send_docs = tLRPC$TL_chatBannedRights.send_docs || tLRPC$TL_chatBannedRights2.send_docs;
-        if (!tLRPC$TL_chatBannedRights.send_plain && !tLRPC$TL_chatBannedRights2.send_plain) {
+        tL_chatBannedRights3.view_messages = tL_chatBannedRights.view_messages || tL_chatBannedRights2.view_messages;
+        tL_chatBannedRights3.send_messages = tL_chatBannedRights.send_messages || tL_chatBannedRights2.send_messages;
+        tL_chatBannedRights3.send_media = tL_chatBannedRights.send_media || tL_chatBannedRights2.send_media;
+        tL_chatBannedRights3.send_stickers = tL_chatBannedRights.send_stickers || tL_chatBannedRights2.send_stickers;
+        tL_chatBannedRights3.send_gifs = tL_chatBannedRights.send_gifs || tL_chatBannedRights2.send_gifs;
+        tL_chatBannedRights3.send_games = tL_chatBannedRights.send_games || tL_chatBannedRights2.send_games;
+        tL_chatBannedRights3.send_inline = tL_chatBannedRights.send_inline || tL_chatBannedRights2.send_inline;
+        tL_chatBannedRights3.embed_links = tL_chatBannedRights.embed_links || tL_chatBannedRights2.embed_links;
+        tL_chatBannedRights3.send_polls = tL_chatBannedRights.send_polls || tL_chatBannedRights2.send_polls;
+        tL_chatBannedRights3.change_info = tL_chatBannedRights.change_info || tL_chatBannedRights2.change_info;
+        tL_chatBannedRights3.invite_users = tL_chatBannedRights.invite_users || tL_chatBannedRights2.invite_users;
+        tL_chatBannedRights3.pin_messages = tL_chatBannedRights.pin_messages || tL_chatBannedRights2.pin_messages;
+        tL_chatBannedRights3.manage_topics = tL_chatBannedRights.manage_topics || tL_chatBannedRights2.manage_topics;
+        tL_chatBannedRights3.send_photos = tL_chatBannedRights.send_photos || tL_chatBannedRights2.send_photos;
+        tL_chatBannedRights3.send_videos = tL_chatBannedRights.send_videos || tL_chatBannedRights2.send_videos;
+        tL_chatBannedRights3.send_roundvideos = tL_chatBannedRights.send_roundvideos || tL_chatBannedRights2.send_roundvideos;
+        tL_chatBannedRights3.send_audios = tL_chatBannedRights.send_audios || tL_chatBannedRights2.send_audios;
+        tL_chatBannedRights3.send_voices = tL_chatBannedRights.send_voices || tL_chatBannedRights2.send_voices;
+        tL_chatBannedRights3.send_docs = tL_chatBannedRights.send_docs || tL_chatBannedRights2.send_docs;
+        if (!tL_chatBannedRights.send_plain && !tL_chatBannedRights2.send_plain) {
             z = false;
         }
-        tLRPC$TL_chatBannedRights3.send_plain = z;
-        return tLRPC$TL_chatBannedRights3;
+        tL_chatBannedRights3.send_plain = z;
+        return tL_chatBannedRights3;
     }
 
-    private boolean canBeRestricted(org.telegram.tgnet.TLRPC$TL_chatBannedRights r3) {
+    private boolean canBeRestricted(org.telegram.tgnet.TLRPC.TL_chatBannedRights r3) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DeleteMessagesBottomSheet.canBeRestricted(org.telegram.tgnet.TLRPC$TL_chatBannedRights):boolean");
     }
 
@@ -549,10 +536,10 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                     arrayList.add(UItem.asRoundCheckbox(12, LocaleController.getString(R.string.SendMediaPermissionStickersGifs)).setChecked((this.bannedRights.send_stickers || this.defaultBannedRights.send_stickers) ? false : true).setLocked(this.defaultBannedRights.send_stickers).setPad(1));
                     arrayList.add(UItem.asRoundCheckbox(13, LocaleController.getString(R.string.SendMediaPolls)).setChecked((this.bannedRights.send_polls || this.defaultBannedRights.send_polls) ? false : true).setLocked(this.defaultBannedRights.send_polls).setPad(1));
                     UItem asRoundCheckbox = UItem.asRoundCheckbox(14, LocaleController.getString(R.string.UserRestrictionsEmbedLinks));
-                    TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.bannedRights;
-                    if (!tLRPC$TL_chatBannedRights.embed_links) {
-                        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2 = this.defaultBannedRights;
-                        if (!tLRPC$TL_chatBannedRights2.embed_links && !tLRPC$TL_chatBannedRights.send_plain && !tLRPC$TL_chatBannedRights2.send_plain) {
+                    TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
+                    if (!tL_chatBannedRights.embed_links) {
+                        TLRPC.TL_chatBannedRights tL_chatBannedRights2 = this.defaultBannedRights;
+                        if (!tL_chatBannedRights2.embed_links && !tL_chatBannedRights.send_plain && !tL_chatBannedRights2.send_plain) {
                             z = true;
                             arrayList.add(asRoundCheckbox.setChecked(z).setLocked(this.defaultBannedRights.embed_links).setPad(1));
                         }
@@ -582,42 +569,42 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     private int getSendMediaSelectedCount() {
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.bannedRights;
-        int i = (tLRPC$TL_chatBannedRights.send_photos || this.defaultBannedRights.send_photos) ? 0 : 1;
-        if (!tLRPC$TL_chatBannedRights.send_videos && !this.defaultBannedRights.send_videos) {
+        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
+        int i = (tL_chatBannedRights.send_photos || this.defaultBannedRights.send_photos) ? 0 : 1;
+        if (!tL_chatBannedRights.send_videos && !this.defaultBannedRights.send_videos) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_stickers && !this.defaultBannedRights.send_stickers) {
+        if (!tL_chatBannedRights.send_stickers && !this.defaultBannedRights.send_stickers) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_audios && !this.defaultBannedRights.send_audios) {
+        if (!tL_chatBannedRights.send_audios && !this.defaultBannedRights.send_audios) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_docs && !this.defaultBannedRights.send_docs) {
+        if (!tL_chatBannedRights.send_docs && !this.defaultBannedRights.send_docs) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_voices && !this.defaultBannedRights.send_voices) {
+        if (!tL_chatBannedRights.send_voices && !this.defaultBannedRights.send_voices) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_roundvideos && !this.defaultBannedRights.send_roundvideos) {
+        if (!tL_chatBannedRights.send_roundvideos && !this.defaultBannedRights.send_roundvideos) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.embed_links) {
-            TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2 = this.defaultBannedRights;
-            if (!tLRPC$TL_chatBannedRights2.embed_links && !tLRPC$TL_chatBannedRights.send_plain && !tLRPC$TL_chatBannedRights2.send_plain) {
+        if (!tL_chatBannedRights.embed_links) {
+            TLRPC.TL_chatBannedRights tL_chatBannedRights2 = this.defaultBannedRights;
+            if (!tL_chatBannedRights2.embed_links && !tL_chatBannedRights.send_plain && !tL_chatBannedRights2.send_plain) {
                 i++;
             }
         }
-        return (tLRPC$TL_chatBannedRights.send_polls || this.defaultBannedRights.send_polls) ? i : i + 1;
+        return (tL_chatBannedRights.send_polls || this.defaultBannedRights.send_polls) ? i : i + 1;
     }
 
     private boolean hasAnyDefaultRights() {
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.defaultBannedRights;
-        return (tLRPC$TL_chatBannedRights.send_messages && tLRPC$TL_chatBannedRights.send_media && tLRPC$TL_chatBannedRights.send_stickers && tLRPC$TL_chatBannedRights.send_gifs && tLRPC$TL_chatBannedRights.send_games && tLRPC$TL_chatBannedRights.send_inline && tLRPC$TL_chatBannedRights.embed_links && tLRPC$TL_chatBannedRights.send_polls && tLRPC$TL_chatBannedRights.change_info && tLRPC$TL_chatBannedRights.invite_users && tLRPC$TL_chatBannedRights.pin_messages && (tLRPC$TL_chatBannedRights.manage_topics || !this.isForum) && tLRPC$TL_chatBannedRights.send_photos && tLRPC$TL_chatBannedRights.send_videos && tLRPC$TL_chatBannedRights.send_roundvideos && tLRPC$TL_chatBannedRights.send_audios && tLRPC$TL_chatBannedRights.send_voices && tLRPC$TL_chatBannedRights.send_docs && tLRPC$TL_chatBannedRights.send_plain) ? false : true;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
+        return (tL_chatBannedRights.send_messages && tL_chatBannedRights.send_media && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_gifs && tL_chatBannedRights.send_games && tL_chatBannedRights.send_inline && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls && tL_chatBannedRights.change_info && tL_chatBannedRights.invite_users && tL_chatBannedRights.pin_messages && (tL_chatBannedRights.manage_topics || !this.isForum) && tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_plain) ? false : true;
     }
 
-    private static boolean isBanned(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
-        return tLRPC$TL_chatBannedRights.view_messages;
+    private static boolean isBanned(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
+        return tL_chatBannedRights.view_messages;
     }
 
     public void lambda$fillAction$7(Action action, View view) {
@@ -636,21 +623,21 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             return;
         }
         boolean z = i <= 0;
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.bannedRights;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
         boolean z2 = !z;
-        tLRPC$TL_chatBannedRights.send_media = z2;
-        tLRPC$TL_chatBannedRights.send_photos = z2;
-        tLRPC$TL_chatBannedRights.send_videos = z2;
-        tLRPC$TL_chatBannedRights.send_stickers = z2;
-        tLRPC$TL_chatBannedRights.send_gifs = z2;
-        tLRPC$TL_chatBannedRights.send_inline = z2;
-        tLRPC$TL_chatBannedRights.send_games = z2;
-        tLRPC$TL_chatBannedRights.send_audios = z2;
-        tLRPC$TL_chatBannedRights.send_docs = z2;
-        tLRPC$TL_chatBannedRights.send_voices = z2;
-        tLRPC$TL_chatBannedRights.send_roundvideos = z2;
-        tLRPC$TL_chatBannedRights.embed_links = z2;
-        tLRPC$TL_chatBannedRights.send_polls = z2;
+        tL_chatBannedRights.send_media = z2;
+        tL_chatBannedRights.send_photos = z2;
+        tL_chatBannedRights.send_videos = z2;
+        tL_chatBannedRights.send_stickers = z2;
+        tL_chatBannedRights.send_gifs = z2;
+        tL_chatBannedRights.send_inline = z2;
+        tL_chatBannedRights.send_games = z2;
+        tL_chatBannedRights.send_audios = z2;
+        tL_chatBannedRights.send_docs = z2;
+        tL_chatBannedRights.send_voices = z2;
+        tL_chatBannedRights.send_roundvideos = z2;
+        tL_chatBannedRights.embed_links = z2;
+        tL_chatBannedRights.send_polls = z2;
         onRestrictionsChanged();
         universalAdapter.update(true);
     }
@@ -671,22 +658,22 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         proceed();
     }
 
-    public static TLRPC$TL_chatBannedRights lambda$new$2(TLRPC$ChannelParticipant tLRPC$ChannelParticipant) {
-        if (tLRPC$ChannelParticipant == null) {
+    public static TLRPC.TL_chatBannedRights lambda$new$2(TLRPC.ChannelParticipant channelParticipant) {
+        if (channelParticipant == null) {
             return null;
         }
-        return tLRPC$ChannelParticipant.banned_rights;
+        return channelParticipant.banned_rights;
     }
 
     public boolean lambda$performDelete$10(MessageObject messageObject) {
-        TLRPC$Peer tLRPC$Peer = messageObject.messageOwner.peer_id;
-        return !(tLRPC$Peer == null || tLRPC$Peer.chat_id == (-this.mergeDialogId)) || this.mergeDialogId == 0;
+        TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+        return !(peer == null || peer.chat_id == (-this.mergeDialogId)) || this.mergeDialogId == 0;
     }
 
     public boolean lambda$performDelete$11(MessageObject messageObject) {
-        TLRPC$Peer tLRPC$Peer = messageObject.messageOwner.peer_id;
-        if (tLRPC$Peer != null) {
-            long j = tLRPC$Peer.chat_id;
+        TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+        if (peer != null) {
+            long j = peer.chat_id;
             long j2 = this.mergeDialogId;
             if (j == (-j2) && j2 != 0) {
                 return true;
@@ -698,75 +685,75 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     public void lambda$performDelete$12(TLObject tLObject, int i) {
         MessagesController messagesController;
         long j;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
         boolean z;
         boolean z2;
-        TLRPC$User tLRPC$User;
+        TLRPC.User user;
         MessagesController messagesController2;
         long j2;
-        TLRPC$Chat tLRPC$Chat2;
+        TLRPC.Chat chat2;
         BaseFragment baseFragment;
-        TLRPC$User tLRPC$User2;
+        TLRPC.User user2;
         if (this.restrict) {
-            TLRPC$TL_chatBannedRights bannedRightsOr = bannedRightsOr(this.bannedRights, (TLRPC$TL_chatBannedRights) this.participantsBannedRights.get(i));
-            if (tLObject instanceof TLRPC$User) {
+            TLRPC.TL_chatBannedRights bannedRightsOr = bannedRightsOr(this.bannedRights, (TLRPC.TL_chatBannedRights) this.participantsBannedRights.get(i));
+            if (tLObject instanceof TLRPC.User) {
                 messagesController2 = MessagesController.getInstance(this.currentAccount);
                 j2 = this.inChat.id;
-                tLRPC$User2 = (TLRPC$User) tLObject;
+                user2 = (TLRPC.User) tLObject;
                 baseFragment = getBaseFragment();
-                tLRPC$Chat2 = null;
+                chat2 = null;
             } else {
-                if (!(tLObject instanceof TLRPC$Chat)) {
+                if (!(tLObject instanceof TLRPC.Chat)) {
                     return;
                 }
                 messagesController2 = MessagesController.getInstance(this.currentAccount);
                 j2 = this.inChat.id;
-                tLRPC$Chat2 = (TLRPC$Chat) tLObject;
+                chat2 = (TLRPC.Chat) tLObject;
                 baseFragment = getBaseFragment();
-                tLRPC$User2 = null;
+                user2 = null;
             }
-            messagesController2.setParticipantBannedRole(j2, tLRPC$User2, tLRPC$Chat2, bannedRightsOr, false, baseFragment);
+            messagesController2.setParticipantBannedRole(j2, user2, chat2, bannedRightsOr, false, baseFragment);
             return;
         }
-        if (tLObject instanceof TLRPC$User) {
+        if (tLObject instanceof TLRPC.User) {
             messagesController = MessagesController.getInstance(this.currentAccount);
             j = this.inChat.id;
-            tLRPC$User = (TLRPC$User) tLObject;
+            user = (TLRPC.User) tLObject;
             z = false;
             z2 = false;
-            tLRPC$Chat = null;
+            chat = null;
         } else {
-            if (!(tLObject instanceof TLRPC$Chat)) {
+            if (!(tLObject instanceof TLRPC.Chat)) {
                 return;
             }
             messagesController = MessagesController.getInstance(this.currentAccount);
             j = this.inChat.id;
-            tLRPC$Chat = (TLRPC$Chat) tLObject;
+            chat = (TLRPC.Chat) tLObject;
             z = false;
             z2 = false;
-            tLRPC$User = null;
+            user = null;
         }
-        messagesController.deleteParticipantFromChat(j, tLRPC$User, tLRPC$Chat, z, z2);
+        messagesController.deleteParticipantFromChat(j, user, chat, z, z2);
     }
 
     public boolean lambda$performDelete$13(MessageObject messageObject) {
-        TLRPC$Peer tLRPC$Peer = messageObject.messageOwner.peer_id;
-        return (tLRPC$Peer == null || tLRPC$Peer.chat_id == (-this.mergeDialogId)) ? false : true;
+        TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+        return (peer == null || peer.chat_id == (-this.mergeDialogId)) ? false : true;
     }
 
     public static boolean lambda$performDelete$14(TLObject tLObject, MessageObject messageObject) {
-        return tLObject instanceof TLRPC$User ? messageObject.messageOwner.from_id.user_id == ((TLRPC$User) tLObject).id : (tLObject instanceof TLRPC$Chat) && messageObject.messageOwner.from_id.user_id == ((TLRPC$Chat) tLObject).id;
+        return tLObject instanceof TLRPC.User ? messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).id : (tLObject instanceof TLRPC.Chat) && messageObject.messageOwner.from_id.user_id == ((TLRPC.Chat) tLObject).id;
     }
 
     public void lambda$performDelete$15(final TLObject tLObject, int i) {
-        TLRPC$InputPeer inputPeer;
-        TLRPC$TL_channels_reportSpam tLRPC$TL_channels_reportSpam = new TLRPC$TL_channels_reportSpam();
-        tLRPC$TL_channels_reportSpam.channel = MessagesController.getInputChannel(this.inChat);
-        if (!(tLObject instanceof TLRPC$User)) {
-            if (tLObject instanceof TLRPC$Chat) {
-                inputPeer = MessagesController.getInputPeer((TLRPC$Chat) tLObject);
+        TLRPC.InputPeer inputPeer;
+        TLRPC.TL_channels_reportSpam tL_channels_reportSpam = new TLRPC.TL_channels_reportSpam();
+        tL_channels_reportSpam.channel = MessagesController.getInputChannel(this.inChat);
+        if (!(tLObject instanceof TLRPC.User)) {
+            if (tLObject instanceof TLRPC.Chat) {
+                inputPeer = MessagesController.getInputPeer((TLRPC.Chat) tLObject);
             }
-            tLRPC$TL_channels_reportSpam.id = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
+            tL_channels_reportSpam.id = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
                 @Override
                 public Predicate and(Predicate predicate) {
                     return Predicate.CC.$default$and(this, predicate);
@@ -810,12 +797,12 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                     lambda$performDelete$14 = DeleteMessagesBottomSheet.lambda$performDelete$14(TLObject.this, (MessageObject) obj);
                     return lambda$performDelete$14;
                 }
-            }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda283()));
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_reportSpam, null);
+            }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda282()));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_reportSpam, null);
         }
-        inputPeer = MessagesController.getInputPeer((TLRPC$User) tLObject);
-        tLRPC$TL_channels_reportSpam.participant = inputPeer;
-        tLRPC$TL_channels_reportSpam.id = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
+        inputPeer = MessagesController.getInputPeer((TLRPC.User) tLObject);
+        tL_channels_reportSpam.participant = inputPeer;
+        tL_channels_reportSpam.id = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
             @Override
             public Predicate and(Predicate predicate) {
                 return Predicate.CC.$default$and(this, predicate);
@@ -859,25 +846,25 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$14 = DeleteMessagesBottomSheet.lambda$performDelete$14(TLObject.this, (MessageObject) obj);
                 return lambda$performDelete$14;
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda283()));
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_reportSpam, null);
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda282()));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_reportSpam, null);
     }
 
     public void lambda$performDelete$16(TLObject tLObject, int i) {
-        if (tLObject instanceof TLRPC$User) {
-            MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, (TLRPC$User) tLObject, null, 0);
-        } else if (tLObject instanceof TLRPC$Chat) {
-            MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, null, (TLRPC$Chat) tLObject, 0);
+        if (tLObject instanceof TLRPC.User) {
+            MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, (TLRPC.User) tLObject, null, 0);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, null, (TLRPC.Chat) tLObject, 0);
         }
     }
 
-    public static boolean lambda$updateParticipantMessageCounts$4(TLRPC$InputPeer tLRPC$InputPeer, MessageObject messageObject) {
-        return MessageObject.peersEqual(tLRPC$InputPeer, messageObject.messageOwner.from_id);
+    public static boolean lambda$updateParticipantMessageCounts$4(TLRPC.InputPeer inputPeer, MessageObject messageObject) {
+        return MessageObject.peersEqual(inputPeer, messageObject.messageOwner.from_id);
     }
 
-    public void lambda$updateParticipantMessageCounts$5(TLObject tLObject, final TLRPC$InputPeer tLRPC$InputPeer, int i, int[] iArr) {
-        if (tLObject instanceof TLRPC$TL_messages_channelMessages) {
-            this.participantMessageCounts[i] = ((TLRPC$TL_messages_channelMessages) tLObject).count - ((int) Collection$EL.stream(this.messages).filter(new Predicate() {
+    public void lambda$updateParticipantMessageCounts$5(TLObject tLObject, final TLRPC.InputPeer inputPeer, int i, int[] iArr) {
+        if (tLObject instanceof TLRPC.TL_messages_channelMessages) {
+            this.participantMessageCounts[i] = ((TLRPC.TL_messages_channelMessages) tLObject).count - ((int) Collection$EL.stream(this.messages).filter(new Predicate() {
                 @Override
                 public Predicate and(Predicate predicate) {
                     return Predicate.CC.$default$and(this, predicate);
@@ -896,7 +883,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 @Override
                 public final boolean test(Object obj) {
                     boolean lambda$updateParticipantMessageCounts$4;
-                    lambda$updateParticipantMessageCounts$4 = DeleteMessagesBottomSheet.lambda$updateParticipantMessageCounts$4(TLRPC$InputPeer.this, (MessageObject) obj);
+                    lambda$updateParticipantMessageCounts$4 = DeleteMessagesBottomSheet.lambda$updateParticipantMessageCounts$4(TLRPC.InputPeer.this, (MessageObject) obj);
                     return lambda$updateParticipantMessageCounts$4;
                 }
             }).count());
@@ -910,11 +897,11 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$updateParticipantMessageCounts$6(final TLRPC$InputPeer tLRPC$InputPeer, final int i, final int[] iArr, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$updateParticipantMessageCounts$6(final TLRPC.InputPeer inputPeer, final int i, final int[] iArr, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DeleteMessagesBottomSheet.this.lambda$updateParticipantMessageCounts$5(tLObject, tLRPC$InputPeer, i, iArr);
+                DeleteMessagesBottomSheet.this.lambda$updateParticipantMessageCounts$5(tLObject, inputPeer, i, iArr);
             }
         });
     }
@@ -1008,12 +995,12 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                     } else if (i7 == 10) {
                         this.bannedRights.send_voices = !r4.send_voices;
                     } else if (i7 == 12) {
-                        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.bannedRights;
-                        boolean z2 = !tLRPC$TL_chatBannedRights.send_stickers;
-                        tLRPC$TL_chatBannedRights.send_inline = z2;
-                        tLRPC$TL_chatBannedRights.send_gifs = z2;
-                        tLRPC$TL_chatBannedRights.send_games = z2;
-                        tLRPC$TL_chatBannedRights.send_stickers = z2;
+                        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
+                        boolean z2 = !tL_chatBannedRights.send_stickers;
+                        tL_chatBannedRights.send_inline = z2;
+                        tL_chatBannedRights.send_gifs = z2;
+                        tL_chatBannedRights.send_games = z2;
+                        tL_chatBannedRights.send_stickers = z2;
                     } else {
                         if (i7 != 14) {
                             if (i7 == 13) {
@@ -1022,8 +1009,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                             this.adapter.update(true);
                             return;
                         }
-                        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2 = this.bannedRights;
-                        if (tLRPC$TL_chatBannedRights2.send_plain || this.defaultBannedRights.send_plain) {
+                        TLRPC.TL_chatBannedRights tL_chatBannedRights2 = this.bannedRights;
+                        if (tL_chatBannedRights2.send_plain || this.defaultBannedRights.send_plain) {
                             int i8 = 0;
                             while (true) {
                                 if (i8 >= this.adapter.getItemCount()) {
@@ -1045,7 +1032,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                             BotWebViewVibrationEffect.APP_ERROR.vibrate();
                             return;
                         }
-                        tLRPC$TL_chatBannedRights2.embed_links = !tLRPC$TL_chatBannedRights2.embed_links;
+                        tL_chatBannedRights2.embed_links = !tL_chatBannedRights2.embed_links;
                     }
                     onRestrictionsChanged();
                     this.adapter.update(true);
@@ -1100,7 +1087,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$10 = DeleteMessagesBottomSheet.this.lambda$performDelete$10((MessageObject) obj);
                 return lambda$performDelete$10;
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda283()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda282()));
         ArrayList<Integer> arrayList2 = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
             @Override
             public Predicate and(Predicate predicate) {
@@ -1123,7 +1110,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$11 = DeleteMessagesBottomSheet.this.lambda$performDelete$11((MessageObject) obj);
                 return lambda$performDelete$11;
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda283()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda282()));
         if (!arrayList.isEmpty()) {
             MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList, null, null, -this.inChat.id, this.topicId, false, this.mode);
         }
@@ -1192,18 +1179,18 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         this.participantMessageCounts = new int[i];
         final int[] iArr = {i};
         for (final int i2 = 0; i2 < this.deleteAll.totalCount; i2++) {
-            TLRPC$TL_messages_search tLRPC$TL_messages_search = new TLRPC$TL_messages_search();
-            tLRPC$TL_messages_search.peer = MessagesController.getInputPeer(this.inChat);
-            tLRPC$TL_messages_search.q = "";
-            final TLRPC$InputPeer inputPeer = MessagesController.getInputPeer((TLObject) this.deleteAll.options.get(i2));
-            tLRPC$TL_messages_search.from_id = inputPeer;
-            tLRPC$TL_messages_search.flags |= 1;
-            tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterEmpty();
-            tLRPC$TL_messages_search.limit = 1;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
+            TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+            tL_messages_search.peer = MessagesController.getInputPeer(this.inChat);
+            tL_messages_search.q = "";
+            final TLRPC.InputPeer inputPeer = MessagesController.getInputPeer((TLObject) this.deleteAll.options.get(i2));
+            tL_messages_search.from_id = inputPeer;
+            tL_messages_search.flags |= 1;
+            tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
+            tL_messages_search.limit = 1;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_search, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    DeleteMessagesBottomSheet.this.lambda$updateParticipantMessageCounts$6(inputPeer, i2, iArr, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    DeleteMessagesBottomSheet.this.lambda$updateParticipantMessageCounts$6(inputPeer, i2, iArr, tLObject, tL_error);
                 }
             });
         }

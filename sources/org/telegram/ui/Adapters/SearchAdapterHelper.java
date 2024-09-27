@@ -20,14 +20,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChannelParticipant;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatParticipant;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_channels_channelParticipants;
-import org.telegram.tgnet.TLRPC$TL_contacts_found;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Components.ShareAlert;
@@ -174,115 +167,115 @@ public class SearchAdapterHelper {
         }
     }
 
-    public void lambda$queryServerSearch$0(String str, boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error == null) {
-            TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) tLObject;
+    public void lambda$queryServerSearch$0(String str, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
             this.lastFoundChannel = str.toLowerCase();
-            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_channels_channelParticipants.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_channels_channelParticipants.chats, false);
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_channels_channelParticipants.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_channels_channelParticipants.chats, false);
             this.groupSearch.clear();
             this.groupSearchMap.clear();
-            this.groupSearch.addAll(tLRPC$TL_channels_channelParticipants.participants);
+            this.groupSearch.addAll(tL_channels_channelParticipants.participants);
             long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            int size = tLRPC$TL_channels_channelParticipants.participants.size();
+            int size = tL_channels_channelParticipants.participants.size();
             for (int i = 0; i < size; i++) {
-                TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLRPC$TL_channels_channelParticipants.participants.get(i);
-                long peerId = MessageObject.getPeerId(tLRPC$ChannelParticipant.peer);
+                TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i);
+                long peerId = MessageObject.getPeerId(channelParticipant.peer);
                 if (z || peerId != clientUserId) {
-                    this.groupSearchMap.put(peerId, tLRPC$ChannelParticipant);
+                    this.groupSearchMap.put(peerId, channelParticipant);
                 } else {
-                    this.groupSearch.remove(tLRPC$ChannelParticipant);
+                    this.groupSearch.remove(channelParticipant);
                 }
             }
         }
     }
 
-    public void lambda$queryServerSearch$1(int i, boolean z, boolean z2, boolean z3, boolean z4, long j, String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        TLRPC$Chat tLRPC$Chat;
-        TLRPC$User tLRPC$User;
-        ArrayList arrayList;
-        TLRPC$Chat tLRPC$Chat2;
-        TLRPC$User tLRPC$User2;
-        if (this.delegate.canApplySearchResults(i) && tLRPC$TL_error == null) {
-            TLRPC$TL_contacts_found tLRPC$TL_contacts_found = (TLRPC$TL_contacts_found) tLObject;
+    public void lambda$queryServerSearch$1(int i, boolean z, boolean z2, boolean z3, boolean z4, long j, String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.Chat chat;
+        TLRPC.User user;
+        ArrayList<TLRPC.Peer> arrayList;
+        TLRPC.Chat chat2;
+        TLRPC.User user2;
+        if (this.delegate.canApplySearchResults(i) && tL_error == null) {
+            TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
             this.globalSearch.clear();
             this.globalSearchMap.clear();
             this.localServerSearch.clear();
-            MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_contacts_found.chats, false);
-            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_contacts_found.users, false);
-            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$TL_contacts_found.users, tLRPC$TL_contacts_found.chats, true, true);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_found.chats, false);
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_found.users, false);
+            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_contacts_found.users, tL_contacts_found.chats, true, true);
             LongSparseArray longSparseArray = new LongSparseArray();
             LongSparseArray longSparseArray2 = new LongSparseArray();
-            for (int i2 = 0; i2 < tLRPC$TL_contacts_found.chats.size(); i2++) {
-                TLRPC$Chat tLRPC$Chat3 = (TLRPC$Chat) tLRPC$TL_contacts_found.chats.get(i2);
-                longSparseArray.put(tLRPC$Chat3.id, tLRPC$Chat3);
+            for (int i2 = 0; i2 < tL_contacts_found.chats.size(); i2++) {
+                TLRPC.Chat chat3 = tL_contacts_found.chats.get(i2);
+                longSparseArray.put(chat3.id, chat3);
             }
-            for (int i3 = 0; i3 < tLRPC$TL_contacts_found.users.size(); i3++) {
-                TLRPC$User tLRPC$User3 = (TLRPC$User) tLRPC$TL_contacts_found.users.get(i3);
-                longSparseArray2.put(tLRPC$User3.id, tLRPC$User3);
+            for (int i3 = 0; i3 < tL_contacts_found.users.size(); i3++) {
+                TLRPC.User user3 = tL_contacts_found.users.get(i3);
+                longSparseArray2.put(user3.id, user3);
             }
             for (int i4 = 0; i4 < 2; i4++) {
                 if (i4 != 0) {
-                    arrayList = tLRPC$TL_contacts_found.results;
+                    arrayList = tL_contacts_found.results;
                 } else if (this.allResultsAreGlobal) {
-                    arrayList = tLRPC$TL_contacts_found.my_results;
+                    arrayList = tL_contacts_found.my_results;
                 }
                 for (int i5 = 0; i5 < arrayList.size(); i5++) {
-                    TLRPC$Peer tLRPC$Peer = (TLRPC$Peer) arrayList.get(i5);
-                    long j2 = tLRPC$Peer.user_id;
+                    TLRPC.Peer peer = arrayList.get(i5);
+                    long j2 = peer.user_id;
                     if (j2 != 0) {
-                        tLRPC$User2 = (TLRPC$User) longSparseArray2.get(j2);
-                        tLRPC$Chat2 = null;
+                        user2 = (TLRPC.User) longSparseArray2.get(j2);
+                        chat2 = null;
                     } else {
-                        long j3 = tLRPC$Peer.chat_id;
+                        long j3 = peer.chat_id;
                         if (j3 == 0) {
-                            j3 = tLRPC$Peer.channel_id;
+                            j3 = peer.channel_id;
                             if (j3 == 0) {
-                                tLRPC$Chat2 = null;
-                                tLRPC$User2 = null;
+                                chat2 = null;
+                                user2 = null;
                             }
                         }
-                        tLRPC$Chat2 = (TLRPC$Chat) longSparseArray.get(j3);
-                        tLRPC$User2 = null;
+                        chat2 = (TLRPC.Chat) longSparseArray.get(j3);
+                        user2 = null;
                     }
-                    if (tLRPC$Chat2 != null) {
-                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat2)) && ((this.allowGlobalResults || !ChatObject.isNotInChat(tLRPC$Chat2)) && filter(tLRPC$Chat2)))) {
-                            this.globalSearch.add(tLRPC$Chat2);
-                            this.globalSearchMap.put(-tLRPC$Chat2.id, tLRPC$Chat2);
+                    if (chat2 != null) {
+                        if (z && ((!z2 || ChatObject.canAddBotsToChat(chat2)) && ((this.allowGlobalResults || !ChatObject.isNotInChat(chat2)) && filter(chat2)))) {
+                            this.globalSearch.add(chat2);
+                            this.globalSearchMap.put(-chat2.id, chat2);
                         }
-                    } else if (tLRPC$User2 != null && !z2 && ((z3 || !tLRPC$User2.bot) && ((z4 || !tLRPC$User2.self) && ((this.allowGlobalResults || i4 != 1 || tLRPC$User2.contact) && filter(tLRPC$User2))))) {
-                        this.globalSearch.add(tLRPC$User2);
-                        this.globalSearchMap.put(tLRPC$User2.id, tLRPC$User2);
+                    } else if (user2 != null && !z2 && ((z3 || !user2.bot) && ((z4 || !user2.self) && ((this.allowGlobalResults || i4 != 1 || user2.contact) && filter(user2))))) {
+                        this.globalSearch.add(user2);
+                        this.globalSearchMap.put(user2.id, user2);
                     }
                 }
             }
             if (!this.allResultsAreGlobal) {
-                for (int i6 = 0; i6 < tLRPC$TL_contacts_found.my_results.size(); i6++) {
-                    TLRPC$Peer tLRPC$Peer2 = (TLRPC$Peer) tLRPC$TL_contacts_found.my_results.get(i6);
-                    long j4 = tLRPC$Peer2.user_id;
+                for (int i6 = 0; i6 < tL_contacts_found.my_results.size(); i6++) {
+                    TLRPC.Peer peer2 = tL_contacts_found.my_results.get(i6);
+                    long j4 = peer2.user_id;
                     if (j4 != 0) {
-                        tLRPC$User = (TLRPC$User) longSparseArray2.get(j4);
-                        tLRPC$Chat = null;
+                        user = (TLRPC.User) longSparseArray2.get(j4);
+                        chat = null;
                     } else {
-                        long j5 = tLRPC$Peer2.chat_id;
+                        long j5 = peer2.chat_id;
                         if (j5 == 0) {
-                            j5 = tLRPC$Peer2.channel_id;
+                            j5 = peer2.channel_id;
                             if (j5 == 0) {
-                                tLRPC$Chat = null;
-                                tLRPC$User = null;
+                                chat = null;
+                                user = null;
                             }
                         }
-                        tLRPC$Chat = (TLRPC$Chat) longSparseArray.get(j5);
-                        tLRPC$User = null;
+                        chat = (TLRPC.Chat) longSparseArray.get(j5);
+                        user = null;
                     }
-                    if (tLRPC$Chat != null) {
-                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat)) && (-tLRPC$Chat.id) != j && filter(tLRPC$Chat))) {
-                            this.localServerSearch.add(tLRPC$Chat);
-                            this.globalSearchMap.put(-tLRPC$Chat.id, tLRPC$Chat);
+                    if (chat != null) {
+                        if (z && ((!z2 || ChatObject.canAddBotsToChat(chat)) && (-chat.id) != j && filter(chat))) {
+                            this.localServerSearch.add(chat);
+                            this.globalSearchMap.put(-chat.id, chat);
                         }
-                    } else if (tLRPC$User != null && !z2 && ((z3 || !tLRPC$User.bot) && ((z4 || !tLRPC$User.self) && tLRPC$User.id != j && filter(tLRPC$User)))) {
-                        this.localServerSearch.add(tLRPC$User);
-                        this.globalSearchMap.put(tLRPC$User.id, tLRPC$User);
+                    } else if (user != null && !z2 && ((z3 || !user.bot) && ((z4 || !user.self) && user.id != j && filter(user)))) {
+                        this.localServerSearch.add(user);
+                        this.globalSearchMap.put(user.id, user);
                     }
                 }
             }
@@ -290,8 +283,8 @@ public class SearchAdapterHelper {
         }
     }
 
-    public void lambda$queryServerSearch$2(ArrayList arrayList, int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, AtomicInteger atomicInteger, AtomicInteger atomicInteger2, ArrayList arrayList2, int i2, Runnable runnable) {
-        arrayList.set(i, new Pair(tLObject, tLRPC$TL_error));
+    public void lambda$queryServerSearch$2(ArrayList arrayList, int i, TLObject tLObject, TLRPC.TL_error tL_error, AtomicInteger atomicInteger, AtomicInteger atomicInteger2, ArrayList arrayList2, int i2, Runnable runnable) {
+        arrayList.set(i, new Pair(tLObject, tL_error));
         Integer valueOf = Integer.valueOf(atomicInteger.get());
         if (this.pendingRequestIds.contains(valueOf)) {
             this.pendingRequestIds.remove(valueOf);
@@ -300,7 +293,7 @@ public class SearchAdapterHelper {
                     RequestDelegate requestDelegate = (RequestDelegate) ((Pair) arrayList2.get(i3)).second;
                     Pair pair = (Pair) arrayList.get(i3);
                     if (pair != null) {
-                        requestDelegate.run((TLObject) pair.first, (TLRPC$TL_error) pair.second);
+                        requestDelegate.run((TLObject) pair.first, (TLRPC.TL_error) pair.second);
                     }
                 }
                 removeGroupSearchFromGlobal();
@@ -317,11 +310,11 @@ public class SearchAdapterHelper {
         }
     }
 
-    public void lambda$queryServerSearch$3(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final AtomicInteger atomicInteger2, final ArrayList arrayList2, final int i2, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$queryServerSearch$3(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final AtomicInteger atomicInteger2, final ArrayList arrayList2, final int i2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SearchAdapterHelper.this.lambda$queryServerSearch$2(arrayList, i, tLObject, tLRPC$TL_error, atomicInteger, atomicInteger2, arrayList2, i2, runnable);
+                SearchAdapterHelper.this.lambda$queryServerSearch$2(arrayList, i, tLObject, tL_error, atomicInteger, atomicInteger2, arrayList2, i2, runnable);
             }
         });
     }
@@ -341,11 +334,11 @@ public class SearchAdapterHelper {
         }
         int size = this.groupSearchMap.size();
         for (int i = 0; i < size; i++) {
-            TLRPC$User tLRPC$User = (TLRPC$User) this.globalSearchMap.get(this.groupSearchMap.keyAt(i));
-            if (tLRPC$User != null) {
-                this.globalSearch.remove(tLRPC$User);
-                this.localServerSearch.remove(tLRPC$User);
-                this.globalSearchMap.remove(tLRPC$User.id);
+            TLRPC.User user = (TLRPC.User) this.globalSearchMap.get(this.groupSearchMap.keyAt(i));
+            if (user != null) {
+                this.globalSearch.remove(user);
+                this.localServerSearch.remove(user);
+                this.globalSearchMap.remove(user.id);
             }
         }
     }
@@ -358,12 +351,12 @@ public class SearchAdapterHelper {
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             TLObject tLObject = (TLObject) arrayList.get(i);
-            if (tLObject instanceof TLRPC$ChatParticipant) {
+            if (tLObject instanceof TLRPC.ChatParticipant) {
                 longSparseArray = this.groupSearchMap;
-                peerId = ((TLRPC$ChatParticipant) tLObject).user_id;
-            } else if (tLObject instanceof TLRPC$ChannelParticipant) {
+                peerId = ((TLRPC.ChatParticipant) tLObject).user_id;
+            } else if (tLObject instanceof TLRPC.ChannelParticipant) {
                 longSparseArray = this.groupSearchMap;
-                peerId = MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLObject).peer);
+                peerId = MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject).peer);
             }
             longSparseArray.put(peerId, tLObject);
         }
@@ -479,11 +472,11 @@ public class SearchAdapterHelper {
         if (excludeUsers != null) {
             int size = excludeUsers.size();
             for (int i = 0; i < size; i++) {
-                TLRPC$User tLRPC$User = (TLRPC$User) this.globalSearchMap.get(excludeUsers.keyAt(i));
-                if (tLRPC$User != null) {
-                    this.globalSearch.remove(tLRPC$User);
-                    this.localServerSearch.remove(tLRPC$User);
-                    this.globalSearchMap.remove(tLRPC$User.id);
+                TLRPC.User user = (TLRPC.User) this.globalSearchMap.get(excludeUsers.keyAt(i));
+                if (user != null) {
+                    this.globalSearch.remove(user);
+                    this.localServerSearch.remove(user);
+                    this.globalSearchMap.remove(user.id);
                 }
             }
         }
@@ -491,11 +484,11 @@ public class SearchAdapterHelper {
         if (excludeCallParticipants != null) {
             int size2 = excludeCallParticipants.size();
             for (int i2 = 0; i2 < size2; i2++) {
-                TLRPC$User tLRPC$User2 = (TLRPC$User) this.globalSearchMap.get(excludeCallParticipants.keyAt(i2));
-                if (tLRPC$User2 != null) {
-                    this.globalSearch.remove(tLRPC$User2);
-                    this.localServerSearch.remove(tLRPC$User2);
-                    this.globalSearchMap.remove(tLRPC$User2.id);
+                TLRPC.User user2 = (TLRPC.User) this.globalSearchMap.get(excludeCallParticipants.keyAt(i2));
+                if (user2 != null) {
+                    this.globalSearch.remove(user2);
+                    this.localServerSearch.remove(user2);
+                    this.globalSearchMap.remove(user2.id);
                 }
             }
         }
@@ -506,7 +499,7 @@ public class SearchAdapterHelper {
     }
 
     public void mergeResults(ArrayList arrayList, ArrayList arrayList2) {
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
         LongSparseArray longSparseArray;
         long j;
         this.localSearchResults = arrayList;
@@ -526,35 +519,35 @@ public class SearchAdapterHelper {
                 if (obj instanceof ShareAlert.DialogSearchResult) {
                     obj = ((ShareAlert.DialogSearchResult) obj).object;
                 }
-                if (obj instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) obj;
-                    TLRPC$User tLRPC$User2 = (TLRPC$User) this.globalSearchMap.get(tLRPC$User.id);
-                    if (tLRPC$User2 != null) {
-                        this.globalSearch.remove(tLRPC$User2);
-                        this.localServerSearch.remove(tLRPC$User2);
-                        this.globalSearchMap.remove(tLRPC$User2.id);
+                if (obj instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) obj;
+                    TLRPC.User user2 = (TLRPC.User) this.globalSearchMap.get(user.id);
+                    if (user2 != null) {
+                        this.globalSearch.remove(user2);
+                        this.localServerSearch.remove(user2);
+                        this.globalSearchMap.remove(user2.id);
                     }
-                    TLObject tLObject = (TLObject) this.groupSearchMap.get(tLRPC$User.id);
+                    TLObject tLObject = (TLObject) this.groupSearchMap.get(user.id);
                     if (tLObject != null) {
                         this.groupSearch.remove(tLObject);
-                        this.groupSearchMap.remove(tLRPC$User.id);
+                        this.groupSearchMap.remove(user.id);
                     }
-                    Object obj2 = this.phoneSearchMap.get(tLRPC$User.id);
+                    Object obj2 = this.phoneSearchMap.get(user.id);
                     if (obj2 != null) {
                         this.phonesSearch.remove(obj2);
                         longSparseArray = this.phoneSearchMap;
-                        j = tLRPC$User.id;
+                        j = user.id;
                         longSparseArray.remove(j);
                         i++;
                     } else {
                         i++;
                     }
                 } else {
-                    if ((obj instanceof TLRPC$Chat) && (tLRPC$Chat = (TLRPC$Chat) this.globalSearchMap.get(-((TLRPC$Chat) obj).id)) != null) {
-                        this.globalSearch.remove(tLRPC$Chat);
-                        this.localServerSearch.remove(tLRPC$Chat);
+                    if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) this.globalSearchMap.get(-((TLRPC.Chat) obj).id)) != null) {
+                        this.globalSearch.remove(chat);
+                        this.localServerSearch.remove(chat);
                         longSparseArray = this.globalSearchMap;
-                        j = -tLRPC$Chat.id;
+                        j = -chat.id;
                         longSparseArray.remove(j);
                     }
                     i++;

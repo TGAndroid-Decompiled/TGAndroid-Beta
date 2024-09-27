@@ -16,18 +16,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_photo;
-import org.telegram.tgnet.TLRPC$TL_photos_photo;
-import org.telegram.tgnet.TLRPC$TL_photos_uploadProfilePhoto;
-import org.telegram.tgnet.TLRPC$TL_userProfilePhoto;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ChatActivity;
@@ -36,37 +25,37 @@ import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.ProfileActivity;
 
 public abstract class PhotoUtilities {
-    public static void applyPhotoToUser(TLRPC$Photo tLRPC$Photo, TLRPC$User tLRPC$User, boolean z) {
-        ArrayList arrayList = tLRPC$Photo.sizes;
-        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 100);
-        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000);
-        tLRPC$User.flags |= 32;
-        TLRPC$TL_userProfilePhoto tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto();
-        tLRPC$User.photo = tLRPC$TL_userProfilePhoto;
-        tLRPC$TL_userProfilePhoto.personal = z;
-        tLRPC$TL_userProfilePhoto.photo_id = tLRPC$Photo.id;
-        ArrayList arrayList2 = tLRPC$Photo.video_sizes;
-        tLRPC$TL_userProfilePhoto.has_video = arrayList2 != null && arrayList2.size() > 0;
+    public static void applyPhotoToUser(TLRPC.Photo photo, TLRPC.User user, boolean z) {
+        ArrayList<TLRPC.PhotoSize> arrayList = photo.sizes;
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 100);
+        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000);
+        user.flags |= 32;
+        TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+        user.photo = tL_userProfilePhoto;
+        tL_userProfilePhoto.personal = z;
+        tL_userProfilePhoto.photo_id = photo.id;
+        ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
+        tL_userProfilePhoto.has_video = arrayList2 != null && arrayList2.size() > 0;
         if (closestPhotoSizeWithSize != null) {
-            tLRPC$User.photo.photo_small = closestPhotoSizeWithSize.location;
+            user.photo.photo_small = closestPhotoSizeWithSize.location;
         }
         if (closestPhotoSizeWithSize2 != null) {
-            tLRPC$User.photo.photo_big = closestPhotoSizeWithSize2.location;
+            user.photo.photo_big = closestPhotoSizeWithSize2.location;
         }
     }
 
-    public static void applyPhotoToUser(TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, TLRPC$User tLRPC$User, boolean z2) {
-        tLRPC$User.flags |= 32;
-        TLRPC$TL_userProfilePhoto tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto();
-        tLRPC$User.photo = tLRPC$TL_userProfilePhoto;
-        tLRPC$TL_userProfilePhoto.personal = z2;
-        tLRPC$TL_userProfilePhoto.photo_id = 0L;
-        tLRPC$TL_userProfilePhoto.has_video = z;
-        if (tLRPC$PhotoSize != null) {
-            tLRPC$TL_userProfilePhoto.photo_small = tLRPC$PhotoSize.location;
+    public static void applyPhotoToUser(TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.User user, boolean z2) {
+        user.flags |= 32;
+        TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+        user.photo = tL_userProfilePhoto;
+        tL_userProfilePhoto.personal = z2;
+        tL_userProfilePhoto.photo_id = 0L;
+        tL_userProfilePhoto.has_video = z;
+        if (photoSize != null) {
+            tL_userProfilePhoto.photo_small = photoSize.location;
         }
-        if (tLRPC$PhotoSize2 != null) {
-            tLRPC$TL_userProfilePhoto.photo_big = tLRPC$PhotoSize2.location;
+        if (photoSize2 != null) {
+            tL_userProfilePhoto.photo_big = photoSize2.location;
         }
     }
 
@@ -76,25 +65,25 @@ public abstract class PhotoUtilities {
         iNavigationLayout.getLastFragment().presentFragment(new ProfileActivity(bundle));
     }
 
-    public static void lambda$setImageAsAvatar$1(TLObject tLObject, final int i, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, Runnable runnable, final INavigationLayout iNavigationLayout) {
-        if (tLObject instanceof TLRPC$TL_photos_photo) {
-            TLRPC$TL_photos_photo tLRPC$TL_photos_photo = (TLRPC$TL_photos_photo) tLObject;
-            MessagesController.getInstance(i).putUsers(tLRPC$TL_photos_photo.users, false);
-            TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(UserConfig.getInstance(i).clientUserId));
-            TLRPC$Photo tLRPC$Photo = tLRPC$TL_photos_photo.photo;
-            if (!(tLRPC$Photo instanceof TLRPC$TL_photo) || user == null) {
+    public static void lambda$setImageAsAvatar$1(TLObject tLObject, final int i, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, Runnable runnable, final INavigationLayout iNavigationLayout) {
+        if (tLObject instanceof TLRPC.TL_photos_photo) {
+            TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
+            MessagesController.getInstance(i).putUsers(tL_photos_photo.users, false);
+            TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(UserConfig.getInstance(i).clientUserId));
+            TLRPC.Photo photo = tL_photos_photo.photo;
+            if (!(photo instanceof TLRPC.TL_photo) || user == null) {
                 return;
             }
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 100);
-            TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_photos_photo.photo.sizes, 1000);
-            if (closestPhotoSizeWithSize != null && tLRPC$PhotoSize != null && tLRPC$PhotoSize.location != null) {
-                FileLoader.getInstance(i).getPathToAttach(tLRPC$PhotoSize.location, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(tLRPC$PhotoSize.location.volume_id + "_" + tLRPC$PhotoSize.location.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(user, 1), false);
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 100);
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tL_photos_photo.photo.sizes, 1000);
+            if (closestPhotoSizeWithSize != null && photoSize != null && photoSize.location != null) {
+                FileLoader.getInstance(i).getPathToAttach(photoSize.location, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize, true));
+                ImageLoader.getInstance().replaceImageInCache(photoSize.location.volume_id + "_" + photoSize.location.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(user, 1), false);
             }
-            if (closestPhotoSizeWithSize2 != null && tLRPC$PhotoSize2 != null && tLRPC$PhotoSize2.location != null) {
-                FileLoader.getInstance(i).getPathToAttach(tLRPC$PhotoSize2.location, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize2, true));
+            if (closestPhotoSizeWithSize2 != null && photoSize2 != null && photoSize2.location != null) {
+                FileLoader.getInstance(i).getPathToAttach(photoSize2.location, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize2, true));
             }
-            applyPhotoToUser(tLRPC$TL_photos_photo.photo, user, false);
+            applyPhotoToUser(tL_photos_photo.photo, user, false);
             UserConfig.getInstance(i).setCurrentUser(user);
             UserConfig.getInstance(i).saveConfig(true);
             if (runnable != null) {
@@ -109,45 +98,45 @@ public abstract class PhotoUtilities {
         }
     }
 
-    public static void lambda$setImageAsAvatar$2(final int i, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2, final Runnable runnable, final INavigationLayout iNavigationLayout, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$setImageAsAvatar$2(final int i, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, final Runnable runnable, final INavigationLayout iNavigationLayout, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoUtilities.lambda$setImageAsAvatar$1(TLObject.this, i, tLRPC$PhotoSize, tLRPC$PhotoSize2, runnable, iNavigationLayout);
+                PhotoUtilities.lambda$setImageAsAvatar$1(TLObject.this, i, photoSize, photoSize2, runnable, iNavigationLayout);
             }
         });
     }
 
-    public static void lambda$setImageAsAvatar$3(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, double d, TLRPC$VideoSize tLRPC$VideoSize, final int i, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2, final Runnable runnable, final INavigationLayout iNavigationLayout, ImageUpdater imageUpdater) {
-        TLRPC$TL_photos_uploadProfilePhoto tLRPC$TL_photos_uploadProfilePhoto = new TLRPC$TL_photos_uploadProfilePhoto();
-        if (tLRPC$InputFile != null) {
-            tLRPC$TL_photos_uploadProfilePhoto.file = tLRPC$InputFile;
-            tLRPC$TL_photos_uploadProfilePhoto.flags |= 1;
+    public static void lambda$setImageAsAvatar$3(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, TLRPC.VideoSize videoSize, final int i, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, final Runnable runnable, final INavigationLayout iNavigationLayout, ImageUpdater imageUpdater) {
+        TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
+        if (inputFile != null) {
+            tL_photos_uploadProfilePhoto.file = inputFile;
+            tL_photos_uploadProfilePhoto.flags |= 1;
         }
-        if (tLRPC$InputFile2 != null) {
-            tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
-            int i2 = tLRPC$TL_photos_uploadProfilePhoto.flags;
-            tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-            tLRPC$TL_photos_uploadProfilePhoto.flags = i2 | 6;
+        if (inputFile2 != null) {
+            tL_photos_uploadProfilePhoto.video = inputFile2;
+            int i2 = tL_photos_uploadProfilePhoto.flags;
+            tL_photos_uploadProfilePhoto.video_start_ts = d;
+            tL_photos_uploadProfilePhoto.flags = i2 | 6;
         }
-        if (tLRPC$VideoSize != null) {
-            tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;
-            tLRPC$TL_photos_uploadProfilePhoto.flags |= 16;
+        if (videoSize != null) {
+            tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
+            tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_photos_uploadProfilePhoto, new RequestDelegate() {
+        ConnectionsManager.getInstance(i).sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PhotoUtilities.lambda$setImageAsAvatar$2(i, tLRPC$PhotoSize, tLRPC$PhotoSize2, runnable, iNavigationLayout, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                PhotoUtilities.lambda$setImageAsAvatar$2(i, photoSize, photoSize2, runnable, iNavigationLayout, tLObject, tL_error);
             }
         });
         imageUpdater.onPause();
     }
 
-    public static void lambda$setImageAsAvatar$4(final int i, final Runnable runnable, final INavigationLayout iNavigationLayout, final ImageUpdater imageUpdater, final TLRPC$InputFile tLRPC$InputFile, final TLRPC$InputFile tLRPC$InputFile2, final double d, String str, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, final TLRPC$VideoSize tLRPC$VideoSize) {
+    public static void lambda$setImageAsAvatar$4(final int i, final Runnable runnable, final INavigationLayout iNavigationLayout, final ImageUpdater imageUpdater, final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z, final TLRPC.VideoSize videoSize) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoUtilities.lambda$setImageAsAvatar$3(TLRPC$InputFile.this, tLRPC$InputFile2, d, tLRPC$VideoSize, i, tLRPC$PhotoSize2, tLRPC$PhotoSize, runnable, iNavigationLayout, imageUpdater);
+                PhotoUtilities.lambda$setImageAsAvatar$3(TLRPC.InputFile.this, inputFile2, d, videoSize, i, photoSize2, photoSize, runnable, iNavigationLayout, imageUpdater);
             }
         });
     }
@@ -158,38 +147,38 @@ public abstract class PhotoUtilities {
         chatActivity.presentFragment(new ProfileActivity(bundle));
     }
 
-    public static void lambda$showAvatartConstructorForUpdateUserPhoto$6(TLRPC$TL_error tLRPC$TL_error, final ChatActivity chatActivity, TLObject tLObject, TLRPC$FileLocation[] tLRPC$FileLocationArr, String str, TLRPC$FileLocation[] tLRPC$FileLocationArr2, final long j) {
-        if (tLRPC$TL_error == null) {
-            TLRPC$User user = chatActivity.getMessagesController().getUser(Long.valueOf(chatActivity.getUserConfig().getClientUserId()));
-            TLRPC$TL_photos_photo tLRPC$TL_photos_photo = (TLRPC$TL_photos_photo) tLObject;
-            ArrayList arrayList = tLRPC$TL_photos_photo.photo.sizes;
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 150);
-            TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 800);
-            TLRPC$VideoSize closestVideoSizeWithSize = tLRPC$TL_photos_photo.photo.video_sizes.isEmpty() ? null : FileLoader.getClosestVideoSizeWithSize(tLRPC$TL_photos_photo.photo.video_sizes, 1000);
-            TLRPC$TL_userProfilePhoto tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto();
-            user.photo = tLRPC$TL_userProfilePhoto;
-            tLRPC$TL_userProfilePhoto.photo_id = tLRPC$TL_photos_photo.photo.id;
+    public static void lambda$showAvatartConstructorForUpdateUserPhoto$6(TLRPC.TL_error tL_error, final ChatActivity chatActivity, TLObject tLObject, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, final long j) {
+        if (tL_error == null) {
+            TLRPC.User user = chatActivity.getMessagesController().getUser(Long.valueOf(chatActivity.getUserConfig().getClientUserId()));
+            TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
+            ArrayList<TLRPC.PhotoSize> arrayList = tL_photos_photo.photo.sizes;
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 150);
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 800);
+            TLRPC.VideoSize closestVideoSizeWithSize = tL_photos_photo.photo.video_sizes.isEmpty() ? null : FileLoader.getClosestVideoSizeWithSize(tL_photos_photo.photo.video_sizes, 1000);
+            TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+            user.photo = tL_userProfilePhoto;
+            tL_userProfilePhoto.photo_id = tL_photos_photo.photo.id;
             if (closestPhotoSizeWithSize != null) {
-                tLRPC$TL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
+                tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
             }
             if (closestPhotoSizeWithSize2 != null) {
-                tLRPC$TL_userProfilePhoto.photo_big = closestPhotoSizeWithSize2.location;
+                tL_userProfilePhoto.photo_big = closestPhotoSizeWithSize2.location;
             }
-            if (closestPhotoSizeWithSize != null && tLRPC$FileLocationArr[0] != null) {
-                FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(tLRPC$FileLocationArr[0], true).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(tLRPC$FileLocationArr[0].volume_id + "_" + tLRPC$FileLocationArr[0].local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUserOrChat(user, 1), false);
+            if (closestPhotoSizeWithSize != null && fileLocationArr[0] != null) {
+                FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(fileLocationArr[0], true).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize, true));
+                ImageLoader.getInstance().replaceImageInCache(fileLocationArr[0].volume_id + "_" + fileLocationArr[0].local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUserOrChat(user, 1), false);
             }
             if (closestVideoSizeWithSize != null && str != null) {
                 new File(str).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestVideoSizeWithSize, "mp4", true));
-            } else if (closestPhotoSizeWithSize2 != null && tLRPC$FileLocationArr2[0] != null) {
-                FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(tLRPC$FileLocationArr2[0], true).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
+            } else if (closestPhotoSizeWithSize2 != null && fileLocationArr2[0] != null) {
+                FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(fileLocationArr2[0], true).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
             }
-            chatActivity.getMessagesController().getDialogPhotos(user.id).addPhotoAtStart(tLRPC$TL_photos_photo.photo);
+            chatActivity.getMessagesController().getDialogPhotos(user.id).addPhotoAtStart(tL_photos_photo.photo);
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
             chatActivity.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-            TLRPC$UserFull userFull = chatActivity.getMessagesController().getUserFull(j);
-            userFull.profile_photo = tLRPC$TL_photos_photo.photo;
+            TLRPC.UserFull userFull = chatActivity.getMessagesController().getUserFull(j);
+            userFull.profile_photo = tL_photos_photo.photo;
             chatActivity.getMessagesStorage().updateUserInfo(userFull, false);
             BulletinFactory.of(chatActivity).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new Runnable() {
                 @Override
@@ -200,58 +189,58 @@ public abstract class PhotoUtilities {
         }
     }
 
-    public static void lambda$showAvatartConstructorForUpdateUserPhoto$7(final ChatActivity chatActivity, final TLRPC$FileLocation[] tLRPC$FileLocationArr, final String str, final TLRPC$FileLocation[] tLRPC$FileLocationArr2, final long j, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$showAvatartConstructorForUpdateUserPhoto$7(final ChatActivity chatActivity, final TLRPC.FileLocation[] fileLocationArr, final String str, final TLRPC.FileLocation[] fileLocationArr2, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$6(TLRPC$TL_error.this, chatActivity, tLObject, tLRPC$FileLocationArr, str, tLRPC$FileLocationArr2, j);
+                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$6(TLRPC.TL_error.this, chatActivity, tLObject, fileLocationArr, str, fileLocationArr2, j);
             }
         });
     }
 
-    public static void lambda$showAvatartConstructorForUpdateUserPhoto$8(final ChatActivity chatActivity, final TLRPC$FileLocation[] tLRPC$FileLocationArr, final TLRPC$FileLocation[] tLRPC$FileLocationArr2, final long j, TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, double d, final String str, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, TLRPC$VideoSize tLRPC$VideoSize) {
-        if (tLRPC$InputFile == null && tLRPC$InputFile2 == null && tLRPC$VideoSize == null) {
-            tLRPC$FileLocationArr[0] = tLRPC$PhotoSize2.location;
-            tLRPC$FileLocationArr2[0] = tLRPC$PhotoSize.location;
+    public static void lambda$showAvatartConstructorForUpdateUserPhoto$8(final ChatActivity chatActivity, final TLRPC.FileLocation[] fileLocationArr, final TLRPC.FileLocation[] fileLocationArr2, final long j, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize) {
+        if (inputFile == null && inputFile2 == null && videoSize == null) {
+            fileLocationArr[0] = photoSize2.location;
+            fileLocationArr2[0] = photoSize.location;
             return;
         }
-        TLRPC$TL_photos_uploadProfilePhoto tLRPC$TL_photos_uploadProfilePhoto = new TLRPC$TL_photos_uploadProfilePhoto();
-        if (tLRPC$InputFile != null) {
-            tLRPC$TL_photos_uploadProfilePhoto.file = tLRPC$InputFile;
-            tLRPC$TL_photos_uploadProfilePhoto.flags |= 1;
+        TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
+        if (inputFile != null) {
+            tL_photos_uploadProfilePhoto.file = inputFile;
+            tL_photos_uploadProfilePhoto.flags |= 1;
         }
-        if (tLRPC$InputFile2 != null) {
-            tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
-            int i = tLRPC$TL_photos_uploadProfilePhoto.flags;
-            tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-            tLRPC$TL_photos_uploadProfilePhoto.flags = i | 6;
+        if (inputFile2 != null) {
+            tL_photos_uploadProfilePhoto.video = inputFile2;
+            int i = tL_photos_uploadProfilePhoto.flags;
+            tL_photos_uploadProfilePhoto.video_start_ts = d;
+            tL_photos_uploadProfilePhoto.flags = i | 6;
         }
-        if (tLRPC$VideoSize != null) {
-            tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;
-            tLRPC$TL_photos_uploadProfilePhoto.flags |= 16;
+        if (videoSize != null) {
+            tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
+            tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_photos_uploadProfilePhoto, new RequestDelegate() {
+        chatActivity.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$7(ChatActivity.this, tLRPC$FileLocationArr, str, tLRPC$FileLocationArr2, j, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$7(ChatActivity.this, fileLocationArr, str, fileLocationArr2, j, tLObject, tL_error);
             }
         });
     }
 
-    public static void replacePhotoImagesInCache(int i, TLRPC$Photo tLRPC$Photo, TLRPC$Photo tLRPC$Photo2) {
-        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 100);
-        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 1000);
-        TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo2.sizes, 100);
-        TLRPC$PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo2.sizes, 1000);
+    public static void replacePhotoImagesInCache(int i, TLRPC.Photo photo, TLRPC.Photo photo2) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 100);
+        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1000);
+        TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, 100);
+        TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, 1000);
         if (closestPhotoSizeWithSize3 != null && closestPhotoSizeWithSize != null) {
             FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize3, true));
-            ImageLoader.getInstance().replaceImageInCache(closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", closestPhotoSizeWithSize3.location.volume_id + "_" + closestPhotoSizeWithSize3.location.local_id + "@50_50", ImageLocation.getForPhoto(closestPhotoSizeWithSize, tLRPC$Photo), false);
+            ImageLoader.getInstance().replaceImageInCache(closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", closestPhotoSizeWithSize3.location.volume_id + "_" + closestPhotoSizeWithSize3.location.local_id + "@50_50", ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), false);
         }
         if (closestPhotoSizeWithSize4 == null || closestPhotoSizeWithSize2 == null) {
             return;
         }
         FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize2, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize4, true));
-        ImageLoader.getInstance().replaceImageInCache(closestPhotoSizeWithSize2.location.volume_id + "_" + closestPhotoSizeWithSize2.location.local_id + "@150_150", closestPhotoSizeWithSize4.location.volume_id + "_" + closestPhotoSizeWithSize4.location.local_id + "@150_150", ImageLocation.getForPhoto(closestPhotoSizeWithSize2, tLRPC$Photo), false);
+        ImageLoader.getInstance().replaceImageInCache(closestPhotoSizeWithSize2.location.volume_id + "_" + closestPhotoSizeWithSize2.location.local_id + "@150_150", closestPhotoSizeWithSize4.location.volume_id + "_" + closestPhotoSizeWithSize4.location.local_id + "@150_150", ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), false);
     }
 
     public static void setImageAsAvatar(MediaController.PhotoEntry photoEntry, BaseFragment baseFragment, final Runnable runnable) {
@@ -277,8 +266,8 @@ public abstract class PhotoUtilities {
             }
 
             @Override
-            public final void didUploadPhoto(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, double d, String str, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, TLRPC$VideoSize tLRPC$VideoSize) {
-                PhotoUtilities.lambda$setImageAsAvatar$4(currentAccount, runnable, parentLayout, imageUpdater, tLRPC$InputFile, tLRPC$InputFile2, d, str, tLRPC$PhotoSize, tLRPC$PhotoSize2, z, tLRPC$VideoSize);
+            public final void didUploadPhoto(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize) {
+                PhotoUtilities.lambda$setImageAsAvatar$4(currentAccount, runnable, parentLayout, imageUpdater, inputFile, inputFile2, d, str, photoSize, photoSize2, z, videoSize);
             }
 
             @Override
@@ -293,12 +282,12 @@ public abstract class PhotoUtilities {
         });
     }
 
-    public static void showAvatartConstructorForUpdateUserPhoto(final ChatActivity chatActivity, TLRPC$VideoSize tLRPC$VideoSize) {
+    public static void showAvatartConstructorForUpdateUserPhoto(final ChatActivity chatActivity, TLRPC.VideoSize videoSize) {
         ImageUpdater imageUpdater = new ImageUpdater(true, 0, true);
         imageUpdater.parentFragment = chatActivity;
-        imageUpdater.showAvatarConstructor(tLRPC$VideoSize);
-        final TLRPC$FileLocation[] tLRPC$FileLocationArr = new TLRPC$FileLocation[1];
-        final TLRPC$FileLocation[] tLRPC$FileLocationArr2 = new TLRPC$FileLocation[1];
+        imageUpdater.showAvatarConstructor(videoSize);
+        final TLRPC.FileLocation[] fileLocationArr = new TLRPC.FileLocation[1];
+        final TLRPC.FileLocation[] fileLocationArr2 = new TLRPC.FileLocation[1];
         final long clientUserId = chatActivity.getUserConfig().getClientUserId();
         imageUpdater.setDelegate(new ImageUpdater.ImageUpdaterDelegate() {
             @Override
@@ -317,8 +306,8 @@ public abstract class PhotoUtilities {
             }
 
             @Override
-            public final void didUploadPhoto(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, double d, String str, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, TLRPC$VideoSize tLRPC$VideoSize2) {
-                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$8(ChatActivity.this, tLRPC$FileLocationArr, tLRPC$FileLocationArr2, clientUserId, tLRPC$InputFile, tLRPC$InputFile2, d, str, tLRPC$PhotoSize, tLRPC$PhotoSize2, z, tLRPC$VideoSize2);
+            public final void didUploadPhoto(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize2) {
+                PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$8(ChatActivity.this, fileLocationArr, fileLocationArr2, clientUserId, inputFile, inputFile2, d, str, photoSize, photoSize2, z, videoSize2);
             }
 
             @Override

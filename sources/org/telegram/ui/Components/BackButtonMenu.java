@@ -6,9 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ChatActivity;
@@ -22,29 +20,29 @@ public abstract class BackButtonMenu {
 
     public static class PulledDialog {
         Class activity;
-        TLRPC$Chat chat;
+        TLRPC.Chat chat;
         long dialogId;
         int filterId;
         int folderId;
         int stackIndex;
-        TLRPC$TL_forumTopic topic;
-        TLRPC$User user;
+        TLRPC.TL_forumTopic topic;
+        TLRPC.User user;
     }
 
-    public static void addToPulledDialogs(BaseFragment baseFragment, int i, TLRPC$Chat tLRPC$Chat, TLRPC$User tLRPC$User, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, long j, int i2, int i3) {
+    public static void addToPulledDialogs(BaseFragment baseFragment, int i, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j, int i2, int i3) {
         INavigationLayout parentLayout;
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic2;
-        if ((tLRPC$Chat == null && tLRPC$User == null) || baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
+        TLRPC.TL_forumTopic tL_forumTopic2;
+        if ((chat == null && user == null) || baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
             return;
         }
         if (parentLayout.getPulledDialogs() == null) {
             parentLayout.setPulledDialogs(new ArrayList());
         }
         for (PulledDialog pulledDialog : parentLayout.getPulledDialogs()) {
-            if (tLRPC$TL_forumTopic == null && pulledDialog.dialogId == j) {
+            if (tL_forumTopic == null && pulledDialog.dialogId == j) {
                 return;
             }
-            if (tLRPC$TL_forumTopic != null && (tLRPC$TL_forumTopic2 = pulledDialog.topic) != null && tLRPC$TL_forumTopic2.id == tLRPC$TL_forumTopic.id) {
+            if (tL_forumTopic != null && (tL_forumTopic2 = pulledDialog.topic) != null && tL_forumTopic2.id == tL_forumTopic.id) {
                 return;
             }
         }
@@ -54,9 +52,9 @@ public abstract class BackButtonMenu {
         pulledDialog2.dialogId = j;
         pulledDialog2.filterId = i3;
         pulledDialog2.folderId = i2;
-        pulledDialog2.chat = tLRPC$Chat;
-        pulledDialog2.user = tLRPC$User;
-        pulledDialog2.topic = tLRPC$TL_forumTopic;
+        pulledDialog2.chat = chat;
+        pulledDialog2.user = user;
+        pulledDialog2.topic = tL_forumTopic;
         parentLayout.getPulledDialogs().add(pulledDialog2);
     }
 
@@ -134,19 +132,19 @@ public abstract class BackButtonMenu {
         Class cls = pulledDialog.activity;
         if (cls == ChatActivity.class) {
             Bundle bundle = new Bundle();
-            TLRPC$Chat tLRPC$Chat = pulledDialog.chat;
-            if (tLRPC$Chat != null) {
-                bundle.putLong("chat_id", tLRPC$Chat.id);
+            TLRPC.Chat chat = pulledDialog.chat;
+            if (chat != null) {
+                bundle.putLong("chat_id", chat.id);
             } else {
-                TLRPC$User tLRPC$User = pulledDialog.user;
-                if (tLRPC$User != null) {
-                    bundle.putLong("user_id", tLRPC$User.id);
+                TLRPC.User user = pulledDialog.user;
+                if (user != null) {
+                    bundle.putLong("user_id", user.id);
                 }
             }
             bundle.putInt("dialog_folder_id", pulledDialog.folderId);
             bundle.putInt("dialog_filter_id", pulledDialog.filterId);
-            TLRPC$TL_forumTopic tLRPC$TL_forumTopic = pulledDialog.topic;
-            baseFragment.presentFragment(tLRPC$TL_forumTopic != null ? ForumUtilities.getChatActivityForTopic(baseFragment, pulledDialog.chat.id, tLRPC$TL_forumTopic, 0, bundle) : new ChatActivity(bundle), true);
+            TLRPC.TL_forumTopic tL_forumTopic = pulledDialog.topic;
+            baseFragment.presentFragment(tL_forumTopic != null ? ForumUtilities.getChatActivityForTopic(baseFragment, pulledDialog.chat.id, tL_forumTopic, 0, bundle) : new ChatActivity(bundle), true);
         } else if (cls == ProfileActivity.class) {
             Bundle bundle2 = new Bundle();
             bundle2.putLong("dialog_id", pulledDialog.dialogId);
@@ -170,7 +168,7 @@ public abstract class BackButtonMenu {
         return pulledDialog2.stackIndex - pulledDialog.stackIndex;
     }
 
-    public static void lambda$show$0(java.util.concurrent.atomic.AtomicReference r4, org.telegram.ui.Components.BackButtonMenu.PulledDialog r5, org.telegram.ui.ActionBar.INavigationLayout r6, org.telegram.tgnet.TLRPC$TL_forumTopic r7, org.telegram.ui.ActionBar.BaseFragment r8, android.view.View r9) {
+    public static void lambda$show$0(java.util.concurrent.atomic.AtomicReference r4, org.telegram.ui.Components.BackButtonMenu.PulledDialog r5, org.telegram.ui.ActionBar.INavigationLayout r6, org.telegram.tgnet.TLRPC.TL_forumTopic r7, org.telegram.ui.ActionBar.BaseFragment r8, android.view.View r9) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BackButtonMenu.lambda$show$0(java.util.concurrent.atomic.AtomicReference, org.telegram.ui.Components.BackButtonMenu$PulledDialog, org.telegram.ui.ActionBar.INavigationLayout, org.telegram.tgnet.TLRPC$TL_forumTopic, org.telegram.ui.ActionBar.BaseFragment, android.view.View):void");
     }
 

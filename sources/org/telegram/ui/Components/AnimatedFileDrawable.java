@@ -24,7 +24,7 @@ import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.utils.BitmapsCache;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 
 public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
@@ -50,7 +50,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private boolean decoderCreated;
     private int decoderTryCount;
     private boolean destroyWhenDone;
-    private final TLRPC$Document document;
+    private final TLRPC.Document document;
     private final RectF dstRect;
     private final RectF[] dstRectBackground;
     private float endTime;
@@ -178,16 +178,16 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
     }
 
-    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions) {
-        this(file, z, j, i, tLRPC$Document, imageLocation, obj, j2, i2, z2, i3, i4, cacheOptions, tLRPC$Document != null ? 1 : 0);
+    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions) {
+        this(file, z, j, i, document, imageLocation, obj, j2, i2, z2, i3, i4, cacheOptions, document != null ? 1 : 0);
     }
 
-    public AnimatedFileDrawable(java.io.File r17, boolean r18, long r19, int r21, org.telegram.tgnet.TLRPC$Document r22, org.telegram.messenger.ImageLocation r23, java.lang.Object r24, long r25, int r27, boolean r28, int r29, int r30, org.telegram.messenger.utils.BitmapsCache.CacheOptions r31, int r32) {
+    public AnimatedFileDrawable(java.io.File r17, boolean r18, long r19, int r21, org.telegram.tgnet.TLRPC.Document r22, org.telegram.messenger.ImageLocation r23, java.lang.Object r24, long r25, int r27, boolean r28, int r29, int r30, org.telegram.messenger.utils.BitmapsCache.CacheOptions r31, int r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedFileDrawable.<init>(java.io.File, boolean, long, int, org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.ImageLocation, java.lang.Object, long, int, boolean, int, int, org.telegram.messenger.utils.BitmapsCache$CacheOptions, int):void");
     }
 
-    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, BitmapsCache.CacheOptions cacheOptions) {
-        this(file, z, j, i, tLRPC$Document, imageLocation, obj, j2, i2, z2, 0, 0, cacheOptions);
+    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, BitmapsCache.CacheOptions cacheOptions) {
+        this(file, z, j, i, document, imageLocation, obj, j2, i2, z2, 0, 0, cacheOptions);
     }
 
     static int access$1010(AnimatedFileDrawable animatedFileDrawable) {
@@ -725,7 +725,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             File file = this.path;
             long j = this.streamFileSize;
             int i = this.streamLoadingPriority;
-            TLRPC$Document document = animatedFileDrawableStream.getDocument();
+            TLRPC.Document document = animatedFileDrawableStream.getDocument();
             ImageLocation location = this.stream.getLocation();
             Object parentObject = this.stream.getParentObject();
             long j2 = this.pendingSeekToUI;
@@ -736,11 +736,11 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             File file2 = this.path;
             long j3 = this.streamFileSize;
             int i3 = this.streamLoadingPriority;
-            TLRPC$Document tLRPC$Document = this.document;
+            TLRPC.Document document2 = this.document;
             long j4 = this.pendingSeekToUI;
             int i4 = this.currentAccount;
             AnimatedFileDrawableStream animatedFileDrawableStream3 = this.stream;
-            animatedFileDrawable = new AnimatedFileDrawable(file2, false, j3, i3, tLRPC$Document, null, null, j4, i4, animatedFileDrawableStream3 != null && animatedFileDrawableStream3.isPreview(), null);
+            animatedFileDrawable = new AnimatedFileDrawable(file2, false, j3, i3, document2, null, null, j4, i4, animatedFileDrawableStream3 != null && animatedFileDrawableStream3.isPreview(), null);
         }
         int[] iArr = animatedFileDrawable.metaData;
         int[] iArr2 = this.metaData;

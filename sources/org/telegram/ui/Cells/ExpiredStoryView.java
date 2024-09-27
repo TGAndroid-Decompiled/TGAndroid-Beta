@@ -12,10 +12,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$TL_messageMediaStory;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Stories.StoriesUtilities;
@@ -79,14 +76,14 @@ public class ExpiredStoryView {
     }
 
     public void measure(ChatMessageCell chatMessageCell) {
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         String str;
         CharSequence createExpiredStoryString = StoriesUtilities.createExpiredStoryString();
         MessageObject messageObject = chatMessageCell.getMessageObject();
-        if (messageObject != null && (tLRPC$Message = messageObject.messageOwner) != null) {
-            TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaStory) {
-                TLRPC$User user = MessagesController.getInstance(chatMessageCell.currentAccount).getUser(Long.valueOf(((TLRPC$TL_messageMediaStory) tLRPC$MessageMedia).user_id));
+        if (messageObject != null && (message = messageObject.messageOwner) != null) {
+            TLRPC.MessageMedia messageMedia = message.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaStory) {
+                TLRPC.User user = MessagesController.getInstance(chatMessageCell.currentAccount).getUser(Long.valueOf(((TLRPC.TL_messageMediaStory) messageMedia).user_id));
                 String str2 = user == null ? "DELETED" : user.first_name;
                 int minTabletSide = (int) ((AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : chatMessageCell.getParentWidth()) * 0.4f);
                 String string = LocaleController.getString(R.string.From);

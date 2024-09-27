@@ -18,7 +18,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$TL_authorization;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -92,14 +92,14 @@ public class SessionCell extends FrameLayout {
     }
 
     public static CombinedDrawable createDrawable(int i, String str) {
-        TLRPC$TL_authorization tLRPC$TL_authorization = new TLRPC$TL_authorization();
-        tLRPC$TL_authorization.device_model = str;
-        tLRPC$TL_authorization.platform = str;
-        tLRPC$TL_authorization.app_name = str;
-        return createDrawable(i, tLRPC$TL_authorization);
+        TLRPC.TL_authorization tL_authorization = new TLRPC.TL_authorization();
+        tL_authorization.device_model = str;
+        tL_authorization.platform = str;
+        tL_authorization.app_name = str;
+        return createDrawable(i, tL_authorization);
     }
 
-    public static org.telegram.ui.Components.CombinedDrawable createDrawable(int r6, org.telegram.tgnet.TLRPC$TL_authorization r7) {
+    public static org.telegram.ui.Components.CombinedDrawable createDrawable(int r6, org.telegram.tgnet.TLRPC.TL_authorization r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SessionCell.createDrawable(int, org.telegram.tgnet.TLRPC$TL_authorization):org.telegram.ui.Components.CombinedDrawable");
     }
 

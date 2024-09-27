@@ -4,7 +4,7 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC$MessageEntity;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
 public class TextStyleSpan extends MetricAffectingSpan {
@@ -16,7 +16,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
         public int end;
         public int flags;
         public int start;
-        public TLRPC$MessageEntity urlEntity;
+        public TLRPC.MessageEntity urlEntity;
 
         public TextStyleRun() {
         }
@@ -62,12 +62,12 @@ public class TextStyleSpan extends MetricAffectingSpan {
         }
 
         public void merge(TextStyleRun textStyleRun) {
-            TLRPC$MessageEntity tLRPC$MessageEntity;
+            TLRPC.MessageEntity messageEntity;
             this.flags |= textStyleRun.flags;
-            if (this.urlEntity != null || (tLRPC$MessageEntity = textStyleRun.urlEntity) == null) {
+            if (this.urlEntity != null || (messageEntity = textStyleRun.urlEntity) == null) {
                 return;
             }
-            this.urlEntity = tLRPC$MessageEntity;
+            this.urlEntity = messageEntity;
         }
 
         public void replace(TextStyleRun textStyleRun) {

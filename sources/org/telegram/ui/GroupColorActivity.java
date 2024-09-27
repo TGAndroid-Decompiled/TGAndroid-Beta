@@ -17,8 +17,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelColorActivity;
@@ -166,7 +166,7 @@ public class GroupColorActivity extends ChannelColorActivity {
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         super.didReceivedNotification(i, i2, objArr);
-        if (i == NotificationCenter.chatInfoDidLoad && ((TLRPC$ChatFull) objArr[0]).id == (-this.dialogId)) {
+        if (i == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).id == (-this.dialogId)) {
             updateProfilePreview(true);
         }
     }
@@ -297,8 +297,8 @@ public class GroupColorActivity extends ChannelColorActivity {
         ChannelColorActivity.ProfilePreview profilePreview = this.profilePreview;
         if (profilePreview != null) {
             TextView textView = profilePreview.textInfo1;
-            TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGroupBoostCount", tL_stories$TL_premium_boostsStatus != null ? tL_stories$TL_premium_boostsStatus.boosts : 0, new Object[0])));
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.boostsStatus;
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGroupBoostCount", tL_premium_boostsStatus != null ? tL_premium_boostsStatus.boosts : 0, new Object[0])));
         }
     }
 
@@ -348,7 +348,7 @@ public class GroupColorActivity extends ChannelColorActivity {
         this.statusEmojiRow = i2 + 3;
         this.rowsCount = i2 + 5;
         this.statusHintRow = i2 + 4;
-        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
+        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
         if (chatFull == null || !chatFull.can_set_stickers) {
             this.packStickerRow = -1;
             this.packStickerHintRow = -1;

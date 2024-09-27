@@ -14,7 +14,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -112,20 +112,20 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
         int size = this.selectedUsers.size();
         if (size == 1) {
-            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersOne", R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0))));
+            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersOne", R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0))));
         } else if (size == 2) {
-            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(1))));
+            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1))));
         } else if (size != 3) {
-            formatString = LocaleController.formatPluralString("GiftPremiumUsersPurchasedMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(2))));
+            formatString = LocaleController.formatPluralString("GiftPremiumUsersPurchasedMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
         } else {
-            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(2))));
+            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
         }
         this.subtitleView.setText(AndroidUtilities.replaceTags(formatString));
         this.subtitleView.append("\n");
         this.subtitleView.append("\n");
         if (this.selectedUsers.size() == 1) {
             textView = this.subtitleView;
-            string = LocaleController.formatString("GiftPremiumGiftsSentStatusForUser", R.string.GiftPremiumGiftsSentStatusForUser, UserObject.getFirstName((TLRPC$User) this.selectedUsers.get(0)));
+            string = LocaleController.formatString("GiftPremiumGiftsSentStatusForUser", R.string.GiftPremiumGiftsSentStatusForUser, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)));
         } else {
             textView = this.subtitleView;
             string = LocaleController.getString("GiftPremiumGiftsSentStatus", R.string.GiftPremiumGiftsSentStatus);

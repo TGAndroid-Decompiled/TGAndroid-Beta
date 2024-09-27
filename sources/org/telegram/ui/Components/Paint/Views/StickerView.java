@@ -11,10 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
-import org.telegram.tgnet.TLRPC$TL_maskCoords;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -32,7 +29,7 @@ public class StickerView extends EntityView {
     private final AnimatedFloat mirrorT;
     private boolean mirrored;
     private Object parentObject;
-    private TLRPC$Document sticker;
+    private TLRPC.Document sticker;
 
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
@@ -106,7 +103,7 @@ public class StickerView extends EntityView {
         }
     }
 
-    public StickerView(Context context, Point point, float f, float f2, Size size, TLRPC$Document tLRPC$Document, Object obj) {
+    public StickerView(Context context, Point point, float f, float f2, Size size, TLRPC.Document document, Object obj) {
         super(context, point);
         this.anchor = -1;
         int i = 0;
@@ -114,18 +111,18 @@ public class StickerView extends EntityView {
         this.centerImage = new ImageReceiver();
         setRotation(f);
         setScale(f2);
-        this.sticker = tLRPC$Document;
+        this.sticker = document;
         this.baseSize = size;
         this.parentObject = obj;
         while (true) {
-            if (i >= tLRPC$Document.attributes.size()) {
+            if (i >= document.attributes.size()) {
                 break;
             }
-            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i);
-            if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) {
-                TLRPC$TL_maskCoords tLRPC$TL_maskCoords = tLRPC$DocumentAttribute.mask_coords;
-                if (tLRPC$TL_maskCoords != null) {
-                    this.anchor = tLRPC$TL_maskCoords.n;
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
+                if (tL_maskCoords != null) {
+                    this.anchor = tL_maskCoords.n;
                 }
             } else {
                 i++;
@@ -138,7 +135,7 @@ public class StickerView extends EntityView {
         this.centerImage.setAspectFit(true);
         this.centerImage.setInvalidateAll(true);
         this.centerImage.setParentView(this.containerView);
-        this.centerImage.setImage(ImageLocation.getForDocument(tLRPC$Document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document), (String) null, "webp", obj, 1);
+        this.centerImage.setImage(ImageLocation.getForDocument(document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, "webp", obj, 1);
         this.centerImage.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
@@ -210,7 +207,7 @@ public class StickerView extends EntityView {
         return new Rect((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
     }
 
-    public TLRPC$Document getSticker() {
+    public TLRPC.Document getSticker() {
         return this.sticker;
     }
 

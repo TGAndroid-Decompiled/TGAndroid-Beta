@@ -29,7 +29,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -107,8 +107,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.contactsActivity = contactsActivity;
         contactsActivity.setDelegate(new ContactsActivity.ContactsActivityDelegate() {
             @Override
-            public final void didSelectContact(TLRPC$User tLRPC$User, String str, ContactsActivity contactsActivity2) {
-                DialogOrContactPickerActivity.this.lambda$new$2(tLRPC$User, str, contactsActivity2);
+            public final void didSelectContact(TLRPC.User user, String str, ContactsActivity contactsActivity2) {
+                DialogOrContactPickerActivity.this.lambda$new$2(user, str, contactsActivity2);
             }
         });
         this.contactsActivity.onFragmentCreate();
@@ -126,20 +126,20 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         return true;
     }
 
-    public void lambda$new$2(TLRPC$User tLRPC$User, String str, ContactsActivity contactsActivity) {
-        showBlockAlert(tLRPC$User);
+    public void lambda$new$2(TLRPC.User user, String str, ContactsActivity contactsActivity) {
+        showBlockAlert(user);
     }
 
-    public void lambda$showBlockAlert$3(TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
+    public void lambda$showBlockAlert$3(TLRPC.User user, DialogInterface dialogInterface, int i) {
         int i2;
-        if (MessagesController.isSupportUser(tLRPC$User)) {
+        if (MessagesController.isSupportUser(user)) {
             i2 = R.string.ErrorOccurred;
         } else {
-            MessagesController.getInstance(this.currentAccount).blockPeer(tLRPC$User.id);
+            MessagesController.getInstance(this.currentAccount).blockPeer(user.id);
             i2 = R.string.UserBlocked;
         }
         AlertsCreator.showSimpleToast(this, LocaleController.getString(i2));
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public static float lambda$static$0(float f) {
@@ -165,17 +165,17 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         }
     }
 
-    private void showBlockAlert(final TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null) {
+    private void showBlockAlert(final TLRPC.User user) {
+        if (user == null) {
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.BlockUser));
-        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureBlockContact2", R.string.AreYouSureBlockContact2, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name))));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureBlockContact2", R.string.AreYouSureBlockContact2, ContactsController.formatName(user.first_name, user.last_name))));
         builder.setPositiveButton(LocaleController.getString(R.string.BlockContact), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                DialogOrContactPickerActivity.this.lambda$showBlockAlert$3(tLRPC$User, dialogInterface, i);
+                DialogOrContactPickerActivity.this.lambda$showBlockAlert$3(user, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -246,7 +246,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DialogOrContactPickerActivity.this.lambda$onBackPressed$307();
+                    DialogOrContactPickerActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

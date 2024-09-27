@@ -81,56 +81,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChannelAdminLogEventAction;
-import org.telegram.tgnet.TLRPC$ChannelParticipant;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$KeyboardButton;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$MessageReplyHeader;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$ReplyMarkup;
-import org.telegram.tgnet.TLRPC$TL_boolFalse;
-import org.telegram.tgnet.TLRPC$TL_boolTrue;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventActionDeleteMessage;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventActionEditMessage;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventActionExportedInviteDelete;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventActionExportedInviteEdit;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventActionExportedInviteRevoke;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventActionParticipantToggleAdmin;
-import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventsFilter;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantCreator;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsAdmins;
-import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults;
-import org.telegram.tgnet.TLRPC$TL_channels_channelParticipants;
-import org.telegram.tgnet.TLRPC$TL_channels_getAdminLog;
-import org.telegram.tgnet.TLRPC$TL_channels_getParticipants;
-import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetID;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
-import org.telegram.tgnet.TLRPC$TL_inputUser;
-import org.telegram.tgnet.TLRPC$TL_keyboardButton;
-import org.telegram.tgnet.TLRPC$TL_keyboardButtonRow;
-import org.telegram.tgnet.TLRPC$TL_message;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
-import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
-import org.telegram.tgnet.TLRPC$TL_messages_exportedChatInvite;
-import org.telegram.tgnet.TLRPC$TL_messages_getExportedChatInvite;
-import org.telegram.tgnet.TLRPC$TL_premiumGiftOption;
-import org.telegram.tgnet.TLRPC$TL_replyInlineMarkup;
-import org.telegram.tgnet.TLRPC$TL_users_getUsers;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.TLRPC$Vector;
-import org.telegram.tgnet.TLRPC$VideoSize;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -199,7 +150,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     private float contentPanTranslation;
     private float contentPanTranslationT;
     private SizeNotifierFrameLayout contentView;
-    protected TLRPC$Chat currentChat;
+    protected TLRPC.Chat currentChat;
     private boolean currentFloatingDateOnScreen;
     private boolean currentFloatingTopIsNotMessage;
     private ChatMessageCell dummyMessageCell;
@@ -237,7 +188,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     private boolean searchWas;
     private LongSparseArray selectedAdmins;
     private MessageObject selectedObject;
-    private TLRPC$ChannelParticipant selectedParticipant;
+    private TLRPC.ChannelParticipant selectedParticipant;
     public boolean showNoQuoteAlert;
     private UndoView undoView;
     private Runnable unselectRunnable;
@@ -256,13 +207,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     protected ArrayList messages = new ArrayList();
     private final ArrayList filteredMessages = new ArrayList();
     private final HashSet expandedEvents = new HashSet();
-    private TLRPC$TL_channelAdminLogEventsFilter currentFilter = null;
+    private TLRPC.TL_channelAdminLogEventsFilter currentFilter = null;
     private String searchQuery = "";
     private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker(allowedNotificationsDuringChatListAnimations);
     private HashMap invitesCache = new HashMap();
     private PhotoViewer.PhotoViewerProvider provider = new PhotoViewer.EmptyPhotoViewerProvider() {
         @Override
-        public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC$FileLocation r18, int r19, boolean r20) {
+        public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.AnonymousClass1.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
         }
     };
@@ -356,15 +307,15 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             AnonymousClass1() {
             }
 
-            public void lambda$didLongPressUserAvatar$0(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, AvatarPreviewer.MenuItem menuItem) {
+            public void lambda$didLongPressUserAvatar$0(ChatMessageCell chatMessageCell, TLRPC.User user, AvatarPreviewer.MenuItem menuItem) {
                 int i = AnonymousClass24.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
                 if (i == 1) {
-                    openDialog(chatMessageCell, tLRPC$User);
+                    openDialog(chatMessageCell, user);
                 } else {
                     if (i != 2) {
                         return;
                     }
-                    openProfile(tLRPC$User);
+                    openProfile(user);
                 }
             }
 
@@ -384,20 +335,20 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 }
             }
 
-            private void openDialog(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User) {
-                if (tLRPC$User != null) {
+            private void openDialog(ChatMessageCell chatMessageCell, TLRPC.User user) {
+                if (user != null) {
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", tLRPC$User.id);
+                    bundle.putLong("user_id", user.id);
                     if (ChannelAdminLogActivity.this.getMessagesController().checkCanOpenChat(bundle, ChannelAdminLogActivity.this)) {
                         ChannelAdminLogActivity.this.presentFragment(new ChatActivity(bundle));
                     }
                 }
             }
 
-            private void openProfile(TLRPC$User tLRPC$User) {
+            private void openProfile(TLRPC.User user) {
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", tLRPC$User.id);
-                ChannelAdminLogActivity.this.addCanBanUser(bundle, tLRPC$User.id);
+                bundle.putLong("user_id", user.id);
+                ChannelAdminLogActivity.this.addCanBanUser(bundle, user.id);
                 ProfileActivity profileActivity = new ProfileActivity(bundle);
                 profileActivity.setPlayProfileAnimation(0);
                 ChannelAdminLogActivity.this.presentFragment(profileActivity);
@@ -419,28 +370,28 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didLongPressBotButton(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell, tLRPC$KeyboardButton);
+            public void didLongPressBotButton(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell, keyboardButton);
             }
 
             @Override
-            public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat, int i, float f, float f2) {
-                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell, tLRPC$Chat, i, f, f2);
+            public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell, chat, i, f, f2);
             }
 
             @Override
-            public boolean didLongPressUserAvatar(final ChatMessageCell chatMessageCell, final TLRPC$User tLRPC$User, float f, float f2) {
-                if (tLRPC$User != null && tLRPC$User.id != UserConfig.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getClientUserId()) {
+            public boolean didLongPressUserAvatar(final ChatMessageCell chatMessageCell, final TLRPC.User user, float f, float f2) {
+                if (user != null && user.id != UserConfig.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getClientUserId()) {
                     AvatarPreviewer.MenuItem[] menuItemArr = {AvatarPreviewer.MenuItem.OPEN_PROFILE, AvatarPreviewer.MenuItem.SEND_MESSAGE};
-                    TLRPC$UserFull userFull = ChannelAdminLogActivity.this.getMessagesController().getUserFull(tLRPC$User.id);
-                    AvatarPreviewer.Data of = userFull != null ? AvatarPreviewer.Data.of(tLRPC$User, userFull, menuItemArr) : AvatarPreviewer.Data.of(tLRPC$User, ((BaseFragment) ChannelAdminLogActivity.this).classGuid, menuItemArr);
+                    TLRPC.UserFull userFull = ChannelAdminLogActivity.this.getMessagesController().getUserFull(user.id);
+                    AvatarPreviewer.Data of = userFull != null ? AvatarPreviewer.Data.of(user, userFull, menuItemArr) : AvatarPreviewer.Data.of(user, ((BaseFragment) ChannelAdminLogActivity.this).classGuid, menuItemArr);
                     if (AvatarPreviewer.canPreview(of)) {
                         AvatarPreviewer avatarPreviewer = AvatarPreviewer.getInstance();
                         ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
                         avatarPreviewer.show((ViewGroup) channelAdminLogActivity.fragmentView, channelAdminLogActivity.getResourceProvider(), of, new AvatarPreviewer.Callback() {
                             @Override
                             public final void onMenuClick(AvatarPreviewer.MenuItem menuItem) {
-                                ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.this.lambda$didLongPressUserAvatar$0(chatMessageCell, tLRPC$User, menuItem);
+                                ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.this.lambda$didLongPressUserAvatar$0(chatMessageCell, user, menuItem);
                             }
                         });
                         return true;
@@ -465,7 +416,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressBotButton(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+            public void didPressBotButton(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
                 MessageObject messageObject = chatMessageCell.getMessageObject();
                 if (ChannelAdminLogActivity.this.expandedEvents.contains(Long.valueOf(messageObject.eventId))) {
                     ChannelAdminLogActivity.this.expandedEvents.remove(Long.valueOf(messageObject.eventId));
@@ -482,12 +433,12 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat, int i, float f, float f2, boolean z) {
-                if (tLRPC$Chat == null || tLRPC$Chat == ChannelAdminLogActivity.this.currentChat) {
+            public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2, boolean z) {
+                if (chat == null || chat == ChannelAdminLogActivity.this.currentChat) {
                     return;
                 }
                 Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", tLRPC$Chat.id);
+                bundle.putLong("chat_id", chat.id);
                 if (i != 0) {
                     bundle.putInt("message_id", i);
                 }
@@ -497,8 +448,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressChannelRecommendation(ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat, boolean z) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell, tLRPC$Chat, z);
+            public void didPressChannelRecommendation(ChatMessageCell chatMessageCell, TLRPC.Chat chat, boolean z) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell, chat, z);
             }
 
             @Override
@@ -527,8 +478,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell, tLRPC$KeyboardButton);
+            public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell, keyboardButton);
             }
 
             @Override
@@ -547,8 +498,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, float f, float f2) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell, imageReceiver, tLRPC$MessageExtendedMedia, f, f2);
+            public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell, imageReceiver, messageExtendedMedia, f, f2);
             }
 
             @Override
@@ -568,10 +519,10 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressInstantButton(ChatMessageCell chatMessageCell, int i) {
-                TLRPC$WebPage tLRPC$WebPage;
+                TLRPC.WebPage webPage;
                 MessageObject messageObject = chatMessageCell.getMessageObject();
-                TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent = messageObject.currentEvent;
-                if (tLRPC$TL_channelAdminLogEvent != null && (tLRPC$TL_channelAdminLogEvent.action instanceof TLRPC$TL_channelAdminLogEventActionEditMessage)) {
+                TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = messageObject.currentEvent;
+                if (tL_channelAdminLogEvent != null && (tL_channelAdminLogEvent.action instanceof TLRPC.TL_channelAdminLogEventActionEditMessage)) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", -messageObject.getDialogId());
                     bundle.putInt("message_id", messageObject.getRealId());
@@ -583,8 +534,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     return;
                 }
                 if (i == 0) {
-                    TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
-                    if (tLRPC$MessageMedia == null || (tLRPC$WebPage = tLRPC$MessageMedia.webpage) == null || tLRPC$WebPage.cached_page == null) {
+                    TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
+                    if (messageMedia == null || (webPage = messageMedia.webpage) == null || webPage.cached_page == null) {
                         return;
                     }
                     LaunchActivity launchActivity = LaunchActivity.instance;
@@ -596,13 +547,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 }
                 if (i == 5) {
                     ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
-                    TLRPC$User user = channelAdminLogActivity.getMessagesController().getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
-                    TLRPC$MessageMedia tLRPC$MessageMedia2 = messageObject.messageOwner.media;
-                    channelAdminLogActivity.openVCard(user, tLRPC$MessageMedia2.vcard, tLRPC$MessageMedia2.first_name, tLRPC$MessageMedia2.last_name);
+                    TLRPC.User user = channelAdminLogActivity.getMessagesController().getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
+                    TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
+                    channelAdminLogActivity.openVCard(user, messageMedia2.vcard, messageMedia2.first_name, messageMedia2.last_name);
                     return;
                 }
-                TLRPC$MessageMedia tLRPC$MessageMedia3 = messageObject.messageOwner.media;
-                if (tLRPC$MessageMedia3 == null || tLRPC$MessageMedia3.webpage == null) {
+                TLRPC.MessageMedia messageMedia3 = messageObject.messageOwner.media;
+                if (messageMedia3 == null || messageMedia3.webpage == null) {
                     return;
                 }
                 Browser.openUrl(ChannelAdminLogActivity.this.getParentActivity(), messageObject.messageOwner.media.webpage.url);
@@ -619,8 +570,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, float f, float f2) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell, tLRPC$ReactionCount, z, f, f2);
+            public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell, reactionCount, z, f, f2);
             }
 
             @Override
@@ -684,13 +635,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) {
-                TLRPC$WebPage tLRPC$WebPage;
-                TLRPC$Chat chat;
+                TLRPC.WebPage webPage;
+                TLRPC.Chat chat;
                 MessagesController messagesController;
                 ChannelAdminLogActivity channelAdminLogActivity;
                 int i;
                 boolean z2;
-                TLRPC$User tLRPC$User;
+                TLRPC.User user;
                 if (characterStyle == null) {
                     return;
                 }
@@ -707,8 +658,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     Long parseLong = Utilities.parseLong(((URLSpanUserMention) characterStyle).getURL());
                     long longValue = parseLong.longValue();
                     if (longValue > 0) {
-                        tLRPC$User = MessagesController.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getUser(parseLong);
-                        if (tLRPC$User == null) {
+                        user = MessagesController.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getUser(parseLong);
+                        if (user == null) {
                             return;
                         }
                         messagesController = MessagesController.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount);
@@ -725,9 +676,9 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         channelAdminLogActivity = ChannelAdminLogActivity.this;
                         i = 0;
                         z2 = false;
-                        tLRPC$User = null;
+                        user = null;
                     }
-                    messagesController.openChatOrProfileWith(tLRPC$User, chat, channelAdminLogActivity, i, z2);
+                    messagesController.openChatOrProfileWith(user, chat, channelAdminLogActivity, i, z2);
                     return;
                 }
                 if (characterStyle instanceof URLSpanNoUnderline) {
@@ -762,8 +713,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     ChannelAdminLogActivity.this.showOpenUrlAlert(((URLSpanReplacement) characterStyle).getURL(), true);
                     return;
                 }
-                TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
-                if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = tLRPC$MessageMedia.webpage) != null && tLRPC$WebPage.cached_page != null) {
+                TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
+                if ((messageMedia instanceof TLRPC.TL_messageMediaWebPage) && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     String lowerCase = url2.toLowerCase();
                     String lowerCase2 = messageObject.messageOwner.media.webpage.url.toLowerCase();
                     if ((Browser.isTelegraphUrl(lowerCase, false) || lowerCase.contains("t.me/iv")) && (lowerCase.contains(lowerCase2) || lowerCase2.contains(lowerCase))) {
@@ -779,16 +730,16 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, float f, float f2, boolean z) {
-                if (tLRPC$User == null || tLRPC$User.id == UserConfig.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getClientUserId()) {
+            public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z) {
+                if (user == null || user.id == UserConfig.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getClientUserId()) {
                     return;
                 }
-                openProfile(tLRPC$User);
+                openProfile(user);
             }
 
             @Override
-            public void didPressUserStatus(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, TLRPC$Document tLRPC$Document) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserStatus(this, chatMessageCell, tLRPC$User, tLRPC$Document);
+            public void didPressUserStatus(ChatMessageCell chatMessageCell, TLRPC.User user, TLRPC.Document document) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserStatus(this, chatMessageCell, user, document);
             }
 
             @Override
@@ -806,8 +757,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
-                Browser.openUrl(chatMessageCell.getContext(), str);
+            public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell, webPage, str, z);
             }
 
             @Override
@@ -941,13 +892,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell) {
-                TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent;
+                TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent;
                 MessageObject messageObject = chatMessageCell.getMessageObject();
-                if (messageObject == null || (tLRPC$TL_channelAdminLogEvent = messageObject.currentEvent) == null) {
+                if (messageObject == null || (tL_channelAdminLogEvent = messageObject.currentEvent) == null) {
                     return false;
                 }
-                TLRPC$ChannelAdminLogEventAction tLRPC$ChannelAdminLogEventAction = tLRPC$TL_channelAdminLogEvent.action;
-                if ((tLRPC$ChannelAdminLogEventAction instanceof TLRPC$TL_channelAdminLogEventActionEditMessage) || (tLRPC$ChannelAdminLogEventAction instanceof TLRPC$TL_channelAdminLogEventActionDeleteMessage)) {
+                TLRPC.ChannelAdminLogEventAction channelAdminLogEventAction = tL_channelAdminLogEvent.action;
+                if ((channelAdminLogEventAction instanceof TLRPC.TL_channelAdminLogEventActionEditMessage) || (channelAdminLogEventAction instanceof TLRPC.TL_channelAdminLogEventActionDeleteMessage)) {
                     return ChatObject.isForum(ChannelAdminLogActivity.this.currentChat);
                 }
                 return false;
@@ -968,40 +919,40 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 zArr[0] = true;
             }
 
-            public void lambda$needOpenInviteLink$1(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, TLRPC$TL_messages_exportedChatInvite tLRPC$TL_messages_exportedChatInvite, boolean[] zArr, AlertDialog alertDialog) {
+            public void lambda$needOpenInviteLink$1(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite, boolean[] zArr, AlertDialog alertDialog) {
                 ChannelAdminLogActivity.this.linviteLoading = false;
-                ChannelAdminLogActivity.this.invitesCache.put(tLRPC$TL_chatInviteExported.link, tLRPC$TL_messages_exportedChatInvite == null ? 0 : tLRPC$TL_messages_exportedChatInvite);
+                ChannelAdminLogActivity.this.invitesCache.put(tL_chatInviteExported.link, tL_messages_exportedChatInvite == null ? 0 : tL_messages_exportedChatInvite);
                 if (zArr[0]) {
                     return;
                 }
                 alertDialog.dismiss();
                 ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
-                if (tLRPC$TL_messages_exportedChatInvite != null) {
-                    channelAdminLogActivity.showInviteLinkBottomSheet(tLRPC$TL_messages_exportedChatInvite, channelAdminLogActivity.usersMap);
+                if (tL_messages_exportedChatInvite != null) {
+                    channelAdminLogActivity.showInviteLinkBottomSheet(tL_messages_exportedChatInvite, channelAdminLogActivity.usersMap);
                 } else {
                     BulletinFactory.of(channelAdminLogActivity).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString("LinkHashExpired", R.string.LinkHashExpired)).show();
                 }
             }
 
-            public void lambda$needOpenInviteLink$2(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, final boolean[] zArr, final AlertDialog alertDialog, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                TLRPC$TL_messages_exportedChatInvite tLRPC$TL_messages_exportedChatInvite;
-                if (tLRPC$TL_error == null) {
-                    tLRPC$TL_messages_exportedChatInvite = (TLRPC$TL_messages_exportedChatInvite) tLObject;
-                    for (int i = 0; i < tLRPC$TL_messages_exportedChatInvite.users.size(); i++) {
-                        TLRPC$User tLRPC$User = (TLRPC$User) tLRPC$TL_messages_exportedChatInvite.users.get(i);
+            public void lambda$needOpenInviteLink$2(final TLRPC.TL_chatInviteExported tL_chatInviteExported, final boolean[] zArr, final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+                TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
+                if (tL_error == null) {
+                    tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
+                    for (int i = 0; i < tL_messages_exportedChatInvite.users.size(); i++) {
+                        TLRPC.User user = tL_messages_exportedChatInvite.users.get(i);
                         if (ChannelAdminLogActivity.this.usersMap == null) {
                             ChannelAdminLogActivity.this.usersMap = new HashMap();
                         }
-                        ChannelAdminLogActivity.this.usersMap.put(Long.valueOf(tLRPC$User.id), tLRPC$User);
+                        ChannelAdminLogActivity.this.usersMap.put(Long.valueOf(user.id), user);
                     }
                 } else {
-                    tLRPC$TL_messages_exportedChatInvite = null;
+                    tL_messages_exportedChatInvite = null;
                 }
-                final TLRPC$TL_messages_exportedChatInvite tLRPC$TL_messages_exportedChatInvite2 = tLRPC$TL_messages_exportedChatInvite;
+                final TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite2 = tL_messages_exportedChatInvite;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass3.this.lambda$needOpenInviteLink$1(tLRPC$TL_chatInviteExported, tLRPC$TL_messages_exportedChatInvite2, zArr, alertDialog);
+                        ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass3.this.lambda$needOpenInviteLink$1(tL_chatInviteExported, tL_messages_exportedChatInvite2, zArr, alertDialog);
                     }
                 });
             }
@@ -1024,7 +975,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     return;
                 }
                 PhotoViewer.getInstance().setParentActivity(ChannelAdminLogActivity.this);
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
                 if (closestPhotoSizeWithSize == null) {
                     PhotoViewer.getInstance().openPhoto(messageObject, (ChatActivity) null, 0L, 0L, 0L, ChannelAdminLogActivity.this.provider);
                 } else {
@@ -1038,8 +989,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didOpenPremiumGift(ChatActionCell chatActionCell, TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption, String str, boolean z) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGift(this, chatActionCell, tLRPC$TL_premiumGiftOption, str, z);
+            public void didOpenPremiumGift(ChatActionCell chatActionCell, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str, boolean z) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGift(this, chatActionCell, tL_premiumGiftOption, str, z);
             }
 
             @Override
@@ -1067,24 +1018,24 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void needOpenInviteLink(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported) {
+            public void needOpenInviteLink(final TLRPC.TL_chatInviteExported tL_chatInviteExported) {
                 if (ChannelAdminLogActivity.this.linviteLoading) {
                     return;
                 }
-                Object obj = ChannelAdminLogActivity.this.invitesCache.containsKey(tLRPC$TL_chatInviteExported.link) ? ChannelAdminLogActivity.this.invitesCache.get(tLRPC$TL_chatInviteExported.link) : null;
+                Object obj = ChannelAdminLogActivity.this.invitesCache.containsKey(tL_chatInviteExported.link) ? ChannelAdminLogActivity.this.invitesCache.get(tL_chatInviteExported.link) : null;
                 if (obj != null) {
-                    if (!(obj instanceof TLRPC$TL_messages_exportedChatInvite)) {
+                    if (!(obj instanceof TLRPC.TL_messages_exportedChatInvite)) {
                         BulletinFactory.of(ChannelAdminLogActivity.this).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString("LinkHashExpired", R.string.LinkHashExpired)).show();
                         return;
                     } else {
                         ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
-                        channelAdminLogActivity.showInviteLinkBottomSheet((TLRPC$TL_messages_exportedChatInvite) obj, channelAdminLogActivity.usersMap);
+                        channelAdminLogActivity.showInviteLinkBottomSheet((TLRPC.TL_messages_exportedChatInvite) obj, channelAdminLogActivity.usersMap);
                         return;
                     }
                 }
-                TLRPC$TL_messages_getExportedChatInvite tLRPC$TL_messages_getExportedChatInvite = new TLRPC$TL_messages_getExportedChatInvite();
-                tLRPC$TL_messages_getExportedChatInvite.peer = ChannelAdminLogActivity.this.getMessagesController().getInputPeer(-ChannelAdminLogActivity.this.currentChat.id);
-                tLRPC$TL_messages_getExportedChatInvite.link = tLRPC$TL_chatInviteExported.link;
+                TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
+                tL_messages_getExportedChatInvite.peer = ChannelAdminLogActivity.this.getMessagesController().getInputPeer(-ChannelAdminLogActivity.this.currentChat.id);
+                tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
                 ChannelAdminLogActivity.this.linviteLoading = true;
                 final boolean[] zArr = new boolean[1];
                 final AlertDialog alertDialog = new AlertDialog(ChannelAdminLogActivity.this.getParentActivity(), 3);
@@ -1095,10 +1046,10 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     }
                 });
                 alertDialog.showDelayed(300L);
-                ChannelAdminLogActivity.this.getConnectionsManager().bindRequestToGuid(ChannelAdminLogActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_getExportedChatInvite, new RequestDelegate() {
+                ChannelAdminLogActivity.this.getConnectionsManager().bindRequestToGuid(ChannelAdminLogActivity.this.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass3.this.lambda$needOpenInviteLink$2(tLRPC$TL_chatInviteExported, zArr, alertDialog, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass3.this.lambda$needOpenInviteLink$2(tL_chatInviteExported, zArr, alertDialog, tLObject, tL_error);
                     }
                 }), ((BaseFragment) ChannelAdminLogActivity.this).classGuid);
             }
@@ -1125,8 +1076,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void needShowEffectOverlay(ChatActionCell chatActionCell, TLRPC$Document tLRPC$Document, TLRPC$VideoSize tLRPC$VideoSize) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell, tLRPC$Document, tLRPC$VideoSize);
+            public void needShowEffectOverlay(ChatActionCell chatActionCell, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell, document, videoSize);
             }
         }
 
@@ -1377,8 +1328,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public ChannelAdminLogActivity(TLRPC$Chat tLRPC$Chat) {
-        this.currentChat = tLRPC$Chat;
+    public ChannelAdminLogActivity(TLRPC.Chat chat) {
+        this.currentChat = chat;
     }
 
     private MessageObject actionMessagesDeletedBy(long j, long j2, ArrayList arrayList, boolean z, boolean z2) {
@@ -1396,17 +1347,17 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             i++;
         }
         if (messageObject == null) {
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.dialog_id = -this.currentChat.id;
-            tLRPC$TL_message.id = -1;
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.dialog_id = -this.currentChat.id;
+            tL_message.id = -1;
             try {
-                tLRPC$TL_message.date = ((MessageObject) arrayList.get(0)).messageOwner.date;
+                tL_message.date = ((MessageObject) arrayList.get(0)).messageOwner.date;
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            messageObject = new MessageObject(this.currentAccount, tLRPC$TL_message, false, false);
+            messageObject = new MessageObject(this.currentAccount, tL_message, false, false);
         }
-        TLRPC$User user = getMessagesController().getUser(Long.valueOf(j2));
+        TLRPC.User user = getMessagesController().getUser(Long.valueOf(j2));
         messageObject.contentType = 1;
         if (!z2 || arrayList.size() <= 1) {
             j = -1;
@@ -1498,17 +1449,17 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     public void addCanBanUser(Bundle bundle, long j) {
-        TLRPC$Chat tLRPC$Chat = this.currentChat;
-        if (tLRPC$Chat.megagroup && this.admins != null && ChatObject.canBlockUsers(tLRPC$Chat)) {
+        TLRPC.Chat chat = this.currentChat;
+        if (chat.megagroup && this.admins != null && ChatObject.canBlockUsers(chat)) {
             int i = 0;
             while (true) {
                 if (i >= this.admins.size()) {
                     break;
                 }
-                TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) this.admins.get(i);
-                if (MessageObject.getPeerId(tLRPC$ChannelParticipant.peer) != j) {
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) this.admins.get(i);
+                if (MessageObject.getPeerId(channelParticipant.peer) != j) {
                     i++;
-                } else if (!tLRPC$ChannelParticipant.can_edit) {
+                } else if (!channelParticipant.can_edit) {
                     return;
                 }
             }
@@ -1661,8 +1612,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 arrayList.add(messageObject);
             }
             if (messageDeletedBy != messageDeletedBy2 && !arrayList2.isEmpty()) {
-                TLRPC$ReplyMarkup tLRPC$ReplyMarkup = messageObject.messageOwner.reply_markup;
-                boolean z = (tLRPC$ReplyMarkup == null || tLRPC$ReplyMarkup.rows.isEmpty()) ? false : true;
+                TLRPC.ReplyMarkup replyMarkup = messageObject.messageOwner.reply_markup;
+                boolean z = (replyMarkup == null || replyMarkup.rows.isEmpty()) ? false : true;
                 int size = arrayList.size();
                 ArrayList arrayList3 = new ArrayList();
                 for (int size2 = arrayList2.size() - 1; size2 >= 0 && ((MessageObject) arrayList2.get(size2)).contentType == 1; size2--) {
@@ -1680,8 +1631,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         setupExpandButton(messageObject2, arrayList2.size() - 1);
                         arrayList.add(messageObject2);
                     }
-                    TLRPC$ReplyMarkup tLRPC$ReplyMarkup2 = messageObject2.messageOwner.reply_markup;
-                    if (z != ((tLRPC$ReplyMarkup2 == null || tLRPC$ReplyMarkup2.rows.isEmpty()) ? false : true)) {
+                    TLRPC.ReplyMarkup replyMarkup2 = messageObject2.messageOwner.reply_markup;
+                    if (z != ((replyMarkup2 == null || replyMarkup2.rows.isEmpty()) ? false : true)) {
                         messageObject2.forceUpdate = true;
                         this.chatAdapter.notifyItemChanged((z ? arrayList2.size() - 1 : 0) + size);
                         this.chatAdapter.notifyItemChanged(size + (z ? arrayList2.size() - 1 : 0) + 1);
@@ -1726,9 +1677,9 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             this.dummyMessageCell = new ChatMessageCell(getParentActivity(), this.currentAccount);
         }
         ChatMessageCell chatMessageCell = this.dummyMessageCell;
-        TLRPC$Chat tLRPC$Chat = this.currentChat;
-        chatMessageCell.isChat = tLRPC$Chat != null;
-        if (ChatObject.isChannel(tLRPC$Chat) && this.currentChat.megagroup) {
+        TLRPC.Chat chat = this.currentChat;
+        chatMessageCell.isChat = chat != null;
+        if (ChatObject.isChannel(chat) && this.currentChat.megagroup) {
             z2 = true;
         }
         chatMessageCell.isMegagroup = z2;
@@ -1736,14 +1687,14 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     private CharSequence getMessageContent(MessageObject messageObject, int i, boolean z) {
-        TLRPC$Chat chat;
+        TLRPC.Chat chat;
         String str;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z) {
             long fromChatId = messageObject.getFromChatId();
             if (i != fromChatId) {
                 if (fromChatId > 0) {
-                    TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
+                    TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
                     if (user != null) {
                         str = ContactsController.formatName(user.first_name, user.last_name);
                         spannableStringBuilder.append((CharSequence) str).append((CharSequence) ":\n");
@@ -1771,15 +1722,15 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             return 2;
         }
         if (messageObject.isSticker() || messageObject.isAnimatedSticker()) {
-            TLRPC$InputStickerSet inputStickerSet = messageObject.getInputStickerSet();
-            if (inputStickerSet instanceof TLRPC$TL_inputStickerSetID) {
+            TLRPC.InputStickerSet inputStickerSet = messageObject.getInputStickerSet();
+            if (inputStickerSet instanceof TLRPC.TL_inputStickerSetID) {
                 if (!MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(inputStickerSet.id)) {
                     return 7;
                 }
-            } else if ((inputStickerSet instanceof TLRPC$TL_inputStickerSetShortName) && !MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(inputStickerSet.short_name)) {
+            } else if ((inputStickerSet instanceof TLRPC.TL_inputStickerSetShortName) && !MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(inputStickerSet.short_name)) {
                 return 7;
             }
-        } else if ((!messageObject.isRoundVideo() || (messageObject.isRoundVideo() && BuildVars.DEBUG_VERSION)) && ((messageObject.messageOwner.media instanceof TLRPC$TL_messageMediaPhoto) || messageObject.getDocument() != null || messageObject.isMusic() || messageObject.isVideo())) {
+        } else if ((!messageObject.isRoundVideo() || (messageObject.isRoundVideo() && BuildVars.DEBUG_VERSION)) && ((messageObject.messageOwner.media instanceof TLRPC.TL_messageMediaPhoto) || messageObject.getDocument() != null || messageObject.isMusic() || messageObject.isVideo())) {
             String str2 = messageObject.messageOwner.attachPath;
             boolean z = (str2 == null || str2.length() == 0 || !new File(messageObject.messageOwner.attachPath).exists()) ? false : true;
             if ((z || !getFileLoader().getPathToMessage(messageObject.messageOwner).exists()) ? z : true) {
@@ -1855,7 +1806,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         if (longValue >= 0) {
             return UserObject.getForcedFirstName(messagesController.getUser(l));
         }
-        TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-l.longValue()));
+        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-l.longValue()));
         if (chat == null) {
             return null;
         }
@@ -1995,10 +1946,10 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.scrimPopupWindow.dimBehind();
     }
 
-    public void lambda$createMenu$15(TLRPC$ChannelParticipant tLRPC$ChannelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
-        this.selectedParticipant = tLRPC$ChannelParticipant;
-        if (tLRPC$ChannelParticipant != null) {
-            if (ChatObject.canUserDoAction(this.currentChat, tLRPC$ChannelParticipant, 6) || ChatObject.canUserDoAction(this.currentChat, tLRPC$ChannelParticipant, 7)) {
+    public void lambda$createMenu$15(TLRPC.ChannelParticipant channelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
+        this.selectedParticipant = channelParticipant;
+        if (channelParticipant != null) {
+            if (ChatObject.canUserDoAction(this.currentChat, channelParticipant, 6) || ChatObject.canUserDoAction(this.currentChat, channelParticipant, 7)) {
                 arrayList.add(LocaleController.getString(R.string.Restrict));
                 arrayList2.add(Integer.valueOf(R.drawable.msg_block2));
                 arrayList3.add(33);
@@ -2010,11 +1961,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         runnable.run();
     }
 
-    public void lambda$createMenu$16(final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3, final Runnable runnable, final TLRPC$ChannelParticipant tLRPC$ChannelParticipant) {
+    public void lambda$createMenu$16(final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3, final Runnable runnable, final TLRPC.ChannelParticipant channelParticipant) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAdminLogActivity.this.lambda$createMenu$15(tLRPC$ChannelParticipant, arrayList, arrayList2, arrayList3, runnable);
+                ChannelAdminLogActivity.this.lambda$createMenu$15(channelParticipant, arrayList, arrayList2, arrayList3, runnable);
             }
         });
     }
@@ -2057,13 +2008,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         return true;
     }
 
-    public void lambda$createView$8(TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter, LongSparseArray longSparseArray) {
+    public void lambda$createView$8(TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, LongSparseArray longSparseArray) {
         ChatAvatarContainer chatAvatarContainer;
         int i;
         String str;
-        this.currentFilter = tLRPC$TL_channelAdminLogEventsFilter;
+        this.currentFilter = tL_channelAdminLogEventsFilter;
         this.selectedAdmins = longSparseArray;
-        if (tLRPC$TL_channelAdminLogEventsFilter == null && longSparseArray == null) {
+        if (tL_channelAdminLogEventsFilter == null && longSparseArray == null) {
             chatAvatarContainer = this.avatarContainer;
             i = R.string.EventLogAllEvents;
             str = "EventLogAllEvents";
@@ -2084,27 +2035,27 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         adminLogFilterAlert2.setCurrentAdmins(this.admins);
         adminLogFilterAlert2.setAdminLogFilterAlertDelegate(new AdminLogFilterAlert2.AdminLogFilterAlertDelegate() {
             @Override
-            public final void didSelectRights(TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter, LongSparseArray longSparseArray) {
-                ChannelAdminLogActivity.this.lambda$createView$8(tLRPC$TL_channelAdminLogEventsFilter, longSparseArray);
+            public final void didSelectRights(TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, LongSparseArray longSparseArray) {
+                ChannelAdminLogActivity.this.lambda$createView$8(tL_channelAdminLogEventsFilter, longSparseArray);
             }
         });
         showDialog(adminLogFilterAlert2);
     }
 
-    public void lambda$loadAdmins$21(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        TLRPC$ChatFull chatFull;
-        if (tLRPC$TL_error == null) {
-            TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) tLObject;
-            getMessagesController().putUsers(tLRPC$TL_channels_channelParticipants.users, false);
-            getMessagesController().putChats(tLRPC$TL_channels_channelParticipants.chats, false);
-            this.admins = tLRPC$TL_channels_channelParticipants.participants;
+    public void lambda$loadAdmins$21(TLRPC.TL_error tL_error, TLObject tLObject) {
+        TLRPC.ChatFull chatFull;
+        if (tL_error == null) {
+            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
+            getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
+            getMessagesController().putChats(tL_channels_channelParticipants.chats, false);
+            this.admins = tL_channels_channelParticipants.participants;
             if (this.currentChat != null && (chatFull = getMessagesController().getChatFull(this.currentChat.id)) != null && chatFull.antispam) {
-                TLRPC$ChannelParticipant tLRPC$ChannelParticipant = new TLRPC$ChannelParticipant() {
+                TLRPC.ChannelParticipant channelParticipant = new TLRPC.ChannelParticipant() {
                 };
-                tLRPC$ChannelParticipant.user_id = getMessagesController().telegramAntispamUserId;
-                tLRPC$ChannelParticipant.peer = getMessagesController().getPeer(tLRPC$ChannelParticipant.user_id);
+                channelParticipant.user_id = getMessagesController().telegramAntispamUserId;
+                channelParticipant.peer = getMessagesController().getPeer(channelParticipant.user_id);
                 loadAntispamUser(getMessagesController().telegramAntispamUserId);
-                this.admins.add(0, tLRPC$ChannelParticipant);
+                this.admins.add(0, channelParticipant);
             }
             Dialog dialog = this.visibleDialog;
             if (dialog instanceof AdminLogFilterAlert2) {
@@ -2113,22 +2064,22 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public void lambda$loadAdmins$22(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadAdmins$22(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAdminLogActivity.this.lambda$loadAdmins$21(tLRPC$TL_error, tLObject);
+                ChannelAdminLogActivity.this.lambda$loadAdmins$21(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadAntispamUser$23(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$Vector) {
-            ArrayList arrayList = ((TLRPC$Vector) tLObject).objects;
-            ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
+    public void lambda$loadAntispamUser$23(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.Vector) {
+            ArrayList<Object> arrayList = ((TLRPC.Vector) tLObject).objects;
+            ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
             for (int i = 0; i < arrayList.size(); i++) {
-                if (arrayList.get(i) instanceof TLRPC$User) {
-                    arrayList2.add((TLRPC$User) arrayList.get(i));
+                if (arrayList.get(i) instanceof TLRPC.User) {
+                    arrayList2.add((TLRPC.User) arrayList.get(i));
                 }
             }
             getMessagesController().putUsers(arrayList2, false);
@@ -2140,30 +2091,30 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.chatAdapter.notifyDataSetChanged();
     }
 
-    public void lambda$loadMessages$3(TLRPC$TL_channels_adminLogResults tLRPC$TL_channels_adminLogResults) {
-        TLRPC$Message tLRPC$Message;
-        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader;
+    public void lambda$loadMessages$3(TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults) {
+        TLRPC.Message message;
+        TLRPC.MessageReplyHeader messageReplyHeader;
         MessageObject messageObject;
         this.loadsCount--;
         int i = 0;
         this.chatListItemAnimator.setShouldAnimateEnterFromBottom(false);
         saveScrollPosition(false);
-        MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_channels_adminLogResults.users, false);
-        MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_channels_adminLogResults.chats, false);
+        MessagesController.getInstance(this.currentAccount).putUsers(tL_channels_adminLogResults.users, false);
+        MessagesController.getInstance(this.currentAccount).putChats(tL_channels_adminLogResults.chats, false);
         boolean z = false;
-        for (int i2 = 0; i2 < tLRPC$TL_channels_adminLogResults.events.size(); i2++) {
-            TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent = (TLRPC$TL_channelAdminLogEvent) tLRPC$TL_channels_adminLogResults.events.get(i2);
-            if (this.messagesDict.indexOfKey(tLRPC$TL_channelAdminLogEvent.id) < 0) {
-                TLRPC$ChannelAdminLogEventAction tLRPC$ChannelAdminLogEventAction = tLRPC$TL_channelAdminLogEvent.action;
-                if (tLRPC$ChannelAdminLogEventAction instanceof TLRPC$TL_channelAdminLogEventActionParticipantToggleAdmin) {
-                    TLRPC$TL_channelAdminLogEventActionParticipantToggleAdmin tLRPC$TL_channelAdminLogEventActionParticipantToggleAdmin = (TLRPC$TL_channelAdminLogEventActionParticipantToggleAdmin) tLRPC$ChannelAdminLogEventAction;
-                    if ((tLRPC$TL_channelAdminLogEventActionParticipantToggleAdmin.prev_participant instanceof TLRPC$TL_channelParticipantCreator) && !(tLRPC$TL_channelAdminLogEventActionParticipantToggleAdmin.new_participant instanceof TLRPC$TL_channelParticipantCreator)) {
+        for (int i2 = 0; i2 < tL_channels_adminLogResults.events.size(); i2++) {
+            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = tL_channels_adminLogResults.events.get(i2);
+            if (this.messagesDict.indexOfKey(tL_channelAdminLogEvent.id) < 0) {
+                TLRPC.ChannelAdminLogEventAction channelAdminLogEventAction = tL_channelAdminLogEvent.action;
+                if (channelAdminLogEventAction instanceof TLRPC.TL_channelAdminLogEventActionParticipantToggleAdmin) {
+                    TLRPC.TL_channelAdminLogEventActionParticipantToggleAdmin tL_channelAdminLogEventActionParticipantToggleAdmin = (TLRPC.TL_channelAdminLogEventActionParticipantToggleAdmin) channelAdminLogEventAction;
+                    if ((tL_channelAdminLogEventActionParticipantToggleAdmin.prev_participant instanceof TLRPC.TL_channelParticipantCreator) && !(tL_channelAdminLogEventActionParticipantToggleAdmin.new_participant instanceof TLRPC.TL_channelParticipantCreator)) {
                     }
                 }
-                this.minEventId = Math.min(this.minEventId, tLRPC$TL_channelAdminLogEvent.id);
-                MessageObject messageObject2 = new MessageObject(this.currentAccount, tLRPC$TL_channelAdminLogEvent, (ArrayList<MessageObject>) this.messages, (HashMap<String, ArrayList<MessageObject>>) this.messagesByDays, this.currentChat, this.mid, false);
+                this.minEventId = Math.min(this.minEventId, tL_channelAdminLogEvent.id);
+                MessageObject messageObject2 = new MessageObject(this.currentAccount, tL_channelAdminLogEvent, (ArrayList<MessageObject>) this.messages, (HashMap<String, ArrayList<MessageObject>>) this.messagesByDays, this.currentChat, this.mid, false);
                 if (messageObject2.contentType >= 0) {
-                    this.messagesDict.put(tLRPC$TL_channelAdminLogEvent.id, messageObject2);
+                    this.messagesDict.put(tL_channelAdminLogEvent.id, messageObject2);
                 }
                 z = true;
             }
@@ -2175,8 +2126,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             if (messageObject3 != null && messageObject3.contentType != 0 && messageObject3.getRealId() >= 0) {
                 this.realMessagesDict.put(messageObject3.getRealId(), messageObject3);
             }
-            if (messageObject3 != null && (tLRPC$Message = messageObject3.messageOwner) != null && (tLRPC$MessageReplyHeader = tLRPC$Message.reply_to) != null) {
-                if (tLRPC$MessageReplyHeader.reply_to_peer_id == null) {
+            if (messageObject3 != null && (message = messageObject3.messageOwner) != null && (messageReplyHeader = message.reply_to) != null) {
+                if (messageReplyHeader.reply_to_peer_id == null) {
                     int i3 = 0;
                     while (true) {
                         if (i3 >= this.messages.size()) {
@@ -2185,7 +2136,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         }
                         if (size != i3) {
                             messageObject = (MessageObject) this.messages.get(i3);
-                            if (messageObject.contentType != 1 && messageObject.getRealId() == tLRPC$MessageReplyHeader.reply_to_msg_id) {
+                            if (messageObject.contentType != 1 && messageObject.getRealId() == messageReplyHeader.reply_to_msg_id) {
                                 break;
                             }
                         }
@@ -2226,13 +2177,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public void lambda$loadMessages$4(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadMessages$4(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            final TLRPC$TL_channels_adminLogResults tLRPC$TL_channels_adminLogResults = (TLRPC$TL_channels_adminLogResults) tLObject;
+            final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAdminLogActivity.this.lambda$loadMessages$3(tLRPC$TL_channels_adminLogResults);
+                    ChannelAdminLogActivity.this.lambda$loadMessages$3(tL_channels_adminLogResults);
                 }
             });
         }
@@ -2241,24 +2192,21 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     public void lambda$processSelectedOption$17(TLObject tLObject) {
         BulletinFactory of;
         int i;
-        int i2;
-        String str;
-        if (tLObject instanceof TLRPC$TL_boolTrue) {
+        String string;
+        if (tLObject instanceof TLRPC.TL_boolTrue) {
             of = BulletinFactory.of(this);
             i = R.raw.msg_antispam;
-            i2 = R.string.ChannelAntiSpamFalsePositiveReported;
-            str = "ChannelAntiSpamFalsePositiveReported";
+            string = LocaleController.getString(R.string.ChannelAntiSpamFalsePositiveReported);
         } else {
-            boolean z = tLObject instanceof TLRPC$TL_boolFalse;
+            boolean z = tLObject instanceof TLRPC.TL_boolFalse;
             of = BulletinFactory.of(this);
             i = R.raw.error;
-            i2 = R.string.UnknownError;
-            str = "UnknownError";
+            string = LocaleController.getString("UnknownError", R.string.UnknownError);
         }
-        of.createSimpleBulletin(i, LocaleController.getString(str, i2)).show();
+        of.createSimpleBulletin(i, string).show();
     }
 
-    public void lambda$processSelectedOption$18(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processSelectedOption$18(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -2267,22 +2215,22 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         });
     }
 
-    public void lambda$processSelectedOption$19(TLRPC$User tLRPC$User) {
-        BulletinFactory.of(this).createSimpleBulletin(R.raw.ic_ban, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.RestrictedParticipantSending, UserObject.getFirstName(tLRPC$User)))).show(false);
+    public void lambda$processSelectedOption$19(TLRPC.User user) {
+        BulletinFactory.of(this).createSimpleBulletin(R.raw.ic_ban, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.RestrictedParticipantSending, UserObject.getFirstName(user)))).show(false);
         lambda$processSelectedOption$20();
     }
 
-    public void lambda$reloadLastMessages$0(org.telegram.tgnet.TLRPC$TL_channels_adminLogResults r18) {
+    public void lambda$reloadLastMessages$0(org.telegram.tgnet.TLRPC.TL_channels_adminLogResults r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.lambda$reloadLastMessages$0(org.telegram.tgnet.TLRPC$TL_channels_adminLogResults):void");
     }
 
-    public void lambda$reloadLastMessages$1(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$reloadLastMessages$1(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            final TLRPC$TL_channels_adminLogResults tLRPC$TL_channels_adminLogResults = (TLRPC$TL_channels_adminLogResults) tLObject;
+            final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAdminLogActivity.this.lambda$reloadLastMessages$0(tLRPC$TL_channels_adminLogResults);
+                    ChannelAdminLogActivity.this.lambda$reloadLastMessages$0(tL_channels_adminLogResults);
                 }
             });
         }
@@ -2303,15 +2251,15 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     private void loadAdmins() {
-        TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = new TLRPC$TL_channels_getParticipants();
-        tLRPC$TL_channels_getParticipants.channel = MessagesController.getInputChannel(this.currentChat);
-        tLRPC$TL_channels_getParticipants.filter = new TLRPC$TL_channelParticipantsAdmins();
-        tLRPC$TL_channels_getParticipants.offset = 0;
-        tLRPC$TL_channels_getParticipants.limit = 200;
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
+        TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+        tL_channels_getParticipants.channel = MessagesController.getInputChannel(this.currentChat);
+        tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsAdmins();
+        tL_channels_getParticipants.offset = 0;
+        tL_channels_getParticipants.limit = 200;
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelAdminLogActivity.this.lambda$loadAdmins$22(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelAdminLogActivity.this.lambda$loadAdmins$22(tLObject, tL_error);
             }
         }), this.classGuid);
     }
@@ -2320,14 +2268,14 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         if (getMessagesController().getUser(Long.valueOf(j)) != null) {
             return;
         }
-        TLRPC$TL_users_getUsers tLRPC$TL_users_getUsers = new TLRPC$TL_users_getUsers();
-        TLRPC$TL_inputUser tLRPC$TL_inputUser = new TLRPC$TL_inputUser();
-        tLRPC$TL_inputUser.user_id = j;
-        tLRPC$TL_users_getUsers.id.add(tLRPC$TL_inputUser);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_users_getUsers, new RequestDelegate() {
+        TLRPC.TL_users_getUsers tL_users_getUsers = new TLRPC.TL_users_getUsers();
+        TLRPC.TL_inputUser tL_inputUser = new TLRPC.TL_inputUser();
+        tL_inputUser.user_id = j;
+        tL_users_getUsers.id.add(tL_inputUser);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_users_getUsers, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelAdminLogActivity.this.lambda$loadAntispamUser$23(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelAdminLogActivity.this.lambda$loadAntispamUser$23(tLObject, tL_error);
             }
         });
     }
@@ -2352,33 +2300,33 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             this.loadsCount = 0;
         }
         this.loading = true;
-        TLRPC$TL_channels_getAdminLog tLRPC$TL_channels_getAdminLog = new TLRPC$TL_channels_getAdminLog();
-        tLRPC$TL_channels_getAdminLog.channel = MessagesController.getInputChannel(this.currentChat);
-        tLRPC$TL_channels_getAdminLog.q = this.searchQuery;
-        tLRPC$TL_channels_getAdminLog.limit = 50;
+        TLRPC.TL_channels_getAdminLog tL_channels_getAdminLog = new TLRPC.TL_channels_getAdminLog();
+        tL_channels_getAdminLog.channel = MessagesController.getInputChannel(this.currentChat);
+        tL_channels_getAdminLog.q = this.searchQuery;
+        tL_channels_getAdminLog.limit = 50;
         if (z || this.messages.isEmpty()) {
-            tLRPC$TL_channels_getAdminLog.max_id = 0L;
+            tL_channels_getAdminLog.max_id = 0L;
         } else {
-            tLRPC$TL_channels_getAdminLog.max_id = this.minEventId;
+            tL_channels_getAdminLog.max_id = this.minEventId;
         }
-        tLRPC$TL_channels_getAdminLog.min_id = 0L;
-        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
-        if (tLRPC$TL_channelAdminLogEventsFilter != null) {
-            tLRPC$TL_channels_getAdminLog.flags |= 1;
-            tLRPC$TL_channels_getAdminLog.events_filter = tLRPC$TL_channelAdminLogEventsFilter;
+        tL_channels_getAdminLog.min_id = 0L;
+        TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter = this.currentFilter;
+        if (tL_channelAdminLogEventsFilter != null) {
+            tL_channels_getAdminLog.flags |= 1;
+            tL_channels_getAdminLog.events_filter = tL_channelAdminLogEventsFilter;
         }
         if (this.selectedAdmins != null) {
-            tLRPC$TL_channels_getAdminLog.flags |= 2;
+            tL_channels_getAdminLog.flags |= 2;
             for (int i = 0; i < this.selectedAdmins.size(); i++) {
-                tLRPC$TL_channels_getAdminLog.admins.add(MessagesController.getInstance(this.currentAccount).getInputUser((TLRPC$User) this.selectedAdmins.valueAt(i)));
+                tL_channels_getAdminLog.admins.add(MessagesController.getInstance(this.currentAccount).getInputUser((TLRPC.User) this.selectedAdmins.valueAt(i)));
             }
         }
         this.loadsCount++;
         updateEmptyPlaceholder();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getAdminLog, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getAdminLog, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelAdminLogActivity.this.lambda$loadMessages$4(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelAdminLogActivity.this.lambda$loadMessages$4(tLObject, tL_error);
             }
         });
         if (!z || (chatActivityAdapter = this.chatAdapter) == null) {
@@ -2388,11 +2336,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     private long messageDeletedBy(MessageObject messageObject) {
-        TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent;
-        if (messageObject == null || (tLRPC$TL_channelAdminLogEvent = messageObject.currentEvent) == null || !(tLRPC$TL_channelAdminLogEvent.action instanceof TLRPC$TL_channelAdminLogEventActionDeleteMessage)) {
+        TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent;
+        if (messageObject == null || (tL_channelAdminLogEvent = messageObject.currentEvent) == null || !(tL_channelAdminLogEvent.action instanceof TLRPC.TL_channelAdminLogEventActionDeleteMessage)) {
             return 0L;
         }
-        return tLRPC$TL_channelAdminLogEvent.user_id;
+        return tL_channelAdminLogEvent.user_id;
     }
 
     public void moveScrollToLastMessage() {
@@ -2479,42 +2427,42 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             return;
         }
         if (i <= 0) {
-            TLRPC$ReplyMarkup tLRPC$ReplyMarkup = messageObject.messageOwner.reply_markup;
-            if (tLRPC$ReplyMarkup != null) {
-                tLRPC$ReplyMarkup.rows.clear();
+            TLRPC.ReplyMarkup replyMarkup = messageObject.messageOwner.reply_markup;
+            if (replyMarkup != null) {
+                replyMarkup.rows.clear();
             }
         } else {
-            TLRPC$TL_replyInlineMarkup tLRPC$TL_replyInlineMarkup = new TLRPC$TL_replyInlineMarkup();
-            messageObject.messageOwner.reply_markup = tLRPC$TL_replyInlineMarkup;
-            TLRPC$TL_keyboardButtonRow tLRPC$TL_keyboardButtonRow = new TLRPC$TL_keyboardButtonRow();
-            tLRPC$TL_replyInlineMarkup.rows.add(tLRPC$TL_keyboardButtonRow);
-            TLRPC$TL_keyboardButton tLRPC$TL_keyboardButton = new TLRPC$TL_keyboardButton();
-            tLRPC$TL_keyboardButton.text = LocaleController.formatPluralString("EventLogExpandMore", i, new Object[0]);
-            tLRPC$TL_keyboardButtonRow.buttons.add(tLRPC$TL_keyboardButton);
+            TLRPC.TL_replyInlineMarkup tL_replyInlineMarkup = new TLRPC.TL_replyInlineMarkup();
+            messageObject.messageOwner.reply_markup = tL_replyInlineMarkup;
+            TLRPC.TL_keyboardButtonRow tL_keyboardButtonRow = new TLRPC.TL_keyboardButtonRow();
+            tL_replyInlineMarkup.rows.add(tL_keyboardButtonRow);
+            TLRPC.TL_keyboardButton tL_keyboardButton = new TLRPC.TL_keyboardButton();
+            tL_keyboardButton.text = LocaleController.formatPluralString("EventLogExpandMore", i, new Object[0]);
+            tL_keyboardButtonRow.buttons.add(tL_keyboardButton);
         }
         messageObject.measureInlineBotButtons();
     }
 
-    public void showInviteLinkBottomSheet(TLRPC$TL_messages_exportedChatInvite tLRPC$TL_messages_exportedChatInvite, HashMap hashMap) {
-        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(this.currentChat.id);
-        InviteLinkBottomSheet inviteLinkBottomSheet = new InviteLinkBottomSheet(this.contentView.getContext(), (TLRPC$TL_chatInviteExported) tLRPC$TL_messages_exportedChatInvite.invite, chatFull, hashMap, this, chatFull.id, false, ChatObject.isChannel(this.currentChat));
+    public void showInviteLinkBottomSheet(TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite, HashMap hashMap) {
+        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(this.currentChat.id);
+        InviteLinkBottomSheet inviteLinkBottomSheet = new InviteLinkBottomSheet(this.contentView.getContext(), (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvite.invite, chatFull, hashMap, this, chatFull.id, false, ChatObject.isChannel(this.currentChat));
         inviteLinkBottomSheet.setInviteDelegate(new InviteLinkBottomSheet.InviteDelegate() {
             @Override
-            public void linkRevoked(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported) {
-                TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent = new TLRPC$TL_channelAdminLogEvent();
+            public void linkRevoked(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+                TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
                 int size = ChannelAdminLogActivity.this.filteredMessages.size();
-                tLRPC$TL_chatInviteExported.revoked = true;
-                TLRPC$TL_channelAdminLogEventActionExportedInviteRevoke tLRPC$TL_channelAdminLogEventActionExportedInviteRevoke = new TLRPC$TL_channelAdminLogEventActionExportedInviteRevoke();
-                tLRPC$TL_channelAdminLogEventActionExportedInviteRevoke.invite = tLRPC$TL_chatInviteExported;
-                tLRPC$TL_channelAdminLogEvent.action = tLRPC$TL_channelAdminLogEventActionExportedInviteRevoke;
-                tLRPC$TL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-                tLRPC$TL_channelAdminLogEvent.user_id = ChannelAdminLogActivity.this.getAccountInstance().getUserConfig().clientUserId;
+                tL_chatInviteExported.revoked = true;
+                TLRPC.TL_channelAdminLogEventActionExportedInviteRevoke tL_channelAdminLogEventActionExportedInviteRevoke = new TLRPC.TL_channelAdminLogEventActionExportedInviteRevoke();
+                tL_channelAdminLogEventActionExportedInviteRevoke.invite = tL_chatInviteExported;
+                tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteRevoke;
+                tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
+                tL_channelAdminLogEvent.user_id = ChannelAdminLogActivity.this.getAccountInstance().getUserConfig().clientUserId;
                 int i = ((BaseFragment) ChannelAdminLogActivity.this).currentAccount;
                 ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
                 ArrayList arrayList = channelAdminLogActivity.messages;
                 HashMap hashMap2 = channelAdminLogActivity.messagesByDays;
                 ChannelAdminLogActivity channelAdminLogActivity2 = ChannelAdminLogActivity.this;
-                if (new MessageObject(i, tLRPC$TL_channelAdminLogEvent, (ArrayList<MessageObject>) arrayList, (HashMap<String, ArrayList<MessageObject>>) hashMap2, channelAdminLogActivity2.currentChat, channelAdminLogActivity2.mid, true).contentType < 0) {
+                if (new MessageObject(i, tL_channelAdminLogEvent, (ArrayList<MessageObject>) arrayList, (HashMap<String, ArrayList<MessageObject>>) hashMap2, channelAdminLogActivity2.currentChat, channelAdminLogActivity2.mid, true).contentType < 0) {
                     return;
                 }
                 ChannelAdminLogActivity.this.filterDeletedMessages();
@@ -2524,25 +2472,25 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     ChannelAdminLogActivity.this.chatAdapter.notifyItemRangeInserted(ChannelAdminLogActivity.this.chatAdapter.messagesEndRow, size2);
                     ChannelAdminLogActivity.this.moveScrollToLastMessage();
                 }
-                ChannelAdminLogActivity.this.invitesCache.remove(tLRPC$TL_chatInviteExported.link);
+                ChannelAdminLogActivity.this.invitesCache.remove(tL_chatInviteExported.link);
             }
 
             @Override
-            public void onLinkDeleted(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported) {
+            public void onLinkDeleted(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
                 int size = ChannelAdminLogActivity.this.filteredMessages.size();
                 int unused = ChannelAdminLogActivity.this.chatAdapter.messagesEndRow;
-                TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent = new TLRPC$TL_channelAdminLogEvent();
-                TLRPC$TL_channelAdminLogEventActionExportedInviteDelete tLRPC$TL_channelAdminLogEventActionExportedInviteDelete = new TLRPC$TL_channelAdminLogEventActionExportedInviteDelete();
-                tLRPC$TL_channelAdminLogEventActionExportedInviteDelete.invite = tLRPC$TL_chatInviteExported;
-                tLRPC$TL_channelAdminLogEvent.action = tLRPC$TL_channelAdminLogEventActionExportedInviteDelete;
-                tLRPC$TL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-                tLRPC$TL_channelAdminLogEvent.user_id = ChannelAdminLogActivity.this.getAccountInstance().getUserConfig().clientUserId;
+                TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
+                TLRPC.TL_channelAdminLogEventActionExportedInviteDelete tL_channelAdminLogEventActionExportedInviteDelete = new TLRPC.TL_channelAdminLogEventActionExportedInviteDelete();
+                tL_channelAdminLogEventActionExportedInviteDelete.invite = tL_chatInviteExported;
+                tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteDelete;
+                tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
+                tL_channelAdminLogEvent.user_id = ChannelAdminLogActivity.this.getAccountInstance().getUserConfig().clientUserId;
                 int i = ((BaseFragment) ChannelAdminLogActivity.this).currentAccount;
                 ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
                 ArrayList arrayList = channelAdminLogActivity.messages;
                 HashMap hashMap2 = channelAdminLogActivity.messagesByDays;
                 ChannelAdminLogActivity channelAdminLogActivity2 = ChannelAdminLogActivity.this;
-                if (new MessageObject(i, tLRPC$TL_channelAdminLogEvent, (ArrayList<MessageObject>) arrayList, (HashMap<String, ArrayList<MessageObject>>) hashMap2, channelAdminLogActivity2.currentChat, channelAdminLogActivity2.mid, true).contentType < 0) {
+                if (new MessageObject(i, tL_channelAdminLogEvent, (ArrayList<MessageObject>) arrayList, (HashMap<String, ArrayList<MessageObject>>) hashMap2, channelAdminLogActivity2.currentChat, channelAdminLogActivity2.mid, true).contentType < 0) {
                     return;
                 }
                 ChannelAdminLogActivity.this.filterDeletedMessages();
@@ -2552,24 +2500,24 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     ChannelAdminLogActivity.this.chatAdapter.notifyItemRangeInserted(ChannelAdminLogActivity.this.chatAdapter.messagesEndRow, size2);
                     ChannelAdminLogActivity.this.moveScrollToLastMessage();
                 }
-                ChannelAdminLogActivity.this.invitesCache.remove(tLRPC$TL_chatInviteExported.link);
+                ChannelAdminLogActivity.this.invitesCache.remove(tL_chatInviteExported.link);
             }
 
             @Override
-            public void onLinkEdited(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported) {
-                TLRPC$TL_channelAdminLogEvent tLRPC$TL_channelAdminLogEvent = new TLRPC$TL_channelAdminLogEvent();
-                TLRPC$TL_channelAdminLogEventActionExportedInviteEdit tLRPC$TL_channelAdminLogEventActionExportedInviteEdit = new TLRPC$TL_channelAdminLogEventActionExportedInviteEdit();
-                tLRPC$TL_channelAdminLogEventActionExportedInviteEdit.new_invite = tLRPC$TL_chatInviteExported;
-                tLRPC$TL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tLRPC$TL_chatInviteExported;
-                tLRPC$TL_channelAdminLogEvent.action = tLRPC$TL_channelAdminLogEventActionExportedInviteEdit;
-                tLRPC$TL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-                tLRPC$TL_channelAdminLogEvent.user_id = ChannelAdminLogActivity.this.getAccountInstance().getUserConfig().clientUserId;
+            public void onLinkEdited(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+                TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
+                TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
+                tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
+                tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
+                tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
+                tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
+                tL_channelAdminLogEvent.user_id = ChannelAdminLogActivity.this.getAccountInstance().getUserConfig().clientUserId;
                 int i = ((BaseFragment) ChannelAdminLogActivity.this).currentAccount;
                 ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
                 ArrayList arrayList = channelAdminLogActivity.messages;
                 HashMap hashMap2 = channelAdminLogActivity.messagesByDays;
                 ChannelAdminLogActivity channelAdminLogActivity2 = ChannelAdminLogActivity.this;
-                if (new MessageObject(i, tLRPC$TL_channelAdminLogEvent, (ArrayList<MessageObject>) arrayList, (HashMap<String, ArrayList<MessageObject>>) hashMap2, channelAdminLogActivity2.currentChat, channelAdminLogActivity2.mid, true).contentType < 0) {
+                if (new MessageObject(i, tL_channelAdminLogEvent, (ArrayList<MessageObject>) arrayList, (HashMap<String, ArrayList<MessageObject>>) hashMap2, channelAdminLogActivity2.currentChat, channelAdminLogActivity2.mid, true).contentType < 0) {
                     return;
                 }
                 ChannelAdminLogActivity.this.filterDeletedMessages();
@@ -2578,7 +2526,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void permanentLinkReplaced(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported2) {
+            public void permanentLinkReplaced(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteExported tL_chatInviteExported2) {
             }
         });
         inviteLinkBottomSheet.show();
@@ -2910,7 +2858,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$307();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -3895,7 +3843,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public void openVCard(TLRPC$User tLRPC$User, String str, String str2, String str3) {
+    public void openVCard(TLRPC.User user, String str, String str2, String str3) {
         try {
             File sharingDirectory = AndroidUtilities.getSharingDirectory();
             sharingDirectory.mkdirs();
@@ -3903,7 +3851,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(str);
             bufferedWriter.close();
-            showDialog(new PhonebookShareAlert(this, null, tLRPC$User, null, file, str2, str3));
+            showDialog(new PhonebookShareAlert(this, null, user, null, file, str2, str3));
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -3914,27 +3862,27 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             return;
         }
         this.reloadingLastMessages = true;
-        TLRPC$TL_channels_getAdminLog tLRPC$TL_channels_getAdminLog = new TLRPC$TL_channels_getAdminLog();
-        tLRPC$TL_channels_getAdminLog.channel = MessagesController.getInputChannel(this.currentChat);
-        tLRPC$TL_channels_getAdminLog.q = this.searchQuery;
-        tLRPC$TL_channels_getAdminLog.limit = 10;
-        tLRPC$TL_channels_getAdminLog.max_id = 0L;
-        tLRPC$TL_channels_getAdminLog.min_id = 0L;
-        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
-        if (tLRPC$TL_channelAdminLogEventsFilter != null) {
-            tLRPC$TL_channels_getAdminLog.flags = 1 | tLRPC$TL_channels_getAdminLog.flags;
-            tLRPC$TL_channels_getAdminLog.events_filter = tLRPC$TL_channelAdminLogEventsFilter;
+        TLRPC.TL_channels_getAdminLog tL_channels_getAdminLog = new TLRPC.TL_channels_getAdminLog();
+        tL_channels_getAdminLog.channel = MessagesController.getInputChannel(this.currentChat);
+        tL_channels_getAdminLog.q = this.searchQuery;
+        tL_channels_getAdminLog.limit = 10;
+        tL_channels_getAdminLog.max_id = 0L;
+        tL_channels_getAdminLog.min_id = 0L;
+        TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter = this.currentFilter;
+        if (tL_channelAdminLogEventsFilter != null) {
+            tL_channels_getAdminLog.flags = 1 | tL_channels_getAdminLog.flags;
+            tL_channels_getAdminLog.events_filter = tL_channelAdminLogEventsFilter;
         }
         if (this.selectedAdmins != null) {
-            tLRPC$TL_channels_getAdminLog.flags |= 2;
+            tL_channels_getAdminLog.flags |= 2;
             for (int i = 0; i < this.selectedAdmins.size(); i++) {
-                tLRPC$TL_channels_getAdminLog.admins.add(MessagesController.getInstance(this.currentAccount).getInputUser((TLRPC$User) this.selectedAdmins.valueAt(i)));
+                tL_channels_getAdminLog.admins.add(MessagesController.getInstance(this.currentAccount).getInputUser((TLRPC.User) this.selectedAdmins.valueAt(i)));
             }
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getAdminLog, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getAdminLog, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelAdminLogActivity.this.lambda$reloadLastMessages$1(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelAdminLogActivity.this.lambda$reloadLastMessages$1(tLObject, tL_error);
             }
         });
     }

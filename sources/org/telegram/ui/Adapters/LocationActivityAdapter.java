@@ -13,10 +13,7 @@ import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$GeoPoint;
-import org.telegram.tgnet.TLRPC$TL_channelLocation;
-import org.telegram.tgnet.TLRPC$TL_geoPoint;
-import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.LocationCell;
@@ -35,8 +32,8 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     private String addressName;
     public boolean animated;
     private boolean askingForMyLocation;
-    private TLRPC$TL_channelLocation chatLocation;
-    public TLRPC$TL_messageMediaVenue city;
+    private TLRPC.TL_channelLocation chatLocation;
+    public TLRPC.TL_messageMediaVenue city;
     private int currentAccount;
     private ArrayList currentLiveLocations;
     private MessageObject currentMessageObject;
@@ -58,7 +55,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     private int shareLiveLocationPotistion;
     private SharedMediaLayout sharedMediaLayout;
     private boolean sharedMediaLayoutVisible;
-    public TLRPC$TL_messageMediaVenue street;
+    public TLRPC.TL_messageMediaVenue street;
     private Runnable updateRunnable;
 
     public LocationActivityAdapter(Context context, int i, long j, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2, boolean z3, boolean z4) {
@@ -138,32 +135,32 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     public Object getItem(int i) {
         ArrayList arrayList;
         int i2;
-        TLRPC$GeoPoint tLRPC$GeoPoint;
+        TLRPC.GeoPoint geoPoint;
         Location location;
         int i3 = this.locationType;
         if (i3 == 4) {
             if (this.addressName == null) {
                 return null;
             }
-            TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue = new TLRPC$TL_messageMediaVenue();
-            tLRPC$TL_messageMediaVenue.address = this.addressName;
-            TLRPC$TL_geoPoint tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint();
-            tLRPC$TL_messageMediaVenue.geo = tLRPC$TL_geoPoint;
+            TLRPC.TL_messageMediaVenue tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+            tL_messageMediaVenue.address = this.addressName;
+            TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+            tL_messageMediaVenue.geo = tL_geoPoint;
             Location location2 = this.customLocation;
             if (location2 == null) {
                 Location location3 = this.gpsLocation;
                 if (location3 != null) {
-                    tLRPC$TL_geoPoint.lat = location3.getLatitude();
-                    tLRPC$GeoPoint = tLRPC$TL_messageMediaVenue.geo;
+                    tL_geoPoint.lat = location3.getLatitude();
+                    geoPoint = tL_messageMediaVenue.geo;
                     location = this.gpsLocation;
                 }
-                return tLRPC$TL_messageMediaVenue;
+                return tL_messageMediaVenue;
             }
-            tLRPC$TL_geoPoint.lat = location2.getLatitude();
-            tLRPC$GeoPoint = tLRPC$TL_messageMediaVenue.geo;
+            tL_geoPoint.lat = location2.getLatitude();
+            geoPoint = tL_messageMediaVenue.geo;
             location = this.customLocation;
-            tLRPC$GeoPoint._long = location.getLongitude();
-            return tLRPC$TL_messageMediaVenue;
+            geoPoint._long = location.getLongitude();
+            return tL_messageMediaVenue;
         }
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null) {
@@ -261,12 +258,12 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         int i2;
-        TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         boolean z;
         int i3;
         boolean z2;
         String str;
-        TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue2 = null;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue2 = null;
         switch (viewHolder.getItemViewType()) {
             case 0:
                 RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) viewHolder.itemView.getLayoutParams();
@@ -303,18 +300,18 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 }
                 if (r4) {
                     if (i2 >= 0 && i2 < this.locations.size()) {
-                        tLRPC$TL_messageMediaVenue2 = (TLRPC$TL_messageMediaVenue) this.locations.get(i2);
-                        locationCell.setLocation(tLRPC$TL_messageMediaVenue2, r3, true);
+                        tL_messageMediaVenue2 = (TLRPC.TL_messageMediaVenue) this.locations.get(i2);
+                        locationCell.setLocation(tL_messageMediaVenue2, r3, true);
                         return;
                     } else {
                         int size = i2 - this.locations.size();
                         if (size >= 0 && size < this.places.size()) {
-                            tLRPC$TL_messageMediaVenue2 = (TLRPC$TL_messageMediaVenue) this.places.get(size);
+                            tL_messageMediaVenue2 = (TLRPC.TL_messageMediaVenue) this.places.get(size);
                         }
                     }
                 }
                 r3 = i2;
-                locationCell.setLocation(tLRPC$TL_messageMediaVenue2, r3, true);
+                locationCell.setLocation(tL_messageMediaVenue2, r3, true);
                 return;
             case 4:
                 ((LocationLoadingCell) viewHolder.itemView).setLoading(this.searching);
@@ -343,9 +340,9 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                     sharingLiveLocationCell.setDialog(this.currentMessageObject, this.gpsLocation, this.myLocationDenied);
                     return;
                 }
-                TLRPC$TL_channelLocation tLRPC$TL_channelLocation = this.chatLocation;
-                if (tLRPC$TL_channelLocation != null) {
-                    sharingLiveLocationCell.setDialog(this.dialogId, tLRPC$TL_channelLocation);
+                TLRPC.TL_channelLocation tL_channelLocation = this.chatLocation;
+                if (tL_channelLocation != null) {
+                    sharingLiveLocationCell.setDialog(this.dialogId, tL_channelLocation);
                     return;
                 }
                 MessageObject messageObject = this.currentMessageObject;
@@ -376,19 +373,19 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                     return;
                 }
                 if (i == 1) {
-                    tLRPC$TL_messageMediaVenue = this.city;
+                    tL_messageMediaVenue = this.city;
                     z2 = this.street != null;
                     z = this.animated;
                     str = null;
                     i3 = 2;
                 } else {
-                    tLRPC$TL_messageMediaVenue = this.street;
+                    tL_messageMediaVenue = this.street;
                     z = this.animated;
                     i3 = 2;
                     z2 = false;
                     str = null;
                 }
-                locationCell2.setLocation(tLRPC$TL_messageMediaVenue, str, i3, z2, z);
+                locationCell2.setLocation(tL_messageMediaVenue, str, i3, z2, z);
                 return;
         }
     }
@@ -475,7 +472,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     }
 
     @Override
-    public void onLocationAddressAvailable(String str, String str2, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue2, Location location) {
+    public void onLocationAddressAvailable(String str, String str2, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, TLRPC.TL_messageMediaVenue tL_messageMediaVenue2, Location location) {
         this.fetchingLocation = false;
         this.previousFetchedLocation = location;
         int i = this.locationType;
@@ -493,9 +490,9 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             updateCell();
             return;
         }
-        this.city = tLRPC$TL_messageMediaVenue;
-        this.street = tLRPC$TL_messageMediaVenue2;
-        if (z != (tLRPC$TL_messageMediaVenue2 == null)) {
+        this.city = tL_messageMediaVenue;
+        this.street = tL_messageMediaVenue2;
+        if (z != (tL_messageMediaVenue2 == null)) {
             notifyItemRangeChanged(1, 2);
             return;
         }
@@ -512,8 +509,8 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         updateCell();
     }
 
-    public void setChatLocation(TLRPC$TL_channelLocation tLRPC$TL_channelLocation) {
-        this.chatLocation = tLRPC$TL_channelLocation;
+    public void setChatLocation(TLRPC.TL_channelLocation tL_channelLocation) {
+        this.chatLocation = tL_channelLocation;
     }
 
     public void setCustomLocation(Location location) {

@@ -33,7 +33,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$TL_help_country;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -504,9 +504,9 @@ public abstract class SelectorSearchCell extends ScrollView {
                     if (list != null) {
                         Iterator it2 = list.iterator();
                         while (it2.hasNext()) {
-                            TLRPC$TL_help_country tLRPC$TL_help_country = (TLRPC$TL_help_country) it2.next();
-                            if (tLRPC$TL_help_country.default_name.hashCode() == longValue) {
-                                obj = tLRPC$TL_help_country;
+                            TLRPC.TL_help_country tL_help_country = (TLRPC.TL_help_country) it2.next();
+                            if (tL_help_country.default_name.hashCode() == longValue) {
+                                obj = tL_help_country;
                                 break;
                             }
                         }

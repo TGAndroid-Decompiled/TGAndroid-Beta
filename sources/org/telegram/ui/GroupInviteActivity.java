@@ -23,11 +23,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_exportChatInvite;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -45,7 +41,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
     private long chatId;
     private int copyLinkRow;
     private EmptyTextProgressView emptyView;
-    private TLRPC$TL_chatInviteExported invite;
+    private TLRPC.TL_chatInviteExported invite;
     private int linkInfoRow;
     private int linkRow;
     private ListAdapter listAdapter;
@@ -125,7 +121,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                 if (i != GroupInviteActivity.this.linkInfoRow) {
                     return;
                 }
-                TLRPC$Chat chat = GroupInviteActivity.this.getMessagesController().getChat(Long.valueOf(GroupInviteActivity.this.chatId));
+                TLRPC.Chat chat = GroupInviteActivity.this.getMessagesController().getChat(Long.valueOf(GroupInviteActivity.this.chatId));
                 textInfoPrivacyCell.setText(LocaleController.getString((!ChatObject.isChannel(chat) || chat.megagroup) ? R.string.LinkInfo : R.string.ChannelLinkInfo));
                 context = this.mContext;
                 i3 = R.drawable.greydivider;
@@ -156,12 +152,12 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
 
     private void generateLink(final boolean z) {
         this.loading = true;
-        TLRPC$TL_messages_exportChatInvite tLRPC$TL_messages_exportChatInvite = new TLRPC$TL_messages_exportChatInvite();
-        tLRPC$TL_messages_exportChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_exportChatInvite, new RequestDelegate() {
+        TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
+        tL_messages_exportChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                GroupInviteActivity.this.lambda$generateLink$3(z, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                GroupInviteActivity.this.lambda$generateLink$3(z, tLObject, tL_error);
             }
         }), this.classGuid);
         ListAdapter listAdapter = this.listAdapter;
@@ -216,9 +212,9 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$generateLink$2(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, boolean z) {
-        if (tLRPC$TL_error == null) {
-            this.invite = (TLRPC$TL_chatInviteExported) tLObject;
+    public void lambda$generateLink$2(TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
+        if (tL_error == null) {
+            this.invite = (TLRPC.TL_chatInviteExported) tLObject;
             if (z) {
                 if (getParentActivity() == null) {
                     return;
@@ -234,11 +230,11 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         this.listAdapter.notifyDataSetChanged();
     }
 
-    public void lambda$generateLink$3(final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$generateLink$3(final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupInviteActivity.this.lambda$generateLink$2(tLRPC$TL_error, tLObject, z);
+                GroupInviteActivity.this.lambda$generateLink$2(tL_error, tLObject, z);
             }
         });
     }
@@ -252,7 +248,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupInviteActivity.this.lambda$onBackPressed$307();
+                    GroupInviteActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -283,10 +279,10 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
-            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
             int intValue = ((Integer) objArr[1]).intValue();
-            if (tLRPC$ChatFull.id == this.chatId && intValue == this.classGuid) {
-                TLRPC$TL_chatInviteExported exportedInvite = getMessagesController().getExportedInvite(this.chatId);
+            if (chatFull.id == this.chatId && intValue == this.classGuid) {
+                TLRPC.TL_chatInviteExported exportedInvite = getMessagesController().getExportedInvite(this.chatId);
                 this.invite = exportedInvite;
                 if (exportedInvite == null) {
                     generateLink(false);

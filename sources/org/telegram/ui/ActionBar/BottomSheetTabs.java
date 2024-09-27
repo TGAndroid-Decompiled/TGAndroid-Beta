@@ -32,10 +32,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ArticleViewer;
@@ -751,7 +748,7 @@ public class BottomSheetTabs extends FrameLayout {
             callback.run(Boolean.TRUE);
             return;
         }
-        TLRPC$User user = MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.props.botId));
+        TLRPC.User user = MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.props.botId));
         final boolean[] zArr = {false};
         AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
             @Override
@@ -894,18 +891,18 @@ public class BottomSheetTabs extends FrameLayout {
     }
 
     public WebTabData tryReopenTab(MessageObject messageObject) {
-        TLRPC$Message tLRPC$Message;
-        TLRPC$MessageMedia tLRPC$MessageMedia;
-        TLRPC$WebPage tLRPC$WebPage;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (tLRPC$MessageMedia = tLRPC$Message.media) == null || (tLRPC$WebPage = tLRPC$MessageMedia.webpage) == null) {
+        TLRPC.Message message;
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.WebPage webPage;
+        if (messageObject == null || (message = messageObject.messageOwner) == null || (messageMedia = message.media) == null || (webPage = messageMedia.webpage) == null) {
             return null;
         }
-        return tryReopenTab(tLRPC$WebPage);
+        return tryReopenTab(webPage);
     }
 
-    public WebTabData tryReopenTab(TLRPC$WebPage tLRPC$WebPage) {
-        TLRPC$WebPage tLRPC$WebPage2;
-        if (tLRPC$WebPage == null) {
+    public WebTabData tryReopenTab(TLRPC.WebPage webPage) {
+        TLRPC.WebPage webPage2;
+        if (webPage == null) {
             return null;
         }
         ArrayList<WebTabData> tabs = getTabs();
@@ -914,7 +911,7 @@ public class BottomSheetTabs extends FrameLayout {
             ArticleViewer articleViewer = webTabData.articleViewer;
             if (articleViewer != null && !articleViewer.pagesStack.isEmpty()) {
                 Object obj = webTabData.articleViewer.pagesStack.get(r4.size() - 1);
-                if ((obj instanceof TLRPC$WebPage) && (tLRPC$WebPage2 = (TLRPC$WebPage) obj) != null && tLRPC$WebPage2.id == tLRPC$WebPage.id) {
+                if ((obj instanceof TLRPC.WebPage) && (webPage2 = (TLRPC.WebPage) obj) != null && webPage2.id == webPage.id) {
                     openTab(webTabData);
                     return webTabData;
                 }

@@ -52,7 +52,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -922,12 +922,12 @@ public class EmbedBottomSheet extends BottomSheet {
     }
 
     public static void show(BaseFragment baseFragment, MessageObject messageObject, PhotoViewer.PhotoViewerProvider photoViewerProvider, String str, String str2, String str3, String str4, int i, int i2, int i3, boolean z) {
-        TLRPC$MessageMedia tLRPC$MessageMedia;
+        TLRPC.MessageMedia messageMedia;
         EmbedBottomSheet embedBottomSheet = instance;
         if (embedBottomSheet != null) {
             embedBottomSheet.destroy();
         }
-        if (((messageObject == null || (tLRPC$MessageMedia = messageObject.messageOwner.media) == null || tLRPC$MessageMedia.webpage == null) ? null : WebPlayerView.getYouTubeVideoId(str4)) != null) {
+        if (((messageObject == null || (messageMedia = messageObject.messageOwner.media) == null || messageMedia.webpage == null) ? null : WebPlayerView.getYouTubeVideoId(str4)) != null) {
             PhotoViewer.getInstance().setParentActivity(baseFragment);
             PhotoViewer.getInstance().openPhoto(messageObject, i3, null, 0L, 0L, 0L, photoViewerProvider);
         } else {

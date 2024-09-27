@@ -40,8 +40,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_updateDialogFiltersOrder;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.FilterTabsView;
@@ -962,7 +961,7 @@ public abstract class FilterTabsView extends FrameLayout {
         return false;
     }
 
-    public static void lambda$setIsEditing$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$setIsEditing$2(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     private void scrollToChild(int i) {
@@ -1350,22 +1349,22 @@ public abstract class FilterTabsView extends FrameLayout {
             return;
         }
         MessagesStorage.getInstance(UserConfig.selectedAccount).saveDialogFiltersOrder();
-        TLRPC$TL_messages_updateDialogFiltersOrder tLRPC$TL_messages_updateDialogFiltersOrder = new TLRPC$TL_messages_updateDialogFiltersOrder();
+        TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
         ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
         int size = dialogFilters.size();
         for (int i = 0; i < size; i++) {
             MessagesController.DialogFilter dialogFilter = dialogFilters.get(i);
             if (dialogFilter.isDefault()) {
-                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(0);
+                tL_messages_updateDialogFiltersOrder.order.add(0);
             } else {
-                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(dialogFilter.id));
+                tL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(dialogFilter.id));
             }
         }
         MessagesController.getInstance(UserConfig.selectedAccount).lockFiltersInternal();
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, new RequestDelegate() {
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_updateDialogFiltersOrder, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FilterTabsView.lambda$setIsEditing$2(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                FilterTabsView.lambda$setIsEditing$2(tLObject, tL_error);
             }
         });
         this.orderChanged = false;

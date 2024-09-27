@@ -32,9 +32,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ScrollSlidingTabStrip;
 
@@ -361,7 +359,7 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         AndroidUtilities.cancelRunOnUIThread(this.scrollRunnable);
     }
 
-    public View addEmojiTab(int i, Emoji.EmojiDrawable emojiDrawable, TLRPC$Document tLRPC$Document) {
+    public View addEmojiTab(int i, Emoji.EmojiDrawable emojiDrawable, TLRPC.Document document) {
         String str = "tab" + i;
         int i2 = this.tabCount;
         this.tabCount = i2 + 1;
@@ -384,7 +382,7 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         stickerTabView.isChatSticker = false;
         stickerTabView.setTag(R.id.index_tag, Integer.valueOf(i2));
         stickerTabView.setTag(R.id.parent_tag, emojiDrawable);
-        stickerTabView.setTag(R.id.object_tag, tLRPC$Document);
+        stickerTabView.setTag(R.id.object_tag, document);
         stickerTabView.setSelected(i2 == this.currentPosition);
         this.tabTypes.put(str, stickerTabView);
         return stickerTabView;
@@ -446,10 +444,10 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         return stickerTabView;
     }
 
-    public View addStickerTab(TLObject tLObject, TLRPC$Document tLRPC$Document, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+    public View addStickerTab(TLObject tLObject, TLRPC.Document document, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         StringBuilder sb = new StringBuilder();
         sb.append("set");
-        sb.append(tLRPC$TL_messages_stickerSet == null ? tLRPC$Document.id : tLRPC$TL_messages_stickerSet.set.id);
+        sb.append(tL_messages_stickerSet == null ? document.id : tL_messages_stickerSet.set.id);
         String sb2 = sb.toString();
         int i = this.tabCount;
         this.tabCount = i + 1;
@@ -473,15 +471,15 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         stickerTabView.isChatSticker = false;
         stickerTabView.setTag(tLObject);
         stickerTabView.setTag(R.id.index_tag, Integer.valueOf(i));
-        stickerTabView.setTag(R.id.parent_tag, tLRPC$TL_messages_stickerSet);
-        stickerTabView.setTag(R.id.object_tag, tLRPC$Document);
+        stickerTabView.setTag(R.id.parent_tag, tL_messages_stickerSet);
+        stickerTabView.setTag(R.id.object_tag, document);
         stickerTabView.setSelected(i == this.currentPosition);
         this.tabTypes.put(sb2, stickerTabView);
         return stickerTabView;
     }
 
-    public void addStickerTab(TLRPC$Chat tLRPC$Chat) {
-        String str = "chat" + tLRPC$Chat.id;
+    public void addStickerTab(TLRPC.Chat chat) {
+        String str = "chat" + chat.id;
         int i = this.tabCount;
         this.tabCount = i + 1;
         StickerTabView stickerTabView = (StickerTabView) this.prevTypes.get(str);
@@ -500,14 +498,14 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
             stickerTabView.setRoundImage();
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-            avatarDrawable.setInfo(UserConfig.selectedAccount, tLRPC$Chat);
+            avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
             BackupImageView backupImageView = stickerTabView.imageView;
             backupImageView.setLayerNum(this.imageReceiversPlayingNum);
-            backupImageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);
+            backupImageView.setForUserOrChat(chat, avatarDrawable);
             backupImageView.setAspectFit(true);
             stickerTabView.setExpanded(this.expanded);
             stickerTabView.updateExpandProgress(this.expandProgress);
-            stickerTabView.textView.setText(tLRPC$Chat.title);
+            stickerTabView.textView.setText(chat.title);
         }
         stickerTabView.isChatSticker = true;
         stickerTabView.setTag(R.id.index_tag, Integer.valueOf(i));

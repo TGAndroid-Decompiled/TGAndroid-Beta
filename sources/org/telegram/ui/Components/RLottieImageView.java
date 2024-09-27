@@ -125,7 +125,7 @@ public class RLottieImageView extends ImageView {
         setAnimation(new RLottieDrawable(i, "" + i, AndroidUtilities.dp(i2), AndroidUtilities.dp(i3), false, iArr));
     }
 
-    public void setAnimation(org.telegram.tgnet.TLRPC$Document r20, final int r21, final int r22) {
+    public void setAnimation(org.telegram.tgnet.TLRPC.Document r20, final int r21, final int r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieImageView.setAnimation(org.telegram.tgnet.TLRPC$Document, int, int):void");
     }
 

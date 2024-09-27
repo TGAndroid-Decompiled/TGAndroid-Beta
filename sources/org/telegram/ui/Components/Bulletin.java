@@ -60,9 +60,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.support.SparseLongArray;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
@@ -1367,9 +1365,9 @@ public class Bulletin {
             setAnimation(i, 32, 32, strArr);
         }
 
-        public void setAnimation(TLRPC$Document tLRPC$Document, int i, int i2, String... strArr) {
+        public void setAnimation(TLRPC.Document document, int i, int i2, String... strArr) {
             this.imageView.setAutoRepeat(true);
-            this.imageView.setAnimation(tLRPC$Document, i, i2);
+            this.imageView.setAnimation(document, i, i2);
             for (String str : strArr) {
                 this.imageView.setLayerColor(str + ".**", this.textColor);
             }
@@ -1447,15 +1445,15 @@ public class Bulletin {
             }
 
             public void lambda$showTaggedReactionToast$1(ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final int i, final int i2) {
-                TLRPC$Document findDocument;
+                TLRPC.Document findDocument;
                 final BaseFragment lastFragment = LaunchActivity.getLastFragment();
                 long j = visibleReaction.documentId;
                 if (j == 0) {
-                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon);
-                    if (tLRPC$TL_availableReaction == null) {
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon);
+                    if (tL_availableReaction == null) {
                         return;
                     } else {
-                        findDocument = tLRPC$TL_availableReaction.activate_animation;
+                        findDocument = tL_availableReaction.activate_animation;
                     }
                 } else {
                     findDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, j);
@@ -1509,14 +1507,14 @@ public class Bulletin {
                 int i = 0;
                 for (int i2 = 0; i2 < LottieLayoutWithReactions.this.newMessagesByIds.size(); i2++) {
                     int keyAt = LottieLayoutWithReactions.this.newMessagesByIds.keyAt(i2);
-                    TLRPC$Message tLRPC$Message = new TLRPC$Message();
-                    tLRPC$Message.dialog_id = LottieLayoutWithReactions.this.fragment.getUserConfig().getClientUserId();
-                    tLRPC$Message.id = keyAt;
-                    MessageObject messageObject = new MessageObject(LottieLayoutWithReactions.this.fragment.getCurrentAccount(), tLRPC$Message, false, false);
+                    TLRPC.Message message = new TLRPC.Message();
+                    message.dialog_id = LottieLayoutWithReactions.this.fragment.getUserConfig().getClientUserId();
+                    message.id = keyAt;
+                    MessageObject messageObject = new MessageObject(LottieLayoutWithReactions.this.fragment.getCurrentAccount(), message, false, false);
                     ArrayList<ReactionsLayoutInBubble.VisibleReaction> arrayList = new ArrayList<>();
                     arrayList.add(visibleReaction);
                     LottieLayoutWithReactions.this.fragment.getSendMessagesHelper().sendReaction(messageObject, arrayList, visibleReaction, false, false, LottieLayoutWithReactions.this.fragment, null);
-                    i = tLRPC$Message.id;
+                    i = message.id;
                 }
                 LottieLayoutWithReactions.this.hideReactionsDialog();
                 Bulletin.hideVisible();
@@ -2077,6 +2075,14 @@ public class Bulletin {
 
         public void setAnimation(int i, String... strArr) {
             setAnimation(i, 32, 32, strArr);
+        }
+
+        public void setAnimation(TLRPC.Document document, int i, int i2, String... strArr) {
+            this.imageView.setAutoRepeat(true);
+            this.imageView.setAnimation(document, i, i2);
+            for (String str : strArr) {
+                this.imageView.setLayerColor(str + ".**", this.textColor);
+            }
         }
     }
 

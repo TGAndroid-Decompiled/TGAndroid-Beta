@@ -17,9 +17,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$MessagePeerReaction;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -83,7 +81,7 @@ public class ReactedUserHolderView extends FrameLayout {
         int i3 = i == STYLE_STORY ? 48 : 34;
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 if (i != ReactedUserHolderView.STYLE_STORY) {
                     super.onDraw(canvas);
                 } else {
@@ -244,25 +242,25 @@ public class ReactedUserHolderView extends FrameLayout {
     public void openStory(long j, Runnable runnable) {
     }
 
-    public void setUserReaction(TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
-        TLRPC$Chat chat;
-        TLRPC$User tLRPC$User;
-        if (tLRPC$MessagePeerReaction == null) {
+    public void setUserReaction(TLRPC.MessagePeerReaction messagePeerReaction) {
+        TLRPC.Chat chat;
+        TLRPC.User user;
+        if (messagePeerReaction == null) {
             return;
         }
-        long peerId = MessageObject.getPeerId(tLRPC$MessagePeerReaction.peer_id);
+        long peerId = MessageObject.getPeerId(messagePeerReaction.peer_id);
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         if (peerId > 0) {
-            tLRPC$User = messagesController.getUser(Long.valueOf(peerId));
+            user = messagesController.getUser(Long.valueOf(peerId));
             chat = null;
         } else {
             chat = messagesController.getChat(Long.valueOf(-peerId));
-            tLRPC$User = null;
+            user = null;
         }
-        setUserReaction(tLRPC$User, chat, tLRPC$MessagePeerReaction.reaction, false, tLRPC$MessagePeerReaction.date, null, false, tLRPC$MessagePeerReaction.dateIsSeen, false);
+        setUserReaction(user, chat, messagePeerReaction.reaction, false, messagePeerReaction.date, null, false, messagePeerReaction.dateIsSeen, false);
     }
 
-    public void setUserReaction(org.telegram.tgnet.TLRPC$User r19, org.telegram.tgnet.TLRPC$Chat r20, org.telegram.tgnet.TLRPC$Reaction r21, boolean r22, long r23, org.telegram.tgnet.tl.TL_stories$StoryItem r25, boolean r26, boolean r27, boolean r28) {
+    public void setUserReaction(org.telegram.tgnet.TLRPC.User r19, org.telegram.tgnet.TLRPC.Chat r20, org.telegram.tgnet.TLRPC.Reaction r21, boolean r22, long r23, org.telegram.tgnet.tl.TL_stories.StoryItem r25, boolean r26, boolean r27, boolean r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ReactedUserHolderView.setUserReaction(org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$Reaction, boolean, long, org.telegram.tgnet.tl.TL_stories$StoryItem, boolean, boolean, boolean):void");
     }
 }

@@ -42,10 +42,7 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_peerNotifySettings;
-import org.telegram.tgnet.TLRPC$TL_topPeer;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -796,7 +793,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         if (j == 0) {
             return string.equals("NoSound") ? LocaleController.getString("NoSound", R.string.NoSound) : string.equals("Default") ? LocaleController.getString("SoundDefault", i) : string;
         }
-        TLRPC$Document document = getMediaDataController().ringtoneDataStore.getDocument(j);
+        TLRPC.Document document = getMediaDataController().ringtoneDataStore.getDocument(j);
         return document == null ? LocaleController.getString("CustomSound", R.string.CustomSound) : NotificationsSoundActivity.trimTitle(document, FileLoader.getDocumentFileName(document));
     }
 
@@ -806,13 +803,13 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             @Override
             public final double applyAsDouble(Object obj) {
                 double d;
-                d = ((TLRPC$TL_topPeer) obj).rating;
+                d = ((TLRPC.TL_topPeer) obj).rating;
                 return d;
             }
         }));
         int i2 = -1;
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            if (DialogObject.getPeerDialogId(((TLRPC$TL_topPeer) arrayList.get(i3)).peer) == j) {
+            if (DialogObject.getPeerDialogId(((TLRPC.TL_topPeer) arrayList.get(i3)).peer) == j) {
                 i2 = i3;
             }
         }
@@ -981,9 +978,9 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 edit.remove("notify2_" + notificationException.did).remove("custom_" + notificationException.did);
             }
             getMessagesStorage().setDialogFlags(notificationException.did, 0L);
-            TLRPC$Dialog tLRPC$Dialog = (TLRPC$Dialog) getMessagesController().dialogs_dict.get(notificationException.did);
-            if (tLRPC$Dialog != null) {
-                tLRPC$Dialog.notify_settings = new TLRPC$TL_peerNotifySettings();
+            TLRPC.Dialog dialog = (TLRPC.Dialog) getMessagesController().dialogs_dict.get(notificationException.did);
+            if (dialog != null) {
+                dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
             }
         }
         edit.commit();
@@ -1115,7 +1112,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    NotificationsCustomSettingsActivity.this.lambda$onBackPressed$307();
+                    NotificationsCustomSettingsActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

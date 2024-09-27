@@ -48,14 +48,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
-import org.telegram.tgnet.TLRPC$TL_contact;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_exportChatInvite;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -89,7 +82,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     boolean enterEventSent;
     private final ImageView floatingButton;
     private LongSparseArray ignoreUsers;
-    TLRPC$TL_chatInviteExported invite;
+    TLRPC.TL_chatInviteExported invite;
     private int lastRow;
     boolean linkGenerating;
     private int maxSize;
@@ -153,8 +146,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             if (InviteMembersBottomSheet.this.dialogsDelegate == null) {
                 return (TLObject) InviteMembersBottomSheet.this.contacts.get(i - InviteMembersBottomSheet.this.contactsStartRow);
             }
-            TLRPC$Dialog tLRPC$Dialog = (TLRPC$Dialog) InviteMembersBottomSheet.this.dialogsServerOnly.get(i - InviteMembersBottomSheet.this.contactsStartRow);
-            return DialogObject.isUserDialog(tLRPC$Dialog.id) ? MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getUser(Long.valueOf(tLRPC$Dialog.id)) : MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id));
+            TLRPC.Dialog dialog = (TLRPC.Dialog) InviteMembersBottomSheet.this.dialogsServerOnly.get(i - InviteMembersBottomSheet.this.contactsStartRow);
+            return DialogObject.isUserDialog(dialog.id) ? MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getUser(Long.valueOf(dialog.id)) : MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getChat(Long.valueOf(-dialog.id));
         }
 
         @Override
@@ -175,9 +168,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
             TLObject object = getObject(i);
             Object object2 = groupCreateUserCell.getObject();
-            long j = object2 instanceof TLRPC$User ? ((TLRPC$User) object2).id : object2 instanceof TLRPC$Chat ? -((TLRPC$Chat) object2).id : 0L;
+            long j = object2 instanceof TLRPC.User ? ((TLRPC.User) object2).id : object2 instanceof TLRPC.Chat ? -((TLRPC.Chat) object2).id : 0L;
             groupCreateUserCell.setObject(object, null, null, i != InviteMembersBottomSheet.this.contactsEndRow);
-            long j2 = object instanceof TLRPC$User ? ((TLRPC$User) object).id : object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).id : 0L;
+            long j2 = object instanceof TLRPC.User ? ((TLRPC.User) object).id : object instanceof TLRPC.Chat ? -((TLRPC.Chat) object).id : 0L;
             if (j2 != 0) {
                 if (InviteMembersBottomSheet.this.ignoreUsers == null || InviteMembersBottomSheet.this.ignoreUsers.indexOfKey(j2) < 0) {
                     groupCreateUserCell.setChecked(InviteMembersBottomSheet.this.selectedContacts.indexOfKey(j2) >= 0, j == j2);
@@ -555,9 +548,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         recyclerListView.setAdapter(listAdapter);
         this.emptyView.showProgress(false, false);
         this.emptyView.setVisibility(8);
-        ArrayList<TLRPC$TL_contact> arrayList = ContactsController.getInstance(i).contacts;
+        ArrayList<TLRPC.TL_contact> arrayList = ContactsController.getInstance(i).contacts;
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList.get(i2).user_id));
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList.get(i2).user_id));
             if (user != null && !user.self && !user.deleted) {
                 this.contacts.add(user);
             }
@@ -644,21 +637,21 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             return;
         }
         this.linkGenerating = true;
-        TLRPC$TL_messages_exportChatInvite tLRPC$TL_messages_exportChatInvite = new TLRPC$TL_messages_exportChatInvite();
-        tLRPC$TL_messages_exportChatInvite.legacy_revoke_permanent = true;
-        tLRPC$TL_messages_exportChatInvite.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.chatId);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_exportChatInvite, new RequestDelegate() {
+        TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
+        tL_messages_exportChatInvite.legacy_revoke_permanent = true;
+        tL_messages_exportChatInvite.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.chatId);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                InviteMembersBottomSheet.this.lambda$generateLink$8(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                InviteMembersBottomSheet.this.lambda$generateLink$8(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$generateLink$7(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error == null) {
-            this.invite = (TLRPC$TL_chatInviteExported) tLObject;
-            TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
+    public void lambda$generateLink$7(TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error == null) {
+            this.invite = (TLRPC.TL_chatInviteExported) tLObject;
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
             if (chatFull != null) {
                 chatFull.exported_invite = this.invite;
             }
@@ -672,11 +665,11 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.linkGenerating = false;
     }
 
-    public void lambda$generateLink$8(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$generateLink$8(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                InviteMembersBottomSheet.this.lambda$generateLink$7(tLRPC$TL_error, tLObject);
+                InviteMembersBottomSheet.this.lambda$generateLink$7(tL_error, tLObject);
             }
         });
     }
@@ -708,7 +701,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         builder.setTitle(LocaleController.formatPluralString("AddManyMembersAlertTitle", this.selectedContacts.size(), new Object[0]));
         StringBuilder sb = new StringBuilder();
         for (int i2 = 0; i2 < this.selectedContacts.size(); i2++) {
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.selectedContacts.keyAt(i2)));
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.selectedContacts.keyAt(i2)));
             if (user != null) {
                 if (sb.length() > 0) {
                     sb.append(", ");
@@ -718,7 +711,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 sb.append("**");
             }
         }
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
         if (this.selectedContacts.size() > 5) {
             replaceTags = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddManyMembersAlertNamesText", this.selectedContacts.size(), chat.title)));
             String format = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
@@ -1001,8 +994,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     protected boolean hasLink() {
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(this.chatId));
-        TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(this.chatId));
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
         if (chat != null && !TextUtils.isEmpty(ChatObject.getPublicUsername(chat))) {
             return true;
         }

@@ -22,7 +22,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -57,7 +57,7 @@ public class FeaturesPageView extends BaseListPageView {
                 this.imageView = backupImageView;
                 backupImageView.setRoundRadius((int) (AndroidUtilities.dp(65.0f) / 2.0f));
                 addView(this.imageView, LayoutHelper.createFrame(65, 65.0f, 1, 0.0f, 32.0f, 0.0f, 0.0f));
-                TLRPC$User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
+                TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
                 AvatarDrawable avatarDrawable = new AvatarDrawable();
                 avatarDrawable.setInfo(currentUser);
                 this.imageView.getImageReceiver().setForUserOrChat(currentUser, avatarDrawable);

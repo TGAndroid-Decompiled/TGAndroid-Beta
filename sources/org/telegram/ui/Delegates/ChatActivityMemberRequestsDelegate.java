@@ -16,9 +16,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -32,11 +30,11 @@ public class ChatActivityMemberRequestsDelegate {
     private AvatarsImageView avatarsView;
     private MemberRequestsBottomSheet bottomSheet;
     private final Callback callback;
-    private TLRPC$ChatFull chatInfo;
+    private TLRPC.ChatFull chatInfo;
     private int closePendingRequestsCount = -1;
     private ImageView closeView;
     private final int currentAccount;
-    private final TLRPC$Chat currentChat;
+    private final TLRPC.Chat currentChat;
     private final BaseFragment fragment;
     private ValueAnimator pendingRequestsAnimator;
     private int pendingRequestsCount;
@@ -49,10 +47,10 @@ public class ChatActivityMemberRequestsDelegate {
         void onEnterOffsetChanged();
     }
 
-    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, TLRPC$Chat tLRPC$Chat, Callback callback) {
+    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, TLRPC.Chat chat, Callback callback) {
         this.fragment = baseFragment;
         this.sizeNotifierFrameLayout = sizeNotifierFrameLayout;
-        this.currentChat = tLRPC$Chat;
+        this.currentChat = chat;
         this.currentAccount = baseFragment.getCurrentAccount();
         this.callback = callback;
     }
@@ -157,7 +155,7 @@ public class ChatActivityMemberRequestsDelegate {
             }
             int min = Math.min(3, list.size());
             for (int i2 = 0; i2 < min; i2++) {
-                TLRPC$User user = this.fragment.getMessagesController().getUser((Long) list.get(i2));
+                TLRPC.User user = this.fragment.getMessagesController().getUser((Long) list.get(i2));
                 if (user != null) {
                     this.avatarsView.setObject(i2, this.currentAccount, user);
                 }
@@ -241,9 +239,9 @@ public class ChatActivityMemberRequestsDelegate {
                 }
             });
             this.root.addView(this.closeView, LayoutHelper.createFrame(36, -1.0f, 53, 0.0f, 0.0f, 2.0f, 0.0f));
-            TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
-            if (tLRPC$ChatFull != null) {
-                setPendingRequests(tLRPC$ChatFull.requests_pending, tLRPC$ChatFull.recent_requesters, false);
+            TLRPC.ChatFull chatFull = this.chatInfo;
+            if (chatFull != null) {
+                setPendingRequests(chatFull.requests_pending, chatFull.recent_requesters, false);
             }
         }
         return this.root;
@@ -265,10 +263,10 @@ public class ChatActivityMemberRequestsDelegate {
         showBottomSheet();
     }
 
-    public void setChatInfo(TLRPC$ChatFull tLRPC$ChatFull, boolean z) {
-        this.chatInfo = tLRPC$ChatFull;
-        if (tLRPC$ChatFull != null) {
-            setPendingRequests(tLRPC$ChatFull.requests_pending, tLRPC$ChatFull.recent_requesters, z);
+    public void setChatInfo(TLRPC.ChatFull chatFull, boolean z) {
+        this.chatInfo = chatFull;
+        if (chatFull != null) {
+            setPendingRequests(chatFull.requests_pending, chatFull.recent_requesters, z);
         }
     }
 }

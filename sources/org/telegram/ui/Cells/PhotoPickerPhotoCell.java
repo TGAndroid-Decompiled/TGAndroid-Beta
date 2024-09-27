@@ -17,7 +17,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$PhotoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
@@ -147,14 +147,14 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         BackupImageView backupImageView;
         ImageLocation forDocument;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
-        TLRPC$PhotoSize tLRPC$PhotoSize = searchImage.thumbPhotoSize;
-        if (tLRPC$PhotoSize != null) {
+        TLRPC.PhotoSize photoSize = searchImage.thumbPhotoSize;
+        if (photoSize != null) {
             backupImageView = this.imageView;
-            forDocument = ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage.photo);
+            forDocument = ImageLocation.getForPhoto(photoSize, searchImage.photo);
         } else {
-            TLRPC$PhotoSize tLRPC$PhotoSize2 = searchImage.photoSize;
-            if (tLRPC$PhotoSize2 != null) {
-                this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize2, searchImage.photo), "80_80", drawable, searchImage);
+            TLRPC.PhotoSize photoSize2 = searchImage.photoSize;
+            if (photoSize2 != null) {
+                this.imageView.setImage(ImageLocation.getForPhoto(photoSize2, searchImage.photo), "80_80", drawable, searchImage);
                 return;
             }
             String str = searchImage.thumbPath;
@@ -170,7 +170,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
                 this.imageView.setImageDrawable(drawable);
                 return;
             } else {
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 320);
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 320);
                 backupImageView = this.imageView;
                 forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize, searchImage.document);
             }

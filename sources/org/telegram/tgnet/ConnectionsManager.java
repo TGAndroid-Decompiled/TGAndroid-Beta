@@ -55,6 +55,7 @@ import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LoginActivity;
 
 public class ConnectionsManager extends BaseController {
@@ -110,7 +111,7 @@ public class ConnectionsManager extends BaseController {
     private AtomicInteger lastRequestToken;
     private final ConcurrentHashMap<Integer, RequestCallbacks> requestCallbacks;
 
-    public static class FirebaseTask extends AsyncTask {
+    public static class FirebaseTask extends AsyncTask<Void, Void, NativeByteBuffer> {
         private int currentAccount;
         private FirebaseRemoteConfig firebaseRemoteConfig;
 
@@ -222,7 +223,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static class GoogleDnsLoadTask extends AsyncTask {
+    public static class GoogleDnsLoadTask extends AsyncTask<Void, Void, NativeByteBuffer> {
         private int currentAccount;
         private int responseDate;
 
@@ -273,7 +274,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static class MozillaDnsLoadTask extends AsyncTask {
+    public static class MozillaDnsLoadTask extends AsyncTask<Void, Void, NativeByteBuffer> {
         private int currentAccount;
         private int responseDate;
 
@@ -330,8 +331,8 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static class ResolveHostByNameTask extends AsyncTask {
-        private ArrayList addresses = new ArrayList();
+    public static class ResolveHostByNameTask extends AsyncTask<Void, Void, ResolvedDomain> {
+        private ArrayList<Long> addresses = new ArrayList<>();
         private String currentHostName;
 
         public ResolveHostByNameTask(String str) {
@@ -459,13 +460,13 @@ public class ConnectionsManager extends BaseController {
                 ConnectionsManager.dnsCache.put(this.currentHostName, resolvedDomain);
                 int size = this.addresses.size();
                 while (i < size) {
-                    ConnectionsManager.native_onHostNameResolved(this.currentHostName, ((Long) this.addresses.get(i)).longValue(), resolvedDomain.getAddress());
+                    ConnectionsManager.native_onHostNameResolved(this.currentHostName, this.addresses.get(i).longValue(), resolvedDomain.getAddress());
                     i++;
                 }
             } else {
                 int size2 = this.addresses.size();
                 while (i < size2) {
-                    ConnectionsManager.native_onHostNameResolved(this.currentHostName, ((Long) this.addresses.get(i)).longValue(), "");
+                    ConnectionsManager.native_onHostNameResolved(this.currentHostName, this.addresses.get(i).longValue(), "");
                     i++;
                 }
             }
@@ -474,17 +475,17 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static class ResolvedDomain {
-        public ArrayList addresses;
+        public ArrayList<String> addresses;
         long ttl;
 
-        public ResolvedDomain(ArrayList arrayList, long j) {
+        public ResolvedDomain(ArrayList<String> arrayList, long j) {
             this.addresses = arrayList;
             this.ttl = j;
         }
 
         public String getAddress() {
-            ArrayList arrayList = this.addresses;
-            return (String) arrayList.get(Utilities.random.nextInt(arrayList.size()));
+            ArrayList<String> arrayList = this.addresses;
+            return arrayList.get(Utilities.random.nextInt(arrayList.size()));
         }
     }
 
@@ -775,38 +776,39 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void lambda$onUnparsedMessageReceived$8(int i, TLObject tLObject) {
-        AccountInstance.getInstance(i).getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+        AccountInstance.getInstance(i).getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
     }
 
     public static void lambda$onUpdate$9(int i) {
         AccountInstance.getInstance(i).getMessagesController().updateTimerProc();
     }
 
-    public static void lambda$onUpdateConfig$17(int i, TLRPC$TL_config tLRPC$TL_config) {
-        AccountInstance.getInstance(i).getMessagesController().updateConfig(tLRPC$TL_config);
+    public static void lambda$onUpdateConfig$17(int i, TLRPC.TL_config tL_config) {
+        AccountInstance.getInstance(i).getMessagesController().updateConfig(tL_config);
     }
 
-    public static void lambda$sendRequestInternal$3(RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
+    public static void lambda$sendRequestInternal$3(RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
         if (requestDelegate != null) {
-            requestDelegate.run(tLObject, tLRPC$TL_error);
+            requestDelegate.run(tLObject, tL_error);
         } else if (requestDelegateTimestamp != null) {
-            requestDelegateTimestamp.run(tLObject, tLRPC$TL_error, j);
+            requestDelegateTimestamp.run(tLObject, tL_error, j);
         }
         if (tLObject != null) {
             tLObject.freeResources();
         }
     }
 
-    public void lambda$sendRequestInternal$4(TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z, long j, int i4, long j2, int i5, String str, int i6, final long j3, long j4) {
-        TLRPC$TL_error tLRPC$TL_error;
+    public void lambda$sendRequestInternal$4(TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z, long j, int i4, long j2, int i5, String str, int i6, final long j3, long j4, int i7) {
+        TLRPC.TL_error tL_error;
         TLObject tLObject2;
         try {
             if (j2 != 0) {
                 NativeByteBuffer wrap = NativeByteBuffer.wrap(j2);
                 wrap.reused = true;
+                wrap.limit();
                 try {
                     tLObject2 = tLObject.deserializeResponse(wrap, wrap.readInt32(true), true);
-                    tLRPC$TL_error = null;
+                    tL_error = null;
                 } catch (Exception e) {
                     if (BuildVars.DEBUG_PRIVATE_VERSION) {
                         throw e;
@@ -815,19 +817,19 @@ public class ConnectionsManager extends BaseController {
                     return;
                 }
             } else if (str != null) {
-                TLRPC$TL_error tLRPC$TL_error2 = new TLRPC$TL_error();
-                tLRPC$TL_error2.code = i5;
-                tLRPC$TL_error2.text = str;
+                TLRPC.TL_error tL_error2 = new TLRPC.TL_error();
+                tL_error2.code = i5;
+                tL_error2.text = str;
                 if (BuildVars.LOGS_ENABLED && i5 != -2000) {
-                    FileLog.e(tLObject + " got error " + tLRPC$TL_error2.code + " " + tLRPC$TL_error2.text);
+                    FileLog.e(tLObject + " got error " + tL_error2.code + " " + tL_error2.text);
                 }
-                tLRPC$TL_error = tLRPC$TL_error2;
+                tL_error = tL_error2;
                 tLObject2 = null;
             } else {
-                tLRPC$TL_error = null;
+                tL_error = null;
                 tLObject2 = null;
             }
-            if (BuildVars.DEBUG_PRIVATE_VERSION && !getUserConfig().isClientActivated() && tLRPC$TL_error != null && tLRPC$TL_error.code == 400 && Objects.equals(tLRPC$TL_error.text, "CONNECTION_NOT_INITED")) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION && !getUserConfig().isClientActivated() && tL_error != null && tL_error.code == 400 && Objects.equals(tL_error.text, "CONNECTION_NOT_INITED")) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("Cleanup keys for " + this.currentAccount + " because of CONNECTION_NOT_INITED");
                 }
@@ -839,15 +841,15 @@ public class ConnectionsManager extends BaseController {
                 tLObject2.networkType = i6;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("java received " + tLObject2 + " error = " + tLRPC$TL_error + " messageId = " + j4);
+                FileLog.d("java received " + tLObject2 + " error = " + tL_error + " messageId = " + j4);
             }
-            FileLog.dumpResponseAndRequest(this.currentAccount, tLObject, tLObject2, tLRPC$TL_error, j4, j, i4);
+            FileLog.dumpResponseAndRequest(this.currentAccount, tLObject, tLObject2, tL_error, j4, j, i4);
             final TLObject tLObject3 = tLObject2;
-            final TLRPC$TL_error tLRPC$TL_error3 = tLRPC$TL_error;
+            final TLRPC.TL_error tL_error3 = tL_error;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ConnectionsManager.lambda$sendRequestInternal$3(RequestDelegate.this, tLObject3, tLRPC$TL_error3, requestDelegateTimestamp, j3);
+                    ConnectionsManager.lambda$sendRequestInternal$3(RequestDelegate.this, tLObject3, tL_error3, requestDelegateTimestamp, j3);
                 }
             });
         } catch (Exception e2) {
@@ -1082,7 +1084,7 @@ public class ConnectionsManager extends BaseController {
         FileLog.d(sb.toString());
     }
 
-    public static void onRequestComplete(int i, int i2, long j, int i3, String str, int i4, long j2, long j3) {
+    public static void onRequestComplete(int i, int i2, long j, int i3, String str, int i4, long j2, long j3, int i5) {
         StringBuilder sb;
         ConnectionsManager connectionsManager = getInstance(i);
         if (connectionsManager == null) {
@@ -1093,7 +1095,7 @@ public class ConnectionsManager extends BaseController {
         if (requestCallbacks != null) {
             RequestDelegateInternal requestDelegateInternal = requestCallbacks.onComplete;
             if (requestDelegateInternal != null) {
-                requestDelegateInternal.run(j, i3, str, i4, j2, j3);
+                requestDelegateInternal.run(j, i3, str, i4, j2, j3, i5);
             }
             sb = new StringBuilder();
             sb.append("{rc} onRequestComplete(");
@@ -1213,7 +1215,7 @@ public class ConnectionsManager extends BaseController {
             int readInt32 = wrap.readInt32(true);
             final TLObject TLdeserialize = TLClassStore.Instance().TLdeserialize(wrap, readInt32, true);
             FileLog.dumpUnparsedMessage(TLdeserialize, j2, i);
-            if (!(TLdeserialize instanceof TLRPC$Updates)) {
+            if (!(TLdeserialize instanceof TLRPC.Updates)) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d(String.format("java received unknown constructor 0x%x", Integer.valueOf(readInt32)));
                     return;
@@ -1248,7 +1250,7 @@ public class ConnectionsManager extends BaseController {
         try {
             NativeByteBuffer wrap = NativeByteBuffer.wrap(j);
             wrap.reused = true;
-            final TLRPC$TL_config TLdeserialize = TLRPC$TL_config.TLdeserialize(wrap, wrap.readInt32(true), true);
+            final TLRPC.TL_config TLdeserialize = TLRPC.TL_config.TLdeserialize(wrap, wrap.readInt32(true), true);
             if (TLdeserialize != null) {
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
@@ -1273,8 +1275,8 @@ public class ConnectionsManager extends BaseController {
             final long currentTimeMillis = (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) ? System.currentTimeMillis() : 0L;
             listen(i4, new RequestDelegateInternal() {
                 @Override
-                public final void run(long j, int i5, String str, int i6, long j2, long j3) {
-                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, currentTimeMillis, i4, j, i5, str, i6, j2, j3);
+                public final void run(long j, int i5, String str, int i6, long j2, long j3, int i7) {
+                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, currentTimeMillis, i4, j, i5, str, i6, j2, j3, i7);
                 }
             }, quickAckDelegate, writeToSocketDelegate);
             native_sendRequest(this.currentAccount, nativeByteBuffer.address, i, i2, i3, z, i4);

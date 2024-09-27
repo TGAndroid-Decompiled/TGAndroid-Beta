@@ -11,8 +11,7 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$PhotoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.MediaActionDrawable;
 
@@ -242,15 +241,15 @@ public class RadialProgress2 {
         this.overlayImageView.setImage(str, str != null ? String.format(Locale.US, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2)) : null, null, null, -1L);
     }
 
-    public void setImageOverlay(TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$Document tLRPC$Document, Object obj) {
+    public void setImageOverlay(TLRPC.PhotoSize photoSize, TLRPC.Document document, Object obj) {
         Locale locale = Locale.US;
         String.format(locale, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2));
-        this.overlayImageView.setImage(ImageLocation.getForDocument(tLRPC$PhotoSize, tLRPC$Document), String.format(locale, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2)), null, null, obj, 1);
+        this.overlayImageView.setImage(ImageLocation.getForDocument(photoSize, document), String.format(locale, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2)), null, null, obj, 1);
     }
 
-    public void setImageOverlay(TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, TLRPC$Document tLRPC$Document, Object obj) {
+    public void setImageOverlay(TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, TLRPC.Document document, Object obj) {
         String format = String.format(Locale.US, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2));
-        this.overlayImageView.setImage(tLRPC$PhotoSize == null ? null : ImageLocation.getForDocument(tLRPC$PhotoSize, tLRPC$Document), format, tLRPC$PhotoSize2 == null ? null : ImageLocation.getForDocument(tLRPC$PhotoSize2, tLRPC$Document), format, null, 0L, null, obj, 1);
+        this.overlayImageView.setImage(photoSize == null ? null : ImageLocation.getForDocument(photoSize, document), format, photoSize2 == null ? null : ImageLocation.getForDocument(photoSize2, document), format, null, 0L, null, obj, 1);
     }
 
     public void setMaxIconSize(int i) {

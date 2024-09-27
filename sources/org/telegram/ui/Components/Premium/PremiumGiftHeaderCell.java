@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -21,7 +21,7 @@ public class PremiumGiftHeaderCell extends LinearLayout {
     private StarParticlesView.Drawable drawable;
     private TextView subtitleView;
     private TextView titleView;
-    private TLRPC$User user;
+    private TLRPC.User user;
 
     public PremiumGiftHeaderCell(Context context) {
         super(context);
@@ -55,12 +55,12 @@ public class PremiumGiftHeaderCell extends LinearLayout {
         setWillNotDraw(false);
     }
 
-    public void bind(TLRPC$User tLRPC$User) {
-        this.user = tLRPC$User;
-        this.avatarDrawable.setInfo(tLRPC$User);
-        this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+    public void bind(TLRPC.User user) {
+        this.user = user;
+        this.avatarDrawable.setInfo(user);
+        this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
         this.titleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GiftTelegramPremiumTitle)));
-        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTelegramPremiumDescription, tLRPC$User.first_name)));
+        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTelegramPremiumDescription, user.first_name)));
     }
 
     @Override

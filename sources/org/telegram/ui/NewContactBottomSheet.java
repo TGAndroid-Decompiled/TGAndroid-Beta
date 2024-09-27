@@ -26,11 +26,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_contacts_importContacts;
-import org.telegram.tgnet.TLRPC$TL_contacts_importedContacts;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPhoneContact;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -172,21 +168,21 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
         this.donePressed = true;
         showEditDoneProgress(true, true);
-        final TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts = new TLRPC$TL_contacts_importContacts();
-        final TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact = new TLRPC$TL_inputPhoneContact();
-        tLRPC$TL_inputPhoneContact.first_name = this.firstNameField.getEditText().getText().toString();
-        tLRPC$TL_inputPhoneContact.last_name = this.lastNameField.getEditText().getText().toString();
-        tLRPC$TL_inputPhoneContact.phone = "+" + this.codeField.getText().toString() + this.phoneField.getText().toString();
-        tLRPC$TL_contacts_importContacts.contacts.add(tLRPC$TL_inputPhoneContact);
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_contacts_importContacts, new RequestDelegate() {
+        final TLRPC.TL_contacts_importContacts tL_contacts_importContacts = new TLRPC.TL_contacts_importContacts();
+        final TLRPC.TL_inputPhoneContact tL_inputPhoneContact = new TLRPC.TL_inputPhoneContact();
+        tL_inputPhoneContact.first_name = this.firstNameField.getEditText().getText().toString();
+        tL_inputPhoneContact.last_name = this.lastNameField.getEditText().getText().toString();
+        tL_inputPhoneContact.phone = "+" + this.codeField.getText().toString() + this.phoneField.getText().toString();
+        tL_contacts_importContacts.contacts.add(tL_inputPhoneContact);
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_importContacts, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                NewContactBottomSheet.this.lambda$doOnDone$9(tLRPC$TL_inputPhoneContact, tLRPC$TL_contacts_importContacts, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                NewContactBottomSheet.this.lambda$doOnDone$9(tL_inputPhoneContact, tL_contacts_importContacts, tLObject, tL_error);
             }
         }, 2), this.classGuid);
     }
 
-    public static String getPhoneNumber(Context context, TLRPC$User tLRPC$User, String str, boolean z) {
+    public static String getPhoneNumber(Context context, TLRPC.User user, String str, boolean z) {
         StringBuilder sb;
         HashMap hashMap = new HashMap();
         try {
@@ -206,8 +202,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         if (str.startsWith("+")) {
             return str;
         }
-        if (!z && tLRPC$User != null && !TextUtils.isEmpty(tLRPC$User.phone)) {
-            String str2 = tLRPC$User.phone;
+        if (!z && user != null && !TextUtils.isEmpty(user.phone)) {
+            String str2 = user.phone;
             for (int i = 4; i >= 1; i--) {
                 String substring = str2.substring(0, i);
                 if (((String) hashMap.get(substring)) != null) {
@@ -283,30 +279,30 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AndroidUtilities.hideKeyboard(this.contentLayout);
     }
 
-    public void lambda$doOnDone$8(TLRPC$TL_contacts_importedContacts tLRPC$TL_contacts_importedContacts, TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts) {
+    public void lambda$doOnDone$8(TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts, TLRPC.TL_inputPhoneContact tL_inputPhoneContact, TLRPC.TL_error tL_error, TLRPC.TL_contacts_importContacts tL_contacts_importContacts) {
         this.donePressed = false;
-        if (tLRPC$TL_contacts_importedContacts == null) {
+        if (tL_contacts_importedContacts == null) {
             showEditDoneProgress(false, true);
-            AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this.parentFragment, tLRPC$TL_contacts_importContacts, new Object[0]);
-        } else if (!tLRPC$TL_contacts_importedContacts.users.isEmpty()) {
-            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_contacts_importedContacts.users, false);
-            MessagesController.getInstance(this.currentAccount).openChatOrProfileWith((TLRPC$User) tLRPC$TL_contacts_importedContacts.users.get(0), null, this.parentFragment, 1, false);
+            AlertsCreator.processError(this.currentAccount, tL_error, this.parentFragment, tL_contacts_importContacts, new Object[0]);
+        } else if (!tL_contacts_importedContacts.users.isEmpty()) {
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_importedContacts.users, false);
+            MessagesController.getInstance(this.currentAccount).openChatOrProfileWith(tL_contacts_importedContacts.users.get(0), null, this.parentFragment, 1, false);
             dismiss();
         } else {
             if (this.parentFragment.getParentActivity() == null) {
                 return;
             }
             showEditDoneProgress(false, true);
-            AlertsCreator.createContactInviteDialog(this.parentFragment, tLRPC$TL_inputPhoneContact.first_name, tLRPC$TL_inputPhoneContact.last_name, tLRPC$TL_inputPhoneContact.phone);
+            AlertsCreator.createContactInviteDialog(this.parentFragment, tL_inputPhoneContact.first_name, tL_inputPhoneContact.last_name, tL_inputPhoneContact.phone);
         }
     }
 
-    public void lambda$doOnDone$9(final TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact, final TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        final TLRPC$TL_contacts_importedContacts tLRPC$TL_contacts_importedContacts = (TLRPC$TL_contacts_importedContacts) tLObject;
+    public void lambda$doOnDone$9(final TLRPC.TL_inputPhoneContact tL_inputPhoneContact, final TLRPC.TL_contacts_importContacts tL_contacts_importContacts, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        final TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts = (TLRPC.TL_contacts_importedContacts) tLObject;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NewContactBottomSheet.this.lambda$doOnDone$8(tLRPC$TL_contacts_importedContacts, tLRPC$TL_inputPhoneContact, tLRPC$TL_error, tLRPC$TL_contacts_importContacts);
+                NewContactBottomSheet.this.lambda$doOnDone$8(tL_contacts_importedContacts, tL_inputPhoneContact, tL_error, tL_contacts_importContacts);
             }
         });
     }

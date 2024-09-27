@@ -12,7 +12,7 @@ import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 
 public class FileStreamLoadOperation extends BaseDataSource implements FileLoadOperationStream {
     public static final ConcurrentHashMap<Long, FileStreamLoadOperation> allStreams = new ConcurrentHashMap<>();
@@ -22,7 +22,8 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     private int currentAccount;
     File currentFile;
     private long currentOffset;
-    private TLRPC$Document document;
+    private boolean customLength;
+    private TLRPC.Document document;
     private RandomAccessFile file;
     private FileLoadOperation loadOperation;
     private boolean opened;
@@ -49,17 +50,17 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         return 3;
     }
 
-    public static int getStreamPrioriy(TLRPC$Document tLRPC$Document) {
+    public static int getStreamPrioriy(TLRPC.Document document) {
         Integer num;
-        if (tLRPC$Document == null || (num = priorityMap.get(Long.valueOf(tLRPC$Document.id))) == null) {
+        if (document == null || (num = priorityMap.get(Long.valueOf(document.id))) == null) {
             return 3;
         }
         return num.intValue();
     }
 
-    public static Uri prepareUri(int i, TLRPC$Document tLRPC$Document, Object obj) {
-        String attachFileName = FileLoader.getAttachFileName(tLRPC$Document);
-        File pathToAttach = FileLoader.getInstance(i).getPathToAttach(tLRPC$Document);
+    public static Uri prepareUri(int i, TLRPC.Document document, Object obj) {
+        String attachFileName = FileLoader.getAttachFileName(document);
+        File pathToAttach = FileLoader.getInstance(i).getPathToAttach(document);
         if (pathToAttach != null && pathToAttach.exists()) {
             return Uri.fromFile(pathToAttach);
         }
@@ -68,21 +69,21 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
             sb.append("?account=");
             sb.append(i);
             sb.append("&id=");
-            sb.append(tLRPC$Document.id);
+            sb.append(document.id);
             sb.append("&hash=");
-            sb.append(tLRPC$Document.access_hash);
+            sb.append(document.access_hash);
             sb.append("&dc=");
-            sb.append(tLRPC$Document.dc_id);
+            sb.append(document.dc_id);
             sb.append("&size=");
-            sb.append(tLRPC$Document.size);
+            sb.append(document.size);
             sb.append("&mime=");
-            sb.append(URLEncoder.encode(tLRPC$Document.mime_type, "UTF-8"));
+            sb.append(URLEncoder.encode(document.mime_type, "UTF-8"));
             sb.append("&rid=");
             sb.append(FileLoader.getInstance(i).getFileReference(obj));
             sb.append("&name=");
-            sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(tLRPC$Document), "UTF-8"));
+            sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
             sb.append("&reference=");
-            byte[] bArr = tLRPC$Document.file_reference;
+            byte[] bArr = document.file_reference;
             if (bArr == null) {
                 bArr = new byte[0];
             }
@@ -94,9 +95,9 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         }
     }
 
-    public static void setPriorityForDocument(TLRPC$Document tLRPC$Document, int i) {
-        if (tLRPC$Document != null) {
-            priorityMap.put(Long.valueOf(tLRPC$Document.id), Integer.valueOf(i));
+    public static void setPriorityForDocument(TLRPC.Document document, int i) {
+        if (document != null) {
+            priorityMap.put(Long.valueOf(document.id), Integer.valueOf(i));
         }
     }
 
@@ -143,9 +144,9 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     @Override
     public void newDataAvailable() {
         CountDownLatch countDownLatch = this.countDownLatch;
+        this.countDownLatch = null;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            this.countDownLatch = null;
         }
     }
 
@@ -155,7 +156,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public int read(byte[] r13, int r14, int r15) {
+    public int read(byte[] r17, int r18, int r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 }

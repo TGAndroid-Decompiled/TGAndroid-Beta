@@ -57,16 +57,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPeerEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_search;
-import org.telegram.tgnet.TLRPC$TL_messages_searchGlobal;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$messages_Messages;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -819,14 +810,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             });
         }
 
-        public void lambda$searchGlobal$2(int i, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, AccountInstance accountInstance, boolean z, String str, ArrayList arrayList, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
+        public void lambda$searchGlobal$2(int i, TLRPC.TL_error tL_error, TLObject tLObject, AccountInstance accountInstance, boolean z, String str, ArrayList arrayList, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
             LinkSpanDrawable.LinksTextView linksTextView;
             int i2;
             if (i != this.requestIndex) {
                 return;
             }
             this.isLoading = false;
-            if (tLRPC$TL_error != null) {
+            if (tL_error != null) {
                 ChatAttachAlertDocumentLayout.this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
                 ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setVisibility(0);
                 ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
@@ -834,18 +825,18 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 return;
             }
             ChatAttachAlertDocumentLayout.this.emptyView.showProgress(false);
-            TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
-            this.nextSearchRate = tLRPC$messages_Messages.next_rate;
-            accountInstance.getMessagesStorage().putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
-            accountInstance.getMessagesController().putUsers(tLRPC$messages_Messages.users, false);
-            accountInstance.getMessagesController().putChats(tLRPC$messages_Messages.chats, false);
+            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+            this.nextSearchRate = messages_messages.next_rate;
+            accountInstance.getMessagesStorage().putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
+            accountInstance.getMessagesController().putUsers(messages_messages.users, false);
+            accountInstance.getMessagesController().putChats(messages_messages.chats, false);
             if (!z) {
                 this.messages.clear();
                 this.messagesById.clear();
                 this.sections.clear();
                 this.sectionArrays.clear();
             }
-            int i3 = tLRPC$messages_Messages.count;
+            int i3 = messages_messages.count;
             this.currentDataQuery = str;
             int size = arrayList.size();
             for (int i4 = 0; i4 < size; i4++) {
@@ -889,7 +880,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                         if (i5 >= this.localTipChats.size()) {
                             this.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
                             break;
-                        } else if ((this.localTipChats.get(i5) instanceof TLRPC$User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC$User) this.localTipChats.get(i5)).id) {
+                        } else if ((this.localTipChats.get(i5) instanceof TLRPC.User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC.User) this.localTipChats.get(i5)).id) {
                             break;
                         } else {
                             i5++;
@@ -1007,13 +998,13 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             notifyDataSetChanged();
         }
 
-        public void lambda$searchGlobal$3(final AccountInstance accountInstance, final String str, final int i, final boolean z, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$searchGlobal$3(final AccountInstance accountInstance, final String str, final int i, final boolean z, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             final ArrayList arrayList3 = new ArrayList();
-            if (tLRPC$TL_error == null) {
-                TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
-                int size = tLRPC$messages_Messages.messages.size();
+            if (tL_error == null) {
+                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                int size = messages_messages.messages.size();
                 for (int i2 = 0; i2 < size; i2++) {
-                    MessageObject messageObject = new MessageObject(accountInstance.getCurrentAccount(), (TLRPC$Message) tLRPC$messages_Messages.messages.get(i2), false, true);
+                    MessageObject messageObject = new MessageObject(accountInstance.getCurrentAccount(), messages_messages.messages.get(i2), false, true);
                     messageObject.setQuery(str);
                     arrayList3.add(messageObject);
                 }
@@ -1021,83 +1012,83 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.this.lambda$searchGlobal$2(i, tLRPC$TL_error, tLObject, accountInstance, z, str, arrayList3, j, j2, arrayList, arrayList2);
+                    ChatAttachAlertDocumentLayout.SearchAdapter.this.lambda$searchGlobal$2(i, tL_error, tLObject, accountInstance, z, str, arrayList3, j, j2, arrayList, arrayList2);
                 }
             });
         }
 
         public void lambda$searchGlobal$4(final long j, final String str, final AccountInstance accountInstance, final long j2, long j3, final boolean z, String str2, final int i) {
-            TLRPC$InputPeer tLRPC$TL_inputPeerEmpty;
+            TLRPC.InputPeer tL_inputPeerEmpty;
             long j4;
-            TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal;
+            TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal;
             ArrayList<Object> arrayList = null;
             if (j != 0) {
-                TLRPC$TL_messages_search tLRPC$TL_messages_search = new TLRPC$TL_messages_search();
-                tLRPC$TL_messages_search.q = str;
-                tLRPC$TL_messages_search.limit = 20;
-                tLRPC$TL_messages_search.filter = this.currentSearchFilter.filter;
-                tLRPC$TL_messages_search.peer = accountInstance.getMessagesController().getInputPeer(j);
+                TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+                tL_messages_search.q = str;
+                tL_messages_search.limit = 20;
+                tL_messages_search.filter = this.currentSearchFilter.filter;
+                tL_messages_search.peer = accountInstance.getMessagesController().getInputPeer(j);
                 if (j2 > 0) {
-                    tLRPC$TL_messages_search.min_date = (int) (j2 / 1000);
+                    tL_messages_search.min_date = (int) (j2 / 1000);
                 }
                 if (j3 > 0) {
-                    tLRPC$TL_messages_search.max_date = (int) (j3 / 1000);
+                    tL_messages_search.max_date = (int) (j3 / 1000);
                 }
                 if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                    tLRPC$TL_messages_search.offset_id = ((MessageObject) this.messages.get(r0.size() - 1)).getId();
-                    tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_search;
+                    tL_messages_search.offset_id = ((MessageObject) this.messages.get(r0.size() - 1)).getId();
+                    tL_messages_searchGlobal = tL_messages_search;
                 } else {
-                    tLRPC$TL_messages_search.offset_id = 0;
-                    tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_search;
+                    tL_messages_search.offset_id = 0;
+                    tL_messages_searchGlobal = tL_messages_search;
                 }
             } else {
                 if (!TextUtils.isEmpty(str)) {
                     arrayList = new ArrayList<>();
                     accountInstance.getMessagesStorage().localSearch(0, str, arrayList, new ArrayList<>(), new ArrayList<>(), null, -1);
                 }
-                TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal2 = new TLRPC$TL_messages_searchGlobal();
-                tLRPC$TL_messages_searchGlobal2.limit = 20;
-                tLRPC$TL_messages_searchGlobal2.q = str;
-                tLRPC$TL_messages_searchGlobal2.filter = this.currentSearchFilter.filter;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = new TLRPC.TL_messages_searchGlobal();
+                tL_messages_searchGlobal2.limit = 20;
+                tL_messages_searchGlobal2.q = str;
+                tL_messages_searchGlobal2.filter = this.currentSearchFilter.filter;
                 if (j2 > 0) {
-                    tLRPC$TL_messages_searchGlobal2.min_date = (int) (j2 / 1000);
+                    tL_messages_searchGlobal2.min_date = (int) (j2 / 1000);
                 }
                 if (j3 > 0) {
-                    tLRPC$TL_messages_searchGlobal2.max_date = (int) (j3 / 1000);
+                    tL_messages_searchGlobal2.max_date = (int) (j3 / 1000);
                 }
                 if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
                     MessageObject messageObject = (MessageObject) this.messages.get(r0.size() - 1);
-                    tLRPC$TL_messages_searchGlobal2.offset_id = messageObject.getId();
-                    tLRPC$TL_messages_searchGlobal2.offset_rate = this.nextSearchRate;
-                    TLRPC$Peer tLRPC$Peer = messageObject.messageOwner.peer_id;
-                    long j5 = tLRPC$Peer.channel_id;
+                    tL_messages_searchGlobal2.offset_id = messageObject.getId();
+                    tL_messages_searchGlobal2.offset_rate = this.nextSearchRate;
+                    TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+                    long j5 = peer.channel_id;
                     if (j5 == 0) {
-                        j5 = tLRPC$Peer.chat_id;
+                        j5 = peer.chat_id;
                         if (j5 == 0) {
-                            j4 = tLRPC$Peer.user_id;
-                            tLRPC$TL_inputPeerEmpty = accountInstance.getMessagesController().getInputPeer(j4);
+                            j4 = peer.user_id;
+                            tL_inputPeerEmpty = accountInstance.getMessagesController().getInputPeer(j4);
                         }
                     }
                     j4 = -j5;
-                    tLRPC$TL_inputPeerEmpty = accountInstance.getMessagesController().getInputPeer(j4);
+                    tL_inputPeerEmpty = accountInstance.getMessagesController().getInputPeer(j4);
                 } else {
-                    tLRPC$TL_messages_searchGlobal2.offset_rate = 0;
-                    tLRPC$TL_messages_searchGlobal2.offset_id = 0;
-                    tLRPC$TL_inputPeerEmpty = new TLRPC$TL_inputPeerEmpty();
+                    tL_messages_searchGlobal2.offset_rate = 0;
+                    tL_messages_searchGlobal2.offset_id = 0;
+                    tL_inputPeerEmpty = new TLRPC.TL_inputPeerEmpty();
                 }
-                tLRPC$TL_messages_searchGlobal2.offset_peer = tLRPC$TL_inputPeerEmpty;
-                tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_searchGlobal2;
+                tL_messages_searchGlobal2.offset_peer = tL_inputPeerEmpty;
+                tL_messages_searchGlobal = tL_messages_searchGlobal2;
             }
-            TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal3 = tLRPC$TL_messages_searchGlobal;
+            TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal3 = tL_messages_searchGlobal;
             final ArrayList<Object> arrayList2 = arrayList;
             this.lastMessagesSearchString = str;
             this.lastSearchFilterQueryString = str2;
             final ArrayList arrayList3 = new ArrayList();
             FiltersView.fillTipDates(this.lastMessagesSearchString, arrayList3);
-            accountInstance.getConnectionsManager().sendRequest(tLRPC$TL_messages_searchGlobal3, new RequestDelegate() {
+            accountInstance.getConnectionsManager().sendRequest(tL_messages_searchGlobal3, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.this.lambda$searchGlobal$3(accountInstance, str, i, z, j, j2, arrayList2, arrayList3, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChatAttachAlertDocumentLayout.SearchAdapter.this.lambda$searchGlobal$3(accountInstance, str, i, z, j, j2, arrayList2, arrayList3, tLObject, tL_error);
                 }
             });
         }
@@ -1445,10 +1436,10 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 int i2 = mediaFilterData.filterType;
                 if (i2 == 4) {
                     TLObject tLObject = mediaFilterData.chat;
-                    if (tLObject instanceof TLRPC$User) {
-                        j = ((TLRPC$User) tLObject).id;
-                    } else if (tLObject instanceof TLRPC$Chat) {
-                        j = -((TLRPC$Chat) tLObject).id;
+                    if (tLObject instanceof TLRPC.User) {
+                        j = ((TLRPC.User) tLObject).id;
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        j = -((TLRPC.Chat) tLObject).id;
                     }
                     j2 = j;
                 } else if (i2 == 6) {

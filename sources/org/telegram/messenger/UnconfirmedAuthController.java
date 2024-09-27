@@ -9,11 +9,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_changeAuthorizationSettings;
-import org.telegram.tgnet.TLRPC$TL_account_resetAuthorization;
-import org.telegram.tgnet.TLRPC$TL_boolTrue;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_updateNewAuthorization;
+import org.telegram.tgnet.TLRPC;
 
 public class UnconfirmedAuthController {
     private final int currentAccount;
@@ -47,64 +43,64 @@ public class UnconfirmedAuthController {
             this.location = abstractSerializedData.readString(true);
         }
 
-        public UnconfirmedAuth(TLRPC$TL_updateNewAuthorization tLRPC$TL_updateNewAuthorization) {
-            this.hash = tLRPC$TL_updateNewAuthorization.hash;
-            this.date = tLRPC$TL_updateNewAuthorization.date;
-            this.device = tLRPC$TL_updateNewAuthorization.device;
-            this.location = tLRPC$TL_updateNewAuthorization.location;
+        public UnconfirmedAuth(TLRPC.TL_updateNewAuthorization tL_updateNewAuthorization) {
+            this.hash = tL_updateNewAuthorization.hash;
+            this.date = tL_updateNewAuthorization.date;
+            this.device = tL_updateNewAuthorization.device;
+            this.location = tL_updateNewAuthorization.location;
         }
 
-        public void lambda$confirm$0(Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$confirm$0(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (callback != null) {
-                callback.run(Boolean.valueOf(((tLObject instanceof TLRPC$TL_boolTrue) && tLRPC$TL_error == null) || UnconfirmedAuthController.this.debug));
+                callback.run(Boolean.valueOf(((tLObject instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));
                 UnconfirmedAuthController.this.debug = false;
             }
         }
 
-        public void lambda$confirm$1(final Utilities.Callback callback, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$confirm$1(final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$confirm$0(callback, tLObject, tLRPC$TL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$confirm$0(callback, tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$deny$2(Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$deny$2(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (callback != null) {
-                callback.run(Boolean.valueOf(((tLObject instanceof TLRPC$TL_boolTrue) && tLRPC$TL_error == null) || UnconfirmedAuthController.this.debug));
+                callback.run(Boolean.valueOf(((tLObject instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));
                 UnconfirmedAuthController.this.debug = false;
             }
         }
 
-        public void lambda$deny$3(final Utilities.Callback callback, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$deny$3(final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$deny$2(callback, tLObject, tLRPC$TL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$deny$2(callback, tLObject, tL_error);
                 }
             });
         }
 
         public void confirm(final Utilities.Callback<Boolean> callback) {
-            TLRPC$TL_account_changeAuthorizationSettings tLRPC$TL_account_changeAuthorizationSettings = new TLRPC$TL_account_changeAuthorizationSettings();
-            tLRPC$TL_account_changeAuthorizationSettings.hash = this.hash;
-            tLRPC$TL_account_changeAuthorizationSettings.confirmed = true;
-            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(tLRPC$TL_account_changeAuthorizationSettings, new RequestDelegate() {
+            TLRPC.TL_account_changeAuthorizationSettings tL_account_changeAuthorizationSettings = new TLRPC.TL_account_changeAuthorizationSettings();
+            tL_account_changeAuthorizationSettings.hash = this.hash;
+            tL_account_changeAuthorizationSettings.confirmed = true;
+            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(tL_account_changeAuthorizationSettings, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$confirm$1(callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$confirm$1(callback, tLObject, tL_error);
                 }
             });
         }
 
         public void deny(final Utilities.Callback<Boolean> callback) {
-            TLRPC$TL_account_resetAuthorization tLRPC$TL_account_resetAuthorization = new TLRPC$TL_account_resetAuthorization();
-            tLRPC$TL_account_resetAuthorization.hash = this.hash;
-            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(tLRPC$TL_account_resetAuthorization, new RequestDelegate() {
+            TLRPC.TL_account_resetAuthorization tL_account_resetAuthorization = new TLRPC.TL_account_resetAuthorization();
+            tL_account_resetAuthorization.hash = this.hash;
+            ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(tL_account_resetAuthorization, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$deny$3(callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    UnconfirmedAuthController.UnconfirmedAuth.this.lambda$deny$3(callback, tLObject, tL_error);
                 }
             });
         }
@@ -300,18 +296,18 @@ public class UnconfirmedAuthController {
         updateList(false, arrayList, callback);
     }
 
-    public void processUpdate(TLRPC$TL_updateNewAuthorization tLRPC$TL_updateNewAuthorization) {
+    public void processUpdate(TLRPC.TL_updateNewAuthorization tL_updateNewAuthorization) {
         int i = 0;
         while (i < this.auths.size()) {
             UnconfirmedAuth unconfirmedAuth = this.auths.get(i);
-            if (unconfirmedAuth != null && unconfirmedAuth.hash == tLRPC$TL_updateNewAuthorization.hash) {
+            if (unconfirmedAuth != null && unconfirmedAuth.hash == tL_updateNewAuthorization.hash) {
                 this.auths.remove(i);
                 i--;
             }
             i++;
         }
-        if (tLRPC$TL_updateNewAuthorization.unconfirmed) {
-            this.auths.add(new UnconfirmedAuth(tLRPC$TL_updateNewAuthorization));
+        if (tL_updateNewAuthorization.unconfirmed) {
+            this.auths.add(new UnconfirmedAuth(tL_updateNewAuthorization));
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
         scheduleAuthExpireCheck();
@@ -320,12 +316,12 @@ public class UnconfirmedAuthController {
 
     public void putDebug() {
         this.debug = true;
-        TLRPC$TL_updateNewAuthorization tLRPC$TL_updateNewAuthorization = new TLRPC$TL_updateNewAuthorization();
-        tLRPC$TL_updateNewAuthorization.unconfirmed = true;
-        tLRPC$TL_updateNewAuthorization.device = "device";
-        tLRPC$TL_updateNewAuthorization.location = "location";
-        tLRPC$TL_updateNewAuthorization.hash = 123L;
-        processUpdate(tLRPC$TL_updateNewAuthorization);
+        TLRPC.TL_updateNewAuthorization tL_updateNewAuthorization = new TLRPC.TL_updateNewAuthorization();
+        tL_updateNewAuthorization.unconfirmed = true;
+        tL_updateNewAuthorization.device = "device";
+        tL_updateNewAuthorization.location = "location";
+        tL_updateNewAuthorization.hash = 123L;
+        processUpdate(tL_updateNewAuthorization);
     }
 
     public void readCache() {

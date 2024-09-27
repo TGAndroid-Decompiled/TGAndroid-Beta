@@ -8,10 +8,10 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 
 public class NativeByteBuffer extends AbstractSerializedData {
-    private static final ThreadLocal<LinkedList<NativeByteBuffer>> addressWrappers = new ThreadLocal() {
+    private static final ThreadLocal<LinkedList<NativeByteBuffer>> addressWrappers = new ThreadLocal<LinkedList<NativeByteBuffer>>() {
         @Override
-        public LinkedList initialValue() {
-            return new LinkedList();
+        public LinkedList<NativeByteBuffer> initialValue() {
+            return new LinkedList<>();
         }
     };
     protected long address;
@@ -92,6 +92,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         return b >= 0 ? b : b + 256;
     }
 
+    @Override
     public int getPosition() {
         return this.buffer.position();
     }
@@ -109,6 +110,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public int length() {
         return !this.justCalc ? this.buffer.position() : this.len;
     }
@@ -248,6 +250,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void readBytes(byte[] bArr, boolean z) {
         try {
             this.buffer.get(bArr);
@@ -262,6 +265,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public byte[] readData(int i, boolean z) {
         byte[] bArr = new byte[i];
         readBytes(bArr, z);
@@ -389,6 +393,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void skip(int i) {
         if (i == 0) {
             return;
@@ -426,6 +431,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void writeByte(int i) {
         writeByte((byte) i);
     }
@@ -476,6 +482,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void writeByteArray(byte[] bArr, int i, int i2) {
         int i3;
         ByteBuffer byteBuffer;
@@ -575,6 +582,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void writeBytes(byte[] bArr) {
         try {
             if (this.justCalc) {
@@ -590,6 +598,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
         }
     }
 
+    @Override
     public void writeBytes(byte[] bArr, int i, int i2) {
         try {
             if (this.justCalc) {

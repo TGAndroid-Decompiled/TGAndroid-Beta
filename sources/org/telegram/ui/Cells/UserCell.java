@@ -18,10 +18,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$EncryptedChat;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -55,9 +52,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private CharSequence currentStatus;
     protected long dialogId;
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatus;
-    private TLRPC$EncryptedChat encryptedChat;
+    private TLRPC.EncryptedChat encryptedChat;
     private ImageView imageView;
-    private TLRPC$FileLocation lastAvatar;
+    private TLRPC.FileLocation lastAvatar;
     private String lastName;
     private int lastStatus;
     protected SimpleTextView nameTextView;
@@ -296,7 +293,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         setData(obj, null, charSequence, charSequence2, i, z);
     }
 
-    public void setData(Object obj, TLRPC$EncryptedChat tLRPC$EncryptedChat, CharSequence charSequence, CharSequence charSequence2, int i, boolean z) {
+    public void setData(Object obj, TLRPC.EncryptedChat encryptedChat, CharSequence charSequence, CharSequence charSequence2, int i, boolean z) {
         if (obj == null && charSequence == null && charSequence2 == null) {
             this.currentStatus = null;
             this.currentName = null;
@@ -307,7 +304,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.avatarImageView.setImageDrawable(null);
             return;
         }
-        this.encryptedChat = tLRPC$EncryptedChat;
+        this.encryptedChat = encryptedChat;
         this.currentStatus = charSequence2;
         if (charSequence != null) {
             try {
@@ -336,8 +333,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         int i3;
         String str;
         String formatPluralStringComma;
-        TLRPC$Chat tLRPC$Chat;
-        TLRPC$Chat tLRPC$Chat2;
+        TLRPC.Chat chat;
+        TLRPC.Chat chat2;
         String str2 = uItem.chatType;
         if (str2 != null) {
             setData(str2, uItem.text, null, 0, z);
@@ -346,56 +343,56 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         long j = uItem.dialogId;
         MessagesController messagesController = MessagesController.getInstance(i);
         if (j > 0) {
-            TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+            TLRPC.User user = messagesController.getUser(Long.valueOf(j));
             if (user == null) {
                 return;
             }
             if (user.bot) {
                 i2 = R.string.Bot;
-                tLRPC$Chat2 = user;
+                chat2 = user;
             } else if (user.contact) {
                 i2 = R.string.FilterContact;
-                tLRPC$Chat2 = user;
+                chat2 = user;
             } else {
                 i2 = R.string.FilterNonContact;
-                tLRPC$Chat2 = user;
+                chat2 = user;
             }
         } else {
-            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
-            if (chat == null) {
+            TLRPC.Chat chat3 = messagesController.getChat(Long.valueOf(-j));
+            if (chat3 == null) {
                 return;
             }
-            if (chat.participants_count != 0) {
-                if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                    i3 = chat.participants_count;
+            if (chat3.participants_count != 0) {
+                if (ChatObject.isChannelAndNotMegaGroup(chat3)) {
+                    i3 = chat3.participants_count;
                     str = "Subscribers";
                 } else {
-                    i3 = chat.participants_count;
+                    i3 = chat3.participants_count;
                     str = "Members";
                 }
                 formatPluralStringComma = LocaleController.formatPluralStringComma(str, i3);
-                tLRPC$Chat = chat;
-                setData(tLRPC$Chat, null, formatPluralStringComma, 0, z);
+                chat = chat3;
+                setData(chat, null, formatPluralStringComma, 0, z);
             }
-            if (ChatObject.isPublic(chat)) {
-                if (!ChatObject.isChannel(chat) || chat.megagroup) {
+            if (ChatObject.isPublic(chat3)) {
+                if (!ChatObject.isChannel(chat3) || chat3.megagroup) {
                     i2 = R.string.MegaPublic;
-                    tLRPC$Chat2 = chat;
+                    chat2 = chat3;
                 } else {
                     i2 = R.string.ChannelPublic;
-                    tLRPC$Chat2 = chat;
+                    chat2 = chat3;
                 }
-            } else if (!ChatObject.isChannel(chat) || chat.megagroup) {
+            } else if (!ChatObject.isChannel(chat3) || chat3.megagroup) {
                 i2 = R.string.MegaPrivate;
-                tLRPC$Chat2 = chat;
+                chat2 = chat3;
             } else {
                 i2 = R.string.ChannelPrivate;
-                tLRPC$Chat2 = chat;
+                chat2 = chat3;
             }
         }
         formatPluralStringComma = LocaleController.getString(i2);
-        tLRPC$Chat = tLRPC$Chat2;
-        setData(tLRPC$Chat, null, formatPluralStringComma, 0, z);
+        chat = chat2;
+        setData(chat, null, formatPluralStringComma, 0, z);
     }
 
     public void setNameTypeface(Typeface typeface) {

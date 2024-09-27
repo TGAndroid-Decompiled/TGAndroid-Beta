@@ -76,11 +76,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -980,8 +976,8 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     public void lambda$openMedia$3(View view) {
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null) {
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if (tLRPC$Message.destroyTime != 0 || tLRPC$Message.ttl == Integer.MAX_VALUE) {
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
                 if (this.secretHint.shown()) {
                     this.secretHint.hide();
                 } else {
@@ -1149,7 +1145,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) {
         boolean z3;
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         CharSequence cloneSpans = AnimatedEmojiSpan.cloneSpans(charSequence, 3);
         if (this.captionScrollView == null) {
             FrameLayout frameLayout = new FrameLayout(this.containerView.getContext());
@@ -1234,7 +1230,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.captionTextViewSwitcher.setTag(null);
         } else {
             Theme.createChatResources(null, true);
-            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.translatedText == null || !TextUtils.equals(tLRPC$Message.translatedToLanguage, TranslateAlert2.getToLanguage())) {
+            if (messageObject == null || (message = messageObject.messageOwner) == null || message.translatedText == null || !TextUtils.equals(message.translatedToLanguage, TranslateAlert2.getToLanguage())) {
                 if (messageObject == null || messageObject.messageOwner.entities.isEmpty()) {
                     cloneSpans = Emoji.replaceEmoji((CharSequence) new SpannableStringBuilder(cloneSpans), nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
                 } else {
@@ -1440,7 +1436,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
         if (i != NotificationCenter.didCreatedNewDeleteTask) {
             if (i == NotificationCenter.updateMessageMedia) {
-                if (this.currentMessageObject.getId() == ((TLRPC$Message) objArr[0]).id) {
+                if (this.currentMessageObject.getId() == ((TLRPC.Message) objArr[0]).id) {
                     if (!this.isVideo || this.videoWatchedOneTime) {
                         if (closePhoto(true, true)) {
                             return;
@@ -1676,7 +1672,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didCreatedNewDeleteTask);
         this.currentDialogId = MessageObject.getPeerId(messageObject.messageOwner.peer_id);
         this.currentMessageObject = messageObject;
-        TLRPC$Document document = messageObject.getDocument();
+        TLRPC.Document document = messageObject.getDocument();
         ImageReceiver.BitmapHolder bitmapHolder = this.currentThumb;
         if (bitmapHolder != null) {
             bitmapHolder.release();
@@ -1690,11 +1686,11 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 if (i7 >= document.attributes.size()) {
                     break;
                 }
-                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = document.attributes.get(i7);
-                if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
-                    TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$DocumentAttribute;
-                    this.videoWidth = tLRPC$TL_documentAttributeVideo.w;
-                    this.videoHeight = tLRPC$TL_documentAttributeVideo.h;
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                    TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
+                    this.videoWidth = tL_documentAttributeVideo.w;
+                    this.videoHeight = tL_documentAttributeVideo.h;
                     break;
                 }
                 i7++;
@@ -1754,7 +1750,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             i = 1;
             f = 1.0f;
             this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingPhoto));
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
             this.centerImage.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
             r15 = obj2;
             if (closestPhotoSizeWithSize != null) {

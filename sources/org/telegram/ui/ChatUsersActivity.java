@@ -41,37 +41,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChannelParticipant;
-import org.telegram.tgnet.TLRPC$ChannelParticipantsFilter;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$ChatParticipant;
-import org.telegram.tgnet.TLRPC$ChatParticipants;
-import org.telegram.tgnet.TLRPC$TL_channelFull;
-import org.telegram.tgnet.TLRPC$TL_channelParticipant;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantAdmin;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantCreator;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantSelf;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsAdmins;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsBanned;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsBots;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsContacts;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsKicked;
-import org.telegram.tgnet.TLRPC$TL_channelParticipantsRecent;
-import org.telegram.tgnet.TLRPC$TL_channels_channelParticipants;
-import org.telegram.tgnet.TLRPC$TL_channels_editBanned;
-import org.telegram.tgnet.TLRPC$TL_channels_getParticipants;
-import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
-import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
-import org.telegram.tgnet.TLRPC$TL_chatParticipant;
-import org.telegram.tgnet.TLRPC$TL_chatParticipantAdmin;
-import org.telegram.tgnet.TLRPC$TL_chatParticipantCreator;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_peerChannel;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$Updates;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserStatus;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -125,8 +95,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int contactsHeaderRow;
     private LongSparseArray contactsMap;
     private int contactsStartRow;
-    private TLRPC$Chat currentChat;
-    private TLRPC$TL_chatBannedRights defaultBannedRights;
+    private TLRPC.Chat currentChat;
+    private TLRPC.TL_chatBannedRights defaultBannedRights;
     private int delayResults;
     private ChatUsersActivityDelegate delegate;
     private ActionBarMenuItem doneItem;
@@ -144,7 +114,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int hideMembersRow;
     private boolean hideMembersToggleLoading;
     private LongSparseArray ignoredUsers;
-    private TLRPC$ChatFull info;
+    private TLRPC.ChatFull info;
     private String initialBannedRights;
     private boolean initialProfiles;
     private boolean initialSignatures;
@@ -218,7 +188,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
             BaseFragment baseFragment = (BaseFragment) ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 2);
             if (!(baseFragment instanceof ChatEditActivity)) {
-                ChatUsersActivity.this.lambda$onBackPressed$307();
+                ChatUsersActivity.this.lambda$onBackPressed$300();
                 return;
             }
             baseFragment.removeSelfFromStack();
@@ -227,7 +197,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             ChatEditActivity chatEditActivity = new ChatEditActivity(bundle);
             chatEditActivity.setInfo(ChatUsersActivity.this.info);
             ((BaseFragment) ChatUsersActivity.this).parentLayout.addFragmentToStack(chatEditActivity, ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 1);
-            ChatUsersActivity.this.lambda$onBackPressed$307();
+            ChatUsersActivity.this.lambda$onBackPressed$300();
             chatEditActivity.showConvertTooltip();
         }
 
@@ -250,9 +220,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         AnonymousClass8() {
         }
 
-        public void lambda$didSelectUser$0(TLRPC$User tLRPC$User) {
+        public void lambda$didSelectUser$0(TLRPC.User user) {
             if (BulletinFactory.canShowBulletin(ChatUsersActivity.this)) {
-                BulletinFactory.createPromoteToAdminBulletin(ChatUsersActivity.this, tLRPC$User.first_name).show();
+                BulletinFactory.createPromoteToAdminBulletin(ChatUsersActivity.this, user.first_name).show();
             }
         }
 
@@ -270,8 +240,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
 
         @Override
-        public void didChangeOwner(TLRPC$User tLRPC$User) {
-            ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
+        public void didChangeOwner(TLRPC.User user) {
+            ChatUsersActivity.this.onOwnerChaged(user);
         }
 
         @Override
@@ -281,7 +251,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         @Override
         public void didSelectUser(long j) {
-            final TLRPC$User user = ChatUsersActivity.this.getMessagesController().getUser(Long.valueOf(j));
+            final TLRPC.User user = ChatUsersActivity.this.getMessagesController().getUser(Long.valueOf(j));
             if (user != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -292,14 +262,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
             if (ChatUsersActivity.this.participantsMap.get(j) == null) {
                 DiffCallback saveState = ChatUsersActivity.this.saveState();
-                TLRPC$TL_channelParticipantAdmin tLRPC$TL_channelParticipantAdmin = new TLRPC$TL_channelParticipantAdmin();
-                TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-                tLRPC$TL_channelParticipantAdmin.peer = tLRPC$TL_peerUser;
-                tLRPC$TL_peerUser.user_id = user.id;
-                tLRPC$TL_channelParticipantAdmin.date = ChatUsersActivity.this.getConnectionsManager().getCurrentTime();
-                tLRPC$TL_channelParticipantAdmin.promoted_by = ChatUsersActivity.this.getAccountInstance().getUserConfig().clientUserId;
-                ChatUsersActivity.this.participants.add(tLRPC$TL_channelParticipantAdmin);
-                ChatUsersActivity.this.participantsMap.put(user.id, tLRPC$TL_channelParticipantAdmin);
+                TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_channelParticipantAdmin.peer = tL_peerUser;
+                tL_peerUser.user_id = user.id;
+                tL_channelParticipantAdmin.date = ChatUsersActivity.this.getConnectionsManager().getCurrentTime();
+                tL_channelParticipantAdmin.promoted_by = ChatUsersActivity.this.getAccountInstance().getUserConfig().clientUserId;
+                ChatUsersActivity.this.participants.add(tL_channelParticipantAdmin);
+                ChatUsersActivity.this.participantsMap.put(user.id, tL_channelParticipantAdmin);
                 ChatUsersActivity chatUsersActivity = ChatUsersActivity.this;
                 chatUsersActivity.sortAdmins(chatUsersActivity.participants);
                 ChatUsersActivity.this.updateListAnimated(saveState);
@@ -314,28 +284,28 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             this.val$fragment = groupCreateActivity;
         }
 
-        public void lambda$didSelectUsers$0(TLRPC$User tLRPC$User) {
-            TLRPC$TL_chatParticipant tLRPC$TL_chatParticipant;
+        public void lambda$didSelectUsers$0(TLRPC.User user) {
+            TLRPC.TL_chatParticipant tL_chatParticipant;
             DiffCallback saveState = ChatUsersActivity.this.saveState();
             ArrayList arrayList = (ChatUsersActivity.this.contactsMap == null || ChatUsersActivity.this.contactsMap.size() == 0) ? ChatUsersActivity.this.participants : ChatUsersActivity.this.contacts;
             LongSparseArray longSparseArray = (ChatUsersActivity.this.contactsMap == null || ChatUsersActivity.this.contactsMap.size() == 0) ? ChatUsersActivity.this.participantsMap : ChatUsersActivity.this.contactsMap;
-            if (longSparseArray.get(tLRPC$User.id) == null) {
+            if (longSparseArray.get(user.id) == null) {
                 if (ChatObject.isChannel(ChatUsersActivity.this.currentChat)) {
-                    ?? tLRPC$TL_channelParticipant = new TLRPC$TL_channelParticipant();
-                    tLRPC$TL_channelParticipant.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-                    tLRPC$TL_channelParticipant.peer = tLRPC$TL_peerUser;
-                    tLRPC$TL_peerUser.user_id = tLRPC$User.id;
-                    tLRPC$TL_channelParticipant.date = ChatUsersActivity.this.getConnectionsManager().getCurrentTime();
-                    tLRPC$TL_chatParticipant = tLRPC$TL_channelParticipant;
+                    ?? tL_channelParticipant = new TLRPC.TL_channelParticipant();
+                    tL_channelParticipant.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
+                    TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                    tL_channelParticipant.peer = tL_peerUser;
+                    tL_peerUser.user_id = user.id;
+                    tL_channelParticipant.date = ChatUsersActivity.this.getConnectionsManager().getCurrentTime();
+                    tL_chatParticipant = tL_channelParticipant;
                 } else {
-                    TLRPC$TL_chatParticipant tLRPC$TL_chatParticipant2 = new TLRPC$TL_chatParticipant();
-                    tLRPC$TL_chatParticipant2.user_id = tLRPC$User.id;
-                    tLRPC$TL_chatParticipant2.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
-                    tLRPC$TL_chatParticipant = tLRPC$TL_chatParticipant2;
+                    TLRPC.TL_chatParticipant tL_chatParticipant2 = new TLRPC.TL_chatParticipant();
+                    tL_chatParticipant2.user_id = user.id;
+                    tL_chatParticipant2.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
+                    tL_chatParticipant = tL_chatParticipant2;
                 }
-                arrayList.add(0, tLRPC$TL_chatParticipant);
-                longSparseArray.put(tLRPC$User.id, tLRPC$TL_chatParticipant);
+                arrayList.add(0, tL_chatParticipant);
+                longSparseArray.put(user.id, tL_chatParticipant);
             }
             if (arrayList == ChatUsersActivity.this.participants) {
                 ChatUsersActivity chatUsersActivity = ChatUsersActivity.this;
@@ -344,7 +314,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             ChatUsersActivity.this.updateListAnimated(saveState);
         }
 
-        public static void lambda$didSelectUsers$1(TLRPC$User tLRPC$User) {
+        public static void lambda$didSelectUsers$1(TLRPC.User user) {
         }
 
         @Override
@@ -355,26 +325,26 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             ChatUsersActivity.this.getMessagesController().addUsersToChat(ChatUsersActivity.this.currentChat, ChatUsersActivity.this, arrayList, i, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatUsersActivity.AnonymousClass9.this.lambda$didSelectUsers$0((TLRPC$User) obj);
+                    ChatUsersActivity.AnonymousClass9.this.lambda$didSelectUsers$0((TLRPC.User) obj);
                 }
             }, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatUsersActivity.AnonymousClass9.lambda$didSelectUsers$1((TLRPC$User) obj);
+                    ChatUsersActivity.AnonymousClass9.lambda$didSelectUsers$1((TLRPC.User) obj);
                 }
             }, null);
         }
 
         @Override
-        public void needAddBot(TLRPC$User tLRPC$User) {
-            ChatUsersActivity.this.openRightsEdit(tLRPC$User.id, null, null, null, "", true, 0, false);
+        public void needAddBot(TLRPC.User user) {
+            ChatUsersActivity.this.openRightsEdit(user.id, null, null, null, "", true, 0, false);
         }
     }
 
     public interface ChatUsersActivityDelegate {
 
         public abstract class CC {
-            public static void $default$didChangeOwner(ChatUsersActivityDelegate chatUsersActivityDelegate, TLRPC$User tLRPC$User) {
+            public static void $default$didChangeOwner(ChatUsersActivityDelegate chatUsersActivityDelegate, TLRPC.User user) {
             }
 
             public static void $default$didKickParticipant(ChatUsersActivityDelegate chatUsersActivityDelegate, long j) {
@@ -386,7 +356,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         void didAddParticipantToList(long j, TLObject tLObject);
 
-        void didChangeOwner(TLRPC$User tLRPC$User);
+        void didChangeOwner(TLRPC.User user);
 
         void didKickParticipant(long j);
 
@@ -624,7 +594,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
             if (itemViewType == 0) {
                 Object currentObject = ((ManageChatUserCell) viewHolder.itemView).getCurrentObject();
-                return (ChatUsersActivity.this.type != 1 && (currentObject instanceof TLRPC$User) && ((TLRPC$User) currentObject).self) ? false : true;
+                return (ChatUsersActivity.this.type != 1 && (currentObject instanceof TLRPC.User) && ((TLRPC.User) currentObject).self) ? false : true;
             }
             int adapterPosition = viewHolder.getAdapterPosition();
             if (itemViewType == 0 || itemViewType == 2 || itemViewType == 6) {
@@ -860,10 +830,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         public boolean lambda$onCreateViewHolder$5(ManageChatUserCell manageChatUserCell, boolean z) {
             TLObject item = getItem(((Integer) manageChatUserCell.getTag()).intValue());
-            if (!(item instanceof TLRPC$ChannelParticipant)) {
+            if (!(item instanceof TLRPC.ChannelParticipant)) {
                 return false;
             }
-            return ChatUsersActivity.this.createMenuForParticipant((TLRPC$ChannelParticipant) item, !z, manageChatUserCell);
+            return ChatUsersActivity.this.createMenuForParticipant((TLRPC.ChannelParticipant) item, !z, manageChatUserCell);
         }
 
         public void lambda$processSearch$2(java.lang.String r24, java.util.ArrayList r25, java.util.ArrayList r26) {
@@ -1087,8 +1057,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
     public ChatUsersActivity(Bundle bundle) {
         super(bundle);
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights;
-        this.defaultBannedRights = new TLRPC$TL_chatBannedRights();
+        TLRPC.TL_chatBannedRights tL_chatBannedRights;
+        this.defaultBannedRights = new TLRPC.TL_chatBannedRights();
         this.participants = new ArrayList();
         this.bots = new ArrayList();
         this.contacts = new ArrayList();
@@ -1099,45 +1069,45 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.type = this.arguments.getInt("type");
         this.needOpenSearch = this.arguments.getBoolean("open_search");
         this.selectType = this.arguments.getInt("selectType");
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
         this.currentChat = chat;
         boolean z = false;
-        if (chat != null && (tLRPC$TL_chatBannedRights = chat.default_banned_rights) != null) {
-            TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2 = this.defaultBannedRights;
-            tLRPC$TL_chatBannedRights2.view_messages = tLRPC$TL_chatBannedRights.view_messages;
-            tLRPC$TL_chatBannedRights2.send_stickers = tLRPC$TL_chatBannedRights.send_stickers;
-            boolean z2 = tLRPC$TL_chatBannedRights.send_media;
-            tLRPC$TL_chatBannedRights2.send_media = z2;
-            tLRPC$TL_chatBannedRights2.embed_links = tLRPC$TL_chatBannedRights.embed_links;
-            tLRPC$TL_chatBannedRights2.send_messages = tLRPC$TL_chatBannedRights.send_messages;
-            tLRPC$TL_chatBannedRights2.send_games = tLRPC$TL_chatBannedRights.send_games;
-            tLRPC$TL_chatBannedRights2.send_inline = tLRPC$TL_chatBannedRights.send_inline;
-            tLRPC$TL_chatBannedRights2.send_gifs = tLRPC$TL_chatBannedRights.send_gifs;
-            tLRPC$TL_chatBannedRights2.pin_messages = tLRPC$TL_chatBannedRights.pin_messages;
-            tLRPC$TL_chatBannedRights2.send_polls = tLRPC$TL_chatBannedRights.send_polls;
-            tLRPC$TL_chatBannedRights2.invite_users = tLRPC$TL_chatBannedRights.invite_users;
-            tLRPC$TL_chatBannedRights2.manage_topics = tLRPC$TL_chatBannedRights.manage_topics;
-            tLRPC$TL_chatBannedRights2.change_info = tLRPC$TL_chatBannedRights.change_info;
-            boolean z3 = tLRPC$TL_chatBannedRights.send_photos;
-            tLRPC$TL_chatBannedRights2.send_photos = z3;
-            boolean z4 = tLRPC$TL_chatBannedRights.send_videos;
-            tLRPC$TL_chatBannedRights2.send_videos = z4;
-            boolean z5 = tLRPC$TL_chatBannedRights.send_roundvideos;
-            tLRPC$TL_chatBannedRights2.send_roundvideos = z5;
-            boolean z6 = tLRPC$TL_chatBannedRights.send_audios;
-            tLRPC$TL_chatBannedRights2.send_audios = z6;
-            boolean z7 = tLRPC$TL_chatBannedRights.send_voices;
-            tLRPC$TL_chatBannedRights2.send_voices = z7;
-            boolean z8 = tLRPC$TL_chatBannedRights.send_docs;
-            tLRPC$TL_chatBannedRights2.send_docs = z8;
-            tLRPC$TL_chatBannedRights2.send_plain = tLRPC$TL_chatBannedRights.send_plain;
+        if (chat != null && (tL_chatBannedRights = chat.default_banned_rights) != null) {
+            TLRPC.TL_chatBannedRights tL_chatBannedRights2 = this.defaultBannedRights;
+            tL_chatBannedRights2.view_messages = tL_chatBannedRights.view_messages;
+            tL_chatBannedRights2.send_stickers = tL_chatBannedRights.send_stickers;
+            boolean z2 = tL_chatBannedRights.send_media;
+            tL_chatBannedRights2.send_media = z2;
+            tL_chatBannedRights2.embed_links = tL_chatBannedRights.embed_links;
+            tL_chatBannedRights2.send_messages = tL_chatBannedRights.send_messages;
+            tL_chatBannedRights2.send_games = tL_chatBannedRights.send_games;
+            tL_chatBannedRights2.send_inline = tL_chatBannedRights.send_inline;
+            tL_chatBannedRights2.send_gifs = tL_chatBannedRights.send_gifs;
+            tL_chatBannedRights2.pin_messages = tL_chatBannedRights.pin_messages;
+            tL_chatBannedRights2.send_polls = tL_chatBannedRights.send_polls;
+            tL_chatBannedRights2.invite_users = tL_chatBannedRights.invite_users;
+            tL_chatBannedRights2.manage_topics = tL_chatBannedRights.manage_topics;
+            tL_chatBannedRights2.change_info = tL_chatBannedRights.change_info;
+            boolean z3 = tL_chatBannedRights.send_photos;
+            tL_chatBannedRights2.send_photos = z3;
+            boolean z4 = tL_chatBannedRights.send_videos;
+            tL_chatBannedRights2.send_videos = z4;
+            boolean z5 = tL_chatBannedRights.send_roundvideos;
+            tL_chatBannedRights2.send_roundvideos = z5;
+            boolean z6 = tL_chatBannedRights.send_audios;
+            tL_chatBannedRights2.send_audios = z6;
+            boolean z7 = tL_chatBannedRights.send_voices;
+            tL_chatBannedRights2.send_voices = z7;
+            boolean z8 = tL_chatBannedRights.send_docs;
+            tL_chatBannedRights2.send_docs = z8;
+            tL_chatBannedRights2.send_plain = tL_chatBannedRights.send_plain;
             if (!z2 && z8 && z7 && z6 && z5 && z4 && z3) {
-                tLRPC$TL_chatBannedRights2.send_photos = false;
-                tLRPC$TL_chatBannedRights2.send_videos = false;
-                tLRPC$TL_chatBannedRights2.send_roundvideos = false;
-                tLRPC$TL_chatBannedRights2.send_audios = false;
-                tLRPC$TL_chatBannedRights2.send_voices = false;
-                tLRPC$TL_chatBannedRights2.send_docs = false;
+                tL_chatBannedRights2.send_photos = false;
+                tL_chatBannedRights2.send_videos = false;
+                tL_chatBannedRights2.send_roundvideos = false;
+                tL_chatBannedRights2.send_audios = false;
+                tL_chatBannedRights2.send_voices = false;
+                tL_chatBannedRights2.send_docs = false;
             }
         }
         this.initialBannedRights = ChatObject.getBannedRightsString(this.defaultBannedRights);
@@ -1146,12 +1116,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
         this.isChannel = z;
         this.isForum = ChatObject.isForum(this.currentChat);
-        TLRPC$Chat tLRPC$Chat = this.currentChat;
-        if (tLRPC$Chat != null) {
-            boolean z9 = tLRPC$Chat.signatures;
+        TLRPC.Chat chat2 = this.currentChat;
+        if (chat2 != null) {
+            boolean z9 = chat2.signatures;
             this.signatures = z9;
             this.initialSignatures = z9;
-            boolean z10 = tLRPC$Chat.signature_profiles;
+            boolean z10 = chat2.signature_profiles;
             this.profiles = z10;
             this.initialProfiles = z10;
         }
@@ -1197,14 +1167,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$createMenuForParticipant$17(long j) {
-        TLRPC$TL_channels_editBanned tLRPC$TL_channels_editBanned = new TLRPC$TL_channels_editBanned();
-        tLRPC$TL_channels_editBanned.participant = getMessagesController().getInputPeer(j);
-        tLRPC$TL_channels_editBanned.channel = getMessagesController().getInputChannel(this.chatId);
-        tLRPC$TL_channels_editBanned.banned_rights = new TLRPC$TL_chatBannedRights();
-        getConnectionsManager().sendRequest(tLRPC$TL_channels_editBanned, new RequestDelegate() {
+        TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
+        tL_channels_editBanned.participant = getMessagesController().getInputPeer(j);
+        tL_channels_editBanned.channel = getMessagesController().getInputChannel(this.chatId);
+        tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
+        getConnectionsManager().sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatUsersActivity.this.lambda$deletePeer$21(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChatUsersActivity.this.lambda$deletePeer$21(tLObject, tL_error);
             }
         });
     }
@@ -1213,7 +1183,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return i < 60 ? LocaleController.formatPluralString("Seconds", i, new Object[0]) : i < 3600 ? LocaleController.formatPluralString("Minutes", i / 60, new Object[0]) : LocaleController.formatPluralString("Hours", (i / 60) / 60, new Object[0]);
     }
 
-    public java.lang.String formatUserPermissions(org.telegram.tgnet.TLRPC$TL_chatBannedRights r5) {
+    public java.lang.String formatUserPermissions(org.telegram.tgnet.TLRPC.TL_chatBannedRights r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.formatUserPermissions(org.telegram.tgnet.TLRPC$TL_chatBannedRights):java.lang.String");
     }
 
@@ -1230,18 +1200,18 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     private int getChannelAdminParticipantType(TLObject tLObject) {
-        if ((tLObject instanceof TLRPC$TL_channelParticipantCreator) || (tLObject instanceof TLRPC$TL_channelParticipantSelf)) {
+        if ((tLObject instanceof TLRPC.TL_channelParticipantCreator) || (tLObject instanceof TLRPC.TL_channelParticipantSelf)) {
             return 0;
         }
-        return ((tLObject instanceof TLRPC$TL_channelParticipantAdmin) || (tLObject instanceof TLRPC$TL_channelParticipant)) ? 1 : 2;
+        return ((tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_channelParticipant)) ? 1 : 2;
     }
 
     private int getCurrentSlowmode() {
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        if (tLRPC$ChatFull == null) {
+        TLRPC.ChatFull chatFull = this.info;
+        if (chatFull == null) {
             return 0;
         }
-        int i = tLRPC$ChatFull.slowmode_seconds;
+        int i = chatFull.slowmode_seconds;
         if (i == 10) {
             return 1;
         }
@@ -1261,14 +1231,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public int getParticipantsCount() {
-        ArrayList arrayList;
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        if (tLRPC$ChatFull == null) {
+        ArrayList<TLRPC.ChatParticipant> arrayList;
+        TLRPC.ChatFull chatFull = this.info;
+        if (chatFull == null) {
             return 0;
         }
-        int i = tLRPC$ChatFull.participants_count;
-        TLRPC$ChatParticipants tLRPC$ChatParticipants = tLRPC$ChatFull.participants;
-        return (tLRPC$ChatParticipants == null || (arrayList = tLRPC$ChatParticipants.participants) == null) ? i : Math.max(i, arrayList.size());
+        int i = chatFull.participants_count;
+        TLRPC.ChatParticipants chatParticipants = chatFull.participants;
+        return (chatParticipants == null || (arrayList = chatParticipants.participants) == null) ? i : Math.max(i, arrayList.size());
     }
 
     public int getSecondsForIndex(int i) {
@@ -1294,39 +1264,39 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return getSendMediaSelectedCount(this.defaultBannedRights);
     }
 
-    public static int getSendMediaSelectedCount(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
-        int i = !tLRPC$TL_chatBannedRights.send_photos ? 1 : 0;
-        if (!tLRPC$TL_chatBannedRights.send_videos) {
+    public static int getSendMediaSelectedCount(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
+        int i = !tL_chatBannedRights.send_photos ? 1 : 0;
+        if (!tL_chatBannedRights.send_videos) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_stickers) {
+        if (!tL_chatBannedRights.send_stickers) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_audios) {
+        if (!tL_chatBannedRights.send_audios) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_docs) {
+        if (!tL_chatBannedRights.send_docs) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_voices) {
+        if (!tL_chatBannedRights.send_voices) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.send_roundvideos) {
+        if (!tL_chatBannedRights.send_roundvideos) {
             i++;
         }
-        if (!tLRPC$TL_chatBannedRights.embed_links && !tLRPC$TL_chatBannedRights.send_plain) {
+        if (!tL_chatBannedRights.embed_links && !tL_chatBannedRights.send_plain) {
             i++;
         }
-        return !tLRPC$TL_chatBannedRights.send_polls ? i + 1 : i;
+        return !tL_chatBannedRights.send_polls ? i + 1 : i;
     }
 
     private boolean hasNotRestrictBoostersChanges() {
         boolean z = this.isEnabledNotRestrictBoosters && isNotRestrictBoostersVisible();
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        if (tLRPC$ChatFull == null) {
+        TLRPC.ChatFull chatFull = this.info;
+        if (chatFull == null) {
             return false;
         }
-        int i = tLRPC$ChatFull.boosts_unrestrict;
+        int i = chatFull.boosts_unrestrict;
         int i2 = this.notRestrictBoosters;
         return i != i2 || (z && i2 == 0) || !(z || i2 == 0);
     }
@@ -1336,11 +1306,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     private boolean isNotRestrictBoostersVisible() {
-        TLRPC$Chat tLRPC$Chat = this.currentChat;
-        if (tLRPC$Chat.megagroup && !tLRPC$Chat.gigagroup && ChatObject.canUserDoAdminAction(tLRPC$Chat, 13)) {
+        TLRPC.Chat chat = this.currentChat;
+        if (chat.megagroup && !chat.gigagroup && ChatObject.canUserDoAdminAction(chat, 13)) {
             if (this.selectedSlowmode <= 0) {
-                TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.defaultBannedRights;
-                if (tLRPC$TL_chatBannedRights.send_plain || tLRPC$TL_chatBannedRights.send_media || tLRPC$TL_chatBannedRights.send_photos || tLRPC$TL_chatBannedRights.send_videos || tLRPC$TL_chatBannedRights.send_stickers || tLRPC$TL_chatBannedRights.send_audios || tLRPC$TL_chatBannedRights.send_docs || tLRPC$TL_chatBannedRights.send_voices || tLRPC$TL_chatBannedRights.send_roundvideos || tLRPC$TL_chatBannedRights.embed_links || tLRPC$TL_chatBannedRights.send_polls) {
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
+                if (tL_chatBannedRights.send_plain || tL_chatBannedRights.send_media || tL_chatBannedRights.send_photos || tL_chatBannedRights.send_videos || tL_chatBannedRights.send_stickers || tL_chatBannedRights.send_audios || tL_chatBannedRights.send_docs || tL_chatBannedRights.send_voices || tL_chatBannedRights.send_roundvideos || tL_chatBannedRights.embed_links || tL_chatBannedRights.send_polls) {
                 }
             }
             return true;
@@ -1353,7 +1323,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$checkDiscard$24(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public static void lambda$createMenuForParticipant$10(Utilities.Callback callback) {
@@ -1364,9 +1334,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         callback.run(1);
     }
 
-    public void lambda$createMenuForParticipant$12(TLObject tLObject, TLRPC$User tLRPC$User, final Utilities.Callback callback) {
-        if ((tLObject instanceof TLRPC$TL_channelParticipantAdmin) || (tLObject instanceof TLRPC$TL_chatParticipantAdmin)) {
-            showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(LocaleController.formatString("AdminWillBeRemoved", R.string.AdminWillBeRemoved, UserObject.getUserName(tLRPC$User))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+    public void lambda$createMenuForParticipant$12(TLObject tLObject, TLRPC.User user, final Utilities.Callback callback) {
+        if ((tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) {
+            showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(LocaleController.formatString("AdminWillBeRemoved", R.string.AdminWillBeRemoved, UserObject.getUserName(user))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     ChatUsersActivity.lambda$createMenuForParticipant$11(Utilities.Callback.this, dialogInterface, i);
@@ -1377,32 +1347,32 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$createMenuForParticipant$13(TLRPC$User tLRPC$User, long j) {
-        getMessagesController().deleteParticipantFromChat(this.chatId, tLRPC$User);
+    public void lambda$createMenuForParticipant$13(TLRPC.User user, long j) {
+        getMessagesController().deleteParticipantFromChat(this.chatId, user);
         removeParticipants(j);
-        if (this.currentChat == null || tLRPC$User == null || !BulletinFactory.canShowBulletin(this)) {
+        if (this.currentChat == null || user == null || !BulletinFactory.canShowBulletin(this)) {
             return;
         }
-        BulletinFactory.createRemoveFromChatBulletin(this, tLRPC$User, this.currentChat.title).show();
+        BulletinFactory.createRemoveFromChatBulletin(this, user, this.currentChat.title).show();
     }
 
-    public void lambda$createMenuForParticipant$14(long j, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, final TLObject tLObject) {
-        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, null, this.defaultBannedRights, tLRPC$TL_chatBannedRights, str, 1, true, false, null);
+    public void lambda$createMenuForParticipant$14(long j, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, final TLObject tLObject) {
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, null, this.defaultBannedRights, tL_chatBannedRights, str, 1, true, false, null);
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
-            public void didChangeOwner(TLRPC$User tLRPC$User) {
-                ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
+            public void didChangeOwner(TLRPC.User user) {
+                ChatUsersActivity.this.onOwnerChaged(user);
             }
 
             @Override
-            public void didSetRights(int i, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str2) {
+            public void didSetRights(int i, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str2) {
                 TLObject tLObject2 = tLObject;
-                if (tLObject2 instanceof TLRPC$ChannelParticipant) {
-                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject2;
-                    tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights;
-                    tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights2;
-                    tLRPC$ChannelParticipant.rank = str2;
-                    ChatUsersActivity.this.updateParticipantWithRights(tLRPC$ChannelParticipant, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights2, 0L, false);
+                if (tLObject2 instanceof TLRPC.ChannelParticipant) {
+                    TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject2;
+                    channelParticipant.admin_rights = tL_chatAdminRights;
+                    channelParticipant.banned_rights = tL_chatBannedRights2;
+                    channelParticipant.rank = str2;
+                    ChatUsersActivity.this.updateParticipantWithRights(channelParticipant, tL_chatAdminRights, tL_chatBannedRights2, 0L, false);
                 }
             }
         });
@@ -1414,23 +1384,23 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         getMessagesController().addUserToChat(this.chatId, getMessagesController().getUser(Long.valueOf(j)), 0, null, this, null);
     }
 
-    public void lambda$createMenuForParticipant$18(long j, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, String str, final TLObject tLObject) {
-        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tLRPC$TL_chatAdminRights, null, null, str, 0, true, false, null);
+    public void lambda$createMenuForParticipant$18(long j, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, final TLObject tLObject) {
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tL_chatAdminRights, null, null, str, 0, true, false, null);
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
-            public void didChangeOwner(TLRPC$User tLRPC$User) {
-                ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
+            public void didChangeOwner(TLRPC.User user) {
+                ChatUsersActivity.this.onOwnerChaged(user);
             }
 
             @Override
-            public void didSetRights(int i, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str2) {
+            public void didSetRights(int i, TLRPC.TL_chatAdminRights tL_chatAdminRights2, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str2) {
                 TLObject tLObject2 = tLObject;
-                if (tLObject2 instanceof TLRPC$ChannelParticipant) {
-                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject2;
-                    tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights2;
-                    tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights;
-                    tLRPC$ChannelParticipant.rank = str2;
-                    ChatUsersActivity.this.updateParticipantWithRights(tLRPC$ChannelParticipant, tLRPC$TL_chatAdminRights2, tLRPC$TL_chatBannedRights, 0L, false);
+                if (tLObject2 instanceof TLRPC.ChannelParticipant) {
+                    TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject2;
+                    channelParticipant.admin_rights = tL_chatAdminRights2;
+                    channelParticipant.banned_rights = tL_chatBannedRights;
+                    channelParticipant.rank = str2;
+                    ChatUsersActivity.this.updateParticipantWithRights(channelParticipant, tL_chatAdminRights2, tL_chatBannedRights, 0L, false);
                 }
             }
         });
@@ -1438,31 +1408,31 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$createMenuForParticipant$19(long j) {
-        getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC$TL_chatAdminRights(), "", !this.isChannel, this, false, false, null, null);
+        getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC.TL_chatAdminRights(), "", !this.isChannel, this, false, false, null, null);
         removeParticipants(j);
     }
 
-    public void lambda$createMenuForParticipant$9(long j, int i, TLObject tLObject, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, boolean z, Integer num) {
-        openRightsEdit2(j, i, tLObject, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights, str, z, num.intValue(), false);
+    public void lambda$createMenuForParticipant$9(long j, int i, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, Integer num) {
+        openRightsEdit2(j, i, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z, num.intValue(), false);
     }
 
     public void lambda$createView$0(TextCell textCell, boolean z) {
-        TLRPC$ChatFull tLRPC$ChatFull;
+        TLRPC.ChatFull chatFull;
         if (getParentActivity() == null) {
             return;
         }
         this.info.antispam = z;
         textCell.setChecked(z);
-        textCell.getCheckBox().setIcon((!ChatObject.canUserDoAdminAction(this.currentChat, 13) || ((tLRPC$ChatFull = this.info) != null && tLRPC$ChatFull.antispam && getParticipantsCount() < getMessagesController().telegramAntispamGroupSizeMin)) ? R.drawable.permission_locked : 0);
+        textCell.getCheckBox().setIcon((!ChatObject.canUserDoAdminAction(this.currentChat, 13) || ((chatFull = this.info) != null && chatFull.antispam && getParticipantsCount() < getMessagesController().telegramAntispamGroupSizeMin)) ? R.drawable.permission_locked : 0);
         BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
-    public void lambda$createView$1(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createView$1(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             getMessagesController().putChatFull(this.info);
         }
-        if (tLRPC$TL_error != null && !"CHAT_NOT_MODIFIED".equals(tLRPC$TL_error.text)) {
+        if (tL_error != null && !"CHAT_NOT_MODIFIED".equals(tL_error.text)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1474,22 +1444,22 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$createView$2(TextCell textCell, boolean z) {
-        TLRPC$ChatFull tLRPC$ChatFull;
+        TLRPC.ChatFull chatFull;
         if (getParentActivity() == null) {
             return;
         }
         this.info.participants_hidden = z;
         textCell.setChecked(z);
-        textCell.getCheckBox().setIcon((!ChatObject.canUserDoAdminAction(this.currentChat, 2) || ((tLRPC$ChatFull = this.info) != null && tLRPC$ChatFull.participants_hidden && getParticipantsCount() < getMessagesController().hiddenMembersGroupSizeMin)) ? R.drawable.permission_locked : 0);
+        textCell.getCheckBox().setIcon((!ChatObject.canUserDoAdminAction(this.currentChat, 2) || ((chatFull = this.info) != null && chatFull.participants_hidden && getParticipantsCount() < getMessagesController().hiddenMembersGroupSizeMin)) ? R.drawable.permission_locked : 0);
         BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
-    public void lambda$createView$3(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createView$3(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             getMessagesController().putChatFull(this.info);
         }
-        if (tLRPC$TL_error != null && !"CHAT_NOT_MODIFIED".equals(tLRPC$TL_error.text)) {
+        if (tL_error != null && !"CHAT_NOT_MODIFIED".equals(tL_error.text)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1500,8 +1470,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.hideMembersToggleLoading = false;
     }
 
-    public void lambda$createView$4(TLRPC$User tLRPC$User, TLObject tLObject, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, boolean z, DialogInterface dialogInterface, int i) {
-        openRightsEdit(tLRPC$User.id, tLObject, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights, str, z, this.selectType == 1 ? 0 : 1, false);
+    public void lambda$createView$4(TLRPC.User user, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, DialogInterface dialogInterface, int i) {
+        openRightsEdit(user.id, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z, this.selectType == 1 ? 0 : 1, false);
     }
 
     public void lambda$createView$5(android.view.View r28, int r29, float r30, float r31) {
@@ -1519,21 +1489,21 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return false;
     }
 
-    public void lambda$deletePeer$20(TLRPC$Updates tLRPC$Updates) {
-        getMessagesController().loadFullChat(tLRPC$Updates.chats.get(0).id, 0, true);
+    public void lambda$deletePeer$20(TLRPC.Updates updates) {
+        getMessagesController().loadFullChat(updates.chats.get(0).id, 0, true);
     }
 
-    public void lambda$deletePeer$21(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$deletePeer$21(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            final TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
-            getMessagesController().processUpdates(tLRPC$Updates, false);
-            if (tLRPC$Updates.chats.isEmpty()) {
+            final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+            getMessagesController().processUpdates(updates, false);
+            if (updates.chats.isEmpty()) {
                 return;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatUsersActivity.this.lambda$deletePeer$20(tLRPC$Updates);
+                    ChatUsersActivity.this.lambda$deletePeer$20(updates);
                 }
             }, 1000L);
         }
@@ -1561,31 +1531,31 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         ArrayList arrayList3;
         LongSparseArray longSparseArray;
         int i2;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
         LongSparseArray longSparseArray2;
         boolean z = false;
         int i3 = 0;
         int i4 = 0;
         while (i4 < arrayList.size()) {
-            TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = (TLRPC$TL_channels_getParticipants) arrayList.get(i4);
-            TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) arrayList2.get(i4);
-            if (tLRPC$TL_channels_getParticipants == null || tLRPC$TL_channels_channelParticipants == null) {
+            TLRPC.TL_channels_getParticipants tL_channels_getParticipants = (TLRPC.TL_channels_getParticipants) arrayList.get(i4);
+            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) arrayList2.get(i4);
+            if (tL_channels_getParticipants == null || tL_channels_channelParticipants == null) {
                 i = i4;
             } else {
                 if (this.type == 1) {
-                    getMessagesController().processLoadedAdminsResponse(this.chatId, tLRPC$TL_channels_channelParticipants);
+                    getMessagesController().processLoadedAdminsResponse(this.chatId, tL_channels_channelParticipants);
                 }
-                getMessagesController().putUsers(tLRPC$TL_channels_channelParticipants.users, z);
-                getMessagesController().putChats(tLRPC$TL_channels_channelParticipants.chats, z);
+                getMessagesController().putUsers(tL_channels_channelParticipants.users, z);
+                getMessagesController().putChats(tL_channels_channelParticipants.chats, z);
                 long clientUserId = getUserConfig().getClientUserId();
                 if (this.selectType != 0) {
                     int i5 = 0;
                     while (true) {
-                        if (i5 >= tLRPC$TL_channels_channelParticipants.participants.size()) {
+                        if (i5 >= tL_channels_channelParticipants.participants.size()) {
                             break;
                         }
-                        if (MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLRPC$TL_channels_channelParticipants.participants.get(i5)).peer) == clientUserId) {
-                            tLRPC$TL_channels_channelParticipants.participants.remove(i5);
+                        if (MessageObject.getPeerId(tL_channels_channelParticipants.participants.get(i5).peer) == clientUserId) {
+                            tL_channels_channelParticipants.participants.remove(i5);
                             break;
                         }
                         i5++;
@@ -1593,11 +1563,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 }
                 if (this.type == 2) {
                     this.delayResults--;
-                    TLRPC$ChannelParticipantsFilter tLRPC$ChannelParticipantsFilter = tLRPC$TL_channels_getParticipants.filter;
-                    if (tLRPC$ChannelParticipantsFilter instanceof TLRPC$TL_channelParticipantsContacts) {
+                    TLRPC.ChannelParticipantsFilter channelParticipantsFilter = tL_channels_getParticipants.filter;
+                    if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsContacts) {
                         arrayList3 = this.contacts;
                         longSparseArray = this.contactsMap;
-                    } else if (tLRPC$ChannelParticipantsFilter instanceof TLRPC$TL_channelParticipantsBots) {
+                    } else if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsBots) {
                         arrayList3 = this.bots;
                         longSparseArray = this.botsMap;
                     } else {
@@ -1610,16 +1580,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     longSparseArray.clear();
                 }
                 arrayList3.clear();
-                arrayList3.addAll(tLRPC$TL_channels_channelParticipants.participants);
-                int size = tLRPC$TL_channels_channelParticipants.participants.size();
+                arrayList3.addAll(tL_channels_channelParticipants.participants);
+                int size = tL_channels_channelParticipants.participants.size();
                 int i6 = 0;
                 while (i6 < size) {
-                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLRPC$TL_channels_channelParticipants.participants.get(i6);
+                    TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i6);
                     int i7 = i4;
-                    if (tLRPC$ChannelParticipant.user_id == clientUserId) {
-                        arrayList3.remove(tLRPC$ChannelParticipant);
+                    if (channelParticipant.user_id == clientUserId) {
+                        arrayList3.remove(channelParticipant);
                     } else {
-                        longSparseArray.put(MessageObject.getPeerId(tLRPC$ChannelParticipant.peer), tLRPC$ChannelParticipant);
+                        longSparseArray.put(MessageObject.getPeerId(channelParticipant.peer), channelParticipant);
                     }
                     i6++;
                     i4 = i7;
@@ -1631,8 +1601,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     int i8 = 0;
                     while (i8 < size3) {
                         TLObject tLObject = (TLObject) this.participants.get(i8);
-                        if (tLObject instanceof TLRPC$ChannelParticipant) {
-                            long peerId = MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLObject).peer);
+                        if (tLObject instanceof TLRPC.ChannelParticipant) {
+                            long peerId = MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject).peer);
                             if (this.contactsMap.get(peerId) != null || this.botsMap.get(peerId) != null || ((this.selectType == 1 && peerId > 0 && UserObject.isDeleted(getMessagesController().getUser(Long.valueOf(peerId)))) || ((longSparseArray2 = this.ignoredUsers) != null && longSparseArray2.indexOfKey(peerId) >= 0))) {
                                 this.participants.remove(i8);
                                 this.participantsMap.remove(peerId);
@@ -1651,9 +1621,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                if ((i2 == 0 || i2 == 3 || i2 == 2) && (tLRPC$Chat = this.currentChat) != null && tLRPC$Chat.megagroup) {
-                    TLRPC$ChatFull tLRPC$ChatFull = this.info;
-                    if ((tLRPC$ChatFull instanceof TLRPC$TL_channelFull) && tLRPC$ChatFull.participants_count <= 200) {
+                if ((i2 == 0 || i2 == 3 || i2 == 2) && (chat = this.currentChat) != null && chat.megagroup) {
+                    TLRPC.ChatFull chatFull = this.info;
+                    if ((chatFull instanceof TLRPC.TL_channelFull) && chatFull.participants_count <= 200) {
                         sortUsers(arrayList3);
                         i3 = size2;
                     }
@@ -1687,9 +1657,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         resumeDelayedFragmentAnimation();
     }
 
-    public static void lambda$loadChatParticipants$27(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
-        if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_channels_channelParticipants)) {
-            arrayList.set(i, (TLRPC$TL_channels_channelParticipants) tLObject);
+    public static void lambda$loadChatParticipants$27(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
+        if (tL_error == null && (tLObject instanceof TLRPC.TL_channels_channelParticipants)) {
+            arrayList.set(i, (TLRPC.TL_channels_channelParticipants) tLObject);
         }
         atomicInteger.getAndIncrement();
         if (atomicInteger.get() == arrayList2.size()) {
@@ -1697,11 +1667,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static void lambda$loadChatParticipants$28(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$loadChatParticipants$28(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatUsersActivity.lambda$loadChatParticipants$27(TLRPC$TL_error.this, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
+                ChatUsersActivity.lambda$loadChatParticipants$27(TLRPC.TL_error.this, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
             }
         });
     }
@@ -1732,30 +1702,30 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (channelAdminParticipantType < channelAdminParticipantType2) {
             return -1;
         }
-        if ((tLObject instanceof TLRPC$ChannelParticipant) && (tLObject2 instanceof TLRPC$ChannelParticipant)) {
-            return (int) (MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLObject).peer) - MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLObject2).peer));
+        if ((tLObject instanceof TLRPC.ChannelParticipant) && (tLObject2 instanceof TLRPC.ChannelParticipant)) {
+            return (int) (MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject).peer) - MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject2).peer));
         }
         return 0;
     }
 
     public int lambda$sortUsers$29(int i, TLObject tLObject, TLObject tLObject2) {
         int i2;
-        TLRPC$UserStatus tLRPC$UserStatus;
-        TLRPC$UserStatus tLRPC$UserStatus2;
-        TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject;
-        TLRPC$ChannelParticipant tLRPC$ChannelParticipant2 = (TLRPC$ChannelParticipant) tLObject2;
-        long peerId = MessageObject.getPeerId(tLRPC$ChannelParticipant.peer);
-        long peerId2 = MessageObject.getPeerId(tLRPC$ChannelParticipant2.peer);
+        TLRPC.UserStatus userStatus;
+        TLRPC.UserStatus userStatus2;
+        TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+        TLRPC.ChannelParticipant channelParticipant2 = (TLRPC.ChannelParticipant) tLObject2;
+        long peerId = MessageObject.getPeerId(channelParticipant.peer);
+        long peerId2 = MessageObject.getPeerId(channelParticipant2.peer);
         int i3 = -100;
         if (peerId > 0) {
-            TLRPC$User user = getMessagesController().getUser(Long.valueOf(MessageObject.getPeerId(tLRPC$ChannelParticipant.peer)));
-            i2 = (user == null || (tLRPC$UserStatus2 = user.status) == null) ? 0 : user.self ? i + 50000 : tLRPC$UserStatus2.expires;
+            TLRPC.User user = getMessagesController().getUser(Long.valueOf(MessageObject.getPeerId(channelParticipant.peer)));
+            i2 = (user == null || (userStatus2 = user.status) == null) ? 0 : user.self ? i + 50000 : userStatus2.expires;
         } else {
             i2 = -100;
         }
         if (peerId2 > 0) {
-            TLRPC$User user2 = getMessagesController().getUser(Long.valueOf(MessageObject.getPeerId(tLRPC$ChannelParticipant2.peer)));
-            i3 = (user2 == null || (tLRPC$UserStatus = user2.status) == null) ? 0 : user2.self ? i + 50000 : tLRPC$UserStatus.expires;
+            TLRPC.User user2 = getMessagesController().getUser(Long.valueOf(MessageObject.getPeerId(channelParticipant2.peer)));
+            i3 = (user2 == null || (userStatus = user2.status) == null) ? 0 : user2.self ? i + 50000 : userStatus.expires;
         }
         if (i2 > 0 && i3 > 0) {
             if (i2 > i3) {
@@ -1812,8 +1782,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 final int i4 = i3;
                 getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest((TLObject) loadChatParticipantsRequests.get(i3), new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        ChatUsersActivity.lambda$loadChatParticipants$28(arrayList, i4, atomicInteger, loadChatParticipantsRequests, runnable, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ChatUsersActivity.lambda$loadChatParticipants$28(arrayList, i4, atomicInteger, loadChatParticipantsRequests, runnable, tLObject, tL_error);
                     }
                 }), this.classGuid);
                 i3++;
@@ -1829,15 +1799,15 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.botsMap.clear();
         int i5 = this.type;
         if (i5 == 1) {
-            TLRPC$ChatFull tLRPC$ChatFull = this.info;
-            if (tLRPC$ChatFull != null) {
-                int size = tLRPC$ChatFull.participants.participants.size();
+            TLRPC.ChatFull chatFull = this.info;
+            if (chatFull != null) {
+                int size = chatFull.participants.participants.size();
                 while (i3 < size) {
-                    TLRPC$ChatParticipant tLRPC$ChatParticipant = (TLRPC$ChatParticipant) this.info.participants.participants.get(i3);
-                    if ((tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator) || (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin)) {
-                        this.participants.add(tLRPC$ChatParticipant);
+                    TLRPC.ChatParticipant chatParticipant = this.info.participants.participants.get(i3);
+                    if ((chatParticipant instanceof TLRPC.TL_chatParticipantCreator) || (chatParticipant instanceof TLRPC.TL_chatParticipantAdmin)) {
+                        this.participants.add(chatParticipant);
                     }
-                    this.participantsMap.put(tLRPC$ChatParticipant.user_id, tLRPC$ChatParticipant);
+                    this.participantsMap.put(chatParticipant.user_id, chatParticipant);
                     i3++;
                 }
             }
@@ -1845,31 +1815,31 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             long j = getUserConfig().clientUserId;
             int size2 = this.info.participants.participants.size();
             while (i3 < size2) {
-                TLRPC$ChatParticipant tLRPC$ChatParticipant2 = (TLRPC$ChatParticipant) this.info.participants.participants.get(i3);
-                if ((this.selectType == 0 || tLRPC$ChatParticipant2.user_id != j) && ((longSparseArray = this.ignoredUsers) == null || longSparseArray.indexOfKey(tLRPC$ChatParticipant2.user_id) < 0)) {
+                TLRPC.ChatParticipant chatParticipant2 = this.info.participants.participants.get(i3);
+                if ((this.selectType == 0 || chatParticipant2.user_id != j) && ((longSparseArray = this.ignoredUsers) == null || longSparseArray.indexOfKey(chatParticipant2.user_id) < 0)) {
                     if (this.selectType == 1) {
-                        if (!getContactsController().isContact(tLRPC$ChatParticipant2.user_id)) {
-                            if (UserObject.isDeleted(getMessagesController().getUser(Long.valueOf(tLRPC$ChatParticipant2.user_id)))) {
+                        if (!getContactsController().isContact(chatParticipant2.user_id)) {
+                            if (UserObject.isDeleted(getMessagesController().getUser(Long.valueOf(chatParticipant2.user_id)))) {
                             }
-                            this.participants.add(tLRPC$ChatParticipant2);
+                            this.participants.add(chatParticipant2);
                             longSparseArray2 = this.participantsMap;
                         }
-                        this.contacts.add(tLRPC$ChatParticipant2);
+                        this.contacts.add(chatParticipant2);
                         longSparseArray2 = this.contactsMap;
                     } else {
-                        if (!getContactsController().isContact(tLRPC$ChatParticipant2.user_id)) {
-                            TLRPC$User user = getMessagesController().getUser(Long.valueOf(tLRPC$ChatParticipant2.user_id));
+                        if (!getContactsController().isContact(chatParticipant2.user_id)) {
+                            TLRPC.User user = getMessagesController().getUser(Long.valueOf(chatParticipant2.user_id));
                             if (user != null && user.bot) {
-                                this.bots.add(tLRPC$ChatParticipant2);
+                                this.bots.add(chatParticipant2);
                                 longSparseArray2 = this.botsMap;
                             }
-                            this.participants.add(tLRPC$ChatParticipant2);
+                            this.participants.add(chatParticipant2);
                             longSparseArray2 = this.participantsMap;
                         }
-                        this.contacts.add(tLRPC$ChatParticipant2);
+                        this.contacts.add(chatParticipant2);
                         longSparseArray2 = this.contactsMap;
                     }
-                    longSparseArray2.put(tLRPC$ChatParticipant2.user_id, tLRPC$ChatParticipant2);
+                    longSparseArray2.put(chatParticipant2.user_id, chatParticipant2);
                 }
                 i3++;
             }
@@ -1886,72 +1856,67 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     private ArrayList loadChatParticipantsRequests(int i, int i2, boolean z) {
-        TLRPC$ChannelParticipantsFilter tLRPC$TL_channelParticipantsBanned;
-        TLRPC$TL_channelParticipantsContacts tLRPC$TL_channelParticipantsContacts;
-        TLRPC$Chat tLRPC$Chat;
-        TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = new TLRPC$TL_channels_getParticipants();
+        TLRPC.ChannelParticipantsFilter tL_channelParticipantsBanned;
+        TLRPC.TL_channelParticipantsContacts tL_channelParticipantsContacts;
+        TLRPC.Chat chat;
+        TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
         ArrayList arrayList = new ArrayList();
-        arrayList.add(tLRPC$TL_channels_getParticipants);
-        tLRPC$TL_channels_getParticipants.channel = getMessagesController().getInputChannel(this.chatId);
+        arrayList.add(tL_channels_getParticipants);
+        tL_channels_getParticipants.channel = getMessagesController().getInputChannel(this.chatId);
         int i3 = this.type;
         if (i3 == 0) {
-            tLRPC$TL_channelParticipantsBanned = new TLRPC$TL_channelParticipantsKicked();
+            tL_channelParticipantsBanned = new TLRPC.TL_channelParticipantsKicked();
         } else {
             if (i3 != 1) {
                 if (i3 == 2) {
-                    TLRPC$ChatFull tLRPC$ChatFull = this.info;
-                    if (tLRPC$ChatFull != null && tLRPC$ChatFull.participants_count <= 200 && (tLRPC$Chat = this.currentChat) != null && tLRPC$Chat.megagroup) {
-                        tLRPC$TL_channelParticipantsBanned = new TLRPC$TL_channelParticipantsRecent();
+                    TLRPC.ChatFull chatFull = this.info;
+                    if (chatFull != null && chatFull.participants_count <= 200 && (chat = this.currentChat) != null && chat.megagroup) {
+                        tL_channelParticipantsBanned = new TLRPC.TL_channelParticipantsRecent();
                     } else if (this.selectType == 1) {
                         if (this.contactsEndReached) {
-                            tLRPC$TL_channelParticipantsBanned = new TLRPC$TL_channelParticipantsRecent();
+                            tL_channelParticipantsBanned = new TLRPC.TL_channelParticipantsRecent();
                         } else {
                             this.delayResults = 2;
-                            tLRPC$TL_channelParticipantsContacts = new TLRPC$TL_channelParticipantsContacts();
-                            tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsContacts;
+                            tL_channelParticipantsContacts = new TLRPC.TL_channelParticipantsContacts();
+                            tL_channels_getParticipants.filter = tL_channelParticipantsContacts;
                             this.contactsEndReached = true;
                             arrayList.addAll(loadChatParticipantsRequests(0, 200, false));
                         }
                     } else if (!this.contactsEndReached) {
                         this.delayResults = 3;
-                        tLRPC$TL_channelParticipantsContacts = new TLRPC$TL_channelParticipantsContacts();
-                        tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsContacts;
+                        tL_channelParticipantsContacts = new TLRPC.TL_channelParticipantsContacts();
+                        tL_channels_getParticipants.filter = tL_channelParticipantsContacts;
                         this.contactsEndReached = true;
                         arrayList.addAll(loadChatParticipantsRequests(0, 200, false));
                     } else if (this.botsEndReached) {
-                        tLRPC$TL_channelParticipantsBanned = new TLRPC$TL_channelParticipantsRecent();
+                        tL_channelParticipantsBanned = new TLRPC.TL_channelParticipantsRecent();
                     } else {
-                        tLRPC$TL_channels_getParticipants.filter = new TLRPC$ChannelParticipantsFilter() {
-                            @Override
-                            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                                abstractSerializedData.writeInt32(-1328445861);
-                            }
-                        };
+                        tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsBots();
                         this.botsEndReached = true;
                         arrayList.addAll(loadChatParticipantsRequests(0, 200, false));
                     }
                 } else if (i3 == 3) {
-                    tLRPC$TL_channelParticipantsBanned = new TLRPC$TL_channelParticipantsBanned();
+                    tL_channelParticipantsBanned = new TLRPC.TL_channelParticipantsBanned();
                 }
-                tLRPC$TL_channels_getParticipants.filter.q = "";
-                tLRPC$TL_channels_getParticipants.offset = i;
-                tLRPC$TL_channels_getParticipants.limit = i2;
+                tL_channels_getParticipants.filter.q = "";
+                tL_channels_getParticipants.offset = i;
+                tL_channels_getParticipants.limit = i2;
                 return arrayList;
             }
-            tLRPC$TL_channelParticipantsBanned = new TLRPC$TL_channelParticipantsAdmins();
+            tL_channelParticipantsBanned = new TLRPC.TL_channelParticipantsAdmins();
         }
-        tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsBanned;
-        tLRPC$TL_channels_getParticipants.filter.q = "";
-        tLRPC$TL_channels_getParticipants.offset = i;
-        tLRPC$TL_channels_getParticipants.limit = i2;
+        tL_channels_getParticipants.filter = tL_channelParticipantsBanned;
+        tL_channels_getParticipants.filter.q = "";
+        tL_channels_getParticipants.offset = i;
+        tL_channels_getParticipants.limit = i2;
         return arrayList;
     }
 
-    public void onOwnerChaged(TLRPC$User tLRPC$User) {
+    public void onOwnerChaged(TLRPC.User user) {
         LongSparseArray longSparseArray;
         ArrayList arrayList;
         boolean z;
-        this.undoView.showWithAction(-this.chatId, this.isChannel ? 9 : 10, tLRPC$User);
+        this.undoView.showWithAction(-this.chatId, this.isChannel ? 9 : 10, user);
         this.currentChat.creator = false;
         boolean z2 = false;
         for (int i = 0; i < 3; i++) {
@@ -1966,17 +1931,17 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 longSparseArray = this.participantsMap;
                 arrayList = this.participants;
             }
-            TLObject tLObject = (TLObject) longSparseArray.get(tLRPC$User.id);
-            if (tLObject instanceof TLRPC$ChannelParticipant) {
-                TLRPC$TL_channelParticipantCreator tLRPC$TL_channelParticipantCreator = new TLRPC$TL_channelParticipantCreator();
-                TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-                tLRPC$TL_channelParticipantCreator.peer = tLRPC$TL_peerUser;
-                long j = tLRPC$User.id;
-                tLRPC$TL_peerUser.user_id = j;
-                longSparseArray.put(j, tLRPC$TL_channelParticipantCreator);
+            TLObject tLObject = (TLObject) longSparseArray.get(user.id);
+            if (tLObject instanceof TLRPC.ChannelParticipant) {
+                TLRPC.TL_channelParticipantCreator tL_channelParticipantCreator = new TLRPC.TL_channelParticipantCreator();
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_channelParticipantCreator.peer = tL_peerUser;
+                long j = user.id;
+                tL_peerUser.user_id = j;
+                longSparseArray.put(j, tL_channelParticipantCreator);
                 int indexOf = arrayList.indexOf(tLObject);
                 if (indexOf >= 0) {
-                    arrayList.set(indexOf, tLRPC$TL_channelParticipantCreator);
+                    arrayList.set(indexOf, tL_channelParticipantCreator);
                 }
                 z2 = true;
                 z = true;
@@ -1985,33 +1950,33 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
             long clientUserId = getUserConfig().getClientUserId();
             TLObject tLObject2 = (TLObject) longSparseArray.get(clientUserId);
-            if (tLObject2 instanceof TLRPC$ChannelParticipant) {
-                TLRPC$TL_channelParticipantAdmin tLRPC$TL_channelParticipantAdmin = new TLRPC$TL_channelParticipantAdmin();
-                TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
-                tLRPC$TL_channelParticipantAdmin.peer = tLRPC$TL_peerUser2;
-                tLRPC$TL_peerUser2.user_id = clientUserId;
-                tLRPC$TL_channelParticipantAdmin.self = true;
-                tLRPC$TL_channelParticipantAdmin.inviter_id = clientUserId;
-                tLRPC$TL_channelParticipantAdmin.promoted_by = clientUserId;
-                tLRPC$TL_channelParticipantAdmin.date = (int) (System.currentTimeMillis() / 1000);
-                TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = new TLRPC$TL_chatAdminRights();
-                tLRPC$TL_channelParticipantAdmin.admin_rights = tLRPC$TL_chatAdminRights;
-                tLRPC$TL_chatAdminRights.add_admins = true;
-                tLRPC$TL_chatAdminRights.pin_messages = true;
-                tLRPC$TL_chatAdminRights.manage_topics = true;
-                tLRPC$TL_chatAdminRights.invite_users = true;
-                tLRPC$TL_chatAdminRights.ban_users = true;
-                tLRPC$TL_chatAdminRights.delete_messages = true;
-                tLRPC$TL_chatAdminRights.edit_messages = true;
-                tLRPC$TL_chatAdminRights.post_messages = true;
-                tLRPC$TL_chatAdminRights.change_info = true;
+            if (tLObject2 instanceof TLRPC.ChannelParticipant) {
+                TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
+                TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
+                tL_channelParticipantAdmin.peer = tL_peerUser2;
+                tL_peerUser2.user_id = clientUserId;
+                tL_channelParticipantAdmin.self = true;
+                tL_channelParticipantAdmin.inviter_id = clientUserId;
+                tL_channelParticipantAdmin.promoted_by = clientUserId;
+                tL_channelParticipantAdmin.date = (int) (System.currentTimeMillis() / 1000);
+                TLRPC.TL_chatAdminRights tL_chatAdminRights = new TLRPC.TL_chatAdminRights();
+                tL_channelParticipantAdmin.admin_rights = tL_chatAdminRights;
+                tL_chatAdminRights.add_admins = true;
+                tL_chatAdminRights.pin_messages = true;
+                tL_chatAdminRights.manage_topics = true;
+                tL_chatAdminRights.invite_users = true;
+                tL_chatAdminRights.ban_users = true;
+                tL_chatAdminRights.delete_messages = true;
+                tL_chatAdminRights.edit_messages = true;
+                tL_chatAdminRights.post_messages = true;
+                tL_chatAdminRights.change_info = true;
                 if (!this.isChannel) {
-                    tLRPC$TL_chatAdminRights.manage_call = true;
+                    tL_chatAdminRights.manage_call = true;
                 }
-                longSparseArray.put(clientUserId, tLRPC$TL_channelParticipantAdmin);
+                longSparseArray.put(clientUserId, tL_channelParticipantAdmin);
                 int indexOf2 = arrayList.indexOf(tLObject2);
                 if (indexOf2 >= 0) {
-                    arrayList.set(indexOf2, tLRPC$TL_channelParticipantAdmin);
+                    arrayList.set(indexOf2, tL_channelParticipantAdmin);
                 }
             } else {
                 z3 = z;
@@ -2028,39 +1993,39 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
         }
         if (!z2) {
-            TLRPC$TL_channelParticipantCreator tLRPC$TL_channelParticipantCreator2 = new TLRPC$TL_channelParticipantCreator();
-            TLRPC$TL_peerUser tLRPC$TL_peerUser3 = new TLRPC$TL_peerUser();
-            tLRPC$TL_channelParticipantCreator2.peer = tLRPC$TL_peerUser3;
-            long j2 = tLRPC$User.id;
-            tLRPC$TL_peerUser3.user_id = j2;
-            this.participantsMap.put(j2, tLRPC$TL_channelParticipantCreator2);
-            this.participants.add(tLRPC$TL_channelParticipantCreator2);
+            TLRPC.TL_channelParticipantCreator tL_channelParticipantCreator2 = new TLRPC.TL_channelParticipantCreator();
+            TLRPC.TL_peerUser tL_peerUser3 = new TLRPC.TL_peerUser();
+            tL_channelParticipantCreator2.peer = tL_peerUser3;
+            long j2 = user.id;
+            tL_peerUser3.user_id = j2;
+            this.participantsMap.put(j2, tL_channelParticipantCreator2);
+            this.participants.add(tL_channelParticipantCreator2);
             sortAdmins(this.participants);
             updateRows();
         }
         this.listViewAdapter.notifyDataSetChanged();
         ChatUsersActivityDelegate chatUsersActivityDelegate = this.delegate;
         if (chatUsersActivityDelegate != null) {
-            chatUsersActivityDelegate.didChangeOwner(tLRPC$User);
+            chatUsersActivityDelegate.didChangeOwner(user);
         }
     }
 
-    public void openRightsEdit(final long j, final TLObject tLObject, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, boolean z, int i, final boolean z2) {
-        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tLRPC$TL_chatAdminRights, this.defaultBannedRights, tLRPC$TL_chatBannedRights, str, i, z, tLObject == null, null);
+    public void openRightsEdit(final long j, final TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, int i, final boolean z2) {
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tL_chatAdminRights, this.defaultBannedRights, tL_chatBannedRights, str, i, z, tLObject == null, null);
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
-            public void didChangeOwner(TLRPC$User tLRPC$User) {
-                ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
+            public void didChangeOwner(TLRPC.User user) {
+                ChatUsersActivity.this.onOwnerChaged(user);
             }
 
             @Override
-            public void didSetRights(int i2, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str2) {
+            public void didSetRights(int i2, TLRPC.TL_chatAdminRights tL_chatAdminRights2, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str2) {
                 TLObject tLObject2 = tLObject;
-                if (tLObject2 instanceof TLRPC$ChannelParticipant) {
-                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject2;
-                    tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights2;
-                    tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights2;
-                    tLRPC$ChannelParticipant.rank = str2;
+                if (tLObject2 instanceof TLRPC.ChannelParticipant) {
+                    TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject2;
+                    channelParticipant.admin_rights = tL_chatAdminRights2;
+                    channelParticipant.banned_rights = tL_chatBannedRights2;
+                    channelParticipant.rank = str2;
                 }
                 if (ChatUsersActivity.this.delegate != null && i2 == 1) {
                     ChatUsersActivity.this.delegate.didSelectUser(j);
@@ -2075,10 +2040,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         presentFragment(chatRightsEditActivity, z2);
     }
 
-    private void openRightsEdit2(final long j, final int i, TLObject tLObject, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, boolean z, final int i2, boolean z2) {
+    private void openRightsEdit2(final long j, final int i, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, final int i2, boolean z2) {
         final boolean[] zArr = new boolean[1];
-        boolean z3 = (tLObject instanceof TLRPC$TL_channelParticipantAdmin) || (tLObject instanceof TLRPC$TL_chatParticipantAdmin);
-        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tLRPC$TL_chatAdminRights, this.defaultBannedRights, tLRPC$TL_chatBannedRights, str, i2, true, false, null) {
+        boolean z3 = (tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin);
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tL_chatAdminRights, this.defaultBannedRights, tL_chatBannedRights, str, i2, true, false, null) {
             @Override
             public void onTransitionAnimationEnd(boolean z4, boolean z5) {
                 ChatUsersActivity chatUsersActivity;
@@ -2088,14 +2053,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     MessagesController messagesController = getMessagesController();
                     long j3 = j;
                     if (j2 > 0) {
-                        TLRPC$User user = messagesController.getUser(Long.valueOf(j3));
+                        TLRPC.User user = messagesController.getUser(Long.valueOf(j3));
                         if (user == null) {
                             return;
                         }
                         chatUsersActivity = ChatUsersActivity.this;
                         str2 = user.first_name;
                     } else {
-                        TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j3));
+                        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j3));
                         if (chat == null) {
                             return;
                         }
@@ -2109,12 +2074,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         final boolean z4 = z3;
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
-            public void didChangeOwner(TLRPC$User tLRPC$User) {
-                ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
+            public void didChangeOwner(TLRPC.User user) {
+                ChatUsersActivity.this.onOwnerChaged(user);
             }
 
             @Override
-            public void didSetRights(int i3, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str2) {
+            public void didSetRights(int i3, TLRPC.TL_chatAdminRights tL_chatAdminRights2, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str2) {
                 int i4 = i2;
                 if (i4 != 0) {
                     if (i4 == 1 && i3 == 0) {
@@ -2129,35 +2094,35 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                         break;
                     }
                     TLObject tLObject2 = (TLObject) ChatUsersActivity.this.participants.get(i5);
-                    if (tLObject2 instanceof TLRPC$ChannelParticipant) {
-                        if (MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLObject2).peer) == j) {
-                            TLRPC$ChannelParticipant tLRPC$TL_channelParticipantAdmin = i3 == 1 ? new TLRPC$TL_channelParticipantAdmin() : new TLRPC$TL_channelParticipant();
-                            tLRPC$TL_channelParticipantAdmin.admin_rights = tLRPC$TL_chatAdminRights2;
-                            tLRPC$TL_channelParticipantAdmin.banned_rights = tLRPC$TL_chatBannedRights2;
-                            tLRPC$TL_channelParticipantAdmin.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
+                    if (tLObject2 instanceof TLRPC.ChannelParticipant) {
+                        if (MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject2).peer) == j) {
+                            TLRPC.ChannelParticipant tL_channelParticipantAdmin = i3 == 1 ? new TLRPC.TL_channelParticipantAdmin() : new TLRPC.TL_channelParticipant();
+                            tL_channelParticipantAdmin.admin_rights = tL_chatAdminRights2;
+                            tL_channelParticipantAdmin.banned_rights = tL_chatBannedRights2;
+                            tL_channelParticipantAdmin.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
                             if (j > 0) {
-                                TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-                                tLRPC$TL_channelParticipantAdmin.peer = tLRPC$TL_peerUser;
-                                tLRPC$TL_peerUser.user_id = j;
+                                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                                tL_channelParticipantAdmin.peer = tL_peerUser;
+                                tL_peerUser.user_id = j;
                             } else {
-                                TLRPC$TL_peerChannel tLRPC$TL_peerChannel = new TLRPC$TL_peerChannel();
-                                tLRPC$TL_channelParticipantAdmin.peer = tLRPC$TL_peerChannel;
-                                tLRPC$TL_peerChannel.channel_id = -j;
+                                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                                tL_channelParticipantAdmin.peer = tL_peerChannel;
+                                tL_peerChannel.channel_id = -j;
                             }
-                            tLRPC$TL_channelParticipantAdmin.date = i;
-                            tLRPC$TL_channelParticipantAdmin.flags |= 4;
-                            tLRPC$TL_channelParticipantAdmin.rank = str2;
-                            ChatUsersActivity.this.participants.set(i5, tLRPC$TL_channelParticipantAdmin);
+                            tL_channelParticipantAdmin.date = i;
+                            tL_channelParticipantAdmin.flags |= 4;
+                            tL_channelParticipantAdmin.rank = str2;
+                            ChatUsersActivity.this.participants.set(i5, tL_channelParticipantAdmin);
                         }
-                    } else if (tLObject2 instanceof TLRPC$ChatParticipant) {
-                        TLRPC$ChatParticipant tLRPC$ChatParticipant = (TLRPC$ChatParticipant) tLObject2;
-                        TLRPC$ChatParticipant tLRPC$TL_chatParticipantAdmin = i3 == 1 ? new TLRPC$TL_chatParticipantAdmin() : new TLRPC$TL_chatParticipant();
-                        tLRPC$TL_chatParticipantAdmin.user_id = tLRPC$ChatParticipant.user_id;
-                        tLRPC$TL_chatParticipantAdmin.date = tLRPC$ChatParticipant.date;
-                        tLRPC$TL_chatParticipantAdmin.inviter_id = tLRPC$ChatParticipant.inviter_id;
-                        int indexOf = ChatUsersActivity.this.info.participants.participants.indexOf(tLRPC$ChatParticipant);
+                    } else if (tLObject2 instanceof TLRPC.ChatParticipant) {
+                        TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) tLObject2;
+                        TLRPC.ChatParticipant tL_chatParticipantAdmin = i3 == 1 ? new TLRPC.TL_chatParticipantAdmin() : new TLRPC.TL_chatParticipant();
+                        tL_chatParticipantAdmin.user_id = chatParticipant.user_id;
+                        tL_chatParticipantAdmin.date = chatParticipant.date;
+                        tL_chatParticipantAdmin.inviter_id = chatParticipant.inviter_id;
+                        int indexOf = ChatUsersActivity.this.info.participants.participants.indexOf(chatParticipant);
                         if (indexOf >= 0) {
-                            ChatUsersActivity.this.info.participants.participants.set(indexOf, tLRPC$TL_chatParticipantAdmin);
+                            ChatUsersActivity.this.info.participants.participants.set(indexOf, tL_chatParticipantAdmin);
                         }
                         ChatUsersActivity.this.loadChatParticipants(0, 200);
                     }
@@ -2183,14 +2148,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (chatUsersActivityDelegate != null) {
                 chatUsersActivityDelegate.didKickParticipant(j);
             }
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
     public void removeParticipants(long j) {
         LongSparseArray longSparseArray;
         ArrayList arrayList;
-        TLRPC$ChatFull tLRPC$ChatFull;
+        TLRPC.ChatFull chatFull;
         DiffCallback saveState = saveState();
         boolean z = false;
         for (int i = 0; i < 3; i++) {
@@ -2208,8 +2173,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (tLObject != null) {
                 longSparseArray.remove(j);
                 arrayList.remove(tLObject);
-                if (this.type == 0 && (tLRPC$ChatFull = this.info) != null) {
-                    tLRPC$ChatFull.kicked_count--;
+                if (this.type == 0 && (chatFull = this.info) != null) {
+                    chatFull.kicked_count--;
                 }
                 z = true;
             }
@@ -2224,28 +2189,28 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    private void setBannedRights(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
-        if (tLRPC$TL_chatBannedRights != null) {
-            this.defaultBannedRights = tLRPC$TL_chatBannedRights;
+    private void setBannedRights(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
+        if (tL_chatBannedRights != null) {
+            this.defaultBannedRights = tL_chatBannedRights;
         }
     }
 
     public void setSendMediaEnabled(boolean z) {
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = this.defaultBannedRights;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
         boolean z2 = !z;
-        tLRPC$TL_chatBannedRights.send_media = z2;
-        tLRPC$TL_chatBannedRights.send_gifs = z2;
-        tLRPC$TL_chatBannedRights.send_inline = z2;
-        tLRPC$TL_chatBannedRights.send_games = z2;
-        tLRPC$TL_chatBannedRights.send_photos = z2;
-        tLRPC$TL_chatBannedRights.send_videos = z2;
-        tLRPC$TL_chatBannedRights.send_stickers = z2;
-        tLRPC$TL_chatBannedRights.send_audios = z2;
-        tLRPC$TL_chatBannedRights.send_docs = z2;
-        tLRPC$TL_chatBannedRights.send_voices = z2;
-        tLRPC$TL_chatBannedRights.send_roundvideos = z2;
-        tLRPC$TL_chatBannedRights.embed_links = z2;
-        tLRPC$TL_chatBannedRights.send_polls = z2;
+        tL_chatBannedRights.send_media = z2;
+        tL_chatBannedRights.send_gifs = z2;
+        tL_chatBannedRights.send_inline = z2;
+        tL_chatBannedRights.send_games = z2;
+        tL_chatBannedRights.send_photos = z2;
+        tL_chatBannedRights.send_videos = z2;
+        tL_chatBannedRights.send_stickers = z2;
+        tL_chatBannedRights.send_audios = z2;
+        tL_chatBannedRights.send_docs = z2;
+        tL_chatBannedRights.send_voices = z2;
+        tL_chatBannedRights.send_roundvideos = z2;
+        tL_chatBannedRights.embed_links = z2;
+        tL_chatBannedRights.send_polls = z2;
         AndroidUtilities.updateVisibleRows(this.listView);
         DiffCallback saveState = saveState();
         updateRows();
@@ -2335,18 +2300,18 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         });
     }
 
-    public void updateParticipantWithRights(TLRPC$ChannelParticipant tLRPC$ChannelParticipant, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, long j, boolean z) {
+    public void updateParticipantWithRights(TLRPC.ChannelParticipant channelParticipant, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, long j, boolean z) {
         ChatUsersActivityDelegate chatUsersActivityDelegate;
         int i = 0;
         boolean z2 = false;
         while (i < 3) {
-            TLObject tLObject = (TLObject) (i == 0 ? this.contactsMap : i == 1 ? this.botsMap : this.participantsMap).get(MessageObject.getPeerId(tLRPC$ChannelParticipant.peer));
-            if (tLObject instanceof TLRPC$ChannelParticipant) {
-                tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject;
-                tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights;
-                tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights;
+            TLObject tLObject = (TLObject) (i == 0 ? this.contactsMap : i == 1 ? this.botsMap : this.participantsMap).get(MessageObject.getPeerId(channelParticipant.peer));
+            if (tLObject instanceof TLRPC.ChannelParticipant) {
+                channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+                channelParticipant.admin_rights = tL_chatAdminRights;
+                channelParticipant.banned_rights = tL_chatBannedRights;
                 if (z) {
-                    tLRPC$ChannelParticipant.promoted_by = getUserConfig().getClientUserId();
+                    channelParticipant.promoted_by = getUserConfig().getClientUserId();
                 }
             }
             if (z && tLObject != null && !z2 && (chatUsersActivityDelegate = this.delegate) != null) {
@@ -2374,14 +2339,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
-            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
             boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
-            if (tLRPC$ChatFull.id == this.chatId) {
+            if (chatFull.id == this.chatId) {
                 if (booleanValue && ChatObject.isChannel(this.currentChat)) {
                     return;
                 }
                 boolean z = this.info != null;
-                this.info = tLRPC$ChatFull;
+                this.info = chatFull;
                 if (!z) {
                     int currentSlowmode = getCurrentSlowmode();
                     this.initialSlowmode = currentSlowmode;
@@ -2566,9 +2531,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.delegate = chatUsersActivityDelegate;
     }
 
-    public void setInfo(TLRPC$ChatFull tLRPC$ChatFull) {
-        this.info = tLRPC$ChatFull;
-        if (tLRPC$ChatFull != null) {
+    public void setInfo(TLRPC.ChatFull chatFull) {
+        this.info = chatFull;
+        if (chatFull != null) {
             int currentSlowmode = getCurrentSlowmode();
             this.initialSlowmode = currentSlowmode;
             this.selectedSlowmode = currentSlowmode;

@@ -22,8 +22,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageFwdHeader;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AvatarsDrawable;
@@ -245,12 +244,12 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         if (this.isSavedMessages) {
             dialogCell.isSavedDialog = true;
             long savedDialogId = messageObject.getSavedDialogId();
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;
-            if (tLRPC$MessageFwdHeader == null || ((i4 = tLRPC$MessageFwdHeader.date) == 0 && tLRPC$MessageFwdHeader.saved_date == 0)) {
-                i3 = tLRPC$Message.date;
+            TLRPC.Message message = messageObject.messageOwner;
+            TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+            if (messageFwdHeader == null || ((i4 = messageFwdHeader.date) == 0 && messageFwdHeader.saved_date == 0)) {
+                i3 = message.date;
             } else if (i4 == 0) {
-                i3 = tLRPC$MessageFwdHeader.saved_date;
+                i3 = messageFwdHeader.saved_date;
             } else {
                 dialogId = savedDialogId;
                 i2 = i4;

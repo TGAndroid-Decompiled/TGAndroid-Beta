@@ -31,8 +31,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.VideoEncodingService;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_message;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
@@ -129,10 +128,10 @@ public class DownloadButton extends ImageView {
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingStarted);
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileNewChunkAvailable);
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingFailed);
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.id = 1;
-            tLRPC$TL_message.attachPath = this.file.getAbsolutePath();
-            this.messageObject = new MessageObject(this.currentAccount, (TLRPC$Message) tLRPC$TL_message, (MessageObject) null, false, false);
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.id = 1;
+            tL_message.attachPath = this.file.getAbsolutePath();
+            this.messageObject = new MessageObject(this.currentAccount, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
             this.entry.getVideoEditedInfo(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {

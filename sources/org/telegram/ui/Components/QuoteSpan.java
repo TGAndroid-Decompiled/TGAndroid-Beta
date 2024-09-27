@@ -31,8 +31,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$TL_messageEntityBlockquote;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 
@@ -430,14 +429,14 @@ public class QuoteSpan implements LeadingMarginSpan {
             if (i >= arrayList.size()) {
                 break;
             }
-            TLRPC$MessageEntity tLRPC$MessageEntity = (TLRPC$MessageEntity) arrayList.get(i);
-            if (tLRPC$MessageEntity.offset + tLRPC$MessageEntity.length <= spannableStringBuilder.length()) {
-                int i2 = tLRPC$MessageEntity.offset;
-                int i3 = tLRPC$MessageEntity.length + i2;
-                if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityBlockquote) {
+            TLRPC.MessageEntity messageEntity = (TLRPC.MessageEntity) arrayList.get(i);
+            if (messageEntity.offset + messageEntity.length <= spannableStringBuilder.length()) {
+                int i2 = messageEntity.offset;
+                int i3 = messageEntity.length + i2;
+                if (messageEntity instanceof TLRPC.TL_messageEntityBlockquote) {
                     treeSet.add(Integer.valueOf(i2));
                     treeSet.add(Integer.valueOf(i3));
-                    hashMap.put(Integer.valueOf(i2), Integer.valueOf((hashMap.containsKey(Integer.valueOf(i2)) ? ((Integer) hashMap.get(Integer.valueOf(i2))).intValue() : 0) | (tLRPC$MessageEntity.collapsed ? 16 : 1)));
+                    hashMap.put(Integer.valueOf(i2), Integer.valueOf((hashMap.containsKey(Integer.valueOf(i2)) ? ((Integer) hashMap.get(Integer.valueOf(i2))).intValue() : 0) | (messageEntity.collapsed ? 16 : 1)));
                     hashMap.put(Integer.valueOf(i3), Integer.valueOf((hashMap.containsKey(Integer.valueOf(i3)) ? ((Integer) hashMap.get(Integer.valueOf(i3))).intValue() : 0) | 2));
                 }
             }

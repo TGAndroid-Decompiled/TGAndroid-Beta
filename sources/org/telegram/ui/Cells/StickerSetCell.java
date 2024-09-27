@@ -33,10 +33,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StickerSet;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -64,7 +61,7 @@ public class StickerSetCell extends FrameLayout {
     private ImageView reorderButton;
     private FrameLayout sideButtons;
     private AnimatorSet stateAnimator;
-    private TLRPC$TL_messages_stickerSet stickersSet;
+    private TLRPC.TL_messages_stickerSet stickersSet;
     private TextView textView;
     private TextView valueTextView;
 
@@ -278,21 +275,21 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    public void lambda$setStickersSet$4(TLRPC$Document tLRPC$Document) {
+    public void lambda$setStickersSet$4(TLRPC.Document document) {
         if (this.stickersSet.documents.isEmpty()) {
-            TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.stickersSet;
-            if (tLRPC$TL_messages_stickerSet.set.thumb_document_id == tLRPC$Document.id) {
-                tLRPC$TL_messages_stickerSet.documents.add(tLRPC$Document);
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.stickersSet;
+            if (tL_messages_stickerSet.set.thumb_document_id == document.id) {
+                tL_messages_stickerSet.documents.add(document);
                 setStickersSet(this.stickersSet, this.needDivider, this.groupSearch);
             }
         }
     }
 
-    public void lambda$setStickersSet$5(final TLRPC$Document tLRPC$Document) {
+    public void lambda$setStickersSet$5(final TLRPC.Document document) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerSetCell.this.lambda$setStickersSet$4(tLRPC$Document);
+                StickerSetCell.this.lambda$setStickersSet$4(document);
             }
         });
     }
@@ -305,7 +302,7 @@ public class StickerSetCell extends FrameLayout {
         onPremiumButtonClick();
     }
 
-    public TLRPC$TL_messages_stickerSet getStickersSet() {
+    public TLRPC.TL_messages_stickerSet getStickersSet() {
         return this.stickersSet;
     }
 
@@ -463,36 +460,36 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    public void setSearchQuery(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, String str, Theme.ResourcesProvider resourcesProvider) {
-        TLRPC$StickerSet tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set;
-        String str2 = tLRPC$StickerSet.title;
+    public void setSearchQuery(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str, Theme.ResourcesProvider resourcesProvider) {
+        TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+        String str2 = stickerSet.title;
         Locale locale = Locale.ROOT;
         int indexOf = str2.toLowerCase(locale).indexOf(str);
         if (indexOf != -1) {
-            SpannableString spannableString = new SpannableString(tLRPC$StickerSet.title);
+            SpannableString spannableString = new SpannableString(stickerSet.title);
             spannableString.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), indexOf, str.length() + indexOf, 0);
             this.textView.setText(spannableString);
         }
-        int indexOf2 = tLRPC$StickerSet.short_name.toLowerCase(locale).indexOf(str);
+        int indexOf2 = stickerSet.short_name.toLowerCase(locale).indexOf(str);
         if (indexOf2 != -1) {
-            String str3 = tLRPC$StickerSet.emojis ? "t.me/addemoji/" : "t.me/addstickers/";
+            String str3 = stickerSet.emojis ? "t.me/addemoji/" : "t.me/addstickers/";
             int length = indexOf2 + str3.length();
-            SpannableString spannableString2 = new SpannableString(str3 + tLRPC$StickerSet.short_name);
+            SpannableString spannableString2 = new SpannableString(str3 + stickerSet.short_name);
             spannableString2.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), length, str.length() + length, 0);
             this.valueTextView.setText(spannableString2);
         }
     }
 
-    public void setStickersSet(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, boolean z) {
-        setStickersSet(tLRPC$TL_messages_stickerSet, z, false);
+    public void setStickersSet(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, boolean z) {
+        setStickersSet(tL_messages_stickerSet, z, false);
     }
 
-    public void setStickersSet(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, boolean z, boolean z2) {
-        TLRPC$Document tLRPC$Document;
+    public void setStickersSet(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, boolean z, boolean z2) {
+        TLRPC.Document document;
         BackupImageView backupImageView;
         String str;
         this.needDivider = z;
-        this.stickersSet = tLRPC$TL_messages_stickerSet;
+        this.stickersSet = tL_messages_stickerSet;
         this.groupSearch = z2;
         this.imageView.setVisibility(0);
         RadialProgressView radialProgressView = this.progressView;
@@ -510,20 +507,20 @@ public class StickerSetCell extends FrameLayout {
             this.valueTextView.setAlpha(1.0f);
             this.imageView.setAlpha(1.0f);
         }
-        boolean z3 = tLRPC$TL_messages_stickerSet.set.emojis;
+        boolean z3 = tL_messages_stickerSet.set.emojis;
         this.emojis = z3;
         this.sideButtons.setVisibility(z3 ? 0 : 8);
         this.optionsButton.setVisibility(this.emojis ? 8 : 0);
         this.imageView.setColorFilter(null);
-        ArrayList arrayList = tLRPC$TL_messages_stickerSet.documents;
+        ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
         if (arrayList == null || arrayList.isEmpty()) {
-            this.valueTextView.setText(LocaleController.formatPluralString(tLRPC$TL_messages_stickerSet.set.emojis ? "EmojiCount" : "Stickers", 0, new Object[0]));
+            this.valueTextView.setText(LocaleController.formatPluralString(tL_messages_stickerSet.set.emojis ? "EmojiCount" : "Stickers", 0, new Object[0]));
             this.imageView.setImageDrawable(null);
-            if (tLRPC$TL_messages_stickerSet.set.thumb_document_id != 0) {
-                AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(tLRPC$TL_messages_stickerSet.set.thumb_document_id, new AnimatedEmojiDrawable.ReceivedDocument() {
+            if (tL_messages_stickerSet.set.thumb_document_id != 0) {
+                AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(tL_messages_stickerSet.set.thumb_document_id, new AnimatedEmojiDrawable.ReceivedDocument() {
                     @Override
-                    public final void run(TLRPC$Document tLRPC$Document2) {
-                        StickerSetCell.this.lambda$setStickersSet$5(tLRPC$Document2);
+                    public final void run(TLRPC.Document document2) {
+                        StickerSetCell.this.lambda$setStickersSet$5(document2);
                     }
                 });
             }
@@ -532,42 +529,42 @@ public class StickerSetCell extends FrameLayout {
             int i = 0;
             while (true) {
                 if (i >= arrayList.size()) {
-                    tLRPC$Document = null;
+                    document = null;
                     break;
                 }
-                tLRPC$Document = (TLRPC$Document) arrayList.get(i);
-                if (tLRPC$Document != null && tLRPC$Document.id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
+                document = arrayList.get(i);
+                if (document != null && document.id == tL_messages_stickerSet.set.thumb_document_id) {
                     break;
                 } else {
                     i++;
                 }
             }
-            if (tLRPC$Document == null) {
-                tLRPC$Document = (TLRPC$Document) arrayList.get(0);
+            if (document == null) {
+                document = arrayList.get(0);
             }
-            TLRPC$Document tLRPC$Document2 = tLRPC$Document;
+            TLRPC.Document document2 = document;
             LiteMode.isEnabled(1);
-            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messages_stickerSet.set.thumbs, 90);
+            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tL_messages_stickerSet.set.thumbs, 90);
             if (closestPhotoSizeWithSize == null) {
-                closestPhotoSizeWithSize = tLRPC$Document2;
+                closestPhotoSizeWithSize = document2;
             }
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb((ArrayList<TLRPC$PhotoSize>) tLRPC$TL_messages_stickerSet.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
-            boolean z4 = closestPhotoSizeWithSize instanceof TLRPC$Document;
-            ImageLocation forDocument = z4 ? ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document2.thumbs, 90), tLRPC$Document2) : ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document2, tLRPC$TL_messages_stickerSet.set.thumb_version);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tL_messages_stickerSet.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
+            boolean z4 = closestPhotoSizeWithSize instanceof TLRPC.Document;
+            ImageLocation forDocument = z4 ? ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document2.thumbs, 90), document2) : ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document2, tL_messages_stickerSet.set.thumb_version);
             boolean isEnabled = LiteMode.isEnabled(this.emojis ? 16388 : 1);
             StringBuilder sb = new StringBuilder();
             sb.append("50_50");
             sb.append(!isEnabled ? "_firstframe" : "");
             String sb2 = sb.toString();
-            if (z4 && (MessageObject.isAnimatedStickerDocument(tLRPC$Document2, true) || MessageObject.isVideoSticker(tLRPC$Document2))) {
+            if (z4 && (MessageObject.isAnimatedStickerDocument(document2, true) || MessageObject.isVideoSticker(document2))) {
                 BackupImageView backupImageView2 = this.imageView;
-                ImageLocation forDocument2 = ImageLocation.getForDocument(tLRPC$Document2);
+                ImageLocation forDocument2 = ImageLocation.getForDocument(document2);
                 if (svgThumb != null) {
-                    backupImageView2.setImage(forDocument2, sb2, svgThumb, 0, tLRPC$TL_messages_stickerSet);
+                    backupImageView2.setImage(forDocument2, sb2, svgThumb, 0, tL_messages_stickerSet);
                 } else {
-                    backupImageView2.setImage(forDocument2, sb2, forDocument, (String) null, 0, tLRPC$TL_messages_stickerSet);
+                    backupImageView2.setImage(forDocument2, sb2, forDocument, (String) null, 0, tL_messages_stickerSet);
                 }
-                if (MessageObject.isTextColorEmoji(tLRPC$Document2)) {
+                if (MessageObject.isTextColorEmoji(document2)) {
                     this.imageView.setColorFilter(Theme.getAnimatedEmojiColorFilter(null));
                 }
             } else {
@@ -578,14 +575,14 @@ public class StickerSetCell extends FrameLayout {
                     backupImageView = this.imageView;
                     str = "tgs";
                 }
-                backupImageView.setImage(forDocument, sb2, str, svgThumb, tLRPC$TL_messages_stickerSet);
+                backupImageView.setImage(forDocument, sb2, str, svgThumb, tL_messages_stickerSet);
             }
         }
         if (this.groupSearch) {
             TextView textView = this.valueTextView;
             StringBuilder sb3 = new StringBuilder();
-            sb3.append(tLRPC$TL_messages_stickerSet.set.emojis ? "t.me/addemoji/" : "t.me/addstickers/");
-            sb3.append(tLRPC$TL_messages_stickerSet.set.short_name);
+            sb3.append(tL_messages_stickerSet.set.emojis ? "t.me/addemoji/" : "t.me/addstickers/");
+            sb3.append(tL_messages_stickerSet.set.short_name);
             textView.setText(sb3.toString());
         }
     }

@@ -35,41 +35,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChannelLocation;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$ChatParticipant;
-import org.telegram.tgnet.TLRPC$ChatPhoto;
-import org.telegram.tgnet.TLRPC$ChatReactions;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
-import org.telegram.tgnet.TLRPC$TL_channelLocation;
-import org.telegram.tgnet.TLRPC$TL_chatParticipantAdmin;
-import org.telegram.tgnet.TLRPC$TL_chatParticipantCreator;
-import org.telegram.tgnet.TLRPC$TL_chatReactionsNone;
-import org.telegram.tgnet.TLRPC$TL_chatReactionsSome;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPhotoEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_exportedChatInvites;
-import org.telegram.tgnet.TLRPC$TL_messages_getExportedChatInvites;
-import org.telegram.tgnet.TLRPC$TL_photo;
-import org.telegram.tgnet.TLRPC$TL_photos_updateProfilePhoto;
-import org.telegram.tgnet.TLRPC$TL_photos_uploadProfilePhoto;
-import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
-import org.telegram.tgnet.TLRPC$TL_userProfilePhoto;
-import org.telegram.tgnet.TLRPC$TL_username;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.TLRPC$UserProfilePhoto;
-import org.telegram.tgnet.TLRPC$VideoSize;
-import org.telegram.tgnet.tl.TL_bots$setBotInfo;
-import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -105,8 +73,8 @@ import org.telegram.ui.Stars.BotStarsController;
 
 public class ChatEditActivity extends BaseFragment implements ImageUpdater.ImageUpdaterDelegate, NotificationCenter.NotificationCenterDelegate {
     private TextCell adminCell;
-    private TLRPC$ChatReactions availableReactions;
-    private TLRPC$FileLocation avatar;
+    private TLRPC.ChatReactions availableReactions;
+    private TLRPC.FileLocation avatar;
     private AnimatorSet avatarAnimation;
     private LinearLayout avatarContainer;
     private AvatarDrawable avatarDrawable;
@@ -115,7 +83,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     private RadialProgressView avatarProgressView;
     private TextCell balanceCell;
     private TextCell blockCell;
-    private TL_stories$TL_premium_boostsStatus boostsStatus;
+    private TL_stories.TL_premium_boostsStatus boostsStatus;
     private TextInfoPrivacyCell botInfoCell;
     RLottieDrawable cameraDrawable;
     private boolean canForum;
@@ -123,8 +91,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     private long chatId;
     private PeerColorActivity.ChangeNameColorCell colorCell;
     private boolean createAfterUpload;
-    private TLRPC$Chat currentChat;
-    private TLRPC$User currentUser;
+    private TLRPC.Chat currentChat;
+    private TLRPC.User currentUser;
     private TextSettingsCell deleteCell;
     private FrameLayout deleteContainer;
     private ShadowSectionCell deleteInfoCell;
@@ -139,7 +107,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     private TextCell historyCell;
     private boolean historyHidden;
     private ImageUpdater imageUpdater;
-    private TLRPC$ChatFull info;
+    private TLRPC.ChatFull info;
     private LinearLayout infoContainer;
     private ShadowSectionCell infoSectionCell;
     private TextCell inviteLinksCell;
@@ -169,7 +137,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     private UndoView undoView;
     private ValueAnimator updateHistoryShowAnimator;
     private long userId;
-    private TLRPC$UserFull userInfo;
+    private TLRPC.UserFull userInfo;
 
     public class AnonymousClass1 extends PhotoViewer.EmptyPhotoViewerProvider {
         AnonymousClass1() {
@@ -192,7 +160,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             ChatEditActivity.this.setAvatarCell.imageView.setAnimation(ChatEditActivity.this.cameraDrawable);
         }
 
-        public void lambda$onDeletePhoto$1(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onDeletePhoto$1(TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -207,7 +175,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
 
         @Override
-        public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r7, org.telegram.tgnet.TLRPC$FileLocation r8, int r9, boolean r10) {
+        public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r7, org.telegram.tgnet.TLRPC.FileLocation r8, int r9, boolean r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatEditActivity.AnonymousClass1.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
         }
 
@@ -221,14 +189,14 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             if (ChatEditActivity.this.userId == 0) {
                 return true;
             }
-            TLRPC$TL_photos_updateProfilePhoto tLRPC$TL_photos_updateProfilePhoto = new TLRPC$TL_photos_updateProfilePhoto();
-            tLRPC$TL_photos_updateProfilePhoto.bot = ChatEditActivity.this.getMessagesController().getInputUser(ChatEditActivity.this.userId);
-            tLRPC$TL_photos_updateProfilePhoto.flags |= 2;
-            tLRPC$TL_photos_updateProfilePhoto.id = new TLRPC$TL_inputPhotoEmpty();
-            ChatEditActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_photos_updateProfilePhoto, new RequestDelegate() {
+            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+            tL_photos_updateProfilePhoto.bot = ChatEditActivity.this.getMessagesController().getInputUser(ChatEditActivity.this.userId);
+            tL_photos_updateProfilePhoto.flags |= 2;
+            tL_photos_updateProfilePhoto.id = new TLRPC.TL_inputPhotoEmpty();
+            ChatEditActivity.this.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatEditActivity.AnonymousClass1.this.lambda$onDeletePhoto$1(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChatEditActivity.AnonymousClass1.this.lambda$onDeletePhoto$1(tLObject, tL_error);
                 }
             });
             return false;
@@ -255,7 +223,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if (this.chatId == 0) {
             this.imageUpdater = new ImageUpdater(false, 0, false);
         } else {
-            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+            TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
             this.imageUpdater = new ImageUpdater(true, (chat == null || !ChatObject.isChannelAndNotMegaGroup(chat)) ? 2 : 1, true);
         }
     }
@@ -271,8 +239,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         String str3;
         String str4 = "";
         if (this.userId != 0) {
-            TLRPC$UserFull tLRPC$UserFull = this.userInfo;
-            if (tLRPC$UserFull != null && (str3 = tLRPC$UserFull.about) != null) {
+            TLRPC.UserFull userFull = this.userInfo;
+            if (userFull != null && (str3 = userFull.about) != null) {
                 str4 = str3;
             }
             EditTextEmoji editTextEmoji2 = this.nameTextView;
@@ -291,11 +259,11 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 }
             });
         } else {
-            TLRPC$ChatFull tLRPC$ChatFull = this.info;
-            if (tLRPC$ChatFull != null && (str2 = tLRPC$ChatFull.about) != null) {
+            TLRPC.ChatFull chatFull = this.info;
+            if (chatFull != null && (str2 = chatFull.about) != null) {
                 str4 = str2;
             }
-            if ((tLRPC$ChatFull == null || !ChatObject.isChannel(this.currentChat) || this.info.hidden_prehistory == this.historyHidden) && (((editTextEmoji = this.nameTextView) == null || this.currentChat.title.equals(editTextEmoji.getText().toString())) && (((editTextBoldCursor = this.descriptionTextView) == null || str4.equals(editTextBoldCursor.getText().toString())) && this.forum == this.currentChat.forum))) {
+            if ((chatFull == null || !ChatObject.isChannel(this.currentChat) || this.info.hidden_prehistory == this.historyHidden) && (((editTextEmoji = this.nameTextView) == null || this.currentChat.title.equals(editTextEmoji.getText().toString())) && (((editTextBoldCursor = this.descriptionTextView) == null || str4.equals(editTextBoldCursor.getText().toString())) && this.forum == this.currentChat.forum))) {
                 return true;
             }
             builder = new AlertDialog.Builder(getParentActivity());
@@ -325,31 +293,31 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         return false;
     }
 
-    private String getActiveUsername(TLRPC$User tLRPC$User) {
-        String str = tLRPC$User.username;
+    private String getActiveUsername(TLRPC.User user) {
+        String str = user.username;
         if (str != null) {
             return str;
         }
-        Iterator it = tLRPC$User.usernames.iterator();
+        Iterator<TLRPC.TL_username> it = user.usernames.iterator();
         while (it.hasNext()) {
-            TLRPC$TL_username tLRPC$TL_username = (TLRPC$TL_username) it.next();
-            if (tLRPC$TL_username.active) {
-                return tLRPC$TL_username.username;
+            TLRPC.TL_username next = it.next();
+            if (next.active) {
+                return next.username;
             }
         }
         return null;
     }
 
     private int getAdminCount() {
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        if (tLRPC$ChatFull == null) {
+        TLRPC.ChatFull chatFull = this.info;
+        if (chatFull == null) {
             return 1;
         }
-        int size = tLRPC$ChatFull.participants.participants.size();
+        int size = chatFull.participants.participants.size();
         int i = 0;
         for (int i2 = 0; i2 < size; i2++) {
-            TLRPC$ChatParticipant tLRPC$ChatParticipant = (TLRPC$ChatParticipant) this.info.participants.participants.get(i2);
-            if ((tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin) || (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator)) {
+            TLRPC.ChatParticipant chatParticipant = this.info.participants.participants.get(i2);
+            if ((chatParticipant instanceof TLRPC.TL_chatParticipantAdmin) || (chatParticipant instanceof TLRPC.TL_chatParticipantCreator)) {
                 i++;
             }
         }
@@ -361,7 +329,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$39(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$checkDiscard$40(DialogInterface dialogInterface, int i) {
@@ -369,16 +337,16 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$41(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$createView$10(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        TLRPC$TL_channelLocation tLRPC$TL_channelLocation = new TLRPC$TL_channelLocation();
-        tLRPC$TL_channelLocation.address = tLRPC$MessageMedia.address;
-        tLRPC$TL_channelLocation.geo_point = tLRPC$MessageMedia.geo;
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        tLRPC$ChatFull.location = tLRPC$TL_channelLocation;
-        tLRPC$ChatFull.flags |= 32768;
+    public void lambda$createView$10(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+        tL_channelLocation.address = messageMedia.address;
+        tL_channelLocation.geo_point = messageMedia.geo;
+        TLRPC.ChatFull chatFull = this.info;
+        chatFull.location = tL_channelLocation;
+        chatFull.flags |= 32768;
         updateFields(false, true);
         getMessagesController().loadFullChat(this.chatId, 0, true);
     }
@@ -387,17 +355,17 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if (AndroidUtilities.isMapsInstalled(this)) {
             LocationActivity locationActivity = new LocationActivity(4);
             locationActivity.setDialogId(-this.chatId);
-            TLRPC$ChatFull tLRPC$ChatFull = this.info;
-            if (tLRPC$ChatFull != null) {
-                TLRPC$ChannelLocation tLRPC$ChannelLocation = tLRPC$ChatFull.location;
-                if (tLRPC$ChannelLocation instanceof TLRPC$TL_channelLocation) {
-                    locationActivity.setInitialLocation((TLRPC$TL_channelLocation) tLRPC$ChannelLocation);
+            TLRPC.ChatFull chatFull = this.info;
+            if (chatFull != null) {
+                TLRPC.ChannelLocation channelLocation = chatFull.location;
+                if (channelLocation instanceof TLRPC.TL_channelLocation) {
+                    locationActivity.setInitialLocation((TLRPC.TL_channelLocation) channelLocation);
                 }
             }
             locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
                 @Override
-                public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-                    ChatEditActivity.this.lambda$createView$10(tLRPC$MessageMedia, i, z, i2);
+                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+                    ChatEditActivity.this.lambda$createView$10(messageMedia, i, z, i2);
                 }
             });
             presentFragment(locationActivity);
@@ -482,8 +450,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         showDialog(builder.create());
     }
 
-    public void lambda$createView$17(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
-        this.boostsStatus = tL_stories$TL_premium_boostsStatus;
+    public void lambda$createView$17(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        this.boostsStatus = tL_premium_boostsStatus;
     }
 
     public void lambda$createView$18(View view) {
@@ -495,8 +463,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$createView$19(FrameLayout frameLayout, View view) {
         if (!this.canForum) {
-            TLRPC$ChatFull tLRPC$ChatFull = this.info;
-            BulletinFactory.of(this).createSimpleBulletin(R.raw.topics, AndroidUtilities.replaceTags((tLRPC$ChatFull == null || tLRPC$ChatFull.linked_chat_id == 0) ? LocaleController.formatPluralString("ChannelTopicsForbidden", getMessagesController().forumUpgradeParticipantsMin, new Object[0]) : LocaleController.getString("ChannelTopicsDiscussionForbidden", R.string.ChannelTopicsDiscussionForbidden))).show();
+            TLRPC.ChatFull chatFull = this.info;
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.topics, AndroidUtilities.replaceTags((chatFull == null || chatFull.linked_chat_id == 0) ? LocaleController.formatPluralString("ChannelTopicsForbidden", getMessagesController().forumUpgradeParticipantsMin, new Object[0]) : LocaleController.getString("ChannelTopicsDiscussionForbidden", R.string.ChannelTopicsDiscussionForbidden))).show();
             frameLayout.performHapticFeedback(3);
         } else {
             boolean z = !this.forum;
@@ -522,8 +490,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$createView$21(View view) {
         ManageLinksActivity manageLinksActivity = new ManageLinksActivity(this.chatId, 0L, 0);
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        manageLinksActivity.setInfo(tLRPC$ChatFull, tLRPC$ChatFull.exported_invite);
+        TLRPC.ChatFull chatFull = this.info;
+        manageLinksActivity.setInfo(chatFull, chatFull.exported_invite);
         presentFragment(manageLinksActivity);
     }
 
@@ -586,37 +554,37 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             return;
         }
         ImageLocation imageLocation = null;
-        TLRPC$User user = this.userId == 0 ? null : getMessagesController().getUser(Long.valueOf(this.userId));
+        TLRPC.User user = this.userId == 0 ? null : getMessagesController().getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = user.photo;
-            if (tLRPC$UserProfilePhoto == null || tLRPC$UserProfilePhoto.photo_big == null) {
+            TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+            if (userProfilePhoto == null || userProfilePhoto.photo_big == null) {
                 return;
             }
             PhotoViewer.getInstance().setParentActivity(this);
-            TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto2 = user.photo;
-            int i = tLRPC$UserProfilePhoto2.dc_id;
+            TLRPC.UserProfilePhoto userProfilePhoto2 = user.photo;
+            int i = userProfilePhoto2.dc_id;
             if (i != 0) {
-                tLRPC$UserProfilePhoto2.photo_big.dc_id = i;
+                userProfilePhoto2.photo_big.dc_id = i;
             }
             PhotoViewer.getInstance().openPhoto(user.photo.photo_big, this.provider);
             return;
         }
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
-        TLRPC$ChatPhoto tLRPC$ChatPhoto = chat.photo;
-        if (tLRPC$ChatPhoto == null || tLRPC$ChatPhoto.photo_big == null) {
+        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+        TLRPC.ChatPhoto chatPhoto = chat.photo;
+        if (chatPhoto == null || chatPhoto.photo_big == null) {
             return;
         }
         PhotoViewer.getInstance().setParentActivity(this);
-        TLRPC$ChatPhoto tLRPC$ChatPhoto2 = chat.photo;
-        int i2 = tLRPC$ChatPhoto2.dc_id;
+        TLRPC.ChatPhoto chatPhoto2 = chat.photo;
+        int i2 = chatPhoto2.dc_id;
         if (i2 != 0) {
-            tLRPC$ChatPhoto2.photo_big.dc_id = i2;
+            chatPhoto2.photo_big.dc_id = i2;
         }
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        if (tLRPC$ChatFull != null) {
-            TLRPC$Photo tLRPC$Photo = tLRPC$ChatFull.chat_photo;
-            if ((tLRPC$Photo instanceof TLRPC$TL_photo) && !tLRPC$Photo.video_sizes.isEmpty()) {
-                imageLocation = ImageLocation.getForPhoto((TLRPC$VideoSize) this.info.chat_photo.video_sizes.get(0), this.info.chat_photo);
+        TLRPC.ChatFull chatFull = this.info;
+        if (chatFull != null) {
+            TLRPC.Photo photo = chatFull.chat_photo;
+            if ((photo instanceof TLRPC.TL_photo) && !photo.video_sizes.isEmpty()) {
+                imageLocation = ImageLocation.getForPhoto(this.info.chat_photo.video_sizes.get(0), this.info.chat_photo);
             }
         }
         PhotoViewer.getInstance().openPhotoWithVideo(chat.photo.photo_big, imageLocation, this.provider);
@@ -640,7 +608,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -656,9 +624,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     public void lambda$createView$4() {
         this.avatarImage.setImageDrawable(this.avatarDrawable);
         this.setAvatarCell.setTextAndIcon((CharSequence) LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), R.drawable.msg_addphoto, true);
-        TLRPC$User tLRPC$User = this.currentUser;
-        if (tLRPC$User != null) {
-            tLRPC$User.photo = null;
+        TLRPC.User user = this.currentUser;
+        if (user != null) {
+            user.photo = null;
             getMessagesController().putUser(this.currentUser, true);
         }
         this.hasUploadedPhoto = true;
@@ -670,7 +638,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
     }
 
-    public void lambda$createView$5(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createView$5(TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -684,14 +652,14 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if (this.userId == 0) {
             MessagesController.getInstance(this.currentAccount).changeChatAvatar(this.chatId, null, null, null, null, 0.0d, null, null, null, null);
         } else {
-            TLRPC$TL_photos_updateProfilePhoto tLRPC$TL_photos_updateProfilePhoto = new TLRPC$TL_photos_updateProfilePhoto();
-            tLRPC$TL_photos_updateProfilePhoto.bot = getMessagesController().getInputUser(this.userId);
-            tLRPC$TL_photos_updateProfilePhoto.flags |= 2;
-            tLRPC$TL_photos_updateProfilePhoto.id = new TLRPC$TL_inputPhotoEmpty();
-            getConnectionsManager().sendRequest(tLRPC$TL_photos_updateProfilePhoto, new RequestDelegate() {
+            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+            tL_photos_updateProfilePhoto.bot = getMessagesController().getInputUser(this.userId);
+            tL_photos_updateProfilePhoto.flags |= 2;
+            tL_photos_updateProfilePhoto.id = new TLRPC.TL_inputPhotoEmpty();
+            getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatEditActivity.this.lambda$createView$5(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChatEditActivity.this.lambda$createView$5(tLObject, tL_error);
                 }
             });
         }
@@ -747,7 +715,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
     }
 
-    public void lambda$didUploadPhoto$36(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didUploadPhoto$36(TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -756,12 +724,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         });
     }
 
-    public void lambda$didUploadPhoto$37(TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, TLRPC$VideoSize tLRPC$VideoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, double d, String str) {
-        TLRPC$FileLocation tLRPC$FileLocation = tLRPC$PhotoSize.location;
-        this.avatar = tLRPC$FileLocation;
-        if (tLRPC$InputFile == null && tLRPC$InputFile2 == null && tLRPC$VideoSize == null) {
+    public void lambda$didUploadPhoto$37(TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2, double d, String str) {
+        TLRPC.FileLocation fileLocation = photoSize.location;
+        this.avatar = fileLocation;
+        if (inputFile == null && inputFile2 == null && videoSize == null) {
             BackupImageView backupImageView = this.avatarImage;
-            ImageLocation forLocal = ImageLocation.getForLocal(tLRPC$FileLocation);
+            ImageLocation forLocal = ImageLocation.getForLocal(fileLocation);
             AvatarDrawable avatarDrawable = this.avatarDrawable;
             Object obj = this.currentUser;
             if (obj == null) {
@@ -780,45 +748,45 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
         long j = 0;
         if (this.userId != 0) {
-            TLRPC$User tLRPC$User = this.currentUser;
-            if (tLRPC$User != null) {
-                tLRPC$User.photo = new TLRPC$TL_userProfilePhoto();
-                TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = this.currentUser.photo;
-                if (tLRPC$InputFile != null) {
-                    j = tLRPC$InputFile.id;
-                } else if (tLRPC$InputFile2 != null) {
-                    j = tLRPC$InputFile2.id;
+            TLRPC.User user = this.currentUser;
+            if (user != null) {
+                user.photo = new TLRPC.TL_userProfilePhoto();
+                TLRPC.UserProfilePhoto userProfilePhoto = this.currentUser.photo;
+                if (inputFile != null) {
+                    j = inputFile.id;
+                } else if (inputFile2 != null) {
+                    j = inputFile2.id;
                 }
-                tLRPC$UserProfilePhoto.photo_id = j;
-                tLRPC$UserProfilePhoto.photo_big = tLRPC$PhotoSize2.location;
-                tLRPC$UserProfilePhoto.photo_small = tLRPC$PhotoSize.location;
+                userProfilePhoto.photo_id = j;
+                userProfilePhoto.photo_big = photoSize2.location;
+                userProfilePhoto.photo_small = photoSize.location;
                 getMessagesController().putUser(this.currentUser, true);
             }
-            TLRPC$TL_photos_uploadProfilePhoto tLRPC$TL_photos_uploadProfilePhoto = new TLRPC$TL_photos_uploadProfilePhoto();
-            if (tLRPC$InputFile != null) {
-                tLRPC$TL_photos_uploadProfilePhoto.file = tLRPC$InputFile;
-                tLRPC$TL_photos_uploadProfilePhoto.flags |= 1;
+            TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
+            if (inputFile != null) {
+                tL_photos_uploadProfilePhoto.file = inputFile;
+                tL_photos_uploadProfilePhoto.flags |= 1;
             }
-            if (tLRPC$InputFile2 != null) {
-                tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
-                int i2 = tLRPC$TL_photos_uploadProfilePhoto.flags;
-                tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-                tLRPC$TL_photos_uploadProfilePhoto.flags = i2 | 6;
+            if (inputFile2 != null) {
+                tL_photos_uploadProfilePhoto.video = inputFile2;
+                int i2 = tL_photos_uploadProfilePhoto.flags;
+                tL_photos_uploadProfilePhoto.video_start_ts = d;
+                tL_photos_uploadProfilePhoto.flags = i2 | 6;
             }
-            if (tLRPC$VideoSize != null) {
-                tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;
-                tLRPC$TL_photos_uploadProfilePhoto.flags |= 16;
+            if (videoSize != null) {
+                tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
+                tL_photos_uploadProfilePhoto.flags |= 16;
             }
-            tLRPC$TL_photos_uploadProfilePhoto.bot = getMessagesController().getInputUser(this.currentUser);
-            tLRPC$TL_photos_uploadProfilePhoto.flags |= 32;
-            getConnectionsManager().sendRequest(tLRPC$TL_photos_uploadProfilePhoto, new RequestDelegate() {
+            tL_photos_uploadProfilePhoto.bot = getMessagesController().getInputUser(this.currentUser);
+            tL_photos_uploadProfilePhoto.flags |= 32;
+            getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatEditActivity.this.lambda$didUploadPhoto$36(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChatEditActivity.this.lambda$didUploadPhoto$36(tLObject, tL_error);
                 }
             });
         } else {
-            getMessagesController().changeChatAvatar(this.chatId, null, tLRPC$InputFile, tLRPC$InputFile2, tLRPC$VideoSize, d, str, tLRPC$PhotoSize.location, tLRPC$PhotoSize2.location, null);
+            getMessagesController().changeChatAvatar(this.chatId, null, inputFile, inputFile2, videoSize, d, str, photoSize.location, photoSize2.location, null);
         }
         if (this.createAfterUpload) {
             try {
@@ -843,32 +811,32 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
     }
 
-    public void lambda$loadLinksCount$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error == null) {
-            this.info.invitesCount = ((TLRPC$TL_messages_exportedChatInvites) tLObject).count;
+    public void lambda$loadLinksCount$0(TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error == null) {
+            this.info.invitesCount = ((TLRPC.TL_messages_exportedChatInvites) tLObject).count;
             getMessagesStorage().saveChatLinksCount(this.chatId, this.info.invitesCount);
             updateFields(false, false);
         }
     }
 
-    public void lambda$loadLinksCount$1(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadLinksCount$1(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditActivity.this.lambda$loadLinksCount$0(tLRPC$TL_error, tLObject);
+                ChatEditActivity.this.lambda$loadLinksCount$0(tL_error, tLObject);
             }
         });
     }
 
     public void lambda$processDone$42() {
         this.progressDialog.dismiss();
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$processDone$43(TL_bots$setBotInfo tL_bots$setBotInfo, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        TLRPC$UserFull tLRPC$UserFull = this.userInfo;
-        if (tLRPC$UserFull != null) {
-            tLRPC$UserFull.about = tL_bots$setBotInfo.about;
+    public void lambda$processDone$43(TL_bots.setBotInfo setbotinfo, TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.UserFull userFull = this.userInfo;
+        if (userFull != null) {
+            userFull.about = setbotinfo.about;
             getMessagesStorage().updateUserInfo(this.userInfo, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -893,9 +861,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.chatId = j;
         this.currentChat = getMessagesController().getChat(Long.valueOf(j));
         this.donePressed = false;
-        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-        if (tLRPC$ChatFull != null) {
-            tLRPC$ChatFull.hidden_prehistory = true;
+        TLRPC.ChatFull chatFull = this.info;
+        if (chatFull != null) {
+            chatFull.hidden_prehistory = true;
         }
         processDone();
     }
@@ -918,14 +886,14 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     private void loadLinksCount() {
-        TLRPC$TL_messages_getExportedChatInvites tLRPC$TL_messages_getExportedChatInvites = new TLRPC$TL_messages_getExportedChatInvites();
-        tLRPC$TL_messages_getExportedChatInvites.peer = getMessagesController().getInputPeer(-this.chatId);
-        tLRPC$TL_messages_getExportedChatInvites.admin_id = getMessagesController().getInputUser(getUserConfig().getCurrentUser());
-        tLRPC$TL_messages_getExportedChatInvites.limit = 0;
-        getConnectionsManager().sendRequest(tLRPC$TL_messages_getExportedChatInvites, new RequestDelegate() {
+        TLRPC.TL_messages_getExportedChatInvites tL_messages_getExportedChatInvites = new TLRPC.TL_messages_getExportedChatInvites();
+        tL_messages_getExportedChatInvites.peer = getMessagesController().getInputPeer(-this.chatId);
+        tL_messages_getExportedChatInvites.admin_id = getMessagesController().getInputUser(getUserConfig().getCurrentUser());
+        tL_messages_getExportedChatInvites.limit = 0;
+        getConnectionsManager().sendRequest(tL_messages_getExportedChatInvites, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatEditActivity.this.lambda$loadLinksCount$1(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChatEditActivity.this.lambda$loadLinksCount$1(tLObject, tL_error);
             }
         });
     }
@@ -948,28 +916,28 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.donePressed = true;
         String str3 = "";
         if (this.currentUser != null) {
-            final TL_bots$setBotInfo tL_bots$setBotInfo = new TL_bots$setBotInfo();
-            tL_bots$setBotInfo.bot = getMessagesController().getInputUser(this.currentUser);
-            tL_bots$setBotInfo.flags |= 4;
-            tL_bots$setBotInfo.lang_code = "";
+            final TL_bots.setBotInfo setbotinfo = new TL_bots.setBotInfo();
+            setbotinfo.bot = getMessagesController().getInputUser(this.currentUser);
+            setbotinfo.flags |= 4;
+            setbotinfo.lang_code = "";
             if (!this.currentUser.first_name.equals(this.nameTextView.getText().toString())) {
-                tL_bots$setBotInfo.name = this.nameTextView.getText().toString();
-                tL_bots$setBotInfo.flags |= 8;
+                setbotinfo.name = this.nameTextView.getText().toString();
+                setbotinfo.flags |= 8;
             }
-            TLRPC$UserFull tLRPC$UserFull = this.userInfo;
-            if (tLRPC$UserFull != null && (str2 = tLRPC$UserFull.about) != null) {
+            TLRPC.UserFull userFull = this.userInfo;
+            if (userFull != null && (str2 = userFull.about) != null) {
                 str3 = str2;
             }
             EditTextBoldCursor editTextBoldCursor = this.descriptionTextView;
             if (editTextBoldCursor != null && !str3.equals(editTextBoldCursor.getText().toString())) {
-                tL_bots$setBotInfo.about = this.descriptionTextView.getText().toString();
-                tL_bots$setBotInfo.flags = 1 | tL_bots$setBotInfo.flags;
+                setbotinfo.about = this.descriptionTextView.getText().toString();
+                setbotinfo.flags = 1 | setbotinfo.flags;
             }
             this.progressDialog = new AlertDialog(getParentActivity(), 3);
-            final int sendRequest = getConnectionsManager().sendRequest(tL_bots$setBotInfo, new RequestDelegate() {
+            final int sendRequest = getConnectionsManager().sendRequest(setbotinfo, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatEditActivity.this.lambda$processDone$43(tL_bots$setBotInfo, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChatEditActivity.this.lambda$processDone$43(setbotinfo, tLObject, tL_error);
                 }
             });
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -991,11 +959,11 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             return;
         }
         if (this.info != null && ChatObject.isChannel(this.currentChat)) {
-            TLRPC$ChatFull tLRPC$ChatFull = this.info;
-            boolean z = tLRPC$ChatFull.hidden_prehistory;
+            TLRPC.ChatFull chatFull = this.info;
+            boolean z = chatFull.hidden_prehistory;
             boolean z2 = this.historyHidden;
             if (z != z2) {
-                tLRPC$ChatFull.hidden_prehistory = z2;
+                chatFull.hidden_prehistory = z2;
                 getMessagesController().toggleChannelInvitesHistory(this.chatId, this.historyHidden);
             }
         }
@@ -1015,8 +983,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if (!this.currentChat.title.equals(this.nameTextView.getText().toString())) {
             getMessagesController().changeChatTitle(this.chatId, this.nameTextView.getText().toString());
         }
-        TLRPC$ChatFull tLRPC$ChatFull2 = this.info;
-        if (tLRPC$ChatFull2 != null && (str = tLRPC$ChatFull2.about) != null) {
+        TLRPC.ChatFull chatFull2 = this.info;
+        if (chatFull2 != null && (str = chatFull2.about) != null) {
             str3 = str;
         }
         EditTextBoldCursor editTextBoldCursor2 = this.descriptionTextView;
@@ -1035,7 +1003,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 }
             }
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     private void setAvatar() {
@@ -1045,8 +1013,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if (this.avatarImage == null || this.hasUploadedPhoto) {
             return;
         }
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
-        TLRPC$User user = this.userId == 0 ? null : getMessagesController().getUser(Long.valueOf(this.userId));
+        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+        TLRPC.User user = this.userId == 0 ? null : getMessagesController().getUser(Long.valueOf(this.userId));
         if (chat == null && user == null) {
             return;
         }
@@ -1056,10 +1024,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if (user == null ? chat.photo == null : user.photo == null) {
             this.avatarImage.setImageDrawable(this.avatarDrawable);
         } else {
-            TLRPC$Chat tLRPC$Chat = user != null ? user : chat;
+            TLRPC.Chat chat2 = user != null ? user : chat;
             this.avatar = user != null ? user.photo.photo_small : chat.photo.photo_small;
-            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$Chat, 1);
-            this.avatarImage.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
+            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(chat2, 1);
+            this.avatarImage.setForUserOrChat(chat2, this.avatarDrawable);
             if (forUserOrChat != null) {
                 z = true;
             }
@@ -1242,10 +1210,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             textCell.setTextAndValueAndIcon(string, str, i, z);
             return;
         }
-        Iterator it = this.currentUser.usernames.iterator();
+        Iterator<TLRPC.TL_username> it = this.currentUser.usernames.iterator();
         int i2 = 0;
         while (it.hasNext()) {
-            if (((TLRPC$TL_username) it.next()).active) {
+            if (it.next().active) {
                 i2++;
             }
         }
@@ -1264,29 +1232,29 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         String string;
         int i;
         int i2;
-        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
+        TLRPC.ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.currentChat);
-        TLRPC$ChatReactions tLRPC$ChatReactions = this.availableReactions;
-        if (tLRPC$ChatReactions == null || (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsNone)) {
+        TLRPC.ChatReactions chatReactions = this.availableReactions;
+        if (chatReactions == null || (chatReactions instanceof TLRPC.TL_chatReactionsNone)) {
             string = LocaleController.getString(R.string.ReactionsOff);
             if (chatFull != null && chatFull.paid_reactions_available) {
                 string = "1";
             }
         } else {
-            if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsSome) {
-                TLRPC$TL_chatReactionsSome tLRPC$TL_chatReactionsSome = (TLRPC$TL_chatReactionsSome) tLRPC$ChatReactions;
+            if (chatReactions instanceof TLRPC.TL_chatReactionsSome) {
+                TLRPC.TL_chatReactionsSome tL_chatReactionsSome = (TLRPC.TL_chatReactionsSome) chatReactions;
                 int i3 = 0;
-                while (i2 < tLRPC$TL_chatReactionsSome.reactions.size()) {
-                    TLRPC$Reaction tLRPC$Reaction = (TLRPC$Reaction) tLRPC$TL_chatReactionsSome.reactions.get(i2);
-                    if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
-                        TLRPC$TL_availableReaction tLRPC$TL_availableReaction = getMediaDataController().getReactionsMap().get(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon);
-                        if (tLRPC$TL_availableReaction != null) {
-                            if (tLRPC$TL_availableReaction.inactive) {
+                while (i2 < tL_chatReactionsSome.reactions.size()) {
+                    TLRPC.Reaction reaction = tL_chatReactionsSome.reactions.get(i2);
+                    if (reaction instanceof TLRPC.TL_reactionEmoji) {
+                        TLRPC.TL_availableReaction tL_availableReaction = getMediaDataController().getReactionsMap().get(((TLRPC.TL_reactionEmoji) reaction).emoticon);
+                        if (tL_availableReaction != null) {
+                            if (tL_availableReaction.inactive) {
                             }
                             i3++;
                         }
                     } else {
-                        i2 = tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji ? 0 : i2 + 1;
+                        i2 = reaction instanceof TLRPC.TL_reactionCustomEmoji ? 0 : i2 + 1;
                         i3++;
                     }
                 }
@@ -1328,13 +1296,13 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         EditTextBoldCursor editTextBoldCursor;
         boolean z = true;
         if (i == NotificationCenter.chatInfoDidLoad) {
-            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (tLRPC$ChatFull.id == this.chatId) {
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+            if (chatFull.id == this.chatId) {
                 if (this.info == null && (editTextBoldCursor = this.descriptionTextView) != null) {
-                    editTextBoldCursor.setText(tLRPC$ChatFull.about);
+                    editTextBoldCursor.setText(chatFull.about);
                 }
                 boolean z2 = this.info == null;
-                this.info = tLRPC$ChatFull;
+                this.info = chatFull;
                 updateCanForum();
                 if (ChatObject.isChannel(this.currentChat) && !this.info.hidden_prehistory) {
                     z = false;
@@ -1363,10 +1331,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if (i == NotificationCenter.chatAvailableReactionsUpdated) {
             long longValue = ((Long) objArr[0]).longValue();
             if (longValue == this.chatId) {
-                TLRPC$ChatFull chatFull = getMessagesController().getChatFull(longValue);
-                this.info = chatFull;
-                if (chatFull != null) {
-                    this.availableReactions = chatFull.available_reactions;
+                TLRPC.ChatFull chatFull2 = getMessagesController().getChatFull(longValue);
+                this.info = chatFull2;
+                if (chatFull2 != null) {
+                    this.availableReactions = chatFull2.available_reactions;
                 }
                 updateReactionsCell(true);
                 return;
@@ -1399,11 +1367,11 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     @Override
-    public void didUploadPhoto(final TLRPC$InputFile tLRPC$InputFile, final TLRPC$InputFile tLRPC$InputFile2, final double d, final String str, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, final TLRPC$VideoSize tLRPC$VideoSize) {
+    public void didUploadPhoto(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, final String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z, final TLRPC.VideoSize videoSize) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditActivity.this.lambda$didUploadPhoto$37(tLRPC$PhotoSize2, tLRPC$InputFile, tLRPC$InputFile2, tLRPC$VideoSize, tLRPC$PhotoSize, d, str);
+                ChatEditActivity.this.lambda$didUploadPhoto$37(photoSize2, inputFile, inputFile2, videoSize, photoSize, d, str);
             }
         });
     }
@@ -1631,9 +1599,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
     }
 
-    public void setInfo(TLRPC$ChatFull tLRPC$ChatFull) {
-        this.info = tLRPC$ChatFull;
-        if (tLRPC$ChatFull != null) {
+    public void setInfo(TLRPC.ChatFull chatFull) {
+        this.info = chatFull;
+        if (chatFull != null) {
             if (this.currentChat == null) {
                 this.currentChat = getMessagesController().getChat(Long.valueOf(this.chatId));
             }
@@ -1644,9 +1612,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
     }
 
-    public void setInfo(TLRPC$UserFull tLRPC$UserFull) {
-        this.userInfo = tLRPC$UserFull;
-        if (tLRPC$UserFull == null || this.currentUser != null) {
+    public void setInfo(TLRPC.UserFull userFull) {
+        this.userInfo = userFull;
+        if (userFull == null || this.currentUser != null) {
             return;
         }
         this.currentUser = this.userId == 0 ? null : getMessagesController().getUser(Long.valueOf(this.userId));
@@ -1660,9 +1628,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         TextCell textCell;
         PeerColorActivity.ChangeNameColorCell changeNameColorCell = this.colorCell;
         if (changeNameColorCell != null) {
-            TLRPC$Chat tLRPC$Chat = this.currentChat;
+            TLRPC.Chat chat = this.currentChat;
             TextCell textCell2 = this.historyCell;
-            changeNameColorCell.set(tLRPC$Chat, (textCell2 != null && textCell2.getVisibility() == 0) || ((textCell = this.forumsCell) != null && textCell.getVisibility() == 0) || (ChatObject.isMegagroup(this.currentChat) && ChatObject.hasAdminRights(this.currentChat)));
+            changeNameColorCell.set(chat, (textCell2 != null && textCell2.getVisibility() == 0) || ((textCell = this.forumsCell) != null && textCell.getVisibility() == 0) || (ChatObject.isMegagroup(this.currentChat) && ChatObject.hasAdminRights(this.currentChat)));
         }
     }
 }

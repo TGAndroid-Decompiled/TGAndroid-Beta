@@ -52,9 +52,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_reactionCount;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
@@ -375,11 +373,11 @@ public class ActionBarMenuItem extends FrameLayout {
 
         @Override
         public void setData(FiltersView.MediaFilterData mediaFilterData) {
-            TLRPC$TL_reactionCount tLRPC$TL_reactionCount = new TLRPC$TL_reactionCount();
-            tLRPC$TL_reactionCount.count = 1;
-            tLRPC$TL_reactionCount.reaction = mediaFilterData.reaction.toTLReaction();
+            TLRPC.TL_reactionCount tL_reactionCount = new TLRPC.TL_reactionCount();
+            tL_reactionCount.count = 1;
+            tL_reactionCount.reaction = mediaFilterData.reaction.toTLReaction();
             ReactionsLayoutInBubble.ReactionButton reactionButton = null;
-            ReactionsLayoutInBubble.ReactionButton reactionButton2 = new ReactionsLayoutInBubble.ReactionButton(reactionButton, UserConfig.selectedAccount, this, tLRPC$TL_reactionCount, false, true, this.resourcesProvider) {
+            ReactionsLayoutInBubble.ReactionButton reactionButton2 = new ReactionsLayoutInBubble.ReactionButton(reactionButton, UserConfig.selectedAccount, this, tL_reactionCount, false, true, this.resourcesProvider) {
                 @Override
                 protected int getCacheType() {
                     return 9;
@@ -486,7 +484,7 @@ public class ActionBarMenuItem extends FrameLayout {
         public void setData(FiltersView.MediaFilterData mediaFilterData) {
             CombinedDrawable createCircleDrawableWithIcon;
             int i;
-            TLRPC$Chat tLRPC$Chat;
+            TLRPC.Chat chat;
             this.data = mediaFilterData;
             this.titleView.setText(mediaFilterData.getTitle());
             CombinedDrawable createCircleDrawableWithIcon2 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), mediaFilterData.iconResFilled);
@@ -498,23 +496,23 @@ public class ActionBarMenuItem extends FrameLayout {
             int i3 = mediaFilterData.filterType;
             if (i3 == 4) {
                 TLObject tLObject = mediaFilterData.chat;
-                if (tLObject instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
+                if (tLObject instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) tLObject;
                     long j = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id;
-                    long j2 = tLRPC$User.id;
-                    tLRPC$Chat = tLRPC$User;
+                    long j2 = user.id;
+                    chat = user;
                     if (j == j2) {
                         createCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                         createCircleDrawableWithIcon.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
                         i = Theme.key_avatar_backgroundSaved;
                     }
-                } else if (!(tLObject instanceof TLRPC$Chat)) {
+                } else if (!(tLObject instanceof TLRPC.Chat)) {
                     return;
                 } else {
-                    tLRPC$Chat = (TLRPC$Chat) tLObject;
+                    chat = (TLRPC.Chat) tLObject;
                 }
                 this.avatarImageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                this.avatarImageView.getImageReceiver().setForUserOrChat(tLRPC$Chat, this.thumbDrawable);
+                this.avatarImageView.getImageReceiver().setForUserOrChat(chat, this.thumbDrawable);
                 return;
             }
             if (i3 != 7) {
@@ -625,15 +623,15 @@ public class ActionBarMenuItem extends FrameLayout {
         addView(this.textView, LayoutHelper.createFrame(-2, -1.0f));
     }
 
-    public static ActionBarMenuSubItem addItem(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, CharSequence charSequence, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        return addItem(false, false, actionBarPopupWindowLayout, i, charSequence, z, resourcesProvider);
+    public static ActionBarMenuSubItem addItem(ViewGroup viewGroup, int i, CharSequence charSequence, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        return addItem(false, false, viewGroup, i, charSequence, z, resourcesProvider);
     }
 
-    public static ActionBarMenuSubItem addItem(boolean z, boolean z2, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, CharSequence charSequence, boolean z3, Theme.ResourcesProvider resourcesProvider) {
-        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(actionBarPopupWindowLayout.getContext(), z3, z, z2, resourcesProvider);
+    public static ActionBarMenuSubItem addItem(boolean z, boolean z2, ViewGroup viewGroup, int i, CharSequence charSequence, boolean z3, Theme.ResourcesProvider resourcesProvider) {
+        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(viewGroup.getContext(), z3, z, z2, resourcesProvider);
         actionBarMenuSubItem.setTextAndIcon(charSequence, i);
         actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(196.0f));
-        actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
+        viewGroup.addView(actionBarMenuSubItem);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) actionBarMenuSubItem.getLayoutParams();
         if (LocaleController.isRTL) {
             layoutParams.gravity = 5;

@@ -36,8 +36,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_setContactSignUpNotification;
-import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -322,12 +321,12 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                 MessagesController.getInstance(this.currentAccount).enableJoined = z6;
                 edit4.putBoolean("EnableContactJoined", z6);
                 edit4.commit();
-                TLRPC$TL_account_setContactSignUpNotification tLRPC$TL_account_setContactSignUpNotification = new TLRPC$TL_account_setContactSignUpNotification();
-                tLRPC$TL_account_setContactSignUpNotification.silent = z3;
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_setContactSignUpNotification, new RequestDelegate() {
+                TLRPC.TL_account_setContactSignUpNotification tL_account_setContactSignUpNotification = new TLRPC.TL_account_setContactSignUpNotification();
+                tL_account_setContactSignUpNotification.silent = z3;
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_account_setContactSignUpNotification, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        NotificationsSettingsActivity.lambda$createView$7(tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        NotificationsSettingsActivity.lambda$createView$7(tLObject, tL_error);
                     }
                 });
             } else if (i == this.pinnedMessageRow) {
@@ -483,7 +482,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         getMessagesStorage().updateMutedDialogsFiltersCounters();
     }
 
-    public void lambda$createView$5(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createView$5(TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -497,25 +496,15 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             return;
         }
         this.reseting = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_account_resetNotifySettings(), new RequestDelegate() {
             @Override
-            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
-                return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(-612493497);
-            }
-        }, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                NotificationsSettingsActivity.this.lambda$createView$5(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                NotificationsSettingsActivity.this.lambda$createView$5(tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$createView$7(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$createView$7(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public void lambda$createView$8(int i) {
@@ -634,7 +623,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    NotificationsSettingsActivity.this.lambda$onBackPressed$307();
+                    NotificationsSettingsActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

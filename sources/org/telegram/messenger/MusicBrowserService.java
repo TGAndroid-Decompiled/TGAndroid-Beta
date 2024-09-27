@@ -32,9 +32,7 @@ import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 
 public class MusicBrowserService extends MediaBrowserService implements NotificationCenter.NotificationCenterDelegate {
@@ -126,19 +124,19 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 MusicBrowserService.this.createMediaSession();
                 MusicBrowserService.this.mediaSession.setQueue(arrayList2);
                 if (parseLong > 0) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) MusicBrowserService.this.users.get(parseLong);
-                    if (tLRPC$User != null) {
+                    TLRPC.User user = (TLRPC.User) MusicBrowserService.this.users.get(parseLong);
+                    if (user != null) {
                         mediaSession = MusicBrowserService.this.mediaSession;
-                        str2 = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                        str2 = ContactsController.formatName(user.first_name, user.last_name);
                     } else {
                         mediaSession = MusicBrowserService.this.mediaSession;
                         str2 = "DELETED USER";
                     }
                 } else {
-                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) MusicBrowserService.this.chats.get(-parseLong);
-                    if (tLRPC$Chat != null) {
+                    TLRPC.Chat chat = (TLRPC.Chat) MusicBrowserService.this.chats.get(-parseLong);
+                    if (chat != null) {
                         mediaSession = MusicBrowserService.this.mediaSession;
-                        str2 = tLRPC$Chat.title;
+                        str2 = chat.title;
                     } else {
                         mediaSession = MusicBrowserService.this.mediaSession;
                         str2 = "DELETED CHAT";
@@ -162,8 +160,8 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             for (int i = 0; i < MusicBrowserService.this.dialogs.size(); i++) {
                 long longValue = ((Long) MusicBrowserService.this.dialogs.get(i)).longValue();
                 if (DialogObject.isUserDialog(longValue)) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) MusicBrowserService.this.users.get(longValue);
-                    if (tLRPC$User != null && (((str3 = tLRPC$User.first_name) != null && str3.startsWith(lowerCase)) || ((str4 = tLRPC$User.last_name) != null && str4.startsWith(lowerCase)))) {
+                    TLRPC.User user = (TLRPC.User) MusicBrowserService.this.users.get(longValue);
+                    if (user != null && (((str3 = user.first_name) != null && str3.startsWith(lowerCase)) || ((str4 = user.last_name) != null && str4.startsWith(lowerCase)))) {
                         sb = new StringBuilder();
                         sb.append(longValue);
                         sb.append("_");
@@ -172,8 +170,8 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                         return;
                     }
                 } else {
-                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) MusicBrowserService.this.chats.get(-longValue);
-                    if (tLRPC$Chat != null && (str2 = tLRPC$Chat.title) != null && str2.toLowerCase().contains(lowerCase)) {
+                    TLRPC.Chat chat = (TLRPC.Chat) MusicBrowserService.this.chats.get(-longValue);
+                    if (chat != null && (str2 = chat.title) != null && str2.toLowerCase().contains(lowerCase)) {
                         sb = new StringBuilder();
                         sb.append(longValue);
                         sb.append("_");
@@ -311,10 +309,10 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 this.mediaSession.setQueue(arrayList2);
                 long j2 = this.lastSelectedDialog;
                 if (j2 > 0) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) this.users.get(j2);
-                    if (tLRPC$User != null) {
+                    TLRPC.User user = (TLRPC.User) this.users.get(j2);
+                    if (user != null) {
                         mediaSession2 = this.mediaSession;
-                        str3 = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                        str3 = ContactsController.formatName(user.first_name, user.last_name);
                         mediaSession2.setQueueTitle(str3);
                     } else {
                         mediaSession = this.mediaSession;
@@ -322,10 +320,10 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                         mediaSession.setQueueTitle(str2);
                     }
                 } else {
-                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) this.chats.get(-j2);
-                    if (tLRPC$Chat != null) {
+                    TLRPC.Chat chat = (TLRPC.Chat) this.chats.get(-j2);
+                    if (chat != null) {
                         mediaSession2 = this.mediaSession;
-                        str3 = tLRPC$Chat.title;
+                        str3 = chat.title;
                         mediaSession2.setQueueTitle(str3);
                     } else {
                         mediaSession = this.mediaSession;
@@ -375,7 +373,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 while (queryFinalized2.next()) {
                     NativeByteBuffer byteBufferValue = queryFinalized2.byteBufferValue(1);
                     if (byteBufferValue != null) {
-                        TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                        TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
                         byteBufferValue.reuse();
                         if (MessageObject.isMusicMessage(TLdeserialize)) {
@@ -402,19 +400,19 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 }
                 queryFinalized2.dispose();
                 if (!arrayList2.isEmpty()) {
-                    ArrayList<TLRPC$User> arrayList6 = new ArrayList<>();
+                    ArrayList<TLRPC.User> arrayList6 = new ArrayList<>();
                     messagesStorage.getUsersInternal(arrayList2, arrayList6);
                     for (int i = 0; i < arrayList6.size(); i++) {
-                        TLRPC$User tLRPC$User = arrayList6.get(i);
-                        this.users.put(tLRPC$User.id, tLRPC$User);
+                        TLRPC.User user = arrayList6.get(i);
+                        this.users.put(user.id, user);
                     }
                 }
                 if (!arrayList3.isEmpty()) {
-                    ArrayList<TLRPC$Chat> arrayList7 = new ArrayList<>();
+                    ArrayList<TLRPC.Chat> arrayList7 = new ArrayList<>();
                     messagesStorage.getChatsInternal(TextUtils.join(",", arrayList3), arrayList7);
                     for (int i2 = 0; i2 < arrayList7.size(); i2++) {
-                        TLRPC$Chat tLRPC$Chat = arrayList7.get(i2);
-                        this.chats.put(tLRPC$Chat.id, tLRPC$Chat);
+                        TLRPC.Chat chat = arrayList7.get(i2);
+                        this.chats.put(chat.id, chat);
                     }
                 }
             }

@@ -52,18 +52,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$KeyboardButton;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$TL_availableEffect;
-import org.telegram.tgnet.TLRPC$TL_message;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -199,16 +188,16 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 if (messageObject == null) {
                     return;
                 }
-                TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-                long j = tLRPC$Message.effect;
+                TLRPC.Message message = messageObject.messageOwner;
+                long j = message.effect;
                 long j2 = visibleReaction.effectId;
                 if (j2 == j) {
-                    tLRPC$Message.flags2 &= -5;
-                    tLRPC$Message.effect = 0L;
+                    message.flags2 &= -5;
+                    message.effect = 0L;
                     z4 = true;
                 } else {
-                    tLRPC$Message.flags2 |= 4;
-                    tLRPC$Message.effect = j2;
+                    message.flags2 |= 4;
+                    message.effect = j2;
                     z4 = false;
                 }
                 if (!z5) {
@@ -228,10 +217,10 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     MessageSendPreview.this.effectOverlay.showAnimationForCell(MessageSendPreview.this.mainMessageCell, 0, false, false);
                 }
                 if (z5) {
-                    TLRPC$Message tLRPC$Message2 = messageObject.messageOwner;
-                    tLRPC$Message2.effect = j;
+                    TLRPC.Message message2 = messageObject.messageOwner;
+                    message2.effect = j;
                     if (j == 0) {
-                        tLRPC$Message2.flags2 &= -5;
+                        message2.flags2 &= -5;
                     }
                 }
                 if (MessageSendPreview.this.sendButton != null) {
@@ -252,7 +241,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 MessageSendPreview messageSendPreview = MessageSendPreview.this;
                 messageSendPreview.onEffectChange(messageSendPreview.effectId);
                 if (!z5) {
-                    TLRPC$TL_availableEffect effect = MessageSendPreview.this.effectId == 0 ? null : MessagesController.getInstance(MessageSendPreview.this.currentAccount).getEffect(MessageSendPreview.this.effectId);
+                    TLRPC.TL_availableEffect effect = MessageSendPreview.this.effectId == 0 ? null : MessagesController.getInstance(MessageSendPreview.this.currentAccount).getEffect(MessageSendPreview.this.effectId);
                     if (MessageSendPreview.this.effectDrawable != null) {
                         if (MessageSendPreview.this.effectId == 0 || effect == null) {
                             MessageSendPreview.this.effectDrawable.set((Drawable) null, true);
@@ -272,12 +261,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 }
                 MessageSendPreview.this.effectOverlay.clear();
                 if (!z3) {
-                    TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-                    tLRPC$TL_message.effect = MessageSendPreview.this.effectId;
+                    TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                    tL_message.effect = MessageSendPreview.this.effectId;
                     if (MessageSendPreview.this.effectId != 0) {
-                        tLRPC$TL_message.flags2 |= 4;
+                        tL_message.flags2 |= 4;
                     }
-                    MessageSendPreview.this.effectOverlay.createDrawingObject(null, 0, null, new MessageObject(MessageSendPreview.this.currentAccount, tLRPC$TL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
+                    MessageSendPreview.this.effectOverlay.createDrawingObject(null, 0, null, new MessageObject(MessageSendPreview.this.currentAccount, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                 }
             }
             if (z5 && this.val$fragment != null) {
@@ -1127,18 +1116,18 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didLongPressBotButton(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell, tLRPC$KeyboardButton);
+                    public void didLongPressBotButton(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell, keyboardButton);
                     }
 
                     @Override
-                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell, tLRPC$Chat, i3, f, f2);
+                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i3, float f, float f2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell, chat, i3, f, f2);
                     }
 
                     @Override
-                    public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, float f, float f2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell, tLRPC$User, f, f2);
+                    public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell, user, f, f2);
                     }
 
                     @Override
@@ -1157,8 +1146,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressBotButton(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell, tLRPC$KeyboardButton);
+                    public void didPressBotButton(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell, keyboardButton);
                     }
 
                     @Override
@@ -1167,13 +1156,13 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2, boolean z) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell, tLRPC$Chat, i3, f, f2, z);
+                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i3, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell, chat, i3, f, f2, z);
                     }
 
                     @Override
-                    public void didPressChannelRecommendation(ChatMessageCell chatMessageCell, TLRPC$Chat tLRPC$Chat, boolean z) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell, tLRPC$Chat, z);
+                    public void didPressChannelRecommendation(ChatMessageCell chatMessageCell, TLRPC.Chat chat, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell, chat, z);
                     }
 
                     @Override
@@ -1202,8 +1191,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell, tLRPC$KeyboardButton);
+                    public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell, keyboardButton);
                     }
 
                     @Override
@@ -1222,8 +1211,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, float f, float f2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell, imageReceiver, tLRPC$MessageExtendedMedia, f, f2);
+                    public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell, imageReceiver, messageExtendedMedia, f, f2);
                     }
 
                     @Override
@@ -1257,8 +1246,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, float f, float f2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell, tLRPC$ReactionCount, z, f, f2);
+                    public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell, reactionCount, z, f, f2);
                     }
 
                     @Override
@@ -1302,13 +1291,13 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, float f, float f2, boolean z) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell, tLRPC$User, f, f2, z);
+                    public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell, user, f, f2, z);
                     }
 
                     @Override
-                    public void didPressUserStatus(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, TLRPC$Document tLRPC$Document) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserStatus(this, chatMessageCell, tLRPC$User, tLRPC$Document);
+                    public void didPressUserStatus(ChatMessageCell chatMessageCell, TLRPC.User user, TLRPC.Document document) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserStatus(this, chatMessageCell, user, document);
                     }
 
                     @Override
@@ -1327,8 +1316,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
-                        Browser.openUrl(chatMessageCell.getContext(), str);
+                    public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell, webPage, str, z);
                     }
 
                     @Override
@@ -2017,12 +2006,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             if (chatMessageCell == null || (messageObject = chatMessageCell.getMessageObject()) == null) {
                 return 0L;
             }
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if ((tLRPC$Message.flags2 & 4) == 0) {
+            TLRPC.Message message = messageObject.messageOwner;
+            if ((message.flags2 & 4) == 0) {
                 return 0L;
             }
             this.sentEffect = true;
-            return tLRPC$Message.effect;
+            return message.effect;
         }
         return 0L;
     }
@@ -2134,14 +2123,14 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     }
 
     public void setEffectId(long j) {
-        TLRPC$TL_availableEffect effect;
+        TLRPC.TL_availableEffect effect;
         this.effectId = j;
         int mainMessageCellPosition = getMainMessageCellPosition();
         MessageObject messageObject = (mainMessageCellPosition < 0 || mainMessageCellPosition >= this.messageObjects.size()) ? null : (MessageObject) this.messageObjects.get(mainMessageCellPosition);
         if (messageObject != null) {
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            tLRPC$Message.flags2 |= 4;
-            tLRPC$Message.effect = j;
+            TLRPC.Message message = messageObject.messageOwner;
+            message.flags2 |= 4;
+            message.effect = j;
         }
         if (this.effectSelector == null || (effect = MessagesController.getInstance(this.currentAccount).getEffect(j)) == null) {
             return;
@@ -2238,8 +2227,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     }
 
     public void setStars(long j) {
-        TLRPC$Message tLRPC$Message;
-        TLRPC$MessageMedia tLRPC$MessageMedia;
+        TLRPC.Message message;
+        TLRPC.MessageMedia messageMedia;
         this.buttonText = j <= 0 ? null : new Text(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatPluralStringComma("UnlockPaidContent", (int) j), 0.7f), 14.0f, AndroidUtilities.bold());
         if (this.buttonBgPaint == null) {
             Paint paint = new Paint(1);
@@ -2249,8 +2238,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.chatListView.invalidate();
         for (int i = 0; i < this.messageObjects.size(); i++) {
             MessageObject messageObject = (MessageObject) this.messageObjects.get(i);
-            if (messageObject != null && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null) {
-                tLRPC$MessageMedia.spoiler = j > 0;
+            if (messageObject != null && (message = messageObject.messageOwner) != null && (messageMedia = message.media) != null) {
+                messageMedia.spoiler = j > 0;
             }
         }
         this.adapter.notifyDataSetChanged();

@@ -13,7 +13,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -47,9 +47,9 @@ public class ReactionImageHolder {
             new AnimatedEmojiDrawable(1, i, visibleReaction.documentId).preload();
             return;
         }
-        TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(visibleReaction.emojicon);
-        if (tLRPC$TL_availableReaction != null) {
-            FileLoader.getInstance(i).loadFile(tLRPC$TL_availableReaction.select_animation, visibleReaction, 0, 0);
+        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(visibleReaction.emojicon);
+        if (tL_availableReaction != null) {
+            FileLoader.getInstance(i).loadFile(tL_availableReaction.select_animation, visibleReaction, 0, 0);
         }
     }
 
@@ -157,9 +157,9 @@ public class ReactionImageHolder {
         }
         String str2 = str;
         if (visibleReaction.emojicon != null) {
-            TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(visibleReaction.emojicon);
-            if (tLRPC$TL_availableReaction != null) {
-                this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), str2, null, null, DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.select_animation, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", visibleReaction, 0);
+            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(visibleReaction.emojicon);
+            if (tL_availableReaction != null) {
+                this.imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), str2, null, null, DocumentObject.getSvgThumb(tL_availableReaction.select_animation, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", visibleReaction, 0);
                 return;
             }
             return;

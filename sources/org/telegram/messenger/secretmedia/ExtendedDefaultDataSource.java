@@ -2,6 +2,7 @@ package org.telegram.messenger.secretmedia;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.LongSparseArray;
 import com.google.android.exoplayer2.upstream.AssetDataSource;
 import com.google.android.exoplayer2.upstream.ContentDataSource;
 import com.google.android.exoplayer2.upstream.DataSchemeDataSource;
@@ -34,38 +35,30 @@ public final class ExtendedDefaultDataSource implements DataSource {
     private DataSource dataSource;
     private DataSource encryptedFileDataSource;
     private DataSource fileDataSource;
+    private final LongSparseArray<Uri> mtprotoUris;
     private DataSource rawResourceDataSource;
     private DataSource rtmpDataSource;
     private FileStreamLoadOperation streamLoadOperation;
     private final List<TransferListener> transferListeners;
 
-    public ExtendedDefaultDataSource(Context context, DataSource dataSource) {
+    public ExtendedDefaultDataSource(Context context, DataSource dataSource, LongSparseArray<Uri> longSparseArray) {
         this.context = context.getApplicationContext();
         this.baseDataSource = (DataSource) Assertions.checkNotNull(dataSource);
         this.transferListeners = new ArrayList();
+        this.mtprotoUris = longSparseArray;
     }
 
     @Deprecated
-    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, DataSource dataSource) {
-        this(context, dataSource);
+    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, DataSource dataSource, LongSparseArray<Uri> longSparseArray) {
+        this(context, dataSource, longSparseArray);
         if (transferListener != null) {
             this.transferListeners.add(transferListener);
             dataSource.addTransferListener(transferListener);
         }
     }
 
-    @Deprecated
-    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, String str, int i, int i2, boolean z) {
-        this(context, transferListener, new DefaultHttpDataSource(str, i, i2, z, null));
-    }
-
-    @Deprecated
-    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, String str, boolean z) {
-        this(context, transferListener, str, 8000, 8000, z);
-    }
-
     public ExtendedDefaultDataSource(Context context, String str, int i, int i2, boolean z) {
-        this(context, new DefaultHttpDataSource(str, i, i2, z, null));
+        this(context, new DefaultHttpDataSource(str, i, i2, z, null), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, String str, boolean z) {
@@ -208,11 +201,16 @@ public final class ExtendedDefaultDataSource implements DataSource {
     public long open(DataSpec dataSpec) {
         DataSource contentDataSource;
         Assertions.checkState(this.dataSource == null);
-        String scheme = dataSpec.uri.getScheme();
-        if (Util.isLocalFileUri(dataSpec.uri)) {
-            String path = dataSpec.uri.getPath();
+        Uri uri = dataSpec.uri;
+        if ("mtproto".equals(uri.getScheme())) {
+            uri = this.mtprotoUris.get(Long.parseLong(dataSpec.uri.toString().substring(8)));
+            dataSpec.uri = uri;
+        }
+        String scheme = uri.getScheme();
+        if (Util.isLocalFileUri(uri)) {
+            String path = uri.getPath();
             if (path == null || !path.startsWith("/android_asset/")) {
-                contentDataSource = dataSpec.uri.getPath().endsWith(".enc") ? getEncryptedFileDataSource() : getFileDataSource();
+                contentDataSource = uri.getPath().endsWith(".enc") ? getEncryptedFileDataSource() : getFileDataSource();
             }
             contentDataSource = getAssetDataSource();
         } else if ("tg".equals(scheme)) {

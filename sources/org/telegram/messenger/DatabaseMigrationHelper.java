@@ -6,11 +6,7 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.TLRPC$ChatParticipants;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_chatFull;
-import org.telegram.tgnet.TLRPC$TL_peerNotifySettingsEmpty_layer77;
-import org.telegram.tgnet.TLRPC$TL_photoEmpty;
+import org.telegram.tgnet.TLRPC;
 
 public class DatabaseMigrationHelper {
     public static int migrate(MessagesStorage messagesStorage, int i) {
@@ -175,17 +171,17 @@ public class DatabaseMigrationHelper {
                 long intValue2 = queryFinalized2.intValue(0);
                 NativeByteBuffer byteBufferValue2 = queryFinalized2.byteBufferValue(1);
                 if (byteBufferValue2 != null) {
-                    TLRPC$ChatParticipants TLdeserialize = TLRPC$ChatParticipants.TLdeserialize(byteBufferValue2, byteBufferValue2.readInt32(false), false);
+                    TLRPC.ChatParticipants TLdeserialize = TLRPC.ChatParticipants.TLdeserialize(byteBufferValue2, byteBufferValue2.readInt32(false), false);
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
-                        TLRPC$TL_chatFull tLRPC$TL_chatFull = new TLRPC$TL_chatFull();
-                        tLRPC$TL_chatFull.id = intValue2;
-                        tLRPC$TL_chatFull.chat_photo = new TLRPC$TL_photoEmpty();
-                        tLRPC$TL_chatFull.notify_settings = new TLRPC$TL_peerNotifySettingsEmpty_layer77();
-                        tLRPC$TL_chatFull.exported_invite = null;
-                        tLRPC$TL_chatFull.participants = TLdeserialize;
-                        NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tLRPC$TL_chatFull.getObjectSize());
-                        tLRPC$TL_chatFull.serializeToStream(nativeByteBuffer2);
+                        TLRPC.TL_chatFull tL_chatFull = new TLRPC.TL_chatFull();
+                        tL_chatFull.id = intValue2;
+                        tL_chatFull.chat_photo = new TLRPC.TL_photoEmpty();
+                        tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
+                        tL_chatFull.exported_invite = null;
+                        tL_chatFull.participants = TLdeserialize;
+                        NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tL_chatFull.getObjectSize());
+                        tL_chatFull.serializeToStream(nativeByteBuffer2);
                         executeFast2.requery();
                         executeFast2.bindLong(1, intValue2);
                         executeFast2.bindByteBuffer(2, nativeByteBuffer2);
@@ -789,14 +785,14 @@ public class DatabaseMigrationHelper {
                         SQLiteCursor sQLiteCursor9 = sQLiteCursor2;
                         int i15 = (int) (longValue11 >> 32);
                         if (intValue23 < 0) {
-                            TLRPC$Message TLdeserialize2 = TLRPC$Message.TLdeserialize(byteBufferValue6, byteBufferValue6.readInt32(false), false);
+                            TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue6, byteBufferValue6.readInt32(false), false);
                             i3 = intValue22;
                             i4 = i15;
                             if (TLdeserialize2 != null) {
                                 i2 = intValue28;
                                 TLdeserialize2.readAttachPath(byteBufferValue6, messagesStorage.getUserConfig().clientUserId);
                                 if (TLdeserialize2.params == null) {
-                                    HashMap hashMap = new HashMap();
+                                    HashMap<String, String> hashMap = new HashMap<>();
                                     TLdeserialize2.params = hashMap;
                                     StringBuilder sb = new StringBuilder();
                                     nativeByteBuffer = byteBufferValue7;
@@ -1384,12 +1380,17 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
             i7 = 155;
         }
-        if (i7 != 155) {
+        if (i7 == 155) {
+            sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 156").stepThis().dispose();
+            i7 = 156;
+        }
+        if (i7 != 156 && i7 != 157) {
             return i7;
         }
-        sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 156").stepThis().dispose();
-        return 156;
+        sQLiteDatabase.executeFast("CREATE TABLE star_gifts2(id INTEGER PRIMARY KEY, data BLOB, hash INTEGER, time INTEGER);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 158").stepThis().dispose();
+        return 158;
     }
 
     public static boolean recoverDatabase(java.io.File r21, java.io.File r22, java.io.File r23, int r24) {

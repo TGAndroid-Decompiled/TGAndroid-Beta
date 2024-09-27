@@ -18,8 +18,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_setDefaultHistoryTTL;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -247,7 +246,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    AutoDeleteMessagesActivity.this.lambda$onBackPressed$307();
+                    AutoDeleteMessagesActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -343,11 +342,11 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             if (((RadioCellInternal) this.arrayList.get(i)).isChecked()) {
                 if (((RadioCellInternal) this.arrayList.get(i)).time != this.startFromTtl) {
                     this.startFromTtl = ((RadioCellInternal) this.arrayList.get(i)).time;
-                    TLRPC$TL_messages_setDefaultHistoryTTL tLRPC$TL_messages_setDefaultHistoryTTL = new TLRPC$TL_messages_setDefaultHistoryTTL();
-                    tLRPC$TL_messages_setDefaultHistoryTTL.period = ((RadioCellInternal) this.arrayList.get(i)).time * 60;
-                    getConnectionsManager().sendRequest(tLRPC$TL_messages_setDefaultHistoryTTL, new RequestDelegate() {
+                    TLRPC.TL_messages_setDefaultHistoryTTL tL_messages_setDefaultHistoryTTL = new TLRPC.TL_messages_setDefaultHistoryTTL();
+                    tL_messages_setDefaultHistoryTTL.period = ((RadioCellInternal) this.arrayList.get(i)).time * 60;
+                    getConnectionsManager().sendRequest(tL_messages_setDefaultHistoryTTL, new RequestDelegate() {
                         @Override
-                        public void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        public void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         }
                     });
                     getUserConfig().setGlobalTtl(this.startFromTtl);

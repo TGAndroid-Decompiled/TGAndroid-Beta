@@ -8,7 +8,7 @@ import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC$TL_help_country;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
@@ -18,7 +18,7 @@ import org.telegram.ui.Components.RadioButton;
 
 public class SelectorCountryCell extends BaseCell {
     private final CheckBox2 checkBox;
-    private TLRPC$TL_help_country country;
+    private TLRPC.TL_help_country country;
 
     public static class SpaceDrawable extends ReplacementSpan {
         private final int size;
@@ -52,9 +52,9 @@ public class SelectorCountryCell extends BaseCell {
         checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
-    private CharSequence getCountryNameWithFlag(TLRPC$TL_help_country tLRPC$TL_help_country) {
+    private CharSequence getCountryNameWithFlag(TLRPC.TL_help_country tL_help_country) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String languageFlag = LocaleController.getLanguageFlag(tLRPC$TL_help_country.iso2);
+        String languageFlag = LocaleController.getLanguageFlag(tL_help_country.iso2);
         if (languageFlag != null) {
             spannableStringBuilder.append((CharSequence) languageFlag).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new SpaceDrawable(16), languageFlag.length(), languageFlag.length() + 1, 0);
@@ -62,7 +62,7 @@ public class SelectorCountryCell extends BaseCell {
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.setSpan(new SpaceDrawable(34), 0, 1, 0);
         }
-        spannableStringBuilder.append((CharSequence) tLRPC$TL_help_country.default_name);
+        spannableStringBuilder.append((CharSequence) tL_help_country.default_name);
         return spannableStringBuilder;
     }
 
@@ -71,7 +71,7 @@ public class SelectorCountryCell extends BaseCell {
         return 22;
     }
 
-    public TLRPC$TL_help_country getCountry() {
+    public TLRPC.TL_help_country getCountry() {
         return this.country;
     }
 
@@ -92,9 +92,9 @@ public class SelectorCountryCell extends BaseCell {
         }
     }
 
-    public void setCountry(TLRPC$TL_help_country tLRPC$TL_help_country, boolean z) {
-        this.country = tLRPC$TL_help_country;
-        this.titleTextView.setText(Emoji.replaceEmoji(getCountryNameWithFlag(tLRPC$TL_help_country), this.titleTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
+    public void setCountry(TLRPC.TL_help_country tL_help_country, boolean z) {
+        this.country = tL_help_country;
+        this.titleTextView.setText(Emoji.replaceEmoji(getCountryNameWithFlag(tL_help_country), this.titleTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
         setDivider(z);
     }
 

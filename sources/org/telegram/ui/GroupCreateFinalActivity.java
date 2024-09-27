@@ -42,12 +42,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -79,9 +74,9 @@ import org.telegram.ui.LocationActivity;
 
 public class GroupCreateFinalActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
     private GroupCreateAdapter adapter;
-    private TLRPC$FileLocation avatar;
+    private TLRPC.FileLocation avatar;
     private AnimatorSet avatarAnimation;
-    private TLRPC$FileLocation avatarBig;
+    private TLRPC.FileLocation avatarBig;
     private AvatarDrawable avatarDrawable;
     private RLottieImageView avatarEditor;
     private BackupImageView avatarImage;
@@ -102,9 +97,9 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     private ImageView floatingButtonIcon;
     private boolean forImport;
     private ImageUpdater imageUpdater;
-    private TLRPC$VideoSize inputEmojiMarkup;
-    private TLRPC$InputFile inputPhoto;
-    private TLRPC$InputFile inputVideo;
+    private TLRPC.VideoSize inputEmojiMarkup;
+    private TLRPC.InputFile inputPhoto;
+    private TLRPC.InputFile inputVideo;
     private String inputVideoPath;
     private FillLastLinearLayoutManager linearLayoutManager;
     private RecyclerListView listView;
@@ -330,10 +325,10 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.avatarEditor.playAnimation();
     }
 
-    public void lambda$createView$5(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        this.currentGroupCreateLocation.setLatitude(tLRPC$MessageMedia.geo.lat);
-        this.currentGroupCreateLocation.setLongitude(tLRPC$MessageMedia.geo._long);
-        this.currentGroupCreateAddress = tLRPC$MessageMedia.address;
+    public void lambda$createView$5(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+        this.currentGroupCreateLocation.setLatitude(messageMedia.geo.lat);
+        this.currentGroupCreateLocation.setLongitude(messageMedia.geo._long);
+        this.currentGroupCreateAddress = messageMedia.address;
     }
 
     public void lambda$createView$6(View view, int i, float f, float f2) {
@@ -345,8 +340,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             locationActivity.setDialogId(0L);
             locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
                 @Override
-                public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i2, boolean z, int i3) {
-                    GroupCreateFinalActivity.this.lambda$createView$5(tLRPC$MessageMedia, i2, z, i3);
+                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3) {
+                    GroupCreateFinalActivity.this.lambda$createView$5(messageMedia, i2, z, i3);
                 }
             });
             presentFragment(locationActivity);
@@ -413,18 +408,18 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         }
     }
 
-    public void lambda$didUploadPhoto$8(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, TLRPC$VideoSize tLRPC$VideoSize, String str, double d, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2) {
-        if (tLRPC$InputFile == null && tLRPC$InputFile2 == null && tLRPC$VideoSize == null) {
-            TLRPC$FileLocation tLRPC$FileLocation = tLRPC$PhotoSize.location;
-            this.avatar = tLRPC$FileLocation;
-            this.avatarBig = tLRPC$PhotoSize2.location;
-            this.avatarImage.setImage(ImageLocation.getForLocal(tLRPC$FileLocation), "50_50", this.avatarDrawable, (Object) null);
+    public void lambda$didUploadPhoto$8(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+        if (inputFile == null && inputFile2 == null && videoSize == null) {
+            TLRPC.FileLocation fileLocation = photoSize.location;
+            this.avatar = fileLocation;
+            this.avatarBig = photoSize2.location;
+            this.avatarImage.setImage(ImageLocation.getForLocal(fileLocation), "50_50", this.avatarDrawable, (Object) null);
             showAvatarProgress(true, false);
             return;
         }
-        this.inputPhoto = tLRPC$InputFile;
-        this.inputVideo = tLRPC$InputFile2;
-        this.inputEmojiMarkup = tLRPC$VideoSize;
+        this.inputPhoto = inputFile;
+        this.inputVideo = inputFile2;
+        this.inputEmojiMarkup = videoSize;
         this.inputVideoPath = str;
         this.videoTimestamp = d;
         if (this.createAfterUpload) {
@@ -577,7 +572,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupCreateFinalActivity.this.lambda$onBackPressed$307();
+                    GroupCreateFinalActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -925,11 +920,11 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     }
 
     @Override
-    public void didUploadPhoto(final TLRPC$InputFile tLRPC$InputFile, final TLRPC$InputFile tLRPC$InputFile2, final double d, final String str, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, final TLRPC$VideoSize tLRPC$VideoSize) {
+    public void didUploadPhoto(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, final String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z, final TLRPC.VideoSize videoSize) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCreateFinalActivity.this.lambda$didUploadPhoto$8(tLRPC$InputFile, tLRPC$InputFile2, tLRPC$VideoSize, str, d, tLRPC$PhotoSize2, tLRPC$PhotoSize);
+                GroupCreateFinalActivity.this.lambda$didUploadPhoto$8(inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
             }
         });
     }
@@ -1072,7 +1067,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
             Iterator it = arrayList2.iterator();
             while (it.hasNext()) {
-                getMessagesController().putUser((TLRPC$User) it.next(), true);
+                getMessagesController().putUser((TLRPC.User) it.next(), true);
             }
         }
         this.ttlPeriod = getUserConfig().getGlobalTTl() * 60;

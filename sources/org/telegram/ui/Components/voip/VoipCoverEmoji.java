@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
@@ -36,12 +36,12 @@ public class VoipCoverEmoji {
     private int alpha = 0;
     private float scale = 0.0f;
 
-    public VoipCoverEmoji(TLRPC$User tLRPC$User, final View view, int i) {
+    public VoipCoverEmoji(TLRPC.User user, final View view, int i) {
         this.parent = view;
         this.size = i;
         boolean isEnabled = LiteMode.isEnabled(512);
         this.allowAnimations = isEnabled;
-        long profileEmojiId = UserObject.getProfileEmojiId(tLRPC$User);
+        long profileEmojiId = UserObject.getProfileEmojiId(user);
         if (!isEnabled || profileEmojiId == 0) {
             return;
         }

@@ -16,7 +16,7 @@ import com.microsoft.appcenter.crashes.Crashes;
 import com.microsoft.appcenter.distribute.Distribute;
 import com.microsoft.appcenter.utils.async.AppCenterConsumer;
 import java.io.File;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AlertsCreator;
 
 public class ApplicationLoaderImpl extends ApplicationLoader {
@@ -81,12 +81,12 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
+    public boolean openApkInstall(Activity activity, TLRPC.Document document) {
         Uri fromFile;
         boolean z = false;
         try {
-            FileLoader.getAttachFileName(tLRPC$Document);
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
+            FileLoader.getAttachFileName(document);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true);
             z = pathToAttach.exists();
             if (z) {
                 Intent intent = new Intent("android.intent.action.VIEW");

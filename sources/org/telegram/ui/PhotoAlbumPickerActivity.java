@@ -40,8 +40,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$BotInlineResult;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -207,7 +206,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
     public void lambda$createView$2(boolean z, int i) {
         sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$3(View view) {
@@ -221,7 +220,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             });
         } else {
             sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -234,7 +233,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
     public void lambda$createView$5(boolean z, int i) {
         sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$6(int i, View view) {
@@ -251,7 +250,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             });
         } else {
             sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -263,7 +262,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         ChatActivity chatActivity = this.chatActivity;
         if (chatActivity != null && this.maxSelectedPhotos != 1) {
             chatActivity.getCurrentChat();
-            TLRPC$User currentUser = this.chatActivity.getCurrentUser();
+            TLRPC.User currentUser = this.chatActivity.getCurrentUser();
             if (this.sendPopupLayout == null) {
                 ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getParentActivity());
                 this.sendPopupLayout = actionBarPopupWindowLayout;
@@ -503,9 +502,9 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 sendingMediaInfo.entities = searchImage.entities;
                 sendingMediaInfo.masks = searchImage.stickers;
                 sendingMediaInfo.ttl = searchImage.ttl;
-                TLRPC$BotInlineResult tLRPC$BotInlineResult = searchImage.inlineResult;
-                if (tLRPC$BotInlineResult != null && searchImage.type == 1) {
-                    sendingMediaInfo.inlineResult = tLRPC$BotInlineResult;
+                TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                if (botInlineResult != null && searchImage.type == 1) {
+                    sendingMediaInfo.inlineResult = botInlineResult;
                     sendingMediaInfo.params = searchImage.params;
                 }
                 searchImage.date = (int) (System.currentTimeMillis() / 1000);
@@ -569,7 +568,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PhotoAlbumPickerActivity.this.lambda$onBackPressed$307();
+                    PhotoAlbumPickerActivity.this.lambda$onBackPressed$300();
                     return;
                 }
                 if (i3 != 1) {

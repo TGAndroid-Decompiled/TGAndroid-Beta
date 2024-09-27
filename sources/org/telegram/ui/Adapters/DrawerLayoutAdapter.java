@@ -14,8 +14,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
-import org.telegram.tgnet.TLRPC$TL_attachMenuBots;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DividerCell;
@@ -38,7 +37,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     private ArrayList accountNumbers = new ArrayList();
 
     public static class Item {
-        TLRPC$TL_attachMenuBot bot;
+        TLRPC.TL_attachMenuBot bot;
         public boolean error;
         public int icon;
         public int id;
@@ -51,15 +50,15 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             this.text = charSequence;
         }
 
-        public Item(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
-            this.bot = tLRPC$TL_attachMenuBot;
-            this.id = (int) ((tLRPC$TL_attachMenuBot.bot_id >> 16) + 100);
+        public Item(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+            this.bot = tL_attachMenuBot;
+            this.id = (int) ((tL_attachMenuBot.bot_id >> 16) + 100);
         }
 
         public void bind(DrawerActionCell drawerActionCell) {
-            TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = this.bot;
-            if (tLRPC$TL_attachMenuBot != null) {
-                drawerActionCell.setBot(tLRPC$TL_attachMenuBot);
+            TLRPC.TL_attachMenuBot tL_attachMenuBot = this.bot;
+            if (tL_attachMenuBot != null) {
+                drawerActionCell.setBot(tL_attachMenuBot);
             } else {
                 drawerActionCell.setTextAndIcon(this.id, this.text, this.icon);
             }
@@ -167,12 +166,12 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             if (applicationLoader != null) {
                 applicationLoader.extendDrawer(this.items);
             }
-            TLRPC$TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
+            TLRPC.TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
             if (attachMenuBots != null && attachMenuBots.bots != null) {
                 for (int i9 = 0; i9 < attachMenuBots.bots.size(); i9++) {
-                    TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) attachMenuBots.bots.get(i9);
-                    if (tLRPC$TL_attachMenuBot.show_in_side_menu) {
-                        this.items.add(new Item(tLRPC$TL_attachMenuBot));
+                    TLRPC.TL_attachMenuBot tL_attachMenuBot = attachMenuBots.bots.get(i9);
+                    if (tL_attachMenuBot.show_in_side_menu) {
+                        this.items.add(new Item(tL_attachMenuBot));
                     }
                 }
             }
@@ -202,7 +201,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         return true;
     }
 
-    public TLRPC$TL_attachMenuBot getAttachMenuBot(int i) {
+    public TLRPC.TL_attachMenuBot getAttachMenuBot(int i) {
         Item item;
         int i2 = i - 2;
         if (this.accountsShown) {

@@ -37,10 +37,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$PaymentReceipt;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_payments_getPaymentReceipt;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -260,12 +257,12 @@ public class UndoView extends FrameLayout {
     }
 
     public void lambda$showWithAction$4(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$PaymentReceipt) {
-            this.parentFragment.presentFragment(new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject));
+        if (tLObject instanceof TLRPC.PaymentReceipt) {
+            this.parentFragment.presentFragment(new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject));
         }
     }
 
-    public void lambda$showWithAction$5(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$showWithAction$5(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -274,15 +271,15 @@ public class UndoView extends FrameLayout {
         });
     }
 
-    public void lambda$showWithAction$6(TLRPC$Message tLRPC$Message, View view) {
+    public void lambda$showWithAction$6(TLRPC.Message message, View view) {
         hide(true, 1);
-        TLRPC$TL_payments_getPaymentReceipt tLRPC$TL_payments_getPaymentReceipt = new TLRPC$TL_payments_getPaymentReceipt();
-        tLRPC$TL_payments_getPaymentReceipt.msg_id = tLRPC$Message.id;
-        tLRPC$TL_payments_getPaymentReceipt.peer = this.parentFragment.getMessagesController().getInputPeer(tLRPC$Message.peer_id);
-        this.parentFragment.getConnectionsManager().sendRequest(tLRPC$TL_payments_getPaymentReceipt, new RequestDelegate() {
+        TLRPC.TL_payments_getPaymentReceipt tL_payments_getPaymentReceipt = new TLRPC.TL_payments_getPaymentReceipt();
+        tL_payments_getPaymentReceipt.msg_id = message.id;
+        tL_payments_getPaymentReceipt.peer = this.parentFragment.getMessagesController().getInputPeer(message.peer_id);
+        this.parentFragment.getConnectionsManager().sendRequest(tL_payments_getPaymentReceipt, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                UndoView.this.lambda$showWithAction$5(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                UndoView.this.lambda$showWithAction$5(tLObject, tL_error);
             }
         }, 2);
     }

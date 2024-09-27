@@ -9,9 +9,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 import androidx.collection.LongSparseArray;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
 class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
@@ -86,8 +84,8 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         if (accountInstance == null || !accountInstance.getUserConfig().isClientActivated()) {
             return;
         }
-        ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-        ArrayList<TLRPC$Chat> arrayList2 = new ArrayList<>();
+        ArrayList<TLRPC.User> arrayList = new ArrayList<>();
+        ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
         LongSparseArray longSparseArray = new LongSparseArray();
         this.accountInstance.getMessagesStorage().getWidgetDialogs(this.appWidgetId, 0, this.dids, this.dialogs, longSparseArray, arrayList, arrayList2);
         this.accountInstance.getMessagesController().putUsers(arrayList, true);
@@ -95,7 +93,7 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         this.messageObjects.clear();
         int size = longSparseArray.size();
         for (int i = 0; i < size; i++) {
-            this.messageObjects.put(longSparseArray.keyAt(i), new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC$Message) longSparseArray.valueAt(i), (LongSparseArray) null, (LongSparseArray) null, false, true));
+            this.messageObjects.put(longSparseArray.keyAt(i), new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC.Message) longSparseArray.valueAt(i), (LongSparseArray) null, (LongSparseArray) null, false, true));
         }
     }
 

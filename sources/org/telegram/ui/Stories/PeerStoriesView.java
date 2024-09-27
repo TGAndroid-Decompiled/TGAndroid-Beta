@@ -89,43 +89,8 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotInlineResult;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
-import org.telegram.tgnet.TLRPC$TL_channels_sendAsPeers;
-import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_textWithEntities;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.tl.TL_stories$MediaArea;
-import org.telegram.tgnet.tl.TL_stories$PeerStories;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
-import org.telegram.tgnet.tl.TL_stories$StoryViews;
-import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
-import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
-import org.telegram.tgnet.tl.TL_stories$TL_storiesStealthMode;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_editStory;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_exportStoryLink;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoriesByID;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_stories;
-import org.telegram.tgnet.tl.TL_stories$TL_storyItemSkipped;
-import org.telegram.tgnet.tl.TL_stories$TL_storyViews;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -192,6 +157,7 @@ import org.telegram.ui.MessageStatisticActivity;
 import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.ReportBottomSheet;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.SelfStoriesPreviewView;
@@ -222,7 +188,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     private boolean attachedToWindow;
     private final AvatarDrawable avatarDrawable;
     private final BitmapShaderTools bitmapShaderTools;
-    private TL_stories$TL_premium_boostsStatus boostsStatus;
+    private TL_stories.TL_premium_boostsStatus boostsStatus;
     private final LinearLayout bottomActionsLinearLayout;
     private ChannelBoostsController.CanApplyBoost canApplyBoost;
     private Runnable cancellableViews;
@@ -374,7 +340,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     final ArrayList uploadingStories;
     ArrayList uriesToPrepare;
     private boolean userCanSeeViews;
-    TL_stories$PeerStories userStories;
+    TL_stories.PeerStories userStories;
     public long videoDuration;
     private float viewsThumbAlpha;
     private SelfStoriesPreviewView.ImageHolder viewsThumbImageReceiver;
@@ -577,12 +543,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public TL_stories$StoryItem getReplyToStory() {
+        public TL_stories.StoryItem getReplyToStory() {
             return PeerStoriesView.this.currentStory.storyItem;
         }
 
         @Override
-        public TLRPC$TL_channels_sendAsPeers getSendAsPeers() {
+        public TLRPC.TL_channels_sendAsPeers getSendAsPeers() {
             return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getSendAsPeers(this);
         }
 
@@ -632,7 +598,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (j >= 0) {
                 str = UserObject.getFirstName(messagesController.getUser(Long.valueOf(j2)));
             } else {
-                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j2));
+                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j2));
                 str = chat != null ? chat.title : "";
             }
             PeerStoriesView.this.mediaBanTooltip.setText(AndroidUtilities.replaceTags(LocaleController.formatString(PeerStoriesView.this.chatActivityEnterView.isInVideoMode() ? R.string.VideoMessagesRestrictedByPrivacy : R.string.VoiceMessagesRestrictedByPrivacy, str)));
@@ -766,7 +732,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         @Override
         public boolean onceVoiceAvailable() {
-            TLRPC$User user;
+            TLRPC.User user;
             return (PeerStoriesView.this.dialogId < 0 || (user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId))) == null || UserObject.isUserSelf(user) || user.bot) ? false : true;
         }
 
@@ -860,7 +826,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         public void lambda$onReactionClicked$1(ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view) {
-            TLRPC$TL_availableReaction tLRPC$TL_availableReaction;
+            TLRPC.TL_availableReaction tL_availableReaction;
             PeerStoriesView.this.movingReaction = true;
             final boolean[] zArr = {false};
             final StoriesLikeButton storiesLikeButton = PeerStoriesView.this.storiesLikeButton;
@@ -887,9 +853,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 PeerStoriesView.this.drawAnimatedEmojiAsMovingReaction = true;
                 PeerStoriesView.this.reactionMoveDrawable = new AnimatedEmojiDrawable(2, PeerStoriesView.this.currentAccount, visibleReaction.documentId);
                 PeerStoriesView.this.reactionMoveDrawable.addView(PeerStoriesView.this);
-            } else if (visibleReaction.emojicon != null && (tLRPC$TL_availableReaction = MediaDataController.getInstance(PeerStoriesView.this.currentAccount).getReactionsMap().get(visibleReaction.emojicon)) != null) {
-                PeerStoriesView.this.reactionMoveImageReceiver.setImage(null, null, ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
-                PeerStoriesView.this.reactionEffectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, null, 0);
+            } else if (visibleReaction.emojicon != null && (tL_availableReaction = MediaDataController.getInstance(PeerStoriesView.this.currentAccount).getReactionsMap().get(visibleReaction.emojicon)) != null) {
+                PeerStoriesView.this.reactionMoveImageReceiver.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
+                PeerStoriesView.this.reactionEffectImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, null, 0);
                 if (PeerStoriesView.this.reactionEffectImageReceiver.getLottieAnimation() != null) {
                     PeerStoriesView.this.reactionEffectImageReceiver.getLottieAnimation().setCurrentFrame(0, false, true);
                 }
@@ -897,15 +863,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView.this.storiesLikeButton.setReaction(visibleReaction);
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             if (peerStoriesView.isChannel) {
-                TL_stories$StoryItem tL_stories$StoryItem = peerStoriesView.currentStory.storyItem;
-                if (tL_stories$StoryItem.sent_reaction == null) {
-                    if (tL_stories$StoryItem.views == null) {
-                        tL_stories$StoryItem.views = new TL_stories$TL_storyViews();
+                TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
+                if (storyItem.sent_reaction == null) {
+                    if (storyItem.views == null) {
+                        storyItem.views = new TL_stories.TL_storyViews();
                     }
-                    TL_stories$StoryItem tL_stories$StoryItem2 = PeerStoriesView.this.currentStory.storyItem;
-                    TL_stories$StoryViews tL_stories$StoryViews = tL_stories$StoryItem2.views;
-                    tL_stories$StoryViews.reactions_count++;
-                    ReactionsUtils.applyForStoryViews(null, tL_stories$StoryItem2.sent_reaction, tL_stories$StoryViews);
+                    TL_stories.StoryItem storyItem2 = PeerStoriesView.this.currentStory.storyItem;
+                    TL_stories.StoryViews storyViews = storyItem2.views;
+                    storyViews.reactions_count++;
+                    ReactionsUtils.applyForStoryViews(null, storyItem2.sent_reaction, storyViews);
                     PeerStoriesView.this.updateUserViews(true);
                 }
             }
@@ -1158,9 +1124,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.val$resourcesProvider = resourcesProvider2;
         }
 
-        public void lambda$onEmojiClick$4(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TLRPC$InputStickerSet tLRPC$InputStickerSet) {
+        public void lambda$onEmojiClick$4(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TLRPC.InputStickerSet inputStickerSet) {
             ArrayList arrayList = new ArrayList(1);
-            arrayList.add(tLRPC$InputStickerSet);
+            arrayList.add(inputStickerSet);
             EmojiPacksAlert emojiPacksAlert = new EmojiPacksAlert(storyViewer.fragment, getContext(), resourcesProvider, arrayList);
             Delegate delegate = PeerStoriesView.this.delegate;
             if (delegate != null) {
@@ -1177,8 +1143,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onReplyClick$3(StoryCaptionView.Reply reply, final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TL_stories$StoryItem tL_stories$StoryItem) {
-            if (tL_stories$StoryItem == null) {
+        public void lambda$onReplyClick$3(StoryCaptionView.Reply reply, final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TL_stories.StoryItem storyItem) {
+            if (storyItem == null) {
                 BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.story_bomb2, LocaleController.getString(R.string.StoryNotFound)).setTag(3).show(true);
                 return;
             }
@@ -1186,9 +1152,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (lastFragment == null) {
                 return;
             }
-            tL_stories$StoryItem.dialogId = reply.peerId.longValue();
+            storyItem.dialogId = reply.peerId.longValue();
             StoryViewer createOverlayStoryViewer = lastFragment.createOverlayStoryViewer();
-            createOverlayStoryViewer.open(getContext(), tL_stories$StoryItem, (StoryViewer.PlaceProvider) null);
+            createOverlayStoryViewer.open(getContext(), storyItem, (StoryViewer.PlaceProvider) null);
             createOverlayStoryViewer.setOnCloseListener(new Runnable() {
                 @Override
                 public final void run() {
@@ -1240,20 +1206,20 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 if (peerStoriesView.delegate == null) {
                     return;
                 }
-                TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
-                if (tLRPC$Document == null) {
-                    tLRPC$Document = AnimatedEmojiDrawable.findDocument(peerStoriesView.currentAccount, animatedEmojiSpan.documentId);
+                TLRPC.Document document = animatedEmojiSpan.document;
+                if (document == null) {
+                    document = AnimatedEmojiDrawable.findDocument(peerStoriesView.currentAccount, animatedEmojiSpan.documentId);
                 }
-                if (tLRPC$Document == null) {
+                if (document == null) {
                     return;
                 }
                 BulletinFactory of = BulletinFactory.of(PeerStoriesView.this.storyContainer, this.val$resourcesProvider);
                 final StoryViewer storyViewer = this.val$storyViewer;
                 final Theme.ResourcesProvider resourcesProvider = this.val$resourcesProvider;
-                Bulletin createContainsEmojiBulletin = of.createContainsEmojiBulletin(tLRPC$Document, 2, new Utilities.Callback() {
+                Bulletin createContainsEmojiBulletin = of.createContainsEmojiBulletin(document, 2, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        PeerStoriesView.AnonymousClass5.this.lambda$onEmojiClick$4(storyViewer, resourcesProvider, (TLRPC$InputStickerSet) obj);
+                        PeerStoriesView.AnonymousClass5.this.lambda$onEmojiClick$4(storyViewer, resourcesProvider, (TLRPC.InputStickerSet) obj);
                     }
                 });
                 if (createContainsEmojiBulletin == null) {
@@ -1267,7 +1233,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         @Override
         public void onLinkClick(CharacterStyle characterStyle, View view) {
             if (characterStyle instanceof URLSpanUserMention) {
-                TLRPC$User user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Utilities.parseLong(((URLSpanUserMention) characterStyle).getURL()));
+                TLRPC.User user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Utilities.parseLong(((URLSpanUserMention) characterStyle).getURL()));
                 if (user != null) {
                     MessagesController.getInstance(PeerStoriesView.this.currentAccount).openChatOrProfileWith(user, null, this.val$storyViewer.fragment, 0, false);
                     return;
@@ -1374,7 +1340,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 storiesController.resolveStoryLink(longValue, intValue, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        PeerStoriesView.AnonymousClass5.this.lambda$onReplyClick$3(reply, storyViewer, resourcesProvider, (TL_stories$StoryItem) obj);
+                        PeerStoriesView.AnonymousClass5.this.lambda$onReplyClick$3(reply, storyViewer, resourcesProvider, (TL_stories.StoryItem) obj);
                     }
                 });
                 return;
@@ -1474,13 +1440,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        private void addViewStatistics(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, final TL_stories$StoryItem tL_stories$StoryItem) {
-            final TLRPC$Chat chat;
+        private void addViewStatistics(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, final TL_stories.StoryItem storyItem) {
+            final TLRPC.Chat chat;
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             if (!peerStoriesView.isChannel || (chat = MessagesController.getInstance(peerStoriesView.currentAccount).getChat(Long.valueOf(-PeerStoriesView.this.dialogId))) == null) {
                 return;
             }
-            TLRPC$ChatFull chatFull = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChatFull(chat.id);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChatFull(chat.id);
             if (chatFull == null) {
                 chatFull = MessagesStorage.getInstance(PeerStoriesView.this.currentAccount).loadChatInfo(chat.id, true, new CountDownLatch(1), false, false);
             }
@@ -1492,7 +1458,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             addItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$addViewStatistics$0(tL_stories$StoryItem, storyViewer, chat, view);
+                    PeerStoriesView.AnonymousClass8.this.lambda$addViewStatistics$0(storyItem, storyViewer, chat, view);
                 }
             });
         }
@@ -1507,16 +1473,16 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView.this.speedItem.openSwipeBack();
         }
 
-        public void lambda$addViewStatistics$0(TL_stories$StoryItem tL_stories$StoryItem, StoryViewer storyViewer, TLRPC$Chat tLRPC$Chat, View view) {
+        public void lambda$addViewStatistics$0(TL_stories.StoryItem storyItem, StoryViewer storyViewer, TLRPC.Chat chat, View view) {
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
             }
-            tL_stories$StoryItem.dialogId = PeerStoriesView.this.dialogId;
-            tL_stories$StoryItem.messageId = tL_stories$StoryItem.id;
-            MessageObject messageObject = new MessageObject(PeerStoriesView.this.currentAccount, tL_stories$StoryItem);
+            storyItem.dialogId = PeerStoriesView.this.dialogId;
+            storyItem.messageId = storyItem.id;
+            MessageObject messageObject = new MessageObject(PeerStoriesView.this.currentAccount, storyItem);
             messageObject.generateThumbs(false);
-            storyViewer.presentFragment(new MessageStatisticActivity(messageObject, tLRPC$Chat.id, false) {
+            storyViewer.presentFragment(new MessageStatisticActivity(messageObject, chat.id, false) {
                 @Override
                 public Theme.ResourcesProvider getResourceProvider() {
                     return new DarkThemeResourceProvider();
@@ -1557,65 +1523,65 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public static void lambda$onCreate$11(StoriesController.BotPreviewsList botPreviewsList, TL_stories$StoryItem tL_stories$StoryItem, Utilities.Callback callback) {
-            TL_stories$StoryItem tL_stories$StoryItem2;
-            TLRPC$MessageMedia tLRPC$MessageMedia;
-            TLRPC$Document tLRPC$Document;
-            TLRPC$Document tLRPC$Document2;
+        public static void lambda$onCreate$11(StoriesController.BotPreviewsList botPreviewsList, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+            TL_stories.StoryItem storyItem2;
+            TLRPC.MessageMedia messageMedia;
+            TLRPC.Document document;
+            TLRPC.Document document2;
             for (int i = 0; i < botPreviewsList.messageObjects.size(); i++) {
                 MessageObject messageObject = (MessageObject) botPreviewsList.messageObjects.get(i);
-                if (messageObject != null && (tL_stories$StoryItem2 = messageObject.storyItem) != null && (tLRPC$MessageMedia = tL_stories$StoryItem2.media) != null && (tLRPC$Document = tL_stories$StoryItem.media.document) != null && (tLRPC$Document2 = tLRPC$MessageMedia.document) != null && tLRPC$Document2.id == tLRPC$Document.id) {
-                    callback.run(tLRPC$Document2);
+                if (messageObject != null && (storyItem2 = messageObject.storyItem) != null && (messageMedia = storyItem2.media) != null && (document = storyItem.media.document) != null && (document2 = messageMedia.document) != null && document2.id == document.id) {
+                    callback.run(document2);
                     return;
                 }
             }
             callback.run(null);
         }
 
-        public void lambda$onCreate$12(TLObject tLObject, TL_stories$StoryItem tL_stories$StoryItem, Utilities.Callback callback) {
-            TLRPC$Document tLRPC$Document;
-            if (tLObject instanceof TL_stories$TL_stories_stories) {
-                TL_stories$TL_stories_stories tL_stories$TL_stories_stories = (TL_stories$TL_stories_stories) tLObject;
-                MessagesController.getInstance(PeerStoriesView.this.currentAccount).putUsers(tL_stories$TL_stories_stories.users, false);
-                MessagesController.getInstance(PeerStoriesView.this.currentAccount).putChats(tL_stories$TL_stories_stories.chats, false);
-                for (int i = 0; i < tL_stories$TL_stories_stories.stories.size(); i++) {
-                    if (((TL_stories$StoryItem) tL_stories$TL_stories_stories.stories.get(i)).id == tL_stories$StoryItem.id) {
-                        tLRPC$Document = ((TL_stories$StoryItem) tL_stories$TL_stories_stories.stories.get(i)).media.document;
+        public void lambda$onCreate$12(TLObject tLObject, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+            TLRPC.Document document;
+            if (tLObject instanceof TL_stories.TL_stories_stories) {
+                TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+                MessagesController.getInstance(PeerStoriesView.this.currentAccount).putUsers(tL_stories_stories.users, false);
+                MessagesController.getInstance(PeerStoriesView.this.currentAccount).putChats(tL_stories_stories.chats, false);
+                for (int i = 0; i < tL_stories_stories.stories.size(); i++) {
+                    if (tL_stories_stories.stories.get(i).id == storyItem.id) {
+                        document = tL_stories_stories.stories.get(i).media.document;
                         break;
                     }
                 }
             }
-            tLRPC$Document = null;
-            callback.run(tLRPC$Document);
+            document = null;
+            callback.run(document);
         }
 
-        public void lambda$onCreate$13(final TL_stories$StoryItem tL_stories$StoryItem, final Utilities.Callback callback, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onCreate$13(final TL_stories.StoryItem storyItem, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$12(tLObject, tL_stories$StoryItem, callback);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$12(tLObject, storyItem, callback);
                 }
             });
         }
 
-        public void lambda$onCreate$14(final TL_stories$StoryItem tL_stories$StoryItem, final TL_stories$StoryItem tL_stories$StoryItem2, final Utilities.Callback callback) {
+        public void lambda$onCreate$14(final TL_stories.StoryItem storyItem, final TL_stories.StoryItem storyItem2, final Utilities.Callback callback) {
             final StoriesController.BotPreviewsList botPreviewsList;
-            if ((tL_stories$StoryItem instanceof StoriesController.BotPreview) && (botPreviewsList = ((StoriesController.BotPreview) tL_stories$StoryItem).list) != null) {
+            if ((storyItem instanceof StoriesController.BotPreview) && (botPreviewsList = ((StoriesController.BotPreview) storyItem).list) != null) {
                 botPreviewsList.reload(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.lambda$onCreate$11(StoriesController.BotPreviewsList.this, tL_stories$StoryItem2, callback);
+                        PeerStoriesView.AnonymousClass8.lambda$onCreate$11(StoriesController.BotPreviewsList.this, storyItem2, callback);
                     }
                 });
                 return;
             }
-            TL_stories$TL_stories_getStoriesByID tL_stories$TL_stories_getStoriesByID = new TL_stories$TL_stories_getStoriesByID();
-            tL_stories$TL_stories_getStoriesByID.peer = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getInputPeer(tL_stories$StoryItem.dialogId);
-            tL_stories$TL_stories_getStoriesByID.id.add(Integer.valueOf(tL_stories$StoryItem.id));
-            ConnectionsManager.getInstance(PeerStoriesView.this.currentAccount).sendRequest(tL_stories$TL_stories_getStoriesByID, new RequestDelegate() {
+            TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
+            tL_stories_getStoriesByID.peer = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getInputPeer(storyItem.dialogId);
+            tL_stories_getStoriesByID.id.add(Integer.valueOf(storyItem.id));
+            ConnectionsManager.getInstance(PeerStoriesView.this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$13(tL_stories$StoryItem, callback, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$13(storyItem, callback, tLObject, tL_error);
                 }
             });
         }
@@ -1678,7 +1644,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$19(Activity activity, final TL_stories$StoryItem tL_stories$StoryItem, StoryViewer storyViewer, final SharedResources sharedResources) {
+        public void lambda$onCreate$19(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
@@ -1689,12 +1655,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             fromStoryItem.cover = StoryEntry.getCoverTime(PeerStoriesView.this.currentStory.storyItem);
             StoryEntry copy = fromStoryItem.copy();
             copy.isEditingCover = true;
-            final TL_stories$StoryItem tL_stories$StoryItem2 = PeerStoriesView.this.currentStory.storyItem;
-            copy.editingCoverDocument = tL_stories$StoryItem2.media.document;
+            final TL_stories.StoryItem storyItem2 = PeerStoriesView.this.currentStory.storyItem;
+            copy.editingCoverDocument = storyItem2.media.document;
             copy.updateDocumentRef = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$14(tL_stories$StoryItem2, tL_stories$StoryItem, (Utilities.Callback) obj);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$14(storyItem2, storyItem, (Utilities.Callback) obj);
                 }
             };
             if (PeerStoriesView.this.isBotsPreview()) {
@@ -1720,7 +1686,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             });
         }
 
-        public void lambda$onCreate$20(Context context, final TL_stories$StoryItem tL_stories$StoryItem, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
+        public void lambda$onCreate$20(Context context, final TL_stories.StoryItem storyItem, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
             File path = PeerStoriesView.this.currentStory.getPath();
             if (path == null || !path.exists()) {
                 PeerStoriesView.this.showDownloadAlert();
@@ -1738,7 +1704,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$19(findActivity, tL_stories$StoryItem, storyViewer, sharedResources);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$19(findActivity, storyItem, storyViewer, sharedResources);
                 }
             };
             if (PeerStoriesView.this.delegate.releasePlayer(runnable)) {
@@ -1747,13 +1713,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$21(TL_stories$StoryItem tL_stories$StoryItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
+        public void lambda$onCreate$21(TL_stories.StoryItem storyItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
             BulletinFactory of;
             int i;
             int i2;
             Bulletin createSimpleBulletin;
             if (bool.booleanValue()) {
-                tL_stories$StoryItem.pinned = z;
+                storyItem.pinned = z;
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
                 boolean z2 = peerStoriesView.isSelf;
                 of = BulletinFactory.of(peerStoriesView.storyContainer, resourcesProvider);
@@ -1774,13 +1740,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             createSimpleBulletin.show();
         }
 
-        public void lambda$onCreate$22(final TL_stories$StoryItem tL_stories$StoryItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
+        public void lambda$onCreate$22(final TL_stories.StoryItem storyItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
             ArrayList arrayList = new ArrayList();
-            arrayList.add(tL_stories$StoryItem);
+            arrayList.add(storyItem);
             MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController().updateStoriesPinned(PeerStoriesView.this.dialogId, arrayList, z, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$21(tL_stories$StoryItem, z, resourcesProvider, (Boolean) obj);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$21(storyItem, z, resourcesProvider, (Boolean) obj);
                 }
             });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1918,8 +1884,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.currentStory.storyItem.translated = false;
             StoriesStorage storiesStorage = MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().getStoriesStorage();
-            TL_stories$StoryItem tL_stories$StoryItem = PeerStoriesView.this.currentStory.storyItem;
-            storiesStorage.updateStoryItem(tL_stories$StoryItem.dialogId, tL_stories$StoryItem);
+            TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
+            storiesStorage.updateStoryItem(storyItem.dialogId, storyItem);
             PeerStoriesView.this.cancelTextSelection();
             PeerStoriesView.this.updatePosition();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1952,8 +1918,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 delegate.setTranslating(true);
             }
             StoriesStorage storiesStorage = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController().getStoriesStorage();
-            TL_stories$StoryItem tL_stories$StoryItem = PeerStoriesView.this.currentStory.storyItem;
-            storiesStorage.updateStoryItem(tL_stories$StoryItem.dialogId, tL_stories$StoryItem);
+            TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
+            storiesStorage.updateStoryItem(storyItem.dialogId, storyItem);
             final long currentTimeMillis = System.currentTimeMillis();
             final Runnable runnable = new Runnable() {
                 @Override
@@ -1977,23 +1943,40 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$4(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories$StoryItem tL_stories$StoryItem, View view) {
-            PeerStoriesView.this.editPrivacy(storyPrivacy, tL_stories$StoryItem);
+        public void lambda$onCreate$4(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories.StoryItem storyItem, View view) {
+            PeerStoriesView.this.editPrivacy(storyPrivacy, storyItem);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
             }
         }
 
-        public void lambda$onCreate$40(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
-            AlertsCreator.createReportAlert(PeerStoriesView.this.getContext(), PeerStoriesView.this.dialogId, 0, PeerStoriesView.this.currentStory.storyItem.id, storyViewer.fragment, resourcesProvider, null);
+        public static void lambda$onCreate$40(StoryViewer storyViewer, Boolean bool) {
+            if (storyViewer != null) {
+                storyViewer.setOverlayVisible(false);
+            }
+        }
+
+        public void lambda$onCreate$41(final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
+            if (storyViewer != null) {
+                storyViewer.setOverlayVisible(true);
+            }
+            int i = PeerStoriesView.this.currentAccount;
+            Context context = PeerStoriesView.this.getContext();
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            ReportBottomSheet.openStory(i, context, peerStoriesView.currentStory.storyItem, BulletinFactory.of(peerStoriesView.storyContainer, resourcesProvider), resourcesProvider, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$40(StoryViewer.this, (Boolean) obj);
+                }
+            });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
             }
         }
 
-        public void lambda$onCreate$41(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
+        public void lambda$onCreate$42(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
             Delegate delegate;
             EmojiPacksAlert alert = storyContainsEmojiButton.getAlert();
             if (alert == null || (delegate = PeerStoriesView.this.delegate) == null) {
@@ -2069,8 +2052,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
             long j = (videoPlayerSharedScope == null || (videoPlayerHolder = videoPlayerSharedScope.player) == null) ? 0L : videoPlayerHolder.currentPosition;
             DraftsController draftsController = MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().getDraftsController();
-            TL_stories$StoryItem tL_stories$StoryItem = PeerStoriesView.this.currentStory.storyItem;
-            StoryEntry forEdit = draftsController.getForEdit(tL_stories$StoryItem.dialogId, tL_stories$StoryItem);
+            TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
+            StoryEntry forEdit = draftsController.getForEdit(storyItem.dialogId, storyItem);
             if (forEdit == null || forEdit.isRepostMessage || (file = forEdit.file) == null || !file.exists()) {
                 forEdit = StoryEntry.fromStoryItem(PeerStoriesView.this.currentStory.getPath(), PeerStoriesView.this.currentStory.storyItem);
                 forEdit.editStoryPeerId = PeerStoriesView.this.dialogId;
@@ -2099,7 +2082,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             });
         }
 
-        public void lambda$onDismissed$42() {
+        public void lambda$onDismissed$43() {
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
         }
 
@@ -2114,7 +2097,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.this.lambda$onDismissed$42();
+                        PeerStoriesView.AnonymousClass8.this.lambda$onDismissed$43();
                     }
                 });
             }
@@ -2139,7 +2122,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         void requestAdjust(boolean z);
 
-        void requestPlayer(TLRPC$Document tLRPC$Document, Uri uri, long j, VideoPlayerSharedScope videoPlayerSharedScope);
+        void requestPlayer(TLRPC.Document document, Uri uri, long j, VideoPlayerSharedScope videoPlayerSharedScope);
 
         void setAllowTouchesByViewPager(boolean z);
 
@@ -2444,11 +2427,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     public class StoryItemHolder {
         public CharSequence caption;
         public boolean captionTranslated;
-        public TL_stories$StoryItem editingSourceItem;
+        public TL_stories.StoryItem editingSourceItem;
         private boolean isVideo;
         private StoryCaptionView.Reply reply;
         boolean skipped;
-        public TL_stories$StoryItem storyItem = null;
+        public TL_stories.StoryItem storyItem = null;
         public StoriesController.UploadingStory uploadingStory = null;
 
         public StoryItemHolder() {
@@ -2456,18 +2439,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         public String getMediaDebugString() {
             StringBuilder sb;
-            TLRPC$MessageMedia tLRPC$MessageMedia;
+            TLRPC.MessageMedia messageMedia;
             int i;
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            if (tL_stories$StoryItem != null && (tLRPC$MessageMedia = tL_stories$StoryItem.media) != null) {
-                if (tLRPC$MessageMedia.photo != null) {
+            TL_stories.StoryItem storyItem = this.storyItem;
+            if (storyItem != null && (messageMedia = storyItem.media) != null) {
+                if (messageMedia.photo != null) {
                     sb = new StringBuilder();
                     sb.append("photo#");
                     sb.append(this.storyItem.media.photo.id);
                     sb.append("at");
                     i = this.storyItem.media.photo.dc_id;
                 } else {
-                    if (tLRPC$MessageMedia.document == null) {
+                    if (messageMedia.document == null) {
                         return "unknown";
                     }
                     sb = new StringBuilder();
@@ -2491,18 +2474,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         private boolean isVideoInternal() {
             String str;
-            TLRPC$MessageMedia tLRPC$MessageMedia;
+            TLRPC.MessageMedia messageMedia;
             StoriesController.UploadingStory uploadingStory = this.uploadingStory;
             if (uploadingStory != null) {
                 return uploadingStory.isVideo;
             }
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            if (tL_stories$StoryItem != null && (tLRPC$MessageMedia = tL_stories$StoryItem.media) != null && tLRPC$MessageMedia.getDocument() != null) {
-                TLRPC$Document document = this.storyItem.media.getDocument();
+            TL_stories.StoryItem storyItem = this.storyItem;
+            if (storyItem != null && (messageMedia = storyItem.media) != null && messageMedia.getDocument() != null) {
+                TLRPC.Document document = this.storyItem.media.getDocument();
                 return MessageObject.isVideoDocument(document) || "video/mp4".equals(document.mime_type);
             }
-            TL_stories$StoryItem tL_stories$StoryItem2 = this.storyItem;
-            if (tL_stories$StoryItem2 == null || tL_stories$StoryItem2.media != null || (str = tL_stories$StoryItem2.attachPath) == null) {
+            TL_stories.StoryItem storyItem2 = this.storyItem;
+            if (storyItem2 == null || storyItem2.media != null || (str = storyItem2.attachPath) == null) {
                 return false;
             }
             return str.toLowerCase().endsWith(".mp4");
@@ -2513,27 +2496,27 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (uploadingStory != null) {
                 return uploadingStory.entry.allowScreenshots;
             }
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            if (tL_stories$StoryItem == null) {
+            TL_stories.StoryItem storyItem = this.storyItem;
+            if (storyItem == null) {
                 return true;
             }
-            if (tL_stories$StoryItem.noforwards) {
+            if (storyItem.noforwards) {
                 return false;
             }
-            if (!tL_stories$StoryItem.pinned) {
+            if (!storyItem.pinned) {
                 return true;
             }
-            TLRPC$Chat chat = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChat(Long.valueOf(-tL_stories$StoryItem.dialogId));
+            TLRPC.Chat chat = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChat(Long.valueOf(-storyItem.dialogId));
             return chat == null || !chat.noforwards;
         }
 
         void cancelOrDelete() {
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            if (tL_stories$StoryItem instanceof StoriesController.BotPreview) {
-                ((StoriesController.BotPreview) tL_stories$StoryItem).list.delete(tL_stories$StoryItem.media);
+            TL_stories.StoryItem storyItem = this.storyItem;
+            if (storyItem instanceof StoriesController.BotPreview) {
+                ((StoriesController.BotPreview) storyItem).list.delete(storyItem.media);
                 return;
             }
-            if (tL_stories$StoryItem != null) {
+            if (storyItem != null) {
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
                 peerStoriesView.storiesController.deleteStory(peerStoriesView.dialogId, this.storyItem);
             } else {
@@ -2562,13 +2545,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             MessagesController messagesController = MessagesController.getInstance(PeerStoriesView.this.currentAccount);
             long j2 = PeerStoriesView.this.dialogId;
             if (j > 0) {
-                TLRPC$User user = messagesController.getUser(Long.valueOf(j2));
+                TLRPC.User user = messagesController.getUser(Long.valueOf(j2));
                 if (UserObject.getPublicUsername(user) == null) {
                     return null;
                 }
                 return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(PeerStoriesView.this.currentStory.storyItem.id));
             }
-            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j2));
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j2));
             if (ChatObject.getPublicUsername(chat) == null) {
                 return null;
             }
@@ -2576,31 +2559,31 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         public String getLocalPath() {
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            if (tL_stories$StoryItem != null) {
-                return tL_stories$StoryItem.attachPath;
+            TL_stories.StoryItem storyItem = this.storyItem;
+            if (storyItem != null) {
+                return storyItem.attachPath;
             }
             return null;
         }
 
         public File getPath() {
-            TLRPC$Photo tLRPC$Photo;
+            TLRPC.Photo photo;
             if (getLocalPath() != null) {
                 return new File(getLocalPath());
             }
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            if (tL_stories$StoryItem == null) {
+            TL_stories.StoryItem storyItem = this.storyItem;
+            if (storyItem == null) {
                 return null;
             }
-            TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-            if (tLRPC$MessageMedia != null && tLRPC$MessageMedia.getDocument() != null) {
+            TLRPC.MessageMedia messageMedia = storyItem.media;
+            if (messageMedia != null && messageMedia.getDocument() != null) {
                 return FileLoader.getInstance(PeerStoriesView.this.currentAccount).getPathToAttach(this.storyItem.media.getDocument());
             }
-            TLRPC$MessageMedia tLRPC$MessageMedia2 = this.storyItem.media;
-            if (tLRPC$MessageMedia2 == null || (tLRPC$Photo = tLRPC$MessageMedia2.photo) == null) {
+            TLRPC.MessageMedia messageMedia2 = this.storyItem.media;
+            if (messageMedia2 == null || (photo = messageMedia2.photo) == null) {
                 return null;
             }
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, Integer.MAX_VALUE);
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, Integer.MAX_VALUE);
             File pathToAttach = FileLoader.getInstance(PeerStoriesView.this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true);
             return !pathToAttach.exists() ? FileLoader.getInstance(PeerStoriesView.this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, false) : pathToAttach;
         }
@@ -2622,21 +2605,21 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         public boolean hasSound() {
-            TLRPC$MessageMedia tLRPC$MessageMedia;
-            TLRPC$Document document;
+            TLRPC.MessageMedia messageMedia;
+            TLRPC.Document document;
             if (!this.isVideo) {
                 return false;
             }
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            if (tL_stories$StoryItem == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || (document = tLRPC$MessageMedia.getDocument()) == null) {
+            TL_stories.StoryItem storyItem = this.storyItem;
+            if (storyItem == null || (messageMedia = storyItem.media) == null || (document = messageMedia.getDocument()) == null) {
                 if (this.uploadingStory != null) {
                     return !r0.entry.muted;
                 }
                 return true;
             }
             for (int i = 0; i < document.attributes.size(); i++) {
-                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = document.attributes.get(i);
-                if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) && tLRPC$DocumentAttribute.nosound) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeVideo) && documentAttribute.nosound) {
                     return false;
                 }
             }
@@ -2647,11 +2630,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             return this.isVideo;
         }
 
-        void set(TL_stories$StoryItem tL_stories$StoryItem) {
-            this.storyItem = tL_stories$StoryItem;
+        void set(TL_stories.StoryItem storyItem) {
+            this.storyItem = storyItem;
             this.reply = null;
             this.uploadingStory = null;
-            this.skipped = tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped;
+            this.skipped = storyItem instanceof TL_stories.TL_storyItemSkipped;
             this.isVideo = isVideoInternal();
         }
 
@@ -2666,7 +2649,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         public void updateCaption() {
             SpannableStringBuilder valueOf;
             int i;
-            ArrayList arrayList;
+            ArrayList<TLRPC.MessageEntity> arrayList;
             this.captionTranslated = false;
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             StoryItemHolder storyItemHolder = peerStoriesView.currentStory;
@@ -2677,33 +2660,33 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, peerStoriesView.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
                 this.caption = replaceEmoji;
                 SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(replaceEmoji);
-                TLRPC$User user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
+                TLRPC.User user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
                 if (PeerStoriesView.this.dialogId < 0 || MessagesController.getInstance(PeerStoriesView.this.currentAccount).storyEntitiesAllowed(user)) {
                     MessageObject.addLinks(true, valueOf2);
                     return;
                 }
                 return;
             }
-            TL_stories$StoryItem tL_stories$StoryItem = storyItemHolder.storyItem;
-            if (tL_stories$StoryItem != null) {
-                if (tL_stories$StoryItem.translated && tL_stories$StoryItem.translatedText != null && TextUtils.equals(tL_stories$StoryItem.translatedLng, TranslateAlert2.getToLanguage())) {
+            TL_stories.StoryItem storyItem = storyItemHolder.storyItem;
+            if (storyItem != null) {
+                if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, TranslateAlert2.getToLanguage())) {
                     this.captionTranslated = true;
                     PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
-                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = peerStoriesView2.currentStory.storyItem.translatedText;
-                    String str = tLRPC$TL_textWithEntities.text;
+                    TLRPC.TL_textWithEntities tL_textWithEntities = peerStoriesView2.currentStory.storyItem.translatedText;
+                    String str = tL_textWithEntities.text;
                     this.caption = str;
                     CharSequence replaceEmoji2 = Emoji.replaceEmoji((CharSequence) str, peerStoriesView2.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
                     this.caption = replaceEmoji2;
-                    if (replaceEmoji2 == null || tLRPC$TL_textWithEntities.entities == null) {
+                    if (replaceEmoji2 == null || tL_textWithEntities.entities == null) {
                         return;
                     }
-                    valueOf = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(tLRPC$TL_textWithEntities.text), tLRPC$TL_textWithEntities.entities, PeerStoriesView.this.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), false));
+                    valueOf = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(tL_textWithEntities.text), tL_textWithEntities.entities, PeerStoriesView.this.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), false));
                     SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf, PeerStoriesView.this.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), false));
                     i = (PeerStoriesView.this.dialogId < 0 || MessagesController.getInstance(PeerStoriesView.this.currentAccount).storyEntitiesAllowed(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId)))) ? 1 : 0;
                     if (i != 0) {
                         MessageObject.addLinks(true, valueOf);
                     }
-                    arrayList = tLRPC$TL_textWithEntities.entities;
+                    arrayList = tL_textWithEntities.entities;
                 } else {
                     PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
                     String str2 = peerStoriesView3.currentStory.storyItem.caption;
@@ -3199,7 +3182,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         long j = this.dialogId;
         if (j >= 0) {
             this.isSelf = j == UserConfig.getInstance(this.currentAccount).getClientUserId();
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
             this.isPremiumBlocked = !UserConfig.getInstance(this.currentAccount).isPremium() && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.dialogId);
             this.avatarDrawable.setInfo(this.currentAccount, user);
             this.headerView.backupImageView.getImageReceiver().setForUserOrChat(user, this.avatarDrawable);
@@ -3229,7 +3212,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (this.storiesController.canEditStories(j) || BuildVars.DEBUG_PRIVATE_VERSION) {
                 this.userCanSeeViews = true;
             }
-            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
             boolean z = !ChatObject.isChannelAndNotMegaGroup(chat);
             this.isGroup = z;
             if (z && MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId) == null) {
@@ -3268,7 +3251,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 createEnterView();
             }
             if (this.chatActivityEnterView != null) {
-                TLRPC$Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
                 ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
                 if (!isBotsPreview() && this.isGroup && (ChatObject.canSendPlain(chat2) || ChatObject.isPossibleRemoveChatRestrictionsByBoosts(chat2))) {
                     i3 = 0;
@@ -3325,7 +3308,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 } else if (this.uploadingStories.isEmpty()) {
                     i2 = 0;
                     while (i2 < this.storyItems.size()) {
-                        if (!((TL_stories$StoryItem) this.storyItems.get(i2)).justUploaded && ((TL_stories$StoryItem) this.storyItems.get(i2)).id <= this.storiesController.dialogIdToMaxReadId.get(this.dialogId)) {
+                        if (!((TL_stories.StoryItem) this.storyItems.get(i2)).justUploaded && ((TL_stories.StoryItem) this.storyItems.get(i2)).id <= this.storiesController.dialogIdToMaxReadId.get(this.dialogId)) {
                             i2++;
                         }
                     }
@@ -3362,7 +3345,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 chatActivityEnterView3.setVisibility((isBotsPreview() || UserObject.isService(this.dialogId)) ? 8 : 0);
                 this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
                 this.chatActivityEnterView.setDialogId(this.dialogId, this.currentAccount);
-                TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
+                TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
                 if (userFull != null) {
                     this.chatActivityEnterView.updateRecordButton(null, userFull);
                 } else {
@@ -3441,16 +3424,16 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     return;
                 }
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
-                TL_stories$StoryItem tL_stories$StoryItem = peerStoriesView.currentStory.storyItem;
-                if (tL_stories$StoryItem == null || (tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped)) {
+                TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
+                if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
                     return;
                 }
-                tL_stories$StoryItem.dialogId = peerStoriesView.dialogId;
+                storyItem.dialogId = peerStoriesView.dialogId;
                 if (photoEntry.isVideo) {
                     AccountInstance accountInstance2 = PeerStoriesView.this.getAccountInstance();
                     String str3 = photoEntry.path;
                     long j = PeerStoriesView.this.dialogId;
-                    ArrayList<TLRPC$MessageEntity> arrayList = photoEntry.entities;
+                    ArrayList<TLRPC.MessageEntity> arrayList = photoEntry.entities;
                     int i2 = photoEntry.ttl;
                     boolean z3 = photoEntry.hasSpoiler;
                     CharSequence charSequence = photoEntry.caption;
@@ -3469,7 +3452,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         messageObject3 = null;
                         str2 = null;
                     }
-                    SendMessagesHelper.prepareSendingVideo(accountInstance2, str3, videoEditedInfo2, j, messageObject, messageObject2, tL_stories$StoryItem, replyQuote, arrayList, i2, messageObject3, z, i, z2, z3, charSequence, str2, 0, 0L);
+                    SendMessagesHelper.prepareSendingVideo(accountInstance2, str3, videoEditedInfo2, j, messageObject, messageObject2, storyItem, replyQuote, arrayList, i2, messageObject3, z, i, z2, z3, charSequence, str2, 0, 0L);
                 } else {
                     if (photoEntry.imagePath != null) {
                         accountInstance = PeerStoriesView.this.getAccountInstance();
@@ -3479,7 +3462,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         str = photoEntry.path;
                     }
                     String str4 = str;
-                    SendMessagesHelper.prepareSendingPhoto(accountInstance, str4, photoEntry.thumbPath, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z, i, 0, z2, photoEntry.caption, null, 0, 0L);
+                    SendMessagesHelper.prepareSendingPhoto(accountInstance, str4, photoEntry.thumbPath, null, PeerStoriesView.this.dialogId, null, null, storyItem, null, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, null, videoEditedInfo, z, i, 0, z2, photoEntry.caption, null, 0, 0L);
                 }
                 PeerStoriesView.this.afterMessageSend();
             }
@@ -3494,7 +3477,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         String string;
         if (this.chatActivityEnterView != null && this.isVisible && this.attachedToWindow) {
             AndroidUtilities.cancelRunOnUIThread(this.updateStealthModeTimer);
-            TL_stories$TL_storiesStealthMode stealthMode = this.storiesController.getStealthMode();
+            TL_stories.TL_storiesStealthMode stealthMode = this.storiesController.getStealthMode();
             if (this.isPremiumBlocked) {
                 this.stealthModeIsActive = false;
                 this.chatActivityEnterView.setEnabled(false);
@@ -3555,8 +3538,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     String str;
                     if (PeerStoriesView.this.storyViewer.isShowing) {
                         PeerStoriesView peerStoriesView = PeerStoriesView.this;
-                        TL_stories$StoryItem tL_stories$StoryItem = peerStoriesView.currentStory.storyItem;
-                        if (tL_stories$StoryItem == null || (tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped)) {
+                        TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
+                        if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
                             return;
                         }
                         int i3 = 4;
@@ -3605,7 +3588,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                                     photoEntry.reset();
                                 }
                             }
-                            SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, i == i3 || z5, z2, null, z3, i2, 0, i5 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i4)).updateStickersOrder : false, null, null, 0, 0L, false);
+                            SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, storyItem, null, i == i3 || z5, z2, null, z3, i2, 0, i5 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i4)).updateStickersOrder : false, null, null, 0, 0L, false);
                             i5++;
                             selectedPhotos = selectedPhotos;
                             selectedPhotosOrder = selectedPhotosOrder;
@@ -3618,8 +3601,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
 
                 @Override
-                public void didSelectBot(TLRPC$User tLRPC$User) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
+                public void didSelectBot(TLRPC.User user) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
                 }
 
                 @Override
@@ -3655,11 +3638,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 @Override
                 public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, long j, boolean z3) {
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
-                    TL_stories$StoryItem tL_stories$StoryItem = peerStoriesView.currentStory.storyItem;
-                    if (tL_stories$StoryItem == null || (tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped)) {
+                    TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
+                    if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
                         return;
                     }
-                    SendMessagesHelper.prepareSendingAudioDocuments(peerStoriesView.getAccountInstance(), arrayList, charSequence != null ? charSequence : null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, z2, i, null, null, 0, j, z3);
+                    SendMessagesHelper.prepareSendingAudioDocuments(peerStoriesView.getAccountInstance(), arrayList, charSequence != null ? charSequence : null, PeerStoriesView.this.dialogId, null, null, storyItem, z2, i, null, null, 0, j, z3);
                     PeerStoriesView.this.afterMessageSend();
                 }
             });
@@ -3670,11 +3653,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 @Override
                 public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, boolean z2, int i, long j, boolean z3) {
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
-                    TL_stories$StoryItem tL_stories$StoryItem = peerStoriesView.currentStory.storyItem;
-                    if (tL_stories$StoryItem == null || (tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped)) {
+                    TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
+                    if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
                         return;
                     }
-                    SendMessagesHelper.prepareSendingDocuments(peerStoriesView.getAccountInstance(), arrayList, arrayList, null, str, null, PeerStoriesView.this.dialogId, null, null, tL_stories$StoryItem, null, null, z2, i, null, null, 0, 0L, false);
+                    SendMessagesHelper.prepareSendingDocuments(peerStoriesView.getAccountInstance(), arrayList, arrayList, null, str, null, PeerStoriesView.this.dialogId, null, null, storyItem, null, null, z2, i, null, null, 0, 0L, false);
                     PeerStoriesView.this.afterMessageSend();
                 }
 
@@ -3783,9 +3766,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
 
             @Override
-            public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
-                SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tLRPC$TL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj, null, 0);
-                PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tLRPC$TL_document);
+            public void onStickerSelected(TLRPC.TL_document tL_document, String str, Object obj) {
+                SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj, null, 0);
+                PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tL_document);
                 PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                 PeerStoriesView.this.afterMessageSend();
             }
@@ -3796,14 +3779,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
 
             @Override
-            public void sendBotInlineResult(TLRPC$BotInlineResult tLRPC$BotInlineResult, boolean z, int i) {
+            public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i) {
                 long contextBotId = PeerStoriesView.this.mentionContainer.getAdapter().getContextBotId();
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", tLRPC$BotInlineResult.id);
-                hashMap.put("query_id", "" + tLRPC$BotInlineResult.query_id);
+                hashMap.put("id", botInlineResult.id);
+                hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + contextBotId);
                 hashMap.put("bot_name", PeerStoriesView.this.mentionContainer.getAdapter().getContextBotName());
-                SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), tLRPC$BotInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, z, i, null, 0);
+                SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), botInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, z, i, null, 0);
                 PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                 PeerStoriesView.this.afterMessageSend();
                 MediaDataController.getInstance(PeerStoriesView.this.currentAccount).increaseInlineRating(contextBotId);
@@ -4055,11 +4038,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return false;
     }
 
-    public void editPrivacy(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, final TL_stories$StoryItem tL_stories$StoryItem) {
-        this.delegate.showDialog(new StoryPrivacyBottomSheet(getContext(), tL_stories$StoryItem.pinned ? Integer.MAX_VALUE : tL_stories$StoryItem.expire_date - tL_stories$StoryItem.date, this.resourcesProvider).setValue(storyPrivacy).enableSharing(false).isEdit(true).whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
+    public void editPrivacy(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, final TL_stories.StoryItem storyItem) {
+        this.delegate.showDialog(new StoryPrivacyBottomSheet(getContext(), storyItem.pinned ? Integer.MAX_VALUE : storyItem.expire_date - storyItem.date, this.resourcesProvider).setValue(storyPrivacy).enableSharing(false).isEdit(true).whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
             @Override
-            public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy2, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable) {
-                PeerStoriesView.this.lambda$editPrivacy$47(tL_stories$StoryItem, storyPrivacy2, z, z2, tLRPC$InputPeer, runnable);
+            public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy2, boolean z, boolean z2, TLRPC.InputPeer inputPeer, Runnable runnable) {
+                PeerStoriesView.this.lambda$editPrivacy$47(storyItem, storyPrivacy2, z, z2, inputPeer, runnable);
             }
         }, false));
     }
@@ -4124,24 +4107,24 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     public ArrayList getAnimatedEmojiSets(StoryItemHolder storyItemHolder) {
         StoryEntry storyEntry;
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
-        TL_stories$MediaArea tL_stories$MediaArea;
-        TLRPC$InputStickerSet inputStickerSet;
-        ArrayList arrayList;
-        TLRPC$InputStickerSet inputStickerSet2;
+        TL_stories.MediaArea mediaArea;
+        TLRPC.InputStickerSet inputStickerSet;
+        ArrayList<TLRPC.MessageEntity> arrayList;
+        TLRPC.InputStickerSet inputStickerSet2;
         if (storyItemHolder == null) {
             return null;
         }
         HashSet hashSet = new HashSet();
         ArrayList arrayList2 = new ArrayList();
-        TL_stories$StoryItem tL_stories$StoryItem = storyItemHolder.storyItem;
+        TL_stories.StoryItem storyItem = storyItemHolder.storyItem;
         int i = 0;
-        if (tL_stories$StoryItem != null && tL_stories$StoryItem.media_areas != null) {
+        if (storyItem != null && storyItem.media_areas != null) {
             for (int i2 = 0; i2 < storyItemHolder.storyItem.media_areas.size(); i2++) {
-                TL_stories$MediaArea tL_stories$MediaArea2 = (TL_stories$MediaArea) storyItemHolder.storyItem.media_areas.get(i2);
-                if (tL_stories$MediaArea2 instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
-                    TLRPC$Reaction tLRPC$Reaction = tL_stories$MediaArea2.reaction;
-                    if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
-                        TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
+                TL_stories.MediaArea mediaArea2 = storyItemHolder.storyItem.media_areas.get(i2);
+                if (mediaArea2 instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
+                    TLRPC.Reaction reaction = mediaArea2.reaction;
+                    if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
+                        TLRPC.Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, ((TLRPC.TL_reactionCustomEmoji) reaction).document_id);
                         if (findDocument != null && (inputStickerSet2 = MessageObject.getInputStickerSet(findDocument)) != null && !hashSet.contains(Long.valueOf(inputStickerSet2.id))) {
                             hashSet.add(Long.valueOf(inputStickerSet2.id));
                             arrayList2.add(inputStickerSet2);
@@ -4150,17 +4133,17 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
             }
         }
-        TL_stories$StoryItem tL_stories$StoryItem2 = storyItemHolder.storyItem;
-        if (tL_stories$StoryItem2 == null || (arrayList = tL_stories$StoryItem2.entities) == null || arrayList.isEmpty()) {
+        TL_stories.StoryItem storyItem2 = storyItemHolder.storyItem;
+        if (storyItem2 == null || (arrayList = storyItem2.entities) == null || arrayList.isEmpty()) {
             StoriesController.UploadingStory uploadingStory = storyItemHolder.uploadingStory;
             if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null) {
                 if (storyEntry.mediaEntities != null) {
                     for (int i3 = 0; i3 < storyItemHolder.uploadingStory.entry.mediaEntities.size(); i3++) {
                         VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) storyItemHolder.uploadingStory.entry.mediaEntities.get(i3);
-                        if (mediaEntity.type == 4 && (tL_stories$MediaArea = mediaEntity.mediaArea) != null) {
-                            TLRPC$Reaction tLRPC$Reaction2 = tL_stories$MediaArea.reaction;
-                            if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) {
-                                TLRPC$Document findDocument2 = AnimatedEmojiDrawable.findDocument(this.currentAccount, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id);
+                        if (mediaEntity.type == 4 && (mediaArea = mediaEntity.mediaArea) != null) {
+                            TLRPC.Reaction reaction2 = mediaArea.reaction;
+                            if (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) {
+                                TLRPC.Document findDocument2 = AnimatedEmojiDrawable.findDocument(this.currentAccount, ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id);
                                 if (findDocument2 != null && (inputStickerSet = MessageObject.getInputStickerSet(findDocument2)) != null && !hashSet.contains(Long.valueOf(inputStickerSet.id))) {
                                     hashSet.add(Long.valueOf(inputStickerSet.id));
                                     arrayList2.add(inputStickerSet);
@@ -4175,12 +4158,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 while (i < animatedEmojiSpanArr.length) {
                     AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i];
-                    TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
-                    if (tLRPC$Document == null) {
-                        tLRPC$Document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.documentId);
+                    TLRPC.Document document = animatedEmojiSpan.document;
+                    if (document == null) {
+                        document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.documentId);
                     }
-                    if (tLRPC$Document != null) {
-                        TLRPC$InputStickerSet inputStickerSet3 = MessageObject.getInputStickerSet(tLRPC$Document);
+                    if (document != null) {
+                        TLRPC.InputStickerSet inputStickerSet3 = MessageObject.getInputStickerSet(document);
                         if (!hashSet.contains(Long.valueOf(inputStickerSet3.id))) {
                             hashSet.add(Long.valueOf(inputStickerSet3.id));
                             arrayList2.add(inputStickerSet3);
@@ -4191,15 +4174,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         } else {
             while (i < storyItemHolder.storyItem.entities.size()) {
-                TLRPC$MessageEntity tLRPC$MessageEntity = (TLRPC$MessageEntity) storyItemHolder.storyItem.entities.get(i);
-                if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityCustomEmoji) {
-                    TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = (TLRPC$TL_messageEntityCustomEmoji) tLRPC$MessageEntity;
-                    TLRPC$Document tLRPC$Document2 = tLRPC$TL_messageEntityCustomEmoji.document;
-                    if (tLRPC$Document2 == null) {
-                        tLRPC$Document2 = AnimatedEmojiDrawable.findDocument(this.currentAccount, tLRPC$TL_messageEntityCustomEmoji.document_id);
+                TLRPC.MessageEntity messageEntity = storyItemHolder.storyItem.entities.get(i);
+                if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
+                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = (TLRPC.TL_messageEntityCustomEmoji) messageEntity;
+                    TLRPC.Document document2 = tL_messageEntityCustomEmoji.document;
+                    if (document2 == null) {
+                        document2 = AnimatedEmojiDrawable.findDocument(this.currentAccount, tL_messageEntityCustomEmoji.document_id);
                     }
-                    if (tLRPC$Document2 != null) {
-                        TLRPC$InputStickerSet inputStickerSet4 = MessageObject.getInputStickerSet(tLRPC$Document2);
+                    if (document2 != null) {
+                        TLRPC.InputStickerSet inputStickerSet4 = MessageObject.getInputStickerSet(document2);
                         if (!hashSet.contains(Long.valueOf(inputStickerSet4.id))) {
                             hashSet.add(Long.valueOf(inputStickerSet4.id));
                             arrayList2.add(inputStickerSet4);
@@ -4216,10 +4199,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return (1.0f - this.progressToHideInterface.get()) * (1.0f - this.storyViewer.getProgressToSelfViews());
     }
 
-    public static int getStoryId(TL_stories$StoryItem tL_stories$StoryItem, StoriesController.UploadingStory uploadingStory) {
+    public static int getStoryId(TL_stories.StoryItem storyItem, StoriesController.UploadingStory uploadingStory) {
         StoryEntry storyEntry;
-        if (tL_stories$StoryItem != null) {
-            return tL_stories$StoryItem.id;
+        if (storyItem != null) {
+            return storyItem.id;
         }
         if (uploadingStory == null || (storyEntry = uploadingStory.entry) == null) {
             return 0;
@@ -4244,7 +4227,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     public boolean isEditBotsPreview() {
-        TLRPC$User user;
+        TLRPC.User user;
         return isBotsPreview() && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.storyViewer.storiesList.dialogId))) != null && user.bot && user.bot_can_edit;
     }
 
@@ -4437,7 +4420,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$editPrivacy$45(Runnable runnable, TLRPC$TL_error tLRPC$TL_error, TL_stories$StoryItem tL_stories$StoryItem, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
+    public void lambda$editPrivacy$45(Runnable runnable, TLRPC.TL_error tL_error, TL_stories.StoryItem storyItem, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
         Bulletin createSimpleBulletin;
         BulletinFactory of;
         int i;
@@ -4446,14 +4429,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (runnable != null) {
             runnable.run();
         }
-        if (tLRPC$TL_error == null || "STORY_NOT_MODIFIED".equals(tLRPC$TL_error.text)) {
-            tL_stories$StoryItem.parsedPrivacy = storyPrivacy;
-            tL_stories$StoryItem.privacy = storyPrivacy.toValue();
+        if (tL_error == null || "STORY_NOT_MODIFIED".equals(tL_error.text)) {
+            storyItem.parsedPrivacy = storyPrivacy;
+            storyItem.privacy = storyPrivacy.toValue();
             int i2 = storyPrivacy.type;
-            tL_stories$StoryItem.close_friends = i2 == 1;
-            tL_stories$StoryItem.contacts = i2 == 2;
-            tL_stories$StoryItem.selected_contacts = i2 == 3;
-            MessagesController.getInstance(this.currentAccount).getStoriesController().updateStoryItem(tL_stories$StoryItem.dialogId, tL_stories$StoryItem);
+            storyItem.close_friends = i2 == 1;
+            storyItem.contacts = i2 == 2;
+            storyItem.selected_contacts = i2 == 3;
+            MessagesController.getInstance(this.currentAccount).getStoriesController().updateStoryItem(storyItem.dialogId, storyItem);
             this.editedPrivacy = true;
             int i3 = storyPrivacy.type;
             if (i3 == 4) {
@@ -4499,25 +4482,25 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition();
     }
 
-    public void lambda$editPrivacy$46(final Runnable runnable, final TL_stories$StoryItem tL_stories$StoryItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editPrivacy$46(final Runnable runnable, final TL_stories.StoryItem storyItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$editPrivacy$45(runnable, tLRPC$TL_error, tL_stories$StoryItem, storyPrivacy);
+                PeerStoriesView.this.lambda$editPrivacy$45(runnable, tL_error, storyItem, storyPrivacy);
             }
         });
     }
 
-    public void lambda$editPrivacy$47(final TL_stories$StoryItem tL_stories$StoryItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, final Runnable runnable) {
-        TL_stories$TL_stories_editStory tL_stories$TL_stories_editStory = new TL_stories$TL_stories_editStory();
-        tL_stories$TL_stories_editStory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(tL_stories$StoryItem.dialogId);
-        tL_stories$TL_stories_editStory.id = tL_stories$StoryItem.id;
-        tL_stories$TL_stories_editStory.flags |= 4;
-        tL_stories$TL_stories_editStory.privacy_rules = storyPrivacy.rules;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_editStory, new RequestDelegate() {
+    public void lambda$editPrivacy$47(final TL_stories.StoryItem storyItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC.InputPeer inputPeer, final Runnable runnable) {
+        TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
+        tL_stories_editStory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(storyItem.dialogId);
+        tL_stories_editStory.id = storyItem.id;
+        tL_stories_editStory.flags |= 4;
+        tL_stories_editStory.privacy_rules = storyPrivacy.rules;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_editStory, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PeerStoriesView.this.lambda$editPrivacy$46(runnable, tL_stories$StoryItem, storyPrivacy, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                PeerStoriesView.this.lambda$editPrivacy$46(runnable, storyItem, storyPrivacy, tLObject, tL_error);
             }
         });
     }
@@ -4566,8 +4549,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     public void lambda$new$4(View view) {
-        TL_stories$StoryItem tL_stories$StoryItem = this.currentStory.storyItem;
-        if (tL_stories$StoryItem == null || tL_stories$StoryItem.sent_reaction != null) {
+        TL_stories.StoryItem storyItem = this.currentStory.storyItem;
+        if (storyItem == null || storyItem.sent_reaction != null) {
             likeStory(null);
         } else {
             applyMessageToChat(new Runnable() {
@@ -4700,22 +4683,22 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.likesReactionLayout.setTransitionProgress(floatValue);
     }
 
-    public void lambda$showPremiumBlockedToast$21(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public void lambda$showPremiumBlockedToast$21(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         this.canApplyBoost = canApplyBoost;
-        LimitReachedBottomSheet.openBoostsForRemoveRestrictions(fragmentForLimit(), tL_stories$TL_premium_boostsStatus, canApplyBoost, this.dialogId, true);
+        LimitReachedBottomSheet.openBoostsForRemoveRestrictions(fragmentForLimit(), tL_premium_boostsStatus, canApplyBoost, this.dialogId, true);
         StoryViewer storyViewer = this.storyViewer;
         if (storyViewer != null) {
             storyViewer.setOverlayVisible(false);
         }
     }
 
-    public void lambda$showPremiumBlockedToast$22(final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
-        if (tL_stories$TL_premium_boostsStatus != null) {
-            this.boostsStatus = tL_stories$TL_premium_boostsStatus;
-            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, tL_stories$TL_premium_boostsStatus, new Consumer() {
+    public void lambda$showPremiumBlockedToast$22(final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        if (tL_premium_boostsStatus != null) {
+            this.boostsStatus = tL_premium_boostsStatus;
+            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, tL_premium_boostsStatus, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    PeerStoriesView.this.lambda$showPremiumBlockedToast$21(tL_stories$TL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
+                    PeerStoriesView.this.lambda$showPremiumBlockedToast$21(tL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
                 }
             });
         } else {
@@ -4825,24 +4808,24 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public void likeStory(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         boolean z;
-        TLRPC$Reaction tLRPC$Reaction;
-        TL_stories$StoryItem tL_stories$StoryItem = this.currentStory.storyItem;
-        if (tL_stories$StoryItem == null) {
+        TLRPC.Reaction reaction;
+        TL_stories.StoryItem storyItem = this.currentStory.storyItem;
+        if (storyItem == null) {
             return;
         }
-        TLRPC$Reaction tLRPC$Reaction2 = tL_stories$StoryItem.sent_reaction;
-        boolean z2 = tLRPC$Reaction2 != null;
-        if (tLRPC$Reaction2 == null || visibleReaction != null) {
+        TLRPC.Reaction reaction2 = storyItem.sent_reaction;
+        boolean z2 = reaction2 != null;
+        if (reaction2 == null || visibleReaction != null) {
             if (visibleReaction == null) {
-                TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get("❤");
-                if (tLRPC$TL_availableReaction != null) {
+                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get("❤");
+                if (tL_availableReaction != null) {
                     this.drawAnimatedEmojiAsMovingReaction = false;
-                    this.reactionEffectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, null, 0);
+                    this.reactionEffectImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, null, 0);
                     if (this.reactionEffectImageReceiver.getLottieAnimation() != null) {
                         this.reactionEffectImageReceiver.getLottieAnimation().setCurrentFrame(0, false, true);
                     }
                     this.drawReactionEffect = true;
-                    visibleReaction = ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(tLRPC$TL_availableReaction);
+                    visibleReaction = ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(tL_availableReaction);
                 }
             } else {
                 animateLikeButton();
@@ -4852,30 +4835,30 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             animateLikeButton();
             this.storiesController.setStoryReaction(this.dialogId, this.currentStory.storyItem, null);
         }
-        TL_stories$StoryItem tL_stories$StoryItem2 = this.currentStory.storyItem;
-        if (tL_stories$StoryItem2 == null || (tLRPC$Reaction = tL_stories$StoryItem2.sent_reaction) == null) {
+        TL_stories.StoryItem storyItem2 = this.currentStory.storyItem;
+        if (storyItem2 == null || (reaction = storyItem2.sent_reaction) == null) {
             this.storiesLikeButton.setReaction(null);
             z = false;
         } else {
             z2 = !z2;
-            this.storiesLikeButton.setReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction));
+            this.storiesLikeButton.setReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction));
             performHapticFeedback(3);
             z = true;
         }
         if (this.isChannel && z2) {
-            TL_stories$StoryItem tL_stories$StoryItem3 = this.currentStory.storyItem;
-            if (tL_stories$StoryItem3.views == null) {
-                tL_stories$StoryItem3.views = new TL_stories$TL_storyViews();
+            TL_stories.StoryItem storyItem3 = this.currentStory.storyItem;
+            if (storyItem3.views == null) {
+                storyItem3.views = new TL_stories.TL_storyViews();
             }
-            TL_stories$StoryViews tL_stories$StoryViews = this.currentStory.storyItem.views;
-            int i = tL_stories$StoryViews.reactions_count + (z ? 1 : -1);
-            tL_stories$StoryViews.reactions_count = i;
+            TL_stories.StoryViews storyViews = this.currentStory.storyItem.views;
+            int i = storyViews.reactions_count + (z ? 1 : -1);
+            storyViews.reactions_count = i;
             if (i < 0) {
-                tL_stories$StoryViews.reactions_count = 0;
+                storyViews.reactions_count = 0;
             }
         }
-        TL_stories$StoryItem tL_stories$StoryItem4 = this.currentStory.storyItem;
-        ReactionsUtils.applyForStoryViews(tLRPC$Reaction2, tL_stories$StoryItem4.sent_reaction, tL_stories$StoryItem4.views);
+        TL_stories.StoryItem storyItem4 = this.currentStory.storyItem;
+        ReactionsUtils.applyForStoryViews(reaction2, storyItem4.sent_reaction, storyItem4.views);
         updateUserViews(true);
     }
 
@@ -4883,12 +4866,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (this.currentStory.storyItem == null) {
             return;
         }
-        TL_stories$TL_stories_exportStoryLink tL_stories$TL_stories_exportStoryLink = new TL_stories$TL_stories_exportStoryLink();
-        tL_stories$TL_stories_exportStoryLink.id = this.currentStory.storyItem.id;
-        tL_stories$TL_stories_exportStoryLink.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_exportStoryLink, new RequestDelegate() {
+        TL_stories.TL_stories_exportStoryLink tL_stories_exportStoryLink = new TL_stories.TL_stories_exportStoryLink();
+        tL_stories_exportStoryLink.id = this.currentStory.storyItem.id;
+        tL_stories_exportStoryLink.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_exportStoryLink, new RequestDelegate() {
             @Override
-            public void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            public void run(TLObject tLObject, TLRPC.TL_error tL_error) {
             }
         });
     }
@@ -4921,7 +4904,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             str = "user_id";
         }
         bundle.putLong(str, j);
-        TLRPC$Dialog dialog = MessagesController.getInstance(this.currentAccount).getDialog(this.dialogId);
+        TLRPC.Dialog dialog = MessagesController.getInstance(this.currentAccount).getDialog(this.dialogId);
         if (dialog != null) {
             bundle.putInt("message_id", dialog.top_message);
         }
@@ -4951,8 +4934,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public void saveToGallery() {
         StoryItemHolder storyItemHolder = this.currentStory;
-        TL_stories$StoryItem tL_stories$StoryItem = storyItemHolder.storyItem;
-        if ((tL_stories$StoryItem == null && storyItemHolder.uploadingStory == null) || (tL_stories$StoryItem instanceof TL_stories$TL_storyItemSkipped)) {
+        TL_stories.StoryItem storyItem = storyItemHolder.storyItem;
+        if ((storyItem == null && storyItemHolder.uploadingStory == null) || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             return;
         }
         File path = storyItemHolder.getPath();
@@ -4973,8 +4956,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.sendUriAsDocument(android.net.Uri):void");
     }
 
-    private void setStoryImage(TL_stories$StoryItem tL_stories$StoryItem, ImageReceiver imageReceiver, String str) {
-        ArrayList arrayList;
+    private void setStoryImage(TL_stories.StoryItem storyItem, ImageReceiver imageReceiver, String str) {
+        ArrayList<TLRPC.PhotoSize> arrayList;
         ImageLocation forPhoto;
         String str2;
         int i;
@@ -4991,28 +4974,28 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         Drawable drawable2;
         long j2;
         Object obj;
-        StoriesController.UploadingStory findEditingStory = this.storiesController.findEditingStory(this.dialogId, tL_stories$StoryItem);
+        StoriesController.UploadingStory findEditingStory = this.storiesController.findEditingStory(this.dialogId, storyItem);
         if (findEditingStory != null) {
             setStoryImage(findEditingStory, imageReceiver, str);
             return;
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
-        boolean z = tLRPC$MessageMedia != null && MessageObject.isVideoDocument(tLRPC$MessageMedia.getDocument());
-        String str7 = tL_stories$StoryItem.attachPath;
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        boolean z = messageMedia != null && MessageObject.isVideoDocument(messageMedia.getDocument());
+        String str7 = storyItem.attachPath;
         if (str7 != null) {
-            if (tL_stories$StoryItem.media == null) {
+            if (storyItem.media == null) {
                 z = str7.toLowerCase().endsWith(".mp4");
             }
             if (!z) {
-                imageReceiver.setImage(ImageLocation.getForPath(tL_stories$StoryItem.attachPath), str, null, null, null, 0L, null, null, 0);
+                imageReceiver.setImage(ImageLocation.getForPath(storyItem.attachPath), str, null, null, null, 0L, null, null, 0);
                 return;
             }
             obj = null;
             i = 0;
             imageReceiver2 = imageReceiver;
-            imageLocation2 = ImageLocation.getForPath(tL_stories$StoryItem.attachPath);
+            imageLocation2 = ImageLocation.getForPath(storyItem.attachPath);
             str4 = str + "_pframe";
-            forPhoto = ImageLocation.getForPath(tL_stories$StoryItem.firstFramePath);
+            forPhoto = ImageLocation.getForPath(storyItem.firstFramePath);
             str5 = str;
             imageLocation3 = null;
             str6 = null;
@@ -5021,9 +5004,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             str2 = null;
         } else {
             if (z) {
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tL_stories$StoryItem.media.getDocument().thumbs, 1000);
-                ImageLocation forDocument = ImageLocation.getForDocument(tL_stories$StoryItem.media.getDocument());
-                ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize, tL_stories$StoryItem.media.getDocument());
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(storyItem.media.getDocument().thumbs, 1000);
+                ImageLocation forDocument = ImageLocation.getForDocument(storyItem.media.getDocument());
+                ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize, storyItem.media.getDocument());
                 str2 = null;
                 i = 0;
                 imageLocation = null;
@@ -5035,15 +5018,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 str4 = str + "_pframe";
                 forPhoto = forDocument2;
             } else {
-                TLRPC$MessageMedia tLRPC$MessageMedia2 = tL_stories$StoryItem.media;
-                TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia2 != null ? tLRPC$MessageMedia2.photo : null;
-                if (tLRPC$Photo == null || (arrayList = tLRPC$Photo.sizes) == null) {
+                TLRPC.MessageMedia messageMedia2 = storyItem.media;
+                TLRPC.Photo photo = messageMedia2 != null ? messageMedia2.photo : null;
+                if (photo == null || (arrayList = photo.sizes) == null) {
                     imageReceiver.clearImage();
                     return;
                 }
-                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE);
-                FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 800);
-                forPhoto = ImageLocation.getForPhoto(closestPhotoSizeWithSize2, tLRPC$Photo);
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE);
+                FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 800);
+                forPhoto = ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo);
                 str2 = null;
                 i = 0;
                 imageLocation = null;
@@ -5059,7 +5042,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             str6 = str3;
             drawable2 = drawable;
             j2 = j;
-            obj = tL_stories$StoryItem;
+            obj = storyItem;
         }
         imageReceiver2.setImage(imageLocation2, str4, forPhoto, str5, imageLocation3, str6, drawable2, j2, str2, obj, i);
     }
@@ -5099,9 +5082,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
 
             @Override
-            protected void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            protected void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic) {
                 Bulletin createSimpleBulletin;
-                super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
+                super.onSend(longSparseArray, i, tL_forumTopic);
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
                 BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
                 if (of != null) {
@@ -5110,7 +5093,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         if (keyAt == UserConfig.getInstance(this.currentAccount).clientUserId) {
                             createSimpleBulletin = of.createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceTags(LocaleController.formatString("StorySharedToSavedMessages", R.string.StorySharedToSavedMessages, new Object[0])), 5000);
                         } else if (keyAt < 0) {
-                            createSimpleBulletin = of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString("StorySharedTo", R.string.StorySharedTo, tLRPC$TL_forumTopic != null ? tLRPC$TL_forumTopic.title : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-keyAt)).title)), 5000);
+                            createSimpleBulletin = of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString("StorySharedTo", R.string.StorySharedTo, tL_forumTopic != null ? tL_forumTopic.title : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-keyAt)).title)), 5000);
                         } else {
                             createSimpleBulletin = of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString("StorySharedTo", R.string.StorySharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(keyAt)).first_name)), 5000);
                         }
@@ -5129,9 +5112,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         };
         this.shareAlert = shareAlert;
         shareAlert.forceDarkThemeForHint = true;
-        TL_stories$StoryItem tL_stories$StoryItem = this.currentStory.storyItem;
-        tL_stories$StoryItem.dialogId = this.dialogId;
-        shareAlert.setStoryToShare(tL_stories$StoryItem);
+        TL_stories.StoryItem storyItem = this.currentStory.storyItem;
+        storyItem.dialogId = this.dialogId;
+        shareAlert.setStoryToShare(storyItem);
         this.shareAlert.setDelegate(new ShareAlert.ShareAlertDelegate() {
             @Override
             public boolean didCopy() {
@@ -5234,7 +5217,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                PeerStoriesView.this.lambda$showPremiumBlockedToast$22((TL_stories$TL_premium_boostsStatus) obj);
+                PeerStoriesView.this.lambda$showPremiumBlockedToast$22((TL_stories.TL_premium_boostsStatus) obj);
             }
         });
     }
@@ -5246,27 +5229,27 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     public void toggleArchiveForStory(final long j) {
         String str;
         boolean z;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         if (j > 0) {
-            TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+            TLRPC.User user = messagesController.getUser(Long.valueOf(j));
             str = user.first_name;
             z = user.stories_hidden;
-            tLRPC$Chat = user;
+            chat = user;
         } else {
-            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
-            str = chat.title;
-            z = chat.stories_hidden;
-            tLRPC$Chat = chat;
+            TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-j));
+            str = chat2.title;
+            z = chat2.stories_hidden;
+            chat = chat2;
         }
-        final TLRPC$Chat tLRPC$Chat2 = tLRPC$Chat;
+        final TLRPC.Chat chat3 = chat;
         final String str2 = str;
         final boolean z2 = !z;
         final MessagesController messagesController2 = MessagesController.getInstance(this.currentAccount);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$toggleArchiveForStory$19(messagesController2, j, z2, str2, tLRPC$Chat2);
+                PeerStoriesView.this.lambda$toggleArchiveForStory$19(messagesController2, j, z2, str2, chat3);
             }
         }, 200L);
     }
@@ -5782,7 +5765,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                                 return;
                             }
                             Object obj = objArr[0];
-                            if (!(obj instanceof TLRPC$ChatFull) || this.dialogId != (-((TLRPC$ChatFull) obj).id)) {
+                            if (!(obj instanceof TLRPC.ChatFull) || this.dialogId != (-((TLRPC.ChatFull) obj).id)) {
                                 return;
                             }
                         }
@@ -5814,9 +5797,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     updateUserViews(true);
                 }
             }
-            TL_stories$PeerStories tL_stories$PeerStories = this.storyViewer.overrideUserStories;
-            if (tL_stories$PeerStories != null) {
-                this.storiesController.loadSkippedStories(tL_stories$PeerStories, true);
+            TL_stories.PeerStories peerStories = this.storyViewer.overrideUserStories;
+            if (peerStories != null) {
+                this.storiesController.loadSkippedStories(peerStories, true);
             } else {
                 long j = this.dialogId;
                 if (j != 0) {
@@ -5939,7 +5922,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return this.uploadingStories.size() + Math.max(this.totalStoriesCount, this.storyItems.size());
     }
 
-    public ArrayList<TL_stories$StoryItem> getStoryItems() {
+    public ArrayList<TL_stories.StoryItem> getStoryItems() {
         return this.storyItems;
     }
 
@@ -6296,9 +6279,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updateStoryItems();
         updateSelectedPosition();
         updatePosition(true);
-        TL_stories$PeerStories tL_stories$PeerStories = this.storyViewer.overrideUserStories;
-        if (tL_stories$PeerStories != null) {
-            this.storiesController.loadSkippedStories(tL_stories$PeerStories, true);
+        TL_stories.PeerStories peerStories = this.storyViewer.overrideUserStories;
+        if (peerStories != null) {
+            this.storiesController.loadSkippedStories(peerStories, true);
         } else {
             this.storiesController.loadSkippedStories(j);
         }
@@ -6420,9 +6403,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.dialogId = j;
         this.day = null;
         bindInternal(i);
-        TL_stories$PeerStories tL_stories$PeerStories = this.storyViewer.overrideUserStories;
-        if (tL_stories$PeerStories != null) {
-            this.storiesController.loadSkippedStories(tL_stories$PeerStories, true);
+        TL_stories.PeerStories peerStories = this.storyViewer.overrideUserStories;
+        if (peerStories != null) {
+            this.storiesController.loadSkippedStories(peerStories, true);
         } else {
             this.storiesController.loadSkippedStories(j);
         }

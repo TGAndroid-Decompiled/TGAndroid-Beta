@@ -15,8 +15,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Premium.boosts.BoostDialogs;
@@ -33,7 +32,7 @@ import org.telegram.ui.TopicsFragment;
 public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter {
     private BaseFragment baseFragment;
     private FrameLayout container;
-    private TLRPC$TL_payments_checkedGiftCode giftCode;
+    private TLRPC.TL_payments_checkedGiftCode giftCode;
     private boolean isUnused;
     private final Theme.ResourcesProvider resourcesProvider;
     private String slug;
@@ -48,9 +47,9 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         dismiss();
     }
 
-    public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC.TL_error tL_error) {
         actionBtnCell.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tLRPC$TL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(this));
+        BoostDialogs.processApplyGiftCodeError(tL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(this));
     }
 
     public void lambda$onBindViewHolder$2(final ActionBtnCell actionBtnCell, View view) {
@@ -69,7 +68,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC$TL_error) obj);
+                    GiftInfoAdapter.this.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC.TL_error) obj);
                 }
             });
         }
@@ -85,7 +84,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
             this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.lambda$onBackPressed$307();
+        dialogsActivity.lambda$onBackPressed$300();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }
@@ -138,10 +137,10 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         return i2;
     }
 
-    public void init(BaseFragment baseFragment, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, String str, FrameLayout frameLayout) {
-        this.isUnused = tLRPC$TL_payments_checkedGiftCode.used_date == 0;
+    public void init(BaseFragment baseFragment, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str, FrameLayout frameLayout) {
+        this.isUnused = tL_payments_checkedGiftCode.used_date == 0;
         this.baseFragment = baseFragment;
-        this.giftCode = tLRPC$TL_payments_checkedGiftCode;
+        this.giftCode = tL_payments_checkedGiftCode;
         this.slug = str;
         this.container = frameLayout;
     }
@@ -163,9 +162,9 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             } else {
                 headerCell.setUsedGiftLinkText();
             }
-            TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode = this.giftCode;
-            if (tLRPC$TL_payments_checkedGiftCode.boost != null) {
-                headerCell.setGiftLinkToUserText(tLRPC$TL_payments_checkedGiftCode.to_id, new Utilities.Callback() {
+            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.giftCode;
+            if (tL_payments_checkedGiftCode.boost != null) {
+                headerCell.setGiftLinkToUserText(tL_payments_checkedGiftCode.to_id, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
                         GiftInfoAdapter.this.onObjectClicked((TLObject) obj);
@@ -222,8 +221,8 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                     GiftInfoAdapter.this.lambda$onBindViewHolder$2(actionBtnCell, view);
                 }
             });
-            TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode2 = this.giftCode;
-            if (tLRPC$TL_payments_checkedGiftCode2.boost != null || tLRPC$TL_payments_checkedGiftCode2.flags == -1) {
+            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.giftCode;
+            if (tL_payments_checkedGiftCode2.boost != null || tL_payments_checkedGiftCode2.flags == -1) {
                 actionBtnCell.setCloseStyle();
                 actionBtnCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -240,10 +239,10 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         textInfoCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         textInfoCell.setTopPadding(14);
         textInfoCell.setBottomPadding(15);
-        TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode3 = this.giftCode;
-        if (tLRPC$TL_payments_checkedGiftCode3.boost == null) {
+        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.giftCode;
+        if (tL_payments_checkedGiftCode3.boost == null) {
             if (this.isUnused) {
-                formatString = AndroidUtilities.replaceSingleTag(LocaleController.getString(tLRPC$TL_payments_checkedGiftCode3.to_id == -1 ? R.string.BoostingSendLinkToAnyone : R.string.BoostingSendLinkToFriends), Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider);
+                formatString = AndroidUtilities.replaceSingleTag(LocaleController.getString(tL_payments_checkedGiftCode3.to_id == -1 ? R.string.BoostingSendLinkToAnyone : R.string.BoostingSendLinkToFriends), Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider);
             } else {
                 Date date = new Date(this.giftCode.used_date * 1000);
                 formatString = LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));

@@ -14,9 +14,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_premiumGiftOption;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Bulletin;
@@ -81,8 +79,8 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         }
     }
 
-    public PremiumPreviewGiftLinkBottomSheet(BaseFragment baseFragment, int i, TLRPC$User tLRPC$User, GiftPremiumBottomSheet.GiftTier giftTier, String str, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        super(baseFragment, i, tLRPC$User, giftTier, resourcesProvider);
+    public PremiumPreviewGiftLinkBottomSheet(BaseFragment baseFragment, int i, TLRPC.User user, GiftPremiumBottomSheet.GiftTier giftTier, String str, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        super(baseFragment, i, user, giftTier, resourcesProvider);
         this.slug = str;
         this.isUsed = z;
         init();
@@ -166,9 +164,9 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         }, 200L);
     }
 
-    public void lambda$init$3(TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$init$3(TLRPC.TL_error tL_error) {
         this.actionBtn.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tLRPC$TL_error, (FrameLayout) this.containerView, this.resourcesProvider, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1(this));
+        BoostDialogs.processApplyGiftCodeError(tL_error, (FrameLayout) this.containerView, this.resourcesProvider, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1(this));
     }
 
     public void lambda$init$4(View view) {
@@ -184,7 +182,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PremiumPreviewGiftLinkBottomSheet.this.lambda$init$3((TLRPC$TL_error) obj);
+                PremiumPreviewGiftLinkBottomSheet.this.lambda$init$3((TLRPC.TL_error) obj);
             }
         });
     }
@@ -195,7 +193,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
             getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.lambda$onBackPressed$307();
+        dialogsActivity.lambda$onBackPressed$300();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }
@@ -218,16 +216,16 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         dismiss();
     }
 
-    public static void show(String str, TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption, TLRPC$User tLRPC$User, Browser.Progress progress) {
+    public static void show(String str, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, TLRPC.User user, Browser.Progress progress) {
         GiftInfoBottomSheet.show(LaunchActivity.getLastFragment(), str, progress);
     }
 
-    public static void show(String str, TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption, TLRPC$User tLRPC$User, boolean z) {
+    public static void show(String str, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, TLRPC.User user, boolean z) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null || instance != null) {
             return;
         }
-        PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = new PremiumPreviewGiftLinkBottomSheet(lastFragment, UserConfig.selectedAccount, tLRPC$User, new GiftPremiumBottomSheet.GiftTier(tLRPC$TL_premiumGiftOption), str, z, lastFragment.getResourceProvider());
+        PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = new PremiumPreviewGiftLinkBottomSheet(lastFragment, UserConfig.selectedAccount, user, new GiftPremiumBottomSheet.GiftTier(tL_premiumGiftOption), str, z, lastFragment.getResourceProvider());
         premiumPreviewGiftLinkBottomSheet.show();
         instance = premiumPreviewGiftLinkBottomSheet;
     }

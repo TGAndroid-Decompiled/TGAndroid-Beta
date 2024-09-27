@@ -37,12 +37,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_transcribeAudio;
-import org.telegram.tgnet.TLRPC$TL_messages_transcribedAudio;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 
@@ -400,15 +395,15 @@ public abstract class TranscribeButton {
             return false;
         }
         MessagesController messagesController = MessagesController.getInstance(messageObject.currentAccount);
-        TLRPC$Chat chat = messagesController.getChat(Long.valueOf(messageObject.getChatId()));
+        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(messageObject.getChatId()));
         return ChatObject.isMegagroup(chat) && chat.level >= messagesController.groupTranscribeLevelMin;
     }
 
     public static boolean isTranscribing(MessageObject messageObject) {
         HashMap hashMap;
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         HashMap hashMap2 = transcribeOperationsByDialogPosition;
-        return (hashMap2 != null && (hashMap2.containsValue(messageObject) || transcribeOperationsByDialogPosition.containsKey(Integer.valueOf(reqInfoHash(messageObject))))) || !((hashMap = transcribeOperationsById) == null || messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !hashMap.containsKey(Long.valueOf(tLRPC$Message.voiceTranscriptionId)));
+        return (hashMap2 != null && (hashMap2.containsValue(messageObject) || transcribeOperationsByDialogPosition.containsKey(Integer.valueOf(reqInfoHash(messageObject))))) || !((hashMap = transcribeOperationsById) == null || messageObject == null || (message = messageObject.messageOwner) == null || !hashMap.containsKey(Long.valueOf(message.voiceTranscriptionId)));
     }
 
     public static boolean isVideoTranscriptionOpen(MessageObject messageObject) {
@@ -450,9 +445,9 @@ public abstract class TranscribeButton {
         notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, messageObject, null, null, bool, bool);
     }
 
-    public static void lambda$transcribePressed$3(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio) {
+    public static void lambda$transcribePressed$3(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, TLRPC.TL_messages_transcribedAudio tL_messages_transcribedAudio) {
         if (chatMessageCellDelegate != null) {
-            chatMessageCellDelegate.needShowPremiumBulletin(tLRPC$TL_messages_transcribedAudio.trial_remains_num > 0 ? 1 : 2);
+            chatMessageCellDelegate.needShowPremiumBulletin(tL_messages_transcribedAudio.trial_remains_num > 0 ? 1 : 2);
         }
     }
 
@@ -468,28 +463,28 @@ public abstract class TranscribeButton {
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
     }
 
-    public static void lambda$transcribePressed$6(final int i, final ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, final MessageObject messageObject, long j, long j2, int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$transcribePressed$6(final int i, final ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, final MessageObject messageObject, long j, long j2, int i2, TLObject tLObject, TLRPC.TL_error tL_error) {
         long j3;
         boolean z;
         String str;
         final String str2 = "";
-        if (tLObject instanceof TLRPC$TL_messages_transcribedAudio) {
-            final TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio = (TLRPC$TL_messages_transcribedAudio) tLObject;
-            String str3 = tLRPC$TL_messages_transcribedAudio.text;
-            long j4 = tLRPC$TL_messages_transcribedAudio.transcription_id;
-            z = !tLRPC$TL_messages_transcribedAudio.pending;
+        if (tLObject instanceof TLRPC.TL_messages_transcribedAudio) {
+            final TLRPC.TL_messages_transcribedAudio tL_messages_transcribedAudio = (TLRPC.TL_messages_transcribedAudio) tLObject;
+            String str3 = tL_messages_transcribedAudio.text;
+            long j4 = tL_messages_transcribedAudio.transcription_id;
+            z = !tL_messages_transcribedAudio.pending;
             if (!TextUtils.isEmpty(str3)) {
                 str2 = str3;
             } else if (!z) {
                 str2 = null;
             }
-            if ((tLRPC$TL_messages_transcribedAudio.flags & 2) != 0) {
-                MessagesController.getInstance(i).updateTranscribeAudioTrialCurrentNumber(tLRPC$TL_messages_transcribedAudio.trial_remains_num);
-                MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(tLRPC$TL_messages_transcribedAudio.trial_remains_until_date);
+            if ((tL_messages_transcribedAudio.flags & 2) != 0) {
+                MessagesController.getInstance(i).updateTranscribeAudioTrialCurrentNumber(tL_messages_transcribedAudio.trial_remains_num);
+                MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(tL_messages_transcribedAudio.trial_remains_until_date);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranscribeButton.lambda$transcribePressed$3(ChatMessageCell.ChatMessageCellDelegate.this, tLRPC$TL_messages_transcribedAudio);
+                        TranscribeButton.lambda$transcribePressed$3(ChatMessageCell.ChatMessageCellDelegate.this, tL_messages_transcribedAudio);
                     }
                 });
             }
@@ -500,9 +495,9 @@ public abstract class TranscribeButton {
             messageObject.messageOwner.voiceTranscriptionId = j4;
             j3 = j4;
         } else {
-            if (tLRPC$TL_error != null && (str = tLRPC$TL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
+            if (tL_error != null && (str = tL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
                 MessagesController.getInstance(i).updateTranscribeAudioTrialCurrentNumber(0);
-                MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(ConnectionsManager.getInstance(i).getCurrentTime() + Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue());
+                MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(ConnectionsManager.getInstance(i).getCurrentTime() + Utilities.parseInt((CharSequence) tL_error.text).intValue());
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -516,9 +511,9 @@ public abstract class TranscribeButton {
         }
         long elapsedRealtime = SystemClock.elapsedRealtime() - j;
         openVideoTranscription(messageObject);
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        tLRPC$Message.voiceTranscriptionOpen = true;
-        tLRPC$Message.voiceTranscriptionFinal = z;
+        TLRPC.Message message = messageObject.messageOwner;
+        message.voiceTranscriptionOpen = true;
+        message.voiceTranscriptionFinal = z;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("Transcription request sent, received final=" + z + " id=" + j3 + " text=" + str2);
         }
@@ -567,11 +562,11 @@ public abstract class TranscribeButton {
     }
 
     public static void showOffTranscribe(final MessageObject messageObject, boolean z) {
-        TLRPC$Message tLRPC$Message;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
+        TLRPC.Message message;
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
             return;
         }
-        tLRPC$Message.voiceTranscriptionForce = true;
+        message.voiceTranscriptionForce = true;
         MessagesStorage.getInstance(messageObject.currentAccount).updateMessageVoiceTranscriptionOpen(messageObject.getDialogId(), messageObject.getId(), messageObject.messageOwner);
         if (z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -599,10 +594,10 @@ public abstract class TranscribeButton {
         }
         final int i = messageObject.currentAccount;
         final long elapsedRealtime = SystemClock.elapsedRealtime();
-        TLRPC$InputPeer inputPeer = MessagesController.getInstance(i).getInputPeer(messageObject.messageOwner.peer_id);
+        TLRPC.InputPeer inputPeer = MessagesController.getInstance(i).getInputPeer(messageObject.messageOwner.peer_id);
         final long peerDialogId = DialogObject.getPeerDialogId(inputPeer);
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        final int i2 = tLRPC$Message.id;
+        TLRPC.Message message = messageObject.messageOwner;
+        final int i2 = message.id;
         if (!z) {
             HashMap hashMap = transcribeOperationsByDialogPosition;
             if (hashMap != null) {
@@ -617,21 +612,21 @@ public abstract class TranscribeButton {
                 }
             };
         } else {
-            if (tLRPC$Message.voiceTranscription == null || !tLRPC$Message.voiceTranscriptionFinal) {
+            if (message.voiceTranscription == null || !message.voiceTranscriptionFinal) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("sending Transcription request, msg_id=" + i2 + " dialog_id=" + peerDialogId);
                 }
-                TLRPC$TL_messages_transcribeAudio tLRPC$TL_messages_transcribeAudio = new TLRPC$TL_messages_transcribeAudio();
-                tLRPC$TL_messages_transcribeAudio.peer = inputPeer;
-                tLRPC$TL_messages_transcribeAudio.msg_id = i2;
+                TLRPC.TL_messages_transcribeAudio tL_messages_transcribeAudio = new TLRPC.TL_messages_transcribeAudio();
+                tL_messages_transcribeAudio.peer = inputPeer;
+                tL_messages_transcribeAudio.msg_id = i2;
                 if (transcribeOperationsByDialogPosition == null) {
                     transcribeOperationsByDialogPosition = new HashMap();
                 }
                 transcribeOperationsByDialogPosition.put(Integer.valueOf(reqInfoHash(messageObject)), messageObject);
-                ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_transcribeAudio, new RequestDelegate() {
+                ConnectionsManager.getInstance(i).sendRequest(tL_messages_transcribeAudio, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        TranscribeButton.lambda$transcribePressed$6(i, chatMessageCellDelegate, messageObject, elapsedRealtime, peerDialogId, i2, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        TranscribeButton.lambda$transcribePressed$6(i, chatMessageCellDelegate, messageObject, elapsedRealtime, peerDialogId, i2, tLObject, tL_error);
                     }
                 }, !UserConfig.getInstance(i).isPremium() ? 1024 : 0);
                 return;

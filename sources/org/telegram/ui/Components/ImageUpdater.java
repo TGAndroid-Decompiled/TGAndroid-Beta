@@ -36,15 +36,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotInlineResult;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_message;
-import org.telegram.tgnet.TLRPC$TL_messageActionEmpty;
-import org.telegram.tgnet.TLRPC$TL_messageMediaEmpty;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -56,7 +48,7 @@ import org.telegram.ui.PhotoPickerActivity;
 import org.telegram.ui.PhotoViewer;
 
 public class ImageUpdater implements NotificationCenter.NotificationCenterDelegate, PhotoCropActivity.PhotoEditActivityDelegate {
-    private TLRPC$PhotoSize bigPhoto;
+    private TLRPC.PhotoSize bigPhoto;
     private boolean canSelectVideo;
     private boolean canceled;
     private ChatAttachAlert chatAttachAlert;
@@ -73,15 +65,15 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     public BaseFragment parentFragment;
     public final int setForType;
     private boolean showingFromDialog;
-    private TLRPC$PhotoSize smallPhoto;
+    private TLRPC.PhotoSize smallPhoto;
     private boolean supportEmojiMarkup;
     private int type;
-    private TLRPC$InputFile uploadedPhoto;
-    private TLRPC$InputFile uploadedVideo;
+    private TLRPC.InputFile uploadedPhoto;
+    private TLRPC.InputFile uploadedVideo;
     private String uploadingImage;
     private String uploadingVideo;
-    private TLRPC$User user;
-    private TLRPC$VideoSize vectorMarkup;
+    private TLRPC.User user;
+    private TLRPC.VideoSize vectorMarkup;
     private String videoPath;
     private double videoTimestamp;
     private int currentAccount = UserConfig.selectedAccount;
@@ -210,9 +202,9 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     sendingMediaInfo.entities = searchImage.entities;
                     sendingMediaInfo.masks = searchImage.stickers;
                     sendingMediaInfo.ttl = searchImage.ttl;
-                    TLRPC$BotInlineResult tLRPC$BotInlineResult = searchImage.inlineResult;
-                    if (tLRPC$BotInlineResult != null && searchImage.type == 1) {
-                        sendingMediaInfo.inlineResult = tLRPC$BotInlineResult;
+                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                    if (botInlineResult != null && searchImage.type == 1) {
+                        sendingMediaInfo.inlineResult = botInlineResult;
                         sendingMediaInfo.params = searchImage.params;
                     }
                     searchImage.date = (int) (System.currentTimeMillis() / 1000);
@@ -225,7 +217,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
 
         @Override
-        public void didSelectBot(TLRPC$User tLRPC$User) {
+        public void didSelectBot(TLRPC.User user) {
         }
 
         @Override
@@ -309,7 +301,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     }
 
     public static class AvatarFor {
-        public TLRPC$User fromObject;
+        public TLRPC.User fromObject;
         public boolean isVideo;
         public final TLObject object;
         public boolean self;
@@ -318,7 +310,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         public AvatarFor(TLObject tLObject, int i) {
             this.object = tLObject;
             this.type = i;
-            this.self = (tLObject instanceof TLRPC$User) && ((TLRPC$User) tLObject).self;
+            this.self = (tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self;
         }
     }
 
@@ -349,7 +341,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
 
         void didUploadFailed();
 
-        void didUploadPhoto(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, double d, String str, TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z, TLRPC$VideoSize tLRPC$VideoSize);
+        void didUploadPhoto(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize);
 
         String getInitialSearchString();
 
@@ -444,9 +436,9 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                             sendingMediaInfo.entities = searchImage.entities;
                             sendingMediaInfo.masks = searchImage.stickers;
                             sendingMediaInfo.ttl = searchImage.ttl;
-                            TLRPC$BotInlineResult tLRPC$BotInlineResult = searchImage.inlineResult;
-                            if (tLRPC$BotInlineResult != null && searchImage.type == 1) {
-                                sendingMediaInfo.inlineResult = tLRPC$BotInlineResult;
+                            TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                            if (botInlineResult != null && searchImage.type == 1) {
+                                sendingMediaInfo.inlineResult = botInlineResult;
                                 sendingMediaInfo.params = searchImage.params;
                             }
                             searchImage.date = (int) (System.currentTimeMillis() / 1000);
@@ -459,7 +451,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
 
                 @Override
-                public void didSelectBot(TLRPC$User tLRPC$User) {
+                public void didSelectBot(TLRPC.User user) {
                 }
 
                 @Override
@@ -523,13 +515,13 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
         Bitmap bitmap = null;
         if (sendingMediaInfo.isVideo || sendingMediaInfo.videoEditedInfo != null) {
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
-            tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
-            tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
-            tLRPC$TL_message.dialog_id = 0L;
-            messageObject = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message, false, false);
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.id = 0;
+            tL_message.message = "";
+            tL_message.media = new TLRPC.TL_messageMediaEmpty();
+            tL_message.action = new TLRPC.TL_messageActionEmpty();
+            tL_message.dialog_id = 0L;
+            messageObject = new MessageObject(UserConfig.selectedAccount, tL_message, false, false);
             messageObject.messageOwner.attachPath = new File(FileLoader.getDirectory(4), SharedConfig.getLastLocalId() + "_avatar.mp4").getAbsolutePath();
             messageObject.videoEditedInfo = sendingMediaInfo.videoEditedInfo;
             messageObject.emojiMarkup = sendingMediaInfo.emojiMarkup;
@@ -541,9 +533,9 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             } else {
                 MediaController.SearchImage searchImage = sendingMediaInfo.searchImage;
                 if (searchImage != null) {
-                    TLRPC$Photo tLRPC$Photo = searchImage.photo;
-                    if (tLRPC$Photo != null) {
-                        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.getPhotoSize());
+                    TLRPC.Photo photo = searchImage.photo;
+                    if (photo != null) {
+                        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
                         if (closestPhotoSizeWithSize != null) {
                             file = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true);
                             this.finalPath = file.getAbsolutePath();
@@ -619,7 +611,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
             PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
             photoCropActivity.setDelegate(this);
-            launchActivity.lambda$runLinkRequest$91(photoCropActivity);
+            launchActivity.lambda$runLinkRequest$93(photoCropActivity);
         } catch (Exception e) {
             FileLog.e(e);
             processBitmap(ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);
@@ -660,7 +652,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         this.videoPath = null;
         this.vectorMarkup = messageObject == null ? null : messageObject.emojiMarkup;
         this.bigPhoto = ImageLoader.scaleAndSaveImage(bitmap, 800.0f, 800.0f, 80, false, 320, 320);
-        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmap, 150.0f, 150.0f, 80, false, 150, 150);
+        TLRPC.PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmap, 150.0f, 150.0f, 80, false, 150, 150);
         this.smallPhoto = scaleAndSaveImage;
         if (scaleAndSaveImage != null) {
             try {
@@ -707,7 +699,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingStarted);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingFailed);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileNewChunkAvailable);
-                    MediaController.getInstance().scheduleVideoConvert(messageObject, true, true);
+                    MediaController.getInstance().scheduleVideoConvert(messageObject, true, true, false);
                     this.uploadingImage = null;
                     ImageUpdaterDelegate imageUpdaterDelegate4 = this.delegate;
                     if (imageUpdaterDelegate4 != null) {
@@ -782,7 +774,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             if (str.equals(this.uploadingImage)) {
                 this.uploadingImage = null;
                 if (i == i3) {
-                    this.uploadedPhoto = (TLRPC$InputFile) objArr[1];
+                    this.uploadedPhoto = (TLRPC.InputFile) objArr[1];
                 }
             } else {
                 if (!str.equals(this.uploadingVideo)) {
@@ -790,7 +782,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
                 this.uploadingVideo = null;
                 if (i == i3) {
-                    this.uploadedVideo = (TLRPC$InputFile) objArr[1];
+                    this.uploadedVideo = (TLRPC.InputFile) objArr[1];
                 }
             }
             if (this.uploadingImage != null || this.uploadingVideo != null || this.convertingVideo != null) {
@@ -882,7 +874,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                             pathToAttach2.delete();
                         }
                         this.bigPhoto = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 800.0f, 800.0f, 80, false, 320, 320);
-                        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, 150, 150);
+                        TLRPC.PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, 150, 150);
                         this.smallPhoto = scaleAndSaveImage;
                         if (scaleAndSaveImage != null) {
                             try {
@@ -1249,13 +1241,13 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
         MessageObject messageObject = null;
         if (photoEntry.isVideo || photoEntry.editedInfo != null) {
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
-            tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
-            tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
-            tLRPC$TL_message.dialog_id = 0L;
-            MessageObject messageObject2 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message, false, false);
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.id = 0;
+            tL_message.message = "";
+            tL_message.media = new TLRPC.TL_messageMediaEmpty();
+            tL_message.action = new TLRPC.TL_messageActionEmpty();
+            tL_message.dialog_id = 0L;
+            MessageObject messageObject2 = new MessageObject(UserConfig.selectedAccount, tL_message, false, false);
             messageObject2.messageOwner.attachPath = new File(FileLoader.getDirectory(4), SharedConfig.getLastLocalId() + "_avatar.mp4").getAbsolutePath();
             messageObject2.videoEditedInfo = photoEntry.editedInfo;
             messageObject2.emojiMarkup = photoEntry.emojiMarkup;
@@ -1297,12 +1289,12 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         this.uploadAfterSelect = z;
     }
 
-    public void setUser(TLRPC$User tLRPC$User) {
-        this.user = tLRPC$User;
+    public void setUser(TLRPC.User user) {
+        this.user = user;
     }
 
-    public void showAvatarConstructor(TLRPC$VideoSize tLRPC$VideoSize) {
+    public void showAvatarConstructor(TLRPC.VideoSize videoSize) {
         createChatAttachView();
-        this.chatAttachAlert.getPhotoLayout().showAvatarConstructorFragment(null, tLRPC$VideoSize);
+        this.chatAttachAlert.getPhotoLayout().showAvatarConstructorFragment(null, videoSize);
     }
 }

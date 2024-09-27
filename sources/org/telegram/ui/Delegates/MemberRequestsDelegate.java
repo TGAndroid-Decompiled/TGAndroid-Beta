@@ -49,12 +49,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_chatInviteImporter;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_chatInviteImporters;
-import org.telegram.tgnet.TLRPC$TL_messages_hideChatJoinRequest;
-import org.telegram.tgnet.TLRPC$TL_updates;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -84,7 +79,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
     private final int currentAccount;
     private StickerEmptyView emptyView;
     private final BaseFragment fragment;
-    private TLRPC$TL_chatInviteImporter importer;
+    private TLRPC.TL_chatInviteImporter importer;
     public final boolean isChannel;
     private boolean isDataLoaded;
     private boolean isLoading;
@@ -142,13 +137,13 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         public void appendItems(List list) {
             int i = 0;
             while (i < list.size()) {
-                long j = ((TLRPC$TL_chatInviteImporter) list.get(i)).user_id;
+                long j = ((TLRPC.TL_chatInviteImporter) list.get(i)).user_id;
                 int i2 = 0;
                 while (true) {
                     if (i2 >= MemberRequestsDelegate.this.currentImporters.size()) {
                         break;
                     }
-                    if (((TLRPC$TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i2)).user_id == j) {
+                    if (((TLRPC.TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i2)).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
@@ -191,12 +186,12 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             MemberRequestCell memberRequestCell = (MemberRequestCell) viewHolder.itemView;
             int extraFirstHolders = i - extraFirstHolders();
             LongSparseArray longSparseArray = MemberRequestsDelegate.this.users;
-            TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter = (TLRPC$TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(extraFirstHolders);
+            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(extraFirstHolders);
             boolean z = true;
             if (extraFirstHolders == MemberRequestsDelegate.this.currentImporters.size() - 1 && !MemberRequestsDelegate.this.hasMore) {
                 z = false;
             }
-            memberRequestCell.setData(longSparseArray, tLRPC$TL_chatInviteImporter, z);
+            memberRequestCell.setData(longSparseArray, tL_chatInviteImporter, z);
         }
 
         @Override
@@ -241,13 +236,13 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             return new RecyclerListView.Holder(view);
         }
 
-        public void removeItem(TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter) {
+        public void removeItem(TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
             int i = 0;
             while (true) {
                 if (i >= MemberRequestsDelegate.this.currentImporters.size()) {
                     i = -1;
                     break;
-                } else if (((TLRPC$TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i)).user_id == tLRPC$TL_chatInviteImporter.user_id) {
+                } else if (((TLRPC.TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i)).user_id == tL_chatInviteImporter.user_id) {
                     break;
                 } else {
                     i++;
@@ -266,13 +261,13 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             boolean isEmpty = MemberRequestsDelegate.this.currentImporters.isEmpty();
             int i = 0;
             while (i < list.size()) {
-                long j = ((TLRPC$TL_chatInviteImporter) list.get(i)).user_id;
+                long j = ((TLRPC.TL_chatInviteImporter) list.get(i)).user_id;
                 int i2 = i + 1;
                 while (true) {
                     if (i2 >= list.size()) {
                         break;
                     }
-                    if (((TLRPC$TL_chatInviteImporter) list.get(i2)).user_id == j) {
+                    if (((TLRPC.TL_chatInviteImporter) list.get(i2)).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
@@ -298,7 +293,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         private final TextView bioText;
         private final ViewGroup contentView;
         private BackupImageView imageView;
-        private TLRPC$TL_chatInviteImporter importer;
+        private TLRPC.TL_chatInviteImporter importer;
         private final TextView nameText;
         private final AvatarPreviewPagerIndicator pagerIndicator;
         private final Drawable pagerShadowDrawable;
@@ -527,9 +522,9 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         }
 
         public void lambda$new$0(View view) {
-            TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter = this.importer;
-            if (tLRPC$TL_chatInviteImporter != null) {
-                MemberRequestsDelegate.this.onAddClicked(tLRPC$TL_chatInviteImporter);
+            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = this.importer;
+            if (tL_chatInviteImporter != null) {
+                MemberRequestsDelegate.this.onAddClicked(tL_chatInviteImporter);
             }
             MemberRequestsDelegate.this.hidePreview();
         }
@@ -546,9 +541,9 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         }
 
         public void lambda$new$2(View view) {
-            TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter = this.importer;
-            if (tLRPC$TL_chatInviteImporter != null) {
-                MemberRequestsDelegate.this.onDismissClicked(tLRPC$TL_chatInviteImporter);
+            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = this.importer;
+            if (tL_chatInviteImporter != null) {
+                MemberRequestsDelegate.this.onDismissClicked(tL_chatInviteImporter);
             }
             MemberRequestsDelegate.this.hidePreview();
         }
@@ -663,21 +658,21 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             getWindow().setAttributes(attributes);
         }
 
-        public void setImporter(TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, BackupImageView backupImageView) {
-            this.importer = tLRPC$TL_chatInviteImporter;
+        public void setImporter(TLRPC.TL_chatInviteImporter tL_chatInviteImporter, BackupImageView backupImageView) {
+            this.importer = tL_chatInviteImporter;
             this.imageView = backupImageView;
-            TLRPC$User user = MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).getUser(Long.valueOf(tLRPC$TL_chatInviteImporter.user_id));
+            TLRPC.User user = MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).getUser(Long.valueOf(tL_chatInviteImporter.user_id));
             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(user, 0);
             ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(user, 1);
-            if (MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).getUserFull(tLRPC$TL_chatInviteImporter.user_id) == null) {
+            if (MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).getUserFull(tL_chatInviteImporter.user_id) == null) {
                 MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).loadUserInfo(user, false, 0);
             }
             this.viewPager.setParentAvatarImage(backupImageView);
-            this.viewPager.setData(tLRPC$TL_chatInviteImporter.user_id, true);
+            this.viewPager.setData(tL_chatInviteImporter.user_id, true);
             this.viewPager.initIfEmpty(null, forUserOrChat, forUserOrChat2, true);
-            this.nameText.setText(UserObject.getUserName((TLRPC$User) MemberRequestsDelegate.this.users.get(tLRPC$TL_chatInviteImporter.user_id)));
-            this.bioText.setText(tLRPC$TL_chatInviteImporter.about);
-            this.bioText.setVisibility(TextUtils.isEmpty(tLRPC$TL_chatInviteImporter.about) ? 8 : 0);
+            this.nameText.setText(UserObject.getUserName((TLRPC.User) MemberRequestsDelegate.this.users.get(tL_chatInviteImporter.user_id)));
+            this.bioText.setText(tL_chatInviteImporter.about);
+            this.bioText.setVisibility(TextUtils.isEmpty(tL_chatInviteImporter.about) ? 8 : 0);
             this.contentView.requestLayout();
         }
 
@@ -704,19 +699,19 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         this.controller = MemberRequestsController.getInstance(currentAccount);
     }
 
-    private void hideChatJoinRequest(final TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, final boolean z) {
-        final TLRPC$User tLRPC$User = (TLRPC$User) this.users.get(tLRPC$TL_chatInviteImporter.user_id);
-        if (tLRPC$User == null) {
+    private void hideChatJoinRequest(final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z) {
+        final TLRPC.User user = (TLRPC.User) this.users.get(tL_chatInviteImporter.user_id);
+        if (user == null) {
             return;
         }
-        final TLRPC$TL_messages_hideChatJoinRequest tLRPC$TL_messages_hideChatJoinRequest = new TLRPC$TL_messages_hideChatJoinRequest();
-        tLRPC$TL_messages_hideChatJoinRequest.approved = z;
-        tLRPC$TL_messages_hideChatJoinRequest.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.chatId);
-        tLRPC$TL_messages_hideChatJoinRequest.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_hideChatJoinRequest, new RequestDelegate() {
+        final TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = new TLRPC.TL_messages_hideChatJoinRequest();
+        tL_messages_hideChatJoinRequest.approved = z;
+        tL_messages_hideChatJoinRequest.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.chatId);
+        tL_messages_hideChatJoinRequest.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(user);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_hideChatJoinRequest, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MemberRequestsDelegate.this.lambda$hideChatJoinRequest$7(tLRPC$TL_chatInviteImporter, z, tLRPC$User, tLRPC$TL_messages_hideChatJoinRequest, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                MemberRequestsDelegate.this.lambda$hideChatJoinRequest$7(tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest, tLObject, tL_error);
             }
         });
     }
@@ -726,37 +721,37 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         this.importer = null;
     }
 
-    public void lambda$hideChatJoinRequest$6(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, boolean z, TLRPC$User tLRPC$User, TLRPC$TL_messages_hideChatJoinRequest tLRPC$TL_messages_hideChatJoinRequest) {
+    public void lambda$hideChatJoinRequest$6(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
-        if (tLRPC$TL_error != null) {
-            AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this.fragment, tLRPC$TL_messages_hideChatJoinRequest, new Object[0]);
+        if (tL_error != null) {
+            AlertsCreator.processError(this.currentAccount, tL_error, this.fragment, tL_messages_hideChatJoinRequest, new Object[0]);
             return;
         }
-        TLRPC$TL_updates tLRPC$TL_updates = (TLRPC$TL_updates) tLObject;
-        if (!tLRPC$TL_updates.chats.isEmpty()) {
-            MessagesController.getInstance(this.currentAccount).loadFullChat(tLRPC$TL_updates.chats.get(0).id, 0, true);
+        TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject;
+        if (!tL_updates.chats.isEmpty()) {
+            MessagesController.getInstance(this.currentAccount).loadFullChat(tL_updates.chats.get(0).id, 0, true);
         }
         int i = 0;
         while (true) {
             if (i >= this.allImporters.size()) {
                 break;
             }
-            if (((TLRPC$TL_chatInviteImporter) this.allImporters.get(i)).user_id == tLRPC$TL_chatInviteImporter.user_id) {
+            if (((TLRPC.TL_chatInviteImporter) this.allImporters.get(i)).user_id == tL_chatInviteImporter.user_id) {
                 this.allImporters.remove(i);
                 break;
             }
             i++;
         }
-        this.adapter.removeItem(tLRPC$TL_chatInviteImporter);
+        this.adapter.removeItem(tL_chatInviteImporter);
         onImportersChanged(this.query, false, true);
         if (z) {
             Bulletin.MultiLineLayout multiLineLayout = new Bulletin.MultiLineLayout(this.fragment.getParentActivity(), this.fragment.getResourceProvider());
             multiLineLayout.imageView.setRoundRadius(AndroidUtilities.dp(15.0f));
-            multiLineLayout.imageView.setForUserOrChat(tLRPC$User, new AvatarDrawable(tLRPC$User));
-            String firstName = UserObject.getFirstName(tLRPC$User);
+            multiLineLayout.imageView.setForUserOrChat(user, new AvatarDrawable(user));
+            String firstName = UserObject.getFirstName(user);
             String formatString = this.isChannel ? LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, firstName) : LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, firstName);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
             int indexOf = formatString.indexOf(firstName);
@@ -770,14 +765,14 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         }
     }
 
-    public void lambda$hideChatJoinRequest$7(final TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, final boolean z, final TLRPC$User tLRPC$User, final TLRPC$TL_messages_hideChatJoinRequest tLRPC$TL_messages_hideChatJoinRequest, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error == null) {
-            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC$TL_updates) tLObject, false);
+    public void lambda$hideChatJoinRequest$7(final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final TLRPC.User user, final TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MemberRequestsDelegate.this.lambda$hideChatJoinRequest$6(tLRPC$TL_error, tLObject, tLRPC$TL_chatInviteImporter, z, tLRPC$User, tLRPC$TL_messages_hideChatJoinRequest);
+                MemberRequestsDelegate.this.lambda$hideChatJoinRequest$6(tL_error, tLObject, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest);
             }
         });
     }
@@ -786,41 +781,41 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         setViewVisible(this.loadingView, true, true);
     }
 
-    public void lambda$loadMembers$3(boolean z, Runnable runnable, String str, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, boolean z2) {
+    public void lambda$loadMembers$3(boolean z, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z2) {
         this.isLoading = false;
         this.isDataLoaded = true;
         if (z) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
         }
         setViewVisible(this.loadingView, false, false);
-        if (TextUtils.equals(str, this.query) && tLRPC$TL_error == null) {
+        if (TextUtils.equals(str, this.query) && tL_error == null) {
             this.isDataLoaded = true;
-            onImportersLoaded((TLRPC$TL_messages_chatInviteImporters) tLObject, str, z2, false);
+            onImportersLoaded((TLRPC.TL_messages_chatInviteImporters) tLObject, str, z2, false);
         }
     }
 
-    public void lambda$loadMembers$4(final boolean z, final Runnable runnable, final String str, final boolean z2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadMembers$4(final boolean z, final Runnable runnable, final String str, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MemberRequestsDelegate.this.lambda$loadMembers$3(z, runnable, str, tLRPC$TL_error, tLObject, z2);
+                MemberRequestsDelegate.this.lambda$loadMembers$3(z, runnable, str, tL_error, tLObject, z2);
             }
         });
     }
 
     public void lambda$loadMembers$5(boolean z) {
-        TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter;
+        TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
         final boolean isEmpty = TextUtils.isEmpty(this.query);
         final String str = this.query;
         this.isLoading = true;
         this.isFirstLoading = false;
         if (!isEmpty || this.currentImporters.isEmpty()) {
-            tLRPC$TL_chatInviteImporter = null;
+            tL_chatInviteImporter = null;
         } else {
             List list = this.currentImporters;
-            tLRPC$TL_chatInviteImporter = (TLRPC$TL_chatInviteImporter) list.get(list.size() - 1);
+            tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) list.get(list.size() - 1);
         }
-        final boolean z2 = tLRPC$TL_chatInviteImporter == null;
+        final boolean z2 = tL_chatInviteImporter == null;
         final Runnable runnable = (isEmpty && z2 && z) ? new Runnable() {
             @Override
             public final void run() {
@@ -830,10 +825,10 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         if (isEmpty) {
             AndroidUtilities.runOnUIThread(runnable, 300L);
         }
-        this.searchRequestId = this.controller.getImporters(this.chatId, str, tLRPC$TL_chatInviteImporter, this.users, new RequestDelegate() {
+        this.searchRequestId = this.controller.getImporters(this.chatId, str, tL_chatInviteImporter, this.users, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MemberRequestsDelegate.this.lambda$loadMembers$4(isEmpty, runnable, str, z2, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                MemberRequestsDelegate.this.lambda$loadMembers$4(isEmpty, runnable, str, z2, tLObject, tL_error);
             }
         });
     }
@@ -843,21 +838,21 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
     }
 
     public void lambda$onItemClick$1(MemberRequestCell memberRequestCell) {
-        TLRPC$TL_chatInviteImporter importer = memberRequestCell.getImporter();
+        TLRPC.TL_chatInviteImporter importer = memberRequestCell.getImporter();
         this.importer = importer;
-        TLRPC$User tLRPC$User = (TLRPC$User) this.users.get(importer.user_id);
-        if (tLRPC$User == null) {
+        TLRPC.User user = (TLRPC.User) this.users.get(importer.user_id);
+        if (user == null) {
             return;
         }
-        this.fragment.getMessagesController().putUser(tLRPC$User, false);
+        this.fragment.getMessagesController().putUser(user, false);
         Point point = AndroidUtilities.displaySize;
         boolean z = point.x > point.y;
-        if (tLRPC$User.photo == null || z) {
+        if (user.photo == null || z) {
             this.isNeedRestoreList = true;
             this.fragment.dismissCurrentDialog();
             Bundle bundle = new Bundle();
             ProfileActivity profileActivity = new ProfileActivity(bundle);
-            bundle.putLong("user_id", tLRPC$User.id);
+            bundle.putLong("user_id", user.id);
             bundle.putBoolean("removeFragmentOnChatOpen", false);
             this.fragment.presentFragment(profileActivity);
             return;
@@ -876,21 +871,21 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         }
     }
 
-    private void onImportersLoaded(TLRPC$TL_messages_chatInviteImporters tLRPC$TL_messages_chatInviteImporters, String str, boolean z, boolean z2) {
+    private void onImportersLoaded(TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters, String str, boolean z, boolean z2) {
         boolean z3 = false;
         boolean z4 = !this.currentImporters.isEmpty() && this.hasMore;
-        for (int i = 0; i < tLRPC$TL_messages_chatInviteImporters.users.size(); i++) {
-            TLRPC$User tLRPC$User = (TLRPC$User) tLRPC$TL_messages_chatInviteImporters.users.get(i);
-            this.users.put(tLRPC$User.id, tLRPC$User);
+        for (int i = 0; i < tL_messages_chatInviteImporters.users.size(); i++) {
+            TLRPC.User user = tL_messages_chatInviteImporters.users.get(i);
+            this.users.put(user.id, user);
         }
         if (z) {
-            this.adapter.setItems(tLRPC$TL_messages_chatInviteImporters.importers);
+            this.adapter.setItems(tL_messages_chatInviteImporters.importers);
         } else {
-            boolean z5 = tLRPC$TL_messages_chatInviteImporters.importers.size() > 0 && this.currentImporters.size() + tLRPC$TL_messages_chatInviteImporters.importers.size() < tLRPC$TL_messages_chatInviteImporters.count;
+            boolean z5 = tL_messages_chatInviteImporters.importers.size() > 0 && this.currentImporters.size() + tL_messages_chatInviteImporters.importers.size() < tL_messages_chatInviteImporters.count;
             if (z5) {
                 this.adapter.notifyItemRemoved((!this.isShowLastItemDivider ? 1 : 0) + this.currentImporters.size());
             }
-            this.adapter.appendItems(tLRPC$TL_messages_chatInviteImporters.importers);
+            this.adapter.appendItems(tL_messages_chatInviteImporters.importers);
             if (z5) {
                 this.adapter.notifyItemInserted((!this.isShowLastItemDivider ? 1 : 0) + this.currentImporters.size());
             }
@@ -899,13 +894,13 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             if (z) {
                 this.allImporters.clear();
             }
-            this.allImporters.addAll(tLRPC$TL_messages_chatInviteImporters.importers);
+            this.allImporters.addAll(tL_messages_chatInviteImporters.importers);
             if (this.showSearchMenu) {
                 this.fragment.getActionBar().createMenu().getItem(0).setVisibility(this.allImporters.isEmpty() ? 8 : 0);
             }
         }
         onImportersChanged(str, z2, false);
-        this.hasMore = this.currentImporters.size() < tLRPC$TL_messages_chatInviteImporters.count;
+        this.hasMore = this.currentImporters.size() < tL_messages_chatInviteImporters.count;
         if (!this.currentImporters.isEmpty() && this.hasMore) {
             z3 = true;
         }
@@ -1024,7 +1019,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
     }
 
     public void lambda$new$8() {
-        TLRPC$TL_messages_chatInviteImporters cachedImporters;
+        TLRPC.TL_messages_chatInviteImporters cachedImporters;
         final boolean z = true;
         if (this.isFirstLoading && (cachedImporters = this.controller.getCachedImporters(this.chatId)) != null) {
             this.isDataLoaded = true;
@@ -1040,8 +1035,8 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
     }
 
     @Override
-    public void onAddClicked(TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter) {
-        hideChatJoinRequest(tLRPC$TL_chatInviteImporter, true);
+    public void onAddClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        hideChatJoinRequest(tL_chatInviteImporter, true);
     }
 
     public boolean onBackPressed() {
@@ -1054,8 +1049,8 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
     }
 
     @Override
-    public void onDismissClicked(TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter) {
-        hideChatJoinRequest(tLRPC$TL_chatInviteImporter, false);
+    public void onDismissClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        hideChatJoinRequest(tL_chatInviteImporter, false);
     }
 
     public void onImportersChanged(String str, boolean z, boolean z2) {

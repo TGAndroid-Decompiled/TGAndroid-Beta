@@ -5,7 +5,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC$EncryptedChat;
+import org.telegram.tgnet.TLRPC;
 
 public class IdenticonDrawable extends Drawable {
     private byte[] data;
@@ -79,13 +79,13 @@ public class IdenticonDrawable extends Drawable {
     public void setColorFilter(ColorFilter colorFilter) {
     }
 
-    public void setEncryptedChat(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
-        byte[] bArr = tLRPC$EncryptedChat.key_hash;
+    public void setEncryptedChat(TLRPC.EncryptedChat encryptedChat) {
+        byte[] bArr = encryptedChat.key_hash;
         this.data = bArr;
         if (bArr == null) {
-            byte[] calcAuthKeyHash = AndroidUtilities.calcAuthKeyHash(tLRPC$EncryptedChat.auth_key);
+            byte[] calcAuthKeyHash = AndroidUtilities.calcAuthKeyHash(encryptedChat.auth_key);
             this.data = calcAuthKeyHash;
-            tLRPC$EncryptedChat.key_hash = calcAuthKeyHash;
+            encryptedChat.key_hash = calcAuthKeyHash;
         }
         invalidateSelf();
     }

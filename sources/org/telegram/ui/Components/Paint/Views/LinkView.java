@@ -9,7 +9,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stories$MediaArea;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
@@ -22,7 +22,7 @@ public class LinkView extends EntityView {
     private boolean hasColor;
     public LinkPreview.WebPagePreview link;
     public final LinkPreview marker;
-    public TL_stories$MediaArea mediaArea;
+    public TL_stories.MediaArea mediaArea;
 
     public class TextViewSelectionView extends EntityView.SelectionView {
         private final Paint clearPaint;
@@ -110,12 +110,12 @@ public class LinkView extends EntityView {
         }
     }
 
-    public LinkView(Context context, Point point, int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea, float f, int i2, int i3) {
+    public LinkView(Context context, Point point, int i, LinkPreview.WebPagePreview webPagePreview, TL_stories.MediaArea mediaArea, float f, int i2, int i3) {
         super(context, point);
         LinkPreview linkPreview = new LinkPreview(context, f);
         this.marker = linkPreview;
         linkPreview.setMaxWidth(i2);
-        setLink(i, webPagePreview, tL_stories$MediaArea);
+        setLink(i, webPagePreview, mediaArea);
         this.currentType = i3;
         linkPreview.setType(i3, this.currentColor);
         addView(linkPreview, LayoutHelper.createFrame(-2, -2, 51));
@@ -201,9 +201,9 @@ public class LinkView extends EntityView {
         this.currentColor = i;
     }
 
-    public void setLink(int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea) {
+    public void setLink(int i, LinkPreview.WebPagePreview webPagePreview, TL_stories.MediaArea mediaArea) {
         this.link = webPagePreview;
-        this.mediaArea = tL_stories$MediaArea;
+        this.mediaArea = mediaArea;
         this.marker.set(i, webPagePreview);
         updateSelectionView();
     }

@@ -27,11 +27,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_authorizationForm;
-import org.telegram.tgnet.TLRPC$TL_account_getAuthorizationForm;
-import org.telegram.tgnet.TLRPC$TL_account_getPassword;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$account_Password;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
@@ -58,20 +54,20 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     private static ArrayList mainFragmentsStack = new ArrayList();
     private static ArrayList layerFragmentsStack = new ArrayList();
 
-    public void lambda$handleIntent$10(int[] iArr, final int i, final AlertDialog alertDialog, final TLRPC$TL_account_getAuthorizationForm tLRPC$TL_account_getAuthorizationForm, final String str, final String str2, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        final TLRPC$TL_account_authorizationForm tLRPC$TL_account_authorizationForm = (TLRPC$TL_account_authorizationForm) tLObject;
-        if (tLRPC$TL_account_authorizationForm == null) {
+    public void lambda$handleIntent$10(int[] iArr, final int i, final AlertDialog alertDialog, final TLRPC.TL_account_getAuthorizationForm tL_account_getAuthorizationForm, final String str, final String str2, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        final TLRPC.TL_account_authorizationForm tL_account_authorizationForm = (TLRPC.TL_account_authorizationForm) tLObject;
+        if (tL_account_authorizationForm == null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ExternalActionActivity.this.lambda$handleIntent$9(alertDialog, tLRPC$TL_error);
+                    ExternalActionActivity.this.lambda$handleIntent$9(alertDialog, tL_error);
                 }
             });
         } else {
-            iArr[0] = ConnectionsManager.getInstance(i).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
+            iArr[0] = ConnectionsManager.getInstance(i).sendRequest(new TLRPC.TL_account_getPassword(), new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                    ExternalActionActivity.this.lambda$handleIntent$7(alertDialog, i, tLRPC$TL_account_authorizationForm, tLRPC$TL_account_getAuthorizationForm, str, str2, tLObject2, tLRPC$TL_error2);
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                    ExternalActionActivity.this.lambda$handleIntent$7(alertDialog, i, tL_account_authorizationForm, tL_account_getAuthorizationForm, str, str2, tLObject2, tL_error2);
                 }
             });
         }
@@ -93,15 +89,15 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
     }
 
-    public void lambda$handleIntent$6(AlertDialog alertDialog, TLObject tLObject, int i, TLRPC$TL_account_authorizationForm tLRPC$TL_account_authorizationForm, TLRPC$TL_account_getAuthorizationForm tLRPC$TL_account_getAuthorizationForm, String str, String str2) {
+    public void lambda$handleIntent$6(AlertDialog alertDialog, TLObject tLObject, int i, TLRPC.TL_account_authorizationForm tL_account_authorizationForm, TLRPC.TL_account_getAuthorizationForm tL_account_getAuthorizationForm, String str, String str2) {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
             FileLog.e(e);
         }
         if (tLObject != null) {
-            MessagesController.getInstance(i).putUsers(tLRPC$TL_account_authorizationForm.users, false);
-            PassportActivity passportActivity = new PassportActivity(5, tLRPC$TL_account_getAuthorizationForm.bot_id, tLRPC$TL_account_getAuthorizationForm.scope, tLRPC$TL_account_getAuthorizationForm.public_key, str, str2, (String) null, tLRPC$TL_account_authorizationForm, (TLRPC$account_Password) tLObject);
+            MessagesController.getInstance(i).putUsers(tL_account_authorizationForm.users, false);
+            PassportActivity passportActivity = new PassportActivity(5, tL_account_getAuthorizationForm.bot_id, tL_account_getAuthorizationForm.scope, tL_account_getAuthorizationForm.public_key, str, str2, (String) null, tL_account_authorizationForm, (TLRPC.account_Password) tLObject);
             passportActivity.setNeedActivityResult(true);
             (AndroidUtilities.isTablet() ? this.layersActionBarLayout : this.actionBarLayout).addFragmentToStack(passportActivity);
             if (!AndroidUtilities.isTablet()) {
@@ -114,42 +110,42 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         }
     }
 
-    public void lambda$handleIntent$7(final AlertDialog alertDialog, final int i, final TLRPC$TL_account_authorizationForm tLRPC$TL_account_authorizationForm, final TLRPC$TL_account_getAuthorizationForm tLRPC$TL_account_getAuthorizationForm, final String str, final String str2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$handleIntent$7(final AlertDialog alertDialog, final int i, final TLRPC.TL_account_authorizationForm tL_account_authorizationForm, final TLRPC.TL_account_getAuthorizationForm tL_account_getAuthorizationForm, final String str, final String str2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ExternalActionActivity.this.lambda$handleIntent$6(alertDialog, tLObject, i, tLRPC$TL_account_authorizationForm, tLRPC$TL_account_getAuthorizationForm, str, str2);
+                ExternalActionActivity.this.lambda$handleIntent$6(alertDialog, tLObject, i, tL_account_authorizationForm, tL_account_getAuthorizationForm, str, str2);
             }
         });
     }
 
-    public void lambda$handleIntent$8(TLRPC$TL_error tLRPC$TL_error, DialogInterface dialogInterface) {
-        setResult(1, new Intent().putExtra("error", tLRPC$TL_error.text));
+    public void lambda$handleIntent$8(TLRPC.TL_error tL_error, DialogInterface dialogInterface) {
+        setResult(1, new Intent().putExtra("error", tL_error.text));
         finish();
     }
 
-    public void lambda$handleIntent$9(AlertDialog alertDialog, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$handleIntent$9(AlertDialog alertDialog, final TLRPC.TL_error tL_error) {
         Intent putExtra;
         try {
             alertDialog.dismiss();
-            if ("APP_VERSION_OUTDATED".equals(tLRPC$TL_error.text)) {
+            if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
                 AlertDialog showUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString(R.string.UpdateAppAlert), true);
                 if (showUpdateAppAlert != null) {
                     showUpdateAppAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            ExternalActionActivity.this.lambda$handleIntent$8(tLRPC$TL_error, dialogInterface);
+                            ExternalActionActivity.this.lambda$handleIntent$8(tL_error, dialogInterface);
                         }
                     });
                     return;
                 }
-                putExtra = new Intent().putExtra("error", tLRPC$TL_error.text);
+                putExtra = new Intent().putExtra("error", tL_error.text);
             } else {
-                if (!"BOT_INVALID".equals(tLRPC$TL_error.text) && !"PUBLIC_KEY_REQUIRED".equals(tLRPC$TL_error.text) && !"PUBLIC_KEY_INVALID".equals(tLRPC$TL_error.text) && !"SCOPE_EMPTY".equals(tLRPC$TL_error.text) && !"PAYLOAD_EMPTY".equals(tLRPC$TL_error.text)) {
+                if (!"BOT_INVALID".equals(tL_error.text) && !"PUBLIC_KEY_REQUIRED".equals(tL_error.text) && !"PUBLIC_KEY_INVALID".equals(tL_error.text) && !"SCOPE_EMPTY".equals(tL_error.text) && !"PAYLOAD_EMPTY".equals(tL_error.text)) {
                     setResult(0);
                     finish();
                 }
-                putExtra = new Intent().putExtra("error", tLRPC$TL_error.text);
+                putExtra = new Intent().putExtra("error", tL_error.text);
             }
             setResult(1, putExtra);
             finish();

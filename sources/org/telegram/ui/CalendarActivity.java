@@ -38,14 +38,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterPhotoVideo;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterPhotos;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterVideo;
-import org.telegram.tgnet.TLRPC$TL_messages_getSearchResultsCalendar;
-import org.telegram.tgnet.TLRPC$TL_messages_searchResultsCalendar;
-import org.telegram.tgnet.TLRPC$TL_searchResultsCalendarPeriod;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -291,7 +284,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             }
 
             public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) {
-                CalendarActivity.this.lambda$onBackPressed$307();
+                CalendarActivity.this.lambda$onBackPressed$300();
                 ((ChatActivity) baseFragment).jumpToDate(periodDay.date);
             }
 
@@ -327,7 +320,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         AlertsCreator.createClearDaysDialogAlert(calendarActivity, 1, calendarActivity.getMessagesController().getUser(Long.valueOf(CalendarActivity.this.dialogId)), null, false, new MessagesStorage.BooleanCallback() {
                             @Override
                             public void run(boolean z) {
-                                CalendarActivity.this.lambda$onBackPressed$307();
+                                CalendarActivity.this.lambda$onBackPressed$300();
                                 ((ChatActivity) baseFragment).deleteHistory(CalendarActivity.this.dateSelectedStart, CalendarActivity.this.dateSelectedEnd + 86400, z);
                             }
                         }, null);
@@ -446,7 +439,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                             orCreateStoryViewer.open(context, messageObject.storyItem, messageObject.getId(), CalendarActivity.this.storiesList, true, CalendarActivity.this.storiesPlaceProvider);
                         } else {
                             CalendarActivity.this.callback.onDateSelected(dayAtCoord.messageObject.getId(), dayAtCoord.startOffset);
-                            CalendarActivity.this.lambda$onBackPressed$307();
+                            CalendarActivity.this.lambda$onBackPressed$300();
                         }
                     }
                 }
@@ -497,14 +490,14 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         if (dayAtCoord3 != null && ((BaseFragment) CalendarActivity.this).parentLayout != null && ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() >= 2) {
                             BaseFragment baseFragment = (BaseFragment) ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() - 2);
                             if (baseFragment instanceof ChatActivity) {
-                                CalendarActivity.this.lambda$onBackPressed$307();
+                                CalendarActivity.this.lambda$onBackPressed$300();
                                 chatActivity = (ChatActivity) baseFragment;
                                 chatActivity.jumpToDate(dayAtCoord3.date);
                             }
                         } else if (dayAtCoord3 != null) {
                             CalendarActivity calendarActivity5 = CalendarActivity.this;
                             if (calendarActivity5.chatActivity != null) {
-                                calendarActivity5.lambda$onBackPressed$307();
+                                calendarActivity5.lambda$onBackPressed$300();
                                 chatActivity = CalendarActivity.this.chatActivity;
                                 chatActivity.jumpToDate(dayAtCoord3.date);
                             }
@@ -1124,7 +1117,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             AlertsCreator.createClearDaysDialogAlert(this, i, getMessagesController().getUser(Long.valueOf(this.dialogId)), null, false, new MessagesStorage.BooleanCallback() {
                 @Override
                 public void run(boolean z) {
-                    CalendarActivity.this.lambda$onBackPressed$307();
+                    CalendarActivity.this.lambda$onBackPressed$300();
                     if (((BaseFragment) CalendarActivity.this).parentLayout != null && ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() >= 2) {
                         BaseFragment baseFragment = (BaseFragment) ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() - 2);
                         if (baseFragment instanceof ChatActivity) {
@@ -1152,21 +1145,21 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         this.selectDaysHint.showForView(this.bottomBar, true);
     }
 
-    public void lambda$loadNext$2(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, Calendar calendar) {
+    public void lambda$loadNext$2(TLRPC.TL_error tL_error, TLObject tLObject, Calendar calendar) {
         int i;
         int i2;
         AnonymousClass1 anonymousClass1;
-        if (tLRPC$TL_error == null) {
-            TLRPC$TL_messages_searchResultsCalendar tLRPC$TL_messages_searchResultsCalendar = (TLRPC$TL_messages_searchResultsCalendar) tLObject;
+        if (tL_error == null) {
+            TLRPC.TL_messages_searchResultsCalendar tL_messages_searchResultsCalendar = (TLRPC.TL_messages_searchResultsCalendar) tLObject;
             int i3 = 0;
             while (true) {
                 i = 5;
                 i2 = 2;
                 anonymousClass1 = null;
-                if (i3 >= tLRPC$TL_messages_searchResultsCalendar.periods.size()) {
+                if (i3 >= tL_messages_searchResultsCalendar.periods.size()) {
                     break;
                 }
-                calendar.setTimeInMillis(((TLRPC$TL_searchResultsCalendarPeriod) tLRPC$TL_messages_searchResultsCalendar.periods.get(i3)).date * 1000);
+                calendar.setTimeInMillis(tL_messages_searchResultsCalendar.periods.get(i3).date * 1000);
                 int i4 = (calendar.get(1) * 100) + calendar.get(2);
                 SparseArray sparseArray = (SparseArray) this.messagesByYearMounth.get(i4);
                 if (sparseArray == null) {
@@ -1174,9 +1167,9 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     this.messagesByYearMounth.put(i4, sparseArray);
                 }
                 PeriodDay periodDay = new PeriodDay(this, anonymousClass1);
-                periodDay.messageObject = new MessageObject(this.currentAccount, (TLRPC$Message) tLRPC$TL_messages_searchResultsCalendar.messages.get(i3), false, false);
+                periodDay.messageObject = new MessageObject(this.currentAccount, tL_messages_searchResultsCalendar.messages.get(i3), false, false);
                 periodDay.date = (int) (calendar.getTimeInMillis() / 1000);
-                int i5 = this.startOffset + ((TLRPC$TL_searchResultsCalendarPeriod) tLRPC$TL_messages_searchResultsCalendar.periods.get(i3)).count;
+                int i5 = this.startOffset + tL_messages_searchResultsCalendar.periods.get(i3).count;
                 this.startOffset = i5;
                 periodDay.startOffset = i5;
                 int i6 = calendar.get(5) - 1;
@@ -1190,7 +1183,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 i3++;
             }
             int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-            int i8 = tLRPC$TL_messages_searchResultsCalendar.min_date;
+            int i8 = tL_messages_searchResultsCalendar.min_date;
             this.minDate = i8;
             while (true) {
                 calendar.setTimeInMillis(i8 * 1000);
@@ -1219,11 +1212,11 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 i2 = 2;
             }
             this.loading = false;
-            if (tLRPC$TL_messages_searchResultsCalendar.messages.isEmpty()) {
+            if (tL_messages_searchResultsCalendar.messages.isEmpty()) {
                 this.endReached = true;
             } else {
-                ArrayList arrayList = tLRPC$TL_messages_searchResultsCalendar.messages;
-                this.lastId = ((TLRPC$Message) arrayList.get(arrayList.size() - 1)).id;
+                ArrayList<TLRPC.Message> arrayList = tL_messages_searchResultsCalendar.messages;
+                this.lastId = arrayList.get(arrayList.size() - 1).id;
                 this.endReached = false;
                 checkLoadNext();
             }
@@ -1231,7 +1224,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 this.checkEnterItems = true;
             }
             this.listView.invalidate();
-            int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - tLRPC$TL_messages_searchResultsCalendar.min_date) / 2629800)) + 1;
+            int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - tL_messages_searchResultsCalendar.min_date) / 2629800)) + 1;
             this.adapter.notifyItemRangeChanged(0, this.monthCount);
             int i11 = this.monthCount;
             if (timeInMillis > i11) {
@@ -1244,11 +1237,11 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$loadNext$3(final Calendar calendar, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadNext$3(final Calendar calendar, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CalendarActivity.this.lambda$loadNext$2(tLRPC$TL_error, tLObject, calendar);
+                CalendarActivity.this.lambda$loadNext$2(tL_error, tLObject, calendar);
             }
         });
     }
@@ -1264,21 +1257,21 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             return;
         }
         this.loading = true;
-        TLRPC$TL_messages_getSearchResultsCalendar tLRPC$TL_messages_getSearchResultsCalendar = new TLRPC$TL_messages_getSearchResultsCalendar();
+        TLRPC.TL_messages_getSearchResultsCalendar tL_messages_getSearchResultsCalendar = new TLRPC.TL_messages_getSearchResultsCalendar();
         int i = this.photosVideosTypeFilter;
-        tLRPC$TL_messages_getSearchResultsCalendar.filter = i == 1 ? new TLRPC$TL_inputMessagesFilterPhotos() : i == 2 ? new TLRPC$TL_inputMessagesFilterVideo() : new TLRPC$TL_inputMessagesFilterPhotoVideo();
-        tLRPC$TL_messages_getSearchResultsCalendar.peer = getMessagesController().getInputPeer(this.dialogId);
+        tL_messages_getSearchResultsCalendar.filter = i == 1 ? new TLRPC.TL_inputMessagesFilterPhotos() : i == 2 ? new TLRPC.TL_inputMessagesFilterVideo() : new TLRPC.TL_inputMessagesFilterPhotoVideo();
+        tL_messages_getSearchResultsCalendar.peer = getMessagesController().getInputPeer(this.dialogId);
         if (this.topicId != 0 && this.dialogId == getUserConfig().getClientUserId()) {
-            tLRPC$TL_messages_getSearchResultsCalendar.flags |= 4;
-            tLRPC$TL_messages_getSearchResultsCalendar.saved_peer_id = getMessagesController().getInputPeer(this.topicId);
+            tL_messages_getSearchResultsCalendar.flags |= 4;
+            tL_messages_getSearchResultsCalendar.saved_peer_id = getMessagesController().getInputPeer(this.topicId);
         }
-        tLRPC$TL_messages_getSearchResultsCalendar.offset_id = this.lastId;
+        tL_messages_getSearchResultsCalendar.offset_id = this.lastId;
         final Calendar calendar = Calendar.getInstance();
         this.listView.setItemAnimator(null);
-        getConnectionsManager().sendRequest(tLRPC$TL_messages_getSearchResultsCalendar, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tL_messages_getSearchResultsCalendar, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                CalendarActivity.this.lambda$loadNext$3(calendar, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                CalendarActivity.this.lambda$loadNext$3(calendar, tLObject, tL_error);
             }
         });
     }
@@ -1521,7 +1514,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (CalendarActivity.this.dateSelectedStart == 0 && CalendarActivity.this.dateSelectedEnd == 0 && !CalendarActivity.this.inSelectionMode) {
-                        CalendarActivity.this.lambda$onBackPressed$307();
+                        CalendarActivity.this.lambda$onBackPressed$300();
                         return;
                     }
                     CalendarActivity.this.inSelectionMode = false;

@@ -9,8 +9,7 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCheckCell;
@@ -18,7 +17,7 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 
 public class JoinToSendSettingsView extends LinearLayout {
     private final int MAXSPEC;
-    private TLRPC$Chat currentChat;
+    private TLRPC.Chat currentChat;
     public boolean isJoinRequest;
     public boolean isJoinToSend;
     public HeaderCell joinHeaderCell;
@@ -29,14 +28,14 @@ public class JoinToSendSettingsView extends LinearLayout {
     private ValueAnimator toggleAnimator;
     private float toggleValue;
 
-    public JoinToSendSettingsView(Context context, TLRPC$Chat tLRPC$Chat) {
+    public JoinToSendSettingsView(Context context, TLRPC.Chat chat) {
         super(context);
-        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
-        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights2;
         this.MAXSPEC = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
-        this.currentChat = tLRPC$Chat;
-        this.isJoinToSend = tLRPC$Chat.join_to_send;
-        this.isJoinRequest = tLRPC$Chat.join_request;
+        this.currentChat = chat;
+        this.isJoinToSend = chat.join_to_send;
+        this.isJoinRequest = chat.join_request;
         boolean z = true;
         setOrientation(1);
         HeaderCell headerCell = new HeaderCell(context, 23);
@@ -52,7 +51,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         String string = LocaleController.getString(R.string.ChannelSettingsJoinToSend);
         boolean z2 = this.isJoinToSend;
         textCheckCell2.setTextAndCheck(string, z2, z2);
-        this.joinToSendCell.setEnabled(tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights2 = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights2.ban_users));
+        this.joinToSendCell.setEnabled(chat.creator || ((tL_chatAdminRights2 = chat.admin_rights) != null && tL_chatAdminRights2.ban_users));
         this.joinToSendCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -67,7 +66,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.joinRequestCell.setTextAndCheck(LocaleController.getString(R.string.ChannelSettingsJoinRequest), this.isJoinRequest, false);
         this.joinRequestCell.setPivotY(0.0f);
         TextCheckCell textCheckCell4 = this.joinRequestCell;
-        if (!tLRPC$Chat.creator && ((tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights) == null || !tLRPC$TL_chatAdminRights.ban_users)) {
+        if (!chat.creator && ((tL_chatAdminRights = chat.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
             z = false;
         }
         textCheckCell4.setEnabled(z);
@@ -207,15 +206,15 @@ public class JoinToSendSettingsView extends LinearLayout {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(calcHeight(), 1073741824));
     }
 
-    public void setChat(TLRPC$Chat tLRPC$Chat) {
-        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
-        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2;
-        this.currentChat = tLRPC$Chat;
+    public void setChat(TLRPC.Chat chat) {
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights2;
+        this.currentChat = chat;
         boolean z = true;
-        this.joinToSendCell.setEnabled(tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights2 = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights2.ban_users));
+        this.joinToSendCell.setEnabled(chat.creator || ((tL_chatAdminRights2 = chat.admin_rights) != null && tL_chatAdminRights2.ban_users));
         TextCheckCell textCheckCell = this.joinRequestCell;
-        TLRPC$Chat tLRPC$Chat2 = this.currentChat;
-        if (!tLRPC$Chat2.creator && ((tLRPC$TL_chatAdminRights = tLRPC$Chat2.admin_rights) == null || !tLRPC$TL_chatAdminRights.ban_users)) {
+        TLRPC.Chat chat2 = this.currentChat;
+        if (!chat2.creator && ((tL_chatAdminRights = chat2.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
             z = false;
         }
         textCheckCell.setEnabled(z);

@@ -46,8 +46,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.time.SunDate;
-import org.telegram.tgnet.TLRPC$TL_theme;
-import org.telegram.tgnet.tl.TL_account$contentSettings;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -550,8 +550,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     AlertDialog.Builder builder = new AlertDialog.Builder(ThemeActivity.this.getParentActivity());
                     String string = LocaleController.getString("OpenInEditor", R.string.OpenInEditor);
                     String string2 = LocaleController.getString("ShareTheme", R.string.ShareTheme);
-                    TLRPC$TL_theme tLRPC$TL_theme = themeAccent.info;
-                    builder.setItems(new CharSequence[]{string, string2, (tLRPC$TL_theme == null || !tLRPC$TL_theme.creator) ? null : LocaleController.getString("ThemeSetUrl", R.string.ThemeSetUrl), LocaleController.getString("DeleteTheme", R.string.DeleteTheme)}, new int[]{R.drawable.msg_edit, R.drawable.msg_share, R.drawable.msg_link, R.drawable.msg_delete}, new DialogInterface.OnClickListener() {
+                    TLRPC.TL_theme tL_theme = themeAccent.info;
+                    builder.setItems(new CharSequence[]{string, string2, (tL_theme == null || !tL_theme.creator) ? null : LocaleController.getString("ThemeSetUrl", R.string.ThemeSetUrl), LocaleController.getString("DeleteTheme", R.string.DeleteTheme)}, new int[]{R.drawable.msg_edit, R.drawable.msg_share, R.drawable.msg_link, R.drawable.msg_delete}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
                             ThemeActivity.ListAdapter.this.lambda$onCreateViewHolder$4(themeAccent, themeAccentsListAdapter, dialogInterface, i2);
@@ -589,14 +589,14 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
                         iArr = new int[]{0, R.drawable.msg_shareout};
                     } else {
-                        TLRPC$TL_theme tLRPC$TL_theme = themeInfo.info;
-                        boolean z2 = tLRPC$TL_theme == null || !tLRPC$TL_theme.isDefault;
+                        TLRPC.TL_theme tL_theme = themeInfo.info;
+                        boolean z2 = tL_theme == null || !tL_theme.isDefault;
                         String string = LocaleController.getString("ShareFile", R.string.ShareFile);
                         String string2 = LocaleController.getString("ExportTheme", R.string.ExportTheme);
-                        TLRPC$TL_theme tLRPC$TL_theme2 = themeInfo.info;
-                        String string3 = (tLRPC$TL_theme2 == null || (!tLRPC$TL_theme2.isDefault && tLRPC$TL_theme2.creator)) ? LocaleController.getString("Edit", R.string.Edit) : null;
-                        TLRPC$TL_theme tLRPC$TL_theme3 = themeInfo.info;
-                        CharSequence[] charSequenceArr2 = {string, string2, string3, (tLRPC$TL_theme3 == null || !tLRPC$TL_theme3.creator) ? null : LocaleController.getString("ThemeSetUrl", R.string.ThemeSetUrl), z2 ? LocaleController.getString("Delete", R.string.Delete) : null};
+                        TLRPC.TL_theme tL_theme2 = themeInfo.info;
+                        String string3 = (tL_theme2 == null || (!tL_theme2.isDefault && tL_theme2.creator)) ? LocaleController.getString("Edit", R.string.Edit) : null;
+                        TLRPC.TL_theme tL_theme3 = themeInfo.info;
+                        CharSequence[] charSequenceArr2 = {string, string2, string3, (tL_theme3 == null || !tL_theme3.creator) ? null : LocaleController.getString("ThemeSetUrl", R.string.ThemeSetUrl), z2 ? LocaleController.getString("Delete", R.string.Delete) : null};
                         z = z2;
                         iArr = new int[]{R.drawable.msg_share, R.drawable.msg_shareout, R.drawable.msg_edit, R.drawable.msg_link, R.drawable.msg_delete};
                         charSequenceArr = charSequenceArr2;
@@ -1490,7 +1490,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         });
     }
 
-    public void lambda$createView$2(TL_account$contentSettings tL_account$contentSettings) {
+    public void lambda$createView$2(TL_account.contentSettings contentsettings) {
         ListAdapter listAdapter;
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView == null || !recyclerListView.isAttachedToWindow() || (listAdapter = this.listAdapter) == null) {
@@ -1499,7 +1499,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         int i = this.sensitiveContentRow;
         boolean z = false;
         boolean z2 = i >= 0;
-        if (tL_account$contentSettings != null && tL_account$contentSettings.sensitive_can_change) {
+        if (contentsettings != null && contentsettings.sensitive_can_change) {
             z = true;
         }
         if (z2 == z) {
@@ -1938,7 +1938,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 getMessagesController().getContentSettings(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ThemeActivity.this.lambda$createView$2((TL_account$contentSettings) obj);
+                        ThemeActivity.this.lambda$createView$2((TL_account.contentSettings) obj);
                     }
                 });
             }

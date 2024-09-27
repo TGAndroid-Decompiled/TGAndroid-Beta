@@ -32,12 +32,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.tl.TL_stories$TL_myBoost;
-import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
-import org.telegram.tgnet.tl.TL_stories$TL_premium_myBoosts;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -62,8 +58,8 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
     private final List allUsedBoosts;
     private final SelectorBtnCell buttonContainer;
-    private final TLRPC$Chat currentChat;
-    private final TL_stories$TL_premium_myBoosts myBoosts;
+    private final TLRPC.Chat currentChat;
+    private final TL_stories.TL_premium_myBoosts myBoosts;
     private final List selectedBoosts;
     private CountDownTimer timer;
     private TopCell topCell;
@@ -81,7 +77,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     public static class AvatarHolderView extends FrameLayout {
         private final Paint bgPaint;
         private final BoostIconView boostIconView;
-        public TLRPC$Chat chat;
+        public TLRPC.Chat chat;
         AvatarDrawable fromAvatarDrawable;
         private final BackupImageView imageView;
 
@@ -107,10 +103,10 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             super.dispatchDraw(canvas);
         }
 
-        public void setChat(TLRPC$Chat tLRPC$Chat) {
-            this.chat = tLRPC$Chat;
-            this.fromAvatarDrawable.setInfo(tLRPC$Chat);
-            this.imageView.setForUserOrChat(tLRPC$Chat, this.fromAvatarDrawable);
+        public void setChat(TLRPC.Chat chat) {
+            this.chat = chat;
+            this.fromAvatarDrawable.setInfo(chat);
+            this.imageView.setForUserOrChat(chat, this.fromAvatarDrawable);
         }
     }
 
@@ -202,9 +198,9 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }
 
-        public void setData(TLRPC$Chat tLRPC$Chat, final BottomSheet bottomSheet) {
+        public void setData(TLRPC.Chat chat, final BottomSheet bottomSheet) {
             try {
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", BoostRepository.boostsPerSentGift(), tLRPC$Chat == null ? "" : tLRPC$Chat.title, "%3$s"));
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", BoostRepository.boostsPerSentGift(), chat == null ? "" : chat.title, "%3$s"));
                 SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), Theme.key_chat_messageLinkIn, 2, new Runnable() {
                     @Override
                     public final void run() {
@@ -225,16 +221,16 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }
 
-        public void showBoosts(List list, TLRPC$Chat tLRPC$Chat) {
+        public void showBoosts(List list, TLRPC.Chat chat) {
             ArrayList arrayList = new ArrayList(list.size());
             Iterator it = list.iterator();
             while (it.hasNext()) {
-                arrayList.add(MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(((TL_stories$TL_myBoost) it.next()).peer))));
+                arrayList.add(MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(((TL_stories.TL_myBoost) it.next()).peer))));
             }
-            showChats(arrayList, tLRPC$Chat);
+            showChats(arrayList, chat);
         }
 
-        public void showChats(List list, TLRPC$Chat tLRPC$Chat) {
+        public void showChats(List list, TLRPC.Chat chat) {
             float f;
             float f2;
             int i;
@@ -243,19 +239,19 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             ViewPropertyAnimator interpolator;
             float dp;
             final AvatarHolderView avatarHolderView;
-            ArrayList<TLRPC$Chat> arrayList = new ArrayList();
+            ArrayList<TLRPC.Chat> arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
             Iterator it = list.iterator();
             while (it.hasNext()) {
-                TLRPC$Chat tLRPC$Chat2 = (TLRPC$Chat) it.next();
-                if (!this.addedChats.contains(tLRPC$Chat2)) {
-                    arrayList2.add(tLRPC$Chat2);
+                TLRPC.Chat chat2 = (TLRPC.Chat) it.next();
+                if (!this.addedChats.contains(chat2)) {
+                    arrayList2.add(chat2);
                 }
             }
-            for (TLRPC$Chat tLRPC$Chat3 : this.addedChats) {
-                if (!list.contains(tLRPC$Chat3)) {
-                    arrayList.add(tLRPC$Chat3);
+            for (TLRPC.Chat chat3 : this.addedChats) {
+                if (!list.contains(chat3)) {
+                    arrayList.add(chat3);
                 }
             }
             ArrayList<AvatarHolderView> arrayList3 = new ArrayList();
@@ -272,10 +268,10 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 if (!it2.hasNext()) {
                     break;
                 }
-                TLRPC$Chat tLRPC$Chat4 = (TLRPC$Chat) it2.next();
+                TLRPC.Chat chat4 = (TLRPC.Chat) it2.next();
                 AvatarHolderView avatarHolderView3 = new AvatarHolderView(getContext());
                 avatarHolderView3.setLayerType(2, null);
-                avatarHolderView3.setChat(tLRPC$Chat4);
+                avatarHolderView3.setChat(chat4);
                 int size = arrayList3.size();
                 this.avatarsWrapper.addView(avatarHolderView3, 0, LayoutHelper.createFrame(70, 70, 17));
                 avatarHolderView3.setTranslationX((-size) * AndroidUtilities.dp(23.0f));
@@ -289,12 +285,12 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                     avatarHolderView3.boostIconView.setAlpha(1.0f);
                 }
             }
-            for (TLRPC$Chat tLRPC$Chat5 : arrayList) {
+            for (TLRPC.Chat chat5 : arrayList) {
                 Iterator it3 = arrayList3.iterator();
                 while (true) {
                     if (it3.hasNext()) {
                         avatarHolderView = (AvatarHolderView) it3.next();
-                        if (avatarHolderView.chat == tLRPC$Chat5) {
+                        if (avatarHolderView.chat == chat5) {
                             break;
                         }
                     } else {
@@ -332,7 +328,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             }
             AvatarHolderView avatarHolderView5 = this.toAvatar;
             if (avatarHolderView5.chat == null) {
-                avatarHolderView5.setChat(tLRPC$Chat);
+                avatarHolderView5.setChat(chat);
             }
             this.addedChats.removeAll(arrayList);
             this.addedChats.addAll(arrayList2);
@@ -362,19 +358,19 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public ReassignBoostBottomSheet(BaseFragment baseFragment, TL_stories$TL_premium_myBoosts tL_stories$TL_premium_myBoosts, final TLRPC$Chat tLRPC$Chat) {
+    public ReassignBoostBottomSheet(BaseFragment baseFragment, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, final TLRPC.Chat chat) {
         super(baseFragment, false, false);
         this.selectedBoosts = new ArrayList();
         this.allUsedBoosts = new ArrayList();
         this.topPadding = 0.3f;
-        this.myBoosts = tL_stories$TL_premium_myBoosts;
-        this.currentChat = tLRPC$Chat;
-        Iterator it = tL_stories$TL_premium_myBoosts.my_boosts.iterator();
+        this.myBoosts = tL_premium_myBoosts;
+        this.currentChat = chat;
+        Iterator<TL_stories.TL_myBoost> it = tL_premium_myBoosts.my_boosts.iterator();
         while (it.hasNext()) {
-            TL_stories$TL_myBoost tL_stories$TL_myBoost = (TL_stories$TL_myBoost) it.next();
-            TLRPC$Peer tLRPC$Peer = tL_stories$TL_myBoost.peer;
-            if (tLRPC$Peer != null && DialogObject.getPeerDialogId(tLRPC$Peer) != (-tLRPC$Chat.id)) {
-                this.allUsedBoosts.add(tL_stories$TL_myBoost);
+            TL_stories.TL_myBoost next = it.next();
+            TLRPC.Peer peer = next.peer;
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.id)) {
+                this.allUsedBoosts.add(next);
             }
         }
         SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, this.recyclerListView);
@@ -390,7 +386,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         gradientButtonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ReassignBoostBottomSheet.this.lambda$new$3(tLRPC$Chat, view);
+                ReassignBoostBottomSheet.this.lambda$new$3(chat, view);
             }
         });
         selectorBtnCell.addView(gradientButtonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
@@ -403,7 +399,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                ReassignBoostBottomSheet.this.lambda$new$4(tLRPC$Chat, view, i3);
+                ReassignBoostBottomSheet.this.lambda$new$4(chat, view, i3);
             }
         });
         fixNavigationBar();
@@ -452,50 +448,50 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         });
     }
 
-    public void lambda$new$0(TL_stories$TL_premium_myBoosts tL_stories$TL_premium_myBoosts, List list, HashSet hashSet, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$new$0(TL_stories.TL_premium_myBoosts tL_premium_myBoosts, List list, HashSet hashSet, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         dismiss();
-        NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostedChannelByUser, tL_stories$TL_premium_myBoosts, Integer.valueOf(list.size()), Integer.valueOf(hashSet.size()), tL_stories$TL_premium_boostsStatus);
+        NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostedChannelByUser, tL_premium_myBoosts, Integer.valueOf(list.size()), Integer.valueOf(hashSet.size()), tL_premium_boostsStatus);
     }
 
-    public void lambda$new$1(TLRPC$Chat tLRPC$Chat, final List list, final HashSet hashSet, final TL_stories$TL_premium_myBoosts tL_stories$TL_premium_myBoosts) {
-        MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(-tLRPC$Chat.id, new Consumer() {
+    public void lambda$new$1(TLRPC.Chat chat, final List list, final HashSet hashSet, final TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
+        MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(-chat.id, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ReassignBoostBottomSheet.this.lambda$new$0(tL_stories$TL_premium_myBoosts, list, hashSet, (TL_stories$TL_premium_boostsStatus) obj);
+                ReassignBoostBottomSheet.this.lambda$new$0(tL_premium_myBoosts, list, hashSet, (TL_stories.TL_premium_boostsStatus) obj);
             }
         });
     }
 
-    public void lambda$new$2(TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$new$2(TLRPC.TL_error tL_error) {
         this.actionButton.setLoading(false);
-        BoostDialogs.showToastError(getContext(), tLRPC$TL_error);
+        BoostDialogs.showToastError(getContext(), tL_error);
     }
 
-    public void lambda$new$3(final TLRPC$Chat tLRPC$Chat, View view) {
+    public void lambda$new$3(final TLRPC.Chat chat, View view) {
         if (this.selectedBoosts.isEmpty() || this.actionButton.isLoading()) {
             return;
         }
         this.actionButton.setLoading(true);
         final ArrayList arrayList = new ArrayList();
         final HashSet hashSet = new HashSet();
-        for (TL_stories$TL_myBoost tL_stories$TL_myBoost : this.selectedBoosts) {
-            arrayList.add(Integer.valueOf(tL_stories$TL_myBoost.slot));
-            hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_stories$TL_myBoost.peer)));
+        for (TL_stories.TL_myBoost tL_myBoost : this.selectedBoosts) {
+            arrayList.add(Integer.valueOf(tL_myBoost.slot));
+            hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_myBoost.peer)));
         }
-        BoostRepository.applyBoost(tLRPC$Chat.id, arrayList, new Utilities.Callback() {
+        BoostRepository.applyBoost(chat.id, arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ReassignBoostBottomSheet.this.lambda$new$1(tLRPC$Chat, arrayList, hashSet, (TL_stories$TL_premium_myBoosts) obj);
+                ReassignBoostBottomSheet.this.lambda$new$1(chat, arrayList, hashSet, (TL_stories.TL_premium_myBoosts) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ReassignBoostBottomSheet.this.lambda$new$2((TLRPC$TL_error) obj);
+                ReassignBoostBottomSheet.this.lambda$new$2((TLRPC.TL_error) obj);
             }
         });
     }
 
-    public void lambda$new$4(TLRPC$Chat tLRPC$Chat, View view, int i) {
+    public void lambda$new$4(TLRPC.Chat chat, View view, int i) {
         if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             if (selectorUserCell.getBoost().cooldown_until_date > 0) {
@@ -509,12 +505,12 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             }
             selectorUserCell.setChecked(this.selectedBoosts.contains(selectorUserCell.getBoost()), true);
             updateActionButton(true);
-            this.topCell.showBoosts(this.selectedBoosts, tLRPC$Chat);
+            this.topCell.showBoosts(this.selectedBoosts, chat);
         }
     }
 
-    public static ReassignBoostBottomSheet show(BaseFragment baseFragment, TL_stories$TL_premium_myBoosts tL_stories$TL_premium_myBoosts, TLRPC$Chat tLRPC$Chat) {
-        ReassignBoostBottomSheet reassignBoostBottomSheet = new ReassignBoostBottomSheet(baseFragment, tL_stories$TL_premium_myBoosts, tLRPC$Chat);
+    public static ReassignBoostBottomSheet show(BaseFragment baseFragment, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
+        ReassignBoostBottomSheet reassignBoostBottomSheet = new ReassignBoostBottomSheet(baseFragment, tL_premium_myBoosts, chat);
         reassignBoostBottomSheet.show();
         return reassignBoostBottomSheet;
     }
@@ -566,10 +562,10 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 if (viewHolder.getItemViewType() == 3) {
-                    TL_stories$TL_myBoost tL_stories$TL_myBoost = (TL_stories$TL_myBoost) ReassignBoostBottomSheet.this.allUsedBoosts.get(i - 3);
+                    TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) ReassignBoostBottomSheet.this.allUsedBoosts.get(i - 3);
                     SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
-                    selectorUserCell.setBoost(tL_stories$TL_myBoost);
-                    selectorUserCell.setChecked(ReassignBoostBottomSheet.this.selectedBoosts.contains(tL_stories$TL_myBoost), false);
+                    selectorUserCell.setBoost(tL_myBoost);
+                    selectorUserCell.setChecked(ReassignBoostBottomSheet.this.selectedBoosts.contains(tL_myBoost), false);
                     return;
                 }
                 if (viewHolder.getItemViewType() == 2) {
@@ -624,12 +620,12 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                     if (!it.hasNext()) {
                         break;
                     }
-                    TL_stories$TL_myBoost tL_stories$TL_myBoost = (TL_stories$TL_myBoost) it.next();
-                    if (tL_stories$TL_myBoost.cooldown_until_date > 0) {
-                        arrayList.add(tL_stories$TL_myBoost);
+                    TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) it.next();
+                    if (tL_myBoost.cooldown_until_date > 0) {
+                        arrayList.add(tL_myBoost);
                     }
-                    if (tL_stories$TL_myBoost.cooldown_until_date * 1000 < System.currentTimeMillis()) {
-                        tL_stories$TL_myBoost.cooldown_until_date = 0;
+                    if (tL_myBoost.cooldown_until_date * 1000 < System.currentTimeMillis()) {
+                        tL_myBoost.cooldown_until_date = 0;
                     }
                 }
                 if (arrayList.isEmpty()) {

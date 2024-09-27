@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_chatlists$TL_exportedChatlistInvite;
+import org.telegram.tgnet.tl.TL_chatlists;
 
 public final class FilterCreateActivity$$ExternalSyntheticLambda22 implements Utilities.Callback {
     public final FilterCreateActivity f$0;
@@ -12,6 +12,6 @@ public final class FilterCreateActivity$$ExternalSyntheticLambda22 implements Ut
 
     @Override
     public final void run(Object obj) {
-        FilterCreateActivity.m2473$r8$lambda$211gfs70PjxFzlMP6lRUt0Yfgc(this.f$0, (TL_chatlists$TL_exportedChatlistInvite) obj);
+        this.f$0.onEdit((TL_chatlists.TL_exportedChatlistInvite) obj);
     }
 }

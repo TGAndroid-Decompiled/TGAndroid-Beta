@@ -31,15 +31,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$ChatPhoto;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.tgnet.TLRPC$UserProfilePhoto;
-import org.telegram.tgnet.TLRPC$VideoSize;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -133,22 +125,22 @@ public class AvatarPreviewer {
     }
 
     public static class ChatInfoLoadTask extends InfoLoadTask {
-        public ChatInfoLoadTask(TLRPC$Chat tLRPC$Chat, int i) {
-            super(tLRPC$Chat, i, NotificationCenter.chatInfoDidLoad);
+        public ChatInfoLoadTask(TLRPC.Chat chat, int i) {
+            super(chat, i, NotificationCenter.chatInfoDidLoad);
         }
 
         @Override
         protected void load() {
-            MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC$Chat) this.argument).id, this.classGuid, false);
+            MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC.Chat) this.argument).id, this.classGuid, false);
         }
 
         @Override
         protected void onReceiveNotification(Object... objArr) {
-            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (tLRPC$ChatFull == null || tLRPC$ChatFull.id != ((TLRPC$Chat) this.argument).id) {
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+            if (chatFull == null || chatFull.id != ((TLRPC.Chat) this.argument).id) {
                 return;
             }
-            onResult(tLRPC$ChatFull);
+            onResult(chatFull);
         }
     }
 
@@ -179,74 +171,74 @@ public class AvatarPreviewer {
             this.infoLoadTask = infoLoadTask;
         }
 
-        public static Data of(TLRPC$Chat tLRPC$Chat, int i, MenuItem... menuItemArr) {
-            TLRPC$ChatPhoto tLRPC$ChatPhoto;
-            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$Chat, 0);
-            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(tLRPC$Chat, 1);
+        public static Data of(TLRPC.Chat chat, int i, MenuItem... menuItemArr) {
+            TLRPC.ChatPhoto chatPhoto;
+            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(chat, 0);
+            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(chat, 1);
             BitmapDrawable bitmapDrawable = null;
-            String str = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC$TL_photoStrippedSize)) ? null : "b";
-            if (tLRPC$Chat != null && (tLRPC$ChatPhoto = tLRPC$Chat.photo) != null) {
-                bitmapDrawable = tLRPC$ChatPhoto.strippedBitmap;
+            String str = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
+            if (chat != null && (chatPhoto = chat.photo) != null) {
+                bitmapDrawable = chatPhoto.strippedBitmap;
             }
-            return new Data(forUserOrChat, forUserOrChat2, null, null, str, null, null, bitmapDrawable, tLRPC$Chat, menuItemArr, new ChatInfoLoadTask(tLRPC$Chat, i));
+            return new Data(forUserOrChat, forUserOrChat2, null, null, str, null, null, bitmapDrawable, chat, menuItemArr, new ChatInfoLoadTask(chat, i));
         }
 
-        public static Data of(TLRPC$Chat tLRPC$Chat, TLRPC$ChatFull tLRPC$ChatFull, MenuItem... menuItemArr) {
+        public static Data of(TLRPC.Chat chat, TLRPC.ChatFull chatFull, MenuItem... menuItemArr) {
             ImageLocation imageLocation;
             String str;
-            TLRPC$ChatPhoto tLRPC$ChatPhoto;
-            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$Chat, 0);
-            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(tLRPC$Chat, 1);
-            String str2 = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC$TL_photoStrippedSize)) ? null : "b";
-            BitmapDrawable bitmapDrawable = (tLRPC$Chat == null || (tLRPC$ChatPhoto = tLRPC$Chat.photo) == null) ? null : tLRPC$ChatPhoto.strippedBitmap;
-            TLRPC$Photo tLRPC$Photo = tLRPC$ChatFull.chat_photo;
-            if (tLRPC$Photo == null || tLRPC$Photo.video_sizes.isEmpty()) {
+            TLRPC.ChatPhoto chatPhoto;
+            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(chat, 0);
+            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(chat, 1);
+            String str2 = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
+            BitmapDrawable bitmapDrawable = (chat == null || (chatPhoto = chat.photo) == null) ? null : chatPhoto.strippedBitmap;
+            TLRPC.Photo photo = chatFull.chat_photo;
+            if (photo == null || photo.video_sizes.isEmpty()) {
                 imageLocation = null;
                 str = null;
             } else {
-                TLRPC$VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(tLRPC$ChatFull.chat_photo.video_sizes, 1000);
-                imageLocation = ImageLocation.getForPhoto(closestVideoSizeWithSize, tLRPC$ChatFull.chat_photo);
+                TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(chatFull.chat_photo.video_sizes, 1000);
+                imageLocation = ImageLocation.getForPhoto(closestVideoSizeWithSize, chatFull.chat_photo);
                 str = FileLoader.getAttachFileName(closestVideoSizeWithSize);
             }
-            return new Data(forUserOrChat, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, tLRPC$Chat, menuItemArr, null);
+            return new Data(forUserOrChat, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, chat, menuItemArr, null);
         }
 
-        public static Data of(TLRPC$User tLRPC$User, int i, MenuItem... menuItemArr) {
-            TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
-            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$User, 0);
-            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(tLRPC$User, 1);
+        public static Data of(TLRPC.User user, int i, MenuItem... menuItemArr) {
+            TLRPC.UserProfilePhoto userProfilePhoto;
+            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(user, 0);
+            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(user, 1);
             BitmapDrawable bitmapDrawable = null;
-            String str = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC$TL_photoStrippedSize)) ? null : "b";
-            if (tLRPC$User != null && (tLRPC$UserProfilePhoto = tLRPC$User.photo) != null) {
-                bitmapDrawable = tLRPC$UserProfilePhoto.strippedBitmap;
+            String str = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
+            if (user != null && (userProfilePhoto = user.photo) != null) {
+                bitmapDrawable = userProfilePhoto.strippedBitmap;
             }
-            return new Data(forUserOrChat, forUserOrChat2, null, null, str, null, null, bitmapDrawable, tLRPC$User, menuItemArr, new UserInfoLoadTask(tLRPC$User, i));
+            return new Data(forUserOrChat, forUserOrChat2, null, null, str, null, null, bitmapDrawable, user, menuItemArr, new UserInfoLoadTask(user, i));
         }
 
-        public static Data of(TLRPC$User tLRPC$User, TLRPC$UserFull tLRPC$UserFull, MenuItem... menuItemArr) {
+        public static Data of(TLRPC.User user, TLRPC.UserFull userFull, MenuItem... menuItemArr) {
             ImageLocation imageLocation;
             String str;
-            TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
-            TLRPC$Photo tLRPC$Photo;
-            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$UserFull.user, 0);
-            if (forUserOrChat == null && (tLRPC$Photo = tLRPC$UserFull.profile_photo) != null) {
-                forUserOrChat = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 500), tLRPC$UserFull.profile_photo);
+            TLRPC.UserProfilePhoto userProfilePhoto;
+            TLRPC.Photo photo;
+            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(userFull.user, 0);
+            if (forUserOrChat == null && (photo = userFull.profile_photo) != null) {
+                forUserOrChat = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 500), userFull.profile_photo);
             }
             ImageLocation imageLocation2 = forUserOrChat;
-            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(tLRPC$UserFull.user, 1);
-            String str2 = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC$TL_photoStrippedSize)) ? null : "b";
-            BitmapDrawable bitmapDrawable = (tLRPC$User == null || (tLRPC$UserProfilePhoto = tLRPC$User.photo) == null) ? null : tLRPC$UserProfilePhoto.strippedBitmap;
-            TLRPC$Photo tLRPC$Photo2 = tLRPC$UserFull.profile_photo;
-            if (tLRPC$Photo2 == null || tLRPC$Photo2.video_sizes.isEmpty()) {
+            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(userFull.user, 1);
+            String str2 = (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) ? null : "b";
+            BitmapDrawable bitmapDrawable = (user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.strippedBitmap;
+            TLRPC.Photo photo2 = userFull.profile_photo;
+            if (photo2 == null || photo2.video_sizes.isEmpty()) {
                 imageLocation = null;
                 str = null;
             } else {
-                TLRPC$VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(tLRPC$UserFull.profile_photo.video_sizes, 1000);
-                ImageLocation forPhoto = ImageLocation.getForPhoto(closestVideoSizeWithSize, tLRPC$UserFull.profile_photo);
+                TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(userFull.profile_photo.video_sizes, 1000);
+                ImageLocation forPhoto = ImageLocation.getForPhoto(closestVideoSizeWithSize, userFull.profile_photo);
                 str = FileLoader.getAttachFileName(closestVideoSizeWithSize);
                 imageLocation = forPhoto;
             }
-            return new Data(imageLocation2, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, tLRPC$UserFull.user, menuItemArr, null);
+            return new Data(imageLocation2, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, userFull.user, menuItemArr, null);
         }
     }
 
@@ -384,12 +376,12 @@ public class AvatarPreviewer {
             if (this.recycled) {
                 return;
             }
-            if (obj instanceof TLRPC$UserFull) {
-                of = Data.of((TLRPC$User) data.infoLoadTask.argument, (TLRPC$UserFull) obj, data.menuItems);
-            } else if (!(obj instanceof TLRPC$ChatFull)) {
+            if (obj instanceof TLRPC.UserFull) {
+                of = Data.of((TLRPC.User) data.infoLoadTask.argument, (TLRPC.UserFull) obj, data.menuItems);
+            } else if (!(obj instanceof TLRPC.ChatFull)) {
                 return;
             } else {
-                of = Data.of((TLRPC$Chat) data.infoLoadTask.argument, (TLRPC$ChatFull) obj, data.menuItems);
+                of = Data.of((TLRPC.Chat) data.infoLoadTask.argument, (TLRPC.ChatFull) obj, data.menuItems);
             }
             setData(of);
         }
@@ -637,19 +629,19 @@ public class AvatarPreviewer {
     }
 
     public static class UserInfoLoadTask extends InfoLoadTask {
-        public UserInfoLoadTask(TLRPC$User tLRPC$User, int i) {
-            super(tLRPC$User, i, NotificationCenter.userInfoDidLoad);
+        public UserInfoLoadTask(TLRPC.User user, int i) {
+            super(user, i, NotificationCenter.userInfoDidLoad);
         }
 
         @Override
         protected void load() {
-            MessagesController.getInstance(UserConfig.selectedAccount).loadUserInfo((TLRPC$User) this.argument, false, this.classGuid);
+            MessagesController.getInstance(UserConfig.selectedAccount).loadUserInfo((TLRPC.User) this.argument, false, this.classGuid);
         }
 
         @Override
         protected void onReceiveNotification(Object... objArr) {
-            if (((Long) objArr[0]).longValue() == ((TLRPC$User) this.argument).id) {
-                onResult((TLRPC$UserFull) objArr[1]);
+            if (((Long) objArr[0]).longValue() == ((TLRPC.User) this.argument).id) {
+                onResult((TLRPC.UserFull) objArr[1]);
             }
         }
     }

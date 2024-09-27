@@ -32,11 +32,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
-import org.telegram.tgnet.TLRPC$TL_help_getAppUpdate;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
@@ -44,7 +40,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
     private FrameLayout acceptButton;
     private TextView acceptTextView;
     private int accountNum;
-    private TLRPC$TL_help_appUpdate appUpdate;
+    private TLRPC.TL_help_appUpdate appUpdate;
     private String fileName;
     Drawable gradientDrawableBottom;
     Drawable gradientDrawableTop;
@@ -195,8 +191,8 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
             if (!ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(getContext())) {
                 return;
             }
-            TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = this.appUpdate;
-            if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
+            TLRPC.TL_help_appUpdate tL_help_appUpdate = this.appUpdate;
+            if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
                 if (ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document)) {
                     return;
                 }
@@ -204,7 +200,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
                 showProgress(true);
                 return;
             }
-            if (tLRPC$TL_help_appUpdate.url == null) {
+            if (tL_help_appUpdate.url == null) {
                 return;
             }
             context = getContext();
@@ -214,7 +210,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
     }
 
     public void lambda$show$2(TLObject tLObject) {
-        if (!(tLObject instanceof TLRPC$TL_help_appUpdate) || ((TLRPC$TL_help_appUpdate) tLObject).can_not_skip) {
+        if (!(tLObject instanceof TLRPC.TL_help_appUpdate) || ((TLRPC.TL_help_appUpdate) tLObject).can_not_skip) {
             return;
         }
         setVisibility(8);
@@ -222,7 +218,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         SharedConfig.saveConfig();
     }
 
-    public void lambda$show$3(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$show$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -335,25 +331,25 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         }
     }
 
-    public void show(int i, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, boolean z) {
+    public void show(int i, TLRPC.TL_help_appUpdate tL_help_appUpdate, boolean z) {
         TextView textView;
         String string;
         this.pressCount = 0;
-        this.appUpdate = tLRPC$TL_help_appUpdate;
+        this.appUpdate = tL_help_appUpdate;
         this.accountNum = i;
-        TLRPC$Document tLRPC$Document = tLRPC$TL_help_appUpdate.document;
-        if (tLRPC$Document instanceof TLRPC$TL_document) {
-            this.fileName = FileLoader.getAttachFileName(tLRPC$Document);
+        TLRPC.Document document = tL_help_appUpdate.document;
+        if (document instanceof TLRPC.TL_document) {
+            this.fileName = FileLoader.getAttachFileName(document);
         }
         if (getVisibility() != 0) {
             setVisibility(0);
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tLRPC$TL_help_appUpdate.text);
-        MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_help_appUpdate.text);
+        MessageObject.addEntitiesToText(spannableStringBuilder, tL_help_appUpdate.entities, false, false, false, false);
         this.textView.setText(spannableStringBuilder);
-        if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
+        if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
             textView = this.acceptTextView;
-            string = LocaleController.getString(R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size));
+            string = LocaleController.getString(R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tL_help_appUpdate.document.size));
         } else {
             textView = this.acceptTextView;
             string = LocaleController.getString(R.string.Update);
@@ -363,18 +359,18 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadFailed);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadProgressChanged);
         if (z && ApplicationLoader.isStandaloneBuild()) {
-            TLRPC$TL_help_getAppUpdate tLRPC$TL_help_getAppUpdate = new TLRPC$TL_help_getAppUpdate();
+            TLRPC.TL_help_getAppUpdate tL_help_getAppUpdate = new TLRPC.TL_help_getAppUpdate();
             try {
-                tLRPC$TL_help_getAppUpdate.source = ApplicationLoader.applicationContext.getPackageManager().getInstallerPackageName(ApplicationLoader.applicationContext.getPackageName());
+                tL_help_getAppUpdate.source = ApplicationLoader.applicationContext.getPackageManager().getInstallerPackageName(ApplicationLoader.applicationContext.getPackageName());
             } catch (Exception unused) {
             }
-            if (tLRPC$TL_help_getAppUpdate.source == null) {
-                tLRPC$TL_help_getAppUpdate.source = "";
+            if (tL_help_getAppUpdate.source == null) {
+                tL_help_getAppUpdate.source = "";
             }
-            ConnectionsManager.getInstance(this.accountNum).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
+            ConnectionsManager.getInstance(this.accountNum).sendRequest(tL_help_getAppUpdate, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BlockingUpdateView.this.lambda$show$3(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    BlockingUpdateView.this.lambda$show$3(tLObject, tL_error);
                 }
             });
         }

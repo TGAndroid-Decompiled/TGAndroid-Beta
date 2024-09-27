@@ -29,10 +29,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
@@ -189,7 +186,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
         }
 
         public void setMessageObject(MessageObject messageObject) {
-            TLRPC$PhotoSize tLRPC$PhotoSize;
+            TLRPC.PhotoSize photoSize;
             Drawable drawable;
             ImageLocation forObject;
             String str;
@@ -205,17 +202,17 @@ public class SharedPhotoVideoCell extends FrameLayout {
                 if (messageObject.isVideo()) {
                     this.videoInfoContainer.setVisibility(0);
                     this.videoTextView.setText(AndroidUtilities.formatShortDuration((int) messageObject.getDuration()));
-                    TLRPC$Document document = messageObject.getDocument();
-                    TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 50);
-                    TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
-                    tLRPC$PhotoSize = closestPhotoSizeWithSize != closestPhotoSizeWithSize2 ? closestPhotoSizeWithSize2 : null;
+                    TLRPC.Document document = messageObject.getDocument();
+                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 50);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
+                    photoSize = closestPhotoSizeWithSize != closestPhotoSizeWithSize2 ? closestPhotoSizeWithSize2 : null;
                     if (closestPhotoSizeWithSize != null) {
                         if (messageObject.strippedThumb != null) {
-                            this.imageView.setImage(ImageLocation.getForDocument(tLRPC$PhotoSize, document), "100_100", (String) null, messageObject.strippedThumb, messageObject);
+                            this.imageView.setImage(ImageLocation.getForDocument(photoSize, document), "100_100", (String) null, messageObject.strippedThumb, messageObject);
                             return;
                         }
                         BackupImageView backupImageView2 = this.imageView;
-                        ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$PhotoSize, document);
+                        ImageLocation forDocument = ImageLocation.getForDocument(photoSize, document);
                         ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize, document);
                         drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.photo_placeholder_in);
                         str = null;
@@ -229,18 +226,18 @@ public class SharedPhotoVideoCell extends FrameLayout {
                     }
                     this.imageView.setImageResource(R.drawable.photo_placeholder_in);
                 }
-                TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
-                if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) && tLRPC$MessageMedia.photo != null && !messageObject.photoThumbs.isEmpty()) {
+                TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
+                if ((messageMedia instanceof TLRPC.TL_messageMediaPhoto) && messageMedia.photo != null && !messageObject.photoThumbs.isEmpty()) {
                     this.videoInfoContainer.setVisibility(4);
-                    TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
-                    TLRPC$PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 320, false, closestPhotoSizeWithSize3, false);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 320, false, closestPhotoSizeWithSize3, false);
                     if (messageObject.mediaExists || DownloadController.getInstance(SharedPhotoVideoCell.this.currentAccount).canDownloadMedia(messageObject)) {
-                        tLRPC$PhotoSize = closestPhotoSizeWithSize4 != closestPhotoSizeWithSize3 ? closestPhotoSizeWithSize3 : null;
+                        photoSize = closestPhotoSizeWithSize4 != closestPhotoSizeWithSize3 ? closestPhotoSizeWithSize3 : null;
                         if (messageObject.strippedThumb != null) {
                             this.imageView.getImageReceiver().setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), "100_100", null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
                             return;
                         } else {
-                            this.imageView.getImageReceiver().setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), "100_100", ImageLocation.getForObject(tLRPC$PhotoSize, messageObject.photoThumbsObject), "b", closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                            this.imageView.getImageReceiver().setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), "100_100", ImageLocation.getForObject(photoSize, messageObject.photoThumbsObject), "b", closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
                             return;
                         }
                     }

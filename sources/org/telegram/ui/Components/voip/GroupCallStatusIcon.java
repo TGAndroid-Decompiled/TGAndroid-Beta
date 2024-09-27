@@ -5,7 +5,7 @@ import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 
@@ -17,7 +17,7 @@ public class GroupCallStatusIcon {
     boolean lastRaisedHand;
     RLottieDrawable micDrawable;
     private boolean mutedByMe;
-    TLRPC$TL_groupCallParticipant participant;
+    TLRPC.TL_groupCallParticipant participant;
     RLottieDrawable shakeHandDrawable;
     boolean updateRunnableScheduled;
     private Runnable shakeHandCallback = new Runnable() {
@@ -113,8 +113,8 @@ public class GroupCallStatusIcon {
     }
 
     public boolean isMutedByAdmin() {
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.participant;
-        return (tLRPC$TL_groupCallParticipant == null || !tLRPC$TL_groupCallParticipant.muted || tLRPC$TL_groupCallParticipant.can_self_unmute) ? false : true;
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = this.participant;
+        return (tL_groupCallParticipant == null || !tL_groupCallParticipant.muted || tL_groupCallParticipant.can_self_unmute) ? false : true;
     }
 
     public boolean isMutedByMe() {
@@ -158,8 +158,8 @@ public class GroupCallStatusIcon {
         updateIcon(false);
     }
 
-    public void setParticipant(TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant, boolean z) {
-        this.participant = tLRPC$TL_groupCallParticipant;
+    public void setParticipant(TLRPC.TL_groupCallParticipant tL_groupCallParticipant, boolean z) {
+        this.participant = tL_groupCallParticipant;
         updateIcon(z);
     }
 

@@ -40,27 +40,7 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$PhoneCallDiscardReason;
-import org.telegram.tgnet.TLRPC$TL_chatFull;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
-import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
-import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
-import org.telegram.tgnet.TLRPC$TL_inputPhoneCall;
-import org.telegram.tgnet.TLRPC$TL_messageActionPhoneCall;
-import org.telegram.tgnet.TLRPC$TL_peerChannel;
-import org.telegram.tgnet.TLRPC$TL_peerChat;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$TL_phoneCallDiscardReasonBusy;
-import org.telegram.tgnet.TLRPC$TL_phoneCallDiscardReasonMissed;
-import org.telegram.tgnet.TLRPC$TL_phone_setCallRating;
-import org.telegram.tgnet.TLRPC$TL_updates;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$UserFull;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -77,14 +57,14 @@ import org.telegram.ui.LaunchActivity;
 public abstract class VoIPHelper {
     public static long lastCallTime;
 
-    public static boolean canRateCall(TLRPC$TL_messageActionPhoneCall tLRPC$TL_messageActionPhoneCall) {
-        TLRPC$PhoneCallDiscardReason tLRPC$PhoneCallDiscardReason = tLRPC$TL_messageActionPhoneCall.reason;
-        if (!(tLRPC$PhoneCallDiscardReason instanceof TLRPC$TL_phoneCallDiscardReasonBusy) && !(tLRPC$PhoneCallDiscardReason instanceof TLRPC$TL_phoneCallDiscardReasonMissed)) {
+    public static boolean canRateCall(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
+        TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
+        if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed)) {
             Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
             while (it.hasNext()) {
                 String[] split = it.next().split(" ");
                 if (split.length >= 2) {
-                    if (split[0].equals(tLRPC$TL_messageActionPhoneCall.call_id + "")) {
+                    if (split[0].equals(tL_messageActionPhoneCall.call_id + "")) {
                         return true;
                     }
                 }
@@ -93,67 +73,71 @@ public abstract class VoIPHelper {
         return false;
     }
 
-    public static void doInitiateCall(final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final String str, final TLRPC$InputPeer tLRPC$InputPeer, boolean z, final boolean z2, final boolean z3, final boolean z4, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z5, boolean z6) {
+    public static void doInitiateCall(TLRPC.User user, TLRPC.Chat chat, String str, TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3, boolean z4, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance, boolean z5, boolean z6) {
+        doInitiateCall(user, chat, str, inputPeer, z, z2, z3, z4, activity, baseFragment, accountInstance, z5, z6, false);
+    }
+
+    public static void doInitiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final TLRPC.InputPeer inputPeer, boolean z, final boolean z2, final boolean z3, final boolean z4, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z5, boolean z6, boolean z7) {
         long j;
         String str2;
         ChatObject.Call groupCall;
-        TLRPC$ChatFull chatFull;
+        TLRPC.ChatFull chatFull;
         int i;
         int i2;
-        TLRPC$ChatFull chatFull2;
-        TLRPC$Peer tLRPC$Peer;
+        TLRPC.ChatFull chatFull2;
+        TLRPC.Peer peer;
         if (activity == null) {
             return;
         }
-        if (tLRPC$User == null && tLRPC$Chat == null) {
+        if (user == null && chat == null) {
             return;
         }
-        if (SystemClock.elapsedRealtime() - lastCallTime < (tLRPC$Chat != null ? 200 : 2000)) {
+        if (SystemClock.elapsedRealtime() - lastCallTime < (chat != null ? 200 : 2000)) {
             return;
         }
-        if (z5 && tLRPC$Chat != null && !z4 && (chatFull2 = accountInstance.getMessagesController().getChatFull(tLRPC$Chat.id)) != null && (tLRPC$Peer = chatFull2.groupcall_default_join_as) != null) {
-            final TLRPC$InputPeer inputPeer = accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(tLRPC$Peer));
-            JoinCallAlert.checkFewUsers(activity, -tLRPC$Chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
+        if (z5 && chat != null && !z4 && (chatFull2 = accountInstance.getMessagesController().getChatFull(chat.id)) != null && (peer = chatFull2.groupcall_default_join_as) != null) {
+            final TLRPC.InputPeer inputPeer2 = accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(peer));
+            JoinCallAlert.checkFewUsers(activity, -chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
                 @Override
-                public final void run(boolean z7) {
-                    VoIPHelper.lambda$doInitiateCall$4(str, activity, tLRPC$Chat, tLRPC$User, inputPeer, z2, z3, baseFragment, accountInstance, z7);
+                public final void run(boolean z8) {
+                    VoIPHelper.lambda$doInitiateCall$4(str, activity, chat, user, inputPeer2, z2, z3, baseFragment, accountInstance, z8);
                 }
             });
             return;
         }
-        if (z5 && tLRPC$Chat != null) {
-            JoinCallAlert.open(activity, -tLRPC$Chat.id, accountInstance, baseFragment, !z4 ? 1 : 0, null, new JoinCallAlert.JoinCallAlertDelegate() {
+        if (z5 && chat != null) {
+            JoinCallAlert.open(activity, -chat.id, accountInstance, baseFragment, !z4 ? 1 : 0, null, new JoinCallAlert.JoinCallAlertDelegate() {
                 @Override
-                public final void didSelectChat(TLRPC$InputPeer tLRPC$InputPeer2, boolean z7, boolean z8) {
-                    VoIPHelper.lambda$doInitiateCall$5(z4, activity, accountInstance, tLRPC$Chat, str, tLRPC$User, z2, z3, baseFragment, tLRPC$InputPeer2, z7, z8);
+                public final void didSelectChat(TLRPC.InputPeer inputPeer3, boolean z8, boolean z9, boolean z10) {
+                    VoIPHelper.lambda$doInitiateCall$5(z4, activity, accountInstance, chat, str, user, z2, z3, baseFragment, inputPeer3, z8, z9, z10);
                 }
             });
             return;
         }
-        if (z6 && !z && (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerUser) && ChatObject.shouldSendAnonymously(tLRPC$Chat) && (!ChatObject.isChannel(tLRPC$Chat) || tLRPC$Chat.megagroup)) {
-            new AlertDialog.Builder(activity).setTitle(LocaleController.getString(ChatObject.isChannelOrGiga(tLRPC$Chat) ? R.string.VoipChannelVoiceChat : R.string.VoipGroupVoiceChat)).setMessage(LocaleController.getString(ChatObject.isChannelOrGiga(tLRPC$Chat) ? R.string.VoipChannelJoinAnonymouseAlert : R.string.VoipGroupJoinAnonymouseAlert)).setPositiveButton(LocaleController.getString(R.string.VoipChatJoin), new DialogInterface.OnClickListener() {
+        if (z6 && !z && (inputPeer instanceof TLRPC.TL_inputPeerUser) && ChatObject.shouldSendAnonymously(chat) && (!ChatObject.isChannel(chat) || chat.megagroup)) {
+            new AlertDialog.Builder(activity).setTitle(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelVoiceChat : R.string.VoipGroupVoiceChat)).setMessage(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelJoinAnonymouseAlert : R.string.VoipGroupJoinAnonymouseAlert)).setPositiveButton(LocaleController.getString(R.string.VoipChatJoin), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
-                    VoIPHelper.doInitiateCall(TLRPC$User.this, tLRPC$Chat, str, tLRPC$InputPeer, false, z2, z3, z4, activity, baseFragment, accountInstance, false, false);
+                    VoIPHelper.doInitiateCall(TLRPC.User.this, chat, str, inputPeer, false, z2, z3, z4, activity, baseFragment, accountInstance, false, false);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
             return;
         }
-        if (tLRPC$Chat != null && tLRPC$InputPeer != null && (chatFull = accountInstance.getMessagesController().getChatFull(tLRPC$Chat.id)) != null) {
-            if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerUser) {
-                TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-                chatFull.groupcall_default_join_as = tLRPC$TL_peerUser;
-                tLRPC$TL_peerUser.user_id = tLRPC$InputPeer.user_id;
-            } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
-                TLRPC$TL_peerChat tLRPC$TL_peerChat = new TLRPC$TL_peerChat();
-                chatFull.groupcall_default_join_as = tLRPC$TL_peerChat;
-                tLRPC$TL_peerChat.chat_id = tLRPC$InputPeer.chat_id;
-            } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
-                TLRPC$TL_peerChannel tLRPC$TL_peerChannel = new TLRPC$TL_peerChannel();
-                chatFull.groupcall_default_join_as = tLRPC$TL_peerChannel;
-                tLRPC$TL_peerChannel.channel_id = tLRPC$InputPeer.channel_id;
+        if (chat != null && inputPeer != null && (chatFull = accountInstance.getMessagesController().getChatFull(chat.id)) != null) {
+            if (inputPeer instanceof TLRPC.TL_inputPeerUser) {
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                chatFull.groupcall_default_join_as = tL_peerUser;
+                tL_peerUser.user_id = inputPeer.user_id;
+            } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
+                TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
+                chatFull.groupcall_default_join_as = tL_peerChat;
+                tL_peerChat.chat_id = inputPeer.chat_id;
+            } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
+                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                chatFull.groupcall_default_join_as = tL_peerChannel;
+                tL_peerChannel.channel_id = inputPeer.channel_id;
             }
-            if (chatFull instanceof TLRPC$TL_chatFull) {
+            if (chatFull instanceof TLRPC.TL_chatFull) {
                 i = chatFull.flags;
                 i2 = 32768;
             } else {
@@ -162,23 +146,24 @@ public abstract class VoIPHelper {
             }
             chatFull.flags = i | i2;
         }
-        if (tLRPC$Chat != null && !z4 && (groupCall = accountInstance.getMessagesController().getGroupCall(tLRPC$Chat.id, false)) != null && groupCall.isScheduled()) {
-            GroupCallActivity.create((LaunchActivity) activity, accountInstance, tLRPC$Chat, tLRPC$InputPeer, z, str);
+        if (chat != null && !z4 && (groupCall = accountInstance.getMessagesController().getGroupCall(chat.id, false)) != null && groupCall.isScheduled()) {
+            GroupCallActivity.create((LaunchActivity) activity, accountInstance, chat, inputPeer, z, str);
             return;
         }
         lastCallTime = SystemClock.elapsedRealtime();
         Intent intent = new Intent(activity, (Class<?>) VoIPService.class);
         try {
-            if (tLRPC$User == null) {
-                intent.putExtra("chat_id", tLRPC$Chat.id);
+            if (user == null) {
+                intent.putExtra("chat_id", chat.id);
                 intent.putExtra("createGroupCall", z4);
                 intent.putExtra("hasFewPeers", z);
+                intent.putExtra("isRtmpStream", z7);
                 intent.putExtra("hash", str);
-                if (tLRPC$InputPeer != null) {
-                    intent.putExtra("peerChannelId", tLRPC$InputPeer.channel_id);
-                    intent.putExtra("peerChatId", tLRPC$InputPeer.chat_id);
-                    intent.putExtra("peerUserId", tLRPC$InputPeer.user_id);
-                    j = tLRPC$InputPeer.access_hash;
+                if (inputPeer != null) {
+                    intent.putExtra("peerChannelId", inputPeer.channel_id);
+                    intent.putExtra("peerChatId", inputPeer.chat_id);
+                    intent.putExtra("peerUserId", inputPeer.user_id);
+                    j = inputPeer.access_hash;
                     str2 = "peerAccessHash";
                 }
                 intent.putExtra("is_outgoing", true);
@@ -189,7 +174,7 @@ public abstract class VoIPHelper {
                 activity.startService(intent);
                 return;
             }
-            j = tLRPC$User.id;
+            j = user.id;
             str2 = "user_id";
             activity.startService(intent);
             return;
@@ -280,26 +265,26 @@ public abstract class VoIPHelper {
         return file;
     }
 
-    private static void initiateCall(final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) {
+    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) {
         String str2;
         int i;
         if (activity != null) {
-            if (tLRPC$User == null && tLRPC$Chat == null) {
+            if (user == null && chat == null) {
                 return;
             }
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance == null) {
                 if (VoIPService.callIShouldHavePutIntoIntent == null) {
-                    doInitiateCall(tLRPC$User, tLRPC$Chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, bool != null ? bool.booleanValue() : true, true);
+                    doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, bool != null ? bool.booleanValue() : true, true);
                     return;
                 }
                 return;
             }
-            long j = tLRPC$User != null ? tLRPC$User.id : -tLRPC$Chat.id;
+            long j = user != null ? user.id : -chat.id;
             long callerId = VoIPService.getSharedInstance().getCallerId();
             if (callerId == j && sharedInstance.getAccount() == accountInstance.getCurrentAccount()) {
-                if (tLRPC$User != null || !(activity instanceof LaunchActivity)) {
-                    activity.startActivity(new Intent(activity, (Class<?>) LaunchActivity.class).setAction(tLRPC$User != null ? "voip" : "voip_chat"));
+                if (user != null || !(activity instanceof LaunchActivity)) {
+                    activity.startActivity(new Intent(activity, (Class<?>) LaunchActivity.class).setAction(user != null ? "voip" : "voip_chat"));
                     return;
                 }
                 if (!TextUtils.isEmpty(str)) {
@@ -309,31 +294,31 @@ public abstract class VoIPHelper {
                 return;
             }
             if (callerId > 0) {
-                TLRPC$User user = sharedInstance.getUser();
-                str2 = ContactsController.formatName(user.first_name, user.last_name);
+                TLRPC.User user2 = sharedInstance.getUser();
+                str2 = ContactsController.formatName(user2.first_name, user2.last_name);
                 i = j > 0 ? R.string.VoipOngoingAlert : R.string.VoipOngoingAlert2;
             } else {
                 str2 = sharedInstance.getChat().title;
                 i = j > 0 ? R.string.VoipOngoingChatAlert2 : R.string.VoipOngoingChatAlert;
             }
-            new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < 0 ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, str2, tLRPC$User != null ? ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name) : tLRPC$Chat.title))).setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < 0 ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, str2, user != null ? ContactsController.formatName(user.first_name, user.last_name) : chat.title))).setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
-                    VoIPHelper.lambda$initiateCall$3(TLRPC$User.this, tLRPC$Chat, str, z, z2, z3, activity, baseFragment, accountInstance, dialogInterface, i2);
+                    VoIPHelper.lambda$initiateCall$3(TLRPC.User.this, chat, str, z, z2, z3, activity, baseFragment, accountInstance, dialogInterface, i2);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
         }
     }
 
-    public static void lambda$doInitiateCall$4(final String str, final Activity activity, final TLRPC$Chat tLRPC$Chat, final TLRPC$User tLRPC$User, final TLRPC$InputPeer tLRPC$InputPeer, final boolean z, final boolean z2, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z3) {
+    public static void lambda$doInitiateCall$4(final String str, final Activity activity, final TLRPC.Chat chat, final TLRPC.User user, final TLRPC.InputPeer inputPeer, final boolean z, final boolean z2, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z3) {
         if (z3 || str == null) {
-            doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, !z3, z, z2, false, activity, baseFragment, accountInstance, false, false);
+            doInitiateCall(user, chat, str, inputPeer, !z3, z, z2, false, activity, baseFragment, accountInstance, false, false);
             return;
         }
-        JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, tLRPC$Chat) {
+        JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, chat) {
             @Override
             protected void onJoin() {
-                VoIPHelper.doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, true, z, z2, false, activity, baseFragment, accountInstance, false, false);
+                VoIPHelper.doInitiateCall(user, chat, str, inputPeer, true, z, z2, false, activity, baseFragment, accountInstance, false, false);
             }
         };
         if (baseFragment != null) {
@@ -341,19 +326,19 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$doInitiateCall$5(final boolean z, final Activity activity, final AccountInstance accountInstance, final TLRPC$Chat tLRPC$Chat, final String str, final TLRPC$User tLRPC$User, final boolean z2, final boolean z3, final BaseFragment baseFragment, final TLRPC$InputPeer tLRPC$InputPeer, boolean z4, boolean z5) {
+    public static void lambda$doInitiateCall$5(final boolean z, final Activity activity, final AccountInstance accountInstance, final TLRPC.Chat chat, final String str, final TLRPC.User user, final boolean z2, final boolean z3, final BaseFragment baseFragment, final TLRPC.InputPeer inputPeer, boolean z4, boolean z5, final boolean z6) {
         if (z && z5) {
-            GroupCallActivity.create((LaunchActivity) activity, accountInstance, tLRPC$Chat, tLRPC$InputPeer, z4, str);
+            GroupCallActivity.create((LaunchActivity) activity, accountInstance, chat, inputPeer, z4, str);
             return;
         }
         if (z4 || str == null) {
-            doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, z4, z2, z3, z, activity, baseFragment, accountInstance, false, true);
+            doInitiateCall(user, chat, str, inputPeer, z4, z2, z3, z, activity, baseFragment, accountInstance, false, true, z6);
             return;
         }
-        JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, tLRPC$Chat) {
+        JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, chat) {
             @Override
             protected void onJoin() {
-                VoIPHelper.doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, false, z2, z3, z, activity, baseFragment, accountInstance, false, true);
+                VoIPHelper.doInitiateCall(user, chat, str, inputPeer, false, z2, z3, z, activity, baseFragment, accountInstance, false, true, z6);
             }
         };
         if (baseFragment != null) {
@@ -361,21 +346,21 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$initiateCall$2(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, String str, boolean z, boolean z2, boolean z3, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
+    public static void lambda$initiateCall$2(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
         lastCallTime = 0L;
-        doInitiateCall(tLRPC$User, tLRPC$Chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
+        doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
     }
 
-    public static void lambda$initiateCall$3(final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, DialogInterface dialogInterface, int i) {
+    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, DialogInterface dialogInterface, int i) {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPHelper.lambda$initiateCall$2(TLRPC$User.this, tLRPC$Chat, str, z, z2, z3, activity, baseFragment, accountInstance);
+                    VoIPHelper.lambda$initiateCall$2(TLRPC.User.this, chat, str, z, z2, z3, activity, baseFragment, accountInstance);
                 }
             });
         } else {
-            doInitiateCall(tLRPC$User, tLRPC$Chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
+            doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
         }
     }
 
@@ -391,9 +376,9 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$sendCallRating$9(int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$TL_updates) {
-            MessagesController.getInstance(i).processUpdates((TLRPC$TL_updates) tLObject, false);
+    public static void lambda$sendCallRating$9(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.TL_updates) {
+            MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
     }
 
@@ -424,8 +409,8 @@ public abstract class VoIPHelper {
         textCheckCell.setChecked(z2);
     }
 
-    public static void lambda$showGroupCallAlert$21(TLRPC$Chat tLRPC$Chat, TLRPC$InputPeer tLRPC$InputPeer, BaseFragment baseFragment, AccountInstance accountInstance, boolean z) {
-        startCall(tLRPC$Chat, tLRPC$InputPeer, null, true, baseFragment.getParentActivity(), baseFragment, accountInstance);
+    public static void lambda$showGroupCallAlert$21(TLRPC.Chat chat, TLRPC.InputPeer inputPeer, BaseFragment baseFragment, AccountInstance accountInstance, boolean z) {
+        startCall(chat, inputPeer, null, true, baseFragment.getParentActivity(), baseFragment, accountInstance);
     }
 
     public static void lambda$showRateAlert$10(View view) {
@@ -459,11 +444,11 @@ public abstract class VoIPHelper {
         ((TextView) view).setText(LocaleController.getString(i < 4 ? R.string.Next : R.string.Send).toUpperCase());
     }
 
-    public static void lambda$showRateAlert$16(int i, boolean[] zArr, File file, TLRPC$TL_phone_setCallRating tLRPC$TL_phone_setCallRating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$TL_updates) {
-            MessagesController.getInstance(i).processUpdates((TLRPC$TL_updates) tLObject, false);
+    public static void lambda$showRateAlert$16(int i, boolean[] zArr, File file, TLRPC.TL_phone_setCallRating tL_phone_setCallRating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.TL_updates) {
+            MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
-        if (zArr[0] && file.exists() && tLRPC$TL_phone_setCallRating.rating < 4) {
+        if (zArr[0] && file.exists() && tL_phone_setCallRating.rating < 4) {
             SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, null, true, 0, null, null, 0, false);
             Toast.makeText(context, LocaleController.getString(R.string.CallReportSent), 1).show();
         }
@@ -485,8 +470,8 @@ public abstract class VoIPHelper {
             return;
         }
         final int i2 = UserConfig.selectedAccount;
-        final TLRPC$TL_phone_setCallRating tLRPC$TL_phone_setCallRating = new TLRPC$TL_phone_setCallRating();
-        tLRPC$TL_phone_setCallRating.rating = betterRatingView.getRating();
+        final TLRPC.TL_phone_setCallRating tL_phone_setCallRating = new TLRPC.TL_phone_setCallRating();
+        tL_phone_setCallRating.rating = betterRatingView.getRating();
         final ArrayList arrayList = new ArrayList();
         for (int i3 = 0; i3 < linearLayout.getChildCount(); i3++) {
             CheckBoxCell checkBoxCell2 = (CheckBoxCell) linearLayout.getChildAt(i3);
@@ -494,19 +479,19 @@ public abstract class VoIPHelper {
                 arrayList.add("#" + checkBoxCell2.getTag());
             }
         }
-        tLRPC$TL_phone_setCallRating.comment = tLRPC$TL_phone_setCallRating.rating < 5 ? editTextBoldCursor.getText().toString() : "";
+        tL_phone_setCallRating.comment = tL_phone_setCallRating.rating < 5 ? editTextBoldCursor.getText().toString() : "";
         if (!arrayList.isEmpty() && !zArr[0]) {
-            tLRPC$TL_phone_setCallRating.comment += " " + TextUtils.join(" ", arrayList);
+            tL_phone_setCallRating.comment += " " + TextUtils.join(" ", arrayList);
         }
-        TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
-        tLRPC$TL_phone_setCallRating.peer = tLRPC$TL_inputPhoneCall;
-        tLRPC$TL_inputPhoneCall.access_hash = j;
-        tLRPC$TL_inputPhoneCall.id = j2;
-        tLRPC$TL_phone_setCallRating.user_initiative = z;
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_phone_setCallRating, new RequestDelegate() {
+        TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
+        tL_phone_setCallRating.peer = tL_inputPhoneCall;
+        tL_inputPhoneCall.access_hash = j;
+        tL_inputPhoneCall.id = j2;
+        tL_phone_setCallRating.user_initiative = z;
+        ConnectionsManager.getInstance(i).sendRequest(tL_phone_setCallRating, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                VoIPHelper.lambda$showRateAlert$16(i2, zArr, file, tLRPC$TL_phone_setCallRating, arrayList, context, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                VoIPHelper.lambda$showRateAlert$16(i2, zArr, file, tL_phone_setCallRating, arrayList, context, tLObject, tL_error);
             }
         });
         alertDialog.dismiss();
@@ -541,18 +526,18 @@ public abstract class VoIPHelper {
 
     public static void sendCallRating(long j, long j2, int i, int i2) {
         final int i3 = UserConfig.selectedAccount;
-        TLRPC$TL_phone_setCallRating tLRPC$TL_phone_setCallRating = new TLRPC$TL_phone_setCallRating();
-        tLRPC$TL_phone_setCallRating.rating = i2;
-        tLRPC$TL_phone_setCallRating.comment = "";
-        TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
-        tLRPC$TL_phone_setCallRating.peer = tLRPC$TL_inputPhoneCall;
-        tLRPC$TL_inputPhoneCall.access_hash = j2;
-        tLRPC$TL_inputPhoneCall.id = j;
-        tLRPC$TL_phone_setCallRating.user_initiative = false;
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_phone_setCallRating, new RequestDelegate() {
+        TLRPC.TL_phone_setCallRating tL_phone_setCallRating = new TLRPC.TL_phone_setCallRating();
+        tL_phone_setCallRating.rating = i2;
+        tL_phone_setCallRating.comment = "";
+        TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
+        tL_phone_setCallRating.peer = tL_inputPhoneCall;
+        tL_inputPhoneCall.access_hash = j2;
+        tL_inputPhoneCall.id = j;
+        tL_phone_setCallRating.user_initiative = false;
+        ConnectionsManager.getInstance(i).sendRequest(tL_phone_setCallRating, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                VoIPHelper.lambda$sendCallRating$9(i3, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                VoIPHelper.lambda$sendCallRating$9(i3, tLObject, tL_error);
             }
         });
     }
@@ -600,14 +585,14 @@ public abstract class VoIPHelper {
         new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.DebugMenuCallSettings)).setView(linearLayout).show();
     }
 
-    public static void showGroupCallAlert(final BaseFragment baseFragment, final TLRPC$Chat tLRPC$Chat, final TLRPC$InputPeer tLRPC$InputPeer, boolean z, final AccountInstance accountInstance) {
+    public static void showGroupCallAlert(final BaseFragment baseFragment, final TLRPC.Chat chat, final TLRPC.InputPeer inputPeer, boolean z, final AccountInstance accountInstance) {
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
-        JoinCallAlert.checkFewUsers(baseFragment.getParentActivity(), -tLRPC$Chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
+        JoinCallAlert.checkFewUsers(baseFragment.getParentActivity(), -chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
             @Override
             public final void run(boolean z2) {
-                VoIPHelper.lambda$showGroupCallAlert$21(TLRPC$Chat.this, tLRPC$InputPeer, baseFragment, accountInstance, z2);
+                VoIPHelper.lambda$showGroupCallAlert$21(TLRPC.Chat.this, inputPeer, baseFragment, accountInstance, z2);
             }
         });
     }
@@ -756,14 +741,14 @@ public abstract class VoIPHelper {
         });
     }
 
-    public static void showRateAlert(Context context, TLRPC$TL_messageActionPhoneCall tLRPC$TL_messageActionPhoneCall) {
+    public static void showRateAlert(Context context, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
         Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
         while (it.hasNext()) {
             String[] split = it.next().split(" ");
             if (split.length >= 2) {
-                if (split[0].equals(tLRPC$TL_messageActionPhoneCall.call_id + "")) {
+                if (split[0].equals(tL_messageActionPhoneCall.call_id + "")) {
                     try {
-                        showRateAlert(context, null, tLRPC$TL_messageActionPhoneCall.video, tLRPC$TL_messageActionPhoneCall.call_id, Long.parseLong(split[1]), UserConfig.selectedAccount, true);
+                        showRateAlert(context, null, tL_messageActionPhoneCall.video, tL_messageActionPhoneCall.call_id, Long.parseLong(split[1]), UserConfig.selectedAccount, true);
                         return;
                     } catch (Exception unused) {
                         return;
@@ -773,11 +758,11 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void startCall(TLRPC$Chat tLRPC$Chat, TLRPC$InputPeer tLRPC$InputPeer, String str, boolean z, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
-        startCall(tLRPC$Chat, tLRPC$InputPeer, str, z, null, activity, baseFragment, accountInstance);
+    public static void startCall(TLRPC.Chat chat, TLRPC.InputPeer inputPeer, String str, boolean z, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
+        startCall(chat, inputPeer, str, z, null, activity, baseFragment, accountInstance);
     }
 
-    public static void startCall(TLRPC$Chat tLRPC$Chat, TLRPC$InputPeer tLRPC$InputPeer, String str, boolean z, Boolean bool, final Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
+    public static void startCall(TLRPC.Chat chat, TLRPC.InputPeer inputPeer, String str, boolean z, Boolean bool, final Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
         int checkSelfPermission;
         if (activity == null) {
             return;
@@ -806,7 +791,7 @@ public abstract class VoIPHelper {
         }
         if (Build.VERSION.SDK_INT >= 23) {
             ArrayList arrayList = new ArrayList();
-            ChatObject.Call groupCall = accountInstance.getMessagesController().getGroupCall(tLRPC$Chat.id, false);
+            ChatObject.Call groupCall = accountInstance.getMessagesController().getGroupCall(chat.id, false);
             checkSelfPermission = activity.checkSelfPermission("android.permission.RECORD_AUDIO");
             if (checkSelfPermission != 0 && (groupCall == null || !groupCall.call.rtmp_stream)) {
                 arrayList.add("android.permission.RECORD_AUDIO");
@@ -816,14 +801,14 @@ public abstract class VoIPHelper {
                 return;
             }
         }
-        initiateCall(null, tLRPC$Chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
+        initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
     }
 
-    public static void startCall(TLRPC$User tLRPC$User, boolean z, boolean z2, final Activity activity, TLRPC$UserFull tLRPC$UserFull, AccountInstance accountInstance) {
+    public static void startCall(TLRPC.User user, boolean z, boolean z2, final Activity activity, TLRPC.UserFull userFull, AccountInstance accountInstance) {
         int checkSelfPermission;
         int checkSelfPermission2;
-        if (tLRPC$UserFull != null && tLRPC$UserFull.phone_calls_private) {
-            new AlertDialog.Builder(activity).setTitle(LocaleController.getString(R.string.VoipFailed)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("CallNotAvailable", R.string.CallNotAvailable, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name)))).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+        if (userFull != null && userFull.phone_calls_private) {
+            new AlertDialog.Builder(activity).setTitle(LocaleController.getString(R.string.VoipFailed)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("CallNotAvailable", R.string.CallNotAvailable, ContactsController.formatName(user.first_name, user.last_name)))).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
             return;
         }
         if (ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() != 3) {
@@ -865,6 +850,6 @@ public abstract class VoIPHelper {
                 return;
             }
         }
-        initiateCall(tLRPC$User, null, null, z, z2, false, null, activity, null, accountInstance);
+        initiateCall(user, null, null, z, z2, false, null, activity, null, accountInstance);
     }
 }

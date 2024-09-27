@@ -14,7 +14,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$FileLocation;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -35,7 +35,7 @@ public class UserCell2 extends FrameLayout {
     private TLObject currentObject;
     private CharSequence currentStatus;
     private ImageView imageView;
-    private TLRPC$FileLocation lastAvatar;
+    private TLRPC.FileLocation lastAvatar;
     private String lastName;
     private int lastStatus;
     private SimpleTextView nameTextView;

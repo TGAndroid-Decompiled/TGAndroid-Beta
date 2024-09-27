@@ -16,9 +16,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
-import org.telegram.tgnet.TLRPC$TL_stickerSetNoCovered;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.BackupImageView;
@@ -39,7 +37,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
     private boolean isLocked;
     private boolean needDivider;
     private final Theme.ResourcesProvider resourcesProvider;
-    private TLRPC$StickerSetCovered stickersSet;
+    private TLRPC.StickerSetCovered stickersSet;
     private final TextView textView;
     private final PremiumButtonView unlockButton;
     private boolean unread;
@@ -140,9 +138,9 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                 return;
             }
             this.waitingForStickerSetId = null;
-            TLRPC$TL_stickerSetNoCovered tLRPC$TL_stickerSetNoCovered = new TLRPC$TL_stickerSetNoCovered();
-            tLRPC$TL_stickerSetNoCovered.set = ((TLRPC$TL_messages_stickerSet) objArr[1]).set;
-            setStickersSet(tLRPC$TL_stickerSetNoCovered, this.needDivider, this.unread, this.forceInstalled, true);
+            TLRPC.TL_stickerSetNoCovered tL_stickerSetNoCovered = new TLRPC.TL_stickerSetNoCovered();
+            tL_stickerSetNoCovered.set = ((TLRPC.TL_messages_stickerSet) objArr[1]).set;
+            setStickersSet(tL_stickerSetNoCovered, this.needDivider, this.unread, this.forceInstalled, true);
         }
     }
 
@@ -150,7 +148,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         return this.imageView;
     }
 
-    public TLRPC$StickerSetCovered getStickerSet() {
+    public TLRPC.StickerSetCovered getStickerSet() {
         return this.stickersSet;
     }
 
@@ -204,7 +202,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         this.addButton.setDrawProgress(z, z2);
     }
 
-    public void setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered r17, boolean r18, boolean r19, boolean r20, boolean r21) {
+    public void setStickersSet(org.telegram.tgnet.TLRPC.StickerSetCovered r17, boolean r18, boolean r19, boolean r20, boolean r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.FeaturedStickerSetCell2.setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered, boolean, boolean, boolean, boolean):void");
     }
 

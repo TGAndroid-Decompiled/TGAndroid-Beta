@@ -225,7 +225,7 @@ public class ReplyMessageLine {
         this.hasColor2 = false;
     }
 
-    public int check(org.telegram.messenger.MessageObject r18, org.telegram.tgnet.TLRPC$User r19, org.telegram.tgnet.TLRPC$Chat r20, org.telegram.ui.ActionBar.Theme.ResourcesProvider r21, int r22) {
+    public int check(org.telegram.messenger.MessageObject r18, org.telegram.tgnet.TLRPC.User r19, org.telegram.tgnet.TLRPC.Chat r20, org.telegram.ui.ActionBar.Theme.ResourcesProvider r21, int r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReplyMessageLine.check(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int):int");
     }
 

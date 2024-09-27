@@ -60,12 +60,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.audioinfo.AudioInfo;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
-import org.telegram.tgnet.TLRPC$TL_photoSize;
-import org.telegram.tgnet.TLRPC$TL_photoSizeProgressive;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSlider;
@@ -705,18 +700,18 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     String documentName = messageObject.getDocumentName();
                     if (documentName != null && documentName.length() != 0) {
                         if (!documentName.toLowerCase().contains(str3)) {
-                            TLRPC$Document tLRPC$Document = messageObject.type == 0 ? messageObject.messageOwner.media.webpage.document : messageObject.messageOwner.media.document;
+                            TLRPC.Document document = messageObject.type == 0 ? messageObject.messageOwner.media.webpage.document : messageObject.messageOwner.media.document;
                             int i4 = 0;
                             while (true) {
-                                if (i4 >= tLRPC$Document.attributes.size()) {
+                                if (i4 >= document.attributes.size()) {
                                     z = false;
                                     break;
                                 }
-                                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i4);
-                                if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) {
-                                    String str4 = tLRPC$DocumentAttribute.performer;
+                                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i4);
+                                if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                                    String str4 = documentAttribute.performer;
                                     z = str4 != null ? str4.toLowerCase().contains(str3) : false;
-                                    if (!z && (str2 = tLRPC$DocumentAttribute.title) != null) {
+                                    if (!z && (str2 = documentAttribute.title) != null) {
                                         z = str2.toLowerCase().contains(str3);
                                     }
                                 } else {
@@ -913,9 +908,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     }
 
     private ImageLocation getArtworkThumbImageLocation(MessageObject messageObject) {
-        TLRPC$Document document = messageObject.getDocument();
-        TLRPC$PhotoSize closestPhotoSizeWithSize = document != null ? FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 360) : null;
-        if (!(closestPhotoSizeWithSize instanceof TLRPC$TL_photoSize) && !(closestPhotoSizeWithSize instanceof TLRPC$TL_photoSizeProgressive)) {
+        TLRPC.Document document = messageObject.getDocument();
+        TLRPC.PhotoSize closestPhotoSizeWithSize = document != null ? FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 360) : null;
+        if (!(closestPhotoSizeWithSize instanceof TLRPC.TL_photoSize) && !(closestPhotoSizeWithSize instanceof TLRPC.TL_photoSizeProgressive)) {
             closestPhotoSizeWithSize = null;
         }
         if (closestPhotoSizeWithSize != null) {
@@ -1097,7 +1092,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 return true;
             }
         }
-        dialogsActivity.lambda$onBackPressed$307();
+        dialogsActivity.lambda$onBackPressed$300();
         return true;
     }
 

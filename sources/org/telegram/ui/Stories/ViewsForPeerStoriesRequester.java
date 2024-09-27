@@ -7,12 +7,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.tl.TL_stories$PeerStories;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
-import org.telegram.tgnet.tl.TL_stories$StoryViews;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoriesViews;
-import org.telegram.tgnet.tl.TL_stories$TL_stories_storyViews;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 
 public class ViewsForPeerStoriesRequester {
     private static long lastRequestTime;
@@ -34,12 +30,12 @@ public class ViewsForPeerStoriesRequester {
         this.dialogId = j;
     }
 
-    public void lambda$requestInternal$1(TLObject tLObject, TL_stories$TL_stories_getStoriesViews tL_stories$TL_stories_getStoriesViews) {
+    public void lambda$requestInternal$1(TLObject tLObject, TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews) {
         lastRequestTime = System.currentTimeMillis();
         if (tLObject != null) {
-            TL_stories$TL_stories_storyViews tL_stories$TL_stories_storyViews = (TL_stories$TL_stories_storyViews) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_stories_storyViews.users, false);
-            if (!updateStories(tL_stories$TL_stories_getStoriesViews.id, tL_stories$TL_stories_storyViews)) {
+            TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_stories_storyViews.users, false);
+            if (!updateStories(tL_stories_getStoriesViews.id, tL_stories_storyViews)) {
                 this.currentReqId = 0;
                 this.isRunning = false;
                 return;
@@ -53,11 +49,11 @@ public class ViewsForPeerStoriesRequester {
         }
     }
 
-    public void lambda$requestInternal$2(final TL_stories$TL_stories_getStoriesViews tL_stories$TL_stories_getStoriesViews, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestInternal$2(final TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ViewsForPeerStoriesRequester.this.lambda$requestInternal$1(tLObject, tL_stories$TL_stories_getStoriesViews);
+                ViewsForPeerStoriesRequester.this.lambda$requestInternal$1(tLObject, tL_stories_getStoriesViews);
             }
         });
     }
@@ -66,16 +62,16 @@ public class ViewsForPeerStoriesRequester {
         if (this.currentReqId != 0) {
             return false;
         }
-        final TL_stories$TL_stories_getStoriesViews tL_stories$TL_stories_getStoriesViews = new TL_stories$TL_stories_getStoriesViews();
-        getStoryIds(tL_stories$TL_stories_getStoriesViews.id);
-        if (tL_stories$TL_stories_getStoriesViews.id.isEmpty()) {
+        final TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews = new TL_stories.TL_stories_getStoriesViews();
+        getStoryIds(tL_stories_getStoriesViews.id);
+        if (tL_stories_getStoriesViews.id.isEmpty()) {
             return false;
         }
-        tL_stories$TL_stories_getStoriesViews.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        this.currentReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_getStoriesViews, new RequestDelegate() {
+        tL_stories_getStoriesViews.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        this.currentReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesViews, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ViewsForPeerStoriesRequester.this.lambda$requestInternal$2(tL_stories$TL_stories_getStoriesViews, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ViewsForPeerStoriesRequester.this.lambda$requestInternal$2(tL_stories_getStoriesViews, tLObject, tL_error);
             }
         });
         return true;
@@ -98,12 +94,12 @@ public class ViewsForPeerStoriesRequester {
     }
 
     protected void getStoryIds(ArrayList arrayList) {
-        TL_stories$PeerStories stories = this.storiesController.getStories(this.dialogId);
+        TL_stories.PeerStories stories = this.storiesController.getStories(this.dialogId);
         if (stories == null || stories.stories == null) {
             return;
         }
         for (int i = 0; i < stories.stories.size(); i++) {
-            arrayList.add(Integer.valueOf(((TL_stories$StoryItem) stories.stories.get(i)).id));
+            arrayList.add(Integer.valueOf(stories.stories.get(i).id));
         }
     }
 
@@ -122,15 +118,15 @@ public class ViewsForPeerStoriesRequester {
         }
     }
 
-    protected boolean updateStories(ArrayList arrayList, TL_stories$TL_stories_storyViews tL_stories$TL_stories_storyViews) {
-        TL_stories$PeerStories stories;
-        if (tL_stories$TL_stories_storyViews == null || tL_stories$TL_stories_storyViews.views == null || (stories = this.storiesController.getStories(this.dialogId)) == null || stories.stories.isEmpty()) {
+    protected boolean updateStories(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
+        TL_stories.PeerStories stories;
+        if (tL_stories_storyViews == null || tL_stories_storyViews.views == null || (stories = this.storiesController.getStories(this.dialogId)) == null || stories.stories.isEmpty()) {
             return false;
         }
-        for (int i = 0; i < tL_stories$TL_stories_storyViews.views.size(); i++) {
+        for (int i = 0; i < tL_stories_storyViews.views.size(); i++) {
             for (int i2 = 0; i2 < stories.stories.size(); i2++) {
-                if (((TL_stories$StoryItem) stories.stories.get(i2)).id == ((Integer) arrayList.get(i)).intValue()) {
-                    ((TL_stories$StoryItem) stories.stories.get(i2)).views = (TL_stories$StoryViews) tL_stories$TL_stories_storyViews.views.get(i);
+                if (stories.stories.get(i2).id == ((Integer) arrayList.get(i)).intValue()) {
+                    stories.stories.get(i2).views = tL_stories_storyViews.views.get(i);
                 }
             }
         }

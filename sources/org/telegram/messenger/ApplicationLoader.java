@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -21,14 +22,12 @@ import androidx.multidex.MultiDex;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import org.json.JSONObject;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
-import org.telegram.tgnet.TLRPC$Update;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.Components.ForegroundDetector;
@@ -393,7 +392,7 @@ public class ApplicationLoader extends Application {
             } else {
                 ConnectionsManager.getInstance(i);
             }
-            TLRPC$User currentUser = UserConfig.getInstance(i).getCurrentUser();
+            TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
             if (currentUser != null) {
                 MessagesController.getInstance(i).putUser(currentUser, true);
                 SendMessagesHelper.getInstance(i).checkUnsentMessages();
@@ -490,6 +489,8 @@ public class ApplicationLoader extends Application {
 
     @Override
     public void onCreate() {
+        StringBuilder sb;
+        String str;
         applicationLoaderInstance = this;
         try {
             applicationContext = getApplicationContext();
@@ -497,14 +498,36 @@ public class ApplicationLoader extends Application {
         }
         super.onCreate();
         if (BuildVars.LOGS_ENABLED) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("app start time = ");
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            sb.append(elapsedRealtime);
-            FileLog.d(sb.toString());
+            sb2.append(elapsedRealtime);
+            FileLog.d(sb2.toString());
             try {
-                FileLog.d("buildVersion = " + applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0).versionCode);
+                PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
+                int i = packageInfo.versionCode % 10;
+                if (i == 1 || i == 2) {
+                    sb = new StringBuilder();
+                    sb.append("store bundled ");
+                    sb.append(Build.CPU_ABI);
+                    sb.append(" ");
+                    str = Build.CPU_ABI2;
+                } else if (isStandaloneBuild()) {
+                    sb = new StringBuilder();
+                    sb.append("direct ");
+                    sb.append(Build.CPU_ABI);
+                    sb.append(" ");
+                    str = Build.CPU_ABI2;
+                } else {
+                    sb = new StringBuilder();
+                    sb.append("universal ");
+                    sb.append(Build.CPU_ABI);
+                    sb.append(" ");
+                    str = Build.CPU_ABI2;
+                }
+                sb.append(str);
+                FileLog.d("buildVersion = " + String.format(Locale.US, "v%s (%d[%d]) %s", packageInfo.versionName, Integer.valueOf(packageInfo.versionCode / 10), Integer.valueOf(packageInfo.versionCode % 10), sb.toString()));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -573,7 +596,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
-    public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
+    public boolean openApkInstall(Activity activity, TLRPC.Document document) {
         return false;
     }
 
@@ -581,14 +604,14 @@ public class ApplicationLoader extends Application {
         return null;
     }
 
-    public TLRPC$Update parseTLUpdate(int i) {
+    public TLRPC.Update parseTLUpdate(int i) {
         return null;
     }
 
-    public void processUpdate(int i, TLRPC$Update tLRPC$Update) {
+    public void processUpdate(int i, TLRPC.Update update) {
     }
 
-    public boolean showUpdateAppPopup(Context context, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, int i) {
+    public boolean showUpdateAppPopup(Context context, TLRPC.TL_help_appUpdate tL_help_appUpdate, int i) {
         return false;
     }
 

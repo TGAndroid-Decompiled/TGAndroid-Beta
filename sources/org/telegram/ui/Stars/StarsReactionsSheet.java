@@ -47,12 +47,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$MessageReactor;
-import org.telegram.tgnet.TLRPC$TL_boolTrue;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_togglePaidReactionPrivacy;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -708,7 +703,7 @@ public class StarsReactionsSheet extends BottomSheet {
 
             public Sender(long j) {
                 String str;
-                TLRPC$Chat tLRPC$Chat;
+                TLRPC.Chat chat;
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
                 this.animatedPosition = new AnimatedFloat(TopSendersView.this, 0L, 600L, cubicBezierInterpolator);
                 this.animatedScale = new AnimatedFloat(TopSendersView.this, 0L, 200L, cubicBezierInterpolator);
@@ -723,17 +718,17 @@ public class StarsReactionsSheet extends BottomSheet {
                 this.did = j;
                 MessagesController messagesController = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount);
                 if (j >= 0) {
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(j));
                     str = UserObject.getForcedFirstName(user);
                     avatarDrawable.setInfo(user);
-                    tLRPC$Chat = user;
+                    chat = user;
                 } else {
-                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
-                    str = chat == null ? "" : chat.title;
-                    avatarDrawable.setInfo(chat);
-                    tLRPC$Chat = chat;
+                    TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-j));
+                    str = chat2 == null ? "" : chat2.title;
+                    avatarDrawable.setInfo(chat2);
+                    chat = chat2;
                 }
-                imageReceiver.setForUserOrChat(tLRPC$Chat, avatarDrawable);
+                imageReceiver.setForUserOrChat(chat, avatarDrawable);
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(56.0f));
                 imageReceiver.onAttachedToWindow();
                 avatarDrawable2.setAvatarType(21);
@@ -793,7 +788,7 @@ public class StarsReactionsSheet extends BottomSheet {
                     } else if (this.did >= 0) {
                         str = UserObject.getForcedFirstName(MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getUser(Long.valueOf(this.did)));
                     } else {
-                        TLRPC$Chat chat = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getChat(Long.valueOf(-this.did));
+                        TLRPC.Chat chat = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getChat(Long.valueOf(-this.did));
                         str = chat == null ? "" : chat.title;
                     }
                     this.text = new Text(str, 12.0f);
@@ -979,7 +974,7 @@ public class StarsReactionsSheet extends BottomSheet {
 
     public StarsReactionsSheet(final Context context, final int i, long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList arrayList, boolean z, final Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
-        TLRPC$MessageReactor tLRPC$MessageReactor;
+        TLRPC.MessageReactor messageReactor;
         int i2 = 9;
         this.starRef = new ColoredImageSpan[1];
         this.checkedVisiblity = false;
@@ -990,20 +985,20 @@ public class StarsReactionsSheet extends BottomSheet {
         long clientUserId = UserConfig.getInstance(i).getClientUserId();
         if (arrayList != null) {
             Iterator it = arrayList.iterator();
-            TLRPC$MessageReactor tLRPC$MessageReactor2 = null;
+            TLRPC.MessageReactor messageReactor2 = null;
             while (it.hasNext()) {
-                TLRPC$MessageReactor tLRPC$MessageReactor3 = (TLRPC$MessageReactor) it.next();
-                long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageReactor3.peer_id);
-                if (tLRPC$MessageReactor3.anonymous && tLRPC$MessageReactor3.my) {
+                TLRPC.MessageReactor messageReactor3 = (TLRPC.MessageReactor) it.next();
+                long peerDialogId = DialogObject.getPeerDialogId(messageReactor3.peer_id);
+                if (messageReactor3.anonymous && messageReactor3.my) {
                     peerDialogId = clientUserId;
                 }
-                if (tLRPC$MessageReactor3.my || peerDialogId == clientUserId) {
-                    tLRPC$MessageReactor2 = tLRPC$MessageReactor3;
+                if (messageReactor3.my || peerDialogId == clientUserId) {
+                    messageReactor2 = messageReactor3;
                 }
             }
-            tLRPC$MessageReactor = tLRPC$MessageReactor2;
+            messageReactor = messageReactor2;
         } else {
-            tLRPC$MessageReactor = null;
+            messageReactor = null;
         }
         boolean z2 = (arrayList == null || arrayList.isEmpty()) ? false : true;
         this.anonymous = StarsController.getInstance(i).arePaidReactionsAnonymous(messageObject);
@@ -1080,7 +1075,7 @@ public class StarsReactionsSheet extends BottomSheet {
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
         this.topLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, z ? 179.0f : 45.0f, 0.0f, 15.0f));
-        final TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+        final TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         TextView textView2 = new TextView(context);
         this.statusView = textView2;
         textView2.setTextColor(Theme.getColor(i7));
@@ -1088,7 +1083,7 @@ public class StarsReactionsSheet extends BottomSheet {
         textView2.setGravity(17);
         textView2.setSingleLine(false);
         textView2.setMaxLines(3);
-        textView2.setText(AndroidUtilities.replaceTags(tLRPC$MessageReactor != null ? LocaleController.formatPluralStringComma("StarsReactionTextSent", tLRPC$MessageReactor.count) : LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title)));
+        textView2.setText(AndroidUtilities.replaceTags(messageReactor != null ? LocaleController.formatPluralStringComma("StarsReactionTextSent", messageReactor.count) : LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title)));
         if (z) {
             linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 40, 0, 40, 0));
         }
@@ -1131,7 +1126,7 @@ public class StarsReactionsSheet extends BottomSheet {
             View view2 = new View(context);
             this.checkSeparatorView = view2;
             view2.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-            if (z || tLRPC$MessageReactor != null) {
+            if (z || messageReactor != null) {
                 this.layout.addView(view2, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 7, 24, 0, 24, 0));
             }
         } else {
@@ -1168,7 +1163,7 @@ public class StarsReactionsSheet extends BottomSheet {
         });
         ScaleStateListAnimator.apply(linearLayout3, 0.05f, 1.2f);
         linearLayout3.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
-        if (z || tLRPC$MessageReactor != null) {
+        if (z || messageReactor != null) {
             this.layout.addView(linearLayout3, LayoutHelper.createLinear(-2, -2, 1, 0, z2 ? 10 : 4, 0, 10));
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
@@ -1217,12 +1212,12 @@ public class StarsReactionsSheet extends BottomSheet {
         if (arrayList != null) {
             long j3 = 0;
             for (int i8 = 0; i8 < arrayList.size(); i8++) {
-                long j4 = ((TLRPC$MessageReactor) arrayList.get(i8)).count;
+                long j4 = ((TLRPC.MessageReactor) arrayList.get(i8)).count;
                 if (j4 > j3) {
                     j3 = j4;
                 }
             }
-            j3 = tLRPC$MessageReactor != null ? j3 - tLRPC$MessageReactor.count : j3;
+            j3 = messageReactor != null ? j3 - messageReactor.count : j3;
             if (j3 > 0) {
                 this.slider.setStarsTop(j3 + 1);
             }
@@ -1372,15 +1367,15 @@ public class StarsReactionsSheet extends BottomSheet {
         if (isMyPaidReactionAnonymous == null || isMyPaidReactionAnonymous.booleanValue() != this.anonymous) {
             this.messageObject.setMyPaidReactionAnonymous(this.anonymous);
             StarsController.MessageId from = StarsController.MessageId.from(this.messageObject);
-            TLRPC$TL_messages_togglePaidReactionPrivacy tLRPC$TL_messages_togglePaidReactionPrivacy = new TLRPC$TL_messages_togglePaidReactionPrivacy();
-            tLRPC$TL_messages_togglePaidReactionPrivacy.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(from.did);
-            tLRPC$TL_messages_togglePaidReactionPrivacy.msg_id = from.mid;
-            tLRPC$TL_messages_togglePaidReactionPrivacy.isPrivate = this.anonymous;
+            TLRPC.TL_messages_togglePaidReactionPrivacy tL_messages_togglePaidReactionPrivacy = new TLRPC.TL_messages_togglePaidReactionPrivacy();
+            tL_messages_togglePaidReactionPrivacy.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(from.did);
+            tL_messages_togglePaidReactionPrivacy.msg_id = from.mid;
+            tL_messages_togglePaidReactionPrivacy.isPrivate = this.anonymous;
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starReactionAnonymousUpdate, Long.valueOf(from.did), Integer.valueOf(from.mid), Boolean.valueOf(this.anonymous));
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_togglePaidReactionPrivacy, new RequestDelegate() {
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_togglePaidReactionPrivacy, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StarsReactionsSheet.this.lambda$checkVisibility$8(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StarsReactionsSheet.this.lambda$checkVisibility$8(tLObject, tL_error);
                 }
             });
         }
@@ -1426,8 +1421,8 @@ public class StarsReactionsSheet extends BottomSheet {
         starsSlider.invalidate();
     }
 
-    public void lambda$checkVisibility$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$TL_boolTrue) {
+    public void lambda$checkVisibility$8(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.TL_boolTrue) {
             MessagesStorage.getInstance(this.currentAccount).putMessages(new ArrayList<>(Arrays.asList(this.messageObject.messageOwner)), true, true, true, 0, 0, 0L);
         }
     }
@@ -1504,7 +1499,7 @@ public class StarsReactionsSheet extends BottomSheet {
         });
     }
 
-    public void lambda$new$5(final MessageObject messageObject, final ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC$Chat tLRPC$Chat, View view) {
+    public void lambda$new$5(final MessageObject messageObject, final ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC.Chat chat, View view) {
         if (messageObject == null || chatActivity == null || this.iconAnimator != null) {
             return;
         }
@@ -1519,7 +1514,7 @@ public class StarsReactionsSheet extends BottomSheet {
         if (!starsController.balanceAvailable() || starsController.getBalance() >= value) {
             runnable.run();
         } else {
-            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, tLRPC$Chat == null ? "" : tLRPC$Chat.title, runnable).show();
+            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, chat == null ? "" : chat.title, runnable).show();
         }
     }
 
@@ -1568,16 +1563,16 @@ public class StarsReactionsSheet extends BottomSheet {
             long j2 = 0;
             if (this.reactors != null) {
                 for (int i = 0; i < this.reactors.size(); i++) {
-                    TLRPC$MessageReactor tLRPC$MessageReactor = (TLRPC$MessageReactor) this.reactors.get(i);
-                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageReactor.peer_id);
-                    boolean z = tLRPC$MessageReactor.anonymous;
+                    TLRPC.MessageReactor messageReactor = (TLRPC.MessageReactor) this.reactors.get(i);
+                    long peerDialogId = DialogObject.getPeerDialogId(messageReactor.peer_id);
+                    boolean z = messageReactor.anonymous;
                     if (z) {
-                        peerDialogId = tLRPC$MessageReactor.my ? clientUserId : -i;
+                        peerDialogId = messageReactor.my ? clientUserId : -i;
                     }
-                    if (tLRPC$MessageReactor.my || peerDialogId == clientUserId) {
-                        j2 = tLRPC$MessageReactor.count;
+                    if (messageReactor.my || peerDialogId == clientUserId) {
+                        j2 = messageReactor.count;
                     } else {
-                        arrayList.add(SenderData.of(z, peerDialogId, tLRPC$MessageReactor.count));
+                        arrayList.add(SenderData.of(z, peerDialogId, messageReactor.count));
                     }
                 }
             }

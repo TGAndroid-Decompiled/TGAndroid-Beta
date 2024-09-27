@@ -46,10 +46,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipantVideo;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -91,7 +88,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
     private AccountInstance accountInstance;
     private Float aspectRatio;
     private BackupImageView avatarImageView;
-    private TLRPC$TL_groupCallParticipant boundParticipant;
+    private TLRPC.TL_groupCallParticipant boundParticipant;
     private boolean boundPresentation;
     private View consumingChild;
     private FrameLayout contentFrameLayout;
@@ -267,43 +264,43 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
     }
 
     public void bindTextureView() {
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
-        TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo;
-        TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo2;
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant;
+        TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo;
+        TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo2;
         ImageLocation forChat;
         GradientDrawable gradientDrawable;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
         boolean z = true;
         if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().groupCall != null && !VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.isEmpty()) {
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant2 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).participant;
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant3 = this.boundParticipant;
-            if (tLRPC$TL_groupCallParticipant3 == null || MessageObject.getPeerId(tLRPC$TL_groupCallParticipant3.peer) != MessageObject.getPeerId(tLRPC$TL_groupCallParticipant2.peer)) {
+            TLRPC.TL_groupCallParticipant tL_groupCallParticipant2 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).participant;
+            TLRPC.TL_groupCallParticipant tL_groupCallParticipant3 = this.boundParticipant;
+            if (tL_groupCallParticipant3 == null || MessageObject.getPeerId(tL_groupCallParticipant3.peer) != MessageObject.getPeerId(tL_groupCallParticipant2.peer)) {
                 if (this.boundParticipant != null) {
                     VoIPService.getSharedInstance().removeRemoteSink(this.boundParticipant, this.boundPresentation);
                 }
-                this.boundPresentation = tLRPC$TL_groupCallParticipant2.presentation != null;
-                if (tLRPC$TL_groupCallParticipant2.self) {
+                this.boundPresentation = tL_groupCallParticipant2.presentation != null;
+                if (tL_groupCallParticipant2.self) {
                     VoIPService.getSharedInstance().setSinks(this.textureView.renderer, this.boundPresentation, null);
                 } else {
-                    VoIPService.getSharedInstance().addRemoteSink(tLRPC$TL_groupCallParticipant2, this.boundPresentation, this.textureView.renderer, null);
+                    VoIPService.getSharedInstance().addRemoteSink(tL_groupCallParticipant2, this.boundPresentation, this.textureView.renderer, null);
                 }
                 MessagesController messagesController = VoIPService.getSharedInstance().groupCall.currentAccount.getMessagesController();
-                long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant2.peer);
+                long peerId = MessageObject.getPeerId(tL_groupCallParticipant2.peer);
                 if (peerId > 0) {
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(peerId));
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(peerId));
                     forChat = ImageLocation.getForUser(user, 1);
                     int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
                     gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)});
-                    tLRPC$Chat = user;
+                    chat = user;
                 } else {
-                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-peerId));
-                    forChat = ImageLocation.getForChat(chat, 1);
-                    int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
+                    TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-peerId));
+                    forChat = ImageLocation.getForChat(chat2, 1);
+                    int colorForId2 = chat2 != null ? AvatarDrawable.getColorForId(chat2.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
                     gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)});
-                    tLRPC$Chat = chat;
+                    chat = chat2;
                 }
-                this.avatarImageView.getImageReceiver().setImage(forChat, "50_50_b", gradientDrawable, null, tLRPC$Chat, 0);
-                this.boundParticipant = tLRPC$TL_groupCallParticipant2;
+                this.avatarImageView.getImageReceiver().setImage(forChat, "50_50_b", gradientDrawable, null, chat, 0);
+                this.boundParticipant = tL_groupCallParticipant2;
             }
         } else if (this.boundParticipant != null) {
             if (VoIPService.getSharedInstance() != null) {
@@ -311,7 +308,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             }
             this.boundParticipant = null;
         }
-        if (this.firstFrameRendered && (tLRPC$TL_groupCallParticipant = this.boundParticipant) != null && (((tLRPC$TL_groupCallParticipantVideo = tLRPC$TL_groupCallParticipant.video) != null || tLRPC$TL_groupCallParticipant.presentation != null) && ((tLRPC$TL_groupCallParticipantVideo == null || !tLRPC$TL_groupCallParticipantVideo.paused) && ((tLRPC$TL_groupCallParticipantVideo2 = tLRPC$TL_groupCallParticipant.presentation) == null || !tLRPC$TL_groupCallParticipantVideo2.paused)))) {
+        if (this.firstFrameRendered && (tL_groupCallParticipant = this.boundParticipant) != null && (((tL_groupCallParticipantVideo = tL_groupCallParticipant.video) != null || tL_groupCallParticipant.presentation != null) && ((tL_groupCallParticipantVideo == null || !tL_groupCallParticipantVideo.paused) && ((tL_groupCallParticipantVideo2 = tL_groupCallParticipant.presentation) == null || !tL_groupCallParticipantVideo2.paused)))) {
             z = false;
         }
         if (this.placeholderShown != z) {

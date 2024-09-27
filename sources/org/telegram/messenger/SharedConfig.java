@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
@@ -56,7 +56,6 @@ public class SharedConfig {
     public static int autoLockIn = 0;
     public static int badPasscodeTries = 0;
     public static boolean bigCameraForRound = false;
-    public static boolean botTabs3DEffect = false;
     public static int bubbleRadius = 0;
     public static int callEncryptionHintDisplayedCount = 0;
     public static boolean chatBubbles = false;
@@ -66,6 +65,7 @@ public class SharedConfig {
     public static boolean customTabs = false;
     public static int dayNightThemeSwitchHintCount = 0;
     public static int dayNightWallpaperSwitchHint = 0;
+    public static boolean debugVideoQualities = false;
     public static boolean debugWebView = false;
     private static int devicePerformanceClass = 0;
     public static boolean directShare = false;
@@ -121,7 +121,7 @@ public class SharedConfig {
     public static boolean pauseMusicOnMedia;
     public static boolean pauseMusicOnRecord;
     public static boolean payByInvoice;
-    public static TLRPC$TL_help_appUpdate pendingAppUpdate;
+    public static TLRPC.TL_help_appUpdate pendingAppUpdate;
     public static int pendingAppUpdateBuildVersion;
     public static boolean photoViewerBlur;
     public static boolean playOrderReversed;
@@ -310,6 +310,7 @@ public class SharedConfig {
         pauseMusicOnRecord = false;
         pauseMusicOnMedia = false;
         showNotificationsForAllAccounts = true;
+        debugVideoQualities = false;
         fontSize = 16;
         bubbleRadius = 17;
         ivFontSize = 16;
@@ -718,8 +719,8 @@ public class SharedConfig {
 
     public static boolean isAppUpdateAvailable() {
         int buildVersion;
-        TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
-        if (tLRPC$TL_help_appUpdate == null || tLRPC$TL_help_appUpdate.document == null || !ApplicationLoader.isStandaloneBuild()) {
+        TLRPC.TL_help_appUpdate tL_help_appUpdate = pendingAppUpdate;
+        if (tL_help_appUpdate == null || tL_help_appUpdate.document == null || !ApplicationLoader.isStandaloneBuild()) {
             return false;
         }
         try {
@@ -1006,10 +1007,10 @@ public class SharedConfig {
                     edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
                     edit.putBoolean("proxyRotationEnabled", proxyRotationEnabled);
                     edit.putInt("proxyRotationTimeout", proxyRotationTimeout);
-                    TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
-                    if (tLRPC$TL_help_appUpdate != null) {
+                    TLRPC.TL_help_appUpdate tL_help_appUpdate = pendingAppUpdate;
+                    if (tL_help_appUpdate != null) {
                         try {
-                            SerializedData serializedData = new SerializedData(tLRPC$TL_help_appUpdate.getObjectSize());
+                            SerializedData serializedData = new SerializedData(tL_help_appUpdate.getObjectSize());
                             pendingAppUpdate.serializeToStream(serializedData);
                             edit.putString("appUpdate", Base64.encodeToString(serializedData.toByteArray(), 0));
                             edit.putInt("appUpdateBuild", pendingAppUpdateBuildVersion);
@@ -1089,13 +1090,6 @@ public class SharedConfig {
         animationsEnabled = Boolean.valueOf(z);
     }
 
-    public static void setBotTabs3DEffect(boolean z) {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        botTabs3DEffect = z;
-        edit.putBoolean("botTabs3DEffect", z);
-        edit.apply();
-    }
-
     public static void setDistanceSystemType(int i) {
         distanceSystemType = i;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
@@ -1137,7 +1131,7 @@ public class SharedConfig {
         edit.apply();
     }
 
-    public static boolean setNewAppVersionAvailable(org.telegram.tgnet.TLRPC$TL_help_appUpdate r4) {
+    public static boolean setNewAppVersionAvailable(org.telegram.tgnet.TLRPC.TL_help_appUpdate r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SharedConfig.setNewAppVersionAvailable(org.telegram.tgnet.TLRPC$TL_help_appUpdate):boolean");
     }
 
@@ -1289,6 +1283,13 @@ public class SharedConfig {
         customTabs = z;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("custom_tabs", customTabs);
+        edit.apply();
+    }
+
+    public static void toggleDebugVideoQualities() {
+        debugVideoQualities = !debugVideoQualities;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("debugVideoQualities", debugVideoQualities);
         edit.apply();
     }
 

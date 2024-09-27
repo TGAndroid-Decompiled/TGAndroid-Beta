@@ -40,17 +40,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$TL_availableEffect;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
-import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
-import org.telegram.tgnet.TLRPC$TL_reactionPaid;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -202,8 +192,8 @@ public class ReactionsLayoutInBubble {
         private StarsReactionsSheet.Particles particles;
         public AnimatedEmojiDrawable previewAnimatedEmojiDrawable;
         public ImageReceiver previewImageReceiver;
-        public TLRPC$Reaction reaction;
-        private final TLRPC$ReactionCount reactionCount;
+        public TLRPC.Reaction reaction;
+        private final TLRPC.ReactionCount reactionCount;
         public int realCount;
         private final Theme.ResourcesProvider resourcesProvider;
         int serviceBackgroundColor;
@@ -222,7 +212,7 @@ public class ReactionsLayoutInBubble {
         private RectF rect2 = new RectF();
         private final Path tagPath = new Path();
 
-        public ReactionButton(ReactionButton reactionButton, int i, View view, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+        public ReactionButton(ReactionButton reactionButton, int i, View view, TLRPC.ReactionCount reactionCount, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             String l;
             StarsReactionsSheet.Particles particles;
             this.currentAccount = i;
@@ -248,30 +238,30 @@ public class ReactionsLayoutInBubble {
                 this.textDrawable.setTypeface(AndroidUtilities.bold());
                 this.textDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             }
-            this.reactionCount = tLRPC$ReactionCount;
-            TLRPC$Reaction tLRPC$Reaction = tLRPC$ReactionCount.reaction;
-            this.reaction = tLRPC$Reaction;
-            this.visibleReaction = VisibleReaction.fromTL(tLRPC$Reaction);
-            int i2 = tLRPC$ReactionCount.count;
+            this.reactionCount = reactionCount;
+            TLRPC.Reaction reaction = reactionCount.reaction;
+            this.reaction = reaction;
+            this.visibleReaction = VisibleReaction.fromTL(reaction);
+            int i2 = reactionCount.count;
             this.count = i2;
-            this.choosen = tLRPC$ReactionCount.chosen;
+            this.choosen = reactionCount.chosen;
             this.realCount = i2;
-            this.choosenOrder = tLRPC$ReactionCount.chosen_order;
+            this.choosenOrder = reactionCount.chosen_order;
             this.isSmall = z;
-            TLRPC$Reaction tLRPC$Reaction2 = this.reaction;
-            if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionPaid) {
+            TLRPC.Reaction reaction2 = this.reaction;
+            if (reaction2 instanceof TLRPC.TL_reactionPaid) {
                 l = "stars";
-            } else if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji) {
-                l = ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon;
+            } else if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
+                l = ((TLRPC.TL_reactionEmoji) reaction2).emoticon;
             } else {
-                if (!(tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji)) {
+                if (!(reaction2 instanceof TLRPC.TL_reactionCustomEmoji)) {
                     throw new RuntimeException("unsupported");
                 }
-                l = Long.toString(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id);
+                l = Long.toString(((TLRPC.TL_reactionCustomEmoji) reaction2).document_id);
             }
             this.key = l;
             this.imageReceiver.setParentView(view);
-            this.isSelected = tLRPC$ReactionCount.chosen;
+            this.isSelected = reactionCount.chosen;
             CounterView.CounterDrawable counterDrawable = this.counterDrawable;
             counterDrawable.updateVisibility = false;
             counterDrawable.shortFormat = true;
@@ -289,9 +279,9 @@ public class ReactionsLayoutInBubble {
                     }
                     this.particles = particles;
                 } else if (visibleReaction.emojicon != null) {
-                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(this.visibleReaction.emojicon);
-                    if (tLRPC$TL_availableReaction != null) {
-                        this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), "webp", tLRPC$TL_availableReaction, 1);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(this.visibleReaction.emojicon);
+                    if (tL_availableReaction != null) {
+                        this.imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), "webp", tL_availableReaction, 1);
                     }
                 } else if (visibleReaction.documentId != 0) {
                     this.animatedEmojiDrawable = new AnimatedEmojiDrawable(getCacheType(), i, this.visibleReaction.documentId);
@@ -318,7 +308,7 @@ public class ReactionsLayoutInBubble {
                     animatedTextDrawable3.setText("", false);
                 }
             }
-            this.countText = Integer.toString(tLRPC$ReactionCount.count);
+            this.countText = Integer.toString(reactionCount.count);
             this.counterDrawable.setCount(this.count, false);
             this.counterDrawable.setType(2);
             this.counterDrawable.gravity = 3;
@@ -421,11 +411,11 @@ public class ReactionsLayoutInBubble {
                         }
                         return;
                     }
-                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(this.visibleReaction.emojicon);
-                    if (tLRPC$TL_availableReaction == null || tLRPC$TL_availableReaction.activate_animation == null) {
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(this.visibleReaction.emojicon);
+                    if (tL_availableReaction == null || tL_availableReaction.activate_animation == null) {
                         return;
                     }
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f);
                     ImageReceiver imageReceiver = new ImageReceiver(view3);
                     this.previewImageReceiver = imageReceiver;
                     imageReceiver.setLayerNum(7);
@@ -435,7 +425,7 @@ public class ReactionsLayoutInBubble {
                     this.previewImageReceiver.setAllowStartAnimation(true);
                     this.previewImageReceiver.setAutoRepeat(1);
                     this.previewImageReceiver.setAllowDecodeSingleFrame(true);
-                    this.previewImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.activate_animation), "140_140", svgThumb, null, tLRPC$TL_availableReaction, 1);
+                    this.previewImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.activate_animation), "140_140", svgThumb, null, tL_availableReaction, 1);
                 }
             }
         }
@@ -624,8 +614,8 @@ public class ReactionsLayoutInBubble {
     }
 
     public class ReactionLayoutButton extends ReactionButton {
-        public ReactionLayoutButton(ReactionButton reactionButton, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, boolean z2) {
-            super(reactionButton, ReactionsLayoutInBubble.this.currentAccount, ReactionsLayoutInBubble.this.parentView, tLRPC$ReactionCount, z, z2, ReactionsLayoutInBubble.this.resourcesProvider);
+        public ReactionLayoutButton(ReactionButton reactionButton, TLRPC.ReactionCount reactionCount, boolean z, boolean z2) {
+            super(reactionButton, ReactionsLayoutInBubble.this.currentAccount, ReactionsLayoutInBubble.this.parentView, reactionCount, z, z2, ReactionsLayoutInBubble.this.resourcesProvider);
         }
 
         @Override
@@ -697,25 +687,25 @@ public class ReactionsLayoutInBubble {
             return visibleReaction;
         }
 
-        public static VisibleReaction fromEmojicon(TLRPC$TL_availableReaction tLRPC$TL_availableReaction) {
+        public static VisibleReaction fromEmojicon(TLRPC.TL_availableReaction tL_availableReaction) {
             VisibleReaction visibleReaction = new VisibleReaction();
-            visibleReaction.emojicon = tLRPC$TL_availableReaction.reaction;
+            visibleReaction.emojicon = tL_availableReaction.reaction;
             visibleReaction.hash = r3.hashCode();
             return visibleReaction;
         }
 
-        public static VisibleReaction fromTL(TLRPC$Reaction tLRPC$Reaction) {
+        public static VisibleReaction fromTL(TLRPC.Reaction reaction) {
             long j;
             VisibleReaction visibleReaction = new VisibleReaction();
-            if (tLRPC$Reaction instanceof TLRPC$TL_reactionPaid) {
+            if (reaction instanceof TLRPC.TL_reactionPaid) {
                 visibleReaction.isStar = true;
             } else {
-                if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
-                    String str = ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon;
+                if (reaction instanceof TLRPC.TL_reactionEmoji) {
+                    String str = ((TLRPC.TL_reactionEmoji) reaction).emoticon;
                     visibleReaction.emojicon = str;
                     j = str.hashCode();
-                } else if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
-                    j = ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id;
+                } else if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
+                    j = ((TLRPC.TL_reactionCustomEmoji) reaction).document_id;
                     visibleReaction.documentId = j;
                 }
                 visibleReaction.hash = j;
@@ -723,16 +713,16 @@ public class ReactionsLayoutInBubble {
             return visibleReaction;
         }
 
-        public static VisibleReaction fromTL(TLRPC$TL_availableEffect tLRPC$TL_availableEffect) {
+        public static VisibleReaction fromTL(TLRPC.TL_availableEffect tL_availableEffect) {
             VisibleReaction visibleReaction = new VisibleReaction();
             visibleReaction.isEffect = true;
-            long j = tLRPC$TL_availableEffect.id;
+            long j = tL_availableEffect.id;
             visibleReaction.effectId = j;
-            visibleReaction.sticker = tLRPC$TL_availableEffect.effect_animation_id == 0;
-            visibleReaction.documentId = tLRPC$TL_availableEffect.effect_sticker_id;
+            visibleReaction.sticker = tL_availableEffect.effect_animation_id == 0;
+            visibleReaction.documentId = tL_availableEffect.effect_sticker_id;
             visibleReaction.hash = j;
-            visibleReaction.premium = tLRPC$TL_availableEffect.premium_required;
-            visibleReaction.emojicon = tLRPC$TL_availableEffect.emoticon;
+            visibleReaction.premium = tL_availableEffect.premium_required;
+            visibleReaction.emojicon = tL_availableEffect.emoticon;
             return visibleReaction;
         }
 
@@ -757,8 +747,8 @@ public class ReactionsLayoutInBubble {
             return Objects.hash(this.emojicon, Long.valueOf(this.documentId));
         }
 
-        public boolean isSame(TLRPC$Reaction tLRPC$Reaction) {
-            return tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji ? TextUtils.equals(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon, this.emojicon) : (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == this.documentId;
+        public boolean isSame(TLRPC.Reaction reaction) {
+            return reaction instanceof TLRPC.TL_reactionEmoji ? TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, this.emojicon) : (reaction instanceof TLRPC.TL_reactionCustomEmoji) && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == this.documentId;
         }
 
         public CharSequence toCharSequence(int i) {
@@ -782,7 +772,7 @@ public class ReactionsLayoutInBubble {
         }
 
         public String toString() {
-            TLRPC$Document findDocument;
+            TLRPC.Document findDocument;
             if (!TextUtils.isEmpty(this.emojicon)) {
                 return this.emojicon;
             }
@@ -793,18 +783,18 @@ public class ReactionsLayoutInBubble {
             return "VisibleReaction{" + this.documentId + ", " + this.emojicon + "}";
         }
 
-        public TLRPC$Reaction toTLReaction() {
+        public TLRPC.Reaction toTLReaction() {
             if (this.isStar) {
-                return new TLRPC$TL_reactionPaid();
+                return new TLRPC.TL_reactionPaid();
             }
             if (this.emojicon != null) {
-                TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji = new TLRPC$TL_reactionEmoji();
-                tLRPC$TL_reactionEmoji.emoticon = this.emojicon;
-                return tLRPC$TL_reactionEmoji;
+                TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
+                tL_reactionEmoji.emoticon = this.emojicon;
+                return tL_reactionEmoji;
             }
-            TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
-            tLRPC$TL_reactionCustomEmoji.document_id = this.documentId;
-            return tLRPC$TL_reactionCustomEmoji;
+            TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
+            tL_reactionCustomEmoji.document_id = this.documentId;
+            return tL_reactionCustomEmoji;
         }
     }
 
@@ -814,8 +804,8 @@ public class ReactionsLayoutInBubble {
         this.touchSlop = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
     }
 
-    public static boolean equalsTLReaction(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2) {
-        return ((tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) && (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji)) ? TextUtils.equals(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon, ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon) : (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id;
+    public static boolean equalsTLReaction(TLRPC.Reaction reaction, TLRPC.Reaction reaction2) {
+        return ((reaction instanceof TLRPC.TL_reactionEmoji) && (reaction2 instanceof TLRPC.TL_reactionEmoji)) ? TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, ((TLRPC.TL_reactionEmoji) reaction2).emoticon) : (reaction instanceof TLRPC.TL_reactionCustomEmoji) && (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id;
     }
 
     private boolean equalsUsersList(ArrayList arrayList, ArrayList arrayList2) {
@@ -872,11 +862,11 @@ public class ReactionsLayoutInBubble {
     }
 
     private static long getPeerId(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$User) {
-            return ((TLRPC$User) tLObject).id;
+        if (tLObject instanceof TLRPC.User) {
+            return ((TLRPC.User) tLObject).id;
         }
-        if (tLObject instanceof TLRPC$Chat) {
-            return ((TLRPC$Chat) tLObject).id;
+        if (tLObject instanceof TLRPC.Chat) {
+            return ((TLRPC.Chat) tLObject).id;
         }
         return 0L;
     }
@@ -901,12 +891,12 @@ public class ReactionsLayoutInBubble {
         return (int) (getPeerId(tLObject) - getPeerId(tLObject2));
     }
 
-    public static boolean reactionsEqual(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2) {
-        if (!(tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji)) {
-            return (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id;
+    public static boolean reactionsEqual(TLRPC.Reaction reaction, TLRPC.Reaction reaction2) {
+        if (!(reaction instanceof TLRPC.TL_reactionEmoji)) {
+            return (reaction instanceof TLRPC.TL_reactionCustomEmoji) && (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id;
         }
-        if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji) {
-            return TextUtils.equals(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon, ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon);
+        if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
+            return TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, ((TLRPC.TL_reactionEmoji) reaction2).emoticon);
         }
         return false;
     }
@@ -1018,9 +1008,9 @@ public class ReactionsLayoutInBubble {
         int i2 = animationUniq;
         animationUniq = i2 + 1;
         imageReceiver.setUniqKeyPrefix(Integer.toString(i2));
-        TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(visibleReaction.emojicon);
-        if (tLRPC$TL_availableReaction != null) {
-            imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_nolimit", null, "tgs", tLRPC$TL_availableReaction, 1);
+        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(visibleReaction.emojicon);
+        if (tL_availableReaction != null) {
+            imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction, 1);
         }
         imageReceiver.setAutoRepeat(0);
         imageReceiver.onAttachedToWindow();
@@ -1029,9 +1019,9 @@ public class ReactionsLayoutInBubble {
 
     public boolean checkTouchEvent(MotionEvent motionEvent) {
         MessageObject messageObject;
-        TLRPC$Message tLRPC$Message;
+        TLRPC.Message message;
         int i = 0;
-        if (this.isEmpty || this.isSmall || (messageObject = this.messageObject) == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.reactions == null) {
+        if (this.isEmpty || this.isSmall || (messageObject = this.messageObject) == null || (message = messageObject.messageOwner) == null || message.reactions == null) {
             return false;
         }
         float x = motionEvent.getX() - this.x;

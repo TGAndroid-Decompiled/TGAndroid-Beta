@@ -67,38 +67,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$ChannelParticipant;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$ChatParticipant;
-import org.telegram.tgnet.TLRPC$ChatParticipants;
-import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$InputPrivacyRule;
-import org.telegram.tgnet.TLRPC$InputUser;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$PrivacyRule;
-import org.telegram.tgnet.TLRPC$TL_channels_channelParticipants;
-import org.telegram.tgnet.TLRPC$TL_chatParticipant;
-import org.telegram.tgnet.TLRPC$TL_chatParticipants;
-import org.telegram.tgnet.TLRPC$TL_contact;
-import org.telegram.tgnet.TLRPC$TL_editCloseFriends;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
-import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
-import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowAll;
-import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowCloseFriends;
-import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowContacts;
-import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowUsers;
-import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueDisallowUsers;
-import org.telegram.tgnet.TLRPC$TL_inputUserEmpty;
-import org.telegram.tgnet.TLRPC$TL_privacyValueAllowAll;
-import org.telegram.tgnet.TLRPC$TL_privacyValueAllowCloseFriends;
-import org.telegram.tgnet.TLRPC$TL_privacyValueAllowContacts;
-import org.telegram.tgnet.TLRPC$TL_privacyValueAllowUsers;
-import org.telegram.tgnet.TLRPC$TL_privacyValueDisallowUsers;
-import org.telegram.tgnet.TLRPC$TL_username;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
@@ -151,7 +120,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     private final ArrayList selectedContacts;
     private final HashMap selectedContactsByGroup;
     private int selectedContactsCount;
-    public TLRPC$InputPeer selectedPeer;
+    public TLRPC.InputPeer selectedPeer;
     private int selectedType;
     private boolean sendAsMessageEnabled;
     private int shiftDp;
@@ -168,14 +137,14 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         private final RecyclerListView listView;
         private final Utilities.Callback onPeerSelected;
         private final List peers;
-        private final TLRPC$InputPeer selectedPeer;
+        private final TLRPC.InputPeer selectedPeer;
 
         private class Adapter extends RecyclerListView.SelectionAdapter {
             private Adapter() {
             }
 
-            private long did(TLRPC$InputPeer tLRPC$InputPeer) {
-                return tLRPC$InputPeer instanceof TLRPC$TL_inputPeerSelf ? UserConfig.getInstance(ChoosePeerSheet.this.currentAccount).getClientUserId() : DialogObject.getPeerDialogId(tLRPC$InputPeer);
+            private long did(TLRPC.InputPeer inputPeer) {
+                return inputPeer instanceof TLRPC.TL_inputPeerSelf ? UserConfig.getInstance(ChoosePeerSheet.this.currentAccount).getClientUserId() : DialogObject.getPeerDialogId(inputPeer);
             }
 
             @Override
@@ -214,12 +183,12 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public ChoosePeerSheet(Context context, final int i, TLRPC$InputPeer tLRPC$InputPeer, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
+        public ChoosePeerSheet(Context context, final int i, TLRPC.InputPeer inputPeer, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
             super(context, false, resourcesProvider);
             fixNavigationBar();
             this.currentAccount = i;
             this.peers = MessagesController.getInstance(i).getStoriesController().sendAs;
-            this.selectedPeer = tLRPC$InputPeer;
+            this.selectedPeer = inputPeer;
             this.onPeerSelected = callback;
             this.containerView = new FrameLayout(context) {
                 private final Paint backgroundPaint = new Paint(1);
@@ -280,28 +249,28 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.containerView.addView(textView, LayoutHelper.createFrame(-1, -2.0f));
         }
 
-        public static void lambda$new$0(AlertDialog alertDialog, Utilities.Callback callback, TLRPC$InputPeer tLRPC$InputPeer, Boolean bool) {
+        public static void lambda$new$0(AlertDialog alertDialog, Utilities.Callback callback, TLRPC.InputPeer inputPeer, Boolean bool) {
             alertDialog.dismiss();
             if (!bool.booleanValue() || callback == null) {
                 return;
             }
-            callback.run(tLRPC$InputPeer);
+            callback.run(inputPeer);
         }
 
         public void lambda$new$1(final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider, int i, View view, int i2) {
             if (i2 <= 1) {
                 return;
             }
-            final TLRPC$InputPeer tLRPC$InputPeer = (TLRPC$InputPeer) this.peers.get(i2 - 2);
-            if (tLRPC$InputPeer.channel_id == 0 && tLRPC$InputPeer.chat_id == 0) {
-                callback.run(tLRPC$InputPeer);
+            final TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.peers.get(i2 - 2);
+            if (inputPeer.channel_id == 0 && inputPeer.chat_id == 0) {
+                callback.run(inputPeer);
             } else {
                 final AlertDialog alertDialog = new AlertDialog(getContext(), 3, resourcesProvider);
                 alertDialog.showDelayed(200L);
-                MessagesController.getInstance(i).getStoriesController().canSendStoryFor(DialogObject.getPeerDialogId(tLRPC$InputPeer), new Consumer() {
+                MessagesController.getInstance(i).getStoriesController().canSendStoryFor(DialogObject.getPeerDialogId(inputPeer), new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        StoryPrivacyBottomSheet.ChoosePeerSheet.lambda$new$0(AlertDialog.this, callback, tLRPC$InputPeer, (Boolean) obj);
+                        StoryPrivacyBottomSheet.ChoosePeerSheet.lambda$new$0(AlertDialog.this, callback, inputPeer, (Boolean) obj);
                     }
                 }, true, resourcesProvider);
             }
@@ -381,7 +350,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     public interface DoneCallback {
-        void done(StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable);
+        void done(StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC.InputPeer inputPeer, Runnable runnable);
     }
 
     public static class HeaderCell extends FrameLayout {
@@ -486,7 +455,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     public static class ItemInner extends AdapterWithDiffUtils.Item {
-        public TLRPC$Chat chat;
+        public TLRPC.Chat chat;
         public boolean checked;
         public Drawable drawable;
         public boolean halfChecked;
@@ -499,7 +468,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         public CharSequence text2;
         public int type;
         public int typeCount;
-        public TLRPC$User user;
+        public TLRPC.User user;
 
         private ItemInner(int i, boolean z) {
             super(i, z);
@@ -513,9 +482,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             return itemInner;
         }
 
-        public static ItemInner asChat(TLRPC$Chat tLRPC$Chat, boolean z) {
+        public static ItemInner asChat(TLRPC.Chat chat, boolean z) {
             ItemInner itemInner = new ItemInner(3, true);
-            itemInner.chat = tLRPC$Chat;
+            itemInner.chat = chat;
             itemInner.checked = z;
             return itemInner;
         }
@@ -587,9 +556,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             return itemInner;
         }
 
-        public static ItemInner asUser(TLRPC$User tLRPC$User, boolean z, boolean z2) {
+        public static ItemInner asUser(TLRPC.User user, boolean z, boolean z2) {
             ItemInner itemInner = new ItemInner(3, true);
-            itemInner.user = tLRPC$User;
+            itemInner.user = user;
             itemInner.checked = z;
             itemInner.halfChecked = z2;
             return itemInner;
@@ -756,11 +725,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     if (i4 > 0) {
                         userCell.setType(i4, itemInner2.typeCount, itemInner2.user);
                     } else {
-                        TLRPC$User tLRPC$User = itemInner2.user;
-                        if (tLRPC$User == null) {
-                            TLRPC$Chat tLRPC$Chat = itemInner2.chat;
-                            if (tLRPC$Chat != null) {
-                                userCell.setChat(tLRPC$Chat, StoryPrivacyBottomSheet.this.getParticipantsCount(tLRPC$Chat));
+                        TLRPC.User user = itemInner2.user;
+                        if (user == null) {
+                            TLRPC.Chat chat = itemInner2.chat;
+                            if (chat != null) {
+                                userCell.setChat(chat, StoryPrivacyBottomSheet.this.getParticipantsCount(chat));
                             }
                             if (!itemInner2.checked && !itemInner2.halfChecked) {
                                 z = false;
@@ -771,7 +740,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             userCell.drawArrow = StoryPrivacyBottomSheet.this.canChangePeer;
                             return;
                         }
-                        userCell.setUser(tLRPC$User);
+                        userCell.setUser(user);
                         if (itemInner2.halfChecked && !itemInner2.checked) {
                             f = 0.5f;
                         }
@@ -1159,13 +1128,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
 
                 @Override
-                protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                public void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                 }
 
                 @Override
-                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                     Page.this.listView.invalidate();
@@ -1241,16 +1210,16 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$2(TLRPC$InputPeer tLRPC$InputPeer) {
+        public void lambda$new$2(TLRPC.InputPeer inputPeer) {
             StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-            storyPrivacyBottomSheet.selectedPeer = tLRPC$InputPeer;
+            storyPrivacyBottomSheet.selectedPeer = inputPeer;
             if (storyPrivacyBottomSheet.onSelectedPeer != null) {
                 StoryPrivacyBottomSheet.this.onSelectedPeer.run(StoryPrivacyBottomSheet.this.selectedPeer);
             }
             updateItems(true);
         }
 
-        public void lambda$new$3(long j, TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants) {
+        public void lambda$new$3(long j, TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants) {
             int i;
             long j2;
             AlertDialog alertDialog = this.progressDialog;
@@ -1258,24 +1227,24 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 alertDialog.dismissUnless(350L);
                 this.progressDialog = null;
             }
-            if (tLRPC$TL_channels_channelParticipants == null || tLRPC$TL_channels_channelParticipants.participants.isEmpty()) {
+            if (tL_channels_channelParticipants == null || tL_channels_channelParticipants.participants.isEmpty()) {
                 return;
             }
-            TLRPC$TL_chatParticipants tLRPC$TL_chatParticipants = new TLRPC$TL_chatParticipants();
-            while (i < tLRPC$TL_channels_channelParticipants.participants.size()) {
-                TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLRPC$TL_channels_channelParticipants.participants.get(i);
-                TLRPC$TL_chatParticipant tLRPC$TL_chatParticipant = new TLRPC$TL_chatParticipant();
-                TLRPC$Peer tLRPC$Peer = tLRPC$ChannelParticipant.peer;
-                if (tLRPC$Peer != null) {
-                    j2 = DialogObject.getPeerDialogId(tLRPC$Peer);
+            TLRPC.TL_chatParticipants tL_chatParticipants = new TLRPC.TL_chatParticipants();
+            while (i < tL_channels_channelParticipants.participants.size()) {
+                TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i);
+                TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
+                TLRPC.Peer peer = channelParticipant.peer;
+                if (peer != null) {
+                    j2 = DialogObject.getPeerDialogId(peer);
                     i = j2 < 0 ? i + 1 : 0;
                 } else {
-                    j2 = tLRPC$ChannelParticipant.user_id;
+                    j2 = channelParticipant.user_id;
                 }
-                tLRPC$TL_chatParticipant.user_id = j2;
-                tLRPC$TL_chatParticipants.participants.add(tLRPC$TL_chatParticipant);
+                tL_chatParticipant.user_id = j2;
+                tL_chatParticipants.participants.add(tL_chatParticipant);
             }
-            selectChat(j, tLRPC$TL_chatParticipants);
+            selectChat(j, tL_chatParticipants);
         }
 
         public void lambda$new$4(boolean z, final long j) {
@@ -1283,7 +1252,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).loadChannelParticipants(Long.valueOf(j), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$new$3(j, (TLRPC$TL_channels_channelParticipants) obj);
+                        StoryPrivacyBottomSheet.Page.this.lambda$new$3(j, (TLRPC.TL_channels_channelParticipants) obj);
                     }
                 }, 200);
             } else {
@@ -1291,16 +1260,16 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$5(long j, TLRPC$ChatFull tLRPC$ChatFull) {
-            selectChat(j, tLRPC$ChatFull.participants);
+        public void lambda$new$5(long j, TLRPC.ChatFull chatFull) {
+            selectChat(j, chatFull.participants);
         }
 
-        public void lambda$new$6(TLRPC$Chat tLRPC$Chat, MessagesStorage messagesStorage, final long j) {
-            TLRPC$ChatParticipants tLRPC$ChatParticipants;
-            ArrayList arrayList;
-            final boolean isChannel = ChatObject.isChannel(tLRPC$Chat);
-            final TLRPC$ChatFull loadChatInfoInQueue = messagesStorage.loadChatInfoInQueue(j, isChannel, true, true, 0);
-            if (loadChatInfoInQueue == null || (tLRPC$ChatParticipants = loadChatInfoInQueue.participants) == null || ((arrayList = tLRPC$ChatParticipants.participants) != null && arrayList.size() < loadChatInfoInQueue.participants_count - 1)) {
+        public void lambda$new$6(TLRPC.Chat chat, MessagesStorage messagesStorage, final long j) {
+            TLRPC.ChatParticipants chatParticipants;
+            ArrayList<TLRPC.ChatParticipant> arrayList;
+            final boolean isChannel = ChatObject.isChannel(chat);
+            final TLRPC.ChatFull loadChatInfoInQueue = messagesStorage.loadChatInfoInQueue(j, isChannel, true, true, 0);
+            if (loadChatInfoInQueue == null || (chatParticipants = loadChatInfoInQueue.participants) == null || ((arrayList = chatParticipants.participants) != null && arrayList.size() < loadChatInfoInQueue.participants_count - 1)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -1326,8 +1295,8 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             int i5;
             LongSparseArray longSparseArray;
             Boolean bool;
-            TLRPC$ChatParticipants tLRPC$ChatParticipants;
-            ArrayList arrayList;
+            TLRPC.ChatParticipants chatParticipants;
+            ArrayList<TLRPC.ChatParticipant> arrayList;
             if (i < 0 || i >= this.items.size()) {
                 return;
             }
@@ -1364,7 +1333,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     }
                     StoryPrivacyBottomSheet.this.keepOnMyPage = textCell.isChecked();
                     StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = StoryPrivacyBottomSheet.this;
-                    boolean z2 = storyPrivacyBottomSheet3.selectedPeer instanceof TLRPC$TL_inputPeerChannel;
+                    boolean z2 = storyPrivacyBottomSheet3.selectedPeer instanceof TLRPC.TL_inputPeerChannel;
                     if (storyPrivacyBottomSheet3.keepOnMyPage) {
                         StoryPrivacyBottomSheet storyPrivacyBottomSheet4 = StoryPrivacyBottomSheet.this;
                         of = BulletinFactory.of(storyPrivacyBottomSheet4.container, ((BottomSheet) storyPrivacyBottomSheet4).resourcesProvider);
@@ -1389,7 +1358,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 new ChoosePeerSheet(context, ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, StoryPrivacyBottomSheet.this.selectedPeer, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$new$2((TLRPC$InputPeer) obj);
+                        StoryPrivacyBottomSheet.Page.this.lambda$new$2((TLRPC.InputPeer) obj);
                     }
                 }, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).show();
                 return;
@@ -1437,10 +1406,10 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 StoryPrivacyBottomSheet.this.selectedType = itemInner.type;
                 this.searchField.spansContainer.removeAllSpans(true);
             } else {
-                TLRPC$Chat tLRPC$Chat = itemInner.chat;
-                if (tLRPC$Chat != null) {
-                    final long j = tLRPC$Chat.id;
-                    if (StoryPrivacyBottomSheet.this.getParticipantsCount(tLRPC$Chat) > 200) {
+                TLRPC.Chat chat = itemInner.chat;
+                if (chat != null) {
+                    final long j = chat.id;
+                    if (StoryPrivacyBottomSheet.this.getParticipantsCount(chat) > 200) {
                         try {
                             performHapticFeedback(3, 1);
                         } catch (Throwable unused) {
@@ -1457,9 +1426,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                         this.selectedUsersByGroup.remove(Long.valueOf(j));
                         updateSpans(true);
                     } else {
-                        final TLRPC$Chat chat = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getChat(Long.valueOf(j));
-                        TLRPC$ChatFull chatFull = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getChatFull(j);
-                        if (chatFull == null || (tLRPC$ChatParticipants = chatFull.participants) == null || (arrayList = tLRPC$ChatParticipants.participants) == null || arrayList.isEmpty() || chatFull.participants.participants.size() < chatFull.participants_count - 1) {
+                        final TLRPC.Chat chat2 = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getChat(Long.valueOf(j));
+                        TLRPC.ChatFull chatFull = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getChatFull(j);
+                        if (chatFull == null || (chatParticipants = chatFull.participants) == null || (arrayList = chatParticipants.participants) == null || arrayList.isEmpty() || chatFull.participants.participants.size() < chatFull.participants_count - 1) {
                             AlertDialog alertDialog = this.progressDialog;
                             if (alertDialog != null) {
                                 alertDialog.dismiss();
@@ -1473,7 +1442,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StoryPrivacyBottomSheet.Page.this.lambda$new$6(chat, messagesStorage, j);
+                                    StoryPrivacyBottomSheet.Page.this.lambda$new$6(chat2, messagesStorage, j);
                                 }
                             });
                         } else {
@@ -1532,7 +1501,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.scrollToBottom();
         }
 
-        public void lambda$onButton1Click$10(final MessagesController messagesController, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onButton1Click$10(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1558,11 +1527,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (tLObject != null) {
                 ArrayList contacts = StoryPrivacyBottomSheet.this.getContacts();
                 for (int i = 0; i < contacts.size(); i++) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) contacts.get(i);
-                    if (tLRPC$User != null && (contains = this.selectedUsers.contains(Long.valueOf(tLRPC$User.id))) != tLRPC$User.close_friend) {
-                        tLRPC$User.close_friend = contains;
-                        tLRPC$User.flags2 = contains ? tLRPC$User.flags2 | 4 : tLRPC$User.flags2 & (-5);
-                        messagesController.putUser(tLRPC$User, false);
+                    TLRPC.User user = (TLRPC.User) contacts.get(i);
+                    if (user != null && (contains = this.selectedUsers.contains(Long.valueOf(user.id))) != user.close_friend) {
+                        user.close_friend = contains;
+                        user.flags2 = contains ? user.flags2 | 4 : user.flags2 & (-5);
+                        messagesController.putUser(user, false);
                     }
                 }
             }
@@ -1631,19 +1600,19 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (TextUtils.isEmpty(str)) {
                 return true;
             }
-            if (tLObject instanceof TLRPC$User) {
-                TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
-                String lowerCase = AndroidUtilities.translitSafe(UserObject.getUserName(tLRPC$User)).toLowerCase();
+            if (tLObject instanceof TLRPC.User) {
+                TLRPC.User user = (TLRPC.User) tLObject;
+                String lowerCase = AndroidUtilities.translitSafe(UserObject.getUserName(user)).toLowerCase();
                 if (!lowerCase.startsWith(str)) {
                     if (!lowerCase.contains(" " + str)) {
-                        String lowerCase2 = AndroidUtilities.translitSafe(UserObject.getPublicUsername(tLRPC$User)).toLowerCase();
+                        String lowerCase2 = AndroidUtilities.translitSafe(UserObject.getPublicUsername(user)).toLowerCase();
                         if (!lowerCase2.startsWith(str)) {
                             if (!lowerCase2.contains(" " + str)) {
-                                ArrayList arrayList = tLRPC$User.usernames;
+                                ArrayList<TLRPC.TL_username> arrayList = user.usernames;
                                 if (arrayList != null) {
                                     for (int i = 0; i < arrayList.size(); i++) {
-                                        TLRPC$TL_username tLRPC$TL_username = (TLRPC$TL_username) arrayList.get(i);
-                                        if (tLRPC$TL_username.active && AndroidUtilities.translitSafe(tLRPC$TL_username.username).toLowerCase().startsWith(str)) {
+                                        TLRPC.TL_username tL_username = arrayList.get(i);
+                                        if (tL_username.active && AndroidUtilities.translitSafe(tL_username.username).toLowerCase().startsWith(str)) {
                                             return true;
                                         }
                                     }
@@ -1654,19 +1623,19 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
                 return true;
             }
-            if (tLObject instanceof TLRPC$Chat) {
-                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
-                String lowerCase3 = AndroidUtilities.translitSafe(tLRPC$Chat.title).toLowerCase();
+            if (tLObject instanceof TLRPC.Chat) {
+                TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                String lowerCase3 = AndroidUtilities.translitSafe(chat.title).toLowerCase();
                 if (!lowerCase3.startsWith(str)) {
                     if (!lowerCase3.contains(" " + str)) {
-                        String lowerCase4 = AndroidUtilities.translitSafe(ChatObject.getPublicUsername(tLRPC$Chat)).toLowerCase();
+                        String lowerCase4 = AndroidUtilities.translitSafe(ChatObject.getPublicUsername(chat)).toLowerCase();
                         if (!lowerCase4.startsWith(str)) {
                             if (!lowerCase4.contains(" " + str)) {
-                                ArrayList arrayList2 = tLRPC$Chat.usernames;
+                                ArrayList<TLRPC.TL_username> arrayList2 = chat.usernames;
                                 if (arrayList2 != null) {
                                     for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                                        TLRPC$TL_username tLRPC$TL_username2 = (TLRPC$TL_username) arrayList2.get(i2);
-                                        if (tLRPC$TL_username2.active && AndroidUtilities.translitSafe(tLRPC$TL_username2.username).toLowerCase().startsWith(str)) {
+                                        TLRPC.TL_username tL_username2 = arrayList2.get(i2);
+                                        if (tL_username2.active && AndroidUtilities.translitSafe(tL_username2.username).toLowerCase().startsWith(str)) {
                                             return true;
                                         }
                                     }
@@ -1693,13 +1662,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             int i = this.pageType;
             if (i != 5) {
                 if (i == 1) {
-                    TLRPC$TL_editCloseFriends tLRPC$TL_editCloseFriends = new TLRPC$TL_editCloseFriends();
-                    tLRPC$TL_editCloseFriends.id.addAll(this.selectedUsers);
+                    TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
+                    tL_editCloseFriends.id.addAll(this.selectedUsers);
                     this.button.setLoading(true);
-                    ConnectionsManager.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).sendRequest(tLRPC$TL_editCloseFriends, new RequestDelegate() {
+                    ConnectionsManager.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).sendRequest(tL_editCloseFriends, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$10(messagesController, tLObject, tLRPC$TL_error);
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$10(messagesController, tLObject, tL_error);
                         }
                     });
                     return;
@@ -1810,15 +1779,15 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        private void selectChat(final long j, TLRPC$ChatParticipants tLRPC$ChatParticipants) {
+        private void selectChat(final long j, TLRPC.ChatParticipants chatParticipants) {
             final ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             int i = this.pageType;
             boolean z = i == 1 || i == 2;
-            if (tLRPC$ChatParticipants != null && tLRPC$ChatParticipants.participants != null) {
-                for (int i2 = 0; i2 < tLRPC$ChatParticipants.participants.size(); i2++) {
-                    long j2 = ((TLRPC$ChatParticipant) tLRPC$ChatParticipants.participants.get(i2)).user_id;
-                    TLRPC$User user = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getUser(Long.valueOf(j2));
+            if (chatParticipants != null && chatParticipants.participants != null) {
+                for (int i2 = 0; i2 < chatParticipants.participants.size(); i2++) {
+                    long j2 = chatParticipants.participants.get(i2).user_id;
+                    TLRPC.User user = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getUser(Long.valueOf(j2));
                     if (user != null && !UserObject.isUserSelf(user) && !user.bot && user.id != 777000 && j2 != 0) {
                         if (!z || user.contact) {
                             arrayList.add(Long.valueOf(j2));
@@ -2014,15 +1983,15 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         @Override
         public void didReceivedNotification(int i, int i2, Object... objArr) {
-            TLRPC$ChatFull tLRPC$ChatFull;
+            TLRPC.ChatFull chatFull;
             AlertDialog alertDialog;
-            if (i != NotificationCenter.chatInfoDidLoad || (tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0]) == null || (alertDialog = this.progressDialog) == null || this.waitingForChatId != tLRPC$ChatFull.id) {
+            if (i != NotificationCenter.chatInfoDidLoad || (chatFull = (TLRPC.ChatFull) objArr[0]) == null || (alertDialog = this.progressDialog) == null || this.waitingForChatId != chatFull.id) {
                 return;
             }
             alertDialog.dismissUnless(350L);
             this.progressDialog = null;
             this.waitingForChatId = -1L;
-            selectChat(tLRPC$ChatFull.id, tLRPC$ChatFull.participants);
+            selectChat(chatFull.id, chatFull.participants);
         }
 
         public int getTypeOn(MotionEvent motionEvent) {
@@ -2718,11 +2687,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.selectedInputUsers = new ArrayList();
             this.sendToUsers = new ArrayList();
             this.type = 4;
-            arrayList.add(new TLRPC$TL_inputPrivacyValueAllowAll());
+            arrayList.add(new TLRPC.TL_inputPrivacyValueAllowAll());
         }
 
         public StoryPrivacy(int i, int i2, ArrayList arrayList) {
-            ?? tLRPC$TL_inputPrivacyValueAllowUsers;
+            ?? tL_inputPrivacyValueAllowUsers;
             ArrayList arrayList2 = new ArrayList();
             this.rules = arrayList2;
             this.selectedUserIds = new ArrayList();
@@ -2733,40 +2702,40 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.type = i;
             int i3 = 0;
             if (i == 4) {
-                arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowAll());
+                arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowAll());
                 if (i2 < 0 || arrayList == null || arrayList.isEmpty()) {
                     return;
                 }
-                tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueDisallowUsers();
+                tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
                 while (i3 < arrayList.size()) {
                     Long l = (Long) arrayList.get(i3);
                     long longValue = l.longValue();
                     this.selectedUserIds.add(l);
-                    TLRPC$InputUser inputUser = MessagesController.getInstance(i2).getInputUser(longValue);
-                    if (inputUser != null && !(inputUser instanceof TLRPC$TL_inputUserEmpty)) {
-                        tLRPC$TL_inputPrivacyValueAllowUsers.users.add(inputUser);
+                    TLRPC.InputUser inputUser = MessagesController.getInstance(i2).getInputUser(longValue);
+                    if (inputUser != null && !(inputUser instanceof TLRPC.TL_inputUserEmpty)) {
+                        tL_inputPrivacyValueAllowUsers.users.add(inputUser);
                         this.selectedInputUsers.add(inputUser);
                     }
                     i3++;
                 }
             } else {
                 if (i == 1) {
-                    arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowCloseFriends());
+                    arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowCloseFriends());
                     return;
                 }
                 if (i == 2) {
-                    arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowContacts());
+                    arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowContacts());
                     if (i2 < 0 || arrayList == null || arrayList.isEmpty()) {
                         return;
                     }
-                    tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueDisallowUsers();
+                    tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
                     while (i3 < arrayList.size()) {
                         Long l2 = (Long) arrayList.get(i3);
                         long longValue2 = l2.longValue();
                         this.selectedUserIds.add(l2);
-                        TLRPC$InputUser inputUser2 = MessagesController.getInstance(i2).getInputUser(longValue2);
-                        if (inputUser2 != null && !(inputUser2 instanceof TLRPC$TL_inputUserEmpty)) {
-                            tLRPC$TL_inputPrivacyValueAllowUsers.users.add(inputUser2);
+                        TLRPC.InputUser inputUser2 = MessagesController.getInstance(i2).getInputUser(longValue2);
+                        if (inputUser2 != null && !(inputUser2 instanceof TLRPC.TL_inputUserEmpty)) {
+                            tL_inputPrivacyValueAllowUsers.users.add(inputUser2);
                             this.selectedInputUsers.add(inputUser2);
                         }
                         i3++;
@@ -2782,25 +2751,25 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     if (i2 < 0 || arrayList == null || arrayList.isEmpty()) {
                         return;
                     }
-                    tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueAllowUsers();
+                    tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueAllowUsers();
                     while (i3 < arrayList.size()) {
                         Long l3 = (Long) arrayList.get(i3);
                         long longValue3 = l3.longValue();
                         this.selectedUserIds.add(l3);
-                        TLRPC$InputUser inputUser3 = MessagesController.getInstance(i2).getInputUser(longValue3);
-                        if (inputUser3 != null && !(inputUser3 instanceof TLRPC$TL_inputUserEmpty)) {
-                            tLRPC$TL_inputPrivacyValueAllowUsers.users.add(inputUser3);
+                        TLRPC.InputUser inputUser3 = MessagesController.getInstance(i2).getInputUser(longValue3);
+                        if (inputUser3 != null && !(inputUser3 instanceof TLRPC.TL_inputUserEmpty)) {
+                            tL_inputPrivacyValueAllowUsers.users.add(inputUser3);
                             this.selectedInputUsers.add(inputUser3);
                         }
                         i3++;
                     }
                 }
             }
-            this.rules.add(tLRPC$TL_inputPrivacyValueAllowUsers);
+            this.rules.add(tL_inputPrivacyValueAllowUsers);
         }
 
         public StoryPrivacy(int i, ArrayList arrayList) {
-            ?? tLRPC$TL_inputPrivacyValueDisallowUsers;
+            ?? tL_inputPrivacyValueDisallowUsers;
             ArrayList arrayList2 = new ArrayList();
             this.rules = arrayList2;
             this.selectedUserIds = new ArrayList();
@@ -2808,64 +2777,64 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.selectedInputUsers = new ArrayList();
             this.sendToUsers = new ArrayList();
             int i2 = 0;
-            if (containsRule(arrayList, TLRPC$TL_privacyValueAllowAll.class) != null) {
+            if (containsRule(arrayList, TLRPC.TL_privacyValueAllowAll.class) != null) {
                 this.type = 4;
-                arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowAll());
-                TLRPC$TL_privacyValueDisallowUsers tLRPC$TL_privacyValueDisallowUsers = (TLRPC$TL_privacyValueDisallowUsers) containsRule(arrayList, TLRPC$TL_privacyValueDisallowUsers.class);
-                if (tLRPC$TL_privacyValueDisallowUsers == null) {
+                arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowAll());
+                TLRPC.TL_privacyValueDisallowUsers tL_privacyValueDisallowUsers = (TLRPC.TL_privacyValueDisallowUsers) containsRule(arrayList, TLRPC.TL_privacyValueDisallowUsers.class);
+                if (tL_privacyValueDisallowUsers == null) {
                     return;
                 }
-                tLRPC$TL_inputPrivacyValueDisallowUsers = new TLRPC$TL_inputPrivacyValueDisallowUsers();
+                tL_inputPrivacyValueDisallowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
                 MessagesController messagesController = MessagesController.getInstance(i);
-                while (i2 < tLRPC$TL_privacyValueDisallowUsers.users.size()) {
-                    Long l = (Long) tLRPC$TL_privacyValueDisallowUsers.users.get(i2);
-                    TLRPC$InputUser inputUser = messagesController.getInputUser(l.longValue());
-                    if (!(inputUser instanceof TLRPC$TL_inputUserEmpty)) {
-                        tLRPC$TL_inputPrivacyValueDisallowUsers.users.add(inputUser);
+                while (i2 < tL_privacyValueDisallowUsers.users.size()) {
+                    Long l = tL_privacyValueDisallowUsers.users.get(i2);
+                    TLRPC.InputUser inputUser = messagesController.getInputUser(l.longValue());
+                    if (!(inputUser instanceof TLRPC.TL_inputUserEmpty)) {
+                        tL_inputPrivacyValueDisallowUsers.users.add(inputUser);
                         this.selectedUserIds.add(l);
                         this.selectedInputUsers.add(inputUser);
                     }
                     i2++;
                 }
             } else {
-                if (containsRule(arrayList, TLRPC$TL_privacyValueAllowCloseFriends.class) != null) {
+                if (containsRule(arrayList, TLRPC.TL_privacyValueAllowCloseFriends.class) != null) {
                     this.type = 1;
-                    arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowCloseFriends());
+                    arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowCloseFriends());
                     return;
                 }
-                TLRPC$TL_privacyValueAllowUsers tLRPC$TL_privacyValueAllowUsers = (TLRPC$TL_privacyValueAllowUsers) containsRule(arrayList, TLRPC$TL_privacyValueAllowUsers.class);
-                if (tLRPC$TL_privacyValueAllowUsers != null) {
+                TLRPC.TL_privacyValueAllowUsers tL_privacyValueAllowUsers = (TLRPC.TL_privacyValueAllowUsers) containsRule(arrayList, TLRPC.TL_privacyValueAllowUsers.class);
+                if (tL_privacyValueAllowUsers != null) {
                     this.type = 3;
-                    tLRPC$TL_inputPrivacyValueDisallowUsers = new TLRPC$TL_inputPrivacyValueAllowUsers();
+                    tL_inputPrivacyValueDisallowUsers = new TLRPC.TL_inputPrivacyValueAllowUsers();
                     MessagesController messagesController2 = MessagesController.getInstance(i);
-                    while (i2 < tLRPC$TL_privacyValueAllowUsers.users.size()) {
-                        Long l2 = (Long) tLRPC$TL_privacyValueAllowUsers.users.get(i2);
-                        TLRPC$InputUser inputUser2 = messagesController2.getInputUser(l2.longValue());
-                        if (inputUser2 != null && !(inputUser2 instanceof TLRPC$TL_inputUserEmpty)) {
-                            tLRPC$TL_inputPrivacyValueDisallowUsers.users.add(inputUser2);
+                    while (i2 < tL_privacyValueAllowUsers.users.size()) {
+                        Long l2 = tL_privacyValueAllowUsers.users.get(i2);
+                        TLRPC.InputUser inputUser2 = messagesController2.getInputUser(l2.longValue());
+                        if (inputUser2 != null && !(inputUser2 instanceof TLRPC.TL_inputUserEmpty)) {
+                            tL_inputPrivacyValueDisallowUsers.users.add(inputUser2);
                             this.selectedUserIds.add(l2);
                             this.selectedInputUsers.add(inputUser2);
                         }
                         i2++;
                     }
                 } else {
-                    if (containsRule(arrayList, TLRPC$TL_privacyValueAllowContacts.class) == null) {
+                    if (containsRule(arrayList, TLRPC.TL_privacyValueAllowContacts.class) == null) {
                         this.type = 4;
                         return;
                     }
                     this.type = 2;
-                    arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowContacts());
-                    TLRPC$TL_privacyValueDisallowUsers tLRPC$TL_privacyValueDisallowUsers2 = (TLRPC$TL_privacyValueDisallowUsers) containsRule(arrayList, TLRPC$TL_privacyValueDisallowUsers.class);
-                    if (tLRPC$TL_privacyValueDisallowUsers2 == null) {
+                    arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowContacts());
+                    TLRPC.TL_privacyValueDisallowUsers tL_privacyValueDisallowUsers2 = (TLRPC.TL_privacyValueDisallowUsers) containsRule(arrayList, TLRPC.TL_privacyValueDisallowUsers.class);
+                    if (tL_privacyValueDisallowUsers2 == null) {
                         return;
                     }
-                    tLRPC$TL_inputPrivacyValueDisallowUsers = new TLRPC$TL_inputPrivacyValueDisallowUsers();
+                    tL_inputPrivacyValueDisallowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
                     MessagesController messagesController3 = MessagesController.getInstance(i);
-                    while (i2 < tLRPC$TL_privacyValueDisallowUsers2.users.size()) {
-                        Long l3 = (Long) tLRPC$TL_privacyValueDisallowUsers2.users.get(i2);
-                        TLRPC$InputUser inputUser3 = messagesController3.getInputUser(l3.longValue());
-                        if (!(inputUser3 instanceof TLRPC$TL_inputUserEmpty)) {
-                            tLRPC$TL_inputPrivacyValueDisallowUsers.users.add(inputUser3);
+                    while (i2 < tL_privacyValueDisallowUsers2.users.size()) {
+                        Long l3 = tL_privacyValueDisallowUsers2.users.get(i2);
+                        TLRPC.InputUser inputUser3 = messagesController3.getInputUser(l3.longValue());
+                        if (!(inputUser3 instanceof TLRPC.TL_inputUserEmpty)) {
+                            tL_inputPrivacyValueDisallowUsers.users.add(inputUser3);
                             this.selectedUserIds.add(l3);
                             this.selectedInputUsers.add(inputUser3);
                         }
@@ -2873,11 +2842,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     }
                 }
             }
-            this.rules.add(tLRPC$TL_inputPrivacyValueDisallowUsers);
+            this.rules.add(tL_inputPrivacyValueDisallowUsers);
         }
 
         public StoryPrivacy(int i, ArrayList arrayList, int i2) {
-            ?? tLRPC$TL_inputPrivacyValueAllowUsers;
+            ?? tL_inputPrivacyValueAllowUsers;
             ArrayList arrayList2 = new ArrayList();
             this.rules = arrayList2;
             this.selectedUserIds = new ArrayList();
@@ -2887,37 +2856,37 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.type = i;
             int i3 = 0;
             if (i == 4) {
-                arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowAll());
+                arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowAll());
                 if (arrayList == null || arrayList.isEmpty()) {
                     return;
                 }
-                tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueDisallowUsers();
+                tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
                 while (i3 < arrayList.size()) {
-                    TLRPC$InputUser tLRPC$InputUser = (TLRPC$InputUser) arrayList.get(i3);
-                    if (tLRPC$InputUser != null) {
-                        tLRPC$TL_inputPrivacyValueAllowUsers.users.add(tLRPC$InputUser);
-                        this.selectedUserIds.add(Long.valueOf(tLRPC$InputUser.user_id));
-                        this.selectedInputUsers.add(tLRPC$InputUser);
+                    TLRPC.InputUser inputUser = (TLRPC.InputUser) arrayList.get(i3);
+                    if (inputUser != null) {
+                        tL_inputPrivacyValueAllowUsers.users.add(inputUser);
+                        this.selectedUserIds.add(Long.valueOf(inputUser.user_id));
+                        this.selectedInputUsers.add(inputUser);
                     }
                     i3++;
                 }
             } else {
                 if (i == 1) {
-                    arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowCloseFriends());
+                    arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowCloseFriends());
                     return;
                 }
                 if (i == 2) {
-                    arrayList2.add(new TLRPC$TL_inputPrivacyValueAllowContacts());
+                    arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowContacts());
                     if (arrayList == null || arrayList.isEmpty()) {
                         return;
                     }
-                    tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueDisallowUsers();
+                    tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
                     while (i3 < arrayList.size()) {
-                        TLRPC$InputUser tLRPC$InputUser2 = (TLRPC$InputUser) arrayList.get(i3);
-                        if (tLRPC$InputUser2 != null) {
-                            tLRPC$TL_inputPrivacyValueAllowUsers.users.add(tLRPC$InputUser2);
-                            this.selectedUserIds.add(Long.valueOf(tLRPC$InputUser2.user_id));
-                            this.selectedInputUsers.add(tLRPC$InputUser2);
+                        TLRPC.InputUser inputUser2 = (TLRPC.InputUser) arrayList.get(i3);
+                        if (inputUser2 != null) {
+                            tL_inputPrivacyValueAllowUsers.users.add(inputUser2);
+                            this.selectedUserIds.add(Long.valueOf(inputUser2.user_id));
+                            this.selectedInputUsers.add(inputUser2);
                         }
                         i3++;
                     }
@@ -2927,9 +2896,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             return;
                         }
                         while (i3 < arrayList.size()) {
-                            TLRPC$InputUser tLRPC$InputUser3 = (TLRPC$InputUser) arrayList.get(i3);
-                            if (tLRPC$InputUser3 != null) {
-                                this.sendToUsers.add(Long.valueOf(tLRPC$InputUser3.user_id));
+                            TLRPC.InputUser inputUser3 = (TLRPC.InputUser) arrayList.get(i3);
+                            if (inputUser3 != null) {
+                                this.sendToUsers.add(Long.valueOf(inputUser3.user_id));
                             }
                             i3++;
                         }
@@ -2938,129 +2907,129 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     if (arrayList == null || arrayList.isEmpty()) {
                         return;
                     }
-                    tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueAllowUsers();
+                    tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueAllowUsers();
                     while (i3 < arrayList.size()) {
-                        TLRPC$InputUser tLRPC$InputUser4 = (TLRPC$InputUser) arrayList.get(i3);
-                        if (tLRPC$InputUser4 != null) {
-                            tLRPC$TL_inputPrivacyValueAllowUsers.users.add(tLRPC$InputUser4);
-                            this.selectedUserIds.add(Long.valueOf(tLRPC$InputUser4.user_id));
-                            this.selectedInputUsers.add(tLRPC$InputUser4);
+                        TLRPC.InputUser inputUser4 = (TLRPC.InputUser) arrayList.get(i3);
+                        if (inputUser4 != null) {
+                            tL_inputPrivacyValueAllowUsers.users.add(inputUser4);
+                            this.selectedUserIds.add(Long.valueOf(inputUser4.user_id));
+                            this.selectedInputUsers.add(inputUser4);
                         }
                         i3++;
                     }
                 }
             }
-            this.rules.add(tLRPC$TL_inputPrivacyValueAllowUsers);
+            this.rules.add(tL_inputPrivacyValueAllowUsers);
         }
 
         private Object containsRule(ArrayList arrayList, Class cls) {
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$PrivacyRule tLRPC$PrivacyRule = (TLRPC$PrivacyRule) arrayList.get(i);
-                if (cls.isInstance(tLRPC$PrivacyRule)) {
-                    return tLRPC$PrivacyRule;
+                TLRPC.PrivacyRule privacyRule = (TLRPC.PrivacyRule) arrayList.get(i);
+                if (cls.isInstance(privacyRule)) {
+                    return privacyRule;
                 }
             }
             return null;
         }
 
         public static ArrayList toInput(int i, ArrayList arrayList) {
-            ?? tLRPC$TL_inputPrivacyValueAllowUsers;
-            TLRPC$InputPrivacyRule tLRPC$TL_inputPrivacyValueAllowContacts;
+            ?? tL_inputPrivacyValueAllowUsers;
+            TLRPC.InputPrivacyRule tL_inputPrivacyValueAllowContacts;
             MessagesController messagesController = MessagesController.getInstance(i);
             ArrayList arrayList2 = new ArrayList();
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                TLRPC$PrivacyRule tLRPC$PrivacyRule = (TLRPC$PrivacyRule) arrayList.get(i2);
-                if (tLRPC$PrivacyRule != null) {
-                    if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowAll) {
-                        tLRPC$TL_inputPrivacyValueAllowContacts = new TLRPC$TL_inputPrivacyValueAllowAll();
-                    } else if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowCloseFriends) {
-                        tLRPC$TL_inputPrivacyValueAllowContacts = new TLRPC$TL_inputPrivacyValueAllowCloseFriends();
-                    } else if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowContacts) {
-                        tLRPC$TL_inputPrivacyValueAllowContacts = new TLRPC$TL_inputPrivacyValueAllowContacts();
+                TLRPC.PrivacyRule privacyRule = (TLRPC.PrivacyRule) arrayList.get(i2);
+                if (privacyRule != null) {
+                    if (privacyRule instanceof TLRPC.TL_privacyValueAllowAll) {
+                        tL_inputPrivacyValueAllowContacts = new TLRPC.TL_inputPrivacyValueAllowAll();
+                    } else if (privacyRule instanceof TLRPC.TL_privacyValueAllowCloseFriends) {
+                        tL_inputPrivacyValueAllowContacts = new TLRPC.TL_inputPrivacyValueAllowCloseFriends();
+                    } else if (privacyRule instanceof TLRPC.TL_privacyValueAllowContacts) {
+                        tL_inputPrivacyValueAllowContacts = new TLRPC.TL_inputPrivacyValueAllowContacts();
                     } else {
-                        if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueDisallowUsers) {
-                            TLRPC$TL_privacyValueDisallowUsers tLRPC$TL_privacyValueDisallowUsers = (TLRPC$TL_privacyValueDisallowUsers) tLRPC$PrivacyRule;
-                            tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueDisallowUsers();
-                            for (int i3 = 0; i3 < tLRPC$TL_privacyValueDisallowUsers.users.size(); i3++) {
-                                TLRPC$InputUser inputUser = messagesController.getInputUser(((Long) tLRPC$TL_privacyValueDisallowUsers.users.get(i3)).longValue());
-                                if (!(inputUser instanceof TLRPC$TL_inputUserEmpty)) {
-                                    tLRPC$TL_inputPrivacyValueAllowUsers.users.add(inputUser);
+                        if (privacyRule instanceof TLRPC.TL_privacyValueDisallowUsers) {
+                            TLRPC.TL_privacyValueDisallowUsers tL_privacyValueDisallowUsers = (TLRPC.TL_privacyValueDisallowUsers) privacyRule;
+                            tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
+                            for (int i3 = 0; i3 < tL_privacyValueDisallowUsers.users.size(); i3++) {
+                                TLRPC.InputUser inputUser = messagesController.getInputUser(tL_privacyValueDisallowUsers.users.get(i3).longValue());
+                                if (!(inputUser instanceof TLRPC.TL_inputUserEmpty)) {
+                                    tL_inputPrivacyValueAllowUsers.users.add(inputUser);
                                 }
                             }
-                        } else if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowUsers) {
-                            TLRPC$TL_privacyValueAllowUsers tLRPC$TL_privacyValueAllowUsers = (TLRPC$TL_privacyValueAllowUsers) tLRPC$PrivacyRule;
-                            tLRPC$TL_inputPrivacyValueAllowUsers = new TLRPC$TL_inputPrivacyValueAllowUsers();
-                            for (int i4 = 0; i4 < tLRPC$TL_privacyValueAllowUsers.users.size(); i4++) {
-                                TLRPC$InputUser inputUser2 = messagesController.getInputUser(((Long) tLRPC$TL_privacyValueAllowUsers.users.get(i4)).longValue());
-                                if (!(inputUser2 instanceof TLRPC$TL_inputUserEmpty)) {
-                                    tLRPC$TL_inputPrivacyValueAllowUsers.users.add(inputUser2);
+                        } else if (privacyRule instanceof TLRPC.TL_privacyValueAllowUsers) {
+                            TLRPC.TL_privacyValueAllowUsers tL_privacyValueAllowUsers = (TLRPC.TL_privacyValueAllowUsers) privacyRule;
+                            tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueAllowUsers();
+                            for (int i4 = 0; i4 < tL_privacyValueAllowUsers.users.size(); i4++) {
+                                TLRPC.InputUser inputUser2 = messagesController.getInputUser(tL_privacyValueAllowUsers.users.get(i4).longValue());
+                                if (!(inputUser2 instanceof TLRPC.TL_inputUserEmpty)) {
+                                    tL_inputPrivacyValueAllowUsers.users.add(inputUser2);
                                 }
                             }
                         }
-                        arrayList2.add(tLRPC$TL_inputPrivacyValueAllowUsers);
+                        arrayList2.add(tL_inputPrivacyValueAllowUsers);
                     }
-                    arrayList2.add(tLRPC$TL_inputPrivacyValueAllowContacts);
+                    arrayList2.add(tL_inputPrivacyValueAllowContacts);
                 }
             }
             return arrayList2;
         }
 
         public static ArrayList toOutput(ArrayList arrayList) {
-            ?? tLRPC$TL_privacyValueAllowUsers;
-            TLRPC$PrivacyRule tLRPC$TL_privacyValueAllowContacts;
+            ?? tL_privacyValueAllowUsers;
+            TLRPC.PrivacyRule tL_privacyValueAllowContacts;
             ArrayList arrayList2 = new ArrayList();
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$InputPrivacyRule tLRPC$InputPrivacyRule = (TLRPC$InputPrivacyRule) arrayList.get(i);
-                if (tLRPC$InputPrivacyRule != null) {
-                    if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowAll) {
-                        tLRPC$TL_privacyValueAllowContacts = new TLRPC$TL_privacyValueAllowAll();
-                    } else if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowCloseFriends) {
-                        tLRPC$TL_privacyValueAllowContacts = new TLRPC$TL_privacyValueAllowCloseFriends();
-                    } else if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowContacts) {
-                        tLRPC$TL_privacyValueAllowContacts = new TLRPC$TL_privacyValueAllowContacts();
+                TLRPC.InputPrivacyRule inputPrivacyRule = (TLRPC.InputPrivacyRule) arrayList.get(i);
+                if (inputPrivacyRule != null) {
+                    if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowAll) {
+                        tL_privacyValueAllowContacts = new TLRPC.TL_privacyValueAllowAll();
+                    } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowCloseFriends) {
+                        tL_privacyValueAllowContacts = new TLRPC.TL_privacyValueAllowCloseFriends();
+                    } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowContacts) {
+                        tL_privacyValueAllowContacts = new TLRPC.TL_privacyValueAllowContacts();
                     } else {
-                        if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueDisallowUsers) {
-                            TLRPC$TL_inputPrivacyValueDisallowUsers tLRPC$TL_inputPrivacyValueDisallowUsers = (TLRPC$TL_inputPrivacyValueDisallowUsers) tLRPC$InputPrivacyRule;
-                            tLRPC$TL_privacyValueAllowUsers = new TLRPC$TL_privacyValueDisallowUsers();
-                            for (int i2 = 0; i2 < tLRPC$TL_inputPrivacyValueDisallowUsers.users.size(); i2++) {
-                                tLRPC$TL_privacyValueAllowUsers.users.add(Long.valueOf(((TLRPC$InputUser) tLRPC$TL_inputPrivacyValueDisallowUsers.users.get(i2)).user_id));
+                        if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) {
+                            TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers = (TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule;
+                            tL_privacyValueAllowUsers = new TLRPC.TL_privacyValueDisallowUsers();
+                            for (int i2 = 0; i2 < tL_inputPrivacyValueDisallowUsers.users.size(); i2++) {
+                                tL_privacyValueAllowUsers.users.add(Long.valueOf(tL_inputPrivacyValueDisallowUsers.users.get(i2).user_id));
                             }
-                        } else if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowUsers) {
-                            TLRPC$TL_inputPrivacyValueAllowUsers tLRPC$TL_inputPrivacyValueAllowUsers = (TLRPC$TL_inputPrivacyValueAllowUsers) tLRPC$InputPrivacyRule;
-                            tLRPC$TL_privacyValueAllowUsers = new TLRPC$TL_privacyValueAllowUsers();
-                            for (int i3 = 0; i3 < tLRPC$TL_inputPrivacyValueAllowUsers.users.size(); i3++) {
-                                tLRPC$TL_privacyValueAllowUsers.users.add(Long.valueOf(((TLRPC$InputUser) tLRPC$TL_inputPrivacyValueAllowUsers.users.get(i3)).user_id));
+                        } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowUsers) {
+                            TLRPC.TL_inputPrivacyValueAllowUsers tL_inputPrivacyValueAllowUsers = (TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule;
+                            tL_privacyValueAllowUsers = new TLRPC.TL_privacyValueAllowUsers();
+                            for (int i3 = 0; i3 < tL_inputPrivacyValueAllowUsers.users.size(); i3++) {
+                                tL_privacyValueAllowUsers.users.add(Long.valueOf(tL_inputPrivacyValueAllowUsers.users.get(i3).user_id));
                             }
                         }
-                        arrayList2.add(tLRPC$TL_privacyValueAllowUsers);
+                        arrayList2.add(tL_privacyValueAllowUsers);
                     }
-                    arrayList2.add(tLRPC$TL_privacyValueAllowContacts);
+                    arrayList2.add(tL_privacyValueAllowContacts);
                 }
             }
             return arrayList2;
         }
 
-        public boolean containsUser(TLRPC$User tLRPC$User) {
-            if (tLRPC$User == null) {
+        public boolean containsUser(TLRPC.User user) {
+            if (user == null) {
                 return false;
             }
             int i = this.type;
             if (i == 4) {
-                return !this.selectedUserIds.contains(Long.valueOf(tLRPC$User.id));
+                return !this.selectedUserIds.contains(Long.valueOf(user.id));
             }
             if (i == 2) {
-                return !this.selectedUserIds.contains(Long.valueOf(tLRPC$User.id)) && tLRPC$User.contact;
+                return !this.selectedUserIds.contains(Long.valueOf(user.id)) && user.contact;
             }
             if (i == 1) {
-                return tLRPC$User.close_friend;
+                return user.close_friend;
             }
             if (i == 3) {
-                if (this.selectedUserIds.contains(Long.valueOf(tLRPC$User.id))) {
+                if (this.selectedUserIds.contains(Long.valueOf(user.id))) {
                     return true;
                 }
                 Iterator it = this.selectedUserIdsByGroup.values().iterator();
                 while (it.hasNext()) {
-                    if (((ArrayList) it.next()).contains(Long.valueOf(tLRPC$User.id))) {
+                    if (((ArrayList) it.next()).contains(Long.valueOf(user.id))) {
                         return true;
                     }
                 }
@@ -3082,7 +3051,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public String toString() {
             int size;
-            TLRPC$InputPrivacyRule tLRPC$InputPrivacyRule;
+            TLRPC.InputPrivacyRule inputPrivacyRule;
             int size2;
             int size3;
             if (!this.sendToUsers.isEmpty()) {
@@ -3091,60 +3060,60 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (this.rules.isEmpty()) {
                 return LocaleController.getString(R.string.StoryPrivacyNone);
             }
-            TLRPC$InputPrivacyRule tLRPC$InputPrivacyRule2 = (TLRPC$InputPrivacyRule) this.rules.get(0);
+            TLRPC.InputPrivacyRule inputPrivacyRule2 = (TLRPC.InputPrivacyRule) this.rules.get(0);
             int i = this.type;
             if (i == 4) {
-                tLRPC$InputPrivacyRule = this.rules.size() >= 2 ? (TLRPC$InputPrivacyRule) this.rules.get(1) : null;
-                return (!(tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueDisallowUsers) || (size3 = ((TLRPC$TL_inputPrivacyValueDisallowUsers) tLRPC$InputPrivacyRule).users.size()) <= 0) ? LocaleController.getString(R.string.StoryPrivacyEveryone) : LocaleController.formatPluralString("StoryPrivacyEveryoneExclude", size3, new Object[0]);
+                inputPrivacyRule = this.rules.size() >= 2 ? (TLRPC.InputPrivacyRule) this.rules.get(1) : null;
+                return (!(inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) || (size3 = ((TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule).users.size()) <= 0) ? LocaleController.getString(R.string.StoryPrivacyEveryone) : LocaleController.formatPluralString("StoryPrivacyEveryoneExclude", size3, new Object[0]);
             }
             if (i == 1) {
                 return LocaleController.getString(R.string.StoryPrivacyCloseFriends);
             }
-            if (i == 3 && (tLRPC$InputPrivacyRule2 instanceof TLRPC$TL_inputPrivacyValueAllowUsers)) {
-                return LocaleController.formatPluralString("StoryPrivacyContacts", ((TLRPC$TL_inputPrivacyValueAllowUsers) tLRPC$InputPrivacyRule2).users.size(), new Object[0]);
+            if (i == 3 && (inputPrivacyRule2 instanceof TLRPC.TL_inputPrivacyValueAllowUsers)) {
+                return LocaleController.formatPluralString("StoryPrivacyContacts", ((TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule2).users.size(), new Object[0]);
             }
             if (i == 2) {
-                tLRPC$InputPrivacyRule = this.rules.size() >= 2 ? (TLRPC$InputPrivacyRule) this.rules.get(1) : null;
-                if ((tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueDisallowUsers) && (size2 = ((TLRPC$TL_inputPrivacyValueDisallowUsers) tLRPC$InputPrivacyRule).users.size()) > 0) {
+                inputPrivacyRule = this.rules.size() >= 2 ? (TLRPC.InputPrivacyRule) this.rules.get(1) : null;
+                if ((inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) && (size2 = ((TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule).users.size()) > 0) {
                     return LocaleController.formatPluralString("StoryPrivacyContactsExclude", size2, new Object[0]);
                 }
                 return LocaleController.getString(R.string.StoryPrivacyAllContacts);
             }
-            if (i == 0 && (tLRPC$InputPrivacyRule2 instanceof TLRPC$TL_inputPrivacyValueAllowUsers) && (size = ((TLRPC$TL_inputPrivacyValueAllowUsers) tLRPC$InputPrivacyRule2).users.size()) > 0) {
+            if (i == 0 && (inputPrivacyRule2 instanceof TLRPC.TL_inputPrivacyValueAllowUsers) && (size = ((TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule2).users.size()) > 0) {
                 return LocaleController.formatPluralString("StoryPrivacyContacts", size, new Object[0]);
             }
             return LocaleController.getString(R.string.StoryPrivacyNone);
         }
 
         public ArrayList toValue() {
-            ?? tLRPC$TL_privacyValueAllowUsers;
-            TLRPC$PrivacyRule tLRPC$TL_privacyValueAllowContacts;
+            ?? tL_privacyValueAllowUsers;
+            TLRPC.PrivacyRule tL_privacyValueAllowContacts;
             ArrayList arrayList = new ArrayList();
             for (int i = 0; i < this.rules.size(); i++) {
-                TLRPC$InputPrivacyRule tLRPC$InputPrivacyRule = (TLRPC$InputPrivacyRule) this.rules.get(i);
-                if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowAll) {
-                    tLRPC$TL_privacyValueAllowContacts = new TLRPC$TL_privacyValueAllowAll();
-                } else if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowCloseFriends) {
-                    tLRPC$TL_privacyValueAllowContacts = new TLRPC$TL_privacyValueAllowCloseFriends();
-                } else if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowContacts) {
-                    tLRPC$TL_privacyValueAllowContacts = new TLRPC$TL_privacyValueAllowContacts();
+                TLRPC.InputPrivacyRule inputPrivacyRule = (TLRPC.InputPrivacyRule) this.rules.get(i);
+                if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowAll) {
+                    tL_privacyValueAllowContacts = new TLRPC.TL_privacyValueAllowAll();
+                } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowCloseFriends) {
+                    tL_privacyValueAllowContacts = new TLRPC.TL_privacyValueAllowCloseFriends();
+                } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowContacts) {
+                    tL_privacyValueAllowContacts = new TLRPC.TL_privacyValueAllowContacts();
                 } else {
-                    if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueDisallowUsers) {
-                        TLRPC$TL_inputPrivacyValueDisallowUsers tLRPC$TL_inputPrivacyValueDisallowUsers = (TLRPC$TL_inputPrivacyValueDisallowUsers) tLRPC$InputPrivacyRule;
-                        tLRPC$TL_privacyValueAllowUsers = new TLRPC$TL_privacyValueDisallowUsers();
-                        for (int i2 = 0; i2 < tLRPC$TL_inputPrivacyValueDisallowUsers.users.size(); i2++) {
-                            tLRPC$TL_privacyValueAllowUsers.users.add(Long.valueOf(((TLRPC$InputUser) tLRPC$TL_inputPrivacyValueDisallowUsers.users.get(i2)).user_id));
+                    if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) {
+                        TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers = (TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule;
+                        tL_privacyValueAllowUsers = new TLRPC.TL_privacyValueDisallowUsers();
+                        for (int i2 = 0; i2 < tL_inputPrivacyValueDisallowUsers.users.size(); i2++) {
+                            tL_privacyValueAllowUsers.users.add(Long.valueOf(tL_inputPrivacyValueDisallowUsers.users.get(i2).user_id));
                         }
-                    } else if (tLRPC$InputPrivacyRule instanceof TLRPC$TL_inputPrivacyValueAllowUsers) {
-                        TLRPC$TL_inputPrivacyValueAllowUsers tLRPC$TL_inputPrivacyValueAllowUsers = (TLRPC$TL_inputPrivacyValueAllowUsers) tLRPC$InputPrivacyRule;
-                        tLRPC$TL_privacyValueAllowUsers = new TLRPC$TL_privacyValueAllowUsers();
-                        for (int i3 = 0; i3 < tLRPC$TL_inputPrivacyValueAllowUsers.users.size(); i3++) {
-                            tLRPC$TL_privacyValueAllowUsers.users.add(Long.valueOf(((TLRPC$InputUser) tLRPC$TL_inputPrivacyValueAllowUsers.users.get(i3)).user_id));
+                    } else if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowUsers) {
+                        TLRPC.TL_inputPrivacyValueAllowUsers tL_inputPrivacyValueAllowUsers = (TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule;
+                        tL_privacyValueAllowUsers = new TLRPC.TL_privacyValueAllowUsers();
+                        for (int i3 = 0; i3 < tL_inputPrivacyValueAllowUsers.users.size(); i3++) {
+                            tL_privacyValueAllowUsers.users.add(Long.valueOf(tL_inputPrivacyValueAllowUsers.users.get(i3).user_id));
                         }
                     }
-                    arrayList.add(tLRPC$TL_privacyValueAllowUsers);
+                    arrayList.add(tL_privacyValueAllowUsers);
                 }
-                arrayList.add(tLRPC$TL_privacyValueAllowContacts);
+                arrayList.add(tL_privacyValueAllowContacts);
             }
             return arrayList;
         }
@@ -3335,14 +3304,14 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
 
         public void set(Object obj) {
-            if (obj instanceof TLRPC$User) {
+            if (obj instanceof TLRPC.User) {
                 this.titleTextView.setTypeface(AndroidUtilities.bold());
                 this.titleTextView.setTranslationX(0.0f);
-                setUser((TLRPC$User) obj);
-            } else if (obj instanceof TLRPC$Chat) {
+                setUser((TLRPC.User) obj);
+            } else if (obj instanceof TLRPC.Chat) {
                 this.titleTextView.setTypeface(AndroidUtilities.bold());
                 this.titleTextView.setTranslationX(0.0f);
-                setChat((TLRPC$Chat) obj, 0);
+                setChat((TLRPC.Chat) obj, 0);
             } else if (obj instanceof String) {
                 this.titleTextView.setTypeface(null);
                 this.titleTextView.setTranslationX((-AndroidUtilities.dp(52.0f)) * (LocaleController.isRTL ? -1 : 1));
@@ -3350,41 +3319,41 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void setChat(TLRPC$Chat tLRPC$Chat, int i) {
+        public void setChat(TLRPC.Chat chat, int i) {
             int i2;
             int i3;
             String formatPluralStringComma;
-            this.dialogId = tLRPC$Chat == null ? 0L : -tLRPC$Chat.id;
-            this.avatarDrawable.setInfo(tLRPC$Chat);
-            this.imageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(tLRPC$Chat) ? 12.0f : 20.0f));
-            this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
-            this.titleTextView.setText(Emoji.replaceEmoji(tLRPC$Chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
+            this.dialogId = chat == null ? 0L : -chat.id;
+            this.avatarDrawable.setInfo(chat);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(chat) ? 12.0f : 20.0f));
+            this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+            this.titleTextView.setText(Emoji.replaceEmoji(chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
             this.isOnline[0] = false;
             if (this.sendAs) {
                 if (i <= 0) {
-                    i = tLRPC$Chat.participants_count;
+                    i = chat.participants_count;
                 }
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
                 if (i >= 1) {
                     formatPluralStringComma = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i, new Object[0]);
                 } else {
                     i3 = isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup;
                     formatPluralStringComma = LocaleController.getString(i3);
                 }
-            } else if (!ChatObject.isChannel(tLRPC$Chat) || tLRPC$Chat.megagroup) {
+            } else if (!ChatObject.isChannel(chat) || chat.megagroup) {
                 if (i >= 1) {
                     formatPluralStringComma = LocaleController.formatPluralStringComma("Members", i - 1);
-                } else if (tLRPC$Chat.has_geo) {
+                } else if (chat.has_geo) {
                     i3 = R.string.MegaLocation;
                     formatPluralStringComma = LocaleController.getString(i3);
                 } else {
-                    i2 = !ChatObject.isPublic(tLRPC$Chat) ? R.string.MegaPrivate : R.string.MegaPublic;
+                    i2 = !ChatObject.isPublic(chat) ? R.string.MegaPrivate : R.string.MegaPublic;
                     formatPluralStringComma = LocaleController.getString(i2).toLowerCase();
                 }
             } else if (i >= 1) {
                 formatPluralStringComma = LocaleController.formatPluralStringComma("Subscribers", i - 1);
             } else {
-                i2 = !ChatObject.isPublic(tLRPC$Chat) ? R.string.ChannelPrivate : R.string.ChannelPublic;
+                i2 = !ChatObject.isPublic(chat) ? R.string.ChannelPrivate : R.string.ChannelPublic;
                 formatPluralStringComma = LocaleController.getString(i2).toLowerCase();
             }
             setSubtitle(formatPluralStringComma);
@@ -3443,11 +3412,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.checkBox.setColor(z ? Theme.key_color_red : Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
         }
 
-        public void setType(int r6, int r7, org.telegram.tgnet.TLRPC$User r8) {
+        public void setType(int r6, int r7, org.telegram.tgnet.TLRPC.User r8) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.UserCell.setType(int, int, org.telegram.tgnet.TLRPC$User):void");
         }
 
-        public void setUser(org.telegram.tgnet.TLRPC$User r4) {
+        public void setUser(org.telegram.tgnet.TLRPC.User r4) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.UserCell.setUser(org.telegram.tgnet.TLRPC$User):void");
         }
     }
@@ -3571,13 +3540,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             for (int i = 0; i < this.warnUsers.size(); i++) {
                 String str = (String) this.warnUsers.get(i);
                 TLObject userOrChat = messagesController.getUserOrChat(str);
-                if (userOrChat instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(tLRPC$User.id));
-                    if (user != null) {
-                        tLRPC$User = user;
+                if (userOrChat instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) userOrChat;
+                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.id));
+                    if (user2 != null) {
+                        user = user2;
                     }
-                    if (!tLRPC$User.bot && !storyPrivacy.containsUser(tLRPC$User)) {
+                    if (!user.bot && !storyPrivacy.containsUser(user)) {
                         arrayList.add(str);
                     }
                 }
@@ -3624,29 +3593,29 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     public ArrayList getChats() {
-        TLRPC$Chat chat;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat;
+        TLRPC.Chat chat2;
         ArrayList arrayList = new ArrayList();
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        ArrayList<TLRPC$Dialog> allDialogs = messagesController.getAllDialogs();
+        ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
         for (int i = 0; i < allDialogs.size(); i++) {
-            TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i);
-            if (messagesController.canAddToForward(tLRPC$Dialog)) {
-                if (DialogObject.isUserDialog(tLRPC$Dialog.id)) {
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(tLRPC$Dialog.id));
+            TLRPC.Dialog dialog = allDialogs.get(i);
+            if (messagesController.canAddToForward(dialog)) {
+                if (DialogObject.isUserDialog(dialog.id)) {
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(dialog.id));
                     if (user != null && !user.bot && user.id != 777000) {
                         boolean isUserSelf = UserObject.isUserSelf(user);
-                        tLRPC$Chat = user;
+                        chat2 = user;
                         if (isUserSelf) {
                         }
-                        arrayList.add(tLRPC$Chat);
+                        arrayList.add(chat2);
                     }
-                } else if (DialogObject.isChatDialog(tLRPC$Dialog.id) && (chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id))) != null) {
+                } else if (DialogObject.isChatDialog(dialog.id) && (chat = messagesController.getChat(Long.valueOf(-dialog.id))) != null) {
                     boolean isForum = ChatObject.isForum(chat);
-                    tLRPC$Chat = chat;
+                    chat2 = chat;
                     if (isForum) {
                     }
-                    arrayList.add(tLRPC$Chat);
+                    arrayList.add(chat2);
                 }
             }
         }
@@ -3654,12 +3623,12 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     public ArrayList getCloseFriends() {
-        TLRPC$User tLRPC$User;
+        TLRPC.User user;
         ArrayList contacts = getContacts();
         int i = 0;
         while (i < contacts.size()) {
             TLObject tLObject = (TLObject) contacts.get(i);
-            if ((tLObject instanceof TLRPC$User) && ((tLRPC$User = (TLRPC$User) tLObject) == null || !tLRPC$User.close_friend)) {
+            if ((tLObject instanceof TLRPC.User) && ((user = (TLRPC.User) tLObject) == null || !user.close_friend)) {
                 contacts.remove(i);
                 i--;
             }
@@ -3669,17 +3638,17 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     public ArrayList getContacts() {
-        TLRPC$User user;
+        TLRPC.User user;
         ArrayList arrayList = new ArrayList();
-        ArrayList<TLRPC$TL_contact> arrayList2 = ContactsController.getInstance(this.currentAccount).contacts;
+        ArrayList<TLRPC.TL_contact> arrayList2 = ContactsController.getInstance(this.currentAccount).contacts;
         if (arrayList2 == null || arrayList2.isEmpty()) {
             ContactsController.getInstance(this.currentAccount).loadContacts(false, 0L);
         }
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         if (arrayList2 != null) {
             for (int i = 0; i < arrayList2.size(); i++) {
-                TLRPC$TL_contact tLRPC$TL_contact = arrayList2.get(i);
-                if (tLRPC$TL_contact != null && (user = messagesController.getUser(Long.valueOf(tLRPC$TL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.id != 777000) {
+                TLRPC.TL_contact tL_contact = arrayList2.get(i);
+                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.id != 777000) {
                     arrayList.add(user);
                 }
             }
@@ -3687,27 +3656,27 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return arrayList;
     }
 
-    public int getParticipantsCount(TLRPC$Chat tLRPC$Chat) {
+    public int getParticipantsCount(TLRPC.Chat chat) {
         Integer num;
         int i;
-        TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(tLRPC$Chat.id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(chat.id);
         if (chatFull != null && (i = chatFull.participants_count) > 0) {
             return i;
         }
         HashMap hashMap = this.smallChatsParticipantsCount;
-        return (hashMap == null || (num = (Integer) hashMap.get(Long.valueOf(tLRPC$Chat.id))) == null) ? tLRPC$Chat.participants_count : num.intValue();
+        return (hashMap == null || (num = (Integer) hashMap.get(Long.valueOf(chat.id))) == null) ? chat.participants_count : num.intValue();
     }
 
     public ArrayList getUsers(boolean z, boolean z2) {
-        TLRPC$User user;
-        TLRPC$Chat chat;
+        TLRPC.User user;
+        TLRPC.Chat chat;
         long j;
-        TLRPC$Chat tLRPC$Chat;
+        TLRPC.Chat chat2;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
-        ArrayList<TLRPC$Dialog> allDialogs = messagesController.getAllDialogs();
-        ConcurrentHashMap<Long, TLRPC$TL_contact> concurrentHashMap = ContactsController.getInstance(this.currentAccount).contactsDict;
+        ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
+        ConcurrentHashMap<Long, TLRPC.TL_contact> concurrentHashMap = ContactsController.getInstance(this.currentAccount).contactsDict;
         if (concurrentHashMap == null || concurrentHashMap.isEmpty()) {
             if (!this.loadedContacts) {
                 ContactsController.getInstance(this.currentAccount).loadContacts(false, 0L);
@@ -3715,24 +3684,24 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.loadedContacts = true;
         }
         for (int i = 0; i < allDialogs.size(); i++) {
-            TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i);
-            if (DialogObject.isUserDialog(tLRPC$Dialog.id)) {
-                TLRPC$User user2 = messagesController.getUser(Long.valueOf(tLRPC$Dialog.id));
+            TLRPC.Dialog dialog = allDialogs.get(i);
+            if (DialogObject.isUserDialog(dialog.id)) {
+                TLRPC.User user2 = messagesController.getUser(Long.valueOf(dialog.id));
                 if (user2 != null && !user2.bot && user2.id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.id)) != null))) {
                     j = user2.id;
-                    tLRPC$Chat = user2;
+                    chat2 = user2;
                     hashMap.put(Long.valueOf(j), Boolean.TRUE);
-                    arrayList.add(tLRPC$Chat);
+                    arrayList.add(chat2);
                 }
-            } else if (z2 && DialogObject.isChatDialog(tLRPC$Dialog.id) && (chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
+            } else if (z2 && DialogObject.isChatDialog(dialog.id) && (chat = messagesController.getChat(Long.valueOf(-dialog.id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
                 j = -chat.id;
-                tLRPC$Chat = chat;
+                chat2 = chat;
                 hashMap.put(Long.valueOf(j), Boolean.TRUE);
-                arrayList.add(tLRPC$Chat);
+                arrayList.add(chat2);
             }
         }
         if (concurrentHashMap != null) {
-            Iterator<Map.Entry<Long, TLRPC$TL_contact>> it = concurrentHashMap.entrySet().iterator();
+            Iterator<Map.Entry<Long, TLRPC.TL_contact>> it = concurrentHashMap.entrySet().iterator();
             while (it.hasNext()) {
                 Long key = it.next().getKey();
                 key.longValue();
@@ -4187,8 +4156,8 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
-    public StoryPrivacyBottomSheet setPeer(TLRPC$InputPeer tLRPC$InputPeer) {
-        this.selectedPeer = tLRPC$InputPeer;
+    public StoryPrivacyBottomSheet setPeer(TLRPC.InputPeer inputPeer) {
+        this.selectedPeer = inputPeer;
         View[] viewPages = this.viewPager.getViewPages();
         View view = viewPages[0];
         if (view instanceof Page) {

@@ -3,38 +3,38 @@ package org.telegram.ui.Stories;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_textWithEntities;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 
 public abstract class StoryCustomParamsHelper {
 
     private static class Params_v1 extends TLObject {
         int flags;
-        final TL_stories$StoryItem storyItem;
+        final TL_stories.StoryItem storyItem;
 
-        private Params_v1(TL_stories$StoryItem tL_stories$StoryItem) {
+        private Params_v1(TL_stories.StoryItem storyItem) {
             this.flags = 0;
-            this.storyItem = tL_stories$StoryItem;
-            boolean z = tL_stories$StoryItem.translated;
+            this.storyItem = storyItem;
+            boolean z = storyItem.translated;
             this.flags = z ? 1 : 0;
-            int i = (z ? 1 : 0) + (tL_stories$StoryItem.detectedLng != null ? 2 : 0);
+            int i = (z ? 1 : 0) + (storyItem.detectedLng != null ? 2 : 0);
             this.flags = i;
-            int i2 = i + (tL_stories$StoryItem.translatedText != null ? 4 : 0);
+            int i2 = i + (storyItem.translatedText != null ? 4 : 0);
             this.flags = i2;
-            this.flags = i2 + (tL_stories$StoryItem.translatedLng != null ? 8 : 0);
+            this.flags = i2 + (storyItem.translatedLng != null ? 8 : 0);
         }
 
         @Override
         public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
             int readInt32 = abstractSerializedData.readInt32(true);
             this.flags = readInt32;
-            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
-            tL_stories$StoryItem.translated = (readInt32 & 1) != 0;
+            TL_stories.StoryItem storyItem = this.storyItem;
+            storyItem.translated = (readInt32 & 1) != 0;
             if ((readInt32 & 2) != 0) {
-                tL_stories$StoryItem.detectedLng = abstractSerializedData.readString(z);
+                storyItem.detectedLng = abstractSerializedData.readString(z);
             }
             if ((this.flags & 4) != 0) {
-                this.storyItem.translatedText = TLRPC$TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                this.storyItem.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
             if ((this.flags & 8) != 0) {
                 this.storyItem.translatedLng = abstractSerializedData.readString(z);
@@ -57,27 +57,27 @@ public abstract class StoryCustomParamsHelper {
         }
     }
 
-    public static boolean isEmpty(TL_stories$StoryItem tL_stories$StoryItem) {
-        return tL_stories$StoryItem.detectedLng == null && tL_stories$StoryItem.translatedLng == null && !tL_stories$StoryItem.translated && tL_stories$StoryItem.translatedText == null;
+    public static boolean isEmpty(TL_stories.StoryItem storyItem) {
+        return storyItem.detectedLng == null && storyItem.translatedLng == null && !storyItem.translated && storyItem.translatedText == null;
     }
 
-    public static void readLocalParams(TL_stories$StoryItem tL_stories$StoryItem, NativeByteBuffer nativeByteBuffer) {
+    public static void readLocalParams(TL_stories.StoryItem storyItem, NativeByteBuffer nativeByteBuffer) {
         if (nativeByteBuffer == null) {
             return;
         }
         int readInt32 = nativeByteBuffer.readInt32(true);
         if (readInt32 == 1) {
-            new Params_v1(tL_stories$StoryItem).readParams(nativeByteBuffer, true);
+            new Params_v1(storyItem).readParams(nativeByteBuffer, true);
             return;
         }
         throw new RuntimeException("(story) can't read params version = " + readInt32);
     }
 
-    public static NativeByteBuffer writeLocalParams(TL_stories$StoryItem tL_stories$StoryItem) {
-        if (isEmpty(tL_stories$StoryItem)) {
+    public static NativeByteBuffer writeLocalParams(TL_stories.StoryItem storyItem) {
+        if (isEmpty(storyItem)) {
             return null;
         }
-        Params_v1 params_v1 = new Params_v1(tL_stories$StoryItem);
+        Params_v1 params_v1 = new Params_v1(storyItem);
         try {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(params_v1.getObjectSize());
             params_v1.serializeToStream(nativeByteBuffer);

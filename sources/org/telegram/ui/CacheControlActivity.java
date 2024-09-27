@@ -56,8 +56,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -1216,12 +1215,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     case 8:
                         View view3 = CacheControlActivity.this.cachedMediaLayout = new CachedMediaLayout(this.mContext, CacheControlActivity.this) {
                             @Override
-                            protected void onMeasure(int i4, int i5) {
+                            public void onMeasure(int i4, int i5) {
                                 super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5) - (ActionBar.getCurrentActionBarHeight() / 2), 1073741824));
                             }
 
                             @Override
-                            protected void showActionMode(boolean z) {
+                            public void showActionMode(boolean z) {
                                 if (!z) {
                                     ((BaseFragment) CacheControlActivity.this).actionBar.hideActionMode();
                                 } else {
@@ -2221,8 +2220,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$loadDialogEntities$7(ArrayList arrayList, ArrayList arrayList2, final ArrayList arrayList3, final CacheModel cacheModel) {
-        final ArrayList<TLRPC$User> arrayList4 = new ArrayList<>();
-        final ArrayList<TLRPC$Chat> arrayList5 = new ArrayList<>();
+        final ArrayList<TLRPC.User> arrayList4 = new ArrayList<>();
+        final ArrayList<TLRPC.Chat> arrayList5 = new ArrayList<>();
         if (!arrayList.isEmpty()) {
             try {
                 getMessagesStorage().getUsersInternal((ArrayList<Long>) arrayList, arrayList4);
@@ -2748,7 +2747,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     }
                 }
                 if (!((BaseFragment) CacheControlActivity.this).actionBar.isActionModeShowed()) {
-                    CacheControlActivity.this.lambda$onBackPressed$307();
+                    CacheControlActivity.this.lambda$onBackPressed$300();
                     return;
                 }
                 CacheModel cacheModel = CacheControlActivity.this.cacheModel;

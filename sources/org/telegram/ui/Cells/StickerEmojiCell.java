@@ -21,9 +21,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$DocumentAttribute;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -52,7 +50,7 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
     private float scale;
     private boolean scaled;
     private boolean showPremiumLock;
-    private TLRPC$Document sticker;
+    private TLRPC.Document sticker;
     private SendMessagesHelper.ImportingSticker stickerPath;
     private long time;
 
@@ -264,7 +262,7 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
         return sendAnimationData;
     }
 
-    public TLRPC$Document getSticker() {
+    public TLRPC.Document getSticker() {
         return this.sticker;
     }
 
@@ -323,13 +321,13 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
                 if (i >= this.sticker.attributes.size()) {
                     break;
                 }
-                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = this.sticker.attributes.get(i);
-                if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) {
-                    String str = tLRPC$DocumentAttribute.alt;
+                TLRPC.DocumentAttribute documentAttribute = this.sticker.attributes.get(i);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                    String str = documentAttribute.alt;
                     if (str != null && str.length() > 0) {
                         TextView textView = this.emojiTextView;
-                        textView.setText(Emoji.replaceEmoji((CharSequence) tLRPC$DocumentAttribute.alt, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
-                        string = tLRPC$DocumentAttribute.alt + " " + string;
+                        textView.setText(Emoji.replaceEmoji((CharSequence) documentAttribute.alt, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
+                        string = documentAttribute.alt + " " + string;
                     }
                 } else {
                     i++;
@@ -362,15 +360,15 @@ public abstract class StickerEmojiCell extends FrameLayout implements Notificati
         setSticker(null, importingSticker, null, str, str != null, false);
     }
 
-    public void setSticker(TLRPC$Document tLRPC$Document, Object obj, boolean z) {
-        setSticker(tLRPC$Document, null, obj, null, z, false);
+    public void setSticker(TLRPC.Document document, Object obj, boolean z) {
+        setSticker(document, null, obj, null, z, false);
     }
 
-    public void setSticker(TLRPC$Document tLRPC$Document, SendMessagesHelper.ImportingSticker importingSticker, Object obj, String str, boolean z) {
-        setSticker(tLRPC$Document, importingSticker, obj, str, z, false);
+    public void setSticker(TLRPC.Document document, SendMessagesHelper.ImportingSticker importingSticker, Object obj, String str, boolean z) {
+        setSticker(document, importingSticker, obj, str, z, false);
     }
 
-    public void setSticker(org.telegram.tgnet.TLRPC$Document r25, org.telegram.messenger.SendMessagesHelper.ImportingSticker r26, java.lang.Object r27, java.lang.String r28, boolean r29, boolean r30) {
+    public void setSticker(org.telegram.tgnet.TLRPC.Document r25, org.telegram.messenger.SendMessagesHelper.ImportingSticker r26, java.lang.Object r27, java.lang.String r28, boolean r29, boolean r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.StickerEmojiCell.setSticker(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SendMessagesHelper$ImportingSticker, java.lang.Object, java.lang.String, boolean, boolean):void");
     }
 

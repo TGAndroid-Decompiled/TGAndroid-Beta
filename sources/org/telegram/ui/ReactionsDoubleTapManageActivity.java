@@ -18,7 +18,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$TL_availableReaction;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -93,9 +93,9 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                 } catch (Exception unused) {
                 }
             }
-            TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getReactionsMap().get(doubleTapReaction);
-            if (tLRPC$TL_availableReaction != null) {
-                this.imageDrawable.set(tLRPC$TL_availableReaction.static_icon, z);
+            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getReactionsMap().get(doubleTapReaction);
+            if (tL_availableReaction != null) {
+                this.imageDrawable.set(tL_availableReaction.static_icon, z);
             }
         }
 
@@ -154,7 +154,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ReactionsDoubleTapManageActivity.this.lambda$onBackPressed$307();
+                    ReactionsDoubleTapManageActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -198,8 +198,8 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                     return;
                 }
                 AvailableReactionCell availableReactionCell = (AvailableReactionCell) viewHolder.itemView;
-                TLRPC$TL_availableReaction tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) ReactionsDoubleTapManageActivity.this.getAvailableReactions().get(i - ReactionsDoubleTapManageActivity.this.reactionsStartRow);
-                availableReactionCell.bind(tLRPC$TL_availableReaction, tLRPC$TL_availableReaction.reaction.contains(MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getDoubleTapReaction()), ((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount);
+                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ReactionsDoubleTapManageActivity.this.getAvailableReactions().get(i - ReactionsDoubleTapManageActivity.this.reactionsStartRow);
+                availableReactionCell.bind(tL_availableReaction, tL_availableReaction.reaction.contains(MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getDoubleTapReaction()), ((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount);
             }
 
             @Override

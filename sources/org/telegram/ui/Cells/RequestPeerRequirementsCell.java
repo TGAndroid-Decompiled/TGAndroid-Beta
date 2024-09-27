@@ -16,15 +16,12 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$RequestPeerType;
-import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
-import org.telegram.tgnet.TLRPC$TL_requestPeerTypeBroadcast;
-import org.telegram.tgnet.TLRPC$TL_requestPeerTypeUser;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class RequestPeerRequirementsCell extends LinearLayout {
-    private TLRPC$RequestPeerType requestPeerType;
+    private TLRPC.RequestPeerType requestPeerType;
     private ArrayList requirements;
 
     class RequirementCell extends LinearLayout {
@@ -58,46 +55,46 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
     }
 
-    private void checkAdminRights(TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, boolean z, int i, int i2) {
-        checkAdminRights(tLRPC$TL_chatAdminRights, z, AndroidUtilities.replaceTags(LocaleController.getString(i)), AndroidUtilities.replaceTags(LocaleController.getString(i2)));
+    private void checkAdminRights(TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z, int i, int i2) {
+        checkAdminRights(tL_chatAdminRights, z, AndroidUtilities.replaceTags(LocaleController.getString(i)), AndroidUtilities.replaceTags(LocaleController.getString(i2)));
     }
 
-    private void checkAdminRights(TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, boolean z, CharSequence charSequence, CharSequence charSequence2) {
-        if (tLRPC$TL_chatAdminRights == null) {
+    private void checkAdminRights(TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z, CharSequence charSequence, CharSequence charSequence2) {
+        if (tL_chatAdminRights == null) {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        if (tLRPC$TL_chatAdminRights.change_info) {
+        if (tL_chatAdminRights.change_info) {
             arrayList.add(Requirement.make(1, LocaleController.getString(z ? R.string.EditAdminChangeChannelInfo : R.string.EditAdminChangeGroupInfo)));
         }
-        if (tLRPC$TL_chatAdminRights.post_messages && z) {
+        if (tL_chatAdminRights.post_messages && z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPostMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.edit_messages && z) {
+        if (tL_chatAdminRights.edit_messages && z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminEditMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.delete_messages) {
+        if (tL_chatAdminRights.delete_messages) {
             arrayList.add(Requirement.make(1, LocaleController.getString(z ? R.string.EditAdminDeleteMessages : R.string.EditAdminGroupDeleteMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.ban_users && !z) {
+        if (tL_chatAdminRights.ban_users && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminBanUsers)));
         }
-        if (tLRPC$TL_chatAdminRights.invite_users) {
+        if (tL_chatAdminRights.invite_users) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddUsers)));
         }
-        if (tLRPC$TL_chatAdminRights.pin_messages && !z) {
+        if (tL_chatAdminRights.pin_messages && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPinMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.add_admins) {
+        if (tL_chatAdminRights.add_admins) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddAdmins)));
         }
-        if (tLRPC$TL_chatAdminRights.anonymous && !z) {
+        if (tL_chatAdminRights.anonymous && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminSendAnonymously)));
         }
-        if (tLRPC$TL_chatAdminRights.manage_call) {
+        if (tL_chatAdminRights.manage_call) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.StartVoipChatPermission)));
         }
-        if (tLRPC$TL_chatAdminRights.manage_topics && !z) {
+        if (tL_chatAdminRights.manage_topics && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.ManageTopicsPermission)));
         }
         if (arrayList.size() == 1) {
@@ -149,39 +146,39 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         return view;
     }
 
-    public static CharSequence rightsToString(TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, boolean z) {
+    public static CharSequence rightsToString(TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z) {
         ArrayList arrayList = new ArrayList();
-        if (tLRPC$TL_chatAdminRights.change_info) {
+        if (tL_chatAdminRights.change_info) {
             arrayList.add(Requirement.make(1, LocaleController.getString(z ? R.string.EditAdminChangeChannelInfo : R.string.EditAdminChangeGroupInfo)));
         }
-        if (tLRPC$TL_chatAdminRights.post_messages && z) {
+        if (tL_chatAdminRights.post_messages && z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPostMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.edit_messages && z) {
+        if (tL_chatAdminRights.edit_messages && z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminEditMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.delete_messages) {
+        if (tL_chatAdminRights.delete_messages) {
             arrayList.add(Requirement.make(1, LocaleController.getString(z ? R.string.EditAdminDeleteMessages : R.string.EditAdminGroupDeleteMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.ban_users && !z) {
+        if (tL_chatAdminRights.ban_users && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminBanUsers)));
         }
-        if (tLRPC$TL_chatAdminRights.invite_users) {
+        if (tL_chatAdminRights.invite_users) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddUsers)));
         }
-        if (tLRPC$TL_chatAdminRights.pin_messages && !z) {
+        if (tL_chatAdminRights.pin_messages && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPinMessages)));
         }
-        if (tLRPC$TL_chatAdminRights.add_admins) {
+        if (tL_chatAdminRights.add_admins) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddAdmins)));
         }
-        if (tLRPC$TL_chatAdminRights.anonymous && !z) {
+        if (tL_chatAdminRights.anonymous && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminSendAnonymously)));
         }
-        if (tLRPC$TL_chatAdminRights.manage_call) {
+        if (tL_chatAdminRights.manage_call) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.StartVoipChatPermission)));
         }
-        if (tLRPC$TL_chatAdminRights.manage_topics && !z) {
+        if (tL_chatAdminRights.manage_topics && !z) {
             arrayList.add(Requirement.make(1, LocaleController.getString(R.string.ManageTopicsPermission)));
         }
         if (arrayList.size() == 1) {
@@ -200,52 +197,52 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         return spannableStringBuilder;
     }
 
-    public void set(TLRPC$RequestPeerType tLRPC$RequestPeerType) {
+    public void set(TLRPC.RequestPeerType requestPeerType) {
         ArrayList arrayList;
         int i;
         Boolean bool;
-        if (this.requestPeerType != tLRPC$RequestPeerType) {
-            this.requestPeerType = tLRPC$RequestPeerType;
+        if (this.requestPeerType != requestPeerType) {
+            this.requestPeerType = requestPeerType;
             removeAllViews();
             this.requirements.clear();
-            if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeUser) {
-                checkRequirement(((TLRPC$TL_requestPeerTypeUser) tLRPC$RequestPeerType).premium, R.string.PeerRequirementPremiumTrue, R.string.PeerRequirementPremiumFalse);
+            if (requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) {
+                checkRequirement(((TLRPC.TL_requestPeerTypeUser) requestPeerType).premium, R.string.PeerRequirementPremiumTrue, R.string.PeerRequirementPremiumFalse);
             } else {
-                boolean z = tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeBroadcast;
-                Boolean bool2 = tLRPC$RequestPeerType.has_username;
+                boolean z = requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast;
+                Boolean bool2 = requestPeerType.has_username;
                 if (z) {
                     checkRequirement(bool2, R.string.PeerRequirementChannelPublicTrue, R.string.PeerRequirementChannelPublicFalse);
-                    Boolean bool3 = tLRPC$RequestPeerType.bot_participant;
+                    Boolean bool3 = requestPeerType.bot_participant;
                     if (bool3 != null && bool3.booleanValue()) {
                         this.requirements.add(Requirement.make(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PeerRequirementChannelBotParticipant))));
                     }
-                    Boolean bool4 = tLRPC$RequestPeerType.creator;
+                    Boolean bool4 = requestPeerType.creator;
                     if (bool4 != null && bool4.booleanValue()) {
                         arrayList = this.requirements;
                         i = R.string.PeerRequirementChannelCreatorTrue;
                         arrayList.add(Requirement.make(AndroidUtilities.replaceTags(LocaleController.getString(i))));
                     }
-                    bool = tLRPC$RequestPeerType.creator;
+                    bool = requestPeerType.creator;
                     if (bool != null || !bool.booleanValue()) {
-                        checkAdminRights(tLRPC$RequestPeerType.user_admin_rights, z, R.string.PeerRequirementUserRights, R.string.PeerRequirementUserRight);
+                        checkAdminRights(requestPeerType.user_admin_rights, z, R.string.PeerRequirementUserRights, R.string.PeerRequirementUserRight);
                     }
                 } else {
                     checkRequirement(bool2, R.string.PeerRequirementGroupPublicTrue, R.string.PeerRequirementGroupPublicFalse);
-                    checkRequirement(tLRPC$RequestPeerType.forum, R.string.PeerRequirementForumTrue, R.string.PeerRequirementForumFalse);
-                    Boolean bool5 = tLRPC$RequestPeerType.bot_participant;
+                    checkRequirement(requestPeerType.forum, R.string.PeerRequirementForumTrue, R.string.PeerRequirementForumFalse);
+                    Boolean bool5 = requestPeerType.bot_participant;
                     if (bool5 != null && bool5.booleanValue()) {
                         this.requirements.add(Requirement.make(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PeerRequirementGroupBotParticipant))));
                     }
-                    Boolean bool6 = tLRPC$RequestPeerType.creator;
+                    Boolean bool6 = requestPeerType.creator;
                     if (bool6 != null && bool6.booleanValue()) {
                         arrayList = this.requirements;
                         i = R.string.PeerRequirementGroupCreatorTrue;
                         arrayList.add(Requirement.make(AndroidUtilities.replaceTags(LocaleController.getString(i))));
                     }
-                    bool = tLRPC$RequestPeerType.creator;
+                    bool = requestPeerType.creator;
                     if (bool != null) {
                     }
-                    checkAdminRights(tLRPC$RequestPeerType.user_admin_rights, z, R.string.PeerRequirementUserRights, R.string.PeerRequirementUserRight);
+                    checkAdminRights(requestPeerType.user_admin_rights, z, R.string.PeerRequirementUserRights, R.string.PeerRequirementUserRight);
                 }
             }
             if (this.requirements.isEmpty()) {

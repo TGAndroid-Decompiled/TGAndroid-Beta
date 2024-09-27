@@ -14,8 +14,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC$InputUser;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public abstract class StoryPrivacySelector extends View {
@@ -72,7 +71,7 @@ public abstract class StoryPrivacySelector extends View {
     }
 
     public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) {
-        final ArrayList<TLRPC$User> users = messagesStorage.getUsers(new ArrayList<>(hashSet));
+        final ArrayList<TLRPC.User> users = messagesStorage.getUsers(new ArrayList<>(hashSet));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -89,7 +88,7 @@ public abstract class StoryPrivacySelector extends View {
         int readInt322 = abstractSerializedData.readInt32(true);
         ArrayList arrayList = new ArrayList(readInt322);
         for (int i = 0; i < readInt322; i++) {
-            arrayList.add(TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(true), true));
+            arrayList.add(TLRPC.InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(true), true));
         }
         if (abstractSerializedData.readInt32(true) != 481674261) {
             throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (2)");
@@ -150,7 +149,7 @@ public abstract class StoryPrivacySelector extends View {
         abstractSerializedData.writeInt32(storyPrivacy.selectedInputUsers.size());
         Iterator it = storyPrivacy.selectedInputUsers.iterator();
         while (it.hasNext()) {
-            ((TLRPC$InputUser) it.next()).serializeToStream(abstractSerializedData);
+            ((TLRPC.InputUser) it.next()).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         abstractSerializedData.writeInt32(storyPrivacy.selectedUserIds.size());

@@ -10,11 +10,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$InputUser;
-import org.telegram.tgnet.TLRPC$TL_businessBotRecipients;
-import org.telegram.tgnet.TLRPC$TL_businessRecipients;
-import org.telegram.tgnet.TLRPC$TL_inputBusinessBotRecipients;
-import org.telegram.tgnet.TLRPC$TL_inputBusinessRecipients;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.UItem;
@@ -23,7 +19,7 @@ import org.telegram.ui.UsersSelectActivity;
 
 public class BusinessRecipientsHelper {
     public boolean bot;
-    private TLRPC$TL_businessBotRecipients currentValue;
+    private TLRPC.TL_businessBotRecipients currentValue;
     private boolean doNotExcludeNewChats;
     public boolean exclude;
     public boolean excludeExpanded;
@@ -211,138 +207,138 @@ public class BusinessRecipientsHelper {
         }
     }
 
-    public TLRPC$TL_inputBusinessBotRecipients getBotInputValue() {
-        TLRPC$TL_inputBusinessBotRecipients tLRPC$TL_inputBusinessBotRecipients = new TLRPC$TL_inputBusinessBotRecipients();
+    public TLRPC.TL_inputBusinessBotRecipients getBotInputValue() {
+        TLRPC.TL_inputBusinessBotRecipients tL_inputBusinessBotRecipients = new TLRPC.TL_inputBusinessBotRecipients();
         int flags = getFlags();
-        tLRPC$TL_inputBusinessBotRecipients.flags = flags & (-49);
-        tLRPC$TL_inputBusinessBotRecipients.existing_chats = (flags & 1) != 0;
-        tLRPC$TL_inputBusinessBotRecipients.new_chats = (flags & 2) != 0;
-        tLRPC$TL_inputBusinessBotRecipients.contacts = (flags & 4) != 0;
-        tLRPC$TL_inputBusinessBotRecipients.non_contacts = (flags & 8) != 0;
+        tL_inputBusinessBotRecipients.flags = flags & (-49);
+        tL_inputBusinessBotRecipients.existing_chats = (flags & 1) != 0;
+        tL_inputBusinessBotRecipients.new_chats = (flags & 2) != 0;
+        tL_inputBusinessBotRecipients.contacts = (flags & 4) != 0;
+        tL_inputBusinessBotRecipients.non_contacts = (flags & 8) != 0;
         boolean z = this.exclude;
-        tLRPC$TL_inputBusinessBotRecipients.exclude_selected = z;
+        tL_inputBusinessBotRecipients.exclude_selected = z;
         ArrayList arrayList = z ? this.neverShow : this.alwaysShow;
         if (!arrayList.isEmpty()) {
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-            tLRPC$TL_inputBusinessBotRecipients.flags |= 16;
+            tL_inputBusinessBotRecipients.flags |= 16;
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$InputUser inputUser = messagesController.getInputUser(((Long) arrayList.get(i)).longValue());
+                TLRPC.InputUser inputUser = messagesController.getInputUser(((Long) arrayList.get(i)).longValue());
                 if (inputUser == null) {
                     FileLog.e("businessRecipientsHelper: user not found " + arrayList.get(i));
                 } else {
-                    tLRPC$TL_inputBusinessBotRecipients.users.add(inputUser);
+                    tL_inputBusinessBotRecipients.users.add(inputUser);
                 }
             }
         }
         if (!this.exclude) {
             MessagesController messagesController2 = MessagesController.getInstance(UserConfig.selectedAccount);
-            tLRPC$TL_inputBusinessBotRecipients.flags |= 64;
+            tL_inputBusinessBotRecipients.flags |= 64;
             for (int i2 = 0; i2 < this.neverShow.size(); i2++) {
-                TLRPC$InputUser inputUser2 = messagesController2.getInputUser(((Long) this.neverShow.get(i2)).longValue());
+                TLRPC.InputUser inputUser2 = messagesController2.getInputUser(((Long) this.neverShow.get(i2)).longValue());
                 if (inputUser2 == null) {
                     FileLog.e("businessRecipientsHelper: user not found " + this.neverShow.get(i2));
                 } else {
-                    tLRPC$TL_inputBusinessBotRecipients.exclude_users.add(inputUser2);
+                    tL_inputBusinessBotRecipients.exclude_users.add(inputUser2);
                 }
             }
         }
-        return tLRPC$TL_inputBusinessBotRecipients;
+        return tL_inputBusinessBotRecipients;
     }
 
-    public TLRPC$TL_businessBotRecipients getBotValue() {
-        TLRPC$TL_businessBotRecipients tLRPC$TL_businessBotRecipients = new TLRPC$TL_businessBotRecipients();
+    public TLRPC.TL_businessBotRecipients getBotValue() {
+        TLRPC.TL_businessBotRecipients tL_businessBotRecipients = new TLRPC.TL_businessBotRecipients();
         int flags = getFlags();
-        tLRPC$TL_businessBotRecipients.flags = flags & (-49);
-        tLRPC$TL_businessBotRecipients.existing_chats = (flags & 1) != 0;
-        tLRPC$TL_businessBotRecipients.new_chats = (flags & 2) != 0;
-        tLRPC$TL_businessBotRecipients.contacts = (flags & 4) != 0;
-        tLRPC$TL_businessBotRecipients.non_contacts = (flags & 8) != 0;
+        tL_businessBotRecipients.flags = flags & (-49);
+        tL_businessBotRecipients.existing_chats = (flags & 1) != 0;
+        tL_businessBotRecipients.new_chats = (flags & 2) != 0;
+        tL_businessBotRecipients.contacts = (flags & 4) != 0;
+        tL_businessBotRecipients.non_contacts = (flags & 8) != 0;
         boolean z = this.exclude;
-        tLRPC$TL_businessBotRecipients.exclude_selected = z;
+        tL_businessBotRecipients.exclude_selected = z;
         ArrayList arrayList = z ? this.neverShow : this.alwaysShow;
         if (!arrayList.isEmpty()) {
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-            tLRPC$TL_businessBotRecipients.flags |= 16;
+            tL_businessBotRecipients.flags |= 16;
             for (int i = 0; i < arrayList.size(); i++) {
                 if (messagesController.getInputUser(((Long) arrayList.get(i)).longValue()) == null) {
                     FileLog.e("businessRecipientsHelper: user not found " + arrayList.get(i));
                 } else {
-                    tLRPC$TL_businessBotRecipients.users.add((Long) arrayList.get(i));
+                    tL_businessBotRecipients.users.add((Long) arrayList.get(i));
                 }
             }
         }
         if (!this.exclude) {
             MessagesController messagesController2 = MessagesController.getInstance(UserConfig.selectedAccount);
-            tLRPC$TL_businessBotRecipients.flags |= 64;
+            tL_businessBotRecipients.flags |= 64;
             for (int i2 = 0; i2 < this.neverShow.size(); i2++) {
                 if (messagesController2.getInputUser(((Long) this.neverShow.get(i2)).longValue()) == null) {
                     FileLog.e("businessRecipientsHelper: user not found " + this.neverShow.get(i2));
                 } else {
-                    tLRPC$TL_businessBotRecipients.users.add((Long) this.neverShow.get(i2));
+                    tL_businessBotRecipients.users.add((Long) this.neverShow.get(i2));
                 }
             }
         }
-        return tLRPC$TL_businessBotRecipients;
+        return tL_businessBotRecipients;
     }
 
     public int getFlags() {
         return this.exclude ? this.excludeFlags : this.includeFlags;
     }
 
-    public TLRPC$TL_inputBusinessRecipients getInputValue() {
-        TLRPC$TL_inputBusinessRecipients tLRPC$TL_inputBusinessRecipients = new TLRPC$TL_inputBusinessRecipients();
+    public TLRPC.TL_inputBusinessRecipients getInputValue() {
+        TLRPC.TL_inputBusinessRecipients tL_inputBusinessRecipients = new TLRPC.TL_inputBusinessRecipients();
         int flags = getFlags();
-        tLRPC$TL_inputBusinessRecipients.flags = flags & (-49);
-        tLRPC$TL_inputBusinessRecipients.existing_chats = (flags & 1) != 0;
-        tLRPC$TL_inputBusinessRecipients.new_chats = (flags & 2) != 0;
-        tLRPC$TL_inputBusinessRecipients.contacts = (flags & 4) != 0;
-        tLRPC$TL_inputBusinessRecipients.non_contacts = (flags & 8) != 0;
+        tL_inputBusinessRecipients.flags = flags & (-49);
+        tL_inputBusinessRecipients.existing_chats = (flags & 1) != 0;
+        tL_inputBusinessRecipients.new_chats = (flags & 2) != 0;
+        tL_inputBusinessRecipients.contacts = (flags & 4) != 0;
+        tL_inputBusinessRecipients.non_contacts = (flags & 8) != 0;
         boolean z = this.exclude;
-        tLRPC$TL_inputBusinessRecipients.exclude_selected = z;
+        tL_inputBusinessRecipients.exclude_selected = z;
         ArrayList arrayList = z ? this.neverShow : this.alwaysShow;
         if (!arrayList.isEmpty()) {
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-            tLRPC$TL_inputBusinessRecipients.flags |= 16;
+            tL_inputBusinessRecipients.flags |= 16;
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$InputUser inputUser = messagesController.getInputUser(((Long) arrayList.get(i)).longValue());
+                TLRPC.InputUser inputUser = messagesController.getInputUser(((Long) arrayList.get(i)).longValue());
                 if (inputUser == null) {
                     FileLog.e("businessRecipientsHelper: user not found " + arrayList.get(i));
                 } else {
-                    tLRPC$TL_inputBusinessRecipients.users.add(inputUser);
+                    tL_inputBusinessRecipients.users.add(inputUser);
                 }
             }
         }
-        return tLRPC$TL_inputBusinessRecipients;
+        return tL_inputBusinessRecipients;
     }
 
-    public TLRPC$TL_businessRecipients getValue() {
-        TLRPC$TL_businessRecipients tLRPC$TL_businessRecipients = new TLRPC$TL_businessRecipients();
+    public TLRPC.TL_businessRecipients getValue() {
+        TLRPC.TL_businessRecipients tL_businessRecipients = new TLRPC.TL_businessRecipients();
         int flags = getFlags();
-        tLRPC$TL_businessRecipients.flags = flags & (-49);
-        tLRPC$TL_businessRecipients.existing_chats = (flags & 1) != 0;
-        tLRPC$TL_businessRecipients.new_chats = (flags & 2) != 0;
-        tLRPC$TL_businessRecipients.contacts = (flags & 4) != 0;
-        tLRPC$TL_businessRecipients.non_contacts = (flags & 8) != 0;
+        tL_businessRecipients.flags = flags & (-49);
+        tL_businessRecipients.existing_chats = (flags & 1) != 0;
+        tL_businessRecipients.new_chats = (flags & 2) != 0;
+        tL_businessRecipients.contacts = (flags & 4) != 0;
+        tL_businessRecipients.non_contacts = (flags & 8) != 0;
         boolean z = this.exclude;
-        tLRPC$TL_businessRecipients.exclude_selected = z;
+        tL_businessRecipients.exclude_selected = z;
         ArrayList arrayList = z ? this.neverShow : this.alwaysShow;
         if (!arrayList.isEmpty()) {
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-            tLRPC$TL_businessRecipients.flags |= 16;
+            tL_businessRecipients.flags |= 16;
             for (int i = 0; i < arrayList.size(); i++) {
                 if (messagesController.getInputUser(((Long) arrayList.get(i)).longValue()) == null) {
                     FileLog.e("businessRecipientsHelper: user not found " + arrayList.get(i));
                 } else {
-                    tLRPC$TL_businessRecipients.users.add((Long) arrayList.get(i));
+                    tL_businessRecipients.users.add((Long) arrayList.get(i));
                 }
             }
         }
-        return tLRPC$TL_businessRecipients;
+        return tL_businessRecipients;
     }
 
     public boolean hasChanges() {
-        TLRPC$TL_businessBotRecipients tLRPC$TL_businessBotRecipients = this.currentValue;
-        if (tLRPC$TL_businessBotRecipients == null || tLRPC$TL_businessBotRecipients.exclude_selected != this.exclude || (tLRPC$TL_businessBotRecipients.flags & (-49)) != getFlags()) {
+        TLRPC.TL_businessBotRecipients tL_businessBotRecipients = this.currentValue;
+        if (tL_businessBotRecipients == null || tL_businessBotRecipients.exclude_selected != this.exclude || (tL_businessBotRecipients.flags & (-49)) != getFlags()) {
             return true;
         }
         ArrayList arrayList = this.exclude ? this.neverShow : this.alwaysShow;
@@ -404,12 +400,12 @@ public class BusinessRecipientsHelper {
         this.exclude = z;
     }
 
-    public void setValue(TLRPC$TL_businessBotRecipients tLRPC$TL_businessBotRecipients) {
+    public void setValue(TLRPC.TL_businessBotRecipients tL_businessBotRecipients) {
         ArrayList arrayList;
-        ArrayList arrayList2;
+        ArrayList<Long> arrayList2;
         this.bot = true;
-        this.currentValue = tLRPC$TL_businessBotRecipients;
-        if (tLRPC$TL_businessBotRecipients == null) {
+        this.currentValue = tL_businessBotRecipients;
+        if (tL_businessBotRecipients == null) {
             this.exclude = true;
             this.excludeFlags = 0;
             this.includeFlags = 0;
@@ -417,17 +413,17 @@ public class BusinessRecipientsHelper {
             this.neverShow.clear();
             return;
         }
-        boolean z = tLRPC$TL_businessBotRecipients.exclude_selected;
+        boolean z = tL_businessBotRecipients.exclude_selected;
         this.exclude = z;
         if (z) {
             this.includeFlags = 0;
-            this.excludeFlags = tLRPC$TL_businessBotRecipients.flags & (-49);
+            this.excludeFlags = tL_businessBotRecipients.flags & (-49);
             this.alwaysShow.clear();
             this.neverShow.clear();
             arrayList = this.neverShow;
             arrayList2 = this.currentValue.users;
         } else {
-            this.includeFlags = tLRPC$TL_businessBotRecipients.flags & (-49);
+            this.includeFlags = tL_businessBotRecipients.flags & (-49);
             this.excludeFlags = 0;
             this.alwaysShow.clear();
             this.neverShow.clear();
@@ -438,25 +434,25 @@ public class BusinessRecipientsHelper {
         arrayList.addAll(arrayList2);
     }
 
-    public void setValue(TLRPC$TL_businessRecipients tLRPC$TL_businessRecipients) {
+    public void setValue(TLRPC.TL_businessRecipients tL_businessRecipients) {
         ArrayList arrayList;
-        ArrayList arrayList2;
+        ArrayList<Long> arrayList2;
         this.bot = false;
-        if (tLRPC$TL_businessRecipients != null) {
-            TLRPC$TL_businessBotRecipients tLRPC$TL_businessBotRecipients = new TLRPC$TL_businessBotRecipients();
-            this.currentValue = tLRPC$TL_businessBotRecipients;
-            tLRPC$TL_businessBotRecipients.flags = tLRPC$TL_businessRecipients.flags;
-            tLRPC$TL_businessBotRecipients.existing_chats = tLRPC$TL_businessRecipients.existing_chats;
-            tLRPC$TL_businessBotRecipients.new_chats = tLRPC$TL_businessRecipients.new_chats;
-            tLRPC$TL_businessBotRecipients.contacts = tLRPC$TL_businessRecipients.contacts;
-            tLRPC$TL_businessBotRecipients.non_contacts = tLRPC$TL_businessRecipients.non_contacts;
-            tLRPC$TL_businessBotRecipients.exclude_selected = tLRPC$TL_businessRecipients.exclude_selected;
-            tLRPC$TL_businessBotRecipients.users = tLRPC$TL_businessRecipients.users;
+        if (tL_businessRecipients != null) {
+            TLRPC.TL_businessBotRecipients tL_businessBotRecipients = new TLRPC.TL_businessBotRecipients();
+            this.currentValue = tL_businessBotRecipients;
+            tL_businessBotRecipients.flags = tL_businessRecipients.flags;
+            tL_businessBotRecipients.existing_chats = tL_businessRecipients.existing_chats;
+            tL_businessBotRecipients.new_chats = tL_businessRecipients.new_chats;
+            tL_businessBotRecipients.contacts = tL_businessRecipients.contacts;
+            tL_businessBotRecipients.non_contacts = tL_businessRecipients.non_contacts;
+            tL_businessBotRecipients.exclude_selected = tL_businessRecipients.exclude_selected;
+            tL_businessBotRecipients.users = tL_businessRecipients.users;
         } else {
             this.currentValue = null;
         }
-        TLRPC$TL_businessBotRecipients tLRPC$TL_businessBotRecipients2 = this.currentValue;
-        if (tLRPC$TL_businessBotRecipients2 == null) {
+        TLRPC.TL_businessBotRecipients tL_businessBotRecipients2 = this.currentValue;
+        if (tL_businessBotRecipients2 == null) {
             this.exclude = true;
             this.excludeFlags = 0;
             this.includeFlags = 0;
@@ -464,17 +460,17 @@ public class BusinessRecipientsHelper {
             this.neverShow.clear();
             return;
         }
-        boolean z = tLRPC$TL_businessBotRecipients2.exclude_selected;
+        boolean z = tL_businessBotRecipients2.exclude_selected;
         this.exclude = z;
         if (z) {
             this.includeFlags = 0;
-            this.excludeFlags = tLRPC$TL_businessBotRecipients2.flags & (-49);
+            this.excludeFlags = tL_businessBotRecipients2.flags & (-49);
             this.alwaysShow.clear();
             this.neverShow.clear();
             arrayList = this.neverShow;
             arrayList2 = this.currentValue.users;
         } else {
-            this.includeFlags = tLRPC$TL_businessBotRecipients2.flags & (-49);
+            this.includeFlags = tL_businessBotRecipients2.flags & (-49);
             this.excludeFlags = 0;
             this.alwaysShow.clear();
             this.neverShow.clear();

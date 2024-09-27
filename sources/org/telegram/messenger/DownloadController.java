@@ -17,17 +17,8 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_account_autoDownloadSettings;
-import org.telegram.tgnet.TLRPC$TL_account_saveAutoDownloadSettings;
-import org.telegram.tgnet.TLRPC$TL_autoDownloadSettings;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messageMediaStory;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 
 public class DownloadController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
@@ -167,32 +158,32 @@ public class DownloadController extends BaseController implements NotificationCe
             this.preloadStories = preset.preloadStories;
         }
 
-        public void set(TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings) {
-            this.preloadMusic = tLRPC$TL_autoDownloadSettings.audio_preload_next;
-            this.preloadVideo = tLRPC$TL_autoDownloadSettings.video_preload_large;
-            this.lessCallData = tLRPC$TL_autoDownloadSettings.phonecalls_less_data;
-            this.maxVideoBitrate = tLRPC$TL_autoDownloadSettings.video_upload_maxbitrate;
+        public void set(TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings) {
+            this.preloadMusic = tL_autoDownloadSettings.audio_preload_next;
+            this.preloadVideo = tL_autoDownloadSettings.video_preload_large;
+            this.lessCallData = tL_autoDownloadSettings.phonecalls_less_data;
+            this.maxVideoBitrate = tL_autoDownloadSettings.video_upload_maxbitrate;
             int i = 0;
-            this.sizes[0] = Math.max(512000, tLRPC$TL_autoDownloadSettings.photo_size_max);
-            this.sizes[1] = Math.max(512000L, tLRPC$TL_autoDownloadSettings.video_size_max);
-            this.sizes[2] = Math.max(512000L, tLRPC$TL_autoDownloadSettings.file_size_max);
+            this.sizes[0] = Math.max(512000, tL_autoDownloadSettings.photo_size_max);
+            this.sizes[1] = Math.max(512000L, tL_autoDownloadSettings.video_size_max);
+            this.sizes[2] = Math.max(512000L, tL_autoDownloadSettings.file_size_max);
             while (true) {
                 int[] iArr = this.mask;
                 if (i >= iArr.length) {
                     this.preloadStories = true;
                     return;
                 }
-                if (tLRPC$TL_autoDownloadSettings.photo_size_max == 0 || tLRPC$TL_autoDownloadSettings.disabled) {
+                if (tL_autoDownloadSettings.photo_size_max == 0 || tL_autoDownloadSettings.disabled) {
                     iArr[i] = iArr[i] & (-2);
                 } else {
                     iArr[i] = iArr[i] | 1;
                 }
-                if (tLRPC$TL_autoDownloadSettings.video_size_max == 0 || tLRPC$TL_autoDownloadSettings.disabled) {
+                if (tL_autoDownloadSettings.video_size_max == 0 || tL_autoDownloadSettings.disabled) {
                     iArr[i] = iArr[i] & (-5);
                 } else {
                     iArr[i] = iArr[i] | 4;
                 }
-                if (tLRPC$TL_autoDownloadSettings.file_size_max == 0 || tLRPC$TL_autoDownloadSettings.disabled) {
+                if (tL_autoDownloadSettings.file_size_max == 0 || tL_autoDownloadSettings.disabled) {
                     iArr[i] = iArr[i] & (-9);
                 } else {
                     iArr[i] = iArr[i] | 8;
@@ -314,29 +305,29 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadAutoDownloadConfig$1(TLObject tLObject) {
-        TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings;
+        TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings;
         this.loadingAutoDownloadConfig = false;
         getUserConfig().autoDownloadConfigLoadTime = System.currentTimeMillis();
         getUserConfig().saveConfig(false);
         if (tLObject != null) {
-            TLRPC$TL_account_autoDownloadSettings tLRPC$TL_account_autoDownloadSettings = (TLRPC$TL_account_autoDownloadSettings) tLObject;
-            this.lowPreset.set(tLRPC$TL_account_autoDownloadSettings.low);
+            TLRPC.TL_account_autoDownloadSettings tL_account_autoDownloadSettings = (TLRPC.TL_account_autoDownloadSettings) tLObject;
+            this.lowPreset.set(tL_account_autoDownloadSettings.low);
             this.lowPreset.preloadStories = false;
-            this.mediumPreset.set(tLRPC$TL_account_autoDownloadSettings.medium);
-            this.highPreset.set(tLRPC$TL_account_autoDownloadSettings.high);
+            this.mediumPreset.set(tL_account_autoDownloadSettings.medium);
+            this.highPreset.set(tL_account_autoDownloadSettings.high);
             int i = 0;
             while (i < 3) {
                 Preset preset = i == 0 ? this.mobilePreset : i == 1 ? this.wifiPreset : this.roamingPreset;
                 if (preset.equals(this.lowPreset)) {
-                    preset.set(tLRPC$TL_account_autoDownloadSettings.low);
+                    preset.set(tL_account_autoDownloadSettings.low);
                     preset.preloadStories = false;
                 } else {
                     if (preset.equals(this.mediumPreset)) {
-                        tLRPC$TL_autoDownloadSettings = tLRPC$TL_account_autoDownloadSettings.medium;
+                        tL_autoDownloadSettings = tL_account_autoDownloadSettings.medium;
                     } else if (preset.equals(this.highPreset)) {
-                        tLRPC$TL_autoDownloadSettings = tLRPC$TL_account_autoDownloadSettings.high;
+                        tL_autoDownloadSettings = tL_account_autoDownloadSettings.high;
                     }
-                    preset.set(tLRPC$TL_autoDownloadSettings);
+                    preset.set(tL_autoDownloadSettings);
                 }
                 i++;
             }
@@ -355,7 +346,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$loadAutoDownloadConfig$2(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadAutoDownloadConfig$2(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -381,7 +372,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 int intValue = queryFinalized.intValue(1);
                 if (byteBufferValue != null) {
-                    TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     if (TLdeserialize != null) {
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
                         MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, false);
@@ -454,9 +445,9 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$onDownloadComplete$7(TLRPC$Document tLRPC$Document, final MessageObject messageObject) {
+    public void lambda$onDownloadComplete$7(TLRPC.Document document, final MessageObject messageObject) {
         for (int i = 0; i < this.downloadingFiles.size(); i++) {
-            if (this.downloadingFiles.get(i).getDocument() != null && this.downloadingFiles.get(i).getDocument().id == tLRPC$Document.id) {
+            if (this.downloadingFiles.get(i).getDocument() != null && this.downloadingFiles.get(i).getDocument().id == document.id) {
                 this.downloadingFiles.remove(i);
                 int i2 = 0;
                 while (true) {
@@ -464,7 +455,7 @@ public class DownloadController extends BaseController implements NotificationCe
                         this.recentDownloadingFiles.add(0, messageObject);
                         putToUnviewedDownloads(messageObject);
                         break;
-                    } else if (this.recentDownloadingFiles.get(i2).getDocument() != null && this.recentDownloadingFiles.get(i2).getDocument().id == tLRPC$Document.id) {
+                    } else if (this.recentDownloadingFiles.get(i2).getDocument() != null && this.recentDownloadingFiles.get(i2).getDocument().id == document.id) {
                         break;
                     } else {
                         i2++;
@@ -483,9 +474,9 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$onDownloadFail$8(MessageObject messageObject, int i) {
-        TLRPC$Document document = messageObject.getDocument();
+        TLRPC.Document document = messageObject.getDocument();
         for (int i2 = 0; i2 < this.downloadingFiles.size(); i2++) {
-            TLRPC$Document document2 = this.downloadingFiles.get(i2).getDocument();
+            TLRPC.Document document2 = this.downloadingFiles.get(i2).getDocument();
             if (document2 == null || (document != null && document2.id == document.id)) {
                 this.downloadingFiles.remove(i2);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
@@ -515,7 +506,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    public static void lambda$savePresetToServer$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$savePresetToServer$3(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public void lambda$startDownloadFile$4(MessageObject messageObject) {
@@ -536,12 +527,12 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$startDownloadFile$5(TLRPC$Document tLRPC$Document, final MessageObject messageObject) {
+    public void lambda$startDownloadFile$5(TLRPC.Document document, final MessageObject messageObject) {
         boolean z;
         boolean z2;
-        TLRPC$Document document;
-        TLRPC$Document document2;
-        if (tLRPC$Document == null) {
+        TLRPC.Document document2;
+        TLRPC.Document document3;
+        if (document == null) {
             return;
         }
         int i = 0;
@@ -552,7 +543,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 break;
             }
             MessageObject messageObject2 = this.recentDownloadingFiles.get(i);
-            if (messageObject2 != null && (document2 = messageObject2.getDocument()) != null && document2.id == tLRPC$Document.id) {
+            if (messageObject2 != null && (document3 = messageObject2.getDocument()) != null && document3.id == document.id) {
                 z2 = true;
                 break;
             }
@@ -561,7 +552,7 @@ public class DownloadController extends BaseController implements NotificationCe
         if (!z2) {
             for (int i2 = 0; i2 < this.downloadingFiles.size(); i2++) {
                 MessageObject messageObject3 = this.downloadingFiles.get(i2);
-                if (messageObject3 != null && (document = messageObject3.getDocument()) != null && document.id == tLRPC$Document.id) {
+                if (messageObject3 != null && (document2 = messageObject3.getDocument()) != null && document2.id == document.id) {
                     break;
                 }
             }
@@ -637,11 +628,11 @@ public class DownloadController extends BaseController implements NotificationCe
         this.observersByTag.put(fileDownloadProgressListener.getObserverTag(), str);
     }
 
-    public int canDownloadMedia(org.telegram.tgnet.TLRPC$Message r18) {
+    public int canDownloadMedia(org.telegram.tgnet.TLRPC.Message r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message):int");
     }
 
-    public int canDownloadMedia(org.telegram.tgnet.TLRPC$Message r14, org.telegram.tgnet.TLRPC$MessageMedia r15) {
+    public int canDownloadMedia(org.telegram.tgnet.TLRPC.Message r14, org.telegram.tgnet.TLRPC.MessageMedia r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message, org.telegram.tgnet.TLRPC$MessageMedia):int");
     }
 
@@ -673,10 +664,10 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public boolean canDownloadMedia(MessageObject messageObject) {
-        TL_stories$StoryItem tL_stories$StoryItem;
-        TLRPC$MessageMedia tLRPC$MessageMedia;
+        TL_stories.StoryItem storyItem;
+        TLRPC.MessageMedia messageMedia;
         if (messageObject.type == 23) {
-            return (!SharedConfig.isAutoplayVideo() || (tL_stories$StoryItem = ((TLRPC$TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || tLRPC$MessageMedia.document == null || !tL_stories$StoryItem.isPublic) ? false : true;
+            return (!SharedConfig.isAutoplayVideo() || (storyItem = ((TLRPC.TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (messageMedia = storyItem.media) == null || messageMedia.document == null || !storyItem.isPublic) ? false : true;
         }
         if (messageObject.sponsoredMedia != null) {
             return true;
@@ -685,10 +676,10 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public int canDownloadMediaType(MessageObject messageObject) {
-        TL_stories$StoryItem tL_stories$StoryItem;
-        TLRPC$MessageMedia tLRPC$MessageMedia;
+        TL_stories.StoryItem storyItem;
+        TLRPC.MessageMedia messageMedia;
         if (messageObject.type == 23) {
-            return (!SharedConfig.isAutoplayVideo() || (tL_stories$StoryItem = ((TLRPC$TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || tLRPC$MessageMedia.document == null || !tL_stories$StoryItem.isPublic) ? 0 : 2;
+            return (!SharedConfig.isAutoplayVideo() || (storyItem = ((TLRPC.TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (messageMedia = storyItem.media) == null || messageMedia.document == null || !storyItem.isPublic) ? 0 : 2;
         }
         if (messageObject.sponsoredMedia != null) {
             return 2;
@@ -727,15 +718,15 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void cancelDownloading(ArrayList<Pair<Long, Integer>> arrayList) {
-        TLRPC$PhotoSize closestPhotoSizeWithSize;
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             DownloadObject downloadObject = this.downloadQueuePairs.get(arrayList.get(i));
             if (downloadObject != null) {
                 TLObject tLObject = downloadObject.object;
-                if (tLObject instanceof TLRPC$Document) {
-                    getFileLoader().cancelLoadFile((TLRPC$Document) tLObject, true);
-                } else if ((tLObject instanceof TLRPC$Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC$Photo) tLObject).sizes, AndroidUtilities.getPhotoSize())) != null) {
+                if (tLObject instanceof TLRPC.Document) {
+                    getFileLoader().cancelLoadFile((TLRPC.Document) tLObject, true);
+                } else if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize())) != null) {
                     getFileLoader().cancelLoadFile(closestPhotoSizeWithSize, true);
                 }
             }
@@ -752,10 +743,10 @@ public class DownloadController extends BaseController implements NotificationCe
             for (int i = 0; i < this.photoDownloadQueue.size(); i++) {
                 DownloadObject downloadObject = this.photoDownloadQueue.get(i);
                 TLObject tLObject = downloadObject.object;
-                if (tLObject instanceof TLRPC$Photo) {
-                    getFileLoader().cancelLoadFile(FileLoader.getClosestPhotoSizeWithSize(((TLRPC$Photo) tLObject).sizes, AndroidUtilities.getPhotoSize()));
-                } else if (tLObject instanceof TLRPC$Document) {
-                    getFileLoader().cancelLoadFile((TLRPC$Document) downloadObject.object);
+                if (tLObject instanceof TLRPC.Photo) {
+                    getFileLoader().cancelLoadFile(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize()));
+                } else if (tLObject instanceof TLRPC.Document) {
+                    getFileLoader().cancelLoadFile((TLRPC.Document) downloadObject.object);
                 }
             }
             this.photoDownloadQueue.clear();
@@ -764,7 +755,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         if ((currentDownloadMask & 2) == 0) {
             for (int i2 = 0; i2 < this.audioDownloadQueue.size(); i2++) {
-                getFileLoader().cancelLoadFile((TLRPC$Document) this.audioDownloadQueue.get(i2).object);
+                getFileLoader().cancelLoadFile((TLRPC.Document) this.audioDownloadQueue.get(i2).object);
             }
             this.audioDownloadQueue.clear();
         } else if (this.audioDownloadQueue.isEmpty()) {
@@ -772,7 +763,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         if ((currentDownloadMask & 8) == 0) {
             for (int i3 = 0; i3 < this.documentDownloadQueue.size(); i3++) {
-                getFileLoader().cancelLoadFile((TLRPC$Document) this.documentDownloadQueue.get(i3).object);
+                getFileLoader().cancelLoadFile((TLRPC.Document) this.documentDownloadQueue.get(i3).object);
             }
             this.documentDownloadQueue.clear();
         } else if (this.documentDownloadQueue.isEmpty()) {
@@ -780,7 +771,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         if ((currentDownloadMask & 4) == 0) {
             for (int i4 = 0; i4 < this.videoDownloadQueue.size(); i4++) {
-                getFileLoader().cancelLoadFile((TLRPC$Document) this.videoDownloadQueue.get(i4).object);
+                getFileLoader().cancelLoadFile((TLRPC.Document) this.videoDownloadQueue.get(i4).object);
             }
             this.videoDownloadQueue.clear();
         } else if (this.videoDownloadQueue.isEmpty()) {
@@ -1131,20 +1122,10 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         if (z || Math.abs(System.currentTimeMillis() - getUserConfig().autoDownloadConfigLoadTime) >= 86400000) {
             this.loadingAutoDownloadConfig = true;
-            getConnectionsManager().sendRequest(new TLObject() {
+            getConnectionsManager().sendRequest(new TLRPC.TL_account_getAutoDownloadSettings(), new RequestDelegate() {
                 @Override
-                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
-                    return TLRPC$TL_account_autoDownloadSettings.TLdeserialize(abstractSerializedData, i, z2);
-                }
-
-                @Override
-                public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(1457130303);
-                }
-            }, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    DownloadController.this.lambda$loadAutoDownloadConfig$2(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    DownloadController.this.lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
                 }
             });
         }
@@ -1180,7 +1161,7 @@ public class DownloadController extends BaseController implements NotificationCe
         if (messageObject == null || messageObject.getDocument() == null) {
             return;
         }
-        final TLRPC$Document document = messageObject.getDocument();
+        final TLRPC.Document document = messageObject.getDocument();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1240,7 +1221,7 @@ public class DownloadController extends BaseController implements NotificationCe
     public void savePresetToServer(int i) {
         Preset currentRoamingPreset;
         Preset preset;
-        TLRPC$TL_account_saveAutoDownloadSettings tLRPC$TL_account_saveAutoDownloadSettings = new TLRPC$TL_account_saveAutoDownloadSettings();
+        TLRPC.TL_account_saveAutoDownloadSettings tL_account_saveAutoDownloadSettings = new TLRPC.TL_account_saveAutoDownloadSettings();
         if (i == 0) {
             currentRoamingPreset = getCurrentMobilePreset();
             preset = this.mobilePreset;
@@ -1252,13 +1233,13 @@ public class DownloadController extends BaseController implements NotificationCe
             preset = this.roamingPreset;
         }
         boolean z = preset.enabled;
-        TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings = new TLRPC$TL_autoDownloadSettings();
-        tLRPC$TL_account_saveAutoDownloadSettings.settings = tLRPC$TL_autoDownloadSettings;
-        tLRPC$TL_autoDownloadSettings.audio_preload_next = currentRoamingPreset.preloadMusic;
-        tLRPC$TL_autoDownloadSettings.video_preload_large = currentRoamingPreset.preloadVideo;
-        tLRPC$TL_autoDownloadSettings.phonecalls_less_data = currentRoamingPreset.lessCallData;
-        tLRPC$TL_autoDownloadSettings.video_upload_maxbitrate = currentRoamingPreset.maxVideoBitrate;
-        tLRPC$TL_autoDownloadSettings.disabled = !z;
+        TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings = new TLRPC.TL_autoDownloadSettings();
+        tL_account_saveAutoDownloadSettings.settings = tL_autoDownloadSettings;
+        tL_autoDownloadSettings.audio_preload_next = currentRoamingPreset.preloadMusic;
+        tL_autoDownloadSettings.video_preload_large = currentRoamingPreset.preloadVideo;
+        tL_autoDownloadSettings.phonecalls_less_data = currentRoamingPreset.lessCallData;
+        tL_autoDownloadSettings.video_upload_maxbitrate = currentRoamingPreset.maxVideoBitrate;
+        tL_autoDownloadSettings.disabled = !z;
         int i2 = 0;
         boolean z2 = false;
         boolean z3 = false;
@@ -1284,27 +1265,27 @@ public class DownloadController extends BaseController implements NotificationCe
                 i2++;
             }
         }
-        TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings2 = tLRPC$TL_account_saveAutoDownloadSettings.settings;
-        tLRPC$TL_autoDownloadSettings2.photo_size_max = z2 ? (int) currentRoamingPreset.sizes[0] : 0;
-        tLRPC$TL_autoDownloadSettings2.video_size_max = z3 ? currentRoamingPreset.sizes[1] : 0L;
-        tLRPC$TL_autoDownloadSettings2.file_size_max = z4 ? currentRoamingPreset.sizes[2] : 0L;
-        getConnectionsManager().sendRequest(tLRPC$TL_account_saveAutoDownloadSettings, new RequestDelegate() {
+        TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings2 = tL_account_saveAutoDownloadSettings.settings;
+        tL_autoDownloadSettings2.photo_size_max = z2 ? (int) currentRoamingPreset.sizes[0] : 0;
+        tL_autoDownloadSettings2.video_size_max = z3 ? currentRoamingPreset.sizes[1] : 0L;
+        tL_autoDownloadSettings2.file_size_max = z4 ? currentRoamingPreset.sizes[2] : 0L;
+        getConnectionsManager().sendRequest(tL_account_saveAutoDownloadSettings, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                DownloadController.lambda$savePresetToServer$3(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                DownloadController.lambda$savePresetToServer$3(tLObject, tL_error);
             }
         });
     }
 
-    public void startDownloadFile(TLRPC$Document tLRPC$Document, final MessageObject messageObject) {
-        final TLRPC$Document document;
-        if (messageObject == null || (document = messageObject.getDocument()) == null) {
+    public void startDownloadFile(TLRPC.Document document, final MessageObject messageObject) {
+        final TLRPC.Document document2;
+        if (messageObject == null || (document2 = messageObject.getDocument()) == null) {
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DownloadController.this.lambda$startDownloadFile$5(document, messageObject);
+                DownloadController.this.lambda$startDownloadFile$5(document2, messageObject);
             }
         });
     }

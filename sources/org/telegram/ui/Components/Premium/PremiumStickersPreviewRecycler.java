@@ -15,7 +15,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumStickersPreviewRecycler;
@@ -60,7 +60,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
                 return;
             }
             StickerView stickerView = (StickerView) viewHolder.itemView;
-            stickerView.setSticker((TLRPC$Document) PremiumStickersPreviewRecycler.this.premiumStickers.get(i % PremiumStickersPreviewRecycler.this.premiumStickers.size()));
+            stickerView.setSticker((TLRPC.Document) PremiumStickersPreviewRecycler.this.premiumStickers.get(i % PremiumStickersPreviewRecycler.this.premiumStickers.size()));
             stickerView.setDrawImage(!PremiumStickersPreviewRecycler.this.hasSelectedView, false, false);
         }
 
@@ -76,7 +76,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         boolean animateImage;
         private float animateImageProgress;
         ImageReceiver centerImage;
-        TLRPC$Document document;
+        TLRPC.Document document;
         boolean drawEffect;
         ImageReceiver effectImage;
         private float effectProgress;
@@ -167,8 +167,8 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
             }
         }
 
-        public void setSticker(TLRPC$Document tLRPC$Document) {
-            this.document = tLRPC$Document;
+        public void setSticker(TLRPC.Document document) {
+            this.document = document;
             this.update = true;
         }
     }

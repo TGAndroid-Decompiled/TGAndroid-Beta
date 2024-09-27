@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.LocationCell;
@@ -29,7 +29,7 @@ public abstract class LocationActivitySearchAdapter extends BaseLocationAdapter 
         flickerLoadingView.setIsSingleCell(true);
     }
 
-    public TLRPC$TL_messageMediaVenue getItem(int i) {
+    public TLRPC.TL_messageMediaVenue getItem(int i) {
         ArrayList arrayList;
         if (!this.locations.isEmpty()) {
             i--;
@@ -49,7 +49,7 @@ public abstract class LocationActivitySearchAdapter extends BaseLocationAdapter 
             }
             arrayList = this.places;
         }
-        return (TLRPC$TL_messageMediaVenue) arrayList.get(i);
+        return (TLRPC.TL_messageMediaVenue) arrayList.get(i);
     }
 
     @Override
@@ -85,7 +85,7 @@ public abstract class LocationActivitySearchAdapter extends BaseLocationAdapter 
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         GraySectionCell graySectionCell;
         int i2;
-        TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         int i3;
         boolean z = true;
         if (viewHolder.getItemViewType() != 0) {
@@ -111,20 +111,20 @@ public abstract class LocationActivitySearchAdapter extends BaseLocationAdapter 
                 }
                 i3 = size;
                 if (i3 >= 0 && i3 < this.places.size()) {
-                    tLRPC$TL_messageMediaVenue = (TLRPC$TL_messageMediaVenue) this.places.get(i3);
+                    tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.places.get(i3);
                 }
             }
-            tLRPC$TL_messageMediaVenue = null;
+            tL_messageMediaVenue = null;
             i3 = i;
         } else {
-            tLRPC$TL_messageMediaVenue = (TLRPC$TL_messageMediaVenue) this.locations.get(i4);
+            tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.locations.get(i4);
             i3 = 2;
         }
         LocationCell locationCell = (LocationCell) viewHolder.itemView;
         if (i == getItemCount() - 1 || (!this.searchingLocations && !this.locations.isEmpty() && i == this.locations.size())) {
             z = false;
         }
-        locationCell.setLocation(tLRPC$TL_messageMediaVenue, i3, z);
+        locationCell.setLocation(tL_messageMediaVenue, i3, z);
     }
 
     @Override

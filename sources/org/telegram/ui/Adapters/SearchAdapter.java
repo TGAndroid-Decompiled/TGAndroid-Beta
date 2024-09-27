@@ -19,8 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$TL_contact;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
@@ -132,10 +131,10 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
         ArrayList arrayList4 = new ArrayList();
         int i5 = 0;
         while (i5 < arrayList.size()) {
-            TLRPC$TL_contact tLRPC$TL_contact = (TLRPC$TL_contact) arrayList.get(i5);
+            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) arrayList.get(i5);
             int i6 = i4;
-            TLRPC$User user = MessagesController.getInstance(i2).getUser(Long.valueOf(tLRPC$TL_contact.user_id));
-            if ((this.allowSelf || !user.self) && ((!this.onlyMutual || user.mutual_contact) && ((longSparseArray = this.ignoreUsers) == null || longSparseArray.indexOfKey(tLRPC$TL_contact.user_id) < 0))) {
+            TLRPC.User user = MessagesController.getInstance(i2).getUser(Long.valueOf(tL_contact.user_id));
+            if ((this.allowSelf || !user.self) && ((!this.onlyMutual || user.mutual_contact) && ((longSparseArray = this.ignoreUsers) == null || longSparseArray.indexOfKey(tL_contact.user_id) < 0))) {
                 String[] strArr4 = new String[3];
                 strArr4[0] = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
                 String translitString2 = LocaleController.getInstance().getTranslitString(strArr4[0]);

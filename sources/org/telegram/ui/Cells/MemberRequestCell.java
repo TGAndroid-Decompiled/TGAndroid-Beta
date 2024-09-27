@@ -10,8 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$TL_chatInviteImporter;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -21,15 +20,15 @@ import org.telegram.ui.Components.LayoutHelper;
 public class MemberRequestCell extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
     private final BackupImageView avatarImageView;
-    private TLRPC$TL_chatInviteImporter importer;
+    private TLRPC.TL_chatInviteImporter importer;
     private boolean isNeedDivider;
     private final SimpleTextView nameTextView;
     private final SimpleTextView statusTextView;
 
     public interface OnClickListener {
-        void onAddClicked(TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter);
+        void onAddClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter);
 
-        void onDismissClicked(TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter);
+        void onDismissClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter);
     }
 
     public MemberRequestCell(Context context, final OnClickListener onClickListener, boolean z) {
@@ -98,26 +97,26 @@ public class MemberRequestCell extends FrameLayout {
     }
 
     public void lambda$new$0(OnClickListener onClickListener, View view) {
-        TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter;
-        if (onClickListener == null || (tLRPC$TL_chatInviteImporter = this.importer) == null) {
+        TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
+        if (onClickListener == null || (tL_chatInviteImporter = this.importer) == null) {
             return;
         }
-        onClickListener.onAddClicked(tLRPC$TL_chatInviteImporter);
+        onClickListener.onAddClicked(tL_chatInviteImporter);
     }
 
     public void lambda$new$1(OnClickListener onClickListener, View view) {
-        TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter;
-        if (onClickListener == null || (tLRPC$TL_chatInviteImporter = this.importer) == null) {
+        TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
+        if (onClickListener == null || (tL_chatInviteImporter = this.importer) == null) {
             return;
         }
-        onClickListener.onDismissClicked(tLRPC$TL_chatInviteImporter);
+        onClickListener.onDismissClicked(tL_chatInviteImporter);
     }
 
     public BackupImageView getAvatarImageView() {
         return this.avatarImageView;
     }
 
-    public TLRPC$TL_chatInviteImporter getImporter() {
+    public TLRPC.TL_chatInviteImporter getImporter() {
         return this.importer;
     }
 
@@ -138,29 +137,29 @@ public class MemberRequestCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(107.0f), 1073741824));
     }
 
-    public void setData(LongSparseArray longSparseArray, TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, boolean z) {
+    public void setData(LongSparseArray longSparseArray, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z) {
         SimpleTextView simpleTextView;
         String str;
-        this.importer = tLRPC$TL_chatInviteImporter;
+        this.importer = tL_chatInviteImporter;
         this.isNeedDivider = z;
         setWillNotDraw(!z);
-        TLRPC$User tLRPC$User = (TLRPC$User) longSparseArray.get(tLRPC$TL_chatInviteImporter.user_id);
-        this.avatarDrawable.setInfo(tLRPC$User);
-        this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
-        this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
-        String formatDateAudio = LocaleController.formatDateAudio(tLRPC$TL_chatInviteImporter.date, false);
-        if (tLRPC$TL_chatInviteImporter.via_chatlist) {
+        TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
+        this.avatarDrawable.setInfo(user);
+        this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
+        this.nameTextView.setText(UserObject.getUserName(user));
+        String formatDateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
+        if (tL_chatInviteImporter.via_chatlist) {
             simpleTextView = this.statusTextView;
             str = LocaleController.getString(R.string.JoinedViaFolder);
         } else {
-            long j = tLRPC$TL_chatInviteImporter.approved_by;
+            long j = tL_chatInviteImporter.approved_by;
             if (j == 0) {
                 simpleTextView = this.statusTextView;
                 str = LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, formatDateAudio);
             } else {
-                TLRPC$User tLRPC$User2 = (TLRPC$User) longSparseArray.get(j);
-                if (tLRPC$User2 != null) {
-                    this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(tLRPC$User2), formatDateAudio));
+                TLRPC.User user2 = (TLRPC.User) longSparseArray.get(j);
+                if (user2 != null) {
+                    this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(user2), formatDateAudio));
                     return;
                 } else {
                     simpleTextView = this.statusTextView;

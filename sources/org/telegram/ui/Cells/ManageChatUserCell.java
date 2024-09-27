@@ -12,9 +12,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -33,7 +32,7 @@ public class ManageChatUserCell extends FrameLayout {
     private ManageChatUserCellDelegate delegate;
     private int dividerColor;
     private boolean isAdmin;
-    private TLRPC$FileLocation lastAvatar;
+    private TLRPC.FileLocation lastAvatar;
     private String lastName;
     private int lastStatus;
     private final int namePadding;
@@ -45,7 +44,7 @@ public class ManageChatUserCell extends FrameLayout {
     private int statusOnlineColor;
     private final SimpleTextView statusTextView;
     private final StoriesUtilities.AvatarStoryParams storyAvatarParams;
-    private TL_stories$StoryItem storyItem;
+    private TL_stories.StoryItem storyItem;
 
     public interface ManageChatUserCellDelegate {
         boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell, boolean z);
@@ -137,14 +136,14 @@ public class ManageChatUserCell extends FrameLayout {
         return this.storyAvatarParams;
     }
 
-    public TL_stories$StoryItem getStoryItem() {
+    public TL_stories.StoryItem getStoryItem() {
         return this.storyItem;
     }
 
     public long getUserId() {
         Object obj = this.currentObject;
-        if (obj instanceof TLRPC$User) {
-            return ((TLRPC$User) obj).id;
+        if (obj instanceof TLRPC.User) {
+            return ((TLRPC.User) obj).id;
         }
         return 0L;
     }
@@ -275,8 +274,8 @@ public class ManageChatUserCell extends FrameLayout {
         this.statusOnlineColor = i2;
     }
 
-    public void setStoryItem(TL_stories$StoryItem tL_stories$StoryItem, View.OnClickListener onClickListener) {
-        this.storyItem = tL_stories$StoryItem;
+    public void setStoryItem(TL_stories.StoryItem storyItem, View.OnClickListener onClickListener) {
+        this.storyItem = storyItem;
         this.avatarImageView.setOnClickListener(onClickListener);
     }
 

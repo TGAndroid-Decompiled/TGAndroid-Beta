@@ -37,10 +37,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_getStatsURL;
-import org.telegram.tgnet.TLRPC$TL_statsURL;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -85,7 +82,7 @@ public class WebviewActivity extends BaseFragment {
         }
 
         public void lambda$postEvent$0(String str) {
-            TLRPC$Message tLRPC$Message;
+            TLRPC.Message message;
             boolean z;
             if (WebviewActivity.this.getParentActivity() == null) {
                 return;
@@ -96,15 +93,15 @@ public class WebviewActivity extends BaseFragment {
             str.hashCode();
             if (!str.equals("share_game")) {
                 if (str.equals("share_score")) {
-                    tLRPC$Message = WebviewActivity.this.currentMessageObject.messageOwner;
+                    message = WebviewActivity.this.currentMessageObject.messageOwner;
                     z = true;
                 }
                 WebviewActivity webviewActivity = WebviewActivity.this;
                 webviewActivity.showDialog(ShareAlert.createShareAlert(webviewActivity.getParentActivity(), WebviewActivity.this.currentMessageObject, null, false, WebviewActivity.this.linkToCopy, false));
             }
-            tLRPC$Message = WebviewActivity.this.currentMessageObject.messageOwner;
+            message = WebviewActivity.this.currentMessageObject.messageOwner;
             z = false;
-            tLRPC$Message.with_my_score = z;
+            message.with_my_score = z;
             WebviewActivity webviewActivity2 = WebviewActivity.this;
             webviewActivity2.showDialog(ShareAlert.createShareAlert(webviewActivity2.getParentActivity(), WebviewActivity.this.currentMessageObject, null, false, WebviewActivity.this.linkToCopy, false));
         }
@@ -146,13 +143,13 @@ public class WebviewActivity extends BaseFragment {
         this.loadStats = false;
         if (tLObject != null) {
             WebView webView = this.webView;
-            String str = ((TLRPC$TL_statsURL) tLObject).url;
+            String str = ((TLRPC.TL_statsURL) tLObject).url;
             this.currentUrl = str;
             webView.loadUrl(str);
         }
     }
 
-    public void lambda$reloadStats$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$reloadStats$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -228,17 +225,17 @@ public class WebviewActivity extends BaseFragment {
             return;
         }
         this.loadStats = true;
-        TLRPC$TL_messages_getStatsURL tLRPC$TL_messages_getStatsURL = new TLRPC$TL_messages_getStatsURL();
-        tLRPC$TL_messages_getStatsURL.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.currentDialogId);
+        TLRPC.TL_messages_getStatsURL tL_messages_getStatsURL = new TLRPC.TL_messages_getStatsURL();
+        tL_messages_getStatsURL.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.currentDialogId);
         if (str == null) {
             str = "";
         }
-        tLRPC$TL_messages_getStatsURL.params = str;
-        tLRPC$TL_messages_getStatsURL.dark = Theme.getCurrentTheme().isDark();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStatsURL, new RequestDelegate() {
+        tL_messages_getStatsURL.params = str;
+        tL_messages_getStatsURL.dark = Theme.getCurrentTheme().isDark();
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStatsURL, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                WebviewActivity.this.lambda$reloadStats$1(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                WebviewActivity.this.lambda$reloadStats$1(tLObject, tL_error);
             }
         });
     }
@@ -255,7 +252,7 @@ public class WebviewActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    WebviewActivity.this.lambda$onBackPressed$307();
+                    WebviewActivity.this.lambda$onBackPressed$300();
                     return;
                 }
                 if (i != 1) {

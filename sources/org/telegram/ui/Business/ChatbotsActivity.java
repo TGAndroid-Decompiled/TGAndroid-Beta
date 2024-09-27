@@ -26,13 +26,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_connectedBots;
-import org.telegram.tgnet.TLRPC$TL_account_updateConnectedBot;
-import org.telegram.tgnet.TLRPC$TL_boolFalse;
-import org.telegram.tgnet.TLRPC$TL_connectedBot;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputBusinessBotRecipients;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -53,8 +47,8 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 
 public class ChatbotsActivity extends BaseFragment {
-    public TLRPC$TL_connectedBot currentBot;
-    public TLRPC$TL_account_connectedBots currentValue;
+    public TLRPC.TL_connectedBot currentBot;
+    public TLRPC.TL_account_connectedBots currentValue;
     private ActionBarMenuItem doneButton;
     private CrossfadeDrawable doneButtonDrawable;
     private EditTextBoldCursor editText;
@@ -81,7 +75,7 @@ public class ChatbotsActivity extends BaseFragment {
         }
     };
     public boolean allowReply = true;
-    private TLRPC$User selectedBot = null;
+    private TLRPC.User selectedBot = null;
     private LongSparseArray foundBots = new LongSparseArray();
 
     public class AnonymousClass5 implements SearchAdapterHelper.SearchAdapterHelperDelegate {
@@ -147,9 +141,9 @@ public class ChatbotsActivity extends BaseFragment {
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         arrayList.add(UItem.asTopView(this.introText, "RestrictedEmoji", "🤖"));
-        TLRPC$User tLRPC$User = this.selectedBot;
-        if (tLRPC$User != null) {
-            arrayList.add(UItem.asAddChat(Long.valueOf(tLRPC$User.id)).setChecked(true).setCloseIcon(new View.OnClickListener() {
+        TLRPC.User user = this.selectedBot;
+        if (user != null) {
+            arrayList.add(UItem.asAddChat(Long.valueOf(user.id)).setChecked(true).setCloseIcon(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     ChatbotsActivity.this.clear(view);
@@ -162,22 +156,22 @@ public class ChatbotsActivity extends BaseFragment {
             boolean z = false;
             for (int i = 0; i < this.searchHelper.getLocalServerSearch().size(); i++) {
                 TLObject tLObject = (TLObject) this.searchHelper.getLocalServerSearch().get(i);
-                if (tLObject instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User2 = (TLRPC$User) tLObject;
-                    if (tLRPC$User2.bot) {
-                        arrayList.add(UItem.asAddChat(Long.valueOf(tLRPC$User2.id)));
-                        this.foundBots.put(tLRPC$User2.id, tLRPC$User2);
+                if (tLObject instanceof TLRPC.User) {
+                    TLRPC.User user2 = (TLRPC.User) tLObject;
+                    if (user2.bot) {
+                        arrayList.add(UItem.asAddChat(Long.valueOf(user2.id)));
+                        this.foundBots.put(user2.id, user2);
                         z = true;
                     }
                 }
             }
             for (int i2 = 0; i2 < this.searchHelper.getGlobalSearch().size(); i2++) {
                 TLObject tLObject2 = (TLObject) this.searchHelper.getGlobalSearch().get(i2);
-                if (tLObject2 instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User3 = (TLRPC$User) tLObject2;
-                    if (tLRPC$User3.bot) {
-                        arrayList.add(UItem.asAddChat(Long.valueOf(tLRPC$User3.id)));
-                        this.foundBots.put(tLRPC$User3.id, tLRPC$User3);
+                if (tLObject2 instanceof TLRPC.User) {
+                    TLRPC.User user3 = (TLRPC.User) tLObject2;
+                    if (user3.bot) {
+                        arrayList.add(UItem.asAddChat(Long.valueOf(user3.id)));
+                        this.foundBots.put(user3.id, user3);
                         z = true;
                     }
                 }
@@ -252,16 +246,16 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void lambda$onBackPressed$8(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
-    public void lambda$processDone$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int[] iArr, ArrayList arrayList) {
-        if (tLRPC$TL_error != null) {
+    public void lambda$processDone$4(TLRPC.TL_error tL_error, TLObject tLObject, int[] iArr, ArrayList arrayList) {
+        if (tL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.showError(tLRPC$TL_error);
+            BulletinFactory.showError(tL_error);
             return;
         }
-        if (tLObject instanceof TLRPC$TL_boolFalse) {
+        if (tLObject instanceof TLRPC.TL_boolFalse) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
             return;
@@ -271,31 +265,31 @@ public class ChatbotsActivity extends BaseFragment {
         if (i == arrayList.size()) {
             BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
             getMessagesController().clearFullUsers();
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
-    public void lambda$processDone$5(final int[] iArr, final ArrayList arrayList, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processDone$5(final int[] iArr, final ArrayList arrayList, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatbotsActivity.this.lambda$processDone$4(tLRPC$TL_error, tLObject, iArr, arrayList);
+                ChatbotsActivity.this.lambda$processDone$4(tL_error, tLObject, iArr, arrayList);
             }
         });
     }
 
-    public void lambda$setValue$6(TLRPC$TL_account_connectedBots tLRPC$TL_account_connectedBots) {
+    public void lambda$setValue$6(TLRPC.TL_account_connectedBots tL_account_connectedBots) {
         UniversalAdapter universalAdapter;
-        this.currentValue = tLRPC$TL_account_connectedBots;
-        TLRPC$TL_connectedBot tLRPC$TL_connectedBot = (tLRPC$TL_account_connectedBots == null || tLRPC$TL_account_connectedBots.connected_bots.isEmpty()) ? null : (TLRPC$TL_connectedBot) this.currentValue.connected_bots.get(0);
-        this.currentBot = tLRPC$TL_connectedBot;
-        this.selectedBot = tLRPC$TL_connectedBot == null ? null : getMessagesController().getUser(Long.valueOf(this.currentBot.bot_id));
-        TLRPC$TL_connectedBot tLRPC$TL_connectedBot2 = this.currentBot;
-        this.allowReply = tLRPC$TL_connectedBot2 != null ? tLRPC$TL_connectedBot2.can_reply : true;
-        this.exclude = tLRPC$TL_connectedBot2 != null ? tLRPC$TL_connectedBot2.recipients.exclude_selected : true;
+        this.currentValue = tL_account_connectedBots;
+        TLRPC.TL_connectedBot tL_connectedBot = (tL_account_connectedBots == null || tL_account_connectedBots.connected_bots.isEmpty()) ? null : this.currentValue.connected_bots.get(0);
+        this.currentBot = tL_connectedBot;
+        this.selectedBot = tL_connectedBot == null ? null : getMessagesController().getUser(Long.valueOf(this.currentBot.bot_id));
+        TLRPC.TL_connectedBot tL_connectedBot2 = this.currentBot;
+        this.allowReply = tL_connectedBot2 != null ? tL_connectedBot2.can_reply : true;
+        this.exclude = tL_connectedBot2 != null ? tL_connectedBot2.recipients.exclude_selected : true;
         BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
         if (businessRecipientsHelper != null) {
-            businessRecipientsHelper.setValue(tLRPC$TL_connectedBot2 != null ? tLRPC$TL_connectedBot2.recipients : null);
+            businessRecipientsHelper.setValue(tL_connectedBot2 != null ? tL_connectedBot2.recipients : null);
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
@@ -306,7 +300,7 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        TLRPC$User tLRPC$User;
+        TLRPC.User user;
         if (this.recipientsHelper.onClick(uItem)) {
             return;
         }
@@ -329,14 +323,14 @@ public class ChatbotsActivity extends BaseFragment {
             if (i2 == -6) {
                 this.selectedBot = null;
             } else {
-                if (uItem.viewType != 13 || (tLRPC$User = (TLRPC$User) this.foundBots.get(uItem.dialogId)) == null) {
+                if (uItem.viewType != 13 || (user = (TLRPC.User) this.foundBots.get(uItem.dialogId)) == null) {
                     return;
                 }
-                if (!tLRPC$User.bot_business) {
+                if (!user.bot_business) {
                     showDialog(new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.BusinessBotNotSupportedTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
                     return;
                 } else {
-                    this.selectedBot = tLRPC$User;
+                    this.selectedBot = user;
                     AndroidUtilities.hideKeyboard(this.editText);
                 }
             }
@@ -346,48 +340,48 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void processDone() {
-        TLRPC$User tLRPC$User;
+        TLRPC.User user;
         if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         if (this.recipientsHelper.validate(this.listView)) {
             final ArrayList arrayList = new ArrayList();
-            TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
-            if (tLRPC$TL_connectedBot != null && ((tLRPC$User = this.selectedBot) == null || tLRPC$TL_connectedBot.bot_id != tLRPC$User.id)) {
-                TLRPC$TL_account_updateConnectedBot tLRPC$TL_account_updateConnectedBot = new TLRPC$TL_account_updateConnectedBot();
-                tLRPC$TL_account_updateConnectedBot.deleted = true;
-                tLRPC$TL_account_updateConnectedBot.bot = getMessagesController().getInputUser(this.currentBot.bot_id);
-                tLRPC$TL_account_updateConnectedBot.recipients = new TLRPC$TL_inputBusinessBotRecipients();
-                arrayList.add(tLRPC$TL_account_updateConnectedBot);
+            TLRPC.TL_connectedBot tL_connectedBot = this.currentBot;
+            if (tL_connectedBot != null && ((user = this.selectedBot) == null || tL_connectedBot.bot_id != user.id)) {
+                TLRPC.TL_account_updateConnectedBot tL_account_updateConnectedBot = new TLRPC.TL_account_updateConnectedBot();
+                tL_account_updateConnectedBot.deleted = true;
+                tL_account_updateConnectedBot.bot = getMessagesController().getInputUser(this.currentBot.bot_id);
+                tL_account_updateConnectedBot.recipients = new TLRPC.TL_inputBusinessBotRecipients();
+                arrayList.add(tL_account_updateConnectedBot);
             }
             if (this.selectedBot != null) {
-                TLRPC$TL_account_updateConnectedBot tLRPC$TL_account_updateConnectedBot2 = new TLRPC$TL_account_updateConnectedBot();
-                tLRPC$TL_account_updateConnectedBot2.deleted = false;
-                tLRPC$TL_account_updateConnectedBot2.can_reply = this.allowReply;
-                tLRPC$TL_account_updateConnectedBot2.bot = getMessagesController().getInputUser(this.selectedBot);
-                tLRPC$TL_account_updateConnectedBot2.recipients = this.recipientsHelper.getBotInputValue();
-                arrayList.add(tLRPC$TL_account_updateConnectedBot2);
-                TLRPC$TL_connectedBot tLRPC$TL_connectedBot2 = this.currentBot;
-                if (tLRPC$TL_connectedBot2 != null) {
-                    tLRPC$TL_connectedBot2.bot_id = this.selectedBot.id;
-                    tLRPC$TL_connectedBot2.recipients = this.recipientsHelper.getBotValue();
+                TLRPC.TL_account_updateConnectedBot tL_account_updateConnectedBot2 = new TLRPC.TL_account_updateConnectedBot();
+                tL_account_updateConnectedBot2.deleted = false;
+                tL_account_updateConnectedBot2.can_reply = this.allowReply;
+                tL_account_updateConnectedBot2.bot = getMessagesController().getInputUser(this.selectedBot);
+                tL_account_updateConnectedBot2.recipients = this.recipientsHelper.getBotInputValue();
+                arrayList.add(tL_account_updateConnectedBot2);
+                TLRPC.TL_connectedBot tL_connectedBot2 = this.currentBot;
+                if (tL_connectedBot2 != null) {
+                    tL_connectedBot2.bot_id = this.selectedBot.id;
+                    tL_connectedBot2.recipients = this.recipientsHelper.getBotValue();
                     this.currentBot.can_reply = this.allowReply;
                 }
             }
             if (arrayList.isEmpty()) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             }
             final int[] iArr = {0};
             for (int i = 0; i < arrayList.size(); i++) {
                 getConnectionsManager().sendRequest((TLObject) arrayList.get(i), new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        ChatbotsActivity.this.lambda$processDone$5(iArr, arrayList, tLObject, tLRPC$TL_error);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ChatbotsActivity.this.lambda$processDone$5(iArr, arrayList, tLObject, tL_error);
                     }
                 });
             }
@@ -416,7 +410,7 @@ public class ChatbotsActivity extends BaseFragment {
         BusinessChatbotController.getInstance(this.currentAccount).load(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatbotsActivity.this.lambda$setValue$6((TLRPC$TL_account_connectedBots) obj);
+                ChatbotsActivity.this.lambda$setValue$6((TLRPC.TL_account_connectedBots) obj);
             }
         });
     }
@@ -445,7 +439,7 @@ public class ChatbotsActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (ChatbotsActivity.this.onBackPressed()) {
-                        ChatbotsActivity.this.lambda$onBackPressed$307();
+                        ChatbotsActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i == 1) {
                     ChatbotsActivity.this.processDone();
@@ -570,8 +564,8 @@ public class ChatbotsActivity extends BaseFragment {
             }
         });
         this.recipientsHelper = businessRecipientsHelper;
-        TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
-        businessRecipientsHelper.setValue(tLRPC$TL_connectedBot == null ? null : tLRPC$TL_connectedBot.recipients);
+        TLRPC.TL_connectedBot tL_connectedBot = this.currentBot;
+        businessRecipientsHelper.setValue(tL_connectedBot == null ? null : tL_connectedBot.recipients);
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
@@ -593,17 +587,17 @@ public class ChatbotsActivity extends BaseFragment {
         if (!this.valueSet) {
             return false;
         }
-        TLRPC$User tLRPC$User = this.selectedBot;
-        boolean z = tLRPC$User != null;
-        TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
-        if (z != (tLRPC$TL_connectedBot != null)) {
+        TLRPC.User user = this.selectedBot;
+        boolean z = user != null;
+        TLRPC.TL_connectedBot tL_connectedBot = this.currentBot;
+        if (z != (tL_connectedBot != null)) {
             return true;
         }
-        if ((tLRPC$User == null ? 0L : tLRPC$User.id) != (tLRPC$TL_connectedBot != null ? tLRPC$TL_connectedBot.bot_id : 0L)) {
+        if ((user == null ? 0L : user.id) != (tL_connectedBot != null ? tL_connectedBot.bot_id : 0L)) {
             return true;
         }
-        if (tLRPC$User != null) {
-            if (this.allowReply != tLRPC$TL_connectedBot.can_reply) {
+        if (user != null) {
+            if (this.allowReply != tL_connectedBot.can_reply) {
                 return true;
             }
             BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;

@@ -10,7 +10,7 @@ import android.graphics.Rect;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public class VoIpCoverView extends View {
@@ -36,7 +36,7 @@ public class VoIpCoverView extends View {
     private VoipCoverEmoji[] voipCoverEmojiLeft;
     private VoipCoverEmoji[] voipCoverEmojiRight;
 
-    public VoIpCoverView(Context context, TLRPC$User tLRPC$User, VoIPBackgroundProvider voIPBackgroundProvider) {
+    public VoIpCoverView(Context context, TLRPC.User user, VoIPBackgroundProvider voIPBackgroundProvider) {
         super(context);
         Paint paint = new Paint(1);
         this.saveLayerPaint = paint;
@@ -45,8 +45,8 @@ public class VoIpCoverView extends View {
         this.allowAnimations = isEnabled;
         this.backgroundProvider = voIPBackgroundProvider;
         if (isEnabled) {
-            this.voipCoverEmojiLeft = new VoipCoverEmoji[]{new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(32.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(35.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(26.0f))};
-            this.voipCoverEmojiRight = new VoipCoverEmoji[]{new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(32.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(35.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(tLRPC$User, this, AndroidUtilities.dp(26.0f))};
+            this.voipCoverEmojiLeft = new VoipCoverEmoji[]{new VoipCoverEmoji(user, this, AndroidUtilities.dp(32.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(35.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(26.0f))};
+            this.voipCoverEmojiRight = new VoipCoverEmoji[]{new VoipCoverEmoji(user, this, AndroidUtilities.dp(32.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(35.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(28.0f)), new VoipCoverEmoji(user, this, AndroidUtilities.dp(26.0f))};
             voIPBackgroundProvider.attach(this);
             setLayerType(2, null);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));

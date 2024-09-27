@@ -17,9 +17,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_setGlobalPrivacySettings;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_globalPrivacySettings;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -35,7 +33,7 @@ import org.telegram.ui.Components.RecyclerListView;
 public class ArchiveSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ListAdapter adapter;
     private RecyclerListView listView;
-    private TLRPC$TL_globalPrivacySettings settings;
+    private TLRPC.TL_globalPrivacySettings settings;
     private boolean changed = false;
     private int shiftDp = -3;
     private final ArrayList oldItems = new ArrayList();
@@ -171,13 +169,13 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         }
         int i2 = ((ItemInner) this.items.get(i)).id;
         if (i2 == 1) {
-            TLRPC$TL_globalPrivacySettings tLRPC$TL_globalPrivacySettings = this.settings;
-            z = !tLRPC$TL_globalPrivacySettings.keep_archived_unmuted;
-            tLRPC$TL_globalPrivacySettings.keep_archived_unmuted = z;
+            TLRPC.TL_globalPrivacySettings tL_globalPrivacySettings = this.settings;
+            z = !tL_globalPrivacySettings.keep_archived_unmuted;
+            tL_globalPrivacySettings.keep_archived_unmuted = z;
         } else if (i2 == 4) {
-            TLRPC$TL_globalPrivacySettings tLRPC$TL_globalPrivacySettings2 = this.settings;
-            z = !tLRPC$TL_globalPrivacySettings2.keep_archived_folders;
-            tLRPC$TL_globalPrivacySettings2.keep_archived_folders = z;
+            TLRPC.TL_globalPrivacySettings tL_globalPrivacySettings2 = this.settings;
+            z = !tL_globalPrivacySettings2.keep_archived_folders;
+            tL_globalPrivacySettings2.keep_archived_folders = z;
         } else {
             if (i2 != 7) {
                 return;
@@ -200,15 +198,15 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
                 return;
             }
-            TLRPC$TL_globalPrivacySettings tLRPC$TL_globalPrivacySettings3 = this.settings;
-            z = !tLRPC$TL_globalPrivacySettings3.archive_and_mute_new_noncontact_peers;
-            tLRPC$TL_globalPrivacySettings3.archive_and_mute_new_noncontact_peers = z;
+            TLRPC.TL_globalPrivacySettings tL_globalPrivacySettings3 = this.settings;
+            z = !tL_globalPrivacySettings3.archive_and_mute_new_noncontact_peers;
+            tL_globalPrivacySettings3.archive_and_mute_new_noncontact_peers = z;
         }
         ((TextCheckCell) view).setChecked(z);
         this.changed = true;
     }
 
-    public static void lambda$onFragmentDestroy$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$onFragmentDestroy$2(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     private void updateItems(boolean z) {
@@ -246,7 +244,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ArchiveSettingsActivity.this.lambda$onBackPressed$307();
+                    ArchiveSettingsActivity.this.lambda$onBackPressed$300();
                 }
             }
         });
@@ -281,10 +279,10 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
             }
         });
         getContactsController().loadGlobalPrivacySetting();
-        TLRPC$TL_globalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
+        TLRPC.TL_globalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
         this.settings = globalPrivacySettings;
         if (globalPrivacySettings == null) {
-            this.settings = new TLRPC$TL_globalPrivacySettings();
+            this.settings = new TLRPC.TL_globalPrivacySettings();
         }
         updateItems(false);
         return this.fragmentView;
@@ -301,10 +299,10 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
             }
             return;
         }
-        TLRPC$TL_globalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
+        TLRPC.TL_globalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
         this.settings = globalPrivacySettings;
         if (globalPrivacySettings == null) {
-            this.settings = new TLRPC$TL_globalPrivacySettings();
+            this.settings = new TLRPC.TL_globalPrivacySettings();
         }
         if (this.listView != null) {
             for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
@@ -340,12 +338,12 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
         super.onFragmentDestroy();
         if (this.changed) {
-            TLRPC$TL_account_setGlobalPrivacySettings tLRPC$TL_account_setGlobalPrivacySettings = new TLRPC$TL_account_setGlobalPrivacySettings();
-            tLRPC$TL_account_setGlobalPrivacySettings.settings = this.settings;
-            getConnectionsManager().sendRequest(tLRPC$TL_account_setGlobalPrivacySettings, new RequestDelegate() {
+            TLRPC.TL_account_setGlobalPrivacySettings tL_account_setGlobalPrivacySettings = new TLRPC.TL_account_setGlobalPrivacySettings();
+            tL_account_setGlobalPrivacySettings.settings = this.settings;
+            getConnectionsManager().sendRequest(tL_account_setGlobalPrivacySettings, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ArchiveSettingsActivity.lambda$onFragmentDestroy$2(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ArchiveSettingsActivity.lambda$onFragmentDestroy$2(tLObject, tL_error);
                 }
             });
             this.changed = false;

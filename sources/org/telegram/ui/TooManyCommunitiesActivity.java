@@ -28,11 +28,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_channels_getInactiveChannels;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_inactiveChats;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -149,9 +145,9 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             view.setAlpha(f);
             if (getItemViewType(i) == 4) {
                 GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
-                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) TooManyCommunitiesActivity.this.inactiveChats.get(i - this.inactiveChatsStartRow);
-                groupCreateUserCell.setObject(tLRPC$Chat, tLRPC$Chat.title, (String) TooManyCommunitiesActivity.this.inactiveChatsSignatures.get(i - this.inactiveChatsStartRow), i != this.inactiveChatsEndRow - 1);
-                groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(tLRPC$Chat.id)), false);
+                TLRPC.Chat chat = (TLRPC.Chat) TooManyCommunitiesActivity.this.inactiveChats.get(i - this.inactiveChatsStartRow);
+                groupCreateUserCell.setObject(chat, chat.title, (String) TooManyCommunitiesActivity.this.inactiveChatsSignatures.get(i - this.inactiveChatsStartRow), i != this.inactiveChatsEndRow - 1);
+                groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(chat.id)), false);
             }
         }
 
@@ -238,14 +234,14 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             for (int i3 = 0; i3 < TooManyCommunitiesActivity.this.inactiveChats.size(); i3++) {
-                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) TooManyCommunitiesActivity.this.inactiveChats.get(i3);
+                TLRPC.Chat chat = (TLRPC.Chat) TooManyCommunitiesActivity.this.inactiveChats.get(i3);
                 int i4 = 0;
                 boolean z = false;
                 while (true) {
                     if (i4 >= 2) {
                         break;
                     }
-                    String publicUsername = i4 == 0 ? tLRPC$Chat.title : ChatObject.getPublicUsername(tLRPC$Chat);
+                    String publicUsername = i4 == 0 ? chat.title : ChatObject.getPublicUsername(chat);
                     if (publicUsername != null) {
                         String lowerCase2 = publicUsername.toLowerCase();
                         for (int i5 = 0; i5 < i2; i5++) {
@@ -258,7 +254,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                             break;
                         }
                         if (z) {
-                            arrayList.add(tLRPC$Chat);
+                            arrayList.add(chat);
                             arrayList2.add((String) TooManyCommunitiesActivity.this.inactiveChatsSignatures.get(i3));
                             break;
                         }
@@ -313,11 +309,11 @@ public class TooManyCommunitiesActivity extends BaseFragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) this.searchResults.get(i);
+            TLRPC.Chat chat = (TLRPC.Chat) this.searchResults.get(i);
             String str = (String) this.searchResultsSignatures.get(i);
             GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
-            groupCreateUserCell.setObject(tLRPC$Chat, tLRPC$Chat.title, str, i != this.searchResults.size() - 1);
-            groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(tLRPC$Chat.id)), false);
+            groupCreateUserCell.setObject(chat, chat.title, str, i != this.searchResults.size() - 1);
+            groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(chat.id)), false);
         }
 
         @Override
@@ -370,19 +366,19 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         if (this.selectedIds.isEmpty()) {
             return;
         }
-        TLRPC$User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
+        TLRPC.User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < this.inactiveChats.size(); i++) {
-            if (this.selectedIds.contains(Long.valueOf(((TLRPC$Chat) this.inactiveChats.get(i)).id))) {
-                arrayList.add((TLRPC$Chat) this.inactiveChats.get(i));
+            if (this.selectedIds.contains(Long.valueOf(((TLRPC.Chat) this.inactiveChats.get(i)).id))) {
+                arrayList.add((TLRPC.Chat) this.inactiveChats.get(i));
             }
         }
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) arrayList.get(i2);
-            getMessagesController().putChat(tLRPC$Chat, false);
-            getMessagesController().deleteParticipantFromChat(tLRPC$Chat.id, user);
+            TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i2);
+            getMessagesController().putChat(chat, false);
+            getMessagesController().deleteParticipantFromChat(chat.id, user);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$getThemeDescriptions$6() {
@@ -430,11 +426,11 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         }
     }
 
-    public void lambda$loadInactiveChannels$4(ArrayList arrayList, TLRPC$TL_messages_inactiveChats tLRPC$TL_messages_inactiveChats) {
+    public void lambda$loadInactiveChannels$4(ArrayList arrayList, TLRPC.TL_messages_inactiveChats tL_messages_inactiveChats) {
         this.inactiveChatsSignatures.clear();
         this.inactiveChats.clear();
         this.inactiveChatsSignatures.addAll(arrayList);
-        this.inactiveChats.addAll(tLRPC$TL_messages_inactiveChats.chats);
+        this.inactiveChats.addAll(tL_messages_inactiveChats.chats);
         this.adapter.notifyDataSetChanged();
         if (this.listView.getMeasuredHeight() > 0) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -461,20 +457,20 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         }
     }
 
-    public void lambda$loadInactiveChannels$5(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error == null) {
-            final TLRPC$TL_messages_inactiveChats tLRPC$TL_messages_inactiveChats = (TLRPC$TL_messages_inactiveChats) tLObject;
+    public void lambda$loadInactiveChannels$5(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            final TLRPC.TL_messages_inactiveChats tL_messages_inactiveChats = (TLRPC.TL_messages_inactiveChats) tLObject;
             final ArrayList arrayList = new ArrayList();
-            for (int i = 0; i < tLRPC$TL_messages_inactiveChats.chats.size(); i++) {
-                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLRPC$TL_messages_inactiveChats.chats.get(i);
-                int currentTime = (getConnectionsManager().getCurrentTime() - ((Integer) tLRPC$TL_messages_inactiveChats.dates.get(i)).intValue()) / 86400;
+            for (int i = 0; i < tL_messages_inactiveChats.chats.size(); i++) {
+                TLRPC.Chat chat = tL_messages_inactiveChats.chats.get(i);
+                int currentTime = (getConnectionsManager().getCurrentTime() - tL_messages_inactiveChats.dates.get(i).intValue()) / 86400;
                 String formatPluralString = currentTime < 30 ? LocaleController.formatPluralString("Days", currentTime, new Object[0]) : currentTime < 365 ? LocaleController.formatPluralString("Months", currentTime / 30, new Object[0]) : LocaleController.formatPluralString("Years", currentTime / 365, new Object[0]);
-                arrayList.add(ChatObject.isMegagroup(tLRPC$Chat) ? LocaleController.formatString("InactiveChatSignature", R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", tLRPC$Chat.participants_count, new Object[0]), formatPluralString) : ChatObject.isChannel(tLRPC$Chat) ? LocaleController.formatString("InactiveChannelSignature", R.string.InactiveChannelSignature, formatPluralString) : LocaleController.formatString("InactiveChatSignature", R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", tLRPC$Chat.participants_count, new Object[0]), formatPluralString));
+                arrayList.add(ChatObject.isMegagroup(chat) ? LocaleController.formatString("InactiveChatSignature", R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]), formatPluralString) : ChatObject.isChannel(chat) ? LocaleController.formatString("InactiveChannelSignature", R.string.InactiveChannelSignature, formatPluralString) : LocaleController.formatString("InactiveChatSignature", R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]), formatPluralString));
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TooManyCommunitiesActivity.this.lambda$loadInactiveChannels$4(arrayList, tLRPC$TL_messages_inactiveChats);
+                    TooManyCommunitiesActivity.this.lambda$loadInactiveChannels$4(arrayList, tL_messages_inactiveChats);
                 }
             });
         }
@@ -483,12 +479,12 @@ public class TooManyCommunitiesActivity extends BaseFragment {
     public void lambda$new$0(View view, int i) {
         if (view instanceof GroupCreateUserCell) {
             GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) view;
-            TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) groupCreateUserCell.getObject();
-            if (this.selectedIds.contains(Long.valueOf(tLRPC$Chat.id))) {
-                this.selectedIds.remove(Long.valueOf(tLRPC$Chat.id));
+            TLRPC.Chat chat = (TLRPC.Chat) groupCreateUserCell.getObject();
+            if (this.selectedIds.contains(Long.valueOf(chat.id))) {
+                this.selectedIds.remove(Long.valueOf(chat.id));
                 groupCreateUserCell.setChecked(false, true);
             } else {
-                this.selectedIds.add(Long.valueOf(tLRPC$Chat.id));
+                this.selectedIds.add(Long.valueOf(chat.id));
                 groupCreateUserCell.setChecked(true, true);
             }
             onSelectedCountChange();
@@ -513,10 +509,10 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         this.adapter.notifyDataSetChanged();
         this.enterProgress = 0.0f;
         AndroidUtilities.runOnUIThread(this.showProgressRunnable, 500L);
-        getConnectionsManager().sendRequest(new TLRPC$TL_channels_getInactiveChannels(), new RequestDelegate() {
+        getConnectionsManager().sendRequest(new TLRPC.TL_channels_getInactiveChannels(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                TooManyCommunitiesActivity.this.lambda$loadInactiveChannels$5(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                TooManyCommunitiesActivity.this.lambda$loadInactiveChannels$5(tLObject, tL_error);
             }
         });
     }
@@ -579,7 +575,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TooManyCommunitiesActivity.this.lambda$onBackPressed$307();
+                    TooManyCommunitiesActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

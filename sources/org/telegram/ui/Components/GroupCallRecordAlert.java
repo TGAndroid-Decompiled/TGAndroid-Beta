@@ -24,7 +24,7 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.GroupCallRecordAlert;
@@ -109,7 +109,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         }
     }
 
-    public GroupCallRecordAlert(Context context, TLRPC$Chat tLRPC$Chat, boolean z) {
+    public GroupCallRecordAlert(Context context, TLRPC.Chat chat, boolean z) {
         super(context, false);
         TextView textView;
         int i;
@@ -153,7 +153,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         int i2 = this.backgroundPaddingLeft;
         viewGroup.setPadding(i2, 0, i2, 0);
         TextView textView2 = new TextView(getContext());
-        textView2.setText(LocaleController.getString(ChatObject.isChannelOrGiga(tLRPC$Chat) ? R.string.VoipChannelRecordVoiceChat : R.string.VoipRecordVoiceChat));
+        textView2.setText(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelRecordVoiceChat : R.string.VoipRecordVoiceChat));
         textView2.setTextColor(-1);
         textView2.setTextSize(1, 20.0f);
         textView2.setTypeface(AndroidUtilities.bold());

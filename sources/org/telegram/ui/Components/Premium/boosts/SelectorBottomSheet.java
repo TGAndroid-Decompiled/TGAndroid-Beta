@@ -30,10 +30,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$TL_help_country;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
@@ -59,7 +56,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private final List countriesLetters;
     private final List countriesList;
     private final Map countriesMap;
-    private final TLRPC$Chat currentChat;
+    private final TLRPC.Chat currentChat;
     private final SelectorHeaderCell headerView;
     private final ArrayList items;
     private int listPaddingTop;
@@ -344,8 +341,8 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             save(true);
         } else if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
-            TLRPC$User user = selectorUserCell.getUser();
-            TLRPC$Chat chat = selectorUserCell.getChat();
+            TLRPC.User user = selectorUserCell.getUser();
+            TLRPC.Chat chat = selectorUserCell.getChat();
             final long j = user != null ? user.id : -chat.id;
             if (this.selectedIds.contains(Long.valueOf(j))) {
                 this.selectedIds.remove(Long.valueOf(j));
@@ -457,14 +454,14 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         if (TextUtils.isEmpty(str)) {
             return true;
         }
-        if (!(tLObject instanceof TLRPC$TL_help_country)) {
+        if (!(tLObject instanceof TLRPC.TL_help_country)) {
             return false;
         }
-        TLRPC$TL_help_country tLRPC$TL_help_country = (TLRPC$TL_help_country) tLObject;
-        String lowerCase = AndroidUtilities.translitSafe(tLRPC$TL_help_country.default_name).toLowerCase();
+        TLRPC.TL_help_country tL_help_country = (TLRPC.TL_help_country) tLObject;
+        String lowerCase = AndroidUtilities.translitSafe(tL_help_country.default_name).toLowerCase();
         if (!lowerCase.startsWith(str)) {
             if (!lowerCase.contains(" " + str)) {
-                String lowerCase2 = AndroidUtilities.translitSafe(tLRPC$TL_help_country.iso2).toLowerCase();
+                String lowerCase2 = AndroidUtilities.translitSafe(tL_help_country.iso2).toLowerCase();
                 if (!lowerCase2.startsWith(str)) {
                     if (!lowerCase2.contains(" " + str)) {
                         return false;
@@ -502,10 +499,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             if (i == 1) {
                 ArrayList arrayList = new ArrayList();
                 for (TLObject tLObject : this.allSelectedObjects.values()) {
-                    if (tLObject instanceof TLRPC$User) {
-                        TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
-                        if (this.selectedIds.contains(Long.valueOf(tLRPC$User.id))) {
-                            arrayList.add(tLRPC$User);
+                    if (tLObject instanceof TLRPC.User) {
+                        TLRPC.User user = (TLRPC.User) tLObject;
+                        if (this.selectedIds.contains(Long.valueOf(user.id))) {
+                            arrayList.add(user);
                         }
                     }
                 }
@@ -519,10 +516,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             if (i == 2) {
                 ArrayList arrayList2 = new ArrayList();
                 for (TLObject tLObject2 : this.allSelectedObjects.values()) {
-                    if (tLObject2 instanceof TLRPC$Chat) {
-                        TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject2;
-                        if (this.selectedIds.contains(Long.valueOf(-tLRPC$Chat.id))) {
-                            arrayList2.add(tLRPC$Chat);
+                    if (tLObject2 instanceof TLRPC.Chat) {
+                        TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
+                        if (this.selectedIds.contains(Long.valueOf(-chat.id))) {
+                            arrayList2.add(chat);
                         }
                     }
                 }
@@ -537,9 +534,9 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 return;
             }
             ArrayList arrayList3 = new ArrayList();
-            for (TLRPC$TL_help_country tLRPC$TL_help_country : this.countriesList) {
-                if (this.selectedIds.contains(Long.valueOf(tLRPC$TL_help_country.default_name.hashCode()))) {
-                    arrayList3.add(tLRPC$TL_help_country);
+            for (TLRPC.TL_help_country tL_help_country : this.countriesList) {
+                if (this.selectedIds.contains(Long.valueOf(tL_help_country.default_name.hashCode()))) {
+                    arrayList3.add(tL_help_country);
                 }
             }
             SelectedObjectsListener selectedObjectsListener3 = this.selectedObjectsListener;
@@ -571,9 +568,9 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                     SelectorAdapter.Item item = (SelectorAdapter.Item) this.items.get(childAdapterPosition);
                     SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
                     selectorUserCell.setChecked(item.checked, z);
-                    TLRPC$Chat tLRPC$Chat = item.chat;
+                    TLRPC.Chat chat = item.chat;
                     float f = 1.0f;
-                    if (tLRPC$Chat != null && this.selectorAdapter.getParticipantsCount(tLRPC$Chat) > 200) {
+                    if (chat != null && this.selectorAdapter.getParticipantsCount(chat) > 200) {
                         f = 0.3f;
                     }
                     selectorUserCell.setCheckboxAlpha(f, z);
@@ -739,10 +736,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             i = 0;
             for (String str : this.countriesLetters) {
                 ArrayList arrayList = new ArrayList();
-                for (TLRPC$TL_help_country tLRPC$TL_help_country : (List) this.countriesMap.get(str)) {
-                    if (!isSearching() || matchLocal(tLRPC$TL_help_country, AndroidUtilities.translitSafe(this.query).toLowerCase())) {
+                for (TLRPC.TL_help_country tL_help_country : (List) this.countriesMap.get(str)) {
+                    if (!isSearching() || matchLocal(tL_help_country, AndroidUtilities.translitSafe(this.query).toLowerCase())) {
                         i += AndroidUtilities.dp(44.0f);
-                        arrayList.add(SelectorAdapter.Item.asCountry(tLRPC$TL_help_country, this.selectedIds.contains(Long.valueOf(tLRPC$TL_help_country.default_name.hashCode()))));
+                        arrayList.add(SelectorAdapter.Item.asCountry(tL_help_country, this.selectedIds.contains(Long.valueOf(tL_help_country.default_name.hashCode()))));
                     }
                 }
                 if (!arrayList.isEmpty()) {
@@ -756,9 +753,9 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
         Iterator it = this.peers.iterator();
         while (it.hasNext()) {
-            TLRPC$InputPeer tLRPC$InputPeer = (TLRPC$InputPeer) it.next();
+            TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) it.next();
             i += AndroidUtilities.dp(56.0f);
-            this.items.add(SelectorAdapter.Item.asPeer(tLRPC$InputPeer, this.selectedIds.contains(Long.valueOf(DialogObject.getPeerDialogId(tLRPC$InputPeer)))));
+            this.items.add(SelectorAdapter.Item.asPeer(inputPeer, this.selectedIds.contains(Long.valueOf(DialogObject.getPeerDialogId(inputPeer)))));
         }
         if (this.items.isEmpty()) {
             this.items.add(SelectorAdapter.Item.asNoUsers());

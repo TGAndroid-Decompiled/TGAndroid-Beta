@@ -9,7 +9,7 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.voip.GroupCallGridCell;
 import org.telegram.ui.Components.voip.GroupCallMiniTextureView;
@@ -75,7 +75,7 @@ public class GroupCallTabletGridAdapter extends RecyclerListView.SelectionAdapte
         GroupCallGridCell groupCallGridCell = (GroupCallGridCell) viewHolder.itemView;
         ChatObject.VideoParticipant participant = groupCallGridCell.getParticipant();
         ChatObject.VideoParticipant videoParticipant = (ChatObject.VideoParticipant) this.videoParticipants.get(i);
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = ((ChatObject.VideoParticipant) this.videoParticipants.get(i)).participant;
+        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = ((ChatObject.VideoParticipant) this.videoParticipants.get(i)).participant;
         groupCallGridCell.spanCount = getSpanCount(i);
         groupCallGridCell.position = i;
         groupCallGridCell.gridAdapter = this;

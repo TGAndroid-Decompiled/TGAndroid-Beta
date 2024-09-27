@@ -10,7 +10,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$RecentMeUrl;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 
@@ -30,7 +30,7 @@ public class DialogMeUrlCell extends BaseCell {
     private int nameLockLeft;
     private int nameLockTop;
     private int nameMuteLeft;
-    private TLRPC$RecentMeUrl recentMeUrl;
+    private TLRPC.RecentMeUrl recentMeUrl;
     public boolean useSeparator;
 
     public DialogMeUrlCell(Context context) {
@@ -139,8 +139,8 @@ public class DialogMeUrlCell extends BaseCell {
         this.isSelected = z;
     }
 
-    public void setRecentMeUrl(TLRPC$RecentMeUrl tLRPC$RecentMeUrl) {
-        this.recentMeUrl = tLRPC$RecentMeUrl;
+    public void setRecentMeUrl(TLRPC.RecentMeUrl recentMeUrl) {
+        this.recentMeUrl = recentMeUrl;
         requestLayout();
     }
 }

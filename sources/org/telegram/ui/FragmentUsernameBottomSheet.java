@@ -22,9 +22,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_fragment$TL_collectibleInfo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_fragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -42,8 +41,8 @@ public abstract class FragmentUsernameBottomSheet {
         (i == 1 ? BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)) : BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyLinkBulletin()).show();
     }
 
-    public static void lambda$open$1(Context context, TL_fragment$TL_collectibleInfo tL_fragment$TL_collectibleInfo, View view) {
-        Browser.openUrl(context, tL_fragment$TL_collectibleInfo.url);
+    public static void lambda$open$1(Context context, TL_fragment.TL_collectibleInfo tL_collectibleInfo, View view) {
+        Browser.openUrl(context, tL_collectibleInfo.url);
     }
 
     public static void lambda$open$2(Runnable runnable, BottomSheet bottomSheet, View view) {
@@ -51,7 +50,7 @@ public abstract class FragmentUsernameBottomSheet {
         bottomSheet.dismiss();
     }
 
-    public static void open(final Context context, final int i, String str, TLObject tLObject, final TL_fragment$TL_collectibleInfo tL_fragment$TL_collectibleInfo, final Theme.ResourcesProvider resourcesProvider) {
+    public static void open(final Context context, final int i, String str, TLObject tLObject, final TL_fragment.TL_collectibleInfo tL_collectibleInfo, final Theme.ResourcesProvider resourcesProvider) {
         String str2;
         Object obj;
         String formatString;
@@ -80,15 +79,15 @@ public abstract class FragmentUsernameBottomSheet {
             rLottieImageView.setTranslationY(AndroidUtilities.dp(2.0f));
         }
         frameLayout.addView(rLottieImageView, LayoutHelper.createLinear(-1, -1, 17));
-        String userName = tLObject instanceof TLRPC$User ? UserObject.getUserName((TLRPC$User) tLObject) : tLObject instanceof TLRPC$Chat ? ((TLRPC$Chat) tLObject).title : "";
-        String formatCurrency = BillingController.getInstance().formatCurrency(tL_fragment$TL_collectibleInfo.amount, tL_fragment$TL_collectibleInfo.currency);
-        String formatCurrency2 = BillingController.getInstance().formatCurrency(tL_fragment$TL_collectibleInfo.crypto_amount, tL_fragment$TL_collectibleInfo.crypto_currency);
+        String userName = tLObject instanceof TLRPC.User ? UserObject.getUserName((TLRPC.User) tLObject) : tLObject instanceof TLRPC.Chat ? ((TLRPC.Chat) tLObject).title : "";
+        String formatCurrency = BillingController.getInstance().formatCurrency(tL_collectibleInfo.amount, tL_collectibleInfo.currency);
+        String formatCurrency2 = BillingController.getInstance().formatCurrency(tL_collectibleInfo.crypto_amount, tL_collectibleInfo.crypto_currency);
         if (i == 0) {
             str2 = userName;
             formatString = LocaleController.formatString(R.string.FragmentUsernameTitle, "@" + str);
             int i3 = R.string.FragmentUsernameMessage;
             obj = linearLayout;
-            String formatShortDateTime = LocaleController.formatShortDateTime((long) tL_fragment$TL_collectibleInfo.purchase_date);
+            String formatShortDateTime = LocaleController.formatShortDateTime((long) tL_collectibleInfo.purchase_date);
             if (TextUtils.isEmpty(formatCurrency)) {
                 str4 = "";
             } else {
@@ -104,7 +103,7 @@ public abstract class FragmentUsernameBottomSheet {
             }
             formatString = LocaleController.formatString(R.string.FragmentPhoneTitle, PhoneFormat.getInstance().format("+" + str));
             int i4 = R.string.FragmentPhoneMessage;
-            String formatShortDateTime2 = LocaleController.formatShortDateTime((long) tL_fragment$TL_collectibleInfo.purchase_date);
+            String formatShortDateTime2 = LocaleController.formatShortDateTime((long) tL_collectibleInfo.purchase_date);
             if (TextUtils.isEmpty(formatCurrency)) {
                 str3 = "";
             } else {
@@ -161,7 +160,7 @@ public abstract class FragmentUsernameBottomSheet {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                FragmentUsernameBottomSheet.lambda$open$1(context, tL_fragment$TL_collectibleInfo, view);
+                FragmentUsernameBottomSheet.lambda$open$1(context, tL_collectibleInfo, view);
             }
         });
         r11.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 6.0f, 0.0f, 6.0f, 0.0f));

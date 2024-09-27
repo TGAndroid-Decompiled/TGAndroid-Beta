@@ -168,7 +168,6 @@ public class WebRtcAudioTrack {
         AudioFormat build;
         AudioTrack.Builder audioFormat;
         AudioTrack.Builder bufferSizeInBytes;
-        AudioTrack.Builder performanceMode;
         AudioTrack.Builder transferMode;
         AudioTrack.Builder sessionId;
         AudioTrack build2;
@@ -181,8 +180,7 @@ public class WebRtcAudioTrack {
         build = channelMask.build();
         audioFormat = audioAttributes2.setAudioFormat(build);
         bufferSizeInBytes = audioFormat.setBufferSizeInBytes(i3);
-        performanceMode = bufferSizeInBytes.setPerformanceMode(1);
-        transferMode = performanceMode.setTransferMode(1);
+        transferMode = WebRtcAudioTrack$$ExternalSyntheticApiModelOutline3.m(bufferSizeInBytes, 1).setTransferMode(1);
         sessionId = transferMode.setSessionId(0);
         build2 = sessionId.build();
         return build2;

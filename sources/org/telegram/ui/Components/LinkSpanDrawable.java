@@ -468,6 +468,20 @@ public class LinkSpanDrawable {
             return 0;
         }
 
+        public boolean hasLinks() {
+            Layout layout = getLayout();
+            if (layout == null) {
+                return false;
+            }
+            CharSequence text = layout.getText();
+            if (!(text instanceof Spanned)) {
+                return false;
+            }
+            Spanned spanned = (Spanned) text;
+            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spanned.getSpans(0, spanned.length(), ClickableSpan.class);
+            return clickableSpanArr != null && clickableSpanArr.length > 0;
+        }
+
         public ClickableSpan hit(int i, int i2) {
             Layout layout = getLayout();
             if (layout == null) {

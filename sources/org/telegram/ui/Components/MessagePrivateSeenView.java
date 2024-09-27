@@ -27,14 +27,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_account_setGlobalPrivacySettings;
-import org.telegram.tgnet.TLRPC$TL_account_setPrivacy;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_globalPrivacySettings;
-import org.telegram.tgnet.TLRPC$TL_inputPrivacyKeyStatusTimestamp;
-import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowAll;
-import org.telegram.tgnet.TLRPC$TL_messages_getOutboxReadDate;
-import org.telegram.tgnet.TLRPC$TL_outboxReadDate;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -113,28 +106,28 @@ public class MessagePrivateSeenView extends FrameLayout {
         }, this.resourcesProvider);
     }
 
-    public void lambda$request$1(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$request$1(TLRPC.TL_error tL_error, TLObject tLObject) {
         TextView textView;
         String formatPmSeenDate;
         View.OnClickListener onClickListener;
-        if (tLRPC$TL_error != null) {
-            if ("USER_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text)) {
+        if (tL_error != null) {
+            if ("USER_PRIVACY_RESTRICTED".equals(tL_error.text)) {
                 textView = this.valueTextView;
                 formatPmSeenDate = LocaleController.getString(R.string.PmReadUnknown);
                 textView.setText(formatPmSeenDate);
                 this.premiumTextView.setVisibility(8);
-            } else if ("YOUR_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text)) {
+            } else if ("YOUR_PRIVACY_RESTRICTED".equals(tL_error.text)) {
                 this.isPremiumLocked = true;
                 this.valueTextView.setText(LocaleController.getString(R.string.PmRead));
                 this.premiumTextView.setText(LocaleController.getString(R.string.PmReadShowWhen));
             } else {
                 this.valueTextView.setText(LocaleController.getString("UnknownError"));
                 this.premiumTextView.setVisibility(8);
-                BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider).showForError(tLRPC$TL_error);
+                BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider).showForError(tL_error);
             }
-        } else if (tLObject instanceof TLRPC$TL_outboxReadDate) {
+        } else if (tLObject instanceof TLRPC.TL_outboxReadDate) {
             textView = this.valueTextView;
-            formatPmSeenDate = LocaleController.formatPmSeenDate(((TLRPC$TL_outboxReadDate) tLObject).date);
+            formatPmSeenDate = LocaleController.formatPmSeenDate(((TLRPC.TL_outboxReadDate) tLObject).date);
             textView.setText(formatPmSeenDate);
             this.premiumTextView.setVisibility(8);
         }
@@ -157,18 +150,18 @@ public class MessagePrivateSeenView extends FrameLayout {
         setOnClickListener(onClickListener);
     }
 
-    public void lambda$request$2(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$request$2(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagePrivateSeenView.this.lambda$request$1(tLRPC$TL_error, tLObject);
+                MessagePrivateSeenView.this.lambda$request$1(tL_error, tLObject);
             }
         });
     }
 
-    public static void lambda$showSheet$3(TLRPC$TL_error tLRPC$TL_error, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.global().showForError(tLRPC$TL_error);
+    public static void lambda$showSheet$3(TLRPC.TL_error tL_error, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+        if (tL_error != null) {
+            BulletinFactory.global().showForError(tL_error);
             return;
         }
         buttonWithCounterView.setLoading(false);
@@ -179,18 +172,18 @@ public class MessagePrivateSeenView extends FrameLayout {
         }
     }
 
-    public static void lambda$showSheet$4(final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$showSheet$4(final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagePrivateSeenView.lambda$showSheet$3(TLRPC$TL_error.this, buttonWithCounterView, bottomSheet, runnable);
+                MessagePrivateSeenView.lambda$showSheet$3(TLRPC.TL_error.this, buttonWithCounterView, bottomSheet, runnable);
             }
         });
     }
 
-    public static void lambda$showSheet$5(TLRPC$TL_error tLRPC$TL_error, Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).showForError(tLRPC$TL_error);
+    public static void lambda$showSheet$5(TLRPC.TL_error tL_error, Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+        if (tL_error != null) {
+            BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).showForError(tL_error);
             return;
         }
         buttonWithCounterView.setLoading(false);
@@ -201,11 +194,11 @@ public class MessagePrivateSeenView extends FrameLayout {
         }
     }
 
-    public static void lambda$showSheet$6(final Context context, final Theme.ResourcesProvider resourcesProvider, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$showSheet$6(final Context context, final Theme.ResourcesProvider resourcesProvider, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagePrivateSeenView.lambda$showSheet$5(TLRPC$TL_error.this, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
+                MessagePrivateSeenView.lambda$showSheet$5(TLRPC.TL_error.this, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
             }
         });
     }
@@ -213,28 +206,28 @@ public class MessagePrivateSeenView extends FrameLayout {
     public static void lambda$showSheet$7(final ButtonWithCounterView buttonWithCounterView, boolean z, int i, final BottomSheet bottomSheet, final Runnable runnable, final Context context, final Theme.ResourcesProvider resourcesProvider, View view) {
         buttonWithCounterView.setLoading(true);
         if (z) {
-            TLRPC$TL_account_setPrivacy tLRPC$TL_account_setPrivacy = new TLRPC$TL_account_setPrivacy();
-            tLRPC$TL_account_setPrivacy.key = new TLRPC$TL_inputPrivacyKeyStatusTimestamp();
-            tLRPC$TL_account_setPrivacy.rules.add(new TLRPC$TL_inputPrivacyValueAllowAll());
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_setPrivacy, new RequestDelegate() {
+            TLRPC.TL_account_setPrivacy tL_account_setPrivacy = new TLRPC.TL_account_setPrivacy();
+            tL_account_setPrivacy.key = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
+            tL_account_setPrivacy.rules.add(new TLRPC.TL_inputPrivacyValueAllowAll());
+            ConnectionsManager.getInstance(i).sendRequest(tL_account_setPrivacy, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessagePrivateSeenView.lambda$showSheet$4(ButtonWithCounterView.this, bottomSheet, runnable, tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    MessagePrivateSeenView.lambda$showSheet$4(ButtonWithCounterView.this, bottomSheet, runnable, tLObject, tL_error);
                 }
             });
             return;
         }
-        TLRPC$TL_account_setGlobalPrivacySettings tLRPC$TL_account_setGlobalPrivacySettings = new TLRPC$TL_account_setGlobalPrivacySettings();
-        TLRPC$TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i).getGlobalPrivacySettings();
-        tLRPC$TL_account_setGlobalPrivacySettings.settings = globalPrivacySettings;
+        TLRPC.TL_account_setGlobalPrivacySettings tL_account_setGlobalPrivacySettings = new TLRPC.TL_account_setGlobalPrivacySettings();
+        TLRPC.TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i).getGlobalPrivacySettings();
+        tL_account_setGlobalPrivacySettings.settings = globalPrivacySettings;
         if (globalPrivacySettings == null) {
-            tLRPC$TL_account_setGlobalPrivacySettings.settings = new TLRPC$TL_globalPrivacySettings();
+            tL_account_setGlobalPrivacySettings.settings = new TLRPC.TL_globalPrivacySettings();
         }
-        tLRPC$TL_account_setGlobalPrivacySettings.settings.hide_read_marks = false;
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_setGlobalPrivacySettings, new RequestDelegate() {
+        tL_account_setGlobalPrivacySettings.settings.hide_read_marks = false;
+        ConnectionsManager.getInstance(i).sendRequest(tL_account_setGlobalPrivacySettings, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagePrivateSeenView.lambda$showSheet$6(context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                MessagePrivateSeenView.lambda$showSheet$6(context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable, tLObject, tL_error);
             }
         });
     }
@@ -255,13 +248,13 @@ public class MessagePrivateSeenView extends FrameLayout {
         this.valueLayout.setAlpha(0.0f);
         this.loadingView.setAlpha(1.0f);
         this.premiumTextView.setVisibility(0);
-        TLRPC$TL_messages_getOutboxReadDate tLRPC$TL_messages_getOutboxReadDate = new TLRPC$TL_messages_getOutboxReadDate();
-        tLRPC$TL_messages_getOutboxReadDate.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        tLRPC$TL_messages_getOutboxReadDate.msg_id = this.messageId;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getOutboxReadDate, new RequestDelegate() {
+        TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
+        tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        tL_messages_getOutboxReadDate.msg_id = this.messageId;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getOutboxReadDate, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagePrivateSeenView.this.lambda$request$2(tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                MessagePrivateSeenView.this.lambda$request$2(tLObject, tL_error);
             }
         });
     }

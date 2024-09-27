@@ -47,22 +47,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$TL_inputMessagesFilterEmpty;
-import org.telegram.tgnet.TLRPC$TL_inputPeerEmpty;
-import org.telegram.tgnet.TLRPC$TL_messages_search;
-import org.telegram.tgnet.TLRPC$TL_messages_searchGlobal;
-import org.telegram.tgnet.TLRPC$TL_webPageEmpty;
-import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.TLRPC$WebPage;
-import org.telegram.tgnet.TLRPC$messages_Messages;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -543,8 +528,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
 
             @Override
-            public void needOpenWebView(TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject) {
-                FilteredSearchView.this.openWebView(tLRPC$WebPage, messageObject);
+            public void needOpenWebView(TLRPC.WebPage webPage, MessageObject messageObject) {
+                FilteredSearchView.this.openWebView(webPage, messageObject);
             }
 
             @Override
@@ -851,7 +836,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         };
         this.provider = new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
-            public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i, boolean z) {
+            public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z) {
                 ImageReceiver photoImage;
                 ContextLinkCell contextLinkCell;
                 View pinnedHeader;
@@ -1080,11 +1065,11 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public static CharSequence createFromInfoString(MessageObject messageObject, boolean z, int i, TextPaint textPaint) {
-        TLRPC$Chat chat;
-        TLRPC$Chat chat2;
-        TLRPC$User tLRPC$User;
-        TLRPC$TL_forumTopic findTopic;
-        TLRPC$TL_forumTopic findTopic2;
+        TLRPC.Chat chat;
+        TLRPC.Chat chat2;
+        TLRPC.User user;
+        TLRPC.TL_forumTopic findTopic;
+        TLRPC.TL_forumTopic findTopic2;
         int i2;
         if (messageObject == null || messageObject.messageOwner == null) {
             return "";
@@ -1116,23 +1101,23 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             SpannableStringBuilder spannableStringBuilder = arrowSpan[i];
             spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 0);
         }
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+        TLRPC.Message message = messageObject.messageOwner;
         CharSequence charSequence = null;
-        if (tLRPC$Message.saved_peer_id != null) {
+        if (message.saved_peer_id != null) {
             if (messageObject.getSavedDialogId() >= 0) {
-                tLRPC$User = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.getSavedDialogId()));
+                user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.getSavedDialogId()));
                 chat = null;
             } else if (messageObject.getSavedDialogId() < 0) {
                 chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getSavedDialogId()));
-                tLRPC$User = null;
+                user = null;
                 chat2 = null;
             } else {
-                tLRPC$User = null;
+                user = null;
                 chat = null;
             }
             chat2 = chat;
         } else {
-            TLRPC$User user = tLRPC$Message.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
+            TLRPC.User user2 = message.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
             chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
             if (chat == null) {
                 chat = messageObject.messageOwner.from_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
@@ -1142,23 +1127,23 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
             }
             if (ChatObject.isChannelAndNotMegaGroup(chat2) || z) {
-                tLRPC$User = user;
+                user = user2;
             } else {
-                tLRPC$User = user;
+                user = user2;
                 chat2 = null;
             }
         }
-        if (tLRPC$User != null && chat2 != null) {
+        if (user != null && chat2 != null) {
             CharSequence charSequence2 = chat2.title;
             if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
                 charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
             }
             CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
+            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getFirstName(user), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
             charSequence = spannableStringBuilder2;
-        } else if (tLRPC$User != null) {
-            charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
+        } else if (user != null) {
+            charSequence = Emoji.replaceEmoji(UserObject.getUserName(user), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
         } else if (chat != null) {
             CharSequence charSequence3 = chat.title;
             if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
@@ -1220,17 +1205,17 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         onItemClick(i, view, message, 0);
     }
 
-    public void lambda$search$2(int r14, org.telegram.tgnet.TLRPC$TL_error r15, org.telegram.tgnet.TLObject r16, int r17, boolean r18, java.lang.String r19, java.util.ArrayList r20, org.telegram.ui.Adapters.FiltersView.MediaFilterData r21, long r22, long r24, java.util.ArrayList r26, java.util.ArrayList r27) {
+    public void lambda$search$2(int r14, org.telegram.tgnet.TLRPC.TL_error r15, org.telegram.tgnet.TLObject r16, int r17, boolean r18, java.lang.String r19, java.util.ArrayList r20, org.telegram.ui.Adapters.FiltersView.MediaFilterData r21, long r22, long r24, java.util.ArrayList r26, java.util.ArrayList r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FilteredSearchView.lambda$search$2(int, org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject, int, boolean, java.lang.String, java.util.ArrayList, org.telegram.ui.Adapters.FiltersView$MediaFilterData, long, long, java.util.ArrayList, java.util.ArrayList):void");
     }
 
-    public void lambda$search$3(final int i, final String str, final int i2, final boolean z, final FiltersView.MediaFilterData mediaFilterData, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$search$3(final int i, final String str, final int i2, final boolean z, final FiltersView.MediaFilterData mediaFilterData, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         final ArrayList arrayList3 = new ArrayList();
-        if (tLRPC$TL_error == null) {
-            TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
-            int size = tLRPC$messages_Messages.messages.size();
+        if (tL_error == null) {
+            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+            int size = messages_messages.messages.size();
             for (int i3 = 0; i3 < size; i3++) {
-                MessageObject messageObject = new MessageObject(i, (TLRPC$Message) tLRPC$messages_Messages.messages.get(i3), false, true);
+                MessageObject messageObject = new MessageObject(i, messages_messages.messages.get(i3), false, true);
                 messageObject.setQuery(str);
                 arrayList3.add(messageObject);
             }
@@ -1238,74 +1223,74 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FilteredSearchView.this.lambda$search$2(i2, tLRPC$TL_error, tLObject, i, z, str, arrayList3, mediaFilterData, j, j2, arrayList, arrayList2);
+                FilteredSearchView.this.lambda$search$2(i2, tL_error, tLObject, i, z, str, arrayList3, mediaFilterData, j, j2, arrayList, arrayList2);
             }
         });
     }
 
     public void lambda$search$4(final long j, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j2, long j3, final boolean z, boolean z2, String str2, final int i2) {
-        TLRPC$InputPeer tLRPC$TL_inputPeerEmpty;
-        TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal;
+        TLRPC.InputPeer tL_inputPeerEmpty;
+        TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal;
         ArrayList<Object> arrayList = null;
         if (j != 0) {
-            TLRPC$TL_messages_search tLRPC$TL_messages_search = new TLRPC$TL_messages_search();
-            tLRPC$TL_messages_search.q = str;
-            tLRPC$TL_messages_search.limit = 20;
-            tLRPC$TL_messages_search.filter = mediaFilterData == null ? new TLRPC$TL_inputMessagesFilterEmpty() : mediaFilterData.filter;
-            tLRPC$TL_messages_search.peer = AccountInstance.getInstance(i).getMessagesController().getInputPeer(j);
+            TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+            tL_messages_search.q = str;
+            tL_messages_search.limit = 20;
+            tL_messages_search.filter = mediaFilterData == null ? new TLRPC.TL_inputMessagesFilterEmpty() : mediaFilterData.filter;
+            tL_messages_search.peer = AccountInstance.getInstance(i).getMessagesController().getInputPeer(j);
             if (j2 > 0) {
-                tLRPC$TL_messages_search.min_date = (int) (j2 / 1000);
+                tL_messages_search.min_date = (int) (j2 / 1000);
             }
             if (j3 > 0) {
-                tLRPC$TL_messages_search.max_date = (int) (j3 / 1000);
+                tL_messages_search.max_date = (int) (j3 / 1000);
             }
             if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                tLRPC$TL_messages_search.offset_id = ((MessageObject) this.messages.get(r0.size() - 1)).getId();
-                tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_search;
+                tL_messages_search.offset_id = ((MessageObject) this.messages.get(r0.size() - 1)).getId();
+                tL_messages_searchGlobal = tL_messages_search;
             } else {
-                tLRPC$TL_messages_search.offset_id = 0;
-                tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_search;
+                tL_messages_search.offset_id = 0;
+                tL_messages_searchGlobal = tL_messages_search;
             }
         } else {
             if (!TextUtils.isEmpty(str)) {
                 arrayList = new ArrayList<>();
                 MessagesStorage.getInstance(i).localSearch(0, str, arrayList, new ArrayList<>(), new ArrayList<>(), null, z2 ? 1 : 0);
             }
-            TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal2 = new TLRPC$TL_messages_searchGlobal();
-            tLRPC$TL_messages_searchGlobal2.limit = 20;
-            tLRPC$TL_messages_searchGlobal2.q = str;
-            tLRPC$TL_messages_searchGlobal2.filter = mediaFilterData == null ? new TLRPC$TL_inputMessagesFilterEmpty() : mediaFilterData.filter;
+            TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = new TLRPC.TL_messages_searchGlobal();
+            tL_messages_searchGlobal2.limit = 20;
+            tL_messages_searchGlobal2.q = str;
+            tL_messages_searchGlobal2.filter = mediaFilterData == null ? new TLRPC.TL_inputMessagesFilterEmpty() : mediaFilterData.filter;
             if (j2 > 0) {
-                tLRPC$TL_messages_searchGlobal2.min_date = (int) (j2 / 1000);
+                tL_messages_searchGlobal2.min_date = (int) (j2 / 1000);
             }
             if (j3 > 0) {
-                tLRPC$TL_messages_searchGlobal2.max_date = (int) (j3 / 1000);
+                tL_messages_searchGlobal2.max_date = (int) (j3 / 1000);
             }
             if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
                 MessageObject messageObject = (MessageObject) this.messages.get(r0.size() - 1);
-                tLRPC$TL_messages_searchGlobal2.offset_id = messageObject.getId();
-                tLRPC$TL_messages_searchGlobal2.offset_rate = this.nextSearchRate;
-                tLRPC$TL_inputPeerEmpty = MessagesController.getInstance(i).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
+                tL_messages_searchGlobal2.offset_id = messageObject.getId();
+                tL_messages_searchGlobal2.offset_rate = this.nextSearchRate;
+                tL_inputPeerEmpty = MessagesController.getInstance(i).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
             } else {
-                tLRPC$TL_messages_searchGlobal2.offset_rate = 0;
-                tLRPC$TL_messages_searchGlobal2.offset_id = 0;
-                tLRPC$TL_inputPeerEmpty = new TLRPC$TL_inputPeerEmpty();
+                tL_messages_searchGlobal2.offset_rate = 0;
+                tL_messages_searchGlobal2.offset_id = 0;
+                tL_inputPeerEmpty = new TLRPC.TL_inputPeerEmpty();
             }
-            tLRPC$TL_messages_searchGlobal2.offset_peer = tLRPC$TL_inputPeerEmpty;
-            tLRPC$TL_messages_searchGlobal2.flags |= 1;
-            tLRPC$TL_messages_searchGlobal2.folder_id = z2 ? 1 : 0;
-            tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_searchGlobal2;
+            tL_messages_searchGlobal2.offset_peer = tL_inputPeerEmpty;
+            tL_messages_searchGlobal2.flags |= 1;
+            tL_messages_searchGlobal2.folder_id = z2 ? 1 : 0;
+            tL_messages_searchGlobal = tL_messages_searchGlobal2;
         }
-        TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal3 = tLRPC$TL_messages_searchGlobal;
+        TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal3 = tL_messages_searchGlobal;
         final ArrayList<Object> arrayList2 = arrayList;
         this.lastMessagesSearchString = str;
         this.lastSearchFilterQueryString = str2;
         final ArrayList arrayList3 = new ArrayList();
         FiltersView.fillTipDates(this.lastMessagesSearchString, arrayList3);
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_searchGlobal3, new RequestDelegate() {
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_searchGlobal3, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FilteredSearchView.this.lambda$search$3(i, str, i2, z, mediaFilterData, j, j2, arrayList2, arrayList3, tLObject, tLRPC$TL_error);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                FilteredSearchView.this.lambda$search$3(i, str, i2, z, mediaFilterData, j, j2, arrayList2, arrayList3, tLObject, tL_error);
             }
         });
     }
@@ -1339,7 +1324,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (i3 == 1) {
             if (view instanceof SharedDocumentCell) {
                 SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) view;
-                TLRPC$Document document = messageObject.getDocument();
+                TLRPC.Document document = messageObject.getDocument();
                 if (!sharedDocumentCell.isLoaded()) {
                     if (sharedDocumentCell.isLoading()) {
                         AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(document);
@@ -1373,11 +1358,11 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
         if (i3 == 2) {
             try {
-                TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
+                TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
                 String str = null;
-                TLRPC$WebPage tLRPC$WebPage = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.webpage : null;
-                if (tLRPC$WebPage != null && !(tLRPC$WebPage instanceof TLRPC$TL_webPageEmpty)) {
-                    if (tLRPC$WebPage.cached_page != null) {
+                TLRPC.WebPage webPage = messageMedia != null ? messageMedia.webpage : null;
+                if (webPage != null && !(webPage instanceof TLRPC.TL_webPageEmpty)) {
+                    if (webPage.cached_page != null) {
                         LaunchActivity launchActivity = LaunchActivity.instance;
                         if (launchActivity == null || launchActivity.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(messageObject) == null) {
                             this.parentFragment.createArticleViewer(false).open(messageObject);
@@ -1385,12 +1370,12 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         }
                         return;
                     }
-                    String str2 = tLRPC$WebPage.embed_url;
+                    String str2 = webPage.embed_url;
                     if (str2 != null && str2.length() != 0) {
-                        openWebView(tLRPC$WebPage, messageObject);
+                        openWebView(webPage, messageObject);
                         return;
                     }
-                    str = tLRPC$WebPage.url;
+                    str = webPage.url;
                 }
                 if (str == null) {
                     str = ((SharedLinkCell) view).getLink(0);
@@ -1423,8 +1408,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
     }
 
-    public void openWebView(TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject) {
-        EmbedBottomSheet.show(this.parentFragment, messageObject, this.provider, tLRPC$WebPage.site_name, tLRPC$WebPage.description, tLRPC$WebPage.url, tLRPC$WebPage.embed_url, tLRPC$WebPage.embed_width, tLRPC$WebPage.embed_height, false);
+    public void openWebView(TLRPC.WebPage webPage, MessageObject messageObject) {
+        EmbedBottomSheet.show(this.parentFragment, messageObject, this.provider, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, false);
     }
 
     public void showFloatingDateView() {

@@ -17,8 +17,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
@@ -70,11 +69,11 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 CacheByChatsController.KeepMediaException keepMediaException = ((Item) CacheChatsExceptionsFragment.this.items.get(i)).exception;
                 TLObject userOrChat = CacheChatsExceptionsFragment.this.getMessagesController().getUserOrChat(keepMediaException.dialogId);
-                if (userOrChat instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
-                    str = tLRPC$User.self ? LocaleController.getString(R.string.SavedMessages) : ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                if (userOrChat instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) userOrChat;
+                    str = user.self ? LocaleController.getString(R.string.SavedMessages) : ContactsController.formatName(user.first_name, user.last_name);
                 } else {
-                    str = userOrChat instanceof TLRPC$Chat ? ((TLRPC$Chat) userOrChat).title : null;
+                    str = userOrChat instanceof TLRPC.Chat ? ((TLRPC.Chat) userOrChat).title : null;
                 }
                 String str2 = str;
                 userCell.setSelfAsSavedMessages(true);
@@ -155,7 +154,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
     }
 
     public boolean lambda$createView$0(DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
-        dialogsActivity.lambda$onBackPressed$307();
+        dialogsActivity.lambda$onBackPressed$300();
         CacheByChatsController.KeepMediaException keepMediaException = null;
         int i2 = 0;
         int i3 = 0;
@@ -224,7 +223,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         this.exceptionsDialogs.clear();
         getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(this.currentType, this.exceptionsDialogs);
         updateRows();
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$3(View view, int i, float f, float f2) {
@@ -378,7 +377,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    CacheChatsExceptionsFragment.this.lambda$onBackPressed$307();
+                    CacheChatsExceptionsFragment.this.lambda$onBackPressed$300();
                 }
             }
         });

@@ -60,9 +60,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$EncryptedChat;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -156,26 +154,26 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             ContactsActivity.this.presentFragment(ProfileActivity.of(j));
         }
 
-        public void lambda$onItemClick$2(String str, long j, TLRPC$User tLRPC$User) {
+        public void lambda$onItemClick$2(String str, long j, TLRPC.User user) {
             MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit().putBoolean("stories_" + str, false).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
-            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
+            String trim = user == null ? "" : user.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
             }
-            BulletinFactory.of(ContactsActivity.this).createUsersBulletin(Arrays.asList(tLRPC$User), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryMutedHint", R.string.NotificationsStoryMutedHint, trim))).show();
+            BulletinFactory.of(ContactsActivity.this).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryMutedHint", R.string.NotificationsStoryMutedHint, trim))).show();
         }
 
-        public void lambda$onItemClick$3(String str, long j, TLRPC$User tLRPC$User) {
+        public void lambda$onItemClick$3(String str, long j, TLRPC.User user) {
             MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit().putBoolean("stories_" + str, true).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
-            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
+            String trim = user == null ? "" : user.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
             }
-            BulletinFactory.of(ContactsActivity.this).createUsersBulletin(Arrays.asList(tLRPC$User), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryUnmutedHint", R.string.NotificationsStoryUnmutedHint, trim))).show();
+            BulletinFactory.of(ContactsActivity.this).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryUnmutedHint", R.string.NotificationsStoryUnmutedHint, trim))).show();
         }
 
         public void lambda$onItemClick$4(long j) {
@@ -186,7 +184,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             ContactsActivity.this.getMessagesController().getStoriesController().toggleHidden(j, false, true, true);
         }
 
-        public void lambda$onItemClick$6(final long j, TLRPC$User tLRPC$User) {
+        public void lambda$onItemClick$6(final long j, TLRPC.User user) {
             ContactsActivity.this.getMessagesController().getStoriesController().toggleHidden(j, false, false, true);
             BulletinFactory.UndoObject undoObject = new BulletinFactory.UndoObject();
             undoObject.onUndo = new Runnable() {
@@ -201,7 +199,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     ContactsActivity.AnonymousClass8.this.lambda$onItemClick$5(j);
                 }
             };
-            BulletinFactory.global().createUsersBulletin(Arrays.asList(tLRPC$User), AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, ContactsController.formatName(tLRPC$User.first_name, null, 20))), null, undoObject).show();
+            BulletinFactory.global().createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, ContactsController.formatName(user.first_name, null, 20))), null, undoObject).show();
         }
 
         @Override
@@ -217,7 +215,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
                 if (ContactsActivity.this.listViewAdapter.hasStories && sectionForPosition == 1 && (view instanceof UserCell)) {
                     final long dialogId = ((UserCell) view).getDialogId();
-                    final TLRPC$User user = MessagesController.getInstance(((BaseFragment) ContactsActivity.this).currentAccount).getUser(Long.valueOf(dialogId));
+                    final TLRPC.User user = MessagesController.getInstance(((BaseFragment) ContactsActivity.this).currentAccount).getUser(Long.valueOf(dialogId));
                     final String sharedPrefKey = NotificationsController.getSharedPrefKey(dialogId, 0L);
                     boolean areStoriesNotMuted = NotificationsCustomSettingsActivity.areStoriesNotMuted(((BaseFragment) ContactsActivity.this).currentAccount, dialogId);
                     ItemOptions addIf = ItemOptions.makeOptions(ContactsActivity.this, view).setScrimViewBackground(Theme.createRoundRectDrawable(0, 0, Theme.getColor(Theme.key_windowBackgroundWhite))).add(R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
@@ -268,7 +266,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
     }
 
     public interface ContactsActivityDelegate {
-        void didSelectContact(TLRPC$User tLRPC$User, String str, ContactsActivity contactsActivity);
+        void didSelectContact(TLRPC.User user, String str, ContactsActivity contactsActivity);
     }
 
     public ContactsActivity(Bundle bundle) {
@@ -325,18 +323,18 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    private void didSelectResult(final TLRPC$User tLRPC$User, boolean z, final String str) {
+    private void didSelectResult(final TLRPC.User user, boolean z, final String str) {
         final EditTextBoldCursor editTextBoldCursor;
         if (!z || this.selectAlertString == null) {
             ContactsActivityDelegate contactsActivityDelegate = this.delegate;
             if (contactsActivityDelegate != null) {
-                contactsActivityDelegate.didSelectContact(tLRPC$User, str, this);
+                contactsActivityDelegate.didSelectContact(user, str, this);
                 if (this.resetDelegate) {
                     this.delegate = null;
                 }
             }
             if (this.needFinishFragment) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             }
             return;
@@ -344,8 +342,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         if (getParentActivity() == null) {
             return;
         }
-        if (tLRPC$User.bot) {
-            if (tLRPC$User.bot_nochats) {
+        if (user.bot) {
+            if (user.bot_nochats) {
                 try {
                     BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.BotCantJoinGroups)).show();
                     return;
@@ -355,7 +353,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
             }
             if (this.channelId != 0) {
-                TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.channelId));
+                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.channelId));
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                 if (ChatObject.canAddAdmins(chat)) {
                     builder.setTitle(LocaleController.getString(R.string.AddBotAdminAlert));
@@ -363,7 +361,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     builder.setPositiveButton(LocaleController.getString(R.string.AddAsAdmin), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            ContactsActivity.this.lambda$didSelectResult$6(tLRPC$User, str, dialogInterface, i);
+                            ContactsActivity.this.lambda$didSelectResult$6(user, str, dialogInterface, i);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -377,8 +375,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         }
         AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
         builder2.setTitle(LocaleController.getString(R.string.AppName));
-        String formatStringSimple = LocaleController.formatStringSimple(this.selectAlertString, UserObject.getUserName(tLRPC$User));
-        if (tLRPC$User.bot || !this.needForwardCount) {
+        String formatStringSimple = LocaleController.formatStringSimple(this.selectAlertString, UserObject.getUserName(user));
+        if (user.bot || !this.needForwardCount) {
             editTextBoldCursor = null;
         } else {
             formatStringSimple = String.format("%s\n\n%s", formatStringSimple, LocaleController.getString(R.string.AddToTheGroupForwardCount));
@@ -432,7 +430,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         builder2.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ContactsActivity.this.lambda$didSelectResult$7(tLRPC$User, editTextBoldCursor, dialogInterface, i);
+                ContactsActivity.this.lambda$didSelectResult$7(user, editTextBoldCursor, dialogInterface, i);
             }
         });
         builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -511,7 +509,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
 
     public void lambda$createView$2(int i, View view, int i2, float f, float f2) {
         BaseFragment groupInviteActivity;
-        TLRPC$User tLRPC$User;
+        TLRPC.User user;
         BaseFragment chatActivity;
         RecyclerView.Adapter adapter = this.listView.getAdapter();
         SearchAdapter searchAdapter = this.searchListViewAdapter;
@@ -525,7 +523,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 showOrUpdateActionMode(profileSearchCell);
                 return;
             }
-            if (!(item instanceof TLRPC$User)) {
+            if (!(item instanceof TLRPC.User)) {
                 if (!(item instanceof String)) {
                     if (item instanceof ContactsController.Contact) {
                         ContactsController.Contact contact = (ContactsController.Contact) item;
@@ -543,30 +541,30 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 newContactBottomSheet.show();
                 return;
             }
-            tLRPC$User = (TLRPC$User) item;
+            user = (TLRPC.User) item;
             if (this.searchListViewAdapter.isGlobalSearch(i2)) {
-                ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-                arrayList.add(tLRPC$User);
+                ArrayList<TLRPC.User> arrayList = new ArrayList<>();
+                arrayList.add(user);
                 getMessagesController().putUsers(arrayList, false);
                 MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(arrayList, null, false, true);
             }
             if (this.returnAsResult) {
                 LongSparseArray longSparseArray = this.ignoreUsers;
-                if (longSparseArray != null && longSparseArray.indexOfKey(tLRPC$User.id) >= 0) {
+                if (longSparseArray != null && longSparseArray.indexOfKey(user.id) >= 0) {
                     return;
                 }
-                didSelectResult(tLRPC$User, true, null);
+                didSelectResult(user, true, null);
                 return;
             }
             if (this.createSecretChat) {
-                if (tLRPC$User.id == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                if (user.id == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                     return;
                 }
                 this.creatingChat = true;
-                SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), tLRPC$User);
+                SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), user);
             }
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", tLRPC$User.id);
+            bundle.putLong("user_id", user.id);
             if (getMessagesController().checkCanOpenChat(bundle, this)) {
                 chatActivity = new ChatActivity(bundle);
                 presentFragment(chatActivity, this.needFinishFragment);
@@ -647,7 +645,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         Object item2 = this.listViewAdapter.getItem(contactsAdapter.getSectionForPosition(i2), this.listViewAdapter.getPositionInSectionForPosition(i2));
-        if (!(item2 instanceof TLRPC$User)) {
+        if (!(item2 instanceof TLRPC.User)) {
             if (item2 instanceof ContactsController.Contact) {
                 ContactsController.Contact contact2 = (ContactsController.Contact) item2;
                 final String str2 = !contact2.phones.isEmpty() ? contact2.phones.get(0) : null;
@@ -669,18 +667,18 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             }
             return;
         }
-        tLRPC$User = (TLRPC$User) item2;
+        user = (TLRPC.User) item2;
         if (this.returnAsResult) {
             LongSparseArray longSparseArray2 = this.ignoreUsers;
-            if (longSparseArray2 != null && longSparseArray2.indexOfKey(tLRPC$User.id) >= 0) {
+            if (longSparseArray2 != null && longSparseArray2.indexOfKey(user.id) >= 0) {
                 return;
             }
-            didSelectResult(tLRPC$User, true, null);
+            didSelectResult(user, true, null);
             return;
         }
         if (!this.createSecretChat) {
             Bundle bundle3 = new Bundle();
-            bundle3.putLong("user_id", tLRPC$User.id);
+            bundle3.putLong("user_id", user.id);
             if (getMessagesController().checkCanOpenChat(bundle3, this)) {
                 chatActivity = new ChatActivity(bundle3);
                 presentFragment(chatActivity, this.needFinishFragment);
@@ -689,7 +687,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         this.creatingChat = true;
-        SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), tLRPC$User);
+        SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), user);
     }
 
     public void lambda$createView$3(View view) {
@@ -703,16 +701,16 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         }.show();
     }
 
-    public void lambda$didSelectResult$6(TLRPC$User tLRPC$User, String str, DialogInterface dialogInterface, int i) {
+    public void lambda$didSelectResult$6(TLRPC.User user, String str, DialogInterface dialogInterface, int i) {
         ContactsActivityDelegate contactsActivityDelegate = this.delegate;
         if (contactsActivityDelegate != null) {
-            contactsActivityDelegate.didSelectContact(tLRPC$User, str, this);
+            contactsActivityDelegate.didSelectContact(user, str, this);
             this.delegate = null;
         }
     }
 
-    public void lambda$didSelectResult$7(TLRPC$User tLRPC$User, EditText editText, DialogInterface dialogInterface, int i) {
-        didSelectResult(tLRPC$User, false, editText != null ? editText.getText().toString() : "0");
+    public void lambda$didSelectResult$7(TLRPC.User user, EditText editText, DialogInterface dialogInterface, int i) {
+        didSelectResult(user, false, editText != null ? editText.getText().toString() : "0");
     }
 
     public void lambda$getThemeDescriptions$12() {
@@ -923,9 +921,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$performSelectedContactsDelete$4(DialogInterface dialogInterface, int i) {
-        ArrayList<TLRPC$User> arrayList = new ArrayList<>(this.selectedContacts.size());
+        ArrayList<TLRPC.User> arrayList = new ArrayList<>(this.selectedContacts.size());
         for (int i2 = 0; i2 < this.selectedContacts.size(); i2++) {
-            arrayList.add((TLRPC$User) this.selectedContacts.get(this.selectedContacts.keyAt(i2)));
+            arrayList.add((TLRPC.User) this.selectedContacts.get(this.selectedContacts.keyAt(i2)));
         }
         getContactsController().deleteContactsUndoable(getContext(), this, arrayList);
         hideActionMode();
@@ -1054,10 +1052,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             userCell.setChecked(false, true);
             return false;
         }
-        if (!(userCell.getCurrentObject() instanceof TLRPC$User)) {
+        if (!(userCell.getCurrentObject() instanceof TLRPC.User)) {
             return false;
         }
-        this.selectedContacts.put(dialogId, (TLRPC$User) userCell.getCurrentObject());
+        this.selectedContacts.put(dialogId, (TLRPC.User) userCell.getCurrentObject());
         userCell.setChecked(true, true);
         return true;
     }
@@ -1123,7 +1121,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         ContactsActivity.this.hideActionMode();
                         return;
                     } else {
-                        ContactsActivity.this.lambda$onBackPressed$307();
+                        ContactsActivity.this.lambda$onBackPressed$300();
                         return;
                     }
                 }
@@ -1222,7 +1220,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             i2 = ChatObject.canUserDoAdminAction(getMessagesController().getChat(Long.valueOf(this.chatId)), 3) ? 1 : 0;
         } else {
             if (this.channelId != 0) {
-                TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.channelId));
+                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.channelId));
                 if (ChatObject.canUserDoAdminAction(chat, 3) && !ChatObject.isPublic(chat)) {
                     i2 = 2;
                 }
@@ -1481,9 +1479,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         if (this.createSecretChat && this.creatingChat) {
-            TLRPC$EncryptedChat tLRPC$EncryptedChat = (TLRPC$EncryptedChat) objArr[0];
+            TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) objArr[0];
             Bundle bundle = new Bundle();
-            bundle.putInt("enc_id", tLRPC$EncryptedChat.id);
+            bundle.putInt("enc_id", encryptedChat.id);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
             presentFragment(new ChatActivity(bundle), false);
         }

@@ -29,7 +29,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 
 public class BotBiometry {
@@ -47,10 +47,10 @@ public class BotBiometry {
 
     public static class Bot {
         public boolean disabled;
-        public TLRPC$User user;
+        public TLRPC.User user;
 
-        private Bot(TLRPC$User tLRPC$User, boolean z) {
-            this.user = tLRPC$User;
+        private Bot(TLRPC.User user, boolean z) {
+            this.user = user;
             this.disabled = z;
         }
     }
@@ -205,15 +205,15 @@ public class BotBiometry {
     public static void lambda$getBots$2(ArrayList arrayList, HashMap hashMap, Utilities.Callback callback) {
         ArrayList arrayList2 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
-            TLRPC$User tLRPC$User = (TLRPC$User) arrayList.get(i);
-            Boolean bool = (Boolean) hashMap.get(Long.valueOf(tLRPC$User.id));
-            arrayList2.add(new Bot(tLRPC$User, bool == null || !bool.booleanValue()));
+            TLRPC.User user = (TLRPC.User) arrayList.get(i);
+            Boolean bool = (Boolean) hashMap.get(Long.valueOf(user.id));
+            arrayList2.add(new Bot(user, bool == null || !bool.booleanValue()));
         }
         callback.run(arrayList2);
     }
 
     public static void lambda$getBots$3(int i, ArrayList arrayList, final HashMap hashMap, final Utilities.Callback callback) {
-        final ArrayList<TLRPC$User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
+        final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

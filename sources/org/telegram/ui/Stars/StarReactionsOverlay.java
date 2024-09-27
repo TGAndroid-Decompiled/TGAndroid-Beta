@@ -16,10 +16,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_messageReactions;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.ChatActivity;
@@ -111,7 +108,7 @@ public class StarReactionsOverlay extends View {
         if (dialogId >= 0) {
             str = UserObject.getForcedFirstName(this.chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
         } else {
-            TLRPC$Chat chat = this.chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
+            TLRPC.Chat chat = this.chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
             str = chat == null ? "" : chat.title;
         }
         new StarsIntroActivity.StarsNeededSheet(this.chatActivity.getContext(), this.chatActivity.getResourceProvider(), pendingPaidReactions, 5, str, new Runnable() {
@@ -144,7 +141,7 @@ public class StarReactionsOverlay extends View {
     }
 
     public void lambda$new$1(ChatActivity chatActivity) {
-        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
+        TLRPC.TL_messageReactions tL_messageReactions;
         ChatMessageCell chatMessageCell = this.cell;
         if (chatMessageCell == null) {
             return;
@@ -155,10 +152,10 @@ public class StarReactionsOverlay extends View {
         if (primaryMessageObject == null) {
             return;
         }
-        TLRPC$Message tLRPC$Message = primaryMessageObject.messageOwner;
-        ArrayList arrayList = (tLRPC$Message == null || (tLRPC$TL_messageReactions = tLRPC$Message.reactions) == null) ? null : tLRPC$TL_messageReactions.top_reactors;
+        TLRPC.Message message = primaryMessageObject.messageOwner;
+        ArrayList<TLRPC.MessageReactor> arrayList = (message == null || (tL_messageReactions = message.reactions) == null) ? null : tL_messageReactions.top_reactors;
         StarsController.getInstance(primaryMessageObject.currentAccount).commitPaidReaction();
-        TLRPC$ChatFull currentChatInfo = chatActivity.getCurrentChatInfo();
+        TLRPC.ChatFull currentChatInfo = chatActivity.getCurrentChatInfo();
         StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, primaryMessageObject, arrayList, currentChatInfo == null || currentChatInfo.paid_reactions_available, chatActivity.getResourceProvider());
         starsReactionsSheet.setMessageCell(chatActivity, primaryMessageObject.getId(), this.cell);
         starsReactionsSheet.show();

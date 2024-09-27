@@ -15,7 +15,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
-import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.VideoPlayer;
 
 public class VideoPlayerHolderBase {
@@ -23,7 +23,7 @@ public class VideoPlayerHolderBase {
     Uri contentUri;
     private int currentAccount;
     public long currentPosition;
-    public TLRPC$Document document;
+    public TLRPC.Document document;
     private volatile long duration;
     public boolean firstFrameRendered;
     Runnable initRunnable;
@@ -294,15 +294,15 @@ public class VideoPlayerHolderBase {
         this.videoPlayer.setWorkerQueue(this.dispatchQueue);
     }
 
-    public void lambda$release$3(TLRPC$Document tLRPC$Document, Runnable runnable) {
+    public void lambda$release$3(TLRPC.Document document, Runnable runnable) {
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer != null) {
             videoPlayer.setTextureView(null);
             this.videoPlayer.setSurfaceView(null);
             this.videoPlayer.releasePlayer(false);
         }
-        if (tLRPC$Document != null) {
-            FileLoader.getInstance(this.currentAccount).cancelLoadFile(tLRPC$Document);
+        if (document != null) {
+            FileLoader.getInstance(this.currentAccount).cancelLoadFile(document);
         }
         if (runnable != null) {
             AndroidUtilities.runOnUIThread(runnable);
@@ -546,10 +546,10 @@ public class VideoPlayerHolderBase {
     }
 
     public boolean release(final Runnable runnable) {
-        final TLRPC$Document tLRPC$Document = this.document;
-        if (tLRPC$Document != null && FileStreamLoadOperation.getStreamPrioriy(tLRPC$Document) != 0) {
-            FileStreamLoadOperation.setPriorityForDocument(tLRPC$Document, 0);
-            FileLoader.getInstance(this.currentAccount).changePriority(0, tLRPC$Document, null, null, null, null, null);
+        final TLRPC.Document document = this.document;
+        if (document != null && FileStreamLoadOperation.getStreamPrioriy(document) != 0) {
+            FileStreamLoadOperation.setPriorityForDocument(document, 0);
+            FileLoader.getInstance(this.currentAccount).changePriority(0, document, null, null, null, null, null);
         }
         this.released = true;
         this.dispatchQueue.cancelRunnable(this.initRunnable);
@@ -557,7 +557,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.this.lambda$release$3(tLRPC$Document, runnable);
+                VideoPlayerHolderBase.this.lambda$release$3(document, runnable);
             }
         });
         Bitmap bitmap = this.playerStubBitmap;

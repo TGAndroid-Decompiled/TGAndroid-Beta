@@ -22,7 +22,7 @@ public class ParticipantsTypeCell extends BaseCell {
         return true;
     }
 
-    public void setType(int r6, boolean r7, boolean r8, java.util.List r9, org.telegram.tgnet.TLRPC$Chat r10) {
+    public void setType(int r6, boolean r7, boolean r8, java.util.List r9, org.telegram.tgnet.TLRPC.Chat r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.ParticipantsTypeCell.setType(int, boolean, boolean, java.util.List, org.telegram.tgnet.TLRPC$Chat):void");
     }
 }

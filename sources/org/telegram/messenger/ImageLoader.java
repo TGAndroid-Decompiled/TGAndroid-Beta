@@ -49,31 +49,7 @@ import org.telegram.messenger.FilePathDatabase;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputEncryptedFile;
-import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
-import org.telegram.tgnet.TLRPC$TL_fileLocationUnavailable;
-import org.telegram.tgnet.TLRPC$TL_messageExtendedMedia;
-import org.telegram.tgnet.TLRPC$TL_messageExtendedMediaPreview;
-import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
-import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPaidMedia;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
-import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
-import org.telegram.tgnet.TLRPC$TL_photoCachedSize;
-import org.telegram.tgnet.TLRPC$TL_photoSize_layer127;
-import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
-import org.telegram.tgnet.TLRPC$WallPaper;
-import org.telegram.tgnet.TLRPC$WallPaperSettings;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
@@ -168,15 +144,15 @@ public class ImageLoader {
             ImageLoader.this.fileDidLoaded(str, file, i2);
         }
 
-        public static void lambda$fileDidUploaded$1(int i, String str, TLRPC$InputFile tLRPC$InputFile, TLRPC$InputEncryptedFile tLRPC$InputEncryptedFile, byte[] bArr, byte[] bArr2, long j) {
-            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploaded, str, tLRPC$InputFile, tLRPC$InputEncryptedFile, bArr, bArr2, Long.valueOf(j));
+        public static void lambda$fileDidUploaded$1(int i, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j) {
+            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploaded, str, inputFile, inputEncryptedFile, bArr, bArr2, Long.valueOf(j));
         }
 
-        public void lambda$fileDidUploaded$2(final int i, final String str, final TLRPC$InputFile tLRPC$InputFile, final TLRPC$InputEncryptedFile tLRPC$InputEncryptedFile, final byte[] bArr, final byte[] bArr2, final long j) {
+        public void lambda$fileDidUploaded$2(final int i, final String str, final TLRPC.InputFile inputFile, final TLRPC.InputEncryptedFile inputEncryptedFile, final byte[] bArr, final byte[] bArr2, final long j) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.AnonymousClass5.lambda$fileDidUploaded$1(i, str, tLRPC$InputFile, tLRPC$InputEncryptedFile, bArr, bArr2, j);
+                    ImageLoader.AnonymousClass5.lambda$fileDidUploaded$1(i, str, inputFile, inputEncryptedFile, bArr, bArr2, j);
                 }
             });
             ImageLoader.this.fileProgresses.remove(str);
@@ -274,13 +250,13 @@ public class ImageLoader {
         }
 
         @Override
-        public void fileDidUploaded(final String str, final TLRPC$InputFile tLRPC$InputFile, final TLRPC$InputEncryptedFile tLRPC$InputEncryptedFile, final byte[] bArr, final byte[] bArr2, final long j) {
+        public void fileDidUploaded(final String str, final TLRPC.InputFile inputFile, final TLRPC.InputEncryptedFile inputEncryptedFile, final byte[] bArr, final byte[] bArr2, final long j) {
             DispatchQueue dispatchQueue = Utilities.stageQueue;
             final int i = this.val$currentAccount;
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.AnonymousClass5.this.lambda$fileDidUploaded$2(i, str, tLRPC$InputFile, tLRPC$InputEncryptedFile, bArr, bArr2, j);
+                    ImageLoader.AnonymousClass5.this.lambda$fileDidUploaded$2(i, str, inputFile, inputEncryptedFile, bArr, bArr2, j);
                 }
             });
         }
@@ -500,59 +476,59 @@ public class ImageLoader {
         }
 
         void changePriority(int i) {
-            TLRPC$Document tLRPC$Document;
+            TLRPC.Document document;
             ?? r6;
             TLObject tLObject;
-            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated;
-            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated2;
+            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
+            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2;
             ?? r9;
             ?? r7;
             ImageLocation imageLocation = this.imageLocation;
             if (imageLocation != null) {
-                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated3 = imageLocation.location;
-                if (tLRPC$TL_fileLocationToBeDeprecated3 != null) {
+                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = imageLocation.location;
+                if (tL_fileLocationToBeDeprecated3 != null) {
                     r9 = this.ext;
-                    tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated3;
-                    tLRPC$Document = null;
+                    tL_fileLocationToBeDeprecated = tL_fileLocationToBeDeprecated3;
+                    document = null;
                     r6 = null;
                     r7 = 0;
                 } else {
-                    TLRPC$Document tLRPC$Document2 = imageLocation.document;
-                    if (tLRPC$Document2 != null) {
-                        tLRPC$Document = tLRPC$Document2;
+                    TLRPC.Document document2 = imageLocation.document;
+                    if (document2 != null) {
+                        document = document2;
                         r6 = null;
                     } else {
                         SecureDocument secureDocument = imageLocation.secureDocument;
                         if (secureDocument != null) {
                             r6 = secureDocument;
-                            tLRPC$Document = null;
-                            tLRPC$TL_fileLocationToBeDeprecated2 = null;
-                            tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated2;
-                            tLObject = tLRPC$TL_fileLocationToBeDeprecated2;
-                            r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                            document = null;
+                            tL_fileLocationToBeDeprecated2 = null;
+                            tL_fileLocationToBeDeprecated = tL_fileLocationToBeDeprecated2;
+                            tLObject = tL_fileLocationToBeDeprecated2;
+                            r9 = tL_fileLocationToBeDeprecated;
                             r7 = tLObject;
                         } else {
                             TLObject tLObject2 = imageLocation.webFile;
                             if (tLObject2 != null) {
                                 tLObject = tLObject2;
-                                tLRPC$Document = null;
+                                document = null;
                                 r6 = null;
-                                tLRPC$TL_fileLocationToBeDeprecated = null;
-                                r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                                tL_fileLocationToBeDeprecated = null;
+                                r9 = tL_fileLocationToBeDeprecated;
                                 r7 = tLObject;
                             } else {
-                                tLRPC$Document = null;
+                                document = null;
                                 r6 = null;
                             }
                         }
                     }
-                    tLRPC$TL_fileLocationToBeDeprecated2 = r6;
-                    tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated2;
-                    tLObject = tLRPC$TL_fileLocationToBeDeprecated2;
-                    r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                    tL_fileLocationToBeDeprecated2 = r6;
+                    tL_fileLocationToBeDeprecated = tL_fileLocationToBeDeprecated2;
+                    tLObject = tL_fileLocationToBeDeprecated2;
+                    r9 = tL_fileLocationToBeDeprecated;
                     r7 = tLObject;
                 }
-                FileLoader.getInstance(this.currentAccount).changePriority(i, tLRPC$Document, r6, r7, tLRPC$TL_fileLocationToBeDeprecated, r9, null);
+                FileLoader.getInstance(this.currentAccount).changePriority(i, document, r6, r7, tL_fileLocationToBeDeprecated, r9, null);
             }
         }
 
@@ -687,39 +663,39 @@ public class ImageLoader {
             this.cacheImage = cacheImage;
         }
 
-        private Bitmap applyWallpaperSetting(Bitmap bitmap, TLRPC$WallPaper tLRPC$WallPaper) {
+        private Bitmap applyWallpaperSetting(Bitmap bitmap, TLRPC.WallPaper wallPaper) {
             int i;
-            if (!tLRPC$WallPaper.pattern || tLRPC$WallPaper.settings == null) {
-                TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
-                return (tLRPC$WallPaperSettings == null || !tLRPC$WallPaperSettings.blur) ? bitmap : Utilities.blurWallpaper(bitmap);
+            if (!wallPaper.pattern || wallPaper.settings == null) {
+                TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
+                return (wallPaperSettings == null || !wallPaperSettings.blur) ? bitmap : Utilities.blurWallpaper(bitmap);
             }
             Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(createBitmap);
-            TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$WallPaper.settings;
+            TLRPC.WallPaperSettings wallPaperSettings2 = wallPaper.settings;
             boolean z = true;
-            if (tLRPC$WallPaperSettings2.second_background_color == 0) {
-                i = AndroidUtilities.getPatternColor(tLRPC$WallPaperSettings2.background_color);
-                canvas.drawColor(ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.background_color, 255));
+            if (wallPaperSettings2.second_background_color == 0) {
+                i = AndroidUtilities.getPatternColor(wallPaperSettings2.background_color);
+                canvas.drawColor(ColorUtils.setAlphaComponent(wallPaper.settings.background_color, 255));
             } else {
-                int i2 = tLRPC$WallPaperSettings2.third_background_color;
-                int alphaComponent = ColorUtils.setAlphaComponent(tLRPC$WallPaperSettings2.background_color, 255);
+                int i2 = wallPaperSettings2.third_background_color;
+                int alphaComponent = ColorUtils.setAlphaComponent(wallPaperSettings2.background_color, 255);
                 if (i2 == 0) {
-                    int alphaComponent2 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255);
+                    int alphaComponent2 = ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255);
                     int averageColor = AndroidUtilities.getAverageColor(alphaComponent, alphaComponent2);
-                    GradientDrawable gradientDrawable = new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(tLRPC$WallPaper.settings.rotation), new int[]{alphaComponent, alphaComponent2});
+                    GradientDrawable gradientDrawable = new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(wallPaper.settings.rotation), new int[]{alphaComponent, alphaComponent2});
                     gradientDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                     gradientDrawable.draw(canvas);
                     i = averageColor;
                 } else {
-                    int alphaComponent3 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.second_background_color, 255);
-                    int alphaComponent4 = ColorUtils.setAlphaComponent(tLRPC$WallPaper.settings.third_background_color, 255);
-                    int i3 = tLRPC$WallPaper.settings.fourth_background_color;
+                    int alphaComponent3 = ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255);
+                    int alphaComponent4 = ColorUtils.setAlphaComponent(wallPaper.settings.third_background_color, 255);
+                    int i3 = wallPaper.settings.fourth_background_color;
                     int alphaComponent5 = i3 == 0 ? 0 : ColorUtils.setAlphaComponent(i3, 255);
                     int patternColor = MotionBackgroundDrawable.getPatternColor(alphaComponent, alphaComponent3, alphaComponent4, alphaComponent5);
                     MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
                     motionBackgroundDrawable.setColors(alphaComponent, alphaComponent3, alphaComponent4, alphaComponent5);
                     motionBackgroundDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                    motionBackgroundDrawable.setPatternBitmap(tLRPC$WallPaper.settings.intensity, bitmap);
+                    motionBackgroundDrawable.setPatternBitmap(wallPaper.settings.intensity, bitmap);
                     motionBackgroundDrawable.draw(canvas);
                     i = patternColor;
                     z = false;
@@ -728,7 +704,7 @@ public class ImageLoader {
             if (z) {
                 Paint paint = new Paint(2);
                 paint.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-                paint.setAlpha((int) ((tLRPC$WallPaper.settings.intensity / 100.0f) * 255.0f));
+                paint.setAlpha((int) ((wallPaper.settings.intensity / 100.0f) * 255.0f));
                 canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
             }
             return createBitmap;
@@ -891,7 +867,7 @@ public class ImageLoader {
             this.imageSize = j;
         }
 
-        public static void lambda$doInBackground$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public static void lambda$doInBackground$2(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         public void lambda$onCancelled$6() {
@@ -1028,16 +1004,16 @@ public class ImageLoader {
         private String filter;
         private ArrayList<ImageReceiver> imageReceiverArray;
         private ArrayList<Integer> imageReceiverGuidsArray;
-        private TLRPC$Document parentDocument;
+        private TLRPC.Document parentDocument;
 
         private ThumbGenerateInfo() {
             this.imageReceiverArray = new ArrayList<>();
             this.imageReceiverGuidsArray = new ArrayList<>();
         }
 
-        static TLRPC$Document access$1002(ThumbGenerateInfo thumbGenerateInfo, TLRPC$Document tLRPC$Document) {
-            thumbGenerateInfo.parentDocument = tLRPC$Document;
-            return tLRPC$Document;
+        static TLRPC.Document access$1002(ThumbGenerateInfo thumbGenerateInfo, TLRPC.Document document) {
+            thumbGenerateInfo.parentDocument = document;
+            return document;
         }
 
         static boolean access$1102(ThumbGenerateInfo thumbGenerateInfo, boolean z) {
@@ -1328,7 +1304,7 @@ public class ImageLoader {
         final int i6 = tag;
         final boolean isNeedsQualityThumb = imageReceiver.isNeedsQualityThumb();
         final Object parentObject = imageReceiver.getParentObject();
-        final TLRPC$Document qualityThumbDocument = imageReceiver.getQualityThumbDocument();
+        final TLRPC.Document qualityThumbDocument = imageReceiver.getQualityThumbDocument();
         final boolean isShouldGenerateQualityThumb = imageReceiver.isShouldGenerateQualityThumb();
         final int currentAccount = imageReceiver.getCurrentAccount();
         final boolean z = i2 == 0 && imageReceiver.isCurrentKeyQuality();
@@ -1342,10 +1318,10 @@ public class ImageLoader {
         imageReceiver.addLoadingImageRunnable(runnable);
     }
 
-    public static Drawable createStripedBitmap(ArrayList<TLRPC$PhotoSize> arrayList) {
+    public static Drawable createStripedBitmap(ArrayList<TLRPC.PhotoSize> arrayList) {
         for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i) instanceof TLRPC$TL_photoStrippedSize) {
-                return new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), getStrippedPhotoBitmap(((TLRPC$TL_photoStrippedSize) arrayList.get(i)).bytes, "b"));
+            if (arrayList.get(i) instanceof TLRPC.TL_photoStrippedSize) {
+                return new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), getStrippedPhotoBitmap(((TLRPC.TL_photoStrippedSize) arrayList.get(i)).bytes, "b"));
             }
         }
         return null;
@@ -1415,16 +1391,16 @@ public class ImageLoader {
         });
     }
 
-    public static void fillPhotoSizeWithBytes(TLRPC$PhotoSize tLRPC$PhotoSize) {
-        if (tLRPC$PhotoSize != null) {
-            byte[] bArr = tLRPC$PhotoSize.bytes;
+    public static void fillPhotoSizeWithBytes(TLRPC.PhotoSize photoSize) {
+        if (photoSize != null) {
+            byte[] bArr = photoSize.bytes;
             if (bArr == null || bArr.length == 0) {
                 try {
-                    RandomAccessFile randomAccessFile = new RandomAccessFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$PhotoSize, true), "r");
+                    RandomAccessFile randomAccessFile = new RandomAccessFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(photoSize, true), "r");
                     if (((int) randomAccessFile.length()) < 20000) {
                         int length = (int) randomAccessFile.length();
                         byte[] bArr2 = new byte[length];
-                        tLRPC$PhotoSize.bytes = bArr2;
+                        photoSize.bytes = bArr2;
                         randomAccessFile.readFully(bArr2, 0, length);
                     }
                 } catch (Throwable th) {
@@ -1450,115 +1426,115 @@ public class ImageLoader {
         return null;
     }
 
-    private static TLRPC$PhotoSize findPhotoCachedSize(TLRPC$Message tLRPC$Message) {
-        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
+    private static TLRPC.PhotoSize findPhotoCachedSize(TLRPC.Message message) {
+        TLRPC.MessageMedia messageMedia = message.media;
         int i = 0;
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
-            int size = tLRPC$MessageMedia.photo.sizes.size();
+        if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
+            int size = messageMedia.photo.sizes.size();
             while (i < size) {
-                TLRPC$PhotoSize tLRPC$PhotoSize = (TLRPC$PhotoSize) tLRPC$Message.media.photo.sizes.get(i);
-                if (tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize) {
-                    return tLRPC$PhotoSize;
+                TLRPC.PhotoSize photoSize = message.media.photo.sizes.get(i);
+                if (photoSize instanceof TLRPC.TL_photoCachedSize) {
+                    return photoSize;
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
-            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document != null) {
-                int size2 = tLRPC$Document.thumbs.size();
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
+            TLRPC.Document document = messageMedia.document;
+            if (document != null) {
+                int size2 = document.thumbs.size();
                 while (i < size2) {
-                    TLRPC$PhotoSize tLRPC$PhotoSize2 = tLRPC$Message.media.document.thumbs.get(i);
-                    if (tLRPC$PhotoSize2 instanceof TLRPC$TL_photoCachedSize) {
-                        return tLRPC$PhotoSize2;
+                    TLRPC.PhotoSize photoSize2 = message.media.document.thumbs.get(i);
+                    if (photoSize2 instanceof TLRPC.TL_photoCachedSize) {
+                        return photoSize2;
                     }
                     i++;
                 }
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
-            TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
-            if (tLRPC$Photo != null) {
-                int size3 = tLRPC$Photo.sizes.size();
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+            TLRPC.Photo photo = messageMedia.webpage.photo;
+            if (photo != null) {
+                int size3 = photo.sizes.size();
                 while (i < size3) {
-                    TLRPC$PhotoSize tLRPC$PhotoSize3 = (TLRPC$PhotoSize) tLRPC$Message.media.webpage.photo.sizes.get(i);
-                    if (tLRPC$PhotoSize3 instanceof TLRPC$TL_photoCachedSize) {
-                        return tLRPC$PhotoSize3;
+                    TLRPC.PhotoSize photoSize3 = message.media.webpage.photo.sizes.get(i);
+                    if (photoSize3 instanceof TLRPC.TL_photoCachedSize) {
+                        return photoSize3;
                     }
                     i++;
                 }
             }
-        } else if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) && !tLRPC$MessageMedia.extended_media.isEmpty() && (tLRPC$Message.media.extended_media.get(0) instanceof TLRPC$TL_messageExtendedMediaPreview)) {
-            return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$Message.media.extended_media.get(0)).thumb;
+        } else if ((messageMedia instanceof TLRPC.TL_messageMediaInvoice) && !messageMedia.extended_media.isEmpty() && (message.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview)) {
+            return ((TLRPC.TL_messageExtendedMediaPreview) message.media.extended_media.get(0)).thumb;
         }
         return null;
     }
 
-    private static TLRPC$PhotoSize findPhotoCachedSize(TLRPC$MessageMedia tLRPC$MessageMedia) {
+    private static TLRPC.PhotoSize findPhotoCachedSize(TLRPC.MessageMedia messageMedia) {
         int i = 0;
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
-            int size = tLRPC$MessageMedia.photo.sizes.size();
+        if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
+            int size = messageMedia.photo.sizes.size();
             while (i < size) {
-                TLRPC$PhotoSize tLRPC$PhotoSize = (TLRPC$PhotoSize) tLRPC$MessageMedia.photo.sizes.get(i);
-                if (tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize) {
-                    return tLRPC$PhotoSize;
+                TLRPC.PhotoSize photoSize = messageMedia.photo.sizes.get(i);
+                if (photoSize instanceof TLRPC.TL_photoCachedSize) {
+                    return photoSize;
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
-            TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-            if (tLRPC$Document != null) {
-                int size2 = tLRPC$Document.thumbs.size();
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
+            TLRPC.Document document = messageMedia.document;
+            if (document != null) {
+                int size2 = document.thumbs.size();
                 while (i < size2) {
-                    TLRPC$PhotoSize tLRPC$PhotoSize2 = tLRPC$MessageMedia.document.thumbs.get(i);
-                    if (tLRPC$PhotoSize2 instanceof TLRPC$TL_photoCachedSize) {
-                        return tLRPC$PhotoSize2;
+                    TLRPC.PhotoSize photoSize2 = messageMedia.document.thumbs.get(i);
+                    if (photoSize2 instanceof TLRPC.TL_photoCachedSize) {
+                        return photoSize2;
                     }
                     i++;
                 }
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
-            TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
-            if (tLRPC$Photo != null) {
-                int size3 = tLRPC$Photo.sizes.size();
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+            TLRPC.Photo photo = messageMedia.webpage.photo;
+            if (photo != null) {
+                int size3 = photo.sizes.size();
                 while (i < size3) {
-                    TLRPC$PhotoSize tLRPC$PhotoSize3 = (TLRPC$PhotoSize) tLRPC$MessageMedia.webpage.photo.sizes.get(i);
-                    if (tLRPC$PhotoSize3 instanceof TLRPC$TL_photoCachedSize) {
-                        return tLRPC$PhotoSize3;
+                    TLRPC.PhotoSize photoSize3 = messageMedia.webpage.photo.sizes.get(i);
+                    if (photoSize3 instanceof TLRPC.TL_photoCachedSize) {
+                        return photoSize3;
                     }
                     i++;
                 }
             }
-        } else if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) && !tLRPC$MessageMedia.extended_media.isEmpty() && (tLRPC$MessageMedia.extended_media.get(0) instanceof TLRPC$TL_messageExtendedMediaPreview)) {
-            return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageMedia.extended_media.get(0)).thumb;
+        } else if ((messageMedia instanceof TLRPC.TL_messageMediaInvoice) && !messageMedia.extended_media.isEmpty() && (messageMedia.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview)) {
+            return ((TLRPC.TL_messageExtendedMediaPreview) messageMedia.extended_media.get(0)).thumb;
         }
         return null;
     }
 
-    public static MessageThumb generateMessageThumb(TLRPC$Message tLRPC$Message) {
+    public static MessageThumb generateMessageThumb(TLRPC.Message message) {
         int i;
         int i2;
         Bitmap strippedPhotoBitmap;
         byte[] bArr;
-        TLRPC$PhotoSize findPhotoCachedSize = findPhotoCachedSize(tLRPC$Message);
+        TLRPC.PhotoSize findPhotoCachedSize = findPhotoCachedSize(message);
         if (findPhotoCachedSize == null || (bArr = findPhotoCachedSize.bytes) == null || bArr.length == 0) {
-            TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
-                int size = tLRPC$MessageMedia.document.thumbs.size();
+            TLRPC.MessageMedia messageMedia = message.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
+                int size = messageMedia.document.thumbs.size();
                 for (int i3 = 0; i3 < size; i3++) {
-                    TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$Message.media.document.thumbs.get(i3);
-                    if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
-                        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Message.media.document.thumbs, 320);
+                    TLRPC.PhotoSize photoSize = message.media.document.thumbs.get(i3);
+                    if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
+                        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(message.media.document.thumbs, 320);
                         if (closestPhotoSizeWithSize == null) {
                             int i4 = 0;
                             while (true) {
-                                if (i4 >= tLRPC$Message.media.document.attributes.size()) {
+                                if (i4 >= message.media.document.attributes.size()) {
                                     i = 0;
                                     i2 = 0;
                                     break;
                                 }
-                                if (tLRPC$Message.media.document.attributes.get(i4) instanceof TLRPC$TL_documentAttributeVideo) {
-                                    TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$Message.media.document.attributes.get(i4);
-                                    i2 = tLRPC$TL_documentAttributeVideo.h;
-                                    i = tLRPC$TL_documentAttributeVideo.w;
+                                if (message.media.document.attributes.get(i4) instanceof TLRPC.TL_documentAttributeVideo) {
+                                    TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) message.media.document.attributes.get(i4);
+                                    i2 = tL_documentAttributeVideo.h;
+                                    i = tL_documentAttributeVideo.w;
                                     break;
                                 }
                                 i4++;
@@ -1568,8 +1544,8 @@ public class ImageLoader {
                             i = closestPhotoSizeWithSize.w;
                         }
                         Point messageSize = ChatMessageCell.getMessageSize(i, i2);
-                        String format = String.format(Locale.US, "%s_false@%d_%d_b", ImageLocation.getStrippedKey(tLRPC$Message, tLRPC$Message, tLRPC$PhotoSize), Integer.valueOf((int) (messageSize.x / AndroidUtilities.density)), Integer.valueOf((int) (messageSize.y / AndroidUtilities.density)));
-                        if (!getInstance().isInMemCache(format, false) && (strippedPhotoBitmap = getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, null)) != null) {
+                        String format = String.format(Locale.US, "%s_false@%d_%d_b", ImageLocation.getStrippedKey(message, message, photoSize), Integer.valueOf((int) (messageSize.x / AndroidUtilities.density)), Integer.valueOf((int) (messageSize.y / AndroidUtilities.density)));
+                        if (!getInstance().isInMemCache(format, false) && (strippedPhotoBitmap = getStrippedPhotoBitmap(photoSize.bytes, null)) != null) {
                             Utilities.blurBitmap(strippedPhotoBitmap, 3, 1, strippedPhotoBitmap.getWidth(), strippedPhotoBitmap.getHeight(), strippedPhotoBitmap.getRowBytes());
                             float f = messageSize.x;
                             float f2 = AndroidUtilities.density;
@@ -1585,13 +1561,13 @@ public class ImageLoader {
             }
         } else {
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
-            TLRPC$TL_photoSize_layer127 tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
-            tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
-            tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
-            tLRPC$TL_photoSize_layer127.size = findPhotoCachedSize.size;
-            tLRPC$TL_photoSize_layer127.type = findPhotoCachedSize.type;
-            if (pathToAttach.exists() && tLRPC$Message.grouped_id == 0) {
+            TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
+            tL_photoSize_layer127.w = findPhotoCachedSize.w;
+            tL_photoSize_layer127.h = findPhotoCachedSize.h;
+            tL_photoSize_layer127.location = findPhotoCachedSize.location;
+            tL_photoSize_layer127.size = findPhotoCachedSize.size;
+            tL_photoSize_layer127.type = findPhotoCachedSize.type;
+            if (pathToAttach.exists() && message.grouped_id == 0) {
                 Point messageSize2 = ChatMessageCell.getMessageSize(findPhotoCachedSize.w, findPhotoCachedSize.h);
                 String format2 = String.format(Locale.US, "%d_%d@%d_%d_b", Long.valueOf(findPhotoCachedSize.location.volume_id), Integer.valueOf(findPhotoCachedSize.location.local_id), Integer.valueOf((int) (messageSize2.x / AndroidUtilities.density)), Integer.valueOf((int) (messageSize2.y / AndroidUtilities.density)));
                 if (!getInstance().isInMemCache(format2, false)) {
@@ -1833,7 +1809,7 @@ public class ImageLoader {
         });
     }
 
-    public void lambda$createLoadOperationForImageReceiver$7(int r27, java.lang.String r28, java.lang.String r29, int r30, org.telegram.messenger.ImageReceiver r31, int r32, java.lang.String r33, int r34, org.telegram.messenger.ImageLocation r35, boolean r36, java.lang.Object r37, int r38, org.telegram.tgnet.TLRPC$Document r39, boolean r40, boolean r41, java.lang.String r42, int r43, long r44) {
+    public void lambda$createLoadOperationForImageReceiver$7(int r27, java.lang.String r28, java.lang.String r29, int r30, org.telegram.messenger.ImageReceiver r31, int r32, java.lang.String r33, int r34, org.telegram.messenger.ImageLocation r35, boolean r36, java.lang.Object r37, int r38, org.telegram.tgnet.TLRPC.Document r39, boolean r40, boolean r41, java.lang.String r42, int r43, long r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.lambda$createLoadOperationForImageReceiver$7(int, java.lang.String, java.lang.String, int, org.telegram.messenger.ImageReceiver, int, java.lang.String, int, org.telegram.messenger.ImageLocation, boolean, java.lang.Object, int, org.telegram.tgnet.TLRPC$Document, boolean, boolean, java.lang.String, int, long):void");
     }
 
@@ -2140,42 +2116,42 @@ public class ImageLoader {
         }
     }
 
-    public static void saveMessageThumbs(TLRPC$Message tLRPC$Message) {
+    public static void saveMessageThumbs(TLRPC.Message message) {
         byte[] bArr;
-        TLRPC$PhotoSize tLRPC$TL_photoSize_layer127;
-        TLRPC$Photo tLRPC$Photo;
-        ArrayList<TLRPC$PhotoSize> arrayList;
-        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-        if (tLRPC$MessageMedia == null) {
+        TLRPC.PhotoSize tL_photoSize_layer127;
+        TLRPC.Photo photo;
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        TLRPC.MessageMedia messageMedia = message.media;
+        if (messageMedia == null) {
             return;
         }
         int i = 0;
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPaidMedia) {
-            TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia = (TLRPC$TL_messageMediaPaidMedia) tLRPC$MessageMedia;
-            while (i < tLRPC$TL_messageMediaPaidMedia.extended_media.size()) {
-                TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(i);
-                if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
-                    saveMessageThumbs(tLRPC$Message, ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media);
+        if (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) {
+            TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) messageMedia;
+            while (i < tL_messageMediaPaidMedia.extended_media.size()) {
+                TLRPC.MessageExtendedMedia messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i);
+                if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
+                    saveMessageThumbs(message, ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media);
                 }
                 i++;
             }
             return;
         }
-        TLRPC$PhotoSize findPhotoCachedSize = findPhotoCachedSize(tLRPC$Message);
+        TLRPC.PhotoSize findPhotoCachedSize = findPhotoCachedSize(message);
         if (findPhotoCachedSize == null || (bArr = findPhotoCachedSize.bytes) == null || bArr.length == 0) {
             return;
         }
-        TLRPC$FileLocation tLRPC$FileLocation = findPhotoCachedSize.location;
-        if (tLRPC$FileLocation == null || (tLRPC$FileLocation instanceof TLRPC$TL_fileLocationUnavailable)) {
-            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
-            findPhotoCachedSize.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_fileLocationToBeDeprecated.volume_id = -2147483648L;
-            tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
+        TLRPC.FileLocation fileLocation = findPhotoCachedSize.location;
+        if (fileLocation == null || (fileLocation instanceof TLRPC.TL_fileLocationUnavailable)) {
+            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
+            findPhotoCachedSize.location = tL_fileLocationToBeDeprecated;
+            tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
+            tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         }
         if (findPhotoCachedSize.h > 50 || findPhotoCachedSize.w > 50) {
             boolean z = true;
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
-            if (MessageObject.shouldEncryptPhotoOrVideo(UserConfig.selectedAccount, tLRPC$Message)) {
+            if (MessageObject.shouldEncryptPhotoOrVideo(UserConfig.selectedAccount, message)) {
                 pathToAttach = new File(pathToAttach.getAbsolutePath() + ".enc");
             } else {
                 z = false;
@@ -2206,47 +2182,47 @@ public class ImageLoader {
                 randomAccessFile2.write(findPhotoCachedSize.bytes);
                 randomAccessFile2.close();
             }
-            tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
-            tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
-            tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
-            tLRPC$TL_photoSize_layer127.size = findPhotoCachedSize.size;
-            tLRPC$TL_photoSize_layer127.type = findPhotoCachedSize.type;
+            tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
+            tL_photoSize_layer127.w = findPhotoCachedSize.w;
+            tL_photoSize_layer127.h = findPhotoCachedSize.h;
+            tL_photoSize_layer127.location = findPhotoCachedSize.location;
+            tL_photoSize_layer127.size = findPhotoCachedSize.size;
+            tL_photoSize_layer127.type = findPhotoCachedSize.type;
         } else {
-            tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoStrippedSize();
-            tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
-            tLRPC$TL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
-            tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
+            tL_photoSize_layer127 = new TLRPC.TL_photoStrippedSize();
+            tL_photoSize_layer127.location = findPhotoCachedSize.location;
+            tL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
+            tL_photoSize_layer127.h = findPhotoCachedSize.h;
+            tL_photoSize_layer127.w = findPhotoCachedSize.w;
         }
-        TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message.media;
-        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaPhoto) {
-            int size = tLRPC$MessageMedia2.photo.sizes.size();
+        TLRPC.MessageMedia messageMedia2 = message.media;
+        if (messageMedia2 instanceof TLRPC.TL_messageMediaPhoto) {
+            int size = messageMedia2.photo.sizes.size();
             while (i < size) {
-                if (((TLRPC$PhotoSize) tLRPC$Message.media.photo.sizes.get(i)) instanceof TLRPC$TL_photoCachedSize) {
-                    tLRPC$Photo = tLRPC$Message.media.photo;
+                if (message.media.photo.sizes.get(i) instanceof TLRPC.TL_photoCachedSize) {
+                    photo = message.media.photo;
                 } else {
                     i++;
                 }
             }
             return;
         }
-        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaDocument) {
-            int size2 = tLRPC$MessageMedia2.document.thumbs.size();
+        if (messageMedia2 instanceof TLRPC.TL_messageMediaDocument) {
+            int size2 = messageMedia2.document.thumbs.size();
             while (i < size2) {
-                if (tLRPC$Message.media.document.thumbs.get(i) instanceof TLRPC$TL_photoCachedSize) {
-                    arrayList = tLRPC$Message.media.document.thumbs;
-                    arrayList.set(i, tLRPC$TL_photoSize_layer127);
+                if (message.media.document.thumbs.get(i) instanceof TLRPC.TL_photoCachedSize) {
+                    arrayList = message.media.document.thumbs;
+                    arrayList.set(i, tL_photoSize_layer127);
                 }
                 i++;
             }
             return;
         }
-        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaWebPage) {
-            int size3 = tLRPC$MessageMedia2.webpage.photo.sizes.size();
+        if (messageMedia2 instanceof TLRPC.TL_messageMediaWebPage) {
+            int size3 = messageMedia2.webpage.photo.sizes.size();
             while (i < size3) {
-                if (((TLRPC$PhotoSize) tLRPC$Message.media.webpage.photo.sizes.get(i)) instanceof TLRPC$TL_photoCachedSize) {
-                    tLRPC$Photo = tLRPC$Message.media.webpage.photo;
+                if (message.media.webpage.photo.sizes.get(i) instanceof TLRPC.TL_photoCachedSize) {
+                    photo = message.media.webpage.photo;
                 } else {
                     i++;
                 }
@@ -2254,31 +2230,31 @@ public class ImageLoader {
             return;
         }
         return;
-        arrayList = tLRPC$Photo.sizes;
-        arrayList.set(i, tLRPC$TL_photoSize_layer127);
+        arrayList = photo.sizes;
+        arrayList.set(i, tL_photoSize_layer127);
     }
 
-    public static void saveMessageThumbs(TLRPC$Message tLRPC$Message, TLRPC$MessageMedia tLRPC$MessageMedia) {
-        TLRPC$PhotoSize findPhotoCachedSize;
+    public static void saveMessageThumbs(TLRPC.Message message, TLRPC.MessageMedia messageMedia) {
+        TLRPC.PhotoSize findPhotoCachedSize;
         byte[] bArr;
-        TLRPC$PhotoSize tLRPC$TL_photoSize_layer127;
-        TLRPC$Photo tLRPC$Photo;
-        ArrayList<TLRPC$PhotoSize> arrayList;
-        if (tLRPC$Message == null || tLRPC$MessageMedia == null || (findPhotoCachedSize = findPhotoCachedSize(tLRPC$MessageMedia)) == null || (bArr = findPhotoCachedSize.bytes) == null || bArr.length == 0) {
+        TLRPC.PhotoSize tL_photoSize_layer127;
+        TLRPC.Photo photo;
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        if (message == null || messageMedia == null || (findPhotoCachedSize = findPhotoCachedSize(messageMedia)) == null || (bArr = findPhotoCachedSize.bytes) == null || bArr.length == 0) {
             return;
         }
-        TLRPC$FileLocation tLRPC$FileLocation = findPhotoCachedSize.location;
-        if (tLRPC$FileLocation == null || (tLRPC$FileLocation instanceof TLRPC$TL_fileLocationUnavailable)) {
-            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
-            findPhotoCachedSize.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_fileLocationToBeDeprecated.volume_id = -2147483648L;
-            tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
+        TLRPC.FileLocation fileLocation = findPhotoCachedSize.location;
+        if (fileLocation == null || (fileLocation instanceof TLRPC.TL_fileLocationUnavailable)) {
+            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
+            findPhotoCachedSize.location = tL_fileLocationToBeDeprecated;
+            tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
+            tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         }
         int i = 0;
         if (findPhotoCachedSize.h > 50 || findPhotoCachedSize.w > 50) {
             boolean z = true;
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
-            if (MessageObject.shouldEncryptPhotoOrVideo(UserConfig.selectedAccount, tLRPC$Message)) {
+            if (MessageObject.shouldEncryptPhotoOrVideo(UserConfig.selectedAccount, message)) {
                 pathToAttach = new File(pathToAttach.getAbsolutePath() + ".enc");
             } else {
                 z = false;
@@ -2309,46 +2285,46 @@ public class ImageLoader {
                 randomAccessFile2.write(findPhotoCachedSize.bytes);
                 randomAccessFile2.close();
             }
-            tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
-            tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
-            tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
-            tLRPC$TL_photoSize_layer127.size = findPhotoCachedSize.size;
-            tLRPC$TL_photoSize_layer127.type = findPhotoCachedSize.type;
+            tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
+            tL_photoSize_layer127.w = findPhotoCachedSize.w;
+            tL_photoSize_layer127.h = findPhotoCachedSize.h;
+            tL_photoSize_layer127.location = findPhotoCachedSize.location;
+            tL_photoSize_layer127.size = findPhotoCachedSize.size;
+            tL_photoSize_layer127.type = findPhotoCachedSize.type;
         } else {
-            tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoStrippedSize();
-            tLRPC$TL_photoSize_layer127.location = findPhotoCachedSize.location;
-            tLRPC$TL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
-            tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
+            tL_photoSize_layer127 = new TLRPC.TL_photoStrippedSize();
+            tL_photoSize_layer127.location = findPhotoCachedSize.location;
+            tL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
+            tL_photoSize_layer127.h = findPhotoCachedSize.h;
+            tL_photoSize_layer127.w = findPhotoCachedSize.w;
         }
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
-            int size = tLRPC$MessageMedia.photo.sizes.size();
+        if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
+            int size = messageMedia.photo.sizes.size();
             while (i < size) {
-                if (((TLRPC$PhotoSize) tLRPC$MessageMedia.photo.sizes.get(i)) instanceof TLRPC$TL_photoCachedSize) {
-                    tLRPC$Photo = tLRPC$MessageMedia.photo;
+                if (messageMedia.photo.sizes.get(i) instanceof TLRPC.TL_photoCachedSize) {
+                    photo = messageMedia.photo;
                 } else {
                     i++;
                 }
             }
             return;
         }
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
-            int size2 = tLRPC$MessageMedia.document.thumbs.size();
+        if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
+            int size2 = messageMedia.document.thumbs.size();
             while (i < size2) {
-                if (tLRPC$MessageMedia.document.thumbs.get(i) instanceof TLRPC$TL_photoCachedSize) {
-                    arrayList = tLRPC$MessageMedia.document.thumbs;
-                    arrayList.set(i, tLRPC$TL_photoSize_layer127);
+                if (messageMedia.document.thumbs.get(i) instanceof TLRPC.TL_photoCachedSize) {
+                    arrayList = messageMedia.document.thumbs;
+                    arrayList.set(i, tL_photoSize_layer127);
                 }
                 i++;
             }
             return;
         }
-        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
-            int size3 = tLRPC$MessageMedia.webpage.photo.sizes.size();
+        if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+            int size3 = messageMedia.webpage.photo.sizes.size();
             while (i < size3) {
-                if (((TLRPC$PhotoSize) tLRPC$MessageMedia.webpage.photo.sizes.get(i)) instanceof TLRPC$TL_photoCachedSize) {
-                    tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
+                if (messageMedia.webpage.photo.sizes.get(i) instanceof TLRPC.TL_photoCachedSize) {
+                    photo = messageMedia.webpage.photo;
                 } else {
                     i++;
                 }
@@ -2356,11 +2332,11 @@ public class ImageLoader {
             return;
         }
         return;
-        arrayList = tLRPC$Photo.sizes;
-        arrayList.set(i, tLRPC$TL_photoSize_layer127);
+        arrayList = photo.sizes;
+        arrayList.set(i, tL_photoSize_layer127);
     }
 
-    public static void saveMessagesThumbs(ArrayList<TLRPC$Message> arrayList) {
+    public static void saveMessagesThumbs(ArrayList<TLRPC.Message> arrayList) {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
@@ -2369,27 +2345,27 @@ public class ImageLoader {
         }
     }
 
-    public static TLRPC$PhotoSize scaleAndSaveImage(Bitmap bitmap, float f, float f2, int i, boolean z) {
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f, float f2, int i, boolean z) {
         return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, false, f, f2, i, z, 0, 0, false);
     }
 
-    public static TLRPC$PhotoSize scaleAndSaveImage(Bitmap bitmap, float f, float f2, int i, boolean z, int i2, int i3) {
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f, float f2, int i, boolean z, int i2, int i3) {
         return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, false, f, f2, i, z, i2, i3, false);
     }
 
-    public static TLRPC$PhotoSize scaleAndSaveImage(Bitmap bitmap, float f, float f2, boolean z, int i, boolean z2, int i2, int i3) {
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f, float f2, boolean z, int i, boolean z2, int i2, int i3) {
         return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, z, f, f2, i, z2, i2, i3, false);
     }
 
-    public static TLRPC$PhotoSize scaleAndSaveImage(Bitmap bitmap, Bitmap.CompressFormat compressFormat, float f, float f2, int i, boolean z, int i2, int i3) {
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, Bitmap.CompressFormat compressFormat, float f, float f2, int i, boolean z, int i2, int i3) {
         return scaleAndSaveImage(null, bitmap, compressFormat, false, f, f2, i, z, i2, i3, false);
     }
 
-    public static TLRPC$PhotoSize scaleAndSaveImage(TLRPC$PhotoSize tLRPC$PhotoSize, Bitmap bitmap, float f, float f2, int i, boolean z, boolean z2) {
-        return scaleAndSaveImage(tLRPC$PhotoSize, bitmap, Bitmap.CompressFormat.JPEG, false, f, f2, i, z, 0, 0, z2);
+    public static TLRPC.PhotoSize scaleAndSaveImage(TLRPC.PhotoSize photoSize, Bitmap bitmap, float f, float f2, int i, boolean z, boolean z2) {
+        return scaleAndSaveImage(photoSize, bitmap, Bitmap.CompressFormat.JPEG, false, f, f2, i, z, 0, 0, z2);
     }
 
-    public static TLRPC$PhotoSize scaleAndSaveImage(TLRPC$PhotoSize tLRPC$PhotoSize, Bitmap bitmap, Bitmap.CompressFormat compressFormat, boolean z, float f, float f2, int i, boolean z2, int i2, int i3, boolean z3) {
+    public static TLRPC.PhotoSize scaleAndSaveImage(TLRPC.PhotoSize photoSize, Bitmap bitmap, Bitmap.CompressFormat compressFormat, boolean z, float f, float f2, int i, boolean z2, int i2, int i3, boolean z3) {
         float f3;
         boolean z4;
         int i4;
@@ -2422,13 +2398,13 @@ public class ImageLoader {
                     i5 = (int) (height / f3);
                     if (i5 != 0 && i4 != 0) {
                         try {
-                            return scaleAndSaveImageInternal(tLRPC$PhotoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
+                            return scaleAndSaveImageInternal(photoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
                         } catch (Throwable th) {
                             FileLog.e(th);
                             getInstance().clearMemory();
                             System.gc();
                             try {
-                                return scaleAndSaveImageInternal(tLRPC$PhotoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
+                                return scaleAndSaveImageInternal(photoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
                             } catch (Throwable th2) {
                                 FileLog.e(th2);
                             }
@@ -2441,13 +2417,13 @@ public class ImageLoader {
             i4 = (int) (width / f3);
             i5 = (int) (height / f3);
             if (i5 != 0) {
-                return scaleAndSaveImageInternal(tLRPC$PhotoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
+                return scaleAndSaveImageInternal(photoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
             }
         }
         return null;
     }
 
-    private static org.telegram.tgnet.TLRPC$PhotoSize scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC$PhotoSize r2, android.graphics.Bitmap r3, android.graphics.Bitmap.CompressFormat r4, boolean r5, int r6, int r7, float r8, float r9, float r10, int r11, boolean r12, boolean r13, boolean r14) {
+    private static org.telegram.tgnet.TLRPC.PhotoSize scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC.PhotoSize r2, android.graphics.Bitmap r3, android.graphics.Bitmap.CompressFormat r4, boolean r5, int r6, int r7, float r8, float r9, float r10, int r11, boolean r12, boolean r13, boolean r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC$PhotoSize, android.graphics.Bitmap, android.graphics.Bitmap$CompressFormat, boolean, int, int, float, float, float, int, boolean, boolean, boolean):org.telegram.tgnet.TLRPC$PhotoSize");
     }
 
@@ -2642,19 +2618,19 @@ public class ImageLoader {
         if (str != null) {
             str3 = Utilities.MD5(str);
         } else {
-            if (tLObject instanceof TLRPC$FileLocation) {
-                TLRPC$FileLocation tLRPC$FileLocation = (TLRPC$FileLocation) tLObject;
+            if (tLObject instanceof TLRPC.FileLocation) {
+                TLRPC.FileLocation fileLocation = (TLRPC.FileLocation) tLObject;
                 sb = new StringBuilder();
-                sb.append(tLRPC$FileLocation.volume_id);
+                sb.append(fileLocation.volume_id);
                 sb.append("_");
-                sb.append(tLRPC$FileLocation.local_id);
+                sb.append(fileLocation.local_id);
             } else {
-                if (tLObject instanceof TLRPC$Document) {
-                    TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
+                if (tLObject instanceof TLRPC.Document) {
+                    TLRPC.Document document = (TLRPC.Document) tLObject;
                     sb = new StringBuilder();
-                    sb.append(tLRPC$Document.dc_id);
+                    sb.append(document.dc_id);
                     sb.append("_");
-                    j = tLRPC$Document.id;
+                    j = document.id;
                 } else if (tLObject instanceof SecureDocument) {
                     SecureDocument secureDocument = (SecureDocument) tLObject;
                     sb = new StringBuilder();

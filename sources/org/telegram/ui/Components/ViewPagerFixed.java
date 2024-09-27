@@ -46,8 +46,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messages_updateDialogFiltersOrder;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
@@ -635,7 +634,7 @@ public class ViewPagerFixed extends FrameLayout {
             }
         }
 
-        public static void lambda$setIsEditing$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public static void lambda$setIsEditing$2(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         public void saveFromValues() {
@@ -931,17 +930,17 @@ public class ViewPagerFixed extends FrameLayout {
                 return;
             }
             MessagesStorage.getInstance(UserConfig.selectedAccount).saveDialogFiltersOrder();
-            TLRPC$TL_messages_updateDialogFiltersOrder tLRPC$TL_messages_updateDialogFiltersOrder = new TLRPC$TL_messages_updateDialogFiltersOrder();
+            TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
             ArrayList<MessagesController.DialogFilter> arrayList = MessagesController.getInstance(UserConfig.selectedAccount).dialogFilters;
             int size = arrayList.size();
             for (int i = 0; i < size; i++) {
                 arrayList.get(i);
-                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i).id));
+                tL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i).id));
             }
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, new RequestDelegate() {
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_updateDialogFiltersOrder, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ViewPagerFixed.TabsView.lambda$setIsEditing$2(tLObject, tLRPC$TL_error);
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ViewPagerFixed.TabsView.lambda$setIsEditing$2(tLObject, tL_error);
                 }
             });
             this.orderChanged = false;
@@ -1412,6 +1411,9 @@ public class ViewPagerFixed extends FrameLayout {
     }
 
     protected void onScrollEnd() {
+    }
+
+    public void onStartTracking() {
     }
 
     public void onTabAnimationUpdate(boolean z) {

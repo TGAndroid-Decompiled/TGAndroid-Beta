@@ -3,28 +3,27 @@ package org.telegram.messenger;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$TL_textWithEntities;
+import org.telegram.tgnet.TLRPC;
 
 public class MessageCustomParamsHelper {
 
     private static class Params_v1 extends TLObject {
         private static final int VERSION = 1;
         int flags;
-        final TLRPC$Message message;
+        final TLRPC.Message message;
 
-        private Params_v1(TLRPC$Message tLRPC$Message) {
+        private Params_v1(TLRPC.Message message) {
             this.flags = 0;
-            this.message = tLRPC$Message;
-            int i = tLRPC$Message.voiceTranscription != null ? 1 : 0;
+            this.message = message;
+            int i = message.voiceTranscription != null ? 1 : 0;
             this.flags = i;
-            int i2 = i + (tLRPC$Message.voiceTranscriptionForce ? 2 : 0);
+            int i2 = i + (message.voiceTranscriptionForce ? 2 : 0);
             this.flags = i2;
-            int i3 = i2 + (tLRPC$Message.originalLanguage != null ? 4 : 0);
+            int i3 = i2 + (message.originalLanguage != null ? 4 : 0);
             this.flags = i3;
-            int i4 = i3 + (tLRPC$Message.translatedToLanguage != null ? 8 : 0);
+            int i4 = i3 + (message.translatedToLanguage != null ? 8 : 0);
             this.flags = i4;
-            this.flags = i4 + (tLRPC$Message.translatedText != null ? 16 : 0);
+            this.flags = i4 + (message.translatedText != null ? 16 : 0);
         }
 
         @Override
@@ -34,9 +33,9 @@ public class MessageCustomParamsHelper {
             if ((readInt32 & 1) != 0) {
                 this.message.voiceTranscription = abstractSerializedData.readString(z);
             }
-            TLRPC$Message tLRPC$Message = this.message;
-            tLRPC$Message.voiceTranscriptionForce = (this.flags & 2) != 0;
-            tLRPC$Message.voiceTranscriptionOpen = abstractSerializedData.readBool(z);
+            TLRPC.Message message = this.message;
+            message.voiceTranscriptionForce = (this.flags & 2) != 0;
+            message.voiceTranscriptionOpen = abstractSerializedData.readBool(z);
             this.message.voiceTranscriptionFinal = abstractSerializedData.readBool(z);
             this.message.voiceTranscriptionRated = abstractSerializedData.readBool(z);
             this.message.voiceTranscriptionId = abstractSerializedData.readInt64(z);
@@ -48,7 +47,7 @@ public class MessageCustomParamsHelper {
                 this.message.translatedToLanguage = abstractSerializedData.readString(z);
             }
             if ((this.flags & 16) != 0) {
-                this.message.translatedText = TLRPC$TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                this.message.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
         }
 
@@ -78,40 +77,40 @@ public class MessageCustomParamsHelper {
         }
     }
 
-    public static void copyParams(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
-        tLRPC$Message2.voiceTranscription = tLRPC$Message.voiceTranscription;
-        tLRPC$Message2.voiceTranscriptionOpen = tLRPC$Message.voiceTranscriptionOpen;
-        tLRPC$Message2.voiceTranscriptionFinal = tLRPC$Message.voiceTranscriptionFinal;
-        tLRPC$Message2.voiceTranscriptionForce = tLRPC$Message.voiceTranscriptionForce;
-        tLRPC$Message2.voiceTranscriptionRated = tLRPC$Message.voiceTranscriptionRated;
-        tLRPC$Message2.voiceTranscriptionId = tLRPC$Message.voiceTranscriptionId;
-        tLRPC$Message2.premiumEffectWasPlayed = tLRPC$Message.premiumEffectWasPlayed;
-        tLRPC$Message2.originalLanguage = tLRPC$Message.originalLanguage;
-        tLRPC$Message2.translatedToLanguage = tLRPC$Message.translatedToLanguage;
-        tLRPC$Message2.translatedText = tLRPC$Message.translatedText;
+    public static void copyParams(TLRPC.Message message, TLRPC.Message message2) {
+        message2.voiceTranscription = message.voiceTranscription;
+        message2.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+        message2.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+        message2.voiceTranscriptionForce = message.voiceTranscriptionForce;
+        message2.voiceTranscriptionRated = message.voiceTranscriptionRated;
+        message2.voiceTranscriptionId = message.voiceTranscriptionId;
+        message2.premiumEffectWasPlayed = message.premiumEffectWasPlayed;
+        message2.originalLanguage = message.originalLanguage;
+        message2.translatedToLanguage = message.translatedToLanguage;
+        message2.translatedText = message.translatedText;
     }
 
-    public static boolean isEmpty(TLRPC$Message tLRPC$Message) {
-        return tLRPC$Message.voiceTranscription == null && !tLRPC$Message.voiceTranscriptionOpen && !tLRPC$Message.voiceTranscriptionFinal && !tLRPC$Message.voiceTranscriptionRated && !tLRPC$Message.voiceTranscriptionForce && tLRPC$Message.voiceTranscriptionId == 0 && !tLRPC$Message.premiumEffectWasPlayed && tLRPC$Message.originalLanguage == null && tLRPC$Message.translatedToLanguage == null && tLRPC$Message.translatedText == null;
+    public static boolean isEmpty(TLRPC.Message message) {
+        return message.voiceTranscription == null && !message.voiceTranscriptionOpen && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedText == null;
     }
 
-    public static void readLocalParams(TLRPC$Message tLRPC$Message, NativeByteBuffer nativeByteBuffer) {
+    public static void readLocalParams(TLRPC.Message message, NativeByteBuffer nativeByteBuffer) {
         if (nativeByteBuffer == null) {
             return;
         }
         int readInt32 = nativeByteBuffer.readInt32(true);
         if (readInt32 == 1) {
-            new Params_v1(tLRPC$Message).readParams(nativeByteBuffer, true);
+            new Params_v1(message).readParams(nativeByteBuffer, true);
             return;
         }
         throw new RuntimeException("can't read params version = " + readInt32);
     }
 
-    public static NativeByteBuffer writeLocalParams(TLRPC$Message tLRPC$Message) {
-        if (isEmpty(tLRPC$Message)) {
+    public static NativeByteBuffer writeLocalParams(TLRPC.Message message) {
+        if (isEmpty(message)) {
             return null;
         }
-        Params_v1 params_v1 = new Params_v1(tLRPC$Message);
+        Params_v1 params_v1 = new Params_v1(message);
         try {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(params_v1.getObjectSize());
             params_v1.serializeToStream(nativeByteBuffer);
