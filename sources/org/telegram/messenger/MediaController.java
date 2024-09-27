@@ -1124,7 +1124,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public void lambda$addMessageToLoad$5(MessageObject messageObject) {
-            TLRPC.Document document = messageObject.messageOwner.media.alt_documents.get(0);
+            TLRPC.Document document = messageObject.getDocument();
             if (document == null) {
                 return;
             }
@@ -1219,7 +1219,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
                             File pathToMessage = fileLoader.getPathToMessage(messageObject.messageOwner, true);
                             if (media instanceof TLRPC.TL_messageMediaDocument) {
-                                pathToMessage = fileLoader.getPathToAttach(((TLRPC.TL_messageMediaDocument) media).alt_documents.get(0), null, false, true);
+                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) media;
+                                if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
+                                    pathToMessage = fileLoader.getPathToAttach(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
+                                }
                             }
                             str = pathToMessage.toString();
                         }
