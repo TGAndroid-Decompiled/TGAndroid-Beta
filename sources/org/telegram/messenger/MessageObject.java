@@ -5565,8 +5565,13 @@ public class MessageObject {
 
     public boolean hasVideoQualities() {
         if (this.videoQualitiesCached == null) {
-            TLRPC.Message message = this.messageOwner;
-            this.videoQualitiesCached = Boolean.valueOf(message != null && VideoPlayer.hasQualities(this.currentAccount, message.media));
+            try {
+                TLRPC.Message message = this.messageOwner;
+                this.videoQualitiesCached = Boolean.valueOf(message != null && VideoPlayer.hasQualities(this.currentAccount, message.media));
+            } catch (Exception e) {
+                FileLog.e(e);
+                this.videoQualitiesCached = Boolean.FALSE;
+            }
         }
         return this.videoQualitiesCached.booleanValue();
     }

@@ -40,6 +40,7 @@ import com.google.android.exoplayer2.audio.TeeAudioProcessor;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
 import com.google.android.exoplayer2.decoder.DecoderReuseEvaluation;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
+import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
 import com.google.android.exoplayer2.metadata.Metadata;
 import com.google.android.exoplayer2.source.LoadEventInfo;
 import com.google.android.exoplayer2.source.LoopingMediaSource;
@@ -1090,100 +1091,109 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public static boolean supportsHardwareDecoder(String str) {
+        char c;
         String str2;
-        boolean isHardwareAccelerated;
-        str.hashCode();
-        char c = 65535;
-        switch (str.hashCode()) {
-            case 96924:
-                if (str.equals("av1")) {
-                    c = 0;
+        try {
+            switch (str.hashCode()) {
+                case 96924:
+                    if (str.equals("av1")) {
+                        c = 6;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-            case 96974:
-                if (str.equals("avc")) {
-                    c = 1;
+                case 96974:
+                    if (str.equals("avc")) {
+                        c = 1;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-            case 116926:
-                if (str.equals("vp8")) {
-                    c = 2;
+                case 116926:
+                    if (str.equals("vp8")) {
+                        c = 2;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-            case 116927:
-                if (str.equals("vp9")) {
-                    c = 3;
+                case 116927:
+                    if (str.equals("vp9")) {
+                        c = 3;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-            case 3004662:
-                if (str.equals("av01")) {
-                    c = 4;
+                case 3004662:
+                    if (str.equals("av01")) {
+                        c = 7;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-            case 3148040:
-                if (str.equals("h264")) {
-                    c = 5;
+                case 3148040:
+                    if (str.equals("h264")) {
+                        c = 0;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-            case 3148041:
-                if (str.equals("h265")) {
-                    c = 6;
+                case 3148041:
+                    if (str.equals("h265")) {
+                        c = 4;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-            case 3199082:
-                if (str.equals("hevc")) {
-                    c = 7;
+                case 3199082:
+                    if (str.equals("hevc")) {
+                        c = 5;
+                        break;
+                    }
+                    c = 65535;
                     break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
-            case 4:
-                str2 = "video/av01";
-                break;
-            case 1:
-            case 5:
-                str2 = "video/avc";
-                break;
-            case 2:
-                str2 = "video/x-vnd.on2.vp8";
-                break;
-            case 3:
-                str2 = "video/x-vnd.on2.vp9";
-                break;
-            case 6:
-            case 7:
-                str2 = "video/hevc";
-                break;
-            default:
-                str2 = "video/" + str;
-                break;
-        }
-        int codecCount = MediaCodecList.getCodecCount();
-        for (int i = 0; i < codecCount; i++) {
-            MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
-            if (!codecInfoAt.isEncoder()) {
-                isHardwareAccelerated = codecInfoAt.isHardwareAccelerated();
-                if (isHardwareAccelerated) {
+                default:
+                    c = 65535;
+                    break;
+            }
+            switch (c) {
+                case 0:
+                case 1:
+                    str2 = "video/avc";
+                    break;
+                case 2:
+                    str2 = "video/x-vnd.on2.vp8";
+                    break;
+                case 3:
+                    str2 = "video/x-vnd.on2.vp9";
+                    break;
+                case 4:
+                case 5:
+                    str2 = "video/hevc";
+                    break;
+                case 6:
+                case 7:
+                    str2 = "video/av01";
+                    break;
+                default:
+                    str2 = "video/" + str;
+                    break;
+            }
+            int codecCount = MediaCodecList.getCodecCount();
+            for (int i = 0; i < codecCount; i++) {
+                MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
+                if (!codecInfoAt.isEncoder() && MediaCodecUtil.isHardwareAccelerated(codecInfoAt, str2)) {
                     for (String str3 : codecInfoAt.getSupportedTypes()) {
                         if (str3.equalsIgnoreCase(str2)) {
                             return true;
                         }
                     }
-                } else {
-                    continue;
                 }
             }
+            return false;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
         }
-        return false;
     }
 
     public boolean createdWithAudioTrack() {

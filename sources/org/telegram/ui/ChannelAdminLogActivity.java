@@ -758,7 +758,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell, webPage, str, z);
+                Browser.openUrl(chatMessageCell.getContext(), str);
             }
 
             @Override

@@ -3140,7 +3140,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onItemClick$9(List list) {
-            ProfileActivity.this.showDialog(new GiftSheet(ProfileActivity.this.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, ProfileActivity.this.userId, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(list, 1)), null));
+            if (ProfileActivity.this.getContext() != null && ProfileActivity.this.fullyVisible) {
+                ProfileActivity.this.showDialog(new GiftSheet(ProfileActivity.this.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, ProfileActivity.this.userId, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(list, 1)), null));
+            }
         }
 
         @Override
@@ -7819,7 +7821,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.sharedMediaPreloader = sharedMediaPreloader;
     }
 
-    public static void access$34600(ProfileActivity profileActivity, View view) {
+    public static void access$34700(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -7827,7 +7829,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         profileActivity.onWriteButtonClick();
     }
 
-    static int access$9812(ProfileActivity profileActivity, int i) {
+    static int access$9912(ProfileActivity profileActivity, int i) {
         int i2 = profileActivity.listContentHeight + i;
         profileActivity.listContentHeight = i2;
         return i2;
