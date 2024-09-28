@@ -222,6 +222,28 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     };
     private Path roundRectPath = new Path();
+    public final Property VIDEO_CROSSFADE_ALPHA = new AnimationProperties.FloatProperty("videoCrossfadeAlpha") {
+        @Override
+        public Float get(SecretMediaViewer secretMediaViewer) {
+            return Float.valueOf(secretMediaViewer.getVideoCrossfadeAlpha());
+        }
+
+        @Override
+        public void setValue(SecretMediaViewer secretMediaViewer, float f) {
+            secretMediaViewer.setVideoCrossfadeAlpha(f);
+        }
+    };
+    public final Property ANIMATION_VALUE = new AnimationProperties.FloatProperty("animationValue") {
+        @Override
+        public Float get(SecretMediaViewer secretMediaViewer) {
+            return Float.valueOf(secretMediaViewer.getAnimationValue());
+        }
+
+        @Override
+        public void setValue(SecretMediaViewer secretMediaViewer, float f) {
+            secretMediaViewer.setAnimationValue(f);
+        }
+    };
 
     public class AnonymousClass11 extends Fade {
         final boolean val$isCaptionEmpty;
@@ -357,10 +379,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     }
 
-    public class AnonymousClass16 extends AnimatorListenerAdapter {
+    public class AnonymousClass17 extends AnimatorListenerAdapter {
         final PhotoViewer.PlaceProviderObject val$object;
 
-        AnonymousClass16(PhotoViewer.PlaceProviderObject placeProviderObject) {
+        AnonymousClass17(PhotoViewer.PlaceProviderObject placeProviderObject) {
             this.val$object = placeProviderObject;
         }
 
@@ -381,7 +403,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretMediaViewer.AnonymousClass16.this.lambda$onAnimationEnd$0();
+                    SecretMediaViewer.AnonymousClass17.this.lambda$onAnimationEnd$0();
                 }
             });
         }
@@ -1468,6 +1490,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     }
 
+    public float getAnimationValue() {
+        return this.animationValue;
+    }
+
     public long getCloseTime() {
         return this.closeTime;
     }
@@ -1478,6 +1504,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     public long getOpenTime() {
         return this.openTime;
+    }
+
+    public float getVideoCrossfadeAlpha() {
+        return this.videoCrossfadeAlpha;
     }
 
     public boolean isShowingImage(MessageObject messageObject) {
@@ -1808,7 +1838,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.captionScrollView, (Property<PhotoViewer.CaptionScrollView, Float>) property, 0.0f, 1.0f);
         ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.secretHint, (Property<HintView2, Float>) property, 0.0f, 1.0f);
         ObjectAnimator ofInt = ObjectAnimator.ofInt(this.photoBackgroundDrawable, (Property<PhotoBackgroundDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0, 255);
-        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f);
+        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, (Property<SecretMediaViewer, Float>) this.ANIMATION_VALUE, 0.0f, 1.0f);
         VideoPlayerControlFrameLayout videoPlayerControlFrameLayout = this.seekbarContainer;
         Property property2 = videoPlayerControlFrameLayout.SEEKBAR_ALPHA;
         float[] fArr = new float[i];
@@ -1861,6 +1891,11 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             }
         };
         this.imageMoveAnimation.start();
+    }
+
+    public void setAnimationValue(float f) {
+        this.animationValue = f;
+        this.containerView.invalidate();
     }
 
     public void setOnClose(Runnable runnable) {
@@ -2009,6 +2044,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.actionBar.setBackgroundColor(2130706432);
         this.actionBar.setOccupyStatusBar(i2 >= 21);
         this.actionBar.setItemsBackgroundColor(1090519039, false);
+        this.actionBar.setItemsColor(-1, false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setTitleRightMargin(AndroidUtilities.dp(70.0f));
         this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
@@ -2128,5 +2164,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
         this.textSelectionHelper.setParentView(this.containerView);
         this.textSelectionHelper.setInvalidateParent();
+    }
+
+    public void setVideoCrossfadeAlpha(float f) {
+        this.videoCrossfadeAlpha = f;
+        this.containerView.invalidate();
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.util.Property;
 import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.PhotoViewer;
 
@@ -22,6 +23,17 @@ public abstract class AnimationProperties {
         @Override
         public void setValue(Paint paint, int i) {
             paint.setColor(i);
+        }
+    };
+    public static final Property IMAGE_RECEIVER_ALPHA = new FloatProperty("currentAlpha") {
+        @Override
+        public Float get(ImageReceiver imageReceiver) {
+            return Float.valueOf(imageReceiver.getCurrentAlpha());
+        }
+
+        @Override
+        public void setValue(ImageReceiver imageReceiver, float f) {
+            imageReceiver.setCurrentAlpha(f);
         }
     };
     public static final Property CLIPPING_IMAGE_VIEW_PROGRESS = new FloatProperty("animationProgress") {
