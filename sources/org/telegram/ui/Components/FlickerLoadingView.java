@@ -806,8 +806,8 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
                                 this.rectF.set(this.paddingLeft, this.paddingTop, getMeasuredWidth() - this.paddingLeft, getMeasuredHeight() - this.paddingTop);
                                 this.rectF.inset(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
                                 rectF = this.rectF;
-                                dp = AndroidUtilities.dp(4.0f);
-                                dp2 = AndroidUtilities.dp(4.0f);
+                                dp = AndroidUtilities.dp(11.0f);
+                                dp2 = AndroidUtilities.dp(11.0f);
                             }
                         }
                         canvas.drawRoundRect(rectF, dp, dp2, paint2);
@@ -944,6 +944,9 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
         int i = this.parentWidth;
         if (i == 0) {
             i = getMeasuredWidth();
+        }
+        if (this.viewType == 34) {
+            i = Math.max(i, AndroidUtilities.displaySize.x);
         }
         int i2 = this.parentHeight;
         if (i2 == 0) {

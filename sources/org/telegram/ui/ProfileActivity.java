@@ -258,7 +258,6 @@ import org.telegram.ui.Components.VectorAvatarThumbDrawable;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.ContactAddActivity;
 import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PinchToZoomHelper;
@@ -2923,19 +2922,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$10(DialogInterface dialogInterface, int i) {
-            ProfileActivity.this.creatingChat = true;
-            ProfileActivity.this.getSecretChatHelper().startSecretChat(ProfileActivity.this.getParentActivity(), ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId)));
-        }
-
-        public void lambda$onItemClick$11(boolean z, Uri uri) {
+        public void lambda$onItemClick$10(boolean z, Uri uri) {
             if (ProfileActivity.this.getParentActivity() == null) {
                 return;
             }
             BulletinFactory.createSaveToGalleryBulletin(ProfileActivity.this, z, (Theme.ResourcesProvider) null).show();
         }
 
-        public void lambda$onItemClick$12(TLObject tLObject, UserConfig userConfig, TLRPC.Photo photo) {
+        public void lambda$onItemClick$11(TLObject tLObject, UserConfig userConfig, TLRPC.Photo photo) {
             ProfileActivity.this.avatarsViewPager.finishSettingMainPhoto();
             if (tLObject instanceof TLRPC.TL_photos_photo) {
                 TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
@@ -2952,16 +2946,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$13(final UserConfig userConfig, final TLRPC.Photo photo, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onItemClick$12(final UserConfig userConfig, final TLRPC.Photo photo, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.AnonymousClass6.this.lambda$onItemClick$12(tLObject, userConfig, photo);
+                    ProfileActivity.AnonymousClass6.this.lambda$onItemClick$11(tLObject, userConfig, photo);
                 }
             });
         }
 
-        public void lambda$onItemClick$14(DialogInterface dialogInterface, int i) {
+        public void lambda$onItemClick$13(DialogInterface dialogInterface, int i) {
             TLRPC.Photo photo;
             int realPosition = ProfileActivity.this.avatarsViewPager.getRealPosition();
             TLRPC.Photo photo2 = ProfileActivity.this.avatarsViewPager.getPhoto(realPosition);
@@ -3139,10 +3133,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return true;
         }
 
-        public void lambda$onItemClick$9(List list) {
-            if (ProfileActivity.this.getContext() != null && ProfileActivity.this.fullyVisible) {
-                ProfileActivity.this.showDialog(new GiftSheet(ProfileActivity.this.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, ProfileActivity.this.userId, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(list, 1)), null));
-            }
+        public void lambda$onItemClick$9(DialogInterface dialogInterface, int i) {
+            ProfileActivity.this.creatingChat = true;
+            ProfileActivity.this.getSecretChatHelper().startSecretChat(ProfileActivity.this.getParentActivity(), ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId)));
         }
 
         @Override
@@ -6245,7 +6238,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             SearchResult searchResult5 = new SearchResult(this, 504, string, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.access$7600(ProfileActivity.this);
+                    ProfileActivity.access$7700(ProfileActivity.this);
                 }
             });
             int i = R.string.NotificationsAndSounds;
@@ -7821,15 +7814,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.sharedMediaPreloader = sharedMediaPreloader;
     }
 
-    public static void access$34700(ProfileActivity profileActivity, View view) {
+    public static void access$34600(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
-    public static void access$7600(ProfileActivity profileActivity) {
+    public static void access$7700(ProfileActivity profileActivity) {
         profileActivity.onWriteButtonClick();
     }
 
-    static int access$9912(ProfileActivity profileActivity, int i) {
+    static int access$9812(ProfileActivity profileActivity, int i) {
         int i2 = profileActivity.listContentHeight + i;
         profileActivity.listContentHeight = i2;
         return i2;
@@ -11261,7 +11254,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
-            final int loadGiftOptions = BoostRepository.loadGiftOptions(null, new Utilities.Callback() {
+            final int loadGiftOptions = BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     ProfileActivity.this.lambda$onTextDetailCellImageClicked$87(alertDialog, user, (List) obj);

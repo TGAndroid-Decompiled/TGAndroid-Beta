@@ -6011,6 +6011,11 @@ public class MessageObject {
         return this.sponsoredId != null;
     }
 
+    public boolean isStarGiftAction() {
+        TLRPC.Message message = this.messageOwner;
+        return message != null && (message.action instanceof TLRPC.TL_messageActionStarGift);
+    }
+
     public boolean isSticker() {
         int i = this.type;
         return i != 1000 ? i == 13 : isStickerDocument(getDocument()) || isVideoSticker(getDocument());

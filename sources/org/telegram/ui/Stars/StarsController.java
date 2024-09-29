@@ -155,11 +155,8 @@ public class StarsController {
             TL_stars.getUserStarGifts getuserstargifts = new TL_stars.getUserStarGifts();
             getuserstargifts.user_id = MessagesController.getInstance(StarsController.this.currentAccount).getInputUser(this.dialogId);
             String str = this.lastOffset;
-            if (str == null) {
-                str = "";
-            }
-            getuserstargifts.offset = str;
-            getuserstargifts.limit = 10;
+            getuserstargifts.offset = str == null ? "" : str;
+            getuserstargifts.limit = str == null ? 15 : 30;
             this.currentRequestId = ConnectionsManager.getInstance(StarsController.this.currentAccount).sendRequest(getuserstargifts, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {

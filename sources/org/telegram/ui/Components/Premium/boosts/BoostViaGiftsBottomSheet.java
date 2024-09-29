@@ -729,7 +729,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     private void loadOptions() {
-        BoostRepository.loadGiftOptions(this.currentChat, new Utilities.Callback() {
+        BoostRepository.loadGiftOptions(this.currentAccount, this.currentChat, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 BoostViaGiftsBottomSheet.this.lambda$loadOptions$21((List) obj);

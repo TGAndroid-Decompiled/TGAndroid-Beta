@@ -7977,7 +7977,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return;
         }
         final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
-        final int loadGiftOptions = BoostRepository.loadGiftOptions(null, new Utilities.Callback() {
+        final int loadGiftOptions = BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 ChatActivityEnterView.this.lambda$createGiftButton$8(alertDialog, currentUser, (List) obj);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,6 +21,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
@@ -112,6 +114,14 @@ public class ProfileGiftsContainer extends FrameLayout implements NotificationCe
         universalRecyclerView.setSelectorDrawableColor(0);
         universalRecyclerView.setPadding(AndroidUtilities.dp(9.0f), 0, AndroidUtilities.dp(9.0f), 0);
         addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 119));
+        universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                if (!ProfileGiftsContainer.this.listView.canScrollVertically(1) || ProfileGiftsContainer.this.isLoadingVisible()) {
+                    ProfileGiftsContainer.this.list.load();
+                }
+            }
+        });
         FrameLayout frameLayout = new FrameLayout(context);
         this.buttonContainer = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(i2, resourcesProvider));
@@ -150,29 +160,39 @@ public class ProfileGiftsContainer extends FrameLayout implements NotificationCe
         return 0L;
     }
 
+    public boolean isLoadingVisible() {
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            if (this.listView.getChildAt(i) instanceof FlickerLoadingView) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void lambda$new$0(int i, View view) {
         UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());
     }
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        UniversalRecyclerView universalRecyclerView;
         UniversalAdapter universalAdapter;
-        if (i != NotificationCenter.starUserGiftsLoaded || ((Long) objArr[0]).longValue() != this.userId || (universalRecyclerView = this.listView) == null || (universalAdapter = universalRecyclerView.adapter) == null) {
-            return;
+        if (i == NotificationCenter.starUserGiftsLoaded && ((Long) objArr[0]).longValue() == this.userId) {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
+                universalAdapter.update(true);
+            }
+            if (!this.listView.canScrollVertically(1) || isLoadingVisible()) {
+                this.list.load();
+            }
         }
-        universalAdapter.update(true);
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         int i;
         int i2;
+        int i3;
         StarsController.GiftsList giftsList = this.list;
-        int i3 = 3;
-        if (giftsList != null && (i2 = giftsList.totalCount) != 0) {
-            i3 = Math.min(3, i2);
-        }
-        int max = Math.max(1, i3);
+        int max = Math.max(1, (giftsList == null || (i3 = giftsList.totalCount) == 0) ? 3 : Math.min(3, i3));
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView != null) {
             universalRecyclerView.setSpanCount(max);
@@ -181,16 +201,25 @@ public class ProfileGiftsContainer extends FrameLayout implements NotificationCe
         StarsController.GiftsList giftsList2 = this.list;
         if (giftsList2 != null) {
             Iterator it = giftsList2.gifts.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                } else {
+            loop0: while (true) {
+                i = 3;
+                do {
+                    i2 = 0;
+                    if (!it.hasNext()) {
+                        break loop0;
+                    }
                     arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.UserStarGift) it.next()));
-                }
+                    i--;
+                } while (i != 0);
             }
-            if (this.list.loading) {
-                for (i = 0; i < max; i++) {
-                    arrayList.add(UItem.asFlicker(i, 34).setSpanCount(1));
+            StarsController.GiftsList giftsList3 = this.list;
+            if (giftsList3.loading || !giftsList3.endReached) {
+                while (true) {
+                    if (i2 >= (i <= 0 ? 3 : i)) {
+                        break;
+                    }
+                    arrayList.add(UItem.asFlicker(i2, 34).setSpanCount(1));
+                    i2++;
                 }
             }
         }

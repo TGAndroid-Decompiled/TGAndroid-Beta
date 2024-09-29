@@ -488,7 +488,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     } else {
                         int i7 = R.string.Gift2Limited1OfRibbon;
                         int i8 = starGift.availability_total;
-                        str8 = LocaleController.formatString(i7, i8 > 1500 ? AndroidUtilities.formatWholeNumber(i8, 1) : Integer.valueOf(i8));
+                        str8 = LocaleController.formatString(i7, i8 > 1500 ? AndroidUtilities.formatWholeNumber(i8, 0) : Integer.valueOf(i8));
                     }
                     str6 = (!messageObject.isOutOwner() || tL_messageActionStarGift.forceIn) ? LocaleController.getString(R.string.ActionGiftStarsView) : null;
                     chatActionCell = this;
@@ -1231,7 +1231,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r38) {
+    public void onDraw(android.graphics.Canvas r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
     }
 

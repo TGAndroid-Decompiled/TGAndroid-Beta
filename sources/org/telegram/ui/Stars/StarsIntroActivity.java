@@ -2173,7 +2173,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             return;
         }
         int i = starGift.availability_remains;
-        textView.setText(i <= 0 ? LocaleController.formatString(R.string.Gift2AvailabilityValueNone, Integer.valueOf(starGift.availability_total)) : LocaleController.formatString(R.string.Gift2AvailabilityValue, Integer.valueOf(i), Integer.valueOf(starGift.availability_total)));
+        textView.setText(i <= 0 ? LocaleController.formatPluralStringComma("Gift2Availability2ValueNone", starGift.availability_total) : LocaleController.formatString(R.string.Gift2Availability2Value, LocaleController.formatNumber(i, ','), LocaleController.formatNumber(starGift.availability_total, ',')));
     }
 
     public static void lambda$createView$0(Context context) {
@@ -2801,14 +2801,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         });
     }
 
-    public static void lambda$showGiftSheet$94(ButtonWithCounterView buttonWithCounterView, final ButtonWithCounterView buttonWithCounterView2, Context context, final Theme.ResourcesProvider resourcesProvider, TLRPC.User user, final TL_stars.UserStarGift userStarGift, final int i, final BottomSheet[] bottomSheetArr, final long j, final long j2, View view) {
+    public static void lambda$showGiftSheet$94(ButtonWithCounterView buttonWithCounterView, final ButtonWithCounterView buttonWithCounterView2, Context context, final Theme.ResourcesProvider resourcesProvider, TLRPC.User user, long j, final TL_stars.UserStarGift userStarGift, final int i, final BottomSheet[] bottomSheetArr, final long j2, final long j3, View view) {
         if (buttonWithCounterView.isLoading() || buttonWithCounterView2.isLoading()) {
             return;
         }
-        new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.Gift2ConvertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ConvertText, UserObject.getForcedFirstName(user), LocaleController.formatPluralStringComma("Gift2ConvertStars", (int) userStarGift.convert_stars)))).setPositiveButton(LocaleController.getString(R.string.Gift2ConvertButton), new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.Gift2ConvertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ConvertText, (user == null || UserObject.isService(j)) ? LocaleController.getString(R.string.StarsTransactionHidden) : UserObject.getForcedFirstName(user), LocaleController.formatPluralStringComma("Gift2ConvertStars", (int) userStarGift.convert_stars)))).setPositiveButton(LocaleController.getString(R.string.Gift2ConvertButton), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                StarsIntroActivity.lambda$showGiftSheet$93(ButtonWithCounterView.this, userStarGift, i, bottomSheetArr, j, j2, resourcesProvider, dialogInterface, i2);
+                StarsIntroActivity.lambda$showGiftSheet$93(ButtonWithCounterView.this, userStarGift, i, bottomSheetArr, j2, j3, resourcesProvider, dialogInterface, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
@@ -3810,12 +3810,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
     public static BottomSheet showGiftSheet(final Context context, final int i, final long j, boolean z, final TL_stars.UserStarGift userStarGift, final Theme.ResourcesProvider resourcesProvider) {
         final TL_stars.StarGift starGift;
-        BottomSheet[] bottomSheetArr;
         if (userStarGift == null || context == null || (starGift = userStarGift.gift) == null) {
             return null;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
-        BottomSheet[] bottomSheetArr2 = new BottomSheet[1];
+        final BottomSheet[] bottomSheetArr = new BottomSheet[1];
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
@@ -3839,7 +3838,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         textView2.setTextColor(Theme.getColor(Theme.key_color_green, resourcesProvider));
         textView2.setText(replaceStarsWithPlain(LocaleController.formatNumber((int) Math.abs(Math.max(userStarGift.gift.convert_stars, userStarGift.convert_stars)), ' ') + " ⭐️", 0.8f));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
-        final TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+        TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
         if (z) {
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
             linksTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
@@ -3849,14 +3848,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             linksTextView.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
             linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             linksTextView.setDisablePaddingsOffsetY(true);
-            bottomSheetArr = bottomSheetArr2;
-            int i4 = (int) userStarGift.convert_stars;
-            linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceTags(z ? LocaleController.formatPluralStringComma("Gift2Info", i4) : LocaleController.formatPluralStringComma("Gift2InfoOut", i4, UserObject.getForcedFirstName(user))), " ", AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2More).replace(' ', (char) 160), new Runnable() {
+            long j2 = userStarGift.convert_stars;
+            linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceTags(z ? LocaleController.formatPluralStringComma("Gift2Info", (int) j2) : LocaleController.formatPluralStringComma("Gift2InfoOut", (int) j2, UserObject.getForcedFirstName(user))), " ", AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2More).replace(' ', (char) 160), new Runnable() {
                 @Override
                 public final void run() {
                     StarsIntroActivity.lambda$showGiftSheet$83(context);
                 }
             }), true)));
+            linearLayout = linearLayout;
             linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 5, 5, 5, 4));
             LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
             linksTextView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray2, resourcesProvider));
@@ -3867,17 +3866,16 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             linksTextView2.setDisablePaddingsOffsetY(true);
             linksTextView2.setText(LocaleController.getString(!userStarGift.unsaved ? R.string.Gift2ProfileVisible : R.string.Gift2ProfileInvisible));
             linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 17, 5, 8, 5, 4));
-        } else {
-            bottomSheetArr = bottomSheetArr2;
         }
         TableView tableView = new TableView(context, resourcesProvider);
         final long clientUserId = UserConfig.getInstance(i).getClientUserId();
-        final long j2 = ((userStarGift.flags & 2) == 0 || userStarGift.name_hidden) ? 2666000L : userStarGift.from_id;
-        final BottomSheet[] bottomSheetArr3 = bottomSheetArr;
-        tableView.addRowUser(LocaleController.getString(R.string.Gift2From), i, j2, new Runnable() {
+        final long j3 = ((userStarGift.flags & 2) == 0 || userStarGift.name_hidden) ? 2666000L : userStarGift.from_id;
+        final TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(j3));
+        LinearLayout linearLayout2 = linearLayout;
+        tableView.addRowUser(LocaleController.getString(R.string.Gift2From), i, j3, new Runnable() {
             @Override
             public final void run() {
-                StarsIntroActivity.lambda$showGiftSheet$84(bottomSheetArr3, j2, userStarGift, clientUserId);
+                StarsIntroActivity.lambda$showGiftSheet$84(bottomSheetArr, j3, userStarGift, clientUserId);
             }
         });
         tableView.addRow(LocaleController.getString(R.string.StarsTransactionDate), LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(userStarGift.date * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(userStarGift.date * 1000))));
@@ -3889,65 +3887,61 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             TLRPC.TL_textWithEntities tL_textWithEntities2 = userStarGift.message;
             tableView.addFullRow(tL_textWithEntities2.text, tL_textWithEntities2.entities);
         }
-        linearLayout.addView(tableView, LayoutHelper.createLinear(-1, -2, 0.0f, 17.0f, 0.0f, 12.0f));
+        linearLayout2.addView(tableView, LayoutHelper.createLinear(-1, -2, 0.0f, 17.0f, 0.0f, 12.0f));
         if (z) {
-            int i5 = userStarGift.flags;
-            if ((i5 & 8) != 0 && (i5 & 2) != 0) {
+            int i4 = userStarGift.flags;
+            if ((i4 & 8) != 0 && (i4 & 2) != 0) {
                 final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
                 buttonWithCounterView.setText(LocaleController.getString(!userStarGift.unsaved ? R.string.Gift2ProfileMakeInvisible : R.string.Gift2ProfileMakeVisible), false);
-                linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0.0f, 0.0f, 0.0f, 4.0f));
+                linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0.0f, 0.0f, 0.0f, 4.0f));
                 final ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, resourcesProvider);
                 buttonWithCounterView2.setText(LocaleController.formatPluralStringComma("Gift2ToBalance", (int) userStarGift.convert_stars), false);
-                linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48));
-                final BottomSheet[] bottomSheetArr4 = bottomSheetArr;
+                linearLayout2.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48));
                 buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StarsIntroActivity.lambda$showGiftSheet$89(ButtonWithCounterView.this, buttonWithCounterView2, userStarGift, i, bottomSheetArr4, j, starGift, resourcesProvider, view);
+                        StarsIntroActivity.lambda$showGiftSheet$89(ButtonWithCounterView.this, buttonWithCounterView2, userStarGift, i, bottomSheetArr, j, starGift, resourcesProvider, view);
                     }
                 });
-                final BottomSheet[] bottomSheetArr5 = bottomSheetArr;
                 buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StarsIntroActivity.lambda$showGiftSheet$94(ButtonWithCounterView.this, buttonWithCounterView2, context, resourcesProvider, user, userStarGift, i, bottomSheetArr5, j, clientUserId, view);
+                        StarsIntroActivity.lambda$showGiftSheet$94(ButtonWithCounterView.this, buttonWithCounterView2, context, resourcesProvider, user2, j3, userStarGift, i, bottomSheetArr, j, clientUserId, view);
                     }
                 });
-                builder.setCustomView(linearLayout);
+                builder.setCustomView(linearLayout2);
                 BottomSheet create = builder.create();
-                BottomSheet[] bottomSheetArr6 = bottomSheetArr;
-                bottomSheetArr6[0] = create;
+                bottomSheetArr[0] = create;
                 create.useBackgroundTopPadding = false;
                 create.fixNavigationBar();
                 BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
                 if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(safeLastFragment)) {
-                    bottomSheetArr6[0].makeAttached(safeLastFragment);
+                    bottomSheetArr[0].makeAttached(safeLastFragment);
                 }
-                bottomSheetArr6[0].show();
-                return bottomSheetArr6[0];
+                bottomSheetArr[0].show();
+                return bottomSheetArr[0];
             }
         }
-        final BottomSheet[] bottomSheetArr7 = bottomSheetArr;
         ButtonWithCounterView buttonWithCounterView3 = new ButtonWithCounterView(context, resourcesProvider);
         buttonWithCounterView3.setText(LocaleController.getString(R.string.OK), false);
-        linearLayout.addView(buttonWithCounterView3, LayoutHelper.createLinear(-1, 48));
-        builder.setCustomView(linearLayout);
+        linearLayout2.addView(buttonWithCounterView3, LayoutHelper.createLinear(-1, 48));
+        builder.setCustomView(linearLayout2);
         BottomSheet create2 = builder.create();
-        bottomSheetArr7[0] = create2;
+        bottomSheetArr[0] = create2;
         create2.useBackgroundTopPadding = false;
         buttonWithCounterView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.lambda$showGiftSheet$85(bottomSheetArr7, view);
+                StarsIntroActivity.lambda$showGiftSheet$85(bottomSheetArr, view);
             }
         });
-        bottomSheetArr7[0].fixNavigationBar();
+        bottomSheetArr[0].fixNavigationBar();
         BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
         if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(safeLastFragment2)) {
-            bottomSheetArr7[0].makeAttached(safeLastFragment2);
+            bottomSheetArr[0].makeAttached(safeLastFragment2);
         }
-        bottomSheetArr7[0].show();
-        return bottomSheetArr7[0];
+        bottomSheetArr[0].show();
+        return bottomSheetArr[0];
     }
 
     public static BottomSheet showMediaPriceSheet(final Context context, final long j, final boolean z, final Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {

@@ -7457,11 +7457,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (ChatActivity.this.chatMode == 5 || ChatActivity.this.getParentActivity() == null) {
                 return;
             }
-            if ((ChatActivity.this.bottomOverlayChat.getVisibility() != 0 || (keyboardButton instanceof TLRPC.TL_keyboardButtonSwitchInline) || (keyboardButton instanceof TLRPC.TL_keyboardButtonCallback) || (keyboardButton instanceof TLRPC.TL_keyboardButtonGame) || (keyboardButton instanceof TLRPC.TL_keyboardButtonUrl) || (keyboardButton instanceof TLRPC.TL_keyboardButtonBuy) || (keyboardButton instanceof TLRPC.TL_keyboardButtonUrlAuth) || (keyboardButton instanceof TLRPC.TL_keyboardButtonUserProfile)) && (keyboardButton instanceof TLRPC.TL_keyboardButtonUrl)) {
-                ChatActivity.this.openClickableLink(null, keyboardButton.url, true, chatMessageCell, chatMessageCell.getMessageObject(), false);
-                try {
-                    chatMessageCell.performHapticFeedback(0, 1);
-                } catch (Exception unused) {
+            if (ChatActivity.this.bottomOverlayChat.getVisibility() != 0 || (keyboardButton instanceof TLRPC.TL_keyboardButtonSwitchInline) || (keyboardButton instanceof TLRPC.TL_keyboardButtonCallback) || (keyboardButton instanceof TLRPC.TL_keyboardButtonGame) || (keyboardButton instanceof TLRPC.TL_keyboardButtonUrl) || (keyboardButton instanceof TLRPC.TL_keyboardButtonBuy) || (keyboardButton instanceof TLRPC.TL_keyboardButtonUrlAuth) || (keyboardButton instanceof TLRPC.TL_keyboardButtonUserProfile) || (keyboardButton instanceof TLRPC.TL_keyboardButtonCopy)) {
+                if (keyboardButton instanceof TLRPC.TL_keyboardButtonCopy) {
+                    ChatActivity.this.didLongPressCopyButton(((TLRPC.TL_keyboardButtonCopy) keyboardButton).copy_text);
+                } else if (keyboardButton instanceof TLRPC.TL_keyboardButtonUrl) {
+                    ChatActivity.this.openClickableLink(null, keyboardButton.url, true, chatMessageCell, chatMessageCell.getMessageObject(), false);
+                    try {
+                        chatMessageCell.performHapticFeedback(0, 1);
+                    } catch (Exception unused) {
+                    }
                 }
             }
         }
@@ -15508,6 +15512,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().cancelRequest(i, true);
     }
 
+    public void lambda$didLongPressCopyButton$365(String str, DialogInterface dialogInterface, int i) {
+        AndroidUtilities.addToClipboard(str);
+        BulletinFactory.of(this).createCopyBulletin(LocaleController.formatString(R.string.ExactTextCopied, str)).show();
+    }
+
     public void lambda$didLongPressLink$342(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
@@ -15684,7 +15693,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$didPressPhoneNumber$365(TLRPC.User user, String str, Boolean bool) {
+    public void lambda$didPressPhoneNumber$366(TLRPC.User user, String str, Boolean bool) {
         Intent intent;
         String str2;
         String country;
@@ -15775,16 +15784,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getParentActivity().startActivity(intent);
     }
 
-    public void lambda$didPressPhoneNumber$366(ItemOptions itemOptions, String str) {
+    public void lambda$didPressPhoneNumber$367(ItemOptions itemOptions, String str) {
         itemOptions.dismiss();
         new NewContactBottomSheet(this, getContext()).setInitialPhoneNumber(str, false).show();
     }
 
-    public static void lambda$didPressPhoneNumber$367(Utilities.Callback callback) {
+    public static void lambda$didPressPhoneNumber$368(Utilities.Callback callback) {
         callback.run(Boolean.FALSE);
     }
 
-    public void lambda$didPressPhoneNumber$369(String str) {
+    public void lambda$didPressPhoneNumber$370(String str) {
         if (getParentActivity() == null) {
             return;
         }
@@ -15797,42 +15806,42 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didPressPhoneNumber$370(String str) {
+    public void lambda$didPressPhoneNumber$371(String str) {
         Browser.openUrl(getContext(), "tel:" + str);
     }
 
-    public void lambda$didPressPhoneNumber$371(String str) {
+    public void lambda$didPressPhoneNumber$372(String str) {
         AndroidUtilities.addToClipboard(str);
         BulletinFactory.of(this).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)).show();
     }
 
-    public void lambda$didPressPhoneNumber$372(TLRPC.User user) {
+    public void lambda$didPressPhoneNumber$373(TLRPC.User user) {
         presentFragment(of(user.id));
     }
 
-    public void lambda$didPressPhoneNumber$373(TLRPC.User user, TLRPC.UserFull userFull) {
+    public void lambda$didPressPhoneNumber$374(TLRPC.User user, TLRPC.UserFull userFull) {
         VoIPHelper.startCall(user, false, userFull != null && userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
     }
 
-    public void lambda$didPressPhoneNumber$374(TLRPC.User user, TLRPC.UserFull userFull) {
+    public void lambda$didPressPhoneNumber$375(TLRPC.User user, TLRPC.UserFull userFull) {
         VoIPHelper.startCall(user, true, userFull != null && userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
     }
 
-    public void lambda$didPressPhoneNumber$375(String str) {
+    public void lambda$didPressPhoneNumber$376(String str) {
         Browser.openUrl(getContext(), "tel:" + str);
     }
 
-    public void lambda$didPressPhoneNumber$376(String str) {
+    public void lambda$didPressPhoneNumber$377(String str) {
         AndroidUtilities.addToClipboard(str);
         BulletinFactory.of(this).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)).show();
     }
 
-    public void lambda$didPressPhoneNumber$377(ScrimOptions scrimOptions, TLRPC.User user) {
+    public void lambda$didPressPhoneNumber$378(ScrimOptions scrimOptions, TLRPC.User user) {
         scrimOptions.dismiss();
         presentFragment(ProfileActivity.of(user.id));
     }
 
-    public void lambda$didPressPhoneNumber$378(ChatMessageCell chatMessageCell, final String str, TLRPC.TL_contact tL_contact, CharacterStyle characterStyle, final TLRPC.User user) {
+    public void lambda$didPressPhoneNumber$379(ChatMessageCell chatMessageCell, final String str, TLRPC.TL_contact tL_contact, CharacterStyle characterStyle, final TLRPC.User user) {
         final TLRPC.UserFull userFull = user != null ? getMessagesController().getUserFull(user.id) : null;
         final ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
@@ -15845,7 +15854,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatActivity.this.lambda$didPressPhoneNumber$365(user, str, (Boolean) obj);
+                ChatActivity.this.lambda$didPressPhoneNumber$366(user, str, (Boolean) obj);
             }
         };
         final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
@@ -15859,13 +15868,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         makeSwipeback.add(R.drawable.msg_addbot, LocaleController.getString(R.string.CreateNewContact), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didPressPhoneNumber$366(makeOptions, str);
+                ChatActivity.this.lambda$didPressPhoneNumber$367(makeOptions, str);
             }
         });
         makeSwipeback.add(R.drawable.menu_contact_existing, LocaleController.getString(R.string.AddToExistingContact), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.lambda$didPressPhoneNumber$367(Utilities.Callback.this);
+                ChatActivity.lambda$didPressPhoneNumber$368(Utilities.Callback.this);
             }
         });
         if (tL_contact == null && (user == null || !getContactsController().contactsDict.containsKey(Long.valueOf(user.id)))) {
@@ -15881,19 +15890,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(R.drawable.menu_invit_telegram, LocaleController.getString(R.string.InviteToTelegramShort), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$369(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$370(str);
                 }
             });
             makeOptions.add(R.drawable.msg_calls_regular, LocaleController.getString(R.string.VoiceCallViaCarrier), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$370(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$371(str);
                 }
             });
             makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyNumber), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$371(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$372(str);
                 }
             });
             makeOptions.addGap();
@@ -15902,40 +15911,40 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$372(user);
+                    ChatActivity.this.lambda$didPressPhoneNumber$373(user);
                 }
             });
             if (!UserObject.isUserSelf(user)) {
                 makeOptions.add(R.drawable.msg_calls, LocaleController.getString(R.string.VoiceCallViaTelegram), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$didPressPhoneNumber$373(user, userFull);
+                        ChatActivity.this.lambda$didPressPhoneNumber$374(user, userFull);
                     }
                 });
                 makeOptions.add(R.drawable.msg_videocall, LocaleController.getString(R.string.VideoCallViaTelegram), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$didPressPhoneNumber$374(user, userFull);
+                        ChatActivity.this.lambda$didPressPhoneNumber$375(user, userFull);
                     }
                 });
             }
             makeOptions.add(R.drawable.msg_calls_regular, LocaleController.getString(R.string.VoiceCallViaCarrier), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$375(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$376(str);
                 }
             });
             makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyNumber), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$376(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$377(str);
                 }
             });
             makeOptions.addGap();
             makeOptions.addProfile(user, LocaleController.getString(R.string.ViewProfile), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$377(scrimOptions, user);
+                    ChatActivity.this.lambda$didPressPhoneNumber$378(scrimOptions, user);
                 }
             });
         }
@@ -15944,7 +15953,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions);
     }
 
-    public void lambda$didPressPhoneNumber$380(TLRPC.TL_contact tL_contact, final Utilities.Callback callback) {
+    public void lambda$didPressPhoneNumber$381(TLRPC.TL_contact tL_contact, final Utilities.Callback callback) {
         final TLRPC.User user = getMessagesStorage().getUser(tL_contact.user_id);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -15954,7 +15963,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
     }
 
-    public void lambda$didPressPhoneNumber$381(Browser.Progress progress, TLObject tLObject, Utilities.Callback callback) {
+    public void lambda$didPressPhoneNumber$382(Browser.Progress progress, TLObject tLObject, Utilities.Callback callback) {
         TLRPC.User user;
         progress.end();
         if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
@@ -15971,16 +15980,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         callback.run(user);
     }
 
-    public void lambda$didPressPhoneNumber$382(final Browser.Progress progress, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$didPressPhoneNumber$383(final Browser.Progress progress, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didPressPhoneNumber$381(progress, tLObject, callback);
+                ChatActivity.this.lambda$didPressPhoneNumber$382(progress, tLObject, callback);
             }
         });
     }
 
-    public void lambda$didPressPhoneNumber$383(int i) {
+    public void lambda$didPressPhoneNumber$384(int i) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
@@ -22534,7 +22543,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 lambda$applyChatLinkMessageMaybe$213 = ChatActivity.this.lambda$applyChatLinkMessageMaybe$213((TLRPC.MessageEntity) obj);
                 return lambda$applyChatLinkMessageMaybe$213;
             }
-        }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda282())), this.resolvedChatLink.message, this.chatActivityEnterView.getEditField().getPaint().getFontMetricsInt());
+        }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda281())), this.resolvedChatLink.message, this.chatActivityEnterView.getEditField().getPaint().getFontMetricsInt());
         if (applyMessageEntities != null && applyMessageEntities.length() > 0 && applyMessageEntities.charAt(0) == '@') {
             applyMessageEntities = TextUtils.concat(" ", applyMessageEntities);
         }
@@ -22926,6 +22935,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         makeProgressForLink.init();
     }
 
+    public void didLongPressCopyButton(final String str) {
+        BottomSheet.Builder builder = new BottomSheet.Builder(getParentActivity(), false, this.themeDelegate);
+        builder.setTitle(str);
+        builder.setTitleMultipleLines(true);
+        builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                ChatActivity.this.lambda$didLongPressCopyButton$365(str, dialogInterface, i);
+            }
+        });
+        showDialog(builder.create());
+    }
+
     public void didLongPressLink(final ChatMessageCell chatMessageCell, final MessageObject messageObject, final CharacterStyle characterStyle, final String str) {
         String str2;
         ScrimOptions scrimOptions;
@@ -23051,7 +23073,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatActivity.this.lambda$didPressPhoneNumber$378(chatMessageCell, str, tL_contact, characterStyle, (TLRPC.User) obj);
+                ChatActivity.this.lambda$didPressPhoneNumber$379(chatMessageCell, str, tL_contact, characterStyle, (TLRPC.User) obj);
             }
         };
         if (tL_contact != null) {
@@ -23063,7 +23085,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$didPressPhoneNumber$380(tL_contact, callback);
+                        ChatActivity.this.lambda$didPressPhoneNumber$381(tL_contact, callback);
                     }
                 });
                 return;
@@ -23074,13 +23096,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final int sendRequest = getConnectionsManager().sendRequest(tL_contacts_resolvePhone, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatActivity.this.lambda$didPressPhoneNumber$382(makeProgressForLink, callback, tLObject, tL_error);
+                ChatActivity.this.lambda$didPressPhoneNumber$383(makeProgressForLink, callback, tLObject, tL_error);
             }
         });
         makeProgressForLink.onCancel(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didPressPhoneNumber$383(sendRequest);
+                ChatActivity.this.lambda$didPressPhoneNumber$384(sendRequest);
             }
         });
         makeProgressForLink.init();

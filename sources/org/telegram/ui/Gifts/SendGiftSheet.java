@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -37,6 +38,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView {
     private final TLRPC.TL_messageActionStarGift action;
     private final ChatActionCell actionCell;
     private UniversalAdapter adapter;
+    public final AnimationNotificationsLocker animationsLock;
     public boolean anonymous;
     private final ButtonWithCounterView button;
     private final FrameLayout buttonContainer;
@@ -50,6 +52,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView {
 
     public SendGiftSheet(final Context context, final int i, final TL_stars.StarGift starGift, final long j, final Runnable runnable) {
         super(context, null, true, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
+        this.animationsLock = new AnimationNotificationsLocker();
+        setImageReceiverNumLevel(0, 4);
         fixNavigationBar();
         setSlidingActionBar();
         this.headerPaddingTop = AndroidUtilities.dp(4.0f);

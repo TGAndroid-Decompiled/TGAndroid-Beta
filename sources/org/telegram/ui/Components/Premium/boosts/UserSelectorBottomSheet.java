@@ -62,6 +62,7 @@ import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
@@ -283,12 +284,15 @@ public abstract class UserSelectorBottomSheet extends BottomSheetWithRecyclerLis
         updateList(false, true);
         fixNavigationBar();
         if (i == 0 || i == 2) {
-            BoostRepository.loadGiftOptions(null, new Utilities.Callback() {
+            BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     UserSelectorBottomSheet.this.lambda$new$7((List) obj);
                 }
             });
+        }
+        if (i == 0 || i == 2) {
+            StarsController.getInstance(this.currentAccount).loadStarGifts();
         }
     }
 
@@ -699,28 +703,26 @@ public abstract class UserSelectorBottomSheet extends BottomSheetWithRecyclerLis
     }
 
     private void next() {
-        if (this.selectedIds.size() == 0) {
-            return;
-        }
-        if (this.paymentOptions.isEmpty()) {
-            this.actionButton.setLoading(true);
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        for (TLRPC.User user : this.allSelectedObjects.values()) {
-            if (this.selectedIds.contains(Long.valueOf(user.id))) {
-                arrayList.add(user);
+        int i;
+        if (this.selectedIds.size() != 0) {
+            if (!this.paymentOptions.isEmpty() || (i = this.type) == 0 || i == 2) {
+                ArrayList arrayList = new ArrayList();
+                for (TLRPC.User user : this.allSelectedObjects.values()) {
+                    if (this.selectedIds.contains(Long.valueOf(user.id))) {
+                        arrayList.add(user);
+                    }
+                }
+                AndroidUtilities.hideKeyboard(this.searchField.getEditText());
+                if (this.type == 1) {
+                    return;
+                }
+                List filterGiftOptionsByBilling = BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, arrayList.size()));
+                if (arrayList.size() == 1) {
+                    new GiftSheet(getContext(), this.currentAccount, ((TLRPC.User) arrayList.get(0)).id, filterGiftOptionsByBilling, new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this)).show();
+                } else {
+                    PremiumPreviewGiftToUsersBottomSheet.show(arrayList, filterGiftOptionsByBilling);
+                }
             }
-        }
-        AndroidUtilities.hideKeyboard(this.searchField.getEditText());
-        if (this.type == 1) {
-            return;
-        }
-        List filterGiftOptionsByBilling = BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, arrayList.size()));
-        if (arrayList.size() == 1) {
-            new GiftSheet(getContext(), this.currentAccount, ((TLRPC.User) arrayList.get(0)).id, filterGiftOptionsByBilling, new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this)).show();
-        } else {
-            PremiumPreviewGiftToUsersBottomSheet.show(arrayList, filterGiftOptionsByBilling);
         }
     }
 
