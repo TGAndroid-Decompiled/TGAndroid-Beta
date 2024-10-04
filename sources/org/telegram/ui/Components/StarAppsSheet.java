@@ -38,7 +38,7 @@ public class StarAppsSheet extends BottomSheetWithRecyclerListView {
     public void lambda$new$0(View view, int i) {
         Object object = this.adapter.getObject(i - 1);
         if (object instanceof TLRPC.User) {
-            MessagesController.getInstance(this.currentAccount).openApp(this.attachedFragment, (TLRPC.User) object, 0, null);
+            MessagesController.getInstance(this.currentAccount).openApp(this.attachedFragment, (TLRPC.User) object, null, 0, null);
         }
     }
 

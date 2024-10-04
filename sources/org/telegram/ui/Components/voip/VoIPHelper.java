@@ -763,45 +763,31 @@ public abstract class VoIPHelper {
     }
 
     public static void startCall(TLRPC.Chat chat, TLRPC.InputPeer inputPeer, String str, boolean z, Boolean bool, final Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
-        int checkSelfPermission;
         if (activity == null) {
             return;
         }
-        if (ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() != 3) {
-            boolean z2 = Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0;
-            AlertDialog.Builder positiveButton = new AlertDialog.Builder(activity).setTitle(LocaleController.getString(z2 ? R.string.VoipOfflineAirplaneTitle : R.string.VoipOfflineTitle)).setMessage(LocaleController.getString(z2 ? R.string.VoipGroupOfflineAirplane : R.string.VoipGroupOffline)).setPositiveButton(LocaleController.getString(R.string.OK), null);
-            if (z2) {
-                final Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
-                if (intent.resolveActivity(activity.getPackageManager()) != null) {
-                    positiveButton.setNeutralButton(LocaleController.getString(R.string.VoipOfflineOpenSettings), new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i) {
-                            activity.startActivity(intent);
-                        }
-                    });
-                }
-            }
-            try {
-                positiveButton.show();
-                return;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
+        if (ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() == 3) {
+            initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
+            return;
+        }
+        boolean z2 = Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0;
+        AlertDialog.Builder positiveButton = new AlertDialog.Builder(activity).setTitle(LocaleController.getString(z2 ? R.string.VoipOfflineAirplaneTitle : R.string.VoipOfflineTitle)).setMessage(LocaleController.getString(z2 ? R.string.VoipGroupOfflineAirplane : R.string.VoipGroupOffline)).setPositiveButton(LocaleController.getString(R.string.OK), null);
+        if (z2) {
+            final Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
+            if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                positiveButton.setNeutralButton(LocaleController.getString(R.string.VoipOfflineOpenSettings), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        activity.startActivity(intent);
+                    }
+                });
             }
         }
-        if (Build.VERSION.SDK_INT >= 23) {
-            ArrayList arrayList = new ArrayList();
-            ChatObject.Call groupCall = accountInstance.getMessagesController().getGroupCall(chat.id, false);
-            checkSelfPermission = activity.checkSelfPermission("android.permission.RECORD_AUDIO");
-            if (checkSelfPermission != 0 && (groupCall == null || !groupCall.call.rtmp_stream)) {
-                arrayList.add("android.permission.RECORD_AUDIO");
-            }
-            if (!arrayList.isEmpty()) {
-                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), 103);
-                return;
-            }
+        try {
+            positiveButton.show();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
     }
 
     public static void startCall(TLRPC.User user, boolean z, boolean z2, final Activity activity, TLRPC.UserFull userFull, AccountInstance accountInstance) {

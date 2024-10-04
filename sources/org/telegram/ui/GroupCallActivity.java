@@ -118,6 +118,7 @@ import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.JoinCallAlert;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberPicker;
+import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.ProfileGalleryView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
@@ -678,6 +679,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         @Override
         public void onClick(View view) {
             GroupCallActivity groupCallActivity;
+            int checkSelfPermission;
             GroupCallActivity groupCallActivity2 = GroupCallActivity.this;
             if (groupCallActivity2.call == null || groupCallActivity2.muteButtonState == 3) {
                 return;
@@ -761,6 +763,18 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 i = 4;
                 if (GroupCallActivity.this.muteButtonState != 2 && GroupCallActivity.this.muteButtonState != 4) {
                     if (GroupCallActivity.this.muteButtonState == 0) {
+                        if (Build.VERSION.SDK_INT >= 23 && GroupCallActivity.this.getParentActivity() != null) {
+                            checkSelfPermission = GroupCallActivity.this.getParentActivity().checkSelfPermission("android.permission.RECORD_AUDIO");
+                            if (checkSelfPermission != 0) {
+                                PermissionRequest.ensurePermission(R.raw.permission_request_microphone, R.string.VoipNeedMicPermissionWithHint, "android.permission.RECORD_AUDIO", new Utilities.Callback() {
+                                    @Override
+                                    public final void run(Object obj) {
+                                        ((Boolean) obj).booleanValue();
+                                    }
+                                });
+                                return;
+                            }
+                        }
                         GroupCallActivity.this.updateMuteButton(1, true);
                         VoIPService.getSharedInstance().setMicMute(false, false, true);
                     } else {

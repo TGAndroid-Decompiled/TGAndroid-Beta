@@ -876,16 +876,16 @@ public abstract class BoostRepository {
         });
     }
 
-    public static void payGiftCode(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
+    public static void payGiftCode(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
         invalidateGiftOptionsToCache(UserConfig.selectedAccount);
         if (isGoogleBillingAvailable()) {
-            payGiftCodeByGoogle(list, tL_premiumGiftCodeOption, chat, baseFragment, callback, callback2);
+            payGiftCodeByGoogle(list, tL_premiumGiftCodeOption, chat, tL_textWithEntities, baseFragment, callback, callback2);
         } else {
-            payGiftCodeByInvoice(list, tL_premiumGiftCodeOption, chat, baseFragment, callback, callback2);
+            payGiftCodeByInvoice(list, tL_premiumGiftCodeOption, chat, tL_textWithEntities, baseFragment, callback, callback2);
         }
     }
 
-    public static void payGiftCodeByGoogle(List list, final TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiftCodeByGoogle(List list, final TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         final ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = new TLRPC.TL_inputStorePaymentPremiumGiftCode();
@@ -909,7 +909,7 @@ public abstract class BoostRepository {
         });
     }
 
-    public static void payGiftCodeByInvoice(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiftCodeByInvoice(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
@@ -924,7 +924,7 @@ public abstract class BoostRepository {
             }
         }
         if (chat != null) {
-            tL_inputStorePaymentPremiumGiftCode.flags = 1;
+            tL_inputStorePaymentPremiumGiftCode.flags |= 1;
             tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.id);
         }
         tL_inputStorePaymentPremiumGiftCode.currency = tL_premiumGiftCodeOption.currency;
@@ -936,7 +936,7 @@ public abstract class BoostRepository {
             TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
             tL_payments_getPaymentForm.theme_params = tL_dataJSON;
             tL_dataJSON.data = makeThemeParams.toString();
-            tL_payments_getPaymentForm.flags = 1 | tL_payments_getPaymentForm.flags;
+            tL_payments_getPaymentForm.flags |= 1;
         }
         tL_payments_getPaymentForm.invoice = tL_inputInvoicePremiumGiftCode;
         connectionsManager.sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {

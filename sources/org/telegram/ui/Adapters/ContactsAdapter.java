@@ -48,7 +48,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
     private LongSparseArray ignoreUsers;
     private boolean isAdmin;
     private boolean isChannel;
-    private boolean isEmpty;
+    public boolean isEmpty;
     private Context mContext;
     private boolean needPhonebook;
     private ArrayList onlineContacts;

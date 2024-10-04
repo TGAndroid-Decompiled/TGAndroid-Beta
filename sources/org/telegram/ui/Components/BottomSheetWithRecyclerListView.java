@@ -42,6 +42,8 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected LinearLayoutManager layoutManager;
     public NestedSizeNotifierLayout nestedSizeNotifierLayout;
     protected RecyclerListView recyclerListView;
+    private boolean restore;
+    public boolean reverseLayout;
     private int savedScrollOffset;
     private int savedScrollPosition;
     private float shadowAlpha;
@@ -332,44 +334,64 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     public void preDrawInternal(Canvas canvas, View view) {
+        int i;
         float f;
         ActionBar actionBar;
         Integer num;
+        this.restore = false;
         if (this.hasFixedSize) {
             return;
         }
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
-        int i = -AndroidUtilities.dp(16.0f);
-        if (findViewHolderForAdapterPosition != null) {
-            i = findViewHolderForAdapterPosition.itemView.getBottom() - AndroidUtilities.dp(16.0f);
-            if (this.takeTranslationIntoAccount) {
-                i += (int) findViewHolderForAdapterPosition.itemView.getTranslationY();
+        if (this.reverseLayout) {
+            int height = this.recyclerListView.getHeight();
+            for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
+                View childAt = this.recyclerListView.getChildAt(i2);
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
+                if (childAdapterPosition != -1 && childAdapterPosition != this.recyclerListView.getAdapter().getItemCount() - 1) {
+                    height = Math.min(height, childAt.getTop() + (this.takeTranslationIntoAccount ? (int) childAt.getTranslationY() : 0));
+                }
             }
+            i = height - AndroidUtilities.dp(16.0f);
+        } else {
+            RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
+            int i3 = -AndroidUtilities.dp(16.0f);
+            if (findViewHolderForAdapterPosition != null) {
+                i3 = findViewHolderForAdapterPosition.itemView.getBottom() - AndroidUtilities.dp(16.0f);
+                if (this.takeTranslationIntoAccount) {
+                    i = ((int) findViewHolderForAdapterPosition.itemView.getTranslationY()) + i3;
+                }
+            }
+            i = i3;
         }
-        int i2 = ((i - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom;
+        int i4 = i - ((this.headerHeight + this.headerPaddingTop) + this.headerPaddingBottom);
         if (this.showHandle && this.handleOffset) {
-            i2 -= AndroidUtilities.dp(this.actionBarType == ActionBarType.SLIDING ? 8.0f : 16.0f);
+            i4 -= AndroidUtilities.dp(this.actionBarType == ActionBarType.SLIDING ? 8.0f : 16.0f);
         }
         ActionBarType actionBarType = this.actionBarType;
         float f2 = 1.0f;
         if (actionBarType == ActionBarType.FADING) {
-            f = 1.0f - ((AndroidUtilities.dp(16.0f) + i2) / AndroidUtilities.dp(56.0f));
+            f = 1.0f - ((AndroidUtilities.dp(16.0f) + i4) / AndroidUtilities.dp(56.0f));
             if (f < 0.0f) {
                 f = 0.0f;
             }
             AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, f != 0.0f, 1.0f, this.wasDrawn);
         } else if (actionBarType == ActionBarType.SLIDING) {
-            float max = Math.max(((AndroidUtilities.dp(8.0f) + i2) + this.headerPaddingTop) - AndroidUtilities.statusBarHeight, 0.0f);
+            float max = Math.max(((AndroidUtilities.dp(8.0f) + i4) + this.headerPaddingTop) - AndroidUtilities.statusBarHeight, 0.0f);
             float f3 = this.actionBarSlideProgress.set(max == 0.0f ? 1.0f : 0.0f);
+            if (f3 != 0.0f && f3 != 1.0f) {
+                canvas.save();
+                canvas.clipRect(0.0f, max, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                this.restore = true;
+            }
             this.shadowAlpha = f3;
             f2 = AndroidUtilities.lerp(1.0f, 0.5f, f3);
             this.actionBar.backButtonImageView.setAlpha(f3);
             this.actionBar.backButtonImageView.setScaleX(f3);
-            this.actionBar.backButtonImageView.setPivotY(r5.getMeasuredHeight() / 2.0f);
+            this.actionBar.backButtonImageView.setPivotY(r6.getMeasuredHeight() / 2.0f);
             this.actionBar.backButtonImageView.setScaleY(f3);
-            this.actionBar.getTitleTextView().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - r5.getLeft(), 0.0f, f3));
+            this.actionBar.getTitleTextView().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - r6.getLeft(), 0.0f, f3));
             this.actionBar.setTranslationY(max);
-            i2 -= AndroidUtilities.lerp(0, (((this.headerTotalHeight - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom) + AndroidUtilities.dp(13.0f), f3);
+            i4 -= AndroidUtilities.lerp(0, (((this.headerTotalHeight - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom) + AndroidUtilities.dp(13.0f), f3);
             this.actionBar.getBackground().setBounds(0, AndroidUtilities.lerp(this.actionBar.getHeight(), 0, f3), this.actionBar.getWidth(), this.actionBar.getHeight());
             if (f3 > 0.5f) {
                 if (this.actionBarIgnoreTouchEvents) {
@@ -392,19 +414,19 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             f = 0.0f;
         }
         if (needPaddingShadow()) {
-            this.shadowDrawable.setBounds(0, i2, view.getMeasuredWidth(), view.getMeasuredHeight());
+            this.shadowDrawable.setBounds(0, i4, view.getMeasuredWidth(), view.getMeasuredHeight());
         } else {
-            this.shadowDrawable.setBounds(-AndroidUtilities.dp(6.0f), i2, view.getMeasuredWidth() + AndroidUtilities.dp(6.0f), view.getMeasuredHeight());
+            this.shadowDrawable.setBounds(-AndroidUtilities.dp(6.0f), i4, view.getMeasuredWidth() + AndroidUtilities.dp(6.0f), view.getMeasuredHeight());
         }
         this.shadowDrawable.draw(canvas);
         if (this.showHandle && f2 > 0.0f) {
             int dp = AndroidUtilities.dp(36.0f);
-            this.handleRect.set((view.getMeasuredWidth() - dp) / 2.0f, AndroidUtilities.dp(20.0f) + i2, (view.getMeasuredWidth() + dp) / 2.0f, r2 + AndroidUtilities.dp(4.0f));
+            this.handleRect.set((view.getMeasuredWidth() - dp) / 2.0f, AndroidUtilities.dp(20.0f) + i4, (view.getMeasuredWidth() + dp) / 2.0f, r3 + AndroidUtilities.dp(4.0f));
             Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_sheet_scrollUp));
             Theme.dialogs_onlineCirclePaint.setAlpha((int) (r14.getAlpha() * f2));
             canvas.drawRoundRect(this.handleRect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
         }
-        onPreDraw(canvas, i2, f);
+        onPreDraw(canvas, i4, f);
     }
 
     public void updateStatusBar() {
@@ -502,10 +524,10 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
 
             @Override
             public int getItemViewType(int i) {
-                if (i == 0) {
+                if (i == (BottomSheetWithRecyclerListView.this.reverseLayout ? getItemCount() - 1 : 0)) {
                     return -1000;
                 }
-                return createAdapter.getItemViewType(i - 1);
+                return createAdapter.getItemViewType(i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
             }
 
             @Override
@@ -515,8 +537,8 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                if (i != 0) {
-                    createAdapter.onBindViewHolder(viewHolder, i - 1);
+                if (i != (BottomSheetWithRecyclerListView.this.reverseLayout ? getItemCount() - 1 : 0)) {
+                    createAdapter.onBindViewHolder(viewHolder, i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
                 }
             }
 
@@ -554,27 +576,29 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
 
                     @Override
                     public void onItemRangeChanged(int i, int i2) {
-                        adapterDataObserver.onItemRangeChanged(i + 1, i2);
+                        adapterDataObserver.onItemRangeChanged(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2);
                     }
 
                     @Override
                     public void onItemRangeChanged(int i, int i2, Object obj) {
-                        adapterDataObserver.onItemRangeChanged(i + 1, i2, obj);
+                        adapterDataObserver.onItemRangeChanged(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2, obj);
                     }
 
                     @Override
                     public void onItemRangeInserted(int i, int i2) {
-                        adapterDataObserver.onItemRangeInserted(i + 1, i2);
+                        adapterDataObserver.onItemRangeInserted(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2);
                     }
 
                     @Override
                     public void onItemRangeMoved(int i, int i2, int i3) {
-                        adapterDataObserver.onItemRangeMoved(i + 1, i2 + 1, i3);
+                        RecyclerView.AdapterDataObserver adapterDataObserver2 = adapterDataObserver;
+                        int i4 = !BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0;
+                        adapterDataObserver2.onItemRangeMoved(i + i4, i2 + i4, i3);
                     }
 
                     @Override
                     public void onItemRangeRemoved(int i, int i2) {
-                        adapterDataObserver.onItemRangeRemoved(i + 1, i2);
+                        adapterDataObserver.onItemRangeRemoved(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2);
                     }
                 });
             }

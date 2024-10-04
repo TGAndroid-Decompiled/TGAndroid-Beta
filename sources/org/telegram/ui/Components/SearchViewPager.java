@@ -625,28 +625,36 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     }
 
     public void search(View view, int i, String str, boolean z) {
+        boolean z2;
+        if (TextUtils.isEmpty(str)) {
+            this.emptyView.subtitle.setVisibility(8);
+        } else {
+            this.emptyView.subtitle.setVisibility(0);
+            this.emptyView.subtitle.setText(LocaleController.formatString(R.string.NoResultFoundFor2, str));
+        }
         DialogsSearchAdapter.DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = this.dialogsSearchAdapter.delegate;
         long searchForumDialogId = dialogsSearchAdapterDelegate != null ? dialogsSearchAdapterDelegate.getSearchForumDialogId() : 0L;
         long j = i == 0 ? 0L : searchForumDialogId;
-        int i2 = 0;
+        boolean z3 = false;
         long j2 = 0;
         long j3 = 0;
-        for (int i3 = 0; i3 < this.currentSearchFilters.size(); i3++) {
-            FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) this.currentSearchFilters.get(i3);
-            int i4 = mediaFilterData.filterType;
-            if (i4 == 4) {
+        for (int i2 = 0; i2 < this.currentSearchFilters.size(); i2++) {
+            FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) this.currentSearchFilters.get(i2);
+            int i3 = mediaFilterData.filterType;
+            if (i3 == 4) {
                 TLObject tLObject = mediaFilterData.chat;
                 if (tLObject instanceof TLRPC.User) {
                     j = ((TLRPC.User) tLObject).id;
                 } else if (tLObject instanceof TLRPC.Chat) {
                     j = -((TLRPC.Chat) tLObject).id;
                 }
-            } else if (i4 == 6) {
+            } else if (i3 == 6) {
                 FiltersView.DateData dateData = mediaFilterData.dateData;
-                j2 = dateData.minDate;
+                long j4 = dateData.minDate;
                 j3 = dateData.maxDate;
-            } else if (i4 == 7) {
-                i2 = 1;
+                j2 = j4;
+            } else if (i3 == 7) {
+                z3 = true;
             }
         }
         if (view == this.channelsSearchContainer) {
@@ -669,7 +677,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 FilteredSearchView filteredSearchView = (FilteredSearchView) view;
                 filteredSearchView.setUseFromUserAsAvatar(searchForumDialogId != 0);
                 filteredSearchView.setKeyboardHeight(this.keyboardSize, false);
-                filteredSearchView.search(j, j2, j3, FiltersView.filters[((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i)).filterIndex], i2, str, z);
+                filteredSearchView.search(j, j2, j3, FiltersView.filters[((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i)).filterIndex], z3, str, z);
                 return;
             }
             if (view instanceof SearchDownloadsContainer) {
@@ -681,7 +689,6 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             return;
         }
         if (!(j == 0 && j2 == 0 && j3 == 0) && searchForumDialogId == 0) {
-            boolean z2 = true;
             this.noMediaFiltersSearchView.setTag(1);
             this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
             this.noMediaFiltersSearchView.animate().setListener(null).cancel();
@@ -694,20 +701,21 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                     this.noMediaFiltersSearchView.setVisibility(0);
                     this.noMediaFiltersSearchView.setAlpha(0.0f);
                 } else {
-                    z2 = z;
+                    r3 = z;
                 }
                 this.noMediaFiltersSearchView.animate().alpha(1.0f).setDuration(150L).start();
+                z2 = r3;
             }
-            this.noMediaFiltersSearchView.search(j, j2, j3, null, i2, str, z2);
+            this.noMediaFiltersSearchView.search(j, j2, j3, null, z3, str, z2);
             this.emptyView.setVisibility(8);
         } else {
             this.lastSearchScrolledToTop = false;
-            this.dialogsSearchAdapter.searchDialogs(str, i2);
+            this.dialogsSearchAdapter.searchDialogs(str, z3 ? 1 : 0);
             this.dialogsSearchAdapter.setFiltersDelegate(this.filteredSearchViewDelegate, false);
             this.noMediaFiltersSearchView.animate().setListener(null).cancel();
             this.noMediaFiltersSearchView.setDelegate(null, false);
             if (z) {
-                this.emptyView.showProgress(!this.dialogsSearchAdapter.isSearching(), false);
+                this.emptyView.showProgress(true ^ this.dialogsSearchAdapter.isSearching(), false);
                 this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), false);
             } else if (!this.dialogsSearchAdapter.hasRecentSearch()) {
                 this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), true);

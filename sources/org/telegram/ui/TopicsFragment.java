@@ -3051,6 +3051,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     private void updateSubtitle() {
+        String string;
         TLRPC.ChatParticipants chatParticipants;
         TLRPC.ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
         TLRPC.ChatFull chatFull2 = this.chatFull;
@@ -3058,7 +3059,20 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             chatFull.participants = chatParticipants;
         }
         this.chatFull = chatFull;
-        this.avatarContainer.setSubtitle(chatFull != null ? LocaleController.formatPluralString("Members", chatFull.participants_count, new Object[0]) : LocaleController.getString(R.string.Loading).toLowerCase());
+        if (chatFull != null) {
+            int i = chatFull.participants_count;
+            if (i <= 0) {
+                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+                if (chat != null) {
+                    string = LocaleController.getString(ChatObject.isPublic(chat) ? R.string.MegaPublic : R.string.MegaPrivate).toLowerCase();
+                }
+            } else {
+                string = LocaleController.formatPluralString("Members", i, new Object[0]);
+            }
+            this.avatarContainer.setSubtitle(string);
+        }
+        string = LocaleController.getString(R.string.Loading);
+        this.avatarContainer.setSubtitle(string);
     }
 
     public void updateTopView() {

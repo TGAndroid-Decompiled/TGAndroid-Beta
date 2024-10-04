@@ -1820,6 +1820,18 @@ public class AndroidUtilities {
         }
     }
 
+    public static Activity getActivity() {
+        return getActivity(null);
+    }
+
+    public static Activity getActivity(Context context) {
+        Activity findActivity = findActivity(context);
+        if (findActivity == null || findActivity.isFinishing()) {
+            findActivity = LaunchActivity.instance;
+        }
+        return (findActivity == null || findActivity.isFinishing()) ? findActivity(ApplicationLoader.applicationContext) : findActivity;
+    }
+
     private static java.io.File getAlbumDir(boolean r3) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.getAlbumDir(boolean):java.io.File");
     }

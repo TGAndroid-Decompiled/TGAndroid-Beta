@@ -19,7 +19,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet;
+import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.LinkCell;
@@ -79,8 +79,8 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         }
     }
 
-    public PremiumPreviewGiftLinkBottomSheet(BaseFragment baseFragment, int i, TLRPC.User user, GiftPremiumBottomSheet.GiftTier giftTier, String str, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        super(baseFragment, i, user, giftTier, resourcesProvider);
+    public PremiumPreviewGiftLinkBottomSheet(BaseFragment baseFragment, int i, TLRPC.User user, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, String str, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        super(baseFragment, i, user, giftPremiumBottomSheet$GiftTier, resourcesProvider);
         this.slug = str;
         this.isUsed = z;
         init();
@@ -225,7 +225,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         if (lastFragment == null || instance != null) {
             return;
         }
-        PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = new PremiumPreviewGiftLinkBottomSheet(lastFragment, UserConfig.selectedAccount, user, new GiftPremiumBottomSheet.GiftTier(tL_premiumGiftOption), str, z, lastFragment.getResourceProvider());
+        PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = new PremiumPreviewGiftLinkBottomSheet(lastFragment, UserConfig.selectedAccount, user, new GiftPremiumBottomSheet$GiftTier(tL_premiumGiftOption), str, z, lastFragment.getResourceProvider());
         premiumPreviewGiftLinkBottomSheet.show();
         instance = premiumPreviewGiftLinkBottomSheet;
     }

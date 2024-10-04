@@ -1366,7 +1366,7 @@ public class MessageObject {
         this(i, message, null, null, null, null, null, z, z2, 0L);
     }
 
-    public MessageObject(int r36, org.telegram.tgnet.TLRPC.TL_channelAdminLogEvent r37, java.util.ArrayList<org.telegram.messenger.MessageObject> r38, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r39, org.telegram.tgnet.TLRPC.Chat r40, int[] r41, boolean r42) {
+    public MessageObject(int r38, org.telegram.tgnet.TLRPC.TL_channelAdminLogEvent r39, java.util.ArrayList<org.telegram.messenger.MessageObject> r40, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r41, org.telegram.tgnet.TLRPC.Chat r42, int[] r43, boolean r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }
 

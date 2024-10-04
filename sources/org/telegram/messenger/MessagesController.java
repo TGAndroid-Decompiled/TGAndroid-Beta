@@ -7739,7 +7739,7 @@ public class MessagesController extends BaseController implements NotificationCe
         zArr[0] = true;
     }
 
-    public void lambda$openApp$452(BaseFragment baseFragment, Browser.Progress progress, boolean[] zArr, TLRPC.User user, TL_bots.BotInfo[] botInfoArr) {
+    public void lambda$openApp$452(BaseFragment baseFragment, Browser.Progress progress, boolean[] zArr, TLRPC.User user, String str, TL_bots.BotInfo[] botInfoArr) {
         BotWebViewAttachedSheet createBotViewer;
         BotWebViewSheet botWebViewSheet;
         BaseFragment safeLastFragment = baseFragment != null ? baseFragment : LaunchActivity.getSafeLastFragment();
@@ -7760,7 +7760,7 @@ public class MessagesController extends BaseController implements NotificationCe
             AndroidUtilities.hideKeyboard(baseFragment2.getFragmentView());
             int i = this.currentAccount;
             long j = user.id;
-            WebViewRequestProps of = WebViewRequestProps.of(i, j, j, null, null, 4, 0, false, null, false, null, user, 0, false);
+            WebViewRequestProps of = WebViewRequestProps.of(i, j, j, null, null, 4, 0, false, null, false, str, user, 0, false);
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity == null || launchActivity.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(of) == null) {
                 if (AndroidUtilities.isTablet()) {
@@ -7794,7 +7794,7 @@ public class MessagesController extends BaseController implements NotificationCe
         AndroidUtilities.hideKeyboard(baseFragment3.getFragmentView());
         int i2 = this.currentAccount;
         long j2 = user.id;
-        WebViewRequestProps of2 = WebViewRequestProps.of(i2, j2, j2, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, false, null, false, null, user, 0, false);
+        WebViewRequestProps of2 = WebViewRequestProps.of(i2, j2, j2, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, false, null, false, str, user, 0, false);
         LaunchActivity launchActivity2 = LaunchActivity.instance;
         if (launchActivity2 == null || launchActivity2.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(of2) == null) {
             if (AndroidUtilities.isTablet()) {
@@ -14984,10 +14984,10 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void openApp(TLRPC.User user, int i) {
-        openApp(null, user, i, null);
+        openApp(null, user, null, i, null);
     }
 
-    public void openApp(final BaseFragment baseFragment, final TLRPC.User user, final int i, final Browser.Progress progress) {
+    public void openApp(final BaseFragment baseFragment, final TLRPC.User user, final String str, final int i, final Browser.Progress progress) {
         if (user == null) {
             return;
         }
@@ -15004,7 +15004,7 @@ public class MessagesController extends BaseController implements NotificationCe
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$openApp$452(baseFragment, progress, zArr, user, r6);
+                MessagesController.this.lambda$openApp$452(baseFragment, progress, zArr, user, str, r7);
             }
         };
         MediaDataController mediaDataController = getMediaDataController();

@@ -1138,7 +1138,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             }
         });
         ActionBarMenu createMenu = this.actionBar.createMenu();
-        ActionBarMenuItem actionBarMenuItemSearchListener = createMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        final ActionBarMenuItem actionBarMenuItemSearchListener = createMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchCollapse() {
                 ContactsActivity.this.searchListViewAdapter.searchDialogs(null);
@@ -1156,9 +1156,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     ContactsActivity.this.floatingButtonContainer.setTranslationY(AndroidUtilities.dp(100.0f));
                     ContactsActivity.this.hideFloatingButton(false);
                 }
-                if (ContactsActivity.this.sortItem != null) {
-                    ContactsActivity.this.sortItem.setVisibility(0);
+                if (ContactsActivity.this.sortItem == null || ContactsActivity.this.listViewAdapter.isEmpty) {
+                    return;
                 }
+                ContactsActivity.this.sortItem.setVisibility(0);
             }
 
             @Override

@@ -54,7 +54,6 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.LoadingSpan;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
-import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.StarParticlesView;
@@ -82,7 +81,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
     protected int featuresStartRow;
     FireworksOverlay fireworksOverlay;
     BaseFragment fragment;
-    protected GiftPremiumBottomSheet.GiftTier giftTier;
+    protected GiftPremiumBottomSheet$GiftTier giftTier;
     PremiumGradient.PremiumGradientTools gradientTools;
     protected int helpUsRow;
     ViewGroup iconContainer;
@@ -415,7 +414,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this(baseFragment, i, user, null, resourcesProvider);
     }
 
-    public PremiumPreviewBottomSheet(final BaseFragment baseFragment, final int i, TLRPC.User user, GiftPremiumBottomSheet.GiftTier giftTier, Theme.ResourcesProvider resourcesProvider) {
+    public PremiumPreviewBottomSheet(final BaseFragment baseFragment, final int i, TLRPC.User user, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, Theme.ResourcesProvider resourcesProvider) {
         super(baseFragment, false, false, false, resourcesProvider);
         this.premiumFeatures = new ArrayList();
         this.coords = new int[2];
@@ -425,7 +424,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.topPadding = 0.26f;
         this.user = user;
         this.currentAccount = i;
-        this.giftTier = giftTier;
+        this.giftTier = giftPremiumBottomSheet$GiftTier;
         this.dummyCell = new PremiumFeatureCell(getContext());
         PremiumPreviewFragment.fillPremiumFeaturesList(this.premiumFeatures, i, false);
         if (this.giftTier != null || UserConfig.getInstance(i).isPremium()) {
@@ -926,8 +925,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     linksTextView2.setText(Emoji.replaceEmoji(linksTextView2.getText(), this.titleView[0].getPaint().getFontMetricsInt(), false));
                     return;
                 }
-                GiftPremiumBottomSheet.GiftTier giftTier = this.giftTier;
-                if (giftTier == null) {
+                GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = this.giftTier;
+                if (giftPremiumBottomSheet$GiftTier == null) {
                     TLRPC.User user4 = this.user;
                     if (user4 == null) {
                         linksTextViewArr[0].setText(LocaleController.getString(R.string.TelegramPremium));
@@ -946,7 +945,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                         LinkSpanDrawable.LinksTextView linksTextView4 = linksTextViewArr[0];
                         int i6 = R.string.TelegramPremiumUserGiftedPremiumOutboundDialogTitleWithPlural;
                         TLRPC.User user5 = this.user;
-                        String formatString4 = LocaleController.formatString(i6, user5 != null ? user5.first_name : "", LocaleController.formatPluralString("GiftMonths", giftTier.getMonths(), new Object[0]));
+                        String formatString4 = LocaleController.formatString(i6, user5 != null ? user5.first_name : "", LocaleController.formatPluralString("GiftMonths", giftPremiumBottomSheet$GiftTier.getMonths(), new Object[0]));
                         Integer num3 = this.accentColor;
                         linksTextView4.setText(AndroidUtilities.replaceSingleLink(formatString4, num3 == null ? getThemedColor(Theme.key_windowBackgroundWhiteBlueButton) : num3.intValue()));
                         textView = this.subtitleView;

@@ -61,7 +61,7 @@ public abstract class PermissionRequest {
         }
         for (String str2 : strArr) {
             shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str2);
-            if (shouldShowRequestPermissionRationale) {
+            if (!shouldShowRequestPermissionRationale) {
                 new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i3) {

@@ -41,6 +41,7 @@ import org.telegram.ui.Components.RecyclerListView;
 public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     private TextView actionButton;
     private UniversalAdapter adapter;
+    private boolean banChecked;
     private boolean[] banFilter;
     private Action banOrRestrict;
     private TLRPC.TL_chatBannedRights bannedRights;
@@ -1057,10 +1058,26 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
     private void onRestrictionsChanged() {
         if (this.restrict && this.banOrRestrict.isPresent()) {
+            this.banChecked = this.banOrRestrict.selectedCount > 0;
+        }
+        if (this.restrict && this.banOrRestrict.isPresent()) {
             Action action = this.banOrRestrict;
             if (action.selectedCount == 0) {
                 action.toggleAllChecks();
+                if (this.restrict && this.banOrRestrict.isPresent()) {
+                    this.banChecked = this.banOrRestrict.selectedCount > 0;
+                    return;
+                }
             }
+        }
+        if (!this.restrict && this.banOrRestrict.isPresent()) {
+            boolean z = this.banChecked;
+            Action action2 = this.banOrRestrict;
+            if (z != (action2.selectedCount > 0)) {
+                action2.toggleAllChecks();
+            }
+        }
+        if (this.restrict) {
         }
     }
 
