@@ -166,6 +166,7 @@ import org.telegram.ui.Components.PacmanAnimation;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
+import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
 import org.telegram.ui.Components.ProxyDrawable;
 import org.telegram.ui.Components.PullForegroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -186,6 +187,7 @@ import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.FilteredSearchView;
+import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.GroupCreateFinalActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stars.StarsController;
@@ -4865,6 +4867,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         changeBounds.setDuration(200L);
         TransitionManager.beginDelayedTransition((ViewGroup) this.dialogsHintCell.getParent(), changeBounds);
         lambda$updateDialogsHint$29();
+    }
+
+    public void lambda$updateDialogsHint$32(BirthdayController.BirthdayState birthdayState, View view) {
+        if (birthdayState == null || birthdayState.today.size() != 1) {
+            UserSelectorBottomSheet.open(0L, birthdayState);
+        } else {
+            showDialog(new GiftSheet(getContext(), this.currentAccount, birthdayState.today.get(0).id, null, null));
+        }
     }
 
     public void lambda$updateDialogsHint$33(View view) {

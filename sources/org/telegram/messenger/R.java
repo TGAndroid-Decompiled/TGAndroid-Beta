@@ -6215,8 +6215,8 @@ public final class R {
         public static final int Gift2Availability = 0x7f0f0cdf;
         public static final int Gift2Availability2ValueNone_one = 0x7f0f0ce0;
         public static final int Gift2Availability2ValueNone_other = 0x7f0f0ce1;
-        public static final int Gift2Availability3Value_one = 0x7f0f0ce2;
-        public static final int Gift2Availability3Value_other = 0x7f0f0ce3;
+        public static final int Gift2Availability4Value_one = 0x7f0f0ce2;
+        public static final int Gift2Availability4Value_other = 0x7f0f0ce3;
         public static final int Gift2AvailabilityLeft_other = 0x7f0f0ce4;
         public static final int Gift2AvailabilitySold_other = 0x7f0f0ce5;
         public static final int Gift2CaptionMore = 0x7f0f0ce6;

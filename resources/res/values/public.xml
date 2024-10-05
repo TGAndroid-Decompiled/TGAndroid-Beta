@@ -6089,8 +6089,8 @@
     <public type="string" name="Gift2Availability" id="0x7f0f0cdf" />
     <public type="string" name="Gift2Availability2ValueNone_one" id="0x7f0f0ce0" />
     <public type="string" name="Gift2Availability2ValueNone_other" id="0x7f0f0ce1" />
-    <public type="string" name="Gift2Availability3Value_one" id="0x7f0f0ce2" />
-    <public type="string" name="Gift2Availability3Value_other" id="0x7f0f0ce3" />
+    <public type="string" name="Gift2Availability4Value_one" id="0x7f0f0ce2" />
+    <public type="string" name="Gift2Availability4Value_other" id="0x7f0f0ce3" />
     <public type="string" name="Gift2AvailabilityLeft_other" id="0x7f0f0ce4" />
     <public type="string" name="Gift2AvailabilitySold_other" id="0x7f0f0ce5" />
     <public type="string" name="Gift2CaptionMore" id="0x7f0f0ce6" />
