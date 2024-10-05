@@ -6317,7 +6317,7 @@ public class MessageObject {
         int i;
         TLRPC.Message message;
         TLRPC.MessageFwdHeader messageFwdHeader;
-        if (this.isRepostPreview) {
+        if (this.isRepostPreview || getDialogId() == 489000) {
             return false;
         }
         if (this.isSaved) {

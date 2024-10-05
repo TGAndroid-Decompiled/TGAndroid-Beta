@@ -841,7 +841,6 @@ public abstract class Theme {
     public static final int key_dialogButton;
     public static final int key_dialogButtonSelector;
     public static final int key_dialogCameraIcon;
-    public static final int key_dialogCardBackground;
     public static final int key_dialogCardShadow;
     public static final int key_dialogCheckboxSquareBackground;
     public static final int key_dialogCheckboxSquareCheck;

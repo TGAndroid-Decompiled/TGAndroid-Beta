@@ -17,7 +17,10 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 
 public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     private int activeTextColorKey;
@@ -221,7 +224,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             textView = null;
         }
         if (textView == null) {
-            textView = new TextView(getContext()) {
+            textView = new AnimatedEmojiSpan.TextViewEmojis(getContext()) {
                 @Override
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                     super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -241,9 +244,10 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
                     ScrollSlidingTextTabStrip.this.lambda$addTextTab$0(i, view);
                 }
             });
+            NotificationCenter.listenEmojiLoading(textView);
         }
-        textView.setText(charSequence);
-        int ceil = ((int) Math.ceil(textView.getPaint().measureText(charSequence, 0, charSequence.length()))) + textView.getPaddingLeft() + textView.getPaddingRight();
+        textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), false));
+        int ceil = ((int) Math.ceil(textView.getPaint().measureText(r6, 0, r6.length()))) + textView.getPaddingLeft() + textView.getPaddingRight();
         this.tabsContainer.addView(textView, LayoutHelper.createLinear(0, -1));
         this.allTextWidth += ceil;
         this.positionToWidth.put(i2, ceil);

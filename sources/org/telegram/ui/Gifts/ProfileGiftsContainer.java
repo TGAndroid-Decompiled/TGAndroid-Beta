@@ -1,14 +1,17 @@
 package org.telegram.ui.Gifts;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.LocaleController;
@@ -20,6 +23,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -248,6 +252,50 @@ public class ProfileGiftsContainer extends FrameLayout implements NotificationCe
             return userFull.stargifts_count;
         }
         return 0;
+    }
+
+    public CharSequence getLastEmojis(Paint.FontMetricsInt fontMetricsInt) {
+        StarsController.GiftsList giftsList = this.list;
+        if (giftsList == null || giftsList.gifts.isEmpty()) {
+            return "";
+        }
+        HashSet hashSet = new HashSet();
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; arrayList.size() < 3 && i < this.list.gifts.size(); i++) {
+            TL_stars.UserStarGift userStarGift = (TL_stars.UserStarGift) this.list.gifts.get(i);
+            if (!hashSet.contains(Long.valueOf(userStarGift.gift.sticker.id))) {
+                hashSet.add(Long.valueOf(userStarGift.gift.sticker.id));
+                arrayList.add(userStarGift.gift.sticker);
+            }
+        }
+        if (arrayList.isEmpty()) {
+            return "";
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(" ");
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
+            spannableStringBuilder2.setSpan(new AnimatedEmojiSpan((TLRPC.Document) arrayList.get(i2), 0.9f, fontMetricsInt), 0, 1, 33);
+            spannableStringBuilder.append((CharSequence) spannableStringBuilder2);
+        }
+        return spannableStringBuilder;
+    }
+
+    public long getLastEmojisHash() {
+        StarsController.GiftsList giftsList = this.list;
+        long j = 0;
+        if (giftsList != null && !giftsList.gifts.isEmpty()) {
+            HashSet hashSet = new HashSet();
+            int i = 0;
+            for (int i2 = 0; i < 3 && i2 < this.list.gifts.size(); i2++) {
+                TL_stars.UserStarGift userStarGift = (TL_stars.UserStarGift) this.list.gifts.get(i2);
+                if (!hashSet.contains(Long.valueOf(userStarGift.gift.sticker.id))) {
+                    hashSet.add(Long.valueOf(userStarGift.gift.sticker.id));
+                    j = Objects.hash(Long.valueOf(j), Long.valueOf(userStarGift.gift.sticker.id));
+                    i++;
+                }
+            }
+        }
+        return j;
     }
 
     @Override

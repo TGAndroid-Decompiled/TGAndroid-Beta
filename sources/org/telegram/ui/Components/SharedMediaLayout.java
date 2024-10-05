@@ -173,6 +173,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     private HintView fwdRestrictedHint;
     private GifAdapter gifAdapter;
     public ProfileGiftsContainer giftsContainer;
+    private long giftsLastHash;
     FlickerLoadingView globalGradientView;
     private ActionBarMenuItem gotoItem;
     private GroupUsersSearchAdapter groupUsersSearchAdapter;
@@ -6067,7 +6068,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         actionBarMenuItem.setVisibility(8);
     }
 
-    public void updateTabs(boolean r18) {
+    public void updateTabs(boolean r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.updateTabs(boolean):void");
     }
 
@@ -7051,6 +7052,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.channelRecommendationsLoaded);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.dialogsNeedReload);
+        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.starUserGiftsLoaded);
         SearchTagsList searchTagsList = this.searchTagsList;
         if (searchTagsList != null) {
             searchTagsList.detach();
