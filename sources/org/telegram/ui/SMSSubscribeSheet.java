@@ -167,7 +167,7 @@ public abstract class SMSSubscribeSheet {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
             buttonWithCounterView.setLoading(false);
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696918)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696933)).show();
         } else {
             SMSJobController.getInstance(i).setState(3);
             bottomSheet.dismiss();
@@ -198,7 +198,7 @@ public abstract class SMSSubscribeSheet {
         } else {
             bottomSheet.dismiss();
             SMSJobController.getInstance(i).setState(2);
-            new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(2131695972)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695971))).setPositiveButton(LocaleController.getString(2131694151), null).show();
+            new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(2131695987)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695986))).setPositiveButton(LocaleController.getString(2131694166), null).show();
         }
     }
 
@@ -277,7 +277,7 @@ public abstract class SMSSubscribeSheet {
             if (!shouldShowRequestPermissionRationale2) {
                 shouldShowRequestPermissionRationale3 = findActivity.shouldShowRequestPermissionRationale("android.permission.READ_PHONE_NUMBERS");
                 if (!shouldShowRequestPermissionRationale3 && !z) {
-                    negativeButton = new AlertDialog.Builder(findActivity).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695976))).setPositiveButton(LocaleController.getString(2131693779), new DialogInterface.OnClickListener() {
+                    negativeButton = new AlertDialog.Builder(findActivity).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695991))).setPositiveButton(LocaleController.getString(2131693790), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             SMSSubscribeSheet.lambda$requestSMSPermissions$15(context, runnable, findActivity, dialogInterface, i);
@@ -293,7 +293,7 @@ public abstract class SMSSubscribeSheet {
                 }
             }
         }
-        negativeButton = new AlertDialog.Builder(findActivity).setMessage(AndroidUtilities.replaceTags(LocaleController.getString((z3 || z2) ? !z3 ? 2131695979 : 2131695977 : 2131695978))).setPositiveButton(LocaleController.getString(2131695821), new DialogInterface.OnClickListener() {
+        negativeButton = new AlertDialog.Builder(findActivity).setMessage(AndroidUtilities.replaceTags(LocaleController.getString((z3 || z2) ? !z3 ? 2131695994 : 2131695992 : 2131695993))).setPositiveButton(LocaleController.getString(2131695836), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 SMSSubscribeSheet.lambda$requestSMSPermissions$12(findActivity, dialogInterface, i);
@@ -325,7 +325,7 @@ public abstract class SMSSubscribeSheet {
         textView.setTextAlignment(4);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(2131696009));
+        textView.setText(LocaleController.getString(2131696024));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 30, 0, 30, 6));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
@@ -333,7 +333,7 @@ public abstract class SMSSubscribeSheet {
         textView2.setTextAlignment(4);
         int i = Theme.key_windowBackgroundWhiteGrayText4;
         textView2.setTextColor(Theme.getColor(i, resourcesProvider));
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(2131696008)));
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(2131696023)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 30, 0, 30, 14));
         Runnable runnable2 = new Runnable() {
             @Override
@@ -341,9 +341,9 @@ public abstract class SMSSubscribeSheet {
                 SMSSubscribeSheet.lambda$show$0();
             }
         };
-        linearLayout.addView(new FeatureCell(context, 2131231259, LocaleController.getString(2131696003), LocaleController.formatPluralString("SmsSubscribeFeature1Message", tL_smsjobs$TL_smsjobs_eligibleToJoin == null ? 100 : tL_smsjobs$TL_smsjobs_eligibleToJoin.monthly_sent_sms, new Object[0]), resourcesProvider), LayoutHelper.createLinear(-1, -2, 1, 30, 16, 30, 0));
-        linearLayout.addView(new FeatureCell(context, 2131231257, LocaleController.getString(2131696005), AndroidUtilities.replaceSingleTag(LocaleController.getString(2131696004), runnable2), resourcesProvider), LayoutHelper.createLinear(-1, -2, 1, 30, 16, 30, 0));
-        linearLayout.addView(new FeatureCell(context, 2131231250, LocaleController.getString(2131696007), LocaleController.getString(2131696006), resourcesProvider), LayoutHelper.createLinear(-1, -2, 1, 30, 16, 30, 0));
+        linearLayout.addView(new FeatureCell(context, 2131231259, LocaleController.getString(2131696018), LocaleController.formatPluralString("SmsSubscribeFeature1Message", tL_smsjobs$TL_smsjobs_eligibleToJoin == null ? 100 : tL_smsjobs$TL_smsjobs_eligibleToJoin.monthly_sent_sms, new Object[0]), resourcesProvider), LayoutHelper.createLinear(-1, -2, 1, 30, 16, 30, 0));
+        linearLayout.addView(new FeatureCell(context, 2131231257, LocaleController.getString(2131696020), AndroidUtilities.replaceSingleTag(LocaleController.getString(2131696019), runnable2), resourcesProvider), LayoutHelper.createLinear(-1, -2, 1, 30, 16, 30, 0));
+        linearLayout.addView(new FeatureCell(context, 2131231250, LocaleController.getString(2131696022), LocaleController.getString(2131696021), resourcesProvider), LayoutHelper.createLinear(-1, -2, 1, 30, 16, 30, 0));
         Runnable runnable3 = new Runnable() {
             @Override
             public final void run() {
@@ -365,12 +365,12 @@ public abstract class SMSSubscribeSheet {
         linksTextView.setMaxLines(2);
         linksTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         linksTextView.setEllipsize(TextUtils.TruncateAt.END);
-        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(2131695999), runnable3));
+        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(2131696014), runnable3));
         boolean z = LocaleController.isRTL;
         frameLayout.addView(linksTextView, LayoutHelper.createFrame(-1, -1.0f, (z ? 5 : 3) | 48, z ? 16.0f : 58.0f, 21.0f, z ? 58.0f : 16.0f, 21.0f));
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 9.0f, 0.0f, 9.0f, 0.0f));
         final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(2131696000), false);
+        buttonWithCounterView.setText(LocaleController.getString(2131696015), false);
         buttonWithCounterView.setEnabled(false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
         frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -391,7 +391,7 @@ public abstract class SMSSubscribeSheet {
         linksTextView2.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
         linksTextView2.setTextSize(1, 12.0f);
         linksTextView2.setTextAlignment(4);
-        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(2131696001), runnable3));
+        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(2131696016), runnable3));
         linksTextView2.setGravity(17);
         linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 30.0f, 17.0f, 30.0f, 14.0f));
         bottomSheet.setCustomView(linearLayout);
@@ -425,7 +425,7 @@ public abstract class SMSSubscribeSheet {
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(2131695980));
+        textView.setText(LocaleController.getString(2131695995));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 30, 0, 30, 14));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
@@ -441,7 +441,7 @@ public abstract class SMSSubscribeSheet {
             } catch (Exception unused) {
             }
         }
-        textView2.setText(AndroidUtilities.replaceTags(str != null ? LocaleController.formatString(2131695981, str) : LocaleController.getString(2131695983)));
+        textView2.setText(AndroidUtilities.replaceTags(str != null ? LocaleController.formatString(2131695996, str) : LocaleController.getString(2131695998)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 30, 0, 30, 16));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
         linksTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
@@ -449,7 +449,7 @@ public abstract class SMSSubscribeSheet {
         linksTextView.setTextSize(1, 14.0f);
         linksTextView.setGravity(17);
         linksTextView.setTextAlignment(4);
-        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(2131695982), new Runnable() {
+        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(2131695997), new Runnable() {
             @Override
             public final void run() {
                 SMSSubscribeSheet.lambda$showSubscribed$8(BottomSheet.this);
@@ -457,7 +457,7 @@ public abstract class SMSSubscribeSheet {
         }));
         linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 1, 30, 0, 30, 24));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(2131694151), false);
+        buttonWithCounterView.setText(LocaleController.getString(2131694166), false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override

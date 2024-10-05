@@ -52,7 +52,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
@@ -1328,7 +1327,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
                     @Override
                     public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
-                        Browser.openUrl(chatMessageCell.getContext(), str);
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell, tLRPC$WebPage, str, z);
                     }
 
                     @Override

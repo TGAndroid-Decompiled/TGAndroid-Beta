@@ -589,9 +589,6 @@
     <string name="Next">Próximo</string>
     <string name="NoBlocked">Nenhum usuário bloqueado</string>
     <string name="NoContacts">Ainda não há contatos.</string>
-    <string name="NoContactsYet">Você ainda não tem contatos no Telegram</string>
-    <string name="NoContactsYetLine1">Convide amigos para testar o Telegram</string>
-    <string name="NoContactsYetLine3">Busque pessoas por nome de usuário</string>
     <string name="NoExceptions">Esta seção irá listar todos os chats que possuem configurações que não são padrão.\n\nVocê pode personalizar notificações para um chat abrindo o perfil do mesmo e escolhendo \'Notificações\'.</string>
     <string name="NoFolderFound">Nenhuma pasta encontrada.</string>
     <string name="NoGIFs">Sem GIFs</string>

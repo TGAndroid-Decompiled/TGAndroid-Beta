@@ -197,6 +197,7 @@ import org.telegram.ui.Components.PacmanAnimation;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
+import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
 import org.telegram.ui.Components.ProxyDrawable;
 import org.telegram.ui.Components.PullForegroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -217,6 +218,7 @@ import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.FilteredSearchView;
+import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.GroupCreateFinalActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stars.StarsController;
@@ -1037,8 +1039,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public class AnonymousClass44 extends UndoView {
-        AnonymousClass44(Context context) {
+    public class AnonymousClass45 extends UndoView {
+        AnonymousClass45(Context context) {
             super(context);
         }
 
@@ -1084,7 +1086,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                DialogsActivity.AnonymousClass44.this.lambda$onRemoveDialogAction$0(i2, tLRPC$Dialog);
+                                DialogsActivity.AnonymousClass45.this.lambda$onRemoveDialogAction$0(i2, tLRPC$Dialog);
                             }
                         });
                     } else {
@@ -1293,8 +1295,57 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public class AnonymousClass59 implements DialogsSearchAdapter.DialogsSearchAdapterDelegate {
-        AnonymousClass59() {
+    public class AnonymousClass6 extends FilterTabsView {
+        AnonymousClass6(Context context) {
+            super(context);
+        }
+
+        public void lambda$onDefaultTabMoved$0() {
+            DialogsActivity.this.showDialog(new PremiumFeatureBottomSheet(DialogsActivity.this, 9, true));
+            DialogsActivity.this.filterTabsView.setIsEditing(false);
+            DialogsActivity.this.showDoneItem(false);
+        }
+
+        @Override
+        protected void onDefaultTabMoved() {
+            if (DialogsActivity.this.getMessagesController().premiumFeaturesBlocked()) {
+                return;
+            }
+            try {
+                performHapticFeedback(3, 1);
+            } catch (Exception unused) {
+            }
+            DialogsActivity dialogsActivity = DialogsActivity.this;
+            dialogsActivity.topBulletin = BulletinFactory.of(dialogsActivity).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.AnonymousClass6.this.lambda$onDefaultTabMoved$0();
+                }
+            }).show(true);
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+            DialogsActivity.this.maybeStartTracking = false;
+            return super.onInterceptTouchEvent(motionEvent);
+        }
+
+        @Override
+        public void setTranslationY(float f) {
+            if (getTranslationY() != f) {
+                super.setTranslationY(f);
+                DialogsActivity.this.updateContextViewPosition();
+                View view = DialogsActivity.this.fragmentView;
+                if (view != null) {
+                    view.invalidate();
+                }
+            }
+        }
+    }
+
+    public class AnonymousClass60 implements DialogsSearchAdapter.DialogsSearchAdapterDelegate {
+        AnonymousClass60() {
         }
 
         public void lambda$needClearList$1(DialogInterface dialogInterface, int i) {
@@ -1393,7 +1444,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 onClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        DialogsActivity.AnonymousClass59.this.lambda$needClearList$1(dialogInterface, i);
+                        DialogsActivity.AnonymousClass60.this.lambda$needClearList$1(dialogInterface, i);
                     }
                 };
             } else {
@@ -1403,7 +1454,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 onClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        DialogsActivity.AnonymousClass59.this.lambda$needClearList$2(dialogInterface, i);
+                        DialogsActivity.AnonymousClass60.this.lambda$needClearList$2(dialogInterface, i);
                     }
                 };
             }
@@ -1429,7 +1480,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             builder.setPositiveButton(LocaleController.getString(R.string.StickersRemove), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    DialogsActivity.AnonymousClass59.this.lambda$needRemoveHint$0(j, dialogInterface, i);
+                    DialogsActivity.AnonymousClass60.this.lambda$needRemoveHint$0(j, dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1466,55 +1517,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             if (z && DialogsActivity.this.searchViewPager.dialogsSearchAdapter.getItemCount() == 0) {
                 DialogsActivity.this.searchViewPager.cancelEnterAnimation();
-            }
-        }
-    }
-
-    public class AnonymousClass6 extends FilterTabsView {
-        AnonymousClass6(Context context) {
-            super(context);
-        }
-
-        public void lambda$onDefaultTabMoved$0() {
-            DialogsActivity.this.showDialog(new PremiumFeatureBottomSheet(DialogsActivity.this, 9, true));
-            DialogsActivity.this.filterTabsView.setIsEditing(false);
-            DialogsActivity.this.showDoneItem(false);
-        }
-
-        @Override
-        protected void onDefaultTabMoved() {
-            if (DialogsActivity.this.getMessagesController().premiumFeaturesBlocked()) {
-                return;
-            }
-            try {
-                performHapticFeedback(3, 1);
-            } catch (Exception unused) {
-            }
-            DialogsActivity dialogsActivity = DialogsActivity.this;
-            dialogsActivity.topBulletin = BulletinFactory.of(dialogsActivity).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, new Runnable() {
-                @Override
-                public final void run() {
-                    DialogsActivity.AnonymousClass6.this.lambda$onDefaultTabMoved$0();
-                }
-            }).show(true);
-        }
-
-        @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-            DialogsActivity.this.maybeStartTracking = false;
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-
-        @Override
-        public void setTranslationY(float f) {
-            if (getTranslationY() != f) {
-                super.setTranslationY(f);
-                DialogsActivity.this.updateContextViewPosition();
-                View view = DialogsActivity.this.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                }
             }
         }
     }
@@ -4898,6 +4900,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         lambda$updateDialogsHint$29();
     }
 
+    public void lambda$updateDialogsHint$32(BirthdayController.BirthdayState birthdayState, View view) {
+        if (birthdayState == null || birthdayState.today.size() != 1) {
+            UserSelectorBottomSheet.open(0L, birthdayState);
+        } else {
+            showDialog(new GiftSheet(getContext(), this.currentAccount, birthdayState.today.get(0).id, null, null));
+        }
+    }
+
     public void lambda$updateDialogsHint$33(View view) {
         BirthdayController.getInstance(this.currentAccount).hide();
         MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "BIRTHDAY_CONTACTS_TODAY");
@@ -7355,7 +7365,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         };
         this.searchViewPager = searchViewPager2;
         ((ContentView) this.fragmentView).addView(searchViewPager2, this.searchViewPagerIndex);
-        this.searchViewPager.dialogsSearchAdapter.setDelegate(new AnonymousClass59());
+        this.searchViewPager.dialogsSearchAdapter.setDelegate(new AnonymousClass60());
         this.searchViewPager.channelsSearchListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
             public boolean hasDoubleTap(View view, int i) {
@@ -7455,7 +7465,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         Context context;
         if (this.undoView[0] == null && (context = getContext()) != null) {
             for (int i = 0; i < 2; i++) {
-                this.undoView[i] = new AnonymousClass44(context);
+                this.undoView[i] = new AnonymousClass45(context);
                 ContentView contentView = (ContentView) this.fragmentView;
                 UndoView undoView = this.undoView[i];
                 int i2 = this.undoViewIndex + 1;

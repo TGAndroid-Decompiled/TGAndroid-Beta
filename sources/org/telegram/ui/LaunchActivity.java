@@ -81,6 +81,7 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
@@ -2593,6 +2594,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         long j = tLRPC$User.id;
         WebViewRequestProps of = WebViewRequestProps.of(i, j, j, null, null, 3, 0, false, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User, 0, z);
         if (getBottomSheetTabs() == null || getBottomSheetTabs().tryReopenTab(of) == null) {
+            SharedPrefsHelper.setWebViewConfirmShown(this.currentAccount, tLRPC$User.id, true);
             if (AndroidUtilities.isTablet()) {
                 BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, baseFragment.getResourceProvider());
                 botWebViewSheet.setWasOpenedByLinkIntent(z2);
@@ -3170,9 +3172,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         });
     }
 
-    public void lambda$runLinkRequest$65(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, AtomicBoolean atomicBoolean, final int i, Long l, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, String str12, boolean z, Integer num, Long l2, Long l3, Integer num2, String str13, HashMap hashMap, String str14, String str15, String str16, String str17, TLRPC$TL_wallPaper tLRPC$TL_wallPaper, String str18, String str19, String str20, boolean z2, String str21, int i2, int i3, String str22, String str23, String str24, String str25, String str26, Browser.Progress progress, boolean z3, int i4, boolean z4, String str27, TLRPC$User tLRPC$User, Runnable runnable, boolean z5, boolean z6, boolean z7) {
+    public void lambda$runLinkRequest$65(Long l, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, AtomicBoolean atomicBoolean, final int i, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, String str12, boolean z, Integer num, Long l2, Long l3, Integer num2, String str13, HashMap hashMap, String str14, String str15, String str16, String str17, TLRPC$TL_wallPaper tLRPC$TL_wallPaper, String str18, String str19, String str20, boolean z2, String str21, int i2, int i3, String str22, String str23, String str24, String str25, String str26, Browser.Progress progress, boolean z3, int i4, boolean z4, String str27, TLRPC$User tLRPC$User, Runnable runnable, boolean z5, boolean z6, boolean z7) {
+        SharedPrefsHelper.setWebViewConfirmShown(this.currentAccount, l.longValue(), true);
         tLRPC$TL_attachMenuBot.inactive = false;
-        tLRPC$TL_attachMenuBot.request_write_access = !atomicBoolean.get();
+        tLRPC$TL_attachMenuBot.request_write_access = true ^ atomicBoolean.get();
         TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
         tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(l.longValue());
         tLRPC$TL_messages_toggleBotInAttachMenu.write_allowed = atomicBoolean.get();
@@ -3209,7 +3212,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     AlertsCreator.createBotLaunchAlert(getLastFragment(), atomicBoolean, tLRPC$User, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.this.lambda$runLinkRequest$65(tLRPC$TL_attachMenuBot, atomicBoolean, i, l3, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, z, num, l, l2, num2, str13, hashMap, str14, str15, str16, str17, tLRPC$TL_wallPaper, str18, str19, str20, z2, str21, i2, i3, str22, str23, str24, str26, str27, progress, z3, i4, z4, str25, tLRPC$User, runnable, z5, z6, z7);
+                            LaunchActivity.this.lambda$runLinkRequest$65(l3, tLRPC$TL_attachMenuBot, atomicBoolean, i, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, z, num, l, l2, num2, str13, hashMap, str14, str15, str16, str17, tLRPC$TL_wallPaper, str18, str19, str20, z2, str21, i2, i3, str22, str23, str24, str26, str27, progress, z3, i4, z4, str25, tLRPC$User, runnable, z5, z6, z7);
                         }
                     });
                     return;
@@ -3343,8 +3346,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runLinkRequest$75(final int i, final Runnable runnable, final String str, final String str2, final boolean z, final String str3, final String str4, final int i2, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final String str13, final String str14, final String str15, final String str16, final boolean z2, final Integer num, final Long l, final Long l2, final Integer num2, final HashMap hashMap, final String str17, final String str18, final String str19, final String str20, final TLRPC$TL_wallPaper tLRPC$TL_wallPaper, final String str21, final String str22, final int i3, final int i4, final String str23, final String str24, final String str25, final Browser.Progress progress, final boolean z3, final boolean z4, final String str26, final boolean z5, final boolean z6, final boolean z7, final String str27, int[] iArr, final Long l3) {
         BulletinFactory of;
         String string;
-        long j;
-        long j2;
+        long longValue;
         boolean z8;
         BulletinFactory of2;
         int i5;
@@ -3394,7 +3396,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     if (str27 != null) {
                         TLRPC$User user2 = MessagesController.getInstance(i2).getUser(l3);
                         if (user2 != null && user2.bot) {
-                            MessagesController.getInstance(i2).openApp(null, user2, 0, progress);
+                            MessagesController.getInstance(i2).openApp(null, user2, str27, 0, progress);
                         }
                     } else if (str23 != null && str24 == null) {
                         TLRPC$User user3 = MessagesController.getInstance(i2).getUser(l3);
@@ -3456,29 +3458,20 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     } else if (str10 == null && str11 == null) {
                         Bundle bundle2 = new Bundle();
                         TLRPC$User user5 = MessagesController.getInstance(i2).getUser(l3);
-                        long longValue = l3.longValue();
                         long longValue2 = l3.longValue();
-                        if (longValue < 0) {
-                            bundle2.putLong("chat_id", -longValue2);
-                            j2 = l3.longValue();
+                        long longValue3 = l3.longValue();
+                        if (longValue2 < 0) {
+                            bundle2.putLong("chat_id", -longValue3);
+                            longValue = l3.longValue();
                         } else {
-                            bundle2.putLong("user_id", longValue2);
-                            long longValue3 = l3.longValue();
+                            bundle2.putLong("user_id", longValue3);
+                            longValue = l3.longValue();
                             if (str28 != null) {
                                 if (str28.startsWith("@")) {
-                                    StringBuilder sb = new StringBuilder();
-                                    j = longValue3;
-                                    sb.append(" ");
-                                    sb.append(str28);
-                                    str28 = sb.toString();
-                                } else {
-                                    j = longValue3;
+                                    str28 = " " + str28;
                                 }
                                 bundle2.putString("start_text", str28);
-                            } else {
-                                j = longValue3;
                             }
-                            j2 = j;
                         }
                         if (str9 == null || user5 == null || !user5.bot) {
                             z8 = false;
@@ -3514,12 +3507,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ArrayList arrayList3 = mainFragmentsStack;
                         BaseFragment baseFragment = (arrayList3.isEmpty() || str2 != null) ? null : (BaseFragment) arrayList3.get(arrayList3.size() - 1);
                         if (baseFragment == null || MessagesController.getInstance(i2).checkCanOpenChat(bundle2, baseFragment)) {
-                            boolean z9 = (baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getDialogId() == j2;
+                            boolean z9 = (baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getDialogId() == longValue;
                             if (z8 && z9) {
                                 ((ChatActivity) baseFragment).setBotUser(str9);
                             } else if (str24 == null || !z9) {
-                                long j3 = -j2;
-                                TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j3));
+                                long j = -longValue;
+                                TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
                                 if (z7) {
                                     try {
                                         runnable.run();
@@ -3541,12 +3534,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                     return;
                                 }
                                 if (chat == null || !chat.forum) {
-                                    MessagesController.getInstance(i2).ensureMessagesLoaded(j2, num == null ? 0 : num.intValue(), new AnonymousClass18(runnable, str3, baseFragment, j2, num, bundle2));
+                                    MessagesController.getInstance(i2).ensureMessagesLoaded(longValue, num == null ? 0 : num.intValue(), new AnonymousClass18(runnable, str3, baseFragment, longValue, num, bundle2));
                                     return;
                                 }
                                 Long valueOf = (l2 != null || num == null) ? l2 : Long.valueOf(num.intValue());
                                 if (valueOf != null && valueOf.longValue() != 0) {
-                                    openForumFromLink(j2, num, new Runnable() {
+                                    openForumFromLink(longValue, num, new Runnable() {
                                         @Override
                                         public final void run() {
                                             LaunchActivity.lambda$runLinkRequest$74(runnable);
@@ -3555,7 +3548,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                     return;
                                 }
                                 Bundle bundle4 = new Bundle();
-                                bundle4.putLong("chat_id", j3);
+                                bundle4.putLong("chat_id", j);
                                 if (str2 != null) {
                                     bundle4.putString("voicechat", str2);
                                 }

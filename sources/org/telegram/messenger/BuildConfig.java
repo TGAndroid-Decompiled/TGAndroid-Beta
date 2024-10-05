@@ -4,7 +4,7 @@ public final class BuildConfig {
     public static final String APP_CENTER_HASH = "";
     public static final boolean BUILD_HOST_IS_WINDOWS = false;
     public static final String BUILD_TYPE = "standalone";
-    public static final String BUILD_VERSION_STRING = "11.2.0";
+    public static final String BUILD_VERSION_STRING = "11.2.1";
     public static final boolean DEBUG = false;
     public static final boolean DEBUG_PRIVATE_VERSION = false;
     public static final boolean DEBUG_VERSION = false;

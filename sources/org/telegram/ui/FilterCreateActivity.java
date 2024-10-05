@@ -361,8 +361,8 @@ public class FilterCreateActivity extends BaseFragment {
 
         public class AnonymousClass1 extends AdapterWithDiffUtils {
 
-            public class C00401 extends LinkCell {
-                C00401(Context context, BaseFragment baseFragment, int i, int i2) {
+            public class C00391 extends LinkCell {
+                C00391(Context context, BaseFragment baseFragment, int i, int i2) {
                     super(context, baseFragment, i, i2);
                 }
 
@@ -386,19 +386,19 @@ public class FilterCreateActivity extends BaseFragment {
                     makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable() {
                         @Override
                         public final void run() {
-                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.copy();
+                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.copy();
                         }
                     });
                     makeOptions.add(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable() {
                         @Override
                         public final void run() {
-                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.qrcode();
+                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.qrcode();
                         }
                     });
                     makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DeleteLink), true, new Runnable() {
                         @Override
                         public final void run() {
-                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.deleteLink();
+                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.deleteLink();
                         }
                     });
                     if (LocaleController.isRTL) {
@@ -516,7 +516,7 @@ public class FilterCreateActivity extends BaseFragment {
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(i2));
                         return new RecyclerListView.Holder(textInfoPrivacyCell);
                     }
-                    textInfoPrivacyCell = new C00401(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
+                    textInfoPrivacyCell = new C00391(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
                 }
                 i2 = Theme.key_dialogBackground;
                 textInfoPrivacyCell.setBackgroundColor(Theme.getColor(i2));
@@ -751,8 +751,8 @@ public class FilterCreateActivity extends BaseFragment {
         protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
             AnonymousClass1 anonymousClass1 = new AdapterWithDiffUtils() {
 
-                public class C00401 extends LinkCell {
-                    C00401(Context context, BaseFragment baseFragment, int i, int i2) {
+                public class C00391 extends LinkCell {
+                    C00391(Context context, BaseFragment baseFragment, int i, int i2) {
                         super(context, baseFragment, i, i2);
                     }
 
@@ -776,19 +776,19 @@ public class FilterCreateActivity extends BaseFragment {
                         makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.copy();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.copy();
                             }
                         });
                         makeOptions.add(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.qrcode();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.qrcode();
                             }
                         });
                         makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DeleteLink), true, new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.deleteLink();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.deleteLink();
                             }
                         });
                         if (LocaleController.isRTL) {
@@ -906,7 +906,7 @@ public class FilterCreateActivity extends BaseFragment {
                             textInfoPrivacyCell.setBackgroundColor(Theme.getColor(i2));
                             return new RecyclerListView.Holder(textInfoPrivacyCell);
                         }
-                        textInfoPrivacyCell = new C00401(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
+                        textInfoPrivacyCell = new C00391(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
                     }
                     i2 = Theme.key_dialogBackground;
                     textInfoPrivacyCell.setBackgroundColor(Theme.getColor(i2));

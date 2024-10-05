@@ -2210,7 +2210,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             return;
         }
         int i = tL_stars$StarGift.availability_remains;
-        textView.setText(i <= 0 ? LocaleController.formatPluralStringComma("Gift2Availability2ValueNone", tL_stars$StarGift.availability_total) : LocaleController.formatString(R.string.Gift2Availability2Value, LocaleController.formatNumber(i, ','), LocaleController.formatNumber(tL_stars$StarGift.availability_total, ',')));
+        int i2 = tL_stars$StarGift.availability_total;
+        textView.setText(i <= 0 ? LocaleController.formatPluralStringComma("Gift2Availability2ValueNone", i2) : LocaleController.formatPluralStringComma("Gift2Availability4Value", i, LocaleController.formatNumber(i2, ',')));
     }
 
     public static void lambda$createView$0(Context context) {

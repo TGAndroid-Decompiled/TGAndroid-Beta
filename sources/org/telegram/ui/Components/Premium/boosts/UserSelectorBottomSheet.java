@@ -716,8 +716,6 @@ public abstract class UserSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 List filterGiftOptionsByBilling = BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, arrayList.size()));
                 if (arrayList.size() == 1) {
                     new GiftSheet(getContext(), this.currentAccount, ((TLRPC$User) arrayList.get(0)).id, filterGiftOptionsByBilling, new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this)).show();
-                } else {
-                    PremiumPreviewGiftToUsersBottomSheet.show(arrayList, filterGiftOptionsByBilling);
                 }
             }
         }

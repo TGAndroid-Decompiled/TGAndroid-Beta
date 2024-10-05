@@ -1336,6 +1336,9 @@ public class ChatObject {
     }
 
     public static boolean canSendMessages(TLRPC$Chat tLRPC$Chat) {
+        if (isNotInChat(tLRPC$Chat) && tLRPC$Chat != null && tLRPC$Chat.join_to_send) {
+            return false;
+        }
         if (isIgnoredChatRestrictionsForBoosters(tLRPC$Chat)) {
             return true;
         }

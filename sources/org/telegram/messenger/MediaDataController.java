@@ -8515,7 +8515,8 @@ public class MediaDataController extends BaseController {
         this.isLoadingReactions = false;
         if (!z) {
             putReactionsToCache(list, i, i2);
-        } else if (Math.abs((System.currentTimeMillis() / 1000) - i2) >= 3600) {
+        } else {
+            Math.abs((System.currentTimeMillis() / 1000) - i2);
             loadReactions(false, Integer.valueOf(i));
         }
     }

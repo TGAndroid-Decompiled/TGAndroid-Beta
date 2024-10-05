@@ -2811,6 +2811,13 @@ public class StarsController {
             return;
         }
         final TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+        if (user == null) {
+            if (callback2 != null) {
+                callback2.run(Boolean.FALSE, null);
+                return;
+            }
+            return;
+        }
         final TLRPC$TL_inputInvoiceStarGift tLRPC$TL_inputInvoiceStarGift = new TLRPC$TL_inputInvoiceStarGift();
         tLRPC$TL_inputInvoiceStarGift.hide_name = z;
         MessagesController.getInstance(this.currentAccount);

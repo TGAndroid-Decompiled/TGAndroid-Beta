@@ -14,6 +14,17 @@ public class GradientClip {
     private final Paint[] paint = new Paint[4];
     private final Matrix matrix = new Matrix();
 
+    public void clipOut(Canvas canvas, RectF rectF, float f) {
+        Paint[] paintArr = this.paint;
+        if (paintArr[0] == null) {
+            paintArr[0] = new Paint(1);
+            this.paint[0].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        this.paint[0].setShader(this.gradient);
+        this.paint[0].setAlpha((int) (f * 255.0f));
+        canvas.drawRect(rectF, this.paint[0]);
+    }
+
     public void draw(Canvas canvas, RectF rectF, int i, float f) {
         Matrix matrix;
         float f2;

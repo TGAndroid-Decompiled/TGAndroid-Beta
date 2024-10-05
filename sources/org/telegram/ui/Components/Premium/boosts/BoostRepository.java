@@ -71,6 +71,7 @@ import org.telegram.tgnet.TLRPC$TL_payments_getPaymentForm;
 import org.telegram.tgnet.TLRPC$TL_payments_getPremiumGiftCodeOptions;
 import org.telegram.tgnet.TLRPC$TL_payments_launchPrepaidGiveaway;
 import org.telegram.tgnet.TLRPC$TL_premiumGiftCodeOption;
+import org.telegram.tgnet.TLRPC$TL_textWithEntities;
 import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
@@ -930,16 +931,16 @@ public abstract class BoostRepository {
         });
     }
 
-    public static void payGiftCode(List list, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
+    public static void payGiftCode(List list, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
         invalidateGiftOptionsToCache(UserConfig.selectedAccount);
         if (isGoogleBillingAvailable()) {
-            payGiftCodeByGoogle(list, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, baseFragment, callback, callback2);
+            payGiftCodeByGoogle(list, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, tLRPC$TL_textWithEntities, baseFragment, callback, callback2);
         } else {
-            payGiftCodeByInvoice(list, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, baseFragment, callback, callback2);
+            payGiftCodeByInvoice(list, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, tLRPC$TL_textWithEntities, baseFragment, callback, callback2);
         }
     }
 
-    public static void payGiftCodeByGoogle(List list, final TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiftCodeByGoogle(List list, final TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         final ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final TLRPC$TL_inputStorePaymentPremiumGiftCode tLRPC$TL_inputStorePaymentPremiumGiftCode = new TLRPC$TL_inputStorePaymentPremiumGiftCode();
@@ -963,7 +964,7 @@ public abstract class BoostRepository {
         });
     }
 
-    public static void payGiftCodeByInvoice(List list, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiftCodeByInvoice(List list, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC$TL_payments_getPaymentForm tLRPC$TL_payments_getPaymentForm = new TLRPC$TL_payments_getPaymentForm();
@@ -978,7 +979,7 @@ public abstract class BoostRepository {
             }
         }
         if (tLRPC$Chat != null) {
-            tLRPC$TL_inputStorePaymentPremiumGiftCode.flags = 1;
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.flags |= 1;
             tLRPC$TL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
         }
         tLRPC$TL_inputStorePaymentPremiumGiftCode.currency = tLRPC$TL_premiumGiftCodeOption.currency;
@@ -990,7 +991,7 @@ public abstract class BoostRepository {
             TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
             tLRPC$TL_payments_getPaymentForm.theme_params = tLRPC$TL_dataJSON;
             tLRPC$TL_dataJSON.data = makeThemeParams.toString();
-            tLRPC$TL_payments_getPaymentForm.flags = 1 | tLRPC$TL_payments_getPaymentForm.flags;
+            tLRPC$TL_payments_getPaymentForm.flags |= 1;
         }
         tLRPC$TL_payments_getPaymentForm.invoice = tLRPC$TL_inputInvoicePremiumGiftCode;
         connectionsManager.sendRequest(tLRPC$TL_payments_getPaymentForm, new RequestDelegate() {

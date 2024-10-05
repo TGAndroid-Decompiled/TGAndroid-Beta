@@ -575,7 +575,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                         return;
                     }
                     this.actionBtn.updateLoading(true);
-                    BoostRepository.payGiftCode(this.selectedUsers, tLRPC$TL_premiumGiftCodeOption, this.currentChat, baseFragment, new Utilities.Callback() {
+                    BoostRepository.payGiftCode(this.selectedUsers, tLRPC$TL_premiumGiftCodeOption, this.currentChat, null, baseFragment, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
                             BoostViaGiftsBottomSheet.this.lambda$new$14((Void) obj);

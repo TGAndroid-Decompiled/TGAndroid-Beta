@@ -807,7 +807,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
-                Browser.openUrl(chatMessageCell.getContext(), str);
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell, tLRPC$WebPage, str, z);
             }
 
             @Override
@@ -1049,6 +1049,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressReplyMessage(ChatActionCell chatActionCell, int i) {
+            }
+
+            @Override
+            public void forceUpdate(ChatActionCell chatActionCell, boolean z) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$forceUpdate(this, chatActionCell, z);
             }
 
             @Override
