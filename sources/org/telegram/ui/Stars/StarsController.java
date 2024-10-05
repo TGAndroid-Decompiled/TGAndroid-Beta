@@ -101,6 +101,7 @@ public class StarsController {
         public boolean endReached;
         public String lastOffset;
         public boolean loading;
+        public boolean shown;
         public int totalCount;
         public ArrayList gifts = new ArrayList();
         public int currentRequestId = -1;
@@ -135,7 +136,7 @@ public class StarsController {
             });
         }
 
-        public void invalidate() {
+        public void invalidate(boolean z) {
             this.loading = false;
             if (this.currentRequestId != -1) {
                 ConnectionsManager.getInstance(StarsController.this.currentAccount).cancelRequest(this.currentRequestId, true);
@@ -144,7 +145,9 @@ public class StarsController {
             this.gifts.clear();
             this.lastOffset = null;
             this.endReached = false;
-            load();
+            if (z || this.shown) {
+                load();
+            }
         }
 
         public void load() {
@@ -2982,6 +2985,21 @@ public class StarsController {
         this.balanceLoaded = false;
         getBalance();
         this.balanceLoaded = true;
+    }
+
+    public void invalidateProfileGifts(long j) {
+        GiftsList profileGiftsList = getProfileGiftsList(j, false);
+        if (profileGiftsList != null) {
+            profileGiftsList.invalidate(false);
+        }
+    }
+
+    public void invalidateProfileGifts(TLRPC.UserFull userFull) {
+        GiftsList profileGiftsList;
+        if (userFull == null || (profileGiftsList = getProfileGiftsList(userFull.id, false)) == null || profileGiftsList.totalCount == userFull.stargifts_count) {
+            return;
+        }
+        profileGiftsList.invalidate(false);
     }
 
     public void invalidateStarGifts() {

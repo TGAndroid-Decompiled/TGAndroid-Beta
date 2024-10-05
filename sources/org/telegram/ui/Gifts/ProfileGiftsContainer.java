@@ -88,7 +88,10 @@ public class ProfileGiftsContainer extends FrameLayout implements NotificationCe
         this.visibleHeight = AndroidUtilities.displaySize.y;
         this.currentAccount = i;
         this.userId = j;
-        this.list = StarsController.getInstance(i).getProfileGiftsList(j);
+        StarsController.GiftsList profileGiftsList = StarsController.getInstance(i).getProfileGiftsList(j);
+        this.list = profileGiftsList;
+        profileGiftsList.shown = true;
+        profileGiftsList.load();
         this.resourcesProvider = resourcesProvider;
         int i2 = Theme.key_windowBackgroundWhite;
         setBackgroundColor(Theme.blendOver(Theme.getColor(i2, resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 0.04f)));
@@ -253,16 +256,24 @@ public class ProfileGiftsContainer extends FrameLayout implements NotificationCe
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
         UniversalRecyclerView universalRecyclerView = this.listView;
-        if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
-            return;
+        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
+            universalAdapter.update(false);
         }
-        universalAdapter.update(false);
+        StarsController.GiftsList giftsList = this.list;
+        if (giftsList != null) {
+            giftsList.shown = true;
+            giftsList.load();
+        }
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+        StarsController.GiftsList giftsList = this.list;
+        if (giftsList != null) {
+            giftsList.shown = false;
+        }
     }
 
     public void onItemClick(UItem uItem, View view, int i, float f, float f2) {

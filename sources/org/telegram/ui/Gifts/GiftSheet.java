@@ -406,11 +406,13 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             TextView textView = this.priceView;
             StringBuilder sb = new StringBuilder();
             sb.append("XTR ");
-            long j = userStarGift.convert_stars;
-            if (j <= 0) {
-                j = userStarGift.gift.convert_stars;
+            TL_stars.StarGift starGift = userStarGift.gift;
+            long j = starGift.stars;
+            long j2 = userStarGift.convert_stars;
+            if (j2 <= 0) {
+                j2 = starGift.convert_stars;
             }
-            sb.append(LocaleController.formatNumber(j, ','));
+            sb.append(LocaleController.formatNumber(Math.max(j, j2), ','));
             textView.setText(StarsIntroActivity.replaceStarsWithPlain(sb.toString(), 0.66f));
             this.priceView.setBackground(new StarsBackground());
             this.priceView.setTextColor(-4229632);
