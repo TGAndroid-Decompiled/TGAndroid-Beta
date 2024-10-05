@@ -42,7 +42,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
@@ -2315,6 +2314,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static void lambda$setGiftImage$16(int i, int i2, ImageReceiver imageReceiver, final boolean[] zArr) {
+        TLRPC.Document document;
         String str = UserConfig.getInstance(i).premiumGiftsStickerPack;
         if (str == null) {
             MediaDataController.getInstance(i).checkPremiumGiftStickers();
@@ -2325,7 +2325,6 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             stickerSetByName = MediaDataController.getInstance(i).getStickerSetByEmojiOrName(str);
         }
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
-        TLRPC.Document document = null;
         if (tL_messages_stickerSet != null) {
             String str2 = i2 == 2 ? "2⃣" : i2 == 3 ? "3⃣" : "4⃣";
             int i3 = 0;
@@ -2336,16 +2335,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 TLRPC.TL_stickerPack tL_stickerPack = tL_messages_stickerSet.packs.get(i3);
                 if (TextUtils.equals(tL_stickerPack.emoticon, str2) && !tL_stickerPack.documents.isEmpty()) {
                     long longValue = tL_stickerPack.documents.get(0).longValue();
-                    int i4 = 0;
-                    while (true) {
-                        if (i4 < tL_messages_stickerSet.documents.size()) {
-                            TLRPC.Document document2 = tL_messages_stickerSet.documents.get(i4);
-                            if (document2 != null && document2.id == longValue) {
-                                document = document2;
-                                break;
-                            }
-                            i4++;
-                        } else {
+                    for (int i4 = 0; i4 < tL_messages_stickerSet.documents.size(); i4++) {
+                        document = tL_messages_stickerSet.documents.get(i4);
+                        if (document != null && document.id == longValue) {
                             break;
                         }
                     }
@@ -2353,9 +2345,12 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     i3++;
                 }
             }
+            document = null;
             if (document == null && !tL_messages_stickerSet.documents.isEmpty()) {
                 document = tL_messages_stickerSet.documents.get(0);
             }
+        } else {
+            document = null;
         }
         if (document == null) {
             MediaDataController.getInstance(i).loadStickersByEmojiOrName(str, false, tL_messages_stickerSet == null);
@@ -2385,8 +2380,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
         });
         Drawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 0.3f);
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
         imageReceiver.setAutoRepeat(0);
-        imageReceiver.setImage(ImageLocation.getForDocument(document), String.format(Locale.US, "%d_%d_nr", 160, 160), svgThumb, "tgs", tL_messages_stickerSet, 1);
+        imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", tL_messages_stickerSet, 1);
     }
 
     public static void lambda$setGiftImage$19(Runnable runnable, Runnable runnable2) {
