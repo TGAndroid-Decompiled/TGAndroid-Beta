@@ -41,7 +41,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingSpan;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
@@ -224,7 +224,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         setSlidingActionBar();
         this.headerPaddingTop = AndroidUtilities.dp(4.0f);
         this.headerPaddingBottom = AndroidUtilities.dp(-15.0f);
-        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkURLPlaceholder), true, -1, resourcesProvider);
+        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkURLPlaceholder), true, false, -1, resourcesProvider);
         this.urlEditText = editTextCell;
         editTextCell.whenHitEnter(new Runnable() {
             @Override
@@ -299,7 +299,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
                 storyLinkSheet.needRemoveDefPrefix = z;
             }
         });
-        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, -1, resourcesProvider);
+        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, false, -1, resourcesProvider);
         this.nameEditText = editTextCell2;
         editTextCell2.whenHitEnter(new Runnable() {
             @Override
@@ -426,8 +426,8 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         }
         if (charSequence != null) {
             this.urlEditText.editText.setText(charSequence.toString());
-            EditTextBoldCursor editTextBoldCursor = this.urlEditText.editText;
-            editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
+            EditTextCaption editTextCaption = this.urlEditText.editText;
+            editTextCaption.setSelection(0, editTextCaption.getText().length());
         }
         runnable.run();
     }

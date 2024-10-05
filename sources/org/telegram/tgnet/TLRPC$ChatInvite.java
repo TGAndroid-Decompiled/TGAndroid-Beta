@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stars$TL_starsSubscriptionPricing;
 
 public abstract class TLRPC$ChatInvite extends TLObject {
     public String about;
@@ -20,7 +21,7 @@ public abstract class TLRPC$ChatInvite extends TLObject {
     public boolean request_needed;
     public boolean scam;
     public long subscription_form_id;
-    public TLRPC$TL_starsSubscriptionPricing subscription_pricing;
+    public TL_stars$TL_starsSubscriptionPricing subscription_pricing;
     public String title;
     public boolean verified;
 

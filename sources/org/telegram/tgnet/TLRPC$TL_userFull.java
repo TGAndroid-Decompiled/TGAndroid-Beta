@@ -109,11 +109,14 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             this.personal_channel_id = abstractSerializedData.readInt64(z);
             this.personal_channel_message = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags2 & 256) != 0) {
+            this.stargifts_count = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-862357728);
+        abstractSerializedData.writeInt32(525919081);
         int i = this.blocked ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.phone_calls_available ? i | 16 : i & (-17);
@@ -219,6 +222,9 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags2 & 64) != 0) {
             abstractSerializedData.writeInt64(this.personal_channel_id);
             abstractSerializedData.writeInt32(this.personal_channel_message);
+        }
+        if ((this.flags2 & 256) != 0) {
+            abstractSerializedData.writeInt32(this.stargifts_count);
         }
     }
 }

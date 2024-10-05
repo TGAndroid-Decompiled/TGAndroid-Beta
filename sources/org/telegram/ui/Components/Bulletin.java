@@ -2078,6 +2078,14 @@ public class Bulletin {
         public void setAnimation(int i, String... strArr) {
             setAnimation(i, 32, 32, strArr);
         }
+
+        public void setAnimation(TLRPC$Document tLRPC$Document, int i, int i2, String... strArr) {
+            this.imageView.setAutoRepeat(true);
+            this.imageView.setAnimation(tLRPC$Document, i, i2);
+            for (String str : strArr) {
+                this.imageView.setLayerColor(str + ".**", this.textColor);
+            }
+        }
     }
 
     public static final class UndoButton extends Button {

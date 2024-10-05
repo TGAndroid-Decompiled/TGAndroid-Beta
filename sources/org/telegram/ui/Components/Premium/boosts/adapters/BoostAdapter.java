@@ -18,8 +18,8 @@ import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
-import org.telegram.tgnet.TLRPC$TL_starsGiveawayOption;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stars$TL_starsGiveawayOption;
 import org.telegram.tgnet.tl.TL_stories$PrepaidGiveaway;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ShadowSectionCell;
@@ -138,11 +138,11 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
-        public static Item asOption(TLRPC$TL_starsGiveawayOption tLRPC$TL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
+        public static Item asOption(TL_stars$TL_starsGiveawayOption tL_stars$TL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
             Item item = new Item(17, z);
             item.intValue = i;
             item.longValue = j;
-            item.object = tLRPC$TL_starsGiveawayOption;
+            item.object = tL_stars$TL_starsGiveawayOption;
             item.boolValue = z2;
             return item;
         }
@@ -403,7 +403,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             case 17:
                 StarGiveawayOptionCell starGiveawayOptionCell = (StarGiveawayOptionCell) viewHolder.itemView;
                 Object obj = item.object;
-                starGiveawayOptionCell.setOption(obj == null ? null : (TLRPC$TL_starsGiveawayOption) obj, item.intValue, item.longValue, item.selectable, item.boolValue);
+                starGiveawayOptionCell.setOption(obj == null ? null : (TL_stars$TL_starsGiveawayOption) obj, item.intValue, item.longValue, item.selectable, item.boolValue);
                 return;
             default:
                 return;

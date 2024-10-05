@@ -125,6 +125,7 @@ import org.telegram.tgnet.TLRPC$TL_messageActionPhoneCall;
 import org.telegram.tgnet.TLRPC$TL_messageActionPinMessage;
 import org.telegram.tgnet.TLRPC$TL_messageActionSetChatWallPaper;
 import org.telegram.tgnet.TLRPC$TL_messageActionSetSameChatWallPaper;
+import org.telegram.tgnet.TLRPC$TL_messageActionStarGift;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicEdit;
 import org.telegram.tgnet.TLRPC$TL_messageEmpty;
@@ -207,6 +208,7 @@ import org.telegram.ui.Components.Reactions.ReactionsUtils;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TranscribeButton;
 import org.telegram.ui.Components.URLSpanNoUnderlineBold;
+import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.StoriesController;
@@ -441,6 +443,7 @@ public class MessageObject {
     public boolean useCustomPhoto;
     public CharSequence vCardData;
     public VideoEditedInfo videoEditedInfo;
+    private Boolean videoQualitiesCached;
     public boolean viewsReloaded;
     public int wantedBotKeyboardWidth;
     public boolean wasJustSent;
@@ -2321,6 +2324,10 @@ public class MessageObject {
         return null;
     }
 
+    public static String getFileName(TLRPC$Document tLRPC$Document) {
+        return FileLoader.getAttachFileName(tLRPC$Document);
+    }
+
     public static String getFileName(TLRPC$Message tLRPC$Message) {
         TLRPC$Document tLRPC$Document;
         TLRPC$PhotoSize closestPhotoSizeWithSize;
@@ -2336,7 +2343,7 @@ public class MessageObject {
             }
             tLRPC$Document = getMedia(tLRPC$Message).webpage.document;
         }
-        return FileLoader.getAttachFileName(tLRPC$Document);
+        return getFileName(tLRPC$Document);
     }
 
     public static String getFileName(TLRPC$MessageMedia tLRPC$MessageMedia) {
@@ -3589,7 +3596,7 @@ public class MessageObject {
         if (this.isRepostPreview || this.isSaved || this.forceAvatar || this.customAvatarDrawable != null || this.searchType != 0) {
             return true;
         }
-        boolean z = getDialogId() < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) != null && chat.signature_profiles;
+        boolean z = getDialogId() >= 0 ? getDialogId() == 489000 : !((chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) == null || !chat.signature_profiles);
         if (!isSponsored()) {
             if ((isFromChat() && isFromUser()) || isFromGroup() || z || this.eventId != 0) {
                 return true;
@@ -4976,6 +4983,16 @@ public class MessageObject {
         return getFileName(this.messageOwner);
     }
 
+    public Long getForwardedFromId() {
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
+        TLRPC$Peer tLRPC$Peer;
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) == null) {
+            return null;
+        }
+        return Long.valueOf(DialogObject.getPeerDialogId(tLRPC$Peer));
+    }
+
     public String getForwardedName() {
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = this.messageOwner.fwd_from;
         if (tLRPC$MessageFwdHeader == null) {
@@ -5688,6 +5705,19 @@ public class MessageObject {
         return false;
     }
 
+    public boolean hasVideoQualities() {
+        if (this.videoQualitiesCached == null) {
+            try {
+                TLRPC$Message tLRPC$Message = this.messageOwner;
+                this.videoQualitiesCached = Boolean.valueOf(tLRPC$Message != null && VideoPlayer.hasQualities(this.currentAccount, tLRPC$Message.media));
+            } catch (Exception e) {
+                FileLog.e(e);
+                this.videoQualitiesCached = Boolean.FALSE;
+            }
+        }
+        return this.videoQualitiesCached.booleanValue();
+    }
+
     public boolean isAlbumSingle() {
         return getMedia(this) instanceof TLRPC$TL_messageMediaPaidMedia;
     }
@@ -6123,6 +6153,11 @@ public class MessageObject {
         return this.sponsoredId != null;
     }
 
+    public boolean isStarGiftAction() {
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        return tLRPC$Message != null && (tLRPC$Message.action instanceof TLRPC$TL_messageActionStarGift);
+    }
+
     public boolean isSticker() {
         int i = this.type;
         return i != 1000 ? i == 13 : isStickerDocument(getDocument()) || isVideoSticker(getDocument());
@@ -6388,7 +6423,7 @@ public class MessageObject {
         if (this.isRepostPreview || this.isSaved || this.forceAvatar || this.customAvatarDrawable != null || this.searchType != 0) {
             return true;
         }
-        boolean z = getDialogId() < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) != null && chat.signature_profiles;
+        boolean z = getDialogId() >= 0 ? getDialogId() == 489000 : !((chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) == null || !chat.signature_profiles);
         if (isSponsored()) {
             return false;
         }
@@ -6502,7 +6537,7 @@ public class MessageObject {
         if (!isVoiceOnce() && getDocument() != null && RingtoneDataStore.ringtoneSupportedMimeType.contains(getDocument().mime_type) && getDocument().size < MessagesController.getInstance(this.currentAccount).ringtoneSizeMax * 2) {
             for (int i = 0; i < getDocument().attributes.size(); i++) {
                 TLRPC$DocumentAttribute tLRPC$DocumentAttribute = getDocument().attributes.get(i);
-                if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) && tLRPC$DocumentAttribute.duration < 60.0d) {
+                if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) && tLRPC$DocumentAttribute.duration < 5.0d) {
                     return true;
                 }
             }
@@ -6843,22 +6878,25 @@ public class MessageObject {
             return;
         }
         TLRPC$Peer tLRPC$Peer = tLRPC$Message.from_id;
-        if ((tLRPC$Peer instanceof TLRPC$TL_peerUser) && tLRPC$Peer.user_id == 777000) {
-            if (loginCodePattern == null) {
-                loginCodePattern = Pattern.compile("[\\d\\-]{5,7}");
-            }
-            try {
-                Matcher matcher = loginCodePattern.matcher(this.messageText);
-                if (matcher.find()) {
-                    TLRPC$TL_messageEntitySpoiler tLRPC$TL_messageEntitySpoiler = new TLRPC$TL_messageEntitySpoiler();
-                    tLRPC$TL_messageEntitySpoiler.offset = matcher.start();
-                    tLRPC$TL_messageEntitySpoiler.length = matcher.end() - tLRPC$TL_messageEntitySpoiler.offset;
-                    this.messageOwner.entities.add(tLRPC$TL_messageEntitySpoiler);
+        if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
+            long j = tLRPC$Peer.user_id;
+            if (j == 777000 || j == 489000) {
+                if (loginCodePattern == null) {
+                    loginCodePattern = Pattern.compile("[\\d\\-]{5,8}");
                 }
-            } catch (Exception e) {
-                FileLog.e((Throwable) e, false);
+                try {
+                    Matcher matcher = loginCodePattern.matcher(this.messageText);
+                    if (matcher.find()) {
+                        TLRPC$TL_messageEntitySpoiler tLRPC$TL_messageEntitySpoiler = new TLRPC$TL_messageEntitySpoiler();
+                        tLRPC$TL_messageEntitySpoiler.offset = matcher.start();
+                        tLRPC$TL_messageEntitySpoiler.length = matcher.end() - tLRPC$TL_messageEntitySpoiler.offset;
+                        this.messageOwner.entities.add(tLRPC$TL_messageEntitySpoiler);
+                    }
+                } catch (Exception e) {
+                    FileLog.e((Throwable) e, false);
+                }
+                this.spoiledLoginCode = true;
             }
-            this.spoiledLoginCode = true;
         }
     }
 
@@ -6888,6 +6926,10 @@ public class MessageObject {
         expandChannelRecommendations(!this.channelJoinedExpanded);
     }
 
+    public void updateMessageText() {
+        updateMessageText(MessagesController.getInstance(this.currentAccount).getUsers(), MessagesController.getInstance(this.currentAccount).getChats(), null, null);
+    }
+
     public boolean updateTranslation() {
         return updateTranslation(false);
     }
@@ -6896,7 +6938,7 @@ public class MessageObject {
         String str;
         TLRPC$Message tLRPC$Message;
         MessageObject messageObject = this.replyMessageObject;
-        boolean z2 = messageObject != null && messageObject.updateTranslation(z);
+        boolean z2 = (messageObject == null || messageObject == this || !messageObject.updateTranslation(z)) ? false : true;
         TranslateController translateController = MessagesController.getInstance(this.currentAccount).getTranslateController();
         if (!TranslateController.isTranslatable(this) || !translateController.isTranslatingDialog(getDialogId()) || translateController.isTranslateDialogHidden(getDialogId()) || (tLRPC$Message = this.messageOwner) == null || tLRPC$Message.translatedText == null || !TextUtils.equals(translateController.getDialogTranslateTo(getDialogId()), this.messageOwner.translatedToLanguage)) {
             TLRPC$Message tLRPC$Message2 = this.messageOwner;

@@ -148,6 +148,7 @@ import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.Gifts.ProfileGiftsContainer;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
@@ -205,6 +206,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     private FragmentContextView fragmentContextView;
     private HintView fwdRestrictedHint;
     private GifAdapter gifAdapter;
+    public ProfileGiftsContainer giftsContainer;
     FlickerLoadingView globalGradientView;
     private ActionBarMenuItem gotoItem;
     private GroupUsersSearchAdapter groupUsersSearchAdapter;
@@ -816,7 +818,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         public void lambda$onClick$6(TLRPC$User tLRPC$User, boolean z) {
-            SharedMediaLayout.this.profileActivity.lambda$onBackPressed$307();
+            SharedMediaLayout.this.profileActivity.lambda$onBackPressed$300();
             if (SharedMediaLayout.this.profileActivity instanceof NotificationCenter.NotificationCenterDelegate) {
                 SharedMediaLayout.this.profileActivity.getNotificationCenter().removeObserver((NotificationCenter.NotificationCenterDelegate) SharedMediaLayout.this.profileActivity, NotificationCenter.closeChats);
             }
@@ -4361,7 +4363,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                         }
                     }
                     int i8 = 10;
-                    if (mediaPage.selectedType == 10 || mediaPage.selectedType == 12 || mediaPage.selectedType == 13) {
+                    if (mediaPage.selectedType == 10 || mediaPage.selectedType == 12 || mediaPage.selectedType == 13 || mediaPage.selectedType == 14) {
                         return;
                     }
                     if (mediaPage.selectedType == 0) {
@@ -5113,7 +5115,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                     public void onTransitionAnimationStart(boolean z, boolean z2) {
                                         if (this.firstCreateView) {
                                             if (this.searchItem != null) {
-                                                lambda$openSearchWithText$310("");
+                                                lambda$openSearchWithText$303("");
                                                 this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                             }
                                             SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -5299,7 +5301,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
                 this.profileActivity.getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0);
             }
-            dialogsActivity.lambda$onBackPressed$307();
+            dialogsActivity.lambda$onBackPressed$300();
             BaseFragment baseFragment = this.profileActivity;
             UndoView undoView = baseFragment instanceof ProfileActivity ? ((ProfileActivity) baseFragment).getUndoView() : null;
             if (undoView != null) {
@@ -5451,11 +5453,11 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.deleteItem.setVisibility(this.cantDeleteMessagesCount == 0 ? 0 : 8);
         ActionBarMenuItem actionBarMenuItem = this.gotoItem;
         if (actionBarMenuItem != null) {
-            actionBarMenuItem.setVisibility((getClosestTab() == 8 || getClosestTab() == 13) ? 8 : 0);
+            actionBarMenuItem.setVisibility((getClosestTab() == 8 || getClosestTab() == 13 || getClosestTab() == 14) ? 8 : 0);
         }
         ActionBarMenuItem actionBarMenuItem2 = this.forwardItem;
         if (actionBarMenuItem2 != null) {
-            if (getClosestTab() != 8 && getClosestTab() != 13) {
+            if (getClosestTab() != 8 && getClosestTab() != 13 && getClosestTab() != 14) {
                 i2 = 0;
             }
             actionBarMenuItem2.setVisibility(i2);
@@ -5977,7 +5979,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void switchToCurrentSelectedMode(boolean r32) {
+    public void switchToCurrentSelectedMode(boolean r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.switchToCurrentSelectedMode(boolean):void");
     }
 
@@ -6449,7 +6451,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
 
     public RecyclerListView getCurrentListView() {
         ChatActivityContainer chatActivityContainer;
-        return this.mediaPages[0].selectedType == 13 ? this.botPreviewsContainer.getCurrentListView() : (this.mediaPages[0].selectedType != 12 || (chatActivityContainer = this.savedMessagesContainer) == null) ? this.mediaPages[0].listView : chatActivityContainer.chatActivity.getChatListView();
+        return this.mediaPages[0].selectedType == 13 ? this.botPreviewsContainer.getCurrentListView() : this.mediaPages[0].selectedType == 14 ? this.giftsContainer.getCurrentListView() : (this.mediaPages[0].selectedType != 12 || (chatActivityContainer = this.savedMessagesContainer) == null) ? this.mediaPages[0].listView : chatActivityContainer.chatActivity.getChatListView();
     }
 
     protected int getInitialTab() {
@@ -7471,6 +7473,10 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         BotPreviewsEditContainer botPreviewsEditContainer = this.botPreviewsContainer;
         if (botPreviewsEditContainer != null) {
             botPreviewsEditContainer.setVisibleHeight(i);
+        }
+        ProfileGiftsContainer profileGiftsContainer = this.giftsContainer;
+        if (profileGiftsContainer != null) {
+            profileGiftsContainer.setVisibleHeight(i - AndroidUtilities.dp(48.0f));
         }
     }
 

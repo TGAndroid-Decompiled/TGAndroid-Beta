@@ -589,7 +589,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (getParentLayout().getFragmentStack().size() > 1) {
             BaseFragment baseFragment = (BaseFragment) getParentLayout().getFragmentStack().get(getParentLayout().getFragmentStack().size() - 2);
             if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getCurrentChat().id == this.chatId) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             }
         }
@@ -1157,7 +1157,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i4) {
                 if (i4 == -1) {
-                    MessageStatisticActivity.this.lambda$onBackPressed$307();
+                    MessageStatisticActivity.this.lambda$onBackPressed$300();
                 } else if (i4 == 1) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", MessageStatisticActivity.this.chatId);

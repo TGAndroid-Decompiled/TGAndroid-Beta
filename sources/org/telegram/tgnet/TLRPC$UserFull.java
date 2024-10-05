@@ -40,6 +40,7 @@ public abstract class TLRPC$UserFull extends TLObject {
     public boolean read_dates_private;
     public TLRPC$PeerSettings settings;
     public boolean sponsored_enabled;
+    public int stargifts_count;
     public TL_stories$PeerStories stories;
     public boolean stories_pinned_available;
     public String theme_emoticon;
@@ -665,7 +666,225 @@ public abstract class TLRPC$UserFull extends TLObject {
                 };
                 break;
             case -862357728:
-                tLRPC$UserFull = new TLRPC$TL_userFull();
+                tLRPC$UserFull = new TLRPC$TL_userFull() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.blocked = (readInt32 & 1) != 0;
+                        this.phone_calls_available = (readInt32 & 16) != 0;
+                        this.phone_calls_private = (readInt32 & 32) != 0;
+                        this.can_pin_message = (readInt32 & 128) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
+                        this.voice_messages_forbidden = (1048576 & readInt32) != 0;
+                        this.translations_disabled = (8388608 & readInt32) != 0;
+                        this.stories_pinned_available = (67108864 & readInt32) != 0;
+                        this.blocked_my_stories_from = (134217728 & readInt32) != 0;
+                        this.wallpaper_overridden = (268435456 & readInt32) != 0;
+                        this.contact_require_premium = (536870912 & readInt32) != 0;
+                        this.read_dates_private = (readInt32 & 1073741824) != 0;
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        this.flags2 = readInt322;
+                        this.sponsored_enabled = (readInt322 & 128) != 0;
+                        this.id = abstractSerializedData2.readInt64(z2);
+                        if ((this.flags & 2) != 0) {
+                            this.about = abstractSerializedData2.readString(z2);
+                        }
+                        this.settings = TLRPC$PeerSettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if ((this.flags & 2097152) != 0) {
+                            this.personal_photo = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.profile_photo = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 4194304) != 0) {
+                            this.fallback_photo = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if ((this.flags & 8) != 0) {
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
+                        }
+                        this.common_chats_count = abstractSerializedData2.readInt32(z2);
+                        if ((this.flags & 2048) != 0) {
+                            this.folder_id = abstractSerializedData2.readInt32(z2);
+                        }
+                        if ((this.flags & 16384) != 0) {
+                            this.ttl_period = abstractSerializedData2.readInt32(z2);
+                        }
+                        if ((this.flags & 32768) != 0) {
+                            this.theme_emoticon = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 65536) != 0) {
+                            this.private_forward_name = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 131072) != 0) {
+                            this.bot_group_admin_rights = TLRPC$TL_chatAdminRights.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 262144) != 0) {
+                            this.bot_broadcast_admin_rights = TLRPC$TL_chatAdminRights.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 524288) != 0) {
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            if (readInt323 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
+                                }
+                                return;
+                            }
+                            int readInt324 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt324; i2++) {
+                                TLRPC$TL_premiumGiftOption TLdeserialize = TLRPC$TL_premiumGiftOption.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.premium_gifts.add(TLdeserialize);
+                            }
+                        }
+                        if ((this.flags & 16777216) != 0) {
+                            this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 33554432) != 0) {
+                            this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 1) != 0) {
+                            this.business_work_hours = TLRPC$TL_businessWorkHours.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 2) != 0) {
+                            this.business_location = TLRPC$TL_businessLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 4) != 0) {
+                            this.business_greeting_message = TLRPC$TL_businessGreetingMessage.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 8) != 0) {
+                            this.business_away_message = TLRPC$TL_businessAwayMessage.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 16) != 0) {
+                            this.business_intro = TLRPC$TL_businessIntro.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 32) != 0) {
+                            this.birthday = TLRPC$TL_birthday.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 64) != 0) {
+                            this.personal_channel_id = abstractSerializedData2.readInt64(z2);
+                            this.personal_channel_message = abstractSerializedData2.readInt32(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-862357728);
+                        int i2 = this.blocked ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        int i3 = this.phone_calls_available ? i2 | 16 : i2 & (-17);
+                        this.flags = i3;
+                        int i4 = this.phone_calls_private ? i3 | 32 : i3 & (-33);
+                        this.flags = i4;
+                        int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
+                        this.flags = i5;
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
+                        this.flags = i6;
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
+                        this.flags = i7;
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
+                        this.flags = i8;
+                        int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
+                        this.flags = i9;
+                        int i10 = this.stories_pinned_available ? i9 | 67108864 : i9 & (-67108865);
+                        this.flags = i10;
+                        int i11 = this.blocked_my_stories_from ? i10 | 134217728 : i10 & (-134217729);
+                        this.flags = i11;
+                        int i12 = this.wallpaper_overridden ? i11 | 268435456 : i11 & (-268435457);
+                        this.flags = i12;
+                        int i13 = this.contact_require_premium ? i12 | 536870912 : i12 & (-536870913);
+                        this.flags = i13;
+                        int i14 = this.read_dates_private ? i13 | 1073741824 : i13 & (-1073741825);
+                        this.flags = i14;
+                        abstractSerializedData2.writeInt32(i14);
+                        int i15 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+                        this.flags2 = i15;
+                        abstractSerializedData2.writeInt32(i15);
+                        abstractSerializedData2.writeInt64(this.id);
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeString(this.about);
+                        }
+                        this.settings.serializeToStream(abstractSerializedData2);
+                        if ((this.flags & 2097152) != 0) {
+                            this.personal_photo.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.profile_photo.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 4194304) != 0) {
+                            this.fallback_photo.serializeToStream(abstractSerializedData2);
+                        }
+                        this.notify_settings.serializeToStream(abstractSerializedData2);
+                        if ((this.flags & 8) != 0) {
+                            this.bot_info.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            abstractSerializedData2.writeInt32(this.pinned_msg_id);
+                        }
+                        abstractSerializedData2.writeInt32(this.common_chats_count);
+                        if ((this.flags & 2048) != 0) {
+                            abstractSerializedData2.writeInt32(this.folder_id);
+                        }
+                        if ((this.flags & 16384) != 0) {
+                            abstractSerializedData2.writeInt32(this.ttl_period);
+                        }
+                        if ((this.flags & 32768) != 0) {
+                            abstractSerializedData2.writeString(this.theme_emoticon);
+                        }
+                        if ((this.flags & 65536) != 0) {
+                            abstractSerializedData2.writeString(this.private_forward_name);
+                        }
+                        if ((this.flags & 131072) != 0) {
+                            this.bot_group_admin_rights.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 262144) != 0) {
+                            this.bot_broadcast_admin_rights.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 524288) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size = this.premium_gifts.size();
+                            abstractSerializedData2.writeInt32(size);
+                            for (int i16 = 0; i16 < size; i16++) {
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i16)).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags & 16777216) != 0) {
+                            this.wallpaper.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 33554432) != 0) {
+                            this.stories.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 1) != 0) {
+                            this.business_work_hours.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 2) != 0) {
+                            this.business_location.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 4) != 0) {
+                            this.business_greeting_message.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 8) != 0) {
+                            this.business_away_message.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 16) != 0) {
+                            this.business_intro.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 32) != 0) {
+                            this.birthday.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 64) != 0) {
+                            abstractSerializedData2.writeInt64(this.personal_channel_id);
+                            abstractSerializedData2.writeInt32(this.personal_channel_message);
+                        }
+                    }
+                };
                 break;
             case -818518751:
                 tLRPC$UserFull = new TLRPC$UserFull() {
@@ -1472,6 +1691,9 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                     }
                 };
+                break;
+            case 525919081:
+                tLRPC$UserFull = new TLRPC$TL_userFull();
                 break;
             case 587153029:
                 tLRPC$UserFull = new TLRPC$TL_userFull() {

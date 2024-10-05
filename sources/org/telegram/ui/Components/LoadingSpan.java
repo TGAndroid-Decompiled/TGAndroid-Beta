@@ -49,12 +49,18 @@ public class LoadingSpan extends ReplacementSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        if (fontMetricsInt != null) {
+            fontMetricsInt.ascent = (int) fontMetrics.ascent;
+            fontMetricsInt.bottom = (int) fontMetrics.bottom;
+            fontMetricsInt.descent = (int) fontMetrics.descent;
+            fontMetricsInt.leading = (int) fontMetrics.leading;
+            fontMetricsInt.top = (int) fontMetrics.top;
+        }
         this.paint = paint;
-        if (paint != null) {
-            LoadingDrawable loadingDrawable = this.drawable;
-            if (loadingDrawable.color1 == null && loadingDrawable.color2 == null) {
-                loadingDrawable.setColors(Theme.multAlpha(paint.getColor(), 0.1f), Theme.multAlpha(paint.getColor(), 0.25f));
-            }
+        LoadingDrawable loadingDrawable = this.drawable;
+        if (loadingDrawable.color1 == null && loadingDrawable.color2 == null) {
+            loadingDrawable.setColors(Theme.multAlpha(paint.getColor(), 0.1f), Theme.multAlpha(paint.getColor(), 0.25f));
         }
         return this.size;
     }

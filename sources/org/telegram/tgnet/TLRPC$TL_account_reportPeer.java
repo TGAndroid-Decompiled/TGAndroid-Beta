@@ -14,7 +14,7 @@ public class TLRPC$TL_account_reportPeer extends TLObject {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(-977650298);
         this.peer.serializeToStream(abstractSerializedData);
-        this.reason.serializeToStream(abstractSerializedData);
+        serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.message);
     }
 }

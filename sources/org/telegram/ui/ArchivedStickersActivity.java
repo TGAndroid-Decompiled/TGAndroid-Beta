@@ -338,7 +338,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    ArchivedStickersActivity.this.lambda$onBackPressed$307();
+                    ArchivedStickersActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

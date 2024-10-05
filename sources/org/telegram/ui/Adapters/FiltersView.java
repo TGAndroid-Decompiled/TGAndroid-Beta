@@ -370,32 +370,6 @@ public class FiltersView extends RecyclerListView {
             }
 
             @Override
-            public void animateAddImpl(final RecyclerView.ViewHolder viewHolder) {
-                final View view = viewHolder.itemView;
-                final ViewPropertyAnimator animate = view.animate();
-                this.mAddAnimations.add(viewHolder);
-                animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(getAddDuration()).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-                        view.setAlpha(1.0f);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        animate.setListener(null);
-                        dispatchAddFinished(viewHolder);
-                        ((DefaultItemAnimator) AnonymousClass3.this).mAddAnimations.remove(viewHolder);
-                        dispatchFinishedWhenDone();
-                    }
-
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        dispatchAddStarting(viewHolder);
-                    }
-                }).start();
-            }
-
-            @Override
             public void animateRemoveImpl(final RecyclerView.ViewHolder viewHolder) {
                 final View view = viewHolder.itemView;
                 final ViewPropertyAnimator animate = view.animate();

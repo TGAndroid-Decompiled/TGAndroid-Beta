@@ -1858,6 +1858,15 @@ public class ChatObject {
         return ((tLRPC$Chat instanceof TLRPC$TL_channel) || (tLRPC$Chat instanceof TLRPC$TL_channelForbidden)) && (!tLRPC$Chat.megagroup || tLRPC$Chat.gigagroup);
     }
 
+    public static boolean isDiscussionGroup(int i, long j) {
+        MessagesController messagesController = MessagesController.getInstance(i);
+        return isDiscussionGroup(messagesController.getChat(Long.valueOf(j)), messagesController.getChatFull(j));
+    }
+
+    public static boolean isDiscussionGroup(TLRPC$Chat tLRPC$Chat, TLRPC$ChatFull tLRPC$ChatFull) {
+        return (!isMegagroup(tLRPC$Chat) || tLRPC$ChatFull == null || tLRPC$ChatFull.linked_chat_id == 0) ? false : true;
+    }
+
     public static boolean isForum(int i, long j) {
         TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         if (chat != null) {

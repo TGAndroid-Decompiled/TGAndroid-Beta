@@ -2109,14 +2109,14 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             }
             dismiss();
             if (!booleanValue) {
-                lastFragment2.lambda$onBackPressed$307();
+                lastFragment2.lambda$onBackPressed$300();
                 BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
                 return;
             } else {
                 if (baseFragment2 instanceof ProfileActivity) {
                     getBaseFragment().getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                lastFragment2.lambda$onBackPressed$307();
+                lastFragment2.lambda$onBackPressed$300();
                 BoostDialogs.showBulletin(r5, tLRPC$Chat, true);
                 return;
             }
@@ -2143,7 +2143,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             while (it.hasNext()) {
                 getBaseFragment().getParentLayout().removeFragmentFromStack((BaseFragment) it.next());
             }
-            getBaseFragment().lambda$onBackPressed$307();
+            getBaseFragment().lambda$onBackPressed$300();
             dismiss();
             BoostDialogs.showBulletin(r5, tLRPC$Chat, true);
             return;
@@ -2171,7 +2171,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
         List fragmentStack3 = getBaseFragment().getParentLayout().getFragmentStack();
         r5 = fragmentStack3.size() >= 2 ? (BaseFragment) fragmentStack3.get(fragmentStack3.size() - 2) : null;
-        getBaseFragment().lambda$onBackPressed$307();
+        getBaseFragment().lambda$onBackPressed$300();
         dismiss();
         if (r5 instanceof ChatActivity) {
             BoostDialogs.showBulletin(r5, tLRPC$Chat, true);

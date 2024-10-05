@@ -832,6 +832,8 @@ public class MessagesController extends BaseController implements NotificationCe
     private DialogFilter sortingDialogFilter;
     public boolean sponsoredLinksInappAllow;
     private LongSparseArray sponsoredMessages;
+    public boolean stargiftsBlocked;
+    public int stargiftsMessageLengthMax;
     public boolean starsGiftsEnabled;
     public boolean starsLocked;
     public long starsPaidPostAmountMax;
@@ -2408,6 +2410,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public class SponsoredMessagesInfo {
+        public boolean faked;
         public long loadTime;
         public boolean loading;
         public ArrayList<MessageObject> messages;
@@ -2801,6 +2804,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.chatlistInvitesLimitPremium = this.mainPreferences.getInt("chatlistInvitesLimitPremium", z ? 5 : 20);
         this.chatlistJoinedLimitDefault = this.mainPreferences.getInt("chatlistJoinedLimitDefault", 2);
         this.chatlistJoinedLimitPremium = this.mainPreferences.getInt("chatlistJoinedLimitPremium", z ? 5 : 20);
+        this.stargiftsMessageLengthMax = this.mainPreferences.getInt("stargiftsMessageLengthMax", 255);
         this.storiesPosting = this.mainPreferences.getString("storiesPosting", "enabled");
         this.storiesEntities = this.mainPreferences.getString("storiesEntities", "premium");
         this.storiesExportNopublicLink = this.mainPreferences.getBoolean("storiesExportNopublicLink", false);
@@ -2847,6 +2851,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.weatherSearchUsername = this.mainPreferences.getString("weatherSearchUsername", "izweatherbot");
         this.storyWeatherPreload = this.mainPreferences.getBoolean("storyWeatherPreload", true);
         this.starsGiftsEnabled = this.mainPreferences.getBoolean("starsGiftsEnabled", true);
+        this.stargiftsBlocked = this.mainPreferences.getBoolean("stargiftsBlocked", true);
         this.starsPaidReactionAmountMax = this.mainPreferences.getLong("starsPaidReactionAmountMax", 10000L);
         this.starsSubscriptionAmountMax = this.mainPreferences.getLong("starsSubscriptionAmountMax", 2500L);
         this.starsUsdSellRate1000 = this.mainPreferences.getFloat("starsUsdSellRate1000", 2000.0f);
@@ -5620,8 +5625,10 @@ public class MessagesController extends BaseController implements NotificationCe
             user.photo = new TLRPC$TL_userProfilePhotoEmpty();
         }
         TLRPC$UserFull userFull = getUserFull(j);
-        userFull.profile_photo = tLRPC$TL_photos_photo.photo;
-        getMessagesStorage().updateUserInfo(userFull, false);
+        if (userFull != null) {
+            userFull.profile_photo = tLRPC$TL_photos_photo.photo;
+            getMessagesStorage().updateUserInfo(userFull, false);
+        }
         getUserConfig().getCurrentUser().photo = user.photo;
         putUser(user, false);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
@@ -14348,7 +14355,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isPremiumUser(TLRPC$User tLRPC$User) {
-        return !premiumFeaturesBlocked() && tLRPC$User.premium;
+        return (premiumFeaturesBlocked() || !tLRPC$User.premium || isSupportUser(tLRPC$User)) ? false : true;
     }
 
     public boolean isPromoDialog(long j, boolean z) {

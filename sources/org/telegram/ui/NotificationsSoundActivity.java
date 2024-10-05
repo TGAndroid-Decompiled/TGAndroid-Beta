@@ -36,6 +36,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
@@ -176,7 +177,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                     NotificationsSoundActivity.this.hideActionMode();
                     return;
                 } else {
-                    NotificationsSoundActivity.this.lambda$onBackPressed$307();
+                    NotificationsSoundActivity.this.lambda$onBackPressed$300();
                     return;
                 }
             }
@@ -900,6 +901,9 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         if (intent.getData() != null) {
             String path = AndroidUtilities.getPath(intent.getData());
             if (path != null) {
+                if (path.startsWith("content://")) {
+                    path = MediaController.copyFileToCache(intent.getData(), "mp3");
+                }
                 if (this.chatAttachAlert.getDocumentLayout().isRingtone(new File(path))) {
                     getMediaDataController().uploadRingtone(path);
                     getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
@@ -911,9 +915,13 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 ClipData clipData = intent.getClipData();
                 boolean z2 = false;
                 for (int i3 = 0; i3 < clipData.getItemCount(); i3++) {
-                    String uri = clipData.getItemAt(i3).getUri().toString();
-                    if (this.chatAttachAlert.getDocumentLayout().isRingtone(new File(uri))) {
-                        getMediaDataController().uploadRingtone(uri);
+                    Uri uri = clipData.getItemAt(i3).getUri();
+                    String uri2 = uri.toString();
+                    if (uri2.startsWith("content://")) {
+                        uri2 = MediaController.copyFileToCache(uri, "mp3");
+                    }
+                    if (this.chatAttachAlert.getDocumentLayout().isRingtone(new File(uri2))) {
+                        getMediaDataController().uploadRingtone(uri2);
                         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                         z2 = true;
                     }

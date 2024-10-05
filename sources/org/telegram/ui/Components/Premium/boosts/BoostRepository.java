@@ -87,6 +87,8 @@ import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.bots.BotWebViewSheet;
 
 public abstract class BoostRepository {
+    private static HashMap cachedGiftOptions;
+
     public static void applyBoost(long j, List list, final Utilities.Callback callback, final Utilities.Callback callback2) {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -168,6 +170,15 @@ public abstract class BoostRepository {
         return arrayList;
     }
 
+    public static List getCachedGiftOptions(int i) {
+        Pair pair;
+        HashMap hashMap = cachedGiftOptions;
+        if (hashMap == null || (pair = (Pair) hashMap.get(Integer.valueOf(i))) == null || System.currentTimeMillis() - ((Long) pair.first).longValue() >= 1800000) {
+            return null;
+        }
+        return (List) pair.second;
+    }
+
     public static void getGiveawayInfo(MessageObject messageObject, final Utilities.Callback callback, final Utilities.Callback callback2) {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -235,6 +246,13 @@ public abstract class BoostRepository {
 
     public static long giveawayPeriodMax() {
         return MessagesController.getInstance(UserConfig.selectedAccount).giveawayPeriodMax;
+    }
+
+    public static void invalidateGiftOptionsToCache(int i) {
+        HashMap hashMap = cachedGiftOptions;
+        if (hashMap != null) {
+            hashMap.remove(Integer.valueOf(i));
+        }
     }
 
     public static boolean isGoogleBillingAvailable() {
@@ -446,7 +464,21 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void lambda$loadGiftOptions$30(final List list, final Utilities.Callback callback, BillingResult billingResult, List list2) {
+    public static void lambda$loadGiftOptions$28(TLRPC$Chat tLRPC$Chat, int i, List list, Utilities.Callback callback) {
+        if (tLRPC$Chat == null) {
+            saveGiftOptionsToCache(i, list);
+        }
+        callback.run(list);
+    }
+
+    public static void lambda$loadGiftOptions$29(TLRPC$Chat tLRPC$Chat, int i, List list, Utilities.Callback callback) {
+        if (tLRPC$Chat == null) {
+            saveGiftOptionsToCache(i, list);
+        }
+        callback.run(list);
+    }
+
+    public static void lambda$loadGiftOptions$30(final List list, final TLRPC$Chat tLRPC$Chat, final int i, final Utilities.Callback callback, BillingResult billingResult, List list2) {
         Iterator it = list2.iterator();
         while (it.hasNext()) {
             ProductDetails productDetails = (ProductDetails) it.next();
@@ -471,18 +503,18 @@ public abstract class BoostRepository {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Utilities.Callback.this.run(list);
+                BoostRepository.lambda$loadGiftOptions$29(TLRPC$Chat.this, i, list, callback);
             }
         });
     }
 
-    public static void lambda$loadGiftOptions$31(final Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$loadGiftOptions$31(final TLRPC$Chat tLRPC$Chat, final int i, final Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject != null) {
             TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
             final ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            for (int i = 0; i < tLRPC$Vector.objects.size(); i++) {
-                TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption = (TLRPC$TL_premiumGiftCodeOption) tLRPC$Vector.objects.get(i);
+            for (int i2 = 0; i2 < tLRPC$Vector.objects.size(); i2++) {
+                TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption = (TLRPC$TL_premiumGiftCodeOption) tLRPC$Vector.objects.get(i2);
                 arrayList.add(tLRPC$TL_premiumGiftCodeOption);
                 if (tLRPC$TL_premiumGiftCodeOption.store_product != null) {
                     arrayList2.add(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tLRPC$TL_premiumGiftCodeOption.store_product).build());
@@ -492,14 +524,14 @@ public abstract class BoostRepository {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        Utilities.Callback.this.run(arrayList);
+                        BoostRepository.lambda$loadGiftOptions$28(TLRPC$Chat.this, i, arrayList, callback);
                     }
                 });
             } else {
                 BillingController.getInstance().queryProductDetails(arrayList2, new ProductDetailsResponseListener() {
                     @Override
                     public final void onProductDetailsResponse(BillingResult billingResult, List list) {
-                        BoostRepository.lambda$loadGiftOptions$30(arrayList, callback, billingResult, list);
+                        BoostRepository.lambda$loadGiftOptions$30(arrayList, tLRPC$Chat, i, callback, billingResult, list);
                     }
                 });
             }
@@ -867,9 +899,14 @@ public abstract class BoostRepository {
         });
     }
 
-    public static int loadGiftOptions(TLRPC$Chat tLRPC$Chat, final Utilities.Callback callback) {
-        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
+    public static int loadGiftOptions(final int i, final TLRPC$Chat tLRPC$Chat, final Utilities.Callback callback) {
+        List cachedGiftOptions2;
+        if (tLRPC$Chat == null && (cachedGiftOptions2 = getCachedGiftOptions(i)) != null) {
+            callback.run(cachedGiftOptions2);
+            return -1;
+        }
+        MessagesController messagesController = MessagesController.getInstance(i);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i);
         TLRPC$TL_payments_getPremiumGiftCodeOptions tLRPC$TL_payments_getPremiumGiftCodeOptions = new TLRPC$TL_payments_getPremiumGiftCodeOptions();
         if (tLRPC$Chat != null) {
             tLRPC$TL_payments_getPremiumGiftCodeOptions.flags = 1;
@@ -878,7 +915,7 @@ public abstract class BoostRepository {
         return connectionsManager.sendRequest(tLRPC$TL_payments_getPremiumGiftCodeOptions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$loadGiftOptions$31(Utilities.Callback.this, tLObject, tLRPC$TL_error);
+                BoostRepository.lambda$loadGiftOptions$31(TLRPC$Chat.this, i, callback, tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -894,6 +931,7 @@ public abstract class BoostRepository {
     }
 
     public static void payGiftCode(List list, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, TLRPC$Chat tLRPC$Chat, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
+        invalidateGiftOptionsToCache(UserConfig.selectedAccount);
         if (isGoogleBillingAvailable()) {
             payGiftCodeByGoogle(list, tLRPC$TL_premiumGiftCodeOption, tLRPC$Chat, baseFragment, callback, callback2);
         } else {
@@ -1061,6 +1099,13 @@ public abstract class BoostRepository {
             j = System.currentTimeMillis() + 120000;
         }
         return (int) (j / 1000);
+    }
+
+    public static void saveGiftOptionsToCache(int i, List list) {
+        if (cachedGiftOptions == null) {
+            cachedGiftOptions = new HashMap();
+        }
+        cachedGiftOptions.put(Integer.valueOf(i), new Pair(Long.valueOf(System.currentTimeMillis()), list));
     }
 
     public static void searchChats(final long j, int i, String str, int i2, final Utilities.Callback callback) {

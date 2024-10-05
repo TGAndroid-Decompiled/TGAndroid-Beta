@@ -731,6 +731,17 @@ public final class BulletinFactory {
         return create(lottieLayout, 2750);
     }
 
+    public Bulletin createEmojiBulletin(TLRPC$Document tLRPC$Document, CharSequence charSequence, CharSequence charSequence2) {
+        Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
+        if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
+            twoLineLottieLayout.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));
+        }
+        twoLineLottieLayout.setAnimation(tLRPC$Document, 36, 36, new String[0]);
+        twoLineLottieLayout.titleTextView.setText(charSequence);
+        twoLineLottieLayout.subtitleTextView.setText(charSequence2);
+        return create(twoLineLottieLayout, charSequence.length() + charSequence2.length() < 20 ? 1500 : 2750);
+    }
+
     public Bulletin createEmojiBulletin(TLRPC$Document tLRPC$Document, CharSequence charSequence, CharSequence charSequence2, Runnable runnable) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         if (MessageObject.isTextColorEmoji(tLRPC$Document)) {

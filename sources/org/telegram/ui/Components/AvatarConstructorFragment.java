@@ -722,7 +722,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             return;
         }
         if (!this.wasChanged) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
@@ -745,7 +745,7 @@ public class AvatarConstructorFragment extends BaseFragment {
     }
 
     public void lambda$discardEditor$2(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$isLightStatusBar$6(ValueAnimator valueAnimator) {
@@ -822,7 +822,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             delegate.onDone(previewView.backgroundGradient, previewView.documentId, previewView.document, previewView);
         }
         if (this.finishOnDone) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 

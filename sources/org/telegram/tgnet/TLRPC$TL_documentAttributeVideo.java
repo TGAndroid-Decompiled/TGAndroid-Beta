@@ -17,11 +17,14 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         if ((this.flags & 16) != 0) {
             this.video_start_ts = abstractSerializedData.readDouble(z);
         }
+        if ((this.flags & 32) != 0) {
+            this.video_codec = abstractSerializedData.readString(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(389652397);
+        abstractSerializedData.writeInt32(1137015880);
         int i = this.round_message ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.supports_streaming ? i | 2 : i & (-3);
@@ -37,6 +40,9 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         }
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeDouble(this.video_start_ts);
+        }
+        if ((this.flags & 32) != 0) {
+            abstractSerializedData.writeString(this.video_codec);
         }
     }
 }

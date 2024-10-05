@@ -55,6 +55,7 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 public class EditTextEmoji extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate {
     AdjustPanLayoutHelper adjustPanLayoutHelper;
     private boolean allowAnimatedEmoji;
+    private boolean allowEmojisForNonPremium;
     private int currentStyle;
     private boolean destroyed;
     private EditTextCaption editText;
@@ -337,6 +338,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         float f7;
         int i4;
         float f8;
+        int i5;
         FrameLayout.LayoutParams createFrame;
         this.isPaused = true;
         this.openKeyboardRunnable = new Runnable() {
@@ -373,24 +375,24 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
 
             @Override
             public int getActionModeStyle() {
-                int i5 = i;
-                if (i5 == 2 || i5 == 3) {
+                int i6 = i;
+                if (i6 == 2 || i6 == 3) {
                     return 2;
                 }
                 return super.getActionModeStyle();
             }
 
             @Override
-            protected void onLineCountChanged(int i5, int i6) {
-                EditTextEmoji.this.onLineCountChanged(i5, i6);
+            protected void onLineCountChanged(int i6, int i7) {
+                EditTextEmoji.this.onLineCountChanged(i6, i7);
             }
 
             @Override
-            public void onSelectionChanged(int i5, int i6) {
-                super.onSelectionChanged(i5, i6);
+            public void onSelectionChanged(int i6, int i7) {
+                super.onSelectionChanged(i6, i7);
                 if (EditTextEmoji.this.emojiIconDrawable != null) {
                     boolean z2 = false;
-                    boolean z3 = i6 != i5;
+                    boolean z3 = i7 != i6;
                     if (EditTextEmoji.this.allowEntities() && z3) {
                         XiaomiUtilities.isMIUI();
                         z2 = true;
@@ -441,9 +443,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            public void scrollTo(int i5, int i6) {
-                if (EditTextEmoji.this.onScrollYChange(i6)) {
-                    super.scrollTo(i5, i6);
+            public void scrollTo(int i6, int i7) {
+                if (EditTextEmoji.this.onScrollYChange(i7)) {
+                    super.scrollTo(i6, i7);
                 }
             }
         };
@@ -456,8 +458,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         this.editText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.editText.setCursorWidth(1.5f);
         EditTextCaption editTextCaption5 = this.editText;
-        int i5 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextCaption5.setCursorColor(getThemedColor(i5));
+        int i6 = Theme.key_windowBackgroundWhiteBlackText;
+        editTextCaption5.setCursorColor(getThemedColor(i6));
         if (i == 0) {
             this.editText.setTextSize(1, 18.0f);
             this.editText.setMaxLines(4);
@@ -465,7 +467,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             this.editText.setBackground(null);
             this.editText.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated), getThemedColor(Theme.key_text_RedRegular));
             this.editText.setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
-            this.editText.setTextColor(getThemedColor(i5));
+            this.editText.setTextColor(getThemedColor(i6));
             this.editText.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
             this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), AndroidUtilities.dp(11.0f));
             editTextCaption = this.editText;
@@ -513,12 +515,21 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 this.editText.setBackground(null);
                 this.editText.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(12.0f));
                 editTextCaption = this.editText;
-                f = 0.0f;
-                f2 = 0.0f;
-                i2 = -1;
-                f3 = -1.0f;
-                i3 = 19;
-                f4 = 48.0f;
+                if (i == 4) {
+                    f = 48.0f;
+                    f2 = 0.0f;
+                    i2 = -1;
+                    f3 = -1.0f;
+                    i3 = 19;
+                    f4 = 14.0f;
+                } else {
+                    f = 0.0f;
+                    f2 = 0.0f;
+                    i2 = -1;
+                    f3 = -1.0f;
+                    i3 = 19;
+                    f4 = 48.0f;
+                }
             }
             f5 = 0.0f;
         }
@@ -554,15 +565,29 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 i4 = 40;
                 f8 = 40.0f;
             } else {
-                this.emojiIconDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_messagePanelIcons), PorterDuff.Mode.MULTIPLY));
-                this.emojiIconDrawable.setIcon(R.drawable.input_smile, false);
-                imageView = this.emojiButton;
-                f6 = 0.0f;
-                f7 = 0.0f;
-                i4 = 48;
-                f8 = 48.0f;
+                ReplaceableIconDrawable replaceableIconDrawable2 = this.emojiIconDrawable;
+                if (i == 4) {
+                    replaceableIconDrawable2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_messagePanelIcons), PorterDuff.Mode.MULTIPLY));
+                    this.emojiIconDrawable.setIcon(R.drawable.input_smile, false);
+                    imageView = this.emojiButton;
+                    f6 = 0.0f;
+                    f7 = 0.0f;
+                    i4 = 48;
+                    f8 = 48.0f;
+                    i5 = 53;
+                    createFrame = LayoutHelper.createFrame(i4, f8, i5, 0.0f, 0.0f, f6, f7);
+                } else {
+                    replaceableIconDrawable2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_messagePanelIcons), PorterDuff.Mode.MULTIPLY));
+                    this.emojiIconDrawable.setIcon(R.drawable.input_smile, false);
+                    imageView = this.emojiButton;
+                    f6 = 0.0f;
+                    f7 = 0.0f;
+                    i4 = 48;
+                    f8 = 48.0f;
+                }
             }
-            createFrame = LayoutHelper.createFrame(i4, f8, 83, 0.0f, 0.0f, f6, f7);
+            i5 = 83;
+            createFrame = LayoutHelper.createFrame(i4, f8, i5, 0.0f, 0.0f, f6, f7);
         }
         addView(imageView, createFrame);
         if (Build.VERSION.SDK_INT >= 21) {
@@ -650,6 +675,10 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         this.sizeNotifierLayout.getHeight();
     }
 
+    public void allowEmojisForNonPremium(boolean z) {
+        this.allowEmojisForNonPremium = z;
+    }
+
     protected boolean allowEntities() {
         int i = this.currentStyle;
         return i == 2 || i == 3;
@@ -728,7 +757,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
         };
         this.emojiView = emojiView2;
-        emojiView2.setVisibility(8);
+        emojiView2.allowEmojisForNonPremium(this.allowEmojisForNonPremium);
+        this.emojiView.setVisibility(8);
         if (AndroidUtilities.isTablet()) {
             this.emojiView.setForseMultiwindowLayout(true);
         }

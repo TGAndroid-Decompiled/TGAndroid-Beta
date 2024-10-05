@@ -282,7 +282,7 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
-            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == 389652397) {
+            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == 1137015880) {
                 this.roundPath = abstractSerializedData.readString(z);
                 this.roundDuration = abstractSerializedData.readInt64(z);
                 this.roundOffset = abstractSerializedData.readInt64(z);
@@ -606,7 +606,7 @@ public class DraftsController {
             if (TextUtils.isEmpty(this.roundPath)) {
                 abstractSerializedData.writeInt32(1450380236);
             } else {
-                abstractSerializedData.writeInt32(389652397);
+                abstractSerializedData.writeInt32(1137015880);
                 abstractSerializedData.writeString(this.roundPath);
                 abstractSerializedData.writeInt64(this.roundDuration);
                 abstractSerializedData.writeInt64(this.roundOffset);

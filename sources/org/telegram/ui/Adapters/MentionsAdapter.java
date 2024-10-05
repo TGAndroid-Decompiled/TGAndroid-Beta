@@ -1341,6 +1341,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         int itemViewType = viewHolder.getItemViewType();
         if (itemViewType == 4) {
             StickerCell stickerCell = (StickerCell) viewHolder.itemView;
+            if (i < 0 || i >= this.stickers.size()) {
+                return;
+            }
             StickerResult stickerResult = (StickerResult) this.stickers.get(i);
             stickerCell.setSticker(stickerResult.sticker, stickerResult.parent);
             stickerCell.setClearsInputField(true);
@@ -1377,13 +1380,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
         if (this.searchResultBotContext != null) {
             boolean z = (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? false : true;
-            if (viewHolder.getItemViewType() != 2) {
-                if (z) {
-                    i--;
-                }
-                ((ContextLinkCell) viewHolder.itemView).setLink((TLRPC$BotInlineResult) this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z && i == 0, "gif".equals(this.searchingContextUsername));
-                return;
-            } else {
+            if (viewHolder.getItemViewType() == 2) {
                 if (z) {
                     BotSwitchCell botSwitchCell = (BotSwitchCell) viewHolder.itemView;
                     TLRPC$TL_inlineBotSwitchPM tLRPC$TL_inlineBotSwitchPM = this.searchResultBotContextSwitch;
@@ -1392,6 +1389,14 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 }
                 return;
             }
+            if (z) {
+                i--;
+            }
+            if (i < 0 || i >= this.searchResultBotContext.size()) {
+                return;
+            }
+            ((ContextLinkCell) viewHolder.itemView).setLink((TLRPC$BotInlineResult) this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z && i == 0, "gif".equals(this.searchingContextUsername));
+            return;
         }
         MentionCell mentionCell = (MentionCell) viewHolder.itemView;
         ArrayList arrayList2 = this.searchResultUsernames;
@@ -1404,21 +1409,25 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
         } else {
             ArrayList arrayList3 = this.searchResultHashtags;
-            if (arrayList3 != null) {
-                mentionCell.setText((String) arrayList3.get(i));
-            } else {
+            if (arrayList3 == null || i < 0 || i >= arrayList3.size()) {
                 ArrayList arrayList4 = this.searchResultSuggestions;
-                if (arrayList4 != null) {
-                    mentionCell.setEmojiSuggestion((MediaDataController.KeywordResult) arrayList4.get(i));
-                } else {
+                if (arrayList4 == null || i < 0 || i >= arrayList4.size()) {
                     ArrayList arrayList5 = this.searchResultCommands;
-                    if (arrayList5 != null) {
-                        String str = (String) arrayList5.get(i);
-                        String str2 = (String) this.searchResultCommandsHelp.get(i);
-                        ArrayList arrayList6 = this.searchResultCommandsUsers;
-                        mentionCell.setBotCommand(str, str2, arrayList6 != null ? (TLRPC$User) arrayList6.get(i) : null);
+                    if (arrayList5 != null && i >= 0 && i < arrayList5.size()) {
+                        ArrayList arrayList6 = this.searchResultCommandsHelp;
+                        TLRPC$User tLRPC$User = null;
+                        String str = (arrayList6 == null || i < 0 || i >= arrayList6.size()) ? null : (String) this.searchResultCommandsHelp.get(i);
+                        ArrayList arrayList7 = this.searchResultCommandsUsers;
+                        if (arrayList7 != null && i >= 0 && i < arrayList7.size()) {
+                            tLRPC$User = (TLRPC$User) this.searchResultCommandsUsers.get(i);
+                        }
+                        mentionCell.setBotCommand((String) this.searchResultCommands.get(i), str, tLRPC$User);
                     }
+                } else {
+                    mentionCell.setEmojiSuggestion((MediaDataController.KeywordResult) this.searchResultSuggestions.get(i));
                 }
+            } else {
+                mentionCell.setText((String) this.searchResultHashtags.get(i));
             }
         }
         mentionCell.setDivider(false);

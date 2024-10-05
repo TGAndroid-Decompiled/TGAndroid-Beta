@@ -121,7 +121,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
-        Drawable mutate = context.getResources().getDrawable(2131231941).mutate();
+        Drawable mutate = context.getResources().getDrawable(2131231942).mutate();
         this.shadowDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -224,7 +224,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView.setTextColor(Theme.getColor(i2));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setText(LocaleController.getString(2131689985));
+        textView.setText(LocaleController.getString(2131689986));
         this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
         textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
@@ -233,7 +233,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         int i3 = Theme.key_dialogTextLink;
         textView2.setLinkTextColor(Theme.getColor(i3));
         TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate2 = this.appUpdate;
-        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", 2131689991, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
+        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", 2131689992, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
         textView2.setGravity(49);
         this.linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
         TextView textView3 = new TextView(getContext());
@@ -242,7 +242,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView3.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         textView3.setLinkTextColor(Theme.getColor(i3));
         if (TextUtils.isEmpty(this.appUpdate.text)) {
-            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(2131689986)));
+            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(2131689987)));
         } else {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.appUpdate.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
@@ -259,7 +259,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         this.shadow.setTag(1);
         frameLayout.addView(this.shadow, layoutParams);
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context, false);
-        bottomSheetCell.setText(LocaleController.formatString("AppUpdateDownloadNow", 2131689987, new Object[0]), false);
+        bottomSheetCell.setText(LocaleController.formatString("AppUpdateDownloadNow", 2131689988, new Object[0]), false);
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -268,7 +268,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         });
         frameLayout.addView(bottomSheetCell, LayoutHelper.createFrame(-1, 50.0f, 83, 0.0f, 0.0f, 0.0f, 50.0f));
         BottomSheetCell bottomSheetCell2 = new BottomSheetCell(context, true);
-        bottomSheetCell2.setText(LocaleController.getString(2131689990), false);
+        bottomSheetCell2.setText(LocaleController.getString(2131689991), false);
         bottomSheetCell2.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {

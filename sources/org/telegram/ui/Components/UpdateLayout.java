@@ -165,7 +165,7 @@ public class UpdateLayout extends IUpdateLayout {
             this.updateTextViews[i2].setGravity(3);
             this.updateLayout.addView(this.updateTextViews[i2], LayoutHelper.createFrame(-2, -2.0f, 16, 74.0f, 0.0f, 0.0f, 0.0f));
         }
-        this.updateTextViews[0].setText(LocaleController.getString(2131689985));
+        this.updateTextViews[0].setText(LocaleController.getString(2131689986));
         this.updateTextViews[1].setAlpha(0.0f);
         this.updateTextViews[1].setVisibility(8);
         TextView textView = new TextView(this.activity);
@@ -195,6 +195,6 @@ public class UpdateLayout extends IUpdateLayout {
         }
         float longValue = ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue());
         this.updateLayoutIcon.setProgress(longValue, true);
-        this.updateTextViews[0].setText(LocaleController.formatString("AppUpdateDownloading", 2131689988, Integer.valueOf((int) (longValue * 100.0f))));
+        this.updateTextViews[0].setText(LocaleController.formatString("AppUpdateDownloading", 2131689989, Integer.valueOf((int) (longValue * 100.0f))));
     }
 }

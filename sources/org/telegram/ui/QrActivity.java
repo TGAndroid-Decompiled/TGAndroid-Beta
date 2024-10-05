@@ -1192,7 +1192,7 @@ public class QrActivity extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$2(EmojiThemes emojiThemes, int i) {

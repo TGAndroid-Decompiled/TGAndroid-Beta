@@ -312,7 +312,7 @@ public abstract class ProfileChannelCell extends FrameLayout {
         linearLayout.addView(clickableAnimatedTextView, LayoutHelper.createLinear(-1, 17, 51, 4, 2, 4, 0));
         DialogCell dialogCell = new DialogCell(null, context, false, true, UserConfig.selectedAccount, resourceProvider);
         this.dialogCell = dialogCell;
-        dialogCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        dialogCell.setBackgroundColor(0);
         dialogCell.setDialogCellDelegate(new DialogCell.DialogCellDelegate() {
             @Override
             public boolean canClickButtonInside() {

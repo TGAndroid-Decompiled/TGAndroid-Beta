@@ -840,7 +840,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivityDelegate paymentFormActivityDelegate = this.delegate;
             if (paymentFormActivityDelegate != null) {
                 paymentFormActivityDelegate.didSelectNewAddress(this.validateRequest);
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             }
             if (this.paymentForm.invoice.flexible) {
@@ -941,7 +941,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     paymentFormActivity = new PaymentFormActivity(this.invoiceInput, tLRPC$PaymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment);
                 }
             }
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         if (this.paymentJson == null && this.cardName == null) {
@@ -1576,7 +1576,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         } else if (this.invoiceStatus != InvoiceStatus.PAID || isFinishing()) {
             return;
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$initGooglePay$37(Task task) {
@@ -2305,7 +2305,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             tLRPC$account_Password.has_password = false;
             tLRPC$account_Password.current_algo = null;
             this.delegate.currentPasswordUpdated(tLRPC$account_Password);
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_boolTrue)) {

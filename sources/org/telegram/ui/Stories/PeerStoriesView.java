@@ -192,6 +192,7 @@ import org.telegram.ui.MessageStatisticActivity;
 import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.ReportBottomSheet;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.SelfStoriesPreviewView;
@@ -1985,15 +1986,32 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$40(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
-            AlertsCreator.createReportAlert(PeerStoriesView.this.getContext(), PeerStoriesView.this.dialogId, 0, PeerStoriesView.this.currentStory.storyItem.id, storyViewer.fragment, resourcesProvider, null);
+        public static void lambda$onCreate$40(StoryViewer storyViewer, Boolean bool) {
+            if (storyViewer != null) {
+                storyViewer.setOverlayVisible(false);
+            }
+        }
+
+        public void lambda$onCreate$41(final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
+            if (storyViewer != null) {
+                storyViewer.setOverlayVisible(true);
+            }
+            int i = PeerStoriesView.this.currentAccount;
+            Context context = PeerStoriesView.this.getContext();
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            ReportBottomSheet.openStory(i, context, peerStoriesView.currentStory.storyItem, BulletinFactory.of(peerStoriesView.storyContainer, resourcesProvider), resourcesProvider, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$40(StoryViewer.this, (Boolean) obj);
+                }
+            });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
             }
         }
 
-        public void lambda$onCreate$41(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
+        public void lambda$onCreate$42(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
             Delegate delegate;
             EmojiPacksAlert alert = storyContainsEmojiButton.getAlert();
             if (alert == null || (delegate = PeerStoriesView.this.delegate) == null) {
@@ -2099,7 +2117,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             });
         }
 
-        public void lambda$onDismissed$42() {
+        public void lambda$onDismissed$43() {
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
         }
 
@@ -2114,7 +2132,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.this.lambda$onDismissed$42();
+                        PeerStoriesView.AnonymousClass8.this.lambda$onDismissed$43();
                     }
                 });
             }
@@ -5099,7 +5117,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
 
             @Override
-            protected void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            public void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 Bulletin createSimpleBulletin;
                 super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;

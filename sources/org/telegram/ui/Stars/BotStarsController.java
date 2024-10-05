@@ -13,11 +13,11 @@ import org.telegram.tgnet.TLRPC$BroadcastRevenueBalances;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_payments_getStarsRevenueStats;
-import org.telegram.tgnet.TLRPC$TL_payments_getStarsTransactions;
 import org.telegram.tgnet.TLRPC$TL_payments_starsRevenueStats;
-import org.telegram.tgnet.TLRPC$TL_payments_starsStatus;
 import org.telegram.tgnet.TLRPC$TL_starsRevenueStatus;
 import org.telegram.tgnet.TLRPC$TL_updateStarsRevenueStatus;
+import org.telegram.tgnet.tl.TL_stars$TL_payments_getStarsTransactions;
+import org.telegram.tgnet.tl.TL_stars$TL_payments_starsStatus;
 import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueStats;
 import org.telegram.tgnet.tl.TL_stats$TL_getBroadcastRevenueStats;
 import org.telegram.ui.ActionBar.Theme;
@@ -130,14 +130,14 @@ public class BotStarsController {
 
     public void lambda$loadTransactions$4(TransactionsState transactionsState, int i, TLObject tLObject, long j) {
         transactionsState.loading[i] = false;
-        if (tLObject instanceof TLRPC$TL_payments_starsStatus) {
-            TLRPC$TL_payments_starsStatus tLRPC$TL_payments_starsStatus = (TLRPC$TL_payments_starsStatus) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_payments_starsStatus.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_payments_starsStatus.chats, false);
-            transactionsState.transactions[i].addAll(tLRPC$TL_payments_starsStatus.history);
+        if (tLObject instanceof TL_stars$TL_payments_starsStatus) {
+            TL_stars$TL_payments_starsStatus tL_stars$TL_payments_starsStatus = (TL_stars$TL_payments_starsStatus) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_stars$TL_payments_starsStatus.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_stars$TL_payments_starsStatus.chats, false);
+            transactionsState.transactions[i].addAll(tL_stars$TL_payments_starsStatus.history);
             transactionsState.transactionsExist[i] = !transactionsState.transactions[i].isEmpty() || transactionsState.transactionsExist[i];
-            transactionsState.endReached[i] = (tLRPC$TL_payments_starsStatus.flags & 1) == 0;
-            transactionsState.offset[i] = transactionsState.endReached[i] ? null : tLRPC$TL_payments_starsStatus.next_offset;
+            transactionsState.endReached[i] = (tL_stars$TL_payments_starsStatus.flags & 1) == 0;
+            transactionsState.offset[i] = transactionsState.endReached[i] ? null : tL_stars$TL_payments_starsStatus.next_offset;
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsTransactionsLoaded, Long.valueOf(j));
         }
     }
@@ -266,16 +266,16 @@ public class BotStarsController {
             return;
         }
         transactionsState.loading[i] = true;
-        TLRPC$TL_payments_getStarsTransactions tLRPC$TL_payments_getStarsTransactions = new TLRPC$TL_payments_getStarsTransactions();
-        tLRPC$TL_payments_getStarsTransactions.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
-        tLRPC$TL_payments_getStarsTransactions.inbound = i == 1;
-        tLRPC$TL_payments_getStarsTransactions.outbound = i == 2;
+        TL_stars$TL_payments_getStarsTransactions tL_stars$TL_payments_getStarsTransactions = new TL_stars$TL_payments_getStarsTransactions();
+        tL_stars$TL_payments_getStarsTransactions.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        tL_stars$TL_payments_getStarsTransactions.inbound = i == 1;
+        tL_stars$TL_payments_getStarsTransactions.outbound = i == 2;
         String str = transactionsState.offset[i];
-        tLRPC$TL_payments_getStarsTransactions.offset = str;
+        tL_stars$TL_payments_getStarsTransactions.offset = str;
         if (str == null) {
-            tLRPC$TL_payments_getStarsTransactions.offset = "";
+            tL_stars$TL_payments_getStarsTransactions.offset = "";
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_getStarsTransactions, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stars$TL_payments_getStarsTransactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 BotStarsController.this.lambda$loadTransactions$5(transactionsState, i, j, tLObject, tLRPC$TL_error);

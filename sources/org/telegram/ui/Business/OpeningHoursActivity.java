@@ -373,7 +373,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             if (this.isFinished || this.finishing) {
                 return;
             }
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -470,7 +470,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         this.doneButtonDrawable.animateToProgress(1.0f);
@@ -598,7 +598,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (OpeningHoursActivity.this.onBackPressed()) {
-                        OpeningHoursActivity.this.lambda$onBackPressed$307();
+                        OpeningHoursActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i == 1) {
                     OpeningHoursActivity.this.processDone();

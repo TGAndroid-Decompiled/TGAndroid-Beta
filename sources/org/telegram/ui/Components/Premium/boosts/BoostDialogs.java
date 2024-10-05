@@ -553,7 +553,7 @@ public abstract class BoostDialogs {
         builder.setTitle(LocaleController.getString("BoostingGiveawayEnd", R.string.BoostingGiveawayEnd));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z3) {
-            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString(z ? "BoostingStarsGiveawayHowItWorksTextEnd" : "BoostingStarsGiveawayHowItWorksTextEndGroup", (int) tLRPC$TL_messageMediaGiveaway.stars, str)));
+            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma(z ? "BoostingStarsGiveawayHowItWorksTextEnd" : "BoostingStarsGiveawayHowItWorksTextEndGroup", (int) tLRPC$TL_messageMediaGiveaway.stars, str)));
             i = i2;
         } else {
             String str2 = z ? "BoostingGiveawayHowItWorksTextEnd" : "BoostingGiveawayHowItWorksTextEndGroup";

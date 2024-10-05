@@ -1133,14 +1133,17 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         MessageObject messageObject;
         TLRPC$Message tLRPC$Message2;
         TLRPC$User user;
+        MessageObject messageObject2;
         TLRPC$Message tLRPC$Message3;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2;
+        TLRPC$Message tLRPC$Message4;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader3;
-        MessageObject messageObject2 = this.message;
-        if (messageObject2 == null) {
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader4;
+        MessageObject messageObject3 = this.message;
+        if (messageObject3 == null) {
             return null;
         }
-        long fromChatId = messageObject2.getFromChatId();
+        long fromChatId = messageObject3.getFromChatId();
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         if (!this.isSavedDialog && this.currentDialogId == clientUserId) {
             long savedDialogId = this.message.getSavedDialogId();
@@ -1148,9 +1151,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 return null;
             }
             if (savedDialogId != 2666000) {
-                TLRPC$Message tLRPC$Message4 = this.message.messageOwner;
-                if (tLRPC$Message4 != null && (tLRPC$MessageFwdHeader3 = tLRPC$Message4.fwd_from) != null) {
-                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader3.saved_from_id);
+                TLRPC$Message tLRPC$Message5 = this.message.messageOwner;
+                if (tLRPC$Message5 != null && (tLRPC$MessageFwdHeader4 = tLRPC$Message5.fwd_from) != null) {
+                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader4.saved_from_id);
                     if (peerDialogId == 0) {
                         peerDialogId = DialogObject.getPeerDialogId(this.message.messageOwner.fwd_from.from_id);
                     }
@@ -1161,8 +1164,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 fromChatId = savedDialogId;
             }
         }
-        if (this.isSavedDialog && (tLRPC$Message3 = this.message.messageOwner) != null && (tLRPC$MessageFwdHeader2 = tLRPC$Message3.fwd_from) != null) {
-            fromChatId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader2.saved_from_id);
+        if (this.isSavedDialog && (tLRPC$Message4 = this.message.messageOwner) != null && (tLRPC$MessageFwdHeader3 = tLRPC$Message4.fwd_from) != null) {
+            fromChatId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader3.saved_from_id);
             if (fromChatId == 0) {
                 fromChatId = DialogObject.getPeerDialogId(this.message.messageOwner.fwd_from.from_id);
             }
@@ -1174,7 +1177,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-fromChatId));
             tLRPC$User = null;
         }
-        if (this.currentDialogId == clientUserId) {
+        long j = this.currentDialogId;
+        if (j == clientUserId) {
             if (tLRPC$User != null) {
                 return AndroidUtilities.removeDiacritics(UserObject.getFirstName(tLRPC$User).replace("\n", ""));
             }
@@ -1183,14 +1187,26 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             return null;
         }
+        if (j == 489000 && (messageObject2 = this.message) != null && (tLRPC$Message3 = messageObject2.messageOwner) != null && (tLRPC$MessageFwdHeader2 = tLRPC$Message3.fwd_from) != null) {
+            String str3 = tLRPC$MessageFwdHeader2.from_name;
+            if (str3 != null) {
+                return AndroidUtilities.removeDiacritics(str3);
+            }
+            long peerDialogId2 = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader2.from_id);
+            if (DialogObject.isUserDialog(peerDialogId2)) {
+                return UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId2)));
+            }
+            TLRPC$Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId2));
+            return chat2 == null ? "" : chat2.title;
+        }
         if (this.message.isOutOwner() && tLRPC$User != null) {
             return LocaleController.getString(R.string.FromYou);
         }
         if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
             return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user).replace("\n", ""));
         }
-        MessageObject messageObject3 = this.message;
-        return (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) ? tLRPC$User != null ? (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? UserObject.isDeleted(tLRPC$User) ? LocaleController.getString(R.string.HiddenName) : AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "")) : AndroidUtilities.removeDiacritics(UserObject.getFirstName(tLRPC$User).replace("\n", "")) : (chat == null || (str = chat.title) == null) ? "DELETED" : AndroidUtilities.removeDiacritics(str.replace("\n", "")) : AndroidUtilities.removeDiacritics(str2);
+        MessageObject messageObject4 = this.message;
+        return (messageObject4 == null || (tLRPC$Message = messageObject4.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) ? tLRPC$User != null ? (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? UserObject.isDeleted(tLRPC$User) ? LocaleController.getString(R.string.HiddenName) : AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "")) : AndroidUtilities.removeDiacritics(UserObject.getFirstName(tLRPC$User).replace("\n", "")) : (chat == null || (str = chat.title) == null) ? "DELETED" : AndroidUtilities.removeDiacritics(str.replace("\n", "")) : AndroidUtilities.removeDiacritics(str2);
     }
 
     public android.text.SpannableStringBuilder getMessageStringFormatted(int r17, java.lang.String r18, java.lang.CharSequence r19, boolean r20) {

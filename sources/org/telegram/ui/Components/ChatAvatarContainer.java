@@ -281,7 +281,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             this.parentFragment = (ChatActivity) baseFragment;
         }
         ChatActivity chatActivity = this.parentFragment;
-        boolean z3 = (chatActivity == null || chatActivity.getChatMode() != 0 || UserObject.isReplyUser(this.parentFragment.getCurrentUser())) ? false : true;
+        boolean z3 = chatActivity != null && chatActivity.getChatMode() == 0 && !UserObject.isReplyUser(this.parentFragment.getCurrentUser()) && (this.parentFragment.getCurrentUser() == null || this.parentFragment.getCurrentUser().id != 489000);
         this.avatarImageView = new AnonymousClass1(context, baseFragment, z3, resourcesProvider);
         if (z2 || (baseFragment instanceof TopicsFragment)) {
             ChatActivity chatActivity2 = this.parentFragment;
@@ -391,7 +391,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         ChatActivity chatActivity4 = this.parentFragment;
         if (chatActivity4 != null && (chatActivity4.getChatMode() == 0 || this.parentFragment.getChatMode() == 3)) {
-            if ((!this.parentFragment.isThreadChat() || this.parentFragment.isTopic) && !UserObject.isReplyUser(this.parentFragment.getCurrentUser())) {
+            if ((!this.parentFragment.isThreadChat() || this.parentFragment.isTopic) && !UserObject.isReplyUser(this.parentFragment.getCurrentUser()) && (this.parentFragment.getCurrentUser() == null || this.parentFragment.getCurrentUser().id != 489000)) {
                 setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
@@ -943,7 +943,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         openProfile(z, true, false);
     }
 
-    public void openProfile(boolean r11, boolean r12, boolean r13) {
+    public void openProfile(boolean r12, boolean r13, boolean r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAvatarContainer.openProfile(boolean, boolean, boolean):void");
     }
 
@@ -1289,7 +1289,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             return;
         }
         TLRPC$User currentUser = this.parentFragment.getCurrentUser();
-        if ((UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || this.parentFragment.getChatMode() != 0) && this.parentFragment.getChatMode() != 3) {
+        if ((UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || ((currentUser != null && currentUser.id == 489000) || this.parentFragment.getChatMode() != 0)) && this.parentFragment.getChatMode() != 3) {
             if (getSubtitleTextView().getVisibility() != 8) {
                 getSubtitleTextView().setVisibility(8);
                 return;
@@ -1387,29 +1387,32 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                         currentUser = user;
                     }
                     if (!UserObject.isReplyUser(currentUser)) {
-                        if (currentUser.id == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                            i = R.string.ChatYourSelf;
-                        } else {
-                            long j = currentUser.id;
-                            if (j == 333000 || j == 777000 || j == 42777) {
-                                i = R.string.ServiceNotifications;
-                            } else if (MessagesController.isSupportUser(currentUser)) {
-                                i = R.string.SupportStatus;
+                        long j = currentUser.id;
+                        if (j != 489000) {
+                            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                                i = R.string.ChatYourSelf;
                             } else {
-                                boolean z3 = currentUser.bot;
-                                if (z3 && (i2 = currentUser.bot_active_users) != 0) {
-                                    charSequence = LocaleController.formatPluralStringComma("BotUsers", i2, ',');
-                                } else if (z3) {
-                                    i = R.string.Bot;
+                                long j2 = currentUser.id;
+                                if (j2 == 333000 || j2 == 777000 || j2 == 42777) {
+                                    i = R.string.ServiceNotifications;
+                                } else if (MessagesController.isSupportUser(currentUser)) {
+                                    i = R.string.SupportStatus;
                                 } else {
-                                    boolean[] zArr = this.isOnline;
-                                    zArr[0] = false;
-                                    charSequence = LocaleController.formatUserStatus(this.currentAccount, currentUser, zArr, this.allowShorterStatus ? this.statusMadeShorter : null);
-                                    z2 = this.isOnline[0];
+                                    boolean z3 = currentUser.bot;
+                                    if (z3 && (i2 = currentUser.bot_active_users) != 0) {
+                                        charSequence = LocaleController.formatPluralStringComma("BotUsers", i2, ',');
+                                    } else if (z3) {
+                                        i = R.string.Bot;
+                                    } else {
+                                        boolean[] zArr = this.isOnline;
+                                        zArr[0] = false;
+                                        charSequence = LocaleController.formatUserStatus(this.currentAccount, currentUser, zArr, this.allowShorterStatus ? this.statusMadeShorter : null);
+                                        z2 = this.isOnline[0];
+                                    }
                                 }
                             }
+                            charSequence = LocaleController.getString(i);
                         }
-                        charSequence = LocaleController.getString(i);
                     }
                 }
             }

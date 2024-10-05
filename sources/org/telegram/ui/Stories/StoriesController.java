@@ -1869,7 +1869,7 @@ public class StoriesController {
             this.messageObject.videoEditedInfo = videoEditedInfo;
             this.duration = videoEditedInfo.estimatedDuration / 1000;
             if (videoEditedInfo.needConvert()) {
-                MediaController.getInstance().scheduleVideoConvert(this.messageObject, false, false);
+                MediaController.getInstance().scheduleVideoConvert(this.messageObject, false, false, false);
             } else if (new File(this.messageObject.videoEditedInfo.originalPath).renameTo(new File(this.path))) {
                 FileLoader.getInstance(StoriesController.this.currentAccount).uploadFile(this.path, false, false, 33554432);
             }

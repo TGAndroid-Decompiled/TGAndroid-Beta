@@ -707,6 +707,10 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         return true;
     }
 
+    public boolean isStatusBarVisible() {
+        return true;
+    }
+
     public int measureKeyboardHeight() {
         View rootView = getRootView();
         getWindowVisibleDisplayFrame(this.rect);
@@ -994,6 +998,10 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         if (DRAW_USING_RENDERNODE()) {
             invalidateBlurredViews();
         }
+    }
+
+    protected boolean useRootView() {
+        return true;
     }
 
     @Override

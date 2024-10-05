@@ -22,6 +22,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     private int currentAccount;
     File currentFile;
     private long currentOffset;
+    private boolean customLength;
     private TLRPC$Document document;
     private RandomAccessFile file;
     private FileLoadOperation loadOperation;
@@ -143,9 +144,9 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     @Override
     public void newDataAvailable() {
         CountDownLatch countDownLatch = this.countDownLatch;
+        this.countDownLatch = null;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            this.countDownLatch = null;
         }
     }
 
@@ -155,7 +156,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public int read(byte[] r13, int r14, int r15) {
+    public int read(byte[] r17, int r18, int r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 }

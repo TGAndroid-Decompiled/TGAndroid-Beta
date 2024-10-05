@@ -156,6 +156,7 @@ import org.telegram.tgnet.TLRPC$TL_inputStickerSetID;
 import org.telegram.tgnet.TLRPC$TL_keyboardButton;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonBuy;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonCallback;
+import org.telegram.tgnet.TLRPC$TL_keyboardButtonCopy;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonGame;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonRequestGeoLocation;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonRequestPeer;
@@ -211,10 +212,8 @@ import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.MessagePreviewView;
-import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
-import org.telegram.ui.Components.Premium.boosts.PremiumPreviewGiftToUsersBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBar;
 import org.telegram.ui.Components.SenderSelectPopup;
@@ -224,6 +223,7 @@ import org.telegram.ui.Components.SuggestEmojiView;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.VideoTimelineView;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.GroupStickersActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.MessageSendPreview;
@@ -7908,7 +7908,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (baseFragment.getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$91(new PremiumPreviewFragment(null));
+            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$93(new PremiumPreviewFragment(null));
         }
     }
 
@@ -8042,14 +8042,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return;
         }
         if (!new ArrayList(getParentFragment().getCurrentUserInfo().premium_gifts).isEmpty()) {
-            new GiftPremiumBottomSheet(getParentFragment(), getParentFragment().getCurrentUser()).show();
+            new GiftSheet(getContext(), this.currentAccount, currentUser.id, null, null).show();
             return;
         }
         final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
-        final int loadGiftOptions = BoostRepository.loadGiftOptions(null, new Utilities.Callback() {
+        final int loadGiftOptions = BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatActivityEnterView.lambda$createGiftButton$8(AlertDialog.this, currentUser, (List) obj);
+                ChatActivityEnterView.this.lambda$createGiftButton$8(alertDialog, currentUser, (List) obj);
             }
         });
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -8061,12 +8061,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         alertDialog.showDelayed(200L);
     }
 
-    public static void lambda$createGiftButton$8(AlertDialog alertDialog, TLRPC$User tLRPC$User, List list) {
+    public void lambda$createGiftButton$8(AlertDialog alertDialog, TLRPC$User tLRPC$User, List list) {
         alertDialog.dismiss();
-        List filterGiftOptionsByBilling = BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(list, 1));
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(tLRPC$User);
-        PremiumPreviewGiftToUsersBottomSheet.show(arrayList, filterGiftOptionsByBilling);
+        new GiftSheet(getContext(), this.currentAccount, tLRPC$User.id, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(list, 1)), null).show();
     }
 
     public void lambda$createGiftButton$9(int i, DialogInterface dialogInterface) {
@@ -8444,7 +8441,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         TLRPC$User user = this.accountInstance.getMessagesController().getUser(Long.valueOf(j));
         if (user == null) {
-            dialogsActivity.lambda$onBackPressed$307();
+            dialogsActivity.lambda$onBackPressed$300();
             return true;
         }
         long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -8466,7 +8463,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return true;
             }
         }
-        dialogsActivity.lambda$onBackPressed$307();
+        dialogsActivity.lambda$onBackPressed$300();
         return true;
     }
 
@@ -8494,7 +8491,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             tLRPC$TL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(this.currentAccount).getInputPeer(((MessagesStorage.TopicKey) arrayList.get(0)).dialogId));
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_sendBotRequestedPeer, null);
         }
-        dialogsActivity.lambda$onBackPressed$307();
+        dialogsActivity.lambda$onBackPressed$300();
         return true;
     }
 
@@ -10319,220 +10316,226 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (chatActivity != null && chatActivity.getChatMode() == 5) {
             return false;
         }
-        if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButton) {
-            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(tLRPC$KeyboardButton.text, this.dialog_id, messageObject, getThreadMessage(), null, false, null, null, null, true, 0, null, false);
-            ChatActivity chatActivity2 = this.parentFragment;
-            of.quick_reply_shortcut = chatActivity2 != null ? chatActivity2.quickReplyShortcut : null;
-            of.quick_reply_shortcut_id = chatActivity2 != null ? chatActivity2.getQuickReplyId() : 0;
-            of.effect_id = this.effectId;
-            SendButton sendButton = this.sendButton;
-            this.effectId = 0L;
-            sendButton.setEffect(0L);
-            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
-        } else if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrl) {
-            if (Browser.urlMustNotHaveConfirmation(tLRPC$KeyboardButton.url)) {
-                Browser.openUrl(this.parentActivity, Uri.parse(tLRPC$KeyboardButton.url), true, true, progress);
-            } else {
-                AlertsCreator.showOpenUrlAlert(this.parentFragment, tLRPC$KeyboardButton.url, false, true, true, progress, this.resourcesProvider);
-            }
-        } else if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonRequestPhone) {
-            this.parentFragment.shareMyContact(2, messageObject2);
+        if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonCopy) {
+            TLRPC$TL_keyboardButtonCopy tLRPC$TL_keyboardButtonCopy = (TLRPC$TL_keyboardButtonCopy) tLRPC$KeyboardButton;
+            AndroidUtilities.addToClipboard(tLRPC$TL_keyboardButtonCopy.copy_text);
+            BulletinFactory.of(this.parentFragment).createCopyBulletin(LocaleController.formatString(R.string.ExactTextCopied, tLRPC$TL_keyboardButtonCopy.copy_text)).show(true);
         } else {
-            if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonRequestPoll) {
-                this.parentFragment.openPollCreate((tLRPC$KeyboardButton.flags & 1) != 0 ? Boolean.valueOf(tLRPC$KeyboardButton.quiz) : null);
-                return false;
-            }
-            if ((tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonWebView) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonSimpleWebView)) {
-                TLRPC$Message tLRPC$Message = messageObject2.messageOwner;
-                long j = tLRPC$Message.via_bot_id;
-                if (j == 0) {
-                    j = tLRPC$Message.from_id.user_id;
-                }
-                final long j2 = j;
-                MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2));
-                final AnonymousClass70 anonymousClass70 = new Runnable() {
-                    final long val$botId;
-                    final TLRPC$KeyboardButton val$button;
-                    final MessageObject val$messageObject;
-                    final MessageObject val$replyMessageObject;
-
-                    AnonymousClass70(final MessageObject messageObject22, final long j22, final TLRPC$KeyboardButton tLRPC$KeyboardButton2, MessageObject messageObject3) {
-                        r2 = messageObject22;
-                        r3 = j22;
-                        r5 = tLRPC$KeyboardButton2;
-                        r6 = messageObject3;
-                    }
-
-                    @Override
-                    public void run() {
-                        if (ChatActivityEnterView.this.sizeNotifierLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f) || ChatActivityEnterView.this.isPopupShowing()) {
-                            ChatActivityEnterView.this.hidePopup(false);
-                            AndroidUtilities.hideKeyboard(ChatActivityEnterView.this);
-                            AndroidUtilities.runOnUIThread(this, 150L);
-                            return;
-                        }
-                        if (ChatActivityEnterView.this.parentFragment == null) {
-                            return;
-                        }
-                        int i2 = ChatActivityEnterView.this.currentAccount;
-                        long j3 = r2.messageOwner.dialog_id;
-                        long j22 = r3;
-                        TLRPC$KeyboardButton tLRPC$KeyboardButton2 = r5;
-                        String str = tLRPC$KeyboardButton2.text;
-                        String str2 = tLRPC$KeyboardButton2.url;
-                        boolean z = tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonSimpleWebView;
-                        MessageObject messageObject3 = r6;
-                        WebViewRequestProps of2 = WebViewRequestProps.of(i2, j3, j22, str, str2, z ? 1 : 0, messageObject3 != null ? messageObject3.messageOwner.id : 0, false, null, false, null, null, 0, false);
-                        LaunchActivity launchActivity = LaunchActivity.instance;
-                        if (launchActivity != null && launchActivity.getBottomSheetTabs() != null && LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(of2) != null) {
-                            if (ChatActivityEnterView.this.botCommandsMenuButton != null) {
-                                ChatActivityEnterView.this.botCommandsMenuButton.setOpened(false);
-                            }
-                        } else {
-                            if (AndroidUtilities.isTablet()) {
-                                BotWebViewSheet botWebViewSheet = new BotWebViewSheet(ChatActivityEnterView.this.getContext(), ChatActivityEnterView.this.resourcesProvider);
-                                botWebViewSheet.setParentActivity(ChatActivityEnterView.this.parentActivity);
-                                botWebViewSheet.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
-                                botWebViewSheet.show();
-                                return;
-                            }
-                            BotWebViewAttachedSheet createBotViewer = ChatActivityEnterView.this.parentFragment.createBotViewer();
-                            createBotViewer.setDefaultFullsize(false);
-                            createBotViewer.setNeedsContext(true);
-                            createBotViewer.setParentActivity(ChatActivityEnterView.this.parentActivity);
-                            createBotViewer.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
-                            createBotViewer.show();
-                        }
-                    }
-                };
-                if (SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j22)) {
-                    anonymousClass70.run();
+            if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButton) {
+                SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(tLRPC$KeyboardButton.text, this.dialog_id, messageObject, getThreadMessage(), null, false, null, null, null, true, 0, null, false);
+                ChatActivity chatActivity2 = this.parentFragment;
+                of.quick_reply_shortcut = chatActivity2 != null ? chatActivity2.quickReplyShortcut : null;
+                of.quick_reply_shortcut_id = chatActivity2 != null ? chatActivity2.getQuickReplyId() : 0;
+                of.effect_id = this.effectId;
+                SendButton sendButton = this.sendButton;
+                this.effectId = 0L;
+                sendButton.setEffect(0L);
+                SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
+            } else if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrl) {
+                if (Browser.urlMustNotHaveConfirmation(tLRPC$KeyboardButton.url)) {
+                    Browser.openUrl(this.parentActivity, Uri.parse(tLRPC$KeyboardButton.url), true, true, progress);
                 } else {
-                    AlertsCreator.createBotLaunchAlert(this.parentFragment, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialog_id)), new Runnable() {
-                        @Override
-                        public final void run() {
-                            ChatActivityEnterView.this.lambda$didPressedBotButton$63(anonymousClass70, j22);
-                        }
-                    }, (Runnable) null);
+                    AlertsCreator.showOpenUrlAlert(this.parentFragment, tLRPC$KeyboardButton.url, false, true, true, progress, this.resourcesProvider);
                 }
-            } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonRequestGeoLocation) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this.parentActivity);
-                builder.setTitle(LocaleController.getString("ShareYouLocationTitle", R.string.ShareYouLocationTitle));
-                builder.setMessage(LocaleController.getString("ShareYouLocationInfo", R.string.ShareYouLocationInfo));
-                builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i2) {
-                        ChatActivityEnterView.this.lambda$didPressedBotButton$64(messageObject22, tLRPC$KeyboardButton2, dialogInterface, i2);
-                    }
-                });
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-                this.parentFragment.showDialog(builder.create());
-            } else if ((tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonCallback) || (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonGame) || (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonBuy) || (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonUrlAuth)) {
-                SendMessagesHelper.getInstance(this.currentAccount).sendCallback(true, messageObject22, tLRPC$KeyboardButton2, this.parentFragment);
-            } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonSwitchInline) {
-                if (this.parentFragment.processSwitchButton((TLRPC$TL_keyboardButtonSwitchInline) tLRPC$KeyboardButton2)) {
-                    return true;
-                }
-                if (tLRPC$KeyboardButton2.same_peer) {
-                    TLRPC$Message tLRPC$Message2 = messageObject22.messageOwner;
-                    long j3 = tLRPC$Message2.from_id.user_id;
-                    long j4 = tLRPC$Message2.via_bot_id;
-                    if (j4 != 0) {
-                        j3 = j4;
-                    }
-                    TLRPC$User user = this.accountInstance.getMessagesController().getUser(Long.valueOf(j3));
-                    if (user == null) {
-                        return true;
-                    }
-                    setFieldText("@" + UserObject.getPublicUsername(user) + " " + tLRPC$KeyboardButton2.query);
-                } else {
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("onlySelect", true);
-                    bundle.putInt("dialogsType", 1);
-                    if ((tLRPC$KeyboardButton2.flags & 2) != 0) {
-                        bundle.putBoolean("allowGroups", false);
-                        bundle.putBoolean("allowMegagroups", false);
-                        bundle.putBoolean("allowLegacyGroups", false);
-                        bundle.putBoolean("allowUsers", false);
-                        bundle.putBoolean("allowChannels", false);
-                        bundle.putBoolean("allowBots", false);
-                        Iterator it = tLRPC$KeyboardButton2.peer_types.iterator();
-                        while (it.hasNext()) {
-                            TLRPC$InlineQueryPeerType tLRPC$InlineQueryPeerType = (TLRPC$InlineQueryPeerType) it.next();
-                            if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypePM) {
-                                bundle.putBoolean("allowUsers", true);
-                            } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeBotPM) {
-                                bundle.putBoolean("allowBots", true);
-                            } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeBroadcast) {
-                                bundle.putBoolean("allowChannels", true);
-                            } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeChat) {
-                                bundle.putBoolean("allowLegacyGroups", true);
-                            } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeMegagroup) {
-                                bundle.putBoolean("allowMegagroups", true);
-                            }
-                        }
-                    }
-                    DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-                    dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
-                        @Override
-                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
-                            boolean lambda$didPressedBotButton$65;
-                            lambda$didPressedBotButton$65 = ChatActivityEnterView.this.lambda$didPressedBotButton$65(messageObject22, tLRPC$KeyboardButton2, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
-                            return lambda$didPressedBotButton$65;
-                        }
-                    });
-                    this.parentFragment.presentFragment(dialogsActivity);
-                }
-            } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonUserProfile) {
-                if (MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$KeyboardButton2.user_id)) != null) {
-                    Bundle bundle2 = new Bundle();
-                    bundle2.putLong("user_id", tLRPC$KeyboardButton2.user_id);
-                    this.parentFragment.presentFragment(new ProfileActivity(bundle2));
-                }
-            } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonRequestPeer) {
-                final TLRPC$TL_keyboardButtonRequestPeer tLRPC$TL_keyboardButtonRequestPeer = (TLRPC$TL_keyboardButtonRequestPeer) tLRPC$KeyboardButton2;
-                TLRPC$RequestPeerType tLRPC$RequestPeerType = tLRPC$TL_keyboardButtonRequestPeer.peer_type;
-                if (tLRPC$RequestPeerType != null && messageObject22.messageOwner != null) {
-                    if ((tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeUser) && (i = tLRPC$TL_keyboardButtonRequestPeer.max_quantity) > 1) {
-                        MultiContactsSelectorBottomSheet.open(i, new MultiContactsSelectorBottomSheet.SelectorListener() {
-                            @Override
-                            public final void onUserSelected(List list) {
-                                ChatActivityEnterView.this.lambda$didPressedBotButton$66(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, list);
-                            }
-                        });
-                        return false;
-                    }
-                    Bundle bundle3 = new Bundle();
-                    bundle3.putBoolean("onlySelect", true);
-                    bundle3.putInt("dialogsType", 15);
-                    TLRPC$Message tLRPC$Message3 = messageObject22.messageOwner;
-                    if (tLRPC$Message3 != null) {
-                        TLRPC$Peer tLRPC$Peer = tLRPC$Message3.from_id;
-                        if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
-                            bundle3.putLong("requestPeerBotId", tLRPC$Peer.user_id);
-                        }
-                    }
-                    try {
-                        SerializedData serializedData = new SerializedData(tLRPC$TL_keyboardButtonRequestPeer.peer_type.getObjectSize());
-                        tLRPC$TL_keyboardButtonRequestPeer.peer_type.serializeToStream(serializedData);
-                        bundle3.putByteArray("requestPeerType", serializedData.toByteArray());
-                        serializedData.cleanup();
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                    }
-                    DialogsActivity dialogsActivity2 = new DialogsActivity(bundle3);
-                    dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
-                        @Override
-                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
-                            boolean lambda$didPressedBotButton$67;
-                            lambda$didPressedBotButton$67 = ChatActivityEnterView.this.lambda$didPressedBotButton$67(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, dialogsActivity3, arrayList, charSequence, z, z2, i2, topicsFragment);
-                            return lambda$didPressedBotButton$67;
-                        }
-                    });
-                    this.parentFragment.presentFragment(dialogsActivity2);
+            } else if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonRequestPhone) {
+                this.parentFragment.shareMyContact(2, messageObject2);
+            } else {
+                if (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonRequestPoll) {
+                    this.parentFragment.openPollCreate((tLRPC$KeyboardButton.flags & 1) != 0 ? Boolean.valueOf(tLRPC$KeyboardButton.quiz) : null);
                     return false;
                 }
-                FileLog.e("button.peer_type is null");
+                if ((tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonWebView) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonSimpleWebView)) {
+                    TLRPC$Message tLRPC$Message = messageObject2.messageOwner;
+                    long j = tLRPC$Message.via_bot_id;
+                    if (j == 0) {
+                        j = tLRPC$Message.from_id.user_id;
+                    }
+                    final long j2 = j;
+                    MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2));
+                    final AnonymousClass70 anonymousClass70 = new Runnable() {
+                        final long val$botId;
+                        final TLRPC$KeyboardButton val$button;
+                        final MessageObject val$messageObject;
+                        final MessageObject val$replyMessageObject;
+
+                        AnonymousClass70(final MessageObject messageObject22, final long j22, final TLRPC$KeyboardButton tLRPC$KeyboardButton2, MessageObject messageObject3) {
+                            r2 = messageObject22;
+                            r3 = j22;
+                            r5 = tLRPC$KeyboardButton2;
+                            r6 = messageObject3;
+                        }
+
+                        @Override
+                        public void run() {
+                            if (ChatActivityEnterView.this.sizeNotifierLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f) || ChatActivityEnterView.this.isPopupShowing()) {
+                                ChatActivityEnterView.this.hidePopup(false);
+                                AndroidUtilities.hideKeyboard(ChatActivityEnterView.this);
+                                AndroidUtilities.runOnUIThread(this, 150L);
+                                return;
+                            }
+                            if (ChatActivityEnterView.this.parentFragment == null) {
+                                return;
+                            }
+                            int i2 = ChatActivityEnterView.this.currentAccount;
+                            long j3 = r2.messageOwner.dialog_id;
+                            long j22 = r3;
+                            TLRPC$KeyboardButton tLRPC$KeyboardButton2 = r5;
+                            String str = tLRPC$KeyboardButton2.text;
+                            String str2 = tLRPC$KeyboardButton2.url;
+                            boolean z = tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonSimpleWebView;
+                            MessageObject messageObject3 = r6;
+                            WebViewRequestProps of2 = WebViewRequestProps.of(i2, j3, j22, str, str2, z ? 1 : 0, messageObject3 != null ? messageObject3.messageOwner.id : 0, false, null, false, null, null, 0, false);
+                            LaunchActivity launchActivity = LaunchActivity.instance;
+                            if (launchActivity != null && launchActivity.getBottomSheetTabs() != null && LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(of2) != null) {
+                                if (ChatActivityEnterView.this.botCommandsMenuButton != null) {
+                                    ChatActivityEnterView.this.botCommandsMenuButton.setOpened(false);
+                                }
+                            } else {
+                                if (AndroidUtilities.isTablet()) {
+                                    BotWebViewSheet botWebViewSheet = new BotWebViewSheet(ChatActivityEnterView.this.getContext(), ChatActivityEnterView.this.resourcesProvider);
+                                    botWebViewSheet.setParentActivity(ChatActivityEnterView.this.parentActivity);
+                                    botWebViewSheet.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
+                                    botWebViewSheet.show();
+                                    return;
+                                }
+                                BotWebViewAttachedSheet createBotViewer = ChatActivityEnterView.this.parentFragment.createBotViewer();
+                                createBotViewer.setDefaultFullsize(false);
+                                createBotViewer.setNeedsContext(true);
+                                createBotViewer.setParentActivity(ChatActivityEnterView.this.parentActivity);
+                                createBotViewer.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
+                                createBotViewer.show();
+                            }
+                        }
+                    };
+                    if (SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j22)) {
+                        anonymousClass70.run();
+                    } else {
+                        AlertsCreator.createBotLaunchAlert(this.parentFragment, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialog_id)), new Runnable() {
+                            @Override
+                            public final void run() {
+                                ChatActivityEnterView.this.lambda$didPressedBotButton$63(anonymousClass70, j22);
+                            }
+                        }, (Runnable) null);
+                    }
+                } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonRequestGeoLocation) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this.parentActivity);
+                    builder.setTitle(LocaleController.getString("ShareYouLocationTitle", R.string.ShareYouLocationTitle));
+                    builder.setMessage(LocaleController.getString("ShareYouLocationInfo", R.string.ShareYouLocationInfo));
+                    builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+                        @Override
+                        public final void onClick(DialogInterface dialogInterface, int i2) {
+                            ChatActivityEnterView.this.lambda$didPressedBotButton$64(messageObject22, tLRPC$KeyboardButton2, dialogInterface, i2);
+                        }
+                    });
+                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                    this.parentFragment.showDialog(builder.create());
+                } else if ((tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonCallback) || (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonGame) || (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonBuy) || (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonUrlAuth)) {
+                    SendMessagesHelper.getInstance(this.currentAccount).sendCallback(true, messageObject22, tLRPC$KeyboardButton2, this.parentFragment);
+                } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonSwitchInline) {
+                    if (this.parentFragment.processSwitchButton((TLRPC$TL_keyboardButtonSwitchInline) tLRPC$KeyboardButton2)) {
+                        return true;
+                    }
+                    if (tLRPC$KeyboardButton2.same_peer) {
+                        TLRPC$Message tLRPC$Message2 = messageObject22.messageOwner;
+                        long j3 = tLRPC$Message2.from_id.user_id;
+                        long j4 = tLRPC$Message2.via_bot_id;
+                        if (j4 != 0) {
+                            j3 = j4;
+                        }
+                        TLRPC$User user = this.accountInstance.getMessagesController().getUser(Long.valueOf(j3));
+                        if (user == null) {
+                            return true;
+                        }
+                        setFieldText("@" + UserObject.getPublicUsername(user) + " " + tLRPC$KeyboardButton2.query);
+                    } else {
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("onlySelect", true);
+                        bundle.putInt("dialogsType", 1);
+                        if ((tLRPC$KeyboardButton2.flags & 2) != 0) {
+                            bundle.putBoolean("allowGroups", false);
+                            bundle.putBoolean("allowMegagroups", false);
+                            bundle.putBoolean("allowLegacyGroups", false);
+                            bundle.putBoolean("allowUsers", false);
+                            bundle.putBoolean("allowChannels", false);
+                            bundle.putBoolean("allowBots", false);
+                            Iterator it = tLRPC$KeyboardButton2.peer_types.iterator();
+                            while (it.hasNext()) {
+                                TLRPC$InlineQueryPeerType tLRPC$InlineQueryPeerType = (TLRPC$InlineQueryPeerType) it.next();
+                                if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypePM) {
+                                    bundle.putBoolean("allowUsers", true);
+                                } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeBotPM) {
+                                    bundle.putBoolean("allowBots", true);
+                                } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeBroadcast) {
+                                    bundle.putBoolean("allowChannels", true);
+                                } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeChat) {
+                                    bundle.putBoolean("allowLegacyGroups", true);
+                                } else if (tLRPC$InlineQueryPeerType instanceof TLRPC$TL_inlineQueryPeerTypeMegagroup) {
+                                    bundle.putBoolean("allowMegagroups", true);
+                                }
+                            }
+                        }
+                        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
+                        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+                            @Override
+                            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
+                                boolean lambda$didPressedBotButton$65;
+                                lambda$didPressedBotButton$65 = ChatActivityEnterView.this.lambda$didPressedBotButton$65(messageObject22, tLRPC$KeyboardButton2, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
+                                return lambda$didPressedBotButton$65;
+                            }
+                        });
+                        this.parentFragment.presentFragment(dialogsActivity);
+                    }
+                } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonUserProfile) {
+                    if (MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$KeyboardButton2.user_id)) != null) {
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putLong("user_id", tLRPC$KeyboardButton2.user_id);
+                        this.parentFragment.presentFragment(new ProfileActivity(bundle2));
+                    }
+                } else if (tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonRequestPeer) {
+                    final TLRPC$TL_keyboardButtonRequestPeer tLRPC$TL_keyboardButtonRequestPeer = (TLRPC$TL_keyboardButtonRequestPeer) tLRPC$KeyboardButton2;
+                    TLRPC$RequestPeerType tLRPC$RequestPeerType = tLRPC$TL_keyboardButtonRequestPeer.peer_type;
+                    if (tLRPC$RequestPeerType != null && messageObject22.messageOwner != null) {
+                        if ((tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeUser) && (i = tLRPC$TL_keyboardButtonRequestPeer.max_quantity) > 1) {
+                            MultiContactsSelectorBottomSheet.open(i, new MultiContactsSelectorBottomSheet.SelectorListener() {
+                                @Override
+                                public final void onUserSelected(List list) {
+                                    ChatActivityEnterView.this.lambda$didPressedBotButton$66(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, list);
+                                }
+                            });
+                            return false;
+                        }
+                        Bundle bundle3 = new Bundle();
+                        bundle3.putBoolean("onlySelect", true);
+                        bundle3.putInt("dialogsType", 15);
+                        TLRPC$Message tLRPC$Message3 = messageObject22.messageOwner;
+                        if (tLRPC$Message3 != null) {
+                            TLRPC$Peer tLRPC$Peer = tLRPC$Message3.from_id;
+                            if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
+                                bundle3.putLong("requestPeerBotId", tLRPC$Peer.user_id);
+                            }
+                        }
+                        try {
+                            SerializedData serializedData = new SerializedData(tLRPC$TL_keyboardButtonRequestPeer.peer_type.getObjectSize());
+                            tLRPC$TL_keyboardButtonRequestPeer.peer_type.serializeToStream(serializedData);
+                            bundle3.putByteArray("requestPeerType", serializedData.toByteArray());
+                            serializedData.cleanup();
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                        DialogsActivity dialogsActivity2 = new DialogsActivity(bundle3);
+                        dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+                            @Override
+                            public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
+                                boolean lambda$didPressedBotButton$67;
+                                lambda$didPressedBotButton$67 = ChatActivityEnterView.this.lambda$didPressedBotButton$67(messageObject22, tLRPC$TL_keyboardButtonRequestPeer, dialogsActivity3, arrayList, charSequence, z, z2, i2, topicsFragment);
+                                return lambda$didPressedBotButton$67;
+                            }
+                        });
+                        this.parentFragment.presentFragment(dialogsActivity2);
+                        return false;
+                    }
+                    FileLog.e("button.peer_type is null");
+                }
             }
         }
         return true;

@@ -142,7 +142,7 @@ public class FilterCreateActivity extends BaseFragment {
         public void onItemClick(int i) {
             if (i == -1) {
                 if (FilterCreateActivity.this.checkDiscard()) {
-                    FilterCreateActivity.this.lambda$onBackPressed$307();
+                    FilterCreateActivity.this.lambda$onBackPressed$300();
                 }
             } else if (i == 1) {
                 FilterCreateActivity.this.processDone();
@@ -2098,7 +2098,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$20(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$6(ItemInner itemInner) {
@@ -2158,7 +2158,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$deleteFolder$13(Boolean bool) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$deleteFolder$14(AlertDialog alertDialog) {
@@ -2171,7 +2171,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         getMessagesController().removeFilter(this.filter);
         getMessagesStorage().deleteDialogFilter(this.filter);
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$deleteFolder$15(final AlertDialog alertDialog, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2308,7 +2308,7 @@ public class FilterCreateActivity extends BaseFragment {
 
     public void lambda$processDone$22() {
         if (!this.doNotCloseWhenSave) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         this.doNotCloseWhenSave = false;
@@ -3055,7 +3055,7 @@ public class FilterCreateActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (FilterCreateActivity.this.checkDiscard()) {
-                        FilterCreateActivity.this.lambda$onBackPressed$307();
+                        FilterCreateActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i == 1) {
                     FilterCreateActivity.this.processDone();

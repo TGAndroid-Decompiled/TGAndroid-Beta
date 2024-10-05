@@ -619,7 +619,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
             PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
             photoCropActivity.setDelegate(this);
-            launchActivity.lambda$runLinkRequest$91(photoCropActivity);
+            launchActivity.lambda$runLinkRequest$93(photoCropActivity);
         } catch (Exception e) {
             FileLog.e(e);
             processBitmap(ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);
@@ -707,7 +707,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingStarted);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingFailed);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileNewChunkAvailable);
-                    MediaController.getInstance().scheduleVideoConvert(messageObject, true, true);
+                    MediaController.getInstance().scheduleVideoConvert(messageObject, true, true, false);
                     this.uploadingImage = null;
                     ImageUpdaterDelegate imageUpdaterDelegate4 = this.delegate;
                     if (imageUpdaterDelegate4 != null) {

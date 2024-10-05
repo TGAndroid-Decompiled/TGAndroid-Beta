@@ -145,6 +145,7 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UnreadCounterTextView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Delegates.ChatActivityMemberRequestsDelegate;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.GroupCreateActivity;
@@ -175,6 +176,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private ImageView closeReportSpam;
     private ActionBarMenuSubItem closeTopic;
     SizeNotifierFrameLayout contentView;
+    private boolean createGroupCall;
     private ActionBarMenuSubItem createTopicSubmenu;
     private ActionBarMenuSubItem deleteChatSubmenu;
     private ActionBarMenuItem deleteItem;
@@ -209,6 +211,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private TouchHelperCallback itemTouchHelperCallback;
     RecyclerItemsEnterAnimator itemsEnterAnimator;
     private boolean joinRequested;
+    private boolean lastCallCheckFromServer;
     private int lastItemsCount;
     LinearLayoutManager layoutManager;
     private boolean loadingTopics;
@@ -217,6 +220,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private ActionBarMenuItem muteItem;
     private final AnimationNotificationsLocker notificationsLocker;
     OnTopicSelectedListener onTopicSelectedListener;
+    private boolean openAnimationEnded;
+    private boolean openVideoChat;
     private boolean openedForForward;
     private boolean openedForQuote;
     private boolean openedForReply;
@@ -234,6 +239,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private TopicsRecyclerView recyclerListView;
     private boolean removeFragmentOnTransitionEnd;
     private boolean reordering;
+    private ActionBarMenuSubItem reportSubmenu;
     private ActionBarMenuSubItem restartTopic;
     private RecyclerAnimationScrollHelper scrollHelper;
     private boolean scrollToTop;
@@ -257,6 +263,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     float transitionPadding;
     private ActionBarMenuItem unpinItem;
     private boolean updateAnimated;
+    private String voiceChatHash;
     private boolean waitingForScrollFinished;
 
     public class AnonymousClass10 extends LinearLayoutManager {
@@ -333,7 +340,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (i == 0) {
                 TopicsFragment.this.updateChatInfo();
             } else {
-                TopicsFragment.this.lambda$onBackPressed$307();
+                TopicsFragment.this.lambda$onBackPressed$300();
             }
         }
 
@@ -404,7 +411,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int i = NotificationCenter.closeChats;
             notificationCenter.removeObserver(topicsFragment, i);
             TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-            TopicsFragment.this.lambda$onBackPressed$307();
+            TopicsFragment.this.lambda$onBackPressed$300();
             TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-tLRPC$Chat.id), null, tLRPC$Chat, Boolean.valueOf(z));
         }
 
@@ -423,7 +430,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     TopicsFragment.this.clearSelectedTopics();
                     return;
                 } else {
-                    TopicsFragment.this.lambda$onBackPressed$307();
+                    TopicsFragment.this.lambda$onBackPressed$300();
                     return;
                 }
             }
@@ -606,6 +613,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                         TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(-TopicsFragment.this.chatId));
                         break;
                     }
+                case 15:
+                    TopicsFragment topicsFragment5 = TopicsFragment.this;
+                    ReportBottomSheet.openChat(topicsFragment5, -topicsFragment5.chatId);
+                    break;
             }
             super.onItemClick(i);
         }
@@ -2197,9 +2208,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.openedForForward = this.arguments.getBoolean("forward_to", false);
         this.openedForQuote = this.arguments.getBoolean("quote", false);
         this.openedForReply = this.arguments.getBoolean("reply_to", false);
+        this.voiceChatHash = this.arguments.getString("voicechat", null);
+        this.openVideoChat = this.arguments.getBoolean("videochat", false);
         this.topicsController = getMessagesController().getTopicsController();
         SharedPreferences preferences = getUserConfig().getPreferences();
-        this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + r1, false);
+        this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + r2, false);
     }
 
     public void animateToSearchView(final boolean z) {
@@ -2268,6 +2281,23 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.topicsController.loadTopics(this.chatId);
         }
         checkLoading();
+    }
+
+    private void checkGroupCallJoin(boolean z) {
+        String str;
+        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
+        if (this.groupCall != null && ((str = this.voiceChatHash) != null || this.openVideoChat)) {
+            VoIPHelper.startCall(chat, null, str, this.createGroupCall, Boolean.valueOf(!r1.call.rtmp_stream), getParentActivity(), this, getAccountInstance());
+            this.voiceChatHash = null;
+            this.openVideoChat = false;
+            return;
+        }
+        if (this.voiceChatHash != null && z && chatFull != null && chatFull.call == null && this.fragmentView != null && getParentActivity() != null) {
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.LinkHashExpired)).show();
+            this.voiceChatHash = null;
+        }
+        this.lastCallCheckFromServer = false;
     }
 
     private void checkLoading() {
@@ -3329,6 +3359,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         int i3 = R.drawable.msg_topic_create;
         int i4 = R.string.CreateTopic;
         this.createTopicSubmenu = actionBarMenuItem2.addSubItem(3, i3, LocaleController.getString(i4));
+        this.reportSubmenu = this.other.addSubItem(15, R.drawable.msg_report, LocaleController.getString(R.string.ReportChat));
         this.deleteChatSubmenu = this.other.addSubItem(11, R.drawable.msg_leave, LocaleController.getString(R.string.LeaveMegaMenu), this.themeDelegate);
         ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, this, false);
         this.avatarContainer = chatAvatarContainer;
@@ -3713,6 +3744,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 if (chatActivityMemberRequestsDelegate != null) {
                     chatActivityMemberRequestsDelegate.setChatInfo(tLRPC$ChatFull2, true);
                 }
+                checkGroupCallJoin(((Boolean) objArr[3]).booleanValue());
             }
         } else if (i == NotificationCenter.storiesUpdated) {
             updateChatInfo();
@@ -3751,6 +3783,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 if (fragmentContextView != null) {
                     fragmentContextView.checkCall(!this.fragmentBeginToShow);
                 }
+                checkGroupCallJoin(false);
             }
         } else if (i == NotificationCenter.notificationsSettingsUpdated) {
             updateTopicsList(false, false);
@@ -4013,7 +4046,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (!this.inPreviewMode || getMessagesController().isForum(-this.chatId)) {
             return;
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     @Override
@@ -4033,6 +4066,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 ((ViewGroup) this.blurredView.getParent()).removeView(this.blurredView);
             }
             this.blurredView.setBackground(null);
+        }
+        if (z) {
+            this.openAnimationEnded = true;
+            checkGroupCallJoin(this.lastCallCheckFromServer);
         }
         this.notificationsLocker.unlock();
         if (z) {
@@ -4073,6 +4110,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     @Override
     public void onTransitionAnimationStart(boolean z, boolean z2) {
         super.onTransitionAnimationStart(z, z2);
+        if (z) {
+            this.openAnimationEnded = false;
+        }
         this.notificationsLocker.lock();
     }
 

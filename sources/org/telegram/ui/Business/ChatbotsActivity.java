@@ -252,7 +252,7 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void lambda$onBackPressed$8(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$processDone$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int[] iArr, ArrayList arrayList) {
@@ -271,7 +271,7 @@ public class ChatbotsActivity extends BaseFragment {
         if (i == arrayList.size()) {
             BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
             getMessagesController().clearFullUsers();
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -351,7 +351,7 @@ public class ChatbotsActivity extends BaseFragment {
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         if (this.recipientsHelper.validate(this.listView)) {
@@ -379,7 +379,7 @@ public class ChatbotsActivity extends BaseFragment {
                 }
             }
             if (arrayList.isEmpty()) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             }
             final int[] iArr = {0};
@@ -445,7 +445,7 @@ public class ChatbotsActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (ChatbotsActivity.this.onBackPressed()) {
-                        ChatbotsActivity.this.lambda$onBackPressed$307();
+                        ChatbotsActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i == 1) {
                     ChatbotsActivity.this.processDone();

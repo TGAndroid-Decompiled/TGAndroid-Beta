@@ -6,7 +6,6 @@ import org.telegram.tgnet.tl.TL_stories$StoryItem;
 
 public abstract class TLRPC$MessageMedia extends TLObject {
     public String address;
-    public TLRPC$Document alt_document;
     public String attachPath;
     public TLRPC$Audio audio_unused;
     public byte[] bytes;
@@ -14,7 +13,6 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public String currency;
     public String description;
     public TLRPC$Document document;
-    public ArrayList<TLRPC$MessageExtendedMedia> extended_media = new ArrayList<>();
     public String first_name;
     public int flags;
     public boolean force_large_media;
@@ -53,12 +51,14 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public TLRPC$Video video_unused;
     public boolean voice;
     public TLRPC$WebPage webpage;
+    public ArrayList<TLRPC$Document> alt_documents = new ArrayList<>();
+    public ArrayList<TLRPC$MessageExtendedMedia> extended_media = new ArrayList<>();
 
     public static org.telegram.tgnet.TLRPC$MessageMedia TLdeserialize(org.telegram.tgnet.AbstractSerializedData r5, int r6, boolean r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.TLRPC$MessageMedia.TLdeserialize(org.telegram.tgnet.AbstractSerializedData, int, boolean):org.telegram.tgnet.TLRPC$MessageMedia");
     }
 
     public TLRPC$Document getDocument() {
-        return (this.alt_document == null || MessagesController.isStoryQualityFull()) ? this.document : this.alt_document;
+        return (this.alt_documents.isEmpty() || MessagesController.isStoryQualityFull()) ? this.document : this.alt_documents.get(0);
     }
 }

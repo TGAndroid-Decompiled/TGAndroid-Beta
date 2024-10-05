@@ -110,11 +110,11 @@ public class SMSJobsNotification extends Service {
             intent2.setData(Uri.parse("tg://settings/premium_sms"));
             this.builder.setContentIntent(PendingIntent.getActivity(getApplicationContext(), 0, intent2, 67108864));
         }
-        this.builder.setContentTitle(LocaleController.getString(2131695859));
+        this.builder.setContentTitle(LocaleController.getString(2131695974));
         TL_smsjobs$TL_smsjobs_status tL_smsjobs$TL_smsjobs_status = SMSJobController.getInstance(this.currentAccount).currentStatus;
         int i3 = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent : 0;
         int i4 = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent + tL_smsjobs$TL_smsjobs_status.recent_remains : 100;
-        this.builder.setContentText(LocaleController.formatString(2131695858, Integer.valueOf(i3), Integer.valueOf(i4)));
+        this.builder.setContentText(LocaleController.formatString(2131695973, Integer.valueOf(i3), Integer.valueOf(i4)));
         this.builder.setProgress(i4, i3, false);
         try {
             startForeground(38, this.builder.build());
@@ -133,11 +133,11 @@ public class SMSJobsNotification extends Service {
     public void update() {
         NotificationCompat.Builder builder = this.builder;
         if (builder != null) {
-            builder.setContentTitle(LocaleController.getString(2131695859));
+            builder.setContentTitle(LocaleController.getString(2131695974));
             TL_smsjobs$TL_smsjobs_status tL_smsjobs$TL_smsjobs_status = SMSJobController.getInstance(this.currentAccount).currentStatus;
             int i = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent : 0;
             int i2 = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent + tL_smsjobs$TL_smsjobs_status.recent_remains : 100;
-            this.builder.setContentText(LocaleController.formatString(2131695858, Integer.valueOf(i), Integer.valueOf(i2)));
+            this.builder.setContentText(LocaleController.formatString(2131695973, Integer.valueOf(i), Integer.valueOf(i2)));
             this.builder.setProgress(i2, i, false);
         }
         updateNotify();

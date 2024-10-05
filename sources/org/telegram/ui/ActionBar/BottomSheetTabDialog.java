@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
 import org.telegram.ui.Components.LayoutHelper;
@@ -51,11 +52,11 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo993getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo1000getWindowView().getContext(), R.style.TransparentDialog);
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView mo993getWindowView = sheet.mo993getWindowView();
-        this.sheetView = mo993getWindowView;
-        WindowView windowView = new WindowView(mo993getWindowView);
+        BottomSheetTabsOverlay.SheetView mo1000getWindowView = sheet.mo1000getWindowView();
+        this.sheetView = mo1000getWindowView;
+        WindowView windowView = new WindowView(mo1000getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
     }
@@ -93,14 +94,22 @@ public class BottomSheetTabDialog extends Dialog {
             return;
         }
         this.attached = true;
-        super.show();
+        try {
+            super.show();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
     public void detach() {
         this.sheet.setDialog(null);
         if (this.attached) {
             this.attached = false;
-            super.dismiss();
+            try {
+                super.dismiss();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
         }
     }
 

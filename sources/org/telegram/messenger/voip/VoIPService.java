@@ -241,6 +241,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private boolean isOutgoing;
     private boolean isPrivateScreencast;
     private boolean isProximityNear;
+    public boolean isRtmpStream;
     private boolean isVideoAvailable;
     private String joinHash;
     private long keyFingerprint;
@@ -3022,6 +3023,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             tLRPC$GroupCall.version = 1;
             tLRPC$GroupCall.can_start_video = true;
             tLRPC$GroupCall.can_change_join_muted = true;
+            tLRPC$GroupCall.rtmp_stream = this.isRtmpStream;
             call2.chatId = this.chat.id;
             call2.currentAccount = AccountInstance.getInstance(this.currentAccount);
             this.groupCall.setSelfPeer(this.groupCallPeer);
@@ -3034,6 +3036,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             if (i2 != 0) {
                 tLRPC$TL_phone_createGroupCall.schedule_date = i2;
                 tLRPC$TL_phone_createGroupCall.flags |= 2;
+            }
+            if (this.isRtmpStream) {
+                tLRPC$TL_phone_createGroupCall.flags |= 4;
             }
             this.groupCallBottomSheetLatch = new CountDownLatch(1);
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_phone_createGroupCall, new RequestDelegate() {

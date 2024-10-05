@@ -199,25 +199,31 @@ public class ChatRightsEditActivity extends BaseFragment {
         }
 
         public void lambda$onBindViewHolder$1(TextCheckCell2 textCheckCell2) {
-            if (ChatRightsEditActivity.this.allDefaultMediaBanned()) {
-                new AlertDialog.Builder(ChatRightsEditActivity.this.getParentActivity()).setTitle(LocaleController.getString(R.string.UserRestrictionsCantModify)).setMessage(LocaleController.getString(R.string.UserRestrictionsCantModifyEnabled)).setPositiveButton(LocaleController.getString(R.string.OK), null).create().show();
-                return;
+            if (textCheckCell2.isEnabled()) {
+                if (ChatRightsEditActivity.this.allDefaultMediaBanned()) {
+                    new AlertDialog.Builder(ChatRightsEditActivity.this.getParentActivity()).setTitle(LocaleController.getString(R.string.UserRestrictionsCantModify)).setMessage(LocaleController.getString(R.string.UserRestrictionsCantModifyEnabled)).setPositiveButton(LocaleController.getString(R.string.OK), null).create().show();
+                    return;
+                }
+                boolean z = !textCheckCell2.isChecked();
+                textCheckCell2.setChecked(z);
+                ChatRightsEditActivity.this.setSendMediaEnabled(z);
             }
-            boolean z = !textCheckCell2.isChecked();
-            textCheckCell2.setChecked(z);
-            ChatRightsEditActivity.this.setSendMediaEnabled(z);
         }
 
         public void lambda$onBindViewHolder$2(TextCheckCell2 textCheckCell2) {
-            boolean isChecked = textCheckCell2.isChecked();
-            textCheckCell2.setChecked(isChecked);
-            ChatRightsEditActivity.this.setChannelMessagesEnabled(isChecked);
+            if (textCheckCell2.isEnabled()) {
+                boolean isChecked = textCheckCell2.isChecked();
+                textCheckCell2.setChecked(isChecked);
+                ChatRightsEditActivity.this.setChannelMessagesEnabled(isChecked);
+            }
         }
 
         public void lambda$onBindViewHolder$3(TextCheckCell2 textCheckCell2) {
-            boolean isChecked = textCheckCell2.isChecked();
-            textCheckCell2.setChecked(isChecked);
-            ChatRightsEditActivity.this.setChannelStoriesEnabled(isChecked);
+            if (textCheckCell2.isEnabled()) {
+                boolean isChecked = textCheckCell2.isChecked();
+                textCheckCell2.setChecked(isChecked);
+                ChatRightsEditActivity.this.setChannelStoriesEnabled(isChecked);
+            }
         }
 
         public void lambda$onCreateViewHolder$0(View view) {
@@ -761,7 +767,7 @@ public class ChatRightsEditActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$24(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$0(int i, TimePicker timePicker, int i2, int i3) {
@@ -956,7 +962,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                     if (chatRightsEditActivityDelegate != null) {
                         chatRightsEditActivityDelegate.didSetRights(0, this.adminRights, this.bannedRights, this.currentRank);
                     }
-                    lambda$onBackPressed$307();
+                    lambda$onBackPressed$300();
                     return;
                 }
                 if (i5 == 1) {
@@ -1323,7 +1329,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 this.delegate.didChangeOwner(this.currentUser);
                 removeSelfFromStack();
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$307();
+                twoStepVerificationActivity.lambda$onBackPressed$300();
                 return;
             }
             return;
@@ -1360,7 +1366,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 if (!tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
                     if (twoStepVerificationActivity != null) {
                         twoStepVerificationActivity.needHideProgress();
-                        twoStepVerificationActivity.lambda$onBackPressed$307();
+                        twoStepVerificationActivity.lambda$onBackPressed$300();
                     }
                     AlertsCreator.showAddUserAlert(tLRPC$TL_error.text, this, this.isChannel, tLRPC$TL_channels_editCreator);
                     return;
@@ -1494,7 +1500,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         if (chatRightsEditActivityDelegate != null) {
             TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = this.adminRights;
             chatRightsEditActivityDelegate.didSetRights((tLRPC$TL_chatAdminRights.change_info || tLRPC$TL_chatAdminRights.post_messages || tLRPC$TL_chatAdminRights.edit_messages || tLRPC$TL_chatAdminRights.delete_messages || tLRPC$TL_chatAdminRights.ban_users || tLRPC$TL_chatAdminRights.invite_users || (this.isForum && tLRPC$TL_chatAdminRights.manage_topics) || tLRPC$TL_chatAdminRights.pin_messages || tLRPC$TL_chatAdminRights.add_admins || tLRPC$TL_chatAdminRights.anonymous || tLRPC$TL_chatAdminRights.manage_call || ((this.isChannel && (tLRPC$TL_chatAdminRights.post_stories || tLRPC$TL_chatAdminRights.edit_stories || tLRPC$TL_chatAdminRights.delete_stories)) || tLRPC$TL_chatAdminRights.other)) ? 1 : 0, tLRPC$TL_chatAdminRights, this.bannedRights, this.currentRank);
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -1916,7 +1922,7 @@ public class ChatRightsEditActivity extends BaseFragment {
             public void onItemClick(int i3) {
                 if (i3 == -1) {
                     if (ChatRightsEditActivity.this.checkDiscard()) {
-                        ChatRightsEditActivity.this.lambda$onBackPressed$307();
+                        ChatRightsEditActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i3 == 1) {
                     ChatRightsEditActivity.this.onDonePressed();

@@ -34,6 +34,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public long dialogId;
     public boolean enabled;
     public int flags;
+    public float floatValue;
     public boolean hideDivider;
     public int iconResId;
     public int id;
@@ -46,6 +47,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public Object object2;
     public int pad;
     public boolean red;
+    public int spanCount;
     public CharSequence subtext;
     public CharSequence text;
     public CharSequence textValue;
@@ -105,6 +107,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public UItem(int i, boolean z) {
         super(i, z);
         this.enabled = true;
+        this.spanCount = -1;
         this.withUsername = true;
     }
 
@@ -532,7 +535,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public boolean itemEquals(UItem uItem) {
-        return this.id == uItem.id && this.pad == uItem.pad && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.locked == uItem.locked && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && this.longValue == uItem.longValue && Objects.equals(this.object, uItem.object) && Objects.equals(this.object2, uItem.object2);
+        return this.id == uItem.id && this.pad == uItem.pad && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.locked == uItem.locked && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && Math.abs(this.floatValue - uItem.floatValue) < 0.01f && this.longValue == uItem.longValue && Objects.equals(this.object, uItem.object) && Objects.equals(this.object2, uItem.object2);
     }
 
     public UItem pad() {
@@ -580,6 +583,11 @@ public class UItem extends AdapterWithDiffUtils.Item {
 
     public UItem setPad(int i) {
         this.pad = i;
+        return this;
+    }
+
+    public UItem setSpanCount(int i) {
+        this.spanCount = i;
         return this;
     }
 

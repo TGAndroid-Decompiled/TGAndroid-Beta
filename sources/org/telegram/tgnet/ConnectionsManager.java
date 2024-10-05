@@ -632,7 +632,7 @@ public class ConnectionsManager extends BaseController {
         AccountInstance.getInstance(i).getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateConnectionState, new Object[0]);
     }
 
-    public static void lambda$onIntegrityCheckClassic$22(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
+    public static void lambda$onIntegrityCheckClassic$21(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
         String str2 = integrityTokenResponse.token();
         if (str2 == null) {
             FileLog.e("account" + i + ": integrity check gave null token in " + (System.currentTimeMillis() - j) + "ms");
@@ -647,7 +647,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$23(int i, long j, int i2, String str, Exception exc) {
+    public static void lambda$onIntegrityCheckClassic$22(int i, long j, int i2, String str, Exception exc) {
         FileLog.e("account" + i + ": integrity check failed to give a token in " + (System.currentTimeMillis() - j) + "ms", exc);
         StringBuilder sb = new StringBuilder();
         sb.append("PLAYINTEGRITY_FAILED_EXCEPTION_");
@@ -655,19 +655,19 @@ public class ConnectionsManager extends BaseController {
         native_receivedIntegrityCheckClassic(i, i2, str, sb.toString());
     }
 
-    public static void lambda$onIntegrityCheckClassic$24(final int i, String str, final String str2, final int i2) {
+    public static void lambda$onIntegrityCheckClassic$23(final int i, String str, final String str2, final int i2) {
         final long currentTimeMillis = System.currentTimeMillis();
         FileLog.d("account" + i + ": server requests integrity classic check with project = " + str + " nonce = " + str2);
         try {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, currentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$21(i, currentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$23(i, currentTimeMillis, i2, str2, exc);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, currentTimeMillis, i2, str2, exc);
                 }
             });
         } catch (Exception unused) {
@@ -684,14 +684,8 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onPremiumFloodWait$19(boolean z, int i) {
-        if (z) {
-            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumFloodWaitReceived, new Object[0]);
-        }
-    }
-
-    public static void lambda$onPremiumFloodWait$20(boolean z, final int i, int i2) {
-        final boolean z2;
+    public static void lambda$onPremiumFloodWait$19(boolean z, int i, int i2) {
+        boolean z2;
         if (z) {
             FileUploadOperation findUploadOperationByRequestToken = FileLoader.getInstance(i).findUploadOperationByRequestToken(i2);
             if (findUploadOperationByRequestToken != null) {
@@ -707,22 +701,19 @@ public class ConnectionsManager extends BaseController {
             }
             z2 = false;
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ConnectionsManager.lambda$onPremiumFloodWait$19(z2, i);
-            }
-        });
+        if (z2) {
+            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumFloodWaitReceived, new Object[0]);
+        }
     }
 
-    public static void lambda$onPremiumFloodWait$21(final int i, final boolean z, final int i2) {
+    public static void lambda$onPremiumFloodWait$20(final int i, final boolean z, final int i2) {
         if (UserConfig.selectedAccount != i) {
             return;
         }
-        FileLoader.getInstance(i).getFileLoaderQueue().postRunnable(new Runnable() {
+        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onPremiumFloodWait$20(z, i, i2);
+                ConnectionsManager.lambda$onPremiumFloodWait$19(z, i, i2);
             }
         });
     }
@@ -806,13 +797,14 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public void lambda$sendRequestInternal$4(TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z, long j, int i4, long j2, int i5, String str, int i6, final long j3, long j4) {
+    public void lambda$sendRequestInternal$4(TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z, long j, int i4, long j2, int i5, String str, int i6, final long j3, long j4, int i7) {
         TLRPC$TL_error tLRPC$TL_error;
         TLObject tLObject2;
         try {
             if (j2 != 0) {
                 NativeByteBuffer wrap = NativeByteBuffer.wrap(j2);
                 wrap.reused = true;
+                wrap.limit();
                 try {
                     tLObject2 = tLObject.deserializeResponse(wrap, wrap.readInt32(true), true);
                     tLRPC$TL_error = null;
@@ -1002,7 +994,7 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onIntegrityCheckClassic$24(i, str, str2, i2);
+                ConnectionsManager.lambda$onIntegrityCheckClassic$23(i, str, str2, i2);
             }
         });
     }
@@ -1024,7 +1016,7 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onPremiumFloodWait$21(i, z, i2);
+                ConnectionsManager.lambda$onPremiumFloodWait$20(i, z, i2);
             }
         });
     }
@@ -1091,7 +1083,7 @@ public class ConnectionsManager extends BaseController {
         FileLog.d(sb.toString());
     }
 
-    public static void onRequestComplete(int i, int i2, long j, int i3, String str, int i4, long j2, long j3) {
+    public static void onRequestComplete(int i, int i2, long j, int i3, String str, int i4, long j2, long j3, int i5) {
         StringBuilder sb;
         ConnectionsManager connectionsManager = getInstance(i);
         if (connectionsManager == null) {
@@ -1102,7 +1094,7 @@ public class ConnectionsManager extends BaseController {
         if (requestCallbacks != null) {
             RequestDelegateInternal requestDelegateInternal = requestCallbacks.onComplete;
             if (requestDelegateInternal != null) {
-                requestDelegateInternal.run(j, i3, str, i4, j2, j3);
+                requestDelegateInternal.run(j, i3, str, i4, j2, j3, i5);
             }
             sb = new StringBuilder();
             sb.append("{rc} onRequestComplete(");
@@ -1282,8 +1274,8 @@ public class ConnectionsManager extends BaseController {
             final long currentTimeMillis = (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) ? System.currentTimeMillis() : 0L;
             listen(i4, new RequestDelegateInternal() {
                 @Override
-                public final void run(long j, int i5, String str, int i6, long j2, long j3) {
-                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, currentTimeMillis, i4, j, i5, str, i6, j2, j3);
+                public final void run(long j, int i5, String str, int i6, long j2, long j3, int i7) {
+                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, currentTimeMillis, i4, j, i5, str, i6, j2, j3, i7);
                 }
             }, quickAckDelegate, writeToSocketDelegate);
             native_sendRequest(this.currentAccount, nativeByteBuffer.address, i, i2, i3, z, i4);

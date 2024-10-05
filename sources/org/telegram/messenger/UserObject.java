@@ -22,6 +22,7 @@ import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 public class UserObject {
     public static final long ANONYMOUS = 2666000;
     public static final long REPLY_BOT = 1271266957;
+    public static final long VERIFY = 489000;
 
     public static int getColorId(TLRPC$User tLRPC$User) {
         if (tLRPC$User == null) {
@@ -41,7 +42,7 @@ public class UserObject {
 
     public static Long getEmojiStatusDocumentId(TLRPC$EmojiStatus tLRPC$EmojiStatus) {
         long j;
-        if (tLRPC$EmojiStatus == null) {
+        if (tLRPC$EmojiStatus == null || MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
             return null;
         }
         if (!(tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatus)) {

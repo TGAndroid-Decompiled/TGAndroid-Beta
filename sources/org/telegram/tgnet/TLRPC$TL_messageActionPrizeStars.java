@@ -22,8 +22,9 @@ public class TLRPC$TL_messageActionPrizeStars extends TLRPC$MessageAction {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(-1341372510);
-        abstractSerializedData.writeInt32(this.flags);
-        this.flags = this.unclaimed ? this.flags | 1 : this.flags & (-2);
+        int i = this.unclaimed ? this.flags | 1 : this.flags & (-2);
+        this.flags = i;
+        abstractSerializedData.writeInt32(i);
         abstractSerializedData.writeInt64(this.stars);
         abstractSerializedData.writeString(this.transaction_id);
         this.boost_peer.serializeToStream(abstractSerializedData);

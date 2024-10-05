@@ -71,12 +71,14 @@ import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageEntity;
+import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_encryptedChat;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_messages_messages;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$VideoSize;
@@ -1226,12 +1228,21 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     for (int i = 0; i < size; i++) {
                         MessageObject messageObject = this.messageObjects.get(i);
                         String str = messageObject.messageOwner.attachPath;
-                        String documentName = messageObject.getDocumentName();
+                        String documentFileName = FileLoader.getDocumentFileName(messageObject.getDocument());
                         if (str != null && str.length() > 0 && !new File(str).exists()) {
                             str = null;
                         }
                         if (TextUtils.isEmpty(str)) {
-                            str = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject.messageOwner).toString();
+                            FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
+                            TLRPC$MessageMedia media = MessageObject.getMedia(messageObject);
+                            File pathToMessage = fileLoader.getPathToMessage(messageObject.messageOwner, true);
+                            if (media instanceof TLRPC$TL_messageMediaDocument) {
+                                TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = (TLRPC$TL_messageMediaDocument) media;
+                                if (!tLRPC$TL_messageMediaDocument.alt_documents.isEmpty()) {
+                                    pathToMessage = fileLoader.getPathToAttach(tLRPC$TL_messageMediaDocument.alt_documents.get(0), null, false, true);
+                                }
+                            }
+                            str = pathToMessage.toString();
                         }
                         File file = new File(str);
                         if (!file.exists()) {
@@ -1252,7 +1263,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             FileLog.d(sb2.toString());
                         }
                         if (file != null && file.exists()) {
-                            MediaController.saveFileInternal(this.isMusic ? 3 : 2, file, documentName);
+                            MediaController.saveFileInternal(this.isMusic ? 3 : 2, file, documentFileName);
                             this.copiedFiles++;
                         }
                     }
@@ -1262,10 +1273,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     int size2 = this.messageObjects.size();
                     for (int i2 = 0; i2 < size2; i2++) {
                         MessageObject messageObject2 = this.messageObjects.get(i2);
-                        String documentName2 = messageObject2.getDocumentName();
-                        File file2 = new File(externalStoragePublicDirectory, documentName2);
+                        String documentName = messageObject2.getDocumentName();
+                        File file2 = new File(externalStoragePublicDirectory, documentName);
                         if (file2.exists()) {
-                            int lastIndexOf = documentName2.lastIndexOf(46);
+                            int lastIndexOf = documentName.lastIndexOf(46);
                             int i3 = 0;
                             while (true) {
                                 if (i3 >= 10) {
@@ -1274,14 +1285,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 String str2 = ")";
                                 if (lastIndexOf != -1) {
                                     sb = new StringBuilder();
-                                    sb.append(documentName2.substring(0, lastIndexOf));
+                                    sb.append(documentName.substring(0, lastIndexOf));
                                     sb.append("(");
                                     sb.append(i3 + 1);
                                     sb.append(")");
-                                    str2 = documentName2.substring(lastIndexOf);
+                                    str2 = documentName.substring(lastIndexOf);
                                 } else {
                                     sb = new StringBuilder();
-                                    sb.append(documentName2);
+                                    sb.append(documentName);
                                     sb.append("(");
                                     sb.append(i3 + 1);
                                 }
@@ -1741,14 +1752,16 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public static class VideoConvertMessage {
         public int currentAccount;
         public boolean foreground;
+        public boolean foregroundConversion;
         public MessageObject messageObject;
         public VideoEditedInfo videoEditedInfo;
 
-        public VideoConvertMessage(MessageObject messageObject, VideoEditedInfo videoEditedInfo, boolean z) {
+        public VideoConvertMessage(MessageObject messageObject, VideoEditedInfo videoEditedInfo, boolean z, boolean z2) {
             this.messageObject = messageObject;
             this.currentAccount = messageObject.currentAccount;
             this.videoEditedInfo = videoEditedInfo;
             this.foreground = z;
+            this.foregroundConversion = z2;
         }
     }
 
@@ -4301,10 +4314,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void scheduleVideoConvert(MessageObject messageObject) {
-        scheduleVideoConvert(messageObject, false, true);
+        scheduleVideoConvert(messageObject, false, true, false);
     }
 
-    public boolean scheduleVideoConvert(MessageObject messageObject, boolean z, boolean z2) {
+    public boolean scheduleVideoConvert(MessageObject messageObject, boolean z, boolean z2, boolean z3) {
         if (messageObject == null || messageObject.videoEditedInfo == null) {
             return false;
         }
@@ -4314,7 +4327,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (z) {
             new File(messageObject.messageOwner.attachPath).delete();
         }
-        VideoConvertMessage videoConvertMessage = new VideoConvertMessage(messageObject, messageObject.videoEditedInfo, z2);
+        VideoConvertMessage videoConvertMessage = new VideoConvertMessage(messageObject, messageObject.videoEditedInfo, z2, z3);
         this.videoConvertQueue.add(videoConvertMessage);
         if (videoConvertMessage.foreground) {
             this.foregroundConvertingMessages.add(videoConvertMessage);

@@ -39,7 +39,6 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputCheckPasswordSRP;
-import org.telegram.tgnet.TLRPC$StarsTransaction;
 import org.telegram.tgnet.TLRPC$TL_account_getPassword;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordEmpty;
@@ -51,6 +50,7 @@ import org.telegram.tgnet.TLRPC$TL_payments_starsRevenueWithdrawalUrl;
 import org.telegram.tgnet.TLRPC$TL_starsRevenueStatus;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$account_Password;
+import org.telegram.tgnet.tl.TL_stars$StarsTransaction;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
@@ -439,7 +439,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         int i2;
         if (tLRPC$TL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$307();
+            twoStepVerificationActivity.lambda$onBackPressed$300();
             if (tLObject instanceof TLRPC$TL_payments_starsRevenueWithdrawalUrl) {
                 this.balanceEditTextAll = true;
                 Browser.openUrl(getContext(), ((TLRPC$TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
@@ -459,7 +459,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$307();
+                twoStepVerificationActivity.lambda$onBackPressed$300();
             }
             BulletinFactory.showError(tLRPC$TL_error);
             return;
@@ -617,7 +617,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
 
     public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.instanceOf(StarsIntroActivity.StarsTransactionView.Factory.class)) {
-            StarsIntroActivity.showTransactionSheet(getContext(), true, this.bot_id, this.currentAccount, (TLRPC$StarsTransaction) uItem.object, getResourceProvider());
+            StarsIntroActivity.showTransactionSheet(getContext(), true, this.bot_id, this.currentAccount, (TL_stars$StarsTransaction) uItem.object, getResourceProvider());
         }
     }
 
@@ -725,7 +725,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    BotStarsActivity.this.lambda$onBackPressed$307();
+                    BotStarsActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

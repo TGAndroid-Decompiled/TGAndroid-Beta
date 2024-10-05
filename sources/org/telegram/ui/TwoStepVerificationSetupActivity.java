@@ -160,7 +160,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         public void onItemClick(int i) {
             if (i == -1) {
                 if (TwoStepVerificationSetupActivity.this.otherwiseReloginDays < 0 || ((BaseFragment) TwoStepVerificationSetupActivity.this).parentLayout.getFragmentStack().size() != 1) {
-                    TwoStepVerificationSetupActivity.this.lambda$onBackPressed$307();
+                    TwoStepVerificationSetupActivity.this.lambda$onBackPressed$300();
                     return;
                 } else {
                     TwoStepVerificationSetupActivity.this.showSetForcePasswordAlert();
@@ -388,7 +388,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
 
     public void lambda$createView$17(DialogInterface dialogInterface, int i) {
         onReset();
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$18(View view) {
@@ -428,7 +428,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             ((BaseFragment) this.fragmentsToClose.get(i2)).removeSelfFromStack();
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, new Object[0]);
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$4(TLRPC$TL_error tLRPC$TL_error) {
@@ -553,7 +553,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     }
                     if (!this.waitingForEmail && tLRPC$PasswordKdfAlgo != null) {
                         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, null, tLRPC$PasswordKdfAlgo, tLRPC$SecurePasswordKdfAlgo, bArr, str, str2, null, null);
-                        lambda$onBackPressed$307();
+                        lambda$onBackPressed$300();
                     }
                 }
             }
@@ -997,7 +997,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             }
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return;
         }
         if (getParentActivity() == null) {
@@ -1129,7 +1129,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     public void lambda$showSetForcePasswordAlert$51(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     private void loadPasswordInfo() {
@@ -1330,7 +1330,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     presentFragment(twoStepVerificationActivity, true);
                     return;
                 }
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             case 8:
                 if (this.currentPassword == null) {
@@ -1353,7 +1353,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 });
                 return;
             case 9:
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 return;
             default:
                 return;
@@ -2480,9 +2480,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     @Override
-    public void lambda$onBackPressed$307() {
+    public void lambda$onBackPressed$300() {
         if (this.otherwiseReloginDays < 0 || this.parentLayout.getFragmentStack().size() != 1) {
-            super.lambda$onBackPressed$307();
+            super.lambda$onBackPressed$300();
             return;
         }
         Bundle bundle = new Bundle();
@@ -2572,7 +2572,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     @Override
     public boolean onBackPressed() {
         if (this.otherwiseReloginDays < 0 || this.parentLayout.getFragmentStack().size() != 1) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
             return true;
         }
         showSetForcePasswordAlert();

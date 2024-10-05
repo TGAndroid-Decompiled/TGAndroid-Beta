@@ -54,10 +54,10 @@ import org.telegram.tgnet.TLRPC$TL_messages_chatInviteImporters;
 import org.telegram.tgnet.TLRPC$TL_messages_deleteExportedChatInvite;
 import org.telegram.tgnet.TLRPC$TL_messages_editExportedChatInvite;
 import org.telegram.tgnet.TLRPC$TL_messages_exportedChatInviteReplaced;
-import org.telegram.tgnet.TLRPC$TL_starsSubscriptionPricing;
 import org.telegram.tgnet.TLRPC$TL_users_getUsers;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$Vector;
+import org.telegram.tgnet.tl.TL_stars$TL_starsSubscriptionPricing;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -472,18 +472,18 @@ public class InviteLinkBottomSheet extends BottomSheet {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
         }
 
-        public void set(TLRPC$TL_starsSubscriptionPricing tLRPC$TL_starsSubscriptionPricing, int i) {
+        public void set(TL_stars$TL_starsSubscriptionPricing tL_stars$TL_starsSubscriptionPricing, int i) {
             String format;
             String formatString;
-            if (tLRPC$TL_starsSubscriptionPricing == null) {
+            if (tL_stars$TL_starsSubscriptionPricing == null) {
                 return;
             }
-            int i2 = tLRPC$TL_starsSubscriptionPricing.period;
+            int i2 = tL_stars$TL_starsSubscriptionPricing.period;
             String str = "";
             if (i2 == 2592000) {
                 TextView textView = this.titleView;
                 StringBuilder sb = new StringBuilder();
-                sb.append(LocaleController.formatString(R.string.LinkRevenuePrice, Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount)));
+                sb.append(LocaleController.formatString(R.string.LinkRevenuePrice, Long.valueOf(tL_stars$TL_starsSubscriptionPricing.amount)));
                 if (i > 0) {
                     str = " x " + i;
                 }
@@ -495,7 +495,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 } else {
                     int i3 = R.string.LinkRevenuePriceInfo;
                     BillingController billingController = BillingController.getInstance();
-                    double d = tLRPC$TL_starsSubscriptionPricing.amount;
+                    double d = tL_stars$TL_starsSubscriptionPricing.amount;
                     Double.isNaN(d);
                     double d2 = MessagesController.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).starsUsdWithdrawRate1000;
                     Double.isNaN(d2);
@@ -510,7 +510,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             TextView textView3 = this.titleView;
             StringBuilder sb2 = new StringBuilder();
             Locale locale = Locale.US;
-            sb2.append(String.format(locale, "⭐%1$d/%2$s", Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount), str2));
+            sb2.append(String.format(locale, "⭐%1$d/%2$s", Long.valueOf(tL_stars$TL_starsSubscriptionPricing.amount), str2));
             if (i > 0) {
                 str = " x " + i;
             }
@@ -521,7 +521,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 format = LocaleController.getString(R.string.NoOneSubscribed);
             } else {
                 BillingController billingController2 = BillingController.getInstance();
-                double d4 = tLRPC$TL_starsSubscriptionPricing.amount;
+                double d4 = tL_stars$TL_starsSubscriptionPricing.amount;
                 Double.isNaN(d4);
                 double d5 = MessagesController.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).starsUsdWithdrawRate1000;
                 Double.isNaN(d5);
@@ -557,15 +557,15 @@ public class InviteLinkBottomSheet extends BottomSheet {
             addView(linearLayout, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
         }
 
-        public void setRevenue(TLRPC$TL_starsSubscriptionPricing tLRPC$TL_starsSubscriptionPricing, int i) {
-            if (tLRPC$TL_starsSubscriptionPricing == null) {
+        public void setRevenue(TL_stars$TL_starsSubscriptionPricing tL_stars$TL_starsSubscriptionPricing, int i) {
+            if (tL_stars$TL_starsSubscriptionPricing == null) {
                 this.priceView.setText((CharSequence) null);
                 this.periodView.setText((CharSequence) null);
                 setRightPadding(0, true, true);
                 return;
             }
-            SpannableStringBuilder replaceStarsWithPlain = StarsIntroActivity.replaceStarsWithPlain("⭐️" + tLRPC$TL_starsSubscriptionPricing.amount, 0.7f);
-            int i2 = tLRPC$TL_starsSubscriptionPricing.period;
+            SpannableStringBuilder replaceStarsWithPlain = StarsIntroActivity.replaceStarsWithPlain("⭐️" + tL_stars$TL_starsSubscriptionPricing.amount, 0.7f);
+            int i2 = tL_stars$TL_starsSubscriptionPricing.period;
             String string = i2 == 2592000 ? LocaleController.getString(R.string.StarsParticipantSubscriptionPerMonth) : i2 == 300 ? "per 5 minutes" : "per each minute";
             this.priceView.setText(replaceStarsWithPlain);
             this.periodView.setText(string);
@@ -947,7 +947,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.shadowAnimation.start();
     }
 
-    public static BottomSheet showSubscriptionSheet(final Context context, int i, long j, TLRPC$TL_starsSubscriptionPricing tLRPC$TL_starsSubscriptionPricing, final TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, TLRPC$ChannelParticipant tLRPC$ChannelParticipant, Theme.ResourcesProvider resourcesProvider) {
+    public static BottomSheet showSubscriptionSheet(final Context context, int i, long j, TL_stars$TL_starsSubscriptionPricing tL_stars$TL_starsSubscriptionPricing, final TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, TLRPC$ChannelParticipant tLRPC$ChannelParticipant, Theme.ResourcesProvider resourcesProvider) {
         TLObject tLObject;
         BottomSheet.Builder builder;
         Object obj;
@@ -1003,10 +1003,10 @@ public class InviteLinkBottomSheet extends BottomSheet {
         textView2.setGravity(17);
         int i2 = Theme.key_windowBackgroundWhiteGrayText4;
         textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
-        int i3 = tLRPC$TL_starsSubscriptionPricing.period;
+        int i3 = tL_stars$TL_starsSubscriptionPricing.period;
         if (i3 == 2592000) {
             builder = builder2;
-            textView2.setText(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(R.string.StarsSubscriptionPrice, Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount)), 0.8f));
+            textView2.setText(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(R.string.StarsSubscriptionPrice, Long.valueOf(tL_stars$TL_starsSubscriptionPricing.amount)), 0.8f));
             obj = "min";
             obj2 = "5min";
         } else {
@@ -1014,25 +1014,25 @@ public class InviteLinkBottomSheet extends BottomSheet {
             String str = i3 == 300 ? "5min" : "min";
             obj = "min";
             obj2 = "5min";
-            textView2.setText(StarsIntroActivity.replaceStarsWithPlain(String.format(Locale.US, "⭐%1$d/%2$s", Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount), str), 0.8f));
+            textView2.setText(StarsIntroActivity.replaceStarsWithPlain(String.format(Locale.US, "⭐%1$d/%2$s", Long.valueOf(tL_stars$TL_starsSubscriptionPricing.amount), str), 0.8f));
         }
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 14.0f);
         textView3.setGravity(17);
         textView3.setTextColor(Theme.getColor(i2, resourcesProvider));
-        int i4 = tLRPC$TL_starsSubscriptionPricing.period;
+        int i4 = tL_stars$TL_starsSubscriptionPricing.period;
         if (i4 == 2592000) {
             int i5 = R.string.StarsParticipantSubscriptionApproxMonth;
             BillingController billingController = BillingController.getInstance();
-            Double.isNaN(tLRPC$TL_starsSubscriptionPricing.amount);
+            Double.isNaN(tL_stars$TL_starsSubscriptionPricing.amount);
             Double.isNaN(MessagesController.getInstance(i).starsUsdWithdrawRate1000);
             format = LocaleController.formatString(i5, billingController.formatCurrency((int) ((r13 / 1000.0d) * r8), "USD"));
         } else {
             Object obj3 = i4 == 300 ? obj2 : obj;
             Locale locale = Locale.US;
             BillingController billingController2 = BillingController.getInstance();
-            Double.isNaN(tLRPC$TL_starsSubscriptionPricing.amount);
+            Double.isNaN(tL_stars$TL_starsSubscriptionPricing.amount);
             Double.isNaN(MessagesController.getInstance(i).starsUsdWithdrawRate1000);
             format = String.format(locale, "appx. %1$s per %2$s", billingController2.formatCurrency((int) ((r14 / 1000.0d) * r8), "USD"), obj3);
         }

@@ -93,7 +93,11 @@ public abstract class VoIPHelper {
         return false;
     }
 
-    public static void doInitiateCall(final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final String str, final TLRPC$InputPeer tLRPC$InputPeer, boolean z, final boolean z2, final boolean z3, final boolean z4, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z5, boolean z6) {
+    public static void doInitiateCall(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, String str, TLRPC$InputPeer tLRPC$InputPeer, boolean z, boolean z2, boolean z3, boolean z4, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance, boolean z5, boolean z6) {
+        doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, z, z2, z3, z4, activity, baseFragment, accountInstance, z5, z6, false);
+    }
+
+    public static void doInitiateCall(final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final String str, final TLRPC$InputPeer tLRPC$InputPeer, boolean z, final boolean z2, final boolean z3, final boolean z4, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z5, boolean z6, boolean z7) {
         long j;
         String str2;
         ChatObject.Call groupCall;
@@ -115,8 +119,8 @@ public abstract class VoIPHelper {
             final TLRPC$InputPeer inputPeer = accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(tLRPC$Peer));
             JoinCallAlert.checkFewUsers(activity, -tLRPC$Chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
                 @Override
-                public final void run(boolean z7) {
-                    VoIPHelper.lambda$doInitiateCall$4(str, activity, tLRPC$Chat, tLRPC$User, inputPeer, z2, z3, baseFragment, accountInstance, z7);
+                public final void run(boolean z8) {
+                    VoIPHelper.lambda$doInitiateCall$4(str, activity, tLRPC$Chat, tLRPC$User, inputPeer, z2, z3, baseFragment, accountInstance, z8);
                 }
             });
             return;
@@ -124,8 +128,8 @@ public abstract class VoIPHelper {
         if (z5 && tLRPC$Chat != null) {
             JoinCallAlert.open(activity, -tLRPC$Chat.id, accountInstance, baseFragment, !z4 ? 1 : 0, null, new JoinCallAlert.JoinCallAlertDelegate() {
                 @Override
-                public final void didSelectChat(TLRPC$InputPeer tLRPC$InputPeer2, boolean z7, boolean z8) {
-                    VoIPHelper.lambda$doInitiateCall$5(z4, activity, accountInstance, tLRPC$Chat, str, tLRPC$User, z2, z3, baseFragment, tLRPC$InputPeer2, z7, z8);
+                public final void didSelectChat(TLRPC$InputPeer tLRPC$InputPeer2, boolean z8, boolean z9, boolean z10) {
+                    VoIPHelper.lambda$doInitiateCall$5(z4, activity, accountInstance, tLRPC$Chat, str, tLRPC$User, z2, z3, baseFragment, tLRPC$InputPeer2, z8, z9, z10);
                 }
             });
             return;
@@ -173,6 +177,7 @@ public abstract class VoIPHelper {
                 intent.putExtra("chat_id", tLRPC$Chat.id);
                 intent.putExtra("createGroupCall", z4);
                 intent.putExtra("hasFewPeers", z);
+                intent.putExtra("isRtmpStream", z7);
                 intent.putExtra("hash", str);
                 if (tLRPC$InputPeer != null) {
                     intent.putExtra("peerChannelId", tLRPC$InputPeer.channel_id);
@@ -341,19 +346,19 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$doInitiateCall$5(final boolean z, final Activity activity, final AccountInstance accountInstance, final TLRPC$Chat tLRPC$Chat, final String str, final TLRPC$User tLRPC$User, final boolean z2, final boolean z3, final BaseFragment baseFragment, final TLRPC$InputPeer tLRPC$InputPeer, boolean z4, boolean z5) {
+    public static void lambda$doInitiateCall$5(final boolean z, final Activity activity, final AccountInstance accountInstance, final TLRPC$Chat tLRPC$Chat, final String str, final TLRPC$User tLRPC$User, final boolean z2, final boolean z3, final BaseFragment baseFragment, final TLRPC$InputPeer tLRPC$InputPeer, boolean z4, boolean z5, final boolean z6) {
         if (z && z5) {
             GroupCallActivity.create((LaunchActivity) activity, accountInstance, tLRPC$Chat, tLRPC$InputPeer, z4, str);
             return;
         }
         if (z4 || str == null) {
-            doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, z4, z2, z3, z, activity, baseFragment, accountInstance, false, true);
+            doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, z4, z2, z3, z, activity, baseFragment, accountInstance, false, true, z6);
             return;
         }
         JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, tLRPC$Chat) {
             @Override
             protected void onJoin() {
-                VoIPHelper.doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, false, z2, z3, z, activity, baseFragment, accountInstance, false, true);
+                VoIPHelper.doInitiateCall(tLRPC$User, tLRPC$Chat, str, tLRPC$InputPeer, false, z2, z3, z, activity, baseFragment, accountInstance, false, true, z6);
             }
         };
         if (baseFragment != null) {

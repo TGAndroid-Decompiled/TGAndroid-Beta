@@ -625,15 +625,15 @@ public class ActionBarMenuItem extends FrameLayout {
         addView(this.textView, LayoutHelper.createFrame(-2, -1.0f));
     }
 
-    public static ActionBarMenuSubItem addItem(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, CharSequence charSequence, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        return addItem(false, false, actionBarPopupWindowLayout, i, charSequence, z, resourcesProvider);
+    public static ActionBarMenuSubItem addItem(ViewGroup viewGroup, int i, CharSequence charSequence, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        return addItem(false, false, viewGroup, i, charSequence, z, resourcesProvider);
     }
 
-    public static ActionBarMenuSubItem addItem(boolean z, boolean z2, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, CharSequence charSequence, boolean z3, Theme.ResourcesProvider resourcesProvider) {
-        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(actionBarPopupWindowLayout.getContext(), z3, z, z2, resourcesProvider);
+    public static ActionBarMenuSubItem addItem(boolean z, boolean z2, ViewGroup viewGroup, int i, CharSequence charSequence, boolean z3, Theme.ResourcesProvider resourcesProvider) {
+        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(viewGroup.getContext(), z3, z, z2, resourcesProvider);
         actionBarMenuSubItem.setTextAndIcon(charSequence, i);
         actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(196.0f));
-        actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
+        viewGroup.addView(actionBarMenuSubItem);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) actionBarMenuSubItem.getLayoutParams();
         if (LocaleController.isRTL) {
             layoutParams.gravity = 5;

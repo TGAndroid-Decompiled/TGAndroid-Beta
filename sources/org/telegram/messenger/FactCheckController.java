@@ -528,15 +528,15 @@ public class FactCheckController {
                 if (Build.VERSION.SDK_INT >= 23) {
                     menu.removeItem(16908341);
                 }
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("Bold", R.string.Bold));
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
                 int i3 = R.id.menu_groupbolditalic;
                 menu.add(i3, i2, 6, spannableStringBuilder);
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString("Italic", R.string.Italic));
-                spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/ritalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
+                spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
                 menu.add(i3, R.id.menu_italic, 7, spannableStringBuilder2);
-                menu.add(i3, R.id.menu_link, 8, LocaleController.getString("CreateLink", R.string.CreateLink));
-                menu.add(i3, R.id.menu_regular, 9, LocaleController.getString("Regular", R.string.Regular));
+                menu.add(i3, R.id.menu_link, 8, LocaleController.getString(R.string.CreateLink));
+                menu.add(i3, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
             }
 
             @Override

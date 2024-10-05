@@ -160,11 +160,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
         ScaleStateListAnimator.apply(this.nextStickerToSendView);
         updateLayout();
         updateColors();
-        this.titleView.setText(LocaleController.getString(R.string.NoMessages));
-        this.descriptionView.setText(LocaleController.getString(R.string.NoMessagesGreetingsDescription));
-        TextView textView3 = this.descriptionView;
-        textView3.setMaxWidth(HintView2.cutInFancyHalf(textView3.getText(), this.descriptionView.getPaint()));
-        this.stickerToSendView.setContentDescription(this.descriptionView.getText());
+        setText(LocaleController.getString(R.string.NoMessages), LocaleController.getString(R.string.NoMessagesGreetingsDescription));
         this.preloadedGreetingsSticker = tLRPC$Document;
         if (tLRPC$Document == null) {
             this.preloadedGreetingsSticker = MediaDataController.getInstance(i).getGreetingsSticker();
@@ -649,6 +645,14 @@ public abstract class ChatGreetingsView extends LinearLayout {
                 ChatGreetingsView.this.lambda$setSticker$2(tLRPC$Document, view);
             }
         });
+    }
+
+    public void setText(CharSequence charSequence, CharSequence charSequence2) {
+        this.titleView.setText(charSequence);
+        this.descriptionView.setText(charSequence2);
+        TextView textView = this.descriptionView;
+        textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), this.descriptionView.getPaint()));
+        this.stickerToSendView.setContentDescription(this.descriptionView.getText());
     }
 
     public void setVisiblePart(float f, int i) {

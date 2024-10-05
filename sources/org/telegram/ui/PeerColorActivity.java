@@ -1932,7 +1932,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         if (this.isChannel || getUserConfig().isPremium()) {
             if (this.isChannel) {
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
             } else {
                 TLRPC$User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser.color == null) {
@@ -1998,7 +1998,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 getMessagesController().putUser(currentUser, false);
                 getUserConfig().saveConfig(true);
-                lambda$onBackPressed$307();
+                lambda$onBackPressed$300();
                 showBulletin();
             }
             this.applying = true;
@@ -2011,13 +2011,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
         }
         apply();
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
         showBulletin();
     }
 
@@ -2042,7 +2042,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -2051,7 +2051,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$showUnsavedAlert$4(DialogInterface dialogInterface, int i) {

@@ -108,7 +108,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         public void onItemClick(int i) {
             if (i == -1) {
                 if (QuickRepliesActivity.this.selected.isEmpty()) {
-                    QuickRepliesActivity.this.lambda$onBackPressed$307();
+                    QuickRepliesActivity.this.lambda$onBackPressed$300();
                     return;
                 } else {
                     QuickRepliesActivity.this.clearSelection();

@@ -160,7 +160,7 @@ public class JoinCallAlert extends BottomSheet {
     }
 
     public interface JoinCallAlertDelegate {
-        void didSelectChat(TLRPC$InputPeer tLRPC$InputPeer, boolean z, boolean z2);
+        void didSelectChat(TLRPC$InputPeer tLRPC$InputPeer, boolean z, boolean z2, boolean z3);
     }
 
     private class ListAdapter extends RecyclerListView.SelectionAdapter {
@@ -642,7 +642,7 @@ public class JoinCallAlert extends BottomSheet {
         if (this.currentType != 2) {
             this.selectAfterDismiss = inputPeer;
         } else if (this.selectedPeer != this.currentPeer) {
-            joinCallAlertDelegate.didSelectChat(inputPeer, this.chats.size() > 1, false);
+            joinCallAlertDelegate.didSelectChat(inputPeer, this.chats.size() > 1, false, false);
         }
         dismiss();
     }
@@ -662,7 +662,7 @@ public class JoinCallAlert extends BottomSheet {
         if (tLObject != null) {
             TLRPC$TL_phone_joinAsPeers tLRPC$TL_phone_joinAsPeers = (TLRPC$TL_phone_joinAsPeers) tLObject;
             if (tLRPC$TL_phone_joinAsPeers.peers.size() == 1) {
-                joinCallAlertDelegate.didSelectChat(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId((TLRPC$Peer) tLRPC$TL_phone_joinAsPeers.peers.get(0))), false, false);
+                joinCallAlertDelegate.didSelectChat(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId((TLRPC$Peer) tLRPC$TL_phone_joinAsPeers.peers.get(0))), false, false, false);
                 return;
             }
             cachedChats = tLRPC$TL_phone_joinAsPeers.peers;
@@ -697,7 +697,7 @@ public class JoinCallAlert extends BottomSheet {
                 showAlert(context, j, cachedChats, baseFragment, i, tLRPC$Peer, joinCallAlertDelegate);
                 return;
             } else {
-                joinCallAlertDelegate.didSelectChat(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId((TLRPC$Peer) cachedChats.get(0))), false, false);
+                joinCallAlertDelegate.didSelectChat(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId((TLRPC$Peer) cachedChats.get(0))), false, false, false);
                 return;
             }
         }
@@ -829,7 +829,7 @@ public class JoinCallAlert extends BottomSheet {
         super.dismissInternal();
         TLRPC$InputPeer tLRPC$InputPeer = this.selectAfterDismiss;
         if (tLRPC$InputPeer != null) {
-            this.delegate.didSelectChat(tLRPC$InputPeer, this.chats.size() > 1, this.schedule);
+            this.delegate.didSelectChat(tLRPC$InputPeer, this.chats.size() > 1, this.schedule, false);
         }
     }
 }

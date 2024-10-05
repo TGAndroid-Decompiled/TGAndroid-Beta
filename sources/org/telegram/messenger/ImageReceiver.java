@@ -874,6 +874,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return null;
     }
 
+    public int getAutoRepeat() {
+        return this.autoRepeat;
+    }
+
     public Bitmap getBitmap() {
         RLottieDrawable lottieAnimation = getLottieAnimation();
         if (lottieAnimation != null && lottieAnimation.hasBitmap()) {

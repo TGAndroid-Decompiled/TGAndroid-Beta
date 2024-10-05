@@ -863,6 +863,8 @@ public abstract class Theme {
     public static final int key_dialogButton;
     public static final int key_dialogButtonSelector;
     public static final int key_dialogCameraIcon;
+    public static final int key_dialogCardBackground;
+    public static final int key_dialogCardShadow;
     public static final int key_dialogCheckboxSquareBackground;
     public static final int key_dialogCheckboxSquareCheck;
     public static final int key_dialogCheckboxSquareDisabled;
@@ -872,6 +874,8 @@ public abstract class Theme {
     public static final int key_dialogFloatingButton;
     public static final int key_dialogFloatingButtonPressed;
     public static final int key_dialogFloatingIcon;
+    public static final int key_dialogGiftsBackground;
+    public static final int key_dialogGiftsTabText;
     public static final int key_dialogGrayLine;
     public static final int key_dialogIcon;
     public static final int key_dialogInputField;
@@ -1109,6 +1113,7 @@ public abstract class Theme {
     public static final int key_voipgroup_overlayBlue2;
     public static final int key_voipgroup_overlayGreen1;
     public static final int key_voipgroup_overlayGreen2;
+    public static final int key_voipgroup_rtmpButton;
     public static final int key_voipgroup_scrollUp;
     public static final int key_voipgroup_searchBackground;
     public static final int key_voipgroup_searchPlaceholder;

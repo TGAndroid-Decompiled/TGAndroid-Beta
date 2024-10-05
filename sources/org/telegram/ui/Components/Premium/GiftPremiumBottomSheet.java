@@ -42,6 +42,7 @@ import org.telegram.tgnet.TLRPC$TL_boolTrue;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentGiftPremium;
 import org.telegram.tgnet.TLRPC$TL_payments_canPurchasePremium;
+import org.telegram.tgnet.TLRPC$TL_premiumGiftCodeOption;
 import org.telegram.tgnet.TLRPC$TL_premiumGiftOption;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
@@ -203,19 +204,30 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
 
     public static final class GiftTier {
         private int discount;
+        public final TLRPC$TL_premiumGiftCodeOption giftCodeOption;
         public final TLRPC$TL_premiumGiftOption giftOption;
-        private ProductDetails googlePlayProductDetails;
+        public ProductDetails googlePlayProductDetails;
         private long pricePerMonth;
         private long pricePerMonthRegular;
         public int yOffset;
 
+        public GiftTier(TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption) {
+            this.giftOption = null;
+            this.giftCodeOption = tLRPC$TL_premiumGiftCodeOption;
+        }
+
         public GiftTier(TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption) {
             this.giftOption = tLRPC$TL_premiumGiftOption;
+            this.giftCodeOption = null;
         }
 
         public String getCurrency() {
-            if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
-                return this.giftOption.currency;
+            if (this.giftOption != null) {
+                if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
+                    return this.giftOption.currency;
+                }
+            } else if (this.giftCodeOption != null && (BuildVars.useInvoiceBilling() || this.giftCodeOption.store_product == null)) {
+                return this.giftCodeOption.currency;
             }
             ProductDetails productDetails = this.googlePlayProductDetails;
             return productDetails == null ? "" : productDetails.getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
@@ -242,11 +254,15 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
         }
 
         public String getFormattedPrice() {
-            return (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) ? BillingController.getInstance().formatCurrency(getPrice(), getCurrency()) : this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
+            TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption;
+            TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption;
+            return (BuildVars.useInvoiceBilling() || ((tLRPC$TL_premiumGiftOption = this.giftOption) != null && tLRPC$TL_premiumGiftOption.store_product == null) || ((tLRPC$TL_premiumGiftCodeOption = this.giftCodeOption) != null && tLRPC$TL_premiumGiftCodeOption.store_product == null)) ? BillingController.getInstance().formatCurrency(getPrice(), getCurrency()) : this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
         }
 
         public String getFormattedPricePerMonth() {
-            return (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) ? BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency()) : this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
+            TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption;
+            TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption;
+            return (BuildVars.useInvoiceBilling() || ((tLRPC$TL_premiumGiftOption = this.giftOption) != null && tLRPC$TL_premiumGiftOption.store_product == null) || ((tLRPC$TL_premiumGiftCodeOption = this.giftCodeOption) != null && tLRPC$TL_premiumGiftCodeOption.store_product == null)) ? BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency()) : this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
         }
 
         public ProductDetails getGooglePlayProductDetails() {
@@ -254,12 +270,24 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
         }
 
         public int getMonths() {
-            return this.giftOption.months;
+            TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption = this.giftOption;
+            if (tLRPC$TL_premiumGiftOption != null) {
+                return tLRPC$TL_premiumGiftOption.months;
+            }
+            TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption = this.giftCodeOption;
+            if (tLRPC$TL_premiumGiftCodeOption != null) {
+                return tLRPC$TL_premiumGiftCodeOption.months;
+            }
+            return 1;
         }
 
         public long getPrice() {
-            if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
-                return this.giftOption.amount;
+            if (this.giftOption != null) {
+                if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
+                    return this.giftOption.amount;
+                }
+            } else if (this.giftCodeOption != null && (BuildVars.useInvoiceBilling() || this.giftCodeOption.store_product == null)) {
+                return this.giftCodeOption.amount;
             }
             ProductDetails productDetails = this.googlePlayProductDetails;
             if (productDetails == null) {
@@ -272,10 +300,22 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
             if (this.pricePerMonth == 0) {
                 long price = getPrice();
                 if (price != 0) {
-                    this.pricePerMonth = price / this.giftOption.months;
+                    this.pricePerMonth = price / getMonths();
                 }
             }
             return this.pricePerMonth;
+        }
+
+        public String getStoreProduct() {
+            TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption = this.giftOption;
+            if (tLRPC$TL_premiumGiftOption != null) {
+                return tLRPC$TL_premiumGiftOption.store_product;
+            }
+            TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption = this.giftCodeOption;
+            if (tLRPC$TL_premiumGiftCodeOption != null) {
+                return tLRPC$TL_premiumGiftCodeOption.store_product;
+            }
+            return null;
         }
 
         public void setGooglePlayProductDetails(ProductDetails productDetails) {
@@ -610,7 +650,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.lambda$onBackPressed$307();
+                        baseFragment.lambda$onBackPressed$300();
                     }
                     baseFragment.removeSelfFromStack();
                 }

@@ -1,12 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.SurfaceTexture;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecList;
 import android.media.MediaFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Base64;
+import android.util.LongSparseArray;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
@@ -35,34 +40,54 @@ import com.google.android.exoplayer2.audio.TeeAudioProcessor;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
 import com.google.android.exoplayer2.decoder.DecoderReuseEvaluation;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
+import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
 import com.google.android.exoplayer2.metadata.Metadata;
 import com.google.android.exoplayer2.source.LoadEventInfo;
 import com.google.android.exoplayer2.source.LoopingMediaSource;
 import com.google.android.exoplayer2.source.MediaLoadData;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.text.CueGroup;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.trackselection.TrackSelectionOverride;
+import com.google.android.exoplayer2.trackselection.TrackSelectionParameters;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.google.android.exoplayer2.video.ColorInfo;
 import com.google.android.exoplayer2.video.SurfaceNotValidException;
 import com.google.android.exoplayer2.video.VideoListener;
 import com.google.android.exoplayer2.video.VideoSize;
+import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FourierTransform;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$DocumentAttribute;
+import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
+import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
@@ -77,9 +102,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     private Uri audioUri;
     private AudioVisualizerDelegate audioVisualizerDelegate;
     private boolean autoplay;
+    private boolean currentStreamIsHls;
     private Uri currentUri;
     MediaSource.Factory dashMediaSourceFactory;
     private VideoPlayerDelegate delegate;
+    private long fallbackDuration;
+    private long fallbackPosition;
     private boolean handleAudioFocus;
     HlsMediaSource.Factory hlsMediaSourceFactory;
     private boolean isStory;
@@ -88,12 +116,14 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     private int lastReportedPlaybackState;
     private boolean looping;
     private boolean loopingMediaSource;
-    private DataSource.Factory mediaDataSourceFactory;
+    private ExtendedDefaultDataSourceFactory mediaDataSourceFactory;
     private boolean mixedAudio;
     private boolean mixedPlayWhenReady;
+    private Runnable onQualityChangeListener;
     public ExoPlayer player;
     ProgressiveMediaSource.Factory progressiveMediaSourceFactory;
     private int repeatCount;
+    private int selectedQualityIndex;
     private boolean shouldPauseOther;
     SsMediaSource.Factory ssMediaSourceFactory;
     private Surface surface;
@@ -102,6 +132,8 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     private MappingTrackSelector trackSelector;
     private boolean triedReinit;
     private boolean videoPlayerReady;
+    private ArrayList videoQualities;
+    private QualityUri videoQualityToSelect;
     private String videoType;
     private Uri videoUri;
     private DispatchQueue workerQueue;
@@ -287,6 +319,95 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
     }
 
+    public static class QualityUri {
+        public double bitrate;
+        public String codec;
+        public long docId;
+        public TLRPC$Document document;
+        public double duration;
+        public int height;
+        public Uri m3u8uri;
+        public long manifestDocId;
+        public boolean original;
+        public long size;
+        public Uri uri;
+        public int width;
+
+        public static Uri getUri(int i, TLRPC$Document tLRPC$Document, int i2) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("?account=");
+            sb.append(i);
+            sb.append("&id=");
+            sb.append(tLRPC$Document.id);
+            sb.append("&hash=");
+            sb.append(tLRPC$Document.access_hash);
+            sb.append("&dc=");
+            sb.append(tLRPC$Document.dc_id);
+            sb.append("&size=");
+            sb.append(tLRPC$Document.size);
+            sb.append("&mime=");
+            sb.append(URLEncoder.encode(tLRPC$Document.mime_type, "UTF-8"));
+            sb.append("&rid=");
+            sb.append(i2);
+            sb.append("&name=");
+            sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(tLRPC$Document), "UTF-8"));
+            sb.append("&reference=");
+            byte[] bArr = tLRPC$Document.file_reference;
+            if (bArr == null) {
+                bArr = new byte[0];
+            }
+            sb.append(Utilities.bytesToHex(bArr));
+            return Uri.parse("tg://" + MessageObject.getFileName(tLRPC$Document) + sb.toString());
+        }
+
+        public static QualityUri of(int i, TLRPC$Document tLRPC$Document, TLRPC$Document tLRPC$Document2, int i2) {
+            TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo;
+            QualityUri qualityUri = new QualityUri();
+            int i3 = 0;
+            while (true) {
+                if (i3 >= tLRPC$Document.attributes.size()) {
+                    tLRPC$TL_documentAttributeVideo = null;
+                    break;
+                }
+                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i3);
+                if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
+                    tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$DocumentAttribute;
+                    break;
+                }
+                i3++;
+            }
+            String str = tLRPC$TL_documentAttributeVideo == null ? null : tLRPC$TL_documentAttributeVideo.video_codec;
+            qualityUri.document = tLRPC$Document;
+            qualityUri.docId = tLRPC$Document.id;
+            qualityUri.uri = getUri(i, tLRPC$Document, i2);
+            if (tLRPC$Document2 != null) {
+                qualityUri.manifestDocId = tLRPC$Document2.id;
+                qualityUri.m3u8uri = getUri(i, tLRPC$Document2, i2);
+                File pathToAttach = FileLoader.getInstance(i).getPathToAttach(tLRPC$Document2, null, false, true);
+                if (pathToAttach != null) {
+                    pathToAttach.exists();
+                }
+            }
+            qualityUri.codec = str;
+            long j = tLRPC$Document.size;
+            qualityUri.size = j;
+            if (tLRPC$TL_documentAttributeVideo != null) {
+                double d = tLRPC$TL_documentAttributeVideo.duration;
+                qualityUri.duration = d;
+                qualityUri.width = tLRPC$TL_documentAttributeVideo.w;
+                qualityUri.height = tLRPC$TL_documentAttributeVideo.h;
+                double d2 = j;
+                Double.isNaN(d2);
+                qualityUri.bitrate = d2 / d;
+            }
+            File pathToAttach2 = FileLoader.getInstance(i).getPathToAttach(tLRPC$Document, null, false, true);
+            if (pathToAttach2 != null) {
+                pathToAttach2.exists();
+            }
+            return qualityUri;
+        }
+    }
+
     public interface VideoPlayerDelegate {
 
         public abstract class CC {
@@ -440,10 +561,13 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
 
     public VideoPlayer(boolean z, boolean z2) {
         this.audioUpdateHandler = new Handler(Looper.getMainLooper());
+        this.selectedQualityIndex = -1;
+        this.fallbackDuration = -9223372036854775807L;
+        this.fallbackPosition = -9223372036854775807L;
         this.handleAudioFocus = false;
         this.audioDisabled = z2;
         this.mediaDataSourceFactory = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
-        DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(ApplicationLoader.applicationContext);
+        DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(ApplicationLoader.applicationContext, new AdaptiveTrackSelection.Factory());
         this.trackSelector = defaultTrackSelector;
         if (z2) {
             defaultTrackSelector.setParameters(defaultTrackSelector.getParameters().buildUpon().setTrackTypeDisabled(1, true).build());
@@ -659,12 +783,190 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
     }
 
+    public static TLRPC$Document getDocumentForThumb(int i, TLRPC$MessageMedia tLRPC$MessageMedia) {
+        if (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument)) {
+            return null;
+        }
+        ArrayList qualities = getQualities(i, tLRPC$MessageMedia.document, tLRPC$MessageMedia.alt_documents, 0, true);
+        QualityUri qualityUri = null;
+        for (int i2 = 0; i2 < qualities.size(); i2++) {
+            QualityUri qualityUri2 = (QualityUri) qualities.get(i2);
+            if ((qualityUri == null || qualityUri.width * qualityUri.height < qualityUri2.width * qualityUri2.height) && qualityUri2.width <= 860 && qualityUri2.height <= 860) {
+                qualityUri = qualityUri2;
+            }
+        }
+        if (qualityUri == null) {
+            for (int i3 = 0; i3 < qualities.size(); i3++) {
+                QualityUri qualityUri3 = (QualityUri) qualities.get(i3);
+                if (qualityUri == null || qualityUri.width * qualityUri.height > qualityUri3.width * qualityUri3.height) {
+                    qualityUri = qualityUri3;
+                }
+            }
+        }
+        if (qualityUri == null) {
+            return null;
+        }
+        return qualityUri.document;
+    }
+
+    public static ArrayList getQualities(int i, TLRPC$Document tLRPC$Document, ArrayList arrayList, int i2, boolean z) {
+        String str;
+        ArrayList arrayList2 = new ArrayList();
+        arrayList2.add(tLRPC$Document);
+        arrayList2.addAll(arrayList);
+        LongSparseArray longSparseArray = new LongSparseArray();
+        int i3 = 0;
+        while (i3 < arrayList2.size()) {
+            TLRPC$Document tLRPC$Document2 = (TLRPC$Document) arrayList2.get(i3);
+            if ("application/x-mpegurl".equalsIgnoreCase(tLRPC$Document2.mime_type) && (str = tLRPC$Document2.file_name_fixed) != null && str.startsWith("mtproto")) {
+                try {
+                    longSparseArray.put(Long.parseLong(tLRPC$Document2.file_name_fixed.substring(7)), tLRPC$Document2);
+                    arrayList2.remove(i3);
+                    i3--;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            i3++;
+        }
+        ArrayList arrayList3 = new ArrayList();
+        for (int i4 = 0; i4 < arrayList2.size(); i4++) {
+            try {
+                TLRPC$Document tLRPC$Document3 = (TLRPC$Document) arrayList2.get(i4);
+                if (!"application/x-mpegurl".equalsIgnoreCase(tLRPC$Document3.mime_type)) {
+                    QualityUri of = QualityUri.of(i, tLRPC$Document3, (TLRPC$Document) longSparseArray.get(tLRPC$Document3.id), i2);
+                    if (of.width > 0 && of.height > 0) {
+                        if (tLRPC$Document3 == tLRPC$Document) {
+                            of.original = true;
+                        }
+                        arrayList3.add(of);
+                    }
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+        }
+        ArrayList arrayList4 = new ArrayList();
+        for (int i5 = 0; i5 < arrayList3.size(); i5++) {
+            QualityUri qualityUri = (QualityUri) arrayList3.get(i5);
+            String str2 = qualityUri.codec;
+            if (str2 != null) {
+                if (z) {
+                    if (!"avc".equals(str2) && !"h264".equals(qualityUri.codec) && !"h265".equals(qualityUri.codec) && !"hevc".equals(qualityUri.codec) && !"vp9".equals(qualityUri.codec) && !"vp8".equals(qualityUri.codec)) {
+                    }
+                } else if (("av1".equals(str2) || "hevc".equals(qualityUri.codec) || "vp9".equals(qualityUri.codec)) && !supportsHardwareDecoder(qualityUri.codec)) {
+                }
+            }
+            arrayList4.add(qualityUri);
+        }
+        ArrayList arrayList5 = new ArrayList();
+        if (arrayList4.isEmpty()) {
+            arrayList5.addAll(arrayList3);
+        } else {
+            arrayList5.addAll(arrayList4);
+        }
+        HashMap hashMap = new HashMap();
+        for (int i6 = 0; i6 < arrayList5.size(); i6++) {
+            QualityUri qualityUri2 = (QualityUri) arrayList5.get(i6);
+            if (!SharedConfig.debugVideoQualities || !qualityUri2.original) {
+                int min = Math.min(qualityUri2.width, qualityUri2.height);
+                Double d = (Double) hashMap.get(Integer.valueOf(min));
+                if (d == null || d.doubleValue() > qualityUri2.bitrate) {
+                    hashMap.put(Integer.valueOf(min), Double.valueOf(qualityUri2.bitrate));
+                }
+            }
+        }
+        ArrayList arrayList6 = new ArrayList();
+        HashSet hashSet = new HashSet();
+        for (int i7 = 0; i7 < arrayList5.size(); i7++) {
+            QualityUri qualityUri3 = (QualityUri) arrayList5.get(i7);
+            int min2 = Math.min(qualityUri3.width, qualityUri3.height);
+            Double d2 = (Double) hashMap.get(Integer.valueOf(min2));
+            if (!SharedConfig.debugVideoQualities || !qualityUri3.original) {
+                if (!hashSet.contains(Integer.valueOf(min2)) && (d2 == null || Math.abs(d2.doubleValue() - qualityUri3.bitrate) < 1.0d)) {
+                    hashSet.add(Integer.valueOf(min2));
+                }
+            }
+            arrayList6.add(qualityUri3);
+        }
+        return arrayList6;
+    }
+
+    private TrackSelectionOverride getQualityTrackSelection(QualityUri qualityUri) {
+        int i;
+        int i2 = 0;
+        for (int i3 = 0; i3 < getQualitiesCount(); i3++) {
+            try {
+                QualityUri quality = getQuality(i3);
+                if (quality.m3u8uri != null) {
+                    if (quality == qualityUri) {
+                        break;
+                    }
+                    i2++;
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+                return null;
+            }
+        }
+        MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo = this.trackSelector.getCurrentMappedTrackInfo();
+        for (int i4 = 0; i4 < currentMappedTrackInfo.getRendererCount(); i4++) {
+            TrackGroupArray trackGroups = currentMappedTrackInfo.getTrackGroups(i4);
+            for (int i5 = 0; i5 < trackGroups.length; i5++) {
+                TrackGroup trackGroup = trackGroups.get(i5);
+                for (int i6 = 0; i6 < trackGroup.length; i6++) {
+                    Format format = trackGroup.getFormat(i6);
+                    try {
+                        i = Integer.parseInt(format.id);
+                    } catch (Exception unused) {
+                        i = -1;
+                    }
+                    if (i >= 0 && i2 == i) {
+                        return new TrackSelectionOverride(trackGroup, i6);
+                    }
+                    if (format.width == qualityUri.width && format.height == qualityUri.height) {
+                        return new TrackSelectionOverride(trackGroup, i6);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static QualityUri getSavedQuality(ArrayList arrayList, long j, int i) {
+        long j2 = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).getLong(j + "_" + i + "q", 0L);
+        if (j2 == 0) {
+            return null;
+        }
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            if (((QualityUri) arrayList.get(i2)).docId == j2) {
+                return (QualityUri) arrayList.get(i2);
+            }
+        }
+        return null;
+    }
+
+    public static QualityUri getSavedQuality(ArrayList arrayList, MessageObject messageObject) {
+        if (messageObject == null) {
+            return null;
+        }
+        return getSavedQuality(arrayList, messageObject.getDialogId(), messageObject.getId());
+    }
+
+    public static boolean hasQualities(int i, TLRPC$MessageMedia tLRPC$MessageMedia) {
+        ArrayList qualities;
+        return (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && (qualities = getQualities(i, tLRPC$MessageMedia.document, tLRPC$MessageMedia.alt_documents, 0, false)) != null && qualities.size() > 1;
+    }
+
     public void lambda$onPlayerError$0() {
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer != null) {
             exoPlayer.clearVideoTextureView(this.textureView);
             this.player.setVideoTextureView(this.textureView);
-            if (this.loopingMediaSource) {
+            ArrayList arrayList = this.videoQualities;
+            if (arrayList != null) {
+                preparePlayer(arrayList, this.videoQualityToSelect);
+            } else if (this.loopingMediaSource) {
                 preparePlayerLoop(this.videoUri, this.videoType, this.audioUri, this.audioType);
             } else {
                 preparePlayer(this.videoUri, this.videoType);
@@ -700,7 +1002,10 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             }
             this.player.clearVideoTextureView(this.textureView);
             this.player.setVideoTextureView(this.textureView);
-            if (this.loopingMediaSource) {
+            ArrayList arrayList = this.videoQualities;
+            if (arrayList != null) {
+                preparePlayer(arrayList, this.videoQualityToSelect);
+            } else if (this.loopingMediaSource) {
                 preparePlayerLoop(this.videoUri, this.videoType, this.audioUri, this.audioType);
             } else {
                 preparePlayer(this.videoUri, this.videoType);
@@ -772,6 +1077,129 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
     }
 
+    public static void saveQuality(QualityUri qualityUri, long j, int i) {
+        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit();
+        if (qualityUri == null) {
+            edit.remove(j + "_" + i + "q");
+        } else {
+            edit.putLong(j + "_" + i + "q", qualityUri.docId);
+        }
+        edit.apply();
+    }
+
+    public static void saveQuality(QualityUri qualityUri, MessageObject messageObject) {
+        if (messageObject == null) {
+            return;
+        }
+        saveQuality(qualityUri, messageObject.getDialogId(), messageObject.getId());
+    }
+
+    public static boolean supportsHardwareDecoder(String str) {
+        char c;
+        String str2;
+        try {
+            switch (str.hashCode()) {
+                case 96924:
+                    if (str.equals("av1")) {
+                        c = 6;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 96974:
+                    if (str.equals("avc")) {
+                        c = 1;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 116926:
+                    if (str.equals("vp8")) {
+                        c = 2;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 116927:
+                    if (str.equals("vp9")) {
+                        c = 3;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 3004662:
+                    if (str.equals("av01")) {
+                        c = 7;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 3148040:
+                    if (str.equals("h264")) {
+                        c = 0;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 3148041:
+                    if (str.equals("h265")) {
+                        c = 4;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 3199082:
+                    if (str.equals("hevc")) {
+                        c = 5;
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                default:
+                    c = 65535;
+                    break;
+            }
+            switch (c) {
+                case 0:
+                case 1:
+                    str2 = "video/avc";
+                    break;
+                case 2:
+                    str2 = "video/x-vnd.on2.vp8";
+                    break;
+                case 3:
+                    str2 = "video/x-vnd.on2.vp9";
+                    break;
+                case 4:
+                case 5:
+                    str2 = "video/hevc";
+                    break;
+                case 6:
+                case 7:
+                    str2 = "video/av01";
+                    break;
+                default:
+                    str2 = "video/" + str;
+                    break;
+            }
+            int codecCount = MediaCodecList.getCodecCount();
+            for (int i = 0; i < codecCount; i++) {
+                MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
+                if (!codecInfoAt.isEncoder() && MediaCodecUtil.isHardwareAccelerated(codecInfoAt, str2)) {
+                    for (String str3 : codecInfoAt.getSupportedTypes()) {
+                        if (str3.equalsIgnoreCase(str2)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
     public boolean createdWithAudioTrack() {
         return !this.audioDisabled;
     }
@@ -793,6 +1221,10 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public long getCurrentPosition() {
+        long j = this.fallbackPosition;
+        if (j != -9223372036854775807L) {
+            return j;
+        }
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer != null) {
             return exoPlayer.getCurrentPosition();
@@ -800,11 +1232,66 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return 0L;
     }
 
+    public QualityUri getCurrentQuality() {
+        int currentQualityIndex = getCurrentQualityIndex();
+        if (currentQualityIndex < 0 || currentQualityIndex >= getQualitiesCount()) {
+            return null;
+        }
+        return getQuality(currentQualityIndex);
+    }
+
+    public int getCurrentQualityIndex() {
+        int i;
+        if (this.selectedQualityIndex == -1) {
+            try {
+                MappingTrackSelector.MappedTrackInfo currentMappedTrackInfo = this.trackSelector.getCurrentMappedTrackInfo();
+                for (int i2 = 0; i2 < currentMappedTrackInfo.getRendererCount(); i2++) {
+                    TrackGroupArray trackGroups = currentMappedTrackInfo.getTrackGroups(i2);
+                    for (int i3 = 0; i3 < trackGroups.length; i3++) {
+                        TrackGroup trackGroup = trackGroups.get(i3);
+                        for (int i4 = 0; i4 < trackGroup.length; i4++) {
+                            Format format = trackGroup.getFormat(i4);
+                            try {
+                                i = Integer.parseInt(format.id);
+                            } catch (Exception unused) {
+                                i = -1;
+                            }
+                            if (i >= 0) {
+                                int i5 = 0;
+                                for (int i6 = 0; i6 < getQualitiesCount(); i6++) {
+                                    if (getQuality(i6).m3u8uri != null) {
+                                        if (i5 == i) {
+                                            return i6;
+                                        }
+                                        i5++;
+                                    }
+                                }
+                            }
+                            for (int i7 = 0; i7 < getQualitiesCount(); i7++) {
+                                QualityUri quality = getQuality(i7);
+                                if (format.width == quality.width && format.height == quality.height) {
+                                    return i7;
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (Exception unused2) {
+                return -1;
+            }
+        }
+        return this.selectedQualityIndex;
+    }
+
     public Uri getCurrentUri() {
         return this.currentUri;
     }
 
     public long getDuration() {
+        long j = this.fallbackDuration;
+        if (j != -9223372036854775807L) {
+            return j;
+        }
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer != null) {
             return exoPlayer.getDuration();
@@ -842,12 +1329,53 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return hDRInfo;
     }
 
+    public QualityUri getHighestQuality(Boolean bool) {
+        QualityUri qualityUri = null;
+        for (int i = 0; i < getQualitiesCount(); i++) {
+            QualityUri quality = getQuality(i);
+            if ((bool == null || quality.original == bool.booleanValue()) && (qualityUri == null || qualityUri.width * qualityUri.height < quality.width * quality.height)) {
+                qualityUri = quality;
+            }
+        }
+        return qualityUri;
+    }
+
+    public int getHighestQualityIndex(Boolean bool) {
+        int i = -1;
+        QualityUri qualityUri = null;
+        for (int i2 = 0; i2 < getQualitiesCount(); i2++) {
+            QualityUri quality = getQuality(i2);
+            if ((bool == null || quality.original == bool.booleanValue()) && (qualityUri == null || qualityUri.width * qualityUri.height < quality.width * quality.height)) {
+                i = i2;
+                qualityUri = quality;
+            }
+        }
+        return i;
+    }
+
     public boolean getPlayWhenReady() {
         return this.player.getPlayWhenReady();
     }
 
     public int getPlaybackState() {
         return this.player.getPlaybackState();
+    }
+
+    public int getQualitiesCount() {
+        ArrayList arrayList = this.videoQualities;
+        if (arrayList == null) {
+            return 0;
+        }
+        return arrayList.size();
+    }
+
+    public QualityUri getQuality(int i) {
+        ArrayList arrayList = this.videoQualities;
+        return arrayList == null ? getHighestQuality(Boolean.FALSE) : (i < 0 || i >= arrayList.size()) ? getHighestQuality(Boolean.FALSE) : (QualityUri) this.videoQualities.get(i);
+    }
+
+    public int getSelectedQuality() {
+        return this.selectedQualityIndex;
     }
 
     public boolean isBuffering() {
@@ -888,6 +1416,36 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public boolean isPlaying() {
         ExoPlayer exoPlayer;
         return (this.mixedAudio && this.mixedPlayWhenReady) || ((exoPlayer = this.player) != null && exoPlayer.getPlayWhenReady());
+    }
+
+    public Uri makeManifest(ArrayList arrayList) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("#EXTM3U\n");
+        sb.append("#EXT-X-VERSION:6\n");
+        sb.append("#EXT-X-INDEPENDENT-SEGMENTS\n\n");
+        boolean z = false;
+        for (int i = 0; i < arrayList.size(); i++) {
+            QualityUri qualityUri = (QualityUri) arrayList.get(i);
+            this.mediaDataSourceFactory.putDocumentUri(qualityUri.docId, qualityUri.uri);
+            this.mediaDataSourceFactory.putDocumentUri(qualityUri.manifestDocId, qualityUri.m3u8uri);
+            if (qualityUri.m3u8uri != null) {
+                sb.append("#EXT-X-STREAM-INF:BANDWIDTH=");
+                sb.append((int) Math.floor(qualityUri.bitrate * 8.0d));
+                sb.append(",RESOLUTION=");
+                sb.append(qualityUri.width);
+                sb.append("x");
+                sb.append(qualityUri.height);
+                sb.append("\n");
+                sb.append("mtproto:");
+                sb.append(qualityUri.manifestDocId);
+                sb.append("\n\n");
+                z = true;
+            }
+        }
+        if (!z) {
+            return null;
+        }
+        return Uri.parse("data:application/x-mpegurl;base64," + Base64.encodeToString(sb.toString().getBytes(), 2));
     }
 
     @Override
@@ -1287,6 +1845,8 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
 
     @Override
     public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime, Object obj, long j) {
+        this.fallbackPosition = -9223372036854775807L;
+        this.fallbackDuration = -9223372036854775807L;
         VideoPlayerDelegate videoPlayerDelegate = this.delegate;
         if (videoPlayerDelegate != null) {
             videoPlayerDelegate.onRenderedFirstFrame(eventTime);
@@ -1493,12 +2053,15 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public void preparePlayer(Uri uri, String str, int i) {
+        this.videoQualities = null;
+        this.videoQualityToSelect = null;
         this.videoUri = uri;
         this.videoType = str;
         this.audioUri = null;
         this.audioType = null;
         boolean z = false;
         this.loopingMediaSource = false;
+        this.currentStreamIsHls = false;
         this.videoPlayerReady = false;
         this.mixedAudio = false;
         this.currentUri = uri;
@@ -1512,19 +2075,65 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.player.prepare();
     }
 
+    public void preparePlayer(ArrayList arrayList, QualityUri qualityUri) {
+        ExoPlayer exoPlayer;
+        MediaSource mediaSourceFromUri;
+        this.videoQualities = arrayList;
+        this.videoQualityToSelect = qualityUri;
+        this.videoUri = null;
+        this.videoType = "hls";
+        this.audioUri = null;
+        this.audioType = null;
+        this.loopingMediaSource = false;
+        this.videoPlayerReady = false;
+        this.mixedAudio = false;
+        this.currentUri = null;
+        this.isStreaming = true;
+        ensurePlayerCreated();
+        Uri makeManifest = makeManifest(arrayList);
+        if (makeManifest == null || qualityUri != null) {
+            this.currentStreamIsHls = false;
+            if (qualityUri == null) {
+                this.selectedQualityIndex = -1;
+                qualityUri = getHighestQuality(Boolean.FALSE);
+                if (qualityUri == null) {
+                    this.selectedQualityIndex = getHighestQualityIndex(null);
+                    qualityUri = getHighestQuality(null);
+                }
+            } else {
+                this.selectedQualityIndex = arrayList.indexOf(qualityUri);
+            }
+            if (qualityUri == null) {
+                return;
+            }
+            exoPlayer = this.player;
+            mediaSourceFromUri = mediaSourceFromUri(qualityUri.uri, "other");
+        } else {
+            this.currentStreamIsHls = true;
+            this.selectedQualityIndex = -1;
+            exoPlayer = this.player;
+            mediaSourceFromUri = mediaSourceFromUri(makeManifest, "hls");
+        }
+        exoPlayer.setMediaSource(mediaSourceFromUri, true);
+        this.player.prepare();
+    }
+
     public void preparePlayerLoop(Uri uri, String str, Uri uri2, String str2) {
         Uri uri3;
         String str3;
+        LoopingMediaSource loopingMediaSource = null;
+        this.videoQualities = null;
+        this.videoQualityToSelect = null;
         this.videoUri = uri;
         this.audioUri = uri2;
         this.videoType = str;
         this.audioType = str2;
         this.loopingMediaSource = true;
+        this.currentStreamIsHls = false;
         this.mixedAudio = true;
         this.audioPlayerReady = false;
         this.videoPlayerReady = false;
         ensurePlayerCreated();
-        LoopingMediaSource loopingMediaSource = null;
         LoopingMediaSource loopingMediaSource2 = null;
         for (int i = 0; i < 2; i++) {
             if (i == 0) {
@@ -1609,6 +2218,10 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
     }
 
+    public void setOnQualityChangeListener(Runnable runnable) {
+        this.onQualityChangeListener = runnable;
+    }
+
     public void setPlayWhenReady(boolean z) {
         this.mixedPlayWhenReady = z;
         if (z && this.mixedAudio && (!this.audioPlayerReady || !this.videoPlayerReady)) {
@@ -1639,6 +2252,81 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         if (exoPlayer != null) {
             exoPlayer.setPlaybackParameters(new PlaybackParameters(f, f > 1.0f ? 0.98f : 1.0f));
         }
+    }
+
+    public void setSelectedQuality(int i, boolean z) {
+        int i2;
+        MappingTrackSelector mappingTrackSelector;
+        TrackSelectionParameters.Builder addOverride;
+        ExoPlayer exoPlayer = this.player;
+        if (exoPlayer == null || i == this.selectedQualityIndex) {
+            return;
+        }
+        boolean isPlaying = exoPlayer.isPlaying();
+        long currentPosition = this.player.getCurrentPosition();
+        this.fallbackPosition = currentPosition;
+        this.fallbackDuration = this.player.getDuration();
+        this.selectedQualityIndex = i;
+        Uri makeManifest = makeManifest(this.videoQualities);
+        if (makeManifest != null && ((i2 = this.selectedQualityIndex) == -1 || z)) {
+            if (i2 == -1) {
+                this.videoQualityToSelect = null;
+                if (!this.currentStreamIsHls) {
+                    this.player.setMediaSource(mediaSourceFromUri(makeManifest, "hls"), false);
+                    this.player.prepare();
+                    this.player.seekTo(currentPosition);
+                    if (isPlaying) {
+                        this.player.play();
+                    }
+                    this.currentStreamIsHls = true;
+                }
+                mappingTrackSelector = this.trackSelector;
+                addOverride = mappingTrackSelector.getParameters().buildUpon().clearOverrides();
+            } else {
+                this.videoQualityToSelect = getCurrentQuality();
+                TrackSelectionOverride qualityTrackSelection = getQualityTrackSelection(getCurrentQuality());
+                if (qualityTrackSelection != null) {
+                    if (!this.currentStreamIsHls) {
+                        this.player.setMediaSource(mediaSourceFromUri(makeManifest, "hls"), false);
+                        this.player.prepare();
+                        this.player.seekTo(currentPosition);
+                        if (isPlaying) {
+                            this.player.play();
+                        }
+                        this.currentStreamIsHls = true;
+                    }
+                    mappingTrackSelector = this.trackSelector;
+                    addOverride = mappingTrackSelector.getParameters().buildUpon().addOverride(qualityTrackSelection);
+                } else {
+                    QualityUri currentQuality = getCurrentQuality();
+                    if (currentQuality == null) {
+                        return;
+                    }
+                    this.currentStreamIsHls = false;
+                    this.player.setMediaSource(mediaSourceFromUri(currentQuality.uri, "other"), false);
+                    this.player.prepare();
+                    this.player.seekTo(currentPosition);
+                    if (!isPlaying) {
+                        return;
+                    }
+                }
+            }
+            mappingTrackSelector.setParameters(addOverride.build());
+            return;
+        }
+        QualityUri currentQuality2 = getCurrentQuality();
+        this.videoQualityToSelect = currentQuality2;
+        if (currentQuality2 == null) {
+            return;
+        }
+        this.currentStreamIsHls = false;
+        this.player.setMediaSource(mediaSourceFromUri(currentQuality2.uri, "other"), false);
+        this.player.prepare();
+        this.player.seekTo(currentPosition);
+        if (!isPlaying) {
+            return;
+        }
+        this.player.play();
     }
 
     public void setStreamType(int i) {

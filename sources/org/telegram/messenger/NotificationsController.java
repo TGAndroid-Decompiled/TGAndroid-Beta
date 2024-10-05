@@ -310,7 +310,7 @@ public class NotificationsController extends BaseController {
         this.lastOnlineFromOtherDevice = 0;
         this.lastBadgeCount = -1;
         this.mediaSpoilerEffect = new SpoilerEffect();
-        this.spoilerChars = new char[]{10252, 10338, 10385, 10280};
+        this.spoilerChars = new char[]{10252, 10338, 10385, 10280, 10277, 10286, 10321};
         this.checkStoryPushesRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -603,17 +603,16 @@ public class NotificationsController extends BaseController {
         return format;
     }
 
-    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r28, java.lang.String[] r29, boolean[] r30) {
+    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r23, java.lang.String[] r24, boolean[] r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getShortStringForMessage(org.telegram.messenger.MessageObject, java.lang.String[], boolean[]):java.lang.String");
     }
 
-    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r46, boolean r47, boolean[] r48, boolean[] r49) {
+    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r30, boolean r31, boolean[] r32, boolean[] r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getStringForMessage(org.telegram.messenger.MessageObject, boolean, boolean[], boolean[]):java.lang.String");
     }
 
     private int getTotalAllUnreadCount() {
         int size;
-        FileLog.d("getTotalAllUnreadCount: init 0");
         int i = 0;
         for (int i2 = 0; i2 < 4; i2++) {
             if (UserConfig.getInstance(i2).isClientActivated() && (SharedConfig.showNotificationsForAllAccounts || UserConfig.selectedAccount == i2)) {
@@ -627,7 +626,6 @@ public class NotificationsController extends BaseController {
                                 for (int i3 = 0; i3 < size2; i3++) {
                                     TLRPC$Dialog tLRPC$Dialog = (TLRPC$Dialog) arrayList.get(i3);
                                     if ((tLRPC$Dialog == null || !DialogObject.isChatDialog(tLRPC$Dialog.id) || !ChatObject.isNotInChat(getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.id)))) && tLRPC$Dialog != null) {
-                                        FileLog.d("getTotalAllUnreadCount: account=" + i2 + " count += getDialogUnreadCount (" + MessagesController.getInstance(i2).getDialogUnreadCount(tLRPC$Dialog) + ")");
                                         i += MessagesController.getInstance(i2).getDialogUnreadCount(tLRPC$Dialog);
                                     }
                                 }
@@ -635,7 +633,6 @@ public class NotificationsController extends BaseController {
                                 FileLog.e(e);
                             }
                         } else {
-                            FileLog.d("getTotalAllUnreadCount: account=" + i2 + " count += total_unread_count (" + notificationsController.total_unread_count + ")");
                             size = notificationsController.total_unread_count;
                         }
                     } else if (notificationsController.showBadgeMuted) {
@@ -644,7 +641,6 @@ public class NotificationsController extends BaseController {
                             for (int i4 = 0; i4 < size3; i4++) {
                                 TLRPC$Dialog tLRPC$Dialog2 = MessagesController.getInstance(i2).allDialogs.get(i4);
                                 if ((!DialogObject.isChatDialog(tLRPC$Dialog2.id) || !ChatObject.isNotInChat(getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog2.id)))) && MessagesController.getInstance(i2).getDialogUnreadCount(tLRPC$Dialog2) != 0) {
-                                    FileLog.d("getTotalAllUnreadCount: account=" + i2 + " count++ if getDialogUnreadCount != 0 (" + MessagesController.getInstance(i2).getDialogUnreadCount(tLRPC$Dialog2) + ")");
                                     i++;
                                 }
                             }
@@ -652,14 +648,12 @@ public class NotificationsController extends BaseController {
                             FileLog.e((Throwable) e2, false);
                         }
                     } else {
-                        FileLog.d("getTotalAllUnreadCount: account=" + i2 + " count += controller.pushDialogs (" + notificationsController.pushDialogs.size() + ")");
                         size = notificationsController.pushDialogs.size();
                     }
                     i += size;
                 }
             }
         }
-        FileLog.d("getTotalAllUnreadCount: total is " + i);
         return i;
     }
 
@@ -1972,6 +1966,9 @@ public class NotificationsController extends BaseController {
             return null;
         }
         StringBuilder sb = new StringBuilder(str);
+        if (messageObject.didSpoilLoginCode()) {
+            return sb.toString();
+        }
         for (int i = 0; i < messageObject.messageOwner.entities.size(); i++) {
             if (messageObject.messageOwner.entities.get(i) instanceof TLRPC$TL_messageEntitySpoiler) {
                 TLRPC$TL_messageEntitySpoiler tLRPC$TL_messageEntitySpoiler = (TLRPC$TL_messageEntitySpoiler) messageObject.messageOwner.entities.get(i);
@@ -2032,11 +2029,11 @@ public class NotificationsController extends BaseController {
         builder.setChannelId(z ? OTHER_NOTIFICATIONS_CHANNEL : notification.getChannelId());
     }
 
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r82, java.lang.String r83, long r84, long r86, java.lang.String r88, long[] r89, int r90, android.net.Uri r91, int r92, boolean r93, boolean r94, boolean r95, int r96) {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r84, java.lang.String r85, long r86, long r88, java.lang.String r90, long[] r91, int r92, android.net.Uri r93, int r94, boolean r95, boolean r96, boolean r97, int r98) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 
-    private void showOrUpdateNotification(boolean r56) {
+    private void showOrUpdateNotification(boolean r57) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showOrUpdateNotification(boolean):void");
     }
 
@@ -2374,7 +2371,7 @@ public class NotificationsController extends BaseController {
             long dialogId = messageObject.getDialogId();
             if (!messageObject.isReactionPush) {
                 TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-                if ((!tLRPC$Message.mentioned || !(tLRPC$Message.action instanceof TLRPC$TL_messageActionPinMessage)) && !DialogObject.isEncryptedDialog(dialogId) && (messageObject.messageOwner.peer_id.channel_id == 0 || messageObject.isSupergroup())) {
+                if ((!tLRPC$Message.mentioned || !(tLRPC$Message.action instanceof TLRPC$TL_messageActionPinMessage)) && !DialogObject.isEncryptedDialog(dialogId) && ((messageObject.messageOwner.peer_id.channel_id == 0 || messageObject.isSupergroup()) && dialogId != 489000)) {
                     return true;
                 }
             }

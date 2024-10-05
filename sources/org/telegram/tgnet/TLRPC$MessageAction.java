@@ -163,6 +163,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
             case -1730095465:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionGeoProximityReached();
                 break;
+            case -1682706620:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionStarGift();
+                break;
             case -1615153660:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionHistoryClear();
                 break;

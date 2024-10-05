@@ -326,22 +326,27 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                             charSequence = LocaleController.formatPluralStringSpaced("BotUsers", i2);
                         } else if (z) {
                             i = R.string.Bot;
-                        } else if (UserObject.isService(tLRPC$User5.id)) {
-                            i = R.string.ServiceNotifications;
                         } else {
-                            if (this.isOnline == null) {
-                                this.isOnline = new boolean[1];
-                            }
-                            boolean[] zArr = this.isOnline;
-                            zArr[0] = false;
-                            charSequence = LocaleController.formatUserStatus(this.currentAccount, this.user, zArr);
-                            if (this.isOnline[0]) {
-                                textPaint7 = Theme.dialogs_onlinePaint;
-                            }
-                            TLRPC$User tLRPC$User6 = this.user;
-                            if (tLRPC$User6 != null && (tLRPC$User6.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || ((tLRPC$UserStatus = this.user.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()))) {
-                                textPaint7 = Theme.dialogs_onlinePaint;
-                                i = R.string.Online;
+                            long j = tLRPC$User5.id;
+                            if (j == 489000) {
+                                i = R.string.VerifyCodesNotifications;
+                            } else if (UserObject.isService(j)) {
+                                i = R.string.ServiceNotifications;
+                            } else {
+                                if (this.isOnline == null) {
+                                    this.isOnline = new boolean[1];
+                                }
+                                boolean[] zArr = this.isOnline;
+                                zArr[0] = false;
+                                charSequence = LocaleController.formatUserStatus(this.currentAccount, this.user, zArr);
+                                if (this.isOnline[0]) {
+                                    textPaint7 = Theme.dialogs_onlinePaint;
+                                }
+                                TLRPC$User tLRPC$User6 = this.user;
+                                if (tLRPC$User6 != null && (tLRPC$User6.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || ((tLRPC$UserStatus = this.user.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()))) {
+                                    textPaint7 = Theme.dialogs_onlinePaint;
+                                    i = R.string.Online;
+                                }
                             }
                         }
                     }

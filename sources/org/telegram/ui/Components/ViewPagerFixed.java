@@ -1414,6 +1414,9 @@ public class ViewPagerFixed extends FrameLayout {
     protected void onScrollEnd() {
     }
 
+    public void onStartTracking() {
+    }
+
     public void onTabAnimationUpdate(boolean z) {
     }
 

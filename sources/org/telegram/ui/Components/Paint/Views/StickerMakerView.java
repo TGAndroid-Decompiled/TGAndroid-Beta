@@ -1243,7 +1243,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             stickerUploader4.finalPath = absolutePath;
             this.stickerUploader.messageObject = new MessageObject(UserConfig.selectedAccount, (TLRPC$Message) tLRPC$TL_message, (MessageObject) null, false, false);
             this.stickerUploader.messageObject.videoEditedInfo = videoEditedInfo;
-            MediaController.getInstance().scheduleVideoConvert(this.stickerUploader.messageObject, false, false);
+            MediaController.getInstance().scheduleVideoConvert(this.stickerUploader.messageObject, false, false, false);
         } else {
             FileLoader.getInstance(this.currentAccount).uploadFile(str2, false, true, 67108864);
         }

@@ -22,7 +22,7 @@ public class TLRPC$PaymentForm extends TLObject {
     public ArrayList users = new ArrayList();
 
     public static TLRPC$PaymentForm TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$PaymentForm tLRPC$PaymentForm = i != -1610250415 ? i != 2079764828 ? null : new TLRPC$PaymentForm() {
+        TLRPC$PaymentForm tLRPC$PaymentForm = i != -1610250415 ? i != -1272590367 ? i != 2079764828 ? null : new TLRPC$PaymentForm() {
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                 this.flags = abstractSerializedData2.readInt32(z2);
@@ -73,6 +73,19 @@ public class TLRPC$PaymentForm extends TLObject {
                 for (int i4 = 0; i4 < size; i4++) {
                     ((TLRPC$User) this.users.get(i4)).serializeToStream(abstractSerializedData2);
                 }
+            }
+        } : new TLRPC$PaymentForm() {
+            @Override
+            public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                this.form_id = abstractSerializedData2.readInt64(z2);
+                this.invoice = TLRPC$TL_invoice.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+            }
+
+            @Override
+            public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                abstractSerializedData2.writeInt32(-1272590367);
+                abstractSerializedData2.writeInt64(this.form_id);
+                this.invoice.serializeToStream(abstractSerializedData2);
             }
         } : new TLRPC$PaymentForm() {
             @Override

@@ -85,7 +85,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
             this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.lambda$onBackPressed$307();
+        dialogsActivity.lambda$onBackPressed$300();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }

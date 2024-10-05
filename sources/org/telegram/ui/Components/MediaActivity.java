@@ -96,7 +96,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
                 }
-                MediaActivity.this.lambda$onBackPressed$307();
+                MediaActivity.this.lambda$onBackPressed$300();
                 return;
             }
             if (i != 2) {

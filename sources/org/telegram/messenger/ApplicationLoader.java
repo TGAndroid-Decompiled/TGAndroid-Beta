@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -21,6 +22,7 @@ import androidx.multidex.MultiDex;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import org.json.JSONObject;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
@@ -490,6 +492,8 @@ public class ApplicationLoader extends Application {
 
     @Override
     public void onCreate() {
+        StringBuilder sb;
+        String str;
         applicationLoaderInstance = this;
         try {
             applicationContext = getApplicationContext();
@@ -497,14 +501,36 @@ public class ApplicationLoader extends Application {
         }
         super.onCreate();
         if (BuildVars.LOGS_ENABLED) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("app start time = ");
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            sb.append(elapsedRealtime);
-            FileLog.d(sb.toString());
+            sb2.append(elapsedRealtime);
+            FileLog.d(sb2.toString());
             try {
-                FileLog.d("buildVersion = " + applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0).versionCode);
+                PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
+                int i = packageInfo.versionCode % 10;
+                if (i == 1 || i == 2) {
+                    sb = new StringBuilder();
+                    sb.append("store bundled ");
+                    sb.append(Build.CPU_ABI);
+                    sb.append(" ");
+                    str = Build.CPU_ABI2;
+                } else if (isStandaloneBuild()) {
+                    sb = new StringBuilder();
+                    sb.append("direct ");
+                    sb.append(Build.CPU_ABI);
+                    sb.append(" ");
+                    str = Build.CPU_ABI2;
+                } else {
+                    sb = new StringBuilder();
+                    sb.append("universal ");
+                    sb.append(Build.CPU_ABI);
+                    sb.append(" ");
+                    str = Build.CPU_ABI2;
+                }
+                sb.append(str);
+                FileLog.d("buildVersion = " + String.format(Locale.US, "v%s (%d[%d]) %s", packageInfo.versionName, Integer.valueOf(packageInfo.versionCode / 10), Integer.valueOf(packageInfo.versionCode % 10), sb.toString()));
             } catch (Exception e) {
                 FileLog.e(e);
             }

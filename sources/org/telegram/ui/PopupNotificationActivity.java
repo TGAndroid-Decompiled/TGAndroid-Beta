@@ -778,6 +778,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         String userName;
         TextView textView2;
         String formatUserStatus;
+        int i;
         String str;
         if (this.actionBar == null || (messageObject = this.currentMessageObject) == null || this.currentChat != null || (tLRPC$User = this.currentUser) == null) {
             return;
@@ -792,14 +793,18 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
         textView.setText(userName);
         TLRPC$User tLRPC$User2 = this.currentUser;
-        if (tLRPC$User2 == null || tLRPC$User2.id != 777000) {
-            CharSequence printingString = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingString(this.currentMessageObject.getDialogId(), 0L, false);
-            if (printingString != null && printingString.length() != 0) {
-                this.lastPrintString = printingString;
-                this.onlineTextView.setText(printingString);
-                setTypingAnimation(true);
-                return;
-            } else {
+        if (tLRPC$User2 != null && tLRPC$User2.id == 489000) {
+            textView2 = this.onlineTextView;
+            i = R.string.VerifyCodesNotifications;
+        } else {
+            if (tLRPC$User2 == null || tLRPC$User2.id != 777000) {
+                CharSequence printingString = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingString(this.currentMessageObject.getDialogId(), 0L, false);
+                if (printingString != null && printingString.length() != 0) {
+                    this.lastPrintString = printingString;
+                    this.onlineTextView.setText(printingString);
+                    setTypingAnimation(true);
+                    return;
+                }
                 this.lastPrintString = null;
                 setTypingAnimation(false);
                 TLRPC$User user = MessagesController.getInstance(this.currentMessageObject.currentAccount).getUser(Long.valueOf(this.currentUser.id));
@@ -808,11 +813,12 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 }
                 textView2 = this.onlineTextView;
                 formatUserStatus = LocaleController.formatUserStatus(this.currentMessageObject.currentAccount, this.currentUser);
+                textView2.setText(formatUserStatus);
             }
-        } else {
             textView2 = this.onlineTextView;
-            formatUserStatus = LocaleController.getString(R.string.ServiceNotifications);
+            i = R.string.ServiceNotifications;
         }
+        formatUserStatus = LocaleController.getString(i);
         textView2.setText(formatUserStatus);
     }
 

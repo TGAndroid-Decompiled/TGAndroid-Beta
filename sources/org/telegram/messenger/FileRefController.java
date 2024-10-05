@@ -225,7 +225,7 @@ public class FileRefController extends BaseController {
         return bArr;
     }
 
-    private byte[] getFileReference(TLRPC$Document tLRPC$Document, TLRPC$InputFileLocation tLRPC$InputFileLocation, boolean[] zArr, TLRPC$InputFileLocation[] tLRPC$InputFileLocationArr) {
+    private byte[] getFileReference(TLRPC$Document tLRPC$Document, ArrayList<TLRPC$Document> arrayList, TLRPC$InputFileLocation tLRPC$InputFileLocation, boolean[] zArr, TLRPC$InputFileLocation[] tLRPC$InputFileLocationArr) {
         if (tLRPC$Document != null && tLRPC$InputFileLocation != null) {
             if (!(tLRPC$InputFileLocation instanceof TLRPC$TL_inputDocumentFileLocation)) {
                 int size = tLRPC$Document.thumbs.size();
@@ -250,6 +250,14 @@ public class FileRefController extends BaseController {
                 }
             } else if (tLRPC$Document.id == tLRPC$InputFileLocation.id) {
                 return tLRPC$Document.file_reference;
+            }
+            if (arrayList != null) {
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    byte[] fileReference2 = getFileReference(arrayList.get(i2), null, tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
+                    if (fileReference2 != null) {
+                        return fileReference2;
+                    }
+                }
             }
         }
         return null;
@@ -327,7 +335,7 @@ public class FileRefController extends BaseController {
     }
 
     private byte[] getFileReference(TLRPC$WebPage tLRPC$WebPage, TLRPC$InputFileLocation tLRPC$InputFileLocation, boolean[] zArr, TLRPC$InputFileLocation[] tLRPC$InputFileLocationArr) {
-        byte[] fileReference = getFileReference(tLRPC$WebPage.document, tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
+        byte[] fileReference = getFileReference(tLRPC$WebPage.document, null, tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
         if (fileReference != null) {
             return fileReference;
         }
@@ -342,11 +350,14 @@ public class FileRefController extends BaseController {
                 if (tLRPC$WebPageAttribute instanceof TLRPC$TL_webPageAttributeTheme) {
                     TLRPC$TL_webPageAttributeTheme tLRPC$TL_webPageAttributeTheme = (TLRPC$TL_webPageAttributeTheme) tLRPC$WebPageAttribute;
                     int size2 = tLRPC$TL_webPageAttributeTheme.documents.size();
-                    for (int i2 = 0; i2 < size2; i2++) {
-                        byte[] fileReference3 = getFileReference((TLRPC$Document) tLRPC$TL_webPageAttributeTheme.documents.get(i2), tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
+                    int i2 = 0;
+                    while (i2 < size2) {
+                        int i3 = i2;
+                        byte[] fileReference3 = getFileReference((TLRPC$Document) tLRPC$TL_webPageAttributeTheme.documents.get(i2), null, tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
                         if (fileReference3 != null) {
                             return fileReference3;
                         }
+                        i2 = i3 + 1;
                     }
                 }
             }
@@ -356,20 +367,25 @@ public class FileRefController extends BaseController {
             return null;
         }
         int size3 = tLRPC$Page.documents.size();
-        for (int i3 = 0; i3 < size3; i3++) {
-            byte[] fileReference4 = getFileReference((TLRPC$Document) tLRPC$WebPage.cached_page.documents.get(i3), tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
-            if (fileReference4 != null) {
-                return fileReference4;
+        int i4 = 0;
+        while (true) {
+            TLRPC$Page tLRPC$Page2 = tLRPC$WebPage.cached_page;
+            if (i4 >= size3) {
+                int size4 = tLRPC$Page2.photos.size();
+                for (int i5 = 0; i5 < size4; i5++) {
+                    byte[] fileReference4 = getFileReference((TLRPC$Photo) tLRPC$WebPage.cached_page.photos.get(i5), tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
+                    if (fileReference4 != null) {
+                        return fileReference4;
+                    }
+                }
+                return null;
             }
-        }
-        int size4 = tLRPC$WebPage.cached_page.photos.size();
-        for (int i4 = 0; i4 < size4; i4++) {
-            byte[] fileReference5 = getFileReference((TLRPC$Photo) tLRPC$WebPage.cached_page.photos.get(i4), tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
+            byte[] fileReference5 = getFileReference((TLRPC$Document) tLRPC$Page2.documents.get(i4), null, tLRPC$InputFileLocation, zArr, tLRPC$InputFileLocationArr);
             if (fileReference5 != null) {
                 return fileReference5;
             }
+            i4++;
         }
-        return null;
     }
 
     public static FileRefController getInstance(int i) {
@@ -719,7 +735,7 @@ public class FileRefController extends BaseController {
         getSendMessagesHelper().performSendMessageRequest((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
     }
 
-    private boolean onRequestComplete(java.lang.String r29, java.lang.String r30, org.telegram.tgnet.TLObject r31, org.telegram.tgnet.TLRPC$TL_error r32, boolean r33, boolean r34) {
+    private boolean onRequestComplete(java.lang.String r31, java.lang.String r32, org.telegram.tgnet.TLObject r33, org.telegram.tgnet.TLRPC$TL_error r34, boolean r35, boolean r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileRefController.onRequestComplete(java.lang.String, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error, boolean, boolean):boolean");
     }
 

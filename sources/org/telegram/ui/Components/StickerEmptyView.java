@@ -17,6 +17,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Document;
@@ -156,48 +157,55 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         TLRPC$Document tLRPC$Document;
         int i;
         ImageReceiver imageReceiver;
-        TLRPC$Document tLRPC$Document2 = null;
-        String str = null;
-        tLRPC$Document2 = null;
-        tLRPC$Document2 = null;
-        if (this.stickerType == 16) {
-            tLRPC$Document = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker("👍");
-            tLRPC$TL_messages_stickerSet = null;
-        } else {
-            TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName("tg_placeholders_android");
-            if (stickerSetByName == null) {
-                stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
+        int i2 = this.stickerType;
+        if (i2 != 0) {
+            int i3 = 1;
+            if (i2 != 1) {
+                TLRPC$Document tLRPC$Document2 = null;
+                String str = null;
+                tLRPC$Document2 = null;
+                tLRPC$Document2 = null;
+                if (i2 == 16) {
+                    tLRPC$Document = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker("👍");
+                    tLRPC$TL_messages_stickerSet = null;
+                } else {
+                    TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName("tg_placeholders_android");
+                    if (stickerSetByName == null) {
+                        stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
+                    }
+                    if (stickerSetByName != null && (i = this.stickerType) >= 0 && i < stickerSetByName.documents.size()) {
+                        tLRPC$Document2 = (TLRPC$Document) stickerSetByName.documents.get(this.stickerType);
+                    }
+                    tLRPC$TL_messages_stickerSet = stickerSetByName;
+                    tLRPC$Document = tLRPC$Document2;
+                    str = "130_130";
+                }
+                if (!LiteMode.isEnabled(3)) {
+                    str = str + "_firstframe";
+                }
+                String str2 = str;
+                if (tLRPC$Document == null) {
+                    MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, tLRPC$TL_messages_stickerSet == null);
+                    this.stickerView.getImageReceiver().clearImage();
+                    return;
+                }
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, this.colorKey1, 0.2f);
+                if (svgThumb != null) {
+                    svgThumb.overrideWidthAndHeight(512, 512);
+                }
+                this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$Document), str2, "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
+                int i4 = this.stickerType;
+                if (i4 == 9 || i4 == 0) {
+                    imageReceiver = this.stickerView.getImageReceiver();
+                } else {
+                    imageReceiver = this.stickerView.getImageReceiver();
+                    i3 = 2;
+                }
+                imageReceiver.setAutoRepeat(i3);
+                return;
             }
-            if (stickerSetByName != null && (i = this.stickerType) >= 0 && i < stickerSetByName.documents.size()) {
-                tLRPC$Document2 = (TLRPC$Document) stickerSetByName.documents.get(this.stickerType);
-            }
-            tLRPC$TL_messages_stickerSet = stickerSetByName;
-            tLRPC$Document = tLRPC$Document2;
-            str = "130_130";
         }
-        if (!LiteMode.isEnabled(3)) {
-            str = str + "_firstframe";
-        }
-        String str2 = str;
-        int i2 = 1;
-        if (tLRPC$Document == null) {
-            MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, tLRPC$TL_messages_stickerSet == null);
-            this.stickerView.getImageReceiver().clearImage();
-            return;
-        }
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, this.colorKey1, 0.2f);
-        if (svgThumb != null) {
-            svgThumb.overrideWidthAndHeight(512, 512);
-        }
-        this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$Document), str2, "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
-        int i3 = this.stickerType;
-        if (i3 == 9 || i3 == 0) {
-            imageReceiver = this.stickerView.getImageReceiver();
-        } else {
-            imageReceiver = this.stickerView.getImageReceiver();
-            i2 = 2;
-        }
-        imageReceiver.setAutoRepeat(i2);
+        this.stickerView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
     }
 
     public void createButtonLayout(CharSequence charSequence, final Runnable runnable) {

@@ -1,12 +1,14 @@
 package org.telegram.tgnet;
 
+import org.telegram.tgnet.tl.TL_stars$TL_starsSubscriptionPricing;
+
 public class TLRPC$TL_messages_exportChatInvite extends TLObject {
     public int expire_date;
     public int flags;
     public boolean legacy_revoke_permanent;
     public TLRPC$InputPeer peer;
     public boolean request_needed;
-    public TLRPC$TL_starsSubscriptionPricing subscription_pricing;
+    public TL_stars$TL_starsSubscriptionPricing subscription_pricing;
     public String title;
     public int usage_limit;
 

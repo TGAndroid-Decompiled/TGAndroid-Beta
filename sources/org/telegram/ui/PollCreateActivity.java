@@ -158,7 +158,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
 
         public void lambda$onItemClick$0(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
             PollCreateActivity.this.delegate.sendPoll(tLRPC$TL_messageMediaPoll, hashMap, z, i);
-            PollCreateActivity.this.lambda$onBackPressed$307();
+            PollCreateActivity.this.lambda$onBackPressed$300();
         }
 
         @Override
@@ -252,7 +252,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             } else if (!PollCreateActivity.this.checkDiscard()) {
                 return;
             }
-            PollCreateActivity.this.lambda$onBackPressed$307();
+            PollCreateActivity.this.lambda$onBackPressed$300();
         }
     }
 
@@ -1081,7 +1081,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void lambda$checkDiscard$1(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$createView$0(View view, int i) {

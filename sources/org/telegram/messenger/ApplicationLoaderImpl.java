@@ -44,7 +44,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             return;
         }
         if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696795)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696918)).show();
             return;
         }
         sMSJobController.setState(3);
@@ -76,7 +76,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             });
         } else {
             sMSJobController.setState(2);
-            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695857)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695856))).setPositiveButton(LocaleController.getString(2131694057), null).show();
+            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695972)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695971))).setPositiveButton(LocaleController.getString(2131694151), null).show();
         }
     }
 
@@ -91,7 +91,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (i == 2) {
             sMSJobController.checkSelectedSIMCard();
             if (sMSJobController.getSelectedSIM() == null) {
-                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695857)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695856))).setPositiveButton(LocaleController.getString(2131694057), null).show();
+                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695972)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695971))).setPositiveButton(LocaleController.getString(2131694151), null).show();
                 return;
             }
         } else if (i == 1) {
@@ -171,7 +171,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
         if (SMSJobController.getInstance(UserConfig.selectedAccount).isAvailable()) {
-            CharSequence string = LocaleController.getString(2131695852);
+            CharSequence string = LocaleController.getString(2131695967);
             if (MessagesController.getGlobalMainSettings().getBoolean("newppsms", true)) {
                 string = PremiumPreviewFragment.applyNewSpan(string.toString());
             }
@@ -253,16 +253,16 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean onSuggestionFill(String str, CharSequence[] charSequenceArr, boolean[] zArr) {
         if (str == null && SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
-            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(2131695851));
-            charSequenceArr[1] = LocaleController.getString(2131695850);
+            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(2131695966));
+            charSequenceArr[1] = LocaleController.getString(2131695965);
             zArr[0] = false;
             return true;
         }
         if (!"PREMIUM_SMSJOBS".equals(str) || SMSJobController.getInstance(UserConfig.selectedAccount).currentState == 3) {
             return super.onSuggestionFill(str, charSequenceArr, zArr);
         }
-        charSequenceArr[0] = LocaleController.getString(2131695854);
-        charSequenceArr[1] = LocaleController.getString(2131695853);
+        charSequenceArr[0] = LocaleController.getString(2131695969);
+        charSequenceArr[1] = LocaleController.getString(2131695968);
         zArr[0] = true;
         return true;
     }

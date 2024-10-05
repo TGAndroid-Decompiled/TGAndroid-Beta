@@ -2241,21 +2241,18 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     public void lambda$processSelectedOption$17(TLObject tLObject) {
         BulletinFactory of;
         int i;
-        int i2;
-        String str;
+        String string;
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             of = BulletinFactory.of(this);
             i = R.raw.msg_antispam;
-            i2 = R.string.ChannelAntiSpamFalsePositiveReported;
-            str = "ChannelAntiSpamFalsePositiveReported";
+            string = LocaleController.getString(R.string.ChannelAntiSpamFalsePositiveReported);
         } else {
             boolean z = tLObject instanceof TLRPC$TL_boolFalse;
             of = BulletinFactory.of(this);
             i = R.raw.error;
-            i2 = R.string.UnknownError;
-            str = "UnknownError";
+            string = LocaleController.getString("UnknownError", R.string.UnknownError);
         }
-        of.createSimpleBulletin(i, LocaleController.getString(str, i2)).show();
+        of.createSimpleBulletin(i, string).show();
     }
 
     public void lambda$processSelectedOption$18(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2910,7 +2907,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$307();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

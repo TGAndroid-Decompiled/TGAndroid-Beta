@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="52439"
-    android:versionName="11.1.3"
+    android:versionCode="52999"
+    android:versionName="11.2.0"
     android:installLocation="auto"
     android:compileSdkVersion="34"
     android:compileSdkVersionCodename="14"
@@ -506,6 +506,13 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="org.telegram.messenger.ACTION_MESSAGE_HEARD"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="org.telegram.messenger.CopyCodeReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="org.telegram.messenger.ACTION_COPY_CODE"/>
             </intent-filter>
         </receiver>
         <receiver

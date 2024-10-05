@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stars$TL_starsSubscriptionPricing;
 
 public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
     public long admin_id;
@@ -16,7 +17,7 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
     public boolean revoked;
     public int start_date;
     public int subscription_expired;
-    public TLRPC$TL_starsSubscriptionPricing subscription_pricing;
+    public TL_stars$TL_starsSubscriptionPricing subscription_pricing;
     public String title;
     public int usage;
     public int usage_limit;
@@ -53,7 +54,7 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
             this.title = abstractSerializedData.readString(z);
         }
         if ((this.flags & 512) != 0) {
-            this.subscription_pricing = TLRPC$TL_starsSubscriptionPricing.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.subscription_pricing = TL_stars$TL_starsSubscriptionPricing.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 

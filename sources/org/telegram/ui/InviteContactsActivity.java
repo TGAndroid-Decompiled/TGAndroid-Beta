@@ -553,7 +553,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         } catch (Exception e) {
             FileLog.e(e);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public static int lambda$fetchContacts$2(ContactsController.Contact contact, ContactsController.Contact contact2) {
@@ -603,7 +603,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    InviteContactsActivity.this.lambda$onBackPressed$307();
+                    InviteContactsActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

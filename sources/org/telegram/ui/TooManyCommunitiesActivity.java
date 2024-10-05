@@ -382,7 +382,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             getMessagesController().putChat(tLRPC$Chat, false);
             getMessagesController().deleteParticipantFromChat(tLRPC$Chat.id, user);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public void lambda$getThemeDescriptions$6() {
@@ -579,7 +579,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TooManyCommunitiesActivity.this.lambda$onBackPressed$307();
+                    TooManyCommunitiesActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +19,7 @@ public class UniversalRecyclerView extends RecyclerListView {
     public final UniversalAdapter adapter;
     private boolean doNotDetachViews;
     private ItemTouchHelper itemTouchHelper;
-    public final LinearLayoutManager layoutManager;
+    public LinearLayoutManager layoutManager;
     private boolean reorderingAllowed;
 
     private class TouchHelperCallback extends ItemTouchHelper.Callback {
@@ -75,43 +76,68 @@ public class UniversalRecyclerView extends RecyclerListView {
         this(context, i, i2, false, callback2, callback5, callback5Return, resourcesProvider);
     }
 
-    public UniversalRecyclerView(Context context, int i, int i2, boolean z, Utilities.Callback2 callback2, final Utilities.Callback5 callback5, final Utilities.Callback5Return callback5Return, Theme.ResourcesProvider resourcesProvider) {
+    public UniversalRecyclerView(Context context, int i, int i2, boolean z, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, Theme.ResourcesProvider resourcesProvider) {
+        this(context, i, i2, z, callback2, callback5, callback5Return, resourcesProvider, -1);
+    }
+
+    public UniversalRecyclerView(Context context, int i, int i2, boolean z, Utilities.Callback2 callback2, final Utilities.Callback5 callback5, final Utilities.Callback5Return callback5Return, Theme.ResourcesProvider resourcesProvider, int i3) {
         super(context, resourcesProvider);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
-            @Override
-            public int getExtraLayoutSpace(RecyclerView.State state) {
-                return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
-            }
-        };
-        this.layoutManager = linearLayoutManager;
-        setLayoutManager(linearLayoutManager);
+        boolean z2 = false;
+        if (i3 == -1) {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, z2) {
+                @Override
+                public int getExtraLayoutSpace(RecyclerView.State state) {
+                    return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
+                }
+            };
+            this.layoutManager = linearLayoutManager;
+            setLayoutManager(linearLayoutManager);
+        } else {
+            final ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, i3) {
+                @Override
+                public int getExtraLayoutSpace(RecyclerView.State state) {
+                    return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
+                }
+            };
+            extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int i4) {
+                    UItem item;
+                    int i5;
+                    UniversalAdapter universalAdapter = UniversalRecyclerView.this.adapter;
+                    return (universalAdapter == null || (item = universalAdapter.getItem(i4)) == null || (i5 = item.spanCount) == -1) ? extendedGridLayoutManager.getSpanCount() : i5;
+                }
+            });
+            this.layoutManager = extendedGridLayoutManager;
+            setLayoutManager(extendedGridLayoutManager);
+        }
         UniversalAdapter universalAdapter = new UniversalAdapter(this, context, i, i2, z, callback2, resourcesProvider);
         this.adapter = universalAdapter;
         setAdapter(universalAdapter);
         if (callback5 != null) {
             setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
                 @Override
-                public boolean hasDoubleTap(View view, int i3) {
-                    return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i3);
+                public boolean hasDoubleTap(View view, int i4) {
+                    return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i4);
                 }
 
                 @Override
-                public void onDoubleTap(View view, int i3, float f, float f2) {
-                    RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i3, f, f2);
+                public void onDoubleTap(View view, int i4, float f, float f2) {
+                    RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i4, f, f2);
                 }
 
                 @Override
-                public final void onItemClick(View view, int i3, float f, float f2) {
-                    UniversalRecyclerView.this.lambda$new$0(callback5, view, i3, f, f2);
+                public final void onItemClick(View view, int i4, float f, float f2) {
+                    UniversalRecyclerView.this.lambda$new$0(callback5, view, i4, f, f2);
                 }
             });
         }
         if (callback5Return != null) {
             setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
-                public final boolean onItemClick(View view, int i3, float f, float f2) {
+                public final boolean onItemClick(View view, int i4, float f, float f2) {
                     boolean lambda$new$1;
-                    lambda$new$1 = UniversalRecyclerView.this.lambda$new$1(callback5Return, view, i3, f, f2);
+                    lambda$new$1 = UniversalRecyclerView.this.lambda$new$1(callback5Return, view, i4, f, f2);
                     return lambda$new$1;
                 }
 
@@ -234,5 +260,33 @@ public class UniversalRecyclerView extends RecyclerListView {
         this.itemTouchHelper = itemTouchHelper;
         itemTouchHelper.attachToRecyclerView(this);
         this.adapter.listenReorder(callback2);
+    }
+
+    public void setSpanCount(int i) {
+        LinearLayoutManager linearLayoutManager = this.layoutManager;
+        if (linearLayoutManager instanceof ExtendedGridLayoutManager) {
+            ((ExtendedGridLayoutManager) linearLayoutManager).setSpanCount(i);
+            return;
+        }
+        if (!(linearLayoutManager instanceof LinearLayoutManager) || i == -1) {
+            return;
+        }
+        final ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(getContext(), i) {
+            @Override
+            public int getExtraLayoutSpace(RecyclerView.State state) {
+                return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
+            }
+        };
+        extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int i2) {
+                UItem item;
+                int i3;
+                UniversalAdapter universalAdapter = UniversalRecyclerView.this.adapter;
+                return (universalAdapter == null || (item = universalAdapter.getItem(i2)) == null || (i3 = item.spanCount) == -1) ? extendedGridLayoutManager.getSpanCount() : i3;
+            }
+        });
+        this.layoutManager = extendedGridLayoutManager;
+        setLayoutManager(extendedGridLayoutManager);
     }
 }

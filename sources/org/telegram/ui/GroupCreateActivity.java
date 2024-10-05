@@ -839,7 +839,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         if (contactsAddActivityDelegate != null) {
             contactsAddActivityDelegate.didSelectUsers(arrayList, i);
         }
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public boolean onDonePressed(boolean z) {
@@ -943,7 +943,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     if (groupCreateActivityDelegate != null) {
                         groupCreateActivityDelegate.didSelectUsers(this.selectedPremium != null, arrayList2);
                     }
-                    lambda$onBackPressed$307();
+                    lambda$onBackPressed$300();
                 } else {
                     Bundle bundle2 = new Bundle();
                     int size = arrayList2.size();

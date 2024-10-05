@@ -56,15 +56,17 @@ public class DialogObject {
     }
 
     public static long getEmojiStatusDocumentId(TLRPC$EmojiStatus tLRPC$EmojiStatus) {
+        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
+            return 0L;
+        }
         if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatus) {
             return ((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus).document_id;
         }
-        if (!(tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil)) {
-            return 0L;
-        }
-        TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
-        if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
-            return tLRPC$TL_emojiStatusUntil.document_id;
+        if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) {
+            TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
+            if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
+                return tLRPC$TL_emojiStatusUntil.document_id;
+            }
         }
         return 0L;
     }

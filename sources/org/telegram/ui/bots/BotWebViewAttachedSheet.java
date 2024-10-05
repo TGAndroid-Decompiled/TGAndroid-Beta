@@ -451,7 +451,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", BotWebViewAttachedSheet.this.botId);
                 if (BotWebViewAttachedSheet.this.parentActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).lambda$runLinkRequest$91(new ChatActivity(bundle));
+                    ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).lambda$runLinkRequest$93(new ChatActivity(bundle));
                 }
                 BotWebViewAttachedSheet.this.dismiss();
                 return;
@@ -1537,7 +1537,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     @Override
-    public WindowView mo993getWindowView() {
+    public WindowView mo1000getWindowView() {
         return this.windowView;
     }
 

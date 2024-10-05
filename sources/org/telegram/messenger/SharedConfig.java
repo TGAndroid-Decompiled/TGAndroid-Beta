@@ -56,7 +56,6 @@ public class SharedConfig {
     public static int autoLockIn = 0;
     public static int badPasscodeTries = 0;
     public static boolean bigCameraForRound = false;
-    public static boolean botTabs3DEffect = false;
     public static int bubbleRadius = 0;
     public static int callEncryptionHintDisplayedCount = 0;
     public static boolean chatBubbles = false;
@@ -66,6 +65,7 @@ public class SharedConfig {
     public static boolean customTabs = false;
     public static int dayNightThemeSwitchHintCount = 0;
     public static int dayNightWallpaperSwitchHint = 0;
+    public static boolean debugVideoQualities = false;
     public static boolean debugWebView = false;
     private static int devicePerformanceClass = 0;
     public static boolean directShare = false;
@@ -310,6 +310,7 @@ public class SharedConfig {
         pauseMusicOnRecord = false;
         pauseMusicOnMedia = false;
         showNotificationsForAllAccounts = true;
+        debugVideoQualities = false;
         fontSize = 16;
         bubbleRadius = 17;
         ivFontSize = 16;
@@ -1089,13 +1090,6 @@ public class SharedConfig {
         animationsEnabled = Boolean.valueOf(z);
     }
 
-    public static void setBotTabs3DEffect(boolean z) {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        botTabs3DEffect = z;
-        edit.putBoolean("botTabs3DEffect", z);
-        edit.apply();
-    }
-
     public static void setDistanceSystemType(int i) {
         distanceSystemType = i;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
@@ -1289,6 +1283,13 @@ public class SharedConfig {
         customTabs = z;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("custom_tabs", customTabs);
+        edit.apply();
+    }
+
+    public static void toggleDebugVideoQualities() {
+        debugVideoQualities = !debugVideoQualities;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("debugVideoQualities", debugVideoQualities);
         edit.apply();
     }
 

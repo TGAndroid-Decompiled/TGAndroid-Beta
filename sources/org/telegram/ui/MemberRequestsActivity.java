@@ -34,7 +34,7 @@ public class MemberRequestsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    MemberRequestsActivity.this.lambda$onBackPressed$307();
+                    MemberRequestsActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

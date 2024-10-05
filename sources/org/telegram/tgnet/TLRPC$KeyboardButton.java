@@ -326,6 +326,9 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                     }
                 };
                 break;
+            case 1976723854:
+                tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonCopy();
+                break;
             default:
                 tLRPC$KeyboardButton = null;
                 break;

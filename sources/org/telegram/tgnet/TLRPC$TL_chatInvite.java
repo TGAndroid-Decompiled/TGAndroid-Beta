@@ -1,5 +1,7 @@
 package org.telegram.tgnet;
 
+import org.telegram.tgnet.tl.TL_stars$TL_starsSubscriptionPricing;
+
 public class TLRPC$TL_chatInvite extends TLRPC$ChatInvite {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -39,7 +41,7 @@ public class TLRPC$TL_chatInvite extends TLRPC$ChatInvite {
         }
         this.color = abstractSerializedData.readInt32(z);
         if ((this.flags & 1024) != 0) {
-            this.subscription_pricing = TLRPC$TL_starsSubscriptionPricing.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.subscription_pricing = TL_stars$TL_starsSubscriptionPricing.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 4096) != 0) {
             this.subscription_form_id = abstractSerializedData.readInt64(z);

@@ -34,6 +34,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.NestedSizeNotifierLayout;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.StarParticlesView;
@@ -71,7 +72,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     public static class BackgroundView extends LinearLayout {
         private final FrameLayout aboveTitleLayout;
         private final FrameLayout belowSubTitleLayout;
-        public final TextView subtitleView;
+        public final LinkSpanDrawable.LinksTextView subtitleView;
         private final TextView titleView;
 
         public BackgroundView(Context context) {
@@ -88,12 +89,12 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             textView.setTypeface(AndroidUtilities.bold());
             textView.setGravity(1);
             addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, 1, 16, 20, 16, 0));
-            TextView textView2 = new TextView(context);
-            this.subtitleView = textView2;
-            textView2.setTextSize(1, 14.0f);
-            textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            textView2.setGravity(1);
-            addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 24, 7, 24, 0));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.subtitleView = linksTextView;
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+            linksTextView.setGravity(1);
+            addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 24, 7, 24, 0));
             FrameLayout frameLayout2 = new FrameLayout(context);
             this.belowSubTitleLayout = frameLayout2;
             addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 1));
@@ -128,6 +129,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         boolean bottomInterceptedTouch;
         int lastSize;
         private Boolean lightStatusBar;
+        boolean subtitleInterceptedTouch;
         boolean topInterceptedTouch;
 
         public ContentView(Context context) {
@@ -239,44 +241,58 @@ public abstract class GradientHeaderActivity extends BaseFragment {
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            View view;
             BackgroundView backgroundView = GradientHeaderActivity.this.backgroundView;
-            float x = backgroundView.getX() + backgroundView.aboveTitleLayout.getX();
-            float y = backgroundView.getY() + backgroundView.aboveTitleLayout.getY();
-            boolean isClickable = backgroundView.aboveTitleLayout.isClickable();
+            float x = backgroundView.getX() + backgroundView.subtitleView.getX();
+            float y = backgroundView.getY() + backgroundView.subtitleView.getY();
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(x, y, backgroundView.aboveTitleLayout.getMeasuredWidth() + x, backgroundView.aboveTitleLayout.getMeasuredHeight() + y);
-            if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.topInterceptedTouch) {
-                GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
-                if (!gradientHeaderActivity.listView.scrollingByUser && isClickable && gradientHeaderActivity.progressToFull < 1.0f) {
-                    motionEvent.offsetLocation(-x, -y);
-                    if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
-                        this.topInterceptedTouch = true;
-                    } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        this.topInterceptedTouch = false;
-                    }
-                    backgroundView.aboveTitleLayout.dispatchTouchEvent(motionEvent);
-                    return true;
-                }
-            }
-            float x2 = backgroundView.getX() + backgroundView.belowSubTitleLayout.getX();
-            float y2 = backgroundView.getY() + backgroundView.belowSubTitleLayout.getY();
-            rectF.set(x2, y2, backgroundView.belowSubTitleLayout.getMeasuredWidth() + x2, backgroundView.belowSubTitleLayout.getMeasuredHeight() + y2);
-            if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.bottomInterceptedTouch) {
-                GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-                if (!gradientHeaderActivity2.listView.scrollingByUser && gradientHeaderActivity2.progressToFull < 1.0f) {
-                    motionEvent.offsetLocation(-x2, -y2);
-                    if (motionEvent.getAction() == 0) {
-                        this.bottomInterceptedTouch = true;
-                    } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        this.bottomInterceptedTouch = false;
-                    }
-                    backgroundView.belowSubTitleLayout.dispatchTouchEvent(motionEvent);
-                    if (this.bottomInterceptedTouch) {
-                        return true;
+            rectF.set(x, y, backgroundView.subtitleView.getMeasuredWidth() + x, backgroundView.subtitleView.getMeasuredHeight() + y);
+            if ((!rectF.contains(motionEvent.getX(), motionEvent.getY()) && !this.subtitleInterceptedTouch) || GradientHeaderActivity.this.listView.scrollingByUser || !backgroundView.subtitleView.hasLinks() || GradientHeaderActivity.this.progressToFull >= 1.0f) {
+                float x2 = backgroundView.getX() + backgroundView.aboveTitleLayout.getX();
+                float y2 = backgroundView.getY() + backgroundView.aboveTitleLayout.getY();
+                boolean isClickable = backgroundView.aboveTitleLayout.isClickable();
+                rectF.set(x2, y2, backgroundView.aboveTitleLayout.getMeasuredWidth() + x2, backgroundView.aboveTitleLayout.getMeasuredHeight() + y2);
+                if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.topInterceptedTouch) {
+                    GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
+                    if (!gradientHeaderActivity.listView.scrollingByUser && isClickable && gradientHeaderActivity.progressToFull < 1.0f) {
+                        motionEvent.offsetLocation(-x2, -y2);
+                        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                            this.topInterceptedTouch = true;
+                        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                            this.topInterceptedTouch = false;
+                        }
+                        view = backgroundView.aboveTitleLayout;
                     }
                 }
+                float x3 = backgroundView.getX() + backgroundView.belowSubTitleLayout.getX();
+                float y3 = backgroundView.getY() + backgroundView.belowSubTitleLayout.getY();
+                rectF.set(x3, y3, backgroundView.belowSubTitleLayout.getMeasuredWidth() + x3, backgroundView.belowSubTitleLayout.getMeasuredHeight() + y3);
+                if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.bottomInterceptedTouch) {
+                    GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
+                    if (!gradientHeaderActivity2.listView.scrollingByUser && gradientHeaderActivity2.progressToFull < 1.0f) {
+                        motionEvent.offsetLocation(-x3, -y3);
+                        if (motionEvent.getAction() == 0) {
+                            this.bottomInterceptedTouch = true;
+                        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                            this.bottomInterceptedTouch = false;
+                        }
+                        backgroundView.belowSubTitleLayout.dispatchTouchEvent(motionEvent);
+                        if (this.bottomInterceptedTouch) {
+                            return true;
+                        }
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
             }
-            return super.dispatchTouchEvent(motionEvent);
+            motionEvent.offsetLocation(-x, -y);
+            if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                this.subtitleInterceptedTouch = true;
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                this.subtitleInterceptedTouch = false;
+            }
+            view = backgroundView.subtitleView;
+            view.dispatchTouchEvent(motionEvent);
+            return true;
         }
 
         @Override
@@ -395,6 +411,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             }
             textView.setTextColor(Theme.getColor(i));
             this.backgroundView.subtitleView.setTextColor(Theme.getColor(i));
+            this.backgroundView.subtitleView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
         }
         updateBackgroundImage();
     }
@@ -513,10 +530,6 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             }
         });
         this.backgroundView = new BackgroundView(context) {
-            @Override
-            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                return true;
-            }
         };
         FrameLayout frameLayout = this.contentView;
         StarParticlesView createParticlesView = createParticlesView();
@@ -532,7 +545,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GradientHeaderActivity.this.lambda$onBackPressed$307();
+                    GradientHeaderActivity.this.lambda$onBackPressed$300();
                 }
             }
         });

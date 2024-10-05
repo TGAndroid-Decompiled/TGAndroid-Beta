@@ -1246,7 +1246,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(runnable2);
     }
 
-    private org.telegram.messenger.FileLoadOperation loadFileInternal(org.telegram.tgnet.TLRPC$Document r34, org.telegram.messenger.SecureDocument r35, org.telegram.messenger.WebFile r36, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r37, org.telegram.messenger.ImageLocation r38, java.lang.Object r39, java.lang.String r40, long r41, int r43, org.telegram.messenger.FileLoadOperationStream r44, long r45, boolean r47, int r48) {
+    private org.telegram.messenger.FileLoadOperation loadFileInternal(org.telegram.tgnet.TLRPC$Document r33, org.telegram.messenger.SecureDocument r34, org.telegram.messenger.WebFile r35, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r36, org.telegram.messenger.ImageLocation r37, java.lang.Object r38, java.lang.String r39, long r40, int r42, org.telegram.messenger.FileLoadOperationStream r43, long r44, boolean r46, int r47) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.loadFileInternal(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SecureDocument, org.telegram.messenger.WebFile, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, org.telegram.messenger.ImageLocation, java.lang.Object, java.lang.String, long, int, org.telegram.messenger.FileLoadOperationStream, long, boolean, int):org.telegram.messenger.FileLoadOperation");
     }
 
@@ -1445,16 +1445,9 @@ public class FileLoader extends BaseController {
     }
 
     public FileLoadOperation findLoadOperationByRequestToken(int i) {
-        ArrayList<FileLoadOperation.RequestInfo> arrayList;
         for (FileLoadOperation fileLoadOperation : this.loadOperationPaths.values()) {
-            if (fileLoadOperation != null && (arrayList = fileLoadOperation.requestInfos) != null) {
-                Iterator<FileLoadOperation.RequestInfo> it = arrayList.iterator();
-                while (it.hasNext()) {
-                    FileLoadOperation.RequestInfo next = it.next();
-                    if (next != null && next.requestToken == i) {
-                        return fileLoadOperation;
-                    }
-                }
+            if (fileLoadOperation != null && fileLoadOperation.uiRequestTokens.contains(Integer.valueOf(i))) {
+                return fileLoadOperation;
             }
         }
         return null;
@@ -1462,12 +1455,8 @@ public class FileLoader extends BaseController {
 
     public FileUploadOperation findUploadOperationByRequestToken(int i) {
         for (FileUploadOperation fileUploadOperation : this.uploadOperationPaths.values()) {
-            if (fileUploadOperation != null) {
-                for (int i2 = 0; i2 < fileUploadOperation.requestTokens.size(); i2++) {
-                    if (fileUploadOperation.requestTokens.valueAt(i2) == i) {
-                        return fileUploadOperation;
-                    }
-                }
+            if (fileUploadOperation != null && fileUploadOperation.uiRequestTokens.contains(Integer.valueOf(i))) {
+                return fileUploadOperation;
             }
         }
         return null;

@@ -3569,6 +3569,45 @@ public class AndroidUtilities {
         return createBitmap;
     }
 
+    public static SpannableStringBuilder makeClickable(String str, final int i, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        if (i == 0 || i == 3 || i == 2 || i == 4) {
+            spannableStringBuilder.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    Runnable runnable2 = runnable;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                }
+
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    super.updateDrawState(textPaint);
+                    textPaint.setUnderlineText(i == 4);
+                    if (i == 2) {
+                        textPaint.setTypeface(AndroidUtilities.bold());
+                    }
+                }
+            }, 0, spannableStringBuilder.length(), 0);
+        } else {
+            spannableStringBuilder.setSpan(new CharacterStyle() {
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    textPaint.setTypeface(AndroidUtilities.bold());
+                    int alpha = textPaint.getAlpha();
+                    textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, Theme.ResourcesProvider.this));
+                    textPaint.setAlpha(alpha);
+                }
+            }, 0, spannableStringBuilder.length(), 0);
+        }
+        return spannableStringBuilder;
+    }
+
+    public static SpannableStringBuilder makeClickable(String str, Runnable runnable) {
+        return makeClickable(str, 0, runnable, null);
+    }
+
     public static void makeGlobalBlurBitmap(Utilities.Callback<Bitmap> callback, float f) {
         makeGlobalBlurBitmap(callback, f, (int) f, null, null);
     }
@@ -4157,7 +4196,7 @@ public class AndroidUtilities {
             i3 = i4 - 2;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replace);
-        if (indexOf >= 0) {
+        if (runnable != null && indexOf >= 0) {
             if (i2 == 3) {
                 int i5 = indexOf + i3;
                 spannableStringBuilder.replace(indexOf, i5, replaceMultipleCharSequence(" ", spannableStringBuilder.subSequence(indexOf, i5), " "));

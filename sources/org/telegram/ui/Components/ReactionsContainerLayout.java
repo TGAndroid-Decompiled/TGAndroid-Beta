@@ -108,6 +108,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public float bubblesOffset;
     ValueAnimator cancelPressedAnimation;
     private float cancelPressedProgress;
+    public boolean channelReactions;
     ChatScrimPopupContainerLayout chatScrimPopupContainerLayout;
     private boolean clicked;
     private int currentAccount;

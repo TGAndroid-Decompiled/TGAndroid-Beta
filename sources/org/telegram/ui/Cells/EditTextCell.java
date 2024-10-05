@@ -3,26 +3,33 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.ActionMode;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.Components.TypefaceSpan;
 
 public class EditTextCell extends FrameLayout {
     public boolean autofocused;
-    public final EditTextBoldCursor editText;
+    public final EditTextCaption editText;
     private boolean focused;
     private boolean ignoreEditText;
     AnimatedTextView.AnimatedTextDrawable limit;
@@ -32,9 +39,11 @@ public class EditTextCell extends FrameLayout {
     private boolean needDivider;
     private boolean showLimitWhenEmpty;
     private boolean showLimitWhenFocused;
+    private int showLimitWhenNear;
 
-    public EditTextCell(Context context, String str, final boolean z, final int i, final Theme.ResourcesProvider resourcesProvider) {
+    public EditTextCell(Context context, String str, final boolean z, final boolean z2, final int i, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.showLimitWhenNear = -1;
         this.limitColor = new AnimatedColor(this);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.limit = animatedTextDrawable;
@@ -42,7 +51,7 @@ public class EditTextCell extends FrameLayout {
         this.limit.setTextSize(AndroidUtilities.dp(15.33f));
         this.limit.setGravity(5);
         this.maxLength = i;
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
+        EditTextCaption editTextCaption = new EditTextCaption(context, resourcesProvider) {
             @Override
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -50,6 +59,32 @@ public class EditTextCell extends FrameLayout {
                 editTextCell.limit.setTextColor(editTextCell.limitColor.set(Theme.getColor(editTextCell.limitCount <= 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 EditTextCell.this.limit.setBounds(getScrollX(), 0, ((getScrollX() + getWidth()) - getPaddingRight()) + AndroidUtilities.dp(42.0f), getHeight());
                 EditTextCell.this.limit.draw(canvas);
+            }
+
+            @Override
+            public void extendActionMode(ActionMode actionMode, Menu menu) {
+                if (z2) {
+                    int i2 = R.id.menu_bold;
+                    if (menu.findItem(i2) != null) {
+                        return;
+                    }
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        menu.removeItem(16908341);
+                    }
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+                    int i3 = R.id.menu_groupbolditalic;
+                    menu.add(i3, i2, 6, spannableStringBuilder);
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
+                    spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+                    menu.add(i3, R.id.menu_italic, 7, spannableStringBuilder2);
+                    SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
+                    TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+                    textStyleRun.flags |= 8;
+                    spannableStringBuilder3.setSpan(new TextStyleSpan(textStyleRun), 0, spannableStringBuilder3.length(), 33);
+                    menu.add(i3, R.id.menu_strike, 8, spannableStringBuilder3);
+                    menu.add(i3, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
+                }
             }
 
             @Override
@@ -76,37 +111,37 @@ public class EditTextCell extends FrameLayout {
                 return drawable == EditTextCell.this.limit || super.verifyDrawable(drawable);
             }
         };
-        this.editText = editTextBoldCursor;
-        this.limit.setCallback(editTextBoldCursor);
-        editTextBoldCursor.setTextSize(1, 17.0f);
-        editTextBoldCursor.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
+        this.editText = editTextCaption;
+        this.limit.setCallback(editTextCaption);
+        editTextCaption.setTextSize(1, 17.0f);
+        editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextBoldCursor.setTextColor(Theme.getColor(i2, resourcesProvider));
-        editTextBoldCursor.setBackground(null);
+        editTextCaption.setTextColor(Theme.getColor(i2, resourcesProvider));
+        editTextCaption.setBackground(null);
         if (z) {
-            editTextBoldCursor.setMaxLines(5);
-            editTextBoldCursor.setSingleLine(false);
+            editTextCaption.setMaxLines(5);
+            editTextCaption.setSingleLine(false);
         } else {
-            editTextBoldCursor.setMaxLines(1);
-            editTextBoldCursor.setSingleLine(true);
+            editTextCaption.setMaxLines(1);
+            editTextCaption.setSingleLine(true);
         }
-        editTextBoldCursor.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp((i > 0 ? 42 : 0) + 21), AndroidUtilities.dp(15.0f));
-        editTextBoldCursor.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        editTextBoldCursor.setInputType((z ? 131072 : 0) | 573441);
-        editTextBoldCursor.setRawInputType(573441);
-        editTextBoldCursor.setHint(str);
-        editTextBoldCursor.setCursorColor(Theme.getColor(i2, resourcesProvider));
-        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(19.0f));
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
+        editTextCaption.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp((i > 0 ? 42 : 0) + 21), AndroidUtilities.dp(15.0f));
+        editTextCaption.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        editTextCaption.setInputType((z ? 131072 : 0) | 573441);
+        editTextCaption.setRawInputType(573441);
+        editTextCaption.setHint(str);
+        editTextCaption.setCursorColor(Theme.getColor(i2, resourcesProvider));
+        editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
+        editTextCaption.setCursorWidth(1.5f);
+        editTextCaption.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (!EditTextCell.this.ignoreEditText) {
                     if (i > 0 && editable != null && editable.length() > i) {
                         EditTextCell.this.ignoreEditText = true;
                         EditTextCell.this.editText.setText(editable.subSequence(0, i));
-                        EditTextBoldCursor editTextBoldCursor2 = EditTextCell.this.editText;
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                        EditTextCaption editTextCaption2 = EditTextCell.this.editText;
+                        editTextCaption2.setSelection(editTextCaption2.length());
                         EditTextCell.this.ignoreEditText = false;
                     }
                     EditTextCell.this.onTextChanged(editable);
@@ -136,17 +171,17 @@ public class EditTextCell extends FrameLayout {
             public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
         });
-        editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        editTextCaption.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View view, boolean z2) {
-                EditTextCell.this.focused = z2;
+            public void onFocusChange(View view, boolean z3) {
+                EditTextCell.this.focused = z3;
                 if (EditTextCell.this.showLimitWhenFocused) {
                     EditTextCell.this.updateLimitText();
                 }
-                EditTextCell.this.onFocusChanged(z2);
+                EditTextCell.this.onFocusChanged(z3);
             }
         });
-        addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -1, 48));
+        addView(editTextCaption, LayoutHelper.createFrame(-1, -1, 48));
         updateLimitText();
     }
 
@@ -155,13 +190,14 @@ public class EditTextCell extends FrameLayout {
     }
 
     public void updateLimitText() {
+        int i;
         if (this.editText == null) {
             return;
         }
         this.limitCount = this.maxLength - getText().length();
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
         String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.showLimitWhenEmpty) && (!this.showLimitWhenFocused || (this.focused && !this.autofocused))) {
+        if ((!TextUtils.isEmpty(getText()) || this.showLimitWhenEmpty) && ((!this.showLimitWhenFocused || (this.focused && !this.autofocused)) && ((i = this.showLimitWhenNear) == -1 || this.limitCount <= i))) {
             str = "" + this.limitCount;
         }
         animatedTextDrawable.setText(str);
@@ -221,11 +257,16 @@ public class EditTextCell extends FrameLayout {
         }
     }
 
+    public void setShowLimitWhenNear(int i) {
+        this.showLimitWhenNear = i;
+        updateLimitText();
+    }
+
     public void setText(CharSequence charSequence) {
         this.ignoreEditText = true;
         this.editText.setText(charSequence);
-        EditTextBoldCursor editTextBoldCursor = this.editText;
-        editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
+        EditTextCaption editTextCaption = this.editText;
+        editTextCaption.setSelection(editTextCaption.getText().length());
         this.ignoreEditText = false;
     }
 

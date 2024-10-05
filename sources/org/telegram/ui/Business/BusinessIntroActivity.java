@@ -196,7 +196,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     }
 
     public void lambda$onBackPressed$6(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$307();
+        lambda$onBackPressed$300();
     }
 
     public Boolean lambda$onClick$2(View view, Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
@@ -221,7 +221,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             if (this.inputSticker != null) {
                 getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
             }
-            lambda$onBackPressed$307();
+            lambda$onBackPressed$300();
         }
     }
 
@@ -475,11 +475,12 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         imageView.setImageDrawable(PreviewView.getBackgroundDrawable((Drawable) null, this.currentAccount, getUserConfig().getClientUserId(), Theme.isCurrentThemeDark()));
         this.previewContainer.addView(imageView, LayoutHelper.createFrame(-1, -1, 119));
         this.previewContainer.addView(this.greetingsView, LayoutHelper.createFrame(-2, -2.0f, 17, 42.0f, 18.0f, 42.0f, 18.0f));
-        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.BusinessIntroTitleHint), false, getMessagesController().introTitleLengthLimit, this.resourceProvider) {
+        boolean z = false;
+        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.BusinessIntroTitleHint), false, z, getMessagesController().introTitleLengthLimit, this.resourceProvider) {
             @Override
-            protected void onFocusChanged(boolean z) {
+            protected void onFocusChanged(boolean z2) {
                 UniversalRecyclerView universalRecyclerView;
-                if (!z || (universalRecyclerView = BusinessIntroActivity.this.listView) == null) {
+                if (!z2 || (universalRecyclerView = BusinessIntroActivity.this.listView) == null) {
                     return;
                 }
                 universalRecyclerView.smoothScrollToPosition(2);
@@ -499,11 +500,11 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         editTextCell2.setBackgroundColor(getThemedColor(i));
         this.titleEdit.setDivider(true);
         this.titleEdit.hideKeyboardOnEnter();
-        EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.BusinessIntroMessageHint), true, getMessagesController().introDescriptionLengthLimit, this.resourceProvider) {
+        EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.BusinessIntroMessageHint), true, z, getMessagesController().introDescriptionLengthLimit, this.resourceProvider) {
             @Override
-            protected void onFocusChanged(boolean z) {
+            protected void onFocusChanged(boolean z2) {
                 UniversalRecyclerView universalRecyclerView;
-                if (!z || (universalRecyclerView = BusinessIntroActivity.this.listView) == null) {
+                if (!z2 || (universalRecyclerView = BusinessIntroActivity.this.listView) == null) {
                     return;
                 }
                 universalRecyclerView.smoothScrollToPosition(3);
@@ -527,7 +528,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (BusinessIntroActivity.this.onBackPressed()) {
-                        BusinessIntroActivity.this.lambda$onBackPressed$307();
+                        BusinessIntroActivity.this.lambda$onBackPressed$300();
                     }
                 } else if (i2 == 1) {
                     BusinessIntroActivity.this.processDone();
