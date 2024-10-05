@@ -45,8 +45,14 @@ public class ChatUnreadCell extends FrameLayout {
         addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
     }
 
-    public void setText(String str) {
-        this.textView.setText(str);
+    private int getColor(int i) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Integer valueOf = resourcesProvider != null ? Integer.valueOf(resourcesProvider.getColor(i)) : null;
+        return valueOf != null ? valueOf.intValue() : Theme.getColor(i);
+    }
+
+    public FrameLayout getBackgroundLayout() {
+        return this.backgroundLayout;
     }
 
     public ImageView getImageView() {
@@ -57,18 +63,12 @@ public class ChatUnreadCell extends FrameLayout {
         return this.textView;
     }
 
-    public FrameLayout getBackgroundLayout() {
-        return this.backgroundLayout;
-    }
-
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    private int getColor(int i) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer valueOf = resourcesProvider != null ? Integer.valueOf(resourcesProvider.getColor(i)) : null;
-        return valueOf != null ? valueOf.intValue() : Theme.getColor(i);
+    public void setText(String str) {
+        this.textView.setText(str);
     }
 }

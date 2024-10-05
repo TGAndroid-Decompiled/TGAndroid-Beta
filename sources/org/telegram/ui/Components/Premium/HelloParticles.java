@@ -14,7 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 
-public class HelloParticles {
+public abstract class HelloParticles {
     private static final String[] hellos = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
 
     public static class Drawable {
@@ -23,72 +23,17 @@ public class HelloParticles {
         public boolean paused;
         long pausedTime;
         private TextPaint textPaint = new TextPaint(1);
-        private HashMap<String, Bitmap> bitmaps = new HashMap<>();
+        private HashMap bitmaps = new HashMap();
         public RectF rect = new RectF();
         public RectF screenRect = new RectF();
         private Paint paint = new Paint();
-        ArrayList<Particle> particles = new ArrayList<>();
+        ArrayList particles = new ArrayList();
         public float speedScale = 1.0f;
         public int size1 = 14;
         public int size2 = 12;
         public int size3 = 10;
         public long minLifeTime = 2000;
         private final float dt = 1000.0f / AndroidUtilities.screenRefreshRate;
-
-        public Drawable(int i) {
-            this.bitmapScale = 1.0f;
-            this.count = i;
-            this.textPaint.setTypeface(AndroidUtilities.bold());
-            this.textPaint.setColor(-1);
-            int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-            if (devicePerformanceClass == 0) {
-                this.bitmapScale = 0.25f;
-            } else if (devicePerformanceClass == 1) {
-                this.bitmapScale = 0.5f;
-            } else {
-                this.bitmapScale = 0.75f;
-            }
-            this.textPaint.setTextSize(AndroidUtilities.dp(this.bitmapScale * 24.0f));
-            this.paint.setColor(-1);
-        }
-
-        public void init() {
-            if (this.particles.isEmpty()) {
-                for (int i = 0; i < this.count; i++) {
-                    this.particles.add(new Particle());
-                }
-            }
-        }
-
-        public void resetPositions() {
-            long currentTimeMillis = System.currentTimeMillis();
-            for (int i = 0; i < this.particles.size(); i++) {
-                this.particles.get(i).genPosition(currentTimeMillis, i, true);
-            }
-        }
-
-        public void onDraw(Canvas canvas) {
-            long currentTimeMillis = System.currentTimeMillis();
-            for (int i = 0; i < this.particles.size(); i++) {
-                Particle particle = this.particles.get(i);
-                if (this.paused) {
-                    particle.draw(canvas, i, this.pausedTime);
-                } else {
-                    particle.draw(canvas, i, currentTimeMillis);
-                }
-                if (particle.inProgress >= 1.0f) {
-                    particle.genPosition(currentTimeMillis, i, false);
-                }
-            }
-        }
-
-        public void recycle() {
-            Iterator<Bitmap> it = this.bitmaps.values().iterator();
-            while (it.hasNext()) {
-                it.next().recycle();
-            }
-            this.bitmaps.clear();
-        }
 
         private class Particle {
             private int alpha;
@@ -166,21 +111,23 @@ public class HelloParticles {
                 float f = this.w / 4.0f;
                 float f2 = rectF.left + f;
                 float f3 = rectF.right - f;
-                if (i % 2 == 0) {
-                    f3 = rectF.centerX() - (this.w / 2.0f);
+                int i2 = i % 2;
+                float centerX = rectF.centerX();
+                if (i2 == 0) {
+                    f3 = centerX - (this.w / 2.0f);
                 } else {
-                    f2 = (this.w / 2.0f) + rectF.centerX();
+                    f2 = (this.w / 2.0f) + centerX;
                 }
                 float f4 = f3 - f2;
                 float abs = Math.abs(Utilities.fastRandom.nextInt() % f4) + f2;
                 float abs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
                 float f5 = 0.0f;
-                for (int i2 = 0; i2 < 10; i2++) {
+                for (int i3 = 0; i3 < 10; i3++) {
                     float abs3 = Math.abs(Utilities.fastRandom.nextInt() % f4) + f2;
                     float abs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                    float f6 = 2.1474836E9f;
-                    for (int i3 = 0; i3 < Drawable.this.particles.size(); i3++) {
-                        Particle particle = Drawable.this.particles.get(i3);
+                    float f6 = 2.14748365E9f;
+                    for (int i4 = 0; i4 < Drawable.this.particles.size(); i4++) {
+                        Particle particle = (Particle) Drawable.this.particles.get(i4);
                         if (particle.set) {
                             float min = Math.min(Math.abs((particle.x + ((particle.w * (this.scale / Drawable.this.bitmapScale)) * 1.1f)) - abs3), Math.abs(particle.x - abs3));
                             float f7 = particle.y - abs4;
@@ -204,6 +151,55 @@ public class HelloParticles {
                 this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
                 this.inProgress = z ? Math.abs((Utilities.fastRandom.nextFloat() % 1.0f) * 0.9f) : 0.0f;
                 this.set = true;
+            }
+        }
+
+        public Drawable(int i) {
+            this.bitmapScale = 1.0f;
+            this.count = i;
+            this.textPaint.setTypeface(AndroidUtilities.bold());
+            this.textPaint.setColor(-1);
+            int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+            this.bitmapScale = devicePerformanceClass != 0 ? devicePerformanceClass != 1 ? 0.75f : 0.5f : 0.25f;
+            this.textPaint.setTextSize(AndroidUtilities.dp(this.bitmapScale * 24.0f));
+            this.paint.setColor(-1);
+        }
+
+        public void init() {
+            if (this.particles.isEmpty()) {
+                for (int i = 0; i < this.count; i++) {
+                    this.particles.add(new Particle());
+                }
+            }
+        }
+
+        public void onDraw(Canvas canvas) {
+            long currentTimeMillis = System.currentTimeMillis();
+            for (int i = 0; i < this.particles.size(); i++) {
+                Particle particle = (Particle) this.particles.get(i);
+                if (this.paused) {
+                    particle.draw(canvas, i, this.pausedTime);
+                } else {
+                    particle.draw(canvas, i, currentTimeMillis);
+                }
+                if (particle.inProgress >= 1.0f) {
+                    particle.genPosition(currentTimeMillis, i, false);
+                }
+            }
+        }
+
+        public void recycle() {
+            Iterator it = this.bitmaps.values().iterator();
+            while (it.hasNext()) {
+                ((Bitmap) it.next()).recycle();
+            }
+            this.bitmaps.clear();
+        }
+
+        public void resetPositions() {
+            long currentTimeMillis = System.currentTimeMillis();
+            for (int i = 0; i < this.particles.size(); i++) {
+                ((Particle) this.particles.get(i)).genPosition(currentTimeMillis, i, true);
             }
         }
     }

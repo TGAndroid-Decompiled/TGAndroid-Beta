@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class SharedConfig$$ExternalSyntheticApiModelOutline1 {
+public abstract class SharedConfig$$ExternalSyntheticApiModelOutline1 {
 }

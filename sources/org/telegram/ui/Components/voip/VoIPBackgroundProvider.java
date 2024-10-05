@@ -25,7 +25,7 @@ public class VoIPBackgroundProvider {
     public final float scale;
     private int totalHeight;
     private int totalWidth;
-    private final List<View> views;
+    private final List views;
     private final Paint whiteVideoPaint;
 
     public VoIPBackgroundProvider() {
@@ -54,11 +54,20 @@ public class VoIPBackgroundProvider {
         bitmapShaderTools2.paint.setAlpha(180);
     }
 
-    public void invalidateViews() {
-        Iterator<View> it = this.views.iterator();
-        while (it.hasNext()) {
-            it.next().invalidate();
-        }
+    public void lambda$setHasVideo$0(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        int i = (int) (35.0f * floatValue);
+        this.darkPaint.setAlpha(i);
+        this.darkVideoPaint.setAlpha((int) (floatValue * 102.0f));
+        this.whiteVideoPaint.setAlpha(i);
+        invalidateViews();
+    }
+
+    public void lambda$setHasVideo$1(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.darkShaderTools.paint.setAlpha((int) (180.0f * floatValue));
+        this.lightShaderTools.paint.setAlpha((int) (floatValue * 255.0f));
+        invalidateViews();
     }
 
     public void attach(View view) {
@@ -69,8 +78,74 @@ public class VoIPBackgroundProvider {
         this.views.remove(view);
     }
 
+    public Canvas getDarkCanvas() {
+        return this.darkShaderTools.getCanvas();
+    }
+
+    public Paint getDarkPaint() {
+        return this.hasVideo ? this.darkVideoPaint : this.darkShaderTools.paint;
+    }
+
+    public Paint getDarkPaint(boolean z) {
+        return z ? this.darkPaint : getDarkPaint();
+    }
+
+    public int getDegree() {
+        return this.degree;
+    }
+
+    public Canvas getLightCanvas() {
+        return this.lightShaderTools.getCanvas();
+    }
+
+    public Paint getLightPaint() {
+        return this.hasVideo ? this.whiteVideoPaint : this.lightShaderTools.paint;
+    }
+
+    public Canvas getRevealCanvas() {
+        return this.revealShaderTools.getCanvas();
+    }
+
+    public Paint getRevealDarkPaint() {
+        return this.revealDarkShaderTools.paint;
+    }
+
+    public Canvas getRevealDrakCanvas() {
+        return this.revealDarkShaderTools.getCanvas();
+    }
+
+    public Paint getRevealPaint() {
+        return this.revealShaderTools.paint;
+    }
+
+    public void invalidateViews() {
+        Iterator it = this.views.iterator();
+        while (it.hasNext()) {
+            ((View) it.next()).invalidate();
+        }
+    }
+
+    public boolean isReveal() {
+        return this.isReveal;
+    }
+
+    public void setDarkTranslation(float f, float f2) {
+        float f3 = this.totalHeight * 1.12f;
+        float f4 = -f;
+        float f5 = -f2;
+        this.darkShaderTools.setMatrix(f4 - ((f3 - this.totalWidth) / 2.0f), f5 - ((f3 - this.totalHeight) / 2.0f), f3 / this.darkShaderTools.getBitmap().getHeight(), this.degree);
+        this.revealDarkShaderTools.setBounds(f4, f5, this.totalWidth - f, this.totalHeight - f2);
+    }
+
+    public void setDegree(int i) {
+        this.degree = i;
+        invalidateViews();
+    }
+
     public void setHasVideo(boolean z) {
-        if (this.hasVideo && !z) {
+        if (!this.hasVideo || z) {
+            this.hasVideo = z;
+        } else {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -102,61 +177,7 @@ public class VoIPBackgroundProvider {
             ofFloat2.setStartDelay(80L);
             ofFloat2.setDuration(80L);
             ofFloat2.start();
-        } else {
-            this.hasVideo = z;
         }
-        invalidateViews();
-    }
-
-    public void lambda$setHasVideo$0(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        int i = (int) (35.0f * floatValue);
-        this.darkPaint.setAlpha(i);
-        this.darkVideoPaint.setAlpha((int) (floatValue * 102.0f));
-        this.whiteVideoPaint.setAlpha(i);
-        invalidateViews();
-    }
-
-    public void lambda$setHasVideo$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.darkShaderTools.paint.setAlpha((int) (180.0f * floatValue));
-        this.lightShaderTools.paint.setAlpha((int) (floatValue * 255.0f));
-        invalidateViews();
-    }
-
-    public Canvas getLightCanvas() {
-        return this.lightShaderTools.getCanvas();
-    }
-
-    public Canvas getRevealCanvas() {
-        return this.revealShaderTools.getCanvas();
-    }
-
-    public Canvas getRevealDrakCanvas() {
-        return this.revealDarkShaderTools.getCanvas();
-    }
-
-    public Canvas getDarkCanvas() {
-        return this.darkShaderTools.getCanvas();
-    }
-
-    public void setTotalSize(int i, int i2) {
-        this.totalWidth = i;
-        this.totalHeight = i2;
-        int i3 = i / 4;
-        int i4 = i2 / 4;
-        this.revealShaderTools = new BitmapShaderTools(i3, i4);
-        BitmapShaderTools bitmapShaderTools = new BitmapShaderTools(i3, i4);
-        this.revealDarkShaderTools = bitmapShaderTools;
-        bitmapShaderTools.paint.setAlpha(180);
-    }
-
-    public int getDegree() {
-        return this.degree;
-    }
-
-    public void setDegree(int i) {
-        this.degree = i;
         invalidateViews();
     }
 
@@ -169,48 +190,18 @@ public class VoIPBackgroundProvider {
         this.revealShaderTools.setBounds(f5, f6, this.totalWidth - f, this.totalHeight - f2);
     }
 
-    public void setDarkTranslation(float f, float f2) {
-        float f3 = this.totalHeight * 1.12f;
-        float f4 = -f;
-        float f5 = -f2;
-        this.darkShaderTools.setMatrix(f4 - ((f3 - this.totalWidth) / 2.0f), f5 - ((f3 - this.totalHeight) / 2.0f), f3 / this.darkShaderTools.getBitmap().getHeight(), this.degree);
-        this.revealDarkShaderTools.setBounds(f4, f5, this.totalWidth - f, this.totalHeight - f2);
-    }
-
-    public boolean isReveal() {
-        return this.isReveal;
-    }
-
     public void setReveal(boolean z) {
         this.isReveal = z;
     }
 
-    public Paint getRevealPaint() {
-        return this.revealShaderTools.paint;
-    }
-
-    public Paint getRevealDarkPaint() {
-        return this.revealDarkShaderTools.paint;
-    }
-
-    public Paint getLightPaint() {
-        if (this.hasVideo) {
-            return this.whiteVideoPaint;
-        }
-        return this.lightShaderTools.paint;
-    }
-
-    public Paint getDarkPaint() {
-        if (this.hasVideo) {
-            return this.darkVideoPaint;
-        }
-        return this.darkShaderTools.paint;
-    }
-
-    public Paint getDarkPaint(boolean z) {
-        if (z) {
-            return this.darkPaint;
-        }
-        return getDarkPaint();
+    public void setTotalSize(int i, int i2) {
+        this.totalWidth = i;
+        this.totalHeight = i2;
+        int i3 = i / 4;
+        int i4 = i2 / 4;
+        this.revealShaderTools = new BitmapShaderTools(i3, i4);
+        BitmapShaderTools bitmapShaderTools = new BitmapShaderTools(i3, i4);
+        this.revealDarkShaderTools = bitmapShaderTools;
+        bitmapShaderTools.paint.setAlpha(180);
     }
 }

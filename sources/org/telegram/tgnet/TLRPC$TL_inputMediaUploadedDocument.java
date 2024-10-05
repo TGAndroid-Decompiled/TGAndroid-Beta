@@ -69,14 +69,14 @@ public class TLRPC$TL_inputMediaUploadedDocument extends TLRPC$InputMedia {
         int size = this.attributes.size();
         abstractSerializedData.writeInt32(size);
         for (int i4 = 0; i4 < size; i4++) {
-            this.attributes.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$DocumentAttribute) this.attributes.get(i4)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.stickers.size();
             abstractSerializedData.writeInt32(size2);
             for (int i5 = 0; i5 < size2; i5++) {
-                this.stickers.get(i5).serializeToStream(abstractSerializedData);
+                ((TLRPC$InputDocument) this.stickers.get(i5)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 2) != 0) {

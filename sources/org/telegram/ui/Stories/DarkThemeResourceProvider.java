@@ -15,48 +15,9 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
     Paint actionPaint;
     ColorFilter animatedEmojiColorFilter;
     Drawable msgOutMedia;
-    HashSet<Integer> debugUnknownKeys = new HashSet<>();
+    HashSet debugUnknownKeys = new HashSet();
     SparseIntArray sparseIntArray = new SparseIntArray();
     Paint dividerPaint = new Paint();
-
-    public void appendColors() {
-    }
-
-    @Override
-    public void applyServiceShaderMatrix(int i, int i2, float f, float f2) {
-        Theme.applyServiceShaderMatrix(i, i2, f, f2);
-    }
-
-    @Override
-    public int getColorOrDefault(int i) {
-        int color;
-        color = getColor(i);
-        return color;
-    }
-
-    @Override
-    public int getCurrentColor(int i) {
-        int color;
-        color = getColor(i);
-        return color;
-    }
-
-    @Override
-    public boolean hasGradientService() {
-        return Theme.ResourcesProvider.CC.$default$hasGradientService(this);
-    }
-
-    @Override
-    public boolean isDark() {
-        boolean isCurrentThemeDark;
-        isCurrentThemeDark = Theme.isCurrentThemeDark();
-        return isCurrentThemeDark;
-    }
-
-    @Override
-    public void setAnimatedColor(int i, int i2) {
-        Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
-    }
 
     public DarkThemeResourceProvider() {
         this.sparseIntArray.put(Theme.key_statisticChartSignature, -1214008894);
@@ -197,6 +158,22 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.dividerPaint.setColor(getColor(i4));
     }
 
+    public void appendColors() {
+    }
+
+    @Override
+    public void applyServiceShaderMatrix(int i, int i2, float f, float f2) {
+        Theme.applyServiceShaderMatrix(i, i2, f, f2);
+    }
+
+    @Override
+    public ColorFilter getAnimatedEmojiColorFilter() {
+        if (this.animatedEmojiColorFilter == null) {
+            this.animatedEmojiColorFilter = new PorterDuffColorFilter(getColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.SRC_IN);
+        }
+        return this.animatedEmojiColorFilter;
+    }
+
     @Override
     public int getColor(int i) {
         int indexOfKey = this.sparseIntArray.indexOfKey(i);
@@ -210,14 +187,28 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
     }
 
     @Override
+    public int getColorOrDefault(int i) {
+        int color;
+        color = getColor(i);
+        return color;
+    }
+
+    @Override
+    public int getCurrentColor(int i) {
+        int color;
+        color = getColor(i);
+        return color;
+    }
+
+    @Override
     public Drawable getDrawable(String str) {
-        if (Objects.equals(str, "drawableMsgOutMedia")) {
-            if (this.msgOutMedia == null) {
-                this.msgOutMedia = new Theme.MessageDrawable(1, true, false, this);
-            }
-            return this.msgOutMedia;
+        if (!Objects.equals(str, "drawableMsgOutMedia")) {
+            return Theme.ResourcesProvider.CC.$default$getDrawable(this, str);
         }
-        return Theme.ResourcesProvider.CC.$default$getDrawable(this, str);
+        if (this.msgOutMedia == null) {
+            this.msgOutMedia = new Theme.MessageDrawable(1, true, false, this);
+        }
+        return this.msgOutMedia;
     }
 
     @Override
@@ -225,22 +216,31 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         if (str.equals("paintDivider")) {
             return this.dividerPaint;
         }
-        if (str.equals("paintChatActionBackground")) {
-            if (this.actionPaint == null) {
-                Paint paint = new Paint(1);
-                this.actionPaint = paint;
-                paint.setColor(ColorUtils.blendARGB(-16777216, -1, 0.1f));
-            }
-            return this.actionPaint;
+        if (!str.equals("paintChatActionBackground")) {
+            return Theme.getThemePaint(str);
         }
-        return Theme.getThemePaint(str);
+        if (this.actionPaint == null) {
+            Paint paint = new Paint(1);
+            this.actionPaint = paint;
+            paint.setColor(ColorUtils.blendARGB(-16777216, -1, 0.1f));
+        }
+        return this.actionPaint;
     }
 
     @Override
-    public ColorFilter getAnimatedEmojiColorFilter() {
-        if (this.animatedEmojiColorFilter == null) {
-            this.animatedEmojiColorFilter = new PorterDuffColorFilter(getColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.SRC_IN);
-        }
-        return this.animatedEmojiColorFilter;
+    public boolean hasGradientService() {
+        return Theme.ResourcesProvider.CC.$default$hasGradientService(this);
+    }
+
+    @Override
+    public boolean isDark() {
+        boolean isCurrentThemeDark;
+        isCurrentThemeDark = Theme.isCurrentThemeDark();
+        return isCurrentThemeDark;
+    }
+
+    @Override
+    public void setAnimatedColor(int i, int i2) {
+        Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
     }
 }

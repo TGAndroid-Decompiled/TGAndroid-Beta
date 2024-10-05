@@ -28,35 +28,6 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         void onRetain(TextureBufferImpl textureBufferImpl);
     }
 
-    @Override
-    public int getBufferType() {
-        return VideoFrame.Buffer.CC.$default$getBufferType(this);
-    }
-
-    public TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, final Runnable runnable) {
-        this(i, i2, i, i2, type, i3, matrix, handler, yuvConverter, new RefCountMonitor() {
-            @Override
-            public void onRelease(TextureBufferImpl textureBufferImpl) {
-            }
-
-            @Override
-            public void onRetain(TextureBufferImpl textureBufferImpl) {
-            }
-
-            @Override
-            public void onDestroy(TextureBufferImpl textureBufferImpl) {
-                Runnable runnable2 = runnable;
-                if (runnable2 != null) {
-                    runnable2.run();
-                }
-            }
-        });
-    }
-
-    public TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, RefCountMonitor refCountMonitor) {
-        this(i, i2, i, i2, type, i3, matrix, handler, yuvConverter, refCountMonitor);
-    }
-
     private TextureBufferImpl(int i, int i2, int i3, int i4, VideoFrame.TextureBuffer.Type type, int i5, Matrix matrix, Handler handler, YuvConverter yuvConverter, final RefCountMonitor refCountMonitor) {
         this.unscaledWidth = i;
         this.unscaledHeight = i2;
@@ -76,18 +47,89 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.refCountMonitor = refCountMonitor;
     }
 
+    public TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, final Runnable runnable) {
+        this(i, i2, i, i2, type, i3, matrix, handler, yuvConverter, new RefCountMonitor() {
+            @Override
+            public void onDestroy(TextureBufferImpl textureBufferImpl) {
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+
+            @Override
+            public void onRelease(TextureBufferImpl textureBufferImpl) {
+            }
+
+            @Override
+            public void onRetain(TextureBufferImpl textureBufferImpl) {
+            }
+        });
+    }
+
+    public TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, RefCountMonitor refCountMonitor) {
+        this(i, i2, i, i2, type, i3, matrix, handler, yuvConverter, refCountMonitor);
+    }
+
+    private TextureBufferImpl applyTransformMatrix(Matrix matrix, int i, int i2, int i3, int i4) {
+        Matrix matrix2 = new Matrix(this.transformMatrix);
+        matrix2.preConcat(matrix);
+        retain();
+        return new TextureBufferImpl(i, i2, i3, i4, this.type, this.id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
+            @Override
+            public void onDestroy(TextureBufferImpl textureBufferImpl) {
+                TextureBufferImpl.this.release();
+            }
+
+            @Override
+            public void onRelease(TextureBufferImpl textureBufferImpl) {
+                TextureBufferImpl.this.refCountMonitor.onRelease(TextureBufferImpl.this);
+            }
+
+            @Override
+            public void onRetain(TextureBufferImpl textureBufferImpl) {
+                TextureBufferImpl.this.refCountMonitor.onRetain(TextureBufferImpl.this);
+            }
+        });
+    }
+
     public void lambda$new$0(RefCountMonitor refCountMonitor) {
         refCountMonitor.onDestroy(this);
     }
 
+    public VideoFrame.I420Buffer lambda$toI420$1() {
+        return this.yuvConverter.convert(this);
+    }
+
+    public TextureBufferImpl applyTransformMatrix(Matrix matrix, int i, int i2) {
+        return applyTransformMatrix(matrix, i, i2, i, i2);
+    }
+
     @Override
-    public VideoFrame.TextureBuffer.Type getType() {
-        return this.type;
+    public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
+        Matrix matrix = new Matrix();
+        matrix.preTranslate(i / this.width, (r0 - (i2 + i4)) / this.height);
+        matrix.preScale(i3 / this.width, i4 / this.height);
+        return applyTransformMatrix(matrix, Math.round((this.unscaledWidth * i3) / this.width), Math.round((this.unscaledHeight * i4) / this.height), i5, i6);
+    }
+
+    @Override
+    public int getBufferType() {
+        return VideoFrame.Buffer.CC.$default$getBufferType(this);
+    }
+
+    @Override
+    public int getHeight() {
+        return this.height;
     }
 
     @Override
     public int getTextureId() {
         return this.id;
+    }
+
+    public Handler getToI420Handler() {
+        return this.toI420Handler;
     }
 
     @Override
@@ -96,13 +138,37 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     }
 
     @Override
+    public VideoFrame.TextureBuffer.Type getType() {
+        return this.type;
+    }
+
+    public int getUnscaledHeight() {
+        return this.unscaledHeight;
+    }
+
+    public int getUnscaledWidth() {
+        return this.unscaledWidth;
+    }
+
+    @Override
     public int getWidth() {
         return this.width;
     }
 
+    public YuvConverter getYuvConverter() {
+        return this.yuvConverter;
+    }
+
     @Override
-    public int getHeight() {
-        return this.height;
+    public void release() {
+        this.refCountMonitor.onRelease(this);
+        this.refCountDelegate.release();
+    }
+
+    @Override
+    public void retain() {
+        this.refCountMonitor.onRetain(this);
+        this.refCountDelegate.retain();
     }
 
     @Override
@@ -145,71 +211,5 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
                 }
             });
         }
-    }
-
-    public VideoFrame.I420Buffer lambda$toI420$1() throws Exception {
-        return this.yuvConverter.convert(this);
-    }
-
-    @Override
-    public void retain() {
-        this.refCountMonitor.onRetain(this);
-        this.refCountDelegate.retain();
-    }
-
-    @Override
-    public void release() {
-        this.refCountMonitor.onRelease(this);
-        this.refCountDelegate.release();
-    }
-
-    @Override
-    public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
-        Matrix matrix = new Matrix();
-        matrix.preTranslate(i / this.width, (r0 - (i2 + i4)) / this.height);
-        matrix.preScale(i3 / this.width, i4 / this.height);
-        return applyTransformMatrix(matrix, Math.round((this.unscaledWidth * i3) / this.width), Math.round((this.unscaledHeight * i4) / this.height), i5, i6);
-    }
-
-    public int getUnscaledWidth() {
-        return this.unscaledWidth;
-    }
-
-    public int getUnscaledHeight() {
-        return this.unscaledHeight;
-    }
-
-    public Handler getToI420Handler() {
-        return this.toI420Handler;
-    }
-
-    public YuvConverter getYuvConverter() {
-        return this.yuvConverter;
-    }
-
-    public TextureBufferImpl applyTransformMatrix(Matrix matrix, int i, int i2) {
-        return applyTransformMatrix(matrix, i, i2, i, i2);
-    }
-
-    private TextureBufferImpl applyTransformMatrix(Matrix matrix, int i, int i2, int i3, int i4) {
-        Matrix matrix2 = new Matrix(this.transformMatrix);
-        matrix2.preConcat(matrix);
-        retain();
-        return new TextureBufferImpl(i, i2, i3, i4, this.type, this.id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
-            @Override
-            public void onRetain(TextureBufferImpl textureBufferImpl) {
-                TextureBufferImpl.this.refCountMonitor.onRetain(TextureBufferImpl.this);
-            }
-
-            @Override
-            public void onRelease(TextureBufferImpl textureBufferImpl) {
-                TextureBufferImpl.this.refCountMonitor.onRelease(TextureBufferImpl.this);
-            }
-
-            @Override
-            public void onDestroy(TextureBufferImpl textureBufferImpl) {
-                TextureBufferImpl.this.release();
-            }
-        });
     }
 }

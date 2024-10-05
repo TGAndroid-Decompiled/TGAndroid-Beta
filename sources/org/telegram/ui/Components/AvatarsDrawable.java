@@ -54,19 +54,92 @@ public class AvatarsDrawable {
     public Interpolator transitionInterpolator = CubicBezierInterpolator.DEFAULT;
     Random random = new Random();
 
-    public void commitTransition(boolean z) {
-        commitTransition(z, true);
+    public static class DrawingState {
+        private int animationType;
+        private AvatarDrawable avatarDrawable;
+        private long id;
+        private ImageReceiver imageReceiver;
+        private long lastSpeakTime;
+        private long lastUpdateTime;
+        private int moveFromIndex;
+        private TLObject object;
+        TLRPC$TL_groupCallParticipant participant;
+        private GroupCallUserCell.AvatarWavesDrawable wavesDrawable;
+
+        private DrawingState() {
+        }
     }
 
-    public void setTransitionProgress(float f) {
-        if (!this.transitionInProgress || this.transitionProgress == f) {
+    public AvatarsDrawable(View view, boolean z) {
+        this.parent = view;
+        for (int i = 0; i < 3; i++) {
+            this.currentStates[i] = new DrawingState();
+            this.currentStates[i].imageReceiver = new ImageReceiver(view);
+            this.currentStates[i].imageReceiver.setInvalidateAll(true);
+            this.currentStates[i].imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
+            this.currentStates[i].avatarDrawable = new AvatarDrawable();
+            this.currentStates[i].avatarDrawable.setTextSize(AndroidUtilities.dp(12.0f));
+            this.animatingStates[i] = new DrawingState();
+            this.animatingStates[i].imageReceiver = new ImageReceiver(view);
+            this.animatingStates[i].imageReceiver.setInvalidateAll(true);
+            this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
+            this.animatingStates[i].avatarDrawable = new AvatarDrawable();
+            this.animatingStates[i].avatarDrawable.setTextSize(AndroidUtilities.dp(12.0f));
+        }
+        this.isInCall = z;
+        this.xRefP.setColor(0);
+        this.xRefP.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    }
+
+    public void invalidate() {
+        View view = this.parent;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    public void lambda$commitTransition$0(ValueAnimator valueAnimator) {
+        this.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void swapStates() {
+        for (int i = 0; i < 3; i++) {
+            DrawingState[] drawingStateArr = this.currentStates;
+            DrawingState drawingState = drawingStateArr[i];
+            DrawingState[] drawingStateArr2 = this.animatingStates;
+            drawingStateArr[i] = drawingStateArr2[i];
+            drawingStateArr2[i] = drawingState;
+        }
+    }
+
+    public void animateFromState(AvatarsDrawable avatarsDrawable, int i, boolean z) {
+        if (avatarsDrawable == null) {
             return;
         }
-        this.transitionProgress = f;
-        if (f == 1.0f) {
-            swapStates();
-            this.transitionInProgress = false;
+        ValueAnimator valueAnimator = avatarsDrawable.transitionProgressAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            if (this.transitionInProgress) {
+                this.transitionInProgress = false;
+                swapStates();
+            }
         }
+        TLObject[] tLObjectArr = new TLObject[3];
+        for (int i2 = 0; i2 < 3; i2++) {
+            tLObjectArr[i2] = this.currentStates[i2].object;
+            setObject(i2, i, avatarsDrawable.currentStates[i2].object);
+        }
+        commitTransition(false);
+        for (int i3 = 0; i3 < 3; i3++) {
+            setObject(i3, i, tLObjectArr[i3]);
+        }
+        this.wasDraw = true;
+        commitTransition(true, z);
+    }
+
+    public void commitTransition(boolean z) {
+        commitTransition(z, true);
     }
 
     public void commitTransition(boolean z, boolean z2) {
@@ -167,204 +240,6 @@ public class AvatarsDrawable {
         invalidate();
     }
 
-    public void lambda$commitTransition$0(ValueAnimator valueAnimator) {
-        this.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void swapStates() {
-        for (int i = 0; i < 3; i++) {
-            DrawingState[] drawingStateArr = this.currentStates;
-            DrawingState drawingState = drawingStateArr[i];
-            DrawingState[] drawingStateArr2 = this.animatingStates;
-            drawingStateArr[i] = drawingStateArr2[i];
-            drawingStateArr2[i] = drawingState;
-        }
-    }
-
-    public void updateAfterTransitionEnd() {
-        this.updateAfterTransition = true;
-    }
-
-    public void setDelegate(Runnable runnable) {
-        this.updateDelegate = runnable;
-    }
-
-    public void setStyle(int i) {
-        this.currentStyle = i;
-        invalidate();
-    }
-
-    public void invalidate() {
-        View view = this.parent;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    public void setSize(int i) {
-        this.overrideSize = i;
-    }
-
-    public void setStepFactor(float f) {
-        this.overrideSizeStepFactor = f;
-    }
-
-    public void animateFromState(AvatarsDrawable avatarsDrawable, int i, boolean z) {
-        if (avatarsDrawable == null) {
-            return;
-        }
-        ValueAnimator valueAnimator = avatarsDrawable.transitionProgressAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            if (this.transitionInProgress) {
-                this.transitionInProgress = false;
-                swapStates();
-            }
-        }
-        TLObject[] tLObjectArr = new TLObject[3];
-        for (int i2 = 0; i2 < 3; i2++) {
-            tLObjectArr[i2] = this.currentStates[i2].object;
-            setObject(i2, i, avatarsDrawable.currentStates[i2].object);
-        }
-        commitTransition(false);
-        for (int i3 = 0; i3 < 3; i3++) {
-            setObject(i3, i, tLObjectArr[i3]);
-        }
-        this.wasDraw = true;
-        commitTransition(true, z);
-    }
-
-    public void setAlpha(float f) {
-        this.overrideAlpha = f;
-    }
-
-    public static class DrawingState {
-        private int animationType;
-        private AvatarDrawable avatarDrawable;
-        private long id;
-        private ImageReceiver imageReceiver;
-        private long lastSpeakTime;
-        private long lastUpdateTime;
-        private int moveFromIndex;
-        private TLObject object;
-        TLRPC$TL_groupCallParticipant participant;
-        private GroupCallUserCell.AvatarWavesDrawable wavesDrawable;
-
-        private DrawingState() {
-        }
-    }
-
-    public AvatarsDrawable(View view, boolean z) {
-        this.parent = view;
-        for (int i = 0; i < 3; i++) {
-            this.currentStates[i] = new DrawingState();
-            this.currentStates[i].imageReceiver = new ImageReceiver(view);
-            this.currentStates[i].imageReceiver.setInvalidateAll(true);
-            this.currentStates[i].imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
-            this.currentStates[i].avatarDrawable = new AvatarDrawable();
-            this.currentStates[i].avatarDrawable.setTextSize(AndroidUtilities.dp(12.0f));
-            this.animatingStates[i] = new DrawingState();
-            this.animatingStates[i].imageReceiver = new ImageReceiver(view);
-            this.animatingStates[i].imageReceiver.setInvalidateAll(true);
-            this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
-            this.animatingStates[i].avatarDrawable = new AvatarDrawable();
-            this.animatingStates[i].avatarDrawable.setTextSize(AndroidUtilities.dp(12.0f));
-        }
-        this.isInCall = z;
-        this.xRefP.setColor(0);
-        this.xRefP.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-    }
-
-    public void setAvatarsTextSize(int i) {
-        for (int i2 = 0; i2 < 3; i2++) {
-            DrawingState drawingState = this.currentStates[i2];
-            if (drawingState != null && drawingState.avatarDrawable != null) {
-                this.currentStates[i2].avatarDrawable.setTextSize(i);
-            }
-            DrawingState drawingState2 = this.animatingStates[i2];
-            if (drawingState2 != null && drawingState2.avatarDrawable != null) {
-                this.animatingStates[i2].avatarDrawable.setTextSize(i);
-            }
-        }
-    }
-
-    public void setObject(int i, int i2, TLObject tLObject) {
-        TLRPC$Chat tLRPC$Chat;
-        TLRPC$Chat chat;
-        this.animatingStates[i].id = 0L;
-        DrawingState drawingState = this.animatingStates[i];
-        TLRPC$User tLRPC$User = null;
-        drawingState.participant = null;
-        if (tLObject == null) {
-            drawingState.imageReceiver.setImageBitmap((Drawable) null);
-            invalidate();
-            return;
-        }
-        drawingState.lastSpeakTime = -1L;
-        this.animatingStates[i].object = tLObject;
-        if (tLObject instanceof TLRPC$TL_groupCallParticipant) {
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) tLObject;
-            this.animatingStates[i].participant = tLRPC$TL_groupCallParticipant;
-            long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
-            if (DialogObject.isUserDialog(peerId)) {
-                TLRPC$User user = MessagesController.getInstance(i2).getUser(Long.valueOf(peerId));
-                this.animatingStates[i].avatarDrawable.setInfo(i2, user);
-                tLRPC$User = user;
-                chat = null;
-            } else {
-                chat = MessagesController.getInstance(i2).getChat(Long.valueOf(-peerId));
-                this.animatingStates[i].avatarDrawable.setInfo(i2, chat);
-            }
-            if (this.currentStyle != 4) {
-                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
-            } else if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
-                this.animatingStates[i].lastSpeakTime = 0L;
-            } else if (this.isInCall) {
-                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.lastActiveDate;
-            } else {
-                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
-            }
-            this.animatingStates[i].id = peerId;
-            tLRPC$Chat = chat;
-        } else if (tLObject instanceof TLRPC$User) {
-            TLRPC$User tLRPC$User2 = (TLRPC$User) tLObject;
-            if (!tLRPC$User2.self || !this.showSavedMessages) {
-                this.animatingStates[i].avatarDrawable.setAvatarType(0);
-                this.animatingStates[i].avatarDrawable.setScaleSize(1.0f);
-                this.animatingStates[i].avatarDrawable.setInfo(i2, tLRPC$User2);
-            } else {
-                this.animatingStates[i].avatarDrawable.setAvatarType(1);
-                this.animatingStates[i].avatarDrawable.setScaleSize(0.6f);
-            }
-            this.animatingStates[i].id = tLRPC$User2.id;
-            tLRPC$User = tLRPC$User2;
-            tLRPC$Chat = null;
-        } else {
-            tLRPC$Chat = (TLRPC$Chat) tLObject;
-            this.animatingStates[i].avatarDrawable.setAvatarType(0);
-            this.animatingStates[i].avatarDrawable.setScaleSize(1.0f);
-            this.animatingStates[i].avatarDrawable.setInfo(i2, tLRPC$Chat);
-            this.animatingStates[i].id = -tLRPC$Chat.id;
-        }
-        if (tLRPC$User == null) {
-            this.animatingStates[i].imageReceiver.setForUserOrChat(tLRPC$Chat, this.animatingStates[i].avatarDrawable);
-        } else if (!tLRPC$User.self || !this.showSavedMessages) {
-            this.animatingStates[i].imageReceiver.setForUserOrChat(tLRPC$User, this.animatingStates[i].avatarDrawable);
-        } else {
-            this.animatingStates[i].imageReceiver.setImageBitmap(this.animatingStates[i].avatarDrawable);
-        }
-        int size = getSize();
-        this.animatingStates[i].imageReceiver.setRoundRadius(size / 2);
-        float f = size;
-        this.animatingStates[i].imageReceiver.setImageCoords(0.0f, 0.0f, f, f);
-        invalidate();
-    }
-
-    public void onDraw(android.graphics.Canvas r37) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.onDraw(android.graphics.Canvas):void");
-    }
-
     public int getSize() {
         int i = this.overrideSize;
         if (i != 0) {
@@ -372,6 +247,17 @@ public class AvatarsDrawable {
         }
         int i2 = this.currentStyle;
         return AndroidUtilities.dp((i2 == 4 || i2 == 10) ? 32.0f : 24.0f);
+    }
+
+    public void onAttachedToWindow() {
+        if (this.attached) {
+            return;
+        }
+        this.attached = true;
+        for (int i = 0; i < 3; i++) {
+            this.currentStates[i].imageReceiver.onAttachedToWindow();
+            this.animatingStates[i].imageReceiver.onAttachedToWindow();
+        }
     }
 
     public void onDetachedFromWindow() {
@@ -388,14 +274,30 @@ public class AvatarsDrawable {
         }
     }
 
-    public void onAttachedToWindow() {
-        if (this.attached) {
-            return;
+    public void onDraw(android.graphics.Canvas r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.onDraw(android.graphics.Canvas):void");
+    }
+
+    public void reset() {
+        for (int i = 0; i < this.animatingStates.length; i++) {
+            setObject(0, 0, null);
         }
-        this.attached = true;
-        for (int i = 0; i < 3; i++) {
-            this.currentStates[i].imageReceiver.onAttachedToWindow();
-            this.animatingStates[i].imageReceiver.onAttachedToWindow();
+    }
+
+    public void setAlpha(float f) {
+        this.overrideAlpha = f;
+    }
+
+    public void setAvatarsTextSize(int i) {
+        for (int i2 = 0; i2 < 3; i2++) {
+            DrawingState drawingState = this.currentStates[i2];
+            if (drawingState != null && drawingState.avatarDrawable != null) {
+                this.currentStates[i2].avatarDrawable.setTextSize(i);
+            }
+            DrawingState drawingState2 = this.animatingStates[i2];
+            if (drawingState2 != null && drawingState2.avatarDrawable != null) {
+                this.animatingStates[i2].avatarDrawable.setTextSize(i);
+            }
         }
     }
 
@@ -411,13 +313,120 @@ public class AvatarsDrawable {
         }
     }
 
-    public void reset() {
-        for (int i = 0; i < this.animatingStates.length; i++) {
-            setObject(0, 0, null);
+    public void setDelegate(Runnable runnable) {
+        this.updateDelegate = runnable;
+    }
+
+    public void setObject(int i, int i2, TLObject tLObject) {
+        TLRPC$Chat tLRPC$Chat;
+        TLRPC$Chat chat;
+        DrawingState drawingState;
+        long j = 0;
+        this.animatingStates[i].id = 0L;
+        DrawingState drawingState2 = this.animatingStates[i];
+        TLRPC$User tLRPC$User = null;
+        drawingState2.participant = null;
+        if (tLObject == null) {
+            drawingState2.imageReceiver.setImageBitmap((Drawable) null);
+        } else {
+            drawingState2.lastSpeakTime = -1L;
+            this.animatingStates[i].object = tLObject;
+            if (tLObject instanceof TLRPC$TL_groupCallParticipant) {
+                TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) tLObject;
+                this.animatingStates[i].participant = tLRPC$TL_groupCallParticipant;
+                long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
+                if (DialogObject.isUserDialog(peerId)) {
+                    TLRPC$User user = MessagesController.getInstance(i2).getUser(Long.valueOf(peerId));
+                    this.animatingStates[i].avatarDrawable.setInfo(i2, user);
+                    tLRPC$User = user;
+                    chat = null;
+                } else {
+                    chat = MessagesController.getInstance(i2).getChat(Long.valueOf(-peerId));
+                    this.animatingStates[i].avatarDrawable.setInfo(i2, chat);
+                }
+                if (this.currentStyle == 4) {
+                    if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
+                        drawingState = this.animatingStates[i];
+                    } else if (this.isInCall) {
+                        drawingState = this.animatingStates[i];
+                        j = tLRPC$TL_groupCallParticipant.lastActiveDate;
+                    } else {
+                        drawingState = this.animatingStates[i];
+                    }
+                    drawingState.lastSpeakTime = j;
+                    this.animatingStates[i].id = peerId;
+                    tLRPC$Chat = chat;
+                } else {
+                    drawingState = this.animatingStates[i];
+                }
+                j = tLRPC$TL_groupCallParticipant.active_date;
+                drawingState.lastSpeakTime = j;
+                this.animatingStates[i].id = peerId;
+                tLRPC$Chat = chat;
+            } else if (tLObject instanceof TLRPC$User) {
+                TLRPC$User tLRPC$User2 = (TLRPC$User) tLObject;
+                if (tLRPC$User2.self && this.showSavedMessages) {
+                    this.animatingStates[i].avatarDrawable.setAvatarType(1);
+                    this.animatingStates[i].avatarDrawable.setScaleSize(0.6f);
+                } else {
+                    this.animatingStates[i].avatarDrawable.setAvatarType(0);
+                    this.animatingStates[i].avatarDrawable.setScaleSize(1.0f);
+                    this.animatingStates[i].avatarDrawable.setInfo(i2, tLRPC$User2);
+                }
+                this.animatingStates[i].id = tLRPC$User2.id;
+                tLRPC$User = tLRPC$User2;
+                tLRPC$Chat = null;
+            } else {
+                tLRPC$Chat = (TLRPC$Chat) tLObject;
+                this.animatingStates[i].avatarDrawable.setAvatarType(0);
+                this.animatingStates[i].avatarDrawable.setScaleSize(1.0f);
+                this.animatingStates[i].avatarDrawable.setInfo(i2, tLRPC$Chat);
+                this.animatingStates[i].id = -tLRPC$Chat.id;
+            }
+            if (tLRPC$User == null) {
+                this.animatingStates[i].imageReceiver.setForUserOrChat(tLRPC$Chat, this.animatingStates[i].avatarDrawable);
+            } else if (tLRPC$User.self && this.showSavedMessages) {
+                this.animatingStates[i].imageReceiver.setImageBitmap(this.animatingStates[i].avatarDrawable);
+            } else {
+                this.animatingStates[i].imageReceiver.setForUserOrChat(tLRPC$User, this.animatingStates[i].avatarDrawable);
+            }
+            int size = getSize();
+            this.animatingStates[i].imageReceiver.setRoundRadius(size / 2);
+            float f = size;
+            this.animatingStates[i].imageReceiver.setImageCoords(0.0f, 0.0f, f, f);
         }
+        invalidate();
     }
 
     public void setShowSavedMessages(boolean z) {
         this.showSavedMessages = z;
+    }
+
+    public void setSize(int i) {
+        this.overrideSize = i;
+    }
+
+    public void setStepFactor(float f) {
+        this.overrideSizeStepFactor = f;
+    }
+
+    public void setStyle(int i) {
+        this.currentStyle = i;
+        invalidate();
+    }
+
+    public void setTransitionProgress(float f) {
+        if (!this.transitionInProgress || this.transitionProgress == f) {
+            return;
+        }
+        this.transitionProgress = f;
+        if (f == 1.0f) {
+            swapStates();
+            this.transitionInProgress = false;
+        }
+    }
+
+    public void updateAfterTransitionEnd() {
+        this.updateAfterTransition = true;
     }
 }

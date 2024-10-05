@@ -37,9 +37,50 @@ public class AlertDialogDecor extends AlertDialog {
     private View rootView;
     private final Runnable showRunnable;
 
-    @Override
-    protected boolean supportsNativeBlur() {
-        return false;
+    public static class Builder extends AlertDialog.Builder {
+        public Builder(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, 0, resourcesProvider);
+        }
+
+        @Override
+        protected AlertDialog createAlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+            return new AlertDialogDecor(context, i, resourcesProvider);
+        }
+    }
+
+    public AlertDialogDecor(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        super(context, i, resourcesProvider);
+        this.isDismissed = false;
+        this.openDelay = 0L;
+        this.showRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                AlertDialogDecor.this.lambda$new$0();
+            }
+        };
+    }
+
+    private void extractAnimations() {
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
+        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
+        this.resEnterAnimation = obtainStyledAttributes.getResourceId(0, -1);
+        this.resExitAnimation = obtainStyledAttributes.getResourceId(1, -1);
+        obtainStyledAttributes.recycle();
+    }
+
+    private Activity getActivity(Context context) {
+        if (context instanceof Activity) {
+            return (Activity) context;
+        }
+        if (context instanceof ContextThemeWrapper) {
+            return getActivity(((ContextThemeWrapper) context).getBaseContext());
+        }
+        return null;
+    }
+
+    public ViewGroup getDecorView() {
+        return (ViewGroup) getActivity(getContext()).getWindow().getDecorView();
     }
 
     public void lambda$new$0() {
@@ -56,29 +97,75 @@ public class AlertDialogDecor extends AlertDialog {
         }).start();
     }
 
-    public AlertDialogDecor(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context, i, resourcesProvider);
-        this.isDismissed = false;
-        this.openDelay = 0L;
-        this.showRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                AlertDialogDecor.this.lambda$new$0();
+    public void lambda$show$1(View view) {
+        dismiss();
+    }
+
+    public static WindowInsetsCompat lambda$show$2(FrameLayout frameLayout, View view, WindowInsetsCompat windowInsetsCompat) {
+        Rect rect = new Rect();
+        if (Build.VERSION.SDK_INT >= 30) {
+            Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars());
+            rect.set(insets.left, insets.top, insets.right, insets.bottom);
+        } else {
+            rect.set(windowInsetsCompat.getStableInsetLeft(), windowInsetsCompat.getStableInsetTop(), windowInsetsCompat.getStableInsetRight(), windowInsetsCompat.getStableInsetBottom());
+        }
+        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
+        frameLayout.requestLayout();
+        return windowInsetsCompat;
+    }
+
+    @Override
+    public void dismiss() {
+        if (isShowing() && !this.isDismissed) {
+            this.isDismissed = true;
+            AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
+            if (this.rootView.getVisibility() != 0) {
+                getDecorView().removeView(this.rootView);
+                return;
             }
-        };
+            Animation loadAnimation = AnimationUtils.loadAnimation(getContext(), this.resExitAnimation);
+            loadAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    AlertDialogDecor.this.contentView.setAlpha(0.0f);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+            });
+            this.contentView.clearAnimation();
+            this.contentView.startAnimation(loadAnimation);
+            this.dimView.animate().setListener(null).cancel();
+            this.dimView.animate().setDuration(300L).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    AlertDialogDecor.this.getDecorView().removeView(AlertDialogDecor.this.rootView);
+                    if (AlertDialogDecor.this.onDismissListener != null) {
+                        AlertDialogDecor.this.onDismissListener.onDismiss(AlertDialogDecor.this);
+                    }
+                }
+            }).start();
+        }
     }
 
-    public ViewGroup getDecorView() {
-        return (ViewGroup) getActivity(getContext()).getWindow().getDecorView();
+    @Override
+    public boolean isShowing() {
+        return (getDecorView().indexOfChild(this.rootView) == -1 || this.isDismissed) ? false : true;
     }
 
-    private void extractAnimations() {
-        TypedValue typedValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
-        this.resEnterAnimation = obtainStyledAttributes.getResourceId(0, -1);
-        this.resExitAnimation = obtainStyledAttributes.getResourceId(1, -1);
-        obtainStyledAttributes.recycle();
+    @Override
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
+        this.onShowListener = onShowListener;
     }
 
     @Override
@@ -124,23 +211,6 @@ public class AlertDialogDecor extends AlertDialog {
         }
     }
 
-    public void lambda$show$1(View view) {
-        dismiss();
-    }
-
-    public static WindowInsetsCompat lambda$show$2(FrameLayout frameLayout, View view, WindowInsetsCompat windowInsetsCompat) {
-        Rect rect = new Rect();
-        if (Build.VERSION.SDK_INT >= 30) {
-            Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars());
-            rect.set(insets.left, insets.top, insets.right, insets.bottom);
-        } else {
-            rect.set(windowInsetsCompat.getStableInsetLeft(), windowInsetsCompat.getStableInsetTop(), windowInsetsCompat.getStableInsetRight(), windowInsetsCompat.getStableInsetBottom());
-        }
-        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
-        frameLayout.requestLayout();
-        return windowInsetsCompat;
-    }
-
     @Override
     public void showDelayed(long j) {
         if (isShowing()) {
@@ -151,77 +221,7 @@ public class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public boolean isShowing() {
-        return (getDecorView().indexOfChild(this.rootView) == -1 || this.isDismissed) ? false : true;
-    }
-
-    @Override
-    public void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
-        this.onShowListener = onShowListener;
-    }
-
-    @Override
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
-    @Override
-    public void dismiss() {
-        if (isShowing() && !this.isDismissed) {
-            this.isDismissed = true;
-            AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
-            if (this.rootView.getVisibility() != 0) {
-                getDecorView().removeView(this.rootView);
-                return;
-            }
-            Animation loadAnimation = AnimationUtils.loadAnimation(getContext(), this.resExitAnimation);
-            loadAnimation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    AlertDialogDecor.this.contentView.setAlpha(0.0f);
-                }
-            });
-            this.contentView.clearAnimation();
-            this.contentView.startAnimation(loadAnimation);
-            this.dimView.animate().setListener(null).cancel();
-            this.dimView.animate().setDuration(300L).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    AlertDialogDecor.this.getDecorView().removeView(AlertDialogDecor.this.rootView);
-                    if (AlertDialogDecor.this.onDismissListener != null) {
-                        AlertDialogDecor.this.onDismissListener.onDismiss(AlertDialogDecor.this);
-                    }
-                }
-            }).start();
-        }
-    }
-
-    private Activity getActivity(Context context) {
-        if (context instanceof Activity) {
-            return (Activity) context;
-        }
-        if (context instanceof ContextThemeWrapper) {
-            return getActivity(((ContextThemeWrapper) context).getBaseContext());
-        }
-        return null;
-    }
-
-    public static class Builder extends AlertDialog.Builder {
-        public Builder(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context, 0, resourcesProvider);
-        }
-
-        @Override
-        protected AlertDialog createAlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            return new AlertDialogDecor(context, i, resourcesProvider);
-        }
+    protected boolean supportsNativeBlur() {
+        return false;
     }
 }

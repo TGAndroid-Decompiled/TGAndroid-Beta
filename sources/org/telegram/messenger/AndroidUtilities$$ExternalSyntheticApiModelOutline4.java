@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class AndroidUtilities$$ExternalSyntheticApiModelOutline4 {
+public abstract class AndroidUtilities$$ExternalSyntheticApiModelOutline4 {
 }

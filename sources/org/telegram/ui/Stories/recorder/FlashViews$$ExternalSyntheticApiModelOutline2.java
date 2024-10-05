@@ -1,4 +1,4 @@
 package org.telegram.ui.Stories.recorder;
 
-public final class FlashViews$$ExternalSyntheticApiModelOutline2 {
+public abstract class FlashViews$$ExternalSyntheticApiModelOutline2 {
 }

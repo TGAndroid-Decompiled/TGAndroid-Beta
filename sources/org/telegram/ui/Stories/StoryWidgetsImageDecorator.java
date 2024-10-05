@@ -18,7 +18,7 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Stories.recorder.Weather;
 
 public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
-    ArrayList<DrawingObject> drawingObjects;
+    ArrayList drawingObjects;
     float imageH;
     float imageW;
     float imageX;
@@ -30,65 +30,6 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         public abstract void onAttachedToWindow(boolean z);
 
         public abstract void setParent(View view);
-    }
-
-    public StoryWidgetsImageDecorator(TL_stories$StoryItem tL_stories$StoryItem) {
-        for (int i = 0; i < tL_stories$StoryItem.media_areas.size(); i++) {
-            if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
-                if (this.drawingObjects == null) {
-                    this.drawingObjects = new ArrayList<>();
-                }
-                this.drawingObjects.add(new ReactionWidget((TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$StoryItem.media_areas.get(i)));
-            } else if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaWeather) {
-                if (this.drawingObjects == null) {
-                    this.drawingObjects = new ArrayList<>();
-                }
-                this.drawingObjects.add(new WeatherWidget((TL_stories$TL_mediaAreaWeather) tL_stories$StoryItem.media_areas.get(i)));
-            }
-        }
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas, ImageReceiver imageReceiver) {
-        if (this.drawingObjects == null) {
-            return;
-        }
-        float alpha = imageReceiver.getAlpha();
-        float centerX = imageReceiver.getCenterX();
-        float centerY = imageReceiver.getCenterY();
-        float imageWidth = imageReceiver.getImageWidth();
-        this.imageW = imageWidth;
-        float f = (16.0f * imageWidth) / 9.0f;
-        this.imageH = f;
-        this.imageX = centerX - (imageWidth / 2.0f);
-        this.imageY = centerY - (f / 2.0f);
-        canvas.save();
-        canvas.clipRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        for (int i = 0; i < this.drawingObjects.size(); i++) {
-            this.drawingObjects.get(i).draw(canvas, imageReceiver, alpha);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public void onAttachedToWindow(ImageReceiver imageReceiver) {
-        if (this.drawingObjects == null) {
-            return;
-        }
-        for (int i = 0; i < this.drawingObjects.size(); i++) {
-            this.drawingObjects.get(i).setParent(imageReceiver.getParentView());
-            this.drawingObjects.get(i).onAttachedToWindow(true);
-        }
-    }
-
-    @Override
-    public void onDetachedFromWidnow() {
-        if (this.drawingObjects == null) {
-            return;
-        }
-        for (int i = 0; i < this.drawingObjects.size(); i++) {
-            this.drawingObjects.get(i).onAttachedToWindow(false);
-        }
     }
 
     public class ReactionWidget extends DrawingObject {
@@ -190,7 +131,7 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             locationMarker.setIsVideo(false);
             locationMarker.setCodeEmoji(UserConfig.selectedAccount, state.getEmoji());
             locationMarker.setText(state.getTemperature());
-            locationMarker.setType(0, tL_stories$TL_mediaAreaWeather.color);
+            locationMarker.setType(3, tL_stories$TL_mediaAreaWeather.color);
             locationMarker.setupLayout();
         }
 
@@ -241,5 +182,69 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         public void setParent(View view) {
             this.parentView = view;
         }
+    }
+
+    public StoryWidgetsImageDecorator(TL_stories$StoryItem tL_stories$StoryItem) {
+        ArrayList arrayList;
+        DrawingObject weatherWidget;
+        for (int i = 0; i < tL_stories$StoryItem.media_areas.size(); i++) {
+            if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
+                if (this.drawingObjects == null) {
+                    this.drawingObjects = new ArrayList();
+                }
+                arrayList = this.drawingObjects;
+                weatherWidget = new ReactionWidget((TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$StoryItem.media_areas.get(i));
+            } else if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaWeather) {
+                if (this.drawingObjects == null) {
+                    this.drawingObjects = new ArrayList();
+                }
+                arrayList = this.drawingObjects;
+                weatherWidget = new WeatherWidget((TL_stories$TL_mediaAreaWeather) tL_stories$StoryItem.media_areas.get(i));
+            }
+            arrayList.add(weatherWidget);
+        }
+    }
+
+    @Override
+    public void onAttachedToWindow(ImageReceiver imageReceiver) {
+        if (this.drawingObjects == null) {
+            return;
+        }
+        for (int i = 0; i < this.drawingObjects.size(); i++) {
+            ((DrawingObject) this.drawingObjects.get(i)).setParent(imageReceiver.getParentView());
+            ((DrawingObject) this.drawingObjects.get(i)).onAttachedToWindow(true);
+        }
+    }
+
+    @Override
+    public void onDetachedFromWidnow() {
+        if (this.drawingObjects == null) {
+            return;
+        }
+        for (int i = 0; i < this.drawingObjects.size(); i++) {
+            ((DrawingObject) this.drawingObjects.get(i)).onAttachedToWindow(false);
+        }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas, ImageReceiver imageReceiver) {
+        if (this.drawingObjects == null) {
+            return;
+        }
+        float alpha = imageReceiver.getAlpha();
+        float centerX = imageReceiver.getCenterX();
+        float centerY = imageReceiver.getCenterY();
+        float imageWidth = imageReceiver.getImageWidth();
+        this.imageW = imageWidth;
+        float f = (16.0f * imageWidth) / 9.0f;
+        this.imageH = f;
+        this.imageX = centerX - (imageWidth / 2.0f);
+        this.imageY = centerY - (f / 2.0f);
+        canvas.save();
+        canvas.clipRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        for (int i = 0; i < this.drawingObjects.size(); i++) {
+            ((DrawingObject) this.drawingObjects.get(i)).draw(canvas, imageReceiver, alpha);
+        }
+        canvas.restore();
     }
 }

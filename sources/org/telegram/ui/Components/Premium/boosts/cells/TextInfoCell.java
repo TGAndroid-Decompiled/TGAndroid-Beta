@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import org.telegram.messenger.R;
@@ -8,7 +7,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.CombinedDrawable;
 
-@SuppressLint({"ViewConstructor"})
 public class TextInfoCell extends TextInfoPrivacyCell {
     private final Theme.ResourcesProvider resourcesProvider;
 

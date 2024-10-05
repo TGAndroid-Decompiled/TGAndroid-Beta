@@ -11,16 +11,32 @@ public class StableAnimator extends TimeAnimator {
     private int totalTimes = 0;
     private ValueAnimator.AnimatorUpdateListener updateListener;
 
+    public void lambda$start$0(TimeAnimator timeAnimator, long j, long j2) {
+        int i;
+        int i2 = this.times;
+        if (i2 > 0 && (i = this.totalTimes) > 0) {
+            int i3 = i2 - 1;
+            this.times = i3;
+            if (this.updateListener == null) {
+                return;
+            }
+            float[] fArr = this.floatValues;
+            if (fArr != null && fArr.length == 2) {
+                float interpolation = getInterpolator().getInterpolation(1.0f - (i3 / i));
+                float[] fArr2 = this.floatValues;
+                float f = fArr2[0];
+                this.animatedValue = Float.valueOf(f + ((fArr2[1] - f) * interpolation));
+                this.updateListener.onAnimationUpdate(this);
+                return;
+            }
+        }
+        end();
+    }
+
     public static StableAnimator ofFloat(float... fArr) {
         StableAnimator stableAnimator = new StableAnimator();
         stableAnimator.setFloatValues(fArr);
         return stableAnimator;
-    }
-
-    @Override
-    public void setFloatValues(float[] fArr) {
-        super.setFloatValues(fArr);
-        this.floatValues = fArr;
     }
 
     @Override
@@ -29,14 +45,20 @@ public class StableAnimator extends TimeAnimator {
     }
 
     @Override
+    public void end() {
+        this.updateListener = null;
+        super.end();
+    }
+
+    @Override
     public Object getAnimatedValue() {
         return this.animatedValue;
     }
 
     @Override
-    public void end() {
-        this.updateListener = null;
-        super.end();
+    public void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.floatValues = fArr;
     }
 
     @Override
@@ -51,29 +73,5 @@ public class StableAnimator extends TimeAnimator {
         this.times = duration;
         this.totalTimes = duration;
         super.start();
-    }
-
-    public void lambda$start$0(TimeAnimator timeAnimator, long j, long j2) {
-        int i;
-        int i2 = this.times;
-        if (i2 > 0 && (i = this.totalTimes) > 0) {
-            int i3 = i2 - 1;
-            this.times = i3;
-            if (this.updateListener != null) {
-                float[] fArr = this.floatValues;
-                if (fArr != null && fArr.length == 2) {
-                    float interpolation = getInterpolator().getInterpolation(1.0f - (i3 / i));
-                    float[] fArr2 = this.floatValues;
-                    float f = fArr2[0];
-                    this.animatedValue = Float.valueOf(f + ((fArr2[1] - f) * interpolation));
-                    this.updateListener.onAnimationUpdate(this);
-                    return;
-                }
-                end();
-                return;
-            }
-            return;
-        }
-        end();
     }
 }

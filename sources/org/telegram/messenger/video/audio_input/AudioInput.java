@@ -8,21 +8,21 @@ public abstract class AudioInput {
 
     public abstract int getSampleRate();
 
+    public float getVolume() {
+        return this.volume;
+    }
+
     public abstract boolean hasRemaining();
-
-    public abstract void release();
-
-    public abstract void start(int i, int i2);
 
     public boolean isLoopingEnabled() {
         return this.loopingEnabled;
     }
 
-    public float getVolume() {
-        return this.volume;
-    }
+    public abstract void release();
 
     public void setVolume(float f) {
         this.volume = Math.max(0.0f, Math.min(f, 1.0f));
     }
+
+    public abstract void start(int i, int i2);
 }

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_messages_searchEmojiStickerSets extends TLObject {
-    public static int constructor = -1833678516;
     public boolean exclude_featured;
     public int flags;
     public long hash;
@@ -14,7 +13,7 @@ public class TLRPC$TL_messages_searchEmojiStickerSets extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1833678516);
         int i = this.exclude_featured ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

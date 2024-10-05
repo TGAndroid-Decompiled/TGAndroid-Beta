@@ -7,7 +7,7 @@ public abstract class TLRPC$ReplyMarkup extends TLObject {
     public boolean is_persistent;
     public String placeholder;
     public boolean resize;
-    public ArrayList<TLRPC$TL_keyboardButtonRow> rows = new ArrayList<>();
+    public ArrayList rows = new ArrayList();
     public boolean selective;
     public boolean single_use;
 
@@ -84,7 +84,7 @@ public abstract class TLRPC$ReplyMarkup extends TLObject {
                         int size = this.rows.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i5 = 0; i5 < size; i5++) {
-                            this.rows.get(i5).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_keyboardButtonRow) this.rows.get(i5)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };

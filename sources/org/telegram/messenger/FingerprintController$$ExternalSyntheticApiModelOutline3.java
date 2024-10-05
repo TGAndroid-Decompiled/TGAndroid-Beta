@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class FingerprintController$$ExternalSyntheticApiModelOutline3 {
+public abstract class FingerprintController$$ExternalSyntheticApiModelOutline3 {
 }

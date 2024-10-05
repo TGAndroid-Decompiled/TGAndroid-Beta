@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
 
-public class BrightnessControlCell extends FrameLayout {
+public abstract class BrightnessControlCell extends FrameLayout {
     private ImageView leftImageView;
     Theme.ResourcesProvider resourcesProvider;
     private ImageView rightImageView;
@@ -23,15 +23,13 @@ public class BrightnessControlCell extends FrameLayout {
     private final int size;
     private int type;
 
-    protected void didChangedValue(float f) {
-    }
-
     public BrightnessControlCell(Context context, int i) {
         this(context, i, null);
     }
 
     public BrightnessControlCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        int i2;
         this.type = i;
         this.resourcesProvider = resourcesProvider;
         ImageView imageView = new ImageView(context);
@@ -50,12 +48,13 @@ public class BrightnessControlCell extends FrameLayout {
         seekBarView.setReportChanges(true);
         seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
-            public int getStepsCount() {
-                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            public CharSequence getContentDescription() {
+                return " ";
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
+            public int getStepsCount() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
             }
 
             @Override
@@ -64,8 +63,7 @@ public class BrightnessControlCell extends FrameLayout {
             }
 
             @Override
-            public CharSequence getContentDescription() {
-                return " ";
+            public void onSeekBarPressed(boolean z) {
             }
         });
         seekBarView.setImportantForAccessibility(2);
@@ -73,16 +71,20 @@ public class BrightnessControlCell extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.rightImageView = imageView2;
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
+        ImageView imageView3 = this.leftImageView;
         if (i == 0) {
-            this.leftImageView.setImageResource(R.drawable.msg_brightness_low);
+            imageView3.setImageResource(R.drawable.msg_brightness_low);
             this.rightImageView.setImageResource(R.drawable.msg_brightness_high);
-            this.size = 48;
+            i2 = 48;
         } else {
-            this.leftImageView.setImageResource(R.drawable.msg_brightness_high);
+            imageView3.setImageResource(R.drawable.msg_brightness_high);
             this.rightImageView.setImageResource(R.drawable.msg_brightness_low);
-            this.size = 43;
+            i2 = 43;
         }
+        this.size = i2;
     }
+
+    protected abstract void didChangedValue(float f);
 
     @Override
     protected void onAttachedToWindow() {
@@ -96,22 +98,22 @@ public class BrightnessControlCell extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.size), 1073741824));
-    }
-
-    public void setProgress(float f) {
-        this.seekBarView.setProgress(f);
-    }
-
-    @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         this.seekBarView.getSeekBarAccessibilityDelegate().onInitializeAccessibilityNodeInfoInternal(this, accessibilityNodeInfo);
     }
 
     @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.size), 1073741824));
+    }
+
+    @Override
     public boolean performAccessibilityAction(int i, Bundle bundle) {
         return super.performAccessibilityAction(i, bundle) || this.seekBarView.getSeekBarAccessibilityDelegate().performAccessibilityActionInternal(this, i, bundle);
+    }
+
+    public void setProgress(float f) {
+        this.seekBarView.setProgress(f);
     }
 }

@@ -8,14 +8,12 @@ public abstract class Random {
     public static final Default Default = new Default(null);
     private static final Random defaultRandom = PlatformImplementationsKt.IMPLEMENTATIONS.defaultPlatformRandom();
 
-    public abstract int nextInt();
-
     public static final class Default extends Random implements Serializable {
-        public Default(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
+        private Default() {
         }
 
-        private Default() {
+        public Default(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
 
         @Override
@@ -23,4 +21,6 @@ public abstract class Random {
             return Random.defaultRandom.nextInt();
         }
     }
+
+    public abstract int nextInt();
 }

@@ -20,7 +20,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 
-public class SettingsSuggestionCell extends LinearLayout {
+public abstract class SettingsSuggestionCell extends LinearLayout {
     private int currentAccount;
     private int currentType;
     private TextView detailTextView;
@@ -29,14 +29,9 @@ public class SettingsSuggestionCell extends LinearLayout {
     private TextView textView;
     private TextView yesButton;
 
-    protected void onNoClick(int i) {
-    }
-
-    protected void onYesClick(int i) {
-    }
-
     public SettingsSuggestionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        View.OnClickListener onClickListener;
         this.currentAccount = UserConfig.selectedAccount;
         this.resourcesProvider = resourcesProvider;
         setOrientation(1);
@@ -76,21 +71,22 @@ public class SettingsSuggestionCell extends LinearLayout {
             linearLayout.addView(textView2, LayoutHelper.createLinear(0, 44, 0.5f, i == 0 ? 0 : 4, 0, i == 0 ? 4 : 0, 0));
             if (i == 0) {
                 this.yesButton = textView2;
-                textView2.setOnClickListener(new View.OnClickListener() {
+                onClickListener = new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         SettingsSuggestionCell.this.lambda$new$0(view);
                     }
-                });
+                };
             } else {
                 this.noButton = textView2;
-                textView2.setOnClickListener(new View.OnClickListener() {
+                onClickListener = new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         SettingsSuggestionCell.this.lambda$new$1(view);
                     }
-                });
+                };
             }
+            textView2.setOnClickListener(onClickListener);
             i++;
         }
     }
@@ -103,49 +99,58 @@ public class SettingsSuggestionCell extends LinearLayout {
         onNoClick(this.currentType);
     }
 
-    public void setType(int i) {
-        this.currentType = i;
-        if (i != 0) {
-            if (i == 1) {
-                this.textView.setText(LocaleController.getString(R.string.YourPasswordHeader));
-                this.detailTextView.setText(LocaleController.getString(R.string.YourPasswordRemember));
-                this.yesButton.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
-                this.noButton.setVisibility(0);
-                this.noButton.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
-                return;
-            }
-            if (i == 2) {
-                this.textView.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
-                this.detailTextView.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
-                this.yesButton.setText(LocaleController.getString(R.string.GraceSuggestionButton));
-                this.noButton.setVisibility(8);
-                return;
-            }
-            return;
-        }
-        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).clientUserId));
-        this.textView.setText(LocaleController.formatString("CheckPhoneNumber", R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + user.phone)));
-        String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-        int indexOf = string.indexOf("**");
-        int lastIndexOf = string.lastIndexOf("**");
-        if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
-            spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
-            spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
-            try {
-                spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        this.detailTextView.setText(spannableStringBuilder);
-        this.yesButton.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
-        this.noButton.setVisibility(0);
-        this.noButton.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
-    }
-
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    }
+
+    protected abstract void onNoClick(int i);
+
+    protected abstract void onYesClick(int i);
+
+    public void setType(int i) {
+        TextView textView;
+        int i2;
+        this.currentType = i;
+        if (i == 0) {
+            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).clientUserId));
+            this.textView.setText(LocaleController.formatString("CheckPhoneNumber", R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + user.phone)));
+            String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+            int indexOf = string.indexOf("**");
+            int lastIndexOf = string.lastIndexOf("**");
+            if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
+                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
+                try {
+                    spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            this.detailTextView.setText(spannableStringBuilder);
+            this.yesButton.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
+            this.noButton.setVisibility(0);
+            textView = this.noButton;
+            i2 = R.string.CheckPhoneNumberNo;
+        } else {
+            if (i != 1) {
+                if (i == 2) {
+                    this.textView.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
+                    this.detailTextView.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
+                    this.yesButton.setText(LocaleController.getString(R.string.GraceSuggestionButton));
+                    this.noButton.setVisibility(8);
+                    return;
+                }
+                return;
+            }
+            this.textView.setText(LocaleController.getString(R.string.YourPasswordHeader));
+            this.detailTextView.setText(LocaleController.getString(R.string.YourPasswordRemember));
+            this.yesButton.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
+            this.noButton.setVisibility(0);
+            textView = this.noButton;
+            i2 = R.string.YourPasswordRememberNo;
+        }
+        textView.setText(LocaleController.getString(i2));
     }
 }

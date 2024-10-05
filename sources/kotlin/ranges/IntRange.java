@@ -6,16 +6,21 @@ public final class IntRange extends IntProgression {
     public static final Companion Companion = new Companion(null);
     private static final IntRange EMPTY = new IntRange(1, 0);
 
+    public static final class Companion {
+        private Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public IntRange(int i, int i2) {
         super(i, i2, 1);
     }
 
     public boolean contains(int i) {
         return getFirst() <= i && i <= getLast();
-    }
-
-    public boolean isEmpty() {
-        return getFirst() > getLast();
     }
 
     public boolean equals(Object obj) {
@@ -37,16 +42,11 @@ public final class IntRange extends IntProgression {
         return (getFirst() * 31) + getLast();
     }
 
-    public String toString() {
-        return getFirst() + ".." + getLast();
+    public boolean isEmpty() {
+        return getFirst() > getLast();
     }
 
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
+    public String toString() {
+        return getFirst() + ".." + getLast();
     }
 }

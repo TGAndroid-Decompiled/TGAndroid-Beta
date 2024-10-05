@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_secureValueErrorFiles extends TLRPC$SecureValueError {
-    public ArrayList<byte[]> file_hash = new ArrayList<>();
+    public ArrayList file_hash = new ArrayList();
     public String text;
     public TLRPC$SecureValueType type;
 
@@ -32,7 +32,7 @@ public class TLRPC$TL_secureValueErrorFiles extends TLRPC$SecureValueError {
         int size = this.file_hash.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeByteArray(this.file_hash.get(i));
+            abstractSerializedData.writeByteArray((byte[]) this.file_hash.get(i));
         }
         abstractSerializedData.writeString(this.text);
     }

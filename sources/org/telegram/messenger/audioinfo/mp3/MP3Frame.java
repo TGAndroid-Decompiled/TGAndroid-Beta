@@ -10,25 +10,26 @@ public class MP3Frame {
         CRC16() {
         }
 
-        public void update(int i, int i2) {
-            int i3 = 1 << (i2 - 1);
-            do {
-                short s = this.crc;
-                if (((32768 & s) == 0) ^ ((i & i3) == 0)) {
-                    this.crc = (short) (((short) (s << 1)) ^ 32773);
-                } else {
-                    this.crc = (short) (s << 1);
-                }
-                i3 >>>= 1;
-            } while (i3 != 0);
+        public short getValue() {
+            return this.crc;
         }
 
         public void update(byte b) {
             update(b, 8);
         }
 
-        public short getValue() {
-            return this.crc;
+        public void update(int i, int i2) {
+            int i3 = 1 << (i2 - 1);
+            do {
+                short s = this.crc;
+                boolean z = (32768 & s) == 0;
+                short s2 = (short) (s << 1);
+                if (z ^ ((i & i3) == 0)) {
+                    s2 = (short) (s2 ^ 32773);
+                }
+                this.crc = s2;
+                i3 >>>= 1;
+            } while (i3 != 0);
         }
     }
 
@@ -47,11 +48,7 @@ public class MP3Frame {
         private static final int[] SLOT_SIZES = {-1, 1, 1, 4};
         private static final int[][] SIDE_INFO_SIZES = {new int[]{17, -1, 17, 32}, new int[]{17, -1, 17, 32}, new int[]{17, -1, 17, 32}, new int[]{9, -1, 9, 17}};
 
-        public int getVBRIOffset() {
-            return 36;
-        }
-
-        public Header(int i, int i2, int i3) throws MP3Exception {
+        public Header(int i, int i2, int i3) {
             int i4 = (i >> 3) & 3;
             this.version = i4;
             if (i4 == 1) {
@@ -87,20 +84,28 @@ public class MP3Frame {
             throw new MP3Exception("Frame size must be at least " + i9);
         }
 
-        public int getVersion() {
-            return this.version;
+        public int getBitrate() {
+            return BITRATES[this.bitrate][BITRATES_COLUMN[this.version][this.layer]];
         }
 
-        public int getLayer() {
-            return this.layer;
+        public int getChannelMode() {
+            return this.channelMode;
+        }
+
+        public int getDuration() {
+            return (int) getTotalDuration(getFrameSize());
+        }
+
+        public int getFrameSize() {
+            return (((SIZE_COEFFICIENTS[this.version][this.layer] * getBitrate()) / getFrequency()) + this.padding) * SLOT_SIZES[this.layer];
         }
 
         public int getFrequency() {
             return FREQUENCIES[this.frequency][this.version];
         }
 
-        public int getChannelMode() {
-            return this.channelMode;
+        public int getLayer() {
+            return this.layer;
         }
 
         public int getProtection() {
@@ -111,16 +116,8 @@ public class MP3Frame {
             return this.layer == 3 ? 384 : 1152;
         }
 
-        public int getFrameSize() {
-            return (((SIZE_COEFFICIENTS[this.version][this.layer] * getBitrate()) / getFrequency()) + this.padding) * SLOT_SIZES[this.layer];
-        }
-
-        public int getBitrate() {
-            return BITRATES[this.bitrate][BITRATES_COLUMN[this.version][this.layer]];
-        }
-
-        public int getDuration() {
-            return (int) getTotalDuration(getFrameSize());
+        public int getSideInfoSize() {
+            return SIDE_INFO_SIZES[this.channelMode][this.version];
         }
 
         public long getTotalDuration(long j) {
@@ -128,16 +125,20 @@ public class MP3Frame {
             return (getVersion() == 3 || getChannelMode() != 3) ? sampleCount : sampleCount / 2;
         }
 
-        public boolean isCompatible(Header header) {
-            return this.layer == header.layer && this.version == header.version && this.frequency == header.frequency && this.channelMode == header.channelMode;
+        public int getVBRIOffset() {
+            return 36;
         }
 
-        public int getSideInfoSize() {
-            return SIDE_INFO_SIZES[this.channelMode][this.version];
+        public int getVersion() {
+            return this.version;
         }
 
         public int getXingOffset() {
             return getSideInfoSize() + 4;
+        }
+
+        public boolean isCompatible(Header header) {
+            return this.layer == header.layer && this.version == header.version && this.frequency == header.frequency && this.channelMode == header.channelMode;
         }
     }
 
@@ -146,48 +147,8 @@ public class MP3Frame {
         this.bytes = bArr;
     }
 
-    public boolean isChecksumError() {
-        if (this.header.getProtection() != 0 || this.header.getLayer() != 1) {
-            return false;
-        }
-        CRC16 crc16 = new CRC16();
-        crc16.update(this.bytes[2]);
-        crc16.update(this.bytes[3]);
-        int sideInfoSize = this.header.getSideInfoSize();
-        for (int i = 0; i < sideInfoSize; i++) {
-            crc16.update(this.bytes[i + 6]);
-        }
-        byte[] bArr = this.bytes;
-        return ((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue();
-    }
-
-    public int getSize() {
-        return this.bytes.length;
-    }
-
     public Header getHeader() {
         return this.header;
-    }
-
-    boolean isXingFrame() {
-        int xingOffset = this.header.getXingOffset();
-        byte[] bArr = this.bytes;
-        if (bArr.length >= xingOffset + 12 && xingOffset >= 0 && bArr.length >= xingOffset + 8) {
-            byte b = bArr[xingOffset];
-            if (b == 88 && bArr[xingOffset + 1] == 105 && bArr[xingOffset + 2] == 110 && bArr[xingOffset + 3] == 103) {
-                return true;
-            }
-            if (b == 73 && bArr[xingOffset + 1] == 110 && bArr[xingOffset + 2] == 102 && bArr[xingOffset + 3] == 111) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    boolean isVBRIFrame() {
-        int vBRIOffset = this.header.getVBRIOffset();
-        byte[] bArr = this.bytes;
-        return bArr.length >= vBRIOffset + 26 && bArr[vBRIOffset] == 86 && bArr[vBRIOffset + 1] == 66 && bArr[vBRIOffset + 2] == 82 && bArr[vBRIOffset + 3] == 73;
     }
 
     public int getNumberOfFrames() {
@@ -211,5 +172,45 @@ public class MP3Frame {
             b = bArr2[vBRIOffset + 17];
         }
         return (b & 255) | i;
+    }
+
+    public int getSize() {
+        return this.bytes.length;
+    }
+
+    public boolean isChecksumError() {
+        if (this.header.getProtection() != 0 || this.header.getLayer() != 1) {
+            return false;
+        }
+        CRC16 crc16 = new CRC16();
+        crc16.update(this.bytes[2]);
+        crc16.update(this.bytes[3]);
+        int sideInfoSize = this.header.getSideInfoSize();
+        for (int i = 0; i < sideInfoSize; i++) {
+            crc16.update(this.bytes[i + 6]);
+        }
+        byte[] bArr = this.bytes;
+        return ((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue();
+    }
+
+    boolean isVBRIFrame() {
+        int vBRIOffset = this.header.getVBRIOffset();
+        byte[] bArr = this.bytes;
+        return bArr.length >= vBRIOffset + 26 && bArr[vBRIOffset] == 86 && bArr[vBRIOffset + 1] == 66 && bArr[vBRIOffset + 2] == 82 && bArr[vBRIOffset + 3] == 73;
+    }
+
+    boolean isXingFrame() {
+        int xingOffset = this.header.getXingOffset();
+        byte[] bArr = this.bytes;
+        if (bArr.length >= xingOffset + 12 && xingOffset >= 0 && bArr.length >= xingOffset + 8) {
+            byte b = bArr[xingOffset];
+            if (b == 88 && bArr[xingOffset + 1] == 105 && bArr[xingOffset + 2] == 110 && bArr[xingOffset + 3] == 103) {
+                return true;
+            }
+            if (b == 73 && bArr[xingOffset + 1] == 110 && bArr[xingOffset + 2] == 102 && bArr[xingOffset + 3] == 111) {
+                return true;
+            }
+        }
+        return false;
     }
 }

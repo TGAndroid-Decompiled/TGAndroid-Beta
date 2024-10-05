@@ -4,32 +4,12 @@ import java.nio.ShortBuffer;
 
 public class DefaultAudioRemixer implements AudioRemixer {
     @Override
-    public void remix(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
-        AudioRemixer audioRemixer;
-        if (i == 6 && i2 == 2) {
-            audioRemixer = AudioRemixer.PASSTHROUGH;
-        } else if (i > i2) {
-            audioRemixer = AudioRemixer.DOWNMIX;
-        } else if (i < i2) {
-            audioRemixer = AudioRemixer.UPMIX;
-        } else {
-            audioRemixer = AudioRemixer.PASSTHROUGH;
-        }
-        audioRemixer.remix(shortBuffer, i, shortBuffer2, i2);
+    public int getRemixedSize(int i, int i2, int i3) {
+        return (i2 == 6 ? AudioRemixer.SURROUND : i2 > i3 ? AudioRemixer.DOWNMIX : i2 < i3 ? AudioRemixer.UPMIX : AudioRemixer.PASSTHROUGH).getRemixedSize(i, i2, i3);
     }
 
     @Override
-    public int getRemixedSize(int i, int i2, int i3) {
-        AudioRemixer audioRemixer;
-        if (i2 == 6 && i3 == 2) {
-            audioRemixer = AudioRemixer.PASSTHROUGH;
-        } else if (i2 > i3) {
-            audioRemixer = AudioRemixer.DOWNMIX;
-        } else if (i2 < i3) {
-            audioRemixer = AudioRemixer.UPMIX;
-        } else {
-            audioRemixer = AudioRemixer.PASSTHROUGH;
-        }
-        return audioRemixer.getRemixedSize(i, i2, i3);
+    public void remix(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
+        (i == 6 ? AudioRemixer.SURROUND : i > i2 ? AudioRemixer.DOWNMIX : i < i2 ? AudioRemixer.UPMIX : AudioRemixer.PASSTHROUGH).remix(shortBuffer, i, shortBuffer2, i2);
     }
 }

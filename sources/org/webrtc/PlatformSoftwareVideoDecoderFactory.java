@@ -27,6 +27,10 @@ public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderF
         }
     };
 
+    public PlatformSoftwareVideoDecoderFactory(EglBase.Context context) {
+        super(context, defaultAllowedPredicate);
+    }
+
     @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
         return super.createDecoder(videoCodecInfo);
@@ -35,9 +39,5 @@ public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderF
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
         return super.getSupportedCodecs();
-    }
-
-    public PlatformSoftwareVideoDecoderFactory(EglBase.Context context) {
-        super(context, defaultAllowedPredicate);
     }
 }

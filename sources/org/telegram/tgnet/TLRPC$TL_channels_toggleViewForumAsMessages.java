@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_channels_toggleViewForumAsMessages extends TLObject {
-    public static int constructor = -1757889771;
     public TLRPC$InputChannel channel_id;
     public boolean enabled;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channels_toggleViewForumAsMessages extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1757889771);
         this.channel_id.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeBool(this.enabled);
     }

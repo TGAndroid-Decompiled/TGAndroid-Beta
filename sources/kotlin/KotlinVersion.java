@@ -4,13 +4,22 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.IntRange;
 
-public final class KotlinVersion implements Comparable<KotlinVersion> {
+public final class KotlinVersion implements Comparable {
     private final int major;
     private final int minor;
     private final int patch;
     private final int version;
     public static final Companion Companion = new Companion(null);
     public static final KotlinVersion CURRENT = KotlinVersionCurrentValue.get();
+
+    public static final class Companion {
+        private Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public KotlinVersion(int i, int i2, int i3) {
         this.major = i;
@@ -26,14 +35,10 @@ public final class KotlinVersion implements Comparable<KotlinVersion> {
         throw new IllegalArgumentException(("Version components are out of range: " + i + '.' + i2 + '.' + i3).toString());
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.major);
-        sb.append('.');
-        sb.append(this.minor);
-        sb.append('.');
-        sb.append(this.patch);
-        return sb.toString();
+    @Override
+    public int compareTo(KotlinVersion other) {
+        Intrinsics.checkNotNullParameter(other, "other");
+        return this.version - other.version;
     }
 
     public boolean equals(Object obj) {
@@ -48,18 +53,13 @@ public final class KotlinVersion implements Comparable<KotlinVersion> {
         return this.version;
     }
 
-    @Override
-    public int compareTo(KotlinVersion other) {
-        Intrinsics.checkNotNullParameter(other, "other");
-        return this.version - other.version;
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.major);
+        sb.append('.');
+        sb.append(this.minor);
+        sb.append('.');
+        sb.append(this.patch);
+        return sb.toString();
     }
 }

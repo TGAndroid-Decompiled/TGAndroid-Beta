@@ -100,19 +100,19 @@ public class TLRPC$TL_dialogFilter extends TLRPC$DialogFilter {
         int size = this.pinned_peers.size();
         abstractSerializedData.writeInt32(size);
         for (int i9 = 0; i9 < size; i9++) {
-            this.pinned_peers.get(i9).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputPeer) this.pinned_peers.get(i9)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.include_peers.size();
         abstractSerializedData.writeInt32(size2);
         for (int i10 = 0; i10 < size2; i10++) {
-            this.include_peers.get(i10).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputPeer) this.include_peers.get(i10)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.exclude_peers.size();
         abstractSerializedData.writeInt32(size3);
         for (int i11 = 0; i11 < size3; i11++) {
-            this.exclude_peers.get(i11).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputPeer) this.exclude_peers.get(i11)).serializeToStream(abstractSerializedData);
         }
     }
 }

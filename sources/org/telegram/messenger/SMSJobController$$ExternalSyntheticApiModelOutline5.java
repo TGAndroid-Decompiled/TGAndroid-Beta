@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class SMSJobController$$ExternalSyntheticApiModelOutline5 {
+public abstract class SMSJobController$$ExternalSyntheticApiModelOutline5 {
 }

@@ -1,4 +1,4 @@
 package kotlin.ranges;
 
-class RangesKt__RangesKt {
+abstract class RangesKt__RangesKt {
 }

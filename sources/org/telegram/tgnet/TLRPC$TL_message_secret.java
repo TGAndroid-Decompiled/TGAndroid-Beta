@@ -75,7 +75,7 @@ public class TLRPC$TL_message_secret extends TLRPC$TL_message {
         int size = this.entities.size();
         abstractSerializedData.writeInt32(size);
         for (int i5 = 0; i5 < size; i5++) {
-            this.entities.get(i5).serializeToStream(abstractSerializedData);
+            ((TLRPC$MessageEntity) this.entities.get(i5)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.via_bot_name);

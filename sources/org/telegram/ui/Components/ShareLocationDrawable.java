@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
@@ -14,46 +15,34 @@ public class ShareLocationDrawable extends Drawable {
     private long lastUpdateTime = 0;
     private float[] progress = {0.0f, -0.5f};
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
     public ShareLocationDrawable(Context context, int i) {
+        Resources resources;
+        int i2;
+        Resources resources2;
+        int i3;
         this.currentType = i;
         if (i == 4) {
-            this.drawable = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
-            this.drawableLeft = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.drawableRight = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
-            return;
-        }
-        if (i == 5) {
-            this.drawable = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
-            this.drawableLeft = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.drawableRight = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
-            return;
-        }
-        if (i == 3) {
-            this.drawable = context.getResources().getDrawable(R.drawable.nearby_l).mutate();
-            this.drawableLeft = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
-            this.drawableRight = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
-        } else if (i == 2) {
-            this.drawable = context.getResources().getDrawable(R.drawable.nearby_m).mutate();
-            this.drawableLeft = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
-            this.drawableRight = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
-        } else if (i == 1) {
-            this.drawable = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
-            this.drawableLeft = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.drawableRight = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
+            resources2 = context.getResources();
+            i3 = R.drawable.filled_extend_location;
+        } else if (i == 5) {
+            resources2 = context.getResources();
+            i3 = R.drawable.filled_stop_location;
         } else {
-            this.drawable = context.getResources().getDrawable(R.drawable.animationpin).mutate();
-            this.drawableLeft = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
-            this.drawableRight = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
+            if (i != 1) {
+                this.drawable = context.getResources().getDrawable(R.drawable.animationpin).mutate();
+                this.drawableLeft = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
+                resources = context.getResources();
+                i2 = R.drawable.animationpinright;
+                this.drawableRight = resources.getDrawable(i2).mutate();
+            }
+            resources2 = context.getResources();
+            i3 = R.drawable.smallanimationpin;
         }
+        this.drawable = resources2.getDrawable(i3).mutate();
+        this.drawableLeft = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
+        resources = context.getResources();
+        i2 = R.drawable.smallanimationpinright;
+        this.drawableRight = resources.getDrawable(i2).mutate();
     }
 
     private void update() {
@@ -83,45 +72,30 @@ public class ShareLocationDrawable extends Drawable {
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.drawable.setColorFilter(colorFilter);
-        this.drawableLeft.setColorFilter(colorFilter);
-        this.drawableRight.setColorFilter(colorFilter);
+    public int getIntrinsicHeight() {
+        int i = this.currentType;
+        return AndroidUtilities.dp((i == 4 || i == 5) ? 42.0f : i == 3 ? 100.0f : i == 2 ? 74.0f : i == 1 ? 40.0f : 180.0f);
     }
 
     @Override
     public int getIntrinsicWidth() {
         int i = this.currentType;
-        if (i == 4 || i == 5) {
-            return AndroidUtilities.dp(42.0f);
-        }
-        if (i == 3) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        if (i == 2) {
-            return AndroidUtilities.dp(74.0f);
-        }
-        if (i == 1) {
-            return AndroidUtilities.dp(40.0f);
-        }
-        return AndroidUtilities.dp(120.0f);
+        return AndroidUtilities.dp((i == 4 || i == 5) ? 42.0f : i == 3 ? 100.0f : i == 2 ? 74.0f : i == 1 ? 40.0f : 120.0f);
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        int i = this.currentType;
-        if (i == 4 || i == 5) {
-            return AndroidUtilities.dp(42.0f);
-        }
-        if (i == 3) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        if (i == 2) {
-            return AndroidUtilities.dp(74.0f);
-        }
-        if (i == 1) {
-            return AndroidUtilities.dp(40.0f);
-        }
-        return AndroidUtilities.dp(180.0f);
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.drawable.setColorFilter(colorFilter);
+        this.drawableLeft.setColorFilter(colorFilter);
+        this.drawableRight.setColorFilter(colorFilter);
     }
 }

@@ -12,8 +12,8 @@ public class TLRPC$TL_inputStorePaymentPremiumGiveaway extends TLRPC$InputStoreP
     public long random_id;
     public int until_date;
     public boolean winners_are_visible;
-    public ArrayList<TLRPC$InputPeer> additional_peers = new ArrayList<>();
-    public ArrayList<String> countries_iso2 = new ArrayList<>();
+    public ArrayList additional_peers = new ArrayList();
+    public ArrayList countries_iso2 = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -76,7 +76,7 @@ public class TLRPC$TL_inputStorePaymentPremiumGiveaway extends TLRPC$InputStoreP
             int size = this.additional_peers.size();
             abstractSerializedData.writeInt32(size);
             for (int i3 = 0; i3 < size; i3++) {
-                this.additional_peers.get(i3).serializeToStream(abstractSerializedData);
+                ((TLRPC$InputPeer) this.additional_peers.get(i3)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {
@@ -84,7 +84,7 @@ public class TLRPC$TL_inputStorePaymentPremiumGiveaway extends TLRPC$InputStoreP
             int size2 = this.countries_iso2.size();
             abstractSerializedData.writeInt32(size2);
             for (int i4 = 0; i4 < size2; i4++) {
-                abstractSerializedData.writeString(this.countries_iso2.get(i4));
+                abstractSerializedData.writeString((String) this.countries_iso2.get(i4));
             }
         }
         if ((this.flags & 16) != 0) {

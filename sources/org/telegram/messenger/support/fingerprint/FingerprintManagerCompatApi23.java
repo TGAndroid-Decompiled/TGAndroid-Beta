@@ -1,12 +1,10 @@
 package org.telegram.messenger.support.fingerprint;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
 import org.telegram.messenger.FileLog;
 
-@TargetApi(23)
-public final class FingerprintManagerCompatApi23 {
+public abstract class FingerprintManagerCompatApi23 {
     private static FingerprintManager getFingerprintManager(Context context) {
         return FingerprintManagerCompatApi23$$ExternalSyntheticApiModelOutline2.m(context.getSystemService("fingerprint"));
     }

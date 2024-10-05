@@ -74,9 +74,35 @@ public class LinkActionView extends LinearLayout {
     private final TextView shareView;
     private int usersCount;
 
+    public class AvatarsContainer extends FrameLayout {
+        AvatarsImageView avatarsImageView;
+        TextView countTextView;
+
+        public AvatarsContainer(Context context) {
+            super(context);
+            this.avatarsImageView = new AvatarsImageView(context, false) {
+                @Override
+                public void onMeasure(int i, int i2) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.min(3, LinkActionView.this.usersCount) == 0 ? 0 : ((r2 - 1) * 20) + 32), 1073741824), i2);
+                }
+            };
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(0);
+            addView(linearLayout, LayoutHelper.createFrame(-2, -1, 1));
+            TextView textView = new TextView(context);
+            this.countTextView = textView;
+            textView.setTextSize(1, 14.0f);
+            this.countTextView.setTypeface(AndroidUtilities.bold());
+            linearLayout.addView(this.avatarsImageView, LayoutHelper.createLinear(-2, -1));
+            linearLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 16));
+            setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+            this.avatarsImageView.commitTransition(false);
+        }
+    }
+
     public interface Delegate {
 
-        public final class CC {
+        public abstract class CC {
             public static void $default$editLink(Delegate delegate) {
             }
 
@@ -213,17 +239,59 @@ public class LinkActionView extends LinearLayout {
         updateColors();
     }
 
+    public void getPointOnScreen(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
+        float f = 0.0f;
+        float f2 = 0.0f;
+        while (frameLayout != frameLayout2) {
+            f2 += frameLayout.getY();
+            f += frameLayout.getX();
+            if (frameLayout instanceof ScrollView) {
+                f2 -= frameLayout.getScrollY();
+            }
+            if (!(frameLayout.getParent() instanceof View)) {
+                break;
+            }
+            frameLayout = (View) frameLayout.getParent();
+            if (!(frameLayout instanceof ViewGroup)) {
+                return;
+            }
+        }
+        fArr[0] = f - frameLayout2.getPaddingLeft();
+        fArr[1] = f2 - frameLayout2.getPaddingTop();
+    }
+
+    public void lambda$loadUsers$11(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+        this.loadingImporters = false;
+        this.loadedInviteLink = tLRPC$TL_chatInviteExported.link;
+        if (tLRPC$TL_error == null) {
+            TLRPC$TL_messages_chatInviteImporters tLRPC$TL_messages_chatInviteImporters = (TLRPC$TL_messages_chatInviteImporters) tLObject;
+            if (tLRPC$TL_chatInviteExported.importers == null) {
+                tLRPC$TL_chatInviteExported.importers = new ArrayList(3);
+            }
+            tLRPC$TL_chatInviteExported.importers.clear();
+            for (int i = 0; i < tLRPC$TL_messages_chatInviteImporters.users.size(); i++) {
+                tLRPC$TL_chatInviteExported.importers.addAll(tLRPC$TL_messages_chatInviteImporters.users);
+            }
+            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, true);
+        }
+    }
+
+    public void lambda$loadUsers$12(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LinkActionView.this.lambda$loadUsers$11(tLRPC$TL_chatInviteExported, tLRPC$TL_error, tLObject);
+            }
+        });
+    }
+
     public void lambda$new$0(BottomSheet bottomSheet, BaseFragment baseFragment, View view) {
         try {
             if (this.link == null) {
                 return;
             }
             ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.link));
-            if (bottomSheet != null && bottomSheet.getContainer() != null) {
-                BulletinFactory.createCopyLinkBulletin(bottomSheet.getContainer()).show();
-            } else {
-                BulletinFactory.createCopyLinkBulletin(baseFragment).show();
-            }
+            ((bottomSheet == null || bottomSheet.getContainer() == null) ? BulletinFactory.createCopyLinkBulletin(baseFragment) : BulletinFactory.createCopyLinkBulletin(bottomSheet.getContainer())).show();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -242,23 +310,26 @@ public class LinkActionView extends LinearLayout {
             String str = this.link;
             baseFragment.showDialog(new ShareAlert(context, null, str, false, str, false, baseFragment.getResourceProvider()) {
                 @Override
-                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     String formatString;
-                    if (longSparseArray != null && longSparseArray.size() == 1) {
-                        long j = longSparseArray.valueAt(0).id;
-                        if (j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                            formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
-                        } else {
-                            formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j, true));
-                        }
-                    } else {
+                    if (longSparseArray == null || longSparseArray.size() != 1) {
                         formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0]));
+                    } else {
+                        long j = ((TLRPC$Dialog) longSparseArray.valueAt(0)).id;
+                        formatString = (j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId()) ? LocaleController.getString(R.string.InvLinkToSavedMessages) : LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j, true));
                     }
                     LinkActionView.this.showBulletin(R.raw.forward, AndroidUtilities.replaceTags(formatString));
                 }
             });
         } catch (Exception e) {
             FileLog.e(e);
+        }
+    }
+
+    public void lambda$new$3(DialogInterface dialogInterface, int i) {
+        Delegate delegate = this.delegate;
+        if (delegate != null) {
+            delegate.removeLink();
         }
     }
 
@@ -276,15 +347,33 @@ public class LinkActionView extends LinearLayout {
         baseFragment.showDialog(builder.create());
     }
 
-    public void lambda$new$3(DialogInterface dialogInterface, int i) {
-        Delegate delegate = this.delegate;
-        if (delegate != null) {
-            delegate.removeLink();
+    public void lambda$new$5(View view) {
+        ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
+        if (actionBarPopupWindow != null) {
+            actionBarPopupWindow.dismiss();
+        }
+        this.delegate.editLink();
+    }
+
+    public void lambda$new$6(View view) {
+        showQrCode();
+    }
+
+    public void lambda$new$7(View view) {
+        ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
+        if (actionBarPopupWindow != null) {
+            actionBarPopupWindow.dismiss();
+        }
+        revokeLink();
+    }
+
+    public void lambda$new$8(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && this.actionBarPopupWindow.isShowing()) {
+            this.actionBarPopupWindow.dismiss(true);
         }
     }
 
     public void lambda$new$9(Context context, BottomSheet bottomSheet, BaseFragment baseFragment, View view) {
-        final FrameLayout container;
         if (this.actionBarPopupWindow != null) {
             return;
         }
@@ -322,20 +411,16 @@ public class LinkActionView extends LinearLayout {
             });
             actionBarPopupWindowLayout.addView((View) actionBarMenuSubItem3, LayoutHelper.createLinear(-1, 48));
         }
-        if (bottomSheet == null) {
-            container = baseFragment.getParentLayout().getOverlayContainerView();
-        } else {
-            container = bottomSheet.getContainer();
-        }
-        if (container != null) {
-            getPointOnScreen(this.frameLayout, container, this.point);
+        final FrameLayout overlayContainerView = bottomSheet == null ? baseFragment.getParentLayout().getOverlayContainerView() : bottomSheet.getContainer();
+        if (overlayContainerView != null) {
+            getPointOnScreen(this.frameLayout, overlayContainerView, this.point);
             float f = this.point[1];
             final View view2 = new View(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     canvas.drawColor(855638016);
                     LinkActionView linkActionView = LinkActionView.this;
-                    linkActionView.getPointOnScreen(linkActionView.frameLayout, container, LinkActionView.this.point);
+                    linkActionView.getPointOnScreen(linkActionView.frameLayout, overlayContainerView, LinkActionView.this.point);
                     canvas.save();
                     float y = ((View) LinkActionView.this.frameLayout.getParent()).getY() + LinkActionView.this.frameLayout.getY();
                     if (y < 1.0f) {
@@ -353,12 +438,12 @@ public class LinkActionView extends LinearLayout {
                     return true;
                 }
             };
-            container.getViewTreeObserver().addOnPreDrawListener(onPreDrawListener);
-            container.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
+            overlayContainerView.getViewTreeObserver().addOnPreDrawListener(onPreDrawListener);
+            overlayContainerView.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
             float f2 = 0.0f;
             view2.setAlpha(0.0f);
             view2.animate().alpha(1.0f).setDuration(150L);
-            actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(container.getMeasuredWidth(), 0), View.MeasureSpec.makeMeasureSpec(container.getMeasuredHeight(), 0));
+            actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(overlayContainerView.getMeasuredWidth(), 0), View.MeasureSpec.makeMeasureSpec(overlayContainerView.getMeasuredHeight(), 0));
             ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
             this.actionBarPopupWindow = actionBarPopupWindow;
             actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -371,9 +456,9 @@ public class LinkActionView extends LinearLayout {
                         public void onAnimationEnd(Animator animator) {
                             if (view2.getParent() != null) {
                                 AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
-                                container.removeView(view2);
+                                overlayContainerView.removeView(view2);
                             }
-                            container.getViewTreeObserver().removeOnPreDrawListener(onPreDrawListener);
+                            overlayContainerView.getViewTreeObserver().removeOnPreDrawListener(onPreDrawListener);
                         }
                     });
                 }
@@ -391,68 +476,39 @@ public class LinkActionView extends LinearLayout {
                 }
             });
             if (AndroidUtilities.isTablet()) {
-                f += container.getPaddingTop();
-                f2 = 0.0f - container.getPaddingLeft();
+                f += overlayContainerView.getPaddingTop();
+                f2 = 0.0f - overlayContainerView.getPaddingLeft();
             }
-            this.actionBarPopupWindow.showAtLocation(container, 0, (int) (((container.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) - AndroidUtilities.dp(16.0f)) + container.getX() + f2), (int) (f + this.frameLayout.getMeasuredHeight() + container.getY()));
+            this.actionBarPopupWindow.showAtLocation(overlayContainerView, 0, (int) (((overlayContainerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) - AndroidUtilities.dp(16.0f)) + overlayContainerView.getX() + f2), (int) (f + this.frameLayout.getMeasuredHeight() + overlayContainerView.getY()));
         }
     }
 
-    public void lambda$new$5(View view) {
-        ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
-        if (actionBarPopupWindow != null) {
-            actionBarPopupWindow.dismiss();
-        }
-        this.delegate.editLink();
-    }
-
-    public void lambda$new$6(View view) {
-        showQrCode();
-    }
-
-    public void lambda$new$7(View view) {
-        ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
-        if (actionBarPopupWindow != null) {
-            actionBarPopupWindow.dismiss();
-        }
-        revokeLink();
-    }
-
-    public void lambda$new$8(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && this.actionBarPopupWindow.isShowing()) {
-            this.actionBarPopupWindow.dismiss(true);
+    public void lambda$revokeLink$10(DialogInterface dialogInterface, int i) {
+        Delegate delegate = this.delegate;
+        if (delegate != null) {
+            delegate.revokeLink();
         }
     }
 
-    public void showBulletin(int i, CharSequence charSequence) {
-        Bulletin createSimpleBulletin = BulletinFactory.of(this.fragment).createSimpleBulletin(i, charSequence);
-        createSimpleBulletin.hideAfterBottomSheet = false;
-        createSimpleBulletin.show(true);
-    }
-
-    public void getPointOnScreen(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
-        float f = 0.0f;
-        float f2 = 0.0f;
-        while (frameLayout != frameLayout2) {
-            f2 += frameLayout.getY();
-            f += frameLayout.getX();
-            if (frameLayout instanceof ScrollView) {
-                f2 -= frameLayout.getScrollY();
+    private void revokeLink() {
+        if (this.fragment.getParentActivity() == null) {
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.fragment.getParentActivity());
+        builder.setTitle(LocaleController.getString(R.string.RevokeLink));
+        builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
+        builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                LinkActionView.this.lambda$revokeLink$10(dialogInterface, i);
             }
-            if (!(frameLayout.getParent() instanceof View)) {
-                break;
-            }
-            frameLayout = (View) frameLayout.getParent();
-            if (!(frameLayout instanceof ViewGroup)) {
-                return;
-            }
+        });
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        TextView textView = (TextView) builder.create().getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
-        fArr[0] = f - frameLayout2.getPaddingLeft();
-        fArr[1] = f2 - frameLayout2.getPaddingTop();
-    }
-
-    public void setQrText(String str) {
-        this.qrText = str;
+        builder.show();
     }
 
     private void showQrCode() {
@@ -479,57 +535,11 @@ public class LinkActionView extends LinearLayout {
         }
     }
 
-    public void updateColors() {
-        TextView textView = this.copyView;
-        int i = Theme.key_featuredStickers_buttonText;
-        textView.setTextColor(Theme.getColor(i));
-        this.shareView.setTextColor(Theme.getColor(i));
-        this.removeView.setTextColor(Theme.getColor(i));
-        TextView textView2 = this.copyView;
-        int dp = AndroidUtilities.dp(8.0f);
-        int i2 = Theme.key_featuredStickers_addButton;
-        int color = Theme.getColor(i2);
-        int i3 = Theme.key_featuredStickers_addButtonPressed;
-        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, color, Theme.getColor(i3)));
-        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i2), Theme.getColor(i3)));
-        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_graySection), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector), 76)));
-        this.linkView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.optionsView.setColorFilter(Theme.getColor(Theme.key_dialogTextGray3));
-        TextView textView3 = this.avatarsContainer.countTextView;
-        int i4 = Theme.key_windowBackgroundWhiteBlueText;
-        textView3.setTextColor(Theme.getColor(i4));
-        this.avatarsContainer.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i4), 76)));
-        QRCodeBottomSheet qRCodeBottomSheet = this.qrCodeBottomSheet;
-        if (qRCodeBottomSheet != null) {
-            qRCodeBottomSheet.updateColors();
-        }
-    }
-
-    public void setLink(String str) {
-        this.link = str;
-        if (str == null) {
-            this.linkView.setText(LocaleController.getString(R.string.Loading));
-        } else if (str.startsWith("https://")) {
-            this.linkView.setText(str.substring(8));
-        } else {
-            this.linkView.setText(str);
-        }
-    }
-
-    public void setRevoke(boolean z) {
-        this.revoked = z;
-        if (z) {
-            this.optionsView.setVisibility(8);
-            this.shareView.setVisibility(8);
-            this.copyView.setVisibility(8);
-            this.removeView.setVisibility(0);
-            return;
-        }
-        this.optionsView.setVisibility(0);
-        this.shareView.setVisibility(0);
-        this.copyView.setVisibility(0);
+    public void hideOptions() {
+        this.optionsView.setVisibility(8);
+        this.linkView.setGravity(17);
         this.removeView.setVisibility(8);
+        this.avatarsContainer.setVisibility(8);
     }
 
     public void hideRevokeOption(boolean z) {
@@ -539,101 +549,6 @@ public class LinkActionView extends LinearLayout {
             ImageView imageView = this.optionsView;
             imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), R.drawable.ic_ab_other));
         }
-    }
-
-    public void hideOptions() {
-        this.optionsView.setVisibility(8);
-        this.linkView.setGravity(17);
-        this.removeView.setVisibility(8);
-        this.avatarsContainer.setVisibility(8);
-    }
-
-    public class AvatarsContainer extends FrameLayout {
-        AvatarsImageView avatarsImageView;
-        TextView countTextView;
-
-        public AvatarsContainer(Context context) {
-            super(context);
-            this.avatarsImageView = new AvatarsImageView(context, false) {
-                @Override
-                public void onMeasure(int i, int i2) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.min(3, LinkActionView.this.usersCount) == 0 ? 0 : ((r2 - 1) * 20) + 32), 1073741824), i2);
-                }
-            };
-            LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.setOrientation(0);
-            addView(linearLayout, LayoutHelper.createFrame(-2, -1, 1));
-            TextView textView = new TextView(context);
-            this.countTextView = textView;
-            textView.setTextSize(1, 14.0f);
-            this.countTextView.setTypeface(AndroidUtilities.bold());
-            linearLayout.addView(this.avatarsImageView, LayoutHelper.createLinear(-2, -1));
-            linearLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 16));
-            setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-            this.avatarsImageView.commitTransition(false);
-        }
-    }
-
-    private void revokeLink() {
-        if (this.fragment.getParentActivity() == null) {
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.fragment.getParentActivity());
-        builder.setTitle(LocaleController.getString(R.string.RevokeLink));
-        builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
-        builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i) {
-                LinkActionView.this.lambda$revokeLink$10(dialogInterface, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        TextView textView = (TextView) builder.create().getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-        }
-        builder.show();
-    }
-
-    public void lambda$revokeLink$10(DialogInterface dialogInterface, int i) {
-        Delegate delegate = this.delegate;
-        if (delegate != null) {
-            delegate.revokeLink();
-        }
-    }
-
-    public void setDelegate(Delegate delegate) {
-        this.delegate = delegate;
-    }
-
-    public void setUsers(int i, ArrayList<TLRPC$User> arrayList) {
-        setUsers(i, arrayList, false);
-    }
-
-    public void setUsers(int i, ArrayList<TLRPC$User> arrayList, boolean z) {
-        this.usersCount = i;
-        if (i == 0) {
-            this.avatarsContainer.setVisibility(8);
-            setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(18.0f));
-        } else {
-            this.avatarsContainer.setVisibility(0);
-            setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(10.0f));
-            this.avatarsContainer.countTextView.setText(LocaleController.formatPluralString("PeopleJoined", i, new Object[0]));
-            this.avatarsContainer.requestLayout();
-        }
-        if (arrayList != null) {
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                MessagesController.getInstance(UserConfig.selectedAccount).putUser(arrayList.get(i2), false);
-            }
-            int min = Math.min(3, Math.min(i, arrayList.size()));
-            this.avatarsContainer.avatarsImageView.setCount(min);
-            for (int i3 = 0; i3 < min; i3++) {
-                this.avatarsContainer.avatarsImageView.setObject(i3, UserConfig.selectedAccount, arrayList.get(i3));
-            }
-        } else {
-            this.avatarsContainer.avatarsImageView.setCount(0);
-        }
-        this.avatarsContainer.avatarsImageView.commitTransition(z);
     }
 
     public void loadUsers(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, long j) {
@@ -666,36 +581,114 @@ public class LinkActionView extends LinearLayout {
         });
     }
 
-    public void lambda$loadUsers$12(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LinkActionView.this.lambda$loadUsers$11(tLRPC$TL_chatInviteExported, tLRPC$TL_error, tLObject);
-            }
-        });
+    public void setCanEdit(boolean z) {
+        this.canEdit = z;
     }
 
-    public void lambda$loadUsers$11(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        this.loadingImporters = false;
-        this.loadedInviteLink = tLRPC$TL_chatInviteExported.link;
-        if (tLRPC$TL_error == null) {
-            TLRPC$TL_messages_chatInviteImporters tLRPC$TL_messages_chatInviteImporters = (TLRPC$TL_messages_chatInviteImporters) tLObject;
-            if (tLRPC$TL_chatInviteExported.importers == null) {
-                tLRPC$TL_chatInviteExported.importers = new ArrayList<>(3);
-            }
-            tLRPC$TL_chatInviteExported.importers.clear();
-            for (int i = 0; i < tLRPC$TL_messages_chatInviteImporters.users.size(); i++) {
-                tLRPC$TL_chatInviteExported.importers.addAll(tLRPC$TL_messages_chatInviteImporters.users);
-            }
-            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, true);
+    public void setDelegate(Delegate delegate) {
+        this.delegate = delegate;
+    }
+
+    public void setLink(String str) {
+        TextView textView;
+        this.link = str;
+        if (str == null) {
+            this.linkView.setText(LocaleController.getString(R.string.Loading));
+            return;
         }
+        if (str.startsWith("https://")) {
+            textView = this.linkView;
+            str = str.substring(8);
+        } else {
+            textView = this.linkView;
+        }
+        textView.setText(str);
     }
 
     public void setPermanent(boolean z) {
         this.permanent = z;
     }
 
-    public void setCanEdit(boolean z) {
-        this.canEdit = z;
+    public void setQrText(String str) {
+        this.qrText = str;
+    }
+
+    public void setRevoke(boolean z) {
+        this.revoked = z;
+        if (z) {
+            this.optionsView.setVisibility(8);
+            this.shareView.setVisibility(8);
+            this.copyView.setVisibility(8);
+            this.removeView.setVisibility(0);
+            return;
+        }
+        this.optionsView.setVisibility(0);
+        this.shareView.setVisibility(0);
+        this.copyView.setVisibility(0);
+        this.removeView.setVisibility(8);
+    }
+
+    public void setUsers(int i, ArrayList arrayList) {
+        setUsers(i, arrayList, false);
+    }
+
+    public void setUsers(int i, ArrayList arrayList, boolean z) {
+        this.usersCount = i;
+        AvatarsContainer avatarsContainer = this.avatarsContainer;
+        if (i == 0) {
+            avatarsContainer.setVisibility(8);
+            setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(18.0f));
+        } else {
+            avatarsContainer.setVisibility(0);
+            setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(10.0f));
+            this.avatarsContainer.countTextView.setText(LocaleController.formatPluralString("PeopleJoined", i, new Object[0]));
+            this.avatarsContainer.requestLayout();
+        }
+        if (arrayList != null) {
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                MessagesController.getInstance(UserConfig.selectedAccount).putUser((TLRPC$User) arrayList.get(i2), false);
+            }
+            int min = Math.min(3, Math.min(i, arrayList.size()));
+            this.avatarsContainer.avatarsImageView.setCount(min);
+            for (int i3 = 0; i3 < min; i3++) {
+                this.avatarsContainer.avatarsImageView.setObject(i3, UserConfig.selectedAccount, (TLObject) arrayList.get(i3));
+            }
+        } else {
+            this.avatarsContainer.avatarsImageView.setCount(0);
+        }
+        this.avatarsContainer.avatarsImageView.commitTransition(z);
+    }
+
+    public void showBulletin(int i, CharSequence charSequence) {
+        Bulletin createSimpleBulletin = BulletinFactory.of(this.fragment).createSimpleBulletin(i, charSequence);
+        createSimpleBulletin.hideAfterBottomSheet = false;
+        createSimpleBulletin.show(true);
+    }
+
+    public void updateColors() {
+        TextView textView = this.copyView;
+        int i = Theme.key_featuredStickers_buttonText;
+        textView.setTextColor(Theme.getColor(i));
+        this.shareView.setTextColor(Theme.getColor(i));
+        this.removeView.setTextColor(Theme.getColor(i));
+        TextView textView2 = this.copyView;
+        int dp = AndroidUtilities.dp(8.0f);
+        int i2 = Theme.key_featuredStickers_addButton;
+        int color = Theme.getColor(i2);
+        int i3 = Theme.key_featuredStickers_addButtonPressed;
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, color, Theme.getColor(i3)));
+        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i2), Theme.getColor(i3)));
+        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
+        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_graySection), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector), 76)));
+        this.linkView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.optionsView.setColorFilter(Theme.getColor(Theme.key_dialogTextGray3));
+        TextView textView3 = this.avatarsContainer.countTextView;
+        int i4 = Theme.key_windowBackgroundWhiteBlueText;
+        textView3.setTextColor(Theme.getColor(i4));
+        this.avatarsContainer.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i4), 76)));
+        QRCodeBottomSheet qRCodeBottomSheet = this.qrCodeBottomSheet;
+        if (qRCodeBottomSheet != null) {
+            qRCodeBottomSheet.updateColors();
+        }
     }
 }

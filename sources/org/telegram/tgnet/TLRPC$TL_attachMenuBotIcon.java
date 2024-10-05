@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_attachMenuBotIcon extends TLObject {
-    public ArrayList<TLRPC$TL_attachMenuBotIconColor> colors = new ArrayList<>();
+    public ArrayList colors = new ArrayList();
     public int flags;
     public TLRPC$Document icon;
     public String name;
@@ -55,7 +55,7 @@ public class TLRPC$TL_attachMenuBotIcon extends TLObject {
             int size = this.colors.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.colors.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$TL_attachMenuBotIconColor) this.colors.get(i)).serializeToStream(abstractSerializedData);
             }
         }
     }

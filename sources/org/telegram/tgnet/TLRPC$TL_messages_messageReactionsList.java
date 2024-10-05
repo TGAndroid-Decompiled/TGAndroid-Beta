@@ -6,9 +6,9 @@ public class TLRPC$TL_messages_messageReactionsList extends TLObject {
     public int count;
     public int flags;
     public String next_offset;
-    public ArrayList<TLRPC$MessagePeerReaction> reactions = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList reactions = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_messages_messageReactionsList TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (834488621 != i) {
@@ -85,19 +85,19 @@ public class TLRPC$TL_messages_messageReactionsList extends TLObject {
         int size = this.reactions.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.reactions.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$MessagePeerReaction) this.reactions.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.users.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.next_offset);

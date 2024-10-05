@@ -18,11 +18,6 @@ public class SMSJobsNotification extends Service {
     public int currentAccount;
     public boolean shown;
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
     public static boolean check() {
         boolean z = false;
         for (int i = 0; i < 4; i++) {
@@ -45,15 +40,16 @@ public class SMSJobsNotification extends Service {
             z2 = true;
         }
         if (z2 != z) {
+            Intent[] intentArr = service;
             if (z) {
-                service[i] = new Intent(ApplicationLoader.applicationContext, (Class<?>) SMSJobsNotification.class);
+                intentArr[i] = new Intent(ApplicationLoader.applicationContext, (Class<?>) SMSJobsNotification.class);
                 service[i].putExtra("account", i);
                 if (Build.VERSION.SDK_INT >= 26) {
                     ApplicationLoader.applicationContext.startForegroundService(service[i]);
                 } else {
                     ApplicationLoader.applicationContext.startService(service[i]);
                 }
-            } else if (service[i] != null) {
+            } else if (intentArr[i] != null) {
                 ApplicationLoader.applicationContext.stopService(service[i]);
                 service[i] = null;
             }
@@ -61,6 +57,22 @@ public class SMSJobsNotification extends Service {
             sMSJobsNotification.update();
         }
         return z;
+    }
+
+    public void updateNotify() {
+        if (this.builder == null) {
+            return;
+        }
+        try {
+            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(38, this.builder.build());
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     @Override
@@ -91,18 +103,18 @@ public class SMSJobsNotification extends Service {
             NotificationsController.checkOtherNotificationsChannel();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationLoader.applicationContext, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             this.builder = builder;
-            builder.setSmallIcon(2131231164);
+            builder.setSmallIcon(2131231166);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             Intent intent2 = new Intent(ApplicationLoader.applicationContext, (Class<?>) LaunchActivity.class);
             intent2.setData(Uri.parse("tg://settings/premium_sms"));
             this.builder.setContentIntent(PendingIntent.getActivity(getApplicationContext(), 0, intent2, 67108864));
         }
-        this.builder.setContentTitle(LocaleController.getString(2131695794));
+        this.builder.setContentTitle(LocaleController.getString(2131695859));
         TL_smsjobs$TL_smsjobs_status tL_smsjobs$TL_smsjobs_status = SMSJobController.getInstance(this.currentAccount).currentStatus;
         int i3 = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent : 0;
         int i4 = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent + tL_smsjobs$TL_smsjobs_status.recent_remains : 100;
-        this.builder.setContentText(LocaleController.formatString(2131695793, Integer.valueOf(i3), Integer.valueOf(i4)));
+        this.builder.setContentText(LocaleController.formatString(2131695858, Integer.valueOf(i3), Integer.valueOf(i4)));
         this.builder.setProgress(i4, i3, false);
         try {
             startForeground(38, this.builder.build());
@@ -121,24 +133,13 @@ public class SMSJobsNotification extends Service {
     public void update() {
         NotificationCompat.Builder builder = this.builder;
         if (builder != null) {
-            builder.setContentTitle(LocaleController.getString(2131695794));
+            builder.setContentTitle(LocaleController.getString(2131695859));
             TL_smsjobs$TL_smsjobs_status tL_smsjobs$TL_smsjobs_status = SMSJobController.getInstance(this.currentAccount).currentStatus;
             int i = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent : 0;
             int i2 = tL_smsjobs$TL_smsjobs_status != null ? tL_smsjobs$TL_smsjobs_status.recent_sent + tL_smsjobs$TL_smsjobs_status.recent_remains : 100;
-            this.builder.setContentText(LocaleController.formatString(2131695793, Integer.valueOf(i), Integer.valueOf(i2)));
+            this.builder.setContentText(LocaleController.formatString(2131695858, Integer.valueOf(i), Integer.valueOf(i2)));
             this.builder.setProgress(i2, i, false);
         }
         updateNotify();
-    }
-
-    public void updateNotify() {
-        if (this.builder == null) {
-            return;
-        }
-        try {
-            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(38, this.builder.build());
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
     }
 }

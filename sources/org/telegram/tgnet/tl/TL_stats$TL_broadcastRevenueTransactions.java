@@ -6,7 +6,7 @@ import org.telegram.tgnet.TLObject;
 
 public class TL_stats$TL_broadcastRevenueTransactions extends TLObject {
     public int count;
-    public ArrayList<TL_stats$BroadcastRevenueTransaction> transactions = new ArrayList<>();
+    public ArrayList transactions = new ArrayList();
 
     public static TL_stats$TL_broadcastRevenueTransactions TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-2028632986 != i) {
@@ -44,7 +44,7 @@ public class TL_stats$TL_broadcastRevenueTransactions extends TLObject {
         int size = this.transactions.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.transactions.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stats$BroadcastRevenueTransaction) this.transactions.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class SizeNotifierFrameLayout$$ExternalSyntheticApiModelOutline0 {
+public abstract class SizeNotifierFrameLayout$$ExternalSyntheticApiModelOutline0 {
 }

@@ -86,6 +86,342 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private final int BUTTON_MAP = 1;
     private final int BUTTON_CLEAR = 2;
 
+    public void checkDone(boolean z) {
+        if (this.doneButton == null) {
+            return;
+        }
+        boolean hasChanges = hasChanges();
+        this.doneButton.setEnabled(hasChanges);
+        if (z) {
+            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+        } else {
+            this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
+            this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
+            this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
+        }
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || universalRecyclerView.adapter == null) {
+            return;
+        }
+        if (this.clearVisible != ((this.currentLocation == null || (this.geo == null && TextUtils.isEmpty(this.address))) ? false : true)) {
+            this.listView.adapter.update(true);
+        }
+    }
+
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessLocationInfo), R.raw.biz_map));
+        arrayList.add(UItem.asCustom(this.editTextContainer));
+        arrayList.add(UItem.asShadow(null));
+        boolean z = false;
+        arrayList.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessLocationMap)).setChecked(this.geo != null));
+        if (this.geo != null) {
+            arrayList.add(UItem.asCustom(this.mapPreviewContainer));
+        }
+        arrayList.add(UItem.asShadow(null));
+        if (this.currentLocation != null && (this.geo != null || !TextUtils.isEmpty(this.address))) {
+            z = true;
+        }
+        this.clearVisible = z;
+        if (z) {
+            arrayList.add(UItem.asButton(2, LocaleController.getString(R.string.BusinessLocationClear)).red());
+            arrayList.add(UItem.asShadow(null));
+        }
+        checkDone(true);
+    }
+
+    public void lambda$onBackPressed$2(DialogInterface dialogInterface, int i) {
+        processDone();
+    }
+
+    public void lambda$onBackPressed$3(DialogInterface dialogInterface, int i) {
+        lambda$onBackPressed$307();
+    }
+
+    public void lambda$onClick$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+        this.doneButtonDrawable.animateToProgress(0.0f);
+        if (tLRPC$TL_error != null) {
+            BulletinFactory.showError(tLRPC$TL_error);
+        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
+            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+        } else {
+            lambda$onBackPressed$307();
+        }
+    }
+
+    public void lambda$onClick$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LocationActivity.this.lambda$onClick$4(tLRPC$TL_error, tLObject);
+            }
+        });
+    }
+
+    public void lambda$onClick$6(DialogInterface dialogInterface, int i) {
+        this.doneButtonDrawable.animateToProgress(1.0f);
+        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        TLRPC$TL_account_updateBusinessLocation tLRPC$TL_account_updateBusinessLocation = new TLRPC$TL_account_updateBusinessLocation();
+        if (userFull != null) {
+            userFull.business_location = null;
+            userFull.flags2 &= -3;
+        }
+        getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessLocation, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                LocationActivity.this.lambda$onClick$5(tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$processDone$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+        if (tLRPC$TL_error != null) {
+            this.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.showError(tLRPC$TL_error);
+        } else if (!(tLObject instanceof TLRPC$TL_boolFalse)) {
+            lambda$onBackPressed$307();
+        } else {
+            this.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+        }
+    }
+
+    public void lambda$processDone$1(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LocationActivity.this.lambda$processDone$0(tLRPC$TL_error, tLObject);
+            }
+        });
+    }
+
+    public void lambda$showLocationAlert$7(org.telegram.ui.LocationActivity locationActivity, TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
+        this.geo = tLRPC$MessageMedia.geo;
+        if ((TextUtils.isEmpty(this.address) && !TextUtils.isEmpty(locationActivity.getAddressName())) || this.mapAddress) {
+            this.mapAddress = true;
+            String addressName = locationActivity.getAddressName();
+            this.address = addressName;
+            if (addressName == null) {
+                this.address = "";
+            }
+            EditTextBoldCursor editTextBoldCursor = this.editText;
+            if (editTextBoldCursor != null) {
+                this.ignoreEditText = true;
+                editTextBoldCursor.setText(this.address);
+                EditTextBoldCursor editTextBoldCursor2 = this.editText;
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+                this.ignoreEditText = false;
+            }
+        }
+        updateMapPreview();
+        this.listView.adapter.update(true);
+        checkDone(true);
+    }
+
+    public void lambda$showLocationAlert$8(AlertDialog alertDialog, org.telegram.ui.LocationActivity locationActivity) {
+        alertDialog.dismiss();
+        presentFragment(locationActivity);
+    }
+
+    public void lambda$showLocationAlert$9(final org.telegram.ui.LocationActivity locationActivity, final AlertDialog alertDialog) {
+        try {
+            List<Address> fromLocationName = new Geocoder(getContext(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(this.address, 1);
+            if (!fromLocationName.isEmpty()) {
+                Address address = fromLocationName.get(0);
+                TLRPC$TL_channelLocation tLRPC$TL_channelLocation = new TLRPC$TL_channelLocation();
+                tLRPC$TL_channelLocation.address = this.address;
+                TLRPC$TL_geoPoint tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint();
+                tLRPC$TL_channelLocation.geo_point = tLRPC$TL_geoPoint;
+                tLRPC$TL_geoPoint.lat = address.getLatitude();
+                tLRPC$TL_channelLocation.geo_point._long = address.getLongitude();
+                locationActivity.setInitialLocation(tLRPC$TL_channelLocation);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LocationActivity.this.lambda$showLocationAlert$8(alertDialog, locationActivity);
+            }
+        });
+    }
+
+    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        int i2 = uItem.id;
+        if (i2 == 1 || uItem.view == this.mapPreviewContainer) {
+            if (this.geo == null || uItem.view == this.mapPreviewContainer) {
+                showLocationAlert();
+                return;
+            } else {
+                this.geo = null;
+                this.listView.adapter.update(true);
+                return;
+            }
+        }
+        if (i2 == 2) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setTitle(LocaleController.getString(R.string.BusinessLocationClearTitle));
+            builder.setMessage(LocaleController.getString(R.string.BusinessLocationClearMessage));
+            builder.setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i3) {
+                    LocationActivity.this.lambda$onClick$6(dialogInterface, i3);
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            showDialog(builder.create());
+        }
+    }
+
+    public void processDone() {
+        if (this.doneButtonDrawable.getProgress() > 0.0f) {
+            return;
+        }
+        boolean z = this.geo == null && TextUtils.isEmpty(this.address);
+        if (!z) {
+            if (!hasChanges()) {
+                lambda$onBackPressed$307();
+                return;
+            }
+            String str = this.address;
+            String trim = str == null ? "" : str.trim();
+            if (TextUtils.isEmpty(trim) || trim.length() > 96) {
+                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                EditTextBoldCursor editTextBoldCursor = this.editText;
+                int i = -this.shiftDp;
+                this.shiftDp = i;
+                AndroidUtilities.shakeViewSpring(editTextBoldCursor, i);
+                return;
+            }
+        }
+        this.doneButtonDrawable.animateToProgress(1.0f);
+        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        TLRPC$TL_account_updateBusinessLocation tLRPC$TL_account_updateBusinessLocation = new TLRPC$TL_account_updateBusinessLocation();
+        if (!z) {
+            if (this.geo != null) {
+                tLRPC$TL_account_updateBusinessLocation.flags |= 2;
+                TLRPC$TL_inputGeoPoint tLRPC$TL_inputGeoPoint = new TLRPC$TL_inputGeoPoint();
+                tLRPC$TL_account_updateBusinessLocation.geo_point = tLRPC$TL_inputGeoPoint;
+                TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
+                tLRPC$TL_inputGeoPoint.lat = tLRPC$GeoPoint.lat;
+                tLRPC$TL_inputGeoPoint._long = tLRPC$GeoPoint._long;
+            }
+            tLRPC$TL_account_updateBusinessLocation.flags |= 1;
+            tLRPC$TL_account_updateBusinessLocation.address = this.address;
+            if (userFull != null) {
+                userFull.flags2 |= 2;
+                TLRPC$TL_businessLocation tLRPC$TL_businessLocation = new TLRPC$TL_businessLocation();
+                userFull.business_location = tLRPC$TL_businessLocation;
+                tLRPC$TL_businessLocation.address = this.address;
+                if (this.geo != null) {
+                    tLRPC$TL_businessLocation.flags = 1 | tLRPC$TL_businessLocation.flags;
+                    tLRPC$TL_businessLocation.geo_point = new TLRPC$TL_geoPoint();
+                    TLRPC$GeoPoint tLRPC$GeoPoint2 = userFull.business_location.geo_point;
+                    TLRPC$GeoPoint tLRPC$GeoPoint3 = this.geo;
+                    tLRPC$GeoPoint2.lat = tLRPC$GeoPoint3.lat;
+                    tLRPC$GeoPoint2._long = tLRPC$GeoPoint3._long;
+                }
+            }
+        } else if (userFull != null) {
+            userFull.flags2 &= -3;
+            userFull.business_location = null;
+        }
+        getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessLocation, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                LocationActivity.this.lambda$processDone$1(tLObject, tLRPC$TL_error);
+            }
+        });
+        getMessagesStorage().updateUserInfo(userFull, false);
+    }
+
+    private void setValue() {
+        String str;
+        UniversalAdapter universalAdapter;
+        if (this.valueSet) {
+            return;
+        }
+        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        if (userFull == null) {
+            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
+            return;
+        }
+        TLRPC$TL_businessLocation tLRPC$TL_businessLocation = userFull.business_location;
+        this.currentLocation = tLRPC$TL_businessLocation;
+        if (tLRPC$TL_businessLocation != null) {
+            this.geo = tLRPC$TL_businessLocation.geo_point;
+            str = tLRPC$TL_businessLocation.address;
+        } else {
+            this.geo = null;
+            str = "";
+        }
+        this.address = str;
+        EditTextBoldCursor editTextBoldCursor = this.editText;
+        if (editTextBoldCursor != null) {
+            this.ignoreEditText = true;
+            editTextBoldCursor.setText(this.address);
+            EditTextBoldCursor editTextBoldCursor2 = this.editText;
+            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            this.ignoreEditText = false;
+        }
+        updateMapPreview();
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
+            universalAdapter.update(true);
+        }
+        this.valueSet = true;
+    }
+
+    private void showLocationAlert() {
+        final org.telegram.ui.LocationActivity locationActivity = new org.telegram.ui.LocationActivity(8);
+        if (this.geo != null) {
+            TLRPC$TL_channelLocation tLRPC$TL_channelLocation = new TLRPC$TL_channelLocation();
+            tLRPC$TL_channelLocation.address = this.address;
+            tLRPC$TL_channelLocation.geo_point = this.geo;
+            locationActivity.setInitialLocation(tLRPC$TL_channelLocation);
+        }
+        locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
+            @Override
+            public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
+                LocationActivity.this.lambda$showLocationAlert$7(locationActivity, tLRPC$MessageMedia, i, z, i2);
+            }
+        });
+        if (this.geo != null || TextUtils.isEmpty(this.address)) {
+            presentFragment(locationActivity);
+            return;
+        }
+        final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
+        alertDialog.setCanCancel(false);
+        alertDialog.showDelayed(200L);
+        Utilities.searchQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                LocationActivity.this.lambda$showLocationAlert$9(locationActivity, alertDialog);
+            }
+        });
+    }
+
+    private void updateMapPreview() {
+        BackupImageView backupImageView;
+        View view = this.mapMarker;
+        if (view == null || (backupImageView = this.mapPreview) == null) {
+            return;
+        }
+        if (this.geo == null) {
+            backupImageView.setImageBitmap(null);
+            return;
+        }
+        view.setAlpha(0.0f);
+        this.mapMarker.setTranslationY(-AndroidUtilities.dp(12.0f));
+        int measuredWidth = this.mapPreview.getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : this.mapPreview.getMeasuredWidth();
+        float f = AndroidUtilities.density;
+        int i = (int) (measuredWidth / f);
+        int min = Math.min(2, (int) Math.ceil(f));
+        BackupImageView backupImageView2 = this.mapPreview;
+        TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
+        backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, 0L, min * i, min * 240, 15, min)), i + "_240", this.mapLoadingDrawable, 0, (Object) null);
+    }
+
     @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
@@ -96,7 +432,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (LocationActivity.this.onBackPressed()) {
-                        LocationActivity.this.lambda$onBackPressed$308();
+                        LocationActivity.this.lambda$onBackPressed$307();
                     }
                 } else if (i == 1) {
                     LocationActivity.this.processDone();
@@ -126,8 +462,11 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            protected boolean verifyDrawable(Drawable drawable) {
-                return drawable == this.limit || super.verifyDrawable(drawable);
+            public void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, LocationActivity.this.getResourceProvider())));
+                this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
+                this.limit.draw(canvas);
             }
 
             @Override
@@ -146,11 +485,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, LocationActivity.this.getResourceProvider())));
-                this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
-                this.limit.draw(canvas);
+            protected boolean verifyDrawable(Drawable drawable) {
+                return drawable == this.limit || super.verifyDrawable(drawable);
             }
         };
         this.editText = editTextBoldCursor;
@@ -171,14 +507,6 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.editText.setCursorWidth(1.5f);
         this.editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
             public void afterTextChanged(Editable editable) {
                 if (LocationActivity.this.ignoreEditText) {
                     return;
@@ -186,6 +514,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 LocationActivity.this.mapAddress = false;
                 LocationActivity.this.address = editable.toString();
                 LocationActivity.this.checkDone(true);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
         });
         this.editText.setFilters(new InputFilter[]{new InputFilter() {
@@ -299,78 +635,10 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        super.onFragmentDestroy();
-    }
-
-    @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.userInfoDidLoad) {
             setValue();
         }
-    }
-
-    private void setValue() {
-        UniversalAdapter universalAdapter;
-        if (this.valueSet) {
-            return;
-        }
-        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        if (userFull == null) {
-            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
-            return;
-        }
-        TLRPC$TL_businessLocation tLRPC$TL_businessLocation = userFull.business_location;
-        this.currentLocation = tLRPC$TL_businessLocation;
-        if (tLRPC$TL_businessLocation != null) {
-            this.geo = tLRPC$TL_businessLocation.geo_point;
-            this.address = tLRPC$TL_businessLocation.address;
-        } else {
-            this.geo = null;
-            this.address = "";
-        }
-        EditTextBoldCursor editTextBoldCursor = this.editText;
-        if (editTextBoldCursor != null) {
-            this.ignoreEditText = true;
-            editTextBoldCursor.setText(this.address);
-            EditTextBoldCursor editTextBoldCursor2 = this.editText;
-            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-            this.ignoreEditText = false;
-        }
-        updateMapPreview();
-        UniversalRecyclerView universalRecyclerView = this.listView;
-        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
-            universalAdapter.update(true);
-        }
-        this.valueSet = true;
-    }
-
-    private void updateMapPreview() {
-        BackupImageView backupImageView;
-        View view = this.mapMarker;
-        if (view == null || (backupImageView = this.mapPreview) == null) {
-            return;
-        }
-        if (this.geo != null) {
-            view.setAlpha(0.0f);
-            this.mapMarker.setTranslationY(-AndroidUtilities.dp(12.0f));
-            int measuredWidth = this.mapPreview.getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : this.mapPreview.getMeasuredWidth();
-            float f = AndroidUtilities.density;
-            int i = (int) (measuredWidth / f);
-            int min = Math.min(2, (int) Math.ceil(f));
-            BackupImageView backupImageView2 = this.mapPreview;
-            TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
-            backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, 0L, min * i, min * 240, 15, min)), i + "_240", this.mapLoadingDrawable, 0, (Object) null);
-            return;
-        }
-        backupImageView.setImageBitmap(null);
     }
 
     public boolean hasChanges() {
@@ -395,311 +663,45 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return tLRPC$GeoPoint2 != null && (tLRPC$TL_businessLocation2 == null || (tLRPC$GeoPoint = tLRPC$TL_businessLocation2.geo_point) == null || !((tLRPC$GeoPoint instanceof TLRPC$TL_geoPointEmpty) || (tLRPC$GeoPoint2.lat == tLRPC$GeoPoint.lat && tLRPC$GeoPoint2._long == tLRPC$GeoPoint._long)));
     }
 
-    public void checkDone(boolean z) {
-        if (this.doneButton == null) {
-            return;
-        }
-        boolean hasChanges = hasChanges();
-        this.doneButton.setEnabled(hasChanges);
-        if (z) {
-            this.doneButton.animate().alpha(hasChanges ? 1.0f : 0.0f).scaleX(hasChanges ? 1.0f : 0.0f).scaleY(hasChanges ? 1.0f : 0.0f).setDuration(180L).start();
-        } else {
-            this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
-            this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
-            this.doneButton.setScaleY(hasChanges ? 1.0f : 0.0f);
-        }
-        UniversalRecyclerView universalRecyclerView = this.listView;
-        if (universalRecyclerView == null || universalRecyclerView.adapter == null) {
-            return;
-        }
-        if (this.clearVisible != ((this.currentLocation == null || (this.geo == null && TextUtils.isEmpty(this.address))) ? false : true)) {
-            this.listView.adapter.update(true);
-        }
-    }
-
-    public void processDone() {
-        if (this.doneButtonDrawable.getProgress() > 0.0f) {
-            return;
-        }
-        boolean z = this.geo == null && TextUtils.isEmpty(this.address);
-        if (!z) {
-            if (!hasChanges()) {
-                lambda$onBackPressed$308();
-                return;
-            }
-            String str = this.address;
-            String trim = str == null ? "" : str.trim();
-            if (TextUtils.isEmpty(trim) || trim.length() > 96) {
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                EditTextBoldCursor editTextBoldCursor = this.editText;
-                int i = -this.shiftDp;
-                this.shiftDp = i;
-                AndroidUtilities.shakeViewSpring(editTextBoldCursor, i);
-                return;
-            }
-        }
-        this.doneButtonDrawable.animateToProgress(1.0f);
-        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        TLRPC$TL_account_updateBusinessLocation tLRPC$TL_account_updateBusinessLocation = new TLRPC$TL_account_updateBusinessLocation();
-        if (!z) {
-            if (this.geo != null) {
-                tLRPC$TL_account_updateBusinessLocation.flags |= 2;
-                TLRPC$TL_inputGeoPoint tLRPC$TL_inputGeoPoint = new TLRPC$TL_inputGeoPoint();
-                tLRPC$TL_account_updateBusinessLocation.geo_point = tLRPC$TL_inputGeoPoint;
-                TLRPC$GeoPoint tLRPC$GeoPoint = this.geo;
-                tLRPC$TL_inputGeoPoint.lat = tLRPC$GeoPoint.lat;
-                tLRPC$TL_inputGeoPoint._long = tLRPC$GeoPoint._long;
-            }
-            tLRPC$TL_account_updateBusinessLocation.flags |= 1;
-            tLRPC$TL_account_updateBusinessLocation.address = this.address;
-            if (userFull != null) {
-                userFull.flags2 |= 2;
-                TLRPC$TL_businessLocation tLRPC$TL_businessLocation = new TLRPC$TL_businessLocation();
-                userFull.business_location = tLRPC$TL_businessLocation;
-                tLRPC$TL_businessLocation.address = this.address;
-                if (this.geo != null) {
-                    tLRPC$TL_businessLocation.flags = 1 | tLRPC$TL_businessLocation.flags;
-                    tLRPC$TL_businessLocation.geo_point = new TLRPC$TL_geoPoint();
-                    TLRPC$GeoPoint tLRPC$GeoPoint2 = userFull.business_location.geo_point;
-                    TLRPC$GeoPoint tLRPC$GeoPoint3 = this.geo;
-                    tLRPC$GeoPoint2.lat = tLRPC$GeoPoint3.lat;
-                    tLRPC$GeoPoint2._long = tLRPC$GeoPoint3._long;
-                }
-            }
-        } else if (userFull != null) {
-            userFull.flags2 &= -3;
-            userFull.business_location = null;
-        }
-        getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessLocation, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LocationActivity.this.lambda$processDone$1(tLObject, tLRPC$TL_error);
-            }
-        });
-        getMessagesStorage().updateUserInfo(userFull, false);
-    }
-
-    public void lambda$processDone$1(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LocationActivity.this.lambda$processDone$0(tLRPC$TL_error, tLObject);
-            }
-        });
-    }
-
-    public void lambda$processDone$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-        } else {
-            lambda$onBackPressed$308();
-        }
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        boolean z = this.geo == null && TextUtils.isEmpty(this.address);
-        if (hasChanges() && !z) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
-            builder.setMessage(LocaleController.getString(R.string.BusinessLocationUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    LocationActivity.this.lambda$onBackPressed$2(dialogInterface, i);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    LocationActivity.this.lambda$onBackPressed$3(dialogInterface, i);
-                }
-            });
-            showDialog(builder.create());
-            return false;
-        }
-        return super.onBackPressed();
-    }
-
-    public void lambda$onBackPressed$2(DialogInterface dialogInterface, int i) {
-        processDone();
-    }
-
-    public void lambda$onBackPressed$3(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
-    }
-
     @Override
     public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         return !hasChanges();
     }
 
-    public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessLocationInfo), R.raw.biz_map));
-        arrayList.add(UItem.asCustom(this.editTextContainer));
-        arrayList.add(UItem.asShadow(null));
-        boolean z = false;
-        arrayList.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessLocationMap)).setChecked(this.geo != null));
-        if (this.geo != null) {
-            arrayList.add(UItem.asCustom(this.mapPreviewContainer));
+    @Override
+    public boolean onBackPressed() {
+        boolean z = this.geo == null && TextUtils.isEmpty(this.address);
+        if (!hasChanges() || z) {
+            return super.onBackPressed();
         }
-        arrayList.add(UItem.asShadow(null));
-        if (this.currentLocation != null && (this.geo != null || !TextUtils.isEmpty(this.address))) {
-            z = true;
-        }
-        this.clearVisible = z;
-        if (z) {
-            arrayList.add(UItem.asButton(2, LocaleController.getString(R.string.BusinessLocationClear)).red());
-            arrayList.add(UItem.asShadow(null));
-        }
-        checkDone(true);
-    }
-
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        int i2 = uItem.id;
-        if (i2 == 1 || uItem.view == this.mapPreviewContainer) {
-            if (this.geo == null || uItem.view == this.mapPreviewContainer) {
-                showLocationAlert();
-                return;
-            } else {
-                this.geo = null;
-                this.listView.adapter.update(true);
-                return;
-            }
-        }
-        if (i2 == 2) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString(R.string.BusinessLocationClearTitle));
-            builder.setMessage(LocaleController.getString(R.string.BusinessLocationClearMessage));
-            builder.setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i3) {
-                    LocationActivity.this.lambda$onClick$6(dialogInterface, i3);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            showDialog(builder.create());
-        }
-    }
-
-    public void lambda$onClick$6(DialogInterface dialogInterface, int i) {
-        this.doneButtonDrawable.animateToProgress(1.0f);
-        TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        TLRPC$TL_account_updateBusinessLocation tLRPC$TL_account_updateBusinessLocation = new TLRPC$TL_account_updateBusinessLocation();
-        if (userFull != null) {
-            userFull.business_location = null;
-            userFull.flags2 &= -3;
-        }
-        getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessLocation, new RequestDelegate() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+        builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+        builder.setMessage(LocaleController.getString(R.string.BusinessLocationUnsavedChanges));
+        builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LocationActivity.this.lambda$onClick$5(tLObject, tLRPC$TL_error);
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                LocationActivity.this.lambda$onBackPressed$2(dialogInterface, i);
             }
         });
-    }
-
-    public void lambda$onClick$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
+        builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
             @Override
-            public final void run() {
-                LocationActivity.this.lambda$onClick$4(tLRPC$TL_error, tLObject);
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                LocationActivity.this.lambda$onBackPressed$3(dialogInterface, i);
             }
         });
+        showDialog(builder.create());
+        return false;
     }
 
-    public void lambda$onClick$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        this.doneButtonDrawable.animateToProgress(0.0f);
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-        } else {
-            lambda$onBackPressed$308();
-        }
+    @Override
+    public boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
+        return super.onFragmentCreate();
     }
 
-    private void showLocationAlert() {
-        final org.telegram.ui.LocationActivity locationActivity = new org.telegram.ui.LocationActivity(8);
-        if (this.geo != null) {
-            TLRPC$TL_channelLocation tLRPC$TL_channelLocation = new TLRPC$TL_channelLocation();
-            tLRPC$TL_channelLocation.address = this.address;
-            tLRPC$TL_channelLocation.geo_point = this.geo;
-            locationActivity.setInitialLocation(tLRPC$TL_channelLocation);
-        }
-        locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
-            @Override
-            public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-                LocationActivity.this.lambda$showLocationAlert$7(locationActivity, tLRPC$MessageMedia, i, z, i2);
-            }
-        });
-        if (this.geo == null && !TextUtils.isEmpty(this.address)) {
-            final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
-            alertDialog.setCanCancel(false);
-            alertDialog.showDelayed(200L);
-            Utilities.searchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    LocationActivity.this.lambda$showLocationAlert$9(locationActivity, alertDialog);
-                }
-            });
-            return;
-        }
-        presentFragment(locationActivity);
-    }
-
-    public void lambda$showLocationAlert$7(org.telegram.ui.LocationActivity locationActivity, TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        this.geo = tLRPC$MessageMedia.geo;
-        if ((TextUtils.isEmpty(this.address) && !TextUtils.isEmpty(locationActivity.getAddressName())) || this.mapAddress) {
-            this.mapAddress = true;
-            String addressName = locationActivity.getAddressName();
-            this.address = addressName;
-            if (addressName == null) {
-                this.address = "";
-            }
-            EditTextBoldCursor editTextBoldCursor = this.editText;
-            if (editTextBoldCursor != null) {
-                this.ignoreEditText = true;
-                editTextBoldCursor.setText(this.address);
-                EditTextBoldCursor editTextBoldCursor2 = this.editText;
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-                this.ignoreEditText = false;
-            }
-        }
-        updateMapPreview();
-        this.listView.adapter.update(true);
-        checkDone(true);
-    }
-
-    public void lambda$showLocationAlert$9(final org.telegram.ui.LocationActivity locationActivity, final AlertDialog alertDialog) {
-        try {
-            List<Address> fromLocationName = new Geocoder(getContext(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(this.address, 1);
-            if (!fromLocationName.isEmpty()) {
-                Address address = fromLocationName.get(0);
-                TLRPC$TL_channelLocation tLRPC$TL_channelLocation = new TLRPC$TL_channelLocation();
-                tLRPC$TL_channelLocation.address = this.address;
-                TLRPC$TL_geoPoint tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint();
-                tLRPC$TL_channelLocation.geo_point = tLRPC$TL_geoPoint;
-                tLRPC$TL_geoPoint.lat = address.getLatitude();
-                tLRPC$TL_channelLocation.geo_point._long = address.getLongitude();
-                locationActivity.setInitialLocation(tLRPC$TL_channelLocation);
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LocationActivity.this.lambda$showLocationAlert$8(alertDialog, locationActivity);
-            }
-        });
-    }
-
-    public void lambda$showLocationAlert$8(AlertDialog alertDialog, org.telegram.ui.LocationActivity locationActivity) {
-        alertDialog.dismiss();
-        presentFragment(locationActivity);
+    @Override
+    public void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
+        super.onFragmentDestroy();
     }
 }

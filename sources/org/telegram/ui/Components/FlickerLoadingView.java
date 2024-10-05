@@ -49,41 +49,6 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
     private boolean useHeaderOffset;
     private int viewType;
 
-    public int getAdditionalHeight() {
-        return 0;
-    }
-
-    public int getColumnsCount() {
-        return 2;
-    }
-
-    public void setViewType(int i) {
-        this.viewType = i;
-        if (i == 11) {
-            Random random = new Random();
-            this.randomParams = new float[2];
-            for (int i2 = 0; i2 < 2; i2++) {
-                this.randomParams[i2] = Math.abs(random.nextInt() % 1000) / 1000.0f;
-            }
-        }
-        invalidate();
-    }
-
-    public void setIsSingleCell(boolean z) {
-        this.isSingleCell = z;
-    }
-
-    public int getViewType() {
-        return this.viewType;
-    }
-
-    public void setColors(int i, int i2, int i3) {
-        this.colorKey1 = i;
-        this.colorKey2 = i2;
-        this.colorKey3 = i3;
-        invalidate();
-    }
-
     public FlickerLoadingView(Context context) {
         this(context, null);
     }
@@ -102,22 +67,100 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
         this.matrix = new Matrix();
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        if (this.isSingleCell) {
-            int i3 = this.itemsCount;
-            if (i3 > 1 && this.ignoreHeightCheck) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((getCellHeight(View.MeasureSpec.getSize(i)) * this.itemsCount) + getAdditionalHeight(), 1073741824));
-                return;
-            } else if (i3 > 1 && View.MeasureSpec.getSize(i2) > 0) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), getCellHeight(View.MeasureSpec.getSize(i)) * this.itemsCount) + getAdditionalHeight(), 1073741824));
-                return;
-            } else {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(getCellHeight(View.MeasureSpec.getSize(i)) + getAdditionalHeight(), 1073741824));
-                return;
-            }
+    private float checkRtl(float f) {
+        return LocaleController.isRTL ? getMeasuredWidth() - f : f;
+    }
+
+    private void checkRtl(RectF rectF) {
+        if (LocaleController.isRTL) {
+            rectF.left = getMeasuredWidth() - rectF.left;
+            rectF.right = getMeasuredWidth() - rectF.right;
         }
-        super.onMeasure(i, i2);
+    }
+
+    private int getCellHeight(int i) {
+        switch (getViewType()) {
+            case 1:
+                return AndroidUtilities.dp(78.0f) + 1;
+            case 2:
+                return ((i - (AndroidUtilities.dp(2.0f) * (getColumnsCount() - 1))) / getColumnsCount()) + AndroidUtilities.dp(2.0f);
+            case 3:
+            case 4:
+                return AndroidUtilities.dp(56.0f);
+            case 5:
+                return AndroidUtilities.dp(80.0f);
+            case 6:
+            case 18:
+                return AndroidUtilities.dp(64.0f);
+            case 7:
+                return AndroidUtilities.dp((SharedConfig.useThreeLinesLayout ? 78 : 72) + 1);
+            case 8:
+                return AndroidUtilities.dp(61.0f);
+            case 9:
+                return AndroidUtilities.dp(66.0f);
+            case 10:
+                return AndroidUtilities.dp(58.0f);
+            case 11:
+                return AndroidUtilities.dp(36.0f);
+            case 12:
+                return AndroidUtilities.dp(103.0f);
+            case 13:
+            case 14:
+            case 17:
+            case 20:
+            case 27:
+            default:
+                return 0;
+            case 15:
+                return AndroidUtilities.dp(107.0f);
+            case 16:
+            case 23:
+                return AndroidUtilities.dp(50.0f);
+            case 19:
+                return AndroidUtilities.dp(58.0f);
+            case 21:
+                return AndroidUtilities.dp(58.0f);
+            case 22:
+                return AndroidUtilities.dp(60.0f);
+            case 24:
+                return AndroidUtilities.dp((SharedConfig.useThreeLinesLayout ? 76 : 64) + 1);
+            case 25:
+                return AndroidUtilities.dp(51.0f);
+            case 26:
+                return AndroidUtilities.dp(50.0f) + 1;
+            case 28:
+                return AndroidUtilities.dp(58.0f);
+            case 29:
+                return AndroidUtilities.dp(60.0f) + 1;
+            case 30:
+                return AndroidUtilities.dp(32.0f);
+            case 31:
+                return AndroidUtilities.dp(48.0f) + 1;
+            case 32:
+                return AndroidUtilities.dp(56.0f) + 1;
+            case 33:
+                return AndroidUtilities.dp(58.0f);
+        }
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public int getAdditionalHeight() {
+        return 0;
+    }
+
+    public int getColumnsCount() {
+        return 2;
+    }
+
+    public Paint getPaint() {
+        return this.paint;
+    }
+
+    public int getViewType() {
+        return this.viewType;
     }
 
     @Override
@@ -756,7 +799,118 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
         invalidate();
     }
 
+    @Override
+    protected void onMeasure(int i, int i2) {
+        if (this.isSingleCell) {
+            int i3 = this.itemsCount;
+            i2 = View.MeasureSpec.makeMeasureSpec(((i3 <= 1 || !this.ignoreHeightCheck) ? (i3 <= 1 || View.MeasureSpec.getSize(i2) <= 0) ? getCellHeight(View.MeasureSpec.getSize(i)) : Math.min(View.MeasureSpec.getSize(i2), getCellHeight(View.MeasureSpec.getSize(i)) * this.itemsCount) : getCellHeight(View.MeasureSpec.getSize(i)) * this.itemsCount) + getAdditionalHeight(), 1073741824);
+        }
+        super.onMeasure(i, i2);
+    }
+
+    public void setColors(int i, int i2, int i3) {
+        this.colorKey1 = i;
+        this.colorKey2 = i2;
+        this.colorKey3 = i3;
+        invalidate();
+    }
+
+    public void setGlobalGradientView(FlickerLoadingView flickerLoadingView) {
+        this.globalGradientView = flickerLoadingView;
+    }
+
+    public void setIgnoreHeightCheck(boolean z) {
+        this.ignoreHeightCheck = z;
+    }
+
+    public void setIsSingleCell(boolean z) {
+        this.isSingleCell = z;
+    }
+
+    public void setItemsCount(int i) {
+        this.itemsCount = i;
+    }
+
+    public void setMemberRequestButton(boolean z) {
+        TextPaint textPaint = new TextPaint(1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        this.memberRequestButtonWidth = AndroidUtilities.dp(34.0f) + textPaint.measureText(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup));
+    }
+
+    public void setPaddingLeft(int i) {
+        this.paddingLeft = i;
+        invalidate();
+    }
+
+    public void setPaddingTop(int i) {
+        this.paddingTop = i;
+        invalidate();
+    }
+
+    public void setParentSize(int i, int i2, float f) {
+        this.parentWidth = i;
+        this.parentHeight = i2;
+        this.parentXOffset = f;
+    }
+
+    public void setUseHeaderOffset(boolean z) {
+        this.useHeaderOffset = z;
+    }
+
+    public void setViewType(int i) {
+        this.viewType = i;
+        if (i == 11) {
+            Random random = new Random();
+            this.randomParams = new float[2];
+            for (int i2 = 0; i2 < 2; i2++) {
+                this.randomParams[i2] = Math.abs(random.nextInt() % 1000) / 1000.0f;
+            }
+        }
+        invalidate();
+    }
+
+    public void showDate(boolean z) {
+        this.showDate = z;
+    }
+
+    public void skipDrawItemsCount(int i) {
+        this.skipDrawItemsCount = i;
+    }
+
+    @Override
+    public void updateColors() {
+        LinearGradient linearGradient;
+        int i;
+        FlickerLoadingView flickerLoadingView = this.globalGradientView;
+        if (flickerLoadingView != null) {
+            flickerLoadingView.updateColors();
+            return;
+        }
+        int themedColor = getThemedColor(this.colorKey1);
+        int themedColor2 = getThemedColor(this.colorKey2);
+        if (this.color1 == themedColor2 && this.color0 == themedColor) {
+            return;
+        }
+        this.color0 = themedColor;
+        this.color1 = themedColor2;
+        if (this.isSingleCell || (i = this.viewType) == 13 || i == 14 || i == 17) {
+            int dp = AndroidUtilities.dp(200.0f);
+            this.gradientWidth = dp;
+            linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{themedColor2, themedColor, themedColor, themedColor2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+        } else {
+            int dp2 = AndroidUtilities.dp(600.0f);
+            this.gradientWidth = dp2;
+            linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, dp2, new int[]{themedColor2, themedColor, themedColor, themedColor2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        this.gradient = linearGradient;
+        this.paint.setShader(this.gradient);
+    }
+
     public void updateGradient() {
+        Matrix matrix;
+        float f;
+        float f2;
         FlickerLoadingView flickerLoadingView = this.globalGradientView;
         if (flickerLoadingView != null) {
             flickerLoadingView.updateGradient();
@@ -785,176 +939,23 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
             if (i3 >= i * 2) {
                 this.totalTranslation = (-this.gradientWidth) * 2;
             }
-            this.matrix.setTranslate(this.totalTranslation + this.parentXOffset, 0.0f);
+            matrix = this.matrix;
+            f = this.totalTranslation + this.parentXOffset;
+            f2 = 0.0f;
         } else {
             int i4 = (int) (this.totalTranslation + (((float) (abs * i2)) / 400.0f));
             this.totalTranslation = i4;
             if (i4 >= i2 * 2) {
                 this.totalTranslation = (-this.gradientWidth) * 2;
             }
-            this.matrix.setTranslate(this.parentXOffset, this.totalTranslation);
+            matrix = this.matrix;
+            f = this.parentXOffset;
+            f2 = this.totalTranslation;
         }
+        matrix.setTranslate(f, f2);
         LinearGradient linearGradient = this.gradient;
         if (linearGradient != null) {
             linearGradient.setLocalMatrix(this.matrix);
         }
-    }
-
-    @Override
-    public void updateColors() {
-        int i;
-        FlickerLoadingView flickerLoadingView = this.globalGradientView;
-        if (flickerLoadingView != null) {
-            flickerLoadingView.updateColors();
-            return;
-        }
-        int themedColor = getThemedColor(this.colorKey1);
-        int themedColor2 = getThemedColor(this.colorKey2);
-        if (this.color1 == themedColor2 && this.color0 == themedColor) {
-            return;
-        }
-        this.color0 = themedColor;
-        this.color1 = themedColor2;
-        if (this.isSingleCell || (i = this.viewType) == 13 || i == 14 || i == 17) {
-            int dp = AndroidUtilities.dp(200.0f);
-            this.gradientWidth = dp;
-            this.gradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{themedColor2, themedColor, themedColor, themedColor2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-        } else {
-            int dp2 = AndroidUtilities.dp(600.0f);
-            this.gradientWidth = dp2;
-            this.gradient = new LinearGradient(0.0f, 0.0f, 0.0f, dp2, new int[]{themedColor2, themedColor, themedColor, themedColor2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-        }
-        this.paint.setShader(this.gradient);
-    }
-
-    private float checkRtl(float f) {
-        return LocaleController.isRTL ? getMeasuredWidth() - f : f;
-    }
-
-    private void checkRtl(RectF rectF) {
-        if (LocaleController.isRTL) {
-            rectF.left = getMeasuredWidth() - rectF.left;
-            rectF.right = getMeasuredWidth() - rectF.right;
-        }
-    }
-
-    private int getCellHeight(int i) {
-        switch (getViewType()) {
-            case 1:
-                return AndroidUtilities.dp(78.0f) + 1;
-            case 2:
-                return ((i - (AndroidUtilities.dp(2.0f) * (getColumnsCount() - 1))) / getColumnsCount()) + AndroidUtilities.dp(2.0f);
-            case 3:
-            case 4:
-                return AndroidUtilities.dp(56.0f);
-            case 5:
-                return AndroidUtilities.dp(80.0f);
-            case 6:
-            case 18:
-                return AndroidUtilities.dp(64.0f);
-            case 7:
-                return AndroidUtilities.dp((SharedConfig.useThreeLinesLayout ? 78 : 72) + 1);
-            case 8:
-                return AndroidUtilities.dp(61.0f);
-            case 9:
-                return AndroidUtilities.dp(66.0f);
-            case 10:
-                return AndroidUtilities.dp(58.0f);
-            case 11:
-                return AndroidUtilities.dp(36.0f);
-            case 12:
-                return AndroidUtilities.dp(103.0f);
-            case 13:
-            case 14:
-            case 17:
-            case 20:
-            case 27:
-            default:
-                return 0;
-            case 15:
-                return AndroidUtilities.dp(107.0f);
-            case 16:
-            case 23:
-                return AndroidUtilities.dp(50.0f);
-            case 19:
-                return AndroidUtilities.dp(58.0f);
-            case 21:
-                return AndroidUtilities.dp(58.0f);
-            case 22:
-                return AndroidUtilities.dp(60.0f);
-            case 24:
-                return AndroidUtilities.dp((SharedConfig.useThreeLinesLayout ? 76 : 64) + 1);
-            case 25:
-                return AndroidUtilities.dp(51.0f);
-            case 26:
-                return AndroidUtilities.dp(50.0f) + 1;
-            case 28:
-                return AndroidUtilities.dp(58.0f);
-            case 29:
-                return AndroidUtilities.dp(60.0f) + 1;
-            case 30:
-                return AndroidUtilities.dp(32.0f);
-            case 31:
-                return AndroidUtilities.dp(48.0f) + 1;
-            case 32:
-                return AndroidUtilities.dp(56.0f) + 1;
-            case 33:
-                return AndroidUtilities.dp(58.0f);
-        }
-    }
-
-    public void showDate(boolean z) {
-        this.showDate = z;
-    }
-
-    public void setUseHeaderOffset(boolean z) {
-        this.useHeaderOffset = z;
-    }
-
-    public void skipDrawItemsCount(int i) {
-        this.skipDrawItemsCount = i;
-    }
-
-    public void setPaddingTop(int i) {
-        this.paddingTop = i;
-        invalidate();
-    }
-
-    public void setPaddingLeft(int i) {
-        this.paddingLeft = i;
-        invalidate();
-    }
-
-    public void setItemsCount(int i) {
-        this.itemsCount = i;
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    public void setGlobalGradientView(FlickerLoadingView flickerLoadingView) {
-        this.globalGradientView = flickerLoadingView;
-    }
-
-    public void setParentSize(int i, int i2, float f) {
-        this.parentWidth = i;
-        this.parentHeight = i2;
-        this.parentXOffset = f;
-    }
-
-    public Paint getPaint() {
-        return this.paint;
-    }
-
-    public void setIgnoreHeightCheck(boolean z) {
-        this.ignoreHeightCheck = z;
-    }
-
-    public void setMemberRequestButton(boolean z) {
-        TextPaint textPaint = new TextPaint(1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        this.memberRequestButtonWidth = AndroidUtilities.dp(34.0f) + textPaint.measureText(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup));
     }
 }

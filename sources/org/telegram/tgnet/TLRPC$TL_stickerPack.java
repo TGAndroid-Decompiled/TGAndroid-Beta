@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_stickerPack extends TLObject {
-    public ArrayList<Long> documents = new ArrayList<>();
+    public ArrayList documents = new ArrayList();
     public String emoticon;
 
     public static TLRPC$TL_stickerPack TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -42,7 +42,7 @@ public class TLRPC$TL_stickerPack extends TLObject {
         int size = this.documents.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt64(this.documents.get(i).longValue());
+            abstractSerializedData.writeInt64(((Long) this.documents.get(i)).longValue());
         }
     }
 }

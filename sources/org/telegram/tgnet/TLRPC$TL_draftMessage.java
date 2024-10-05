@@ -54,7 +54,7 @@ public class TLRPC$TL_draftMessage extends TLRPC$DraftMessage {
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i3 = 0; i3 < size; i3++) {
-                this.entities.get(i3).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i3)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 32) != 0) {

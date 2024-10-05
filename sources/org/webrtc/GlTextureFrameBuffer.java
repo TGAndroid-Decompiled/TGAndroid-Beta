@@ -23,6 +23,31 @@ public class GlTextureFrameBuffer {
         }
     }
 
+    public int getFrameBufferId() {
+        return this.frameBufferId;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getTextureId() {
+        return this.textureId;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public void release() {
+        GLES20.glDeleteTextures(1, new int[]{this.textureId}, 0);
+        this.textureId = 0;
+        GLES20.glDeleteFramebuffers(1, new int[]{this.frameBufferId}, 0);
+        this.frameBufferId = 0;
+        this.width = 0;
+        this.height = 0;
+    }
+
     public void setSize(int i, int i2) {
         if (i <= 0 || i2 <= 0) {
             throw new IllegalArgumentException("Invalid size: " + i + "x" + i2);
@@ -49,34 +74,10 @@ public class GlTextureFrameBuffer {
         GLES20.glBindFramebuffer(36160, this.frameBufferId);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.textureId, 0);
         int glCheckFramebufferStatus = GLES20.glCheckFramebufferStatus(36160);
-        if (glCheckFramebufferStatus != 36053) {
-            throw new IllegalStateException("Framebuffer not complete, status: " + glCheckFramebufferStatus);
+        if (glCheckFramebufferStatus == 36053) {
+            GLES20.glBindFramebuffer(36160, 0);
+            return;
         }
-        GLES20.glBindFramebuffer(36160, 0);
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getFrameBufferId() {
-        return this.frameBufferId;
-    }
-
-    public int getTextureId() {
-        return this.textureId;
-    }
-
-    public void release() {
-        GLES20.glDeleteTextures(1, new int[]{this.textureId}, 0);
-        this.textureId = 0;
-        GLES20.glDeleteFramebuffers(1, new int[]{this.frameBufferId}, 0);
-        this.frameBufferId = 0;
-        this.width = 0;
-        this.height = 0;
+        throw new IllegalStateException("Framebuffer not complete, status: " + glCheckFramebufferStatus);
     }
 }

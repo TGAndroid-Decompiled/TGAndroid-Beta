@@ -54,8 +54,8 @@ public abstract class TLRPC$Chat extends TLObject {
     public String username;
     public boolean verified;
     public int version;
-    public ArrayList<TLRPC$RestrictionReason> restriction_reason = new ArrayList<>();
-    public ArrayList<TLRPC$TL_username> usernames = new ArrayList<>();
+    public ArrayList restriction_reason = new ArrayList();
+    public ArrayList usernames = new ArrayList();
 
     public static TLRPC$Chat TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         return TLdeserialize(abstractSerializedData, i, z, true);
@@ -190,7 +190,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i22 = 0; i22 < size; i22++) {
-                                this.restriction_reason.get(i22).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i22)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -364,7 +364,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i24 = 0; i24 < size; i24++) {
-                                this.restriction_reason.get(i24).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i24)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -384,7 +384,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i25 = 0; i25 < size2; i25++) {
-                                this.usernames.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -578,7 +578,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i25 = 0; i25 < size; i25++) {
-                                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -598,7 +598,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i26 = 0; i26 < size2; i26++) {
-                                this.usernames.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 16) != 0) {
@@ -768,7 +768,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i25 = 0; i25 < size; i25++) {
-                                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -788,7 +788,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i26 = 0; i26 < size2; i26++) {
-                                this.usernames.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 16) != 0) {
@@ -1049,7 +1049,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i25 = 0; i25 < size; i25++) {
-                                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -1069,7 +1069,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i26 = 0; i26 < size2; i26++) {
-                                this.usernames.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 16) != 0) {
@@ -1289,7 +1289,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i18 = 0; i18 < size; i18++) {
-                                this.restriction_reason.get(i18).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i18)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -1559,7 +1559,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i25 = 0; i25 < size; i25++) {
-                                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -1579,7 +1579,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i26 = 0; i26 < size2; i26++) {
-                                this.usernames.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 16) != 0) {
@@ -1852,7 +1852,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i25 = 0; i25 < size; i25++) {
-                                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -1872,7 +1872,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i26 = 0; i26 < size2; i26++) {
-                                this.usernames.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 16) != 0) {
@@ -2062,7 +2062,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i25 = 0; i25 < size; i25++) {
-                                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16384) != 0) {
@@ -2082,7 +2082,7 @@ public abstract class TLRPC$Chat extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i26 = 0; i26 < size2; i26++) {
-                                this.usernames.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 16) != 0) {
@@ -2615,8 +2615,20 @@ public abstract class TLRPC$Chat extends TLObject {
         return tLRPC$Chat;
     }
 
-    private void readParams(AbstractSerializedData abstractSerializedData, boolean z, boolean z2) {
-        readParams(abstractSerializedData, z);
+    public static TLRPC$TL_chatAdminRights mergeAdminRights(TLRPC$TL_channelAdminRights_layer92 tLRPC$TL_channelAdminRights_layer92) {
+        if (tLRPC$TL_channelAdminRights_layer92 == null) {
+            return null;
+        }
+        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = new TLRPC$TL_chatAdminRights();
+        tLRPC$TL_chatAdminRights.change_info = tLRPC$TL_channelAdminRights_layer92.change_info;
+        tLRPC$TL_chatAdminRights.post_messages = tLRPC$TL_channelAdminRights_layer92.post_messages;
+        tLRPC$TL_chatAdminRights.edit_messages = tLRPC$TL_channelAdminRights_layer92.edit_messages;
+        tLRPC$TL_chatAdminRights.delete_messages = tLRPC$TL_channelAdminRights_layer92.delete_messages;
+        tLRPC$TL_chatAdminRights.ban_users = tLRPC$TL_channelAdminRights_layer92.ban_users;
+        tLRPC$TL_chatAdminRights.invite_users = tLRPC$TL_channelAdminRights_layer92.invite_users;
+        tLRPC$TL_chatAdminRights.pin_messages = tLRPC$TL_channelAdminRights_layer92.pin_messages;
+        tLRPC$TL_chatAdminRights.add_admins = tLRPC$TL_channelAdminRights_layer92.add_admins;
+        return tLRPC$TL_chatAdminRights;
     }
 
     public static TLRPC$TL_chatBannedRights mergeBannedRights(TLRPC$TL_channelBannedRights_layer92 tLRPC$TL_channelBannedRights_layer92) {
@@ -2641,19 +2653,7 @@ public abstract class TLRPC$Chat extends TLObject {
         return tLRPC$TL_chatBannedRights;
     }
 
-    public static TLRPC$TL_chatAdminRights mergeAdminRights(TLRPC$TL_channelAdminRights_layer92 tLRPC$TL_channelAdminRights_layer92) {
-        if (tLRPC$TL_channelAdminRights_layer92 == null) {
-            return null;
-        }
-        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = new TLRPC$TL_chatAdminRights();
-        tLRPC$TL_chatAdminRights.change_info = tLRPC$TL_channelAdminRights_layer92.change_info;
-        tLRPC$TL_chatAdminRights.post_messages = tLRPC$TL_channelAdminRights_layer92.post_messages;
-        tLRPC$TL_chatAdminRights.edit_messages = tLRPC$TL_channelAdminRights_layer92.edit_messages;
-        tLRPC$TL_chatAdminRights.delete_messages = tLRPC$TL_channelAdminRights_layer92.delete_messages;
-        tLRPC$TL_chatAdminRights.ban_users = tLRPC$TL_channelAdminRights_layer92.ban_users;
-        tLRPC$TL_chatAdminRights.invite_users = tLRPC$TL_channelAdminRights_layer92.invite_users;
-        tLRPC$TL_chatAdminRights.pin_messages = tLRPC$TL_channelAdminRights_layer92.pin_messages;
-        tLRPC$TL_chatAdminRights.add_admins = tLRPC$TL_channelAdminRights_layer92.add_admins;
-        return tLRPC$TL_chatAdminRights;
+    private void readParams(AbstractSerializedData abstractSerializedData, boolean z, boolean z2) {
+        readParams(abstractSerializedData, z);
     }
 }

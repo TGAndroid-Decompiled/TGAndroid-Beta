@@ -27,7 +27,7 @@ public class TLRPC$TL_replyInlineMarkup extends TLRPC$ReplyMarkup {
         int size = this.rows.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.rows.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_keyboardButtonRow) this.rows.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

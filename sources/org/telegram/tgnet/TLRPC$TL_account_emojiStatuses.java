@@ -29,7 +29,7 @@ public class TLRPC$TL_account_emojiStatuses extends TLRPC$account_EmojiStatuses 
         int size = this.statuses.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.statuses.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$EmojiStatus) this.statuses.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

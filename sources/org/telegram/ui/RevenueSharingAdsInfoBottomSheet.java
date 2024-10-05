@@ -1,6 +1,5 @@
 package org.telegram.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -31,7 +30,32 @@ import org.telegram.ui.Components.RLottieImageView;
 public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
     private final Paint topIconBgPaint;
 
-    @SuppressLint({"UseCompatLoadingForDrawables"})
+    private class FeatureCell extends FrameLayout {
+        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
+            super(context);
+            boolean z = LocaleController.isRTL;
+            ImageView imageView = new ImageView(getContext());
+            Drawable mutate = getContext().getResources().getDrawable(i).mutate();
+            int i2 = Theme.key_windowBackgroundWhiteBlackText;
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            imageView.setImageDrawable(mutate);
+            addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
+            TextView textView = new TextView(getContext());
+            textView.setText(charSequence);
+            textView.setTextColor(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
+            textView.setTextSize(1, 14.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 0.0f, z ? 68.0f : 27.0f, 0.0f));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
+            linksTextView.setText(charSequence2);
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
+            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
+            linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 18.0f, z ? 68.0f : 27.0f, 0.0f));
+        }
+    }
+
     public RevenueSharingAdsInfoBottomSheet(final BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         fixNavigationBar();
@@ -143,39 +167,11 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
 
     public static RevenueSharingAdsInfoBottomSheet showAlert(Context context, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet = new RevenueSharingAdsInfoBottomSheet(baseFragment, context, resourcesProvider);
-        if (baseFragment != null) {
-            if (baseFragment.getParentActivity() != null) {
-                baseFragment.showDialog(revenueSharingAdsInfoBottomSheet);
-            }
-        } else {
+        if (baseFragment == null) {
             revenueSharingAdsInfoBottomSheet.show();
+        } else if (baseFragment.getParentActivity() != null) {
+            baseFragment.showDialog(revenueSharingAdsInfoBottomSheet);
         }
         return revenueSharingAdsInfoBottomSheet;
-    }
-
-    private class FeatureCell extends FrameLayout {
-        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
-            super(context);
-            boolean z = LocaleController.isRTL;
-            ImageView imageView = new ImageView(getContext());
-            Drawable mutate = getContext().getResources().getDrawable(i).mutate();
-            int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            imageView.setImageDrawable(mutate);
-            addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
-            TextView textView = new TextView(getContext());
-            textView.setText(charSequence);
-            textView.setTextColor(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
-            textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 0.0f, z ? 68.0f : 27.0f, 0.0f));
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
-            linksTextView.setText(charSequence2);
-            linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
-            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
-            linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 18.0f, z ? 68.0f : 27.0f, 0.0f));
-        }
     }
 }

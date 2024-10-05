@@ -4,25 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.text.TextUtils;
 import android.view.View;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageFwdHeader;
-import org.telegram.tgnet.TLRPC$MessageReplyHeader;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_messageMediaContact;
-import org.telegram.tgnet.TLRPC$TL_peerColor;
-import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -77,6 +65,26 @@ public class ReplyMessageLine {
     private int switchedCount = 0;
     private float emojiAlpha = 1.0f;
 
+    public static class IconCoords {
+        public float a;
+        public boolean q;
+        public float s;
+        public float x;
+        public float y;
+
+        public IconCoords(float f, float f2, float f3, float f4) {
+            this.x = f;
+            this.y = f2;
+            this.s = f3;
+            this.a = f4;
+        }
+
+        public IconCoords(float f, float f2, float f3, float f4, boolean z) {
+            this(f, f2, f3, f4);
+            this.q = z;
+        }
+    }
+
     public ReplyMessageLine(View view) {
         this.parentView = view;
         view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
@@ -105,567 +113,6 @@ public class ReplyMessageLine {
         this.emojiLoadedT = new AnimatedFloat(view, 0L, 440L, cubicBezierInterpolator);
         this.loadingStateT = new AnimatedFloat(view, 0L, 320L, cubicBezierInterpolator);
         this.switchStateT = new AnimatedFloat(view, 0L, 320L, cubicBezierInterpolator);
-    }
-
-    public int getColor() {
-        return this.reversedOut ? this.color2 : this.color1;
-    }
-
-    public int getBackgroundColor() {
-        return this.backgroundColor;
-    }
-
-    public void setBackgroundColor(int i) {
-        this.backgroundColor = i;
-    }
-
-    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) {
-        if (resourcesProvider != null) {
-            resourcesProvider.isDark();
-        } else {
-            Theme.isCurrentThemeDark();
-        }
-        if (this.wasColorId != i) {
-            int id = messageObject != null ? messageObject.getId() : 0;
-            if (id == this.wasMessageId) {
-                this.switchedCount++;
-            }
-            this.wasColorId = i;
-            this.wasMessageId = id;
-        }
-        if (i < 7) {
-            int color = Theme.getColor(Theme.keys_avatar_nameInMessage[i], resourcesProvider);
-            this.color3 = color;
-            this.color2 = color;
-            this.color1 = color;
-            this.hasColor3 = false;
-            this.hasColor2 = false;
-            return;
-        }
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(messageObject != null ? messageObject.currentAccount : UserConfig.selectedAccount).peerColors;
-        MessagesController.PeerColor color2 = peerColors != null ? peerColors.getColor(i) : null;
-        if (color2 == null) {
-            int color3 = Theme.getColor((messageObject == null || !messageObject.isOutOwner()) ? Theme.key_chat_inReplyLine : Theme.key_chat_outReplyLine, resourcesProvider);
-            this.color3 = color3;
-            this.color2 = color3;
-            this.color1 = color3;
-            this.hasColor3 = false;
-            this.hasColor2 = false;
-            return;
-        }
-        this.color1 = color2.getColor(0, resourcesProvider);
-        this.color2 = color2.getColor(1, resourcesProvider);
-        int color4 = color2.getColor(2, resourcesProvider);
-        this.color3 = color4;
-        int i2 = this.color2;
-        int i3 = this.color1;
-        this.hasColor2 = i2 != i3;
-        boolean z = color4 != i3;
-        this.hasColor3 = z;
-        if (z) {
-            this.color3 = i2;
-            this.color2 = color4;
-        }
-    }
-
-    public int check(MessageObject messageObject, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, Theme.ResourcesProvider resourcesProvider, int i) {
-        TLRPC$Chat chat;
-        int colorId;
-        TLRPC$Message tLRPC$Message;
-        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
-        MessageObject messageObject2;
-        TLRPC$Message tLRPC$Message2;
-        int colorId2;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2;
-        TLRPC$Peer tLRPC$Peer;
-        TLRPC$TL_peerColor tLRPC$TL_peerColor;
-        int i2;
-        TLRPC$Message tLRPC$Message3;
-        TLRPC$TL_peerColor tLRPC$TL_peerColor2;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader3;
-        TLRPC$Message tLRPC$Message4;
-        int i3;
-        boolean isDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
-        this.reversedOut = false;
-        this.emojiDocumentId = 0L;
-        this.sponsored = messageObject != null && messageObject.isSponsored();
-        if (messageObject == null) {
-            this.hasColor3 = false;
-            this.hasColor2 = false;
-            int color = Theme.getColor(Theme.key_chat_inReplyLine, resourcesProvider);
-            this.color3 = color;
-            this.color2 = color;
-            this.color1 = color;
-            this.backgroundColor = Theme.multAlpha(color, isDark ? 0.12f : 0.1f);
-            AnimatedColor animatedColor = this.nameColorAnimated;
-            int color2 = Theme.getColor(Theme.key_chat_inReplyNameText, resourcesProvider);
-            this.nameColor = color2;
-            return animatedColor.set(color2);
-        }
-        if (i == 4 && (tLRPC$Message4 = messageObject.messageOwner) != null && MessageObject.getMedia(tLRPC$Message4) != null && (MessageObject.getMedia(messageObject.messageOwner) instanceof TLRPC$TL_messageMediaContact)) {
-            long j = MessageObject.getMedia(messageObject.messageOwner).user_id;
-            TLRPC$User user = j != 0 ? MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(j)) : null;
-            if (user != null) {
-                i3 = UserObject.getColorId(user);
-                this.emojiDocumentId = UserObject.getEmojiId(user);
-            } else {
-                i3 = 0;
-            }
-            resolveColor(messageObject, i3, resourcesProvider);
-            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
-            this.nameColor = this.color1;
-        } else if (i != 0 && (messageObject.overrideLinkColor >= 0 || (messageObject.messageOwner != null && (((messageObject.isFromUser() || DialogObject.isEncryptedDialog(messageObject.getDialogId())) && tLRPC$User != null) || ((messageObject.isFromChannel() && tLRPC$Chat != null) || (((tLRPC$Message3 = messageObject.messageOwner) != null && (tLRPC$MessageFwdHeader3 = tLRPC$Message3.fwd_from) != null && tLRPC$MessageFwdHeader3.from_id != null) || (messageObject.isSponsored() && (tLRPC$TL_peerColor2 = messageObject.sponsoredColor) != null && tLRPC$TL_peerColor2.color != -1))))))) {
-            int i4 = messageObject.overrideLinkColor;
-            if (i4 < 0) {
-                if (!messageObject.isSponsored() || (tLRPC$TL_peerColor = messageObject.sponsoredColor) == null || (i2 = tLRPC$TL_peerColor.color) == -1) {
-                    TLRPC$Message tLRPC$Message5 = messageObject.messageOwner;
-                    if (tLRPC$Message5 != null && (tLRPC$MessageFwdHeader2 = tLRPC$Message5.fwd_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader2.from_id) != null) {
-                        long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer);
-                        if (peerDialogId < 0) {
-                            TLRPC$Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
-                            colorId2 = chat2 != null ? ChatObject.getColorId(chat2) : 5;
-                            if (i == 3) {
-                                this.emojiDocumentId = ChatObject.getEmojiId(chat2);
-                            }
-                        } else {
-                            TLRPC$User user2 = MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(peerDialogId));
-                            colorId2 = user2 != null ? UserObject.getColorId(user2) : 5;
-                            if (i == 3) {
-                                this.emojiDocumentId = UserObject.getEmojiId(user2);
-                            }
-                        }
-                    } else if (DialogObject.isEncryptedDialog(messageObject.getDialogId()) && tLRPC$User != null) {
-                        TLRPC$User currentUser = messageObject.isOutOwner() ? UserConfig.getInstance(messageObject.currentAccount).getCurrentUser() : tLRPC$User;
-                        if (currentUser == null) {
-                            currentUser = tLRPC$User;
-                        }
-                        i4 = UserObject.getColorId(currentUser);
-                        if (i == 3) {
-                            this.emojiDocumentId = UserObject.getEmojiId(currentUser);
-                        }
-                    } else if (messageObject.isFromUser() && tLRPC$User != null) {
-                        colorId2 = UserObject.getColorId(tLRPC$User);
-                        if (i == 3) {
-                            this.emojiDocumentId = UserObject.getEmojiId(tLRPC$User);
-                        }
-                    } else if (!messageObject.isFromChannel() || tLRPC$Chat == null) {
-                        i4 = 0;
-                    } else if (tLRPC$Chat.signature_profiles) {
-                        long fromChatId = messageObject.getFromChatId();
-                        if (fromChatId >= 0) {
-                            TLRPC$User user3 = MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(fromChatId));
-                            i4 = UserObject.getColorId(user3);
-                            if (i == 3) {
-                                this.emojiDocumentId = UserObject.getEmojiId(user3);
-                            }
-                        } else {
-                            TLRPC$Chat chat3 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-fromChatId));
-                            i4 = ChatObject.getColorId(chat3);
-                            if (i == 3) {
-                                this.emojiDocumentId = ChatObject.getEmojiId(chat3);
-                            }
-                        }
-                    } else {
-                        i4 = ChatObject.getColorId(tLRPC$Chat);
-                        if (i == 3) {
-                            this.emojiDocumentId = ChatObject.getEmojiId(tLRPC$Chat);
-                        }
-                    }
-                    i4 = colorId2;
-                } else {
-                    if (i == 3) {
-                        this.emojiDocumentId = tLRPC$TL_peerColor.background_emoji_id;
-                    }
-                    i4 = i2;
-                }
-            }
-            resolveColor(messageObject, i4, resourcesProvider);
-            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
-            this.nameColor = this.color1;
-        } else if (i == 0 && (messageObject.overrideLinkColor >= 0 || ((tLRPC$Message = messageObject.messageOwner) != null && messageObject.replyMessageObject != null && (tLRPC$MessageReplyHeader = tLRPC$Message.reply_to) != null && (((tLRPC$MessageFwdHeader = tLRPC$MessageReplyHeader.reply_from) == null || TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name)) && (tLRPC$Message2 = (messageObject2 = messageObject.replyMessageObject).messageOwner) != null && tLRPC$Message2.from_id != null && (messageObject2.isFromUser() || DialogObject.isEncryptedDialog(messageObject.getDialogId()) || messageObject.replyMessageObject.isFromChannel()))))) {
-            int i5 = messageObject.overrideLinkColor;
-            if (i5 >= 0) {
-                colorId = i5;
-            } else if (DialogObject.isEncryptedDialog(messageObject.replyMessageObject.getDialogId())) {
-                TLRPC$User currentUser2 = messageObject.replyMessageObject.isOutOwner() ? UserConfig.getInstance(messageObject.replyMessageObject.currentAccount).getCurrentUser() : tLRPC$User;
-                if (currentUser2 != null) {
-                    colorId = UserObject.getColorId(currentUser2);
-                    this.emojiDocumentId = UserObject.getEmojiId(currentUser2);
-                }
-                colorId = 0;
-            } else if (messageObject.replyMessageObject.isFromUser()) {
-                TLRPC$User user4 = MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(messageObject.replyMessageObject.messageOwner.from_id.user_id));
-                if (user4 != null) {
-                    colorId = UserObject.getColorId(user4);
-                    this.emojiDocumentId = UserObject.getEmojiId(user4);
-                }
-                colorId = 0;
-            } else {
-                if (messageObject.replyMessageObject.isFromChannel() && (chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(messageObject.replyMessageObject.messageOwner.from_id.channel_id))) != null) {
-                    colorId = ChatObject.getColorId(chat);
-                    this.emojiDocumentId = ChatObject.getEmojiId(chat);
-                }
-                colorId = 0;
-            }
-            resolveColor(messageObject.replyMessageObject, colorId, resourcesProvider);
-            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
-            this.nameColor = this.color1;
-        } else {
-            this.hasColor2 = false;
-            this.hasColor3 = false;
-            int color3 = Theme.getColor(Theme.key_chat_inReplyLine, resourcesProvider);
-            this.color3 = color3;
-            this.color2 = color3;
-            this.color1 = color3;
-            this.backgroundColor = Theme.multAlpha(color3, 0.1f);
-            this.nameColor = Theme.getColor(Theme.key_chat_inReplyNameText, resourcesProvider);
-        }
-        if (messageObject.shouldDrawWithoutBackground()) {
-            this.hasColor2 = false;
-            this.hasColor3 = false;
-            this.color3 = -1;
-            this.color2 = -1;
-            this.color1 = -1;
-            this.backgroundColor = 0;
-            this.nameColor = Theme.getColor(Theme.key_chat_stickerReplyNameText, resourcesProvider);
-        } else if (messageObject.isOutOwner() || i == 2) {
-            if (i == 2 && !messageObject.isOutOwner()) {
-                int color4 = Theme.getColor(Theme.key_chat_inCodeBackground, resourcesProvider);
-                this.color3 = color4;
-                this.color2 = color4;
-                this.color1 = color4;
-            } else {
-                int color5 = Theme.getColor((this.hasColor2 || this.hasColor3) ? Theme.key_chat_outReplyLine2 : Theme.key_chat_outReplyLine, resourcesProvider);
-                this.color3 = color5;
-                this.color2 = color5;
-                this.color1 = color5;
-            }
-            if (this.hasColor3) {
-                this.reversedOut = true;
-                this.color1 = Theme.multAlpha(this.color1, 0.2f);
-                this.color2 = Theme.multAlpha(this.color2, 0.5f);
-            } else if (this.hasColor2) {
-                this.reversedOut = true;
-                this.color1 = Theme.multAlpha(this.color1, 0.35f);
-            }
-            this.backgroundColor = Theme.multAlpha(this.color3, isDark ? 0.12f : 0.1f);
-            this.nameColor = Theme.getColor(Theme.key_chat_outReplyNameText, resourcesProvider);
-        }
-        if (i == 0 || i == 3 || i == 4) {
-            long j2 = messageObject.overrideLinkEmoji;
-            if (j2 != -1) {
-                this.emojiDocumentId = j2;
-            }
-        }
-        if (this.emojiDocumentId != 0 && this.emoji == null) {
-            this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
-            View view = this.parentView;
-            if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
-                this.emoji.attach();
-            }
-        }
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
-        if (swapAnimatedEmojiDrawable != null && swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true)) {
-            this.emojiLoaded = false;
-        }
-        return this.nameColorAnimated.set(this.nameColor);
-    }
-
-    public int setFactCheck(Theme.ResourcesProvider resourcesProvider) {
-        int i = Theme.key_text_RedBold;
-        this.nameColor = Theme.getColor(i, resourcesProvider);
-        this.color1 = Theme.getColor(i, resourcesProvider);
-        this.hasColor2 = false;
-        this.hasColor3 = false;
-        this.backgroundColor = Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.1f);
-        if (this.emojiDocumentId != 0 && this.emoji == null) {
-            this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
-            View view = this.parentView;
-            if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
-                this.emoji.attach();
-            }
-        }
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
-        if (swapAnimatedEmojiDrawable != null && swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true)) {
-            this.emojiLoaded = false;
-        }
-        return this.nameColorAnimated.set(this.nameColor);
-    }
-
-    public void setEmojiAlpha(float f) {
-        this.emojiAlpha = f;
-    }
-
-    public void resetAnimation() {
-        this.color1Animated.set(this.color1, true);
-        this.color2Animated.set(this.color2, true);
-        this.color2Alpha.set(this.hasColor2, true);
-        this.nameColorAnimated.set(this.nameColor, true);
-        this.backgroundColorAnimated.set(this.backgroundColor, true);
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
-        if (swapAnimatedEmojiDrawable != null) {
-            swapAnimatedEmojiDrawable.resetAnimation();
-        }
-    }
-
-    public void setLoading(boolean z) {
-        LoadingDrawable loadingDrawable;
-        if (!z && this.loading) {
-            this.loadingT = 0.0f;
-            LoadingDrawable loadingDrawable2 = this.backgroundLoadingDrawable;
-            if (loadingDrawable2 != null) {
-                loadingDrawable2.disappear();
-            }
-        } else if (z && !this.loading && (loadingDrawable = this.backgroundLoadingDrawable) != null) {
-            loadingDrawable.resetDisappear();
-            this.backgroundLoadingDrawable.reset();
-        }
-        this.loading = z;
-    }
-
-    private void incrementLoadingT() {
-        long currentTimeMillis = System.currentTimeMillis();
-        float f = this.loadingStateT.set(this.loading);
-        this.loadingT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
-        this.loadingTranslationT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
-        this.lastLoadingTTime = currentTimeMillis;
-    }
-
-    public void drawLine(Canvas canvas, RectF rectF) {
-        drawLine(canvas, rectF, 1.0f);
-    }
-
-    public void drawLine(Canvas canvas, RectF rectF, float f) {
-        boolean z;
-        float height;
-        int m;
-        canvas.save();
-        this.clipPath.rewind();
-        int floor = (int) Math.floor(SharedConfig.bubbleRadius / (this.sponsored ? 2.0f : 3.0f));
-        RectF rectF2 = this.rectF;
-        float f2 = rectF.left;
-        rectF2.set(f2, rectF.top, Math.max(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(floor * 2)) + f2, rectF.bottom);
-        Path path = this.clipPath;
-        RectF rectF3 = this.rectF;
-        float f3 = floor;
-        float dp = AndroidUtilities.dp(f3);
-        float dp2 = AndroidUtilities.dp(f3);
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF3, dp, dp2, direction);
-        canvas.clipPath(this.clipPath);
-        float f4 = rectF.left;
-        canvas.clipRect(f4, rectF.top, AndroidUtilities.dp(3.0f) + f4, rectF.bottom);
-        this.color1Paint.setColor(Theme.multAlpha(this.color1Animated.set(this.color1), f));
-        this.color2Paint.setColor(Theme.multAlpha(this.color2Animated.set(this.color2), f));
-        this.color3Paint.setColor(Theme.multAlpha(this.color3Animated.set(this.color3), f));
-        float f5 = this.loadingStateT.set(this.loading);
-        if (f5 <= 0.0f || this.hasColor2) {
-            z = false;
-        } else {
-            canvas.save();
-            int alpha = this.color1Paint.getAlpha();
-            this.color1Paint.setAlpha((int) (alpha * 0.3f));
-            canvas.drawPaint(this.color1Paint);
-            this.color1Paint.setAlpha(alpha);
-            incrementLoadingT();
-            float pow = ((float) Math.pow((this.loadingT / 240.0f) / 4.0f, 0.8500000238418579d)) * 4.0f;
-            this.rectF.set(rectF.left, rectF.top + (rectF.height() * AndroidUtilities.lerp(0.0f, 1.0f - CubicBezierInterpolator.EASE_IN.getInterpolation(MathUtils.clamp(((Math.max(pow, 0.5f) + 1.5f) % 3.5f) * 0.5f, 0.0f, 1.0f)), f5)), rectF.left + AndroidUtilities.dp(6.0f), rectF.top + (rectF.height() * AndroidUtilities.lerp(1.0f, 1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(MathUtils.clamp((((pow + 1.5f) % 3.5f) - 1.5f) * 0.5f, 0.0f, 1.0f)), f5)));
-            this.lineClipPath.rewind();
-            this.lineClipPath.addRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), direction);
-            canvas.clipPath(this.lineClipPath);
-            this.parentView.invalidate();
-            z = true;
-        }
-        canvas.drawPaint(this.color1Paint);
-        float f6 = this.color2Alpha.set(this.hasColor2);
-        if (f6 > 0.0f) {
-            canvas.save();
-            canvas.translate(rectF.left, rectF.top);
-            incrementLoadingT();
-            float f7 = this.color3Alpha.set(this.hasColor3);
-            if (this.hasColor3) {
-                height = rectF.height();
-                m = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(18.99f));
-            } else {
-                height = rectF.height();
-                m = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(12.66f));
-            }
-            canvas.translate(0.0f, -(((((this.loadingTranslationT + this.switchStateT.set(this.switchedCount * 425)) + (this.reversedOut ? 100 : 0)) / 1000.0f) * AndroidUtilities.dp(30.0f)) % (height - m)));
-            checkColorPathes(rectF.height() * 2.0f);
-            int alpha2 = this.color2Paint.getAlpha();
-            this.color2Paint.setAlpha((int) (alpha2 * f6));
-            canvas.drawPath(this.color2Path, this.color2Paint);
-            this.color2Paint.setAlpha(alpha2);
-            int alpha3 = this.color3Paint.getAlpha();
-            this.color3Paint.setAlpha((int) (alpha3 * f7));
-            canvas.drawPath(this.color3Path, this.color3Paint);
-            this.color3Paint.setAlpha(alpha3);
-            canvas.restore();
-        }
-        if (z) {
-            canvas.restore();
-        }
-        canvas.restore();
-    }
-
-    public void drawBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4) {
-        drawBackground(canvas, rectF, f, f2, f3, f4, false, false);
-    }
-
-    public void drawBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4, boolean z, boolean z2) {
-        float[] fArr = this.radii;
-        float max = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
-        fArr[1] = max;
-        fArr[0] = max;
-        float[] fArr2 = this.radii;
-        float dp = AndroidUtilities.dp(f2);
-        fArr2[3] = dp;
-        fArr2[2] = dp;
-        float[] fArr3 = this.radii;
-        float dp2 = AndroidUtilities.dp(f3);
-        fArr3[5] = dp2;
-        fArr3[4] = dp2;
-        float[] fArr4 = this.radii;
-        float max2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
-        fArr4[7] = max2;
-        fArr4[6] = max2;
-        drawBackground(canvas, rectF, f4, z, z2);
-    }
-
-    public static class IconCoords {
-        public float a;
-        public boolean q;
-        public float s;
-        public float x;
-        public float y;
-
-        public IconCoords(float f, float f2, float f3, float f4, boolean z) {
-            this(f, f2, f3, f4);
-            this.q = z;
-        }
-
-        public IconCoords(float f, float f2, float f3, float f4) {
-            this.x = f;
-            this.y = f2;
-            this.s = f3;
-            this.a = f4;
-        }
-    }
-
-    public ReplyMessageLine offsetEmoji(float f, float f2) {
-        this.emojiOffsetX = f;
-        this.emojiOffsetY = f2;
-        return this;
-    }
-
-    public void drawBackground(Canvas canvas, RectF rectF, float f, boolean z, boolean z2) {
-        int i;
-        if (!z2) {
-            this.backgroundPath.rewind();
-            this.backgroundPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
-            this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
-            this.backgroundPaint.setAlpha((int) (r5.getAlpha() * f));
-            canvas.drawPath(this.backgroundPath, this.backgroundPaint);
-        }
-        if (this.emoji == null) {
-            return;
-        }
-        float f2 = this.emojiLoadedT.set(isEmojiLoaded());
-        if (f2 <= 0.0f || this.emojiAlpha <= 0.0f) {
-            return;
-        }
-        if (this.iconCoords == null) {
-            i = 0;
-            this.iconCoords = new IconCoords[]{new IconCoords(4.0f, -6.33f, 1.0f, 1.0f), new IconCoords(30.0f, 3.0f, 0.78f, 0.9f), new IconCoords(46.0f, -17.0f, 0.6f, 0.6f), new IconCoords(69.66f, -0.666f, 0.87f, 0.7f), new IconCoords(98.0f, -12.6f, 1.03f, 0.3f), new IconCoords(51.0f, 24.0f, 1.0f, 0.5f), new IconCoords(6.33f, 20.0f, 0.77f, 0.7f), new IconCoords(-19.0f, 12.0f, 0.8f, 0.6f, true), new IconCoords(-22.0f, 36.0f, 0.7f, 0.5f, true)};
-        } else {
-            i = 0;
-        }
-        canvas.save();
-        canvas.clipRect(rectF);
-        canvas.translate(this.emojiOffsetX, this.emojiOffsetY);
-        float max = Math.max(rectF.right - AndroidUtilities.dp(15.0f), rectF.centerX());
-        if (z) {
-            max -= AndroidUtilities.dp(12.0f);
-        }
-        float min = Math.min(rectF.centerY(), rectF.top + AndroidUtilities.dp(21.0f));
-        this.emoji.setColor(Integer.valueOf(getColor()));
-        this.emoji.setAlpha((int) (255.0f * f * (rectF.width() >= ((float) AndroidUtilities.dp(140.0f)) ? 0.5f : 0.3f)));
-        while (true) {
-            IconCoords[] iconCoordsArr = this.iconCoords;
-            if (i < iconCoordsArr.length) {
-                IconCoords iconCoords = iconCoordsArr[i];
-                if (!iconCoords.q || z) {
-                    this.emoji.setAlpha((int) (iconCoords.a * 76.5f * this.emojiAlpha));
-                    float dp = max - AndroidUtilities.dp(iconCoords.x);
-                    float dp2 = AndroidUtilities.dp(iconCoords.y) + min;
-                    float dp3 = AndroidUtilities.dp(10.0f) * iconCoords.s * f2;
-                    this.emoji.setBounds((int) (dp - dp3), (int) (dp2 - dp3), (int) (dp + dp3), (int) (dp2 + dp3));
-                    this.emoji.draw(canvas);
-                }
-                i++;
-            } else {
-                canvas.restore();
-                return;
-            }
-        }
-    }
-
-    private boolean isEmojiLoaded() {
-        if (this.emojiLoaded) {
-            return true;
-        }
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
-        if (swapAnimatedEmojiDrawable == null || !(swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable)) {
-            return false;
-        }
-        AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) this.emoji.getDrawable();
-        if (animatedEmojiDrawable.getImageReceiver() == null || !animatedEmojiDrawable.getImageReceiver().hasImageLoaded()) {
-            return false;
-        }
-        this.emojiLoaded = true;
-        return true;
-    }
-
-    public void drawLoadingBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4) {
-        LoadingDrawable loadingDrawable;
-        float[] fArr = this.radii;
-        float max = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
-        fArr[1] = max;
-        fArr[0] = max;
-        float[] fArr2 = this.radii;
-        float dp = AndroidUtilities.dp(f2);
-        fArr2[3] = dp;
-        fArr2[2] = dp;
-        float[] fArr3 = this.radii;
-        float dp2 = AndroidUtilities.dp(f3);
-        fArr3[5] = dp2;
-        fArr3[4] = dp2;
-        float[] fArr4 = this.radii;
-        float max2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
-        fArr4[7] = max2;
-        fArr4[6] = max2;
-        if (this.loading || ((loadingDrawable = this.backgroundLoadingDrawable) != null && loadingDrawable.isDisappearing())) {
-            if (this.backgroundLoadingDrawable == null) {
-                LoadingDrawable loadingDrawable2 = new LoadingDrawable();
-                this.backgroundLoadingDrawable = loadingDrawable2;
-                loadingDrawable2.setAppearByGradient(true);
-                this.backgroundLoadingDrawable.setGradientScale(3.5f);
-                this.backgroundLoadingDrawable.setSpeed(0.5f);
-            }
-            this.backgroundLoadingDrawable.setColors(Theme.multAlpha(this.color1, 0.1f), Theme.multAlpha(this.color1, 0.3f), Theme.multAlpha(this.color1, 0.3f), Theme.multAlpha(this.color1, 1.25f));
-            this.backgroundLoadingDrawable.setBounds(rectF);
-            this.backgroundLoadingDrawable.setRadii(this.radii);
-            this.backgroundLoadingDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-            this.backgroundLoadingDrawable.setAlpha((int) (f4 * 255.0f));
-            this.backgroundLoadingDrawable.draw(canvas);
-            this.parentView.invalidate();
-            return;
-        }
-        LoadingDrawable loadingDrawable3 = this.backgroundLoadingDrawable;
-        if (loadingDrawable3 != null) {
-            loadingDrawable3.reset();
-        }
     }
 
     private void checkColorPathes(float f) {
@@ -705,5 +152,347 @@ public class ReplyMessageLine {
             this.lastHeight = f;
             this.lastHasColor3 = this.hasColor3;
         }
+    }
+
+    private void incrementLoadingT() {
+        long currentTimeMillis = System.currentTimeMillis();
+        float f = this.loadingStateT.set(this.loading);
+        this.loadingT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
+        this.loadingTranslationT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
+        this.lastLoadingTTime = currentTimeMillis;
+    }
+
+    private boolean isEmojiLoaded() {
+        if (this.emojiLoaded) {
+            return true;
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
+        if (swapAnimatedEmojiDrawable == null || !(swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable)) {
+            return false;
+        }
+        AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) this.emoji.getDrawable();
+        if (animatedEmojiDrawable.getImageReceiver() == null || !animatedEmojiDrawable.getImageReceiver().hasImageLoaded()) {
+            return false;
+        }
+        this.emojiLoaded = true;
+        return true;
+    }
+
+    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) {
+        int i2;
+        if (resourcesProvider != null) {
+            resourcesProvider.isDark();
+        } else {
+            Theme.isCurrentThemeDark();
+        }
+        if (this.wasColorId != i) {
+            int id = messageObject != null ? messageObject.getId() : 0;
+            if (id == this.wasMessageId) {
+                this.switchedCount++;
+            }
+            this.wasColorId = i;
+            this.wasMessageId = id;
+        }
+        if (i < 7) {
+            i2 = Theme.keys_avatar_nameInMessage[i];
+        } else {
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(messageObject != null ? messageObject.currentAccount : UserConfig.selectedAccount).peerColors;
+            MessagesController.PeerColor color = peerColors != null ? peerColors.getColor(i) : null;
+            if (color != null) {
+                this.color1 = color.getColor(0, resourcesProvider);
+                this.color2 = color.getColor(1, resourcesProvider);
+                int color2 = color.getColor(2, resourcesProvider);
+                this.color3 = color2;
+                int i3 = this.color2;
+                int i4 = this.color1;
+                this.hasColor2 = i3 != i4;
+                boolean z = color2 != i4;
+                this.hasColor3 = z;
+                if (z) {
+                    this.color3 = i3;
+                    this.color2 = color2;
+                    return;
+                }
+                return;
+            }
+            i2 = (messageObject == null || !messageObject.isOutOwner()) ? Theme.key_chat_inReplyLine : Theme.key_chat_outReplyLine;
+        }
+        int color3 = Theme.getColor(i2, resourcesProvider);
+        this.color3 = color3;
+        this.color2 = color3;
+        this.color1 = color3;
+        this.hasColor3 = false;
+        this.hasColor2 = false;
+    }
+
+    public int check(org.telegram.messenger.MessageObject r18, org.telegram.tgnet.TLRPC$User r19, org.telegram.tgnet.TLRPC$Chat r20, org.telegram.ui.ActionBar.Theme.ResourcesProvider r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReplyMessageLine.check(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int):int");
+    }
+
+    public void drawBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4) {
+        drawBackground(canvas, rectF, f, f2, f3, f4, false, false);
+    }
+
+    public void drawBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4, boolean z, boolean z2) {
+        float[] fArr = this.radii;
+        float max = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
+        fArr[1] = max;
+        fArr[0] = max;
+        float[] fArr2 = this.radii;
+        float dp = AndroidUtilities.dp(f2);
+        fArr2[3] = dp;
+        fArr2[2] = dp;
+        float[] fArr3 = this.radii;
+        float dp2 = AndroidUtilities.dp(f3);
+        fArr3[5] = dp2;
+        fArr3[4] = dp2;
+        float[] fArr4 = this.radii;
+        float max2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
+        fArr4[7] = max2;
+        fArr4[6] = max2;
+        drawBackground(canvas, rectF, f4, z, z2);
+    }
+
+    public void drawBackground(Canvas canvas, RectF rectF, float f, boolean z, boolean z2) {
+        int i;
+        if (!z2) {
+            this.backgroundPath.rewind();
+            this.backgroundPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
+            this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
+            this.backgroundPaint.setAlpha((int) (r5.getAlpha() * f));
+            canvas.drawPath(this.backgroundPath, this.backgroundPaint);
+        }
+        if (this.emoji == null) {
+            return;
+        }
+        float f2 = this.emojiLoadedT.set(isEmojiLoaded());
+        if (f2 <= 0.0f || this.emojiAlpha <= 0.0f) {
+            return;
+        }
+        if (this.iconCoords == null) {
+            i = 0;
+            this.iconCoords = new IconCoords[]{new IconCoords(4.0f, -6.33f, 1.0f, 1.0f), new IconCoords(30.0f, 3.0f, 0.78f, 0.9f), new IconCoords(46.0f, -17.0f, 0.6f, 0.6f), new IconCoords(69.66f, -0.666f, 0.87f, 0.7f), new IconCoords(98.0f, -12.6f, 1.03f, 0.3f), new IconCoords(51.0f, 24.0f, 1.0f, 0.5f), new IconCoords(6.33f, 20.0f, 0.77f, 0.7f), new IconCoords(-19.0f, 12.0f, 0.8f, 0.6f, true), new IconCoords(-22.0f, 36.0f, 0.7f, 0.5f, true)};
+        } else {
+            i = 0;
+        }
+        canvas.save();
+        canvas.clipRect(rectF);
+        canvas.translate(this.emojiOffsetX, this.emojiOffsetY);
+        float max = Math.max(rectF.right - AndroidUtilities.dp(15.0f), rectF.centerX());
+        if (z) {
+            max -= AndroidUtilities.dp(12.0f);
+        }
+        float min = Math.min(rectF.centerY(), rectF.top + AndroidUtilities.dp(21.0f));
+        this.emoji.setColor(Integer.valueOf(getColor()));
+        this.emoji.setAlpha((int) (255.0f * f * (rectF.width() >= ((float) AndroidUtilities.dp(140.0f)) ? 0.5f : 0.3f)));
+        while (true) {
+            IconCoords[] iconCoordsArr = this.iconCoords;
+            if (i >= iconCoordsArr.length) {
+                canvas.restore();
+                return;
+            }
+            IconCoords iconCoords = iconCoordsArr[i];
+            if (!iconCoords.q || z) {
+                this.emoji.setAlpha((int) (iconCoords.a * 76.5f * this.emojiAlpha));
+                float dp = max - AndroidUtilities.dp(iconCoords.x);
+                float dp2 = AndroidUtilities.dp(iconCoords.y) + min;
+                float dp3 = AndroidUtilities.dp(10.0f) * iconCoords.s * f2;
+                this.emoji.setBounds((int) (dp - dp3), (int) (dp2 - dp3), (int) (dp + dp3), (int) (dp2 + dp3));
+                this.emoji.draw(canvas);
+            }
+            i++;
+        }
+    }
+
+    public void drawLine(Canvas canvas, RectF rectF) {
+        drawLine(canvas, rectF, 1.0f);
+    }
+
+    public void drawLine(Canvas canvas, RectF rectF, float f) {
+        boolean z;
+        float height;
+        int height2;
+        float f2;
+        canvas.save();
+        this.clipPath.rewind();
+        int floor = (int) Math.floor(SharedConfig.bubbleRadius / (this.sponsored ? 2.0f : 3.0f));
+        RectF rectF2 = this.rectF;
+        float f3 = rectF.left;
+        rectF2.set(f3, rectF.top, Math.max(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(floor * 2)) + f3, rectF.bottom);
+        Path path = this.clipPath;
+        RectF rectF3 = this.rectF;
+        float f4 = floor;
+        float dp = AndroidUtilities.dp(f4);
+        float dp2 = AndroidUtilities.dp(f4);
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF3, dp, dp2, direction);
+        canvas.clipPath(this.clipPath);
+        float f5 = rectF.left;
+        canvas.clipRect(f5, rectF.top, AndroidUtilities.dp(3.0f) + f5, rectF.bottom);
+        this.color1Paint.setColor(Theme.multAlpha(this.color1Animated.set(this.color1), f));
+        this.color2Paint.setColor(Theme.multAlpha(this.color2Animated.set(this.color2), f));
+        this.color3Paint.setColor(Theme.multAlpha(this.color3Animated.set(this.color3), f));
+        float f6 = this.loadingStateT.set(this.loading);
+        if (f6 <= 0.0f || this.hasColor2) {
+            z = false;
+        } else {
+            canvas.save();
+            int alpha = this.color1Paint.getAlpha();
+            this.color1Paint.setAlpha((int) (alpha * 0.3f));
+            canvas.drawPaint(this.color1Paint);
+            this.color1Paint.setAlpha(alpha);
+            incrementLoadingT();
+            float pow = ((float) Math.pow((this.loadingT / 240.0f) / 4.0f, 0.8500000238418579d)) * 4.0f;
+            this.rectF.set(rectF.left, rectF.top + (rectF.height() * AndroidUtilities.lerp(0.0f, 1.0f - CubicBezierInterpolator.EASE_IN.getInterpolation(MathUtils.clamp(((Math.max(pow, 0.5f) + 1.5f) % 3.5f) * 0.5f, 0.0f, 1.0f)), f6)), rectF.left + AndroidUtilities.dp(6.0f), rectF.top + (rectF.height() * AndroidUtilities.lerp(1.0f, 1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(MathUtils.clamp((((pow + 1.5f) % 3.5f) - 1.5f) * 0.5f, 0.0f, 1.0f)), f6)));
+            this.lineClipPath.rewind();
+            this.lineClipPath.addRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), direction);
+            canvas.clipPath(this.lineClipPath);
+            this.parentView.invalidate();
+            z = true;
+        }
+        canvas.drawPaint(this.color1Paint);
+        float f7 = this.color2Alpha.set(this.hasColor2);
+        if (f7 > 0.0f) {
+            canvas.save();
+            canvas.translate(rectF.left, rectF.top);
+            incrementLoadingT();
+            float f8 = this.color3Alpha.set(this.hasColor3);
+            if (this.hasColor3) {
+                height = rectF.height();
+                height2 = (int) rectF.height();
+                f2 = 18.99f;
+            } else {
+                height = rectF.height();
+                height2 = (int) rectF.height();
+                f2 = 12.66f;
+            }
+            canvas.translate(0.0f, -(((((this.loadingTranslationT + this.switchStateT.set(this.switchedCount * 425)) + (this.reversedOut ? 100 : 0)) / 1000.0f) * AndroidUtilities.dp(30.0f)) % (height - ReplyMessageLine$$ExternalSyntheticBackport0.m(height2, AndroidUtilities.dp(f2)))));
+            checkColorPathes(rectF.height() * 2.0f);
+            int alpha2 = this.color2Paint.getAlpha();
+            this.color2Paint.setAlpha((int) (alpha2 * f7));
+            canvas.drawPath(this.color2Path, this.color2Paint);
+            this.color2Paint.setAlpha(alpha2);
+            int alpha3 = this.color3Paint.getAlpha();
+            this.color3Paint.setAlpha((int) (alpha3 * f8));
+            canvas.drawPath(this.color3Path, this.color3Paint);
+            this.color3Paint.setAlpha(alpha3);
+            canvas.restore();
+        }
+        if (z) {
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    public void drawLoadingBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4) {
+        LoadingDrawable loadingDrawable;
+        float[] fArr = this.radii;
+        float max = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f));
+        fArr[1] = max;
+        fArr[0] = max;
+        float[] fArr2 = this.radii;
+        float dp = AndroidUtilities.dp(f2);
+        fArr2[3] = dp;
+        fArr2[2] = dp;
+        float[] fArr3 = this.radii;
+        float dp2 = AndroidUtilities.dp(f3);
+        fArr3[5] = dp2;
+        fArr3[4] = dp2;
+        float[] fArr4 = this.radii;
+        float max2 = Math.max(AndroidUtilities.dp((int) Math.floor(SharedConfig.bubbleRadius / 3.0f)), AndroidUtilities.dp(f3));
+        fArr4[7] = max2;
+        fArr4[6] = max2;
+        if (!this.loading && ((loadingDrawable = this.backgroundLoadingDrawable) == null || !loadingDrawable.isDisappearing())) {
+            LoadingDrawable loadingDrawable2 = this.backgroundLoadingDrawable;
+            if (loadingDrawable2 != null) {
+                loadingDrawable2.reset();
+                return;
+            }
+            return;
+        }
+        if (this.backgroundLoadingDrawable == null) {
+            LoadingDrawable loadingDrawable3 = new LoadingDrawable();
+            this.backgroundLoadingDrawable = loadingDrawable3;
+            loadingDrawable3.setAppearByGradient(true);
+            this.backgroundLoadingDrawable.setGradientScale(3.5f);
+            this.backgroundLoadingDrawable.setSpeed(0.5f);
+        }
+        this.backgroundLoadingDrawable.setColors(Theme.multAlpha(this.color1, 0.1f), Theme.multAlpha(this.color1, 0.3f), Theme.multAlpha(this.color1, 0.3f), Theme.multAlpha(this.color1, 1.25f));
+        this.backgroundLoadingDrawable.setBounds(rectF);
+        this.backgroundLoadingDrawable.setRadii(this.radii);
+        this.backgroundLoadingDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        this.backgroundLoadingDrawable.setAlpha((int) (f4 * 255.0f));
+        this.backgroundLoadingDrawable.draw(canvas);
+        this.parentView.invalidate();
+    }
+
+    public int getBackgroundColor() {
+        return this.backgroundColor;
+    }
+
+    public int getColor() {
+        return this.reversedOut ? this.color2 : this.color1;
+    }
+
+    public ReplyMessageLine offsetEmoji(float f, float f2) {
+        this.emojiOffsetX = f;
+        this.emojiOffsetY = f2;
+        return this;
+    }
+
+    public void resetAnimation() {
+        this.color1Animated.set(this.color1, true);
+        this.color2Animated.set(this.color2, true);
+        this.color2Alpha.set(this.hasColor2, true);
+        this.nameColorAnimated.set(this.nameColor, true);
+        this.backgroundColorAnimated.set(this.backgroundColor, true);
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
+        if (swapAnimatedEmojiDrawable != null) {
+            swapAnimatedEmojiDrawable.resetAnimation();
+        }
+    }
+
+    public void setBackgroundColor(int i) {
+        this.backgroundColor = i;
+    }
+
+    public void setEmojiAlpha(float f) {
+        this.emojiAlpha = f;
+    }
+
+    public int setFactCheck(Theme.ResourcesProvider resourcesProvider) {
+        int i = Theme.key_text_RedBold;
+        this.nameColor = Theme.getColor(i, resourcesProvider);
+        this.color1 = Theme.getColor(i, resourcesProvider);
+        this.hasColor2 = false;
+        this.hasColor3 = false;
+        this.backgroundColor = Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.1f);
+        if (this.emojiDocumentId != 0 && this.emoji == null) {
+            this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
+            View view = this.parentView;
+            if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
+                this.emoji.attach();
+            }
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
+        if (swapAnimatedEmojiDrawable != null && swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true)) {
+            this.emojiLoaded = false;
+        }
+        return this.nameColorAnimated.set(this.nameColor);
+    }
+
+    public void setLoading(boolean z) {
+        LoadingDrawable loadingDrawable;
+        if (!z && this.loading) {
+            this.loadingT = 0.0f;
+            LoadingDrawable loadingDrawable2 = this.backgroundLoadingDrawable;
+            if (loadingDrawable2 != null) {
+                loadingDrawable2.disappear();
+            }
+        } else if (z && !this.loading && (loadingDrawable = this.backgroundLoadingDrawable) != null) {
+            loadingDrawable.resetDisappear();
+            this.backgroundLoadingDrawable.reset();
+        }
+        this.loading = z;
     }
 }

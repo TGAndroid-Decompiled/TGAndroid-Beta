@@ -11,12 +11,6 @@ public class StackBarViewData extends LineViewData {
     private Theme.ResourcesProvider resourcesProvider;
     public final Paint unselectedPaint;
 
-    @Override
-    public void updateColors() {
-        super.updateColors();
-        this.blendColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), this.lineColor, 0.3f);
-    }
-
     public StackBarViewData(ChartData.Line line, Theme.ResourcesProvider resourcesProvider) {
         super(line, false);
         Paint paint = new Paint();
@@ -29,5 +23,11 @@ public class StackBarViewData extends LineViewData {
         paint2.setStyle(style);
         paint.setStyle(style);
         this.paint.setAntiAlias(false);
+    }
+
+    @Override
+    public void updateColors() {
+        super.updateColors();
+        this.blendColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), this.lineColor, 0.3f);
     }
 }

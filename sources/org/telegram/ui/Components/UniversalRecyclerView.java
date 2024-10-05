@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -22,19 +21,61 @@ public class UniversalRecyclerView extends RecyclerListView {
     public final LinearLayoutManager layoutManager;
     private boolean reorderingAllowed;
 
-    public void doNotDetachViews() {
-        this.doNotDetachViews = true;
+    private class TouchHelperCallback extends ItemTouchHelper.Callback {
+        private TouchHelperCallback() {
+        }
+
+        @Override
+        public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            super.clearView(recyclerView, viewHolder);
+            viewHolder.itemView.setPressed(false);
+        }
+
+        @Override
+        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            return (UniversalRecyclerView.this.reorderingAllowed && UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition())) ? ItemTouchHelper.Callback.makeMovementFlags(3, 0) : ItemTouchHelper.Callback.makeMovementFlags(0, 0);
+        }
+
+        @Override
+        public boolean isLongPressDragEnabled() {
+            return UniversalRecyclerView.this.reorderingAllowed;
+        }
+
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
+            if (!UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition()) || UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder.getAdapterPosition()) != UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder2.getAdapterPosition())) {
+                return false;
+            }
+            UniversalRecyclerView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
+            return true;
+        }
+
+        @Override
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
+            if (viewHolder != null) {
+                UniversalRecyclerView.this.hideSelector(false);
+            }
+            if (i == 0) {
+                UniversalRecyclerView.this.adapter.reorderDone();
+            } else {
+                UniversalRecyclerView.this.cancelClickRunnables(false);
+                if (viewHolder != null) {
+                    viewHolder.itemView.setPressed(true);
+                }
+            }
+            super.onSelectedChanged(viewHolder, i);
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
+        }
     }
 
-    public UniversalRecyclerView(BaseFragment baseFragment, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Utilities.Callback5<UItem, View, Integer, Float, Float> callback5, Utilities.Callback5Return<UItem, View, Integer, Float, Float, Boolean> callback5Return) {
-        this(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), callback2, callback5, callback5Return, baseFragment.getResourceProvider());
-    }
-
-    public UniversalRecyclerView(Context context, int i, int i2, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Utilities.Callback5<UItem, View, Integer, Float, Float> callback5, Utilities.Callback5Return<UItem, View, Integer, Float, Float, Boolean> callback5Return, Theme.ResourcesProvider resourcesProvider) {
+    public UniversalRecyclerView(Context context, int i, int i2, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, Theme.ResourcesProvider resourcesProvider) {
         this(context, i, i2, false, callback2, callback5, callback5Return, resourcesProvider);
     }
 
-    public UniversalRecyclerView(Context context, int i, int i2, boolean z, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, final Utilities.Callback5<UItem, View, Integer, Float, Float> callback5, final Utilities.Callback5Return<UItem, View, Integer, Float, Float, Boolean> callback5Return, Theme.ResourcesProvider resourcesProvider) {
+    public UniversalRecyclerView(Context context, int i, int i2, boolean z, Utilities.Callback2 callback2, final Utilities.Callback5 callback5, final Utilities.Callback5Return callback5Return, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
             @Override
@@ -99,6 +140,14 @@ public class UniversalRecyclerView extends RecyclerListView {
         setItemAnimator(defaultItemAnimator);
     }
 
+    public UniversalRecyclerView(BaseFragment baseFragment, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return) {
+        this(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), callback2, callback5, callback5Return, baseFragment.getResourceProvider());
+    }
+
+    public void lambda$allowReorder$2(View view) {
+        this.adapter.updateReorder(getChildViewHolder(view), this.reorderingAllowed);
+    }
+
     public void lambda$new$0(Utilities.Callback5 callback5, View view, int i, float f, float f2) {
         UItem item = this.adapter.getItem(i);
         if (item == null) {
@@ -115,13 +164,6 @@ public class UniversalRecyclerView extends RecyclerListView {
         return ((Boolean) callback5Return.run(item, view, Integer.valueOf(i), Float.valueOf(f), Float.valueOf(f2))).booleanValue();
     }
 
-    public void listenReorder(Utilities.Callback2<Integer, ArrayList<UItem>> callback2) {
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
-        this.itemTouchHelper = itemTouchHelper;
-        itemTouchHelper.attachToRecyclerView(this);
-        this.adapter.listenReorder(callback2);
-    }
-
     public void allowReorder(boolean z) {
         if (this.reorderingAllowed == z) {
             return;
@@ -129,7 +171,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         UniversalAdapter universalAdapter = this.adapter;
         this.reorderingAllowed = z;
         universalAdapter.updateReorder(z);
-        AndroidUtilities.forEachViews((RecyclerView) this, (Consumer<View>) new Consumer() {
+        AndroidUtilities.forEachViews((RecyclerView) this, new Consumer() {
             @Override
             public final void accept(Object obj) {
                 UniversalRecyclerView.this.lambda$allowReorder$2((View) obj);
@@ -137,14 +179,24 @@ public class UniversalRecyclerView extends RecyclerListView {
         });
     }
 
-    public void lambda$allowReorder$2(View view) {
-        this.adapter.updateReorder(getChildViewHolder(view), this.reorderingAllowed);
-    }
-
     @Override
     public void dispatchDraw(Canvas canvas) {
         this.adapter.drawWhiteSections(canvas, this);
         super.dispatchDraw(canvas);
+    }
+
+    public void doNotDetachViews() {
+        this.doNotDetachViews = true;
+    }
+
+    public int findPositionByItemId(int i) {
+        for (int i2 = 0; i2 < this.adapter.getItemCount(); i2++) {
+            UItem item = this.adapter.getItem(i2);
+            if (item != null && item.id == i) {
+                return i2;
+            }
+        }
+        return -1;
     }
 
     public View findViewByItemId(int i) {
@@ -163,16 +215,6 @@ public class UniversalRecyclerView extends RecyclerListView {
         return findViewByPosition(i2);
     }
 
-    public int findPositionByItemId(int i) {
-        for (int i2 = 0; i2 < this.adapter.getItemCount(); i2++) {
-            UItem item = this.adapter.getItem(i2);
-            if (item != null && item.id == i) {
-                return i2;
-            }
-        }
-        return -1;
-    }
-
     public View findViewByPosition(int i) {
         if (i == -1) {
             return null;
@@ -187,56 +229,10 @@ public class UniversalRecyclerView extends RecyclerListView {
         return null;
     }
 
-    private class TouchHelperCallback extends ItemTouchHelper.Callback {
-        @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
-        }
-
-        private TouchHelperCallback() {
-        }
-
-        @Override
-        public boolean isLongPressDragEnabled() {
-            return UniversalRecyclerView.this.reorderingAllowed;
-        }
-
-        @Override
-        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            if (UniversalRecyclerView.this.reorderingAllowed && UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition())) {
-                return ItemTouchHelper.Callback.makeMovementFlags(3, 0);
-            }
-            return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
-        }
-
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (!UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition()) || UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder.getAdapterPosition()) != UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder2.getAdapterPosition())) {
-                return false;
-            }
-            UniversalRecyclerView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
-            return true;
-        }
-
-        @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
-            if (viewHolder != null) {
-                UniversalRecyclerView.this.hideSelector(false);
-            }
-            if (i == 0) {
-                UniversalRecyclerView.this.adapter.reorderDone();
-            } else {
-                UniversalRecyclerView.this.cancelClickRunnables(false);
-                if (viewHolder != null) {
-                    viewHolder.itemView.setPressed(true);
-                }
-            }
-            super.onSelectedChanged(viewHolder, i);
-        }
-
-        @Override
-        public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            super.clearView(recyclerView, viewHolder);
-            viewHolder.itemView.setPressed(false);
-        }
+    public void listenReorder(Utilities.Callback2 callback2) {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
+        this.itemTouchHelper = itemTouchHelper;
+        itemTouchHelper.attachToRecyclerView(this);
+        this.adapter.listenReorder(callback2);
     }
 }

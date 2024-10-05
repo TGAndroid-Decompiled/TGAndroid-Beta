@@ -23,18 +23,13 @@ public abstract class TLRPC$GroupCall extends TLObject {
     public int version;
 
     public static TLRPC$GroupCall TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$GroupCall tLRPC$TL_groupCall;
-        if (i != -711498484) {
-            tLRPC$TL_groupCall = i != 2004925620 ? null : new TLRPC$TL_groupCallDiscarded();
-        } else {
-            tLRPC$TL_groupCall = new TLRPC$TL_groupCall();
-        }
-        if (tLRPC$TL_groupCall == null && z) {
+        TLRPC$GroupCall tLRPC$TL_groupCallDiscarded = i != -711498484 ? i != 2004925620 ? null : new TLRPC$TL_groupCallDiscarded() : new TLRPC$TL_groupCall();
+        if (tLRPC$TL_groupCallDiscarded == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in GroupCall", Integer.valueOf(i)));
         }
-        if (tLRPC$TL_groupCall != null) {
-            tLRPC$TL_groupCall.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_groupCallDiscarded != null) {
+            tLRPC$TL_groupCallDiscarded.readParams(abstractSerializedData, z);
         }
-        return tLRPC$TL_groupCall;
+        return tLRPC$TL_groupCallDiscarded;
     }
 }

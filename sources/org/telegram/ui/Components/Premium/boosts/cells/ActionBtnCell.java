@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -12,10 +11,9 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-@SuppressLint({"ViewConstructor"})
 public class ActionBtnCell extends FrameLayout {
     private final View backgroundView;
-    private final ButtonWithCounterView button;
+    public final ButtonWithCounterView button;
     private final Paint dividerPaint;
     private boolean drawDivider;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -33,38 +31,6 @@ public class ActionBtnCell extends FrameLayout {
     }
 
     @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.button.setOnClickListener(onClickListener);
-    }
-
-    public void setStartGiveAwayStyle(int i, boolean z) {
-        this.drawDivider = true;
-        this.button.withCounterIcon();
-        this.button.setShowZero(true);
-        this.button.setEnabled(true);
-        this.button.setCount(i, z);
-        this.button.setText(LocaleController.formatString("BoostingStartGiveaway", R.string.BoostingStartGiveaway, new Object[0]), z);
-        this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-    }
-
-    public void setGiftPremiumStyle(int i, boolean z, boolean z2) {
-        this.drawDivider = true;
-        this.button.withCounterIcon();
-        this.button.setShowZero(true);
-        this.button.setEnabled(z2);
-        this.button.setCount(i, z);
-        this.button.setText(LocaleController.formatString("GiftPremium", R.string.GiftPremium, new Object[0]), z);
-        this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-    }
-
-    public void setActivateForFreeStyle() {
-        this.drawDivider = true;
-        this.button.setEnabled(true);
-        this.button.setText(LocaleController.formatString("GiftPremiumActivateForFree", R.string.GiftPremiumActivateForFree, new Object[0]), false);
-        this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-    }
-
-    @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.drawDivider) {
@@ -74,23 +40,15 @@ public class ActionBtnCell extends FrameLayout {
         }
     }
 
-    public void updateLoading(boolean z) {
-        this.button.setLoading(z);
-    }
-
     public boolean isLoading() {
         return this.button.isLoading();
     }
 
-    public void updateCounter(int i) {
-        this.button.setCount(i, true);
-    }
-
-    public void setOkStyle(boolean z) {
-        this.drawDivider = false;
-        this.button.setShowZero(false);
+    public void setActivateForFreeStyle() {
+        this.drawDivider = true;
         this.button.setEnabled(true);
-        this.button.setText(z ? LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]) : LocaleController.formatString("OK", R.string.OK, new Object[0]), false);
+        this.button.setText(LocaleController.getString(R.string.GiftPremiumActivateForFree), false);
+        this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
     }
 
     public void setCloseStyle() {
@@ -103,5 +61,45 @@ public class ActionBtnCell extends FrameLayout {
     public void setCloseStyle(boolean z) {
         setCloseStyle();
         this.drawDivider = z;
+    }
+
+    public void setGiftPremiumStyle(int i, boolean z, boolean z2) {
+        this.drawDivider = true;
+        this.button.withCounterIcon();
+        this.button.setShowZero(true);
+        this.button.setEnabled(z2);
+        this.button.setCount(i, z);
+        this.button.setText(LocaleController.getString(R.string.GiftPremium), z);
+        this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+    }
+
+    public void setOkStyle(boolean z) {
+        this.drawDivider = false;
+        this.button.setShowZero(false);
+        this.button.setEnabled(true);
+        this.button.setText(z ? LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]) : LocaleController.formatString("OK", R.string.OK, new Object[0]), false);
+    }
+
+    @Override
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.button.setOnClickListener(onClickListener);
+    }
+
+    public void setStartGiveAwayStyle(int i, boolean z) {
+        this.drawDivider = true;
+        this.button.withCounterIcon();
+        this.button.setShowZero(true);
+        this.button.setEnabled(true);
+        this.button.setCount(i, z);
+        this.button.setText(LocaleController.getString(R.string.BoostingStartGiveaway), z);
+        this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+    }
+
+    public void updateCounter(int i) {
+        this.button.setCount(i, true);
+    }
+
+    public void updateLoading(boolean z) {
+        this.button.setLoading(z);
     }
 }

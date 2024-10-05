@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
@@ -35,13 +34,69 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
     private Drawable shadowDrawable;
     private TextView textView;
 
-    public interface SharingLocationsAlertDelegate {
-        void didSelectLocation(LocationController.SharingLocationInfo sharingLocationInfo);
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+        private Context context;
+
+        public ListAdapter(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public int getItemCount() {
+            return LocationController.getLocationsCount() + 1;
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            return i == 0 ? 1 : 0;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() == 0;
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                ((SharingLiveLocationCell) viewHolder.itemView).setDialog(SharingLocationsAlert.this.getLocation(i - 1));
+            } else if (itemViewType == 1 && SharingLocationsAlert.this.textView != null) {
+                SharingLocationsAlert.this.textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
+            }
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            FrameLayout sharingLiveLocationCell;
+            if (i != 0) {
+                sharingLiveLocationCell = new FrameLayout(this.context) {
+                    @Override
+                    protected void onDraw(Canvas canvas) {
+                        canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), Theme.dividerPaint);
+                    }
+
+                    @Override
+                    protected void onMeasure(int i2, int i3) {
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + 1, 1073741824));
+                    }
+                };
+                sharingLiveLocationCell.setWillNotDraw(false);
+                SharingLocationsAlert.this.textView = new TextView(this.context);
+                SharingLocationsAlert.this.textView.setTextColor(SharingLocationsAlert.this.getThemedColor(Theme.key_dialogIcon));
+                SharingLocationsAlert.this.textView.setTextSize(1, 14.0f);
+                SharingLocationsAlert.this.textView.setGravity(17);
+                SharingLocationsAlert.this.textView.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+                sharingLiveLocationCell.addView(SharingLocationsAlert.this.textView, LayoutHelper.createFrame(-1, 40.0f));
+            } else {
+                sharingLiveLocationCell = new SharingLiveLocationCell(this.context, false, 54, ((BottomSheet) SharingLocationsAlert.this).resourcesProvider);
+            }
+            return new RecyclerListView.Holder(sharingLiveLocationCell);
+        }
     }
 
-    @Override
-    public boolean canDismissWithSwipe() {
-        return false;
+    public interface SharingLocationsAlertDelegate {
+        void didSelectLocation(LocationController.SharingLocationInfo sharingLocationInfo);
     }
 
     public SharingLocationsAlert(Context context, SharingLocationsAlertDelegate sharingLocationsAlertDelegate, Theme.ResourcesProvider resourcesProvider) {
@@ -55,17 +110,24 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
-            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() == 0 && SharingLocationsAlert.this.scrollOffsetY != 0 && motionEvent.getY() < SharingLocationsAlert.this.scrollOffsetY) {
-                    SharingLocationsAlert.this.dismiss();
-                    return true;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
+            protected void onDraw(Canvas canvas) {
+                SharingLocationsAlert.this.shadowDrawable.setBounds(0, SharingLocationsAlert.this.scrollOffsetY - ((BottomSheet) SharingLocationsAlert.this).backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight());
+                SharingLocationsAlert.this.shadowDrawable.draw(canvas);
             }
 
             @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                return !SharingLocationsAlert.this.isDismissed() && super.onTouchEvent(motionEvent);
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() != 0 || SharingLocationsAlert.this.scrollOffsetY == 0 || motionEvent.getY() >= SharingLocationsAlert.this.scrollOffsetY) {
+                    return super.onInterceptTouchEvent(motionEvent);
+                }
+                SharingLocationsAlert.this.dismiss();
+                return true;
+            }
+
+            @Override
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
+                SharingLocationsAlert.this.updateLayout();
             }
 
             @Override
@@ -95,9 +157,8 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
             }
 
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                super.onLayout(z, i2, i3, i4, i5);
-                SharingLocationsAlert.this.updateLayout();
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                return !SharingLocationsAlert.this.isDismissed() && super.onTouchEvent(motionEvent);
             }
 
             @Override
@@ -106,12 +167,6 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
                     return;
                 }
                 super.requestLayout();
-            }
-
-            @Override
-            protected void onDraw(Canvas canvas) {
-                SharingLocationsAlert.this.shadowDrawable.setBounds(0, SharingLocationsAlert.this.scrollOffsetY - ((BottomSheet) SharingLocationsAlert.this).backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight());
-                SharingLocationsAlert.this.shadowDrawable.draw(canvas);
             }
         };
         this.containerView = frameLayout;
@@ -184,6 +239,17 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         this.adapter.notifyDataSetChanged();
     }
 
+    public LocationController.SharingLocationInfo getLocation(int i) {
+        for (int i2 = 0; i2 < 4; i2++) {
+            ArrayList<LocationController.SharingLocationInfo> arrayList = LocationController.getInstance(i2).sharingLocationsUI;
+            if (i < arrayList.size()) {
+                return arrayList.get(i);
+            }
+            i -= arrayList.size();
+        }
+        return null;
+    }
+
     public void lambda$new$0(View view, int i) {
         int i2 = i - 1;
         if (i2 < 0 || i2 >= LocationController.getLocationsCount()) {
@@ -204,7 +270,6 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         dismiss();
     }
 
-    @SuppressLint({"NewApi"})
     public void updateLayout() {
         if (this.listView.getChildCount() <= 0) {
             RecyclerListView recyclerListView = this.listView;
@@ -230,6 +295,11 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
     }
 
     @Override
+    public boolean canDismissWithSwipe() {
+        return false;
+    }
+
+    @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.liveLocationsChanged) {
             if (LocationController.getLocationsCount() == 0) {
@@ -240,85 +310,9 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         }
     }
 
-    public LocationController.SharingLocationInfo getLocation(int i) {
-        for (int i2 = 0; i2 < 4; i2++) {
-            ArrayList<LocationController.SharingLocationInfo> arrayList = LocationController.getInstance(i2).sharingLocationsUI;
-            if (i >= arrayList.size()) {
-                i -= arrayList.size();
-            } else {
-                return arrayList.get(i);
-            }
-        }
-        return null;
-    }
-
     @Override
     public void dismiss() {
         super.dismiss();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
-    }
-
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
-        private Context context;
-
-        @Override
-        public int getItemViewType(int i) {
-            return i == 0 ? 1 : 0;
-        }
-
-        public ListAdapter(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public int getItemCount() {
-            return LocationController.getLocationsCount() + 1;
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 0;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout sharingLiveLocationCell;
-            if (i == 0) {
-                sharingLiveLocationCell = new SharingLiveLocationCell(this.context, false, 54, ((BottomSheet) SharingLocationsAlert.this).resourcesProvider);
-            } else {
-                sharingLiveLocationCell = new FrameLayout(this.context) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + 1, 1073741824));
-                    }
-
-                    @Override
-                    protected void onDraw(Canvas canvas) {
-                        canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), Theme.dividerPaint);
-                    }
-                };
-                sharingLiveLocationCell.setWillNotDraw(false);
-                SharingLocationsAlert.this.textView = new TextView(this.context);
-                SharingLocationsAlert.this.textView.setTextColor(SharingLocationsAlert.this.getThemedColor(Theme.key_dialogIcon));
-                SharingLocationsAlert.this.textView.setTextSize(1, 14.0f);
-                SharingLocationsAlert.this.textView.setGravity(17);
-                SharingLocationsAlert.this.textView.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-                sharingLiveLocationCell.addView(SharingLocationsAlert.this.textView, LayoutHelper.createFrame(-1, 40.0f));
-            }
-            return new RecyclerListView.Holder(sharingLiveLocationCell);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType != 0) {
-                if (itemViewType == 1 && SharingLocationsAlert.this.textView != null) {
-                    SharingLocationsAlert.this.textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
-                    return;
-                }
-                return;
-            }
-            ((SharingLiveLocationCell) viewHolder.itemView).setDialog(SharingLocationsAlert.this.getLocation(i - 1));
-        }
     }
 }

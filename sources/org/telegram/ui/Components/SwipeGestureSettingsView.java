@@ -143,6 +143,11 @@ public class SwipeGestureSettingsView extends FrameLayout {
         numberPicker.performHapticFeedback(3, 2);
     }
 
+    public void lambda$swapIcons$2() {
+        this.swapIconRunnable = null;
+        swapIcons();
+    }
+
     private void swapIcons() {
         int value;
         if (this.swapIconRunnable == null && this.currentIconValue != (value = this.picker.getValue())) {
@@ -172,14 +177,14 @@ public class SwipeGestureSettingsView extends FrameLayout {
         }
     }
 
-    public void lambda$swapIcons$2() {
-        this.swapIconRunnable = null;
-        swapIcons();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
+    public RLottieDrawable getIcon(int i) {
+        RLottieDrawable[] rLottieDrawableArr = this.icons;
+        if (rLottieDrawableArr[i] == null) {
+            int i2 = i != 1 ? i != 2 ? i != 3 ? i != 4 ? i != 5 ? R.raw.swipe_pin : R.raw.swipe_disabled : R.raw.swipe_delete : R.raw.swipe_mute : R.raw.chats_archive : R.raw.swipe_read;
+            rLottieDrawableArr[i] = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            updateIconColor(i);
+        }
+        return this.icons[i];
     }
 
     @Override
@@ -187,56 +192,17 @@ public class SwipeGestureSettingsView extends FrameLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SwipeGestureSettingsView.onDraw(android.graphics.Canvas):void");
     }
 
-    public RLottieDrawable getIcon(int i) {
-        int i2;
-        RLottieDrawable[] rLottieDrawableArr = this.icons;
-        if (rLottieDrawableArr[i] == null) {
-            if (i == 1) {
-                i2 = R.raw.swipe_read;
-            } else if (i == 2) {
-                i2 = R.raw.chats_archive;
-            } else if (i == 3) {
-                i2 = R.raw.swipe_mute;
-            } else if (i == 4) {
-                i2 = R.raw.swipe_delete;
-            } else if (i != 5) {
-                i2 = R.raw.swipe_pin;
-            } else {
-                i2 = R.raw.swipe_disabled;
-            }
-            int i3 = i2;
-            rLottieDrawableArr[i] = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            updateIconColor(i);
-        }
-        return this.icons[i];
-    }
-
-    public void updateIconColor(int i) {
-        if (this.icons[i] != null) {
-            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_chats_archiveBackground), 0.9f);
-            int color = Theme.getColor(Theme.key_chats_archiveIcon);
-            if (i == 2) {
-                this.icons[i].setLayerColor("Arrow.**", blendARGB);
-                this.icons[i].setLayerColor("Box2.**", color);
-                this.icons[i].setLayerColor("Box1.**", color);
-                return;
-            }
-            this.icons[i].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
-        }
-    }
-
-    public void updateColors() {
-        for (int i = 0; i < this.icons.length; i++) {
-            updateIconColor(i);
-        }
-    }
-
     @Override
-    public void setBackgroundColor(int i) {
-        super.setBackgroundColor(i);
-        updateColors();
-        this.picker.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        this.picker.invalidate();
+    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        super.onInitializeAccessibilityEvent(accessibilityEvent);
+        if (accessibilityEvent.getEventType() == 1) {
+            int value = this.picker.getValue() + 1;
+            if (value > this.picker.getMaxValue() || value < 0) {
+                value = 0;
+            }
+            setContentDescription(this.strings[value]);
+            this.picker.changeValueByOne(true);
+        }
     }
 
     @Override
@@ -250,15 +216,35 @@ public class SwipeGestureSettingsView extends FrameLayout {
     }
 
     @Override
-    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onInitializeAccessibilityEvent(accessibilityEvent);
-        if (accessibilityEvent.getEventType() == 1) {
-            int value = this.picker.getValue() + 1;
-            if (value > this.picker.getMaxValue() || value < 0) {
-                value = 0;
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        super.setBackgroundColor(i);
+        updateColors();
+        this.picker.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        this.picker.invalidate();
+    }
+
+    public void updateColors() {
+        for (int i = 0; i < this.icons.length; i++) {
+            updateIconColor(i);
+        }
+    }
+
+    public void updateIconColor(int i) {
+        if (this.icons[i] != null) {
+            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_chats_archiveBackground), 0.9f);
+            int color = Theme.getColor(Theme.key_chats_archiveIcon);
+            if (i != 2) {
+                this.icons[i].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                return;
             }
-            setContentDescription(this.strings[value]);
-            this.picker.changeValueByOne(true);
+            this.icons[i].setLayerColor("Arrow.**", blendARGB);
+            this.icons[i].setLayerColor("Box2.**", color);
+            this.icons[i].setLayerColor("Box1.**", color);
         }
     }
 }

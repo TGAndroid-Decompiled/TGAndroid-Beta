@@ -24,114 +24,6 @@ public class LinkView extends EntityView {
     public final LinkPreview marker;
     public TL_stories$MediaArea mediaArea;
 
-    @Override
-    protected float getMaxScale() {
-        return 1.5f;
-    }
-
-    @Override
-    protected float getStickyPaddingLeft() {
-        return this.marker.padx;
-    }
-
-    @Override
-    protected float getStickyPaddingTop() {
-        return this.marker.pady;
-    }
-
-    @Override
-    protected float getStickyPaddingRight() {
-        return this.marker.padx;
-    }
-
-    @Override
-    protected float getStickyPaddingBottom() {
-        return this.marker.pady;
-    }
-
-    public LinkView(Context context, Point point, int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea, float f, int i2, int i3) {
-        super(context, point);
-        LinkPreview linkPreview = new LinkPreview(context, f);
-        this.marker = linkPreview;
-        linkPreview.setMaxWidth(i2);
-        setLink(i, webPagePreview, tL_stories$MediaArea);
-        this.currentType = i3;
-        linkPreview.setType(i3, this.currentColor);
-        addView(linkPreview, LayoutHelper.createFrame(-2, -2, 51));
-        setClipChildren(false);
-        setClipToPadding(false);
-        updatePosition();
-    }
-
-    public void setLink(int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea) {
-        this.link = webPagePreview;
-        this.mediaArea = tL_stories$MediaArea;
-        this.marker.set(i, webPagePreview);
-        updateSelectionView();
-    }
-
-    public void setMaxWidth(int i) {
-        this.marker.setMaxWidth(i);
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        updatePosition();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        updatePosition();
-    }
-
-    public void setType(int i) {
-        LinkPreview linkPreview = this.marker;
-        this.currentType = i;
-        linkPreview.setType(i, this.currentColor);
-    }
-
-    public void setColor(int i) {
-        this.hasColor = true;
-        this.currentColor = i;
-    }
-
-    public boolean hasColor() {
-        return this.hasColor;
-    }
-
-    public int getColor() {
-        return this.currentColor;
-    }
-
-    public int getType() {
-        return this.currentType;
-    }
-
-    public int getNextType() {
-        int i = this.currentType + 1;
-        return i == 4 ? !this.hasColor ? 1 : 0 : i;
-    }
-
-    @Override
-    public Rect getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Rect();
-        }
-        float scaleX = viewGroup.getScaleX();
-        float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
-        float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
-        float positionX = (getPositionX() - (measuredWidth / 2.0f)) * scaleX;
-        return new Rect(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth * scaleX) + positionX) - positionX, measuredHeight * scaleX);
-    }
-
-    @Override
-    public TextViewSelectionView createSelectionView() {
-        return new TextViewSelectionView(getContext());
-    }
-
     public class TextViewSelectionView extends EntityView.SelectionView {
         private final Paint clearPaint;
         private Path path;
@@ -142,21 +34,6 @@ public class LinkView extends EntityView {
             this.clearPaint = paint;
             this.path = new Path();
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        }
-
-        @Override
-        protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
-            float f4 = f3 * 2.0f;
-            float measuredWidth = getMeasuredWidth() - f4;
-            float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
-                return 1;
-            }
-            float f5 = f3 + measuredWidth;
-            return (f <= f5 - dp2 || f2 <= measuredHeight - dp2 || f >= f5 + dp2 || f2 >= measuredHeight + dp2) ? 0 : 2;
         }
 
         @Override
@@ -216,5 +93,128 @@ public class LinkView extends EntityView {
             canvas.drawCircle(dp2, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
             canvas.restoreToCount(saveCount);
         }
+
+        @Override
+        protected int pointInsideHandle(float f, float f2) {
+            float dp = AndroidUtilities.dp(1.0f);
+            float dp2 = AndroidUtilities.dp(19.5f);
+            float f3 = dp + dp2;
+            float f4 = f3 * 2.0f;
+            float measuredWidth = getMeasuredWidth() - f4;
+            float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
+            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+                return 1;
+            }
+            float f5 = f3 + measuredWidth;
+            return (f <= f5 - dp2 || f2 <= measuredHeight - dp2 || f >= f5 + dp2 || f2 >= measuredHeight + dp2) ? 0 : 2;
+        }
+    }
+
+    public LinkView(Context context, Point point, int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea, float f, int i2, int i3) {
+        super(context, point);
+        LinkPreview linkPreview = new LinkPreview(context, f);
+        this.marker = linkPreview;
+        linkPreview.setMaxWidth(i2);
+        setLink(i, webPagePreview, tL_stories$MediaArea);
+        this.currentType = i3;
+        linkPreview.setType(i3, this.currentColor);
+        addView(linkPreview, LayoutHelper.createFrame(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        updatePosition();
+    }
+
+    @Override
+    public TextViewSelectionView createSelectionView() {
+        return new TextViewSelectionView(getContext());
+    }
+
+    public int getColor() {
+        return this.currentColor;
+    }
+
+    @Override
+    protected float getMaxScale() {
+        return 1.5f;
+    }
+
+    public int getNextType() {
+        int i = this.currentType + 1;
+        return i == 4 ? !this.hasColor ? 1 : 0 : i;
+    }
+
+    @Override
+    public Rect getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Rect();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
+        float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
+        float positionX = (getPositionX() - (measuredWidth / 2.0f)) * scaleX;
+        return new Rect(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth * scaleX) + positionX) - positionX, measuredHeight * scaleX);
+    }
+
+    @Override
+    protected float getStickyPaddingBottom() {
+        return this.marker.pady;
+    }
+
+    @Override
+    protected float getStickyPaddingLeft() {
+        return this.marker.padx;
+    }
+
+    @Override
+    protected float getStickyPaddingRight() {
+        return this.marker.padx;
+    }
+
+    @Override
+    protected float getStickyPaddingTop() {
+        return this.marker.pady;
+    }
+
+    public int getType() {
+        return this.currentType;
+    }
+
+    public boolean hasColor() {
+        return this.hasColor;
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        updatePosition();
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        updatePosition();
+    }
+
+    public void setColor(int i) {
+        this.hasColor = true;
+        this.currentColor = i;
+    }
+
+    public void setLink(int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea) {
+        this.link = webPagePreview;
+        this.mediaArea = tL_stories$MediaArea;
+        this.marker.set(i, webPagePreview);
+        updateSelectionView();
+    }
+
+    public void setMaxWidth(int i) {
+        this.marker.setMaxWidth(i);
+    }
+
+    public void setType(int i) {
+        LinkPreview linkPreview = this.marker;
+        this.currentType = i;
+        linkPreview.setType(i, this.currentColor);
     }
 }

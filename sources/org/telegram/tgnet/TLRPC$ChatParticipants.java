@@ -6,7 +6,7 @@ public abstract class TLRPC$ChatParticipants extends TLObject {
     public long admin_id;
     public long chat_id;
     public int flags;
-    public ArrayList<TLRPC$ChatParticipant> participants = new ArrayList<>();
+    public ArrayList participants = new ArrayList();
     public TLRPC$ChatParticipant self_participant;
     public int version;
 
@@ -86,7 +86,7 @@ public abstract class TLRPC$ChatParticipants extends TLObject {
                         int size = this.participants.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.participants.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$ChatParticipant) this.participants.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(this.version);
                     }
@@ -125,7 +125,7 @@ public abstract class TLRPC$ChatParticipants extends TLObject {
                         int size = this.participants.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.participants.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$ChatParticipant) this.participants.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(this.version);
                     }

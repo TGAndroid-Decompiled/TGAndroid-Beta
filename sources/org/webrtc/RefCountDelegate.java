@@ -11,13 +11,6 @@ class RefCountDelegate implements RefCounted {
     }
 
     @Override
-    public void retain() {
-        if (this.refCount.incrementAndGet() < 2) {
-            throw new IllegalStateException("retain() called on an object with refcount < 1");
-        }
-    }
-
-    @Override
     public void release() {
         Runnable runnable;
         int decrementAndGet = this.refCount.decrementAndGet();
@@ -30,14 +23,21 @@ class RefCountDelegate implements RefCounted {
         runnable.run();
     }
 
-    public boolean safeRetain() {
-        int i = this.refCount.get();
-        while (i != 0) {
-            if (this.refCount.weakCompareAndSet(i, i + 1)) {
-                return true;
-            }
-            i = this.refCount.get();
+    @Override
+    public void retain() {
+        if (this.refCount.incrementAndGet() < 2) {
+            throw new IllegalStateException("retain() called on an object with refcount < 1");
         }
-        return false;
+    }
+
+    public boolean safeRetain() {
+        int i;
+        do {
+            i = this.refCount.get();
+            if (i == 0) {
+                return false;
+            }
+        } while (!this.refCount.weakCompareAndSet(i, i + 1));
+        return true;
     }
 }

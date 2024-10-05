@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_channels_getAdminLog extends TLObject {
-    public ArrayList<TLRPC$InputUser> admins = new ArrayList<>();
+    public ArrayList admins = new ArrayList();
     public TLRPC$InputChannel channel;
     public TLRPC$TL_channelAdminLogEventsFilter events_filter;
     public int flags;
@@ -31,7 +31,7 @@ public class TLRPC$TL_channels_getAdminLog extends TLObject {
             int size = this.admins.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.admins.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$InputUser) this.admins.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         abstractSerializedData.writeInt64(this.max_id);

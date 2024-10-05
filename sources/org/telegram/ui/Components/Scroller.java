@@ -84,12 +84,31 @@ public class Scroller {
         return this.mPpi * 386.0878f * f;
     }
 
-    public final boolean isFinished() {
-        return this.mFinished;
+    static float viscousFluid(float f) {
+        float f2 = f * sViscousFluidScale;
+        return (f2 < 1.0f ? f2 - (1.0f - ((float) Math.exp(-f2))) : 0.36787945f + ((1.0f - ((float) Math.exp(1.0f - f2))) * 0.63212055f)) * sViscousFluidNormalize;
+    }
+
+    public void abortAnimation() {
+        this.mCurrX = this.mFinalX;
+        this.mCurrY = this.mFinalY;
+        this.mFinished = true;
+    }
+
+    public boolean computeScrollOffset() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Scroller.computeScrollOffset():boolean");
+    }
+
+    public void fling(int r17, int r18, int r19, int r20, int r21, int r22, int r23, int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Scroller.fling(int, int, int, int, int, int, int, int):void");
     }
 
     public final void forceFinished(boolean z) {
         this.mFinished = z;
+    }
+
+    public float getCurrVelocity() {
+        return this.mVelocity - ((this.mDeceleration * timePassed()) / 2000.0f);
     }
 
     public final int getCurrX() {
@@ -100,8 +119,8 @@ public class Scroller {
         return this.mCurrY;
     }
 
-    public float getCurrVelocity() {
-        return this.mVelocity - ((this.mDeceleration * timePassed()) / 2000.0f);
+    public final int getFinalY() {
+        return this.mFinalY;
     }
 
     public final int getStartX() {
@@ -112,58 +131,8 @@ public class Scroller {
         return this.mStartY;
     }
 
-    public final int getFinalY() {
-        return this.mFinalY;
-    }
-
-    public boolean computeScrollOffset() {
-        float interpolation;
-        if (this.mFinished) {
-            return false;
-        }
-        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.mStartTime);
-        int i = this.mDuration;
-        if (currentAnimationTimeMillis < i) {
-            int i2 = this.mMode;
-            if (i2 == 0) {
-                float f = currentAnimationTimeMillis * this.mDurationReciprocal;
-                Interpolator interpolator = this.mInterpolator;
-                if (interpolator == null) {
-                    interpolation = viscousFluid(f);
-                } else {
-                    interpolation = interpolator.getInterpolation(f);
-                }
-                this.mCurrX = this.mStartX + Math.round(this.mDeltaX * interpolation);
-                this.mCurrY = this.mStartY + Math.round(interpolation * this.mDeltaY);
-            } else if (i2 == 1) {
-                float f2 = currentAnimationTimeMillis / i;
-                int i3 = (int) (f2 * 100.0f);
-                float f3 = i3 / 100.0f;
-                int i4 = i3 + 1;
-                float[] fArr = SPLINE;
-                float f4 = fArr[i3];
-                float f5 = f4 + (((f2 - f3) / ((i4 / 100.0f) - f3)) * (fArr[i4] - f4));
-                int round = this.mStartX + Math.round((this.mFinalX - r0) * f5);
-                this.mCurrX = round;
-                int min = Math.min(round, this.mMaxX);
-                this.mCurrX = min;
-                this.mCurrX = Math.max(min, this.mMinX);
-                int round2 = this.mStartY + Math.round(f5 * (this.mFinalY - r0));
-                this.mCurrY = round2;
-                int min2 = Math.min(round2, this.mMaxY);
-                this.mCurrY = min2;
-                int max = Math.max(min2, this.mMinY);
-                this.mCurrY = max;
-                if (this.mCurrX == this.mFinalX && max == this.mFinalY) {
-                    this.mFinished = true;
-                }
-            }
-        } else {
-            this.mCurrX = this.mFinalX;
-            this.mCurrY = this.mFinalY;
-            this.mFinished = true;
-        }
-        return true;
+    public final boolean isFinished() {
+        return this.mFinished;
     }
 
     public void startScroll(int i, int i2, int i3, int i4, int i5) {
@@ -178,27 +147,6 @@ public class Scroller {
         this.mDeltaX = i3;
         this.mDeltaY = i4;
         this.mDurationReciprocal = 1.0f / this.mDuration;
-    }
-
-    public void fling(int r17, int r18, int r19, int r20, int r21, int r22, int r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Scroller.fling(int, int, int, int, int, int, int, int):void");
-    }
-
-    static float viscousFluid(float f) {
-        float exp;
-        float f2 = f * sViscousFluidScale;
-        if (f2 < 1.0f) {
-            exp = f2 - (1.0f - ((float) Math.exp(-f2)));
-        } else {
-            exp = 0.36787945f + ((1.0f - ((float) Math.exp(1.0f - f2))) * 0.63212055f);
-        }
-        return exp * sViscousFluidNormalize;
-    }
-
-    public void abortAnimation() {
-        this.mCurrX = this.mFinalX;
-        this.mCurrY = this.mFinalY;
-        this.mFinished = true;
     }
 
     public int timePassed() {

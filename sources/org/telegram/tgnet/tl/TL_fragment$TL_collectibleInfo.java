@@ -24,6 +24,16 @@ public class TL_fragment$TL_collectibleInfo extends TLObject {
     }
 
     @Override
+    public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
+        this.purchase_date = abstractSerializedData.readInt32(z);
+        this.currency = abstractSerializedData.readString(z);
+        this.amount = abstractSerializedData.readInt64(z);
+        this.crypto_currency = abstractSerializedData.readString(z);
+        this.crypto_amount = abstractSerializedData.readInt64(z);
+        this.url = abstractSerializedData.readString(z);
+    }
+
+    @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(1857945489);
         abstractSerializedData.writeInt32(this.purchase_date);
@@ -32,15 +42,5 @@ public class TL_fragment$TL_collectibleInfo extends TLObject {
         abstractSerializedData.writeString(this.crypto_currency);
         abstractSerializedData.writeInt64(this.crypto_amount);
         abstractSerializedData.writeString(this.url);
-    }
-
-    @Override
-    public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.purchase_date = abstractSerializedData.readInt32(z);
-        this.currency = abstractSerializedData.readString(z);
-        this.amount = abstractSerializedData.readInt64(z);
-        this.crypto_currency = abstractSerializedData.readString(z);
-        this.crypto_amount = abstractSerializedData.readInt64(z);
-        this.url = abstractSerializedData.readString(z);
     }
 }

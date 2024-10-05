@@ -70,7 +70,7 @@ public class DataSettingsActivity extends BaseFragment {
     private int saveToGalleryGroupsRow;
     private int saveToGalleryPeerRow;
     private int saveToGallerySectionRow;
-    private ArrayList<File> storageDirs;
+    private ArrayList storageDirs;
     private int storageNumRow;
     private boolean storageUsageLoading;
     private int storageUsageRow;
@@ -89,12 +89,301 @@ public class DataSettingsActivity extends BaseFragment {
     private int autoplaySectionRow = -1;
     private int quickRepliesRow = -1;
 
-    @Override
-    public boolean onFragmentCreate() {
-        super.onFragmentCreate();
-        DownloadController.getInstance(this.currentAccount).loadAutoDownloadConfig(true);
-        updateRows(true);
-        return true;
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+        private Context mContext;
+
+        public ListAdapter(Context context) {
+            this.mContext = context;
+        }
+
+        @Override
+        public int getItemCount() {
+            return DataSettingsActivity.this.rowCount;
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            if (i == DataSettingsActivity.this.mediaDownloadSection2Row || i == DataSettingsActivity.this.usageSection2Row || i == DataSettingsActivity.this.callsSection2Row || i == DataSettingsActivity.this.proxySection2Row || i == DataSettingsActivity.this.autoplaySectionRow || i == DataSettingsActivity.this.clearDraftsSectionRow || i == DataSettingsActivity.this.saveToGalleryDividerRow) {
+                return 0;
+            }
+            if (i == DataSettingsActivity.this.mediaDownloadSectionRow || i == DataSettingsActivity.this.streamSectionRow || i == DataSettingsActivity.this.callsSectionRow || i == DataSettingsActivity.this.usageSectionRow || i == DataSettingsActivity.this.proxySectionRow || i == DataSettingsActivity.this.autoplayHeaderRow || i == DataSettingsActivity.this.saveToGallerySectionRow) {
+                return 2;
+            }
+            if (i == DataSettingsActivity.this.enableCacheStreamRow || i == DataSettingsActivity.this.enableStreamRow || i == DataSettingsActivity.this.enableAllStreamRow || i == DataSettingsActivity.this.enableMkvRow || i == DataSettingsActivity.this.autoplayGifsRow || i == DataSettingsActivity.this.autoplayVideoRow) {
+                return 3;
+            }
+            if (i == DataSettingsActivity.this.enableAllStreamInfoRow) {
+                return 4;
+            }
+            if (i == DataSettingsActivity.this.mobileRow || i == DataSettingsActivity.this.wifiRow || i == DataSettingsActivity.this.roamingRow || i == DataSettingsActivity.this.saveToGalleryGroupsRow || i == DataSettingsActivity.this.saveToGalleryPeerRow || i == DataSettingsActivity.this.saveToGalleryChannelsRow) {
+                return 5;
+            }
+            return (i == DataSettingsActivity.this.storageUsageRow || i == DataSettingsActivity.this.dataUsageRow || i == DataSettingsActivity.this.storageNumRow) ? 6 : 1;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return isRowEnabled(viewHolder.getAdapterPosition());
+        }
+
+        public boolean isRowEnabled(int i) {
+            return i == DataSettingsActivity.this.mobileRow || i == DataSettingsActivity.this.roamingRow || i == DataSettingsActivity.this.wifiRow || i == DataSettingsActivity.this.storageUsageRow || i == DataSettingsActivity.this.useLessDataForCallsRow || i == DataSettingsActivity.this.dataUsageRow || i == DataSettingsActivity.this.proxyRow || i == DataSettingsActivity.this.clearDraftsRow || i == DataSettingsActivity.this.enableCacheStreamRow || i == DataSettingsActivity.this.enableStreamRow || i == DataSettingsActivity.this.enableAllStreamRow || i == DataSettingsActivity.this.enableMkvRow || i == DataSettingsActivity.this.quickRepliesRow || i == DataSettingsActivity.this.autoplayVideoRow || i == DataSettingsActivity.this.autoplayGifsRow || i == DataSettingsActivity.this.storageNumRow || i == DataSettingsActivity.this.saveToGalleryGroupsRow || i == DataSettingsActivity.this.saveToGalleryPeerRow || i == DataSettingsActivity.this.saveToGalleryChannelsRow || i == DataSettingsActivity.this.resetDownloadRow;
+        }
+
+        @Override
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r20, int r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View shadowSectionCell;
+            if (i != 0) {
+                if (i == 1) {
+                    shadowSectionCell = new TextSettingsCell(this.mContext);
+                } else if (i == 2) {
+                    shadowSectionCell = new HeaderCell(this.mContext, 22);
+                } else if (i == 3) {
+                    shadowSectionCell = new TextCheckCell(this.mContext);
+                } else if (i != 4) {
+                    shadowSectionCell = i != 5 ? new TextCell(this.mContext) : new NotificationsCheckCell(this.mContext);
+                } else {
+                    shadowSectionCell = new TextInfoPrivacyCell(this.mContext);
+                    shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                }
+                shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            } else {
+                shadowSectionCell = new ShadowSectionCell(this.mContext);
+            }
+            shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(shadowSectionCell);
+        }
+
+        @Override
+        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+            boolean isAutoplayVideo;
+            if (viewHolder.getItemViewType() == 3) {
+                TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
+                int adapterPosition = viewHolder.getAdapterPosition();
+                if (adapterPosition == DataSettingsActivity.this.enableCacheStreamRow) {
+                    isAutoplayVideo = SharedConfig.saveStreamMedia;
+                } else if (adapterPosition == DataSettingsActivity.this.enableStreamRow) {
+                    isAutoplayVideo = SharedConfig.streamMedia;
+                } else if (adapterPosition == DataSettingsActivity.this.enableAllStreamRow) {
+                    isAutoplayVideo = SharedConfig.streamAllVideo;
+                } else if (adapterPosition == DataSettingsActivity.this.enableMkvRow) {
+                    isAutoplayVideo = SharedConfig.streamMkv;
+                } else if (adapterPosition == DataSettingsActivity.this.autoplayGifsRow) {
+                    isAutoplayVideo = SharedConfig.isAutoplayGifs();
+                } else if (adapterPosition != DataSettingsActivity.this.autoplayVideoRow) {
+                    return;
+                } else {
+                    isAutoplayVideo = SharedConfig.isAutoplayVideo();
+                }
+                textCheckCell.setChecked(isAutoplayVideo);
+            }
+        }
+    }
+
+    public void lambda$createView$2(DialogInterface dialogInterface, int i) {
+        DownloadController.Preset preset;
+        DownloadController.Preset preset2;
+        String str;
+        SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
+        for (int i2 = 0; i2 < 3; i2++) {
+            if (i2 == 0) {
+                preset = DownloadController.getInstance(this.currentAccount).mobilePreset;
+                preset2 = DownloadController.getInstance(this.currentAccount).mediumPreset;
+                str = "mobilePreset";
+            } else if (i2 == 1) {
+                preset = DownloadController.getInstance(this.currentAccount).wifiPreset;
+                preset2 = DownloadController.getInstance(this.currentAccount).highPreset;
+                str = "wifiPreset";
+            } else {
+                preset = DownloadController.getInstance(this.currentAccount).roamingPreset;
+                preset2 = DownloadController.getInstance(this.currentAccount).lowPreset;
+                str = "roamingPreset";
+            }
+            preset.set(preset2);
+            preset.enabled = preset2.isEnabled();
+            DownloadController.getInstance(this.currentAccount).currentMobilePreset = 3;
+            edit.putInt("currentMobilePreset", 3);
+            DownloadController.getInstance(this.currentAccount).currentWifiPreset = 3;
+            edit.putInt("currentWifiPreset", 3);
+            DownloadController.getInstance(this.currentAccount).currentRoamingPreset = 3;
+            edit.putInt("currentRoamingPreset", 3);
+            edit.putString(str, preset.toString());
+        }
+        edit.commit();
+        DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
+        for (int i3 = 0; i3 < 3; i3++) {
+            DownloadController.getInstance(this.currentAccount).savePresetToServer(i3);
+        }
+        this.listAdapter.notifyItemRangeChanged(this.mobileRow, 4);
+        updateRows(false);
+    }
+
+    public void lambda$createView$3(SharedPreferences sharedPreferences, int i, DialogInterface dialogInterface, int i2) {
+        int i3;
+        if (i2 != 0) {
+            i3 = 3;
+            if (i2 != 1) {
+                i3 = i2 != 2 ? i2 != 3 ? -1 : 2 : 1;
+            }
+        } else {
+            i3 = 0;
+        }
+        if (i3 != -1) {
+            sharedPreferences.edit().putInt("VoipDataSaving", i3).commit();
+            this.updateVoipUseLessData = true;
+        }
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter != null) {
+            listAdapter.notifyItemChanged(i);
+        }
+    }
+
+    public void lambda$createView$4(final String str, boolean z, final AlertDialog.Builder builder, View view) {
+        if (TextUtils.equals(SharedConfig.storageCacheDir, str)) {
+            return;
+        }
+        if (z) {
+            setStorageDirectory(str);
+            builder.getDismissRunnable().run();
+            return;
+        }
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
+        builder2.setTitle(LocaleController.getString(R.string.DecreaseSpeed));
+        builder2.setMessage(LocaleController.getString(R.string.SdCardAlert));
+        builder2.setPositiveButton(LocaleController.getString(R.string.Proceed), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DataSettingsActivity.this.setStorageDirectory(str);
+                builder.getDismissRunnable().run();
+            }
+        });
+        builder2.setNegativeButton(LocaleController.getString(R.string.Back), null);
+        builder2.show();
+    }
+
+    public void lambda$createView$5() {
+        getMediaDataController().clearAllDrafts(true);
+    }
+
+    public void lambda$createView$6(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                DataSettingsActivity.this.lambda$createView$5();
+            }
+        });
+    }
+
+    public void lambda$createView$7(DialogInterface dialogInterface, int i) {
+        getConnectionsManager().sendRequest(new TLObject() {
+            @Override
+            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
+                return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
+            }
+
+            @Override
+            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+                abstractSerializedData.writeInt32(2119757468);
+            }
+        }, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                DataSettingsActivity.this.lambda$createView$6(tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$createView$8(android.content.Context r21, android.view.View r22, final int r23, float r24, float r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.lambda$createView$8(android.content.Context, android.view.View, int, float, float):void");
+    }
+
+    public void lambda$loadCacheSize$0() {
+        int i;
+        this.storageUsageLoading = true;
+        if (this.listAdapter == null || (i = this.storageUsageRow) < 0) {
+            return;
+        }
+        rebind(i);
+    }
+
+    public void lambda$loadCacheSize$1(Runnable runnable, long j, Long l) {
+        int i;
+        AndroidUtilities.cancelRunOnUIThread(runnable);
+        this.updateStorageUsageAnimated = this.updateStorageUsageAnimated || System.currentTimeMillis() - j > 120;
+        this.storageUsageSize = l.longValue();
+        this.storageUsageLoading = false;
+        if (this.listAdapter == null || (i = this.storageUsageRow) < 0) {
+            return;
+        }
+        rebind(i);
+    }
+
+    public void lambda$setStorageDirectory$9() {
+        CacheControlActivity.resetCalculatedTotalSIze();
+        loadCacheSize();
+    }
+
+    private void loadCacheSize() {
+        final Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                DataSettingsActivity.this.lambda$loadCacheSize$0();
+            }
+        };
+        AndroidUtilities.runOnUIThread(runnable, 100L);
+        final long currentTimeMillis = System.currentTimeMillis();
+        CacheControlActivity.calculateTotalSize(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                DataSettingsActivity.this.lambda$loadCacheSize$1(runnable, currentTimeMillis, (Long) obj);
+            }
+        });
+    }
+
+    private void rebind(int i) {
+        if (this.listView == null || this.listAdapter == null) {
+            return;
+        }
+        for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
+            RecyclerView.ViewHolder childViewHolder = this.listView.getChildViewHolder(this.listView.getChildAt(i2));
+            if (childViewHolder != null && childViewHolder.getAdapterPosition() == i) {
+                this.listAdapter.onBindViewHolder(childViewHolder, i);
+                return;
+            }
+        }
+    }
+
+    private void rebindAll() {
+        if (this.listView == null || this.listAdapter == null) {
+            return;
+        }
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            View childAt = this.listView.getChildAt(i);
+            RecyclerView.ViewHolder childViewHolder = this.listView.getChildViewHolder(childAt);
+            if (childViewHolder != null) {
+                this.listAdapter.onBindViewHolder(childViewHolder, this.listView.getChildAdapterPosition(childAt));
+            }
+        }
+    }
+
+    public void setStorageDirectory(String str) {
+        SharedConfig.storageCacheDir = str;
+        SharedConfig.saveConfig();
+        if (str != null) {
+            SharedConfig.readOnlyStorageDirAlertShowed = false;
+        }
+        rebind(this.storageNumRow);
+        ImageLoader.getInstance().checkMediaPaths(new Runnable() {
+            @Override
+            public final void run() {
+                DataSettingsActivity.this.lambda$setStorageDirectory$9();
+            }
+        });
     }
 
     private void updateRows(boolean z) {
@@ -181,76 +470,6 @@ public class DataSettingsActivity extends BaseFragment {
         listAdapter2.notifyDataSetChanged();
     }
 
-    private void loadCacheSize() {
-        final Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                DataSettingsActivity.this.lambda$loadCacheSize$0();
-            }
-        };
-        AndroidUtilities.runOnUIThread(runnable, 100L);
-        final long currentTimeMillis = System.currentTimeMillis();
-        CacheControlActivity.calculateTotalSize(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                DataSettingsActivity.this.lambda$loadCacheSize$1(runnable, currentTimeMillis, (Long) obj);
-            }
-        });
-    }
-
-    public void lambda$loadCacheSize$0() {
-        int i;
-        this.storageUsageLoading = true;
-        if (this.listAdapter == null || (i = this.storageUsageRow) < 0) {
-            return;
-        }
-        rebind(i);
-    }
-
-    public void lambda$loadCacheSize$1(Runnable runnable, long j, Long l) {
-        int i;
-        AndroidUtilities.cancelRunOnUIThread(runnable);
-        this.updateStorageUsageAnimated = this.updateStorageUsageAnimated || System.currentTimeMillis() - j > 120;
-        this.storageUsageSize = l.longValue();
-        this.storageUsageLoading = false;
-        if (this.listAdapter == null || (i = this.storageUsageRow) < 0) {
-            return;
-        }
-        rebind(i);
-    }
-
-    private void rebind(int i) {
-        if (this.listView == null || this.listAdapter == null) {
-            return;
-        }
-        for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
-            RecyclerView.ViewHolder childViewHolder = this.listView.getChildViewHolder(this.listView.getChildAt(i2));
-            if (childViewHolder != null && childViewHolder.getAdapterPosition() == i) {
-                this.listAdapter.onBindViewHolder(childViewHolder, i);
-                return;
-            }
-        }
-    }
-
-    private void rebindAll() {
-        if (this.listView == null || this.listAdapter == null) {
-            return;
-        }
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            RecyclerView.ViewHolder childViewHolder = this.listView.getChildViewHolder(childAt);
-            if (childViewHolder != null) {
-                this.listAdapter.onBindViewHolder(childViewHolder, this.listView.getChildAdapterPosition(childAt));
-            }
-        }
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        CacheControlActivity.canceled = true;
-    }
-
     @Override
     public View createView(final Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
@@ -263,7 +482,7 @@ public class DataSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DataSettingsActivity.this.lambda$onBackPressed$308();
+                    DataSettingsActivity.this.lambda$onBackPressed$307();
                 }
             }
         });
@@ -275,10 +494,7 @@ public class DataSettingsActivity extends BaseFragment {
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public Integer getSelectorColor(int i) {
-                if (i == DataSettingsActivity.this.resetDownloadRow) {
-                    return Integer.valueOf(Theme.multAlpha(getThemedColor(Theme.key_text_RedRegular), 0.1f));
-                }
-                return Integer.valueOf(getThemedColor(Theme.key_listSelector));
+                return Integer.valueOf(i == DataSettingsActivity.this.resetDownloadRow ? Theme.multAlpha(getThemedColor(Theme.key_text_RedRegular), 0.1f) : getThemedColor(Theme.key_listSelector));
             }
         };
         this.listView = recyclerListView;
@@ -314,266 +530,9 @@ public class DataSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$8(android.content.Context r21, android.view.View r22, final int r23, float r24, float r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.lambda$createView$8(android.content.Context, android.view.View, int, float, float):void");
-    }
-
-    public void lambda$createView$2(DialogInterface dialogInterface, int i) {
-        DownloadController.Preset preset;
-        DownloadController.Preset preset2;
-        String str;
-        SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
-        for (int i2 = 0; i2 < 3; i2++) {
-            if (i2 == 0) {
-                preset = DownloadController.getInstance(this.currentAccount).mobilePreset;
-                preset2 = DownloadController.getInstance(this.currentAccount).mediumPreset;
-                str = "mobilePreset";
-            } else if (i2 == 1) {
-                preset = DownloadController.getInstance(this.currentAccount).wifiPreset;
-                preset2 = DownloadController.getInstance(this.currentAccount).highPreset;
-                str = "wifiPreset";
-            } else {
-                preset = DownloadController.getInstance(this.currentAccount).roamingPreset;
-                preset2 = DownloadController.getInstance(this.currentAccount).lowPreset;
-                str = "roamingPreset";
-            }
-            preset.set(preset2);
-            preset.enabled = preset2.isEnabled();
-            DownloadController.getInstance(this.currentAccount).currentMobilePreset = 3;
-            edit.putInt("currentMobilePreset", 3);
-            DownloadController.getInstance(this.currentAccount).currentWifiPreset = 3;
-            edit.putInt("currentWifiPreset", 3);
-            DownloadController.getInstance(this.currentAccount).currentRoamingPreset = 3;
-            edit.putInt("currentRoamingPreset", 3);
-            edit.putString(str, preset.toString());
-        }
-        edit.commit();
-        DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
-        for (int i3 = 0; i3 < 3; i3++) {
-            DownloadController.getInstance(this.currentAccount).savePresetToServer(i3);
-        }
-        this.listAdapter.notifyItemRangeChanged(this.mobileRow, 4);
-        updateRows(false);
-    }
-
-    public void lambda$createView$3(SharedPreferences sharedPreferences, int i, DialogInterface dialogInterface, int i2) {
-        int i3;
-        if (i2 != 0) {
-            i3 = 3;
-            if (i2 != 1) {
-                i3 = i2 != 2 ? i2 != 3 ? -1 : 2 : 1;
-            }
-        } else {
-            i3 = 0;
-        }
-        if (i3 != -1) {
-            sharedPreferences.edit().putInt("VoipDataSaving", i3).commit();
-            this.updateVoipUseLessData = true;
-        }
-        ListAdapter listAdapter = this.listAdapter;
-        if (listAdapter != null) {
-            listAdapter.notifyItemChanged(i);
-        }
-    }
-
-    public void lambda$createView$4(final String str, boolean z, final AlertDialog.Builder builder, View view) {
-        if (TextUtils.equals(SharedConfig.storageCacheDir, str)) {
-            return;
-        }
-        if (!z) {
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-            builder2.setTitle(LocaleController.getString(R.string.DecreaseSpeed));
-            builder2.setMessage(LocaleController.getString(R.string.SdCardAlert));
-            builder2.setPositiveButton(LocaleController.getString(R.string.Proceed), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    DataSettingsActivity.this.setStorageDirectory(str);
-                    builder.getDismissRunnable().run();
-                }
-            });
-            builder2.setNegativeButton(LocaleController.getString(R.string.Back), null);
-            builder2.show();
-            return;
-        }
-        setStorageDirectory(str);
-        builder.getDismissRunnable().run();
-    }
-
-    public void lambda$createView$7(DialogInterface dialogInterface, int i) {
-        getConnectionsManager().sendRequest(new TLObject() {
-            @Override
-            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
-                return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(2119757468);
-            }
-        }, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                DataSettingsActivity.this.lambda$createView$6(tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public void lambda$createView$5() {
-        getMediaDataController().clearAllDrafts(true);
-    }
-
-    public void lambda$createView$6(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                DataSettingsActivity.this.lambda$createView$5();
-            }
-        });
-    }
-
-    public void setStorageDirectory(String str) {
-        SharedConfig.storageCacheDir = str;
-        SharedConfig.saveConfig();
-        if (str != null) {
-            SharedConfig.readOnlyStorageDirAlertShowed = false;
-        }
-        rebind(this.storageNumRow);
-        ImageLoader.getInstance().checkMediaPaths(new Runnable() {
-            @Override
-            public final void run() {
-                DataSettingsActivity.this.lambda$setStorageDirectory$9();
-            }
-        });
-    }
-
-    public void lambda$setStorageDirectory$9() {
-        CacheControlActivity.resetCalculatedTotalSIze();
-        loadCacheSize();
-    }
-
     @Override
-    public void onDialogDismiss(Dialog dialog) {
-        DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadCacheSize();
-        rebindAll();
-        updateRows(false);
-    }
-
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
-        private Context mContext;
-
-        public ListAdapter(Context context) {
-            this.mContext = context;
-        }
-
-        @Override
-        public int getItemCount() {
-            return DataSettingsActivity.this.rowCount;
-        }
-
-        @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r20, int r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
-        }
-
-        @Override
-        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
-            if (viewHolder.getItemViewType() == 3) {
-                TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
-                int adapterPosition = viewHolder.getAdapterPosition();
-                if (adapterPosition != DataSettingsActivity.this.enableCacheStreamRow) {
-                    if (adapterPosition != DataSettingsActivity.this.enableStreamRow) {
-                        if (adapterPosition != DataSettingsActivity.this.enableAllStreamRow) {
-                            if (adapterPosition != DataSettingsActivity.this.enableMkvRow) {
-                                if (adapterPosition != DataSettingsActivity.this.autoplayGifsRow) {
-                                    if (adapterPosition == DataSettingsActivity.this.autoplayVideoRow) {
-                                        textCheckCell.setChecked(SharedConfig.isAutoplayVideo());
-                                        return;
-                                    }
-                                    return;
-                                }
-                                textCheckCell.setChecked(SharedConfig.isAutoplayGifs());
-                                return;
-                            }
-                            textCheckCell.setChecked(SharedConfig.streamMkv);
-                            return;
-                        }
-                        textCheckCell.setChecked(SharedConfig.streamAllVideo);
-                        return;
-                    }
-                    textCheckCell.setChecked(SharedConfig.streamMedia);
-                    return;
-                }
-                textCheckCell.setChecked(SharedConfig.saveStreamMedia);
-            }
-        }
-
-        public boolean isRowEnabled(int i) {
-            return i == DataSettingsActivity.this.mobileRow || i == DataSettingsActivity.this.roamingRow || i == DataSettingsActivity.this.wifiRow || i == DataSettingsActivity.this.storageUsageRow || i == DataSettingsActivity.this.useLessDataForCallsRow || i == DataSettingsActivity.this.dataUsageRow || i == DataSettingsActivity.this.proxyRow || i == DataSettingsActivity.this.clearDraftsRow || i == DataSettingsActivity.this.enableCacheStreamRow || i == DataSettingsActivity.this.enableStreamRow || i == DataSettingsActivity.this.enableAllStreamRow || i == DataSettingsActivity.this.enableMkvRow || i == DataSettingsActivity.this.quickRepliesRow || i == DataSettingsActivity.this.autoplayVideoRow || i == DataSettingsActivity.this.autoplayGifsRow || i == DataSettingsActivity.this.storageNumRow || i == DataSettingsActivity.this.saveToGalleryGroupsRow || i == DataSettingsActivity.this.saveToGalleryPeerRow || i == DataSettingsActivity.this.saveToGalleryChannelsRow || i == DataSettingsActivity.this.resetDownloadRow;
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return isRowEnabled(viewHolder.getAdapterPosition());
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View shadowSectionCell;
-            if (i == 0) {
-                shadowSectionCell = new ShadowSectionCell(this.mContext);
-            } else if (i == 1) {
-                shadowSectionCell = new TextSettingsCell(this.mContext);
-                shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            } else if (i == 2) {
-                shadowSectionCell = new HeaderCell(this.mContext, 22);
-                shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            } else if (i == 3) {
-                shadowSectionCell = new TextCheckCell(this.mContext);
-                shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            } else if (i == 4) {
-                shadowSectionCell = new TextInfoPrivacyCell(this.mContext);
-                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-            } else if (i == 5) {
-                shadowSectionCell = new NotificationsCheckCell(this.mContext);
-                shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            } else {
-                shadowSectionCell = new TextCell(this.mContext);
-                shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            }
-            shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(shadowSectionCell);
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            if (i == DataSettingsActivity.this.mediaDownloadSection2Row || i == DataSettingsActivity.this.usageSection2Row || i == DataSettingsActivity.this.callsSection2Row || i == DataSettingsActivity.this.proxySection2Row || i == DataSettingsActivity.this.autoplaySectionRow || i == DataSettingsActivity.this.clearDraftsSectionRow || i == DataSettingsActivity.this.saveToGalleryDividerRow) {
-                return 0;
-            }
-            if (i == DataSettingsActivity.this.mediaDownloadSectionRow || i == DataSettingsActivity.this.streamSectionRow || i == DataSettingsActivity.this.callsSectionRow || i == DataSettingsActivity.this.usageSectionRow || i == DataSettingsActivity.this.proxySectionRow || i == DataSettingsActivity.this.autoplayHeaderRow || i == DataSettingsActivity.this.saveToGallerySectionRow) {
-                return 2;
-            }
-            if (i == DataSettingsActivity.this.enableCacheStreamRow || i == DataSettingsActivity.this.enableStreamRow || i == DataSettingsActivity.this.enableAllStreamRow || i == DataSettingsActivity.this.enableMkvRow || i == DataSettingsActivity.this.autoplayGifsRow || i == DataSettingsActivity.this.autoplayVideoRow) {
-                return 3;
-            }
-            if (i == DataSettingsActivity.this.enableAllStreamInfoRow) {
-                return 4;
-            }
-            if (i == DataSettingsActivity.this.mobileRow || i == DataSettingsActivity.this.wifiRow || i == DataSettingsActivity.this.roamingRow || i == DataSettingsActivity.this.saveToGalleryGroupsRow || i == DataSettingsActivity.this.saveToGalleryPeerRow || i == DataSettingsActivity.this.saveToGalleryChannelsRow) {
-                return 5;
-            }
-            return (i == DataSettingsActivity.this.storageUsageRow || i == DataSettingsActivity.this.dataUsageRow || i == DataSettingsActivity.this.storageNumRow) ? 6 : 1;
-        }
-    }
-
-    @Override
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
+    public ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextSettingsCell.class, TextCheckCell.class, HeaderCell.class, NotificationsCheckCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
         ActionBar actionBar = this.actionBar;
@@ -606,5 +565,32 @@ public class DataSettingsActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i7));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
         return arrayList;
+    }
+
+    @Override
+    public void onDialogDismiss(Dialog dialog) {
+        DownloadController.getInstance(this.currentAccount).checkAutodownloadSettings();
+    }
+
+    @Override
+    public boolean onFragmentCreate() {
+        super.onFragmentCreate();
+        DownloadController.getInstance(this.currentAccount).loadAutoDownloadConfig(true);
+        updateRows(true);
+        return true;
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        CacheControlActivity.canceled = true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadCacheSize();
+        rebindAll();
+        updateRows(false);
     }
 }

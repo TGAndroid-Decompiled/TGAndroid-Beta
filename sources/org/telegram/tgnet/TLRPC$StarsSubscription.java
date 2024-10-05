@@ -1,6 +1,6 @@
 package org.telegram.tgnet;
 
-public class TLRPC$StarsSubscription extends TLObject {
+public abstract class TLRPC$StarsSubscription extends TLObject {
     public boolean can_refulfill;
     public boolean canceled;
     public String chat_invite_hash;

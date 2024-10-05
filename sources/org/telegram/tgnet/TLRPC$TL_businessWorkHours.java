@@ -6,7 +6,7 @@ public class TLRPC$TL_businessWorkHours extends TLObject {
     public int flags;
     public boolean open_now;
     public String timezone_id;
-    public ArrayList<TLRPC$TL_businessWeeklyOpen> weekly_open = new ArrayList<>();
+    public ArrayList weekly_open = new ArrayList();
 
     public static TLRPC$TL_businessWorkHours TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (i != -1936543592) {
@@ -50,7 +50,7 @@ public class TLRPC$TL_businessWorkHours extends TLObject {
         int size = this.weekly_open.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.weekly_open.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_businessWeeklyOpen) this.weekly_open.get(i2)).serializeToStream(abstractSerializedData);
         }
     }
 }

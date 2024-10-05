@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_updateGroupCallParticipants extends TLRPC$Update {
     public TLRPC$TL_inputGroupCall call;
-    public ArrayList<TLRPC$TL_groupCallParticipant> participants = new ArrayList<>();
+    public ArrayList participants = new ArrayList();
     public int version;
 
     @Override
@@ -36,7 +36,7 @@ public class TLRPC$TL_updateGroupCallParticipants extends TLRPC$Update {
         int size = this.participants.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.participants.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_groupCallParticipant) this.participants.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(this.version);
     }

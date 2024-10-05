@@ -59,8 +59,22 @@ public class ProfileLocationCell extends LinearLayout {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.thumbDrawable || super.verifyDrawable(drawable);
+    protected void onDraw(Canvas canvas) {
+        this.imageReceiver.setImageCoords(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : getWidth() - AndroidUtilities.dp(60.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
+        this.imageReceiver.draw(canvas);
+        super.onDraw(canvas);
+        if (this.needDivider) {
+            Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
+            if (themePaint == null) {
+                themePaint = Theme.dividerPaint;
+            }
+            canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 21.33f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 21.33f : 0.0f), getMeasuredHeight(), themePaint);
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 
     public void set(TLRPC$TL_businessLocation tLRPC$TL_businessLocation, boolean z) {
@@ -78,21 +92,7 @@ public class ProfileLocationCell extends LinearLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        this.imageReceiver.setImageCoords(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : getWidth() - AndroidUtilities.dp(60.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
-        this.imageReceiver.draw(canvas);
-        super.onDraw(canvas);
-        if (this.needDivider) {
-            Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
-            if (themePaint == null) {
-                themePaint = Theme.dividerPaint;
-            }
-            canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 21.33f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 21.33f : 0.0f), getMeasuredHeight(), themePaint);
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.thumbDrawable || super.verifyDrawable(drawable);
     }
 }

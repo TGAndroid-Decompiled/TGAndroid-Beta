@@ -55,7 +55,7 @@ public class TLRPC$TL_inputReplyToMessage extends TLRPC$InputReplyTo {
             int size = this.quote_entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.quote_entities.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.quote_entities.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16) != 0) {

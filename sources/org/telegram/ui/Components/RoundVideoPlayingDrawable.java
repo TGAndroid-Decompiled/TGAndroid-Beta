@@ -25,22 +25,13 @@ public class RoundVideoPlayingDrawable extends Drawable {
     private int progress3Direction = 1;
     int alpha = 255;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     public RoundVideoPlayingDrawable(View view, Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
         this.parentView = view;
     }
 
-    public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
-        this.resourcesProvider = resourcesProvider;
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     private void update() {
@@ -81,21 +72,6 @@ public class RoundVideoPlayingDrawable extends Drawable {
         this.parentView.invalidate();
     }
 
-    public void start() {
-        if (this.started) {
-            return;
-        }
-        this.lastUpdateTime = System.currentTimeMillis();
-        this.started = true;
-        this.parentView.invalidate();
-    }
-
-    public void stop() {
-        if (this.started) {
-            this.started = false;
-        }
-    }
-
     @Override
     public void draw(Canvas canvas) {
         this.paint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_chat_serviceText), this.timeColor, this.colorProgress));
@@ -116,8 +92,8 @@ public class RoundVideoPlayingDrawable extends Drawable {
     }
 
     @Override
-    public void setAlpha(int i) {
-        this.alpha = i;
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(12.0f);
     }
 
     @Override
@@ -126,11 +102,35 @@ public class RoundVideoPlayingDrawable extends Drawable {
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(12.0f);
+    public int getOpacity() {
+        return -2;
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    @Override
+    public void setAlpha(int i) {
+        this.alpha = i;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
+        this.resourcesProvider = resourcesProvider;
+    }
+
+    public void start() {
+        if (this.started) {
+            return;
+        }
+        this.lastUpdateTime = System.currentTimeMillis();
+        this.started = true;
+        this.parentView.invalidate();
+    }
+
+    public void stop() {
+        if (this.started) {
+            this.started = false;
+        }
     }
 }

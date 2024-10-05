@@ -26,6 +26,35 @@ public class GradientTools {
     Bitmap gradientBitmap = null;
     int[] colors = new int[4];
 
+    public int getAverageColor() {
+        int i = this.color1;
+        int i2 = this.color2;
+        if (i2 != 0) {
+            i = ColorUtils.blendARGB(i, i2, 0.5f);
+        }
+        int i3 = this.color3;
+        if (i3 != 0) {
+            i = ColorUtils.blendARGB(i, i3, 0.5f);
+        }
+        int i4 = this.color4;
+        return i4 != 0 ? ColorUtils.blendARGB(i, i4, 0.5f) : i;
+    }
+
+    public void setBounds(float f, float f2, float f3, float f4) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f, f2, f3, f4);
+        setBounds(rectF);
+    }
+
+    public void setBounds(RectF rectF) {
+        RectF rectF2 = this.bounds;
+        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
+            return;
+        }
+        rectF2.set(rectF);
+        updateBounds();
+    }
+
     public void setColors(int i, int i2) {
         setColors(i, i2, 0, 0);
     }
@@ -60,40 +89,29 @@ public class GradientTools {
                 this.shader = linearGradient2;
                 paint3.setShader(linearGradient2);
             }
-        } else if (this.isLinear) {
-            if (this.isDiagonal && this.isRotate) {
-                Paint paint4 = this.paint;
-                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
-                this.shader = linearGradient3;
-                paint4.setShader(linearGradient3);
-            } else {
-                Paint paint5 = this.paint;
-                LinearGradient linearGradient4 = new LinearGradient(this.isDiagonal ? 80.0f : 0.0f, 0.0f, 0.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
-                this.shader = linearGradient4;
-                paint5.setShader(linearGradient4);
-            }
-        } else {
+        } else if (!this.isLinear) {
             if (this.gradientBitmap == null) {
                 this.gradientBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
             }
             Bitmap bitmap = this.gradientBitmap;
             Utilities.generateGradient(bitmap, true, 0, 0.0f, bitmap.getWidth(), this.gradientBitmap.getHeight(), this.gradientBitmap.getRowBytes(), this.colors);
-            Paint paint6 = this.paint;
+            Paint paint4 = this.paint;
             Bitmap bitmap2 = this.gradientBitmap;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
             this.shader = bitmapShader;
-            paint6.setShader(bitmapShader);
+            paint4.setShader(bitmapShader);
+        } else if (this.isDiagonal && this.isRotate) {
+            Paint paint5 = this.paint;
+            LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+            this.shader = linearGradient3;
+            paint5.setShader(linearGradient3);
+        } else {
+            Paint paint6 = this.paint;
+            LinearGradient linearGradient4 = new LinearGradient(this.isDiagonal ? 80.0f : 0.0f, 0.0f, 0.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+            this.shader = linearGradient4;
+            paint6.setShader(linearGradient4);
         }
-        updateBounds();
-    }
-
-    public void setBounds(RectF rectF) {
-        RectF rectF2 = this.bounds;
-        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
-            return;
-        }
-        rectF2.set(rectF);
         updateBounds();
     }
 
@@ -109,25 +127,5 @@ public class GradientTools {
         matrix.postTranslate(rectF.left, rectF.top);
         this.matrix.preScale(width, height);
         this.shader.setLocalMatrix(this.matrix);
-    }
-
-    public void setBounds(float f, float f2, float f3, float f4) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f, f2, f3, f4);
-        setBounds(rectF);
-    }
-
-    public int getAverageColor() {
-        int i = this.color1;
-        int i2 = this.color2;
-        if (i2 != 0) {
-            i = ColorUtils.blendARGB(i, i2, 0.5f);
-        }
-        int i3 = this.color3;
-        if (i3 != 0) {
-            i = ColorUtils.blendARGB(i, i3, 0.5f);
-        }
-        int i4 = this.color4;
-        return i4 != 0 ? ColorUtils.blendARGB(i, i4, 0.5f) : i;
     }
 }

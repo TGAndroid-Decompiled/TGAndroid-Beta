@@ -3,7 +3,7 @@ package kotlinx.coroutines;
 import kotlinx.coroutines.internal.MainDispatchersKt;
 import kotlinx.coroutines.internal.SystemPropsKt;
 
-public final class DefaultExecutorKt {
+public abstract class DefaultExecutorKt {
     private static final boolean defaultMainDelayOptIn = SystemPropsKt.systemProp("kotlinx.coroutines.main.delay", false);
     private static final Delay DefaultDelay = initializeDefaultDelay();
 

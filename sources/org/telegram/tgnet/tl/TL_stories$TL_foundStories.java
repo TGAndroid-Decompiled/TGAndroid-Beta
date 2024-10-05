@@ -10,9 +10,9 @@ public class TL_stories$TL_foundStories extends TLObject {
     public int count;
     public int flags;
     public String next_offset;
-    public ArrayList<TL_stories$TL_foundStory> stories = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList stories = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TL_stories$TL_foundStories TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-488736969 != i) {
@@ -89,7 +89,7 @@ public class TL_stories$TL_foundStories extends TLObject {
         int size = this.stories.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.stories.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stories$TL_foundStory) this.stories.get(i)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.next_offset);
@@ -98,13 +98,13 @@ public class TL_stories$TL_foundStories extends TLObject {
         int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.users.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

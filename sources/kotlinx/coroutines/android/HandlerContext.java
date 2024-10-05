@@ -17,6 +17,14 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
     private final boolean invokeImmediately;
     private final String name;
 
+    public HandlerContext(Handler handler, String str) {
+        this(handler, str, false);
+    }
+
+    public HandlerContext(Handler handler, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(handler, (i & 2) != 0 ? null : str);
+    }
+
     private HandlerContext(Handler handler, String str, boolean z) {
         super(null);
         this.handler = handler;
@@ -31,22 +39,9 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
         this.immediate = handlerContext;
     }
 
-    public HandlerContext(Handler handler, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(handler, (i & 2) != 0 ? null : str);
-    }
-
-    public HandlerContext(Handler handler, String str) {
-        this(handler, str, false);
-    }
-
-    @Override
-    public HandlerContext getImmediate() {
-        return this.immediate;
-    }
-
-    @Override
-    public boolean isDispatchNeeded(CoroutineContext coroutineContext) {
-        return (this.invokeImmediately && Intrinsics.areEqual(Looper.myLooper(), this.handler.getLooper())) ? false : true;
+    private final void cancelOnRejection(CoroutineContext coroutineContext, Runnable runnable) {
+        JobKt.cancel(coroutineContext, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
+        Dispatchers.getIO().dispatch(coroutineContext, runnable);
     }
 
     @Override
@@ -57,9 +52,22 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
         cancelOnRejection(coroutineContext, runnable);
     }
 
-    private final void cancelOnRejection(CoroutineContext coroutineContext, Runnable runnable) {
-        JobKt.cancel(coroutineContext, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        Dispatchers.getIO().dispatch(coroutineContext, runnable);
+    public boolean equals(Object obj) {
+        return (obj instanceof HandlerContext) && ((HandlerContext) obj).handler == this.handler;
+    }
+
+    @Override
+    public HandlerContext getImmediate() {
+        return this.immediate;
+    }
+
+    public int hashCode() {
+        return System.identityHashCode(this.handler);
+    }
+
+    @Override
+    public boolean isDispatchNeeded(CoroutineContext coroutineContext) {
+        return (this.invokeImmediately && Intrinsics.areEqual(Looper.myLooper(), this.handler.getLooper())) ? false : true;
     }
 
     @Override
@@ -73,13 +81,5 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
             str = this.handler.toString();
         }
         return this.invokeImmediately ? Intrinsics.stringPlus(str, ".immediate") : str;
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof HandlerContext) && ((HandlerContext) obj).handler == this.handler;
-    }
-
-    public int hashCode() {
-        return System.identityHashCode(this.handler);
     }
 }

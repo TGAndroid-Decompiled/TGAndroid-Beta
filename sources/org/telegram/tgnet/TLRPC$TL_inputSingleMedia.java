@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_inputSingleMedia extends TLObject {
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
     public int flags;
     public TLRPC$InputMedia media;
     public String message;
@@ -46,7 +46,7 @@ public class TLRPC$TL_inputSingleMedia extends TLObject {
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.entities.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i)).serializeToStream(abstractSerializedData);
             }
         }
     }

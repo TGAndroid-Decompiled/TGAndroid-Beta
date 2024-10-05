@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.annotation.TargetApi;
 import android.app.AppOpsManager;
 import android.content.Intent;
 import android.os.Process;
@@ -31,22 +30,6 @@ public class XiaomiUtilities {
     public static final int OP_WIFI_CHANGE = 10001;
     public static final int OP_WRITE_MMS = 10006;
 
-    public static boolean isMIUI() {
-        return !TextUtils.isEmpty(AndroidUtilities.getSystemProperty("ro.miui.ui.version.name"));
-    }
-
-    @TargetApi(19)
-    public static boolean isCustomPermissionGranted(int i) {
-        try {
-            AppOpsManager appOpsManager = (AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops");
-            Class cls = Integer.TYPE;
-            return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke(appOpsManager, Integer.valueOf(i), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return true;
-        }
-    }
-
     public static int getMIUIMajorVersion() {
         String systemProperty = AndroidUtilities.getSystemProperty("ro.miui.ui.version.name");
         if (systemProperty == null) {
@@ -65,5 +48,20 @@ public class XiaomiUtilities {
         intent.putExtra("extra_package_uid", Process.myUid());
         intent.putExtra("extra_pkgname", ApplicationLoader.applicationContext.getPackageName());
         return intent;
+    }
+
+    public static boolean isCustomPermissionGranted(int i) {
+        try {
+            AppOpsManager appOpsManager = (AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops");
+            Class cls = Integer.TYPE;
+            return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke(appOpsManager, Integer.valueOf(i), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return true;
+        }
+    }
+
+    public static boolean isMIUI() {
+        return !TextUtils.isEmpty(AndroidUtilities.getSystemProperty("ro.miui.ui.version.name"));
     }
 }

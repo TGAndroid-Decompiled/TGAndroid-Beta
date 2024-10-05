@@ -3,10 +3,10 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_quickReplies extends TLRPC$messages_quickReplies {
-    public ArrayList<TLRPC$TL_quickReply> quick_replies = new ArrayList<>();
-    public ArrayList<TLRPC$Message> messages = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList quick_replies = new ArrayList();
+    public ArrayList messages = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -63,25 +63,25 @@ public class TLRPC$TL_messages_quickReplies extends TLRPC$messages_quickReplies 
         int size = this.quick_replies.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.quick_replies.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_quickReply) this.quick_replies.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.messages.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.messages.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Message) this.messages.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.chats.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.chats.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i3)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size4 = this.users.size();
         abstractSerializedData.writeInt32(size4);
         for (int i4 = 0; i4 < size4; i4++) {
-            this.users.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i4)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -10,7 +10,7 @@ public class TLRPC$TL_codeSettings extends TLObject {
     public boolean app_sandbox;
     public boolean current_number;
     public int flags;
-    public ArrayList<byte[]> logout_tokens = new ArrayList<>();
+    public ArrayList logout_tokens = new ArrayList();
     public String token;
     public boolean unknown_number;
 
@@ -70,7 +70,7 @@ public class TLRPC$TL_codeSettings extends TLObject {
             int size = this.logout_tokens.size();
             abstractSerializedData.writeInt32(size);
             for (int i8 = 0; i8 < size; i8++) {
-                abstractSerializedData.writeByteArray(this.logout_tokens.get(i8));
+                abstractSerializedData.writeByteArray((byte[]) this.logout_tokens.get(i8));
             }
         }
         if ((this.flags & 256) != 0) {

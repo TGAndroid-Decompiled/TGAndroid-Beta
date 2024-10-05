@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.Components.GestureDetector2;
 
-public class LongPressListenerWithMovingGesture implements View.OnTouchListener {
+public abstract class LongPressListenerWithMovingGesture implements View.OnTouchListener {
     GestureDetector2 gestureDetector2;
     private int[] location;
     Rect rect = new Rect();
@@ -20,26 +20,8 @@ public class LongPressListenerWithMovingGesture implements View.OnTouchListener 
     boolean tapConfirmedOrCanceled;
     View view;
 
-    public void onLongPress() {
-        throw null;
-    }
-
     public LongPressListenerWithMovingGesture() {
         GestureDetector2 gestureDetector2 = new GestureDetector2(new GestureDetector2.OnGestureListener() {
-            @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                return false;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                return false;
-            }
-
-            @Override
-            public void onShowPress(MotionEvent motionEvent) {
-            }
-
             @Override
             public boolean onDown(MotionEvent motionEvent) {
                 View view = LongPressListenerWithMovingGesture.this.view;
@@ -54,6 +36,40 @@ public class LongPressListenerWithMovingGesture implements View.OnTouchListener 
                         LongPressListenerWithMovingGesture.this.view.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
                     }
                 }
+                return true;
+            }
+
+            @Override
+            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent motionEvent) {
+                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
+                if (longPressListenerWithMovingGesture.view != null) {
+                    longPressListenerWithMovingGesture.onLongPress();
+                }
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                return false;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent motionEvent) {
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent motionEvent) {
+                View view;
+                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
+                if (longPressListenerWithMovingGesture.tapConfirmedOrCanceled || (view = longPressListenerWithMovingGesture.view) == null) {
+                    return false;
+                }
+                view.callOnClick();
+                LongPressListenerWithMovingGesture.this.tapConfirmedOrCanceled = true;
                 return true;
             }
 
@@ -76,31 +92,13 @@ public class LongPressListenerWithMovingGesture implements View.OnTouchListener 
                     LongPressListenerWithMovingGesture.this.subItemClicked = true;
                 }
             }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                View view;
-                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
-                if (longPressListenerWithMovingGesture.tapConfirmedOrCanceled || (view = longPressListenerWithMovingGesture.view) == null) {
-                    return false;
-                }
-                view.callOnClick();
-                LongPressListenerWithMovingGesture.this.tapConfirmedOrCanceled = true;
-                return true;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
-                if (longPressListenerWithMovingGesture.view != null) {
-                    longPressListenerWithMovingGesture.onLongPress();
-                }
-            }
         });
         this.gestureDetector2 = gestureDetector2;
         this.location = new int[2];
         gestureDetector2.setIsLongpressEnabled(true);
     }
+
+    public abstract void onLongPress();
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -127,13 +125,7 @@ public class LongPressListenerWithMovingGesture implements View.OnTouchListener 
                 itemAt.getHitRect(this.rect);
                 itemAt.getTag();
                 if (itemAt.getVisibility() == 0 && itemAt.isClickable()) {
-                    if (!this.rect.contains((int) f, (int) f2)) {
-                        itemAt.setPressed(false);
-                        itemAt.setSelected(false);
-                        if (Build.VERSION.SDK_INT == 21 && itemAt.getBackground() != null) {
-                            itemAt.getBackground().setVisible(false, false);
-                        }
-                    } else {
+                    if (this.rect.contains((int) f, (int) f2)) {
                         itemAt.setPressed(true);
                         itemAt.setSelected(true);
                         int i2 = Build.VERSION.SDK_INT;
@@ -144,6 +136,12 @@ public class LongPressListenerWithMovingGesture implements View.OnTouchListener 
                             itemAt.drawableHotspotChanged(f, f2 - itemAt.getTop());
                         }
                         this.selectedMenuView = itemAt;
+                    } else {
+                        itemAt.setPressed(false);
+                        itemAt.setSelected(false);
+                        if (Build.VERSION.SDK_INT == 21 && itemAt.getBackground() != null) {
+                            itemAt.getBackground().setVisible(false, false);
+                        }
                     }
                 }
             }

@@ -1,34 +1,8 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
-import org.telegram.tgnet.TLObject;
 
-public class TL_stories$TL_boost extends TLObject {
-    public static int constructor = 706514033;
-    public int date;
-    public int expires;
-    public int flags;
-    public boolean gift;
-    public boolean giveaway;
-    public int giveaway_msg_id;
-    public String id;
-    public int multiplier;
-    public boolean unclaimed;
-    public String used_gift_slug;
-    public long user_id = -1;
-
-    public static TL_stories$TL_boost TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in TL_boost", Integer.valueOf(i)));
-            }
-            return null;
-        }
-        TL_stories$TL_boost tL_stories$TL_boost = new TL_stories$TL_boost();
-        tL_stories$TL_boost.readParams(abstractSerializedData, z);
-        return tL_stories$TL_boost;
-    }
-
+public class TL_stories$TL_boost extends TL_stories$Boost {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -51,11 +25,14 @@ public class TL_stories$TL_boost extends TLObject {
         if ((this.flags & 32) != 0) {
             this.multiplier = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags & 64) != 0) {
+            this.stars = abstractSerializedData.readInt64(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1262359766);
         int i = this.gift ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.giveaway ? i | 4 : i & (-5);
@@ -77,6 +54,9 @@ public class TL_stories$TL_boost extends TLObject {
         }
         if ((this.flags & 32) != 0) {
             abstractSerializedData.writeInt32(this.multiplier);
+        }
+        if ((this.flags & 64) != 0) {
+            abstractSerializedData.writeInt64(this.stars);
         }
     }
 }

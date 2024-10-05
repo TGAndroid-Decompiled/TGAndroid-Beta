@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_contacts_importContacts extends TLObject {
-    public ArrayList<TLRPC$TL_inputPhoneContact> contacts = new ArrayList<>();
+    public ArrayList contacts = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -17,7 +17,7 @@ public class TLRPC$TL_contacts_importContacts extends TLObject {
         int size = this.contacts.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.contacts.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_inputPhoneContact) this.contacts.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

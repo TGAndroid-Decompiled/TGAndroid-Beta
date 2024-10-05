@@ -13,9 +13,6 @@ public class PlatformImplementations {
         public static final Method addSuppressed;
         public static final Method getSuppressed;
 
-        private ReflectThrowable() {
-        }
-
         static {
             Method method;
             Method method2;
@@ -54,6 +51,9 @@ public class PlatformImplementations {
                 i++;
             }
             getSuppressed = method;
+        }
+
+        private ReflectThrowable() {
         }
     }
 

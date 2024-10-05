@@ -1,4 +1,4 @@
 package org.telegram.ui.Components.Paint.Views;
 
-public final class EntityView$$ExternalSyntheticApiModelOutline1 {
+public abstract class EntityView$$ExternalSyntheticApiModelOutline1 {
 }

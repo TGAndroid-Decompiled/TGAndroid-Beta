@@ -52,16 +52,6 @@ public class LoadingDrawable extends Drawable {
     public Paint strokePaint;
     private Path usePath;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    public LoadingDrawable(Theme.ResourcesProvider resourcesProvider) {
-        this();
-        this.resourcesProvider = resourcesProvider;
-    }
-
     public LoadingDrawable() {
         this.start = -1L;
         this.disappearStart = -1L;
@@ -80,6 +70,71 @@ public class LoadingDrawable extends Drawable {
         this.strokePaint.setStrokeWidth(AndroidUtilities.density > 2.0f ? 2.0f : 1.0f);
     }
 
+    public LoadingDrawable(Theme.ResourcesProvider resourcesProvider) {
+        this();
+        this.resourcesProvider = resourcesProvider;
+    }
+
+    public void disappear() {
+        if (isDisappeared() || isDisappearing()) {
+            return;
+        }
+        this.disappearStart = SystemClock.elapsedRealtime();
+    }
+
+    @Override
+    public void draw(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LoadingDrawable.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    public int getPaintAlpha() {
+        return this.paint.getAlpha();
+    }
+
+    public boolean isDisappeared() {
+        return this.disappearStart > 0 && ((float) (SystemClock.elapsedRealtime() - this.disappearStart)) >= 320.0f;
+    }
+
+    public boolean isDisappearing() {
+        return this.disappearStart > 0 && ((float) (SystemClock.elapsedRealtime() - this.disappearStart)) < 320.0f;
+    }
+
+    public void reset() {
+        this.start = -1L;
+    }
+
+    public void resetDisappear() {
+        this.disappearStart = -1L;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.paint.setAlpha(i);
+        this.strokePaint.setAlpha(i);
+        if (i > 0) {
+            invalidateSelf();
+        }
+    }
+
+    public void setAppearByGradient(boolean z) {
+        this.appearByGradient = z;
+    }
+
+    public void setBounds(RectF rectF) {
+        super.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        this.lastBounds = null;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.paint.setColorFilter(colorFilter);
+    }
+
     public void setColors(int i, int i2) {
         this.color1 = Integer.valueOf(i);
         this.color2 = Integer.valueOf(i2);
@@ -94,48 +149,8 @@ public class LoadingDrawable extends Drawable {
         this.strokeColor2 = Integer.valueOf(i4);
     }
 
-    public boolean isDisappearing() {
-        return this.disappearStart > 0 && ((float) (SystemClock.elapsedRealtime() - this.disappearStart)) < 320.0f;
-    }
-
-    public boolean isDisappeared() {
-        return this.disappearStart > 0 && ((float) (SystemClock.elapsedRealtime() - this.disappearStart)) >= 320.0f;
-    }
-
-    public long timeToDisappear() {
-        if (this.disappearStart > 0) {
-            return 320 - (SystemClock.elapsedRealtime() - this.disappearStart);
-        }
-        return 0L;
-    }
-
-    public void usePath(Path path) {
-        this.usePath = path;
-    }
-
     public void setGradientScale(float f) {
         this.gradientWidthScale = f;
-    }
-
-    public void setSpeed(float f) {
-        this.speed = f;
-    }
-
-    public void setAppearByGradient(boolean z) {
-        this.appearByGradient = z;
-    }
-
-    public void setRadiiDp(float f) {
-        if (this.usePath != null) {
-            this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
-            this.strokePaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
-        } else {
-            setRadiiDp(f, f, f, f);
-        }
-    }
-
-    public void setRadiiDp(float f, float f2, float f3, float f4) {
-        setRadii(AndroidUtilities.dp(f), AndroidUtilities.dp(f2), AndroidUtilities.dp(f3), AndroidUtilities.dp(f4));
     }
 
     public void setRadii(float f, float f2, float f3, float f4) {
@@ -179,29 +194,28 @@ public class LoadingDrawable extends Drawable {
         this.path.addRoundRect(this.rectF, fArr, Path.Direction.CW);
     }
 
-    public void setBounds(RectF rectF) {
-        super.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        this.lastBounds = null;
-    }
-
-    public void reset() {
-        this.start = -1L;
-    }
-
-    public void disappear() {
-        if (isDisappeared() || isDisappearing()) {
-            return;
+    public void setRadiiDp(float f) {
+        if (this.usePath == null) {
+            setRadiiDp(f, f, f, f);
+        } else {
+            this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
+            this.strokePaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
         }
-        this.disappearStart = SystemClock.elapsedRealtime();
     }
 
-    public void resetDisappear() {
-        this.disappearStart = -1L;
+    public void setRadiiDp(float f, float f2, float f3, float f4) {
+        setRadii(AndroidUtilities.dp(f), AndroidUtilities.dp(f2), AndroidUtilities.dp(f3), AndroidUtilities.dp(f4));
     }
 
-    @Override
-    public void draw(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LoadingDrawable.draw(android.graphics.Canvas):void");
+    public void setSpeed(float f) {
+        this.speed = f;
+    }
+
+    public long timeToDisappear() {
+        if (this.disappearStart > 0) {
+            return 320 - (SystemClock.elapsedRealtime() - this.disappearStart);
+        }
+        return 0L;
     }
 
     public void updateBounds() {
@@ -213,21 +227,7 @@ public class LoadingDrawable extends Drawable {
         }
     }
 
-    public int getPaintAlpha() {
-        return this.paint.getAlpha();
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        this.paint.setAlpha(i);
-        this.strokePaint.setAlpha(i);
-        if (i > 0) {
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.paint.setColorFilter(colorFilter);
+    public void usePath(Path path) {
+        this.usePath = path;
     }
 }

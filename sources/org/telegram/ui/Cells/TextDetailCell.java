@@ -28,10 +28,6 @@ public class TextDetailCell extends FrameLayout {
     public final LinkSpanDrawable.LinksTextView textView;
     public final LinkSpanDrawable.LinksTextView valueTextView;
 
-    protected int processColor(int i) {
-        return i;
-    }
-
     public TextDetailCell(Context context) {
         this(context, null);
     }
@@ -46,13 +42,13 @@ public class TextDetailCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
-            protected int processColor(int i) {
-                return TextDetailCell.this.processColor(i);
+            public int overrideColor() {
+                return processColor(super.overrideColor());
             }
 
             @Override
-            public int overrideColor() {
-                return processColor(super.overrideColor());
+            protected int processColor(int i) {
+                return TextDetailCell.this.processColor(i);
             }
         };
         this.textView = linksTextView;
@@ -74,13 +70,13 @@ public class TextDetailCell extends FrameLayout {
         addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 17.0f, 6.0f, 17.0f, 0.0f));
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
-            protected int processColor(int i) {
-                return TextDetailCell.this.processColor(i);
+            public int overrideColor() {
+                return processColor(super.overrideColor());
             }
 
             @Override
-            public int overrideColor() {
-                return processColor(super.overrideColor());
+            protected int processColor(int i) {
+                return TextDetailCell.this.processColor(i);
             }
         };
         this.valueTextView = linksTextView2;
@@ -131,79 +127,12 @@ public class TextDetailCell extends FrameLayout {
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z = false;
-        boolean z2 = this.valueTextView.hit(((int) motionEvent.getX()) - this.valueTextView.getLeft(), ((int) motionEvent.getY()) - this.valueTextView.getTop()) != null;
-        if (z2) {
-            z = z2;
-        } else if (this.textView.hit(((int) motionEvent.getX()) - this.textView.getLeft(), ((int) motionEvent.getY()) - this.textView.getTop()) != null) {
-            z = true;
-        }
-        if (z) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        if (!this.multiline) {
-            i2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824);
-        }
-        super.onMeasure(makeMeasureSpec, i2);
-    }
-
-    public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z) {
-        this.textView.setText(charSequence);
-        this.valueTextView.setText(charSequence2);
-        this.needDivider = z;
-        setWillNotDraw(!z);
-    }
-
-    public void setImage(Drawable drawable) {
-        setImage(drawable, null);
-    }
-
-    public void setImage(Drawable drawable, CharSequence charSequence) {
-        ((ViewGroup.MarginLayoutParams) this.valueTextView.getLayoutParams()).rightMargin = (LocaleController.isRTL || drawable == null) ? AndroidUtilities.dp(23.0f) : AndroidUtilities.dp(58.0f);
-        this.imageView.setImageDrawable(drawable);
-        this.imageView.setFocusable(drawable != null);
-        this.imageView.setContentDescription(charSequence);
-        if (drawable == null) {
-            this.imageView.setBackground(null);
-            this.imageView.setImportantForAccessibility(2);
-        } else {
-            this.imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), 0, Theme.getColor(Theme.key_listSelector, this.resourcesProvider)));
-            this.imageView.setImportantForAccessibility(1);
-        }
-        int dp = AndroidUtilities.dp(23.0f) + (drawable != null ? AndroidUtilities.dp(48.0f) : 0);
-        if (LocaleController.isRTL) {
-            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = dp;
-        } else {
-            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).rightMargin = dp;
-        }
-        this.textView.requestLayout();
-    }
-
-    public boolean hasImage() {
-        return this.imageView.getDrawable() != null;
-    }
-
     public ImageView getImageView() {
         return this.imageView;
     }
 
-    public void setImageClickListener(View.OnClickListener onClickListener) {
-        this.imageView.setOnClickListener(onClickListener);
-        if (onClickListener == null) {
-            this.imageView.setClickable(false);
-        }
-    }
-
-    public void setContentDescriptionValueFirst(boolean z) {
-        this.contentDescriptionValueFirst = z;
+    public boolean hasImage() {
+        return this.imageView.getDrawable() != null;
     }
 
     @Override
@@ -235,6 +164,82 @@ public class TextDetailCell extends FrameLayout {
         }
         sb.append((Object) text);
         accessibilityNodeInfo.setText(sb.toString());
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        if (!this.multiline) {
+            i2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824);
+        }
+        super.onMeasure(makeMeasureSpec, i2);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z = false;
+        boolean z2 = this.valueTextView.hit(((int) motionEvent.getX()) - this.valueTextView.getLeft(), ((int) motionEvent.getY()) - this.valueTextView.getTop()) != null;
+        if (z2) {
+            z = z2;
+        } else if (this.textView.hit(((int) motionEvent.getX()) - this.textView.getLeft(), ((int) motionEvent.getY()) - this.textView.getTop()) != null) {
+            z = true;
+        }
+        if (z) {
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    protected int processColor(int i) {
+        return i;
+    }
+
+    public void setContentDescriptionValueFirst(boolean z) {
+        this.contentDescriptionValueFirst = z;
+    }
+
+    public void setImage(Drawable drawable) {
+        setImage(drawable, null);
+    }
+
+    public void setImage(Drawable drawable, CharSequence charSequence) {
+        ImageView imageView;
+        ((ViewGroup.MarginLayoutParams) this.valueTextView.getLayoutParams()).rightMargin = (LocaleController.isRTL || drawable == null) ? AndroidUtilities.dp(23.0f) : AndroidUtilities.dp(58.0f);
+        this.imageView.setImageDrawable(drawable);
+        int i = 1;
+        this.imageView.setFocusable(drawable != null);
+        this.imageView.setContentDescription(charSequence);
+        ImageView imageView2 = this.imageView;
+        if (drawable == null) {
+            imageView2.setBackground(null);
+            imageView = this.imageView;
+            i = 2;
+        } else {
+            imageView2.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), 0, Theme.getColor(Theme.key_listSelector, this.resourcesProvider)));
+            imageView = this.imageView;
+        }
+        imageView.setImportantForAccessibility(i);
+        int dp = AndroidUtilities.dp(23.0f) + (drawable != null ? AndroidUtilities.dp(48.0f) : 0);
+        if (LocaleController.isRTL) {
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = dp;
+        } else {
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).rightMargin = dp;
+        }
+        this.textView.requestLayout();
+    }
+
+    public void setImageClickListener(View.OnClickListener onClickListener) {
+        this.imageView.setOnClickListener(onClickListener);
+        if (onClickListener == null) {
+            this.imageView.setClickable(false);
+        }
+    }
+
+    public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        this.textView.setText(charSequence);
+        this.valueTextView.setText(charSequence2);
+        this.needDivider = z;
+        setWillNotDraw(!z);
     }
 
     public void updateColors() {

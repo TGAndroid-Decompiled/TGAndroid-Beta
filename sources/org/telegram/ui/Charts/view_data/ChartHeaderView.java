@@ -103,77 +103,30 @@ public class ChartHeaderView extends FrameLayout {
 
     public void setDates(long j, long j2) {
         String format;
-        if (!this.showDate) {
-            this.dates.setVisibility(8);
-            this.datesTmp.setVisibility(8);
-            return;
-        }
-        if (this.useWeekInterval) {
-            j2 += 604800000;
-        }
-        if (j2 - j >= 86400000) {
-            format = LocaleController.getInstance().getFormatterYear().format(new Date(j)) + " — " + LocaleController.getInstance().getFormatterYear().format(new Date(j2));
+        TextView textView;
+        int i;
+        if (this.showDate) {
+            if (this.useWeekInterval) {
+                j2 += 604800000;
+            }
+            if (j2 - j >= 86400000) {
+                format = LocaleController.getInstance().getFormatterYear().format(new Date(j)) + " — " + LocaleController.getInstance().getFormatterYear().format(new Date(j2));
+            } else {
+                format = LocaleController.getInstance().getFormatterYear().format(new Date(j));
+            }
+            this.dates.setText(format);
+            textView = this.dates;
+            i = 0;
         } else {
-            format = LocaleController.getInstance().getFormatterYear().format(new Date(j));
+            i = 8;
+            this.dates.setVisibility(8);
+            textView = this.datesTmp;
         }
-        this.dates.setText(format);
-        this.dates.setVisibility(0);
+        textView.setVisibility(i);
     }
 
     public void setTitle(String str) {
         this.title.setText(str);
-    }
-
-    public void zoomTo(BaseChartView baseChartView, long j, boolean z) {
-        setDates(j, j);
-        this.back.setVisibility(0);
-        if (z) {
-            this.back.setAlpha(0.0f);
-            this.back.setScaleX(0.3f);
-            this.back.setScaleY(0.3f);
-            this.back.setPivotX(0.0f);
-            this.back.setPivotY(AndroidUtilities.dp(40.0f));
-            this.back.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(200L).start();
-            this.title.setAlpha(1.0f);
-            this.title.setTranslationX(0.0f);
-            this.title.setTranslationY(0.0f);
-            this.title.setScaleX(1.0f);
-            this.title.setScaleY(1.0f);
-            this.title.setPivotX(0.0f);
-            this.title.setPivotY(0.0f);
-            this.title.animate().alpha(0.0f).scaleY(0.3f).scaleX(0.3f).setDuration(200L).start();
-            return;
-        }
-        this.back.setAlpha(1.0f);
-        this.back.setTranslationX(0.0f);
-        this.back.setTranslationY(0.0f);
-        this.back.setScaleX(1.0f);
-        this.back.setScaleY(1.0f);
-        this.title.setAlpha(0.0f);
-    }
-
-    public void zoomOut(BaseChartView baseChartView, boolean z) {
-        setDates(baseChartView.getStartDate(), baseChartView.getEndDate());
-        if (z) {
-            this.title.setAlpha(0.0f);
-            this.title.setScaleX(0.3f);
-            this.title.setScaleY(0.3f);
-            this.title.setPivotX(0.0f);
-            this.title.setPivotY(0.0f);
-            this.title.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(200L).start();
-            this.back.setAlpha(1.0f);
-            this.back.setTranslationX(0.0f);
-            this.back.setTranslationY(0.0f);
-            this.back.setScaleX(1.0f);
-            this.back.setScaleY(1.0f);
-            this.back.setPivotY(AndroidUtilities.dp(40.0f));
-            this.back.animate().alpha(0.0f).scaleY(0.3f).scaleX(0.3f).setDuration(200L).start();
-            return;
-        }
-        this.title.setAlpha(1.0f);
-        this.title.setScaleX(1.0f);
-        this.title.setScaleY(1.0f);
-        this.back.setAlpha(0.0f);
     }
 
     public void setUseWeekInterval(boolean z) {
@@ -182,13 +135,66 @@ public class ChartHeaderView extends FrameLayout {
 
     public void showDate(boolean z) {
         this.showDate = z;
-        if (!z) {
-            this.datesTmp.setVisibility(8);
-            this.dates.setVisibility(8);
-            this.title.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 8388627, 16.0f, 0.0f, 16.0f, 0.0f));
-            this.title.requestLayout();
+        if (z) {
+            this.title.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 8388627, 16.0f, 0.0f, this.textMargin, 0.0f));
             return;
         }
-        this.title.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 8388627, 16.0f, 0.0f, this.textMargin, 0.0f));
+        this.datesTmp.setVisibility(8);
+        this.dates.setVisibility(8);
+        this.title.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 8388627, 16.0f, 0.0f, 16.0f, 0.0f));
+        this.title.requestLayout();
+    }
+
+    public void zoomOut(BaseChartView baseChartView, boolean z) {
+        setDates(baseChartView.getStartDate(), baseChartView.getEndDate());
+        if (!z) {
+            this.title.setAlpha(1.0f);
+            this.title.setScaleX(1.0f);
+            this.title.setScaleY(1.0f);
+            this.back.setAlpha(0.0f);
+            return;
+        }
+        this.title.setAlpha(0.0f);
+        this.title.setScaleX(0.3f);
+        this.title.setScaleY(0.3f);
+        this.title.setPivotX(0.0f);
+        this.title.setPivotY(0.0f);
+        this.title.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(200L).start();
+        this.back.setAlpha(1.0f);
+        this.back.setTranslationX(0.0f);
+        this.back.setTranslationY(0.0f);
+        this.back.setScaleX(1.0f);
+        this.back.setScaleY(1.0f);
+        this.back.setPivotY(AndroidUtilities.dp(40.0f));
+        this.back.animate().alpha(0.0f).scaleY(0.3f).scaleX(0.3f).setDuration(200L).start();
+    }
+
+    public void zoomTo(BaseChartView baseChartView, long j, boolean z) {
+        setDates(j, j);
+        this.back.setVisibility(0);
+        TextView textView = this.back;
+        if (!z) {
+            textView.setAlpha(1.0f);
+            this.back.setTranslationX(0.0f);
+            this.back.setTranslationY(0.0f);
+            this.back.setScaleX(1.0f);
+            this.back.setScaleY(1.0f);
+            this.title.setAlpha(0.0f);
+            return;
+        }
+        textView.setAlpha(0.0f);
+        this.back.setScaleX(0.3f);
+        this.back.setScaleY(0.3f);
+        this.back.setPivotX(0.0f);
+        this.back.setPivotY(AndroidUtilities.dp(40.0f));
+        this.back.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(200L).start();
+        this.title.setAlpha(1.0f);
+        this.title.setTranslationX(0.0f);
+        this.title.setTranslationY(0.0f);
+        this.title.setScaleX(1.0f);
+        this.title.setScaleY(1.0f);
+        this.title.setPivotX(0.0f);
+        this.title.setPivotY(0.0f);
+        this.title.animate().alpha(0.0f).scaleY(0.3f).scaleX(0.3f).setDuration(200L).start();
     }
 }

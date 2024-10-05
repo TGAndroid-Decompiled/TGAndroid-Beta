@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public abstract class TLRPC$RichText extends TLObject {
     public String email;
     public TLRPC$RichText parentRichText;
-    public ArrayList<TLRPC$RichText> texts = new ArrayList<>();
+    public TLRPC$RichText text;
+    public ArrayList texts = new ArrayList();
     public String url;
     public long webpage_id;
 
@@ -16,7 +17,18 @@ public abstract class TLRPC$RichText extends TLObject {
                 tLRPC$TL_textStrike = new TLRPC$TL_textStrike();
                 break;
             case -1054465340:
-                tLRPC$TL_textStrike = new TLRPC$TL_textUnderline();
+                tLRPC$TL_textStrike = new TLRPC$RichText() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.text = TLRPC$RichText.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1054465340);
+                        this.text.serializeToStream(abstractSerializedData2);
+                    }
+                };
                 break;
             case -939827711:
                 tLRPC$TL_textStrike = new TLRPC$TL_textSuperscript();

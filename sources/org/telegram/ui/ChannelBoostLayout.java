@@ -34,14 +34,15 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.tl.TL_stats$TL_statsPercentValue;
-import org.telegram.tgnet.tl.TL_stories$TL_boost;
+import org.telegram.tgnet.tl.TL_stories$Boost;
+import org.telegram.tgnet.tl.TL_stories$PrepaidGiveaway;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsList;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_getBoostsList;
 import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
+import org.telegram.tgnet.tl.TL_stories$TL_prepaidStarsGiveaway;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
@@ -50,34 +51,32 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Charts.view_data.ChartHeaderView;
-import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.Premium.boosts.BoostPagerBottomSheet;
-import org.telegram.ui.Components.Premium.boosts.GiftInfoBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.statistics.GiftedUserCell;
 import org.telegram.ui.Components.Premium.boosts.cells.statistics.GiveawayCell;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.StatisticActivity;
 
 public class ChannelBoostLayout extends FrameLayout {
     AdapterWithDiffUtils adapter;
-    private final ArrayList<TL_stories$TL_boost> boosters;
+    private final ArrayList boosters;
     TL_stories$TL_premium_boostsStatus boostsStatus;
     private ScrollSlidingTextTabStrip boostsTabs;
     int currentAccount;
     private TLRPC$Chat currentChat;
     private final long dialogId;
     BaseFragment fragment;
-    private final ArrayList<TL_stories$TL_boost> gifts;
+    private final ArrayList gifts;
     private boolean hasBoostsNext;
     private boolean hasGiftsNext;
-    private final ArrayList<ItemInternal> items;
+    private final ArrayList items;
     private String lastBoostsOffset;
     private String lastGiftsOffset;
     private int limitBoosts;
@@ -92,16 +91,80 @@ public class ChannelBoostLayout extends FrameLayout {
     private int totalGifts;
     boolean usersLoading;
 
+    public class ItemInternal extends AdapterWithDiffUtils.Item {
+        TL_stories$Boost booster;
+        boolean isLast;
+        TL_stories$PrepaidGiveaway prepaidGiveaway;
+        int tab;
+        String title;
+
+        public ItemInternal(int i, String str) {
+            super(i, false);
+            this.title = str;
+        }
+
+        public ItemInternal(int i, TL_stories$Boost tL_stories$Boost, boolean z, int i2) {
+            super(i, true);
+            this.booster = tL_stories$Boost;
+            this.isLast = z;
+            this.tab = i2;
+        }
+
+        public ItemInternal(int i, TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway, boolean z) {
+            super(i, true);
+            this.prepaidGiveaway = tL_stories$PrepaidGiveaway;
+            this.isLast = z;
+        }
+
+        public ItemInternal(int i, boolean z) {
+            super(i, z);
+        }
+
+        public boolean equals(Object obj) {
+            TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway;
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            ItemInternal itemInternal = (ItemInternal) obj;
+            TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway2 = this.prepaidGiveaway;
+            if (tL_stories$PrepaidGiveaway2 != null && (tL_stories$PrepaidGiveaway = itemInternal.prepaidGiveaway) != null) {
+                return tL_stories$PrepaidGiveaway2.id == tL_stories$PrepaidGiveaway.id && this.isLast == itemInternal.isLast;
+            }
+            TL_stories$Boost tL_stories$Boost = this.booster;
+            if (tL_stories$Boost == null || itemInternal.booster == null) {
+                return true;
+            }
+            return tL_stories$Boost.id.hashCode() == itemInternal.booster.id.hashCode() && this.isLast == itemInternal.isLast && this.tab == itemInternal.tab;
+        }
+
+        public int hashCode() {
+            return Objects.hash(this.title, this.booster, this.prepaidGiveaway, Boolean.valueOf(this.isLast), Integer.valueOf(this.tab));
+        }
+    }
+
     public ChannelBoostLayout(final BaseFragment baseFragment, final long j, final Theme.ResourcesProvider resourcesProvider) {
         super(baseFragment.getContext());
         this.currentAccount = UserConfig.selectedAccount;
-        this.boosters = new ArrayList<>();
-        this.gifts = new ArrayList<>();
-        this.items = new ArrayList<>();
+        this.boosters = new ArrayList();
+        this.gifts = new ArrayList();
+        this.items = new ArrayList();
         this.selectedTab = 0;
         this.adapter = new AdapterWithDiffUtils() {
             private int remTotalBoosts = -1;
             private int remTotalGifts = -1;
+
+            @Override
+            public int getItemCount() {
+                return ChannelBoostLayout.this.items.size();
+            }
+
+            @Override
+            public int getItemViewType(int i) {
+                return ((ItemInternal) ChannelBoostLayout.this.items.get(i)).viewType;
+            }
 
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
@@ -109,9 +172,119 @@ public class ChannelBoostLayout extends FrameLayout {
             }
 
             @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                boolean z;
+                String str;
+                String str2;
+                GiveawayCell giveawayCell;
+                if (viewHolder.getItemViewType() == 4) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 12) {
+                    ChartHeaderView chartHeaderView = (ChartHeaderView) viewHolder.itemView;
+                    chartHeaderView.setTitle(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
+                    chartHeaderView.showDate(false);
+                    if (viewHolder.getItemViewType() == 12) {
+                        chartHeaderView.setPadding(AndroidUtilities.dp(3.0f), chartHeaderView.getPaddingTop(), chartHeaderView.getPaddingRight(), chartHeaderView.getPaddingBottom());
+                        return;
+                    }
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 0) {
+                    StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
+                    overviewCell.setData(0, Integer.toString(ChannelBoostLayout.this.boostsStatus.level), null, LocaleController.getString(R.string.BoostsLevel2));
+                    ChannelBoostLayout channelBoostLayout = ChannelBoostLayout.this;
+                    TL_stats$TL_statsPercentValue tL_stats$TL_statsPercentValue = channelBoostLayout.boostsStatus.premium_audience;
+                    if (tL_stats$TL_statsPercentValue != null) {
+                        double d = tL_stats$TL_statsPercentValue.total;
+                        if (d != 0.0d) {
+                            float f = (((float) tL_stats$TL_statsPercentValue.part) / ((float) d)) * 100.0f;
+                            overviewCell.setData(1, "≈" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf(f)) + "%", LocaleController.getString(ChannelBoostLayout.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
+                            overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString(R.string.BoostsExisting));
+                            TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = ChannelBoostLayout.this.boostsStatus;
+                            overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus.next_level_boosts - tL_stories$TL_premium_boostsStatus.boosts)), null, LocaleController.getString(R.string.BoostsToLevel));
+                            return;
+                        }
+                    }
+                    overviewCell.setData(1, "≈0", "0%", LocaleController.getString(channelBoostLayout.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
+                    overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString(R.string.BoostsExisting));
+                    TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus2 = ChannelBoostLayout.this.boostsStatus;
+                    overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus2.next_level_boosts - tL_stories$TL_premium_boostsStatus2.boosts)), null, LocaleController.getString(R.string.BoostsToLevel));
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 5) {
+                    TL_stories$Boost tL_stories$Boost = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).booster;
+                    TLRPC$User user = MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).getUser(Long.valueOf(tL_stories$Boost.user_id));
+                    GiftedUserCell giftedUserCell = (GiftedUserCell) viewHolder.itemView;
+                    giftedUserCell.setData(user, ContactsController.formatName(user), tL_stories$Boost.multiplier > 1 ? LocaleController.formatString("BoostsExpireOn", R.string.BoostsExpireOn, LocaleController.formatDate(tL_stories$Boost.expires)) : LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(tL_stories$Boost.expires)), 0, !((ItemInternal) ChannelBoostLayout.this.items.get(i)).isLast);
+                    giftedUserCell.setStatus(tL_stories$Boost);
+                    giveawayCell = giftedUserCell;
+                } else {
+                    if (viewHolder.getItemViewType() == 6) {
+                        ((TextInfoPrivacyCell) viewHolder.itemView).setText(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
+                        return;
+                    }
+                    if (viewHolder.getItemViewType() == 9) {
+                        ((ManageChatTextCell) viewHolder.itemView).setText(ChannelBoostLayout.this.selectedTab == 0 ? LocaleController.formatPluralString("BoostingShowMoreBoosts", ChannelBoostLayout.this.nextBoostRemaining, new Object[0]) : LocaleController.formatPluralString("BoostingShowMoreGifts", ChannelBoostLayout.this.nextGiftsRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                        return;
+                    }
+                    if (viewHolder.getItemViewType() == 3) {
+                        ((LinkActionView) viewHolder.itemView).setLink(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
+                        return;
+                    }
+                    if (viewHolder.getItemViewType() != 11) {
+                        if (viewHolder.getItemViewType() == 13) {
+                            if (this.remTotalBoosts == ChannelBoostLayout.this.totalBoosts && this.remTotalGifts == ChannelBoostLayout.this.totalGifts) {
+                                return;
+                            }
+                            this.remTotalBoosts = ChannelBoostLayout.this.totalBoosts;
+                            this.remTotalGifts = ChannelBoostLayout.this.totalGifts;
+                            ChannelBoostLayout.this.boostsTabs.removeTabs();
+                            ChannelBoostLayout.this.boostsTabs.addTextTab(0, LocaleController.formatPluralString("BoostingBoostsCount", ChannelBoostLayout.this.totalBoosts, new Object[0]));
+                            if (MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).giveawayGiftsPurchaseAvailable && ChannelBoostLayout.this.totalGifts > 0 && ChannelBoostLayout.this.totalGifts != ChannelBoostLayout.this.totalBoosts) {
+                                ChannelBoostLayout.this.boostsTabs.addTextTab(1, LocaleController.formatPluralString("BoostingGiftsCount", ChannelBoostLayout.this.totalGifts, new Object[0]));
+                            }
+                            ChannelBoostLayout.this.boostsTabs.setInitialTabId(ChannelBoostLayout.this.selectedTab);
+                            ChannelBoostLayout.this.boostsTabs.finishAddingTabs();
+                            return;
+                        }
+                        return;
+                    }
+                    ItemInternal itemInternal = (ItemInternal) ChannelBoostLayout.this.items.get(i);
+                    TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway = itemInternal.prepaidGiveaway;
+                    GiveawayCell giveawayCell2 = (GiveawayCell) viewHolder.itemView;
+                    if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidGiveaway) {
+                        String formatPluralString = LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$PrepaidGiveaway.quantity, new Object[0]);
+                        String formatPluralString2 = LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$PrepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories$TL_prepaidGiveaway) tL_stories$PrepaidGiveaway).months, new Object[0]));
+                        z = itemInternal.isLast;
+                        str = formatPluralString2;
+                        str2 = formatPluralString;
+                    } else {
+                        if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidStarsGiveaway) {
+                            TL_stories$TL_prepaidStarsGiveaway tL_stories$TL_prepaidStarsGiveaway = (TL_stories$TL_prepaidStarsGiveaway) tL_stories$PrepaidGiveaway;
+                            String formatPluralStringComma = LocaleController.formatPluralStringComma("BoostingStarsCountPlural", (int) tL_stories$TL_prepaidStarsGiveaway.stars);
+                            String formatPluralString3 = LocaleController.formatPluralString("AmongWinners", tL_stories$TL_prepaidStarsGiveaway.quantity, new Object[0]);
+                            z = itemInternal.isLast;
+                            str = formatPluralString3;
+                            str2 = formatPluralStringComma;
+                        }
+                        giveawayCell2.setImage(tL_stories$PrepaidGiveaway);
+                        giveawayCell = giveawayCell2;
+                    }
+                    giveawayCell2.setData(tL_stories$PrepaidGiveaway, str2, str, 0, !z);
+                    giveawayCell2.setImage(tL_stories$PrepaidGiveaway);
+                    giveawayCell = giveawayCell2;
+                }
+                giveawayCell.setAvatarPadding(5);
+            }
+
+            @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View shadowSectionCell;
                 View view;
+                ViewGroup.LayoutParams createFrame;
+                View view2;
+                ViewGroup viewGroup2;
                 switch (i) {
                     case 0:
                         view = new StatisticActivity.OverviewCell(ChannelBoostLayout.this.getContext());
@@ -163,7 +336,7 @@ public class ChannelBoostLayout extends FrameLayout {
                         view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                         return new RecyclerListView.Holder(view);
                     case 8:
-                        FrameLayout frameLayout = new FrameLayout(ChannelBoostLayout.this.getContext()) {
+                        ViewGroup viewGroup3 = new FrameLayout(ChannelBoostLayout.this.getContext()) {
                             @Override
                             protected void onMeasure(int i2, int i3) {
                                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
@@ -174,8 +347,11 @@ public class ChannelBoostLayout extends FrameLayout {
                         textView.setTextSize(1, 14.0f);
                         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
                         textView.setGravity(17);
-                        frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
-                        view = frameLayout;
+                        createFrame = LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f);
+                        viewGroup2 = viewGroup3;
+                        view2 = textView;
+                        viewGroup2.addView(view2, createFrame);
+                        view = viewGroup2;
                         view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                         return new RecyclerListView.Holder(view);
                     case 9:
@@ -211,7 +387,7 @@ public class ChannelBoostLayout extends FrameLayout {
                     case 13:
                         ChannelBoostLayout.this.boostsTabs = new ScrollSlidingTextTabStrip(ChannelBoostLayout.this.fragment.getContext(), ChannelBoostLayout.this.resourcesProvider);
                         ChannelBoostLayout.this.boostsTabs.setColors(Theme.key_profile_tabSelectedLine, Theme.key_profile_tabSelectedText, Theme.key_profile_tabText, Theme.key_profile_tabSelector);
-                        FrameLayout frameLayout2 = new FrameLayout(ChannelBoostLayout.this.fragment.getContext()) {
+                        ViewGroup viewGroup4 = new FrameLayout(ChannelBoostLayout.this.fragment.getContext()) {
                             private final Paint dividerPaint = new Paint(1);
 
                             @Override
@@ -227,126 +403,26 @@ public class ChannelBoostLayout extends FrameLayout {
                             }
 
                             @Override
-                            public void onSamePageSelected() {
-                            }
-
-                            @Override
                             public void onPageSelected(int i3, boolean z) {
                                 ChannelBoostLayout.this.selectedTab = i3;
                                 ChannelBoostLayout.this.updateRows(true);
                             }
+
+                            @Override
+                            public void onSamePageSelected() {
+                            }
                         });
-                        frameLayout2.addView(ChannelBoostLayout.this.boostsTabs, LayoutHelper.createFrame(-2, 48.0f));
-                        view = frameLayout2;
+                        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = ChannelBoostLayout.this.boostsTabs;
+                        createFrame = LayoutHelper.createFrame(-2, 48.0f);
+                        viewGroup2 = viewGroup4;
+                        view2 = scrollSlidingTextTabStrip;
+                        viewGroup2.addView(view2, createFrame);
+                        view = viewGroup2;
                         view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                         return new RecyclerListView.Holder(view);
                     default:
                         throw new UnsupportedOperationException();
                 }
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                String formatString;
-                if (viewHolder.getItemViewType() == 4) {
-                    return;
-                }
-                if (viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 12) {
-                    ChartHeaderView chartHeaderView = (ChartHeaderView) viewHolder.itemView;
-                    chartHeaderView.setTitle(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
-                    chartHeaderView.showDate(false);
-                    if (viewHolder.getItemViewType() == 12) {
-                        chartHeaderView.setPadding(AndroidUtilities.dp(3.0f), chartHeaderView.getPaddingTop(), chartHeaderView.getPaddingRight(), chartHeaderView.getPaddingBottom());
-                        return;
-                    }
-                    return;
-                }
-                if (viewHolder.getItemViewType() == 0) {
-                    StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
-                    overviewCell.setData(0, Integer.toString(ChannelBoostLayout.this.boostsStatus.level), null, LocaleController.getString(R.string.BoostsLevel2));
-                    ChannelBoostLayout channelBoostLayout = ChannelBoostLayout.this;
-                    TL_stats$TL_statsPercentValue tL_stats$TL_statsPercentValue = channelBoostLayout.boostsStatus.premium_audience;
-                    if (tL_stats$TL_statsPercentValue != null) {
-                        double d = tL_stats$TL_statsPercentValue.total;
-                        if (d != 0.0d) {
-                            float f = (((float) tL_stats$TL_statsPercentValue.part) / ((float) d)) * 100.0f;
-                            overviewCell.setData(1, "≈" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf(f)) + "%", LocaleController.getString(ChannelBoostLayout.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
-                            overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString(R.string.BoostsExisting));
-                            TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = ChannelBoostLayout.this.boostsStatus;
-                            overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus.next_level_boosts - tL_stories$TL_premium_boostsStatus.boosts)), null, LocaleController.getString(R.string.BoostsToLevel));
-                            return;
-                        }
-                    }
-                    overviewCell.setData(1, "≈0", "0%", LocaleController.getString(channelBoostLayout.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
-                    overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString(R.string.BoostsExisting));
-                    TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus2 = ChannelBoostLayout.this.boostsStatus;
-                    overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus2.next_level_boosts - tL_stories$TL_premium_boostsStatus2.boosts)), null, LocaleController.getString(R.string.BoostsToLevel));
-                    return;
-                }
-                if (viewHolder.getItemViewType() == 5) {
-                    TL_stories$TL_boost tL_stories$TL_boost = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).booster;
-                    TLRPC$User user = MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).getUser(Long.valueOf(tL_stories$TL_boost.user_id));
-                    GiftedUserCell giftedUserCell = (GiftedUserCell) viewHolder.itemView;
-                    if (tL_stories$TL_boost.multiplier > 1) {
-                        formatString = LocaleController.formatString("BoostsExpireOn", R.string.BoostsExpireOn, LocaleController.formatDate(tL_stories$TL_boost.expires));
-                    } else {
-                        formatString = LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(tL_stories$TL_boost.expires));
-                    }
-                    giftedUserCell.setData(user, ContactsController.formatName(user), formatString, 0, !((ItemInternal) ChannelBoostLayout.this.items.get(i)).isLast);
-                    giftedUserCell.setStatus(tL_stories$TL_boost);
-                    giftedUserCell.setAvatarPadding(5);
-                    return;
-                }
-                if (viewHolder.getItemViewType() == 6) {
-                    ((TextInfoPrivacyCell) viewHolder.itemView).setText(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
-                    return;
-                }
-                if (viewHolder.getItemViewType() == 9) {
-                    ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
-                    if (ChannelBoostLayout.this.selectedTab == 0) {
-                        manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreBoosts", ChannelBoostLayout.this.nextBoostRemaining, new Object[0]), null, R.drawable.arrow_more, false);
-                        return;
-                    } else {
-                        manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreGifts", ChannelBoostLayout.this.nextGiftsRemaining, new Object[0]), null, R.drawable.arrow_more, false);
-                        return;
-                    }
-                }
-                if (viewHolder.getItemViewType() == 3) {
-                    ((LinkActionView) viewHolder.itemView).setLink(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
-                    return;
-                }
-                if (viewHolder.getItemViewType() == 11) {
-                    TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).prepaidGiveaway;
-                    GiveawayCell giveawayCell = (GiveawayCell) viewHolder.itemView;
-                    giveawayCell.setData(tL_stories$TL_prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$TL_prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", tL_stories$TL_prepaidGiveaway.months, new Object[0])), 0, !r14.isLast);
-                    giveawayCell.setImage(tL_stories$TL_prepaidGiveaway);
-                    giveawayCell.setAvatarPadding(5);
-                    return;
-                }
-                if (viewHolder.getItemViewType() == 13) {
-                    if (this.remTotalBoosts == ChannelBoostLayout.this.totalBoosts && this.remTotalGifts == ChannelBoostLayout.this.totalGifts) {
-                        return;
-                    }
-                    this.remTotalBoosts = ChannelBoostLayout.this.totalBoosts;
-                    this.remTotalGifts = ChannelBoostLayout.this.totalGifts;
-                    ChannelBoostLayout.this.boostsTabs.removeTabs();
-                    ChannelBoostLayout.this.boostsTabs.addTextTab(0, LocaleController.formatPluralString("BoostingBoostsCount", ChannelBoostLayout.this.totalBoosts, new Object[0]));
-                    if (MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).giveawayGiftsPurchaseAvailable && ChannelBoostLayout.this.totalGifts > 0 && ChannelBoostLayout.this.totalGifts != ChannelBoostLayout.this.totalBoosts) {
-                        ChannelBoostLayout.this.boostsTabs.addTextTab(1, LocaleController.formatPluralString("BoostingGiftsCount", ChannelBoostLayout.this.totalGifts, new Object[0]));
-                    }
-                    ChannelBoostLayout.this.boostsTabs.setInitialTabId(ChannelBoostLayout.this.selectedTab);
-                    ChannelBoostLayout.this.boostsTabs.finishAddingTabs();
-                }
-            }
-
-            @Override
-            public int getItemCount() {
-                return ChannelBoostLayout.this.items.size();
-            }
-
-            @Override
-            public int getItemViewType(int i) {
-                return ((ItemInternal) ChannelBoostLayout.this.items.get(i)).viewType;
             }
         };
         this.lastBoostsOffset = "";
@@ -354,7 +430,7 @@ public class ChannelBoostLayout extends FrameLayout {
         this.limitGifts = 5;
         this.limitBoosts = 5;
         this.fragment = baseFragment;
-        Context context = baseFragment.getContext();
+        final Context context = baseFragment.getContext();
         this.resourcesProvider = resourcesProvider;
         this.dialogId = j;
         this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
@@ -368,7 +444,7 @@ public class ChannelBoostLayout extends FrameLayout {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                ChannelBoostLayout.this.lambda$new$0(baseFragment, j, resourcesProvider, view, i);
+                ChannelBoostLayout.this.lambda$new$0(context, j, resourcesProvider, baseFragment, view, i);
             }
         });
         addView(this.listView);
@@ -378,140 +454,101 @@ public class ChannelBoostLayout extends FrameLayout {
         createEmptyView(getContext());
         this.progressLayout.setAlpha(0.0f);
         this.progressLayout.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
-    }
-
-    public void lambda$new$0(BaseFragment baseFragment, long j, Theme.ResourcesProvider resourcesProvider, View view, int i) {
-        if (view instanceof GiftedUserCell) {
-            GiftedUserCell giftedUserCell = (GiftedUserCell) view;
-            TL_stories$TL_boost boost = giftedUserCell.getBoost();
-            boolean z = boost.gift;
-            if (((z || boost.giveaway) && boost.user_id >= 0) || boost.unclaimed) {
-                TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode = new TLRPC$TL_payments_checkedGiftCode();
-                tLRPC$TL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
-                tLRPC$TL_payments_checkedGiftCode.to_id = boost.user_id;
-                tLRPC$TL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-this.currentChat.id);
-                int i2 = boost.date;
-                tLRPC$TL_payments_checkedGiftCode.date = i2;
-                tLRPC$TL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
-                tLRPC$TL_payments_checkedGiftCode.months = ((boost.expires - i2) / 30) / 86400;
-                if (boost.unclaimed) {
-                    tLRPC$TL_payments_checkedGiftCode.to_id = -1L;
-                    tLRPC$TL_payments_checkedGiftCode.flags = -1;
-                } else {
-                    tLRPC$TL_payments_checkedGiftCode.boost = boost;
-                }
-                new GiftInfoBottomSheet(baseFragment, false, true, tLRPC$TL_payments_checkedGiftCode, boost.used_gift_slug).show();
-            } else {
-                boolean z2 = boost.giveaway;
-                if (z2 && boost.user_id == -1) {
-                    Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
-                    lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
-                    lottieLayout.textView.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                    lottieLayout.textView.setSingleLine(false);
-                    lottieLayout.textView.setMaxLines(2);
-                    Bulletin.make(baseFragment, lottieLayout, 2750).show();
-                } else if (!z && !z2) {
-                    baseFragment.presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
-                }
-            }
-        }
-        if (view instanceof TextCell) {
-            BoostPagerBottomSheet.show(baseFragment, j, resourcesProvider);
-        }
-        if (view instanceof GiveawayCell) {
-            BoostPagerBottomSheet.show(baseFragment, resourcesProvider, j, ((GiveawayCell) view).getPrepaidGiveaway());
-        }
-        if (this.items.get(i).viewType == 9) {
-            loadUsers(Boolean.valueOf(this.selectedTab == 1));
-        }
+        StarsController.getInstance(this.currentAccount).getGiveawayOptions();
     }
 
     public boolean isChannel() {
         return ChatObject.isChannelAndNotMegaGroup(this.currentChat);
     }
 
-    public void updateRows(boolean z) {
-        ArrayList<? extends AdapterWithDiffUtils.Item> arrayList = new ArrayList<>(this.items);
-        this.items.clear();
-        if (this.boostsStatus != null) {
-            this.items.add(new ItemInternal(4, false));
-            this.items.add(new ItemInternal(1, LocaleController.getString(R.string.StatisticOverview)));
-            this.items.add(new ItemInternal(0, false));
-            this.items.add(new ItemInternal(2, false));
-            if (this.boostsStatus.prepaid_giveaways.size() > 0) {
-                this.items.add(new ItemInternal(12, LocaleController.getString(R.string.BoostingPreparedGiveaways)));
-                int i = 0;
-                while (i < this.boostsStatus.prepaid_giveaways.size()) {
-                    this.items.add(new ItemInternal(11, this.boostsStatus.prepaid_giveaways.get(i), i == this.boostsStatus.prepaid_giveaways.size() - 1));
-                    i++;
-                }
-                this.items.add(new ItemInternal(6, LocaleController.getString(R.string.BoostingSelectPaidGiveaway)));
-            }
-            this.items.add(new ItemInternal(13, LocaleController.getString(R.string.Boosters)));
-            if (this.selectedTab == 0) {
-                if (this.boosters.isEmpty()) {
-                    this.items.add(new ItemInternal(8, false));
-                    this.items.add(new ItemInternal(2, false));
-                } else {
-                    int i2 = 0;
-                    while (i2 < this.boosters.size()) {
-                        this.items.add(new ItemInternal(5, this.boosters.get(i2), i2 == this.boosters.size() - 1 && !this.hasBoostsNext, this.selectedTab));
-                        i2++;
-                    }
-                    if (this.hasBoostsNext) {
-                        this.items.add(new ItemInternal(9, true));
-                    } else {
-                        this.items.add(new ItemInternal(7, false));
-                    }
-                    this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription)));
-                }
-            } else if (this.gifts.isEmpty()) {
-                this.items.add(new ItemInternal(8, false));
-                this.items.add(new ItemInternal(2, false));
-            } else {
-                int i3 = 0;
-                while (i3 < this.gifts.size()) {
-                    this.items.add(new ItemInternal(5, this.gifts.get(i3), i3 == this.gifts.size() - 1 && !this.hasGiftsNext, this.selectedTab));
-                    i3++;
-                }
-                if (this.hasGiftsNext) {
-                    this.items.add(new ItemInternal(9, true));
-                } else {
-                    this.items.add(new ItemInternal(7, false));
-                }
-                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription)));
-            }
-            this.items.add(new ItemInternal(1, LocaleController.getString(R.string.LinkForBoosting)));
-            this.items.add(new ItemInternal(3, this.boostsStatus.boost_url));
-            if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(this.currentChat)) {
-                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostingShareThisLink : R.string.BoostingShareThisLinkGroup)));
-                this.items.add(new ItemInternal(10, true));
-                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostingGetMoreBoosts : R.string.BoostingGetMoreBoostsGroup)));
-            }
+    public void lambda$loadOnlyBoosts$7(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
         }
-        if (z) {
-            this.adapter.setItems(arrayList, this.items);
-        } else {
-            this.adapter.notifyDataSetChanged();
+        if (tLObject != null) {
+            this.limitBoosts = 20;
+            TL_stories$TL_premium_boostsList tL_stories$TL_premium_boostsList = (TL_stories$TL_premium_boostsList) tLObject;
+            boolean z = false;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_premium_boostsList.users, false);
+            this.lastBoostsOffset = tL_stories$TL_premium_boostsList.next_offset;
+            this.boosters.addAll(tL_stories$TL_premium_boostsList.boosts);
+            Iterator it = this.boosters.iterator();
+            int i = 0;
+            while (true) {
+                int i2 = 1;
+                if (!it.hasNext()) {
+                    break;
+                }
+                int i3 = ((TL_stories$Boost) it.next()).multiplier;
+                if (i3 > 0) {
+                    i2 = i3;
+                }
+                i += i2;
+            }
+            this.nextBoostRemaining = Math.max(0, tL_stories$TL_premium_boostsList.count - i);
+            if (!TextUtils.isEmpty(tL_stories$TL_premium_boostsList.next_offset) && this.nextBoostRemaining > 0) {
+                z = true;
+            }
+            this.hasBoostsNext = z;
+            this.totalBoosts = tL_stories$TL_premium_boostsList.count;
+            if (runnable != null) {
+                runnable.run();
+            }
         }
     }
 
-    public void lambda$loadStatistic$2(final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$loadOnlyBoosts$8(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelBoostLayout.this.lambda$loadStatistic$1(tL_stories$TL_premium_boostsStatus);
+                ChannelBoostLayout.this.lambda$loadOnlyBoosts$7(countDownLatch, tLObject, runnable);
             }
         });
     }
 
-    private void loadStatistic() {
-        MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
+    public void lambda$loadOnlyGifts$10(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void accept(Object obj) {
-                ChannelBoostLayout.this.lambda$loadStatistic$2((TL_stories$TL_premium_boostsStatus) obj);
+            public final void run() {
+                ChannelBoostLayout.this.lambda$loadOnlyGifts$9(countDownLatch, tLObject, runnable);
             }
         });
+    }
+
+    public void lambda$loadOnlyGifts$9(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+        }
+        if (tLObject != null) {
+            this.limitGifts = 20;
+            TL_stories$TL_premium_boostsList tL_stories$TL_premium_boostsList = (TL_stories$TL_premium_boostsList) tLObject;
+            boolean z = false;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_premium_boostsList.users, false);
+            this.lastGiftsOffset = tL_stories$TL_premium_boostsList.next_offset;
+            this.gifts.addAll(tL_stories$TL_premium_boostsList.boosts);
+            Iterator it = this.gifts.iterator();
+            int i = 0;
+            while (true) {
+                int i2 = 1;
+                if (!it.hasNext()) {
+                    break;
+                }
+                int i3 = ((TL_stories$Boost) it.next()).multiplier;
+                if (i3 > 0) {
+                    i2 = i3;
+                }
+                i += i2;
+            }
+            this.nextGiftsRemaining = Math.max(0, tL_stories$TL_premium_boostsList.count - i);
+            if (!TextUtils.isEmpty(tL_stories$TL_premium_boostsList.next_offset) && this.nextGiftsRemaining > 0) {
+                z = true;
+            }
+            this.hasGiftsNext = z;
+            this.totalGifts = tL_stories$TL_premium_boostsList.count;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
     }
 
     public void lambda$loadStatistic$1(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
@@ -525,6 +562,86 @@ public class ChannelBoostLayout extends FrameLayout {
         });
         updateRows(true);
         loadUsers(null);
+    }
+
+    public void lambda$loadStatistic$2(final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelBoostLayout.this.lambda$loadStatistic$1(tL_stories$TL_premium_boostsStatus);
+            }
+        });
+    }
+
+    public void lambda$loadUsers$3() {
+        this.usersLoading = false;
+        updateRows(true);
+    }
+
+    public void lambda$loadUsers$4() {
+        CountDownLatch countDownLatch = new CountDownLatch(2);
+        loadOnlyBoosts(countDownLatch, null);
+        loadOnlyGifts(countDownLatch, null);
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException unused) {
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelBoostLayout.this.lambda$loadUsers$3();
+            }
+        });
+    }
+
+    public void lambda$loadUsers$5() {
+        this.usersLoading = false;
+        updateRows(true);
+    }
+
+    public void lambda$loadUsers$6() {
+        this.usersLoading = false;
+        updateRows(true);
+    }
+
+    public void lambda$new$0(android.content.Context r16, long r17, org.telegram.ui.ActionBar.Theme.ResourcesProvider r19, org.telegram.ui.ActionBar.BaseFragment r20, android.view.View r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelBoostLayout.lambda$new$0(android.content.Context, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider, org.telegram.ui.ActionBar.BaseFragment, android.view.View, int):void");
+    }
+
+    private void loadOnlyBoosts(final CountDownLatch countDownLatch, final Runnable runnable) {
+        TL_stories$TL_premium_getBoostsList tL_stories$TL_premium_getBoostsList = new TL_stories$TL_premium_getBoostsList();
+        tL_stories$TL_premium_getBoostsList.limit = this.limitBoosts;
+        tL_stories$TL_premium_getBoostsList.offset = this.lastBoostsOffset;
+        tL_stories$TL_premium_getBoostsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_premium_getBoostsList, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                ChannelBoostLayout.this.lambda$loadOnlyBoosts$8(countDownLatch, runnable, tLObject, tLRPC$TL_error);
+            }
+        }, 2);
+    }
+
+    private void loadOnlyGifts(final CountDownLatch countDownLatch, final Runnable runnable) {
+        TL_stories$TL_premium_getBoostsList tL_stories$TL_premium_getBoostsList = new TL_stories$TL_premium_getBoostsList();
+        tL_stories$TL_premium_getBoostsList.limit = this.limitGifts;
+        tL_stories$TL_premium_getBoostsList.gifts = true;
+        tL_stories$TL_premium_getBoostsList.offset = this.lastGiftsOffset;
+        tL_stories$TL_premium_getBoostsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_premium_getBoostsList, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                ChannelBoostLayout.this.lambda$loadOnlyGifts$10(countDownLatch, runnable, tLObject, tLRPC$TL_error);
+            }
+        }, 2);
+    }
+
+    private void loadStatistic() {
+        MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                ChannelBoostLayout.this.lambda$loadStatistic$2((TL_stories$TL_premium_boostsStatus) obj);
+            }
+        });
     }
 
     private void loadUsers(Boolean bool) {
@@ -556,208 +673,6 @@ public class ChannelBoostLayout extends FrameLayout {
         }
     }
 
-    public void lambda$loadUsers$4() {
-        CountDownLatch countDownLatch = new CountDownLatch(2);
-        loadOnlyBoosts(countDownLatch, null);
-        loadOnlyGifts(countDownLatch, null);
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException unused) {
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelBoostLayout.this.lambda$loadUsers$3();
-            }
-        });
-    }
-
-    public void lambda$loadUsers$3() {
-        this.usersLoading = false;
-        updateRows(true);
-    }
-
-    public void lambda$loadUsers$5() {
-        this.usersLoading = false;
-        updateRows(true);
-    }
-
-    public void lambda$loadUsers$6() {
-        this.usersLoading = false;
-        updateRows(true);
-    }
-
-    private void loadOnlyBoosts(final CountDownLatch countDownLatch, final Runnable runnable) {
-        TL_stories$TL_premium_getBoostsList tL_stories$TL_premium_getBoostsList = new TL_stories$TL_premium_getBoostsList();
-        tL_stories$TL_premium_getBoostsList.limit = this.limitBoosts;
-        tL_stories$TL_premium_getBoostsList.offset = this.lastBoostsOffset;
-        tL_stories$TL_premium_getBoostsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_premium_getBoostsList, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelBoostLayout.this.lambda$loadOnlyBoosts$8(countDownLatch, runnable, tLObject, tLRPC$TL_error);
-            }
-        }, 2);
-    }
-
-    public void lambda$loadOnlyBoosts$8(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelBoostLayout.this.lambda$loadOnlyBoosts$7(countDownLatch, tLObject, runnable);
-            }
-        });
-    }
-
-    public void lambda$loadOnlyBoosts$7(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-        }
-        if (tLObject != null) {
-            this.limitBoosts = 20;
-            TL_stories$TL_premium_boostsList tL_stories$TL_premium_boostsList = (TL_stories$TL_premium_boostsList) tLObject;
-            boolean z = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_premium_boostsList.users, false);
-            this.lastBoostsOffset = tL_stories$TL_premium_boostsList.next_offset;
-            this.boosters.addAll(tL_stories$TL_premium_boostsList.boosts);
-            Iterator<TL_stories$TL_boost> it = this.boosters.iterator();
-            int i = 0;
-            while (true) {
-                int i2 = 1;
-                if (!it.hasNext()) {
-                    break;
-                }
-                int i3 = it.next().multiplier;
-                if (i3 > 0) {
-                    i2 = i3;
-                }
-                i += i2;
-            }
-            this.nextBoostRemaining = Math.max(0, tL_stories$TL_premium_boostsList.count - i);
-            if (!TextUtils.isEmpty(tL_stories$TL_premium_boostsList.next_offset) && this.nextBoostRemaining > 0) {
-                z = true;
-            }
-            this.hasBoostsNext = z;
-            this.totalBoosts = tL_stories$TL_premium_boostsList.count;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-    }
-
-    private void loadOnlyGifts(final CountDownLatch countDownLatch, final Runnable runnable) {
-        TL_stories$TL_premium_getBoostsList tL_stories$TL_premium_getBoostsList = new TL_stories$TL_premium_getBoostsList();
-        tL_stories$TL_premium_getBoostsList.limit = this.limitGifts;
-        tL_stories$TL_premium_getBoostsList.gifts = true;
-        tL_stories$TL_premium_getBoostsList.offset = this.lastGiftsOffset;
-        tL_stories$TL_premium_getBoostsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_premium_getBoostsList, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChannelBoostLayout.this.lambda$loadOnlyGifts$10(countDownLatch, runnable, tLObject, tLRPC$TL_error);
-            }
-        }, 2);
-    }
-
-    public void lambda$loadOnlyGifts$10(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelBoostLayout.this.lambda$loadOnlyGifts$9(countDownLatch, tLObject, runnable);
-            }
-        });
-    }
-
-    public void lambda$loadOnlyGifts$9(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-        }
-        if (tLObject != null) {
-            this.limitGifts = 20;
-            TL_stories$TL_premium_boostsList tL_stories$TL_premium_boostsList = (TL_stories$TL_premium_boostsList) tLObject;
-            boolean z = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_premium_boostsList.users, false);
-            this.lastGiftsOffset = tL_stories$TL_premium_boostsList.next_offset;
-            this.gifts.addAll(tL_stories$TL_premium_boostsList.boosts);
-            Iterator<TL_stories$TL_boost> it = this.gifts.iterator();
-            int i = 0;
-            while (true) {
-                int i2 = 1;
-                if (!it.hasNext()) {
-                    break;
-                }
-                int i3 = it.next().multiplier;
-                if (i3 > 0) {
-                    i2 = i3;
-                }
-                i += i2;
-            }
-            this.nextGiftsRemaining = Math.max(0, tL_stories$TL_premium_boostsList.count - i);
-            if (!TextUtils.isEmpty(tL_stories$TL_premium_boostsList.next_offset) && this.nextGiftsRemaining > 0) {
-                z = true;
-            }
-            this.hasGiftsNext = z;
-            this.totalGifts = tL_stories$TL_premium_boostsList.count;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-    }
-
-    public class ItemInternal extends AdapterWithDiffUtils.Item {
-        TL_stories$TL_boost booster;
-        boolean isLast;
-        TL_stories$TL_prepaidGiveaway prepaidGiveaway;
-        int tab;
-        String title;
-
-        public ItemInternal(int i, String str) {
-            super(i, false);
-            this.title = str;
-        }
-
-        public ItemInternal(int i, TL_stories$TL_boost tL_stories$TL_boost, boolean z, int i2) {
-            super(i, true);
-            this.booster = tL_stories$TL_boost;
-            this.isLast = z;
-            this.tab = i2;
-        }
-
-        public ItemInternal(int i, TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway, boolean z) {
-            super(i, true);
-            this.prepaidGiveaway = tL_stories$TL_prepaidGiveaway;
-            this.isLast = z;
-        }
-
-        public ItemInternal(int i, boolean z) {
-            super(i, z);
-        }
-
-        public boolean equals(Object obj) {
-            TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway;
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
-            }
-            ItemInternal itemInternal = (ItemInternal) obj;
-            TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway2 = this.prepaidGiveaway;
-            if (tL_stories$TL_prepaidGiveaway2 != null && (tL_stories$TL_prepaidGiveaway = itemInternal.prepaidGiveaway) != null) {
-                return tL_stories$TL_prepaidGiveaway2.id == tL_stories$TL_prepaidGiveaway.id && this.isLast == itemInternal.isLast;
-            }
-            TL_stories$TL_boost tL_stories$TL_boost = this.booster;
-            if (tL_stories$TL_boost == null || itemInternal.booster == null) {
-                return true;
-            }
-            return tL_stories$TL_boost.id.hashCode() == itemInternal.booster.id.hashCode() && this.isLast == itemInternal.isLast && this.tab == itemInternal.tab;
-        }
-
-        public int hashCode() {
-            return Objects.hash(this.title, this.booster, this.prepaidGiveaway, Boolean.valueOf(this.isLast), Integer.valueOf(this.tab));
-        }
-    }
-
     public void createEmptyView(Context context) {
         LinearLayout linearLayout = new LinearLayout(context);
         this.progressLayout = linearLayout;
@@ -785,5 +700,89 @@ public class ChannelBoostLayout extends FrameLayout {
         this.progressLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 10));
         this.progressLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1));
         addView(this.progressLayout, LayoutHelper.createFrame(240, -2.0f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
+    }
+
+    public void updateRows(boolean z) {
+        ArrayList arrayList;
+        ItemInternal itemInternal;
+        ArrayList arrayList2;
+        ItemInternal itemInternal2;
+        ArrayList arrayList3;
+        ItemInternal itemInternal3;
+        ArrayList arrayList4 = new ArrayList(this.items);
+        this.items.clear();
+        if (this.boostsStatus != null) {
+            this.items.add(new ItemInternal(4, false));
+            this.items.add(new ItemInternal(1, LocaleController.getString(R.string.StatisticOverview)));
+            this.items.add(new ItemInternal(0, false));
+            this.items.add(new ItemInternal(2, false));
+            if (this.boostsStatus.prepaid_giveaways.size() > 0) {
+                this.items.add(new ItemInternal(12, LocaleController.getString(R.string.BoostingPreparedGiveaways)));
+                int i = 0;
+                while (i < this.boostsStatus.prepaid_giveaways.size()) {
+                    this.items.add(new ItemInternal(11, (TL_stories$PrepaidGiveaway) this.boostsStatus.prepaid_giveaways.get(i), i == this.boostsStatus.prepaid_giveaways.size() - 1));
+                    i++;
+                }
+                this.items.add(new ItemInternal(6, LocaleController.getString(R.string.BoostingSelectPaidGiveaway)));
+            }
+            this.items.add(new ItemInternal(13, LocaleController.getString(R.string.Boosters)));
+            if (this.selectedTab == 0) {
+                if (this.boosters.isEmpty()) {
+                    this.items.add(new ItemInternal(8, false));
+                    arrayList2 = this.items;
+                    itemInternal2 = new ItemInternal(2, false);
+                } else {
+                    int i2 = 0;
+                    while (i2 < this.boosters.size()) {
+                        this.items.add(new ItemInternal(5, (TL_stories$Boost) this.boosters.get(i2), i2 == this.boosters.size() - 1 && !this.hasBoostsNext, this.selectedTab));
+                        i2++;
+                    }
+                    if (this.hasBoostsNext) {
+                        arrayList3 = this.items;
+                        itemInternal3 = new ItemInternal(9, true);
+                    } else {
+                        arrayList3 = this.items;
+                        itemInternal3 = new ItemInternal(7, false);
+                    }
+                    arrayList3.add(itemInternal3);
+                    arrayList2 = this.items;
+                    itemInternal2 = new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription));
+                }
+            } else if (this.gifts.isEmpty()) {
+                this.items.add(new ItemInternal(8, false));
+                arrayList2 = this.items;
+                itemInternal2 = new ItemInternal(2, false);
+            } else {
+                int i3 = 0;
+                while (i3 < this.gifts.size()) {
+                    this.items.add(new ItemInternal(5, (TL_stories$Boost) this.gifts.get(i3), i3 == this.gifts.size() - 1 && !this.hasGiftsNext, this.selectedTab));
+                    i3++;
+                }
+                if (this.hasGiftsNext) {
+                    arrayList = this.items;
+                    itemInternal = new ItemInternal(9, true);
+                } else {
+                    arrayList = this.items;
+                    itemInternal = new ItemInternal(7, false);
+                }
+                arrayList.add(itemInternal);
+                arrayList2 = this.items;
+                itemInternal2 = new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription));
+            }
+            arrayList2.add(itemInternal2);
+            this.items.add(new ItemInternal(1, LocaleController.getString(R.string.LinkForBoosting)));
+            this.items.add(new ItemInternal(3, this.boostsStatus.boost_url));
+            if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(this.currentChat)) {
+                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostingShareThisLink : R.string.BoostingShareThisLinkGroup)));
+                this.items.add(new ItemInternal(10, true));
+                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostingGetMoreBoosts2 : R.string.BoostingGetMoreBoostsGroup)));
+            }
+        }
+        AdapterWithDiffUtils adapterWithDiffUtils = this.adapter;
+        if (z) {
+            adapterWithDiffUtils.setItems(arrayList4, this.items);
+        } else {
+            adapterWithDiffUtils.notifyDataSetChanged();
+        }
     }
 }

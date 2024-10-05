@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Outline;
@@ -29,7 +28,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
 import org.telegram.tgnet.TLRPC$User;
@@ -39,7 +37,6 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 
-@SuppressLint({"ViewConstructor"})
 public class TableCell extends FrameLayout {
     private final TextView dateNameTextView;
     private final TextView dateTextView;
@@ -64,6 +61,8 @@ public class TableCell extends FrameLayout {
 
     public TableCell(Context context, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        View view;
+        View view2;
         Paint paint = new Paint();
         this.linePaint = paint;
         this.roundPath = new Path();
@@ -108,11 +107,13 @@ public class TableCell extends FrameLayout {
         layoutParams.gravity = 16;
         if (LocaleController.isRTL) {
             tableRow.addView(this.fromFrameLayout, layoutParams);
-            tableRow.addView(createTextView, new TableRow.LayoutParams(-2, -2));
+            layoutParams = new TableRow.LayoutParams(-2, -2);
+            view = createTextView;
         } else {
             tableRow.addView(createTextView, new TableRow.LayoutParams(-2, -2));
-            tableRow.addView(this.fromFrameLayout, layoutParams);
+            view = this.fromFrameLayout;
         }
+        tableRow.addView(view, layoutParams);
         this.fromFrameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
         TableRow tableRow2 = new TableRow(context);
         FrameLayout frameLayout3 = new FrameLayout(context);
@@ -126,11 +127,13 @@ public class TableCell extends FrameLayout {
         layoutParams2.gravity = 16;
         if (LocaleController.isRTL) {
             tableRow2.addView(this.toFrameLayout, layoutParams2);
-            tableRow2.addView(createTextView2, new TableRow.LayoutParams(-2, -2));
+            layoutParams2 = new TableRow.LayoutParams(-2, -2);
+            view2 = createTextView2;
         } else {
             tableRow2.addView(createTextView2, new TableRow.LayoutParams(-2, -2));
-            tableRow2.addView(this.toFrameLayout, layoutParams2);
+            view2 = this.toFrameLayout;
         }
+        tableRow2.addView(view2, layoutParams2);
         this.toFrameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
         TableRow tableRow3 = new TableRow(context);
         if (LocaleController.isRTL) {
@@ -194,8 +197,8 @@ public class TableCell extends FrameLayout {
         if (Build.VERSION.SDK_INT >= 21) {
             tableLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                public void getOutline(View view3, Outline outline) {
+                    outline.setRoundRect(0, 0, view3.getMeasuredWidth(), view3.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
                 }
             });
             tableLayout.setClipToOutline(true);
@@ -203,7 +206,41 @@ public class TableCell extends FrameLayout {
         setPaddingRelative(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), 0);
     }
 
-    public void setData(final TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, final Utilities.Callback<TLObject> callback) {
+    private TextView createTextView(String str, boolean z) {
+        TextView textView;
+        if (z) {
+            textView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);
+            textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
+        } else {
+            textView = new TextView(getContext());
+        }
+        textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
+        textView.setTextSize(1, 14.0f);
+        if (!z) {
+            textView.setGravity(LocaleController.isRTL ? 5 : 3);
+        }
+        if (str != null) {
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setText(str);
+            textView.setBackgroundColor(Theme.getColor(Theme.key_graySection, this.resourcesProvider));
+            textView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 32.0f : 12.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 32.0f), AndroidUtilities.dp(11.0f));
+        } else {
+            textView.setSingleLine(true);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            textView.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
+        }
+        return textView;
+    }
+
+    private TextView createTextView(boolean z) {
+        return createTextView(null, z);
+    }
+
+    public void setData(final TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, final Utilities.Callback callback) {
+        TextView textView;
+        View.OnClickListener onClickListener;
+        FrameLayout frameLayout;
+        View.OnClickListener onClickListener2;
         this.giftCode = tLRPC$TL_payments_checkedGiftCode;
         Date date = new Date(tLRPC$TL_payments_checkedGiftCode.date * 1000);
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
@@ -221,16 +258,19 @@ public class TableCell extends FrameLayout {
                     Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
                 }
             }, this.resourcesProvider));
-            this.reasonTextView.setOnClickListener(new View.OnClickListener() {
+            textView = this.reasonTextView;
+            onClickListener = new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
                 }
-            });
+            };
         } else {
             this.reasonTextView.setText(LocaleController.getString(isChannelAndNotMegaGroup ? R.string.BoostingYouWereSelected : R.string.BoostingYouWereSelectedGroup));
-            this.reasonTextView.setOnClickListener(null);
+            textView = this.reasonTextView;
+            onClickListener = null;
         }
+        textView.setOnClickListener(onClickListener);
         int i = tLRPC$TL_payments_checkedGiftCode.months;
         this.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i, new Object[0])));
         if (chat != null) {
@@ -244,26 +284,29 @@ public class TableCell extends FrameLayout {
                     Utilities.Callback.this.run(chat);
                 }
             }, this.resourcesProvider);
-            TextView textView = this.fromTextView;
-            textView.setText(Emoji.replaceEmoji((CharSequence) replaceSingleTag, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            TextView textView2 = this.fromTextView;
+            textView2.setText(Emoji.replaceEmoji((CharSequence) replaceSingleTag, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
             this.fromImageView.setForUserOrChat(chat, new AvatarDrawable(chat));
-            this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
+            frameLayout = this.fromFrameLayout;
+            onClickListener2 = new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     Utilities.Callback.this.run(chat);
                 }
-            });
+            };
         } else {
             final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.from_id.user_id));
             this.fromTextView.setText(Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
             this.fromImageView.setForUserOrChat(user, new AvatarDrawable(user));
-            this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
+            frameLayout = this.fromFrameLayout;
+            onClickListener2 = new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     Utilities.Callback.this.run(user);
                 }
-            });
+            };
         }
+        frameLayout.setOnClickListener(onClickListener2);
         if (tLRPC$TL_payments_checkedGiftCode.to_id == -1 && tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
             SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
             spannableStringBuilder3.append((CharSequence) "**");
@@ -293,8 +336,8 @@ public class TableCell extends FrameLayout {
                         Utilities.Callback.this.run(user2);
                     }
                 }, this.resourcesProvider);
-                TextView textView2 = this.toTextView;
-                textView2.setText(Emoji.replaceEmoji((CharSequence) replaceSingleTag2, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+                TextView textView3 = this.toTextView;
+                textView3.setText(Emoji.replaceEmoji((CharSequence) replaceSingleTag2, textView3.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
                 this.toImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
                 this.toFrameLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -307,35 +350,5 @@ public class TableCell extends FrameLayout {
         if (tLRPC$TL_payments_checkedGiftCode.boost != null) {
             this.tableRow4.setVisibility(8);
         }
-    }
-
-    private TextView createTextView(boolean z) {
-        return createTextView(null, z);
-    }
-
-    private TextView createTextView(String str, boolean z) {
-        TextView textView;
-        if (z) {
-            textView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);
-            textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
-        } else {
-            textView = new TextView(getContext());
-        }
-        textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
-        textView.setTextSize(1, 14.0f);
-        if (!z) {
-            textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        }
-        if (str != null) {
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setText(str);
-            textView.setBackgroundColor(Theme.getColor(Theme.key_graySection, this.resourcesProvider));
-            textView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 32.0f : 12.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 32.0f), AndroidUtilities.dp(11.0f));
-        } else {
-            textView.setSingleLine(true);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            textView.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        }
-        return textView;
     }
 }

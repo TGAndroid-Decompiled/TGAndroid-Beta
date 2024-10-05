@@ -10,7 +10,7 @@ import org.telegram.tgnet.TLRPC$InputUser;
 public class TL_bots$reorderPreviewMedias extends TLObject {
     public TLRPC$InputUser bot;
     public String lang_code = "";
-    public ArrayList<TLRPC$InputMedia> order = new ArrayList<>();
+    public ArrayList order = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -26,7 +26,7 @@ public class TL_bots$reorderPreviewMedias extends TLObject {
         int size = this.order.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.order.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputMedia) this.order.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -19,104 +19,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
 
-public class BillingUtilities {
-    public static void extractCurrencyExp(Map<String, Integer> map) {
-        if (map.isEmpty()) {
-            try {
-                InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-                JSONObject jSONObject = new JSONObject(new String(Util.toByteArray(open), Charsets.UTF_8));
-                Iterator<String> keys = jSONObject.keys();
-                while (keys.hasNext()) {
-                    String next = keys.next();
-                    map.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
-                }
-                open.close();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-    }
-
-    public static Pair<String, String> createDeveloperPayload(TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose, AccountInstance accountInstance) {
-        return Pair.create(Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(Charsets.UTF_8), 0), savePurpose(tLRPC$InputStorePaymentPurpose));
-    }
-
-    public static String savePurpose(TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose) {
-        long nextLong = Utilities.random.nextLong();
-        FileLog.d("BillingUtilities.savePurpose id=" + nextLong + " paymentPurpose=" + tLRPC$InputStorePaymentPurpose);
-        SerializedData serializedData = new SerializedData(8);
-        serializedData.writeInt64(nextLong);
-        String bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
-        serializedData.cleanup();
-        FileLog.d("BillingUtilities.savePurpose id_hex=" + bytesToHex + " paymentPurpose=" + tLRPC$InputStorePaymentPurpose);
-        TL_savedPurpose tL_savedPurpose = new TL_savedPurpose();
-        tL_savedPurpose.id = nextLong;
-        tL_savedPurpose.flags = 1;
-        tL_savedPurpose.purpose = tLRPC$InputStorePaymentPurpose;
-        SerializedData serializedData2 = new SerializedData(tL_savedPurpose.getObjectSize());
-        tL_savedPurpose.serializeToStream(serializedData2);
-        String bytesToHex2 = Utilities.bytesToHex(serializedData2.toByteArray());
-        serializedData2.cleanup();
-        if (tL_savedPurpose.getObjectSize() > 28) {
-            FileLog.d("BillingUtilities.savePurpose: sending short version, original size is " + tL_savedPurpose.getObjectSize() + " bytes");
-            tL_savedPurpose.flags = 0;
-            tL_savedPurpose.purpose = null;
-        }
-        SerializedData serializedData3 = new SerializedData(tL_savedPurpose.getObjectSize());
-        tL_savedPurpose.serializeToStream(serializedData3);
-        String bytesToHex3 = Utilities.bytesToHex(serializedData3.toByteArray());
-        serializedData3.cleanup();
-        ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).edit().putString(bytesToHex, bytesToHex2).apply();
-        FileLog.d("BillingUtilities.savePurpose: saved {" + bytesToHex2 + "} under " + bytesToHex);
-        StringBuilder sb = new StringBuilder();
-        sb.append("BillingUtilities.savePurpose: but sending {");
-        sb.append(bytesToHex3);
-        sb.append("}");
-        FileLog.d(sb.toString());
-        return bytesToHex3;
-    }
-
-    public static TLRPC$InputStorePaymentPurpose getPurpose(String str) throws RuntimeException {
-        FileLog.d("BillingUtilities.getPurpose " + str);
-        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
-        TL_savedPurpose TLdeserialize = TL_savedPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-        serializedData.cleanup();
-        if (TLdeserialize.purpose != null) {
-            FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return TLdeserialize.purpose;
-        }
-        SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(TLdeserialize.id);
-        String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
-        serializedData2.cleanup();
-        FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
-        String string = ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).getString(bytesToHex, null);
-        if (string == null) {
-            FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
-            throw new RuntimeException("no purpose under " + bytesToHex + " found :(");
-        }
-        FileLog.d("BillingUtilities.getPurpose: got {" + string + "} under " + bytesToHex);
-        SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
-        TL_savedPurpose TLdeserialize2 = TL_savedPurpose.TLdeserialize(serializedData3, serializedData3.readInt32(true), true);
-        serializedData3.cleanup();
-        return TLdeserialize2.purpose;
-    }
-
-    public static void clearPurpose(String str) {
-        try {
-            FileLog.d("BillingUtilities.clearPurpose: got {" + str + "}");
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
-            TL_savedPurpose TLdeserialize = TL_savedPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-            SerializedData serializedData2 = new SerializedData(8);
-            serializedData2.writeInt64(TLdeserialize.id);
-            String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
-            serializedData2.cleanup();
-            FileLog.d("BillingUtilities.clearPurpose: id_hex = " + bytesToHex);
-            ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).edit().remove(bytesToHex).apply();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
+public abstract class BillingUtilities {
 
     public static class TL_savedPurpose extends TLObject {
         public int flags;
@@ -154,17 +57,48 @@ public class BillingUtilities {
         }
     }
 
-    private static AccountInstance findAccountById(long j) {
-        for (int i = 0; i < 4; i++) {
-            AccountInstance accountInstance = AccountInstance.getInstance(i);
-            if (accountInstance.getUserConfig().getClientUserId() == j) {
-                return accountInstance;
-            }
-        }
-        return null;
+    public static void cleanupPurchase(Purchase purchase) {
+        clearPurpose(purchase.getAccountIdentifiers().getObfuscatedProfileId());
     }
 
-    public static Pair<AccountInstance, TLRPC$InputStorePaymentPurpose> extractDeveloperPayload(Purchase purchase) {
+    public static void clearPurpose(String str) {
+        try {
+            FileLog.d("BillingUtilities.clearPurpose: got {" + str + "}");
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
+            TL_savedPurpose TLdeserialize = TL_savedPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+            SerializedData serializedData2 = new SerializedData(8);
+            serializedData2.writeInt64(TLdeserialize.id);
+            String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
+            serializedData2.cleanup();
+            FileLog.d("BillingUtilities.clearPurpose: id_hex = " + bytesToHex);
+            ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).edit().remove(bytesToHex).apply();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public static Pair createDeveloperPayload(TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose, AccountInstance accountInstance) {
+        return Pair.create(Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(Charsets.UTF_8), 0), savePurpose(tLRPC$InputStorePaymentPurpose));
+    }
+
+    public static void extractCurrencyExp(Map map) {
+        if (map.isEmpty()) {
+            try {
+                InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
+                JSONObject jSONObject = new JSONObject(new String(Util.toByteArray(open), Charsets.UTF_8));
+                Iterator<String> keys = jSONObject.keys();
+                while (keys.hasNext()) {
+                    String next = keys.next();
+                    map.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
+                }
+                open.close();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+    }
+
+    public static Pair extractDeveloperPayload(Purchase purchase) {
         TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose;
         AccountIdentifiers accountIdentifiers = purchase.getAccountIdentifiers();
         if (accountIdentifiers == null) {
@@ -183,11 +117,11 @@ public class BillingUtilities {
                         tLRPC$InputStorePaymentPurpose = null;
                     }
                     AccountInstance findAccountById = findAccountById(Long.parseLong(new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8)));
-                    if (findAccountById == null) {
-                        FileLog.d("Billing: Extract payload. AccountInstance not found");
-                        return null;
+                    if (findAccountById != null) {
+                        return Pair.create(findAccountById, tLRPC$InputStorePaymentPurpose);
                     }
-                    return Pair.create(findAccountById, tLRPC$InputStorePaymentPurpose);
+                    FileLog.d("Billing: Extract payload. AccountInstance not found");
+                    return null;
                 }
             } catch (Exception e2) {
                 FileLog.e("Billing: Extract Payload", e2);
@@ -198,7 +132,74 @@ public class BillingUtilities {
         return null;
     }
 
-    public static void cleanupPurchase(Purchase purchase) {
-        clearPurpose(purchase.getAccountIdentifiers().getObfuscatedProfileId());
+    private static AccountInstance findAccountById(long j) {
+        for (int i = 0; i < 4; i++) {
+            AccountInstance accountInstance = AccountInstance.getInstance(i);
+            if (accountInstance.getUserConfig().getClientUserId() == j) {
+                return accountInstance;
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC$InputStorePaymentPurpose getPurpose(String str) {
+        FileLog.d("BillingUtilities.getPurpose " + str);
+        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
+        TL_savedPurpose TLdeserialize = TL_savedPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+        serializedData.cleanup();
+        if (TLdeserialize.purpose != null) {
+            FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
+            return TLdeserialize.purpose;
+        }
+        SerializedData serializedData2 = new SerializedData(8);
+        serializedData2.writeInt64(TLdeserialize.id);
+        String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
+        serializedData2.cleanup();
+        FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
+        String string = ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).getString(bytesToHex, null);
+        if (string != null) {
+            FileLog.d("BillingUtilities.getPurpose: got {" + string + "} under " + bytesToHex);
+            SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
+            TL_savedPurpose TLdeserialize2 = TL_savedPurpose.TLdeserialize(serializedData3, serializedData3.readInt32(true), true);
+            serializedData3.cleanup();
+            return TLdeserialize2.purpose;
+        }
+        FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
+        throw new RuntimeException("no purpose under " + bytesToHex + " found :(");
+    }
+
+    public static String savePurpose(TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose) {
+        long nextLong = Utilities.random.nextLong();
+        FileLog.d("BillingUtilities.savePurpose id=" + nextLong + " paymentPurpose=" + tLRPC$InputStorePaymentPurpose);
+        SerializedData serializedData = new SerializedData(8);
+        serializedData.writeInt64(nextLong);
+        String bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
+        serializedData.cleanup();
+        FileLog.d("BillingUtilities.savePurpose id_hex=" + bytesToHex + " paymentPurpose=" + tLRPC$InputStorePaymentPurpose);
+        TL_savedPurpose tL_savedPurpose = new TL_savedPurpose();
+        tL_savedPurpose.id = nextLong;
+        tL_savedPurpose.flags = 1;
+        tL_savedPurpose.purpose = tLRPC$InputStorePaymentPurpose;
+        SerializedData serializedData2 = new SerializedData(tL_savedPurpose.getObjectSize());
+        tL_savedPurpose.serializeToStream(serializedData2);
+        String bytesToHex2 = Utilities.bytesToHex(serializedData2.toByteArray());
+        serializedData2.cleanup();
+        if (tL_savedPurpose.getObjectSize() > 28) {
+            FileLog.d("BillingUtilities.savePurpose: sending short version, original size is " + tL_savedPurpose.getObjectSize() + " bytes");
+            tL_savedPurpose.flags = 0;
+            tL_savedPurpose.purpose = null;
+        }
+        SerializedData serializedData3 = new SerializedData(tL_savedPurpose.getObjectSize());
+        tL_savedPurpose.serializeToStream(serializedData3);
+        String bytesToHex3 = Utilities.bytesToHex(serializedData3.toByteArray());
+        serializedData3.cleanup();
+        ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).edit().putString(bytesToHex, bytesToHex2).apply();
+        FileLog.d("BillingUtilities.savePurpose: saved {" + bytesToHex2 + "} under " + bytesToHex);
+        StringBuilder sb = new StringBuilder();
+        sb.append("BillingUtilities.savePurpose: but sending {");
+        sb.append(bytesToHex3);
+        sb.append("}");
+        FileLog.d(sb.toString());
+        return bytesToHex3;
     }
 }

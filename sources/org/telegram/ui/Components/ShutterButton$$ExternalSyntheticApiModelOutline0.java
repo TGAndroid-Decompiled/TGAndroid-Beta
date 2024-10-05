@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class ShutterButton$$ExternalSyntheticApiModelOutline0 {
+public abstract class ShutterButton$$ExternalSyntheticApiModelOutline0 {
 }

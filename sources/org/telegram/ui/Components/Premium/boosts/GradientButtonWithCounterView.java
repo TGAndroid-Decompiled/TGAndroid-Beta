@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -10,7 +9,6 @@ import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-@SuppressLint({"ViewConstructor"})
 public class GradientButtonWithCounterView extends ButtonWithCounterView {
     private final CellFlickerDrawable flickerDrawable;
     private boolean incGradient;
@@ -29,17 +27,20 @@ public class GradientButtonWithCounterView extends ButtonWithCounterView {
 
     @Override
     public void onDraw(Canvas canvas) {
+        boolean z;
         if (this.incGradient) {
             float f = this.progress + 0.016f;
             this.progress = f;
             if (f > 3.0f) {
-                this.incGradient = false;
+                z = false;
+                this.incGradient = z;
             }
         } else {
             float f2 = this.progress - 0.016f;
             this.progress = f2;
             if (f2 < 1.0f) {
-                this.incGradient = true;
+                z = true;
+                this.incGradient = z;
             }
         }
         this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());

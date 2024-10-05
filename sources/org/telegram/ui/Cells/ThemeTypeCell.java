@@ -43,24 +43,24 @@ public class ThemeTypeCell extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    protected void onDraw(Canvas canvas) {
+        if (this.needDivider) {
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
     }
 
-    public void setValue(String str, boolean z, boolean z2) {
-        this.textView.setText(str);
-        this.checkImage.setVisibility(z ? 0 : 4);
-        this.needDivider = z2;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     public void setTypeChecked(boolean z) {
         this.checkImage.setVisibility(z ? 0 : 4);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
+    public void setValue(String str, boolean z, boolean z2) {
+        this.textView.setText(str);
+        this.checkImage.setVisibility(z ? 0 : 4);
+        this.needDivider = z2;
     }
 }

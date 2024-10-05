@@ -29,15 +29,6 @@ public class FileVideoCapturer implements VideoCapturer {
         VideoFrame getNextFrame();
     }
 
-    @Override
-    public void changeCaptureFormat(int i, int i2, int i3) {
-    }
-
-    @Override
-    public boolean isScreencast() {
-        return false;
-    }
-
     private static class VideoReaderY4M implements VideoReader {
         private static final int FRAME_DELIMETER_LENGTH = 6;
         private static final String TAG = "VideoReaderY4M";
@@ -48,7 +39,7 @@ public class FileVideoCapturer implements VideoCapturer {
         private final FileChannel mediaFileChannel;
         private final long videoStart;
 
-        public VideoReaderY4M(String str) throws IOException {
+        public VideoReaderY4M(String str) {
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
@@ -58,9 +49,7 @@ public class FileVideoCapturer implements VideoCapturer {
                 if (read == -1) {
                     throw new RuntimeException("Found end of file before end of header for file: " + str);
                 }
-                if (read != 10) {
-                    sb.append((char) read);
-                } else {
+                if (read == 10) {
                     this.videoStart = this.mediaFileChannel.position();
                     String str2 = "";
                     int i = 0;
@@ -87,6 +76,16 @@ public class FileVideoCapturer implements VideoCapturer {
                     Logging.d("VideoReaderY4M", "frame dim: (" + i + ", " + i2 + ")");
                     return;
                 }
+                sb.append((char) read);
+            }
+        }
+
+        @Override
+        public void close() {
+            try {
+                this.mediaFile.close();
+            } catch (IOException e) {
+                Logging.e("VideoReaderY4M", "Problem closing file", e);
             }
         }
 
@@ -110,29 +109,20 @@ public class FileVideoCapturer implements VideoCapturer {
                     }
                 }
                 String str = new String(allocate2.array(), Charset.forName("US-ASCII"));
-                if (!str.equals("FRAME\n")) {
-                    throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
+                if (str.equals("FRAME\n")) {
+                    this.mediaFileChannel.read(dataY);
+                    this.mediaFileChannel.read(dataU);
+                    this.mediaFileChannel.read(dataV);
+                    return new VideoFrame(allocate, 0, nanos);
                 }
-                this.mediaFileChannel.read(dataY);
-                this.mediaFileChannel.read(dataU);
-                this.mediaFileChannel.read(dataV);
-                return new VideoFrame(allocate, 0, nanos);
+                throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-
-        @Override
-        public void close() {
-            try {
-                this.mediaFile.close();
-            } catch (IOException e) {
-                Logging.e("VideoReaderY4M", "Problem closing file", e);
-            }
-        }
     }
 
-    public FileVideoCapturer(String str) throws IOException {
+    public FileVideoCapturer(String str) {
         try {
             this.videoReader = new VideoReaderY4M(str);
         } catch (IOException e) {
@@ -141,10 +131,13 @@ public class FileVideoCapturer implements VideoCapturer {
         }
     }
 
-    public void tick() {
-        VideoFrame nextFrame = this.videoReader.getNextFrame();
-        this.capturerObserver.onFrameCaptured(nextFrame);
-        nextFrame.release();
+    @Override
+    public void changeCaptureFormat(int i, int i2, int i3) {
+    }
+
+    @Override
+    public void dispose() {
+        this.videoReader.close();
     }
 
     @Override
@@ -153,17 +146,23 @@ public class FileVideoCapturer implements VideoCapturer {
     }
 
     @Override
+    public boolean isScreencast() {
+        return false;
+    }
+
+    @Override
     public void startCapture(int i, int i2, int i3) {
         this.timer.schedule(this.tickTask, 0L, 1000 / i3);
     }
 
     @Override
-    public void stopCapture() throws InterruptedException {
+    public void stopCapture() {
         this.timer.cancel();
     }
 
-    @Override
-    public void dispose() {
-        this.videoReader.close();
+    public void tick() {
+        VideoFrame nextFrame = this.videoReader.getNextFrame();
+        this.capturerObserver.onFrameCaptured(nextFrame);
+        nextFrame.release();
     }
 }

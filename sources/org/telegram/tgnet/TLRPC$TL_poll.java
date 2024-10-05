@@ -52,7 +52,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
         int size = this.answers.size();
         abstractSerializedData.writeInt32(size);
         for (int i5 = 0; i5 < size; i5++) {
-            this.answers.get(i5).serializeToStream(abstractSerializedData);
+            ((TLRPC$PollAnswer) this.answers.get(i5)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt32(this.close_period);

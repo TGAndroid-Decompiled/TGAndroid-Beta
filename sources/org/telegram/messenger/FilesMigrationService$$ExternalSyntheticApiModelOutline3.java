@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class FilesMigrationService$$ExternalSyntheticApiModelOutline3 {
+public abstract class FilesMigrationService$$ExternalSyntheticApiModelOutline3 {
 }

@@ -7,9 +7,9 @@ public abstract class TLRPC$PollResults extends TLObject {
     public boolean min;
     public String solution;
     public int total_voters;
-    public ArrayList<TLRPC$TL_pollAnswerVoters> results = new ArrayList<>();
-    public ArrayList<TLRPC$Peer> recent_voters = new ArrayList<>();
-    public ArrayList<TLRPC$MessageEntity> solution_entities = new ArrayList<>();
+    public ArrayList results = new ArrayList();
+    public ArrayList recent_voters = new ArrayList();
+    public ArrayList solution_entities = new ArrayList();
 
     public static TLRPC$PollResults TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PollResults tLRPC$PollResults;
@@ -89,7 +89,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size = this.results.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i3 = 0; i3 < size; i3++) {
-                                this.results.get(i3).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_pollAnswerVoters) this.results.get(i3)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 4) != 0) {
@@ -100,7 +100,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size2 = this.recent_voters.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i4 = 0; i4 < size2; i4++) {
-                                abstractSerializedData2.writeInt32((int) this.recent_voters.get(i4).user_id);
+                                abstractSerializedData2.writeInt32((int) ((TLRPC$Peer) this.recent_voters.get(i4)).user_id);
                             }
                         }
                         if ((this.flags & 16) != 0) {
@@ -111,7 +111,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size3 = this.solution_entities.size();
                             abstractSerializedData2.writeInt32(size3);
                             for (int i5 = 0; i5 < size3; i5++) {
-                                this.solution_entities.get(i5).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$MessageEntity) this.solution_entities.get(i5)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -172,7 +172,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size = this.results.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i3 = 0; i3 < size; i3++) {
-                                this.results.get(i3).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_pollAnswerVoters) this.results.get(i3)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 4) != 0) {
@@ -183,7 +183,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size2 = this.recent_voters.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i4 = 0; i4 < size2; i4++) {
-                                abstractSerializedData2.writeInt32((int) this.recent_voters.get(i4).user_id);
+                                abstractSerializedData2.writeInt32((int) ((TLRPC$Peer) this.recent_voters.get(i4)).user_id);
                             }
                         }
                     }
@@ -264,7 +264,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size = this.results.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i3 = 0; i3 < size; i3++) {
-                                this.results.get(i3).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_pollAnswerVoters) this.results.get(i3)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 4) != 0) {
@@ -275,7 +275,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size2 = this.recent_voters.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i4 = 0; i4 < size2; i4++) {
-                                abstractSerializedData2.writeInt64(this.recent_voters.get(i4).user_id);
+                                abstractSerializedData2.writeInt64(((TLRPC$Peer) this.recent_voters.get(i4)).user_id);
                             }
                         }
                         if ((this.flags & 16) != 0) {
@@ -286,7 +286,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size3 = this.solution_entities.size();
                             abstractSerializedData2.writeInt32(size3);
                             for (int i5 = 0; i5 < size3; i5++) {
-                                this.solution_entities.get(i5).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$MessageEntity) this.solution_entities.get(i5)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -332,7 +332,7 @@ public abstract class TLRPC$PollResults extends TLObject {
                             int size = this.results.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i3 = 0; i3 < size; i3++) {
-                                this.results.get(i3).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_pollAnswerVoters) this.results.get(i3)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 4) != 0) {

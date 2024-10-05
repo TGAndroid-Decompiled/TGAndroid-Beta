@@ -31,7 +31,7 @@ public class TLRPC$TL_messages_allStickers extends TLRPC$messages_AllStickers {
         int size = this.sets.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.sets.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$StickerSet) this.sets.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

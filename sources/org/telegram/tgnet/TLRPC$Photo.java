@@ -13,8 +13,8 @@ public abstract class TLRPC$Photo extends TLObject {
     public boolean has_stickers;
     public long id;
     public long user_id;
-    public ArrayList<TLRPC$PhotoSize> sizes = new ArrayList<>();
-    public ArrayList<TLRPC$VideoSize> video_sizes = new ArrayList<>();
+    public ArrayList sizes = new ArrayList();
+    public ArrayList video_sizes = new ArrayList();
 
     public static TLRPC$Photo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Photo tLRPC$Photo;
@@ -59,7 +59,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i3 = 0; i3 < size; i3++) {
-                            this.sizes.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.sizes.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -106,7 +106,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i3 = 0; i3 < size; i3++) {
-                            this.sizes.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.sizes.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -149,7 +149,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.sizes.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.sizes.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -188,7 +188,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.sizes.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.sizes.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -236,7 +236,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i3 = 0; i3 < size; i3++) {
-                            this.sizes.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.sizes.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(this.dc_id);
                     }
@@ -285,7 +285,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.sizes.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.sizes.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };

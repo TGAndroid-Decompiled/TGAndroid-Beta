@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_pageBlockTable extends TLRPC$PageBlock {
     public boolean bordered;
     public int flags;
-    public ArrayList<TLRPC$TL_pageTableRow> rows = new ArrayList<>();
+    public ArrayList rows = new ArrayList();
     public boolean striped;
     public TLRPC$RichText title;
 
@@ -46,7 +46,7 @@ public class TLRPC$TL_pageBlockTable extends TLRPC$PageBlock {
         int size = this.rows.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            this.rows.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_pageTableRow) this.rows.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

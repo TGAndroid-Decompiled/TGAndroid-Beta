@@ -24,10 +24,18 @@ import org.telegram.ui.Components.ShareAlert;
 public class ShareActivity extends Activity {
     private Dialog visibleDialog;
 
+    public void lambda$onCreate$0(DialogInterface dialogInterface) {
+        if (!isFinishing()) {
+            finish();
+        }
+        this.visibleDialog = null;
+    }
+
     @Override
     protected void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         AndroidUtilities.checkDisplaySize(this, getResources().getConfiguration());
+        AndroidUtilities.setPreferredMaxRefreshRate(getWindow());
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages_Transparent);
         super.onCreate(bundle);
@@ -77,13 +85,6 @@ public class ShareActivity extends Activity {
             FileLog.e(e);
             finish();
         }
-    }
-
-    public void lambda$onCreate$0(DialogInterface dialogInterface) {
-        if (!isFinishing()) {
-            finish();
-        }
-        this.visibleDialog = null;
     }
 
     @Override

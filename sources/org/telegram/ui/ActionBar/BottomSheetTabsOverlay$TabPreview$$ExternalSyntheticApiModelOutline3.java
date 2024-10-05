@@ -1,4 +1,4 @@
 package org.telegram.ui.ActionBar;
 
-public final class BottomSheetTabsOverlay$TabPreview$$ExternalSyntheticApiModelOutline3 {
+public abstract class BottomSheetTabsOverlay$TabPreview$$ExternalSyntheticApiModelOutline3 {
 }

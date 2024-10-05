@@ -21,11 +21,6 @@ public class UploadingDotsSpannable extends ReplacementSpan {
     CubicBezierInterpolator circle = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
 
     @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) paint.measureText("…");
-    }
-
-    @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         float f2;
         TextPaint textPaint = (TextPaint) paint;
@@ -70,6 +65,11 @@ public class UploadingDotsSpannable extends ReplacementSpan {
         if (view != null) {
             view.invalidate();
         }
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) paint.measureText("…");
     }
 
     public void setParent(View view, boolean z) {

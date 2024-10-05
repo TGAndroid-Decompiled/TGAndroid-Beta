@@ -6,11 +6,7 @@ public class TLRPC$TL_messageMediaPhoto extends TLRPC$MessageMedia {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.spoiler = (readInt32 & 8) != 0;
-        if ((readInt32 & 1) != 0) {
-            this.photo = TLRPC$Photo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-        } else {
-            this.photo = new TLRPC$TL_photoEmpty();
-        }
+        this.photo = (readInt32 & 1) != 0 ? TLRPC$Photo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z) : new TLRPC$TL_photoEmpty();
         if ((this.flags & 4) != 0) {
             this.ttl_seconds = abstractSerializedData.readInt32(z);
         }

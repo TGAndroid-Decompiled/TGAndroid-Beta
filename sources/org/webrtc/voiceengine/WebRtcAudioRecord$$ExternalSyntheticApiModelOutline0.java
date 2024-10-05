@@ -1,4 +1,4 @@
 package org.webrtc.voiceengine;
 
-public final class WebRtcAudioRecord$$ExternalSyntheticApiModelOutline0 {
+public abstract class WebRtcAudioRecord$$ExternalSyntheticApiModelOutline0 {
 }

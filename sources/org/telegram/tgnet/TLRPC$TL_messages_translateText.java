@@ -6,8 +6,8 @@ public class TLRPC$TL_messages_translateText extends TLObject {
     public int flags;
     public TLRPC$InputPeer peer;
     public String to_lang;
-    public ArrayList<Integer> id = new ArrayList<>();
-    public ArrayList<TLRPC$TL_textWithEntities> text = new ArrayList<>();
+    public ArrayList id = new ArrayList();
+    public ArrayList text = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -26,7 +26,7 @@ public class TLRPC$TL_messages_translateText extends TLObject {
             int size = this.id.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                abstractSerializedData.writeInt32(this.id.get(i).intValue());
+                abstractSerializedData.writeInt32(((Integer) this.id.get(i)).intValue());
             }
         }
         if ((this.flags & 2) != 0) {
@@ -34,7 +34,7 @@ public class TLRPC$TL_messages_translateText extends TLObject {
             int size2 = this.text.size();
             abstractSerializedData.writeInt32(size2);
             for (int i2 = 0; i2 < size2; i2++) {
-                this.text.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$TL_textWithEntities) this.text.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         abstractSerializedData.writeString(this.to_lang);

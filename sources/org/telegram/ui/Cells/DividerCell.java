@@ -25,18 +25,23 @@ public class DividerCell extends View {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), getPaddingTop() + getPaddingBottom() + 1);
+    protected void onDraw(Canvas canvas) {
+        Paint paint;
+        int color;
+        if (this.forceDarkTheme) {
+            paint = this.paint;
+            color = ColorUtils.blendARGB(-16777216, Theme.getColor(Theme.key_voipgroup_dialogBackground, this.resourcesProvider), 0.2f);
+        } else {
+            paint = this.paint;
+            color = Theme.getColor(Theme.key_divider, this.resourcesProvider);
+        }
+        paint.setColor(color);
+        canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), this.paint);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.forceDarkTheme) {
-            this.paint.setColor(ColorUtils.blendARGB(-16777216, Theme.getColor(Theme.key_voipgroup_dialogBackground, this.resourcesProvider), 0.2f));
-        } else {
-            this.paint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
-        }
-        canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), this.paint);
+    protected void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), getPaddingTop() + getPaddingBottom() + 1);
     }
 
     public void setForceDarkTheme(boolean z) {

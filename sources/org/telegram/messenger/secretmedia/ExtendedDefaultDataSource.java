@@ -14,7 +14,6 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.util.Assertions;
 import com.google.android.exoplayer2.util.Log;
 import com.google.android.exoplayer2.util.Util;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -40,28 +39,10 @@ public final class ExtendedDefaultDataSource implements DataSource {
     private FileStreamLoadOperation streamLoadOperation;
     private final List<TransferListener> transferListeners;
 
-    public ExtendedDefaultDataSource(Context context, String str, boolean z) {
-        this(context, str, 8000, 8000, z);
-    }
-
-    public ExtendedDefaultDataSource(Context context, String str, int i, int i2, boolean z) {
-        this(context, new DefaultHttpDataSource(str, i, i2, z, null));
-    }
-
     public ExtendedDefaultDataSource(Context context, DataSource dataSource) {
         this.context = context.getApplicationContext();
         this.baseDataSource = (DataSource) Assertions.checkNotNull(dataSource);
         this.transferListeners = new ArrayList();
-    }
-
-    @Deprecated
-    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, String str, boolean z) {
-        this(context, transferListener, str, 8000, 8000, z);
-    }
-
-    @Deprecated
-    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, String str, int i, int i2, boolean z) {
-        this(context, transferListener, new DefaultHttpDataSource(str, i, i2, z, null));
     }
 
     @Deprecated
@@ -73,88 +54,28 @@ public final class ExtendedDefaultDataSource implements DataSource {
         }
     }
 
-    @Override
-    public void addTransferListener(TransferListener transferListener) {
-        this.baseDataSource.addTransferListener(transferListener);
-        this.transferListeners.add(transferListener);
-        maybeAddListenerToDataSource(this.fileDataSource, transferListener);
-        maybeAddListenerToDataSource(this.assetDataSource, transferListener);
-        maybeAddListenerToDataSource(this.contentDataSource, transferListener);
-        maybeAddListenerToDataSource(this.rtmpDataSource, transferListener);
-        maybeAddListenerToDataSource(this.dataSchemeDataSource, transferListener);
-        maybeAddListenerToDataSource(this.rawResourceDataSource, transferListener);
+    @Deprecated
+    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, String str, int i, int i2, boolean z) {
+        this(context, transferListener, new DefaultHttpDataSource(str, i, i2, z, null));
     }
 
-    @Override
-    public long open(DataSpec dataSpec) throws IOException {
-        Assertions.checkState(this.dataSource == null);
-        String scheme = dataSpec.uri.getScheme();
-        if (Util.isLocalFileUri(dataSpec.uri)) {
-            String path = dataSpec.uri.getPath();
-            if (path != null && path.startsWith("/android_asset/")) {
-                this.dataSource = getAssetDataSource();
-            } else if (dataSpec.uri.getPath().endsWith(".enc")) {
-                this.dataSource = getEncryptedFileDataSource();
-            } else {
-                this.dataSource = getFileDataSource();
-            }
-        } else if ("tg".equals(scheme)) {
-            this.dataSource = getStreamDataSource();
-        } else if ("asset".equals(scheme)) {
-            this.dataSource = getAssetDataSource();
-        } else if ("content".equals(scheme)) {
-            this.dataSource = getContentDataSource();
-        } else if ("rtmp".equals(scheme)) {
-            this.dataSource = getRtmpDataSource();
-        } else if ("data".equals(scheme)) {
-            this.dataSource = getDataSchemeDataSource();
-        } else if ("rawresource".equals(scheme)) {
-            this.dataSource = getRawResourceDataSource();
-        } else {
-            this.dataSource = this.baseDataSource;
+    @Deprecated
+    public ExtendedDefaultDataSource(Context context, TransferListener transferListener, String str, boolean z) {
+        this(context, transferListener, str, 8000, 8000, z);
+    }
+
+    public ExtendedDefaultDataSource(Context context, String str, int i, int i2, boolean z) {
+        this(context, new DefaultHttpDataSource(str, i, i2, z, null));
+    }
+
+    public ExtendedDefaultDataSource(Context context, String str, boolean z) {
+        this(context, str, 8000, 8000, z);
+    }
+
+    private void addListenersToDataSource(DataSource dataSource) {
+        for (int i = 0; i < this.transferListeners.size(); i++) {
+            dataSource.addTransferListener(this.transferListeners.get(i));
         }
-        return this.dataSource.open(dataSpec);
-    }
-
-    @Override
-    public int read(byte[] bArr, int i, int i2) throws IOException {
-        return ((DataSource) Assertions.checkNotNull(this.dataSource)).read(bArr, i, i2);
-    }
-
-    @Override
-    public Uri getUri() {
-        DataSource dataSource = this.dataSource;
-        if (dataSource == null) {
-            return null;
-        }
-        return dataSource.getUri();
-    }
-
-    @Override
-    public Map<String, List<String>> getResponseHeaders() {
-        DataSource dataSource = this.dataSource;
-        return dataSource == null ? Collections.emptyMap() : dataSource.getResponseHeaders();
-    }
-
-    @Override
-    public void close() throws IOException {
-        DataSource dataSource = this.dataSource;
-        if (dataSource != null) {
-            try {
-                dataSource.close();
-            } finally {
-                this.dataSource = null;
-            }
-        }
-    }
-
-    private DataSource getFileDataSource() {
-        if (this.fileDataSource == null) {
-            FileDataSource fileDataSource = new FileDataSource();
-            this.fileDataSource = fileDataSource;
-            addListenersToDataSource(fileDataSource);
-        }
-        return this.fileDataSource;
     }
 
     private DataSource getAssetDataSource() {
@@ -166,6 +87,24 @@ public final class ExtendedDefaultDataSource implements DataSource {
         return this.assetDataSource;
     }
 
+    private DataSource getContentDataSource() {
+        if (this.contentDataSource == null) {
+            ContentDataSource contentDataSource = new ContentDataSource(this.context);
+            this.contentDataSource = contentDataSource;
+            addListenersToDataSource(contentDataSource);
+        }
+        return this.contentDataSource;
+    }
+
+    private DataSource getDataSchemeDataSource() {
+        if (this.dataSchemeDataSource == null) {
+            DataSchemeDataSource dataSchemeDataSource = new DataSchemeDataSource();
+            this.dataSchemeDataSource = dataSchemeDataSource;
+            addListenersToDataSource(dataSchemeDataSource);
+        }
+        return this.dataSchemeDataSource;
+    }
+
     private DataSource getEncryptedFileDataSource() {
         if (this.encryptedFileDataSource == null) {
             EncryptedFileDataSource encryptedFileDataSource = new EncryptedFileDataSource();
@@ -175,22 +114,22 @@ public final class ExtendedDefaultDataSource implements DataSource {
         return this.encryptedFileDataSource;
     }
 
-    private DataSource getStreamDataSource() {
-        if (this.streamLoadOperation == null) {
-            FileStreamLoadOperation fileStreamLoadOperation = new FileStreamLoadOperation();
-            this.streamLoadOperation = fileStreamLoadOperation;
-            addListenersToDataSource(fileStreamLoadOperation);
+    private DataSource getFileDataSource() {
+        if (this.fileDataSource == null) {
+            FileDataSource fileDataSource = new FileDataSource();
+            this.fileDataSource = fileDataSource;
+            addListenersToDataSource(fileDataSource);
         }
-        return this.streamLoadOperation;
+        return this.fileDataSource;
     }
 
-    private DataSource getContentDataSource() {
-        if (this.contentDataSource == null) {
-            ContentDataSource contentDataSource = new ContentDataSource(this.context);
-            this.contentDataSource = contentDataSource;
-            addListenersToDataSource(contentDataSource);
+    private DataSource getRawResourceDataSource() {
+        if (this.rawResourceDataSource == null) {
+            RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(this.context);
+            this.rawResourceDataSource = rawResourceDataSource;
+            addListenersToDataSource(rawResourceDataSource);
         }
-        return this.contentDataSource;
+        return this.rawResourceDataSource;
     }
 
     private DataSource getRtmpDataSource() {
@@ -211,33 +150,85 @@ public final class ExtendedDefaultDataSource implements DataSource {
         return this.rtmpDataSource;
     }
 
-    private DataSource getDataSchemeDataSource() {
-        if (this.dataSchemeDataSource == null) {
-            DataSchemeDataSource dataSchemeDataSource = new DataSchemeDataSource();
-            this.dataSchemeDataSource = dataSchemeDataSource;
-            addListenersToDataSource(dataSchemeDataSource);
+    private DataSource getStreamDataSource() {
+        if (this.streamLoadOperation == null) {
+            FileStreamLoadOperation fileStreamLoadOperation = new FileStreamLoadOperation();
+            this.streamLoadOperation = fileStreamLoadOperation;
+            addListenersToDataSource(fileStreamLoadOperation);
         }
-        return this.dataSchemeDataSource;
-    }
-
-    private DataSource getRawResourceDataSource() {
-        if (this.rawResourceDataSource == null) {
-            RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(this.context);
-            this.rawResourceDataSource = rawResourceDataSource;
-            addListenersToDataSource(rawResourceDataSource);
-        }
-        return this.rawResourceDataSource;
-    }
-
-    private void addListenersToDataSource(DataSource dataSource) {
-        for (int i = 0; i < this.transferListeners.size(); i++) {
-            dataSource.addTransferListener(this.transferListeners.get(i));
-        }
+        return this.streamLoadOperation;
     }
 
     private void maybeAddListenerToDataSource(DataSource dataSource, TransferListener transferListener) {
         if (dataSource != null) {
             dataSource.addTransferListener(transferListener);
         }
+    }
+
+    @Override
+    public void addTransferListener(TransferListener transferListener) {
+        this.baseDataSource.addTransferListener(transferListener);
+        this.transferListeners.add(transferListener);
+        maybeAddListenerToDataSource(this.fileDataSource, transferListener);
+        maybeAddListenerToDataSource(this.assetDataSource, transferListener);
+        maybeAddListenerToDataSource(this.contentDataSource, transferListener);
+        maybeAddListenerToDataSource(this.rtmpDataSource, transferListener);
+        maybeAddListenerToDataSource(this.dataSchemeDataSource, transferListener);
+        maybeAddListenerToDataSource(this.rawResourceDataSource, transferListener);
+    }
+
+    @Override
+    public void close() {
+        DataSource dataSource = this.dataSource;
+        if (dataSource != null) {
+            try {
+                dataSource.close();
+            } finally {
+                this.dataSource = null;
+            }
+        }
+    }
+
+    @Override
+    public Map<String, List<String>> getResponseHeaders() {
+        DataSource dataSource = this.dataSource;
+        return dataSource == null ? Collections.emptyMap() : dataSource.getResponseHeaders();
+    }
+
+    @Override
+    public Uri getUri() {
+        DataSource dataSource = this.dataSource;
+        if (dataSource == null) {
+            return null;
+        }
+        return dataSource.getUri();
+    }
+
+    @Override
+    public long open(DataSpec dataSpec) {
+        DataSource contentDataSource;
+        Assertions.checkState(this.dataSource == null);
+        String scheme = dataSpec.uri.getScheme();
+        if (Util.isLocalFileUri(dataSpec.uri)) {
+            String path = dataSpec.uri.getPath();
+            if (path == null || !path.startsWith("/android_asset/")) {
+                contentDataSource = dataSpec.uri.getPath().endsWith(".enc") ? getEncryptedFileDataSource() : getFileDataSource();
+            }
+            contentDataSource = getAssetDataSource();
+        } else if ("tg".equals(scheme)) {
+            contentDataSource = getStreamDataSource();
+        } else {
+            if (!"asset".equals(scheme)) {
+                contentDataSource = "content".equals(scheme) ? getContentDataSource() : "rtmp".equals(scheme) ? getRtmpDataSource() : "data".equals(scheme) ? getDataSchemeDataSource() : "rawresource".equals(scheme) ? getRawResourceDataSource() : this.baseDataSource;
+            }
+            contentDataSource = getAssetDataSource();
+        }
+        this.dataSource = contentDataSource;
+        return contentDataSource.open(dataSpec);
+    }
+
+    @Override
+    public int read(byte[] bArr, int i, int i2) {
+        return ((DataSource) Assertions.checkNotNull(this.dataSource)).read(bArr, i, i2);
     }
 }

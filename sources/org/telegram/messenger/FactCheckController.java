@@ -67,9 +67,68 @@ public class FactCheckController {
         }
     };
 
+    public static class Key {
+        public final long dialogId;
+        public final long hash;
+        public final int messageId;
+
+        private Key(long j, int i, long j2) {
+            this.dialogId = j;
+            this.messageId = i;
+            this.hash = j2;
+        }
+
+        public static Key of(MessageObject messageObject) {
+            TLRPC$Message tLRPC$Message;
+            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.factcheck == null) {
+                return null;
+            }
+            return new Key(messageObject.getDialogId(), messageObject.getId(), messageObject.messageOwner.factcheck.hash);
+        }
+
+        public int hashCode() {
+            return FactCheckController$Key$$ExternalSyntheticBackport0.m(this.hash);
+        }
+    }
+
     static {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
+        }
+    }
+
+    private FactCheckController(int i) {
+        this.currentAccount = i;
+    }
+
+    private void clearExpiredInDatabase() {
+        if (this.clearedExpiredInDatabase) {
+            return;
+        }
+        this.clearedExpiredInDatabase = true;
+        final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+        messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                FactCheckController.lambda$clearExpiredInDatabase$7(MessagesStorage.this);
+            }
+        });
+    }
+
+    private void getFromDatabase(final ArrayList<Key> arrayList, final Utilities.Callback<ArrayList<TLRPC$TL_factCheck>> callback) {
+        if (callback == null) {
+            return;
+        }
+        if (arrayList == null || arrayList.isEmpty()) {
+            callback.run(new ArrayList<>());
+        } else {
+            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    FactCheckController.lambda$getFromDatabase$5(MessagesStorage.this, arrayList, callback);
+                }
+            });
         }
     }
 
@@ -92,200 +151,40 @@ public class FactCheckController {
         return factCheckController;
     }
 
-    private FactCheckController(int i) {
-        this.currentAccount = i;
+    public void lambda$applyFactCheck$14(TLObject tLObject, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, boolean z, AlertDialog alertDialog) {
+        if (tLObject instanceof TLRPC$Updates) {
+            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC$Updates) tLObject, false);
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment != null) {
+                boolean z2 = tLRPC$TL_textWithEntities == null || TextUtils.isEmpty(tLRPC$TL_textWithEntities.text);
+                if (z2 || !z) {
+                    BulletinFactory.of(safeLastFragment).createSimpleBulletin(z2 ? R.raw.ic_delete : R.raw.contact_check, LocaleController.getString(z2 ? R.string.FactCheckDeleted : R.string.FactCheckEdited)).show();
+                }
+            }
+        }
+        alertDialog.dismiss();
     }
 
-    public TLRPC$TL_factCheck getFactCheck(final MessageObject messageObject) {
-        TLRPC$Message tLRPC$Message;
-        TLRPC$TL_factCheck tLRPC$TL_factCheck;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (tLRPC$TL_factCheck = tLRPC$Message.factcheck) == null) {
-            return null;
-        }
-        if (!tLRPC$TL_factCheck.need_check) {
-            if (this.localCache.get(tLRPC$TL_factCheck.hash) == null) {
-                LongSparseArray<TLRPC$TL_factCheck> longSparseArray = this.localCache;
-                TLRPC$TL_factCheck tLRPC$TL_factCheck2 = messageObject.messageOwner.factcheck;
-                longSparseArray.put(tLRPC$TL_factCheck2.hash, tLRPC$TL_factCheck2);
-                saveToDatabase(messageObject.messageOwner.factcheck);
+    public void lambda$applyFactCheck$15(final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                FactCheckController.this.lambda$applyFactCheck$14(tLObject, tLRPC$TL_textWithEntities, z, alertDialog);
             }
-            return messageObject.messageOwner.factcheck;
+        });
+    }
+
+    public static void lambda$clearExpiredInDatabase$7(MessagesStorage messagesStorage) {
+        try {
+            messagesStorage.getDatabase().executeFast("DELETE FROM fact_checks WHERE expires > " + System.currentTimeMillis()).stepThis().dispose();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        final Key of = Key.of(messageObject);
-        if (of == null || of.messageId < 0) {
-            return null;
-        }
-        TLRPC$TL_factCheck tLRPC$TL_factCheck3 = this.localCache.get(of.hash);
-        if (tLRPC$TL_factCheck3 != null) {
-            messageObject.messageOwner.factcheck = tLRPC$TL_factCheck3;
-            return tLRPC$TL_factCheck3;
-        }
-        if (this.loading.contains(of)) {
-            return messageObject.messageOwner.factcheck;
-        }
-        HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>> hashMap = this.toload.get(of.dialogId);
-        if (hashMap == null) {
-            LongSparseArray<HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>>> longSparseArray2 = this.toload;
-            long j = of.dialogId;
-            HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>> hashMap2 = new HashMap<>();
-            longSparseArray2.put(j, hashMap2);
-            hashMap = hashMap2;
-        }
-        if (!hashMap.containsKey(of)) {
-            hashMap.put(of, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    FactCheckController.this.lambda$getFactCheck$0(of, messageObject, (TLRPC$TL_factCheck) obj);
-                }
-            });
-            scheduleLoadMissing();
-        }
-        return messageObject.messageOwner.factcheck;
     }
 
     public void lambda$getFactCheck$0(Key key, MessageObject messageObject, TLRPC$TL_factCheck tLRPC$TL_factCheck) {
         this.localCache.put(key.hash, tLRPC$TL_factCheck);
         messageObject.messageOwner.factcheck = tLRPC$TL_factCheck;
-    }
-
-    private void scheduleLoadMissing() {
-        AndroidUtilities.cancelRunOnUIThread(this.loadMissingRunnable);
-        AndroidUtilities.runOnUIThread(this.loadMissingRunnable, 80L);
-    }
-
-    public void loadMissing() {
-        while (this.toload.size() > 0) {
-            final long keyAt = this.toload.keyAt(0);
-            final HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>> valueAt = this.toload.valueAt(0);
-            this.toload.removeAt(0);
-            final ArrayList<Key> arrayList = new ArrayList<>(valueAt.keySet());
-            this.loading.addAll(arrayList);
-            getFromDatabase(arrayList, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    FactCheckController.this.lambda$loadMissing$3(keyAt, arrayList, valueAt, (ArrayList) obj);
-                }
-            });
-        }
-        this.toload.clear();
-    }
-
-    public void lambda$loadMissing$3(long j, ArrayList arrayList, final HashMap hashMap, ArrayList arrayList2) {
-        final TLRPC$TL_getFactCheck tLRPC$TL_getFactCheck = new TLRPC$TL_getFactCheck();
-        tLRPC$TL_getFactCheck.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
-        final ArrayList arrayList3 = new ArrayList();
-        int i = 0;
-        for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-            Key key = (Key) arrayList.get(i2);
-            TLRPC$TL_factCheck tLRPC$TL_factCheck = (TLRPC$TL_factCheck) arrayList2.get(i2);
-            if (tLRPC$TL_factCheck == null) {
-                arrayList3.add(key);
-                tLRPC$TL_getFactCheck.msg_id.add(Integer.valueOf(key.messageId));
-            } else {
-                this.loading.remove(key);
-                Utilities.Callback callback = (Utilities.Callback) hashMap.get(key);
-                if (callback != null) {
-                    callback.run(tLRPC$TL_factCheck);
-                    i++;
-                }
-            }
-        }
-        if (i > 0) {
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.factCheckLoaded, new Object[0]);
-        }
-        if (tLRPC$TL_getFactCheck.msg_id.isEmpty()) {
-            return;
-        }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_getFactCheck, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FactCheckController.this.lambda$loadMissing$2(tLRPC$TL_getFactCheck, arrayList3, hashMap, tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public void lambda$loadMissing$2(final TLRPC$TL_getFactCheck tLRPC$TL_getFactCheck, final ArrayList arrayList, final HashMap hashMap, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                FactCheckController.this.lambda$loadMissing$1(tLObject, tLRPC$TL_getFactCheck, arrayList, hashMap);
-            }
-        });
-    }
-
-    public void lambda$loadMissing$1(TLObject tLObject, TLRPC$TL_getFactCheck tLRPC$TL_getFactCheck, ArrayList arrayList, HashMap hashMap) {
-        ArrayList arrayList2 = new ArrayList();
-        if (tLObject instanceof TLRPC$Vector) {
-            ArrayList<Object> arrayList3 = ((TLRPC$Vector) tLObject).objects;
-            for (int i = 0; i < arrayList3.size(); i++) {
-                if (arrayList3.get(i) instanceof TLRPC$TL_factCheck) {
-                    arrayList2.add((TLRPC$TL_factCheck) arrayList3.get(i));
-                }
-            }
-        }
-        HashMap hashMap2 = new HashMap();
-        for (int i2 = 0; i2 < Math.min(tLRPC$TL_getFactCheck.msg_id.size(), arrayList2.size()); i2++) {
-            Integer num = tLRPC$TL_getFactCheck.msg_id.get(i2);
-            num.intValue();
-            hashMap2.put(num, (TLRPC$TL_factCheck) arrayList2.get(i2));
-        }
-        int i3 = 0;
-        for (int i4 = 0; i4 < tLRPC$TL_getFactCheck.msg_id.size(); i4++) {
-            Key key = (Key) arrayList.get(i4);
-            Integer num2 = tLRPC$TL_getFactCheck.msg_id.get(i4);
-            num2.intValue();
-            TLRPC$TL_factCheck tLRPC$TL_factCheck = (TLRPC$TL_factCheck) hashMap2.get(num2);
-            Utilities.Callback callback = (Utilities.Callback) hashMap.get(key);
-            if (tLRPC$TL_factCheck != null && !tLRPC$TL_factCheck.need_check && callback != null) {
-                callback.run(tLRPC$TL_factCheck);
-                i3++;
-                this.loading.remove(key);
-            }
-        }
-        if (i3 > 0) {
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.factCheckLoaded, new Object[0]);
-        }
-    }
-
-    public static class Key {
-        public final long dialogId;
-        public final long hash;
-        public final int messageId;
-
-        private Key(long j, int i, long j2) {
-            this.dialogId = j;
-            this.messageId = i;
-            this.hash = j2;
-        }
-
-        public int hashCode() {
-            return FactCheckController$Key$$ExternalSyntheticBackport0.m(this.hash);
-        }
-
-        public static Key of(MessageObject messageObject) {
-            TLRPC$Message tLRPC$Message;
-            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.factcheck == null) {
-                return null;
-            }
-            return new Key(messageObject.getDialogId(), messageObject.getId(), messageObject.messageOwner.factcheck.hash);
-        }
-    }
-
-    private void getFromDatabase(final ArrayList<Key> arrayList, final Utilities.Callback<ArrayList<TLRPC$TL_factCheck>> callback) {
-        if (callback == null) {
-            return;
-        }
-        if (arrayList == null || arrayList.isEmpty()) {
-            callback.run(new ArrayList<>());
-        } else {
-            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    FactCheckController.lambda$getFromDatabase$5(MessagesStorage.this, arrayList, callback);
-                }
-            });
-        }
     }
 
     public static void lambda$getFromDatabase$5(MessagesStorage messagesStorage, ArrayList arrayList, final Utilities.Callback callback) {
@@ -340,18 +239,110 @@ public class FactCheckController {
         }
     }
 
-    private void saveToDatabase(final TLRPC$TL_factCheck tLRPC$TL_factCheck) {
-        if (tLRPC$TL_factCheck == null) {
-            return;
+    public void lambda$loadMissing$1(TLObject tLObject, TLRPC$TL_getFactCheck tLRPC$TL_getFactCheck, ArrayList arrayList, HashMap hashMap) {
+        ArrayList arrayList2 = new ArrayList();
+        if (tLObject instanceof TLRPC$Vector) {
+            ArrayList arrayList3 = ((TLRPC$Vector) tLObject).objects;
+            for (int i = 0; i < arrayList3.size(); i++) {
+                if (arrayList3.get(i) instanceof TLRPC$TL_factCheck) {
+                    arrayList2.add((TLRPC$TL_factCheck) arrayList3.get(i));
+                }
+            }
         }
-        final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+        HashMap hashMap2 = new HashMap();
+        for (int i2 = 0; i2 < Math.min(tLRPC$TL_getFactCheck.msg_id.size(), arrayList2.size()); i2++) {
+            Integer num = (Integer) tLRPC$TL_getFactCheck.msg_id.get(i2);
+            num.intValue();
+            hashMap2.put(num, (TLRPC$TL_factCheck) arrayList2.get(i2));
+        }
+        int i3 = 0;
+        for (int i4 = 0; i4 < tLRPC$TL_getFactCheck.msg_id.size(); i4++) {
+            Key key = (Key) arrayList.get(i4);
+            Integer num2 = (Integer) tLRPC$TL_getFactCheck.msg_id.get(i4);
+            num2.intValue();
+            TLRPC$TL_factCheck tLRPC$TL_factCheck = (TLRPC$TL_factCheck) hashMap2.get(num2);
+            Utilities.Callback callback = (Utilities.Callback) hashMap.get(key);
+            if (tLRPC$TL_factCheck != null && !tLRPC$TL_factCheck.need_check && callback != null) {
+                callback.run(tLRPC$TL_factCheck);
+                i3++;
+                this.loading.remove(key);
+            }
+        }
+        if (i3 > 0) {
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.factCheckLoaded, new Object[0]);
+        }
+    }
+
+    public void lambda$loadMissing$2(final TLRPC$TL_getFactCheck tLRPC$TL_getFactCheck, final ArrayList arrayList, final HashMap hashMap, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FactCheckController.lambda$saveToDatabase$6(MessagesStorage.this, tLRPC$TL_factCheck);
+                FactCheckController.this.lambda$loadMissing$1(tLObject, tLRPC$TL_getFactCheck, arrayList, hashMap);
             }
         });
-        clearExpiredInDatabase();
+    }
+
+    public void lambda$loadMissing$3(long j, ArrayList arrayList, final HashMap hashMap, ArrayList arrayList2) {
+        final TLRPC$TL_getFactCheck tLRPC$TL_getFactCheck = new TLRPC$TL_getFactCheck();
+        tLRPC$TL_getFactCheck.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        final ArrayList arrayList3 = new ArrayList();
+        int i = 0;
+        for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+            Key key = (Key) arrayList.get(i2);
+            TLRPC$TL_factCheck tLRPC$TL_factCheck = (TLRPC$TL_factCheck) arrayList2.get(i2);
+            if (tLRPC$TL_factCheck == null) {
+                arrayList3.add(key);
+                tLRPC$TL_getFactCheck.msg_id.add(Integer.valueOf(key.messageId));
+            } else {
+                this.loading.remove(key);
+                Utilities.Callback callback = (Utilities.Callback) hashMap.get(key);
+                if (callback != null) {
+                    callback.run(tLRPC$TL_factCheck);
+                    i++;
+                }
+            }
+        }
+        if (i > 0) {
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.factCheckLoaded, new Object[0]);
+        }
+        if (tLRPC$TL_getFactCheck.msg_id.isEmpty()) {
+            return;
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_getFactCheck, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                FactCheckController.this.lambda$loadMissing$2(tLRPC$TL_getFactCheck, arrayList3, hashMap, tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public static void lambda$openFactCheckEditor$10(View view, DialogInterface dialogInterface) {
+        currentDialog = null;
+        view.requestFocus();
+    }
+
+    public static void lambda$openFactCheckEditor$11(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+        editTextCaption.requestFocus();
+        AndroidUtilities.showKeyboard(editTextCaption);
+    }
+
+    public static void lambda$openFactCheckEditor$13(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+        editTextCaption.requestFocus();
+        AndroidUtilities.showKeyboard(editTextCaption);
+    }
+
+    public void lambda$openFactCheckEditor$8(EditTextCaption editTextCaption, int i, MessageObject messageObject, boolean z, DialogInterface dialogInterface, int i2) {
+        if (editTextCaption.getText().toString().length() > i) {
+            AndroidUtilities.shakeView(editTextCaption);
+            return;
+        }
+        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
+        CharSequence[] charSequenceArr = {editTextCaption.getText()};
+        tLRPC$TL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
+        CharSequence charSequence = charSequenceArr[0];
+        tLRPC$TL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
+        applyFactCheck(messageObject, tLRPC$TL_textWithEntities, z);
+        dialogInterface.dismiss();
     }
 
     public static void lambda$saveToDatabase$6(MessagesStorage messagesStorage, TLRPC$TL_factCheck tLRPC$TL_factCheck) {
@@ -381,30 +372,118 @@ public class FactCheckController {
         }
     }
 
-    private void clearExpiredInDatabase() {
-        if (this.clearedExpiredInDatabase) {
+    public void loadMissing() {
+        while (this.toload.size() > 0) {
+            final long keyAt = this.toload.keyAt(0);
+            final HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>> valueAt = this.toload.valueAt(0);
+            this.toload.removeAt(0);
+            final ArrayList<Key> arrayList = new ArrayList<>(valueAt.keySet());
+            this.loading.addAll(arrayList);
+            getFromDatabase(arrayList, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    FactCheckController.this.lambda$loadMissing$3(keyAt, arrayList, valueAt, (ArrayList) obj);
+                }
+            });
+        }
+        this.toload.clear();
+    }
+
+    private void saveToDatabase(final TLRPC$TL_factCheck tLRPC$TL_factCheck) {
+        if (tLRPC$TL_factCheck == null) {
             return;
         }
-        this.clearedExpiredInDatabase = true;
         final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FactCheckController.lambda$clearExpiredInDatabase$7(MessagesStorage.this);
+                FactCheckController.lambda$saveToDatabase$6(MessagesStorage.this, tLRPC$TL_factCheck);
+            }
+        });
+        clearExpiredInDatabase();
+    }
+
+    private void scheduleLoadMissing() {
+        AndroidUtilities.cancelRunOnUIThread(this.loadMissingRunnable);
+        AndroidUtilities.runOnUIThread(this.loadMissingRunnable, 80L);
+    }
+
+    public void applyFactCheck(MessageObject messageObject, final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, final boolean z) {
+        TLRPC$TL_deleteFactCheck tLRPC$TL_deleteFactCheck;
+        if (tLRPC$TL_textWithEntities != null && !TextUtils.isEmpty(tLRPC$TL_textWithEntities.text)) {
+            TLRPC$TL_editFactCheck tLRPC$TL_editFactCheck = new TLRPC$TL_editFactCheck();
+            tLRPC$TL_editFactCheck.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
+            tLRPC$TL_editFactCheck.msg_id = messageObject.getId();
+            tLRPC$TL_editFactCheck.text = tLRPC$TL_textWithEntities;
+            tLRPC$TL_deleteFactCheck = tLRPC$TL_editFactCheck;
+        } else {
+            if (z) {
+                return;
+            }
+            TLRPC$TL_deleteFactCheck tLRPC$TL_deleteFactCheck2 = new TLRPC$TL_deleteFactCheck();
+            tLRPC$TL_deleteFactCheck2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
+            tLRPC$TL_deleteFactCheck2.msg_id = messageObject.getId();
+            tLRPC$TL_deleteFactCheck = tLRPC$TL_deleteFactCheck2;
+        }
+        Context context = LaunchActivity.instance;
+        if (context == null) {
+            context = ApplicationLoader.applicationContext;
+        }
+        final AlertDialog alertDialog = new AlertDialog(context, 3);
+        alertDialog.showDelayed(320L);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_deleteFactCheck, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                FactCheckController.this.lambda$applyFactCheck$15(tLRPC$TL_textWithEntities, z, alertDialog, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$clearExpiredInDatabase$7(MessagesStorage messagesStorage) {
-        try {
-            messagesStorage.getDatabase().executeFast("DELETE FROM fact_checks WHERE expires > " + System.currentTimeMillis()).stepThis().dispose();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public TLRPC$TL_factCheck getFactCheck(final MessageObject messageObject) {
+        TLRPC$Message tLRPC$Message;
+        TLRPC$TL_factCheck tLRPC$TL_factCheck;
+        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (tLRPC$TL_factCheck = tLRPC$Message.factcheck) == null) {
+            return null;
         }
+        if (tLRPC$TL_factCheck.need_check) {
+            final Key of = Key.of(messageObject);
+            if (of == null || of.messageId < 0) {
+                return null;
+            }
+            TLRPC$TL_factCheck tLRPC$TL_factCheck2 = this.localCache.get(of.hash);
+            if (tLRPC$TL_factCheck2 != null) {
+                messageObject.messageOwner.factcheck = tLRPC$TL_factCheck2;
+                return tLRPC$TL_factCheck2;
+            }
+            if (!this.loading.contains(of)) {
+                HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>> hashMap = this.toload.get(of.dialogId);
+                if (hashMap == null) {
+                    LongSparseArray<HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>>> longSparseArray = this.toload;
+                    long j = of.dialogId;
+                    HashMap<Key, Utilities.Callback<TLRPC$TL_factCheck>> hashMap2 = new HashMap<>();
+                    longSparseArray.put(j, hashMap2);
+                    hashMap = hashMap2;
+                }
+                if (!hashMap.containsKey(of)) {
+                    hashMap.put(of, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            FactCheckController.this.lambda$getFactCheck$0(of, messageObject, (TLRPC$TL_factCheck) obj);
+                        }
+                    });
+                    scheduleLoadMissing();
+                }
+            }
+        } else if (this.localCache.get(tLRPC$TL_factCheck.hash) == null) {
+            LongSparseArray<TLRPC$TL_factCheck> longSparseArray2 = this.localCache;
+            TLRPC$TL_factCheck tLRPC$TL_factCheck3 = messageObject.messageOwner.factcheck;
+            longSparseArray2.put(tLRPC$TL_factCheck3.hash, tLRPC$TL_factCheck3);
+            saveToDatabase(messageObject.messageOwner.factcheck);
+        }
+        return messageObject.messageOwner.factcheck;
     }
 
     public void openFactCheckEditor(Context context, final Theme.ResourcesProvider resourcesProvider, final MessageObject messageObject, boolean z) {
-        AlertDialog.Builder builder;
         ?? r1;
         TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities;
         TLRPC$Message tLRPC$Message;
@@ -413,15 +492,10 @@ public class FactCheckController {
         final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
         boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
         final AlertDialog[] alertDialogArr = new AlertDialog[1];
-        if (z2) {
-            builder = new AlertDialogDecor.Builder(context, resourcesProvider);
-        } else {
-            builder = new AlertDialog.Builder(context, resourcesProvider);
-        }
-        AlertDialog.Builder builder2 = builder;
+        AlertDialog.Builder builder = z2 ? new AlertDialogDecor.Builder(context, resourcesProvider) : new AlertDialog.Builder(context, resourcesProvider);
         final TextView[] textViewArr = new TextView[1];
         boolean z3 = messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.factcheck == null;
-        builder2.setTitle(LocaleController.getString(R.string.FactCheckDialog));
+        builder.setTitle(LocaleController.getString(R.string.FactCheckDialog));
         final int i = MessagesController.getInstance(this.currentAccount).factcheckLengthLimit;
         final EditTextCaption editTextCaption = new EditTextCaption(context, resourcesProvider) {
             AnimatedTextView.AnimatedTextDrawable limit;
@@ -438,23 +512,11 @@ public class FactCheckController {
             }
 
             @Override
-            protected boolean verifyDrawable(Drawable drawable) {
-                return drawable == this.limit || super.verifyDrawable(drawable);
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                super.onTextChanged(charSequence, i2, i3, i4);
-                if (this.limit != null) {
-                    this.limitCount = i - charSequence.length();
-                    this.limit.cancelAnimation();
-                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                    String str = "";
-                    if (this.limitCount <= 4) {
-                        str = "" + this.limitCount;
-                    }
-                    animatedTextDrawable.setText(str);
-                }
+            public void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
+                this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
+                this.limit.draw(canvas);
             }
 
             @Override
@@ -478,11 +540,23 @@ public class FactCheckController {
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
-                this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
-                this.limit.draw(canvas);
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                super.onTextChanged(charSequence, i2, i3, i4);
+                if (this.limit != null) {
+                    this.limitCount = i - charSequence.length();
+                    this.limit.cancelAnimation();
+                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
+                    String str = "";
+                    if (this.limitCount <= 4) {
+                        str = "" + this.limitCount;
+                    }
+                    animatedTextDrawable.setText(str);
+                }
+            }
+
+            @Override
+            protected boolean verifyDrawable(Drawable drawable) {
+                return drawable == this.limit || super.verifyDrawable(drawable);
             }
         };
         editTextCaption.lineYFix = true;
@@ -539,14 +613,6 @@ public class FactCheckController {
             boolean ignoreTextChange;
 
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-            }
-
-            @Override
             public void afterTextChanged(Editable editable) {
                 if (this.ignoreTextChange) {
                     return;
@@ -569,28 +635,36 @@ public class FactCheckController {
                     textViewArr[0].setTextColor(Theme.getColor(z5 ? Theme.key_dialogButton : Theme.key_text_RedBold));
                 }
             }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            }
         });
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.addView(editTextCaption, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
-        builder2.makeCustomMaxHeight();
-        builder2.setView(linearLayout);
-        builder2.setWidth(AndroidUtilities.dp(292.0f));
+        builder.makeCustomMaxHeight();
+        builder.setView(linearLayout);
+        builder.setWidth(AndroidUtilities.dp(292.0f));
         final boolean z5 = z3;
-        builder2.setPositiveButton(LocaleController.getString(R.string.Done), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString(R.string.Done), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 FactCheckController.this.lambda$openFactCheckEditor$8(editTextCaption, i, messageObject, z5, dialogInterface, i2);
             }
         });
-        builder2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 dialogInterface.dismiss();
             }
         });
+        AlertDialog create = builder.create();
         if (z2) {
-            AlertDialog create = builder2.create();
             currentDialog = create;
             alertDialogArr[0] = create;
             create.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -608,10 +682,9 @@ public class FactCheckController {
             currentDialog.showDelayed(250L);
             r1 = 0;
         } else {
-            AlertDialog create2 = builder2.create();
             r1 = 0;
-            alertDialogArr[0] = create2;
-            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            alertDialogArr[0] = create;
+            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextCaption.this);
@@ -631,88 +704,5 @@ public class FactCheckController {
             textViewArr[r1] = (TextView) button;
         }
         editTextCaption.setSelection(editTextCaption.getText().length());
-    }
-
-    public void lambda$openFactCheckEditor$8(EditTextCaption editTextCaption, int i, MessageObject messageObject, boolean z, DialogInterface dialogInterface, int i2) {
-        if (editTextCaption.getText().toString().length() > i) {
-            AndroidUtilities.shakeView(editTextCaption);
-            return;
-        }
-        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
-        CharSequence[] charSequenceArr = {editTextCaption.getText()};
-        tLRPC$TL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
-        CharSequence charSequence = charSequenceArr[0];
-        tLRPC$TL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
-        applyFactCheck(messageObject, tLRPC$TL_textWithEntities, z);
-        dialogInterface.dismiss();
-    }
-
-    public static void lambda$openFactCheckEditor$10(View view, DialogInterface dialogInterface) {
-        currentDialog = null;
-        view.requestFocus();
-    }
-
-    public static void lambda$openFactCheckEditor$11(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
-        editTextCaption.requestFocus();
-        AndroidUtilities.showKeyboard(editTextCaption);
-    }
-
-    public static void lambda$openFactCheckEditor$13(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
-        editTextCaption.requestFocus();
-        AndroidUtilities.showKeyboard(editTextCaption);
-    }
-
-    public void applyFactCheck(MessageObject messageObject, final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, final boolean z) {
-        TLRPC$TL_deleteFactCheck tLRPC$TL_deleteFactCheck;
-        if (tLRPC$TL_textWithEntities != null && !TextUtils.isEmpty(tLRPC$TL_textWithEntities.text)) {
-            TLRPC$TL_editFactCheck tLRPC$TL_editFactCheck = new TLRPC$TL_editFactCheck();
-            tLRPC$TL_editFactCheck.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
-            tLRPC$TL_editFactCheck.msg_id = messageObject.getId();
-            tLRPC$TL_editFactCheck.text = tLRPC$TL_textWithEntities;
-            tLRPC$TL_deleteFactCheck = tLRPC$TL_editFactCheck;
-        } else {
-            if (z) {
-                return;
-            }
-            TLRPC$TL_deleteFactCheck tLRPC$TL_deleteFactCheck2 = new TLRPC$TL_deleteFactCheck();
-            tLRPC$TL_deleteFactCheck2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
-            tLRPC$TL_deleteFactCheck2.msg_id = messageObject.getId();
-            tLRPC$TL_deleteFactCheck = tLRPC$TL_deleteFactCheck2;
-        }
-        Context context = LaunchActivity.instance;
-        if (context == null) {
-            context = ApplicationLoader.applicationContext;
-        }
-        final AlertDialog alertDialog = new AlertDialog(context, 3);
-        alertDialog.showDelayed(320L);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_deleteFactCheck, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FactCheckController.this.lambda$applyFactCheck$15(tLRPC$TL_textWithEntities, z, alertDialog, tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public void lambda$applyFactCheck$15(final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                FactCheckController.this.lambda$applyFactCheck$14(tLObject, tLRPC$TL_textWithEntities, z, alertDialog);
-            }
-        });
-    }
-
-    public void lambda$applyFactCheck$14(TLObject tLObject, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, boolean z, AlertDialog alertDialog) {
-        if (tLObject instanceof TLRPC$Updates) {
-            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC$Updates) tLObject, false);
-            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-            if (safeLastFragment != null) {
-                boolean z2 = tLRPC$TL_textWithEntities == null || TextUtils.isEmpty(tLRPC$TL_textWithEntities.text);
-                if (z2 || !z) {
-                    BulletinFactory.of(safeLastFragment).createSimpleBulletin(z2 ? R.raw.ic_delete : R.raw.contact_check, LocaleController.getString(z2 ? R.string.FactCheckDeleted : R.string.FactCheckEdited)).show();
-                }
-            }
-        }
-        alertDialog.dismiss();
     }
 }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
     public TLRPC$Poll poll;
     public String solution;
-    public ArrayList<byte[]> correct_answers = new ArrayList<>();
-    public ArrayList<TLRPC$MessageEntity> solution_entities = new ArrayList<>();
+    public ArrayList correct_answers = new ArrayList();
+    public ArrayList solution_entities = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -58,7 +58,7 @@ public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
             int size = this.correct_answers.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                abstractSerializedData.writeByteArray(this.correct_answers.get(i));
+                abstractSerializedData.writeByteArray((byte[]) this.correct_answers.get(i));
             }
         }
         if ((this.flags & 2) != 0) {
@@ -69,7 +69,7 @@ public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
             int size2 = this.solution_entities.size();
             abstractSerializedData.writeInt32(size2);
             for (int i2 = 0; i2 < size2; i2++) {
-                this.solution_entities.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.solution_entities.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
     }

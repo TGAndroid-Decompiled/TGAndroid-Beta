@@ -1,4 +1,4 @@
 package org.telegram.ui.Components.voip;
 
-public final class GroupCallRenderersContainer$$ExternalSyntheticApiModelOutline0 {
+public abstract class GroupCallRenderersContainer$$ExternalSyntheticApiModelOutline0 {
 }

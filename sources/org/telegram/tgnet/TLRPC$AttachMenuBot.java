@@ -39,7 +39,7 @@ public abstract class TLRPC$AttachMenuBot extends TLObject {
                 int size = this.icons.size();
                 abstractSerializedData2.writeInt32(size);
                 for (int i3 = 0; i3 < size; i3++) {
-                    this.icons.get(i3).serializeToStream(abstractSerializedData2);
+                    ((TLRPC$TL_attachMenuBotIcon) this.icons.get(i3)).serializeToStream(abstractSerializedData2);
                 }
             }
         } : new TLRPC$TL_attachMenuBot() : new TLRPC$TL_attachMenuBot() {
@@ -100,13 +100,13 @@ public abstract class TLRPC$AttachMenuBot extends TLObject {
                 int size = this.peer_types.size();
                 abstractSerializedData2.writeInt32(size);
                 for (int i5 = 0; i5 < size; i5++) {
-                    this.peer_types.get(i5).serializeToStream(abstractSerializedData2);
+                    ((TLRPC$AttachMenuPeerType) this.peer_types.get(i5)).serializeToStream(abstractSerializedData2);
                 }
                 abstractSerializedData2.writeInt32(481674261);
                 int size2 = this.icons.size();
                 abstractSerializedData2.writeInt32(size2);
                 for (int i6 = 0; i6 < size2; i6++) {
-                    this.icons.get(i6).serializeToStream(abstractSerializedData2);
+                    ((TLRPC$TL_attachMenuBotIcon) this.icons.get(i6)).serializeToStream(abstractSerializedData2);
                 }
             }
         };

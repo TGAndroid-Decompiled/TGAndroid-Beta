@@ -19,7 +19,7 @@ public class TL_stats$TL_broadcastStats extends TLObject {
     public TL_stats$StatsGraph reactions_by_emotion_graph;
     public TL_stats$TL_statsAbsValueAndPrev reactions_per_post;
     public TL_stats$TL_statsAbsValueAndPrev reactions_per_story;
-    public ArrayList<TL_stats$PostInteractionCounters> recent_posts_interactions = new ArrayList<>();
+    public ArrayList recent_posts_interactions = new ArrayList();
     public TL_stats$TL_statsAbsValueAndPrev shares_per_post;
     public TL_stats$TL_statsAbsValueAndPrev shares_per_story;
     public TL_stats$StatsGraph story_interactions_graph;
@@ -109,7 +109,7 @@ public class TL_stats$TL_broadcastStats extends TLObject {
         int size = this.recent_posts_interactions.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.recent_posts_interactions.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stats$PostInteractionCounters) this.recent_posts_interactions.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -15,7 +15,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarsImageView;
@@ -103,75 +103,6 @@ public class DialogsHintCell extends BlurredFrameLayout {
         }
     }
 
-    public void setCompact(boolean z) {
-        setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(z ? 4.0f : 8.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f));
-    }
-
-    public void updateColors() {
-        this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        TextView textView = this.messageView;
-        int i = Theme.key_windowBackgroundWhiteGrayText;
-        textView.setTextColor(Theme.getColor(i));
-        ImageView imageView = this.chevronView;
-        int color = Theme.getColor(i);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(color, mode);
-        this.closeView.setColorFilter(Theme.getColor(i), mode);
-        this.closeView.setBackground(Theme.AdaptiveRipple.filledCircle());
-        setBackground(Theme.AdaptiveRipple.filledRect());
-    }
-
-    public void setAvatars(int i, ArrayList<TLRPC$User> arrayList) {
-        int min = Math.min(3, arrayList == null ? 0 : arrayList.size());
-        AvatarsImageView avatarsImageView = this.avatarsImageView;
-        boolean z = min != avatarsImageView.avatarsDrawable.count;
-        if (min <= 1) {
-            avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(20.0f));
-            this.avatarsImageView.setSize(AndroidUtilities.dp(32.0f));
-        } else {
-            avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
-            this.avatarsImageView.setSize(AndroidUtilities.dp(27.0f));
-        }
-        this.avatarsImageView.setCount(min);
-        this.avatarsImageView.setVisibility(min <= 0 ? 8 : 0);
-        this.avatarsImageView.getLayoutParams().width = min <= 1 ? AndroidUtilities.dp(32.0f) : AndroidUtilities.dp(((min - 1) * 16) + 27);
-        if (z) {
-            this.parentView.requestLayout();
-        }
-        if (arrayList != null) {
-            int i2 = 0;
-            while (i2 < 3) {
-                this.avatarsImageView.setObject(i2, i, i2 >= arrayList.size() ? null : arrayList.get(i2));
-                i2++;
-            }
-        }
-        this.avatarsImageView.commitTransition(false);
-    }
-
-    public void setText(CharSequence charSequence, CharSequence charSequence2) {
-        this.titleView.setText(charSequence);
-        this.titleView.setCompoundDrawables(null, null, null, null);
-        this.messageView.setText(charSequence2);
-        this.chevronView.setVisibility(0);
-        this.closeView.setVisibility(8);
-    }
-
-    public void setOnCloseListener(View.OnClickListener onClickListener) {
-        this.chevronView.setVisibility(4);
-        this.closeView.setVisibility(0);
-        this.closeView.setOnClickListener(onClickListener);
-    }
-
-    @Override
-    public void setOnClickListener(final View.OnClickListener onClickListener) {
-        super.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                DialogsHintCell.this.lambda$setOnClickListener$1(onClickListener, view);
-            }
-        });
-    }
-
     public void lambda$setOnClickListener$1(View.OnClickListener onClickListener, View view) {
         if (getAlpha() <= 0.5f || onClickListener == null) {
             return;
@@ -180,17 +111,19 @@ public class DialogsHintCell extends BlurredFrameLayout {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() < 0.5f) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
+    }
+
+    public int height() {
+        if (getVisibility() != 0) {
+            return 0;
+        }
+        if (this.height <= 0) {
+            this.height = AndroidUtilities.dp(72.0f) + 1;
+        }
+        return this.height;
     }
 
     @Override
@@ -205,13 +138,85 @@ public class DialogsHintCell extends BlurredFrameLayout {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
     }
 
-    public int height() {
-        if (getVisibility() != 0) {
-            return 0;
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() < 0.5f) {
+            return false;
         }
-        if (this.height <= 0) {
-            this.height = AndroidUtilities.dp(72.0f) + 1;
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void setAvatars(int i, ArrayList arrayList) {
+        AvatarsImageView avatarsImageView;
+        int dp;
+        int min = Math.min(3, arrayList == null ? 0 : arrayList.size());
+        AvatarsImageView avatarsImageView2 = this.avatarsImageView;
+        boolean z = min != avatarsImageView2.avatarsDrawable.count;
+        if (min <= 1) {
+            avatarsImageView2.setAvatarsTextSize(AndroidUtilities.dp(20.0f));
+            avatarsImageView = this.avatarsImageView;
+            dp = AndroidUtilities.dp(32.0f);
+        } else {
+            avatarsImageView2.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
+            avatarsImageView = this.avatarsImageView;
+            dp = AndroidUtilities.dp(27.0f);
         }
-        return this.height;
+        avatarsImageView.setSize(dp);
+        this.avatarsImageView.setCount(min);
+        this.avatarsImageView.setVisibility(min <= 0 ? 8 : 0);
+        this.avatarsImageView.getLayoutParams().width = min <= 1 ? AndroidUtilities.dp(32.0f) : AndroidUtilities.dp(((min - 1) * 16) + 27);
+        if (z) {
+            this.parentView.requestLayout();
+        }
+        if (arrayList != null) {
+            int i2 = 0;
+            while (i2 < 3) {
+                this.avatarsImageView.setObject(i2, i, i2 >= arrayList.size() ? null : (TLObject) arrayList.get(i2));
+                i2++;
+            }
+        }
+        this.avatarsImageView.commitTransition(false);
+    }
+
+    public void setCompact(boolean z) {
+        setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(z ? 4.0f : 8.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f));
+    }
+
+    @Override
+    public void setOnClickListener(final View.OnClickListener onClickListener) {
+        super.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                DialogsHintCell.this.lambda$setOnClickListener$1(onClickListener, view);
+            }
+        });
+    }
+
+    public void setOnCloseListener(View.OnClickListener onClickListener) {
+        this.chevronView.setVisibility(4);
+        this.closeView.setVisibility(0);
+        this.closeView.setOnClickListener(onClickListener);
+    }
+
+    public void setText(CharSequence charSequence, CharSequence charSequence2) {
+        this.titleView.setText(charSequence);
+        this.titleView.setCompoundDrawables(null, null, null, null);
+        this.messageView.setText(charSequence2);
+        this.chevronView.setVisibility(0);
+        this.closeView.setVisibility(8);
+    }
+
+    public void updateColors() {
+        this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        TextView textView = this.messageView;
+        int i = Theme.key_windowBackgroundWhiteGrayText;
+        textView.setTextColor(Theme.getColor(i));
+        ImageView imageView = this.chevronView;
+        int color = Theme.getColor(i);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(color, mode);
+        this.closeView.setColorFilter(Theme.getColor(i), mode);
+        this.closeView.setBackground(Theme.AdaptiveRipple.filledCircle());
+        setBackground(Theme.AdaptiveRipple.filledRect());
     }
 }

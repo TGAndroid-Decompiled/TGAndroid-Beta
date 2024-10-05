@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_updatePinnedChannelMessages extends TLRPC$Update {
     public long channel_id;
     public int flags;
-    public ArrayList<Integer> messages = new ArrayList<>();
+    public ArrayList messages = new ArrayList();
     public boolean pinned;
     public int pts;
     public int pts_count;
@@ -42,7 +42,7 @@ public class TLRPC$TL_updatePinnedChannelMessages extends TLRPC$Update {
         int size = this.messages.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            abstractSerializedData.writeInt32(this.messages.get(i2).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.messages.get(i2)).intValue());
         }
         abstractSerializedData.writeInt32(this.pts);
         abstractSerializedData.writeInt32(this.pts_count);

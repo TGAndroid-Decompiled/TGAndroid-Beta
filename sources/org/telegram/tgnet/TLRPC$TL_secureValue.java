@@ -11,8 +11,8 @@ public class TLRPC$TL_secureValue extends TLObject {
     public TLRPC$SecureFile reverse_side;
     public TLRPC$SecureFile selfie;
     public TLRPC$SecureValueType type;
-    public ArrayList<TLRPC$SecureFile> translation = new ArrayList<>();
-    public ArrayList<TLRPC$SecureFile> files = new ArrayList<>();
+    public ArrayList translation = new ArrayList();
+    public ArrayList files = new ArrayList();
 
     public static TLRPC$TL_secureValue TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (411017418 != i) {
@@ -104,7 +104,7 @@ public class TLRPC$TL_secureValue extends TLObject {
             int size = this.translation.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.translation.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$SecureFile) this.translation.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16) != 0) {
@@ -112,7 +112,7 @@ public class TLRPC$TL_secureValue extends TLObject {
             int size2 = this.files.size();
             abstractSerializedData.writeInt32(size2);
             for (int i2 = 0; i2 < size2; i2++) {
-                this.files.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$SecureFile) this.files.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 32) != 0) {

@@ -27,7 +27,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION_STRING = "11.0.1";
+        BUILD_VERSION_STRING = "11.1.3";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -46,16 +46,16 @@ public class BuildVars {
         }
     }
 
-    public static boolean useInvoiceBilling() {
-        return BillingController.billingClientEmpty || DEBUG_VERSION || ApplicationLoader.isStandaloneBuild() || isBetaApp() || isHuaweiStoreApp() || hasDirectCurrency();
+    public static String getSmsHash() {
+        return ApplicationLoader.isStandaloneBuild() ? "w0lkcmTZkKh" : DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
     }
 
     private static boolean hasDirectCurrency() {
         ProductDetails productDetails;
         if (BillingController.getInstance().isReady() && (productDetails = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
-            Iterator<ProductDetails.SubscriptionOfferDetails> it = productDetails.getSubscriptionOfferDetails().iterator();
+            Iterator it = productDetails.getSubscriptionOfferDetails().iterator();
             while (it.hasNext()) {
-                for (ProductDetails.PricingPhase pricingPhase : it.next().getPricingPhases().getPricingPhaseList()) {
+                for (ProductDetails.PricingPhase pricingPhase : ((ProductDetails.SubscriptionOfferDetails) it.next()).getPricingPhases().getPricingPhaseList()) {
                     Iterator<String> it2 = MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency.iterator();
                     while (it2.hasNext()) {
                         if (Objects.equals(pricingPhase.getPriceCurrencyCode(), it2.next())) {
@@ -79,7 +79,7 @@ public class BuildVars {
         return ApplicationLoader.isHuaweiStoreBuild();
     }
 
-    public static String getSmsHash() {
-        return ApplicationLoader.isStandaloneBuild() ? "w0lkcmTZkKh" : DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
+    public static boolean useInvoiceBilling() {
+        return BillingController.billingClientEmpty || DEBUG_VERSION || ApplicationLoader.isStandaloneBuild() || isBetaApp() || isHuaweiStoreApp() || hasDirectCurrency();
     }
 }

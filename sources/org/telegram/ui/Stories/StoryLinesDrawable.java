@@ -44,7 +44,6 @@ public class StoryLinesDrawable {
     }
 
     public void draw(Canvas canvas, int i, int i2, float f, int i3, float f2, float f3, boolean z, boolean z2, float f4) {
-        int dp;
         Paint paint;
         float f5;
         int i4;
@@ -67,13 +66,7 @@ public class StoryLinesDrawable {
         PeerStoriesView.SharedResources sharedResources = storyLinesDrawable.sharedResources;
         Paint paint4 = sharedResources.barPaint;
         Paint paint5 = sharedResources.selectedBarPaint;
-        if (i6 > 100) {
-            dp = 1;
-        } else if (i6 >= 50) {
-            dp = AndroidUtilities.dp(1.0f);
-        } else {
-            dp = AndroidUtilities.dp(2.0f);
-        }
+        int dp = i6 > 100 ? 1 : i6 >= 50 ? AndroidUtilities.dp(1.0f) : AndroidUtilities.dp(2.0f);
         float dp2 = ((i - AndroidUtilities.dp(10.0f)) - ((i6 - 1) * dp)) / i6;
         AndroidUtilities.dp(5.0f);
         float min = Math.min(dp2 / 2.0f, AndroidUtilities.dp(1.0f));

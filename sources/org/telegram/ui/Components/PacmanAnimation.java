@@ -29,8 +29,73 @@ public class PacmanAnimation {
         this.parentView = view;
     }
 
-    public void setFinishRunnable(Runnable runnable) {
-        this.finishRunnable = runnable;
+    private void drawGhost(Canvas canvas, int i) {
+        Path path;
+        float dp;
+        int dp2;
+        Paint paint;
+        int i2;
+        Path path2 = this.ghostPath;
+        if (path2 == null || this.ghostWalk != this.currentGhostWalk) {
+            if (path2 == null) {
+                this.ghostPath = new Path();
+            }
+            this.ghostPath.reset();
+            boolean z = this.ghostWalk;
+            this.currentGhostWalk = z;
+            if (z) {
+                this.ghostPath.moveTo(0.0f, AndroidUtilities.dp(50.0f));
+                this.ghostPath.lineTo(0.0f, AndroidUtilities.dp(24.0f));
+                this.rect.set(0.0f, 0.0f, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
+                this.ghostPath.arcTo(this.rect, 180.0f, 180.0f, false);
+                this.ghostPath.lineTo(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(50.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(43.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(50.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(43.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(50.0f));
+                path = this.ghostPath;
+                dp = AndroidUtilities.dp(7.0f);
+                dp2 = AndroidUtilities.dp(43.0f);
+            } else {
+                this.ghostPath.moveTo(0.0f, AndroidUtilities.dp(43.0f));
+                this.ghostPath.lineTo(0.0f, AndroidUtilities.dp(24.0f));
+                this.rect.set(0.0f, 0.0f, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
+                this.ghostPath.arcTo(this.rect, 180.0f, 180.0f, false);
+                this.ghostPath.lineTo(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(43.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(50.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(43.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(50.0f));
+                this.ghostPath.lineTo(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(43.0f));
+                path = this.ghostPath;
+                dp = AndroidUtilities.dp(7.0f);
+                dp2 = AndroidUtilities.dp(50.0f);
+            }
+            path.lineTo(dp, dp2);
+            this.ghostPath.close();
+        }
+        canvas.drawPath(this.ghostPath, this.edgePaint);
+        if (i == 0) {
+            paint = this.paint;
+            i2 = -90112;
+        } else if (i == 1) {
+            paint = this.paint;
+            i2 = -85326;
+        } else {
+            paint = this.paint;
+            i2 = -16720161;
+        }
+        paint.setColor(i2);
+        canvas.drawPath(this.ghostPath, this.paint);
+        this.paint.setColor(-1);
+        this.rect.set(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
+        canvas.drawOval(this.rect, this.paint);
+        this.rect.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(28.0f));
+        canvas.drawOval(this.rect, this.paint);
+        this.paint.setColor(-16777216);
+        this.rect.set(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f));
+        canvas.drawOval(this.rect, this.paint);
+        this.rect.set(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(35.0f), AndroidUtilities.dp(24.0f));
+        canvas.drawOval(this.rect, this.paint);
     }
 
     private void update() {
@@ -61,68 +126,6 @@ public class PacmanAnimation {
             this.ghostProgress = 0.0f;
         }
         this.parentView.invalidate();
-    }
-
-    public void start() {
-        this.translationProgress = 0.0f;
-        this.progress = 0.0f;
-        this.lastUpdateTime = System.currentTimeMillis();
-        this.parentView.invalidate();
-    }
-
-    private void drawGhost(Canvas canvas, int i) {
-        Path path = this.ghostPath;
-        if (path == null || this.ghostWalk != this.currentGhostWalk) {
-            if (path == null) {
-                this.ghostPath = new Path();
-            }
-            this.ghostPath.reset();
-            boolean z = this.ghostWalk;
-            this.currentGhostWalk = z;
-            if (z) {
-                this.ghostPath.moveTo(0.0f, AndroidUtilities.dp(50.0f));
-                this.ghostPath.lineTo(0.0f, AndroidUtilities.dp(24.0f));
-                this.rect.set(0.0f, 0.0f, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
-                this.ghostPath.arcTo(this.rect, 180.0f, 180.0f, false);
-                this.ghostPath.lineTo(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(50.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(43.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(50.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(43.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(50.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(43.0f));
-            } else {
-                this.ghostPath.moveTo(0.0f, AndroidUtilities.dp(43.0f));
-                this.ghostPath.lineTo(0.0f, AndroidUtilities.dp(24.0f));
-                this.rect.set(0.0f, 0.0f, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
-                this.ghostPath.arcTo(this.rect, 180.0f, 180.0f, false);
-                this.ghostPath.lineTo(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(43.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(50.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(43.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(50.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(43.0f));
-                this.ghostPath.lineTo(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(50.0f));
-            }
-            this.ghostPath.close();
-        }
-        canvas.drawPath(this.ghostPath, this.edgePaint);
-        if (i == 0) {
-            this.paint.setColor(-90112);
-        } else if (i == 1) {
-            this.paint.setColor(-85326);
-        } else {
-            this.paint.setColor(-16720161);
-        }
-        canvas.drawPath(this.ghostPath, this.paint);
-        this.paint.setColor(-1);
-        this.rect.set(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
-        canvas.drawOval(this.rect, this.paint);
-        this.rect.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(28.0f));
-        canvas.drawOval(this.rect, this.paint);
-        this.paint.setColor(-16777216);
-        this.rect.set(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f));
-        canvas.drawOval(this.rect, this.paint);
-        this.rect.set(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(35.0f), AndroidUtilities.dp(24.0f));
-        canvas.drawOval(this.rect, this.paint);
     }
 
     public void draw(Canvas canvas, int i) {
@@ -156,5 +159,16 @@ public class PacmanAnimation {
             this.finishRunnable.run();
         }
         update();
+    }
+
+    public void setFinishRunnable(Runnable runnable) {
+        this.finishRunnable = runnable;
+    }
+
+    public void start() {
+        this.translationProgress = 0.0f;
+        this.progress = 0.0f;
+        this.lastUpdateTime = System.currentTimeMillis();
+        this.parentView.invalidate();
     }
 }

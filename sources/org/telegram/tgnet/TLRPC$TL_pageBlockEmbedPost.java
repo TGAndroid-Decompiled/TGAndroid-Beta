@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_pageBlockEmbedPost extends TLRPC$PageBlock {
     public String author;
     public long author_photo_id;
-    public ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
+    public ArrayList blocks = new ArrayList();
     public TLRPC$TL_pageCaption caption;
     public int date;
     public String url;
@@ -48,7 +48,7 @@ public class TLRPC$TL_pageBlockEmbedPost extends TLRPC$PageBlock {
         int size = this.blocks.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.blocks.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$PageBlock) this.blocks.get(i)).serializeToStream(abstractSerializedData);
         }
         this.caption.serializeToStream(abstractSerializedData);
     }

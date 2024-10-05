@@ -7,15 +7,10 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 
 public class TimerDrawable extends Drawable {
@@ -35,96 +30,12 @@ public class TimerDrawable extends Drawable {
     private int timeHeight = 0;
     private int time = -1;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
     public TimerDrawable(Context context, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
         this.resourcesProvider = resourcesProvider;
         this.timePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.linePaint.setStyle(Paint.Style.STROKE);
-    }
-
-    public void setTime(int i) {
-        String str;
-        if (this.time != i) {
-            this.time = i;
-            if (this.isDialog) {
-                this.currentTtlIcon = ContextCompat.getDrawable(this.context, R.drawable.msg_autodelete_badge2).mutate();
-            } else {
-                Drawable mutate = ContextCompat.getDrawable(this.context, i == 0 ? R.drawable.msg_mini_autodelete : R.drawable.msg_mini_autodelete_empty).mutate();
-                this.currentTtlIcon = mutate;
-                mutate.setColorFilter(this.currentColorFilter);
-            }
-            invalidateSelf();
-            int i2 = this.time;
-            if (i2 >= 1 && i2 < 60) {
-                str = "" + i;
-                if (str.length() < 2) {
-                    str = str + LocaleController.getString(R.string.SecretChatTimerSeconds);
-                }
-            } else if (i2 >= 60 && i2 < 3600) {
-                str = "" + (i / 60);
-                if (str.length() < 2) {
-                    str = str + LocaleController.getString(R.string.SecretChatTimerMinutes);
-                }
-            } else if (i2 >= 3600 && i2 < 86400) {
-                str = "" + ((i / 60) / 60);
-                if (str.length() < 2) {
-                    str = str + LocaleController.getString(R.string.SecretChatTimerHours);
-                }
-            } else if (i2 >= 86400 && i2 < 604800) {
-                str = "" + (((i / 60) / 60) / 24);
-                if (str.length() < 2) {
-                    str = str + LocaleController.getString(R.string.SecretChatTimerDays);
-                }
-            } else if (i2 < 2678400) {
-                str = "" + ((((i / 60) / 60) / 24) / 7);
-                if (str.length() < 2) {
-                    str = str + LocaleController.getString(R.string.SecretChatTimerWeeks);
-                } else if (str.length() > 2) {
-                    str = "c";
-                }
-            } else if (i2 < 31449600) {
-                str = "" + ((((i / 60) / 60) / 24) / 30);
-                if (str.length() < 2) {
-                    str = str + LocaleController.getString(R.string.SecretChatTimerMonths);
-                }
-            } else {
-                str = "" + ((((i / 60) / 60) / 24) / 364);
-                if (str.length() < 2) {
-                    str = str + LocaleController.getString(R.string.SecretChatTimerYears);
-                }
-            }
-            String str2 = str;
-            this.timePaint.setTextSize(AndroidUtilities.dp(11.0f));
-            float measureText = this.timePaint.measureText(str2);
-            this.timeWidth = measureText;
-            if (measureText > AndroidUtilities.dp(13.0f)) {
-                this.timePaint.setTextSize(AndroidUtilities.dp(9.0f));
-                this.timeWidth = this.timePaint.measureText(str2);
-            }
-            if (this.timeWidth > AndroidUtilities.dp(13.0f)) {
-                this.timePaint.setTextSize(AndroidUtilities.dp(6.0f));
-                this.timeWidth = this.timePaint.measureText(str2);
-            }
-            try {
-                StaticLayout staticLayout = new StaticLayout(str2, this.timePaint, (int) Math.ceil(this.timeWidth), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.timeLayout = staticLayout;
-                this.timeHeight = staticLayout.getHeight();
-            } catch (Exception e) {
-                this.timeLayout = null;
-                FileLog.e(e);
-            }
-            invalidateSelf();
-        }
     }
 
     public static TimerDrawable getTtlIcon(int i) {
@@ -143,17 +54,25 @@ public class TimerDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        TextPaint textPaint;
+        int i;
+        float f;
         int intrinsicWidth = getIntrinsicWidth();
         int intrinsicHeight = getIntrinsicHeight();
         if (this.isDialog) {
             this.timePaint.setColor(-1);
-        } else if (!this.isStaticIcon) {
-            if (!this.overrideColor) {
-                this.paint.setColor(Theme.getColor(Theme.key_actionBarDefault, this.resourcesProvider));
-            }
-            this.timePaint.setColor(Theme.getColor(Theme.key_actionBarDefaultTitle, this.resourcesProvider));
         } else {
-            this.timePaint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, this.resourcesProvider));
+            if (this.isStaticIcon) {
+                textPaint = this.timePaint;
+                i = Theme.key_actionBarDefaultSubmenuItemIcon;
+            } else {
+                if (!this.overrideColor) {
+                    this.paint.setColor(Theme.getColor(Theme.key_actionBarDefault, this.resourcesProvider));
+                }
+                textPaint = this.timePaint;
+                i = Theme.key_actionBarDefaultTitle;
+            }
+            textPaint.setColor(Theme.getColor(i, this.resourcesProvider));
         }
         if (this.currentTtlIcon != null) {
             if (!this.isStaticIcon && !this.isDialog) {
@@ -166,32 +85,61 @@ public class TimerDrawable extends Drawable {
             }
             if (this.isDialog) {
                 this.currentTtlIcon.setBounds(getBounds().left, getBounds().top, getBounds().left + this.currentTtlIcon.getIntrinsicWidth(), getBounds().top + this.currentTtlIcon.getIntrinsicHeight());
-                this.currentTtlIcon.draw(canvas);
             } else {
                 android.graphics.Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(getBounds().centerX() - AndroidUtilities.dp(10.5f), getBounds().centerY() - AndroidUtilities.dp(10.5f), (getBounds().centerX() - AndroidUtilities.dp(10.5f)) + this.currentTtlIcon.getIntrinsicWidth(), (getBounds().centerY() - AndroidUtilities.dp(10.5f)) + this.currentTtlIcon.getIntrinsicHeight());
                 this.currentTtlIcon.setBounds(rect);
-                this.currentTtlIcon.draw(canvas);
             }
+            this.currentTtlIcon.draw(canvas);
         }
         if (this.time == 0 || this.timeLayout == null) {
             return;
         }
-        int i = AndroidUtilities.density != 3.0f ? 0 : -1;
+        int i2 = AndroidUtilities.density != 3.0f ? 0 : -1;
         if (this.isDialog) {
             double width = getBounds().width() / 2;
             double ceil = Math.ceil(this.timeWidth / 2.0f);
             Double.isNaN(width);
-            double d = i;
+            double d = i2;
             Double.isNaN(d);
-            canvas.translate((float) ((width - ceil) + d), (getBounds().height() - this.timeHeight) / 2.0f);
-            this.timeLayout.draw(canvas);
-            return;
+            f = (float) ((width - ceil) + d);
+            intrinsicHeight = getBounds().height();
+        } else {
+            double d2 = intrinsicWidth / 2;
+            double ceil2 = Math.ceil(this.timeWidth / 2.0f);
+            Double.isNaN(d2);
+            f = ((int) (d2 - ceil2)) + i2;
         }
-        double ceil2 = Math.ceil(this.timeWidth / 2.0f);
-        Double.isNaN(intrinsicWidth / 2);
-        canvas.translate(((int) (r5 - ceil2)) + i, (intrinsicHeight - this.timeHeight) / 2.0f);
+        canvas.translate(f, (intrinsicHeight - this.timeHeight) / 2.0f);
         this.timeLayout.draw(canvas);
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(23.0f);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(23.0f);
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    public int getTime() {
+        return this.time;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    public void setBackgroundColor(int i) {
+        this.overrideColor = true;
+        this.paint.setColor(i);
     }
 
     @Override
@@ -202,22 +150,7 @@ public class TimerDrawable extends Drawable {
         }
     }
 
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(23.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(23.0f);
-    }
-
-    public void setBackgroundColor(int i) {
-        this.overrideColor = true;
-        this.paint.setColor(i);
-    }
-
-    public int getTime() {
-        return this.time;
+    public void setTime(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TimerDrawable.setTime(int):void");
     }
 }

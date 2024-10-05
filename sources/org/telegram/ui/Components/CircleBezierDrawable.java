@@ -37,14 +37,6 @@ public class CircleBezierDrawable {
         }
     }
 
-    public void setAdditionals(int[] iArr) {
-        for (int i = 0; i < this.N; i += 2) {
-            float[] fArr = this.randomAdditionals;
-            fArr[i] = iArr[i / 2];
-            fArr[i + 1] = 0.0f;
-        }
-    }
-
     public void draw(float f, float f2, Canvas canvas, Paint paint) {
         float f3 = this.radius;
         float f4 = this.idleStateDiff / 2.0f;
@@ -100,5 +92,13 @@ public class CircleBezierDrawable {
         canvas.rotate(this.globalRotate, f, f2);
         canvas.drawPath(this.path, paint);
         canvas.restore();
+    }
+
+    public void setAdditionals(int[] iArr) {
+        for (int i = 0; i < this.N; i += 2) {
+            float[] fArr = this.randomAdditionals;
+            fArr[i] = iArr[i / 2];
+            fArr[i + 1] = 0.0f;
+        }
     }
 }

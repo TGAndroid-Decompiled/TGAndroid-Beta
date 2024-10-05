@@ -12,7 +12,7 @@ import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EmojiTabsStrip;
 
-public class ScrollableHorizontalScrollView extends HorizontalScrollView {
+public abstract class ScrollableHorizontalScrollView extends HorizontalScrollView {
     public LinearLayout contentView;
     private ValueAnimator scrollAnimator;
     protected boolean scrollingAnimation;
@@ -26,22 +26,37 @@ public class ScrollableHorizontalScrollView extends HorizontalScrollView {
         this.scrollingTo = -1;
     }
 
-    public boolean scrollToVisible(int i, int i2) {
-        int measuredWidth;
-        if (getChildCount() <= 0) {
-            return false;
+    public void lambda$scrollTo$0(ValueAnimator valueAnimator) {
+        setScrollX((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        updateButtonsVisibility();
+    }
+
+    @Override
+    protected void onScrollChanged(int i, int i2, int i3, int i4) {
+        super.onScrollChanged(i, i2, i3, i4);
+        if ((Math.abs(i2 - i4) < 2 || i2 >= getMeasuredHeight() || i2 == 0) && !this.touching) {
+            requestDisallowInterceptTouchEvent(false);
         }
-        int dp = AndroidUtilities.dp(50.0f);
-        if (i < getScrollX() + dp) {
-            measuredWidth = i - dp;
-        } else {
-            if (i2 <= getScrollX() + (getMeasuredWidth() - dp)) {
-                return false;
-            }
-            measuredWidth = (i2 - getMeasuredWidth()) + dp;
+        updateButtonsVisibility();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.touch = true;
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            this.touch = false;
         }
-        scrollTo(MathUtils.clamp(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
-        return true;
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void resetScrollTo() {
+        this.scrollingTo = -1;
     }
 
     public void scrollTo(int i) {
@@ -84,27 +99,22 @@ public class ScrollableHorizontalScrollView extends HorizontalScrollView {
         this.scrollAnimator.start();
     }
 
-    public void lambda$scrollTo$0(ValueAnimator valueAnimator) {
-        setScrollX((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
-    public void resetScrollTo() {
-        this.scrollingTo = -1;
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        updateButtonsVisibility();
-    }
-
-    @Override
-    protected void onScrollChanged(int i, int i2, int i3, int i4) {
-        super.onScrollChanged(i, i2, i3, i4);
-        if ((Math.abs(i2 - i4) < 2 || i2 >= getMeasuredHeight() || i2 == 0) && !this.touching) {
-            requestDisallowInterceptTouchEvent(false);
+    public boolean scrollToVisible(int i, int i2) {
+        int measuredWidth;
+        if (getChildCount() <= 0) {
+            return false;
         }
-        updateButtonsVisibility();
+        int dp = AndroidUtilities.dp(50.0f);
+        if (i < getScrollX() + dp) {
+            measuredWidth = i - dp;
+        } else {
+            if (i2 <= getScrollX() + (getMeasuredWidth() - dp)) {
+                return false;
+            }
+            measuredWidth = (i2 - getMeasuredWidth()) + dp;
+        }
+        scrollTo(MathUtils.clamp(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
+        return true;
     }
 
     public void updateButtonsVisibility() {
@@ -122,15 +132,5 @@ public class ScrollableHorizontalScrollView extends HorizontalScrollView {
                 emojiTabButton.updateVisibilityInbounds(z2, z);
             }
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.touch = true;
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.touch = false;
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

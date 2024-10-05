@@ -5,29 +5,21 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
-import android.os.RemoteException;
 
 public interface ICustomTabsCallback extends IInterface {
-    void extraCallback(String str, Bundle bundle) throws RemoteException;
-
-    void onMessageChannelReady(Bundle bundle) throws RemoteException;
-
-    void onNavigationEvent(int i, Bundle bundle) throws RemoteException;
-
-    void onPostMessage(String str, Bundle bundle) throws RemoteException;
 
     public static abstract class Stub extends Binder implements ICustomTabsCallback {
-        @Override
-        public IBinder asBinder() {
-            return this;
-        }
-
         public Stub() {
             attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
         }
 
         @Override
-        public boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
+        public IBinder asBinder() {
+            return this;
+        }
+
+        @Override
+        public boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
             if (i == 1598968902) {
                 parcel2.writeString("android.support.customtabs.ICustomTabsCallback");
                 return true;
@@ -35,28 +27,29 @@ public interface ICustomTabsCallback extends IInterface {
             if (i == 2) {
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 onNavigationEvent(parcel.readInt(), parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
-                parcel2.writeNoException();
-                return true;
-            }
-            if (i == 3) {
+            } else if (i == 3) {
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 extraCallback(parcel.readString(), parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
-                parcel2.writeNoException();
-                return true;
-            }
-            if (i == 4) {
+            } else if (i == 4) {
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 onMessageChannelReady(parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
-                parcel2.writeNoException();
-                return true;
-            }
-            if (i == 5) {
+            } else {
+                if (i != 5) {
+                    return super.onTransact(i, parcel, parcel2, i2);
+                }
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 onPostMessage(parcel.readString(), parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
-                parcel2.writeNoException();
-                return true;
             }
-            return super.onTransact(i, parcel, parcel2, i2);
+            parcel2.writeNoException();
+            return true;
         }
     }
+
+    void extraCallback(String str, Bundle bundle);
+
+    void onMessageChannelReady(Bundle bundle);
+
+    void onNavigationEvent(int i, Bundle bundle);
+
+    void onPostMessage(String str, Bundle bundle);
 }

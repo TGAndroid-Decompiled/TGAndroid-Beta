@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class ChatAttachAlertPhotoLayout$19$$ExternalSyntheticApiModelOutline0 {
+public abstract class ChatAttachAlertPhotoLayout$19$$ExternalSyntheticApiModelOutline0 {
 }

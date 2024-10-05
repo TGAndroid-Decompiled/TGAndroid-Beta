@@ -40,7 +40,7 @@ public class TL_stories$TL_peerStories extends TL_stories$PeerStories {
         int size = this.stories.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.stories.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stories$StoryItem) this.stories.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

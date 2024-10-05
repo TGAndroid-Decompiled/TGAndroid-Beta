@@ -10,34 +10,6 @@ public class TL_stories$TL_geoPointAddress extends TLObject {
     public String state;
     public String street;
 
-    public String toString() {
-        String str;
-        String str2;
-        StringBuilder sb = new StringBuilder();
-        sb.append("geo{country=");
-        sb.append(this.country_iso2);
-        sb.append(", ");
-        String str3 = "";
-        if (this.state != null) {
-            str = "state=" + this.state + ", ";
-        } else {
-            str = "";
-        }
-        sb.append(str);
-        if (this.city != null) {
-            str2 = "city=" + this.city + ", ";
-        } else {
-            str2 = "";
-        }
-        sb.append(str2);
-        if (this.street != null) {
-            str3 = "street=" + this.street;
-        }
-        sb.append(str3);
-        sb.append("}");
-        return sb.toString();
-    }
-
     public static TL_stories$TL_geoPointAddress TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-565420653 != i) {
             if (z) {
@@ -79,5 +51,33 @@ public class TL_stories$TL_geoPointAddress extends TLObject {
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeString(this.street);
         }
+    }
+
+    public String toString() {
+        String str;
+        String str2;
+        StringBuilder sb = new StringBuilder();
+        sb.append("geo{country=");
+        sb.append(this.country_iso2);
+        sb.append(", ");
+        String str3 = "";
+        if (this.state != null) {
+            str = "state=" + this.state + ", ";
+        } else {
+            str = "";
+        }
+        sb.append(str);
+        if (this.city != null) {
+            str2 = "city=" + this.city + ", ";
+        } else {
+            str2 = "";
+        }
+        sb.append(str2);
+        if (this.street != null) {
+            str3 = "street=" + this.street;
+        }
+        sb.append(str3);
+        sb.append("}");
+        return sb.toString();
     }
 }

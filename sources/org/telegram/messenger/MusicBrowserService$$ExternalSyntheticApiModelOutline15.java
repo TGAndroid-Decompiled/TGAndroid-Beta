@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class MusicBrowserService$$ExternalSyntheticApiModelOutline15 {
+public abstract class MusicBrowserService$$ExternalSyntheticApiModelOutline15 {
 }

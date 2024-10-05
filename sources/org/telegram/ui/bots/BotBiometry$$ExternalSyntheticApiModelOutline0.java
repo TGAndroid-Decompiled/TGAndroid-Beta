@@ -1,4 +1,4 @@
 package org.telegram.ui.bots;
 
-public final class BotBiometry$$ExternalSyntheticApiModelOutline0 {
+public abstract class BotBiometry$$ExternalSyntheticApiModelOutline0 {
 }

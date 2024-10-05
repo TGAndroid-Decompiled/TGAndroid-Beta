@@ -28,7 +28,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class BusinessBotButton extends FrameLayout {
+public abstract class BusinessBotButton extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
     private final BackupImageView avatarView;
     private long botId;
@@ -125,11 +125,7 @@ public class BusinessBotButton extends FrameLayout {
         this.pauseButton.setText(LocaleController.getString(z ? R.string.BizBotStart : R.string.BizBotStop), true);
         this.subtitleView.cancelAnimation();
         this.subtitleView.setText(LocaleController.getString(this.paused ? R.string.BizBotStatusStopped : R.string.BizBotStatusManages), true);
-        if (this.paused) {
-            this.flags |= 1;
-        } else {
-            this.flags &= -2;
-        }
+        this.flags = this.paused ? this.flags | 1 : this.flags & (-2);
         MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("dialog_botflags" + this.dialogId, this.flags).apply();
         TLRPC$TL_account_toggleConnectedBotPaused tLRPC$TL_account_toggleConnectedBotPaused = new TLRPC$TL_account_toggleConnectedBotPaused();
         tLRPC$TL_account_toggleConnectedBotPaused.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
@@ -141,6 +137,19 @@ public class BusinessBotButton extends FrameLayout {
         float paddingLeft = this.pauseButton.getPaddingLeft() + this.pauseButton.getDrawable().getCurrentWidth() + this.pauseButton.getPaddingRight() + AndroidUtilities.dp(12.0f);
         this.titleView.setRightPadding(paddingLeft);
         this.subtitleView.setRightPadding(paddingLeft);
+    }
+
+    public void lambda$new$2() {
+        TLRPC$TL_account_disablePeerConnectedBot tLRPC$TL_account_disablePeerConnectedBot = new TLRPC$TL_account_disablePeerConnectedBot();
+        tLRPC$TL_account_disablePeerConnectedBot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_disablePeerConnectedBot, null);
+        MessagesController.getNotificationsSettings(this.currentAccount).edit().remove("dialog_botid" + this.dialogId).remove("dialog_boturl" + this.dialogId).remove("dialog_botflags" + this.dialogId).apply();
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(this.dialogId));
+        BusinessChatbotController.getInstance(this.currentAccount).invalidate(false);
+    }
+
+    public void lambda$new$3() {
+        Browser.openUrl(getContext(), this.manageUrl);
     }
 
     public void lambda$new$4(ChatActivity chatActivity, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -162,19 +171,6 @@ public class BusinessBotButton extends FrameLayout {
         makeOptions.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
         makeOptions.setDimAlpha(0);
         makeOptions.show();
-    }
-
-    public void lambda$new$2() {
-        TLRPC$TL_account_disablePeerConnectedBot tLRPC$TL_account_disablePeerConnectedBot = new TLRPC$TL_account_disablePeerConnectedBot();
-        tLRPC$TL_account_disablePeerConnectedBot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_disablePeerConnectedBot, null);
-        MessagesController.getNotificationsSettings(this.currentAccount).edit().remove("dialog_botid" + this.dialogId).remove("dialog_boturl" + this.dialogId).remove("dialog_botflags" + this.dialogId).apply();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(this.dialogId));
-        BusinessChatbotController.getInstance(this.currentAccount).invalidate(false);
-    }
-
-    public void lambda$new$3() {
-        Browser.openUrl(getContext(), this.manageUrl);
     }
 
     public void set(long j, long j2, String str, int i) {

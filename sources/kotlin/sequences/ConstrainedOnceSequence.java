@@ -4,20 +4,20 @@ import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 import kotlin.jvm.internal.Intrinsics;
 
-public final class ConstrainedOnceSequence<T> implements Sequence<T> {
-    private final AtomicReference<Sequence<T>> sequenceRef;
+public final class ConstrainedOnceSequence implements Sequence {
+    private final AtomicReference sequenceRef;
 
-    public ConstrainedOnceSequence(Sequence<? extends T> sequence) {
+    public ConstrainedOnceSequence(Sequence sequence) {
         Intrinsics.checkNotNullParameter(sequence, "sequence");
-        this.sequenceRef = new AtomicReference<>(sequence);
+        this.sequenceRef = new AtomicReference(sequence);
     }
 
     @Override
-    public Iterator<T> iterator() {
-        Sequence<T> andSet = this.sequenceRef.getAndSet(null);
-        if (andSet == null) {
-            throw new IllegalStateException("This sequence can be consumed only once.");
+    public Iterator iterator() {
+        Sequence sequence = (Sequence) this.sequenceRef.getAndSet(null);
+        if (sequence != null) {
+            return sequence.iterator();
         }
-        return andSet.iterator();
+        throw new IllegalStateException("This sequence can be consumed only once.");
     }
 }

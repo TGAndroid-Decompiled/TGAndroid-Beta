@@ -27,7 +27,7 @@ public class TLRPC$TL_textConcat extends TLRPC$RichText {
         int size = this.texts.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.texts.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$RichText) this.texts.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

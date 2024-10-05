@@ -14,7 +14,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.AnimationProperties;
 
 public class ZoomControlView extends View {
-    public final Property<ZoomControlView, Float> ZOOM_PROPERTY;
+    public final Property ZOOM_PROPERTY;
     private float animatingToZoom;
     private AnimatorSet animatorSet;
     private ZoomControlViewDelegate delegate;
@@ -46,7 +46,12 @@ public class ZoomControlView extends View {
     public ZoomControlView(Context context) {
         super(context);
         this.enabledTouch = true;
-        this.ZOOM_PROPERTY = new AnimationProperties.FloatProperty<ZoomControlView>("clipProgress") {
+        this.ZOOM_PROPERTY = new AnimationProperties.FloatProperty("clipProgress") {
+            @Override
+            public Float get(ZoomControlView zoomControlView) {
+                return Float.valueOf(ZoomControlView.this.zoom);
+            }
+
             @Override
             public void setValue(ZoomControlView zoomControlView, float f) {
                 ZoomControlView.this.zoom = f;
@@ -55,11 +60,6 @@ public class ZoomControlView extends View {
                 }
                 ZoomControlView.this.invalidate();
             }
-
-            @Override
-            public Float get(ZoomControlView zoomControlView) {
-                return Float.valueOf(ZoomControlView.this.zoom);
-            }
         };
         this.minusDrawable = context.getResources().getDrawable(R.drawable.zoom_minus);
         this.plusDrawable = context.getResources().getDrawable(R.drawable.zoom_plus);
@@ -67,43 +67,6 @@ public class ZoomControlView extends View {
         this.filledProgressDrawable = context.getResources().getDrawable(R.drawable.zoom_slide_a);
         this.knobDrawable = context.getResources().getDrawable(R.drawable.zoom_round);
         this.pressedKnobDrawable = context.getResources().getDrawable(R.drawable.zoom_round_b);
-    }
-
-    public float getZoom() {
-        if (this.animatorSet != null) {
-            return this.animatingToZoom;
-        }
-        return this.zoom;
-    }
-
-    public void setZoom(float f, boolean z) {
-        ZoomControlViewDelegate zoomControlViewDelegate;
-        if (f == this.zoom) {
-            return;
-        }
-        if (f < 0.0f) {
-            f = 0.0f;
-        } else if (f > 1.0f) {
-            f = 1.0f;
-        }
-        this.zoom = f;
-        if (z && (zoomControlViewDelegate = this.delegate) != null) {
-            zoomControlViewDelegate.didSetZoom(f);
-        }
-        invalidate();
-    }
-
-    public void setDelegate(ZoomControlViewDelegate zoomControlViewDelegate) {
-        this.delegate = zoomControlViewDelegate;
-    }
-
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ZoomControlView.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    public boolean isTouch() {
-        return this.pressed || this.knobPressed;
     }
 
     private boolean animateToZoom(float f) {
@@ -117,7 +80,7 @@ public class ZoomControlView extends View {
         this.animatingToZoom = f;
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.animatorSet = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.ZOOM_PROPERTY, f));
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ZoomControlView, Float>) this.ZOOM_PROPERTY, f));
         this.animatorSet.setDuration(180L);
         this.animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -127,6 +90,14 @@ public class ZoomControlView extends View {
         });
         this.animatorSet.start();
         return true;
+    }
+
+    public float getZoom() {
+        return this.animatorSet != null ? this.animatingToZoom : this.zoom;
+    }
+
+    public boolean isTouch() {
+        return this.pressed || this.knobPressed;
     }
 
     @Override
@@ -183,5 +154,31 @@ public class ZoomControlView extends View {
         int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
         drawable.setBounds(i5 - intrinsicWidth, i6 - intrinsicWidth, i5 + intrinsicWidth, i6 + intrinsicWidth);
         drawable.draw(canvas);
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ZoomControlView.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public void setDelegate(ZoomControlViewDelegate zoomControlViewDelegate) {
+        this.delegate = zoomControlViewDelegate;
+    }
+
+    public void setZoom(float f, boolean z) {
+        ZoomControlViewDelegate zoomControlViewDelegate;
+        if (f == this.zoom) {
+            return;
+        }
+        if (f < 0.0f) {
+            f = 0.0f;
+        } else if (f > 1.0f) {
+            f = 1.0f;
+        }
+        this.zoom = f;
+        if (z && (zoomControlViewDelegate = this.delegate) != null) {
+            zoomControlViewDelegate.didSetZoom(f);
+        }
+        invalidate();
     }
 }

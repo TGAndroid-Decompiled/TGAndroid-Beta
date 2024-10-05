@@ -81,7 +81,7 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
             int size = this.quote_entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i4 = 0; i4 < size; i4++) {
-                this.quote_entities.get(i4).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.quote_entities.get(i4)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1024) != 0) {

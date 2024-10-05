@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_updatePendingJoinRequests extends TLRPC$Update {
     public TLRPC$Peer peer;
-    public ArrayList<Long> recent_requesters = new ArrayList<>();
+    public ArrayList recent_requesters = new ArrayList();
     public int requests_pending;
 
     @Override
@@ -33,7 +33,7 @@ public class TLRPC$TL_updatePendingJoinRequests extends TLRPC$Update {
         int size = this.recent_requesters.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt64(this.recent_requesters.get(i).longValue());
+            abstractSerializedData.writeInt64(((Long) this.recent_requesters.get(i)).longValue());
         }
     }
 }

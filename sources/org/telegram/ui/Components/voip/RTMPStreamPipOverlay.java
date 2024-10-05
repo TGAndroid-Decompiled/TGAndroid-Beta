@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -62,7 +61,7 @@ import org.telegram.ui.LaunchActivity;
 import org.webrtc.RendererCommon;
 
 public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCenterDelegate {
-    private static final FloatPropertyCompat<RTMPStreamPipOverlay> PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new SimpleFloatPropertyCompat.Getter() {
+    private static final FloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
             float f;
@@ -75,7 +74,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             RTMPStreamPipOverlay.lambda$static$1((RTMPStreamPipOverlay) obj, f);
         }
     });
-    private static final FloatPropertyCompat<RTMPStreamPipOverlay> PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new SimpleFloatPropertyCompat.Getter() {
+    private static final FloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
             float f;
@@ -88,8 +87,6 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             RTMPStreamPipOverlay.lambda$static$3((RTMPStreamPipOverlay) obj, f);
         }
     });
-
-    @SuppressLint({"StaticFieldLeak"})
     private static RTMPStreamPipOverlay instance = new RTMPStreamPipOverlay();
     private AccountInstance accountInstance;
     private Float aspectRatio;
@@ -131,90 +128,231 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         }
     };
 
-    public static void lambda$static$1(RTMPStreamPipOverlay rTMPStreamPipOverlay, float f) {
-        WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
-        rTMPStreamPipOverlay.pipX = f;
-        layoutParams.x = (int) f;
-        rTMPStreamPipOverlay.windowManager.updateViewLayout(rTMPStreamPipOverlay.contentView, layoutParams);
-    }
-
-    public static void lambda$static$3(RTMPStreamPipOverlay rTMPStreamPipOverlay, float f) {
-        WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
-        rTMPStreamPipOverlay.pipY = f;
-        layoutParams.y = (int) f;
-        rTMPStreamPipOverlay.windowManager.updateViewLayout(rTMPStreamPipOverlay.contentView, layoutParams);
-    }
-
-    public void lambda$new$4() {
-        this.isShowingControls = false;
-        toggleControls(false);
-        this.postedDismissControls = false;
-    }
-
-    public static boolean isVisible() {
-        return instance.isVisible;
-    }
-
-    public int getSuggestedWidth() {
-        float min;
-        float f;
-        if (getRatio() >= 1.0f) {
-            Point point = AndroidUtilities.displaySize;
-            min = Math.min(point.x, point.y);
-            f = 0.35f;
-        } else {
-            Point point2 = AndroidUtilities.displaySize;
-            min = Math.min(point2.x, point2.y);
-            f = 0.6f;
+    public class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
+        AnonymousClass3() {
         }
-        return (int) (min * f);
-    }
 
-    public int getSuggestedHeight() {
-        return (int) (getSuggestedWidth() * getRatio());
-    }
+        public void lambda$onScale$0() {
+            RTMPStreamPipOverlay.this.contentFrameLayout.invalidate();
+            if (RTMPStreamPipOverlay.this.contentFrameLayout.isInLayout()) {
+                return;
+            }
+            RTMPStreamPipOverlay.this.contentFrameLayout.requestLayout();
+            RTMPStreamPipOverlay.this.contentView.requestLayout();
+            RTMPStreamPipOverlay.this.textureView.requestLayout();
+        }
 
-    private float getRatio() {
-        float f;
-        if (this.aspectRatio == null) {
-            if (VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.isEmpty()) {
-                float f2 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).aspectRatio;
-                if (f2 != 0.0f) {
-                    f = 1.0f / f2;
-                    this.aspectRatio = Float.valueOf(f);
-                    Point point = AndroidUtilities.displaySize;
-                    this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth();
+        public void updateLayout() {
+            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+            WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
+            int suggestedWidth = (int) (RTMPStreamPipOverlay.this.getSuggestedWidth() * RTMPStreamPipOverlay.this.scaleFactor);
+            layoutParams.width = suggestedWidth;
+            rTMPStreamPipOverlay.pipWidth = suggestedWidth;
+            RTMPStreamPipOverlay rTMPStreamPipOverlay2 = RTMPStreamPipOverlay.this;
+            WindowManager.LayoutParams layoutParams2 = rTMPStreamPipOverlay2.windowLayoutParams;
+            int suggestedHeight = (int) (RTMPStreamPipOverlay.this.getSuggestedHeight() * RTMPStreamPipOverlay.this.scaleFactor);
+            layoutParams2.height = suggestedHeight;
+            rTMPStreamPipOverlay2.pipHeight = suggestedHeight;
+            RTMPStreamPipOverlay.this.windowManager.updateViewLayout(RTMPStreamPipOverlay.this.contentView, RTMPStreamPipOverlay.this.windowLayoutParams);
+        }
+
+        @Override
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+            rTMPStreamPipOverlay.scaleFactor = MathUtils.clamp(rTMPStreamPipOverlay.scaleFactor * scaleGestureDetector.getScaleFactor(), RTMPStreamPipOverlay.this.minScaleFactor, RTMPStreamPipOverlay.this.maxScaleFactor);
+            RTMPStreamPipOverlay.this.pipWidth = (int) (r0.getSuggestedWidth() * RTMPStreamPipOverlay.this.scaleFactor);
+            RTMPStreamPipOverlay.this.pipHeight = (int) (r0.getSuggestedHeight() * RTMPStreamPipOverlay.this.scaleFactor);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    RTMPStreamPipOverlay.AnonymousClass3.this.lambda$onScale$0();
                 }
+            });
+            ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring().setFinalPosition(scaleGestureDetector.getFocusX() >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+            if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
+                RTMPStreamPipOverlay.this.pipXSpring.start();
             }
-            f = 0.5625f;
-            this.aspectRatio = Float.valueOf(f);
-            Point point2 = AndroidUtilities.displaySize;
-            this.maxScaleFactor = (Math.min(point2.x, point2.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth();
+            ((SpringAnimation) RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(scaleGestureDetector.getFocusY() - (RTMPStreamPipOverlay.this.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
+            if (RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
+                return true;
+            }
+            RTMPStreamPipOverlay.this.pipYSpring.start();
+            return true;
         }
-        return this.aspectRatio.floatValue();
+
+        @Override
+        public boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+            if (RTMPStreamPipOverlay.this.isScrolling) {
+                RTMPStreamPipOverlay.this.isScrolling = false;
+            }
+            RTMPStreamPipOverlay.this.isScrollDisallowed = true;
+            RTMPStreamPipOverlay.this.windowLayoutParams.width = (int) (RTMPStreamPipOverlay.this.getSuggestedWidth() * RTMPStreamPipOverlay.this.maxScaleFactor);
+            RTMPStreamPipOverlay.this.windowLayoutParams.height = (int) (RTMPStreamPipOverlay.this.getSuggestedHeight() * RTMPStreamPipOverlay.this.maxScaleFactor);
+            RTMPStreamPipOverlay.this.windowManager.updateViewLayout(RTMPStreamPipOverlay.this.contentView, RTMPStreamPipOverlay.this.windowLayoutParams);
+            return true;
+        }
+
+        @Override
+        public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+            if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning() && !RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
+                updateLayout();
+                return;
+            }
+            final ArrayList arrayList = new ArrayList();
+            DynamicAnimation.OnAnimationEndListener onAnimationEndListener = new DynamicAnimation.OnAnimationEndListener() {
+                @Override
+                public void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+                    dynamicAnimation.removeEndListener(this);
+                    arrayList.add((SpringAnimation) dynamicAnimation);
+                    if (arrayList.size() == 2) {
+                        AnonymousClass3.this.updateLayout();
+                    }
+                }
+            };
+            if (RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
+                RTMPStreamPipOverlay.this.pipXSpring.addEndListener(onAnimationEndListener);
+            } else {
+                arrayList.add(RTMPStreamPipOverlay.this.pipXSpring);
+            }
+            if (RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
+                RTMPStreamPipOverlay.this.pipYSpring.addEndListener(onAnimationEndListener);
+            } else {
+                arrayList.add(RTMPStreamPipOverlay.this.pipYSpring);
+            }
+        }
     }
 
-    public void toggleControls(boolean z) {
-        ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(200L);
-        this.scaleAnimator = duration;
-        duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.scaleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                RTMPStreamPipOverlay.this.lambda$toggleControls$5(valueAnimator);
+    public class AnonymousClass8 implements RendererCommon.RendererEvents {
+        AnonymousClass8() {
+        }
+
+        public void lambda$onFirstFrameRendered$0() {
+            RTMPStreamPipOverlay.this.bindTextureView();
+        }
+
+        public void lambda$onFrameResolutionChanged$1() {
+            RTMPStreamPipOverlay.this.bindTextureView();
+        }
+
+        @Override
+        public void onFirstFrameRendered() {
+            RTMPStreamPipOverlay.this.firstFrameRendered = true;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    RTMPStreamPipOverlay.AnonymousClass8.this.lambda$onFirstFrameRendered$0();
+                }
+            });
+        }
+
+        @Override
+        public void onFrameResolutionChanged(int i, int i2, int i3) {
+            RTMPStreamPipOverlay rTMPStreamPipOverlay;
+            Float valueOf;
+            if ((i3 / 90) % 2 == 0) {
+                rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+                valueOf = Float.valueOf(i2 / i);
+            } else {
+                rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+                valueOf = Float.valueOf(i / i2);
             }
-        });
-        this.scaleAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                RTMPStreamPipOverlay.this.scaleAnimator = null;
-            }
-        });
-        this.scaleAnimator.start();
+            rTMPStreamPipOverlay.aspectRatio = valueOf;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    RTMPStreamPipOverlay.AnonymousClass8.this.lambda$onFrameResolutionChanged$1();
+                }
+            });
+        }
     }
 
-    public void lambda$toggleControls$5(ValueAnimator valueAnimator) {
-        this.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public void bindTextureView() {
+        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
+        TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo;
+        TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo2;
+        ImageLocation forChat;
+        GradientDrawable gradientDrawable;
+        TLRPC$Chat tLRPC$Chat;
+        boolean z = true;
+        if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().groupCall != null && !VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.isEmpty()) {
+            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant2 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).participant;
+            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant3 = this.boundParticipant;
+            if (tLRPC$TL_groupCallParticipant3 == null || MessageObject.getPeerId(tLRPC$TL_groupCallParticipant3.peer) != MessageObject.getPeerId(tLRPC$TL_groupCallParticipant2.peer)) {
+                if (this.boundParticipant != null) {
+                    VoIPService.getSharedInstance().removeRemoteSink(this.boundParticipant, this.boundPresentation);
+                }
+                this.boundPresentation = tLRPC$TL_groupCallParticipant2.presentation != null;
+                if (tLRPC$TL_groupCallParticipant2.self) {
+                    VoIPService.getSharedInstance().setSinks(this.textureView.renderer, this.boundPresentation, null);
+                } else {
+                    VoIPService.getSharedInstance().addRemoteSink(tLRPC$TL_groupCallParticipant2, this.boundPresentation, this.textureView.renderer, null);
+                }
+                MessagesController messagesController = VoIPService.getSharedInstance().groupCall.currentAccount.getMessagesController();
+                long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant2.peer);
+                if (peerId > 0) {
+                    TLRPC$User user = messagesController.getUser(Long.valueOf(peerId));
+                    forChat = ImageLocation.getForUser(user, 1);
+                    int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
+                    gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)});
+                    tLRPC$Chat = user;
+                } else {
+                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-peerId));
+                    forChat = ImageLocation.getForChat(chat, 1);
+                    int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
+                    gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)});
+                    tLRPC$Chat = chat;
+                }
+                this.avatarImageView.getImageReceiver().setImage(forChat, "50_50_b", gradientDrawable, null, tLRPC$Chat, 0);
+                this.boundParticipant = tLRPC$TL_groupCallParticipant2;
+            }
+        } else if (this.boundParticipant != null) {
+            if (VoIPService.getSharedInstance() != null) {
+                VoIPService.getSharedInstance().removeRemoteSink(this.boundParticipant, false);
+            }
+            this.boundParticipant = null;
+        }
+        if (this.firstFrameRendered && (tLRPC$TL_groupCallParticipant = this.boundParticipant) != null && (((tLRPC$TL_groupCallParticipantVideo = tLRPC$TL_groupCallParticipant.video) != null || tLRPC$TL_groupCallParticipant.presentation != null) && ((tLRPC$TL_groupCallParticipantVideo == null || !tLRPC$TL_groupCallParticipantVideo.paused) && ((tLRPC$TL_groupCallParticipantVideo2 = tLRPC$TL_groupCallParticipant.presentation) == null || !tLRPC$TL_groupCallParticipantVideo2.paused)))) {
+            z = false;
+        }
+        if (this.placeholderShown != z) {
+            this.flickerView.animate().cancel();
+            ViewPropertyAnimator duration = this.flickerView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L);
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+            duration.setInterpolator(cubicBezierInterpolator).start();
+            this.avatarImageView.animate().cancel();
+            this.avatarImageView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L).setInterpolator(cubicBezierInterpolator).start();
+            this.textureView.animate().cancel();
+            this.textureView.animate().alpha(z ? 0.0f : 1.0f).setDuration(150L).setInterpolator(cubicBezierInterpolator).start();
+            this.placeholderShown = z;
+        }
+        if (this.pipWidth == getSuggestedWidth() * this.scaleFactor && this.pipHeight == getSuggestedHeight() * this.scaleFactor) {
+            return;
+        }
+        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
+        int suggestedWidth = (int) (getSuggestedWidth() * this.scaleFactor);
+        this.pipWidth = suggestedWidth;
+        layoutParams.width = suggestedWidth;
+        WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
+        int suggestedHeight = (int) (getSuggestedHeight() * this.scaleFactor);
+        this.pipHeight = suggestedHeight;
+        layoutParams2.height = suggestedHeight;
+        this.windowManager.updateViewLayout(this.contentView, this.windowLayoutParams);
+        SpringForce spring = ((SpringAnimation) this.pipXSpring.setStartValue(this.pipX)).getSpring();
+        float suggestedWidth2 = this.pipX + ((getSuggestedWidth() * this.scaleFactor) / 2.0f);
+        float f = AndroidUtilities.displaySize.x;
+        spring.setFinalPosition(suggestedWidth2 >= f / 2.0f ? (f - (getSuggestedWidth() * this.scaleFactor)) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+        this.pipXSpring.start();
+        ((SpringAnimation) this.pipYSpring.setStartValue(this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (getSuggestedHeight() * this.scaleFactor)) - AndroidUtilities.dp(16.0f)));
+        this.pipYSpring.start();
+    }
+
+    private WindowManager.LayoutParams createWindowLayoutParams() {
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.gravity = 51;
+        layoutParams.format = -3;
+        layoutParams.type = AndroidUtilities.checkInlinePermissions(ApplicationLoader.applicationContext) ? Build.VERSION.SDK_INT >= 26 ? 2038 : 2003 : 2999;
+        layoutParams.flags = 520;
+        return layoutParams;
     }
 
     public static void dismiss() {
@@ -261,8 +399,87 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         }
     }
 
+    private float getRatio() {
+        float f;
+        if (this.aspectRatio == null) {
+            if (VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.isEmpty()) {
+                float f2 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).aspectRatio;
+                if (f2 != 0.0f) {
+                    f = 1.0f / f2;
+                    this.aspectRatio = Float.valueOf(f);
+                    Point point = AndroidUtilities.displaySize;
+                    this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth();
+                }
+            }
+            f = 0.5625f;
+            this.aspectRatio = Float.valueOf(f);
+            Point point2 = AndroidUtilities.displaySize;
+            this.maxScaleFactor = (Math.min(point2.x, point2.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth();
+        }
+        return this.aspectRatio.floatValue();
+    }
+
+    public int getSuggestedHeight() {
+        return (int) (getSuggestedWidth() * getRatio());
+    }
+
+    public int getSuggestedWidth() {
+        float min;
+        float f;
+        if (getRatio() >= 1.0f) {
+            Point point = AndroidUtilities.displaySize;
+            min = Math.min(point.x, point.y);
+            f = 0.35f;
+        } else {
+            Point point2 = AndroidUtilities.displaySize;
+            min = Math.min(point2.x, point2.y);
+            f = 0.6f;
+        }
+        return (int) (min * f);
+    }
+
+    public static boolean isVisible() {
+        return instance.isVisible;
+    }
+
     public static void lambda$dismissInternal$6() {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+    }
+
+    public void lambda$new$4() {
+        this.isShowingControls = false;
+        toggleControls(false);
+        this.postedDismissControls = false;
+    }
+
+    public static void lambda$showInternal$8(Context context, View view) {
+        if (VoIPService.getSharedInstance() != null) {
+            Intent action = new Intent(context, (Class<?>) LaunchActivity.class).setAction("voip_chat");
+            action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
+            if (!(context instanceof Activity)) {
+                action.addFlags(268435456);
+            }
+            context.startActivity(action);
+            dismiss();
+        }
+    }
+
+    public static void lambda$static$1(RTMPStreamPipOverlay rTMPStreamPipOverlay, float f) {
+        WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
+        rTMPStreamPipOverlay.pipX = f;
+        layoutParams.x = (int) f;
+        rTMPStreamPipOverlay.windowManager.updateViewLayout(rTMPStreamPipOverlay.contentView, layoutParams);
+    }
+
+    public static void lambda$static$3(RTMPStreamPipOverlay rTMPStreamPipOverlay, float f) {
+        WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
+        rTMPStreamPipOverlay.pipY = f;
+        layoutParams.y = (int) f;
+        rTMPStreamPipOverlay.windowManager.updateViewLayout(rTMPStreamPipOverlay.contentView, layoutParams);
+    }
+
+    public void lambda$toggleControls$5(ValueAnimator valueAnimator) {
+        this.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public static void show() {
@@ -315,32 +532,13 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             }
 
             @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                if (RTMPStreamPipOverlay.this.scaleAnimator != null) {
-                    return true;
-                }
-                if (RTMPStreamPipOverlay.this.postedDismissControls) {
-                    AndroidUtilities.cancelRunOnUIThread(RTMPStreamPipOverlay.this.dismissControlsCallback);
-                    RTMPStreamPipOverlay.this.postedDismissControls = false;
-                }
-                RTMPStreamPipOverlay.this.isShowingControls = !r4.isShowingControls;
-                RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
-                rTMPStreamPipOverlay.toggleControls(rTMPStreamPipOverlay.isShowingControls);
-                if (RTMPStreamPipOverlay.this.isShowingControls && !RTMPStreamPipOverlay.this.postedDismissControls) {
-                    AndroidUtilities.runOnUIThread(RTMPStreamPipOverlay.this.dismissControlsCallback, 2500L);
-                    RTMPStreamPipOverlay.this.postedDismissControls = true;
-                }
-                return true;
-            }
-
-            @Override
             public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
                 if (!RTMPStreamPipOverlay.this.isScrolling || RTMPStreamPipOverlay.this.isScrollDisallowed) {
                     return false;
                 }
-                RTMPStreamPipOverlay.this.pipXSpring.setStartVelocity(f).setStartValue(RTMPStreamPipOverlay.this.pipX).getSpring().setFinalPosition((RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f)) + (f / 7.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r0 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                ((SpringAnimation) ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring().setFinalPosition((RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f)) + (f / 7.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r0 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                 RTMPStreamPipOverlay.this.pipXSpring.start();
-                RTMPStreamPipOverlay.this.pipYSpring.setStartVelocity(f).setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
+                ((SpringAnimation) ((SpringAnimation) RTMPStreamPipOverlay.this.pipYSpring.setStartVelocity(f)).setStartValue(RTMPStreamPipOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
                 RTMPStreamPipOverlay.this.pipYSpring.start();
                 return true;
             }
@@ -356,6 +554,25 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                     RTMPStreamPipOverlay.this.windowLayoutParams.x = (int) RTMPStreamPipOverlay.this.pipX = (this.startPipX + motionEvent2.getRawX()) - motionEvent.getRawX();
                     RTMPStreamPipOverlay.this.windowLayoutParams.y = (int) RTMPStreamPipOverlay.this.pipY = (this.startPipY + motionEvent2.getRawY()) - motionEvent.getRawY();
                     RTMPStreamPipOverlay.this.windowManager.updateViewLayout(RTMPStreamPipOverlay.this.contentView, RTMPStreamPipOverlay.this.windowLayoutParams);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent motionEvent) {
+                if (RTMPStreamPipOverlay.this.scaleAnimator != null) {
+                    return true;
+                }
+                if (RTMPStreamPipOverlay.this.postedDismissControls) {
+                    AndroidUtilities.cancelRunOnUIThread(RTMPStreamPipOverlay.this.dismissControlsCallback);
+                    RTMPStreamPipOverlay.this.postedDismissControls = false;
+                }
+                RTMPStreamPipOverlay.this.isShowingControls = !r4.isShowingControls;
+                RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+                rTMPStreamPipOverlay.toggleControls(rTMPStreamPipOverlay.isShowingControls);
+                if (RTMPStreamPipOverlay.this.isShowingControls && !RTMPStreamPipOverlay.this.postedDismissControls) {
+                    AndroidUtilities.runOnUIThread(RTMPStreamPipOverlay.this.dismissControlsCallback, 2500L);
+                    RTMPStreamPipOverlay.this.postedDismissControls = true;
                 }
                 return true;
             }
@@ -387,21 +604,15 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                     RTMPStreamPipOverlay.this.isScrolling = false;
                     RTMPStreamPipOverlay.this.isScrollDisallowed = false;
                     if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
-                        RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX).getSpring().setFinalPosition(RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r6 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                        ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring().setFinalPosition(RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r6 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                         RTMPStreamPipOverlay.this.pipXSpring.start();
                     }
                     if (!RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
-                        RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
+                        ((SpringAnimation) RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
                         RTMPStreamPipOverlay.this.pipYSpring.start();
                     }
                 }
                 return onTouchEvent || z;
-            }
-
-            @Override
-            protected void onConfigurationChanged(Configuration configuration) {
-                AndroidUtilities.checkDisplaySize(getContext(), configuration);
-                RTMPStreamPipOverlay.this.bindTextureView();
             }
 
             @Override
@@ -414,6 +625,13 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                 canvas.clipPath(this.path);
                 super.draw(canvas);
                 canvas.restore();
+            }
+
+            @Override
+            protected void onConfigurationChanged(Configuration configuration) {
+                AndroidUtilities.checkDisplaySize(getContext(), configuration);
+                AndroidUtilities.setPreferredMaxRefreshRate(RTMPStreamPipOverlay.this.windowManager, RTMPStreamPipOverlay.this.contentView, RTMPStreamPipOverlay.this.windowLayoutParams);
+                RTMPStreamPipOverlay.this.bindTextureView();
             }
 
             @Override
@@ -539,6 +757,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         this.contentView.setAlpha(0.0f);
         this.contentView.setScaleX(0.1f);
         this.contentView.setScaleY(0.1f);
+        AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.contentView, this.windowLayoutParams);
         this.windowManager.addView(this.contentView, this.windowLayoutParams);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
@@ -549,242 +768,23 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
-    public class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
-        AnonymousClass3() {
-        }
-
-        @Override
-        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
-            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
-            rTMPStreamPipOverlay.scaleFactor = MathUtils.clamp(rTMPStreamPipOverlay.scaleFactor * scaleGestureDetector.getScaleFactor(), RTMPStreamPipOverlay.this.minScaleFactor, RTMPStreamPipOverlay.this.maxScaleFactor);
-            RTMPStreamPipOverlay.this.pipWidth = (int) (r0.getSuggestedWidth() * RTMPStreamPipOverlay.this.scaleFactor);
-            RTMPStreamPipOverlay.this.pipHeight = (int) (r0.getSuggestedHeight() * RTMPStreamPipOverlay.this.scaleFactor);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    RTMPStreamPipOverlay.AnonymousClass3.this.lambda$onScale$0();
-                }
-            });
-            RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX).getSpring().setFinalPosition(scaleGestureDetector.getFocusX() >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
-            if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
-                RTMPStreamPipOverlay.this.pipXSpring.start();
+    public void toggleControls(boolean z) {
+        ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(200L);
+        this.scaleAnimator = duration;
+        duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.scaleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                RTMPStreamPipOverlay.this.lambda$toggleControls$5(valueAnimator);
             }
-            RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(scaleGestureDetector.getFocusY() - (RTMPStreamPipOverlay.this.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
-            if (RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
-                return true;
+        });
+        this.scaleAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                RTMPStreamPipOverlay.this.scaleAnimator = null;
             }
-            RTMPStreamPipOverlay.this.pipYSpring.start();
-            return true;
-        }
-
-        public void lambda$onScale$0() {
-            RTMPStreamPipOverlay.this.contentFrameLayout.invalidate();
-            if (RTMPStreamPipOverlay.this.contentFrameLayout.isInLayout()) {
-                return;
-            }
-            RTMPStreamPipOverlay.this.contentFrameLayout.requestLayout();
-            RTMPStreamPipOverlay.this.contentView.requestLayout();
-            RTMPStreamPipOverlay.this.textureView.requestLayout();
-        }
-
-        @Override
-        public boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-            if (RTMPStreamPipOverlay.this.isScrolling) {
-                RTMPStreamPipOverlay.this.isScrolling = false;
-            }
-            RTMPStreamPipOverlay.this.isScrollDisallowed = true;
-            RTMPStreamPipOverlay.this.windowLayoutParams.width = (int) (RTMPStreamPipOverlay.this.getSuggestedWidth() * RTMPStreamPipOverlay.this.maxScaleFactor);
-            RTMPStreamPipOverlay.this.windowLayoutParams.height = (int) (RTMPStreamPipOverlay.this.getSuggestedHeight() * RTMPStreamPipOverlay.this.maxScaleFactor);
-            RTMPStreamPipOverlay.this.windowManager.updateViewLayout(RTMPStreamPipOverlay.this.contentView, RTMPStreamPipOverlay.this.windowLayoutParams);
-            return true;
-        }
-
-        @Override
-        public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-            if (RTMPStreamPipOverlay.this.pipXSpring.isRunning() || RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
-                final ArrayList arrayList = new ArrayList();
-                DynamicAnimation.OnAnimationEndListener onAnimationEndListener = new DynamicAnimation.OnAnimationEndListener() {
-                    @Override
-                    public void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                        dynamicAnimation.removeEndListener(this);
-                        arrayList.add((SpringAnimation) dynamicAnimation);
-                        if (arrayList.size() == 2) {
-                            AnonymousClass3.this.updateLayout();
-                        }
-                    }
-                };
-                if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
-                    arrayList.add(RTMPStreamPipOverlay.this.pipXSpring);
-                } else {
-                    RTMPStreamPipOverlay.this.pipXSpring.addEndListener(onAnimationEndListener);
-                }
-                if (!RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
-                    arrayList.add(RTMPStreamPipOverlay.this.pipYSpring);
-                    return;
-                } else {
-                    RTMPStreamPipOverlay.this.pipYSpring.addEndListener(onAnimationEndListener);
-                    return;
-                }
-            }
-            updateLayout();
-        }
-
-        public void updateLayout() {
-            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
-            WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
-            int suggestedWidth = (int) (RTMPStreamPipOverlay.this.getSuggestedWidth() * RTMPStreamPipOverlay.this.scaleFactor);
-            layoutParams.width = suggestedWidth;
-            rTMPStreamPipOverlay.pipWidth = suggestedWidth;
-            RTMPStreamPipOverlay rTMPStreamPipOverlay2 = RTMPStreamPipOverlay.this;
-            WindowManager.LayoutParams layoutParams2 = rTMPStreamPipOverlay2.windowLayoutParams;
-            int suggestedHeight = (int) (RTMPStreamPipOverlay.this.getSuggestedHeight() * RTMPStreamPipOverlay.this.scaleFactor);
-            layoutParams2.height = suggestedHeight;
-            rTMPStreamPipOverlay2.pipHeight = suggestedHeight;
-            RTMPStreamPipOverlay.this.windowManager.updateViewLayout(RTMPStreamPipOverlay.this.contentView, RTMPStreamPipOverlay.this.windowLayoutParams);
-        }
-    }
-
-    public class AnonymousClass8 implements RendererCommon.RendererEvents {
-        AnonymousClass8() {
-        }
-
-        @Override
-        public void onFirstFrameRendered() {
-            RTMPStreamPipOverlay.this.firstFrameRendered = true;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    RTMPStreamPipOverlay.AnonymousClass8.this.lambda$onFirstFrameRendered$0();
-                }
-            });
-        }
-
-        public void lambda$onFirstFrameRendered$0() {
-            RTMPStreamPipOverlay.this.bindTextureView();
-        }
-
-        @Override
-        public void onFrameResolutionChanged(int i, int i2, int i3) {
-            if ((i3 / 90) % 2 == 0) {
-                RTMPStreamPipOverlay.this.aspectRatio = Float.valueOf(i2 / i);
-            } else {
-                RTMPStreamPipOverlay.this.aspectRatio = Float.valueOf(i / i2);
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    RTMPStreamPipOverlay.AnonymousClass8.this.lambda$onFrameResolutionChanged$1();
-                }
-            });
-        }
-
-        public void lambda$onFrameResolutionChanged$1() {
-            RTMPStreamPipOverlay.this.bindTextureView();
-        }
-    }
-
-    public static void lambda$showInternal$8(Context context, View view) {
-        if (VoIPService.getSharedInstance() != null) {
-            Intent action = new Intent(context, (Class<?>) LaunchActivity.class).setAction("voip_chat");
-            action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
-            if (!(context instanceof Activity)) {
-                action.addFlags(268435456);
-            }
-            context.startActivity(action);
-            dismiss();
-        }
-    }
-
-    public void bindTextureView() {
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
-        TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo;
-        TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo2;
-        boolean z = true;
-        if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().groupCall != null && !VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.isEmpty()) {
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant2 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).participant;
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant3 = this.boundParticipant;
-            if (tLRPC$TL_groupCallParticipant3 == null || MessageObject.getPeerId(tLRPC$TL_groupCallParticipant3.peer) != MessageObject.getPeerId(tLRPC$TL_groupCallParticipant2.peer)) {
-                if (this.boundParticipant != null) {
-                    VoIPService.getSharedInstance().removeRemoteSink(this.boundParticipant, this.boundPresentation);
-                }
-                this.boundPresentation = tLRPC$TL_groupCallParticipant2.presentation != null;
-                if (tLRPC$TL_groupCallParticipant2.self) {
-                    VoIPService.getSharedInstance().setSinks(this.textureView.renderer, this.boundPresentation, null);
-                } else {
-                    VoIPService.getSharedInstance().addRemoteSink(tLRPC$TL_groupCallParticipant2, this.boundPresentation, this.textureView.renderer, null);
-                }
-                MessagesController messagesController = VoIPService.getSharedInstance().groupCall.currentAccount.getMessagesController();
-                long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant2.peer);
-                if (peerId > 0) {
-                    TLRPC$User user = messagesController.getUser(Long.valueOf(peerId));
-                    ImageLocation forUser = ImageLocation.getForUser(user, 1);
-                    int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
-                    this.avatarImageView.getImageReceiver().setImage(forUser, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)}), null, user, 0);
-                } else {
-                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-peerId));
-                    ImageLocation forChat = ImageLocation.getForChat(chat, 1);
-                    int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
-                    this.avatarImageView.getImageReceiver().setImage(forChat, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)}), null, chat, 0);
-                }
-                this.boundParticipant = tLRPC$TL_groupCallParticipant2;
-            }
-        } else if (this.boundParticipant != null) {
-            if (VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().removeRemoteSink(this.boundParticipant, false);
-            }
-            this.boundParticipant = null;
-        }
-        if (this.firstFrameRendered && (tLRPC$TL_groupCallParticipant = this.boundParticipant) != null && (((tLRPC$TL_groupCallParticipantVideo = tLRPC$TL_groupCallParticipant.video) != null || tLRPC$TL_groupCallParticipant.presentation != null) && ((tLRPC$TL_groupCallParticipantVideo == null || !tLRPC$TL_groupCallParticipantVideo.paused) && ((tLRPC$TL_groupCallParticipantVideo2 = tLRPC$TL_groupCallParticipant.presentation) == null || !tLRPC$TL_groupCallParticipantVideo2.paused)))) {
-            z = false;
-        }
-        if (this.placeholderShown != z) {
-            this.flickerView.animate().cancel();
-            ViewPropertyAnimator duration = this.flickerView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L);
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-            duration.setInterpolator(cubicBezierInterpolator).start();
-            this.avatarImageView.animate().cancel();
-            this.avatarImageView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L).setInterpolator(cubicBezierInterpolator).start();
-            this.textureView.animate().cancel();
-            this.textureView.animate().alpha(z ? 0.0f : 1.0f).setDuration(150L).setInterpolator(cubicBezierInterpolator).start();
-            this.placeholderShown = z;
-        }
-        if (this.pipWidth == getSuggestedWidth() * this.scaleFactor && this.pipHeight == getSuggestedHeight() * this.scaleFactor) {
-            return;
-        }
-        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-        int suggestedWidth = (int) (getSuggestedWidth() * this.scaleFactor);
-        this.pipWidth = suggestedWidth;
-        layoutParams.width = suggestedWidth;
-        WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
-        int suggestedHeight = (int) (getSuggestedHeight() * this.scaleFactor);
-        this.pipHeight = suggestedHeight;
-        layoutParams2.height = suggestedHeight;
-        this.windowManager.updateViewLayout(this.contentView, this.windowLayoutParams);
-        SpringForce spring = this.pipXSpring.setStartValue(this.pipX).getSpring();
-        float suggestedWidth2 = this.pipX + ((getSuggestedWidth() * this.scaleFactor) / 2.0f);
-        float f = AndroidUtilities.displaySize.x;
-        spring.setFinalPosition(suggestedWidth2 >= f / 2.0f ? (f - (getSuggestedWidth() * this.scaleFactor)) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
-        this.pipXSpring.start();
-        this.pipYSpring.setStartValue(this.pipY).getSpring().setFinalPosition(MathUtils.clamp(this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (getSuggestedHeight() * this.scaleFactor)) - AndroidUtilities.dp(16.0f)));
-        this.pipYSpring.start();
-    }
-
-    @SuppressLint({"WrongConstant"})
-    private WindowManager.LayoutParams createWindowLayoutParams() {
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.gravity = 51;
-        layoutParams.format = -3;
-        if (AndroidUtilities.checkInlinePermissions(ApplicationLoader.applicationContext)) {
-            if (Build.VERSION.SDK_INT >= 26) {
-                layoutParams.type = 2038;
-            } else {
-                layoutParams.type = 2003;
-            }
-        } else {
-            layoutParams.type = 2999;
-        }
-        layoutParams.flags = 520;
-        return layoutParams;
+        });
+        this.scaleAnimator.start();
     }
 
     @Override

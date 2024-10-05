@@ -1,5 +1,5 @@
 package kotlin;
 
-public interface Lazy<T> {
-    T getValue();
+public interface Lazy {
+    Object getValue();
 }

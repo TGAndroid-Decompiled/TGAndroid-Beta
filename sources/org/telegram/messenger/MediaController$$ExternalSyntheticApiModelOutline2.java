@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class MediaController$$ExternalSyntheticApiModelOutline2 {
+public abstract class MediaController$$ExternalSyntheticApiModelOutline2 {
 }

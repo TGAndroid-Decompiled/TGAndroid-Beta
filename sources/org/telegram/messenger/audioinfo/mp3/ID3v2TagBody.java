@@ -1,7 +1,6 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.InflaterInputStream;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
@@ -11,30 +10,14 @@ public class ID3v2TagBody {
     private final RangeInputStream input;
     private final ID3v2TagHeader tagHeader;
 
-    public ID3v2TagBody(InputStream inputStream, long j, int i, ID3v2TagHeader iD3v2TagHeader) throws IOException {
+    public ID3v2TagBody(InputStream inputStream, long j, int i, ID3v2TagHeader iD3v2TagHeader) {
         RangeInputStream rangeInputStream = new RangeInputStream(inputStream, j, i);
         this.input = rangeInputStream;
         this.data = new ID3v2DataInput(rangeInputStream);
         this.tagHeader = iD3v2TagHeader;
     }
 
-    public ID3v2DataInput getData() {
-        return this.data;
-    }
-
-    public long getPosition() {
-        return this.input.getPosition();
-    }
-
-    public long getRemainingLength() {
-        return this.input.getRemainingLength();
-    }
-
-    public ID3v2TagHeader getTagHeader() {
-        return this.tagHeader;
-    }
-
-    public ID3v2FrameBody frameBody(ID3v2FrameHeader iD3v2FrameHeader) throws IOException, ID3v2Exception {
+    public ID3v2FrameBody frameBody(ID3v2FrameHeader iD3v2FrameHeader) {
         int i;
         InputStream inputStream;
         int bodySize = iD3v2FrameHeader.getBodySize();
@@ -66,6 +49,22 @@ public class ID3v2TagBody {
             inputStream = inputStream2;
         }
         return new ID3v2FrameBody(inputStream, iD3v2FrameHeader.getHeaderSize(), i, this.tagHeader, iD3v2FrameHeader);
+    }
+
+    public ID3v2DataInput getData() {
+        return this.data;
+    }
+
+    public long getPosition() {
+        return this.input.getPosition();
+    }
+
+    public long getRemainingLength() {
+        return this.input.getRemainingLength();
+    }
+
+    public ID3v2TagHeader getTagHeader() {
+        return this.tagHeader;
     }
 
     public String toString() {

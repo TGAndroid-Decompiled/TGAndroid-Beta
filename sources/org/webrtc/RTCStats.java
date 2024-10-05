@@ -15,12 +15,30 @@ public class RTCStats {
         this.members = map;
     }
 
-    public double getTimestampUs() {
-        return this.timestampUs;
+    private static void appendValue(StringBuilder sb, Object obj) {
+        if (!(obj instanceof Object[])) {
+            if (!(obj instanceof String)) {
+                sb.append(obj);
+                return;
+            }
+            sb.append('\"');
+            sb.append(obj);
+            sb.append('\"');
+            return;
+        }
+        Object[] objArr = (Object[]) obj;
+        sb.append('[');
+        for (int i = 0; i < objArr.length; i++) {
+            if (i != 0) {
+                sb.append(", ");
+            }
+            appendValue(sb, objArr[i]);
+        }
+        sb.append(']');
     }
 
-    public String getType() {
-        return this.type;
+    static RTCStats create(long j, String str, String str2, Map map) {
+        return new RTCStats(j, str, str2, map);
     }
 
     public String getId() {
@@ -29,6 +47,14 @@ public class RTCStats {
 
     public Map<String, Object> getMembers() {
         return this.members;
+    }
+
+    public double getTimestampUs() {
+        return this.timestampUs;
+    }
+
+    public String getType() {
+        return this.type;
     }
 
     public String toString() {
@@ -47,32 +73,5 @@ public class RTCStats {
         }
         sb.append(" }");
         return sb.toString();
-    }
-
-    private static void appendValue(StringBuilder sb, Object obj) {
-        if (obj instanceof Object[]) {
-            Object[] objArr = (Object[]) obj;
-            sb.append('[');
-            for (int i = 0; i < objArr.length; i++) {
-                if (i != 0) {
-                    sb.append(", ");
-                }
-                appendValue(sb, objArr[i]);
-            }
-            sb.append(']');
-            return;
-        }
-        if (obj instanceof String) {
-            sb.append('\"');
-            sb.append(obj);
-            sb.append('\"');
-            return;
-        }
-        sb.append(obj);
-    }
-
-    @CalledByNative
-    static RTCStats create(long j, String str, String str2, Map map) {
-        return new RTCStats(j, str, str2, map);
     }
 }

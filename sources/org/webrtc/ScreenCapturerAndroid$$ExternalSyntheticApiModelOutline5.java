@@ -1,4 +1,4 @@
 package org.webrtc;
 
-public final class ScreenCapturerAndroid$$ExternalSyntheticApiModelOutline5 {
+public abstract class ScreenCapturerAndroid$$ExternalSyntheticApiModelOutline5 {
 }

@@ -39,6 +39,107 @@ public class ReactionImageHolder {
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
     }
 
+    public static void preload(int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        if (visibleReaction == null) {
+            return;
+        }
+        if (visibleReaction.emojicon == null) {
+            new AnimatedEmojiDrawable(1, i, visibleReaction.documentId).preload();
+            return;
+        }
+        TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(visibleReaction.emojicon);
+        if (tLRPC$TL_availableReaction != null) {
+            FileLoader.getInstance(i).loadFile(tLRPC$TL_availableReaction.select_animation, visibleReaction, 0, 0);
+        }
+    }
+
+    public void draw(Canvas canvas) {
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+        if (animatedEmojiDrawable == null) {
+            ImageReceiver imageReceiver = this.imageReceiver;
+            Rect rect = this.bounds;
+            imageReceiver.setImageCoords(rect.left, rect.top, rect.width(), this.bounds.height());
+            this.imageReceiver.setAlpha(this.alpha);
+            this.imageReceiver.draw(canvas);
+            return;
+        }
+        if (animatedEmojiDrawable.getImageReceiver() != null) {
+            this.animatedEmojiDrawable.getImageReceiver().setRoundRadius((int) (this.bounds.width() * 0.1f));
+        }
+        this.animatedEmojiDrawable.setColorFilter(this.colorFilter);
+        this.animatedEmojiDrawable.setBounds(this.bounds);
+        this.animatedEmojiDrawable.setAlpha((int) (this.alpha * 255.0f));
+        this.animatedEmojiDrawable.draw(canvas);
+    }
+
+    public boolean isLoaded() {
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+        ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
+        if (imageReceiver == null || !imageReceiver.hasImageSet() || !imageReceiver.hasImageLoaded()) {
+            return false;
+        }
+        RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
+        return lottieAnimation == null || !lottieAnimation.isGeneratingCache();
+    }
+
+    public void onAttachedToWindow(boolean z) {
+        this.attached = z;
+        if (z) {
+            this.imageReceiver.onAttachedToWindow();
+            AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+            if (animatedEmojiDrawable != null) {
+                animatedEmojiDrawable.addView(this.parent);
+                return;
+            }
+            return;
+        }
+        this.imageReceiver.onDetachedFromWindow();
+        AnimatedEmojiDrawable animatedEmojiDrawable2 = this.animatedEmojiDrawable;
+        if (animatedEmojiDrawable2 != null) {
+            animatedEmojiDrawable2.removeView(this.parent);
+        }
+    }
+
+    public void play() {
+        this.imageReceiver.startAnimation();
+    }
+
+    public void setAlpha(float f) {
+        this.alpha = f;
+    }
+
+    public void setBounds(Rect rect) {
+        this.bounds.set(rect);
+    }
+
+    public void setColor(int i) {
+        if (this.lastColorForFilter != i) {
+            this.lastColorForFilter = i;
+            this.colorFilter = new PorterDuffColorFilter(this.lastColorForFilter, PorterDuff.Mode.SRC_ATOP);
+            View view = this.parent;
+            if (view != null) {
+                view.invalidate();
+            }
+        }
+    }
+
+    public void setParent(View view) {
+        if (this.parent == view) {
+            return;
+        }
+        if (!this.attached) {
+            this.parent = view;
+            return;
+        }
+        onAttachedToWindow(false);
+        this.parent = view;
+        onAttachedToWindow(true);
+    }
+
+    public void setStatic() {
+        this.isStatic = true;
+    }
+
     public void setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         if (Objects.equals(this.currentReaction, visibleReaction)) {
             return;
@@ -73,112 +174,5 @@ public class ReactionImageHolder {
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_ATOP);
         this.colorFilter = porterDuffColorFilter;
         animatedEmojiDrawable3.setColorFilter(porterDuffColorFilter);
-    }
-
-    public static void preload(int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-        if (visibleReaction == null) {
-            return;
-        }
-        if (visibleReaction.emojicon != null) {
-            TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(visibleReaction.emojicon);
-            if (tLRPC$TL_availableReaction != null) {
-                FileLoader.getInstance(i).loadFile(tLRPC$TL_availableReaction.select_animation, visibleReaction, 0, 0);
-                return;
-            }
-            return;
-        }
-        new AnimatedEmojiDrawable(1, i, visibleReaction.documentId).preload();
-    }
-
-    public void draw(Canvas canvas) {
-        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-        if (animatedEmojiDrawable != null) {
-            if (animatedEmojiDrawable.getImageReceiver() != null) {
-                this.animatedEmojiDrawable.getImageReceiver().setRoundRadius((int) (this.bounds.width() * 0.1f));
-            }
-            this.animatedEmojiDrawable.setColorFilter(this.colorFilter);
-            this.animatedEmojiDrawable.setBounds(this.bounds);
-            this.animatedEmojiDrawable.setAlpha((int) (this.alpha * 255.0f));
-            this.animatedEmojiDrawable.draw(canvas);
-            return;
-        }
-        ImageReceiver imageReceiver = this.imageReceiver;
-        Rect rect = this.bounds;
-        imageReceiver.setImageCoords(rect.left, rect.top, rect.width(), this.bounds.height());
-        this.imageReceiver.setAlpha(this.alpha);
-        this.imageReceiver.draw(canvas);
-    }
-
-    public boolean isLoaded() {
-        ImageReceiver imageReceiver;
-        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-        if (animatedEmojiDrawable != null) {
-            imageReceiver = animatedEmojiDrawable.getImageReceiver();
-        } else {
-            imageReceiver = this.imageReceiver;
-        }
-        if (imageReceiver == null || !imageReceiver.hasImageSet() || !imageReceiver.hasImageLoaded()) {
-            return false;
-        }
-        RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
-        return lottieAnimation == null || !lottieAnimation.isGeneratingCache();
-    }
-
-    public void setBounds(Rect rect) {
-        this.bounds.set(rect);
-    }
-
-    public void onAttachedToWindow(boolean z) {
-        this.attached = z;
-        if (z) {
-            this.imageReceiver.onAttachedToWindow();
-            AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-            if (animatedEmojiDrawable != null) {
-                animatedEmojiDrawable.addView(this.parent);
-                return;
-            }
-            return;
-        }
-        this.imageReceiver.onDetachedFromWindow();
-        AnimatedEmojiDrawable animatedEmojiDrawable2 = this.animatedEmojiDrawable;
-        if (animatedEmojiDrawable2 != null) {
-            animatedEmojiDrawable2.removeView(this.parent);
-        }
-    }
-
-    public void setAlpha(float f) {
-        this.alpha = f;
-    }
-
-    public void play() {
-        this.imageReceiver.startAnimation();
-    }
-
-    public void setParent(View view) {
-        if (this.parent == view) {
-            return;
-        }
-        if (this.attached) {
-            onAttachedToWindow(false);
-            this.parent = view;
-            onAttachedToWindow(true);
-            return;
-        }
-        this.parent = view;
-    }
-
-    public void setStatic() {
-        this.isStatic = true;
-    }
-
-    public void setColor(int i) {
-        if (this.lastColorForFilter != i) {
-            this.lastColorForFilter = i;
-            this.colorFilter = new PorterDuffColorFilter(this.lastColorForFilter, PorterDuff.Mode.SRC_ATOP);
-            View view = this.parent;
-            if (view != null) {
-                view.invalidate();
-            }
-        }
     }
 }

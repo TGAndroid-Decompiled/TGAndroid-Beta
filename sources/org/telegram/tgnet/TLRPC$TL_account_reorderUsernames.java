@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_account_reorderUsernames extends TLObject {
-    public ArrayList<String> order = new ArrayList<>();
+    public ArrayList order = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -17,7 +17,7 @@ public class TLRPC$TL_account_reorderUsernames extends TLObject {
         int size = this.order.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeString(this.order.get(i));
+            abstractSerializedData.writeString((String) this.order.get(i));
         }
     }
 }

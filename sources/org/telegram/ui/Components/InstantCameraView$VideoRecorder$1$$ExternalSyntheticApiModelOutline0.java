@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class InstantCameraView$VideoRecorder$1$$ExternalSyntheticApiModelOutline0 {
+public abstract class InstantCameraView$VideoRecorder$1$$ExternalSyntheticApiModelOutline0 {
 }

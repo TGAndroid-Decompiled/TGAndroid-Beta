@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class EditTextBoldCursor$$ExternalSyntheticApiModelOutline1 {
+public abstract class EditTextBoldCursor$$ExternalSyntheticApiModelOutline1 {
 }

@@ -20,16 +20,16 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 
 public class TextRadioCell extends FrameLayout {
-    public static final Property<TextRadioCell, Float> ANIMATION_PROGRESS = new AnimationProperties.FloatProperty<TextRadioCell>("animationProgress") {
+    public static final Property ANIMATION_PROGRESS = new AnimationProperties.FloatProperty("animationProgress") {
+        @Override
+        public Float get(TextRadioCell textRadioCell) {
+            return Float.valueOf(textRadioCell.animationProgress);
+        }
+
         @Override
         public void setValue(TextRadioCell textRadioCell, float f) {
             textRadioCell.setAnimationProgress(f);
             textRadioCell.invalidate();
-        }
-
-        @Override
-        public Float get(TextRadioCell textRadioCell) {
-            return Float.valueOf(textRadioCell.animationProgress);
         }
     };
     private int animatedColorBackground;
@@ -93,98 +93,6 @@ public class TextRadioCell extends FrameLayout {
         setClipChildren(false);
     }
 
-    public void updateRTL() {
-        boolean z = this.isRTL;
-        boolean z2 = LocaleController.isRTL;
-        if (z == z2) {
-            return;
-        }
-        this.isRTL = z2;
-        this.textView.setGravity((z2 ? 5 : 3) | 16);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
-        boolean z3 = LocaleController.isRTL;
-        layoutParams.gravity = (z3 ? 5 : 3) | 48;
-        layoutParams.leftMargin = AndroidUtilities.dp(z3 ? this.padding : 64.0f);
-        layoutParams.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : this.padding);
-        this.textView.setLayoutParams(layoutParams);
-        this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.valueTextView.getLayoutParams();
-        boolean z4 = LocaleController.isRTL;
-        layoutParams2.gravity = (z4 ? 5 : 3) | 48;
-        layoutParams2.leftMargin = AndroidUtilities.dp(z4 ? this.padding : 64.0f);
-        layoutParams2.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : this.padding);
-        this.valueTextView.setLayoutParams(layoutParams2);
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.radioButton.getLayoutParams();
-        layoutParams3.gravity = (LocaleController.isRTL ? 5 : 3) | 16;
-        this.radioButton.setLayoutParams(layoutParams3);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        if (this.isMultiline) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.valueTextView.getVisibility() == 0 ? 64.0f : this.height) + (this.needDivider ? 1 : 0), 1073741824));
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        this.lastTouchX = motionEvent.getX();
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void setTypeface(Typeface typeface) {
-        this.textView.setTypeface(typeface);
-    }
-
-    public void setHeight(int i) {
-        this.height = i;
-    }
-
-    @Override
-    public void setPressed(boolean z) {
-        super.setPressed(z);
-    }
-
-    public void setTextAndValueAndCheck(String str, String str2, boolean z, boolean z2, boolean z3) {
-        this.textView.setText(str);
-        this.valueTextView.setText(str2);
-        this.radioButton.setChecked(z, false);
-        this.needDivider = z3;
-        this.valueTextView.setVisibility(0);
-        this.isMultiline = z2;
-        if (z2) {
-            this.valueTextView.setLines(0);
-            this.valueTextView.setMaxLines(0);
-            this.valueTextView.setSingleLine(false);
-            this.valueTextView.setEllipsize(null);
-            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(11.0f));
-        } else {
-            this.valueTextView.setLines(1);
-            this.valueTextView.setMaxLines(1);
-            this.valueTextView.setSingleLine(true);
-            this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-            this.valueTextView.setPadding(0, 0, 0, 0);
-        }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
-        layoutParams.height = -2;
-        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
-        this.textView.setLayoutParams(layoutParams);
-        setWillNotDraw(true ^ z3);
-    }
-
-    public void setChecked(boolean z) {
-        this.radioButton.setChecked(z, true);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        clearAnimation();
-        this.animatedColorBackground = 0;
-        super.setBackgroundColor(i);
-    }
-
     public void setAnimationProgress(float f) {
         this.animationProgress = f;
         Math.max(this.lastTouchX, getMeasuredWidth() - this.lastTouchX);
@@ -216,5 +124,102 @@ public class TextRadioCell extends FrameLayout {
         }
         accessibilityNodeInfo.setContentDescription(sb);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int makeMeasureSpec;
+        boolean z = this.isMultiline;
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        if (z) {
+            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+        } else {
+            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.valueTextView.getVisibility() == 0 ? 64.0f : this.height) + (this.needDivider ? 1 : 0), 1073741824);
+        }
+        super.onMeasure(makeMeasureSpec2, makeMeasureSpec);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        this.lastTouchX = motionEvent.getX();
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        clearAnimation();
+        this.animatedColorBackground = 0;
+        super.setBackgroundColor(i);
+    }
+
+    public void setChecked(boolean z) {
+        this.radioButton.setChecked(z, true);
+    }
+
+    public void setHeight(int i) {
+        this.height = i;
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        super.setPressed(z);
+    }
+
+    public void setTextAndValueAndCheck(String str, String str2, boolean z, boolean z2, boolean z3) {
+        this.textView.setText(str);
+        this.valueTextView.setText(str2);
+        this.radioButton.setChecked(z, false);
+        this.needDivider = z3;
+        this.valueTextView.setVisibility(0);
+        this.isMultiline = z2;
+        TextView textView = this.valueTextView;
+        if (z2) {
+            textView.setLines(0);
+            this.valueTextView.setMaxLines(0);
+            this.valueTextView.setSingleLine(false);
+            this.valueTextView.setEllipsize(null);
+            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(11.0f));
+        } else {
+            textView.setLines(1);
+            this.valueTextView.setMaxLines(1);
+            this.valueTextView.setSingleLine(true);
+            this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
+            this.valueTextView.setPadding(0, 0, 0, 0);
+        }
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
+        layoutParams.height = -2;
+        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
+        this.textView.setLayoutParams(layoutParams);
+        setWillNotDraw(true ^ z3);
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.textView.setTypeface(typeface);
+    }
+
+    public void updateRTL() {
+        boolean z = this.isRTL;
+        boolean z2 = LocaleController.isRTL;
+        if (z == z2) {
+            return;
+        }
+        this.isRTL = z2;
+        this.textView.setGravity((z2 ? 5 : 3) | 16);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
+        boolean z3 = LocaleController.isRTL;
+        layoutParams.gravity = (z3 ? 5 : 3) | 48;
+        layoutParams.leftMargin = AndroidUtilities.dp(z3 ? this.padding : 64.0f);
+        layoutParams.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : this.padding);
+        this.textView.setLayoutParams(layoutParams);
+        this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.valueTextView.getLayoutParams();
+        boolean z4 = LocaleController.isRTL;
+        layoutParams2.gravity = (z4 ? 5 : 3) | 48;
+        layoutParams2.leftMargin = AndroidUtilities.dp(z4 ? this.padding : 64.0f);
+        layoutParams2.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : this.padding);
+        this.valueTextView.setLayoutParams(layoutParams2);
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.radioButton.getLayoutParams();
+        layoutParams3.gravity = (LocaleController.isRTL ? 5 : 3) | 16;
+        this.radioButton.setLayoutParams(layoutParams3);
     }
 }

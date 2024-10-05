@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class TLRPC$InputReplyTo extends TLObject {
     public int flags;
     public TLRPC$InputPeer peer;
-    public ArrayList<TLRPC$MessageEntity> quote_entities = new ArrayList<>();
+    public ArrayList quote_entities = new ArrayList();
     public int quote_offset;
     public String quote_text;
     public int reply_to_msg_id;
@@ -66,7 +66,7 @@ public abstract class TLRPC$InputReplyTo extends TLObject {
                     int size = this.quote_entities.size();
                     abstractSerializedData2.writeInt32(size);
                     for (int i2 = 0; i2 < size; i2++) {
-                        this.quote_entities.get(i2).serializeToStream(abstractSerializedData2);
+                        ((TLRPC$MessageEntity) this.quote_entities.get(i2)).serializeToStream(abstractSerializedData2);
                     }
                 }
             }

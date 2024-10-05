@@ -16,25 +16,16 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
-import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 
-public class MessageTopicButton {
+public abstract class MessageTopicButton {
     private AvatarDrawable avatarDrawable;
     private int avatarSize;
     private Context context;
@@ -73,190 +64,80 @@ public class MessageTopicButton {
     private static final int[] idleState = new int[0];
     private static final int[] pressedState = {16842910, 16842919};
 
-    protected void onClick() {
-        throw null;
-    }
-
     public MessageTopicButton(Context context, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
         this.resourcesProvider = resourcesProvider;
     }
 
-    public int set(ChatMessageCell chatMessageCell, MessageObject messageObject, TLObject tLObject, int i) {
-        String formatName;
-        int colorId;
-        if (chatMessageCell == null || messageObject == null) {
-            return 0;
-        }
-        this.isGeneralTopic = false;
-        this.topicClosed = false;
-        boolean z = tLObject instanceof TLRPC$User;
-        if (z) {
-            formatName = UserObject.getForcedFirstName((TLRPC$User) tLObject);
-        } else {
-            formatName = ContactsController.formatName(tLObject);
-        }
-        this.topicIconDrawable = null;
-        int dp = AndroidUtilities.dp(11.0f) + ((int) Theme.chat_topicTextPaint.getTextSize());
-        this.avatarSize = dp;
-        float dp2 = dp / AndroidUtilities.dp(56.0f);
-        this.avatarDrawable = new AvatarDrawable();
-        ImageReceiver imageReceiver = new ImageReceiver(chatMessageCell);
-        this.imageReceiver = imageReceiver;
-        imageReceiver.setRoundRadius(this.avatarSize / 2);
-        if (z && UserObject.isReplyUser((TLRPC$User) tLObject)) {
-            this.avatarDrawable.setAvatarType(12);
-            this.avatarDrawable.setScaleSize(dp2);
-            this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
-            formatName = LocaleController.getString(R.string.RepliesTitle);
-        } else if (z && UserObject.isUserSelf((TLRPC$User) tLObject)) {
-            this.avatarDrawable.setAvatarType(22);
-            this.avatarDrawable.setScaleSize(dp2);
-            this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
-            formatName = LocaleController.getString(R.string.MyNotes);
-        } else {
-            this.avatarDrawable.setInfo(messageObject.currentAccount, tLObject);
-            this.imageReceiver.setForUserOrChat(tLObject, this.avatarDrawable);
-        }
-        if (messageObject.isOutOwner()) {
-            this.topicNameColor = getThemedColor(Theme.key_chat_outReplyNameText);
-        } else {
-            if (z) {
-                colorId = UserObject.getColorId((TLRPC$User) tLObject);
-            } else {
-                colorId = tLObject instanceof TLRPC$Chat ? ChatObject.getColorId((TLRPC$Chat) tLObject) : 0;
-            }
-            if (colorId < 7) {
-                this.topicNameColor = getThemedColor(Theme.keys_avatar_nameInMessage[colorId]);
-            } else {
-                MessagesController.PeerColors peerColors = MessagesController.getInstance(messageObject.currentAccount).peerColors;
-                MessagesController.PeerColor color = peerColors != null ? peerColors.getColor(colorId) : null;
-                if (color != null) {
-                    this.topicNameColor = color.getColor(0, this.resourcesProvider);
-                } else {
-                    this.topicNameColor = getThemedColor(Theme.key_chat_inReplyNameText);
-                }
-            }
-        }
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        this.topicBackgroundColor = Theme.multAlpha(this.topicNameColor, resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
-        return setInternal(chatMessageCell, messageObject, i, formatName, 1);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public int set(ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
-        int i2;
-        if (chatMessageCell == null || messageObject == null) {
-            return 0;
-        }
-        boolean z = tLRPC$TL_forumTopic.id == 1;
-        this.isGeneralTopic = z;
-        this.topicClosed = tLRPC$TL_forumTopic.closed;
-        String str = tLRPC$TL_forumTopic.title;
-        if (str == null) {
-            str = "";
-        }
-        String str2 = str;
-        if (z) {
-            i2 = getThemedColor(messageObject.isOutOwner() ? Theme.key_chat_outReactionButtonText : Theme.key_chat_inReactionButtonText);
-            this.topicIconDrawable = ForumUtilities.createGeneralTopicDrawable(this.context, 0.65f, i2, false);
-        } else {
-            long j = tLRPC$TL_forumTopic.icon_emoji_id;
-            if (j != 0) {
-                Drawable drawable = this.topicIconDrawable;
-                if (!(drawable instanceof AnimatedEmojiDrawable) || j != ((AnimatedEmojiDrawable) drawable).getDocumentId()) {
-                    Drawable drawable2 = this.topicIconDrawable;
-                    if (drawable2 instanceof AnimatedEmojiDrawable) {
-                        ((AnimatedEmojiDrawable) drawable2).removeView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
-                        this.topicIconDrawable = null;
-                    }
-                    AnimatedEmojiDrawable make = AnimatedEmojiDrawable.make(messageObject.currentAccount, 0, tLRPC$TL_forumTopic.icon_emoji_id);
-                    this.topicIconDrawable = make;
-                    make.addView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
-                }
-                this.topicIconWaiting = false;
-                Drawable drawable3 = this.topicIconDrawable;
-                int dominantColor = drawable3 instanceof AnimatedEmojiDrawable ? AnimatedEmojiDrawable.getDominantColor((AnimatedEmojiDrawable) drawable3) : 0;
-                if (dominantColor == 0) {
-                    this.topicIconWaiting = true;
-                    i2 = getThemedColor(messageObject.isOutOwner() ? Theme.key_chat_outReactionButtonText : Theme.key_chat_inReactionButtonText);
-                } else {
-                    i2 = dominantColor;
-                }
-            } else {
-                i2 = tLRPC$TL_forumTopic.icon_color;
-                this.topicIconDrawable = ForumUtilities.createSmallTopicDrawable(str2, i2);
-            }
-        }
-        setupColors(i2);
-        return setInternal(chatMessageCell, messageObject, i, str2, 2);
+    private Paint getThemedPaint(String str) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
+        return paint != null ? paint : Theme.getThemePaint(str);
+    }
+
+    private boolean hasGradientService() {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        return resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService();
     }
 
     private int setInternal(org.telegram.ui.Cells.ChatMessageCell r27, org.telegram.messenger.MessageObject r28, int r29, java.lang.String r30, int r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Forum.MessageTopicButton.setInternal(org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, int, java.lang.String, int):int");
     }
 
-    public void onAttached(ChatMessageCell chatMessageCell) {
-        Drawable drawable = this.topicIconDrawable;
-        if (!(drawable instanceof AnimatedEmojiDrawable) || chatMessageCell == null) {
-            return;
-        }
-        ((AnimatedEmojiDrawable) drawable).addView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
-    }
-
-    public void onDetached(ChatMessageCell chatMessageCell) {
-        Drawable drawable = this.topicIconDrawable;
-        if (!(drawable instanceof AnimatedEmojiDrawable) || chatMessageCell == null) {
-            return;
-        }
-        ((AnimatedEmojiDrawable) drawable).removeView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
-    }
-
     private void setupColors(int i) {
+        int HSVToColor;
+        int i2;
         MessageObject messageObject = this.lastMessageObject;
         if (messageObject != null && messageObject.shouldDrawWithoutBackground()) {
             this.topicNameColor = getThemedColor(Theme.key_chat_stickerReplyNameText);
             return;
         }
         MessageObject messageObject2 = this.lastMessageObject;
-        if (messageObject2 != null && messageObject2.isOutOwner()) {
-            this.topicNameColor = getThemedColor(Theme.key_chat_outReactionButtonText);
-            this.topicBackgroundColor = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_outReactionButtonBackground), 38);
-            return;
-        }
-        if (this.topicHSV == null) {
-            this.topicHSV = new float[3];
-        }
-        Color.colorToHSV(i, this.topicHSV);
-        float[] fArr = this.topicHSV;
-        float f = fArr[0];
-        if (fArr[1] <= 0.02f) {
+        if (messageObject2 == null || !messageObject2.isOutOwner()) {
+            if (this.topicHSV == null) {
+                this.topicHSV = new float[3];
+            }
+            Color.colorToHSV(i, this.topicHSV);
+            float[] fArr = this.topicHSV;
+            float f = fArr[0];
+            if (fArr[1] > 0.02f) {
+                Color.colorToHSV(getThemedColor(Theme.key_chat_inReactionButtonText), this.topicHSV);
+                this.topicHSV[0] = f;
+                float[] fArr2 = Theme.isCurrentThemeDark() ? darkHueRanges : lightHueRanges;
+                float[] fArr3 = Theme.isCurrentThemeDark() ? darkSatValues : lightSatValues;
+                float[] fArr4 = Theme.isCurrentThemeDark() ? darkValValues : lightValValues;
+                int i3 = 1;
+                while (true) {
+                    if (i3 >= fArr2.length) {
+                        break;
+                    }
+                    float f2 = fArr2[i3];
+                    if (f <= f2) {
+                        int i4 = i3 - 1;
+                        float f3 = fArr2[i4];
+                        float f4 = (f - f3) / (f2 - f3);
+                        this.topicHSV[1] = AndroidUtilities.lerp(fArr3[i4], fArr3[i3], f4);
+                        this.topicHSV[2] = AndroidUtilities.lerp(fArr4[i4], fArr4[i3], f4);
+                        break;
+                    }
+                    i3++;
+                }
+                this.topicNameColor = Color.HSVToColor(Color.alpha(getThemedColor(Theme.key_chat_inReactionButtonText)), this.topicHSV);
+                HSVToColor = Color.HSVToColor(38, this.topicHSV);
+                this.topicBackgroundColor = HSVToColor;
+            }
             this.topicNameColor = getThemedColor(Theme.key_chat_inReactionButtonText);
-            this.topicBackgroundColor = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_inReactionButtonBackground), 38);
-            return;
+            i2 = Theme.key_chat_inReactionButtonBackground;
+        } else {
+            this.topicNameColor = getThemedColor(Theme.key_chat_outReactionButtonText);
+            i2 = Theme.key_chat_outReactionButtonBackground;
         }
-        Color.colorToHSV(getThemedColor(Theme.key_chat_inReactionButtonText), this.topicHSV);
-        this.topicHSV[0] = f;
-        float[] fArr2 = Theme.isCurrentThemeDark() ? darkHueRanges : lightHueRanges;
-        float[] fArr3 = Theme.isCurrentThemeDark() ? darkSatValues : lightSatValues;
-        float[] fArr4 = Theme.isCurrentThemeDark() ? darkValValues : lightValValues;
-        int i2 = 1;
-        while (true) {
-            if (i2 >= fArr2.length) {
-                break;
-            }
-            float f2 = fArr2[i2];
-            if (f <= f2) {
-                int i3 = i2 - 1;
-                float f3 = fArr2[i3];
-                float f4 = (f - f3) / (f2 - f3);
-                this.topicHSV[1] = AndroidUtilities.lerp(fArr3[i3], fArr3[i2], f4);
-                this.topicHSV[2] = AndroidUtilities.lerp(fArr4[i3], fArr4[i2], f4);
-                break;
-            }
-            i2++;
-        }
-        this.topicNameColor = Color.HSVToColor(Color.alpha(getThemedColor(Theme.key_chat_inReactionButtonText)), this.topicHSV);
-        this.topicBackgroundColor = Color.HSVToColor(38, this.topicHSV);
+        HSVToColor = ColorUtils.setAlphaComponent(getThemedColor(i2), 38);
+        this.topicBackgroundColor = HSVToColor;
     }
 
     public boolean checkTouchEvent(MotionEvent motionEvent) {
@@ -306,14 +187,6 @@ public class MessageTopicButton {
         return false;
     }
 
-    public int width() {
-        return this.topicWidth;
-    }
-
-    public int height() {
-        return this.topicHeight;
-    }
-
     public void draw(Canvas canvas, float f, float f2, float f3) {
         Paint paint;
         int i;
@@ -327,7 +200,17 @@ public class MessageTopicButton {
         }
         canvas.save();
         MessageObject messageObject = this.lastMessageObject;
-        if (messageObject != null && messageObject.shouldDrawWithoutBackground()) {
+        if (messageObject == null || !messageObject.shouldDrawWithoutBackground()) {
+            canvas.translate(f, f2);
+            if (this.topicPath != null && (paint = this.topicPaint) != null) {
+                AnimatedColor animatedColor = this.topicBackgroundColorAnimated;
+                paint.setColor(animatedColor != null ? animatedColor.set(this.topicBackgroundColor) : this.topicBackgroundColor);
+                int alpha = this.topicPaint.getAlpha();
+                this.topicPaint.setAlpha((int) (alpha * f3));
+                canvas.drawPath(this.topicPath, this.topicPaint);
+                this.topicPaint.setAlpha(alpha);
+            }
+        } else {
             this.topicPath.offset(f, f2);
             int i2 = -1;
             if (f3 < 1.0f) {
@@ -352,20 +235,6 @@ public class MessageTopicButton {
             }
             this.topicPath.offset(-f, -f2);
             canvas.translate(f, f2);
-        } else {
-            canvas.translate(f, f2);
-            if (this.topicPath != null && (paint = this.topicPaint) != null) {
-                AnimatedColor animatedColor = this.topicBackgroundColorAnimated;
-                if (animatedColor != null) {
-                    paint.setColor(animatedColor.set(this.topicBackgroundColor));
-                } else {
-                    paint.setColor(this.topicBackgroundColor);
-                }
-                int alpha = this.topicPaint.getAlpha();
-                this.topicPaint.setAlpha((int) (alpha * f3));
-                canvas.drawPath(this.topicPath, this.topicPaint);
-                this.topicPaint.setAlpha(alpha);
-            }
         }
         if (this.topicHitRect == null) {
             this.topicHitRect = new RectF();
@@ -442,6 +311,28 @@ public class MessageTopicButton {
         }
     }
 
+    public int height() {
+        return this.topicHeight;
+    }
+
+    public void onAttached(ChatMessageCell chatMessageCell) {
+        Drawable drawable = this.topicIconDrawable;
+        if (!(drawable instanceof AnimatedEmojiDrawable) || chatMessageCell == null) {
+            return;
+        }
+        ((AnimatedEmojiDrawable) drawable).addView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
+    }
+
+    protected abstract void onClick();
+
+    public void onDetached(ChatMessageCell chatMessageCell) {
+        Drawable drawable = this.topicIconDrawable;
+        if (!(drawable instanceof AnimatedEmojiDrawable) || chatMessageCell == null) {
+            return;
+        }
+        ((AnimatedEmojiDrawable) drawable).removeView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
+    }
+
     public void resetClick() {
         Drawable drawable = this.topicSelectorDrawable;
         if (drawable != null) {
@@ -449,18 +340,62 @@ public class MessageTopicButton {
         }
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public int set(org.telegram.ui.Cells.ChatMessageCell r16, org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLObject r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Forum.MessageTopicButton.set(org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLObject, int):int");
     }
 
-    private Paint getThemedPaint(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
-        return paint != null ? paint : Theme.getThemePaint(str);
+    public int set(ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
+        int i2;
+        Drawable createSmallTopicDrawable;
+        if (chatMessageCell == null || messageObject == null) {
+            return 0;
+        }
+        boolean z = tLRPC$TL_forumTopic.id == 1;
+        this.isGeneralTopic = z;
+        this.topicClosed = tLRPC$TL_forumTopic.closed;
+        String str = tLRPC$TL_forumTopic.title;
+        if (str == null) {
+            str = "";
+        }
+        String str2 = str;
+        if (z) {
+            i2 = getThemedColor(messageObject.isOutOwner() ? Theme.key_chat_outReactionButtonText : Theme.key_chat_inReactionButtonText);
+            createSmallTopicDrawable = ForumUtilities.createGeneralTopicDrawable(this.context, 0.65f, i2, false);
+        } else {
+            long j = tLRPC$TL_forumTopic.icon_emoji_id;
+            if (j != 0) {
+                Drawable drawable = this.topicIconDrawable;
+                if (!(drawable instanceof AnimatedEmojiDrawable) || j != ((AnimatedEmojiDrawable) drawable).getDocumentId()) {
+                    Drawable drawable2 = this.topicIconDrawable;
+                    if (drawable2 instanceof AnimatedEmojiDrawable) {
+                        ((AnimatedEmojiDrawable) drawable2).removeView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
+                        this.topicIconDrawable = null;
+                    }
+                    AnimatedEmojiDrawable make = AnimatedEmojiDrawable.make(messageObject.currentAccount, 0, tLRPC$TL_forumTopic.icon_emoji_id);
+                    this.topicIconDrawable = make;
+                    make.addView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
+                }
+                this.topicIconWaiting = false;
+                Drawable drawable3 = this.topicIconDrawable;
+                int dominantColor = drawable3 instanceof AnimatedEmojiDrawable ? AnimatedEmojiDrawable.getDominantColor((AnimatedEmojiDrawable) drawable3) : 0;
+                if (dominantColor == 0) {
+                    this.topicIconWaiting = true;
+                    i2 = getThemedColor(messageObject.isOutOwner() ? Theme.key_chat_outReactionButtonText : Theme.key_chat_inReactionButtonText);
+                } else {
+                    i2 = dominantColor;
+                }
+                setupColors(i2);
+                return setInternal(chatMessageCell, messageObject, i, str2, 2);
+            }
+            i2 = tLRPC$TL_forumTopic.icon_color;
+            createSmallTopicDrawable = ForumUtilities.createSmallTopicDrawable(str2, i2);
+        }
+        this.topicIconDrawable = createSmallTopicDrawable;
+        setupColors(i2);
+        return setInternal(chatMessageCell, messageObject, i, str2, 2);
     }
 
-    private boolean hasGradientService() {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService();
+    public int width() {
+        return this.topicWidth;
     }
 }

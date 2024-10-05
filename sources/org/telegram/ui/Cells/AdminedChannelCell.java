@@ -33,11 +33,6 @@ public class AdminedChannelCell extends FrameLayout {
     private SimpleTextView nameTextView;
     private SimpleTextView statusTextView;
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
-
     public AdminedChannelCell(Context context, View.OnClickListener onClickListener, boolean z, int i) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
@@ -92,6 +87,32 @@ public class AdminedChannelCell extends FrameLayout {
         }
     }
 
+    public TLRPC$Chat getCurrentChannel() {
+        return this.currentChannel;
+    }
+
+    public ImageView getDeleteButton() {
+        return this.deleteButton;
+    }
+
+    public SimpleTextView getNameTextView() {
+        return this.nameTextView;
+    }
+
+    public SimpleTextView getStatusTextView() {
+        return this.statusTextView;
+    }
+
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((this.isLast ? 12 : 0) + 60), 1073741824));
+    }
+
     public void setChannel(TLRPC$Chat tLRPC$Chat, boolean z) {
         String str = MessagesController.getInstance(this.currentAccount).linkPrefix + "/";
         this.currentChannel = tLRPC$Chat;
@@ -104,33 +125,12 @@ public class AdminedChannelCell extends FrameLayout {
         this.isLast = z;
     }
 
+    public void setChecked(boolean z, boolean z2) {
+        this.checkBox.setChecked(z, z2);
+    }
+
     public void update() {
         this.avatarDrawable.setInfo(this.currentAccount, this.currentChannel);
         this.avatarImageView.invalidate();
-    }
-
-    public TLRPC$Chat getCurrentChannel() {
-        return this.currentChannel;
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((this.isLast ? 12 : 0) + 60), 1073741824));
-    }
-
-    public SimpleTextView getNameTextView() {
-        return this.nameTextView;
-    }
-
-    public SimpleTextView getStatusTextView() {
-        return this.statusTextView;
-    }
-
-    public ImageView getDeleteButton() {
-        return this.deleteButton;
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        this.checkBox.setChecked(z, z2);
     }
 }

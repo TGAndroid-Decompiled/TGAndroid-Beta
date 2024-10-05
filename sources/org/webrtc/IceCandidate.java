@@ -18,7 +18,6 @@ public class IceCandidate {
         this.adapterType = PeerConnection.AdapterType.UNKNOWN;
     }
 
-    @CalledByNative
     IceCandidate(String str, int i, String str2, String str3, PeerConnection.AdapterType adapterType) {
         this.sdpMid = str;
         this.sdpMLineIndex = i;
@@ -27,18 +26,8 @@ public class IceCandidate {
         this.adapterType = adapterType;
     }
 
-    public String toString() {
-        return this.sdpMid + ":" + this.sdpMLineIndex + ":" + this.sdp + ":" + this.serverUrl + ":" + this.adapterType.toString();
-    }
-
-    @CalledByNative
-    String getSdpMid() {
-        return this.sdpMid;
-    }
-
-    @CalledByNative
-    String getSdp() {
-        return this.sdp;
+    private static boolean objectEquals(Object obj, Object obj2) {
+        return obj == null ? obj2 == null : obj.equals(obj2);
     }
 
     public boolean equals(Object obj) {
@@ -49,14 +38,19 @@ public class IceCandidate {
         return objectEquals(this.sdpMid, iceCandidate.sdpMid) && this.sdpMLineIndex == iceCandidate.sdpMLineIndex && objectEquals(this.sdp, iceCandidate.sdp);
     }
 
+    String getSdp() {
+        return this.sdp;
+    }
+
+    String getSdpMid() {
+        return this.sdpMid;
+    }
+
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.sdpMid, Integer.valueOf(this.sdpMLineIndex), this.sdp});
     }
 
-    private static boolean objectEquals(Object obj, Object obj2) {
-        if (obj == null) {
-            return obj2 == null;
-        }
-        return obj.equals(obj2);
+    public String toString() {
+        return this.sdpMid + ":" + this.sdpMLineIndex + ":" + this.sdp + ":" + this.serverUrl + ":" + this.adapterType.toString();
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_pageTableRow extends TLObject {
-    public ArrayList<TLRPC$TL_pageTableCell> cells = new ArrayList<>();
+    public ArrayList cells = new ArrayList();
 
     public static TLRPC$TL_pageTableRow TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-524237339 != i) {
@@ -43,7 +43,7 @@ public class TLRPC$TL_pageTableRow extends TLObject {
         int size = this.cells.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.cells.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_pageTableCell) this.cells.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Paint.Views;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -15,8 +14,7 @@ import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-@SuppressLint({"ViewConstructor"})
-public class StickerCutOutBtn extends ButtonWithCounterView {
+public abstract class StickerCutOutBtn extends ButtonWithCounterView {
     protected final BlurringShader.StoryBlurDrawer blurDrawer;
     protected final RectF bounds;
     public int rad;
@@ -41,17 +39,24 @@ public class StickerCutOutBtn extends ButtonWithCounterView {
         setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
     }
 
-    public void setRad(int i) {
-        this.rad = i;
-        setForeground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), i, i));
+    public void clean() {
+        setCutOutState(false);
     }
 
-    @Override
-    public void setAlpha(float f) {
-        if (!this.stickerMakerView.hasSegmentedBitmap()) {
-            f = 0.0f;
-        }
-        super.setAlpha(f);
+    public void invalidateBlur() {
+        invalidate();
+    }
+
+    public boolean isCancelState() {
+        return this.state == 2;
+    }
+
+    public boolean isCutOutState() {
+        return this.state == 0;
+    }
+
+    public boolean isUndoCutState() {
+        return this.state == 1;
     }
 
     @Override
@@ -66,12 +71,24 @@ public class StickerCutOutBtn extends ButtonWithCounterView {
     }
 
     @Override
-    public void setVisibility(int i) {
-        if (Build.VERSION.SDK_INT < 24) {
-            super.setVisibility(8);
-        } else {
-            super.setVisibility(i);
+    public void onMeasure(int i, int i2) {
+        if (this.wrapContent) {
+            i = View.MeasureSpec.makeMeasureSpec(getPaddingLeft() + ((int) this.text.getCurrentWidth()) + getPaddingRight(), 1073741824);
         }
+        super.onMeasure(i, i2);
+    }
+
+    @Override
+    public void setAlpha(float f) {
+        if (!this.stickerMakerView.hasSegmentedBitmap()) {
+            f = 0.0f;
+        }
+        super.setAlpha(f);
+    }
+
+    public void setCancelState(boolean z) {
+        this.state = 2;
+        setText(LocaleController.getString(R.string.Cancel), z);
     }
 
     public void setCutOutState(boolean z) {
@@ -84,6 +101,44 @@ public class StickerCutOutBtn extends ButtonWithCounterView {
         coloredImageSpan.spaceScaleX = 1.2f;
         spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationCutObject));
+        setText(spannableStringBuilder, z);
+    }
+
+    public void setEraseState(boolean z) {
+        this.state = 3;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.media_button_erase);
+        coloredImageSpan.setSize(AndroidUtilities.dp(20.0f));
+        coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
+        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationErase));
+        setText(spannableStringBuilder, z);
+    }
+
+    public void setOutlineState(boolean z) {
+        this.state = 6;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.media_sticker_stroke);
+        coloredImageSpan.setSize(AndroidUtilities.dp(20.0f));
+        coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
+        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationOutline));
+        setText(spannableStringBuilder, z);
+    }
+
+    public void setRad(int i) {
+        this.rad = i;
+        setForeground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), i, i));
+    }
+
+    public void setRestoreState(boolean z) {
+        this.state = 4;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.media_button_restore);
+        coloredImageSpan.setSize(AndroidUtilities.dp(20.0f));
+        coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
+        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationRestore));
         setText(spannableStringBuilder, z);
     }
 
@@ -102,73 +157,15 @@ public class StickerCutOutBtn extends ButtonWithCounterView {
         setText(spannableStringBuilder, z);
     }
 
-    public void setOutlineState(boolean z) {
-        this.state = 6;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.media_sticker_stroke);
-        coloredImageSpan.setSize(AndroidUtilities.dp(20.0f));
-        coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
-        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationOutline));
-        setText(spannableStringBuilder, z);
-    }
-
-    public void setRestoreState(boolean z) {
-        this.state = 4;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.media_button_restore);
-        coloredImageSpan.setSize(AndroidUtilities.dp(20.0f));
-        coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
-        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationRestore));
-        setText(spannableStringBuilder, z);
-    }
-
-    public void setEraseState(boolean z) {
-        this.state = 3;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.media_button_erase);
-        coloredImageSpan.setSize(AndroidUtilities.dp(20.0f));
-        coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
-        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationErase));
-        setText(spannableStringBuilder, z);
-    }
-
-    public void setCancelState(boolean z) {
-        this.state = 2;
-        setText(LocaleController.getString(R.string.Cancel), z);
-    }
-
-    public boolean isCutOutState() {
-        return this.state == 0;
-    }
-
-    public boolean isCancelState() {
-        return this.state == 2;
-    }
-
-    public boolean isUndoCutState() {
-        return this.state == 1;
-    }
-
-    public void clean() {
-        setCutOutState(false);
-    }
-
-    public void invalidateBlur() {
-        invalidate();
+    @Override
+    public void setVisibility(int i) {
+        if (Build.VERSION.SDK_INT < 24) {
+            i = 8;
+        }
+        super.setVisibility(i);
     }
 
     public void wrapContent() {
         this.wrapContent = true;
-    }
-
-    @Override
-    public void onMeasure(int i, int i2) {
-        if (this.wrapContent) {
-            i = View.MeasureSpec.makeMeasureSpec(getPaddingLeft() + ((int) this.text.getCurrentWidth()) + getPaddingRight(), 1073741824);
-        }
-        super.onMeasure(i, i2);
     }
 }

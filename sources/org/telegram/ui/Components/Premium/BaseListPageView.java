@@ -16,8 +16,6 @@ public abstract class BaseListPageView extends FrameLayout implements PagerHeade
     final RecyclerListView recyclerListView;
     final Theme.ResourcesProvider resourcesProvider;
 
-    public abstract RecyclerView.Adapter createAdapter();
-
     public BaseListPageView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
@@ -33,6 +31,8 @@ public abstract class BaseListPageView extends FrameLayout implements PagerHeade
         recyclerListView.setClipToPadding(false);
         addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
     }
+
+    public abstract RecyclerView.Adapter createAdapter();
 
     @Override
     protected void dispatchDraw(Canvas canvas) {

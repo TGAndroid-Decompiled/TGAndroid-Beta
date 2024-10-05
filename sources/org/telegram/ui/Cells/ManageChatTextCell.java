@@ -41,6 +41,10 @@ public class ManageChatTextCell extends FrameLayout {
         addView(this.imageView);
     }
 
+    protected int getFullHeight() {
+        return AndroidUtilities.dp(56.0f);
+    }
+
     public SimpleTextView getTextView() {
         return this.textView;
     }
@@ -49,22 +53,15 @@ public class ManageChatTextCell extends FrameLayout {
         return this.valueTextView;
     }
 
-    public void setDividerColor(int i) {
-        this.dividerColor = i;
-    }
-
     @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(48.0f);
-        this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(24.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-        setMeasuredDimension(size, getFullHeight() + (this.divider ? 1 : 0));
-    }
-
-    protected int getFullHeight() {
-        return AndroidUtilities.dp(56.0f);
+    protected void onDraw(Canvas canvas) {
+        if (this.divider) {
+            int i = this.dividerColor;
+            if (i != 0) {
+                Theme.dividerExtraPaint.setColor(Theme.getColor(i));
+            }
+            canvas.drawLine(AndroidUtilities.dp(71.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, this.dividerColor != 0 ? Theme.dividerExtraPaint : Theme.dividerPaint);
+        }
     }
 
     @Override
@@ -85,8 +82,14 @@ public class ManageChatTextCell extends FrameLayout {
         imageView.layout(dp4, dp3, imageView.getMeasuredWidth() + dp4, this.imageView.getMeasuredHeight() + dp3);
     }
 
-    public void setTextColor(int i) {
-        this.textView.setTextColor(i);
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int dp = AndroidUtilities.dp(48.0f);
+        this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(24.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        setMeasuredDimension(size, getFullHeight() + (this.divider ? 1 : 0));
     }
 
     public void setColors(int i, int i2) {
@@ -96,8 +99,8 @@ public class ManageChatTextCell extends FrameLayout {
         this.imageView.setTag(Integer.valueOf(i));
     }
 
-    public void setText(String str, String str2, int i, boolean z) {
-        setText(str, str2, i, 5, z);
+    public void setDividerColor(int i) {
+        this.dividerColor = i;
     }
 
     public void setText(String str, String str2, int i, int i2, boolean z) {
@@ -114,14 +117,11 @@ public class ManageChatTextCell extends FrameLayout {
         setWillNotDraw(!z);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.divider) {
-            int i = this.dividerColor;
-            if (i != 0) {
-                Theme.dividerExtraPaint.setColor(Theme.getColor(i));
-            }
-            canvas.drawLine(AndroidUtilities.dp(71.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, this.dividerColor != 0 ? Theme.dividerExtraPaint : Theme.dividerPaint);
-        }
+    public void setText(String str, String str2, int i, boolean z) {
+        setText(str, str2, i, 5, z);
+    }
+
+    public void setTextColor(int i) {
+        this.textView.setTextColor(i);
     }
 }

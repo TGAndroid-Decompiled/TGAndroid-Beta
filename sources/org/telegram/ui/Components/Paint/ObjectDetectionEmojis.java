@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.Paint;
 
-public class ObjectDetectionEmojis {
+public abstract class ObjectDetectionEmojis {
     private static String[] labelEmojis;
 
     public static String labelToEmoji(int i) {

@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShaderSet {
-    private static final Map<String, Map<String, Object>> AVAILABLE_SHADERS = createMap();
+public abstract class ShaderSet {
+    private static final Map AVAILABLE_SHADERS = createMap();
 
-    private static Map<String, Map<String, Object>> createMap() {
+    private static Map createMap() {
         HashMap hashMap = new HashMap();
         HashMap hashMap2 = new HashMap();
         hashMap2.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;attribute float alpha;varying vec2 varTexcoord;varying float varIntensity;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;   varIntensity = alpha;}");
@@ -114,11 +114,11 @@ public class ShaderSet {
         return Collections.unmodifiableMap(hashMap);
     }
 
-    public static Map<String, Shader> setup() {
+    public static Map setup() {
         HashMap hashMap = new HashMap();
-        for (Map.Entry<String, Map<String, Object>> entry : AVAILABLE_SHADERS.entrySet()) {
-            Map<String, Object> value = entry.getValue();
-            hashMap.put(entry.getKey(), new Shader((String) value.get("vertex"), (String) value.get("fragment"), (String[]) value.get("attributes"), (String[]) value.get("uniforms")));
+        for (Map.Entry entry : AVAILABLE_SHADERS.entrySet()) {
+            Map map = (Map) entry.getValue();
+            hashMap.put((String) entry.getKey(), new Shader((String) map.get("vertex"), (String) map.get("fragment"), (String[]) map.get("attributes"), (String[]) map.get("uniforms")));
         }
         return Collections.unmodifiableMap(hashMap);
     }

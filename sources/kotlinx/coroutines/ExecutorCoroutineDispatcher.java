@@ -9,13 +9,9 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 public abstract class ExecutorCoroutineDispatcher extends CoroutineDispatcher implements Closeable {
     public static final Key Key = new Key(null);
 
-    public static final class Key extends AbstractCoroutineContextKey<CoroutineDispatcher, ExecutorCoroutineDispatcher> {
-        public Key(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
+    public static final class Key extends AbstractCoroutineContextKey {
         private Key() {
-            super(CoroutineDispatcher.Key, new Function1<CoroutineContext.Element, ExecutorCoroutineDispatcher>() {
+            super(CoroutineDispatcher.Key, new Function1() {
                 @Override
                 public final ExecutorCoroutineDispatcher invoke(CoroutineContext.Element element) {
                     if (element instanceof ExecutorCoroutineDispatcher) {
@@ -24,6 +20,10 @@ public abstract class ExecutorCoroutineDispatcher extends CoroutineDispatcher im
                     return null;
                 }
             });
+        }
+
+        public Key(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 }

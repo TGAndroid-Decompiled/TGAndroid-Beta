@@ -38,27 +38,14 @@ public class FilesMigrationService extends Service {
     private int movedFilesCount;
     private int totalFilesCount;
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    public static void start() {
-        ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, (Class<?>) FilesMigrationService.class));
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int i, int i2) {
-        NotificationsController.checkOtherNotificationsChannel();
-        Notification build = new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
-        isRunning = true;
-        new AnonymousClass1().start();
-        startForeground(301, build);
-        return super.onStartCommand(intent, i, i2);
-    }
-
     public class AnonymousClass1 extends Thread {
         AnonymousClass1() {
+        }
+
+        public void lambda$run$0() {
+            FilesMigrationService.isRunning = false;
+            FilesMigrationService.this.stopForeground(true);
+            FilesMigrationService.this.stopSelf();
         }
 
         @Override
@@ -71,193 +58,10 @@ public class FilesMigrationService extends Service {
                 }
             });
         }
-
-        public void lambda$run$0() {
-            FilesMigrationService.isRunning = false;
-            FilesMigrationService.this.stopForeground(true);
-            FilesMigrationService.this.stopSelf();
-        }
-    }
-
-    public void migrateOldFolder() {
-        ArrayList<File> rootDirs;
-        File externalStorageDirectory = Environment.getExternalStorageDirectory();
-        if (!TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
-            int size = rootDirs.size();
-            int i = 0;
-            while (true) {
-                if (i >= size) {
-                    break;
-                }
-                File file = rootDirs.get(i);
-                if (file.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
-                    externalStorageDirectory = file;
-                    break;
-                }
-                i++;
-            }
-        }
-        File file2 = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
-        File file3 = new File(externalStorageDirectory, "Telegram");
-        this.totalFilesCount = getFilesCount(file3);
-        long currentTimeMillis = System.currentTimeMillis();
-        if (file3.canRead() && file3.canWrite()) {
-            moveDirectory(file3, file2);
-        }
-        FileLog.d("move time = " + (System.currentTimeMillis() - currentTimeMillis));
-        ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
-    }
-
-    private int getFilesCount(File file) {
-        File[] listFiles;
-        if (!file.exists() || (listFiles = file.listFiles()) == null) {
-            return 0;
-        }
-        int i = 0;
-        for (int i2 = 0; i2 < listFiles.length; i2++) {
-            i = listFiles[i2].isDirectory() ? i + getFilesCount(listFiles[i2]) : i + 1;
-        }
-        return i;
-    }
-
-    private void moveDirectory(File file, final File file2) {
-        Path path;
-        Stream convert;
-        if (file.exists()) {
-            if (file2.exists() || file2.mkdir()) {
-                try {
-                    path = file.toPath();
-                    convert = Stream.VivifiedWrapper.convert(Files.list(path));
-                    try {
-                        convert.forEach(new Consumer() {
-                            @Override
-                            public final void r(Object obj) {
-                                FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
-                            }
-
-                            @Override
-                            public Consumer andThen(Consumer consumer) {
-                                return Consumer.CC.$default$andThen(this, consumer);
-                            }
-                        });
-                        convert.close();
-                    } finally {
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                try {
-                    file.delete();
-                } catch (Exception e2) {
-                    FileLog.e(e2);
-                }
-            }
-        }
-    }
-
-    public void lambda$moveDirectory$0(File file, Path path) {
-        Path fileName;
-        String path2;
-        boolean isDirectory;
-        File file2;
-        Path path3;
-        File file3;
-        fileName = path.getFileName();
-        path2 = fileName.toString();
-        File file4 = new File(file, path2);
-        isDirectory = Files.isDirectory(path, new LinkOption[0]);
-        if (isDirectory) {
-            file3 = path.toFile();
-            moveDirectory(file3, file4);
-            return;
-        }
-        try {
-            path3 = file4.toPath();
-            Files.move(path, path3, new CopyOption[0]);
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
-            try {
-                file2 = path.toFile();
-                file2.delete();
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-        }
-        this.movedFilesCount++;
-        updateProgress();
-    }
-
-    private void updateProgress() {
-        if (System.currentTimeMillis() - this.lastUpdateTime > 20 || this.movedFilesCount >= this.totalFilesCount - 1) {
-            final int i = this.movedFilesCount;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    FilesMigrationService.this.lambda$updateProgress$1(i);
-                }
-            });
-        }
-    }
-
-    public void lambda$updateProgress$1(int i) {
-        ((NotificationManager) getSystemService("notification")).notify(301, new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setContentText(String.format("%s/%s", Integer.valueOf(i), Integer.valueOf(this.totalFilesCount))).setSmallIcon(R.drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i, false).build());
-    }
-
-    public static void checkBottomSheet(BaseFragment baseFragment) {
-        boolean isExternalStorageLegacy;
-        ArrayList<File> rootDirs;
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
-        isExternalStorageLegacy = Environment.isExternalStorageLegacy();
-        if (!isExternalStorageLegacy || sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) || sharedPreferences.getInt("migration_to_scoped_storage_count", 0) >= 5 || wasShown || filesMigrationBottomSheet != null || isRunning) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= 30) {
-            File externalStorageDirectory = Environment.getExternalStorageDirectory();
-            if (!TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
-                int size = rootDirs.size();
-                int i = 0;
-                while (true) {
-                    if (i >= size) {
-                        break;
-                    }
-                    File file = rootDirs.get(i);
-                    if (file.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
-                        externalStorageDirectory = file;
-                        break;
-                    }
-                    i++;
-                }
-            }
-            hasOldFolder = new File(externalStorageDirectory, "Telegram").exists();
-        }
-        if (hasOldFolder) {
-            FilesMigrationBottomSheet filesMigrationBottomSheet2 = new FilesMigrationBottomSheet(baseFragment);
-            filesMigrationBottomSheet = filesMigrationBottomSheet2;
-            filesMigrationBottomSheet2.show();
-            wasShown = true;
-            sharedPreferences.edit().putInt("migration_to_scoped_storage_count", sharedPreferences.getInt("migration_to_scoped_storage_count", 0) + 1).apply();
-            return;
-        }
-        sharedPreferences.edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
     }
 
     public static class FilesMigrationBottomSheet extends BottomSheet {
         BaseFragment fragment;
-
-        @Override
-        public boolean canDismissWithSwipe() {
-            return false;
-        }
-
-        @Override
-        protected boolean canDismissWithTouchOutside() {
-            return false;
-        }
-
-        @Override
-        public void setLastVisible(boolean z) {
-            BaseFragment.AttachedSheet.CC.$default$setLastVisible(this, z);
-        }
 
         public FilesMigrationBottomSheet(BaseFragment baseFragment) {
             super(baseFragment.getParentActivity(), false);
@@ -308,8 +112,14 @@ public class FilesMigrationService extends Service {
             migrateOldFolder();
         }
 
-        public void migrateOldFolder() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilesMigrationService.FilesMigrationBottomSheet.migrateOldFolder():void");
+        @Override
+        public boolean canDismissWithSwipe() {
+            return false;
+        }
+
+        @Override
+        protected boolean canDismissWithTouchOutside() {
+            return false;
         }
 
         @Override
@@ -317,5 +127,197 @@ public class FilesMigrationService extends Service {
             super.dismiss();
             FilesMigrationService.filesMigrationBottomSheet = null;
         }
+
+        public void migrateOldFolder() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilesMigrationService.FilesMigrationBottomSheet.migrateOldFolder():void");
+        }
+
+        @Override
+        public void setLastVisible(boolean z) {
+            BaseFragment.AttachedSheet.CC.$default$setLastVisible(this, z);
+        }
+    }
+
+    public static void checkBottomSheet(BaseFragment baseFragment) {
+        boolean isExternalStorageLegacy;
+        SharedPreferences.Editor putBoolean;
+        ArrayList<File> rootDirs;
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
+        isExternalStorageLegacy = Environment.isExternalStorageLegacy();
+        if (!isExternalStorageLegacy || sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) || sharedPreferences.getInt("migration_to_scoped_storage_count", 0) >= 5 || wasShown || filesMigrationBottomSheet != null || isRunning) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 30) {
+            File externalStorageDirectory = Environment.getExternalStorageDirectory();
+            if (!TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
+                int size = rootDirs.size();
+                int i = 0;
+                while (true) {
+                    if (i >= size) {
+                        break;
+                    }
+                    File file = rootDirs.get(i);
+                    if (file.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
+                        externalStorageDirectory = file;
+                        break;
+                    }
+                    i++;
+                }
+            }
+            hasOldFolder = new File(externalStorageDirectory, "Telegram").exists();
+        }
+        if (hasOldFolder) {
+            FilesMigrationBottomSheet filesMigrationBottomSheet2 = new FilesMigrationBottomSheet(baseFragment);
+            filesMigrationBottomSheet = filesMigrationBottomSheet2;
+            filesMigrationBottomSheet2.show();
+            wasShown = true;
+            putBoolean = sharedPreferences.edit().putInt("migration_to_scoped_storage_count", sharedPreferences.getInt("migration_to_scoped_storage_count", 0) + 1);
+        } else {
+            putBoolean = sharedPreferences.edit().putBoolean("migration_to_scoped_storage_finished", true);
+        }
+        putBoolean.apply();
+    }
+
+    private int getFilesCount(File file) {
+        File[] listFiles;
+        if (!file.exists() || (listFiles = file.listFiles()) == null) {
+            return 0;
+        }
+        int i = 0;
+        for (int i2 = 0; i2 < listFiles.length; i2++) {
+            i = listFiles[i2].isDirectory() ? i + getFilesCount(listFiles[i2]) : i + 1;
+        }
+        return i;
+    }
+
+    public void lambda$moveDirectory$0(File file, Path path) {
+        Path fileName;
+        String path2;
+        boolean isDirectory;
+        File file2;
+        Path path3;
+        File file3;
+        fileName = path.getFileName();
+        path2 = fileName.toString();
+        File file4 = new File(file, path2);
+        isDirectory = Files.isDirectory(path, new LinkOption[0]);
+        if (isDirectory) {
+            file3 = path.toFile();
+            moveDirectory(file3, file4);
+            return;
+        }
+        try {
+            path3 = file4.toPath();
+            Files.move(path, path3, new CopyOption[0]);
+        } catch (Exception e) {
+            FileLog.e((Throwable) e, false);
+            try {
+                file2 = path.toFile();
+                file2.delete();
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+        }
+        this.movedFilesCount++;
+        updateProgress();
+    }
+
+    public void lambda$updateProgress$1(int i) {
+        ((NotificationManager) getSystemService("notification")).notify(301, new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setContentText(String.format("%s/%s", Integer.valueOf(i), Integer.valueOf(this.totalFilesCount))).setSmallIcon(R.drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i, false).build());
+    }
+
+    private void moveDirectory(File file, final File file2) {
+        Path path;
+        Stream convert;
+        if (file.exists()) {
+            if (file2.exists() || file2.mkdir()) {
+                try {
+                    path = file.toPath();
+                    convert = Stream.VivifiedWrapper.convert(Files.list(path));
+                    try {
+                        convert.forEach(new Consumer() {
+                            @Override
+                            public final void r(Object obj) {
+                                FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
+                            }
+
+                            @Override
+                            public Consumer andThen(Consumer consumer) {
+                                return Consumer.CC.$default$andThen(this, consumer);
+                            }
+                        });
+                        convert.close();
+                    } finally {
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                try {
+                    file.delete();
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                }
+            }
+        }
+    }
+
+    public static void start() {
+        ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, (Class<?>) FilesMigrationService.class));
+    }
+
+    private void updateProgress() {
+        if (System.currentTimeMillis() - this.lastUpdateTime > 20 || this.movedFilesCount >= this.totalFilesCount - 1) {
+            final int i = this.movedFilesCount;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    FilesMigrationService.this.lambda$updateProgress$1(i);
+                }
+            });
+        }
+    }
+
+    public void migrateOldFolder() {
+        ArrayList<File> rootDirs;
+        File externalStorageDirectory = Environment.getExternalStorageDirectory();
+        if (!TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
+            int size = rootDirs.size();
+            int i = 0;
+            while (true) {
+                if (i >= size) {
+                    break;
+                }
+                File file = rootDirs.get(i);
+                if (file.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
+                    externalStorageDirectory = file;
+                    break;
+                }
+                i++;
+            }
+        }
+        File file2 = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
+        File file3 = new File(externalStorageDirectory, "Telegram");
+        this.totalFilesCount = getFilesCount(file3);
+        long currentTimeMillis = System.currentTimeMillis();
+        if (file3.canRead() && file3.canWrite()) {
+            moveDirectory(file3, file2);
+        }
+        FileLog.d("move time = " + (System.currentTimeMillis() - currentTimeMillis));
+        ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int i, int i2) {
+        NotificationsController.checkOtherNotificationsChannel();
+        Notification build = new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
+        isRunning = true;
+        new AnonymousClass1().start();
+        startForeground(301, build);
+        return super.onStartCommand(intent, i, i2);
     }
 }

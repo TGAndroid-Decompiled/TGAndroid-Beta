@@ -38,123 +38,46 @@ import org.telegram.ui.SMSStatsActivity;
 import org.telegram.ui.SMSSubscribeSheet;
 
 public class ApplicationLoaderImpl extends ApplicationLoader {
-    @Override
-    protected void appCenterLogInternal(Throwable th) {
-    }
-
-    @Override
-    protected void checkForUpdatesInternal() {
-    }
-
-    @Override
-    protected boolean isStandalone() {
-        return true;
-    }
-
-    @Override
-    protected void logDualCameraInternal(boolean z, boolean z2) {
-    }
-
-    @Override
-    protected void startAppCenterInternal(Activity activity) {
-    }
-
-    @Override
-    protected String onGetApplicationId() {
-        return "org.telegram.messenger.web";
-    }
-
-    @Override
-    public boolean checkApkInstallPermissions(Context context) {
-        boolean canRequestPackageInstalls;
-        if (Build.VERSION.SDK_INT < 26) {
-            return true;
+    public static void lambda$extendDrawer$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, SMSJobController sMSJobController) {
+        if (tLRPC$TL_error != null) {
+            BulletinFactory.showError(tLRPC$TL_error);
+            return;
         }
-        canRequestPackageInstalls = ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls();
-        if (canRequestPackageInstalls) {
-            return true;
+        if (tLObject instanceof TLRPC$TL_boolFalse) {
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696795)).show();
+            return;
         }
-        AlertsCreator.createApkRestrictedDialog(context, null).show();
-        return false;
+        sMSJobController.setState(3);
+        sMSJobController.loadStatus(true);
+        SMSSubscribeSheet.showSubscribed(LaunchActivity.instance, null);
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null) {
+            lastFragment.presentFragment(new SMSStatsActivity());
+        }
     }
 
-    @Override
-    public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
-        boolean z = false;
-        try {
-            FileLoader.getAttachFileName(tLRPC$Document);
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
-            z = pathToAttach.exists();
-            if (z) {
-                Intent intent = new Intent("android.intent.action.VIEW");
-                intent.setFlags(1);
-                if (Build.VERSION.SDK_INT >= 24) {
-                    intent.setDataAndType(FileProvider.getUriForFile(activity, ApplicationLoader.getApplicationId() + ".provider", pathToAttach), "application/vnd.android.package-archive");
-                } else {
-                    intent.setDataAndType(Uri.fromFile(pathToAttach), "application/vnd.android.package-archive");
-                }
-                try {
-                    activity.startActivityForResult(intent, 500);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
+    public static void lambda$extendDrawer$1(final SMSJobController sMSJobController, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ApplicationLoaderImpl.lambda$extendDrawer$0(TLRPC$TL_error.this, tLObject, sMSJobController);
             }
-        } catch (Exception e2) {
-            FileLog.e(e2);
-        }
-        return z;
+        });
     }
 
-    @Override
-    public boolean showUpdateAppPopup(Context context, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, int i) {
-        try {
-            new UpdateAppAlertDialog(context, tLRPC$TL_help_appUpdate, i).show();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return true;
-        }
-    }
-
-    @Override
-    public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
-        return new UpdateLayout(activity, viewGroup, viewGroup2);
-    }
-
-    @Override
-    public TLRPC$Update parseTLUpdate(int i) {
-        if (i == -245208620) {
-            return new TL_smsjobs$TL_updateSmsJob();
-        }
-        return super.parseTLUpdate(i);
-    }
-
-    @Override
-    public void processUpdate(int i, TLRPC$Update tLRPC$Update) {
-        if (tLRPC$Update instanceof TL_smsjobs$TL_updateSmsJob) {
-            SMSJobController.getInstance(i).processJobUpdate(((TL_smsjobs$TL_updateSmsJob) tLRPC$Update).job_id);
-        }
-    }
-
-    @Override
-    public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
-        if (SMSJobController.getInstance(UserConfig.selectedAccount).isAvailable()) {
-            CharSequence string = LocaleController.getString(2131695787);
-            if (MessagesController.getGlobalMainSettings().getBoolean("newppsms", true)) {
-                string = PremiumPreviewFragment.applyNewSpan(string.toString());
-            }
-            DrawerLayoutAdapter.Item onClick = new DrawerLayoutAdapter.Item(93, string, 2131231164).onClick(new View.OnClickListener() {
+    public static void lambda$extendDrawer$2(final SMSJobController sMSJobController) {
+        sMSJobController.checkSelectedSIMCard();
+        if (sMSJobController.getSelectedSIM() != null) {
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
                 @Override
-                public final void onClick(View view) {
-                    ApplicationLoaderImpl.lambda$extendDrawer$3(view);
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ApplicationLoaderImpl.lambda$extendDrawer$1(SMSJobController.this, tLObject, tLRPC$TL_error);
                 }
             });
-            if (SMSStatsActivity.isAirplaneMode(LaunchActivity.instance) || SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
-                onClick.withError();
-            }
-            arrayList.add(onClick);
+        } else {
+            sMSJobController.setState(2);
+            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695857)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695856))).setPositiveButton(LocaleController.getString(2131694057), null).show();
         }
-        return true;
     }
 
     public static void lambda$extendDrawer$3(View view) {
@@ -168,7 +91,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (i == 2) {
             sMSJobController.checkSelectedSIMCard();
             if (sMSJobController.getSelectedSIM() == null) {
-                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695792)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695791))).setPositiveButton(LocaleController.getString(2131693987), null).show();
+                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695857)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695856))).setPositiveButton(LocaleController.getString(2131694057), null).show();
                 return;
             }
         } else if (i == 1) {
@@ -186,46 +109,38 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         }
     }
 
-    public static void lambda$extendDrawer$2(final SMSJobController sMSJobController) {
-        sMSJobController.checkSelectedSIMCard();
-        if (sMSJobController.getSelectedSIM() == null) {
-            sMSJobController.setState(2);
-            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695792)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695791))).setPositiveButton(LocaleController.getString(2131693987), null).show();
+    public static void lambda$onSuggestionClick$4(SMSStatsActivity sMSStatsActivity) {
+        sMSStatsActivity.showDialog(new SMSStatsActivity.SMSHistorySheet(sMSStatsActivity));
+    }
+
+    public static void lambda$onSuggestionClick$5(TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin) {
+        if (tL_smsjobs$TL_smsjobs_eligibleToJoin == null) {
+            MessagesController.getInstance(UserConfig.selectedAccount).removeSuggestion(0L, "PREMIUM_SMSJOBS");
         } else {
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ApplicationLoaderImpl.lambda$extendDrawer$1(SMSJobController.this, tLObject, tLRPC$TL_error);
-                }
-            });
+            SMSSubscribeSheet.show(LaunchActivity.instance, tL_smsjobs$TL_smsjobs_eligibleToJoin, null, null);
         }
     }
 
-    public static void lambda$extendDrawer$1(final SMSJobController sMSJobController, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ApplicationLoaderImpl.lambda$extendDrawer$0(TLRPC$TL_error.this, tLObject, sMSJobController);
-            }
-        });
+    @Override
+    protected void appCenterLogInternal(Throwable th) {
     }
 
-    public static void lambda$extendDrawer$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, SMSJobController sMSJobController) {
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.showError(tLRPC$TL_error);
-            return;
+    @Override
+    public boolean checkApkInstallPermissions(Context context) {
+        boolean canRequestPackageInstalls;
+        if (Build.VERSION.SDK_INT < 26) {
+            return true;
         }
-        if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696720)).show();
-            return;
+        canRequestPackageInstalls = ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls();
+        if (canRequestPackageInstalls) {
+            return true;
         }
-        sMSJobController.setState(3);
-        sMSJobController.loadStatus(true);
-        SMSSubscribeSheet.showSubscribed(LaunchActivity.instance, null);
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.presentFragment(new SMSStatsActivity());
-        }
+        AlertsCreator.createApkRestrictedDialog(context, null).show();
+        return false;
+    }
+
+    @Override
+    protected void checkForUpdatesInternal() {
     }
 
     @Override
@@ -237,20 +152,67 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public boolean onSuggestionFill(String str, CharSequence[] charSequenceArr, boolean[] zArr) {
-        if (str == null && SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
-            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(2131695786));
-            charSequenceArr[1] = LocaleController.getString(2131695785);
-            zArr[0] = false;
-            return true;
+    public boolean consumePush(int i, JSONObject jSONObject) {
+        if (jSONObject == null) {
+            return false;
         }
-        if ("PREMIUM_SMSJOBS".equals(str) && SMSJobController.getInstance(UserConfig.selectedAccount).currentState != 3) {
-            charSequenceArr[0] = LocaleController.getString(2131695789);
-            charSequenceArr[1] = LocaleController.getString(2131695788);
-            zArr[0] = true;
+        try {
+            if (!"SMSJOB".equals(jSONObject.getString("loc_key"))) {
+                return false;
+            }
+            SMSJobController.getInstance(UserConfig.selectedAccount).processJobUpdate(jSONObject.getJSONObject("custom").getString("job_id"));
             return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
         }
-        return super.onSuggestionFill(str, charSequenceArr, zArr);
+    }
+
+    @Override
+    public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
+        if (SMSJobController.getInstance(UserConfig.selectedAccount).isAvailable()) {
+            CharSequence string = LocaleController.getString(2131695852);
+            if (MessagesController.getGlobalMainSettings().getBoolean("newppsms", true)) {
+                string = PremiumPreviewFragment.applyNewSpan(string.toString());
+            }
+            DrawerLayoutAdapter.Item onClick = new DrawerLayoutAdapter.Item(93, string, 2131231166).onClick(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ApplicationLoaderImpl.lambda$extendDrawer$3(view);
+                }
+            });
+            if (SMSStatsActivity.isAirplaneMode(LaunchActivity.instance) || SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
+                onClick.withError();
+            }
+            arrayList.add(onClick);
+        }
+        return true;
+    }
+
+    @Override
+    protected boolean isStandalone() {
+        return true;
+    }
+
+    @Override
+    protected void logDualCameraInternal(boolean z, boolean z2) {
+    }
+
+    @Override
+    protected String onGetApplicationId() {
+        return "org.telegram.messenger.web";
+    }
+
+    @Override
+    public boolean onPause() {
+        super.onPause();
+        return SMSJobsNotification.check();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SMSJobsNotification.check();
     }
 
     @Override
@@ -288,45 +250,50 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         return true;
     }
 
-    public static void lambda$onSuggestionClick$4(SMSStatsActivity sMSStatsActivity) {
-        sMSStatsActivity.showDialog(new SMSStatsActivity.SMSHistorySheet(sMSStatsActivity));
-    }
-
-    public static void lambda$onSuggestionClick$5(TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin) {
-        if (tL_smsjobs$TL_smsjobs_eligibleToJoin == null) {
-            MessagesController.getInstance(UserConfig.selectedAccount).removeSuggestion(0L, "PREMIUM_SMSJOBS");
-        } else {
-            SMSSubscribeSheet.show(LaunchActivity.instance, tL_smsjobs$TL_smsjobs_eligibleToJoin, null, null);
-        }
-    }
-
     @Override
-    public boolean consumePush(int i, JSONObject jSONObject) {
-        if (jSONObject == null) {
-            return false;
-        }
-        try {
-            if (!"SMSJOB".equals(jSONObject.getString("loc_key"))) {
-                return false;
-            }
-            SMSJobController.getInstance(UserConfig.selectedAccount).processJobUpdate(jSONObject.getJSONObject("custom").getString("job_id"));
+    public boolean onSuggestionFill(String str, CharSequence[] charSequenceArr, boolean[] zArr) {
+        if (str == null && SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
+            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(2131695851));
+            charSequenceArr[1] = LocaleController.getString(2131695850);
+            zArr[0] = false;
             return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
         }
+        if (!"PREMIUM_SMSJOBS".equals(str) || SMSJobController.getInstance(UserConfig.selectedAccount).currentState == 3) {
+            return super.onSuggestionFill(str, charSequenceArr, zArr);
+        }
+        charSequenceArr[0] = LocaleController.getString(2131695854);
+        charSequenceArr[1] = LocaleController.getString(2131695853);
+        zArr[0] = true;
+        return true;
     }
 
     @Override
-    public boolean onPause() {
-        super.onPause();
-        return SMSJobsNotification.check();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        SMSJobsNotification.check();
+    public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
+        Uri fromFile;
+        boolean z = false;
+        try {
+            FileLoader.getAttachFileName(tLRPC$Document);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
+            z = pathToAttach.exists();
+            if (z) {
+                Intent intent = new Intent("android.intent.action.VIEW");
+                intent.setFlags(1);
+                if (Build.VERSION.SDK_INT >= 24) {
+                    fromFile = FileProvider.getUriForFile(activity, ApplicationLoader.getApplicationId() + ".provider", pathToAttach);
+                } else {
+                    fromFile = Uri.fromFile(pathToAttach);
+                }
+                intent.setDataAndType(fromFile, "application/vnd.android.package-archive");
+                try {
+                    activity.startActivityForResult(intent, 500);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        return z;
     }
 
     @Override
@@ -335,5 +302,37 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             return new SMSStatsActivity();
         }
         return null;
+    }
+
+    @Override
+    public TLRPC$Update parseTLUpdate(int i) {
+        return i == -245208620 ? new TL_smsjobs$TL_updateSmsJob() : super.parseTLUpdate(i);
+    }
+
+    @Override
+    public void processUpdate(int i, TLRPC$Update tLRPC$Update) {
+        if (tLRPC$Update instanceof TL_smsjobs$TL_updateSmsJob) {
+            SMSJobController.getInstance(i).processJobUpdate(((TL_smsjobs$TL_updateSmsJob) tLRPC$Update).job_id);
+        }
+    }
+
+    @Override
+    public boolean showUpdateAppPopup(Context context, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, int i) {
+        try {
+            new UpdateAppAlertDialog(context, tLRPC$TL_help_appUpdate, i).show();
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return true;
+        }
+    }
+
+    @Override
+    protected void startAppCenterInternal(Activity activity) {
+    }
+
+    @Override
+    public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        return new UpdateLayout(activity, viewGroup, viewGroup2);
     }
 }

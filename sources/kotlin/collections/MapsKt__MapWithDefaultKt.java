@@ -1,4 +1,4 @@
 package kotlin.collections;
 
-class MapsKt__MapWithDefaultKt {
+abstract class MapsKt__MapWithDefaultKt {
 }

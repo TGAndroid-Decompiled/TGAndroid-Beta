@@ -80,10 +80,46 @@ public class VoipCoverEmoji {
         this.positionAnimator.setDuration(2000L);
     }
 
+    private int getCenterX() {
+        return this.width / 2;
+    }
+
     public void lambda$new$0(View view, ValueAnimator valueAnimator) {
         this.randomX = (int) (this.fromRandomX + ((this.toRandomX - r0) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
         this.randomY = (int) (this.fromRandomY + ((this.toRandomY - r0) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
         view.invalidate();
+    }
+
+    public void lambda$show$1(ValueAnimator valueAnimator) {
+        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        if (this.posX <= getCenterX()) {
+            intValue = -intValue;
+        }
+        this.diffX = intValue;
+        this.parent.invalidate();
+    }
+
+    public void lambda$show$2(int i, int i2, ValueAnimator valueAnimator) {
+        this.scale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.parent.invalidate();
+        if (this.scale <= 1.0f || this.diffXAnimator != null) {
+            return;
+        }
+        ValueAnimator ofInt = ValueAnimator.ofInt(AndroidUtilities.dp(i), 0);
+        this.diffXAnimator = ofInt;
+        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                VoipCoverEmoji.this.lambda$show$1(valueAnimator2);
+            }
+        });
+        this.diffXAnimator.setDuration(i2 - valueAnimator.getCurrentPlayTime());
+        this.diffXAnimator.start();
+    }
+
+    public void lambda$show$3(ValueAnimator valueAnimator) {
+        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        this.parent.invalidate();
     }
 
     private void show() {
@@ -126,76 +162,6 @@ public class VoipCoverEmoji {
         ofInt.start();
     }
 
-    public void lambda$show$2(int i, int i2, ValueAnimator valueAnimator) {
-        this.scale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.parent.invalidate();
-        if (this.scale <= 1.0f || this.diffXAnimator != null) {
-            return;
-        }
-        ValueAnimator ofInt = ValueAnimator.ofInt(AndroidUtilities.dp(i), 0);
-        this.diffXAnimator = ofInt;
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoipCoverEmoji.this.lambda$show$1(valueAnimator2);
-            }
-        });
-        this.diffXAnimator.setDuration(i2 - valueAnimator.getCurrentPlayTime());
-        this.diffXAnimator.start();
-    }
-
-    public void lambda$show$1(ValueAnimator valueAnimator) {
-        int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        if (this.posX <= getCenterX()) {
-            intValue = -intValue;
-        }
-        this.diffX = intValue;
-        this.parent.invalidate();
-    }
-
-    public void lambda$show$3(ValueAnimator valueAnimator) {
-        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        this.parent.invalidate();
-    }
-
-    private int getCenterX() {
-        return this.width / 2;
-    }
-
-    public void onLayout(int i, int i2) {
-        this.width = i;
-        this.height = i2;
-        this.parent.invalidate();
-    }
-
-    public void setPosition(int i, int i2) {
-        if (this.emoji == null) {
-            return;
-        }
-        this.posX = i;
-        this.posY = i2;
-        this.parent.invalidate();
-        show();
-    }
-
-    public void onDraw(Canvas canvas) {
-        if (this.emoji == null) {
-            return;
-        }
-        canvas.save();
-        float f = this.scale;
-        canvas.scale(f, f, this.width / 2.0f, AndroidUtilities.dp(300.0f));
-        canvas.translate(this.posX - this.diffX, this.posY);
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
-        int i = this.randomX;
-        int i2 = this.randomY;
-        int i3 = this.size;
-        swapAnimatedEmojiDrawable.setBounds(i, i2, i + i3, i3 + i2);
-        this.emoji.setAlpha(this.alpha);
-        this.emoji.draw(canvas);
-        canvas.restore();
-    }
-
     public void onAttachedToWindow() {
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
         if (swapAnimatedEmojiDrawable == null) {
@@ -218,5 +184,39 @@ public class VoipCoverEmoji {
             this.positionAnimator = null;
         }
         this.emoji.detach();
+    }
+
+    public void onDraw(Canvas canvas) {
+        if (this.emoji == null) {
+            return;
+        }
+        canvas.save();
+        float f = this.scale;
+        canvas.scale(f, f, this.width / 2.0f, AndroidUtilities.dp(300.0f));
+        canvas.translate(this.posX - this.diffX, this.posY);
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
+        int i = this.randomX;
+        int i2 = this.randomY;
+        int i3 = this.size;
+        swapAnimatedEmojiDrawable.setBounds(i, i2, i + i3, i3 + i2);
+        this.emoji.setAlpha(this.alpha);
+        this.emoji.draw(canvas);
+        canvas.restore();
+    }
+
+    public void onLayout(int i, int i2) {
+        this.width = i;
+        this.height = i2;
+        this.parent.invalidate();
+    }
+
+    public void setPosition(int i, int i2) {
+        if (this.emoji == null) {
+            return;
+        }
+        this.posX = i;
+        this.posY = i2;
+        this.parent.invalidate();
+        show();
     }
 }

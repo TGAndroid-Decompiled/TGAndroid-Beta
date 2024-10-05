@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 
-public final class ReplyMessageLine$$ExternalSyntheticBackport0 {
+public abstract class ReplyMessageLine$$ExternalSyntheticBackport0 {
     public static int m(int i, int i2) {
         int i3 = i % i2;
         if (i3 == 0) {

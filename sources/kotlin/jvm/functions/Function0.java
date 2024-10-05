@@ -1,5 +1,5 @@
 package kotlin.jvm.functions;
 
-public interface Function0<R> {
-    R invoke();
+public interface Function0 {
+    Object invoke();
 }

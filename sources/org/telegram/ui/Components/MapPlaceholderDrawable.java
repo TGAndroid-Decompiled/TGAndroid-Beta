@@ -11,45 +11,27 @@ public class MapPlaceholderDrawable extends Drawable {
     private Paint linePaint;
     private Paint paint;
 
-    @Override
-    public int getIntrinsicHeight() {
-        return 0;
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return 0;
-    }
-
-    @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     public MapPlaceholderDrawable() {
         this(Theme.getCurrentTheme().isDark());
     }
 
     public MapPlaceholderDrawable(boolean z) {
+        Paint paint;
+        int i;
         this.paint = new Paint();
-        Paint paint = new Paint();
-        this.linePaint = paint;
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        Paint paint2 = new Paint();
+        this.linePaint = paint2;
+        paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
         if (z) {
             this.paint.setColor(-14865331);
-            this.linePaint.setColor(-15854042);
+            paint = this.linePaint;
+            i = -15854042;
         } else {
             this.paint.setColor(-2172970);
-            this.linePaint.setColor(-3752002);
+            paint = this.linePaint;
+            i = -3752002;
         }
+        paint.setColor(i);
     }
 
     @Override
@@ -72,5 +54,28 @@ public class MapPlaceholderDrawable extends Drawable {
             float f2 = (dp * i3) + i2;
             canvas.drawLine(i, f2, getBounds().width() + i, f2, this.linePaint);
         }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return 0;
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return 0;
+    }
+
+    @Override
+    public int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 }

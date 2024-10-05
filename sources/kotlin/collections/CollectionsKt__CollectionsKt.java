@@ -4,28 +4,25 @@ import java.util.Collection;
 import java.util.List;
 import kotlin.jvm.internal.Intrinsics;
 
-public class CollectionsKt__CollectionsKt extends CollectionsKt__CollectionsJVMKt {
-    public static final <T> Collection<T> asCollection(T[] tArr) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        return new ArrayAsCollection(tArr, false);
+public abstract class CollectionsKt__CollectionsKt extends CollectionsKt__CollectionsJVMKt {
+    public static final Collection asCollection(Object[] objArr) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        return new ArrayAsCollection(objArr, false);
     }
 
-    public static final <T> List<T> emptyList() {
+    public static final List emptyList() {
         return EmptyList.INSTANCE;
     }
 
-    public static <T> List<T> listOf(T... elements) {
+    public static List listOf(Object... elements) {
         Intrinsics.checkNotNullParameter(elements, "elements");
         return elements.length > 0 ? ArraysKt___ArraysJvmKt.asList(elements) : emptyList();
     }
 
-    public static <T> List<T> optimizeReadOnlyList(List<? extends T> list) {
+    public static List optimizeReadOnlyList(List list) {
         Intrinsics.checkNotNullParameter(list, "<this>");
         int size = list.size();
-        if (size != 0) {
-            return size != 1 ? list : CollectionsKt.listOf(list.get(0));
-        }
-        return emptyList();
+        return size != 0 ? size != 1 ? list : CollectionsKt.listOf(list.get(0)) : emptyList();
     }
 
     public static void throwIndexOverflow() {

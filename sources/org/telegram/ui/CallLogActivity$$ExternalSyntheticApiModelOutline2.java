@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class CallLogActivity$$ExternalSyntheticApiModelOutline2 {
+public abstract class CallLogActivity$$ExternalSyntheticApiModelOutline2 {
 }

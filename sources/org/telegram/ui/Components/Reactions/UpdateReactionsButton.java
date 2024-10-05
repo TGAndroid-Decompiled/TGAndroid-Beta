@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Reactions;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import org.telegram.messenger.LocaleController;
@@ -9,12 +8,15 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-@SuppressLint({"ViewConstructor"})
 public class UpdateReactionsButton extends ButtonWithCounterView {
     private SpannableStringBuilder lock;
 
     public UpdateReactionsButton(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
+    }
+
+    public void removeLvlRequiredState() {
+        setSubText(null, true);
     }
 
     public void setDefaultState() {
@@ -29,9 +31,5 @@ public class UpdateReactionsButton extends ButtonWithCounterView {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) this.lock).append((CharSequence) LocaleController.formatPluralString("ReactionLevelRequiredBtn", i, new Object[0]));
         setSubText(spannableStringBuilder, true);
-    }
-
-    public void removeLvlRequiredState() {
-        setSubText(null, true);
     }
 }

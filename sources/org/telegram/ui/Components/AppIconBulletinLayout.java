@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.LauncherIconController;
 
-@SuppressLint({"ViewConstructor"})
 public class AppIconBulletinLayout extends Bulletin.ButtonLayout {
     public final AppIconsSelectorCell.AdaptiveIconImageView imageView;
     public final TextView textView;

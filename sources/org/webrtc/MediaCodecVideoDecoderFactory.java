@@ -11,14 +11,51 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     private final Predicate<MediaCodecInfo> codecAllowedPredicate;
     private final EglBase.Context sharedContext;
 
-    @Override
-    public VideoDecoder createDecoder(String str) {
-        return VideoDecoderFactory.CC.$default$createDecoder(this, str);
-    }
-
     public MediaCodecVideoDecoderFactory(EglBase.Context context, Predicate<MediaCodecInfo> predicate) {
         this.sharedContext = context;
         this.codecAllowedPredicate = predicate;
+    }
+
+    private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
+        ArrayList<MediaCodecInfo> sortedCodecsList = MediaCodecUtils.getSortedCodecsList();
+        int size = sortedCodecsList.size();
+        for (int i = 0; i < size; i++) {
+            MediaCodecInfo mediaCodecInfo = sortedCodecsList.get(i);
+            if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
+                return mediaCodecInfo;
+            }
+        }
+        return null;
+    }
+
+    private boolean isCodecAllowed(MediaCodecInfo mediaCodecInfo) {
+        Predicate<MediaCodecInfo> predicate = this.codecAllowedPredicate;
+        if (predicate == null) {
+            return true;
+        }
+        return predicate.test(mediaCodecInfo);
+    }
+
+    private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
+        String name = mediaCodecInfo.getName();
+        int i = Build.VERSION.SDK_INT;
+        if (i < 21 || !name.startsWith("OMX.qcom.")) {
+            return i >= 23 && name.startsWith("OMX.Exynos.");
+        }
+        return true;
+    }
+
+    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
+        mediaCodecInfo.getName();
+        if (MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null) {
+            return isCodecAllowed(mediaCodecInfo);
+        }
+        return false;
+    }
+
+    @Override
+    public VideoDecoder createDecoder(String str) {
+        return VideoDecoderFactory.CC.$default$createDecoder(this, str);
     }
 
     @Override
@@ -47,42 +84,5 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
             }
         }
         return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
-    }
-
-    private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
-        ArrayList<MediaCodecInfo> sortedCodecsList = MediaCodecUtils.getSortedCodecsList();
-        int size = sortedCodecsList.size();
-        for (int i = 0; i < size; i++) {
-            MediaCodecInfo mediaCodecInfo = sortedCodecsList.get(i);
-            if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
-                return mediaCodecInfo;
-            }
-        }
-        return null;
-    }
-
-    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
-        mediaCodecInfo.getName();
-        if (MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null) {
-            return isCodecAllowed(mediaCodecInfo);
-        }
-        return false;
-    }
-
-    private boolean isCodecAllowed(MediaCodecInfo mediaCodecInfo) {
-        Predicate<MediaCodecInfo> predicate = this.codecAllowedPredicate;
-        if (predicate == null) {
-            return true;
-        }
-        return predicate.test(mediaCodecInfo);
-    }
-
-    private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
-        String name = mediaCodecInfo.getName();
-        int i = Build.VERSION.SDK_INT;
-        if (i < 21 || !name.startsWith("OMX.qcom.")) {
-            return i >= 23 && name.startsWith("OMX.Exynos.");
-        }
-        return true;
     }
 }

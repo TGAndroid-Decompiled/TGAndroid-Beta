@@ -22,7 +22,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
     public int thumb_dc_id;
     public long thumb_document_id;
     public int thumb_version;
-    public ArrayList<TLRPC$PhotoSize> thumbs = new ArrayList<>();
+    public ArrayList thumbs = new ArrayList();
     public String title;
 
     public static TLRPC$StickerSet TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -158,7 +158,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                             int size = this.thumbs.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i6 = 0; i6 < size; i6++) {
-                                this.thumbs.get(i6).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$PhotoSize) this.thumbs.get(i6)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16) != 0) {
@@ -220,7 +220,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);
                         if ((this.flags & 16) != 0) {
-                            this.thumbs.get(0).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.thumbs.get(0)).serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 16) != 0) {
                             abstractSerializedData2.writeInt32(this.thumb_dc_id);
@@ -295,7 +295,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                             int size = this.thumbs.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i5 = 0; i5 < size; i5++) {
-                                this.thumbs.get(i5).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$PhotoSize) this.thumbs.get(i5)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16) != 0) {
@@ -390,7 +390,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);
                         if ((this.flags & 16) != 0) {
-                            this.thumbs.get(0).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhotoSize) this.thumbs.get(0)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(this.count);
                         abstractSerializedData2.writeInt32(this.hash);

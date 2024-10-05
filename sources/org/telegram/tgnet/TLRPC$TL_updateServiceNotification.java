@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_updateServiceNotification extends TLRPC$Update {
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
     public int flags;
     public int inbox_date;
     public boolean invert_media;
@@ -59,7 +59,7 @@ public class TLRPC$TL_updateServiceNotification extends TLRPC$Update {
         int size = this.entities.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            this.entities.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$MessageEntity) this.entities.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

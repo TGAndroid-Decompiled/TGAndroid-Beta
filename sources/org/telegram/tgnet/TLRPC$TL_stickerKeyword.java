@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_stickerKeyword extends TLObject {
     public long document_id;
-    public ArrayList<String> keyword = new ArrayList<>();
+    public ArrayList keyword = new ArrayList();
 
     public static TLRPC$TL_stickerKeyword TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-50416996 != i) {
@@ -42,7 +42,7 @@ public class TLRPC$TL_stickerKeyword extends TLObject {
         int size = this.keyword.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeString(this.keyword.get(i));
+            abstractSerializedData.writeString((String) this.keyword.get(i));
         }
     }
 }

@@ -44,11 +44,6 @@ public class UserCell2 extends FrameLayout {
     private int statusOnlineColor;
     private SimpleTextView statusTextView;
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
-
     public UserCell2(Context context, int i, int i2) {
         this(context, i, i2, null);
     }
@@ -127,41 +122,9 @@ public class UserCell2 extends FrameLayout {
         }
     }
 
-    public void setData(TLObject tLObject, CharSequence charSequence, CharSequence charSequence2, int i) {
-        if (tLObject == null && charSequence == null && charSequence2 == null) {
-            this.currentStatus = null;
-            this.currentName = null;
-            this.currentObject = null;
-            this.nameTextView.setText("");
-            this.statusTextView.setText("");
-            this.avatarImageView.setImageDrawable(null);
-            return;
-        }
-        this.currentStatus = charSequence2;
-        this.currentName = charSequence;
-        this.currentObject = tLObject;
-        this.currentDrawable = i;
-        update(0);
-    }
-
-    public void setNameTypeface(Typeface typeface) {
-        this.nameTextView.setTypeface(typeface);
-    }
-
-    public void setCurrentId(int i) {
-        this.currentId = i;
-    }
-
-    public void setCheckDisabled(boolean z) {
-        CheckBoxSquare checkBoxSquare = this.checkBoxBig;
-        if (checkBoxSquare != null) {
-            checkBoxSquare.setDisabled(z);
-        }
-    }
-
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(70.0f), 1073741824));
+    public boolean hasOverlappingRendering() {
+        return false;
     }
 
     @Override
@@ -171,6 +134,43 @@ public class UserCell2 extends FrameLayout {
         if (checkBoxSquare != null) {
             checkBoxSquare.invalidate();
         }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(70.0f), 1073741824));
+    }
+
+    public void setCheckDisabled(boolean z) {
+        CheckBoxSquare checkBoxSquare = this.checkBoxBig;
+        if (checkBoxSquare != null) {
+            checkBoxSquare.setDisabled(z);
+        }
+    }
+
+    public void setCurrentId(int i) {
+        this.currentId = i;
+    }
+
+    public void setData(TLObject tLObject, CharSequence charSequence, CharSequence charSequence2, int i) {
+        if (tLObject != null || charSequence != null || charSequence2 != null) {
+            this.currentStatus = charSequence2;
+            this.currentName = charSequence;
+            this.currentObject = tLObject;
+            this.currentDrawable = i;
+            update(0);
+            return;
+        }
+        this.currentStatus = null;
+        this.currentName = null;
+        this.currentObject = null;
+        this.nameTextView.setText("");
+        this.statusTextView.setText("");
+        this.avatarImageView.setImageDrawable(null);
+    }
+
+    public void setNameTypeface(Typeface typeface) {
+        this.nameTextView.setTypeface(typeface);
     }
 
     public void update(int r13) {

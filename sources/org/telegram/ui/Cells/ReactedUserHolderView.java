@@ -55,9 +55,6 @@ public class ReactedUserHolderView extends FrameLayout {
     SimpleTextView subtitleView;
     SimpleTextView titleView;
 
-    public void openStory(long j, Runnable runnable) {
-    }
-
     static {
         int i = R.drawable.msg_mini_checks;
         int i2 = Theme.key_windowBackgroundWhiteGrayText;
@@ -87,11 +84,11 @@ public class ReactedUserHolderView extends FrameLayout {
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
             public void onDraw(Canvas canvas) {
-                if (i == ReactedUserHolderView.STYLE_STORY) {
+                if (i != ReactedUserHolderView.STYLE_STORY) {
+                    super.onDraw(canvas);
+                } else {
                     ReactedUserHolderView.this.params.originalAvatarRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     StoriesUtilities.drawAvatarWithStory(ReactedUserHolderView.this.dialogId, canvas, getImageReceiver(), ReactedUserHolderView.this.params);
-                } else {
-                    super.onDraw(canvas);
                 }
             }
 
@@ -153,49 +150,9 @@ public class ReactedUserHolderView extends FrameLayout {
         }
     }
 
-    public void setUserReaction(org.telegram.tgnet.TLRPC$User r19, org.telegram.tgnet.TLRPC$Chat r20, org.telegram.tgnet.TLRPC$Reaction r21, boolean r22, long r23, org.telegram.tgnet.tl.TL_stories$StoryItem r25, boolean r26, boolean r27, boolean r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ReactedUserHolderView.setUserReaction(org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$Reaction, boolean, long, org.telegram.tgnet.tl.TL_stories$StoryItem, boolean, boolean, boolean):void");
-    }
-
-    public void setUserReaction(TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
-        TLRPC$Chat chat;
-        TLRPC$User tLRPC$User;
-        if (tLRPC$MessagePeerReaction == null) {
-            return;
-        }
-        long peerId = MessageObject.getPeerId(tLRPC$MessagePeerReaction.peer_id);
-        if (peerId > 0) {
-            tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerId));
-            chat = null;
-        } else {
-            chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId));
-            tLRPC$User = null;
-        }
-        setUserReaction(tLRPC$User, chat, tLRPC$MessagePeerReaction.reaction, false, tLRPC$MessagePeerReaction.date, null, false, tLRPC$MessagePeerReaction.dateIsSeen, false);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.style == STYLE_DEFAULT ? 50 : 58), 1073741824));
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.statusBadgeComponent.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.statusBadgeComponent.onDetachedFromWindow();
-        this.params.onDetachFromWindow();
+    public void lambda$animateAlpha$0(ValueAnimator valueAnimator) {
+        this.alphaInternal = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
     }
 
     public void animateAlpha(final float f, boolean z) {
@@ -204,38 +161,29 @@ public class ReactedUserHolderView extends FrameLayout {
             valueAnimator.cancel();
             this.alphaAnimator = null;
         }
-        if (z) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.alphaInternal, f);
-            this.alphaAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ReactedUserHolderView.this.lambda$animateAlpha$0(valueAnimator2);
-                }
-            });
-            this.alphaAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ReactedUserHolderView.this.alphaInternal = f;
-                    ReactedUserHolderView.this.invalidate();
-                }
-            });
-            this.alphaAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.alphaAnimator.setDuration(420L);
-            this.alphaAnimator.start();
+        if (!z) {
+            this.alphaInternal = f;
+            invalidate();
             return;
         }
-        this.alphaInternal = f;
-        invalidate();
-    }
-
-    public void lambda$animateAlpha$0(ValueAnimator valueAnimator) {
-        this.alphaInternal = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public float getAlphaInternal() {
-        return this.alphaInternal;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.alphaInternal, f);
+        this.alphaAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                ReactedUserHolderView.this.lambda$animateAlpha$0(valueAnimator2);
+            }
+        });
+        this.alphaAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ReactedUserHolderView.this.alphaInternal = f;
+                ReactedUserHolderView.this.invalidate();
+            }
+        });
+        this.alphaAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.alphaAnimator.setDuration(420L);
+        this.alphaAnimator.start();
     }
 
     @Override
@@ -261,7 +209,60 @@ public class ReactedUserHolderView extends FrameLayout {
         }
     }
 
+    public float getAlphaInternal() {
+        return this.alphaInternal;
+    }
+
     public Theme.ResourcesProvider getResourcesProvider() {
         return this.resourcesProvider;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.statusBadgeComponent.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.statusBadgeComponent.onDetachedFromWindow();
+        this.params.onDetachFromWindow();
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.style == STYLE_DEFAULT ? 50 : 58), 1073741824));
+    }
+
+    public void openStory(long j, Runnable runnable) {
+    }
+
+    public void setUserReaction(TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
+        TLRPC$Chat chat;
+        TLRPC$User tLRPC$User;
+        if (tLRPC$MessagePeerReaction == null) {
+            return;
+        }
+        long peerId = MessageObject.getPeerId(tLRPC$MessagePeerReaction.peer_id);
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        if (peerId > 0) {
+            tLRPC$User = messagesController.getUser(Long.valueOf(peerId));
+            chat = null;
+        } else {
+            chat = messagesController.getChat(Long.valueOf(-peerId));
+            tLRPC$User = null;
+        }
+        setUserReaction(tLRPC$User, chat, tLRPC$MessagePeerReaction.reaction, false, tLRPC$MessagePeerReaction.date, null, false, tLRPC$MessagePeerReaction.dateIsSeen, false);
+    }
+
+    public void setUserReaction(org.telegram.tgnet.TLRPC$User r19, org.telegram.tgnet.TLRPC$Chat r20, org.telegram.tgnet.TLRPC$Reaction r21, boolean r22, long r23, org.telegram.tgnet.tl.TL_stories$StoryItem r25, boolean r26, boolean r27, boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ReactedUserHolderView.setUserReaction(org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$Reaction, boolean, long, org.telegram.tgnet.tl.TL_stories$StoryItem, boolean, boolean, boolean):void");
     }
 }

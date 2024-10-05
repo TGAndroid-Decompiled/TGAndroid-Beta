@@ -35,6 +35,16 @@ public class SearchStateDrawable extends Drawable {
         }
     }, 0, 350, CubicBezierInterpolator.EASE_OUT_QUINT);
 
+    public SearchStateDrawable() {
+        Paint paint = new Paint(1);
+        this.paint = paint;
+        paint.setColor(-1);
+        this.paint.setStyle(Paint.Style.STROKE);
+        this.paint.setStrokeJoin(Paint.Join.ROUND);
+        this.paint.setStrokeCap(Paint.Cap.ROUND);
+        this.paint.setStrokeWidth(AndroidUtilities.dp(1.333f));
+    }
+
     private boolean containsAngle(float f, float f2, float f3) {
         float f4 = f2 % 360.0f;
         if (f4 < 0.0f) {
@@ -47,35 +57,38 @@ public class SearchStateDrawable extends Drawable {
         return f4 > f5 ? f >= f4 || f <= f5 : f >= f4 && f <= f5;
     }
 
+    private void drawCircle(Canvas canvas, float f, float f2, float f3) {
+        if (f3 < w(0.075f)) {
+            return;
+        }
+        canvas.drawCircle(f, f2, f3, this.paint);
+    }
+
+    private void drawLine(Canvas canvas, float f, float f2, float f3, float f4) {
+        if (MathUtils.distance(f, f2, f3, f4) <= w(0.075f)) {
+            return;
+        }
+        canvas.drawLine(f, f2, f3, f4, this.paint);
+    }
+
+    private void drawLines(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6) {
+        if (Math.max(MathUtils.distance(f, f2, f3, f4), MathUtils.distance(f5, f6, f3, f4)) <= w(0.075f)) {
+            return;
+        }
+        this.path.rewind();
+        this.path.moveTo(f, f2);
+        this.path.lineTo(f3, f4);
+        this.path.lineTo(f5, f6);
+        canvas.drawPath(this.path, this.paint);
+    }
+
+    public void lambda$setIconState$0(int i, boolean z) {
+        this.delaySetProgress = null;
+        setIconState(i, z, true);
+    }
+
     private float lerp3(float f, float f2, float f3, float f4, float f5, float f6) {
         return (f * f4) + (f2 * f5) + (f3 * f6);
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    public SearchStateDrawable() {
-        Paint paint = new Paint(1);
-        this.paint = paint;
-        paint.setColor(-1);
-        this.paint.setStyle(Paint.Style.STROKE);
-        this.paint.setStrokeJoin(Paint.Join.ROUND);
-        this.paint.setStrokeCap(Paint.Cap.ROUND);
-        this.paint.setStrokeWidth(AndroidUtilities.dp(1.333f));
-    }
-
-    public int getIconState() {
-        return this.toState;
-    }
-
-    public void setIconState(int i) {
-        setIconState(i, true);
-    }
-
-    public void setIconState(int i, boolean z) {
-        setIconState(i, z, false);
     }
 
     private void setIconState(final int i, final boolean z, boolean z2) {
@@ -137,15 +150,16 @@ public class SearchStateDrawable extends Drawable {
         invalidateSelf();
     }
 
-    public void lambda$setIconState$0(int i, boolean z) {
-        this.delaySetProgress = null;
-        setIconState(i, z, true);
+    private float w(float f) {
+        return this.mn * f;
     }
 
-    public void setColor(int i) {
-        this.paint.setColor(i);
-        this.alpha = this.paint.getAlpha();
-        this.paint.setAlpha(255);
+    private float x(float f) {
+        return this.cx - (this.mn * (0.5f - f));
+    }
+
+    private float y(float f) {
+        return this.cy - (this.mn * (0.5f - f));
     }
 
     @Override
@@ -154,10 +168,8 @@ public class SearchStateDrawable extends Drawable {
         float f2;
         float f3;
         float f4;
-        float f5;
-        float f6;
         int i;
-        float f7;
+        float f5;
         android.graphics.Rect bounds = getBounds();
         this.mn = Math.min(bounds.width(), bounds.height());
         this.cx = bounds.centerX();
@@ -166,50 +178,43 @@ public class SearchStateDrawable extends Drawable {
         if (i2 < 255) {
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, i2, 31);
         }
-        float f8 = this.progress.set(this.waitingForProgressToEnd ? 0.0f : 1.0f);
+        float f6 = this.progress.set(this.waitingForProgressToEnd ? 0.0f : 1.0f);
         int i3 = this.toState;
         int i4 = this.fromState;
-        float f9 = i3 == 0 ? i4 == 0 ? 1.0f : f8 : i4 == 0 ? 1.0f - f8 : 0.0f;
-        if (i3 == 1) {
-            f = this.fromState == 1 ? 1.0f : f8;
-        } else {
-            f = this.fromState == 1 ? 1.0f - f8 : 0.0f;
+        float f7 = i3 == 0 ? i4 == 0 ? 1.0f : f6 : i4 == 0 ? 1.0f - f6 : 0.0f;
+        int i5 = this.fromState;
+        float f8 = i3 == 1 ? i5 == 1 ? 1.0f : f6 : i5 == 1 ? 1.0f - f6 : 0.0f;
+        float f9 = i3 == 2 ? this.fromState == 2 ? 1.0f : f6 : this.fromState == 2 ? 1.0f - f6 : 0.0f;
+        if (f7 > 0.0f) {
+            drawCircle(canvas, AndroidUtilities.lerp(x(0.25f), x(0.444f), f7), AndroidUtilities.lerp(y(0.5f), y(0.444f), f7), AndroidUtilities.lerp(0.0f, w(0.208f), f7));
         }
-        if (i3 == 2) {
-            f2 = this.fromState == 2 ? 1.0f : f8;
-        } else {
-            f2 = this.fromState == 2 ? 1.0f - f8 : 0.0f;
-        }
-        if (f9 > 0.0f) {
-            drawCircle(canvas, AndroidUtilities.lerp(x(0.25f), x(0.444f), f9), AndroidUtilities.lerp(y(0.5f), y(0.444f), f9), AndroidUtilities.lerp(0.0f, w(0.208f), f9));
-        }
-        if (f9 > 0.0f || f > 0.0f) {
+        if (f7 > 0.0f || f8 > 0.0f) {
             canvas.save();
-            canvas.rotate(f9 * 45.0f, this.cx, this.cy);
-            f3 = 0.75f;
-            f4 = 0.2409f;
-            f5 = 0.5f;
-            f6 = f2;
+            canvas.rotate(f7 * 45.0f, this.cx, this.cy);
+            f = 0.75f;
+            f2 = 0.2409f;
+            f3 = 0.5f;
+            f4 = f9;
             i = 2;
-            drawLine(canvas, lerp3(x(0.914f), x(0.7638f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f9, f, f6), y(0.5f), lerp3(x(0.658f), x(0.2409f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f9, f, f6), y(0.5f));
+            drawLine(canvas, lerp3(x(0.914f), x(0.7638f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f7, f8, f4), y(0.5f), lerp3(x(0.658f), x(0.2409f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f7, f8, f4), y(0.5f));
             canvas.restore();
-            f7 = 0.0f;
+            f5 = 0.0f;
         } else {
-            f6 = f2;
-            f7 = 0.0f;
-            f4 = 0.2409f;
-            f3 = 0.75f;
+            f4 = f9;
+            f5 = 0.0f;
+            f2 = 0.2409f;
+            f = 0.75f;
             i = 2;
-            f5 = 0.5f;
+            f3 = 0.5f;
         }
-        if (f > f7) {
-            float lerp = this.fromState == i ? AndroidUtilities.lerp(x(f3), x(f4), f) : x(f4);
+        if (f8 > f5) {
+            float lerp = this.fromState == i ? AndroidUtilities.lerp(x(f), x(f2), f8) : x(f2);
             canvas.save();
-            canvas.rotate(f9 * 45.0f, this.cx, this.cy);
-            drawLines(canvas, lerp + (x(0.2452f) * f), AndroidUtilities.lerp(y(f5), y(0.25f), f), lerp, y(f5), lerp + (x(0.2452f) * f), AndroidUtilities.lerp(y(f5), y(f3), f));
+            canvas.rotate(f7 * 45.0f, this.cx, this.cy);
+            drawLines(canvas, lerp + (x(0.2452f) * f8), AndroidUtilities.lerp(y(f3), y(0.25f), f8), lerp, y(f3), lerp + (x(0.2452f) * f8), AndroidUtilities.lerp(y(f3), y(f), f8));
             canvas.restore();
         }
-        float f10 = f6;
+        float f10 = f4;
         if (f10 > 0.0f) {
             if (this.progressStart < 0 && f10 > 0.8f) {
                 this.progressStart = System.currentTimeMillis();
@@ -239,7 +244,7 @@ public class SearchStateDrawable extends Drawable {
                 if (z && containsAngle && !this.progressStartedWithOverTo) {
                     this.waitingForProgressToEnd = false;
                 }
-                this.progressRect.set(x(0.25f), y(0.25f), x(f3), y(f3));
+                this.progressRect.set(x(0.25f), y(0.25f), x(f), y(f));
                 canvas.drawArc(this.progressRect, this.progressAngleFrom + f11, f12 - f11, false, this.paint);
                 invalidateSelf();
             }
@@ -247,56 +252,18 @@ public class SearchStateDrawable extends Drawable {
         if (this.alpha < 255) {
             canvas.restore();
         }
-        if (f8 < 1.0f) {
+        if (f6 < 1.0f) {
             invalidateSelf();
         }
     }
 
-    private void drawCircle(Canvas canvas, float f, float f2, float f3) {
-        if (f3 < w(0.075f)) {
-            return;
-        }
-        canvas.drawCircle(f, f2, f3, this.paint);
-    }
-
-    private void drawLine(Canvas canvas, float f, float f2, float f3, float f4) {
-        if (MathUtils.distance(f, f2, f3, f4) <= w(0.075f)) {
-            return;
-        }
-        canvas.drawLine(f, f2, f3, f4, this.paint);
-    }
-
-    private void drawLines(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6) {
-        if (Math.max(MathUtils.distance(f, f2, f3, f4), MathUtils.distance(f5, f6, f3, f4)) <= w(0.075f)) {
-            return;
-        }
-        this.path.rewind();
-        this.path.moveTo(f, f2);
-        this.path.lineTo(f3, f4);
-        this.path.lineTo(f5, f6);
-        canvas.drawPath(this.path, this.paint);
-    }
-
-    private float x(float f) {
-        return this.cx - (this.mn * (0.5f - f));
-    }
-
-    private float y(float f) {
-        return this.cy - (this.mn * (0.5f - f));
-    }
-
-    private float w(float f) {
-        return this.mn * f;
+    public int getIconState() {
+        return this.toState;
     }
 
     @Override
-    public void setAlpha(int i) {
-        this.alpha = i;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.paint.setColorFilter(colorFilter);
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
@@ -305,7 +272,31 @@ public class SearchStateDrawable extends Drawable {
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.alpha = i;
+    }
+
+    public void setColor(int i) {
+        this.paint.setColor(i);
+        this.alpha = this.paint.getAlpha();
+        this.paint.setAlpha(255);
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.paint.setColorFilter(colorFilter);
+    }
+
+    public void setIconState(int i) {
+        setIconState(i, true);
+    }
+
+    public void setIconState(int i, boolean z) {
+        setIconState(i, z, false);
     }
 }

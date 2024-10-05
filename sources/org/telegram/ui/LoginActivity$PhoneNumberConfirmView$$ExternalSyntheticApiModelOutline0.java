@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class LoginActivity$PhoneNumberConfirmView$$ExternalSyntheticApiModelOutline0 {
+public abstract class LoginActivity$PhoneNumberConfirmView$$ExternalSyntheticApiModelOutline0 {
 }

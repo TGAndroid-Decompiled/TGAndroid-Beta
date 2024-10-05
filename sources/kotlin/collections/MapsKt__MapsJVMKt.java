@@ -5,7 +5,7 @@ import java.util.Map;
 import kotlin.Pair;
 import kotlin.jvm.internal.Intrinsics;
 
-public class MapsKt__MapsJVMKt extends MapsKt__MapWithDefaultKt {
+public abstract class MapsKt__MapsJVMKt extends MapsKt__MapWithDefaultKt {
     public static int mapCapacity(int i) {
         if (i < 0) {
             return i;
@@ -19,17 +19,17 @@ public class MapsKt__MapsJVMKt extends MapsKt__MapWithDefaultKt {
         return Integer.MAX_VALUE;
     }
 
-    public static final <K, V> Map<K, V> mapOf(Pair<? extends K, ? extends V> pair) {
+    public static final Map mapOf(Pair pair) {
         Intrinsics.checkNotNullParameter(pair, "pair");
-        Map<K, V> singletonMap = Collections.singletonMap(pair.getFirst(), pair.getSecond());
+        Map singletonMap = Collections.singletonMap(pair.getFirst(), pair.getSecond());
         Intrinsics.checkNotNullExpressionValue(singletonMap, "singletonMap(pair.first, pair.second)");
         return singletonMap;
     }
 
-    public static final <K, V> Map<K, V> toSingletonMap(Map<? extends K, ? extends V> map) {
+    public static final Map toSingletonMap(Map map) {
         Intrinsics.checkNotNullParameter(map, "<this>");
-        Map.Entry<? extends K, ? extends V> next = map.entrySet().iterator().next();
-        Map<K, V> singletonMap = Collections.singletonMap(next.getKey(), next.getValue());
+        Map.Entry entry = (Map.Entry) map.entrySet().iterator().next();
+        Map singletonMap = Collections.singletonMap(entry.getKey(), entry.getValue());
         Intrinsics.checkNotNullExpressionValue(singletonMap, "with(entries.iterator().…ingletonMap(key, value) }");
         return singletonMap;
     }

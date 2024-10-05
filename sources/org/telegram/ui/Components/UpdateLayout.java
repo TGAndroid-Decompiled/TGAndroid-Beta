@@ -1,5 +1,9 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
@@ -7,10 +11,13 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 import android.os.Build;
+import android.text.TextUtils;
+import android.util.Property;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LocaleController;
@@ -26,7 +33,8 @@ public class UpdateLayout extends IUpdateLayout {
     private FrameLayout updateLayout;
     private RadialProgress2 updateLayoutIcon;
     private TextView updateSizeTextView;
-    private SimpleTextView updateTextView;
+    private AnimatorSet updateTextAnimator;
+    private SimpleTextView[] updateTextViews;
 
     public UpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
         super(activity, viewGroup, viewGroup2);
@@ -35,24 +43,68 @@ public class UpdateLayout extends IUpdateLayout {
         this.sideMenuContainer = viewGroup2;
     }
 
-    @Override
-    public void updateFileProgress(Object[] objArr) {
-        if (this.updateTextView == null || !SharedConfig.isAppUpdateAvailable()) {
-            return;
+    public void lambda$createUpdateUI$0(int i, View view) {
+        if (SharedConfig.isAppUpdateAvailable()) {
+            if (this.updateLayoutIcon.getIcon() == 2) {
+                FileLoader.getInstance(i).loadFile(SharedConfig.pendingAppUpdate.document, "update", 1, 1);
+            } else {
+                if (this.updateLayoutIcon.getIcon() != 3) {
+                    AndroidUtilities.openForView(SharedConfig.pendingAppUpdate.document, true, this.activity);
+                    return;
+                }
+                FileLoader.getInstance(i).cancelLoadFile(SharedConfig.pendingAppUpdate.document);
+            }
+            updateAppUpdateViews(i, true);
         }
-        String str = (String) objArr[0];
-        String attachFileName = FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document);
-        if (attachFileName == null || !attachFileName.equals(str)) {
-            return;
-        }
-        float longValue = ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue());
-        this.updateLayoutIcon.setProgress(longValue, true);
-        this.updateTextView.setText(LocaleController.formatString("AppUpdateDownloading", 2131689984, Integer.valueOf((int) (longValue * 100.0f))));
     }
 
-    @Override
+    private void setUpdateText(String str, boolean z) {
+        if (TextUtils.equals(this.updateTextViews[0].getText(), str)) {
+            return;
+        }
+        AnimatorSet animatorSet = this.updateTextAnimator;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.updateTextAnimator = null;
+        }
+        if (!z) {
+            this.updateTextViews[0].setText(str);
+            this.updateTextViews[0].setAlpha(1.0f);
+            this.updateTextViews[0].setVisibility(0);
+            this.updateTextViews[1].setVisibility(8);
+            return;
+        }
+        SimpleTextView[] simpleTextViewArr = this.updateTextViews;
+        simpleTextViewArr[1].setText(simpleTextViewArr[0].getText());
+        this.updateTextViews[0].setText(str);
+        this.updateTextViews[0].setAlpha(0.0f);
+        this.updateTextViews[1].setAlpha(1.0f);
+        this.updateTextViews[0].setVisibility(0);
+        this.updateTextViews[1].setVisibility(0);
+        ArrayList arrayList = new ArrayList();
+        SimpleTextView simpleTextView = this.updateTextViews[1];
+        Property property = View.ALPHA;
+        arrayList.add(ObjectAnimator.ofFloat(simpleTextView, (Property<SimpleTextView, Float>) property, 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.updateTextViews[0], (Property<SimpleTextView, Float>) property, 1.0f));
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.updateTextAnimator = animatorSet2;
+        animatorSet2.playTogether(arrayList);
+        this.updateTextAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (UpdateLayout.this.updateTextAnimator == animator) {
+                    UpdateLayout.this.updateTextViews[1].setVisibility(8);
+                    UpdateLayout.this.updateTextAnimator = null;
+                }
+            }
+        });
+        this.updateTextAnimator.setDuration(320L);
+        this.updateTextAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.updateTextAnimator.start();
+    }
+
     public void createUpdateUI(final int i) {
-        if (this.sideMenuContainer == null) {
+        if (this.sideMenuContainer == null || this.updateLayout != null) {
             return;
         }
         FrameLayout frameLayout = new FrameLayout(this.activity) {
@@ -104,14 +156,18 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateLayoutIcon.setProgressRect(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(33.0f));
         this.updateLayoutIcon.setCircleRadius(AndroidUtilities.dp(11.0f));
         this.updateLayoutIcon.setAsMini();
-        SimpleTextView simpleTextView = new SimpleTextView(this.activity);
-        this.updateTextView = simpleTextView;
-        simpleTextView.setTextSize(15);
-        this.updateTextView.setTypeface(AndroidUtilities.bold());
-        this.updateTextView.setText(LocaleController.getString(2131689981));
-        this.updateTextView.setTextColor(-1);
-        this.updateTextView.setGravity(3);
-        this.updateLayout.addView(this.updateTextView, LayoutHelper.createFrame(-2, -2.0f, 16, 74.0f, 0.0f, 0.0f, 0.0f));
+        this.updateTextViews = new SimpleTextView[2];
+        for (int i2 = 0; i2 < 2; i2++) {
+            this.updateTextViews[i2] = new SimpleTextView(this.activity);
+            this.updateTextViews[i2].setTextSize(15);
+            this.updateTextViews[i2].setTypeface(AndroidUtilities.bold());
+            this.updateTextViews[i2].setTextColor(-1);
+            this.updateTextViews[i2].setGravity(3);
+            this.updateLayout.addView(this.updateTextViews[i2], LayoutHelper.createFrame(-2, -2.0f, 16, 74.0f, 0.0f, 0.0f, 0.0f));
+        }
+        this.updateTextViews[0].setText(LocaleController.getString(2131689985));
+        this.updateTextViews[1].setAlpha(0.0f);
+        this.updateTextViews[1].setVisibility(8);
         TextView textView = new TextView(this.activity);
         this.updateSizeTextView = textView;
         textView.setTextSize(1, 15.0f);
@@ -121,30 +177,24 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateLayout.addView(this.updateSizeTextView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 17.0f, 0.0f));
     }
 
-    public void lambda$createUpdateUI$0(int i, View view) {
-        if (SharedConfig.isAppUpdateAvailable()) {
-            if (this.updateLayoutIcon.getIcon() == 2) {
-                FileLoader.getInstance(i).loadFile(SharedConfig.pendingAppUpdate.document, "update", 1, 1);
-                updateAppUpdateViews(i, true);
-            } else if (this.updateLayoutIcon.getIcon() == 3) {
-                FileLoader.getInstance(i).cancelLoadFile(SharedConfig.pendingAppUpdate.document);
-                updateAppUpdateViews(i, true);
-            } else {
-                AndroidUtilities.openForView(SharedConfig.pendingAppUpdate.document, true, this.activity);
-            }
-        }
-    }
-
     @Override
-    public void updateAppUpdateViews(int r12, boolean r13) {
+    public void updateAppUpdateViews(int r10, boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UpdateLayout.updateAppUpdateViews(int, boolean):void");
     }
 
-    public static void lambda$updateAppUpdateViews$1(View view) {
-        ViewGroup viewGroup;
-        if (view == null || (viewGroup = (ViewGroup) view.getParent()) == null) {
+    @Override
+    public void updateFileProgress(Object[] objArr) {
+        SimpleTextView[] simpleTextViewArr = this.updateTextViews;
+        if (simpleTextViewArr == null || objArr == null || simpleTextViewArr[0] == null || !SharedConfig.isAppUpdateAvailable()) {
             return;
         }
-        viewGroup.removeView(view);
+        String str = (String) objArr[0];
+        String attachFileName = FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document);
+        if (attachFileName == null || !attachFileName.equals(str)) {
+            return;
+        }
+        float longValue = ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue());
+        this.updateLayoutIcon.setProgress(longValue, true);
+        this.updateTextViews[0].setText(LocaleController.formatString("AppUpdateDownloading", 2131689988, Integer.valueOf((int) (longValue * 100.0f))));
     }
 }

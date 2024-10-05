@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 
-public class ExtendedGridLayoutManager extends GridLayoutManager {
+public abstract class ExtendedGridLayoutManager extends GridLayoutManager {
     private int calculatedWidth;
     private final boolean firstRowFullWidth;
     private int firstRowMax;
@@ -14,16 +14,6 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
     private SparseIntArray itemsToRow;
     private final boolean lastRowFullWidth;
     private int rowsCount;
-
-    @Override
-    public int getColumnCountForAccessibility(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        return 1;
-    }
-
-    @Override
-    public boolean supportsPredictiveItemAnimations() {
-        return false;
-    }
 
     public ExtendedGridLayoutManager(Context context, int i) {
         this(context, i, false);
@@ -41,13 +31,21 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         this.firstRowFullWidth = z2;
     }
 
+    private void checkLayout() {
+        if (this.itemSpans.size() == getFlowItemCount() && this.calculatedWidth == getWidth()) {
+            return;
+        }
+        this.calculatedWidth = getWidth();
+        prepareLayout(getWidth());
+    }
+
     private void prepareLayout(float f) {
-        int i;
+        int min;
         boolean z;
         float f2 = f == 0.0f ? 100.0f : f;
         this.itemSpans.clear();
         this.itemsToRow.clear();
-        int i2 = 0;
+        int i = 0;
         this.rowsCount = 0;
         this.firstRowMax = 0;
         int flowItemCount = getFlowItemCount();
@@ -56,70 +54,77 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         }
         int dp = AndroidUtilities.dp(100.0f);
         int spanCount = getSpanCount();
-        int i3 = (this.lastRowFullWidth ? 1 : 0) + flowItemCount;
-        int i4 = spanCount;
+        int i2 = (this.lastRowFullWidth ? 1 : 0) + flowItemCount;
+        int i3 = spanCount;
+        int i4 = 0;
         int i5 = 0;
-        int i6 = 0;
-        while (i5 < i3) {
-            if (i5 == 0 && this.firstRowFullWidth) {
+        while (i4 < i2) {
+            if (i4 == 0 && this.firstRowFullWidth) {
                 SparseIntArray sparseIntArray = this.itemSpans;
-                sparseIntArray.put(i5, sparseIntArray.get(i5) + spanCount);
-                this.itemsToRow.put(i2, this.rowsCount);
-                this.rowsCount++;
-                i4 = spanCount;
-                i6 = 0;
+                sparseIntArray.put(i4, sparseIntArray.get(i4) + spanCount);
+                this.itemsToRow.put(i, this.rowsCount);
             } else {
-                if ((i5 < flowItemCount ? sizeForItem(i5) : null) == null) {
-                    z = i6 != 0;
-                    i = spanCount;
+                Size sizeForItem = i4 < flowItemCount ? sizeForItem(i4) : null;
+                if (sizeForItem == null) {
+                    z = i5 != 0;
+                    min = spanCount;
                 } else {
-                    int min = Math.min(spanCount, (int) Math.floor(spanCount * (((r11.width / r11.height) * dp) / f2)));
-                    i = min;
-                    z = i4 < min || (min > 33 && i4 < min + (-15));
+                    min = Math.min(spanCount, (int) Math.floor(spanCount * (((sizeForItem.width / sizeForItem.height) * dp) / f2)));
+                    boolean z2 = i3 < min || (min > 33 && i3 < min + (-15));
+                    if (sizeForItem.full) {
+                        this.itemSpans.put(i4, i3);
+                    } else {
+                        z = z2;
+                    }
                 }
                 if (z) {
-                    if (i4 != 0) {
-                        int i7 = i4 / i6;
-                        int i8 = i5 - i6;
-                        int i9 = i8;
+                    if (i3 != 0 && i5 != 0) {
+                        int i6 = i3 / i5;
+                        int i7 = i4 - i5;
+                        int i8 = i7;
                         while (true) {
-                            int i10 = i8 + i6;
-                            if (i9 >= i10) {
+                            int i9 = i7 + i5;
+                            if (i8 >= i9) {
                                 break;
                             }
-                            if (i9 == i10 - 1) {
+                            if (i8 == i9 - 1) {
                                 SparseIntArray sparseIntArray2 = this.itemSpans;
-                                sparseIntArray2.put(i9, sparseIntArray2.get(i9) + i4);
+                                sparseIntArray2.put(i8, sparseIntArray2.get(i8) + i3);
                             } else {
                                 SparseIntArray sparseIntArray3 = this.itemSpans;
-                                sparseIntArray3.put(i9, sparseIntArray3.get(i9) + i7);
+                                sparseIntArray3.put(i8, sparseIntArray3.get(i8) + i6);
                             }
-                            i4 -= i7;
-                            i9++;
+                            i3 -= i6;
+                            i8++;
                         }
-                        this.itemsToRow.put(i5 - 1, this.rowsCount);
+                        this.itemsToRow.put(i4 - 1, this.rowsCount);
                     }
-                    if (i5 == flowItemCount) {
+                    if (i4 == flowItemCount) {
                         break;
                     }
                     this.rowsCount++;
-                    i4 = spanCount;
-                    i6 = 0;
-                } else if (i4 < i) {
-                    i = i4;
+                    i3 = spanCount;
+                    i5 = 0;
+                } else if (i3 < min) {
+                    min = i3;
                 }
                 if (this.rowsCount == 0) {
-                    this.firstRowMax = Math.max(this.firstRowMax, i5);
+                    this.firstRowMax = Math.max(this.firstRowMax, i4);
                 }
-                if (i5 == flowItemCount - 1 && !this.lastRowFullWidth) {
-                    this.itemsToRow.put(i5, this.rowsCount);
+                if (i4 == flowItemCount - 1 && !this.lastRowFullWidth) {
+                    this.itemsToRow.put(i4, this.rowsCount);
                 }
-                i6++;
-                i4 -= i;
-                this.itemSpans.put(i5, i);
+                i5++;
+                i3 -= min;
+                this.itemSpans.put(i4, min);
+                i4++;
+                i = 0;
             }
-            i5++;
-            i2 = 0;
+            this.rowsCount++;
+            i3 = spanCount;
+            i5 = 0;
+            i4++;
+            i = 0;
         }
         this.rowsCount++;
     }
@@ -149,38 +154,9 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         return size;
     }
 
-    protected Size getSizeForItem(int i) {
-        return new Size(100.0f, 100.0f);
-    }
-
-    private void checkLayout() {
-        if (this.itemSpans.size() == getFlowItemCount() && this.calculatedWidth == getWidth()) {
-            return;
-        }
-        this.calculatedWidth = getWidth();
-        prepareLayout(getWidth());
-    }
-
-    public int getSpanSizeForItem(int i) {
-        checkLayout();
-        return this.itemSpans.get(i);
-    }
-
-    public int getRowsCount(int i) {
-        if (this.rowsCount == 0) {
-            prepareLayout(i);
-        }
-        return this.rowsCount;
-    }
-
-    public boolean isLastInRow(int i) {
-        checkLayout();
-        return this.itemsToRow.get(i, Integer.MAX_VALUE) != Integer.MAX_VALUE;
-    }
-
-    public boolean isFirstRow(int i) {
-        checkLayout();
-        return i <= this.firstRowMax;
+    @Override
+    public int getColumnCountForAccessibility(RecyclerView.Recycler recycler, RecyclerView.State state) {
+        return 1;
     }
 
     public int getFlowItemCount() {
@@ -190,5 +166,34 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
     @Override
     public int getRowCountForAccessibility(RecyclerView.Recycler recycler, RecyclerView.State state) {
         return state.getItemCount();
+    }
+
+    public int getRowsCount(int i) {
+        if (this.rowsCount == 0) {
+            prepareLayout(i);
+        }
+        return this.rowsCount;
+    }
+
+    protected abstract Size getSizeForItem(int i);
+
+    public int getSpanSizeForItem(int i) {
+        checkLayout();
+        return this.itemSpans.get(i);
+    }
+
+    public boolean isFirstRow(int i) {
+        checkLayout();
+        return i <= this.firstRowMax;
+    }
+
+    public boolean isLastInRow(int i) {
+        checkLayout();
+        return this.itemsToRow.get(i, Integer.MAX_VALUE) != Integer.MAX_VALUE;
+    }
+
+    @Override
+    public boolean supportsPredictiveItemAnimations() {
+        return false;
     }
 }

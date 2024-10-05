@@ -6,7 +6,6 @@ import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
@@ -31,50 +30,33 @@ public class CodeHighlighting {
     private static HashMap<String, TokenPattern[]> compiledPatterns;
     private static final HashMap<String, Highlighting> processedHighlighting = new HashMap<>();
 
-    public static int getTextSizeDecrement(int i) {
-        if (i > 120) {
-            return 5;
+    public static class CachedPattern {
+        private Pattern pattern;
+        private String patternSource;
+        private int patternSourceFlags;
+
+        public CachedPattern(String str, int i) {
+            this.patternSource = str;
+            this.patternSourceFlags = i;
         }
-        return i > 50 ? 3 : 2;
+
+        public Pattern getPattern() {
+            if (this.pattern == null) {
+                this.pattern = Pattern.compile(this.patternSource, this.patternSourceFlags);
+            }
+            return this.pattern;
+        }
     }
 
-    public static class Span extends CharacterStyle {
-        public final String code;
-        public final int currentType;
-        public final float decrementSize;
-        public final String lng;
-        public final boolean smallerSize;
-        public final TextStyleSpan.TextStyleRun style;
+    public static class CachedToSpan {
+        public int end;
+        public int group;
+        public int start;
 
-        public Span(boolean z, int i, TextStyleSpan.TextStyleRun textStyleRun, String str, String str2) {
-            this.smallerSize = z;
-            this.lng = str;
-            this.code = str2;
-            this.decrementSize = CodeHighlighting.getTextSizeDecrement(str2 == null ? 0 : str2.length());
-            this.currentType = i;
-            this.style = textStyleRun;
-        }
-
-        @Override
-        public void updateDrawState(TextPaint textPaint) {
-            if (this.smallerSize) {
-                textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.decrementSize));
-            }
-            int i = this.currentType;
-            if (i == 2) {
-                textPaint.setColor(-1);
-            } else if (i == 1) {
-                textPaint.setColor(Theme.getColor(Theme.key_chat_messageTextOut));
-            } else {
-                textPaint.setColor(Theme.getColor(Theme.key_chat_messageTextIn));
-            }
-            TextStyleSpan.TextStyleRun textStyleRun = this.style;
-            if (textStyleRun != null) {
-                textStyleRun.applyStyle(textPaint);
-            } else {
-                textPaint.setTypeface(Typeface.MONOSPACE);
-                textPaint.setUnderlineText(false);
-            }
+        public CachedToSpan(int i, int i2, int i3) {
+            this.group = i;
+            this.start = i2;
+            this.end = i3;
         }
     }
 
@@ -112,419 +94,12 @@ public class CodeHighlighting {
         }
     }
 
-    public static class LockedSpannableString extends SpannableString {
-        private boolean ready;
-
-        public LockedSpannableString(CharSequence charSequence) {
-            super(charSequence);
-        }
-
-        public void unlock() {
-            this.ready = true;
-        }
-
-        @Override
-        public <T> T[] getSpans(int i, int i2, Class<T> cls) {
-            return !this.ready ? (T[]) ((Object[]) Array.newInstance((Class<?>) cls, 0)) : (T[]) super.getSpans(i, i2, cls);
-        }
-
-        @Override
-        public int nextSpanTransition(int i, int i2, Class cls) {
-            return !this.ready ? i2 : super.nextSpanTransition(i, i2, cls);
-        }
-
-        @Override
-        public int getSpanStart(Object obj) {
-            if (this.ready) {
-                return super.getSpanStart(obj);
-            }
-            return -1;
-        }
-
-        @Override
-        public int getSpanEnd(Object obj) {
-            if (this.ready) {
-                return super.getSpanEnd(obj);
-            }
-            return -1;
-        }
-
-        @Override
-        public int getSpanFlags(Object obj) {
-            if (this.ready) {
-                return super.getSpanFlags(obj);
-            }
-            return 0;
-        }
-    }
-
     public static class Highlighting {
         String language;
         SpannableString result;
         String text;
 
         private Highlighting() {
-        }
-    }
-
-    public static SpannableString getHighlighted(String str, String str2) {
-        if (TextUtils.isEmpty(str2)) {
-            return new SpannableString(str);
-        }
-        String str3 = str2 + "`" + str;
-        HashMap<String, Highlighting> hashMap = processedHighlighting;
-        Highlighting highlighting = hashMap.get(str3);
-        if (highlighting == null) {
-            highlighting = new Highlighting();
-            highlighting.text = str;
-            highlighting.language = str2;
-            LockedSpannableString lockedSpannableString = new LockedSpannableString(str);
-            highlighting.result = lockedSpannableString;
-            highlight(lockedSpannableString, 0, lockedSpannableString.length(), str2, 0, null, true);
-            Iterator<String> it = hashMap.keySet().iterator();
-            while (it.hasNext() && processedHighlighting.size() > 8) {
-                it.next();
-                it.remove();
-            }
-            processedHighlighting.put(str3, highlighting);
-        }
-        return highlighting.result;
-    }
-
-    public static void highlight(final Spannable spannable, final int i, final int i2, final String str, int i3, TextStyleSpan.TextStyleRun textStyleRun, boolean z) {
-        if (spannable == null) {
-            return;
-        }
-        Utilities.searchQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                CodeHighlighting.lambda$highlight$2(spannable, i, i2, str);
-            }
-        });
-    }
-
-    public static void lambda$highlight$2(final Spannable spannable, int i, int i2, String str) {
-        if (compiledPatterns == null) {
-            parse();
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        StringToken[][] stringTokenArr = new StringToken[1];
-        try {
-            String charSequence = spannable.subSequence(i, i2).toString();
-            HashMap<String, TokenPattern[]> hashMap = compiledPatterns;
-            stringTokenArr[0] = tokenize(charSequence, hashMap == null ? null : hashMap.get(str), 0).toArray();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        FileLog.d("[CodeHighlighter] tokenize took " + (System.currentTimeMillis() - currentTimeMillis) + "ms");
-        long currentTimeMillis2 = System.currentTimeMillis();
-        final ArrayList arrayList = new ArrayList();
-        colorize(spannable, i, i2, stringTokenArr[0], -1, arrayList);
-        FileLog.d("[CodeHighlighter] colorize took " + (System.currentTimeMillis() - currentTimeMillis2) + "ms");
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        if (spannable instanceof LockedSpannableString) {
-            long currentTimeMillis3 = System.currentTimeMillis();
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i3);
-                spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
-            }
-            FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - currentTimeMillis3) + "ms in another thread");
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    CodeHighlighting.lambda$highlight$0(spannable);
-                }
-            });
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                CodeHighlighting.lambda$highlight$1(arrayList, spannable);
-            }
-        });
-    }
-
-    public static void lambda$highlight$0(Spannable spannable) {
-        ((LockedSpannableString) spannable).unlock();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
-    }
-
-    public static void lambda$highlight$1(ArrayList arrayList, Spannable spannable) {
-        long currentTimeMillis = System.currentTimeMillis();
-        for (int i = 0; i < arrayList.size(); i++) {
-            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);
-            spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
-        }
-        FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - currentTimeMillis) + "ms");
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
-    }
-
-    private static void colorize(Spannable spannable, int i, int i2, StringToken[] stringTokenArr, int i3, ArrayList<CachedToSpan> arrayList) {
-        int length;
-        if (stringTokenArr == null) {
-            return;
-        }
-        for (int i4 = 0; i4 < stringTokenArr.length && i < i2; i4++) {
-            StringToken stringToken = stringTokenArr[i4];
-            if (stringToken != null) {
-                if (stringToken.string != null) {
-                    int i5 = stringToken.group;
-                    if (i3 != -1) {
-                        i5 = i3;
-                    }
-                    if (i5 == -1) {
-                        length = stringToken.length();
-                        i += length;
-                    } else {
-                        arrayList.add(new CachedToSpan(i5, i, stringToken.length() + i));
-                    }
-                } else if (stringToken.inside != null) {
-                    colorize(spannable, i, i + stringToken.length(), stringToken.inside.toArray(), stringToken.group, arrayList);
-                }
-                length = stringToken.length();
-                i += length;
-            }
-        }
-    }
-
-    public static class CachedToSpan {
-        public int end;
-        public int group;
-        public int start;
-
-        public CachedToSpan(int i, int i2, int i3) {
-            this.group = i;
-            this.start = i2;
-            this.end = i3;
-        }
-    }
-
-    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, int i) {
-        return tokenize(str, tokenPatternArr, null, i);
-    }
-
-    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, TokenPattern tokenPattern, int i) {
-        LinkedList linkedList = new LinkedList();
-        linkedList.addAfter(linkedList.head, new StringToken(str));
-        matchGrammar(str, linkedList, flatRest(tokenPatternArr), linkedList.head, 0, null, tokenPattern, i);
-        return linkedList;
-    }
-
-    private static TokenPattern[] flatRest(TokenPattern[] tokenPatternArr) {
-        HashMap<String, TokenPattern[]> hashMap;
-        TokenPattern[] tokenPatternArr2;
-        ArrayList arrayList = null;
-        if (tokenPatternArr == null) {
-            return null;
-        }
-        for (int i = 0; i < tokenPatternArr.length; i++) {
-            CachedPattern cachedPattern = tokenPatternArr[i].pattern;
-            if (cachedPattern != null && "REST".equals(cachedPattern.patternSource)) {
-                if (arrayList == null) {
-                    arrayList = new ArrayList();
-                    Collections.addAll(arrayList, tokenPatternArr);
-                }
-                arrayList.remove(tokenPatternArr[i]);
-                if (!TextUtils.isEmpty(tokenPatternArr[i].insideLanguage) && (hashMap = compiledPatterns) != null && (tokenPatternArr2 = hashMap.get(tokenPatternArr[i].insideLanguage)) != null) {
-                    Collections.addAll(arrayList, tokenPatternArr2);
-                }
-            }
-        }
-        return arrayList != null ? (TokenPattern[]) arrayList.toArray(new TokenPattern[0]) : tokenPatternArr;
-    }
-
-    private static void matchGrammar(String str, LinkedList linkedList, TokenPattern[] tokenPatternArr, Node node, int i, RematchOptions rematchOptions, TokenPattern tokenPattern, int i2) {
-        TokenPattern tokenPattern2;
-        int i3;
-        int i4;
-        Match matchPattern;
-        int i5;
-        StringToken stringToken;
-        int i6;
-        String str2 = str;
-        TokenPattern[] tokenPatternArr2 = tokenPatternArr;
-        if (tokenPatternArr2 == null || i2 > 20) {
-            return;
-        }
-        int length = tokenPatternArr2.length;
-        int i7 = 0;
-        while (i7 < length) {
-            TokenPattern tokenPattern3 = tokenPatternArr2[i7];
-            if (tokenPattern3 == tokenPattern) {
-                return;
-            }
-            if (rematchOptions != null && rematchOptions.cause == tokenPattern3) {
-                return;
-            }
-            Node node2 = node.next;
-            int i8 = i;
-            while (node2 != linkedList.tail) {
-                if (rematchOptions != null && i8 >= rematchOptions.reach) {
-                    return;
-                }
-                if (linkedList.length > str.length()) {
-                    FileLog.e("[CodeHighlighter] Something went terribly wrong, ABORT, ABORT!");
-                    return;
-                }
-                StringToken stringToken2 = node2.value;
-                String str3 = stringToken2.string;
-                if (str3 != null && !stringToken2.token) {
-                    if (tokenPattern3.greedy) {
-                        matchPattern = matchPattern(tokenPattern3, i8, str2);
-                        if (matchPattern == null || matchPattern.index >= str.length()) {
-                            break;
-                        }
-                        int i9 = matchPattern.index;
-                        int i10 = matchPattern.length + i9;
-                        int length2 = node2.value.length();
-                        while (true) {
-                            i8 += length2;
-                            if (i9 < i8) {
-                                break;
-                            }
-                            node2 = node2.next;
-                            length2 = node2.value.length();
-                        }
-                        i8 -= node2.value.length();
-                        StringToken stringToken3 = node2.value;
-                        if (stringToken3.string == null || stringToken3.token) {
-                            tokenPattern2 = tokenPattern3;
-                            i3 = length;
-                            node2 = node2;
-                            i8 += node2.value.length();
-                            node2 = node2.next;
-                            str2 = str;
-                            tokenPattern3 = tokenPattern2;
-                            length = i3;
-                        } else {
-                            Node node3 = node2;
-                            int i11 = i8;
-                            int i12 = 1;
-                            while (node3 != linkedList.tail && (i11 < i10 || !node3.value.token)) {
-                                i12++;
-                                i11 += node3.value.length();
-                                node3 = node3.next;
-                            }
-                            str3 = str2.substring(i8, i11);
-                            matchPattern.index -= i8;
-                            i5 = i12 - 1;
-                            node2 = node3;
-                            i4 = 0;
-                        }
-                    } else {
-                        i4 = 0;
-                        matchPattern = matchPattern(tokenPattern3, 0, str3);
-                        if (matchPattern != null) {
-                            i5 = 1;
-                        }
-                    }
-                    int i13 = matchPattern.index;
-                    String substring = str3.substring(i4, i13);
-                    String substring2 = str3.substring(i13 + matchPattern.length);
-                    int length3 = str3.length() + i8;
-                    if (rematchOptions != null && length3 > rematchOptions.reach) {
-                        rematchOptions.reach = length3;
-                    }
-                    Node node4 = node2.prev;
-                    if (substring.length() > 0) {
-                        node4 = linkedList.addAfter(node4, new StringToken(substring));
-                        i8 += substring.length();
-                    }
-                    int i14 = i8;
-                    linkedList.removeRange(node4, i5);
-                    TokenPattern[] tokenPatternArr3 = tokenPattern3.insideTokenPatterns;
-                    if (tokenPatternArr3 != null) {
-                        i3 = length;
-                        stringToken = new StringToken(tokenPattern3.group, tokenize(matchPattern.string, tokenPatternArr3, tokenPattern3, i2 + 1), matchPattern.length);
-                    } else {
-                        i3 = length;
-                        String str4 = tokenPattern3.insideLanguage;
-                        if (str4 != null) {
-                            stringToken = new StringToken(tokenPattern3.group, tokenize(matchPattern.string, compiledPatterns.get(str4), tokenPattern3, i2 + 1), matchPattern.length);
-                        } else {
-                            stringToken = new StringToken(tokenPattern3.group, matchPattern.string);
-                        }
-                    }
-                    Node addAfter = linkedList.addAfter(node4, stringToken);
-                    if (substring2.length() > 0) {
-                        linkedList.addAfter(addAfter, new StringToken(substring2));
-                    }
-                    if (i5 > 1) {
-                        RematchOptions rematchOptions2 = new RematchOptions();
-                        rematchOptions2.cause = tokenPattern3;
-                        rematchOptions2.reach = length3;
-                        tokenPattern2 = tokenPattern3;
-                        matchGrammar(str, linkedList, tokenPatternArr, addAfter.prev, i14, rematchOptions2, tokenPattern, i2 + 1);
-                        if (rematchOptions != null && (i6 = rematchOptions2.reach) > rematchOptions.reach) {
-                            rematchOptions.reach = i6;
-                        }
-                    } else {
-                        tokenPattern2 = tokenPattern3;
-                    }
-                    node2 = addAfter;
-                    i8 = i14;
-                    i8 += node2.value.length();
-                    node2 = node2.next;
-                    str2 = str;
-                    tokenPattern3 = tokenPattern2;
-                    length = i3;
-                }
-                tokenPattern2 = tokenPattern3;
-                i3 = length;
-                i8 += node2.value.length();
-                node2 = node2.next;
-                str2 = str;
-                tokenPattern3 = tokenPattern2;
-                length = i3;
-            }
-            i7++;
-            str2 = str;
-            tokenPatternArr2 = tokenPatternArr;
-            length = length;
-        }
-    }
-
-    private static Match matchPattern(TokenPattern tokenPattern, int i, String str) {
-        try {
-            Matcher matcher = tokenPattern.pattern.getPattern().matcher(str);
-            matcher.region(i, str.length());
-            if (!matcher.find()) {
-                return null;
-            }
-            Match match = new Match();
-            match.index = matcher.start();
-            if (tokenPattern.lookbehind && matcher.groupCount() >= 1) {
-                match.index += matcher.end(1) - matcher.start(1);
-            }
-            int end = matcher.end();
-            int i2 = match.index;
-            int i3 = end - i2;
-            match.length = i3;
-            match.string = str.substring(i2, i3 + i2);
-            return match;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return null;
-        }
-    }
-
-    public static class RematchOptions {
-        TokenPattern cause;
-        int reach;
-
-        private RematchOptions() {
-        }
-    }
-
-    public static class Match {
-        int index;
-        int length;
-        String string;
-
-        private Match() {
         }
     }
 
@@ -577,12 +152,164 @@ public class CodeHighlighting {
         }
     }
 
+    public static class LockedSpannableString extends SpannableString {
+        private boolean ready;
+
+        public LockedSpannableString(CharSequence charSequence) {
+            super(charSequence);
+        }
+
+        @Override
+        public int getSpanEnd(Object obj) {
+            if (this.ready) {
+                return super.getSpanEnd(obj);
+            }
+            return -1;
+        }
+
+        @Override
+        public int getSpanFlags(Object obj) {
+            if (this.ready) {
+                return super.getSpanFlags(obj);
+            }
+            return 0;
+        }
+
+        @Override
+        public int getSpanStart(Object obj) {
+            if (this.ready) {
+                return super.getSpanStart(obj);
+            }
+            return -1;
+        }
+
+        @Override
+        public <T> T[] getSpans(int i, int i2, Class<T> cls) {
+            return !this.ready ? (T[]) ((Object[]) Array.newInstance((Class<?>) cls, 0)) : (T[]) super.getSpans(i, i2, cls);
+        }
+
+        @Override
+        public int nextSpanTransition(int i, int i2, Class cls) {
+            return !this.ready ? i2 : super.nextSpanTransition(i, i2, cls);
+        }
+
+        public void unlock() {
+            this.ready = true;
+        }
+    }
+
+    public static class Match {
+        int index;
+        int length;
+        String string;
+
+        private Match() {
+        }
+    }
+
     public static class Node {
         public Node next;
         public Node prev;
         public StringToken value;
 
         private Node() {
+        }
+    }
+
+    public static class ParsedPattern {
+        private CachedPattern cachedPattern;
+        boolean caseInsensitive;
+        boolean multiline;
+        String pattern;
+
+        private ParsedPattern() {
+        }
+
+        public int flags() {
+            return (this.multiline ? 8 : 0) | (this.caseInsensitive ? 2 : 0);
+        }
+
+        public CachedPattern getCachedPattern() {
+            if (this.cachedPattern == null) {
+                this.cachedPattern = new CachedPattern(this.pattern, flags());
+            }
+            return this.cachedPattern;
+        }
+    }
+
+    public static class RematchOptions {
+        TokenPattern cause;
+        int reach;
+
+        private RematchOptions() {
+        }
+    }
+
+    public static class Span extends CharacterStyle {
+        public final String code;
+        public final int currentType;
+        public final float decrementSize;
+        public final String lng;
+        public final boolean smallerSize;
+        public final TextStyleSpan.TextStyleRun style;
+
+        public Span(boolean z, int i, TextStyleSpan.TextStyleRun textStyleRun, String str, String str2) {
+            this.smallerSize = z;
+            this.lng = str;
+            this.code = str2;
+            this.decrementSize = CodeHighlighting.getTextSizeDecrement(str2 == null ? 0 : str2.length());
+            this.currentType = i;
+            this.style = textStyleRun;
+        }
+
+        @Override
+        public void updateDrawState(TextPaint textPaint) {
+            int color;
+            if (this.smallerSize) {
+                textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.decrementSize));
+            }
+            int i = this.currentType;
+            if (i == 2) {
+                color = -1;
+            } else {
+                color = Theme.getColor(i == 1 ? Theme.key_chat_messageTextOut : Theme.key_chat_messageTextIn);
+            }
+            textPaint.setColor(color);
+            TextStyleSpan.TextStyleRun textStyleRun = this.style;
+            if (textStyleRun != null) {
+                textStyleRun.applyStyle(textPaint);
+            } else {
+                textPaint.setTypeface(Typeface.MONOSPACE);
+                textPaint.setUnderlineText(false);
+            }
+        }
+    }
+
+    public static class StreamReader {
+        private final InputStream is;
+
+        public StreamReader(InputStream inputStream) {
+            this.is = inputStream;
+        }
+
+        public String readString() {
+            int read = this.is.read();
+            if (read >= 254) {
+                read = this.is.read() | (this.is.read() << 8) | (this.is.read() << 16);
+            }
+            byte[] bArr = new byte[read];
+            for (int i = 0; i < read; i++) {
+                bArr[i] = (byte) this.is.read();
+            }
+            return new String(bArr, StandardCharsets.US_ASCII);
+        }
+
+        public int readUint16() {
+            return (this.is.read() & 255) | ((this.is.read() & 255) << 8);
+        }
+
+        public int readUint8() {
+            return this.is.read() & 255;
         }
     }
 
@@ -619,10 +346,360 @@ public class CodeHighlighting {
 
         public int length() {
             String str = this.string;
-            if (str != null) {
-                return str.length();
+            return str != null ? str.length() : this.insideLength;
+        }
+    }
+
+    public static class TokenPattern {
+        public boolean greedy;
+        public int group;
+        public String insideLanguage;
+        public TokenPattern[] insideTokenPatterns;
+        public boolean lookbehind;
+        public final CachedPattern pattern;
+
+        public TokenPattern(int i, CachedPattern cachedPattern) {
+            this.pattern = cachedPattern;
+            this.group = i;
+        }
+
+        public TokenPattern(int i, CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
+            this.group = i;
+            this.pattern = cachedPattern;
+            this.insideTokenPatterns = tokenPatternArr;
+        }
+
+        public TokenPattern(CachedPattern cachedPattern, String str) {
+            this.group = -1;
+            this.pattern = cachedPattern;
+            this.insideLanguage = str;
+        }
+
+        public TokenPattern(CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
+            this.group = -1;
+            this.pattern = cachedPattern;
+            this.insideTokenPatterns = tokenPatternArr;
+        }
+    }
+
+    private static void colorize(Spannable spannable, int i, int i2, StringToken[] stringTokenArr, int i3, ArrayList<CachedToSpan> arrayList) {
+        if (stringTokenArr == null) {
+            return;
+        }
+        for (int i4 = 0; i4 < stringTokenArr.length && i < i2; i4++) {
+            StringToken stringToken = stringTokenArr[i4];
+            if (stringToken != null) {
+                if (stringToken.string != null) {
+                    int i5 = stringToken.group;
+                    if (i3 != -1) {
+                        i5 = i3;
+                    }
+                    if (i5 != -1) {
+                        arrayList.add(new CachedToSpan(i5, i, stringToken.length() + i));
+                    }
+                } else if (stringToken.inside != null) {
+                    colorize(spannable, i, i + stringToken.length(), stringToken.inside.toArray(), stringToken.group, arrayList);
+                }
+                i += stringToken.length();
             }
-            return this.insideLength;
+        }
+    }
+
+    private static TokenPattern[] flatRest(TokenPattern[] tokenPatternArr) {
+        HashMap<String, TokenPattern[]> hashMap;
+        TokenPattern[] tokenPatternArr2;
+        ArrayList arrayList = null;
+        if (tokenPatternArr == null) {
+            return null;
+        }
+        for (int i = 0; i < tokenPatternArr.length; i++) {
+            CachedPattern cachedPattern = tokenPatternArr[i].pattern;
+            if (cachedPattern != null && "REST".equals(cachedPattern.patternSource)) {
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    Collections.addAll(arrayList, tokenPatternArr);
+                }
+                arrayList.remove(tokenPatternArr[i]);
+                if (!TextUtils.isEmpty(tokenPatternArr[i].insideLanguage) && (hashMap = compiledPatterns) != null && (tokenPatternArr2 = hashMap.get(tokenPatternArr[i].insideLanguage)) != null) {
+                    Collections.addAll(arrayList, tokenPatternArr2);
+                }
+            }
+        }
+        return arrayList != null ? (TokenPattern[]) arrayList.toArray(new TokenPattern[0]) : tokenPatternArr;
+    }
+
+    public static SpannableString getHighlighted(String str, String str2) {
+        if (TextUtils.isEmpty(str2)) {
+            return new SpannableString(str);
+        }
+        String str3 = str2 + "`" + str;
+        HashMap<String, Highlighting> hashMap = processedHighlighting;
+        Highlighting highlighting = hashMap.get(str3);
+        if (highlighting == null) {
+            highlighting = new Highlighting();
+            highlighting.text = str;
+            highlighting.language = str2;
+            LockedSpannableString lockedSpannableString = new LockedSpannableString(str);
+            highlighting.result = lockedSpannableString;
+            highlight(lockedSpannableString, 0, lockedSpannableString.length(), str2, 0, null, true);
+            Iterator<String> it = hashMap.keySet().iterator();
+            while (it.hasNext() && processedHighlighting.size() > 8) {
+                it.next();
+                it.remove();
+            }
+            processedHighlighting.put(str3, highlighting);
+        }
+        return highlighting.result;
+    }
+
+    public static int getTextSizeDecrement(int i) {
+        if (i > 120) {
+            return 5;
+        }
+        return i > 50 ? 3 : 2;
+    }
+
+    public static void highlight(final Spannable spannable, final int i, final int i2, final String str, int i3, TextStyleSpan.TextStyleRun textStyleRun, boolean z) {
+        if (spannable == null) {
+            return;
+        }
+        Utilities.searchQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                CodeHighlighting.lambda$highlight$2(spannable, i, i2, str);
+            }
+        });
+    }
+
+    public static void lambda$highlight$0(Spannable spannable) {
+        ((LockedSpannableString) spannable).unlock();
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
+    }
+
+    public static void lambda$highlight$1(ArrayList arrayList, Spannable spannable) {
+        long currentTimeMillis = System.currentTimeMillis();
+        for (int i = 0; i < arrayList.size(); i++) {
+            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);
+            spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
+        }
+        FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - currentTimeMillis) + "ms");
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
+    }
+
+    public static void lambda$highlight$2(final Spannable spannable, int i, int i2, String str) {
+        Runnable runnable;
+        if (compiledPatterns == null) {
+            parse();
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        StringToken[][] stringTokenArr = new StringToken[1];
+        try {
+            String charSequence = spannable.subSequence(i, i2).toString();
+            HashMap<String, TokenPattern[]> hashMap = compiledPatterns;
+            stringTokenArr[0] = tokenize(charSequence, hashMap == null ? null : hashMap.get(str), 0).toArray();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        FileLog.d("[CodeHighlighter] tokenize took " + (System.currentTimeMillis() - currentTimeMillis) + "ms");
+        long currentTimeMillis2 = System.currentTimeMillis();
+        final ArrayList arrayList = new ArrayList();
+        colorize(spannable, i, i2, stringTokenArr[0], -1, arrayList);
+        FileLog.d("[CodeHighlighter] colorize took " + (System.currentTimeMillis() - currentTimeMillis2) + "ms");
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        if (spannable instanceof LockedSpannableString) {
+            long currentTimeMillis3 = System.currentTimeMillis();
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i3);
+                spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
+            }
+            FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - currentTimeMillis3) + "ms in another thread");
+            runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    CodeHighlighting.lambda$highlight$0(spannable);
+                }
+            };
+        } else {
+            runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    CodeHighlighting.lambda$highlight$1(arrayList, spannable);
+                }
+            };
+        }
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
+    private static void matchGrammar(String str, LinkedList linkedList, TokenPattern[] tokenPatternArr, Node node, int i, RematchOptions rematchOptions, TokenPattern tokenPattern, int i2) {
+        TokenPattern tokenPattern2;
+        int i3;
+        int i4;
+        Match matchPattern;
+        int i5;
+        Node node2;
+        StringToken stringToken;
+        int i6;
+        String str2 = str;
+        TokenPattern[] tokenPatternArr2 = tokenPatternArr;
+        if (tokenPatternArr2 == null || i2 > 20) {
+            return;
+        }
+        int length = tokenPatternArr2.length;
+        int i7 = 0;
+        while (i7 < length) {
+            TokenPattern tokenPattern3 = tokenPatternArr2[i7];
+            if (tokenPattern3 == tokenPattern) {
+                return;
+            }
+            if (rematchOptions != null && rematchOptions.cause == tokenPattern3) {
+                return;
+            }
+            int i8 = i;
+            Node node3 = node.next;
+            while (node3 != linkedList.tail) {
+                if (rematchOptions != null && i8 >= rematchOptions.reach) {
+                    return;
+                }
+                if (linkedList.length > str.length()) {
+                    FileLog.e("[CodeHighlighter] Something went terribly wrong, ABORT, ABORT!");
+                    return;
+                }
+                StringToken stringToken2 = node3.value;
+                String str3 = stringToken2.string;
+                if (str3 != null && !stringToken2.token) {
+                    if (tokenPattern3.greedy) {
+                        matchPattern = matchPattern(tokenPattern3, i8, str2);
+                        if (matchPattern == null || matchPattern.index >= str.length()) {
+                            break;
+                        }
+                        int i9 = matchPattern.index;
+                        int i10 = matchPattern.length + i9;
+                        Node node4 = node3;
+                        while (true) {
+                            i8 += node4.value.length();
+                            if (i9 < i8) {
+                                break;
+                            } else {
+                                node4 = node4.next;
+                            }
+                        }
+                        i8 -= node4.value.length();
+                        StringToken stringToken3 = node4.value;
+                        if (stringToken3.string == null || stringToken3.token) {
+                            tokenPattern2 = tokenPattern3;
+                            i3 = length;
+                            node3 = node4;
+                            i8 += node3.value.length();
+                            str2 = str;
+                            tokenPattern3 = tokenPattern2;
+                            length = i3;
+                            node3 = node3.next;
+                        } else {
+                            int i11 = i8;
+                            int i12 = 1;
+                            for (Node node5 = node4; node5 != linkedList.tail && (i11 < i10 || !node5.value.token); node5 = node5.next) {
+                                i12++;
+                                i11 += node5.value.length();
+                            }
+                            str3 = str2.substring(i8, i11);
+                            matchPattern.index -= i8;
+                            i5 = i12 - 1;
+                            node2 = str3;
+                            i4 = 0;
+                        }
+                    } else {
+                        i4 = 0;
+                        matchPattern = matchPattern(tokenPattern3, 0, str3);
+                        if (matchPattern != null) {
+                            i5 = 1;
+                            node2 = node3;
+                        }
+                    }
+                    int i13 = matchPattern.index;
+                    String substring = str3.substring(i4, i13);
+                    String substring2 = str3.substring(i13 + matchPattern.length);
+                    int length2 = str3.length() + i8;
+                    if (rematchOptions != null && length2 > rematchOptions.reach) {
+                        rematchOptions.reach = length2;
+                    }
+                    Node node6 = node2.prev;
+                    if (substring.length() > 0) {
+                        node6 = linkedList.addAfter(node6, new StringToken(substring));
+                        i8 += substring.length();
+                    }
+                    int i14 = i8;
+                    linkedList.removeRange(node6, i5);
+                    TokenPattern[] tokenPatternArr3 = tokenPattern3.insideTokenPatterns;
+                    if (tokenPatternArr3 != null) {
+                        i3 = length;
+                        stringToken = new StringToken(tokenPattern3.group, tokenize(matchPattern.string, tokenPatternArr3, tokenPattern3, i2 + 1), matchPattern.length);
+                    } else {
+                        i3 = length;
+                        String str4 = tokenPattern3.insideLanguage;
+                        stringToken = str4 != null ? new StringToken(tokenPattern3.group, tokenize(matchPattern.string, compiledPatterns.get(str4), tokenPattern3, i2 + 1), matchPattern.length) : new StringToken(tokenPattern3.group, matchPattern.string);
+                    }
+                    Node addAfter = linkedList.addAfter(node6, stringToken);
+                    if (substring2.length() > 0) {
+                        linkedList.addAfter(addAfter, new StringToken(substring2));
+                    }
+                    if (i5 > 1) {
+                        RematchOptions rematchOptions2 = new RematchOptions();
+                        rematchOptions2.cause = tokenPattern3;
+                        rematchOptions2.reach = length2;
+                        tokenPattern2 = tokenPattern3;
+                        matchGrammar(str, linkedList, tokenPatternArr, addAfter.prev, i14, rematchOptions2, tokenPattern, i2 + 1);
+                        if (rematchOptions != null && (i6 = rematchOptions2.reach) > rematchOptions.reach) {
+                            rematchOptions.reach = i6;
+                        }
+                    } else {
+                        tokenPattern2 = tokenPattern3;
+                    }
+                    node3 = addAfter;
+                    i8 = i14;
+                    i8 += node3.value.length();
+                    str2 = str;
+                    tokenPattern3 = tokenPattern2;
+                    length = i3;
+                    node3 = node3.next;
+                }
+                tokenPattern2 = tokenPattern3;
+                i3 = length;
+                i8 += node3.value.length();
+                str2 = str;
+                tokenPattern3 = tokenPattern2;
+                length = i3;
+                node3 = node3.next;
+            }
+            i7++;
+            str2 = str;
+            tokenPatternArr2 = tokenPatternArr;
+            length = length;
+        }
+    }
+
+    private static Match matchPattern(TokenPattern tokenPattern, int i, String str) {
+        try {
+            Matcher matcher = tokenPattern.pattern.getPattern().matcher(str);
+            matcher.region(i, str.length());
+            if (!matcher.find()) {
+                return null;
+            }
+            Match match = new Match();
+            match.index = matcher.start();
+            if (tokenPattern.lookbehind && matcher.groupCount() >= 1) {
+                match.index += matcher.end(1) - matcher.start(1);
+            }
+            int end = matcher.end();
+            int i2 = match.index;
+            int i3 = end - i2;
+            match.length = i3;
+            match.string = str.substring(i2, i3 + i2);
+            return match;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
         }
     }
 
@@ -630,28 +707,7 @@ public class CodeHighlighting {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.CodeHighlighting.parse():void");
     }
 
-    public static class ParsedPattern {
-        private CachedPattern cachedPattern;
-        boolean caseInsensitive;
-        boolean multiline;
-        String pattern;
-
-        private ParsedPattern() {
-        }
-
-        public int flags() {
-            return (this.multiline ? 8 : 0) | (this.caseInsensitive ? 2 : 0);
-        }
-
-        public CachedPattern getCachedPattern() {
-            if (this.cachedPattern == null) {
-                this.cachedPattern = new CachedPattern(this.pattern, flags());
-            }
-            return this.cachedPattern;
-        }
-    }
-
-    private static TokenPattern[] readTokens(StreamReader streamReader, ParsedPattern[] parsedPatternArr, HashMap<Integer, String[]> hashMap) throws IOException {
+    private static TokenPattern[] readTokens(StreamReader streamReader, ParsedPattern[] parsedPatternArr, HashMap<Integer, String[]> hashMap) {
         int readUint8 = streamReader.readUint8();
         TokenPattern[] tokenPatternArr = new TokenPattern[readUint8];
         for (int i = 0; i < readUint8; i++) {
@@ -682,81 +738,14 @@ public class CodeHighlighting {
         return tokenPatternArr;
     }
 
-    public static class StreamReader {
-        private final InputStream is;
-
-        public StreamReader(InputStream inputStream) {
-            this.is = inputStream;
-        }
-
-        public int readUint8() throws IOException {
-            return this.is.read() & 255;
-        }
-
-        public int readUint16() throws IOException {
-            return (this.is.read() & 255) | ((this.is.read() & 255) << 8);
-        }
-
-        public String readString() throws IOException {
-            int read = this.is.read();
-            if (read >= 254) {
-                read = this.is.read() | (this.is.read() << 8) | (this.is.read() << 16);
-            }
-            byte[] bArr = new byte[read];
-            for (int i = 0; i < read; i++) {
-                bArr[i] = (byte) this.is.read();
-            }
-            return new String(bArr, StandardCharsets.US_ASCII);
-        }
+    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, int i) {
+        return tokenize(str, tokenPatternArr, null, i);
     }
 
-    public static class TokenPattern {
-        public boolean greedy;
-        public int group;
-        public String insideLanguage;
-        public TokenPattern[] insideTokenPatterns;
-        public boolean lookbehind;
-        public final CachedPattern pattern;
-
-        public TokenPattern(int i, CachedPattern cachedPattern) {
-            this.pattern = cachedPattern;
-            this.group = i;
-        }
-
-        public TokenPattern(CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
-            this.group = -1;
-            this.pattern = cachedPattern;
-            this.insideTokenPatterns = tokenPatternArr;
-        }
-
-        public TokenPattern(CachedPattern cachedPattern, String str) {
-            this.group = -1;
-            this.pattern = cachedPattern;
-            this.insideLanguage = str;
-        }
-
-        public TokenPattern(int i, CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
-            this.group = i;
-            this.pattern = cachedPattern;
-            this.insideTokenPatterns = tokenPatternArr;
-        }
-    }
-
-    public static class CachedPattern {
-        private Pattern pattern;
-        private String patternSource;
-        private int patternSourceFlags;
-
-        public CachedPattern(String str, int i) {
-            this.patternSource = str;
-            this.patternSourceFlags = i;
-        }
-
-        public Pattern getPattern() {
-            if (this.pattern == null) {
-                this.pattern = Pattern.compile(this.patternSource, this.patternSourceFlags);
-            }
-            return this.pattern;
-        }
+    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, TokenPattern tokenPattern, int i) {
+        LinkedList linkedList = new LinkedList();
+        linkedList.addAfter(linkedList.head, new StringToken(str));
+        matchGrammar(str, linkedList, flatRest(tokenPatternArr), linkedList.head, 0, null, tokenPattern, i);
+        return linkedList;
     }
 }

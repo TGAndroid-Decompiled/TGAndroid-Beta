@@ -16,7 +16,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
@@ -137,6 +136,75 @@ public class FilterShaders {
     private int[] curveTextures = new int[1];
     public boolean scaleBitmap = true;
 
+    public static class BlurProgram {
+        public int blurHeightHandle;
+        public int blurInputTexCoordHandle;
+        public int blurPositionHandle;
+        public int blurShaderProgram;
+        public int blurSourceImageHandle;
+        public int blurWidthHandle;
+        private String fragmentShaderCode;
+        private String vertexShaderCode;
+
+        public BlurProgram(float f, float f2, boolean z) {
+            int i;
+            if (z) {
+                f2 = Math.round(f);
+                if (f2 >= 1.0f) {
+                    double d = f2;
+                    double pow = Math.pow(d, 2.0d) * (-2.0d);
+                    double d2 = 0.00390625f;
+                    double sqrt = Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d);
+                    Double.isNaN(d2);
+                    int floor = (int) Math.floor(Math.sqrt(pow * Math.log(d2 * sqrt)));
+                    i = floor + (floor % 2);
+                } else {
+                    i = 0;
+                }
+            } else {
+                i = (int) f;
+            }
+            this.fragmentShaderCode = FilterShaders.fragmentShaderForOptimizedBlurOfRadius(i, f2);
+            this.vertexShaderCode = FilterShaders.vertexShaderForOptimizedBlurOfRadius(i, f2);
+        }
+
+        public boolean create() {
+            int loadShader = FilterShaders.loadShader(35633, this.vertexShaderCode);
+            int loadShader2 = FilterShaders.loadShader(35632, this.fragmentShaderCode);
+            if (loadShader == 0 || loadShader2 == 0) {
+                return false;
+            }
+            int glCreateProgram = GLES20.glCreateProgram();
+            this.blurShaderProgram = glCreateProgram;
+            GLES20.glAttachShader(glCreateProgram, loadShader);
+            GLES20.glAttachShader(this.blurShaderProgram, loadShader2);
+            GLES20.glBindAttribLocation(this.blurShaderProgram, 0, "position");
+            GLES20.glBindAttribLocation(this.blurShaderProgram, 1, "inputTexCoord");
+            GLES20.glLinkProgram(this.blurShaderProgram);
+            int[] iArr = new int[1];
+            GLES20.glGetProgramiv(this.blurShaderProgram, 35714, iArr, 0);
+            if (iArr[0] == 0) {
+                GLES20.glDeleteProgram(this.blurShaderProgram);
+                this.blurShaderProgram = 0;
+            } else {
+                this.blurPositionHandle = GLES20.glGetAttribLocation(this.blurShaderProgram, "position");
+                this.blurInputTexCoordHandle = GLES20.glGetAttribLocation(this.blurShaderProgram, "inputTexCoord");
+                this.blurSourceImageHandle = GLES20.glGetUniformLocation(this.blurShaderProgram, "sTexture");
+                this.blurWidthHandle = GLES20.glGetUniformLocation(this.blurShaderProgram, "texelWidthOffset");
+                this.blurHeightHandle = GLES20.glGetUniformLocation(this.blurShaderProgram, "texelHeightOffset");
+            }
+            return true;
+        }
+
+        public void destroy() {
+            int i = this.blurShaderProgram;
+            if (i != 0) {
+                GLES20.glDeleteProgram(i);
+                this.blurShaderProgram = 0;
+            }
+        }
+    }
+
     public interface FilterShadersDelegate {
         ByteBuffer fillAndGetCurveBuffer();
 
@@ -187,60 +255,269 @@ public class FilterShaders {
         boolean shouldShowOriginal();
     }
 
-    public static String vertexShaderForOptimizedBlurOfRadius(int i, float f) {
-        int i2;
-        float[] fArr = new float[(i * 2) + 1];
-        float f2 = 0.0f;
-        int i3 = 0;
-        while (true) {
-            i2 = i + 1;
-            if (i3 >= i2) {
-                break;
+    public static class ToneCurve {
+        private float[] blueCurve;
+        private int[] curveTexture = new int[1];
+        private float[] greenCurve;
+        private float[] redCurve;
+        private float[] rgbCompositeCurve;
+
+        public ToneCurve() {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(new PointF(0.0f, 0.0f));
+            arrayList.add(new PointF(0.5f, 0.5f));
+            arrayList.add(new PointF(1.0f, 1.0f));
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.add(new PointF(0.0f, 0.0f));
+            arrayList2.add(new PointF(0.47f, 0.57f));
+            arrayList2.add(new PointF(1.0f, 1.0f));
+            this.rgbCompositeCurve = getPreparedSplineCurve(arrayList2);
+            float[] preparedSplineCurve = getPreparedSplineCurve(arrayList);
+            this.blueCurve = preparedSplineCurve;
+            this.greenCurve = preparedSplineCurve;
+            this.redCurve = preparedSplineCurve;
+            updateToneCurveTexture();
+        }
+
+        private float[] getPreparedSplineCurve(ArrayList arrayList) {
+            int size = arrayList.size();
+            for (int i = 0; i < size; i++) {
+                PointF pointF = (PointF) arrayList.get(i);
+                pointF.x *= 255.0f;
+                pointF.y *= 255.0f;
             }
-            double d = f;
-            float sqrt = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
-            fArr[i3] = sqrt;
-            if (i3 == 0) {
-                f2 += sqrt;
-            } else {
-                double d2 = f2;
-                double d3 = sqrt;
-                Double.isNaN(d3);
+            ArrayList splineCurve = splineCurve(arrayList);
+            float f = ((PointF) splineCurve.get(0)).x;
+            if (f > 0.0f) {
+                for (int i2 = (int) f; i2 >= 0; i2--) {
+                    splineCurve.add(0, new PointF(i2, 0.0f));
+                }
+            }
+            float f2 = ((PointF) splineCurve.get(splineCurve.size() - 1)).x;
+            if (f2 < 255.0f) {
+                int i3 = (int) f2;
+                while (true) {
+                    i3++;
+                    if (i3 > 255) {
+                        break;
+                    }
+                    splineCurve.add(new PointF(i3, 255.0f));
+                }
+            }
+            float[] fArr = new float[splineCurve.size()];
+            int size2 = splineCurve.size();
+            for (int i4 = 0; i4 < size2; i4++) {
+                PointF pointF2 = (PointF) splineCurve.get(i4);
+                float sqrt = (float) Math.sqrt(Math.pow(pointF2.x - pointF2.y, 2.0d));
+                if (pointF2.x > pointF2.y) {
+                    sqrt = -sqrt;
+                }
+                fArr[i4] = sqrt;
+            }
+            return fArr;
+        }
+
+        private double[] secondDerivative(ArrayList arrayList) {
+            int i;
+            int size = arrayList.size();
+            if (size <= 0 || size == 1) {
+                return null;
+            }
+            char c = 0;
+            double[][] dArr = (double[][]) Array.newInstance((Class<?>) Double.TYPE, size, 3);
+            double[] dArr2 = new double[size];
+            double[] dArr3 = dArr[0];
+            dArr3[1] = 1.0d;
+            double d = 0.0d;
+            dArr3[0] = 0.0d;
+            dArr3[2] = 0.0d;
+            int i2 = 1;
+            while (true) {
+                i = size - 1;
+                if (i2 >= i) {
+                    break;
+                }
+                PointF pointF = (PointF) arrayList.get(i2 - 1);
+                PointF pointF2 = (PointF) arrayList.get(i2);
+                int i3 = i2 + 1;
+                PointF pointF3 = (PointF) arrayList.get(i3);
+                double[] dArr4 = dArr[i2];
+                float f = pointF2.x;
+                float f2 = pointF.x;
+                double d2 = f - f2;
                 Double.isNaN(d2);
-                f2 = (float) (d2 + (d3 * 2.0d));
+                dArr4[c] = d2 / 6.0d;
+                float f3 = pointF3.x;
+                double d3 = f3 - f2;
+                Double.isNaN(d3);
+                dArr4[1] = d3 / 3.0d;
+                double d4 = f3 - f;
+                Double.isNaN(d4);
+                dArr4[2] = d4 / 6.0d;
+                float f4 = pointF3.y;
+                float f5 = pointF2.y;
+                double d5 = f4 - f5;
+                Double.isNaN(d5);
+                Double.isNaN(d4);
+                double d6 = d5 / d4;
+                double d7 = f5 - pointF.y;
+                Double.isNaN(d7);
+                Double.isNaN(d2);
+                dArr2[i2] = d6 - (d7 / d2);
+                i2 = i3;
+                dArr = dArr;
+                c = 0;
+                d = 0.0d;
             }
-            i3++;
+            double[][] dArr5 = dArr;
+            double d8 = d;
+            char c2 = 0;
+            dArr2[0] = d8;
+            dArr2[i] = d8;
+            double[] dArr6 = dArr5[i];
+            dArr6[1] = 1.0d;
+            dArr6[0] = d8;
+            char c3 = 2;
+            dArr6[2] = d8;
+            int i4 = 1;
+            while (i4 < size) {
+                double[] dArr7 = dArr5[i4];
+                double d9 = dArr7[c2];
+                int i5 = i4 - 1;
+                double[] dArr8 = dArr5[i5];
+                double d10 = d9 / dArr8[1];
+                dArr7[1] = dArr7[1] - (dArr8[c3] * d10);
+                dArr7[c2] = 0.0d;
+                dArr2[i4] = dArr2[i4] - (d10 * dArr2[i5]);
+                i4++;
+                c2 = 0;
+                c3 = 2;
+            }
+            for (int i6 = size - 2; i6 >= 0; i6--) {
+                double[] dArr9 = dArr5[i6];
+                double d11 = dArr9[2];
+                int i7 = i6 + 1;
+                double[] dArr10 = dArr5[i7];
+                double d12 = d11 / dArr10[1];
+                dArr9[1] = dArr9[1] - (dArr10[0] * d12);
+                dArr9[2] = 0.0d;
+                dArr2[i6] = dArr2[i6] - (d12 * dArr2[i7]);
+            }
+            double[] dArr11 = new double[size];
+            for (int i8 = 0; i8 < size; i8++) {
+                dArr11[i8] = dArr2[i8] / dArr5[i8][1];
+            }
+            return dArr11;
         }
-        for (int i4 = 0; i4 < i2; i4++) {
-            fArr[i4] = fArr[i4] / f2;
+
+        private ArrayList splineCurve(ArrayList arrayList) {
+            double[] secondDerivative = secondDerivative(arrayList);
+            int length = secondDerivative.length;
+            if (length < 1) {
+                return null;
+            }
+            ArrayList arrayList2 = new ArrayList(length + 1);
+            int i = 0;
+            while (i < length - 1) {
+                PointF pointF = (PointF) arrayList.get(i);
+                int i2 = i + 1;
+                PointF pointF2 = (PointF) arrayList.get(i2);
+                int i3 = (int) pointF.x;
+                while (true) {
+                    float f = pointF2.x;
+                    if (i3 < ((int) f)) {
+                        float f2 = i3;
+                        float f3 = pointF.x;
+                        double d = f2 - f3;
+                        ArrayList arrayList3 = arrayList2;
+                        double d2 = f - f3;
+                        Double.isNaN(d);
+                        Double.isNaN(d2);
+                        double d3 = d / d2;
+                        double d4 = 1.0d - d3;
+                        double d5 = pointF.y;
+                        Double.isNaN(d5);
+                        double d6 = pointF2.y;
+                        Double.isNaN(d6);
+                        Double.isNaN(d2);
+                        Double.isNaN(d2);
+                        float f4 = (float) ((d5 * d4) + (d6 * d3) + (((d2 * d2) / 6.0d) * (((((d4 * d4) * d4) - d4) * secondDerivative[i]) + ((((d3 * d3) * d3) - d3) * secondDerivative[i2]))));
+                        if (f4 > 255.0f) {
+                            f4 = 255.0f;
+                        } else if (f4 < 0.0f) {
+                            f4 = 0.0f;
+                        }
+                        arrayList3.add(new PointF(f2, f4));
+                        i3++;
+                        arrayList2 = arrayList3;
+                    }
+                }
+                i = i2;
+            }
+            ArrayList arrayList4 = arrayList2;
+            arrayList4.add((PointF) arrayList.get(arrayList.size() - 1));
+            return arrayList4;
         }
-        int min = Math.min((i / 2) + (i % 2), 7);
-        float[] fArr2 = new float[min];
-        for (int i5 = 0; i5 < min; i5++) {
-            int i6 = i5 * 2;
-            int i7 = i6 + 1;
-            float f3 = fArr[i7];
-            int i8 = i6 + 2;
-            float f4 = fArr[i8];
-            fArr2[i5] = ((f3 * i7) + (f4 * i8)) / (f3 + f4);
+
+        private void updateToneCurveTexture() {
+            GLES20.glGenTextures(1, this.curveTexture, 0);
+            GLES20.glBindTexture(3553, this.curveTexture[0]);
+            GLES20.glTexParameteri(3553, 10241, 9729);
+            GLES20.glTexParameteri(3553, 10240, 9729);
+            GLES20.glTexParameteri(3553, 10242, 33071);
+            GLES20.glTexParameteri(3553, 10243, 33071);
+            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(1024);
+            allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+            if (this.redCurve.length < 256 || this.greenCurve.length < 256 || this.blueCurve.length < 256 || this.rgbCompositeCurve.length < 256) {
+                return;
+            }
+            for (int i = 0; i < 256; i++) {
+                float f = i;
+                int min = (int) Math.min(Math.max(this.redCurve[i] + f, 0.0f), 255.0f);
+                int min2 = (int) Math.min(Math.max(this.greenCurve[i] + f, 0.0f), 255.0f);
+                int min3 = (int) Math.min(Math.max(f + this.blueCurve[i], 0.0f), 255.0f);
+                allocateDirect.put((byte) Math.min(Math.max(min3 + this.rgbCompositeCurve[min3], 0.0f), 255.0f));
+                allocateDirect.put((byte) Math.min(Math.max(min2 + this.rgbCompositeCurve[min2], 0.0f), 255.0f));
+                allocateDirect.put((byte) Math.min(Math.max(min + this.rgbCompositeCurve[min], 0.0f), 255.0f));
+                allocateDirect.put((byte) -1);
+            }
+            allocateDirect.position(0);
+            GLES20.glTexImage2D(3553, 0, 6408, 256, 1, 0, 6408, 5121, allocateDirect);
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("attribute vec4 position;\n");
-        sb.append("attribute vec4 inputTexCoord;\n");
-        sb.append("uniform float texelWidthOffset;\n");
-        sb.append("uniform float texelHeightOffset;\n");
-        sb.append(String.format(Locale.US, "varying vec2 blurCoordinates[%d];\n", Integer.valueOf((min * 2) + 1)));
-        sb.append("void main()\n");
-        sb.append("{\n");
-        sb.append("gl_Position = position;\n");
-        sb.append("vec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\n");
-        sb.append("blurCoordinates[0] = inputTexCoord.xy;\n");
-        for (int i9 = 0; i9 < min; i9++) {
-            int i10 = i9 * 2;
-            sb.append(String.format(Locale.US, "blurCoordinates[%d] = inputTexCoord.xy + singleStepOffset * %f;\nblurCoordinates[%d] = inputTexCoord.xy - singleStepOffset * %f;\n", Integer.valueOf(i10 + 1), Float.valueOf(fArr2[i9]), Integer.valueOf(i10 + 2), Float.valueOf(fArr2[i9])));
+
+        public int getCurveTexture() {
+            return this.curveTexture[0];
         }
-        sb.append("}");
-        return sb.toString();
+    }
+
+    public FilterShaders(boolean z, StoryEntry.HDRInfo hDRInfo) {
+        this.isVideo = z;
+        this.hdrInfo = hDRInfo;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
+        allocateDirect.order(ByteOrder.nativeOrder());
+        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
+        this.vertexBuffer = asFloatBuffer;
+        asFloatBuffer.put(new float[]{-1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 1.0f, -1.0f});
+        this.vertexBuffer.position(0);
+        ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
+        allocateDirect2.order(ByteOrder.nativeOrder());
+        FloatBuffer asFloatBuffer2 = allocateDirect2.asFloatBuffer();
+        this.vertexInvertBuffer = asFloatBuffer2;
+        asFloatBuffer2.put(new float[]{-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f});
+        this.vertexInvertBuffer.position(0);
+        ByteBuffer allocateDirect3 = ByteBuffer.allocateDirect(32);
+        allocateDirect3.order(ByteOrder.nativeOrder());
+        FloatBuffer asFloatBuffer3 = allocateDirect3.asFloatBuffer();
+        this.textureBuffer = asFloatBuffer3;
+        asFloatBuffer3.put(new float[]{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f});
+        this.textureBuffer.position(0);
+    }
+
+    private Bitmap createBitmap(Bitmap bitmap, int i, float f) {
+        Matrix matrix = new Matrix();
+        matrix.setScale(f, f);
+        matrix.postRotate(i);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
     public static String fragmentShaderForOptimizedBlurOfRadius(int i, float f) {
@@ -312,340 +589,266 @@ public class FilterShaders {
         return sb.toString();
     }
 
-    public static class BlurProgram {
-        public int blurHeightHandle;
-        public int blurInputTexCoordHandle;
-        public int blurPositionHandle;
-        public int blurShaderProgram;
-        public int blurSourceImageHandle;
-        public int blurWidthHandle;
-        private String fragmentShaderCode;
-        private String vertexShaderCode;
+    public static FilterShadersDelegate getFilterShadersDelegate(final MediaController.SavedFilterState savedFilterState) {
+        return new FilterShadersDelegate() {
+            @Override
+            public ByteBuffer fillAndGetCurveBuffer() {
+                MediaController.SavedFilterState.this.curvesToolValue.fillBuffer();
+                return MediaController.SavedFilterState.this.curvesToolValue.curveBuffer;
+            }
 
-        public BlurProgram(float f, float f2, boolean z) {
-            int i;
-            if (z) {
-                f2 = Math.round(f);
-                if (f2 >= 1.0f) {
-                    double d = f2;
-                    double pow = Math.pow(d, 2.0d) * (-2.0d);
-                    double d2 = 0.00390625f;
-                    double sqrt = Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d);
-                    Double.isNaN(d2);
-                    int floor = (int) Math.floor(Math.sqrt(pow * Math.log(d2 * sqrt)));
-                    i = floor + (floor % 2);
-                } else {
-                    i = 0;
+            @Override
+            public float getBlurAngle() {
+                return MediaController.SavedFilterState.this.blurAngle;
+            }
+
+            @Override
+            public float getBlurExcludeBlurSize() {
+                return MediaController.SavedFilterState.this.blurExcludeBlurSize;
+            }
+
+            @Override
+            public Point getBlurExcludePoint() {
+                return MediaController.SavedFilterState.this.blurExcludePoint;
+            }
+
+            @Override
+            public float getBlurExcludeSize() {
+                return MediaController.SavedFilterState.this.blurExcludeSize;
+            }
+
+            @Override
+            public int getBlurType() {
+                return MediaController.SavedFilterState.this.blurType;
+            }
+
+            @Override
+            public float getContrastValue() {
+                return ((MediaController.SavedFilterState.this.contrastValue / 100.0f) * 0.3f) + 1.0f;
+            }
+
+            @Override
+            public float getEnhanceValue() {
+                return MediaController.SavedFilterState.this.enhanceValue / 100.0f;
+            }
+
+            @Override
+            public float getExposureValue() {
+                return MediaController.SavedFilterState.this.exposureValue / 100.0f;
+            }
+
+            @Override
+            public float getFadeValue() {
+                return MediaController.SavedFilterState.this.fadeValue / 100.0f;
+            }
+
+            @Override
+            public float getGrainValue() {
+                return (MediaController.SavedFilterState.this.grainValue / 100.0f) * 0.04f;
+            }
+
+            @Override
+            public float getHighlightsValue() {
+                return ((MediaController.SavedFilterState.this.highlightsValue * 0.75f) + 100.0f) / 100.0f;
+            }
+
+            @Override
+            public float getSaturationValue() {
+                float f = MediaController.SavedFilterState.this.saturationValue / 100.0f;
+                if (f > 0.0f) {
+                    f *= 1.05f;
                 }
-            } else {
-                i = (int) f;
+                return f + 1.0f;
             }
-            this.fragmentShaderCode = FilterShaders.fragmentShaderForOptimizedBlurOfRadius(i, f2);
-            this.vertexShaderCode = FilterShaders.vertexShaderForOptimizedBlurOfRadius(i, f2);
-        }
 
-        public void destroy() {
-            int i = this.blurShaderProgram;
-            if (i != 0) {
-                GLES20.glDeleteProgram(i);
-                this.blurShaderProgram = 0;
+            @Override
+            public float getShadowsValue() {
+                return ((MediaController.SavedFilterState.this.shadowsValue * 0.55f) + 100.0f) / 100.0f;
             }
-        }
 
-        public boolean create() {
-            int loadShader = FilterShaders.loadShader(35633, this.vertexShaderCode);
-            int loadShader2 = FilterShaders.loadShader(35632, this.fragmentShaderCode);
-            if (loadShader == 0 || loadShader2 == 0) {
+            @Override
+            public float getSharpenValue() {
+                return ((MediaController.SavedFilterState.this.sharpenValue / 100.0f) * 0.6f) + 0.11f;
+            }
+
+            @Override
+            public float getSoftenSkinValue() {
+                return MediaController.SavedFilterState.this.softenSkinValue / 100.0f;
+            }
+
+            @Override
+            public int getTintHighlightsColor() {
+                return MediaController.SavedFilterState.this.tintHighlightsColor;
+            }
+
+            @Override
+            public float getTintHighlightsIntensityValue() {
+                return MediaController.SavedFilterState.this.tintHighlightsColor == 0 ? 0.0f : 0.5f;
+            }
+
+            @Override
+            public int getTintShadowsColor() {
+                return MediaController.SavedFilterState.this.tintShadowsColor;
+            }
+
+            @Override
+            public float getTintShadowsIntensityValue() {
+                return MediaController.SavedFilterState.this.tintShadowsColor == 0 ? 0.0f : 0.5f;
+            }
+
+            @Override
+            public float getVignetteValue() {
+                return MediaController.SavedFilterState.this.vignetteValue / 100.0f;
+            }
+
+            @Override
+            public float getWarmthValue() {
+                return MediaController.SavedFilterState.this.warmthValue / 100.0f;
+            }
+
+            @Override
+            public boolean shouldDrawCurvesPass() {
+                return !MediaController.SavedFilterState.this.curvesToolValue.shouldBeSkipped();
+            }
+
+            @Override
+            public boolean shouldShowOriginal() {
                 return false;
             }
-            int glCreateProgram = GLES20.glCreateProgram();
-            this.blurShaderProgram = glCreateProgram;
-            GLES20.glAttachShader(glCreateProgram, loadShader);
-            GLES20.glAttachShader(this.blurShaderProgram, loadShader2);
-            GLES20.glBindAttribLocation(this.blurShaderProgram, 0, "position");
-            GLES20.glBindAttribLocation(this.blurShaderProgram, 1, "inputTexCoord");
-            GLES20.glLinkProgram(this.blurShaderProgram);
-            int[] iArr = new int[1];
-            GLES20.glGetProgramiv(this.blurShaderProgram, 35714, iArr, 0);
-            if (iArr[0] == 0) {
-                GLES20.glDeleteProgram(this.blurShaderProgram);
-                this.blurShaderProgram = 0;
-            } else {
-                this.blurPositionHandle = GLES20.glGetAttribLocation(this.blurShaderProgram, "position");
-                this.blurInputTexCoordHandle = GLES20.glGetAttribLocation(this.blurShaderProgram, "inputTexCoord");
-                this.blurSourceImageHandle = GLES20.glGetUniformLocation(this.blurShaderProgram, "sTexture");
-                this.blurWidthHandle = GLES20.glGetUniformLocation(this.blurShaderProgram, "texelWidthOffset");
-                this.blurHeightHandle = GLES20.glGetUniformLocation(this.blurShaderProgram, "texelHeightOffset");
-            }
-            return true;
-        }
+        };
     }
 
-    public static class ToneCurve {
-        private float[] blueCurve;
-        private int[] curveTexture = new int[1];
-        private float[] greenCurve;
-        private float[] redCurve;
-        private float[] rgbCompositeCurve;
-
-        public ToneCurve() {
-            ArrayList<PointF> arrayList = new ArrayList<>();
-            arrayList.add(new PointF(0.0f, 0.0f));
-            arrayList.add(new PointF(0.5f, 0.5f));
-            arrayList.add(new PointF(1.0f, 1.0f));
-            ArrayList<PointF> arrayList2 = new ArrayList<>();
-            arrayList2.add(new PointF(0.0f, 0.0f));
-            arrayList2.add(new PointF(0.47f, 0.57f));
-            arrayList2.add(new PointF(1.0f, 1.0f));
-            this.rgbCompositeCurve = getPreparedSplineCurve(arrayList2);
-            float[] preparedSplineCurve = getPreparedSplineCurve(arrayList);
-            this.blueCurve = preparedSplineCurve;
-            this.greenCurve = preparedSplineCurve;
-            this.redCurve = preparedSplineCurve;
-            updateToneCurveTexture();
+    public static int loadShader(int i, String str) {
+        int glCreateShader = GLES20.glCreateShader(i);
+        GLES20.glShaderSource(glCreateShader, str);
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] != 0) {
+            return glCreateShader;
         }
-
-        private float[] getPreparedSplineCurve(ArrayList<PointF> arrayList) {
-            int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                PointF pointF = arrayList.get(i);
-                pointF.x *= 255.0f;
-                pointF.y *= 255.0f;
-            }
-            ArrayList<PointF> splineCurve = splineCurve(arrayList);
-            float f = splineCurve.get(0).x;
-            if (f > 0.0f) {
-                for (int i2 = (int) f; i2 >= 0; i2--) {
-                    splineCurve.add(0, new PointF(i2, 0.0f));
-                }
-            }
-            float f2 = splineCurve.get(splineCurve.size() - 1).x;
-            if (f2 < 255.0f) {
-                int i3 = (int) f2;
-                while (true) {
-                    i3++;
-                    if (i3 > 255) {
-                        break;
-                    }
-                    splineCurve.add(new PointF(i3, 255.0f));
-                }
-            }
-            float[] fArr = new float[splineCurve.size()];
-            int size2 = splineCurve.size();
-            for (int i4 = 0; i4 < size2; i4++) {
-                PointF pointF2 = splineCurve.get(i4);
-                float sqrt = (float) Math.sqrt(Math.pow(pointF2.x - pointF2.y, 2.0d));
-                if (pointF2.x > pointF2.y) {
-                    sqrt = -sqrt;
-                }
-                fArr[i4] = sqrt;
-            }
-            return fArr;
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.e(GLES20.glGetShaderInfoLog(glCreateShader));
+            FileLog.e("shader code:\n " + str);
         }
+        GLES20.glDeleteShader(glCreateShader);
+        return 0;
+    }
 
-        private ArrayList<PointF> splineCurve(ArrayList<PointF> arrayList) {
-            double[] secondDerivative = secondDerivative(arrayList);
-            int length = secondDerivative.length;
-            if (length < 1) {
-                return null;
-            }
-            ArrayList<PointF> arrayList2 = new ArrayList<>(length + 1);
-            int i = 0;
-            while (i < length - 1) {
-                PointF pointF = arrayList.get(i);
-                int i2 = i + 1;
-                PointF pointF2 = arrayList.get(i2);
-                int i3 = (int) pointF.x;
-                while (true) {
-                    float f = pointF2.x;
-                    if (i3 < ((int) f)) {
-                        float f2 = i3;
-                        float f3 = pointF.x;
-                        double d = f2 - f3;
-                        ArrayList<PointF> arrayList3 = arrayList2;
-                        double d2 = f - f3;
-                        Double.isNaN(d);
-                        Double.isNaN(d2);
-                        double d3 = d / d2;
-                        double d4 = 1.0d - d3;
-                        double d5 = pointF.y;
-                        Double.isNaN(d5);
-                        double d6 = pointF2.y;
-                        Double.isNaN(d6);
-                        Double.isNaN(d2);
-                        Double.isNaN(d2);
-                        float f4 = (float) ((d5 * d4) + (d6 * d3) + (((d2 * d2) / 6.0d) * (((((d4 * d4) * d4) - d4) * secondDerivative[i]) + ((((d3 * d3) * d3) - d3) * secondDerivative[i2]))));
-                        if (f4 > 255.0f) {
-                            f4 = 255.0f;
-                        } else if (f4 < 0.0f) {
-                            f4 = 0.0f;
-                        }
-                        arrayList3.add(new PointF(f2, f4));
-                        i3++;
-                        arrayList2 = arrayList3;
+    private void loadTexture(Bitmap bitmap, int i, int i2, int i3) {
+        float f;
+        Bitmap bitmap2 = bitmap;
+        this.renderBufferWidth = i2;
+        this.renderBufferHeight = i3;
+        if (this.renderFrameBuffer == null) {
+            int[] iArr = new int[4];
+            this.renderFrameBuffer = iArr;
+            GLES20.glGenFramebuffers(4, iArr, 0);
+            GLES20.glGenTextures(4, this.renderTexture, 0);
+        }
+        if (bitmap2 != null && !bitmap.isRecycled()) {
+            GLES20.glGenTextures(1, this.bitmapTextre, 0);
+            float photoSize = AndroidUtilities.getPhotoSize();
+            boolean z = this.scaleBitmap;
+            if ((z && (this.renderBufferWidth > photoSize || this.renderBufferHeight > photoSize)) || i % 360 != 0) {
+                if (!z || (this.renderBufferWidth <= photoSize && this.renderBufferHeight <= photoSize)) {
+                    f = 1.0f;
+                } else {
+                    f = photoSize / bitmap.getWidth();
+                    float height = photoSize / bitmap.getHeight();
+                    int i4 = (int) photoSize;
+                    if (f < height) {
+                        this.renderBufferWidth = i4;
+                        this.renderBufferHeight = (int) (bitmap.getHeight() * f);
+                    } else {
+                        this.renderBufferHeight = i4;
+                        this.renderBufferWidth = (int) (bitmap.getWidth() * height);
+                        f = height;
                     }
                 }
-                i = i2;
-            }
-            ArrayList<PointF> arrayList4 = arrayList2;
-            arrayList4.add(arrayList.get(arrayList.size() - 1));
-            return arrayList4;
-        }
-
-        private double[] secondDerivative(ArrayList<PointF> arrayList) {
-            int i;
-            int size = arrayList.size();
-            if (size <= 0 || size == 1) {
-                return null;
-            }
-            char c = 0;
-            double[][] dArr = (double[][]) Array.newInstance((Class<?>) Double.TYPE, size, 3);
-            double[] dArr2 = new double[size];
-            double[] dArr3 = dArr[0];
-            dArr3[1] = 1.0d;
-            double d = 0.0d;
-            dArr3[0] = 0.0d;
-            dArr3[2] = 0.0d;
-            int i2 = 1;
-            while (true) {
-                i = size - 1;
-                if (i2 >= i) {
-                    break;
+                int i5 = i % 360;
+                if (i5 == 90 || i5 == 270) {
+                    int i6 = this.renderBufferWidth;
+                    this.renderBufferWidth = this.renderBufferHeight;
+                    this.renderBufferHeight = i6;
                 }
-                PointF pointF = arrayList.get(i2 - 1);
-                PointF pointF2 = arrayList.get(i2);
-                int i3 = i2 + 1;
-                PointF pointF3 = arrayList.get(i3);
-                double[] dArr4 = dArr[i2];
-                float f = pointF2.x;
-                float f2 = pointF.x;
-                double d2 = f - f2;
-                Double.isNaN(d2);
-                dArr4[c] = d2 / 6.0d;
-                float f3 = pointF3.x;
-                double d3 = f3 - f2;
-                Double.isNaN(d3);
-                dArr4[1] = d3 / 3.0d;
-                double d4 = f3 - f;
-                Double.isNaN(d4);
-                dArr4[2] = d4 / 6.0d;
-                float f4 = pointF3.y;
-                float f5 = pointF2.y;
-                double d5 = f4 - f5;
-                Double.isNaN(d5);
-                Double.isNaN(d4);
-                double d6 = d5 / d4;
-                double d7 = f5 - pointF.y;
-                Double.isNaN(d7);
-                Double.isNaN(d2);
-                dArr2[i2] = d6 - (d7 / d2);
-                i2 = i3;
-                dArr = dArr;
-                c = 0;
-                d = 0.0d;
+                bitmap2 = createBitmap(bitmap2, i, f);
             }
-            double[][] dArr5 = dArr;
-            double d8 = d;
-            char c2 = 0;
-            dArr2[0] = d8;
-            dArr2[i] = d8;
-            double[] dArr6 = dArr5[i];
-            dArr6[1] = 1.0d;
-            dArr6[0] = d8;
-            char c3 = 2;
-            dArr6[2] = d8;
-            int i4 = 1;
-            while (i4 < size) {
-                double[] dArr7 = dArr5[i4];
-                double d9 = dArr7[c2];
-                int i5 = i4 - 1;
-                double[] dArr8 = dArr5[i5];
-                double d10 = d9 / dArr8[1];
-                dArr7[1] = dArr7[1] - (dArr8[c3] * d10);
-                dArr7[c2] = 0.0d;
-                dArr2[i4] = dArr2[i4] - (d10 * dArr2[i5]);
-                i4++;
-                c2 = 0;
-                c3 = 2;
-            }
-            for (int i6 = size - 2; i6 >= 0; i6--) {
-                double[] dArr9 = dArr5[i6];
-                double d11 = dArr9[2];
-                int i7 = i6 + 1;
-                double[] dArr10 = dArr5[i7];
-                double d12 = d11 / dArr10[1];
-                dArr9[1] = dArr9[1] - (dArr10[0] * d12);
-                dArr9[2] = 0.0d;
-                dArr2[i6] = dArr2[i6] - (d12 * dArr2[i7]);
-            }
-            double[] dArr11 = new double[size];
-            for (int i8 = 0; i8 < size; i8++) {
-                dArr11[i8] = dArr2[i8] / dArr5[i8][1];
-            }
-            return dArr11;
-        }
-
-        private void updateToneCurveTexture() {
-            GLES20.glGenTextures(1, this.curveTexture, 0);
-            GLES20.glBindTexture(3553, this.curveTexture[0]);
+            GLES20.glBindTexture(3553, this.bitmapTextre[0]);
             GLES20.glTexParameteri(3553, 10241, 9729);
             GLES20.glTexParameteri(3553, 10240, 9729);
             GLES20.glTexParameteri(3553, 10242, 33071);
             GLES20.glTexParameteri(3553, 10243, 33071);
-            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(1024);
-            allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
-            if (this.redCurve.length < 256 || this.greenCurve.length < 256 || this.blueCurve.length < 256 || this.rgbCompositeCurve.length < 256) {
-                return;
-            }
-            for (int i = 0; i < 256; i++) {
-                float f = i;
-                int min = (int) Math.min(Math.max(this.redCurve[i] + f, 0.0f), 255.0f);
-                int min2 = (int) Math.min(Math.max(this.greenCurve[i] + f, 0.0f), 255.0f);
-                int min3 = (int) Math.min(Math.max(f + this.blueCurve[i], 0.0f), 255.0f);
-                allocateDirect.put((byte) Math.min(Math.max(min3 + this.rgbCompositeCurve[min3], 0.0f), 255.0f));
-                allocateDirect.put((byte) Math.min(Math.max(min2 + this.rgbCompositeCurve[min2], 0.0f), 255.0f));
-                allocateDirect.put((byte) Math.min(Math.max(min + this.rgbCompositeCurve[min], 0.0f), 255.0f));
-                allocateDirect.put((byte) -1);
-            }
-            allocateDirect.position(0);
-            GLES20.glTexImage2D(3553, 0, 6408, 256, 1, 0, 6408, 5121, allocateDirect);
+            GLUtils.texImage2D(3553, 0, bitmap2, 0);
         }
-
-        public int getCurveTexture() {
-            return this.curveTexture[0];
+        for (int i7 = 0; i7 < 2; i7++) {
+            GLES20.glBindTexture(3553, this.renderTexture[i7]);
+            GLES20.glTexParameteri(3553, 10241, 9729);
+            GLES20.glTexParameteri(3553, 10240, 9729);
+            GLES20.glTexParameteri(3553, 10242, 33071);
+            GLES20.glTexParameteri(3553, 10243, 33071);
+            GLES20.glTexImage2D(3553, 0, 6408, this.renderBufferWidth, this.renderBufferHeight, 0, 6408, 5121, null);
         }
     }
 
-    public FilterShaders(boolean z, StoryEntry.HDRInfo hDRInfo) {
-        this.isVideo = z;
-        this.hdrInfo = hDRInfo;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
-        allocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        this.vertexBuffer = asFloatBuffer;
-        asFloatBuffer.put(new float[]{-1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 1.0f, -1.0f});
-        this.vertexBuffer.position(0);
-        ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
-        allocateDirect2.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer2 = allocateDirect2.asFloatBuffer();
-        this.vertexInvertBuffer = asFloatBuffer2;
-        asFloatBuffer2.put(new float[]{-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f});
-        this.vertexInvertBuffer.position(0);
-        ByteBuffer allocateDirect3 = ByteBuffer.allocateDirect(32);
-        allocateDirect3.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer3 = allocateDirect3.asFloatBuffer();
-        this.textureBuffer = asFloatBuffer3;
-        asFloatBuffer3.put(new float[]{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f});
-        this.textureBuffer.position(0);
+    private boolean setupExternalShaders() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FilterShaders.setupExternalShaders():boolean");
     }
 
-    public void setDelegate(FilterShadersDelegate filterShadersDelegate) {
-        this.delegate = filterShadersDelegate;
-    }
-
-    public boolean drawOriginal() {
-        FilterShadersDelegate filterShadersDelegate = this.delegate;
-        return filterShadersDelegate == null || filterShadersDelegate.shouldShowOriginal();
+    public static String vertexShaderForOptimizedBlurOfRadius(int i, float f) {
+        int i2;
+        float[] fArr = new float[(i * 2) + 1];
+        float f2 = 0.0f;
+        int i3 = 0;
+        while (true) {
+            i2 = i + 1;
+            if (i3 >= i2) {
+                break;
+            }
+            double d = f;
+            float sqrt = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
+            fArr[i3] = sqrt;
+            if (i3 == 0) {
+                f2 += sqrt;
+            } else {
+                double d2 = f2;
+                double d3 = sqrt;
+                Double.isNaN(d3);
+                Double.isNaN(d2);
+                f2 = (float) (d2 + (d3 * 2.0d));
+            }
+            i3++;
+        }
+        for (int i4 = 0; i4 < i2; i4++) {
+            fArr[i4] = fArr[i4] / f2;
+        }
+        int min = Math.min((i / 2) + (i % 2), 7);
+        float[] fArr2 = new float[min];
+        for (int i5 = 0; i5 < min; i5++) {
+            int i6 = i5 * 2;
+            int i7 = i6 + 1;
+            float f3 = fArr[i7];
+            int i8 = i6 + 2;
+            float f4 = fArr[i8];
+            fArr2[i5] = ((f3 * i7) + (f4 * i8)) / (f3 + f4);
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("attribute vec4 position;\n");
+        sb.append("attribute vec4 inputTexCoord;\n");
+        sb.append("uniform float texelWidthOffset;\n");
+        sb.append("uniform float texelHeightOffset;\n");
+        sb.append(String.format(Locale.US, "varying vec2 blurCoordinates[%d];\n", Integer.valueOf((min * 2) + 1)));
+        sb.append("void main()\n");
+        sb.append("{\n");
+        sb.append("gl_Position = position;\n");
+        sb.append("vec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\n");
+        sb.append("blurCoordinates[0] = inputTexCoord.xy;\n");
+        for (int i9 = 0; i9 < min; i9++) {
+            int i10 = i9 * 2;
+            sb.append(String.format(Locale.US, "blurCoordinates[%d] = inputTexCoord.xy + singleStepOffset * %f;\nblurCoordinates[%d] = inputTexCoord.xy - singleStepOffset * %f;\n", Integer.valueOf(i10 + 1), Float.valueOf(fArr2[i9]), Integer.valueOf(i10 + 2), Float.valueOf(fArr2[i9])));
+        }
+        sb.append("}");
+        return sb.toString();
     }
 
     public boolean create() {
@@ -847,296 +1050,102 @@ public class FilterShaders {
         return false;
     }
 
-    public void updateHDRInfo(StoryEntry.HDRInfo hDRInfo) {
-        this.hdrInfo = hDRInfo;
-        setupExternalShaders();
-    }
-
-    private boolean setupExternalShaders() {
-        String readRes;
-        int loadShader;
-        int loadShader2;
-        int loadShader3;
-        int loadShader4;
-        int loadShader5;
-        int loadShader6;
+    public boolean drawBlurPass() {
+        FilterShadersDelegate filterShadersDelegate;
+        boolean z;
         int i;
-        StoryEntry.HDRInfo hDRInfo = this.hdrInfo;
-        int hDRType = hDRInfo != null ? hDRInfo.getHDRType() : 0;
-        if (hDRType == 1) {
-            readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_hlg);
-        } else {
-            readRes = hDRType == 2 ? RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq) : "";
+        int i2;
+        int i3;
+        int i4;
+        FilterShadersDelegate filterShadersDelegate2 = this.delegate;
+        int blurType = filterShadersDelegate2 != null ? filterShadersDelegate2.getBlurType() : 0;
+        if (this.isVideo || (filterShadersDelegate = this.delegate) == null || filterShadersDelegate.shouldShowOriginal() || blurType == 0) {
+            return false;
         }
-        boolean z = this.isVideo;
-        String str = z ? "#extension GL_OES_EGL_image_external : require" : "";
-        String str2 = z ? "samplerExternalOES" : "sampler2D";
-        int[] iArr = new int[1];
-        int i2 = 0;
-        while (true) {
-            boolean z2 = this.isVideo;
-            if (i2 < (z2 ? 2 : 1)) {
-                if (i2 == 1 && z2) {
-                    if (hDRType != 0) {
-                        loadShader5 = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-                        loadShader6 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision highp float;varying vec2 vTextureCoord;vec3 rgb_to_hsv(vec3 c) {vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}void main() {vec4 texel = TEX(vTextureCoord);gl_FragColor = vec4(rgb_to_hsv(texel.rgb), texel.a);}", readRes));
-                    } else {
-                        loadShader6 = 0;
-                        loadShader5 = 0;
-                    }
-                    if (loadShader5 == 0 || loadShader6 == 0) {
-                        loadShader5 = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-                        loadShader6 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision highp float;varying vec2 vTextureCoord;uniform %2$s sTexture;vec3 rgb_to_hsv(vec3 c) {vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}void main() {vec4 texel = texture2D(sTexture, vTextureCoord);gl_FragColor = vec4(rgb_to_hsv(texel.rgb), texel.a);}", str, str2));
-                    }
-                } else {
-                    loadShader5 = loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
-                    loadShader6 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision highp float;varying vec2 vTextureCoord;uniform %2$s sTexture;vec3 rgb_to_hsv(vec3 c) {vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}void main() {vec4 texel = texture2D(sTexture, vTextureCoord);gl_FragColor = vec4(rgb_to_hsv(texel.rgb), texel.a);}", "", "sampler2D"));
-                }
-                int i3 = loadShader5;
-                GLES20.glDeleteProgram(this.rgbToHsvShaderProgram[i2]);
-                if (i3 == 0 || loadShader6 == 0) {
-                    return false;
-                }
-                this.rgbToHsvShaderProgram[i2] = GLES20.glCreateProgram();
-                GLES20.glAttachShader(this.rgbToHsvShaderProgram[i2], i3);
-                GLES20.glAttachShader(this.rgbToHsvShaderProgram[i2], loadShader6);
-                GLES20.glBindAttribLocation(this.rgbToHsvShaderProgram[i2], 0, "position");
-                GLES20.glBindAttribLocation(this.rgbToHsvShaderProgram[i2], 1, "inputTexCoord");
-                GLES20.glLinkProgram(this.rgbToHsvShaderProgram[i2]);
-                GLES20.glGetProgramiv(this.rgbToHsvShaderProgram[i2], 35714, iArr, 0);
-                if (iArr[0] == 0) {
-                    GLES20.glDeleteProgram(this.rgbToHsvShaderProgram[i2]);
-                    this.rgbToHsvShaderProgram[i2] = 0;
-                    i = 1;
-                } else {
-                    this.rgbToHsvPositionHandle[i2] = GLES20.glGetAttribLocation(this.rgbToHsvShaderProgram[i2], "position");
-                    this.rgbToHsvInputTexCoordHandle[i2] = GLES20.glGetAttribLocation(this.rgbToHsvShaderProgram[i2], "inputTexCoord");
-                    this.rgbToHsvSourceImageHandle[i2] = GLES20.glGetUniformLocation(this.rgbToHsvShaderProgram[i2], "sTexture");
-                    i = 1;
-                    if (i2 == 1) {
-                        this.rgbToHsvMatrixHandle = GLES20.glGetUniformLocation(this.rgbToHsvShaderProgram[i2], "videoMatrix");
-                        this.rgbToHsvTexSizeHandle = GLES20.glGetUniformLocation(this.rgbToHsvShaderProgram[i2], "texSize");
-                    }
-                }
-                i2 += i;
-            } else {
-                if (z2) {
-                    if (hDRType != 0) {
-                        loadShader = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-                        loadShader2 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;void main() {vec4 inp = TEX(vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", readRes));
-                    } else {
-                        loadShader2 = 0;
-                        loadShader = 0;
-                    }
-                    if (loadShader == 0 || loadShader2 == 0) {
-                        loadShader = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-                        loadShader2 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;uniform %2$s sTexture;void main() {vec4 inp = texture2D(sTexture, vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", str, str2));
-                    }
-                } else {
-                    loadShader = loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
-                    loadShader2 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;uniform %2$s sTexture;void main() {vec4 inp = texture2D(sTexture, vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", str, str2));
-                }
-                int i4 = loadShader;
-                GLES20.glDeleteProgram(this.greenAndBlueChannelOverlayProgram);
-                if (i4 == 0 || loadShader2 == 0) {
-                    return false;
-                }
-                int glCreateProgram = GLES20.glCreateProgram();
-                this.greenAndBlueChannelOverlayProgram = glCreateProgram;
-                GLES20.glAttachShader(glCreateProgram, i4);
-                GLES20.glAttachShader(this.greenAndBlueChannelOverlayProgram, loadShader2);
-                GLES20.glBindAttribLocation(this.greenAndBlueChannelOverlayProgram, 0, "position");
-                GLES20.glBindAttribLocation(this.greenAndBlueChannelOverlayProgram, 1, "inputTexCoord");
-                GLES20.glLinkProgram(this.greenAndBlueChannelOverlayProgram);
-                GLES20.glGetProgramiv(this.greenAndBlueChannelOverlayProgram, 35714, iArr, 0);
-                if (iArr[0] == 0) {
-                    GLES20.glDeleteProgram(this.greenAndBlueChannelOverlayProgram);
-                    this.greenAndBlueChannelOverlayProgram = 0;
-                } else {
-                    this.greenAndBlueChannelOverlayPositionHandle = GLES20.glGetAttribLocation(this.greenAndBlueChannelOverlayProgram, "position");
-                    this.greenAndBlueChannelOverlayInputTexCoordHandle = GLES20.glGetAttribLocation(this.greenAndBlueChannelOverlayProgram, "inputTexCoord");
-                    this.greenAndBlueChannelOverlaySourceImageHandle = GLES20.glGetUniformLocation(this.greenAndBlueChannelOverlayProgram, "sTexture");
-                    if (this.isVideo) {
-                        this.greenAndBlueChannelOverlayMatrixHandle = GLES20.glGetUniformLocation(this.greenAndBlueChannelOverlayProgram, "videoMatrix");
-                        this.greenAndBlueChannelOverlayTexSizeHandle = GLES20.glGetUniformLocation(this.greenAndBlueChannelOverlayProgram, "texSize");
-                    }
-                }
-                if (this.isVideo) {
-                    if (hDRType != 0) {
-                        loadShader3 = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;varying vec2 texCoord2;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;texCoord2 = inputTexCoord.xy;}");
-                        loadShader4 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;varying highp vec2 texCoord2;uniform sampler2D toneCurveTexture;uniform sampler2D inputImageTexture3;uniform lowp float mixturePercent;void main() {vec4 image = TEX(vTextureCoord);vec4 mask = texture2D(inputImageTexture3, texCoord2);float redCurveValue = texture2D(toneCurveTexture, vec2(image.r, 0.0)).r;float greenCurveValue = texture2D(toneCurveTexture, vec2(image.g, 0.0)).g;float blueCurveValue = texture2D(toneCurveTexture, vec2(image.b, 0.0)).b;vec4 result = vec4(redCurveValue, greenCurveValue, blueCurveValue, image.a);vec4 tone = mix(image, result, mixturePercent);gl_FragColor = vec4(mix(image.rgb, tone.rgb, 1.0 - mask.b), 1.0);}", readRes));
-                    } else {
-                        loadShader4 = 0;
-                        loadShader3 = 0;
-                    }
-                    if (loadShader3 == 0 || loadShader4 == 0) {
-                        loadShader3 = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;varying vec2 texCoord2;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;texCoord2 = inputTexCoord.xy;}");
-                        loadShader4 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;varying highp vec2 texCoord2;uniform %2$s sTexture;uniform sampler2D toneCurveTexture;uniform sampler2D inputImageTexture3;uniform lowp float mixturePercent;void main() {vec4 image = texture2D(sTexture, vTextureCoord);vec4 mask = texture2D(inputImageTexture3, texCoord2);float redCurveValue = texture2D(toneCurveTexture, vec2(image.r, 0.0)).r;float greenCurveValue = texture2D(toneCurveTexture, vec2(image.g, 0.0)).g;float blueCurveValue = texture2D(toneCurveTexture, vec2(image.b, 0.0)).b;vec4 result = vec4(redCurveValue, greenCurveValue, blueCurveValue, image.a);vec4 tone = mix(image, result, mixturePercent);gl_FragColor = vec4(mix(image.rgb, tone.rgb, 1.0 - mask.b), 1.0);}", str, str2));
-                    }
-                } else {
-                    loadShader3 = loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;varying vec2 texCoord2;void main() {gl_Position = position;vTextureCoord = inputTexCoord;texCoord2 = inputTexCoord;}");
-                    loadShader4 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;varying highp vec2 texCoord2;uniform %2$s sTexture;uniform sampler2D toneCurveTexture;uniform sampler2D inputImageTexture3;uniform lowp float mixturePercent;void main() {vec4 image = texture2D(sTexture, vTextureCoord);vec4 mask = texture2D(inputImageTexture3, texCoord2);float redCurveValue = texture2D(toneCurveTexture, vec2(image.r, 0.0)).r;float greenCurveValue = texture2D(toneCurveTexture, vec2(image.g, 0.0)).g;float blueCurveValue = texture2D(toneCurveTexture, vec2(image.b, 0.0)).b;vec4 result = vec4(redCurveValue, greenCurveValue, blueCurveValue, image.a);vec4 tone = mix(image, result, mixturePercent);gl_FragColor = vec4(mix(image.rgb, tone.rgb, 1.0 - mask.b), 1.0);}", str, str2));
-                }
-                GLES20.glDeleteProgram(this.compositeProgram);
-                if (loadShader3 == 0 || loadShader4 == 0) {
-                    return false;
-                }
-                int glCreateProgram2 = GLES20.glCreateProgram();
-                this.compositeProgram = glCreateProgram2;
-                GLES20.glAttachShader(glCreateProgram2, loadShader3);
-                GLES20.glAttachShader(this.compositeProgram, loadShader4);
-                GLES20.glBindAttribLocation(this.compositeProgram, 0, "position");
-                GLES20.glBindAttribLocation(this.compositeProgram, 1, "inputTexCoord");
-                GLES20.glLinkProgram(this.compositeProgram);
-                GLES20.glGetProgramiv(this.compositeProgram, 35714, iArr, 0);
-                if (iArr[0] == 0) {
-                    GLES20.glDeleteProgram(this.compositeProgram);
-                    this.compositeProgram = 0;
-                    return true;
-                }
-                this.compositePositionHandle = GLES20.glGetAttribLocation(this.compositeProgram, "position");
-                this.compositeInputTexCoordHandle = GLES20.glGetAttribLocation(this.compositeProgram, "inputTexCoord");
-                this.compositeSourceImageHandle = GLES20.glGetUniformLocation(this.compositeProgram, "sTexture");
-                this.compositeInputImageHandle = GLES20.glGetUniformLocation(this.compositeProgram, "inputImageTexture3");
-                this.compositeCurveImageHandle = GLES20.glGetUniformLocation(this.compositeProgram, "toneCurveTexture");
-                this.compositeMixtureHandle = GLES20.glGetUniformLocation(this.compositeProgram, "mixturePercent");
-                if (!this.isVideo) {
-                    return true;
-                }
-                this.compositeMatrixHandle = GLES20.glGetUniformLocation(this.compositeProgram, "videoMatrix");
-                this.compositeTexSizeHandle = GLES20.glGetUniformLocation(this.compositeProgram, "texSize");
-                return true;
+        if (this.needUpdateBlurTexture) {
+            if (!this.blurTextureCreated) {
+                GLES20.glBindTexture(3553, this.renderTexture[2]);
+                GLES20.glTexParameteri(3553, 10241, 9729);
+                GLES20.glTexParameteri(3553, 10240, 9729);
+                GLES20.glTexParameteri(3553, 10242, 33071);
+                GLES20.glTexParameteri(3553, 10243, 33071);
+                GLES20.glTexImage2D(3553, 0, 6408, this.renderBufferWidth, this.renderBufferHeight, 0, 6408, 5121, null);
+                this.blurTextureCreated = true;
             }
-        }
-    }
-
-    public void setRenderData(Bitmap bitmap, int i, int i2, int i3, int i4) {
-        loadTexture(bitmap, i, i3, i4);
-        this.videoTexture = i2;
-        this.videoWidth = i3;
-        this.videoHeight = i4;
-        GLES20.glBindTexture(3553, this.enhanceTextures[0]);
-        GLES20.glTexParameteri(3553, 10241, 9729);
-        GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glTexParameteri(3553, 10242, 33071);
-        GLES20.glTexParameteri(3553, 10243, 33071);
-        GLES20.glTexImage2D(3553, 0, 6408, this.renderBufferWidth, this.renderBufferHeight, 0, 6408, 5121, null);
-    }
-
-    public static int loadShader(int i, String str) {
-        int glCreateShader = GLES20.glCreateShader(i);
-        GLES20.glShaderSource(glCreateShader, str);
-        GLES20.glCompileShader(glCreateShader);
-        int[] iArr = new int[1];
-        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-        if (iArr[0] != 0) {
-            return glCreateShader;
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.e(GLES20.glGetShaderInfoLog(glCreateShader));
-            FileLog.e("shader code:\n " + str);
-        }
-        GLES20.glDeleteShader(glCreateShader);
-        return 0;
-    }
-
-    public void drawEnhancePass() {
-        char c;
-        boolean z = this.isVideo;
-        if (z ? true : !this.hsvGenerated) {
-            if (z && !this.skinPassDrawn) {
-                GLES20.glUseProgram(this.rgbToHsvShaderProgram[1]);
-                GLES20.glActiveTexture(33984);
-                GLES20.glBindTexture(36197, this.videoTexture);
-                GLES20.glUniformMatrix4fv(this.rgbToHsvMatrixHandle, 1, false, this.videoMatrix, 0);
-                int i = this.rgbToHsvTexSizeHandle;
-                if (i != -1) {
-                    GLES20.glUniform2f(i, this.renderBufferWidth, this.renderBufferHeight);
-                }
-                c = 1;
-            } else {
-                GLES20.glUseProgram(this.rgbToHsvShaderProgram[0]);
-                GLES20.glActiveTexture(33984);
-                GLES20.glBindTexture(3553, this.skinPassDrawn ? this.renderTexture[1] : this.bitmapTextre[0]);
-                c = 0;
-            }
-            GLES20.glUniform1i(this.rgbToHsvSourceImageHandle[c], 0);
-            GLES20.glEnableVertexAttribArray(this.rgbToHsvInputTexCoordHandle[c]);
-            GLES20.glVertexAttribPointer(this.rgbToHsvInputTexCoordHandle[c], 2, 5126, false, 8, (Buffer) this.textureBuffer);
-            GLES20.glEnableVertexAttribArray(this.rgbToHsvPositionHandle[c]);
-            GLES20.glVertexAttribPointer(this.rgbToHsvPositionHandle[c], 2, 5126, false, 8, (Buffer) (this.isVideo ? this.vertexInvertBuffer : this.vertexBuffer));
-            GLES20.glBindFramebuffer(36160, this.enhanceFrameBuffer[0]);
-            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.enhanceTextures[0], 0);
+            GLES20.glUseProgram(this.blurProgram.blurShaderProgram);
+            GLES20.glUniform1i(this.blurProgram.blurSourceImageHandle, 0);
+            GLES20.glEnableVertexAttribArray(this.blurProgram.blurInputTexCoordHandle);
+            GLES20.glVertexAttribPointer(this.blurProgram.blurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
+            GLES20.glEnableVertexAttribArray(this.blurProgram.blurPositionHandle);
+            GLES20.glVertexAttribPointer(this.blurProgram.blurPositionHandle, 2, 5126, false, 8, (Buffer) this.vertexInvertBuffer);
+            GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[0]);
+            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[0], 0);
+            GLES20.glActiveTexture(33984);
+            GLES20.glBindTexture(3553, this.renderTexture[1]);
+            GLES20.glUniform1f(this.blurProgram.blurWidthHandle, 0.0f);
+            GLES20.glUniform1f(this.blurProgram.blurHeightHandle, 1.0f / this.renderBufferHeight);
             GLES20.glDrawArrays(5, 0, 4);
-        }
-        if (!this.hsvGenerated) {
-            int i2 = this.renderBufferWidth * this.renderBufferHeight * 4;
-            ByteBuffer byteBuffer = this.hsvBuffer;
-            if (byteBuffer == null || i2 > byteBuffer.capacity()) {
-                this.hsvBuffer = ByteBuffer.allocateDirect(i2);
-            }
-            if (this.cdtBuffer == null) {
-                this.cdtBuffer = ByteBuffer.allocateDirect(16384);
-            }
-            if (this.calcBuffer == null) {
-                this.calcBuffer = ByteBuffer.allocateDirect(32896);
-            }
-            GLES20.glReadPixels(0, 0, this.renderBufferWidth, this.renderBufferHeight, 6408, 5121, this.hsvBuffer);
-            Utilities.calcCDT(this.hsvBuffer, this.renderBufferWidth, this.renderBufferHeight, this.cdtBuffer, this.calcBuffer);
-            GLES20.glBindTexture(3553, this.enhanceTextures[1]);
-            GLES20.glTexImage2D(3553, 0, 6408, 256, 16, 0, 6408, 5121, this.cdtBuffer);
-            if (!this.isVideo) {
-                this.hsvBuffer = null;
-                this.cdtBuffer = null;
-                this.calcBuffer = null;
-            }
-            this.hsvGenerated = true;
-        }
-        GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[1]);
-        GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[1], 0);
-        GLES20.glUseProgram(this.enhanceShaderProgram);
-        GLES20.glActiveTexture(33984);
-        GLES20.glBindTexture(3553, this.enhanceTextures[0]);
-        GLES20.glUniform1i(this.enhanceSourceImageHandle, 0);
-        GLES20.glActiveTexture(33985);
-        GLES20.glBindTexture(3553, this.enhanceTextures[1]);
-        GLES20.glUniform1i(this.enhanceInputImageTexture2Handle, 1);
-        FilterShadersDelegate filterShadersDelegate = this.delegate;
-        if (filterShadersDelegate == null || filterShadersDelegate.shouldShowOriginal()) {
-            GLES20.glUniform1f(this.enhanceIntensityHandle, 0.0f);
-        } else {
-            GLES20.glUniform1f(this.enhanceIntensityHandle, this.delegate.getEnhanceValue());
-        }
-        GLES20.glEnableVertexAttribArray(this.enhanceInputTexCoordHandle);
-        GLES20.glVertexAttribPointer(this.enhanceInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
-        GLES20.glEnableVertexAttribArray(this.enhancePositionHandle);
-        GLES20.glVertexAttribPointer(this.enhancePositionHandle, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
-        GLES20.glDrawArrays(5, 0, 4);
-    }
-
-    public void drawSharpenPass() {
-        if (this.isVideo) {
-            return;
+            GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[2]);
+            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[2], 0);
+            GLES20.glActiveTexture(33984);
+            GLES20.glBindTexture(3553, this.renderTexture[0]);
+            GLES20.glUniform1f(this.blurProgram.blurWidthHandle, 1.0f / this.renderBufferWidth);
+            GLES20.glUniform1f(this.blurProgram.blurHeightHandle, 0.0f);
+            GLES20.glDrawArrays(5, 0, 4);
+            this.needUpdateBlurTexture = false;
         }
         GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[0]);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[0], 0);
-        GLES20.glUseProgram(this.sharpenShaderProgram);
+        if (blurType != 1) {
+            if (blurType == 2) {
+                GLES20.glUseProgram(this.linearBlurShaderProgram);
+                GLES20.glUniform1i(this.linearBlurSourceImageHandle, 0);
+                GLES20.glUniform1i(this.linearBlurSourceImage2Handle, 1);
+                GLES20.glUniform1f(this.linearBlurExcludeSizeHandle, this.delegate.getBlurExcludeSize());
+                GLES20.glUniform1f(this.linearBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
+                GLES20.glUniform1f(this.linearBlurAngleHandle, this.delegate.getBlurAngle());
+                Point blurExcludePoint = this.delegate.getBlurExcludePoint();
+                GLES20.glUniform2f(this.linearBlurExcludePointHandle, blurExcludePoint.x, blurExcludePoint.y);
+                GLES20.glUniform1f(this.linearBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
+                GLES20.glEnableVertexAttribArray(this.linearBlurInputTexCoordHandle);
+                z = false;
+                i = 8;
+                i2 = 2;
+                i3 = 5126;
+                GLES20.glVertexAttribPointer(this.linearBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
+                GLES20.glEnableVertexAttribArray(this.linearBlurPositionHandle);
+                i4 = this.linearBlurPositionHandle;
+            }
+            GLES20.glActiveTexture(33984);
+            GLES20.glBindTexture(3553, this.renderTexture[1]);
+            GLES20.glActiveTexture(33985);
+            GLES20.glBindTexture(3553, this.renderTexture[2]);
+            GLES20.glDrawArrays(5, 0, 4);
+            return true;
+        }
+        GLES20.glUseProgram(this.radialBlurShaderProgram);
+        GLES20.glUniform1i(this.radialBlurSourceImageHandle, 0);
+        GLES20.glUniform1i(this.radialBlurSourceImage2Handle, 1);
+        GLES20.glUniform1f(this.radialBlurExcludeSizeHandle, this.delegate.getBlurExcludeSize());
+        GLES20.glUniform1f(this.radialBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
+        Point blurExcludePoint2 = this.delegate.getBlurExcludePoint();
+        GLES20.glUniform2f(this.radialBlurExcludePointHandle, blurExcludePoint2.x, blurExcludePoint2.y);
+        GLES20.glUniform1f(this.radialBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
+        GLES20.glEnableVertexAttribArray(this.radialBlurInputTexCoordHandle);
+        z = false;
+        i = 8;
+        i2 = 2;
+        i3 = 5126;
+        GLES20.glVertexAttribPointer(this.radialBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
+        GLES20.glEnableVertexAttribArray(this.radialBlurPositionHandle);
+        i4 = this.radialBlurPositionHandle;
+        GLES20.glVertexAttribPointer(i4, i2, i3, z, i, this.vertexInvertBuffer);
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, this.renderTexture[1]);
-        GLES20.glUniform1i(this.sharpenSourceImageHandle, 0);
-        FilterShadersDelegate filterShadersDelegate = this.delegate;
-        if (filterShadersDelegate == null || filterShadersDelegate.shouldShowOriginal()) {
-            GLES20.glUniform1f(this.sharpenHandle, 0.0f);
-        } else {
-            GLES20.glUniform1f(this.sharpenHandle, this.delegate.getSharpenValue());
-        }
-        GLES20.glUniform1f(this.sharpenWidthHandle, this.renderBufferWidth);
-        GLES20.glUniform1f(this.sharpenHeightHandle, this.renderBufferHeight);
-        GLES20.glEnableVertexAttribArray(this.sharpenInputTexCoordHandle);
-        GLES20.glVertexAttribPointer(this.sharpenInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
-        GLES20.glEnableVertexAttribArray(this.sharpenPositionHandle);
-        GLES20.glVertexAttribPointer(this.sharpenPositionHandle, 2, 5126, false, 8, (Buffer) this.vertexInvertBuffer);
+        GLES20.glActiveTexture(33985);
+        GLES20.glBindTexture(3553, this.renderTexture[2]);
         GLES20.glDrawArrays(5, 0, 4);
+        return true;
     }
 
     public void drawCustomParamsPass() {
@@ -1194,6 +1203,120 @@ public class FilterShaders {
         GLES20.glVertexAttribPointer(this.inputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
         GLES20.glEnableVertexAttribArray(this.positionHandle);
         GLES20.glVertexAttribPointer(this.positionHandle, 2, 5126, false, 8, (Buffer) this.vertexInvertBuffer);
+        GLES20.glDrawArrays(5, 0, 4);
+    }
+
+    public void drawEnhancePass() {
+        int i;
+        float f;
+        char c;
+        boolean z = this.isVideo;
+        if (z ? true : !this.hsvGenerated) {
+            if (!z || this.skinPassDrawn) {
+                GLES20.glUseProgram(this.rgbToHsvShaderProgram[0]);
+                GLES20.glActiveTexture(33984);
+                GLES20.glBindTexture(3553, this.skinPassDrawn ? this.renderTexture[1] : this.bitmapTextre[0]);
+                c = 0;
+            } else {
+                GLES20.glUseProgram(this.rgbToHsvShaderProgram[1]);
+                GLES20.glActiveTexture(33984);
+                GLES20.glBindTexture(36197, this.videoTexture);
+                GLES20.glUniformMatrix4fv(this.rgbToHsvMatrixHandle, 1, false, this.videoMatrix, 0);
+                int i2 = this.rgbToHsvTexSizeHandle;
+                if (i2 != -1) {
+                    GLES20.glUniform2f(i2, this.renderBufferWidth, this.renderBufferHeight);
+                }
+                c = 1;
+            }
+            GLES20.glUniform1i(this.rgbToHsvSourceImageHandle[c], 0);
+            GLES20.glEnableVertexAttribArray(this.rgbToHsvInputTexCoordHandle[c]);
+            GLES20.glVertexAttribPointer(this.rgbToHsvInputTexCoordHandle[c], 2, 5126, false, 8, (Buffer) this.textureBuffer);
+            GLES20.glEnableVertexAttribArray(this.rgbToHsvPositionHandle[c]);
+            GLES20.glVertexAttribPointer(this.rgbToHsvPositionHandle[c], 2, 5126, false, 8, (Buffer) (this.isVideo ? this.vertexInvertBuffer : this.vertexBuffer));
+            GLES20.glBindFramebuffer(36160, this.enhanceFrameBuffer[0]);
+            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.enhanceTextures[0], 0);
+            GLES20.glDrawArrays(5, 0, 4);
+        }
+        if (!this.hsvGenerated) {
+            int i3 = this.renderBufferWidth * this.renderBufferHeight * 4;
+            ByteBuffer byteBuffer = this.hsvBuffer;
+            if (byteBuffer == null || i3 > byteBuffer.capacity()) {
+                this.hsvBuffer = ByteBuffer.allocateDirect(i3);
+            }
+            if (this.cdtBuffer == null) {
+                this.cdtBuffer = ByteBuffer.allocateDirect(16384);
+            }
+            if (this.calcBuffer == null) {
+                this.calcBuffer = ByteBuffer.allocateDirect(32896);
+            }
+            GLES20.glReadPixels(0, 0, this.renderBufferWidth, this.renderBufferHeight, 6408, 5121, this.hsvBuffer);
+            Utilities.calcCDT(this.hsvBuffer, this.renderBufferWidth, this.renderBufferHeight, this.cdtBuffer, this.calcBuffer);
+            GLES20.glBindTexture(3553, this.enhanceTextures[1]);
+            GLES20.glTexImage2D(3553, 0, 6408, 256, 16, 0, 6408, 5121, this.cdtBuffer);
+            if (!this.isVideo) {
+                this.hsvBuffer = null;
+                this.cdtBuffer = null;
+                this.calcBuffer = null;
+            }
+            this.hsvGenerated = true;
+        }
+        GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[1]);
+        GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[1], 0);
+        GLES20.glUseProgram(this.enhanceShaderProgram);
+        GLES20.glActiveTexture(33984);
+        GLES20.glBindTexture(3553, this.enhanceTextures[0]);
+        GLES20.glUniform1i(this.enhanceSourceImageHandle, 0);
+        GLES20.glActiveTexture(33985);
+        GLES20.glBindTexture(3553, this.enhanceTextures[1]);
+        GLES20.glUniform1i(this.enhanceInputImageTexture2Handle, 1);
+        FilterShadersDelegate filterShadersDelegate = this.delegate;
+        if (filterShadersDelegate == null || filterShadersDelegate.shouldShowOriginal()) {
+            i = this.enhanceIntensityHandle;
+            f = 0.0f;
+        } else {
+            i = this.enhanceIntensityHandle;
+            f = this.delegate.getEnhanceValue();
+        }
+        GLES20.glUniform1f(i, f);
+        GLES20.glEnableVertexAttribArray(this.enhanceInputTexCoordHandle);
+        GLES20.glVertexAttribPointer(this.enhanceInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
+        GLES20.glEnableVertexAttribArray(this.enhancePositionHandle);
+        GLES20.glVertexAttribPointer(this.enhancePositionHandle, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
+        GLES20.glDrawArrays(5, 0, 4);
+    }
+
+    public boolean drawOriginal() {
+        FilterShadersDelegate filterShadersDelegate = this.delegate;
+        return filterShadersDelegate == null || filterShadersDelegate.shouldShowOriginal();
+    }
+
+    public void drawSharpenPass() {
+        int i;
+        float f;
+        if (this.isVideo) {
+            return;
+        }
+        GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[0]);
+        GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[0], 0);
+        GLES20.glUseProgram(this.sharpenShaderProgram);
+        GLES20.glActiveTexture(33984);
+        GLES20.glBindTexture(3553, this.renderTexture[1]);
+        GLES20.glUniform1i(this.sharpenSourceImageHandle, 0);
+        FilterShadersDelegate filterShadersDelegate = this.delegate;
+        if (filterShadersDelegate == null || filterShadersDelegate.shouldShowOriginal()) {
+            i = this.sharpenHandle;
+            f = 0.0f;
+        } else {
+            i = this.sharpenHandle;
+            f = this.delegate.getSharpenValue();
+        }
+        GLES20.glUniform1f(i, f);
+        GLES20.glUniform1f(this.sharpenWidthHandle, this.renderBufferWidth);
+        GLES20.glUniform1f(this.sharpenHeightHandle, this.renderBufferHeight);
+        GLES20.glEnableVertexAttribArray(this.sharpenInputTexCoordHandle);
+        GLES20.glVertexAttribPointer(this.sharpenInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
+        GLES20.glEnableVertexAttribArray(this.sharpenPositionHandle);
+        GLES20.glVertexAttribPointer(this.sharpenPositionHandle, 2, 5126, false, 8, (Buffer) this.vertexInvertBuffer);
         GLES20.glDrawArrays(5, 0, 4);
     }
 
@@ -1331,152 +1454,27 @@ public class FilterShaders {
         return true;
     }
 
-    public boolean drawBlurPass() {
-        FilterShadersDelegate filterShadersDelegate;
-        FilterShadersDelegate filterShadersDelegate2 = this.delegate;
-        int blurType = filterShadersDelegate2 != null ? filterShadersDelegate2.getBlurType() : 0;
-        if (this.isVideo || (filterShadersDelegate = this.delegate) == null || filterShadersDelegate.shouldShowOriginal() || blurType == 0) {
-            return false;
-        }
-        if (this.needUpdateBlurTexture) {
-            if (!this.blurTextureCreated) {
-                GLES20.glBindTexture(3553, this.renderTexture[2]);
-                GLES20.glTexParameteri(3553, 10241, 9729);
-                GLES20.glTexParameteri(3553, 10240, 9729);
-                GLES20.glTexParameteri(3553, 10242, 33071);
-                GLES20.glTexParameteri(3553, 10243, 33071);
-                GLES20.glTexImage2D(3553, 0, 6408, this.renderBufferWidth, this.renderBufferHeight, 0, 6408, 5121, null);
-                this.blurTextureCreated = true;
-            }
-            GLES20.glUseProgram(this.blurProgram.blurShaderProgram);
-            GLES20.glUniform1i(this.blurProgram.blurSourceImageHandle, 0);
-            GLES20.glEnableVertexAttribArray(this.blurProgram.blurInputTexCoordHandle);
-            GLES20.glVertexAttribPointer(this.blurProgram.blurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
-            GLES20.glEnableVertexAttribArray(this.blurProgram.blurPositionHandle);
-            GLES20.glVertexAttribPointer(this.blurProgram.blurPositionHandle, 2, 5126, false, 8, (Buffer) this.vertexInvertBuffer);
-            GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[0]);
-            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[0], 0);
-            GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(3553, this.renderTexture[1]);
-            GLES20.glUniform1f(this.blurProgram.blurWidthHandle, 0.0f);
-            GLES20.glUniform1f(this.blurProgram.blurHeightHandle, 1.0f / this.renderBufferHeight);
-            GLES20.glDrawArrays(5, 0, 4);
-            GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[2]);
-            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[2], 0);
-            GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(3553, this.renderTexture[0]);
-            GLES20.glUniform1f(this.blurProgram.blurWidthHandle, 1.0f / this.renderBufferWidth);
-            GLES20.glUniform1f(this.blurProgram.blurHeightHandle, 0.0f);
-            GLES20.glDrawArrays(5, 0, 4);
-            this.needUpdateBlurTexture = false;
-        }
-        GLES20.glBindFramebuffer(36160, this.renderFrameBuffer[0]);
-        GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.renderTexture[0], 0);
-        if (blurType == 1) {
-            GLES20.glUseProgram(this.radialBlurShaderProgram);
-            GLES20.glUniform1i(this.radialBlurSourceImageHandle, 0);
-            GLES20.glUniform1i(this.radialBlurSourceImage2Handle, 1);
-            GLES20.glUniform1f(this.radialBlurExcludeSizeHandle, this.delegate.getBlurExcludeSize());
-            GLES20.glUniform1f(this.radialBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
-            Point blurExcludePoint = this.delegate.getBlurExcludePoint();
-            GLES20.glUniform2f(this.radialBlurExcludePointHandle, blurExcludePoint.x, blurExcludePoint.y);
-            GLES20.glUniform1f(this.radialBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
-            GLES20.glEnableVertexAttribArray(this.radialBlurInputTexCoordHandle);
-            GLES20.glVertexAttribPointer(this.radialBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
-            GLES20.glEnableVertexAttribArray(this.radialBlurPositionHandle);
-            GLES20.glVertexAttribPointer(this.radialBlurPositionHandle, 2, 5126, false, 8, (Buffer) this.vertexInvertBuffer);
-        } else if (blurType == 2) {
-            GLES20.glUseProgram(this.linearBlurShaderProgram);
-            GLES20.glUniform1i(this.linearBlurSourceImageHandle, 0);
-            GLES20.glUniform1i(this.linearBlurSourceImage2Handle, 1);
-            GLES20.glUniform1f(this.linearBlurExcludeSizeHandle, this.delegate.getBlurExcludeSize());
-            GLES20.glUniform1f(this.linearBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
-            GLES20.glUniform1f(this.linearBlurAngleHandle, this.delegate.getBlurAngle());
-            Point blurExcludePoint2 = this.delegate.getBlurExcludePoint();
-            GLES20.glUniform2f(this.linearBlurExcludePointHandle, blurExcludePoint2.x, blurExcludePoint2.y);
-            GLES20.glUniform1f(this.linearBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
-            GLES20.glEnableVertexAttribArray(this.linearBlurInputTexCoordHandle);
-            GLES20.glVertexAttribPointer(this.linearBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
-            GLES20.glEnableVertexAttribArray(this.linearBlurPositionHandle);
-            GLES20.glVertexAttribPointer(this.linearBlurPositionHandle, 2, 5126, false, 8, (Buffer) this.vertexInvertBuffer);
-        }
-        GLES20.glActiveTexture(33984);
-        GLES20.glBindTexture(3553, this.renderTexture[1]);
-        GLES20.glActiveTexture(33985);
-        GLES20.glBindTexture(3553, this.renderTexture[2]);
-        GLES20.glDrawArrays(5, 0, 4);
-        return true;
+    public int getRenderBufferHeight() {
+        return this.renderBufferHeight;
     }
 
-    public void onVideoFrameUpdate(float[] fArr) {
-        this.videoMatrix = fArr;
-        this.hsvGenerated = false;
+    public int getRenderBufferWidth() {
+        return this.renderBufferWidth;
     }
 
-    private Bitmap createBitmap(Bitmap bitmap, int i, float f) {
-        Matrix matrix = new Matrix();
-        matrix.setScale(f, f);
-        matrix.postRotate(i);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    public int getRenderFrameBuffer() {
+        int[] iArr = this.renderFrameBuffer;
+        if (iArr != null) {
+            return iArr[!this.isVideo ? 1 : 0];
+        }
+        return 0;
     }
 
-    public void setScaleBitmap(boolean z) {
-        this.scaleBitmap = z;
-    }
-
-    private void loadTexture(Bitmap bitmap, int i, int i2, int i3) {
-        float f;
-        Bitmap bitmap2 = bitmap;
-        this.renderBufferWidth = i2;
-        this.renderBufferHeight = i3;
-        if (this.renderFrameBuffer == null) {
-            int[] iArr = new int[4];
-            this.renderFrameBuffer = iArr;
-            GLES20.glGenFramebuffers(4, iArr, 0);
-            GLES20.glGenTextures(4, this.renderTexture, 0);
+    public int getRenderTexture(int i) {
+        if (this.isVideo) {
+            return this.renderTexture[i == 0 ? (char) 1 : (char) 0];
         }
-        if (bitmap2 != null && !bitmap.isRecycled()) {
-            GLES20.glGenTextures(1, this.bitmapTextre, 0);
-            float photoSize = AndroidUtilities.getPhotoSize();
-            boolean z = this.scaleBitmap;
-            if ((z && (this.renderBufferWidth > photoSize || this.renderBufferHeight > photoSize)) || i % 360 != 0) {
-                if (!z || (this.renderBufferWidth <= photoSize && this.renderBufferHeight <= photoSize)) {
-                    f = 1.0f;
-                } else {
-                    f = photoSize / bitmap.getWidth();
-                    float height = photoSize / bitmap.getHeight();
-                    if (f < height) {
-                        this.renderBufferWidth = (int) photoSize;
-                        this.renderBufferHeight = (int) (bitmap.getHeight() * f);
-                    } else {
-                        this.renderBufferHeight = (int) photoSize;
-                        this.renderBufferWidth = (int) (bitmap.getWidth() * height);
-                        f = height;
-                    }
-                }
-                int i4 = i % 360;
-                if (i4 == 90 || i4 == 270) {
-                    int i5 = this.renderBufferWidth;
-                    this.renderBufferWidth = this.renderBufferHeight;
-                    this.renderBufferHeight = i5;
-                }
-                bitmap2 = createBitmap(bitmap2, i, f);
-            }
-            GLES20.glBindTexture(3553, this.bitmapTextre[0]);
-            GLES20.glTexParameteri(3553, 10241, 9729);
-            GLES20.glTexParameteri(3553, 10240, 9729);
-            GLES20.glTexParameteri(3553, 10242, 33071);
-            GLES20.glTexParameteri(3553, 10243, 33071);
-            GLUtils.texImage2D(3553, 0, bitmap2, 0);
-        }
-        for (int i6 = 0; i6 < 2; i6++) {
-            GLES20.glBindTexture(3553, this.renderTexture[i6]);
-            GLES20.glTexParameteri(3553, 10241, 9729);
-            GLES20.glTexParameteri(3553, 10240, 9729);
-            GLES20.glTexParameteri(3553, 10242, 33071);
-            GLES20.glTexParameteri(3553, 10243, 33071);
-            GLES20.glTexImage2D(3553, 0, 6408, this.renderBufferWidth, this.renderBufferHeight, 0, 6408, 5121, null);
-        }
+        return this.renderTexture[i];
     }
 
     public FloatBuffer getTextureBuffer() {
@@ -1491,27 +1489,9 @@ public class FilterShaders {
         return this.vertexInvertBuffer;
     }
 
-    public int getRenderBufferWidth() {
-        return this.renderBufferWidth;
-    }
-
-    public int getRenderBufferHeight() {
-        return this.renderBufferHeight;
-    }
-
-    public int getRenderTexture(int i) {
-        if (this.isVideo) {
-            return this.renderTexture[i == 0 ? (char) 1 : (char) 0];
-        }
-        return this.renderTexture[i];
-    }
-
-    public int getRenderFrameBuffer() {
-        int[] iArr = this.renderFrameBuffer;
-        if (iArr != null) {
-            return iArr[!this.isVideo ? 1 : 0];
-        }
-        return 0;
+    public void onVideoFrameUpdate(float[] fArr) {
+        this.videoMatrix = fArr;
+        this.hsvGenerated = false;
     }
 
     public void requestUpdateBlurTexture() {
@@ -1519,132 +1499,29 @@ public class FilterShaders {
         this.needUpdateSkinTexture = true;
     }
 
-    public static FilterShadersDelegate getFilterShadersDelegate(final MediaController.SavedFilterState savedFilterState) {
-        return new FilterShadersDelegate() {
-            @Override
-            public boolean shouldShowOriginal() {
-                return false;
-            }
+    public void setDelegate(FilterShadersDelegate filterShadersDelegate) {
+        this.delegate = filterShadersDelegate;
+    }
 
-            @Override
-            public float getSoftenSkinValue() {
-                return MediaController.SavedFilterState.this.softenSkinValue / 100.0f;
-            }
+    public void setRenderData(Bitmap bitmap, int i, int i2, int i3, int i4) {
+        loadTexture(bitmap, i, i3, i4);
+        this.videoTexture = i2;
+        this.videoWidth = i3;
+        this.videoHeight = i4;
+        GLES20.glBindTexture(3553, this.enhanceTextures[0]);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLES20.glTexImage2D(3553, 0, 6408, this.renderBufferWidth, this.renderBufferHeight, 0, 6408, 5121, null);
+    }
 
-            @Override
-            public float getShadowsValue() {
-                return ((MediaController.SavedFilterState.this.shadowsValue * 0.55f) + 100.0f) / 100.0f;
-            }
+    public void setScaleBitmap(boolean z) {
+        this.scaleBitmap = z;
+    }
 
-            @Override
-            public float getHighlightsValue() {
-                return ((MediaController.SavedFilterState.this.highlightsValue * 0.75f) + 100.0f) / 100.0f;
-            }
-
-            @Override
-            public float getEnhanceValue() {
-                return MediaController.SavedFilterState.this.enhanceValue / 100.0f;
-            }
-
-            @Override
-            public float getExposureValue() {
-                return MediaController.SavedFilterState.this.exposureValue / 100.0f;
-            }
-
-            @Override
-            public float getContrastValue() {
-                return ((MediaController.SavedFilterState.this.contrastValue / 100.0f) * 0.3f) + 1.0f;
-            }
-
-            @Override
-            public float getWarmthValue() {
-                return MediaController.SavedFilterState.this.warmthValue / 100.0f;
-            }
-
-            @Override
-            public float getVignetteValue() {
-                return MediaController.SavedFilterState.this.vignetteValue / 100.0f;
-            }
-
-            @Override
-            public float getSharpenValue() {
-                return ((MediaController.SavedFilterState.this.sharpenValue / 100.0f) * 0.6f) + 0.11f;
-            }
-
-            @Override
-            public float getGrainValue() {
-                return (MediaController.SavedFilterState.this.grainValue / 100.0f) * 0.04f;
-            }
-
-            @Override
-            public float getFadeValue() {
-                return MediaController.SavedFilterState.this.fadeValue / 100.0f;
-            }
-
-            @Override
-            public float getTintHighlightsIntensityValue() {
-                return MediaController.SavedFilterState.this.tintHighlightsColor == 0 ? 0.0f : 0.5f;
-            }
-
-            @Override
-            public float getTintShadowsIntensityValue() {
-                return MediaController.SavedFilterState.this.tintShadowsColor == 0 ? 0.0f : 0.5f;
-            }
-
-            @Override
-            public float getSaturationValue() {
-                float f = MediaController.SavedFilterState.this.saturationValue / 100.0f;
-                if (f > 0.0f) {
-                    f *= 1.05f;
-                }
-                return f + 1.0f;
-            }
-
-            @Override
-            public int getTintHighlightsColor() {
-                return MediaController.SavedFilterState.this.tintHighlightsColor;
-            }
-
-            @Override
-            public int getTintShadowsColor() {
-                return MediaController.SavedFilterState.this.tintShadowsColor;
-            }
-
-            @Override
-            public int getBlurType() {
-                return MediaController.SavedFilterState.this.blurType;
-            }
-
-            @Override
-            public float getBlurExcludeSize() {
-                return MediaController.SavedFilterState.this.blurExcludeSize;
-            }
-
-            @Override
-            public float getBlurExcludeBlurSize() {
-                return MediaController.SavedFilterState.this.blurExcludeBlurSize;
-            }
-
-            @Override
-            public float getBlurAngle() {
-                return MediaController.SavedFilterState.this.blurAngle;
-            }
-
-            @Override
-            public Point getBlurExcludePoint() {
-                return MediaController.SavedFilterState.this.blurExcludePoint;
-            }
-
-            @Override
-            public boolean shouldDrawCurvesPass() {
-                return !MediaController.SavedFilterState.this.curvesToolValue.shouldBeSkipped();
-            }
-
-            @Override
-            public ByteBuffer fillAndGetCurveBuffer() {
-                MediaController.SavedFilterState.this.curvesToolValue.fillBuffer();
-                return MediaController.SavedFilterState.this.curvesToolValue.curveBuffer;
-            }
-        };
+    public void updateHDRInfo(StoryEntry.HDRInfo hDRInfo) {
+        this.hdrInfo = hDRInfo;
+        setupExternalShaders();
     }
 }

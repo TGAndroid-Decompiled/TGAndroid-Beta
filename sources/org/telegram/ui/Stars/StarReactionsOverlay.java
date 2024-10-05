@@ -19,7 +19,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Message;
-import org.telegram.tgnet.TLRPC$MessageReactor;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
@@ -43,7 +42,7 @@ public class StarReactionsOverlay extends View {
     private final AnimatedFloat counterAlpha;
     private boolean counterShown;
     private final int[] effectAssets;
-    private final ArrayList<RLottieDrawable> effects;
+    private final ArrayList effects;
     private float focus;
     private ValueAnimator focusAnimator;
     public boolean hidden;
@@ -70,7 +69,7 @@ public class StarReactionsOverlay extends View {
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
         this.counter = animatedTextDrawable;
         this.clip = new GradientClip();
-        this.effects = new ArrayList<>();
+        this.effects = new ArrayList();
         this.effectAssets = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
         this.chatActivity = chatActivity;
         animatedTextDrawable.setCallback(this);
@@ -93,34 +92,6 @@ public class StarReactionsOverlay extends View {
                 StarReactionsOverlay.this.lambda$new$1(chatActivity);
             }
         };
-    }
-
-    public void lambda$new$0() {
-        this.counterShown = false;
-        invalidate();
-        checkBalance();
-        hide();
-    }
-
-    public void lambda$new$1(ChatActivity chatActivity) {
-        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
-        ChatMessageCell chatMessageCell = this.cell;
-        if (chatMessageCell == null) {
-            return;
-        }
-        chatMessageCell.performHapticFeedback(0);
-        onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-        MessageObject primaryMessageObject = this.cell.getPrimaryMessageObject();
-        if (primaryMessageObject == null) {
-            return;
-        }
-        TLRPC$Message tLRPC$Message = primaryMessageObject.messageOwner;
-        ArrayList<TLRPC$MessageReactor> arrayList = (tLRPC$Message == null || (tLRPC$TL_messageReactions = tLRPC$Message.reactions) == null) ? null : tLRPC$TL_messageReactions.top_reactors;
-        StarsController.getInstance(primaryMessageObject.currentAccount).commitPaidReaction();
-        TLRPC$ChatFull currentChatInfo = chatActivity.getCurrentChatInfo();
-        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, primaryMessageObject, arrayList, currentChatInfo == null || currentChatInfo.paid_reactions_available, chatActivity.getResourceProvider());
-        starsReactionsSheet.setMessageCell(chatActivity, primaryMessageObject.getId(), this.cell);
-        starsReactionsSheet.show();
     }
 
     private void checkBalance() {
@@ -155,29 +126,50 @@ public class StarReactionsOverlay extends View {
         starsController.sendPaidReaction(messageObject, this.chatActivity, j, true, true, null);
     }
 
-    public void setMessageCell(ChatMessageCell chatMessageCell) {
-        ChatMessageCell chatMessageCell2 = this.cell;
-        if (chatMessageCell2 == chatMessageCell) {
+    public void lambda$focusTo$3(ValueAnimator valueAnimator) {
+        this.focus = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$hide$4() {
+        setMessageCell(null);
+        clearEffects();
+    }
+
+    public void lambda$new$0() {
+        this.counterShown = false;
+        invalidate();
+        checkBalance();
+        hide();
+    }
+
+    public void lambda$new$1(ChatActivity chatActivity) {
+        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
+        ChatMessageCell chatMessageCell = this.cell;
+        if (chatMessageCell == null) {
             return;
         }
-        if (chatMessageCell2 != null) {
-            chatMessageCell2.setScrimReaction(null);
-            this.cell.setInvalidateListener(null);
-            this.cell.invalidate();
+        chatMessageCell.performHapticFeedback(0);
+        onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+        MessageObject primaryMessageObject = this.cell.getPrimaryMessageObject();
+        if (primaryMessageObject == null) {
+            return;
         }
-        this.cell = chatMessageCell;
-        this.messageId = (chatMessageCell == null || chatMessageCell.getPrimaryMessageObject() == null) ? 0 : chatMessageCell.getPrimaryMessageObject().getId();
-        ChatMessageCell chatMessageCell3 = this.cell;
-        if (chatMessageCell3 != null) {
-            chatMessageCell3.invalidate();
-            this.cell.setInvalidateListener(new Runnable() {
-                @Override
-                public final void run() {
-                    StarReactionsOverlay.this.invalidate();
-                }
-            });
+        TLRPC$Message tLRPC$Message = primaryMessageObject.messageOwner;
+        ArrayList arrayList = (tLRPC$Message == null || (tLRPC$TL_messageReactions = tLRPC$Message.reactions) == null) ? null : tLRPC$TL_messageReactions.top_reactors;
+        StarsController.getInstance(primaryMessageObject.currentAccount).commitPaidReaction();
+        TLRPC$ChatFull currentChatInfo = chatActivity.getCurrentChatInfo();
+        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, primaryMessageObject, arrayList, currentChatInfo == null || currentChatInfo.paid_reactions_available, chatActivity.getResourceProvider());
+        starsReactionsSheet.setMessageCell(chatActivity, primaryMessageObject.getId(), this.cell);
+        starsReactionsSheet.show();
+    }
+
+    public void clearEffects() {
+        Iterator it = this.effects.iterator();
+        while (it.hasNext()) {
+            ((RLottieDrawable) it.next()).recycle(true);
         }
-        invalidate();
+        this.effects.clear();
     }
 
     @Override
@@ -241,7 +233,7 @@ public class StarReactionsOverlay extends View {
             this.clickBounds.inset(-AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(42.0f));
             int dp = (int) (AndroidUtilities.dp(90.0f) * lerp);
             while (i < this.effects.size()) {
-                RLottieDrawable rLottieDrawable = this.effects.get(i);
+                RLottieDrawable rLottieDrawable = (RLottieDrawable) this.effects.get(i);
                 if (rLottieDrawable.getCurrentFrame() >= rLottieDrawable.getFramesCount()) {
                     this.effects.remove(i);
                     i--;
@@ -279,35 +271,6 @@ public class StarReactionsOverlay extends View {
         invalidate();
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.cell == null || this.hidden) {
-            return false;
-        }
-        if (motionEvent.getAction() == 0) {
-            if (this.clickBounds.contains(motionEvent.getX(), motionEvent.getY())) {
-                this.pressed = true;
-                ReactionsLayoutInBubble.ReactionButton reactionButton = this.cell.reactionsLayoutInBubble.getReactionButton("stars");
-                if (reactionButton != null) {
-                    reactionButton.bounce.setPressed(true);
-                }
-                AndroidUtilities.cancelRunOnUIThread(this.longPressRunnable);
-                AndroidUtilities.runOnUIThread(this.longPressRunnable, ViewConfiguration.getLongPressTimeout());
-            }
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            ReactionsLayoutInBubble.ReactionButton reactionButton2 = this.cell.reactionsLayoutInBubble.getReactionButton("stars");
-            if (motionEvent.getAction() == 1) {
-                tap(motionEvent.getX(), motionEvent.getY(), true, true);
-            }
-            if (reactionButton2 != null) {
-                reactionButton2.bounce.setPressed(false);
-            }
-            this.pressed = false;
-            AndroidUtilities.cancelRunOnUIThread(this.longPressRunnable);
-        }
-        return this.pressed;
-    }
-
     public void focusTo(final float f, final Runnable runnable) {
         ValueAnimator valueAnimator = this.focusAnimator;
         if (valueAnimator != null) {
@@ -339,9 +302,96 @@ public class StarReactionsOverlay extends View {
         this.focusAnimator.start();
     }
 
-    public void lambda$focusTo$3(ValueAnimator valueAnimator) {
-        this.focus = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+    public void hide() {
+        this.hidden = true;
+        AndroidUtilities.cancelRunOnUIThread(this.hideCounterRunnable);
+        this.counter.setText("");
+        this.counterShown = false;
         invalidate();
+        focusTo(0.0f, new Runnable() {
+            @Override
+            public final void run() {
+                StarReactionsOverlay.this.lambda$hide$4();
+            }
+        });
+    }
+
+    public boolean isShowing(MessageObject messageObject) {
+        return messageObject != null && messageObject.getId() == this.messageId;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.cell == null || this.hidden) {
+            return false;
+        }
+        if (motionEvent.getAction() == 0) {
+            if (this.clickBounds.contains(motionEvent.getX(), motionEvent.getY())) {
+                this.pressed = true;
+                ReactionsLayoutInBubble.ReactionButton reactionButton = this.cell.reactionsLayoutInBubble.getReactionButton("stars");
+                if (reactionButton != null) {
+                    reactionButton.bounce.setPressed(true);
+                }
+                AndroidUtilities.cancelRunOnUIThread(this.longPressRunnable);
+                AndroidUtilities.runOnUIThread(this.longPressRunnable, ViewConfiguration.getLongPressTimeout());
+            }
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            ReactionsLayoutInBubble.ReactionButton reactionButton2 = this.cell.reactionsLayoutInBubble.getReactionButton("stars");
+            if (motionEvent.getAction() == 1) {
+                tap(motionEvent.getX(), motionEvent.getY(), true, true);
+            }
+            if (reactionButton2 != null) {
+                reactionButton2.bounce.setPressed(false);
+            }
+            this.pressed = false;
+            AndroidUtilities.cancelRunOnUIThread(this.longPressRunnable);
+        }
+        return this.pressed;
+    }
+
+    public void playEffect() {
+        while (this.effects.size() > 4) {
+            ((RLottieDrawable) this.effects.remove(0)).recycle(true);
+        }
+        int[] iArr = this.effectAssets;
+        int i = iArr[Utilities.fastRandom.nextInt(iArr.length)];
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+        rLottieDrawable.setMasterParent(this);
+        rLottieDrawable.setAllowDecodeSingleFrame(true);
+        rLottieDrawable.setAutoRepeat(0);
+        rLottieDrawable.start();
+        this.effects.add(rLottieDrawable);
+        invalidate();
+    }
+
+    public void setMessageCell(ChatMessageCell chatMessageCell) {
+        ChatMessageCell chatMessageCell2 = this.cell;
+        if (chatMessageCell2 == chatMessageCell) {
+            return;
+        }
+        if (chatMessageCell2 != null) {
+            chatMessageCell2.setScrimReaction(null);
+            this.cell.setInvalidateListener(null);
+            this.cell.invalidate();
+        }
+        this.cell = chatMessageCell;
+        this.messageId = (chatMessageCell == null || chatMessageCell.getPrimaryMessageObject() == null) ? 0 : chatMessageCell.getPrimaryMessageObject().getId();
+        ChatMessageCell chatMessageCell3 = this.cell;
+        if (chatMessageCell3 != null) {
+            chatMessageCell3.invalidate();
+            this.cell.setInvalidateListener(new Runnable() {
+                @Override
+                public final void run() {
+                    StarReactionsOverlay.this.invalidate();
+                }
+            });
+        }
+        invalidate();
+    }
+
+    public void show() {
+        this.hidden = false;
+        focusTo(1.0f, null);
     }
 
     public void tap(float f, float f2, boolean z, boolean z2) {
@@ -376,66 +426,15 @@ public class StarReactionsOverlay extends View {
                 return;
             }
             this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - (((float) (j - 100)) / 200.0f), 1.0f, 0.0f);
-            if (getMeasuredWidth() == 0 && this.chatActivity.getLayoutContainer() != null) {
-                this.chatActivity.getLayoutContainer().getLocationInWindow(this.pos2);
-            } else {
+            if (getMeasuredWidth() != 0 || this.chatActivity.getLayoutContainer() == null) {
                 getLocationInWindow(this.pos2);
+            } else {
+                this.chatActivity.getLayoutContainer().getLocationInWindow(this.pos2);
             }
             int[] iArr = this.pos2;
             LaunchActivity.makeRipple(iArr[0] + f, iArr[1] + f2, Utilities.clamp(this.accumulatedRippleIntensity, 0.9f, 0.3f));
             this.accumulatedRippleIntensity = 0.0f;
             this.lastRippleTime = currentTimeMillis;
         }
-    }
-
-    public void hide() {
-        this.hidden = true;
-        AndroidUtilities.cancelRunOnUIThread(this.hideCounterRunnable);
-        this.counter.setText("");
-        this.counterShown = false;
-        invalidate();
-        focusTo(0.0f, new Runnable() {
-            @Override
-            public final void run() {
-                StarReactionsOverlay.this.lambda$hide$4();
-            }
-        });
-    }
-
-    public void lambda$hide$4() {
-        setMessageCell(null);
-        clearEffects();
-    }
-
-    public boolean isShowing(MessageObject messageObject) {
-        return messageObject != null && messageObject.getId() == this.messageId;
-    }
-
-    public void show() {
-        this.hidden = false;
-        focusTo(1.0f, null);
-    }
-
-    public void playEffect() {
-        while (this.effects.size() > 4) {
-            this.effects.remove(0).recycle(true);
-        }
-        int[] iArr = this.effectAssets;
-        int i = iArr[Utilities.fastRandom.nextInt(iArr.length)];
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
-        rLottieDrawable.setMasterParent(this);
-        rLottieDrawable.setAllowDecodeSingleFrame(true);
-        rLottieDrawable.setAutoRepeat(0);
-        rLottieDrawable.start();
-        this.effects.add(rLottieDrawable);
-        invalidate();
-    }
-
-    public void clearEffects() {
-        Iterator<RLottieDrawable> it = this.effects.iterator();
-        while (it.hasNext()) {
-            it.next().recycle(true);
-        }
-        this.effects.clear();
     }
 }

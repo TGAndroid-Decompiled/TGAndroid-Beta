@@ -49,7 +49,7 @@ public class TLRPC$TL_messageReplies extends TLRPC$MessageReplies {
             int size = this.recent_repliers.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                this.recent_repliers.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$Peer) this.recent_repliers.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1) != 0) {

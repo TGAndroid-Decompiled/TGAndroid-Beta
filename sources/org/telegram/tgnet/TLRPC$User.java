@@ -50,8 +50,8 @@ public abstract class TLRPC$User extends TLObject {
     public boolean support;
     public String username;
     public boolean verified;
-    public ArrayList<TLRPC$RestrictionReason> restriction_reason = new ArrayList<>();
-    public ArrayList<TLRPC$TL_username> usernames = new ArrayList<>();
+    public ArrayList restriction_reason = new ArrayList();
+    public ArrayList usernames = new ArrayList();
 
     public static TLRPC$User TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$User tLRPC$TL_user;
@@ -237,7 +237,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i22 = 0; i22 < size; i22++) {
-                                this.restriction_reason.get(i22).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i22)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {
@@ -254,7 +254,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i23 = 0; i23 < size2; i23++) {
-                                this.usernames.get(i23).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i23)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -395,7 +395,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i17 = 0; i17 < size; i17++) {
-                                this.restriction_reason.get(i17).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i17)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {
@@ -596,7 +596,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i24 = 0; i24 < size; i24++) {
-                                this.restriction_reason.get(i24).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i24)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {
@@ -613,7 +613,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i25 = 0; i25 < size2; i25++) {
-                                this.usernames.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 32) != 0) {
@@ -962,7 +962,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i24 = 0; i24 < size; i24++) {
-                                this.restriction_reason.get(i24).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i24)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {
@@ -979,7 +979,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i25 = 0; i25 < size2; i25++) {
-                                this.usernames.get(i25).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i25)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 32) != 0) {
@@ -1241,7 +1241,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i26 = 0; i26 < size; i26++) {
-                                this.restriction_reason.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {
@@ -1258,7 +1258,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i27 = 0; i27 < size2; i27++) {
-                                this.usernames.get(i27).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i27)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 32) != 0) {
@@ -1660,7 +1660,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i19 = 0; i19 < size; i19++) {
-                                this.restriction_reason.get(i19).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i19)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {
@@ -1876,7 +1876,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i26 = 0; i26 < size; i26++) {
-                                this.restriction_reason.get(i26).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i26)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {
@@ -1893,7 +1893,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size2 = this.usernames.size();
                             abstractSerializedData2.writeInt32(size2);
                             for (int i27 = 0; i27 < size2; i27++) {
-                                this.usernames.get(i27).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_username) this.usernames.get(i27)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags2 & 32) != 0) {
@@ -2088,7 +2088,7 @@ public abstract class TLRPC$User extends TLObject {
                             int size = this.restriction_reason.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i20 = 0; i20 < size; i20++) {
-                                this.restriction_reason.get(i20).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$RestrictionReason) this.restriction_reason.get(i20)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 524288) != 0) {

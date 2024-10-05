@@ -22,7 +22,6 @@ import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.browser.Browser;
@@ -61,6 +59,7 @@ import org.telegram.tgnet.TLRPC$TL_documentEmpty;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_messageActionGiftCode;
 import org.telegram.tgnet.TLRPC$TL_messageActionGiftStars;
+import org.telegram.tgnet.TLRPC$TL_messageActionPrizeStars;
 import org.telegram.tgnet.TLRPC$TL_messageActionSuggestProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
@@ -88,7 +87,7 @@ import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class ChatActionCell extends BaseCell implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
-    private static Map<Integer, String> monthsToEmoticon;
+    private static Map monthsToEmoticon;
     private int TAG;
     private SpannableStringBuilder accessibilityText;
     private int adaptiveEmojiColor;
@@ -138,8 +137,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private View invalidateWithParent;
     private float lastTouchX;
     private float lastTouchY;
-    private ArrayList<Integer> lineHeights;
-    private ArrayList<Integer> lineWidths;
+    private ArrayList lineHeights;
+    private ArrayList lineWidths;
     private LoadingDrawable loadingDrawable;
     private int overriddenMaxWidth;
     private int overrideBackground;
@@ -157,8 +156,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     TextPaint settingWallpaperPaint;
     private float settingWallpaperProgress;
     private StaticLayout settingWallpaperProgressTextLayout;
-    public List<SpoilerEffect> spoilers;
-    private Stack<SpoilerEffect> spoilersPool;
+    public List spoilers;
+    private Stack spoilersPool;
     private StarParticlesView.Drawable starParticlesDrawable;
     private Path starsPath;
     private int starsSize;
@@ -179,7 +178,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     public interface ChatActionCellDelegate {
 
-        public final class CC {
+        public abstract class CC {
             public static boolean $default$canDrawOutboundsContent(ChatActionCellDelegate chatActionCellDelegate) {
                 return true;
             }
@@ -254,24 +253,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     public interface ThemeDelegate extends Theme.ResourcesProvider {
 
-        public final class CC {
+        public abstract class CC {
         }
-    }
-
-    public boolean isFloating() {
-        return false;
-    }
-
-    @Override
-    public void onFailedDownload(String str, boolean z) {
-    }
-
-    @Override
-    public void onProgressDownload(String str, long j, long j2) {
-    }
-
-    @Override
-    public void onProgressUpload(String str, long j, long j2, boolean z) {
     }
 
     static {
@@ -282,80 +265,6 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         monthsToEmoticon.put(6, "3⃣");
         monthsToEmoticon.put(12, "4⃣");
         monthsToEmoticon.put(24, "5⃣");
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        MessageObject messageObject;
-        if (i == NotificationCenter.startSpoilers) {
-            setSpoilersSuppressed(false);
-            return;
-        }
-        if (i == NotificationCenter.stopSpoilers) {
-            setSpoilersSuppressed(true);
-            return;
-        }
-        if (i == NotificationCenter.didUpdatePremiumGiftStickers) {
-            MessageObject messageObject2 = this.currentMessageObject;
-            if (messageObject2 != null) {
-                setMessageObject(messageObject2, true);
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.diceStickersDidLoad && Objects.equals(objArr[0], UserConfig.getInstance(this.currentAccount).premiumGiftsStickerPack) && (messageObject = this.currentMessageObject) != null) {
-            setMessageObject(messageObject, true);
-        }
-    }
-
-    public void setSpoilersSuppressed(boolean z) {
-        Iterator<SpoilerEffect> it = this.spoilers.iterator();
-        while (it.hasNext()) {
-            it.next().setSuppressUpdates(z);
-        }
-    }
-
-    public void setInvalidateWithParent(View view) {
-        this.invalidateWithParent = view;
-    }
-
-    public boolean hasButton() {
-        MessageObject messageObject = this.currentMessageObject;
-        return (messageObject == null || !isButtonLayout(messageObject) || this.giftPremiumButtonLayout == null) ? false : true;
-    }
-
-    public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        RLottieDrawable lottieAnimation;
-        ChatActionCellDelegate chatActionCellDelegate;
-        if (!z || (lottieAnimation = this.imageReceiver.getLottieAnimation()) == null) {
-            return;
-        }
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null && !messageObject.playedGiftAnimation) {
-            messageObject.playedGiftAnimation = true;
-            lottieAnimation.setCurrentFrame(0, false);
-            AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda4(lottieAnimation));
-            if (messageObject.wasUnread || this.forceWasUnread) {
-                messageObject.wasUnread = false;
-                this.forceWasUnread = false;
-                try {
-                    performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                if (getContext() instanceof LaunchActivity) {
-                    ((LaunchActivity) getContext()).getFireworksOverlay().start();
-                }
-                TLRPC$VideoSize tLRPC$VideoSize = this.giftEffectAnimation;
-                if (tLRPC$VideoSize == null || (chatActionCellDelegate = this.delegate) == null) {
-                    return;
-                }
-                chatActionCellDelegate.needShowEffectOverlay(this, this.giftSticker, tLRPC$VideoSize);
-                return;
-            }
-            return;
-        }
-        lottieAnimation.stop();
-        lottieAnimation.setCurrentFrame(lottieAnimation.getFramesCount() - 1, false);
     }
 
     public ChatActionCell(Context context) {
@@ -369,11 +278,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.avatarStoryParams = new StoriesUtilities.AvatarStoryParams(false);
         this.giftButtonRect = new RectF();
         this.spoilers = new ArrayList();
-        this.spoilersPool = new Stack<>();
+        this.spoilersPool = new Stack();
         this.overrideBackground = -1;
         this.overrideText = -1;
-        this.lineWidths = new ArrayList<>();
-        this.lineHeights = new ArrayList<>();
+        this.lineWidths = new ArrayList();
+        this.lineHeights = new ArrayList();
         this.backgroundPath = new Path();
         this.rect = new RectF();
         this.invalidatePath = true;
@@ -434,69 +343,328 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         drawable.init();
     }
 
-    public void setDelegate(ChatActionCellDelegate chatActionCellDelegate) {
-        this.delegate = chatActionCellDelegate;
+    private void buildLayout() {
+        CharSequence charSequence;
+        CharSequence replaceTags;
+        String string;
+        CharSequence charSequence2;
+        String str;
+        CharSequence charSequence3;
+        String str2;
+        boolean z;
+        String str3;
+        int i;
+        CharSequence charSequence4;
+        int i2;
+        String formatString;
+        ArrayList arrayList;
+        TLRPC$Photo tLRPC$Photo;
+        ArrayList arrayList2;
+        String string2;
+        String string3;
+        CharSequence formatString2;
+        TLRPC$MessageMedia tLRPC$MessageMedia;
+        int i3;
+        MessageObject messageObject = this.currentMessageObject;
+        boolean z2 = true;
+        if (messageObject != null) {
+            charSequence = messageObject.isExpiredStory() ? messageObject.messageOwner.media.user_id != UserConfig.getInstance(this.currentAccount).getClientUserId() ? StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMention", R.string.ExpiredStoryMention, new Object[0]) : StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMentioned", R.string.ExpiredStoryMentioned, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name) : (this.delegate.getTopicId() == 0 && MessageObject.isTopicActionMessage(messageObject)) ? ForumUtilities.createActionTextWithTopic(MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(this.currentAccount, messageObject.messageOwner, true)), messageObject) : null;
+            if (charSequence == null) {
+                TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+                if (tLRPC$Message != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null && tLRPC$MessageMedia.ttl_seconds != 0) {
+                    if (tLRPC$MessageMedia.photo != null) {
+                        i3 = R.string.AttachPhotoExpired;
+                    } else {
+                        TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
+                        if ((tLRPC$Document instanceof TLRPC$TL_documentEmpty) || ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && tLRPC$Document == null)) {
+                            i3 = tLRPC$MessageMedia.voice ? R.string.AttachVoiceExpired : tLRPC$MessageMedia.round ? R.string.AttachRoundExpired : R.string.AttachVideoExpired;
+                        }
+                    }
+                    charSequence = LocaleController.getString(i3);
+                }
+                charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
+            }
+        } else {
+            charSequence = this.customText;
+        }
+        createLayout(charSequence, this.previousWidth);
+        if (messageObject != null) {
+            int i4 = messageObject.type;
+            if (i4 == 11) {
+                float dp = this.textHeight + AndroidUtilities.dp(19.0f);
+                float f = AndroidUtilities.roundMessageSize;
+                this.imageReceiver.setImageCoords((this.previousWidth - AndroidUtilities.roundMessageSize) / 2.0f, dp, f, f);
+                return;
+            }
+            if (i4 == 25) {
+                createGiftPremiumChannelLayouts();
+                return;
+            }
+            if (i4 == 30) {
+                TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentMessageObject.getDialogId()));
+                TLRPC$MessageAction tLRPC$MessageAction = messageObject.messageOwner.action;
+                if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftStars) {
+                    string3 = LocaleController.formatPluralStringComma("ActionGiftStarsTitle", (int) ((TLRPC$TL_messageActionGiftStars) tLRPC$MessageAction).stars);
+                    formatString2 = AndroidUtilities.replaceTags(this.currentMessageObject.isOutOwner() ? LocaleController.formatString(R.string.ActionGiftStarsSubtitle, UserObject.getForcedFirstName(user)) : LocaleController.getString(R.string.ActionGiftStarsSubtitleYou));
+                    string2 = LocaleController.getString(R.string.ActionGiftStarsView);
+                    createGiftPremiumLayouts(string3, formatString2, string2, this.giftRectSize, true);
+                    return;
+                }
+                long j = ((TLRPC$TL_messageActionPrizeStars) tLRPC$MessageAction).stars;
+                String string4 = LocaleController.getString(R.string.ActionStarGiveawayPrizeTitle);
+                CharSequence charSequence5 = this.currentMessageObject.messageText;
+                String string5 = LocaleController.getString(R.string.ActionGiftStarsView);
+                i2 = this.giftRectSize;
+                str3 = string4;
+                charSequence3 = charSequence5;
+                str2 = string5;
+                i = i2;
+                z = true;
+            } else {
+                if (i4 == 18) {
+                    string2 = LocaleController.getString((!isGiftCode() || isSelfGiftCode()) ? R.string.ActionGiftPremiumView : R.string.GiftPremiumUseGiftBtn);
+                    string3 = LocaleController.getString(R.string.ActionGiftPremiumTitle);
+                    formatString2 = LocaleController.formatString(R.string.ActionGiftPremiumSubtitle, LocaleController.formatPluralString("Months", messageObject.messageOwner.action.months, new Object[0]));
+                    createGiftPremiumLayouts(string3, formatString2, string2, this.giftRectSize, true);
+                    return;
+                }
+                if (i4 == 21) {
+                    TLRPC$TL_messageActionSuggestProfilePhoto tLRPC$TL_messageActionSuggestProfilePhoto = (TLRPC$TL_messageActionSuggestProfilePhoto) messageObject.messageOwner.action;
+                    TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
+                    boolean z3 = tLRPC$TL_messageActionSuggestProfilePhoto.video || !((tLRPC$Photo = tLRPC$TL_messageActionSuggestProfilePhoto.photo) == null || (arrayList2 = tLRPC$Photo.video_sizes) == null || arrayList2.isEmpty());
+                    if (user2.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                        TLRPC$User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId()));
+                        formatString = z3 ? LocaleController.formatString(R.string.ActionSuggestVideoFromYouDescription, user3.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoFromYouDescription, user3.first_name);
+                    } else {
+                        formatString = z3 ? LocaleController.formatString(R.string.ActionSuggestVideoToYouDescription, user2.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoToYouDescription, user2.first_name);
+                    }
+                    replaceTags = formatString;
+                    string = LocaleController.getString((tLRPC$TL_messageActionSuggestProfilePhoto.video || !((arrayList = tLRPC$TL_messageActionSuggestProfilePhoto.photo.video_sizes) == null || arrayList.isEmpty())) ? R.string.ViewVideoAction : R.string.ViewPhotoAction);
+                } else if (i4 == 22) {
+                    TLRPC$User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
+                    if (messageObject.getDialogId() >= 0) {
+                        if (!messageObject.isOutOwner() && messageObject.isWallpaperForBoth() && messageObject.isCurrentWallpaper()) {
+                            charSequence4 = messageObject.messageText;
+                            str = LocaleController.getString(R.string.RemoveWallpaperAction);
+                            z2 = false;
+                        } else if (user4 == null || user4.id != UserConfig.getInstance(this.currentAccount).clientUserId) {
+                            charSequence4 = messageObject.messageText;
+                            str = LocaleController.getString(R.string.ViewWallpaperAction);
+                        }
+                        charSequence2 = charSequence4;
+                        charSequence3 = charSequence2;
+                        str2 = str;
+                        z = z2;
+                        str3 = null;
+                        i = this.giftRectSize;
+                    }
+                    charSequence2 = messageObject.messageText;
+                    str = null;
+                    charSequence3 = charSequence2;
+                    str2 = str;
+                    z = z2;
+                    str3 = null;
+                    i = this.giftRectSize;
+                } else {
+                    if (!messageObject.isStoryMention()) {
+                        return;
+                    }
+                    TLRPC$User user5 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
+                    replaceTags = AndroidUtilities.replaceTags(user5.self ? LocaleController.formatString("StoryYouMentionedTitle", R.string.StoryYouMentionedTitle, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name) : LocaleController.formatString("StoryMentionedTitle", R.string.StoryMentionedTitle, user5.first_name));
+                    string = LocaleController.getString(R.string.StoryMentionedAction);
+                }
+                i2 = this.giftRectSize;
+                charSequence3 = replaceTags;
+                str2 = string;
+                str3 = null;
+                i = i2;
+                z = true;
+            }
+            createGiftPremiumLayouts(str3, charSequence3, str2, i, z);
+            this.textLayout = null;
+            this.textHeight = 0;
+            this.textY = 0;
+        }
     }
 
-    public void setCustomDate(int i, boolean z, boolean z2) {
-        String formatDateChat;
-        int i2 = this.customDate;
-        if (i2 == i || i2 / 3600 == i / 3600) {
+    private void checkLeftRightBounds() {
+        this.backgroundLeft = (int) Math.min(this.backgroundLeft, this.rect.left);
+        this.backgroundRight = (int) Math.max(this.backgroundRight, this.rect.right);
+    }
+
+    private void createGiftPremiumChannelLayouts() {
+        int i;
+        String str;
+        SpannableStringBuilder spannableStringBuilder;
+        String formatString;
+        int dp = this.giftRectSize - AndroidUtilities.dp(16.0f);
+        this.giftTitlePaint.setTextSize(AndroidUtilities.dp(14.0f));
+        this.giftSubtitlePaint.setTextSize(AndroidUtilities.dp(13.0f));
+        TLRPC$TL_messageActionGiftCode tLRPC$TL_messageActionGiftCode = (TLRPC$TL_messageActionGiftCode) this.currentMessageObject.messageOwner.action;
+        int i2 = tLRPC$TL_messageActionGiftCode.months;
+        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_messageActionGiftCode.boost_peer)));
+        String str2 = chat == null ? null : chat.title;
+        boolean z = tLRPC$TL_messageActionGiftCode.via_giveaway;
+        if (tLRPC$TL_messageActionGiftCode.unclaimed) {
+            i = R.string.BoostingUnclaimedPrize;
+            str = "BoostingUnclaimedPrize";
+        } else {
+            i = R.string.BoostingCongratulations;
+            str = "BoostingCongratulations";
+        }
+        String string = LocaleController.getString(str, i);
+        String formatPluralString = i2 == 12 ? LocaleController.formatPluralString("BoldYears", 1, new Object[0]) : LocaleController.formatPluralString("BoldMonths", i2, new Object[0]);
+        if (!z) {
+            spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(str2 == null ? LocaleController.getString("BoostingReceivedGiftNoName", R.string.BoostingReceivedGiftNoName) : LocaleController.formatString("BoostingReceivedGiftFrom", R.string.BoostingReceivedGiftFrom, str2)));
+            spannableStringBuilder.append((CharSequence) "\n\n");
+            formatString = LocaleController.formatString("BoostingReceivedGiftDuration", R.string.BoostingReceivedGiftDuration, formatPluralString);
+        } else if (tLRPC$TL_messageActionGiftCode.unclaimed) {
+            spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingYouHaveUnclaimedPrize", R.string.BoostingYouHaveUnclaimedPrize, str2)));
+            spannableStringBuilder.append((CharSequence) "\n\n");
+            formatString = LocaleController.formatString("BoostingUnclaimedPrizeDuration", R.string.BoostingUnclaimedPrizeDuration, formatPluralString);
+        } else {
+            spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeFrom", R.string.BoostingReceivedPrizeFrom, str2)));
+            spannableStringBuilder.append((CharSequence) "\n\n");
+            formatString = LocaleController.formatString("BoostingReceivedPrizeDuration", R.string.BoostingReceivedPrizeDuration, formatPluralString);
+        }
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(formatString));
+        String string2 = LocaleController.getString("BoostingReceivedGiftOpenBtn", R.string.BoostingReceivedGiftOpenBtn);
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
+        valueOf.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf.length(), 33);
+        TextPaint textPaint = this.giftTitlePaint;
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        this.giftPremiumTitleLayout = new StaticLayout(valueOf, textPaint, dp, alignment, 1.1f, 0.0f, false);
+        this.giftPremiumSubtitleWidth = dp;
+        this.giftPremiumSubtitleLayout = new StaticLayout(spannableStringBuilder, this.giftSubtitlePaint, dp, alignment, 1.1f, 0.0f, false);
+        SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(string2);
+        valueOf2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf2.length(), 33);
+        StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) getThemedPaint("paintChatActionText"), dp, alignment, 1.0f, 0.0f, false);
+        this.giftPremiumButtonLayout = staticLayout;
+        this.buttonClickableAsImage = true;
+        this.giftPremiumButtonWidth = measureLayoutWidth(staticLayout);
+    }
+
+    private void createGiftPremiumLayouts(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, boolean z) {
+        TextPaint textPaint;
+        float f;
+        float f2;
+        int cutInFancyHalf;
+        CharSequence charSequence4 = charSequence2;
+        int dp = i - AndroidUtilities.dp(16.0f);
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject != null && messageObject.type == 30) {
+            dp -= AndroidUtilities.dp(16.0f);
+        }
+        if (charSequence != null) {
+            MessageObject messageObject2 = this.currentMessageObject;
+            if (messageObject2 == null || messageObject2.type != 30) {
+                this.giftTitlePaint.setTextSize(AndroidUtilities.dp(16.0f));
+            } else {
+                this.giftTitlePaint.setTextSize(AndroidUtilities.dp(14.0f));
+            }
+            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
+            valueOf.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf.length(), 33);
+            this.giftPremiumTitleLayout = new StaticLayout(valueOf, this.giftTitlePaint, dp, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        } else {
+            this.giftPremiumTitleLayout = null;
+        }
+        if (this.currentMessageObject == null || !(isNewStyleButtonLayout() || this.currentMessageObject.type == 30)) {
+            textPaint = this.giftSubtitlePaint;
+            f = 15.0f;
+        } else {
+            textPaint = this.giftSubtitlePaint;
+            f = 13.0f;
+        }
+        textPaint.setTextSize(AndroidUtilities.dp(f));
+        this.giftPremiumSubtitleWidth = dp;
+        MessageObject messageObject3 = this.currentMessageObject;
+        int i2 = (messageObject3 == null || messageObject3.type != 22 || messageObject3.getDialogId() < 0 || (cutInFancyHalf = HintView2.cutInFancyHalf(charSequence4, this.giftSubtitlePaint)) >= dp || ((float) cutInFancyHalf) <= ((float) dp) / 5.0f) ? dp : cutInFancyHalf;
+        try {
+            charSequence4 = Emoji.replaceEmoji(charSequence4, this.giftSubtitlePaint.getFontMetricsInt(), false);
+        } catch (Exception unused) {
+        }
+        CharSequence charSequence5 = charSequence4;
+        TextPaint textPaint2 = this.giftSubtitlePaint;
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        this.giftPremiumSubtitleLayout = new StaticLayout(charSequence5, textPaint2, i2, alignment, 1.0f, AndroidUtilities.dp(1.66f), false);
+        if (charSequence3 != null) {
+            SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(charSequence3);
+            valueOf2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf2.length(), 33);
+            StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) getThemedPaint("paintChatActionText"), dp, alignment, 1.0f, 0.0f, false);
+            this.giftPremiumButtonLayout = staticLayout;
+            this.buttonClickableAsImage = z;
+            f2 = measureLayoutWidth(staticLayout);
+        } else {
+            this.giftPremiumButtonLayout = null;
+            this.buttonClickableAsImage = false;
+            f2 = 0.0f;
+        }
+        this.giftPremiumButtonWidth = f2;
+    }
+
+    private void createLayout(CharSequence charSequence, int i) {
+        ChatActionCellDelegate chatActionCellDelegate;
+        int dp = i - AndroidUtilities.dp(30.0f);
+        if (dp < 0) {
             return;
         }
-        if (!z) {
-            formatDateChat = LocaleController.formatDateChat(i);
-        } else if (i == 2147483646) {
-            formatDateChat = LocaleController.getString("MessageScheduledUntilOnline", R.string.MessageScheduledUntilOnline);
-        } else {
-            formatDateChat = LocaleController.formatString("MessageScheduledOn", R.string.MessageScheduledOn, LocaleController.formatDateChat(i));
+        int i2 = this.overriddenMaxWidth;
+        if (i2 > 0) {
+            dp = Math.min(i2, dp);
         }
-        this.customDate = i;
-        CharSequence charSequence = this.customText;
-        if (charSequence == null || !TextUtils.equals(formatDateChat, charSequence)) {
-            this.customText = formatDateChat;
-            this.accessibilityText = null;
-            updateTextInternal(z2);
-        }
-    }
-
-    private void updateTextInternal(boolean z) {
-        if (getMeasuredWidth() != 0) {
-            createLayout(this.customText, getMeasuredWidth());
-            invalidate();
-        }
-        if (this.wasLayout) {
-            buildLayout();
-        } else if (z) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatActionCell.this.requestLayout();
+        this.invalidatePath = true;
+        MessageObject messageObject = this.currentMessageObject;
+        TextPaint textPaint = (TextPaint) getThemedPaint((messageObject == null || !messageObject.drawServiceWithDefaultTypeface) ? "paintChatActionText" : "paintChatActionText2");
+        textPaint.linkColor = textPaint.getColor();
+        this.textLayout = new StaticLayout(charSequence, textPaint, dp, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.animatedEmojiStack = AnimatedEmojiSpan.update(0, this, (!this.canDrawInParent || (chatActionCellDelegate = this.delegate) == null || chatActionCellDelegate.canDrawOutboundsContent()) ? false : true, this.animatedEmojiStack, this.textLayout);
+        this.textHeight = 0;
+        this.textWidth = 0;
+        try {
+            int lineCount = this.textLayout.getLineCount();
+            for (int i3 = 0; i3 < lineCount; i3++) {
+                try {
+                    float lineWidth = this.textLayout.getLineWidth(i3);
+                    float f = dp;
+                    if (lineWidth > f) {
+                        lineWidth = f;
+                    }
+                    this.textHeight = (int) Math.max(this.textHeight, Math.ceil(this.textLayout.getLineBottom(i3)));
+                    this.textWidth = (int) Math.max(this.textWidth, Math.ceil(lineWidth));
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-            });
-        } else {
-            requestLayout();
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        this.textX = (i - this.textWidth) / 2;
+        this.textY = AndroidUtilities.dp(7.0f);
+        this.textXLeft = (i - this.textLayout.getWidth()) / 2;
+        this.spoilersPool.addAll(this.spoilers);
+        this.spoilers.clear();
+        if (charSequence instanceof Spannable) {
+            StaticLayout staticLayout = this.textLayout;
+            int i4 = this.textX;
+            SpoilerEffect.addSpoilers(this, staticLayout, i4, i4 + this.textWidth, (Spannable) charSequence, this.spoilersPool, this.spoilers, null);
         }
     }
 
-    public void setCustomText(CharSequence charSequence) {
-        this.customText = charSequence;
-        if (charSequence != null) {
-            updateTextInternal(false);
+    private ColorFilter getAdaptiveEmojiColorFilter(int i) {
+        if (i != this.adaptiveEmojiColor || this.adaptiveEmojiColorFilter == null) {
+            this.adaptiveEmojiColor = i;
+            this.adaptiveEmojiColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
         }
+        return this.adaptiveEmojiColorFilter;
     }
 
-    public void setOverrideColor(int i, int i2) {
-        this.overrideBackground = i;
-        this.overrideText = i2;
+    private int getImageSize(MessageObject messageObject) {
+        return (messageObject.type == 21 || isNewStyleButtonLayout()) ? AndroidUtilities.dp(78.0f) : this.stickerSize;
     }
 
-    public void setMessageObject(MessageObject messageObject) {
-        setMessageObject(messageObject, false);
-    }
-
-    public void setMessageObject(org.telegram.messenger.MessageObject r29, boolean r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.setMessageObject(org.telegram.messenger.MessageObject, boolean):void");
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.themeDelegate);
     }
 
     private float getUploadingInfoProgress(MessageObject messageObject) {
@@ -508,112 +676,24 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         return messagesController.uploadingWallpaperInfo.uploadingProgress;
     }
 
-    public MessageObject getMessageObject() {
-        return this.currentMessageObject;
+    private boolean isButtonLayout(MessageObject messageObject) {
+        int i;
+        return messageObject != null && ((i = messageObject.type) == 30 || i == 18 || i == 25 || isNewStyleButtonLayout());
     }
 
-    public ImageReceiver getPhotoImage() {
-        return this.imageReceiver;
+    private boolean isGiftChannel(MessageObject messageObject) {
+        return messageObject != null && messageObject.type == 25;
     }
 
-    public void setVisiblePart(float f, int i) {
-        this.visiblePartSet = true;
-        this.backgroundHeight = i;
-        this.viewTop = f;
-        this.viewTranslationX = 0.0f;
-    }
-
-    public void setVisiblePart(float f, float f2, int i, float f3) {
-        this.visiblePartSet = true;
-        this.backgroundHeight = i;
-        this.viewTop = f;
-        this.viewTranslationX = f2;
-        this.dimAmount = f3;
-        this.dimPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (f3 * 255.0f)));
-        invalidate();
-    }
-
-    @Override
-    protected boolean onLongPress() {
-        ChatActionCellDelegate chatActionCellDelegate = this.delegate;
-        if (chatActionCellDelegate != null) {
-            return chatActionCellDelegate.didLongPress(this, this.lastTouchX, this.lastTouchY);
-        }
-        return false;
-    }
-
-    @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        View view = this.rippleView;
-        RectF rectF = this.giftButtonRect;
-        view.layout((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-        this.imageReceiver.onDetachedFromWindow();
-        setStarsPaused(true);
-        this.wasLayout = false;
-        AnimatedEmojiSpan.release(this, this.animatedEmojiStack);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didUpdatePremiumGiftStickers);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
-        this.avatarStoryParams.onDetachFromWindow();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        ChatActionCellDelegate chatActionCellDelegate;
-        super.onAttachedToWindow();
-        this.imageReceiver.onAttachedToWindow();
-        setStarsPaused(false);
-        this.animatedEmojiStack = AnimatedEmojiSpan.update(0, this, (!this.canDrawInParent || (chatActionCellDelegate = this.delegate) == null || chatActionCellDelegate.canDrawOutboundsContent()) ? false : true, this.animatedEmojiStack, this.textLayout);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didUpdatePremiumGiftStickers);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    private boolean isGiftCode() {
         MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || messageObject.type != 21) {
-            return;
-        }
-        setMessageObject(messageObject, true);
+        return messageObject != null && (messageObject.messageOwner.action instanceof TLRPC$TL_messageActionGiftCode);
     }
 
-    private void setStarsPaused(boolean z) {
-        StarParticlesView.Drawable drawable = this.starParticlesDrawable;
-        if (z == drawable.paused) {
-            return;
-        }
-        drawable.paused = z;
-        if (z) {
-            drawable.pausedTime = System.currentTimeMillis();
-            return;
-        }
-        for (int i = 0; i < this.starParticlesDrawable.particles.size(); i++) {
-            this.starParticlesDrawable.particles.get(i).lifeTime += System.currentTimeMillis() - this.starParticlesDrawable.pausedTime;
-        }
-        invalidate();
-    }
-
-    @Override
-    @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public boolean onTouchEvent(android.view.MotionEvent r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    private void openPremiumGiftChannel() {
-        if (this.delegate != null) {
-            final TLRPC$TL_messageActionGiftCode tLRPC$TL_messageActionGiftCode = (TLRPC$TL_messageActionGiftCode) this.currentMessageObject.messageOwner.action;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatActionCell.this.lambda$openPremiumGiftChannel$1(tLRPC$TL_messageActionGiftCode);
-                }
-            });
-        }
-    }
-
-    public void lambda$openPremiumGiftChannel$1(TLRPC$TL_messageActionGiftCode tLRPC$TL_messageActionGiftCode) {
-        this.delegate.didOpenPremiumGiftChannel(this, tLRPC$TL_messageActionGiftCode.slug, false);
+    private boolean isNewStyleButtonLayout() {
+        MessageObject messageObject = this.currentMessageObject;
+        int i = messageObject.type;
+        return i == 21 || i == 22 || messageObject.isStoryMention();
     }
 
     private boolean isSelfGiftCode() {
@@ -629,42 +709,56 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         return false;
     }
 
-    private boolean isGiftCode() {
+    public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        RLottieDrawable lottieAnimation;
+        ChatActionCellDelegate chatActionCellDelegate;
+        if (!z || (lottieAnimation = this.imageReceiver.getLottieAnimation()) == null) {
+            return;
+        }
         MessageObject messageObject = this.currentMessageObject;
-        return messageObject != null && (messageObject.messageOwner.action instanceof TLRPC$TL_messageActionGiftCode);
+        if (messageObject == null || messageObject.playedGiftAnimation) {
+            lottieAnimation.stop();
+            lottieAnimation.setCurrentFrame(lottieAnimation.getFramesCount() - 1, false);
+            return;
+        }
+        messageObject.playedGiftAnimation = true;
+        lottieAnimation.setCurrentFrame(0, false);
+        AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda4(lottieAnimation));
+        if (messageObject.wasUnread || this.forceWasUnread) {
+            messageObject.wasUnread = false;
+            this.forceWasUnread = false;
+            try {
+                performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
+            if (getContext() instanceof LaunchActivity) {
+                ((LaunchActivity) getContext()).getFireworksOverlay().start();
+            }
+            TLRPC$VideoSize tLRPC$VideoSize = this.giftEffectAnimation;
+            if (tLRPC$VideoSize == null || (chatActionCellDelegate = this.delegate) == null) {
+                return;
+            }
+            chatActionCellDelegate.needShowEffectOverlay(this, this.giftSticker, tLRPC$VideoSize);
+        }
     }
 
-    private void openPremiumGiftPreview() {
-        final TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption = new TLRPC$TL_premiumGiftOption();
-        TLRPC$MessageAction tLRPC$MessageAction = this.currentMessageObject.messageOwner.action;
-        tLRPC$TL_premiumGiftOption.amount = tLRPC$MessageAction.amount;
-        tLRPC$TL_premiumGiftOption.months = tLRPC$MessageAction.months;
-        tLRPC$TL_premiumGiftOption.currency = tLRPC$MessageAction.currency;
-        final String str = (!isGiftCode() || isSelfGiftCode()) ? null : ((TLRPC$TL_messageActionGiftCode) this.currentMessageObject.messageOwner.action).slug;
-        if (this.delegate != null) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatActionCell.this.lambda$openPremiumGiftPreview$2(tLRPC$TL_premiumGiftOption, str);
-                }
-            });
-        }
+    public void lambda$openPremiumGiftChannel$1(TLRPC$TL_messageActionGiftCode tLRPC$TL_messageActionGiftCode) {
+        this.delegate.didOpenPremiumGiftChannel(this, tLRPC$TL_messageActionGiftCode.slug, false);
     }
 
     public void lambda$openPremiumGiftPreview$2(TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption, String str) {
         this.delegate.didOpenPremiumGift(this, tLRPC$TL_premiumGiftOption, str, false);
     }
 
-    private void openStarsGiftTransaction() {
-        TLRPC$Message tLRPC$Message;
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !(tLRPC$Message.action instanceof TLRPC$TL_messageActionGiftStars)) {
-            return;
+    private float measureLayoutWidth(Layout layout) {
+        float f = 0.0f;
+        for (int i = 0; i < layout.getLineCount(); i++) {
+            float ceil = (int) Math.ceil(layout.getLineWidth(i));
+            if (ceil > f) {
+                f = ceil;
+            }
         }
-        Context context = getContext();
-        int i = this.currentAccount;
-        TLRPC$Message tLRPC$Message2 = this.currentMessageObject.messageOwner;
-        StarsIntroActivity.showTransactionSheet(context, i, tLRPC$Message2.date, tLRPC$Message2.from_id, tLRPC$Message2.peer_id, (TLRPC$TL_messageActionGiftStars) tLRPC$Message2.action, this.avatarStoryParams.resourcesProvider);
+        return f;
     }
 
     public void openLink(CharacterStyle characterStyle) {
@@ -703,648 +797,137 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
     }
 
-    public void setOverrideTextMaxWidth(int i) {
-        this.overriddenMaxWidth = i;
+    private void openPremiumGiftChannel() {
+        if (this.delegate != null) {
+            final TLRPC$TL_messageActionGiftCode tLRPC$TL_messageActionGiftCode = (TLRPC$TL_messageActionGiftCode) this.currentMessageObject.messageOwner.action;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatActionCell.this.lambda$openPremiumGiftChannel$1(tLRPC$TL_messageActionGiftCode);
+                }
+            });
+        }
     }
 
-    private void createLayout(CharSequence charSequence, int i) {
-        TextPaint textPaint;
-        ChatActionCellDelegate chatActionCellDelegate;
-        int dp = i - AndroidUtilities.dp(30.0f);
-        if (dp < 0) {
+    private void openPremiumGiftPreview() {
+        final TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption = new TLRPC$TL_premiumGiftOption();
+        TLRPC$MessageAction tLRPC$MessageAction = this.currentMessageObject.messageOwner.action;
+        tLRPC$TL_premiumGiftOption.amount = tLRPC$MessageAction.amount;
+        tLRPC$TL_premiumGiftOption.months = tLRPC$MessageAction.months;
+        tLRPC$TL_premiumGiftOption.currency = tLRPC$MessageAction.currency;
+        final String str = (!isGiftCode() || isSelfGiftCode()) ? null : ((TLRPC$TL_messageActionGiftCode) this.currentMessageObject.messageOwner.action).slug;
+        if (this.delegate != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatActionCell.this.lambda$openPremiumGiftPreview$2(tLRPC$TL_premiumGiftOption, str);
+                }
+            });
+        }
+    }
+
+    private void openStarsGiftTransaction() {
+        TLRPC$Message tLRPC$Message;
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
             return;
         }
-        int i2 = this.overriddenMaxWidth;
-        if (i2 > 0) {
-            dp = Math.min(i2, dp);
+        TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
+        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftStars) {
+            Context context = getContext();
+            int i = this.currentAccount;
+            TLRPC$Message tLRPC$Message2 = this.currentMessageObject.messageOwner;
+            StarsIntroActivity.showTransactionSheet(context, i, tLRPC$Message2.date, tLRPC$Message2.from_id, tLRPC$Message2.peer_id, (TLRPC$TL_messageActionGiftStars) tLRPC$Message2.action, this.avatarStoryParams.resourcesProvider);
+            return;
         }
-        this.invalidatePath = true;
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null && messageObject.drawServiceWithDefaultTypeface) {
-            textPaint = (TextPaint) getThemedPaint("paintChatActionText2");
-        } else {
-            textPaint = (TextPaint) getThemedPaint("paintChatActionText");
-        }
-        TextPaint textPaint2 = textPaint;
-        textPaint2.linkColor = textPaint2.getColor();
-        this.textLayout = new StaticLayout(charSequence, textPaint2, dp, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        this.animatedEmojiStack = AnimatedEmojiSpan.update(0, this, (!this.canDrawInParent || (chatActionCellDelegate = this.delegate) == null || chatActionCellDelegate.canDrawOutboundsContent()) ? false : true, this.animatedEmojiStack, this.textLayout);
-        this.textHeight = 0;
-        this.textWidth = 0;
-        try {
-            int lineCount = this.textLayout.getLineCount();
-            for (int i3 = 0; i3 < lineCount; i3++) {
-                try {
-                    float lineWidth = this.textLayout.getLineWidth(i3);
-                    float f = dp;
-                    if (lineWidth > f) {
-                        lineWidth = f;
-                    }
-                    this.textHeight = (int) Math.max(this.textHeight, Math.ceil(this.textLayout.getLineBottom(i3)));
-                    this.textWidth = (int) Math.max(this.textWidth, Math.ceil(lineWidth));
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            }
-        } catch (Exception e2) {
-            FileLog.e(e2);
-        }
-        this.textX = (i - this.textWidth) / 2;
-        this.textY = AndroidUtilities.dp(7.0f);
-        this.textXLeft = (i - this.textLayout.getWidth()) / 2;
-        this.spoilersPool.addAll(this.spoilers);
-        this.spoilers.clear();
-        if (charSequence instanceof Spannable) {
-            StaticLayout staticLayout = this.textLayout;
-            int i4 = this.textX;
-            SpoilerEffect.addSpoilers(this, staticLayout, i4, i4 + this.textWidth, (Spannable) charSequence, this.spoilersPool, this.spoilers, null);
+        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPrizeStars) {
+            Context context2 = getContext();
+            int i2 = this.currentAccount;
+            TLRPC$Message tLRPC$Message3 = this.currentMessageObject.messageOwner;
+            StarsIntroActivity.showTransactionSheet(context2, i2, tLRPC$Message3.date, tLRPC$Message3.from_id, tLRPC$Message3.peer_id, (TLRPC$TL_messageActionPrizeStars) tLRPC$Message3.action, this.avatarStoryParams.resourcesProvider);
         }
     }
 
-    @Override
-    protected void onMeasure(int r19, int r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onMeasure(int, int):void");
-    }
-
-    private boolean isNewStyleButtonLayout() {
-        MessageObject messageObject = this.currentMessageObject;
-        int i = messageObject.type;
-        return i == 21 || i == 22 || messageObject.isStoryMention();
-    }
-
-    private int getImageSize(MessageObject messageObject) {
-        return (messageObject.type == 21 || isNewStyleButtonLayout()) ? AndroidUtilities.dp(78.0f) : this.stickerSize;
-    }
-
-    private void buildLayout() {
-        CharSequence charSequence;
-        CharSequence charSequence2;
-        String string;
-        CharSequence charSequence3;
-        boolean z;
-        String formatString;
-        String string2;
-        ArrayList<TLRPC$VideoSize> arrayList;
-        TLRPC$Photo tLRPC$Photo;
-        ArrayList<TLRPC$VideoSize> arrayList2;
-        TLRPC$MessageMedia tLRPC$MessageMedia;
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null) {
-            if (!messageObject.isExpiredStory()) {
-                charSequence = (this.delegate.getTopicId() == 0 && MessageObject.isTopicActionMessage(messageObject)) ? ForumUtilities.createActionTextWithTopic(MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(this.currentAccount, messageObject.messageOwner, true)), messageObject) : null;
-            } else if (messageObject.messageOwner.media.user_id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                charSequence = StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMention", R.string.ExpiredStoryMention, new Object[0]);
-            } else {
-                charSequence = StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMentioned", R.string.ExpiredStoryMentioned, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name);
-            }
-            if (charSequence == null) {
-                TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-                if (tLRPC$Message != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null && tLRPC$MessageMedia.ttl_seconds != 0) {
-                    if (tLRPC$MessageMedia.photo != null) {
-                        charSequence = LocaleController.getString(R.string.AttachPhotoExpired);
-                    } else {
-                        TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
-                        if ((tLRPC$Document instanceof TLRPC$TL_documentEmpty) || ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && tLRPC$Document == null)) {
-                            if (tLRPC$MessageMedia.voice) {
-                                charSequence = LocaleController.getString(R.string.AttachVoiceExpired);
-                            } else if (tLRPC$MessageMedia.round) {
-                                charSequence = LocaleController.getString(R.string.AttachRoundExpired);
-                            } else {
-                                charSequence = LocaleController.getString(R.string.AttachVideoExpired);
-                            }
-                        } else {
-                            charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
-                        }
-                    }
-                } else {
-                    charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
-                }
-            }
-        } else {
-            charSequence = this.customText;
+    private void setStarsPaused(boolean z) {
+        StarParticlesView.Drawable drawable = this.starParticlesDrawable;
+        if (z == drawable.paused) {
+            return;
         }
-        createLayout(charSequence, this.previousWidth);
-        if (messageObject != null) {
-            int i = messageObject.type;
-            if (i == 11) {
-                float dp = this.textHeight + AndroidUtilities.dp(19.0f);
-                float f = AndroidUtilities.roundMessageSize;
-                this.imageReceiver.setImageCoords((this.previousWidth - AndroidUtilities.roundMessageSize) / 2.0f, dp, f, f);
-                return;
-            }
-            if (i == 25) {
-                createGiftPremiumChannelLayouts();
-                return;
-            }
-            if (i == 30) {
-                createGiftPremiumLayouts(LocaleController.formatPluralStringComma("ActionGiftStarsTitle", (int) ((TLRPC$TL_messageActionGiftStars) messageObject.messageOwner.action).stars), AndroidUtilities.replaceTags(this.currentMessageObject.isOutOwner() ? LocaleController.formatString(R.string.ActionGiftStarsSubtitle, UserObject.getForcedFirstName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentMessageObject.getDialogId())))) : LocaleController.getString(R.string.ActionGiftStarsSubtitleYou)), LocaleController.getString(R.string.ActionGiftStarsView), this.giftRectSize, true);
-                return;
-            }
-            if (i == 18) {
-                createGiftPremiumLayouts(LocaleController.getString(R.string.ActionGiftPremiumTitle), LocaleController.formatString(R.string.ActionGiftPremiumSubtitle, LocaleController.formatPluralString("Months", messageObject.messageOwner.action.months, new Object[0])), LocaleController.getString((!isGiftCode() || isSelfGiftCode()) ? R.string.ActionGiftPremiumView : R.string.GiftPremiumUseGiftBtn), this.giftRectSize, true);
-                return;
-            }
-            if (i == 21) {
-                TLRPC$TL_messageActionSuggestProfilePhoto tLRPC$TL_messageActionSuggestProfilePhoto = (TLRPC$TL_messageActionSuggestProfilePhoto) messageObject.messageOwner.action;
-                TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
-                boolean z2 = tLRPC$TL_messageActionSuggestProfilePhoto.video || !((tLRPC$Photo = tLRPC$TL_messageActionSuggestProfilePhoto.photo) == null || (arrayList2 = tLRPC$Photo.video_sizes) == null || arrayList2.isEmpty());
-                if (user.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId()));
-                    if (z2) {
-                        formatString = LocaleController.formatString(R.string.ActionSuggestVideoFromYouDescription, user2.first_name);
-                    } else {
-                        formatString = LocaleController.formatString(R.string.ActionSuggestPhotoFromYouDescription, user2.first_name);
-                    }
-                } else if (z2) {
-                    formatString = LocaleController.formatString(R.string.ActionSuggestVideoToYouDescription, user.first_name);
-                } else {
-                    formatString = LocaleController.formatString(R.string.ActionSuggestPhotoToYouDescription, user.first_name);
-                }
-                String str = formatString;
-                if (tLRPC$TL_messageActionSuggestProfilePhoto.video || ((arrayList = tLRPC$TL_messageActionSuggestProfilePhoto.photo.video_sizes) != null && !arrayList.isEmpty())) {
-                    string2 = LocaleController.getString(R.string.ViewVideoAction);
-                } else {
-                    string2 = LocaleController.getString(R.string.ViewPhotoAction);
-                }
-                createGiftPremiumLayouts(null, str, string2, this.giftRectSize, true);
-                this.textLayout = null;
-                this.textHeight = 0;
-                this.textY = 0;
-                return;
-            }
-            if (i == 22) {
-                TLRPC$User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
-                if (messageObject.getDialogId() < 0) {
-                    charSequence3 = messageObject.messageText;
-                } else {
-                    if (!messageObject.isOutOwner() && messageObject.isWallpaperForBoth() && messageObject.isCurrentWallpaper()) {
-                        charSequence2 = messageObject.messageText;
-                        string = LocaleController.getString(R.string.RemoveWallpaperAction);
-                        z = false;
-                        createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize, z);
-                        this.textLayout = null;
-                        this.textHeight = 0;
-                        this.textY = 0;
-                        return;
-                    }
-                    if (user3 != null && user3.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                        charSequence3 = messageObject.messageText;
-                    } else {
-                        charSequence2 = messageObject.messageText;
-                        string = LocaleController.getString(R.string.ViewWallpaperAction);
-                        z = true;
-                        createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize, z);
-                        this.textLayout = null;
-                        this.textHeight = 0;
-                        this.textY = 0;
-                        return;
-                    }
-                }
-                charSequence2 = charSequence3;
-                string = null;
-                z = true;
-                createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize, z);
-                this.textLayout = null;
-                this.textHeight = 0;
-                this.textY = 0;
-                return;
-            }
-            if (messageObject.isStoryMention()) {
-                TLRPC$User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
-                createGiftPremiumLayouts(null, user4.self ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryYouMentionedTitle", R.string.StoryYouMentionedTitle, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name)) : AndroidUtilities.replaceTags(LocaleController.formatString("StoryMentionedTitle", R.string.StoryMentionedTitle, user4.first_name)), LocaleController.getString(R.string.StoryMentionedAction), this.giftRectSize, true);
-                this.textLayout = null;
-                this.textHeight = 0;
-                this.textY = 0;
-            }
-        }
-    }
-
-    private void createGiftPremiumChannelLayouts() {
-        String string;
-        SpannableStringBuilder spannableStringBuilder;
-        int dp = this.giftRectSize - AndroidUtilities.dp(16.0f);
-        this.giftTitlePaint.setTextSize(AndroidUtilities.dp(14.0f));
-        this.giftSubtitlePaint.setTextSize(AndroidUtilities.dp(13.0f));
-        TLRPC$TL_messageActionGiftCode tLRPC$TL_messageActionGiftCode = (TLRPC$TL_messageActionGiftCode) this.currentMessageObject.messageOwner.action;
-        int i = tLRPC$TL_messageActionGiftCode.months;
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_messageActionGiftCode.boost_peer)));
-        String str = chat == null ? null : chat.title;
-        boolean z = tLRPC$TL_messageActionGiftCode.via_giveaway;
-        if (tLRPC$TL_messageActionGiftCode.unclaimed) {
-            string = LocaleController.getString("BoostingUnclaimedPrize", R.string.BoostingUnclaimedPrize);
-        } else {
-            string = LocaleController.getString("BoostingCongratulations", R.string.BoostingCongratulations);
-        }
-        String formatPluralString = i == 12 ? LocaleController.formatPluralString("BoldYears", 1, new Object[0]) : LocaleController.formatPluralString("BoldMonths", i, new Object[0]);
+        drawable.paused = z;
         if (z) {
-            if (tLRPC$TL_messageActionGiftCode.unclaimed) {
-                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingYouHaveUnclaimedPrize", R.string.BoostingYouHaveUnclaimedPrize, str)));
-                spannableStringBuilder.append((CharSequence) "\n\n");
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingUnclaimedPrizeDuration", R.string.BoostingUnclaimedPrizeDuration, formatPluralString)));
-            } else {
-                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeFrom", R.string.BoostingReceivedPrizeFrom, str)));
-                spannableStringBuilder.append((CharSequence) "\n\n");
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeDuration", R.string.BoostingReceivedPrizeDuration, formatPluralString)));
-            }
-        } else {
-            spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(str == null ? LocaleController.getString("BoostingReceivedGiftNoName", R.string.BoostingReceivedGiftNoName) : LocaleController.formatString("BoostingReceivedGiftFrom", R.string.BoostingReceivedGiftFrom, str)));
-            spannableStringBuilder.append((CharSequence) "\n\n");
-            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedGiftDuration", R.string.BoostingReceivedGiftDuration, formatPluralString)));
-        }
-        String string2 = LocaleController.getString("BoostingReceivedGiftOpenBtn", R.string.BoostingReceivedGiftOpenBtn);
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
-        valueOf.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf.length(), 33);
-        TextPaint textPaint = this.giftTitlePaint;
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        this.giftPremiumTitleLayout = new StaticLayout(valueOf, textPaint, dp, alignment, 1.1f, 0.0f, false);
-        this.giftPremiumSubtitleWidth = dp;
-        this.giftPremiumSubtitleLayout = new StaticLayout(spannableStringBuilder, this.giftSubtitlePaint, dp, alignment, 1.1f, 0.0f, false);
-        SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(string2);
-        valueOf2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf2.length(), 33);
-        StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) getThemedPaint("paintChatActionText"), dp, alignment, 1.0f, 0.0f, false);
-        this.giftPremiumButtonLayout = staticLayout;
-        this.buttonClickableAsImage = true;
-        this.giftPremiumButtonWidth = measureLayoutWidth(staticLayout);
-    }
-
-    private void createGiftPremiumLayouts(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, boolean z) {
-        int cutInFancyHalf;
-        CharSequence charSequence4 = charSequence2;
-        int dp = i - AndroidUtilities.dp(16.0f);
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null && messageObject.type == 30) {
-            dp -= AndroidUtilities.dp(16.0f);
-        }
-        if (charSequence != null) {
-            MessageObject messageObject2 = this.currentMessageObject;
-            if (messageObject2 != null && messageObject2.type == 30) {
-                this.giftTitlePaint.setTextSize(AndroidUtilities.dp(14.0f));
-            } else {
-                this.giftTitlePaint.setTextSize(AndroidUtilities.dp(16.0f));
-            }
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
-            valueOf.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf.length(), 33);
-            this.giftPremiumTitleLayout = new StaticLayout(valueOf, this.giftTitlePaint, dp, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        } else {
-            this.giftPremiumTitleLayout = null;
-        }
-        if (this.currentMessageObject != null && (isNewStyleButtonLayout() || this.currentMessageObject.type == 30)) {
-            this.giftSubtitlePaint.setTextSize(AndroidUtilities.dp(13.0f));
-        } else {
-            this.giftSubtitlePaint.setTextSize(AndroidUtilities.dp(15.0f));
-        }
-        this.giftPremiumSubtitleWidth = dp;
-        MessageObject messageObject3 = this.currentMessageObject;
-        int i2 = (messageObject3 == null || messageObject3.type != 22 || messageObject3.getDialogId() < 0 || (cutInFancyHalf = HintView2.cutInFancyHalf(charSequence4, this.giftSubtitlePaint)) >= dp || ((float) cutInFancyHalf) <= ((float) dp) / 5.0f) ? dp : cutInFancyHalf;
-        try {
-            charSequence4 = Emoji.replaceEmoji(charSequence4, this.giftSubtitlePaint.getFontMetricsInt(), false);
-        } catch (Exception unused) {
-        }
-        CharSequence charSequence5 = charSequence4;
-        TextPaint textPaint = this.giftSubtitlePaint;
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        this.giftPremiumSubtitleLayout = new StaticLayout(charSequence5, textPaint, i2, alignment, 1.0f, AndroidUtilities.dp(1.66f), false);
-        if (charSequence3 != null) {
-            SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(charSequence3);
-            valueOf2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, valueOf2.length(), 33);
-            StaticLayout staticLayout = new StaticLayout(valueOf2, (TextPaint) getThemedPaint("paintChatActionText"), dp, alignment, 1.0f, 0.0f, false);
-            this.giftPremiumButtonLayout = staticLayout;
-            this.buttonClickableAsImage = z;
-            this.giftPremiumButtonWidth = measureLayoutWidth(staticLayout);
+            drawable.pausedTime = System.currentTimeMillis();
             return;
         }
-        this.giftPremiumButtonLayout = null;
-        this.buttonClickableAsImage = false;
-        this.giftPremiumButtonWidth = 0.0f;
-    }
-
-    private float measureLayoutWidth(Layout layout) {
-        float f = 0.0f;
-        for (int i = 0; i < layout.getLineCount(); i++) {
-            float ceil = (int) Math.ceil(layout.getLineWidth(i));
-            if (ceil > f) {
-                f = ceil;
-            }
+        for (int i = 0; i < this.starParticlesDrawable.particles.size(); i++) {
+            ((StarParticlesView.Drawable.Particle) this.starParticlesDrawable.particles.get(i)).lifeTime += System.currentTimeMillis() - this.starParticlesDrawable.pausedTime;
         }
-        return f;
+        invalidate();
     }
 
-    public boolean showingCancelButton() {
-        RadialProgress2 radialProgress2 = this.radialProgress;
-        return radialProgress2 != null && radialProgress2.getIcon() == 3;
-    }
-
-    public int getCustomDate() {
-        return this.customDate;
+    private void updateTextInternal(boolean z) {
+        if (getMeasuredWidth() != 0) {
+            createLayout(this.customText, getMeasuredWidth());
+            invalidate();
+        }
+        if (this.wasLayout) {
+            buildLayout();
+        } else if (z) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatActionCell.this.requestLayout();
+                }
+            });
+        } else {
+            requestLayout();
+        }
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        MessageObject messageObject;
+        if (i == NotificationCenter.startSpoilers) {
+            setSpoilersSuppressed(false);
+            return;
+        }
+        if (i == NotificationCenter.stopSpoilers) {
+            setSpoilersSuppressed(true);
+            return;
+        }
+        if (i == NotificationCenter.didUpdatePremiumGiftStickers) {
+            messageObject = this.currentMessageObject;
+            if (messageObject == null) {
+                return;
+            }
+        } else if (i != NotificationCenter.diceStickersDidLoad || !Objects.equals(objArr[0], UserConfig.getInstance(this.currentAccount).premiumGiftsStickerPack) || (messageObject = this.currentMessageObject) == null) {
+            return;
+        }
+        setMessageObject(messageObject, true);
+    }
+
+    public void drawBackground(android.graphics.Canvas r29, boolean r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.drawBackground(android.graphics.Canvas, boolean):void");
     }
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (view == this.rippleView) {
-            float scale = this.bounce.getScale(0.02f);
-            canvas.save();
-            canvas.scale(scale, scale, view.getX() + (view.getMeasuredWidth() / 2.0f), view.getY() + (view.getMeasuredHeight() / 2.0f));
-            boolean drawChild = super.drawChild(canvas, view, j);
-            canvas.restore();
-            return drawChild;
+        if (view != this.rippleView) {
+            return super.drawChild(canvas, view, j);
         }
-        return super.drawChild(canvas, view, j);
+        float scale = this.bounce.getScale(0.02f);
+        canvas.save();
+        canvas.scale(scale, scale, view.getX() + (view.getMeasuredWidth() / 2.0f), view.getY() + (view.getMeasuredHeight() / 2.0f));
+        boolean drawChild = super.drawChild(canvas, view, j);
+        canvas.restore();
+        return drawChild;
     }
 
-    private void checkLeftRightBounds() {
-        this.backgroundLeft = (int) Math.min(this.backgroundLeft, this.rect.left);
-        this.backgroundRight = (int) Math.max(this.backgroundRight, this.rect.right);
-    }
-
-    public void drawBackground(Canvas canvas, boolean z) {
-        Paint paint;
-        Paint paint2;
-        Paint paint3;
-        Paint paint4;
-        int i;
-        int i2;
-        float f;
-        Paint paint5;
-        Paint paint6;
-        int i3;
-        float f2;
-        int i4;
-        float f3;
-        int i5;
-        int i6;
-        int i7;
-        float f4;
-        int i8;
-        if (this.canDrawInParent) {
-            if (hasGradientService() && !z) {
-                return;
-            }
-            if (!hasGradientService() && z) {
-                return;
-            }
-        }
-        Paint themedPaint = getThemedPaint("paintChatActionBackground");
-        Paint themedPaint2 = getThemedPaint("paintChatActionBackgroundDarken");
-        this.textPaint = (TextPaint) getThemedPaint("paintChatActionText");
-        int i9 = this.overrideBackground;
-        if (i9 >= 0) {
-            int themedColor = getThemedColor(i9);
-            if (this.overrideBackgroundPaint == null) {
-                Paint paint7 = new Paint(1);
-                this.overrideBackgroundPaint = paint7;
-                paint7.setColor(themedColor);
-                TextPaint textPaint = new TextPaint(1);
-                this.overrideTextPaint = textPaint;
-                textPaint.setTypeface(AndroidUtilities.bold());
-                this.overrideTextPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-                this.overrideTextPaint.setColor(getThemedColor(this.overrideText));
-            }
-            themedPaint = this.overrideBackgroundPaint;
-            this.textPaint = this.overrideTextPaint;
-        }
-        if (this.invalidatePath) {
-            this.invalidatePath = false;
-            this.backgroundLeft = getWidth();
-            this.backgroundRight = 0;
-            this.lineWidths.clear();
-            StaticLayout staticLayout = this.textLayout;
-            int lineCount = staticLayout == null ? 0 : staticLayout.getLineCount();
-            int dp = AndroidUtilities.dp(11.0f);
-            int dp2 = AndroidUtilities.dp(8.0f);
-            int i10 = 0;
-            int i11 = 0;
-            while (true) {
-                f = 1.5f;
-                if (i10 >= lineCount) {
-                    break;
-                }
-                int ceil = (int) Math.ceil(this.textLayout.getLineWidth(i10));
-                if (i10 == 0 || (i8 = i11 - ceil) <= 0 || i8 > (dp * 1.5f) + dp2) {
-                    i11 = ceil;
-                }
-                this.lineWidths.add(Integer.valueOf(i11));
-                i10++;
-            }
-            int i12 = lineCount - 2;
-            while (i12 >= 0) {
-                int intValue = this.lineWidths.get(i12).intValue();
-                int i13 = i11 - intValue;
-                if (i13 <= 0 || i13 > (dp * f) + dp2) {
-                    i11 = intValue;
-                }
-                this.lineWidths.set(i12, Integer.valueOf(i11));
-                i12--;
-                f = 1.5f;
-            }
-            int dp3 = AndroidUtilities.dp(4.0f);
-            int measuredWidth = getMeasuredWidth() / 2;
-            int dp4 = AndroidUtilities.dp(3.0f);
-            int dp5 = AndroidUtilities.dp(6.0f);
-            int i14 = dp - dp4;
-            this.lineHeights.clear();
-            this.backgroundPath.reset();
-            float f5 = measuredWidth;
-            this.backgroundPath.moveTo(f5, dp3);
-            int i15 = 0;
-            int i16 = 0;
-            while (i15 < lineCount) {
-                int intValue2 = this.lineWidths.get(i15).intValue();
-                int i17 = dp5;
-                int lineBottom = this.textLayout.getLineBottom(i15);
-                int i18 = lineCount - 1;
-                if (i15 < i18) {
-                    paint6 = themedPaint2;
-                    paint5 = themedPaint;
-                    i3 = this.lineWidths.get(i15 + 1).intValue();
-                } else {
-                    paint5 = themedPaint;
-                    paint6 = themedPaint2;
-                    i3 = 0;
-                }
-                int i19 = lineBottom - i16;
-                if (i15 == 0 || intValue2 > i11) {
-                    f2 = 3.0f;
-                    i19 += AndroidUtilities.dp(3.0f);
-                } else {
-                    f2 = 3.0f;
-                }
-                if (i15 == i18 || intValue2 > i3) {
-                    i19 += AndroidUtilities.dp(f2);
-                }
-                float f6 = (intValue2 / 2.0f) + f5;
-                int i20 = (i15 == i18 || intValue2 >= i3 || i15 == 0 || intValue2 >= i11) ? dp2 : i17;
-                if (i15 == 0 || intValue2 > i11) {
-                    i4 = measuredWidth;
-                    f3 = f5;
-                    i5 = lineCount;
-                    i6 = i11;
-                    i7 = lineBottom;
-                    this.rect.set((f6 - dp4) - dp, dp3, i14 + f6, (dp * 2) + dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, -90.0f, 90.0f);
-                } else if (intValue2 < i11) {
-                    f3 = f5;
-                    i7 = lineBottom;
-                    float f7 = i14 + f6;
-                    i4 = measuredWidth;
-                    i5 = lineCount;
-                    i6 = i11;
-                    this.rect.set(f7, dp3, (i20 * 2) + f7, r9 + dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, -90.0f, -90.0f);
-                } else {
-                    i4 = measuredWidth;
-                    f3 = f5;
-                    i5 = lineCount;
-                    i6 = i11;
-                    i7 = lineBottom;
-                }
-                dp3 += i19;
-                if (i15 == i18 || intValue2 >= i3) {
-                    f4 = 3.0f;
-                } else {
-                    f4 = 3.0f;
-                    dp3 -= AndroidUtilities.dp(3.0f);
-                    i19 -= AndroidUtilities.dp(3.0f);
-                }
-                if (i15 != 0 && intValue2 < i6) {
-                    dp3 -= AndroidUtilities.dp(f4);
-                    i19 -= AndroidUtilities.dp(f4);
-                }
-                this.lineHeights.add(Integer.valueOf(i19));
-                if (i15 == i18 || intValue2 > i3) {
-                    this.rect.set((f6 - dp4) - dp, dp3 - (dp * 2), f6 + i14, dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, 0.0f, 90.0f);
-                } else if (intValue2 < i3) {
-                    float f8 = f6 + i14;
-                    this.rect.set(f8, dp3 - r2, (i20 * 2) + f8, dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, 180.0f, -90.0f);
-                }
-                i15++;
-                i11 = intValue2;
-                dp5 = i17;
-                themedPaint2 = paint6;
-                themedPaint = paint5;
-                f5 = f3;
-                i16 = i7;
-                measuredWidth = i4;
-                lineCount = i5;
-            }
-            paint = themedPaint;
-            paint2 = themedPaint2;
-            int i21 = measuredWidth;
-            int i22 = dp5;
-            int i23 = lineCount - 1;
-            int i24 = i23;
-            while (i24 >= 0) {
-                int intValue3 = i24 != 0 ? this.lineWidths.get(i24 - 1).intValue() : 0;
-                int intValue4 = this.lineWidths.get(i24).intValue();
-                int intValue5 = i24 != i23 ? this.lineWidths.get(i24 + 1).intValue() : 0;
-                this.textLayout.getLineBottom(i24);
-                float f9 = i21 - (intValue4 / 2);
-                int i25 = (i24 == i23 || intValue4 >= intValue5 || i24 == 0 || intValue4 >= intValue3) ? dp2 : i22;
-                if (i24 == i23 || intValue4 > intValue5) {
-                    this.rect.set(f9 - i14, dp3 - (dp * 2), dp4 + f9 + dp, dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, 90.0f, 90.0f);
-                } else if (intValue4 < intValue5) {
-                    float f10 = f9 - i14;
-                    this.rect.set(f10 - (i25 * 2), dp3 - r12, f10, dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, 90.0f, -90.0f);
-                }
-                dp3 -= this.lineHeights.get(i24).intValue();
-                if (i24 == 0 || intValue4 > intValue3) {
-                    this.rect.set(f9 - i14, dp3, f9 + dp4 + dp, (dp * 2) + dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, 180.0f, 90.0f);
-                } else if (intValue4 < intValue3) {
-                    float f11 = f9 - i14;
-                    this.rect.set(f11 - (i25 * 2), dp3, f11, r7 + dp3);
-                    checkLeftRightBounds();
-                    this.backgroundPath.arcTo(this.rect, 0.0f, -90.0f);
-                }
-                i24--;
-            }
-            this.backgroundPath.close();
-        } else {
-            paint = themedPaint;
-            paint2 = themedPaint2;
-        }
-        if (!this.visiblePartSet) {
-            this.backgroundHeight = ((ViewGroup) getParent()).getMeasuredHeight();
-        }
-        Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
-        if (resourcesProvider != null) {
-            resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
-        } else {
-            Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
-        }
-        if (z && (getAlpha() != 1.0f || isFloating())) {
-            i = paint.getAlpha();
-            i2 = paint2.getAlpha();
-            paint4 = paint;
-            paint4.setAlpha((int) (i * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
-            paint3 = paint2;
-            paint3.setAlpha((int) (i2 * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
-        } else {
-            paint3 = paint2;
-            paint4 = paint;
-            if (isFloating()) {
-                i = paint4.getAlpha();
-                i2 = paint3.getAlpha();
-                paint4.setAlpha((int) (i * (isFloating() ? 0.75f : 1.0f)));
-                paint3.setAlpha((int) (i2 * (isFloating() ? 0.75f : 1.0f)));
-            } else {
-                i = -1;
-                i2 = -1;
-            }
-        }
-        canvas.drawPath(this.backgroundPath, paint4);
-        if (hasGradientService()) {
-            canvas.drawPath(this.backgroundPath, paint3);
-        }
-        if (this.dimAmount > 0.0f) {
-            int alpha = this.dimPaint.getAlpha();
-            if (z) {
-                this.dimPaint.setAlpha((int) (alpha * getAlpha()));
-            }
-            canvas.drawPath(this.backgroundPath, this.dimPaint);
-            this.dimPaint.setAlpha(alpha);
-        }
-        if (isButtonLayout(this.currentMessageObject)) {
-            float width = (getWidth() - this.giftRectSize) / 2.0f;
-            float f12 = this.textY + this.textHeight;
-            if (isNewStyleButtonLayout()) {
-                float dp6 = f12 + AndroidUtilities.dp(4.0f);
-                AndroidUtilities.rectTmp.set(width, dp6, this.giftRectSize + width, this.backgroundRectHeight + dp6);
-            } else {
-                float dp7 = f12 + AndroidUtilities.dp(12.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f13 = this.giftRectSize;
-                rectF.set(width, dp7, width + f13, f13 + dp7 + this.giftPremiumAdditionalHeight);
-            }
-            if (this.backgroundRect == null) {
-                this.backgroundRect = new RectF();
-            }
-            this.backgroundRect.set(AndroidUtilities.rectTmp);
-            canvas.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint4);
-            if (hasGradientService()) {
-                canvas.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
-            }
-        }
-        if (i >= 0) {
-            paint4.setAlpha(i);
-            paint3.setAlpha(i2);
-        }
+    public void drawOutboundsContent(Canvas canvas) {
+        canvas.save();
+        canvas.translate(this.textXLeft, this.textY);
+        StaticLayout staticLayout = this.textLayout;
+        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, staticLayout, this.animatedEmojiStack, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, staticLayout != null ? getAdaptiveEmojiColorFilter(staticLayout.getPaint().getColor()) : null);
+        canvas.restore();
     }
 
     @Override
@@ -1367,39 +950,106 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         return (imageReceiver == null || !imageReceiver.getVisible()) ? i : Math.max((int) this.imageReceiver.getImageX2(), i);
     }
 
+    public int getCustomDate() {
+        return this.customDate;
+    }
+
+    public MessageObject getMessageObject() {
+        return this.currentMessageObject;
+    }
+
+    @Override
+    public int getObserverTag() {
+        return this.TAG;
+    }
+
+    public ImageReceiver getPhotoImage() {
+        return this.imageReceiver;
+    }
+
+    protected Paint getThemedPaint(String str) {
+        Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
+        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
+        return paint != null ? paint : Theme.getThemePaint(str);
+    }
+
+    public boolean hasButton() {
+        MessageObject messageObject = this.currentMessageObject;
+        return (messageObject == null || !isButtonLayout(messageObject) || this.giftPremiumButtonLayout == null) ? false : true;
+    }
+
     public boolean hasGradientService() {
         Theme.ResourcesProvider resourcesProvider;
         return this.overrideBackgroundPaint == null && ((resourcesProvider = this.themeDelegate) == null ? Theme.hasGradientService() : resourcesProvider.hasGradientService());
     }
 
     @Override
-    public void onSuccessDownload(String str) {
-        TLRPC$PhotoSize tLRPC$PhotoSize;
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || messageObject.type != 11) {
-            return;
+    public void invalidate() {
+        super.invalidate();
+        View view = this.invalidateWithParent;
+        if (view != null) {
+            view.invalidate();
         }
-        int size = messageObject.photoThumbs.size();
-        int i = 0;
-        while (true) {
-            if (i >= size) {
-                tLRPC$PhotoSize = null;
-                break;
-            }
-            tLRPC$PhotoSize = messageObject.photoThumbs.get(i);
-            if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
-                break;
-            } else {
-                i++;
-            }
-        }
-        this.imageReceiver.setImage(this.currentVideoLocation, "g", ImageLocation.getForObject(tLRPC$PhotoSize, messageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0L, null, messageObject, 1);
-        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
     }
 
     @Override
-    public int getObserverTag() {
-        return this.TAG;
+    public void invalidate(int i, int i2, int i3, int i4) {
+        super.invalidate(i, i2, i3, i4);
+        View view = this.invalidateWithParent;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public void invalidate(Rect rect) {
+        super.invalidate(rect);
+        View view = this.invalidateWithParent;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    public boolean isFloating() {
+        return false;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        ChatActionCellDelegate chatActionCellDelegate;
+        super.onAttachedToWindow();
+        this.imageReceiver.onAttachedToWindow();
+        setStarsPaused(false);
+        this.animatedEmojiStack = AnimatedEmojiSpan.update(0, this, (!this.canDrawInParent || (chatActionCellDelegate = this.delegate) == null || chatActionCellDelegate.canDrawOutboundsContent()) ? false : true, this.animatedEmojiStack, this.textLayout);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didUpdatePremiumGiftStickers);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject == null || messageObject.type != 21) {
+            return;
+        }
+        setMessageObject(messageObject, true);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+        this.imageReceiver.onDetachedFromWindow();
+        setStarsPaused(true);
+        this.wasLayout = false;
+        AnimatedEmojiSpan.release(this, this.animatedEmojiStack);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didUpdatePremiumGiftStickers);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+        this.avatarStoryParams.onDetachFromWindow();
+    }
+
+    @Override
+    public void onDraw(android.graphics.Canvas r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onFailedDownload(String str, boolean z) {
     }
 
     @Override
@@ -1434,6 +1084,91 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         accessibilityNodeInfo.setEnabled(true);
     }
 
+    @Override
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        View view = this.rippleView;
+        RectF rectF = this.giftButtonRect;
+        view.layout((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+    }
+
+    @Override
+    protected boolean onLongPress() {
+        ChatActionCellDelegate chatActionCellDelegate = this.delegate;
+        if (chatActionCellDelegate != null) {
+            return chatActionCellDelegate.didLongPress(this, this.lastTouchX, this.lastTouchY);
+        }
+        return false;
+    }
+
+    @Override
+    protected void onMeasure(int r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onMeasure(int, int):void");
+    }
+
+    @Override
+    public void onProgressDownload(String str, long j, long j2) {
+    }
+
+    @Override
+    public void onProgressUpload(String str, long j, long j2, boolean z) {
+    }
+
+    @Override
+    public void onSuccessDownload(String str) {
+        TLRPC$PhotoSize tLRPC$PhotoSize;
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject == null || messageObject.type != 11) {
+            return;
+        }
+        int size = messageObject.photoThumbs.size();
+        int i = 0;
+        while (true) {
+            if (i >= size) {
+                tLRPC$PhotoSize = null;
+                break;
+            }
+            tLRPC$PhotoSize = messageObject.photoThumbs.get(i);
+            if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
+                break;
+            } else {
+                i++;
+            }
+        }
+        this.imageReceiver.setImage(this.currentVideoLocation, "g", ImageLocation.getForObject(tLRPC$PhotoSize, messageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0L, null, messageObject, 1);
+        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public void setCustomDate(int i, boolean z, boolean z2) {
+        int i2 = this.customDate;
+        if (i2 == i || i2 / 3600 == i / 3600) {
+            return;
+        }
+        String string = z ? i == 2147483646 ? LocaleController.getString("MessageScheduledUntilOnline", R.string.MessageScheduledUntilOnline) : LocaleController.formatString("MessageScheduledOn", R.string.MessageScheduledOn, LocaleController.formatDateChat(i)) : LocaleController.formatDateChat(i);
+        this.customDate = i;
+        CharSequence charSequence = this.customText;
+        if (charSequence == null || !TextUtils.equals(string, charSequence)) {
+            this.customText = string;
+            this.accessibilityText = null;
+            updateTextInternal(z2);
+        }
+    }
+
+    public void setCustomText(CharSequence charSequence) {
+        this.customText = charSequence;
+        if (charSequence != null) {
+            updateTextInternal(false);
+        }
+    }
+
+    public void setDelegate(ChatActionCellDelegate chatActionCellDelegate) {
+        this.delegate = chatActionCellDelegate;
+    }
+
     public void setInvalidateColors(boolean z) {
         if (this.invalidateColors == z) {
             return;
@@ -1442,70 +1177,58 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         invalidate();
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.themeDelegate);
+    public void setInvalidateWithParent(View view) {
+        this.invalidateWithParent = view;
     }
 
-    protected Paint getThemedPaint(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
-        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
-        return paint != null ? paint : Theme.getThemePaint(str);
+    public void setMessageObject(MessageObject messageObject) {
+        setMessageObject(messageObject, false);
     }
 
-    public void drawOutboundsContent(Canvas canvas) {
-        canvas.save();
-        canvas.translate(this.textXLeft, this.textY);
-        StaticLayout staticLayout = this.textLayout;
-        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, staticLayout, this.animatedEmojiStack, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, staticLayout != null ? getAdaptiveEmojiColorFilter(staticLayout.getPaint().getColor()) : null);
-        canvas.restore();
+    public void setMessageObject(org.telegram.messenger.MessageObject r29, boolean r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.setMessageObject(org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    private boolean isButtonLayout(MessageObject messageObject) {
-        int i;
-        return messageObject != null && ((i = messageObject.type) == 30 || i == 18 || i == 25 || isNewStyleButtonLayout());
+    public void setOverrideColor(int i, int i2) {
+        this.overrideBackground = i;
+        this.overrideText = i2;
     }
 
-    private boolean isGiftChannel(MessageObject messageObject) {
-        return messageObject != null && messageObject.type == 25;
+    public void setOverrideTextMaxWidth(int i) {
+        this.overriddenMaxWidth = i;
     }
 
-    @Override
-    public void invalidate() {
-        super.invalidate();
-        View view = this.invalidateWithParent;
-        if (view != null) {
-            view.invalidate();
+    public void setSpoilersSuppressed(boolean z) {
+        Iterator it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            ((SpoilerEffect) it.next()).setSuppressUpdates(z);
         }
     }
 
-    @Override
-    public void invalidate(Rect rect) {
-        super.invalidate(rect);
-        View view = this.invalidateWithParent;
-        if (view != null) {
-            view.invalidate();
-        }
+    public void setVisiblePart(float f, float f2, int i, float f3) {
+        this.visiblePartSet = true;
+        this.backgroundHeight = i;
+        this.viewTop = f;
+        this.viewTranslationX = f2;
+        this.dimAmount = f3;
+        this.dimPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (f3 * 255.0f)));
+        invalidate();
     }
 
-    @Override
-    public void invalidate(int i, int i2, int i3, int i4) {
-        super.invalidate(i, i2, i3, i4);
-        View view = this.invalidateWithParent;
-        if (view != null) {
-            view.invalidate();
-        }
+    public void setVisiblePart(float f, int i) {
+        this.visiblePartSet = true;
+        this.backgroundHeight = i;
+        this.viewTop = f;
+        this.viewTranslationX = 0.0f;
+    }
+
+    public boolean showingCancelButton() {
+        RadialProgress2 radialProgress2 = this.radialProgress;
+        return radialProgress2 != null && radialProgress2.getIcon() == 3;
     }
 
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
         return drawable == this.wallpaperPreviewDrawable || super.verifyDrawable(drawable);
-    }
-
-    private ColorFilter getAdaptiveEmojiColorFilter(int i) {
-        if (i != this.adaptiveEmojiColor || this.adaptiveEmojiColorFilter == null) {
-            this.adaptiveEmojiColor = i;
-            this.adaptiveEmojiColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
-        }
-        return this.adaptiveEmojiColorFilter;
     }
 }

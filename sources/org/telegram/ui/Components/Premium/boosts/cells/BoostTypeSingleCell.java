@@ -1,39 +1,63 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stories$PrepaidGiveaway;
 import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
+import org.telegram.tgnet.tl.TL_stories$TL_prepaidStarsGiveaway;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 
-@SuppressLint({"ViewConstructor"})
 public class BoostTypeSingleCell extends BoostTypeCell {
+    public BoostTypeSingleCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context, resourcesProvider);
+    }
+
     @Override
     protected boolean needCheck() {
         return false;
     }
 
-    public BoostTypeSingleCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider);
-    }
-
-    public void setGiveaway(TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway) {
+    public void setGiveaway(TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway) {
+        AvatarDrawable avatarDrawable;
+        int i;
+        int i2;
+        String formatPluralString;
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-        this.avatarDrawable.setAvatarType(16);
-        this.titleTextView.setText(LocaleController.formatString("BoostingPreparedGiveawayOne", R.string.BoostingPreparedGiveawayOne, new Object[0]));
-        setSubtitle(LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_stories$TL_prepaidGiveaway.months, new Object[0])));
-        int i = tL_stories$TL_prepaidGiveaway.months;
-        if (i == 12) {
-            this.avatarDrawable.setColor(-31392, -2796986);
-        } else if (i == 6) {
-            this.avatarDrawable.setColor(-10703110, -12481584);
-        } else {
-            this.avatarDrawable.setColor(-6631068, -11945404);
+        if (!(tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidStarsGiveaway)) {
+            if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidGiveaway) {
+                this.titleTextView.setText(LocaleController.getString(R.string.BoostingPreparedGiveawayOne));
+                this.avatarDrawable.setAvatarType(16);
+                TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway = (TL_stories$TL_prepaidGiveaway) tL_stories$PrepaidGiveaway;
+                int i3 = tL_stories$TL_prepaidGiveaway.months;
+                if (i3 == 12) {
+                    avatarDrawable = this.avatarDrawable;
+                    i = -31392;
+                    i2 = -2796986;
+                } else if (i3 == 6) {
+                    avatarDrawable = this.avatarDrawable;
+                    i = -10703110;
+                    i2 = -12481584;
+                } else {
+                    avatarDrawable = this.avatarDrawable;
+                    i = -6631068;
+                    i2 = -11945404;
+                }
+                avatarDrawable.setColor(i, i2);
+                formatPluralString = LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", tL_stories$PrepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_stories$TL_prepaidGiveaway.months, new Object[0]));
+            }
+            this.imageView.setImageDrawable(this.avatarDrawable);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         }
+        TL_stories$TL_prepaidStarsGiveaway tL_stories$TL_prepaidStarsGiveaway = (TL_stories$TL_prepaidStarsGiveaway) tL_stories$PrepaidGiveaway;
+        this.avatarDrawable.setAvatarType(26);
+        this.titleTextView.setText(LocaleController.formatPluralStringComma("BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_stories$TL_prepaidStarsGiveaway.stars));
+        formatPluralString = LocaleController.formatPluralString("AmongWinners", tL_stories$TL_prepaidStarsGiveaway.quantity, new Object[0]);
+        setSubtitle(formatPluralString);
         this.imageView.setImageDrawable(this.avatarDrawable);
         this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
     }

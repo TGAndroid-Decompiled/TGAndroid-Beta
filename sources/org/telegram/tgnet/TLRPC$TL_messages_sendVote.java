@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_sendVote extends TLObject {
     public int msg_id;
-    public ArrayList<byte[]> options = new ArrayList<>();
+    public ArrayList options = new ArrayList();
     public TLRPC$InputPeer peer;
 
     @Override
@@ -21,7 +21,7 @@ public class TLRPC$TL_messages_sendVote extends TLObject {
         int size = this.options.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeByteArray(this.options.get(i));
+            abstractSerializedData.writeByteArray((byte[]) this.options.get(i));
         }
     }
 }

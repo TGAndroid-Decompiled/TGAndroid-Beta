@@ -1,4 +1,4 @@
 package org.telegram.ui.Cells;
 
-public final class ArchivedStickerSetCell$$ExternalSyntheticApiModelOutline0 {
+public abstract class ArchivedStickerSetCell$$ExternalSyntheticApiModelOutline0 {
 }

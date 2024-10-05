@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_archivedStickers extends TLObject {
     public int count;
-    public ArrayList<TLRPC$StickerSetCovered> sets = new ArrayList<>();
+    public ArrayList sets = new ArrayList();
 
     public static TLRPC$TL_messages_archivedStickers TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (1338747336 != i) {
@@ -46,7 +46,7 @@ public class TLRPC$TL_messages_archivedStickers extends TLObject {
         int size = this.sets.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.sets.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$StickerSetCovered) this.sets.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

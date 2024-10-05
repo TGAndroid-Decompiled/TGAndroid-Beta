@@ -19,7 +19,6 @@ import android.os.Build;
 import android.util.StateSet;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
@@ -62,13 +61,6 @@ public class Switch extends View {
     public interface OnCheckedChangeListener {
     }
 
-    protected int processColor(int i) {
-        return i;
-    }
-
-    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
-    }
-
     public Switch(Context context) {
         this(context, null);
     }
@@ -93,32 +85,30 @@ public class Switch extends View {
         setHapticFeedbackEnabled(true);
     }
 
-    @Keep
-    public void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
-        invalidate();
+    private void animateIcon(boolean z) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", z ? 1.0f : 0.0f);
+        this.iconAnimator = ofFloat;
+        ofFloat.setDuration(200L);
+        this.iconAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                Switch.this.iconAnimator = null;
+            }
+        });
+        this.iconAnimator.start();
     }
 
-    @Keep
-    public float getProgress() {
-        return this.progress;
-    }
-
-    @Keep
-    public void setIconProgress(float f) {
-        if (this.iconProgress == f) {
-            return;
-        }
-        this.iconProgress = f;
-        invalidate();
-    }
-
-    @Keep
-    public float getIconProgress() {
-        return this.iconProgress;
+    private void animateToCheckedState(boolean z) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = ofFloat;
+        ofFloat.setDuration(200L);
+        this.checkAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                Switch.this.checkAnimator = null;
+            }
+        });
+        this.checkAnimator.start();
     }
 
     private void cancelCheckAnimator() {
@@ -137,8 +127,89 @@ public class Switch extends View {
         }
     }
 
+    public float getIconProgress() {
+        return this.iconProgress;
+    }
+
+    public float getProgress() {
+        return this.progress;
+    }
+
+    public boolean hasIcon() {
+        return this.iconDrawable != null;
+    }
+
+    public boolean isChecked() {
+        return this.isChecked;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.attachedToWindow = true;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attachedToWindow = false;
+    }
+
+    @Override
+    protected void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Switch.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Switch");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.isChecked);
+    }
+
+    protected int processColor(int i) {
+        return i;
+    }
+
+    public void setChecked(boolean z, int i, boolean z2) {
+        if (z != this.isChecked) {
+            this.isChecked = z;
+            if (this.attachedToWindow && z2) {
+                animateToCheckedState(z);
+            } else {
+                cancelCheckAnimator();
+                setProgress(z ? 1.0f : 0.0f);
+            }
+        }
+        setDrawIconType(i, z2);
+    }
+
+    public void setChecked(boolean z, boolean z2) {
+        setChecked(z, this.drawIconType, z2);
+    }
+
+    public void setColors(int i, int i2, int i3, int i4) {
+        this.trackColorKey = i;
+        this.trackCheckedColorKey = i2;
+        this.thumbColorKey = i3;
+        this.thumbCheckedColorKey = i4;
+    }
+
     public void setDrawIconType(int i) {
         this.drawIconType = i;
+    }
+
+    public void setDrawIconType(int i, boolean z) {
+        if (this.drawIconType != i) {
+            this.drawIconType = i;
+            if (this.attachedToWindow && z) {
+                animateIcon(i == 0);
+            } else {
+                cancelIconAnimator();
+                setIconProgress(i == 0 ? 1.0f : 0.0f);
+            }
+        }
     }
 
     public void setDrawRipple(boolean z) {
@@ -153,6 +224,12 @@ public class Switch extends View {
             paint.setColor(-1);
             BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{0}), null, i >= 23 ? null : new Drawable() {
                 @Override
+                public void draw(Canvas canvas) {
+                    android.graphics.Rect bounds = getBounds();
+                    canvas.drawCircle(bounds.centerX(), bounds.centerY(), AndroidUtilities.dp(18.0f), Switch.this.ripplePaint);
+                }
+
+                @Override
                 public int getOpacity() {
                     return 0;
                 }
@@ -163,12 +240,6 @@ public class Switch extends View {
 
                 @Override
                 public void setColorFilter(ColorFilter colorFilter) {
-                }
-
-                @Override
-                public void draw(Canvas canvas) {
-                    android.graphics.Rect bounds = getBounds();
-                    canvas.drawCircle(bounds.centerX(), bounds.centerY(), AndroidUtilities.dp(18.0f), Switch.this.ripplePaint);
                 }
             });
             this.rippleDrawable = rippleDrawableSafe;
@@ -189,74 +260,6 @@ public class Switch extends View {
         invalidate();
     }
 
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        RippleDrawable rippleDrawable;
-        return super.verifyDrawable(drawable) || ((rippleDrawable = this.rippleDrawable) != null && drawable == rippleDrawable);
-    }
-
-    public void setColors(int i, int i2, int i3, int i4) {
-        this.trackColorKey = i;
-        this.trackCheckedColorKey = i2;
-        this.thumbColorKey = i3;
-        this.thumbCheckedColorKey = i4;
-    }
-
-    private void animateToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.setDuration(200L);
-        this.checkAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                Switch.this.checkAnimator = null;
-            }
-        });
-        this.checkAnimator.start();
-    }
-
-    private void animateIcon(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", z ? 1.0f : 0.0f);
-        this.iconAnimator = ofFloat;
-        ofFloat.setDuration(200L);
-        this.iconAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                Switch.this.iconAnimator = null;
-            }
-        });
-        this.iconAnimator.start();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.attachedToWindow = true;
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attachedToWindow = false;
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        setChecked(z, this.drawIconType, z2);
-    }
-
-    public void setChecked(boolean z, int i, boolean z2) {
-        if (z != this.isChecked) {
-            this.isChecked = z;
-            if (this.attachedToWindow && z2) {
-                animateToCheckedState(z);
-            } else {
-                cancelCheckAnimator();
-                setProgress(z ? 1.0f : 0.0f);
-            }
-        }
-        setDrawIconType(i, z2);
-    }
-
     public void setIcon(int i) {
         if (i != 0) {
             Drawable mutate = getResources().getDrawable(i).mutate();
@@ -272,24 +275,15 @@ public class Switch extends View {
         invalidate();
     }
 
-    public void setDrawIconType(int i, boolean z) {
-        if (this.drawIconType != i) {
-            this.drawIconType = i;
-            if (this.attachedToWindow && z) {
-                animateIcon(i == 0);
-            } else {
-                cancelIconAnimator();
-                setIconProgress(i == 0 ? 1.0f : 0.0f);
-            }
+    public void setIconProgress(float f) {
+        if (this.iconProgress == f) {
+            return;
         }
+        this.iconProgress = f;
+        invalidate();
     }
 
-    public boolean hasIcon() {
-        return this.iconDrawable != null;
-    }
-
-    public boolean isChecked() {
-        return this.isChecked;
+    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
     }
 
     public void setOverrideColor(int i) {
@@ -333,16 +327,17 @@ public class Switch extends View {
         invalidate();
     }
 
-    @Override
-    protected void onDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Switch.onDraw(android.graphics.Canvas):void");
+    public void setProgress(float f) {
+        if (this.progress == f) {
+            return;
+        }
+        this.progress = f;
+        invalidate();
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Switch");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.isChecked);
+    protected boolean verifyDrawable(Drawable drawable) {
+        RippleDrawable rippleDrawable;
+        return super.verifyDrawable(drawable) || ((rippleDrawable = this.rippleDrawable) != null && drawable == rippleDrawable);
     }
 }

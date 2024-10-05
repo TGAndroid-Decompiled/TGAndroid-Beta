@@ -5,8 +5,8 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 
 public class TL_bots$previewInfo extends TLObject {
-    public ArrayList<TL_bots$botPreviewMedia> media = new ArrayList<>();
-    public ArrayList<String> lang_codes = new ArrayList<>();
+    public ArrayList media = new ArrayList();
+    public ArrayList lang_codes = new ArrayList();
 
     public static TL_bots$previewInfo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (212278628 != i) {
@@ -57,13 +57,13 @@ public class TL_bots$previewInfo extends TLObject {
         int size = this.media.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.media.get(i).serializeToStream(abstractSerializedData);
+            ((TL_bots$botPreviewMedia) this.media.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.lang_codes.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            abstractSerializedData.writeString(this.lang_codes.get(i2));
+            abstractSerializedData.writeString((String) this.lang_codes.get(i2));
         }
     }
 }

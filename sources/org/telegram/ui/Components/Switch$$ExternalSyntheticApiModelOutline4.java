@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class Switch$$ExternalSyntheticApiModelOutline4 {
+public abstract class Switch$$ExternalSyntheticApiModelOutline4 {
 }

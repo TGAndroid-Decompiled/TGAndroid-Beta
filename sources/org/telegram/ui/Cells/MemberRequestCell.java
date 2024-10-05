@@ -113,47 +113,16 @@ public class MemberRequestCell extends FrameLayout {
         onClickListener.onDismissClicked(tLRPC$TL_chatInviteImporter);
     }
 
-    public void setData(LongSparseArray<TLRPC$User> longSparseArray, TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, boolean z) {
-        this.importer = tLRPC$TL_chatInviteImporter;
-        this.isNeedDivider = z;
-        setWillNotDraw(!z);
-        TLRPC$User tLRPC$User = longSparseArray.get(tLRPC$TL_chatInviteImporter.user_id);
-        this.avatarDrawable.setInfo(tLRPC$User);
-        this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
-        this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
-        String formatDateAudio = LocaleController.formatDateAudio(tLRPC$TL_chatInviteImporter.date, false);
-        if (tLRPC$TL_chatInviteImporter.via_chatlist) {
-            this.statusTextView.setText(LocaleController.getString(R.string.JoinedViaFolder));
-            return;
-        }
-        long j = tLRPC$TL_chatInviteImporter.approved_by;
-        if (j == 0) {
-            this.statusTextView.setText(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, formatDateAudio));
-            return;
-        }
-        TLRPC$User tLRPC$User2 = longSparseArray.get(j);
-        if (tLRPC$User2 != null) {
-            this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(tLRPC$User2), formatDateAudio));
-        } else {
-            this.statusTextView.setText("");
-        }
+    public BackupImageView getAvatarImageView() {
+        return this.avatarImageView;
     }
 
     public TLRPC$TL_chatInviteImporter getImporter() {
         return this.importer;
     }
 
-    public BackupImageView getAvatarImageView() {
-        return this.avatarImageView;
-    }
-
     public String getStatus() {
         return this.statusTextView.getText().toString();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(107.0f), 1073741824));
     }
 
     @Override
@@ -162,5 +131,43 @@ public class MemberRequestCell extends FrameLayout {
         if (this.isNeedDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(72.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(107.0f), 1073741824));
+    }
+
+    public void setData(LongSparseArray longSparseArray, TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, boolean z) {
+        SimpleTextView simpleTextView;
+        String str;
+        this.importer = tLRPC$TL_chatInviteImporter;
+        this.isNeedDivider = z;
+        setWillNotDraw(!z);
+        TLRPC$User tLRPC$User = (TLRPC$User) longSparseArray.get(tLRPC$TL_chatInviteImporter.user_id);
+        this.avatarDrawable.setInfo(tLRPC$User);
+        this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+        this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
+        String formatDateAudio = LocaleController.formatDateAudio(tLRPC$TL_chatInviteImporter.date, false);
+        if (tLRPC$TL_chatInviteImporter.via_chatlist) {
+            simpleTextView = this.statusTextView;
+            str = LocaleController.getString(R.string.JoinedViaFolder);
+        } else {
+            long j = tLRPC$TL_chatInviteImporter.approved_by;
+            if (j == 0) {
+                simpleTextView = this.statusTextView;
+                str = LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, formatDateAudio);
+            } else {
+                TLRPC$User tLRPC$User2 = (TLRPC$User) longSparseArray.get(j);
+                if (tLRPC$User2 != null) {
+                    this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(tLRPC$User2), formatDateAudio));
+                    return;
+                } else {
+                    simpleTextView = this.statusTextView;
+                    str = "";
+                }
+            }
+        }
+        simpleTextView.setText(str);
     }
 }

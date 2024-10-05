@@ -6,7 +6,7 @@ public class TLRPC$TL_updateStickerSetsOrder extends TLRPC$Update {
     public boolean emojis;
     public int flags;
     public boolean masks;
-    public ArrayList<Long> order = new ArrayList<>();
+    public ArrayList order = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -39,7 +39,7 @@ public class TLRPC$TL_updateStickerSetsOrder extends TLRPC$Update {
         int size = this.order.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            abstractSerializedData.writeInt64(this.order.get(i3).longValue());
+            abstractSerializedData.writeInt64(((Long) this.order.get(i3)).longValue());
         }
     }
 }

@@ -1,4 +1,4 @@
 package org.telegram.ui.Business;
 
-public final class QuickRepliesController$$ExternalSyntheticBackport0 {
+public abstract class QuickRepliesController$$ExternalSyntheticBackport0 {
 }

@@ -36,151 +36,9 @@ import org.telegram.ui.NotificationPermissionDialog;
 
 public class NotificationPermissionDialog extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private CounterView counterView;
-    private boolean mayBeAccidentalDismiss;
     private RLottieImageView rLottieImageView;
     private long showTime;
-    private Utilities.Callback<Boolean> whenGranted;
-
-    public NotificationPermissionDialog(Context context, Utilities.Callback<Boolean> callback) {
-        super(context, false);
-        this.whenGranted = callback;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        RLottieImageView rLottieImageView = new RLottieImageView(context);
-        this.rLottieImageView = rLottieImageView;
-        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.rLottieImageView.setAnimation(R.raw.silent_unmute, 46, 46);
-        this.rLottieImageView.playAnimation();
-        RLottieImageView rLottieImageView2 = this.rLottieImageView;
-        int dp = AndroidUtilities.dp(72.0f);
-        int i = Theme.key_featuredStickers_addButton;
-        rLottieImageView2.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
-        frameLayout.addView(this.rLottieImageView, LayoutHelper.createFrame(72, 72, 17));
-        CounterView counterView = new CounterView(context);
-        this.counterView = counterView;
-        frameLayout.addView(counterView, LayoutHelper.createFrame(64, 32.0f, 49, 29.0f, 16.0f, 0.0f, 0.0f));
-        this.counterView.setCount(0);
-        frameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                NotificationPermissionDialog.this.lambda$new$0(view);
-            }
-        });
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 110));
-        TextView textView = new TextView(context);
-        int i2 = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i2));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 20.0f);
-        textView.setGravity(1);
-        textView.setText(LocaleController.getString("NotificationsPermissionAlertTitle"));
-        textView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
-        TextView textView2 = new TextView(context);
-        textView2.setTextColor(Theme.getColor(i2));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(1);
-        textView2.setText(LocaleController.getString("NotificationsPermissionAlertSubtitle"));
-        textView2.setPadding(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(21.0f));
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2));
-        linearLayout.addView(new SectionView(context, R.drawable.msg_message_s, LocaleController.getString("NotificationsPermissionAlert1")), LayoutHelper.createLinear(-1, -2));
-        linearLayout.addView(new SectionView(context, R.drawable.msg_members_list2, LocaleController.getString("NotificationsPermissionAlert2")), LayoutHelper.createLinear(-1, -2));
-        linearLayout.addView(new SectionView(context, R.drawable.msg_customize_s, LocaleController.getString("NotificationsPermissionAlert3")), LayoutHelper.createLinear(-1, -2));
-        setCustomView(linearLayout);
-        fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
-        TextView textView3 = new TextView(context);
-        textView3.setText(LocaleController.getString("NotificationsPermissionContinue"));
-        textView3.setGravity(17);
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        textView3.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i), 8.0f));
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                NotificationPermissionDialog.this.lambda$new$1(view);
-            }
-        });
-        linearLayout.addView(textView3, LayoutHelper.createLinear(-1, 48, 14.0f, 14.0f, 14.0f, 10.0f));
-        for (int i3 = 0; i3 < 4; i3++) {
-            try {
-                NotificationCenter.getInstance(i3).addObserver(this, NotificationCenter.updateInterfaces);
-            } catch (Exception unused) {
-            }
-        }
-    }
-
-    public void lambda$new$0(View view) {
-        if (this.rLottieImageView.isPlaying()) {
-            return;
-        }
-        this.rLottieImageView.setProgress(0.0f);
-        this.rLottieImageView.playAnimation();
-    }
-
-    public void lambda$new$1(View view) {
-        Utilities.Callback<Boolean> callback = this.whenGranted;
-        if (callback != null) {
-            callback.run(Boolean.TRUE);
-            this.whenGranted = null;
-        }
-        dismiss();
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) < 0) {
-            return;
-        }
-        updateCounter();
-    }
-
-    public void updateCounter() {
-        int i = 0;
-        for (int i2 = 0; i2 < 4; i2++) {
-            MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
-            if (messagesStorage != null) {
-                i += messagesStorage.getMainUnreadCount();
-            }
-        }
-        if (!this.counterView.setCount(i) || this.rLottieImageView.isPlaying()) {
-            return;
-        }
-        this.rLottieImageView.setProgress(0.0f);
-        this.rLottieImageView.playAnimation();
-    }
-
-    @Override
-    public void show() {
-        super.show();
-        this.showTime = System.currentTimeMillis();
-    }
-
-    @Override
-    public void onDismissWithTouchOutside() {
-        this.mayBeAccidentalDismiss = System.currentTimeMillis() - this.showTime < 3000;
-        super.onDismissWithTouchOutside();
-    }
-
-    @Override
-    public void dismiss() {
-        super.dismiss();
-        Utilities.Callback<Boolean> callback = this.whenGranted;
-        if (callback != null) {
-            callback.run(Boolean.FALSE);
-            this.whenGranted = null;
-            if (!this.mayBeAccidentalDismiss) {
-                askLater();
-            }
-        }
-        for (int i = 0; i < 4; i++) {
-            try {
-                NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.updateInterfaces);
-            } catch (Exception unused) {
-            }
-        }
-    }
+    private Utilities.Callback whenGranted;
 
     public static class CounterView extends View {
         private final AnimatedFloat alpha;
@@ -214,24 +72,6 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             this.textDrawable.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.textDrawable.setOverrideFullWidth(AndroidUtilities.dp(64.0f));
             this.textDrawable.setGravity(1);
-        }
-
-        public boolean setCount(int i) {
-            int i2 = this.lastCount;
-            if (i2 != i) {
-                r1 = i2 < i;
-                this.lastCount = i;
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-                String str = "";
-                if (i > 0) {
-                    str = "" + this.lastCount;
-                }
-                animatedTextDrawable.setText(str, true);
-                if (r1) {
-                    animateBounce();
-                }
-            }
-            return r1;
         }
 
         private void animateBounce() {
@@ -288,6 +128,24 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             canvas.restore();
         }
 
+        public boolean setCount(int i) {
+            int i2 = this.lastCount;
+            if (i2 != i) {
+                r1 = i2 < i;
+                this.lastCount = i;
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
+                String str = "";
+                if (i > 0) {
+                    str = "" + this.lastCount;
+                }
+                animatedTextDrawable.setText(str, true);
+                if (r1) {
+                    animateBounce();
+                }
+            }
+            return r1;
+        }
+
         @Override
         protected boolean verifyDrawable(Drawable drawable) {
             return drawable == this.textDrawable || super.verifyDrawable(drawable);
@@ -315,6 +173,106 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         }
     }
 
+    public NotificationPermissionDialog(Context context, boolean z, Utilities.Callback callback) {
+        super(context, false);
+        this.whenGranted = callback;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.rLottieImageView = rLottieImageView;
+        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+        this.rLottieImageView.setAnimation(R.raw.silent_unmute, 46, 46);
+        this.rLottieImageView.playAnimation();
+        RLottieImageView rLottieImageView2 = this.rLottieImageView;
+        int dp = AndroidUtilities.dp(72.0f);
+        int i = Theme.key_featuredStickers_addButton;
+        rLottieImageView2.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
+        frameLayout.addView(this.rLottieImageView, LayoutHelper.createFrame(72, 72, 17));
+        CounterView counterView = new CounterView(context);
+        this.counterView = counterView;
+        frameLayout.addView(counterView, LayoutHelper.createFrame(64, 32.0f, 49, 29.0f, 16.0f, 0.0f, 0.0f));
+        this.counterView.setCount(0);
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                NotificationPermissionDialog.this.lambda$new$0(view);
+            }
+        });
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 110));
+        TextView textView = new TextView(context);
+        int i2 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i2));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 20.0f);
+        textView.setGravity(1);
+        textView.setText(LocaleController.getString(R.string.NotificationsPermissionAlertTitle));
+        textView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
+        TextView textView2 = new TextView(context);
+        textView2.setTextColor(Theme.getColor(i2));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(1);
+        textView2.setText(LocaleController.getString(R.string.NotificationsPermissionAlertSubtitle));
+        textView2.setPadding(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(21.0f));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2));
+        linearLayout.addView(new SectionView(context, R.drawable.msg_message_s, LocaleController.getString(R.string.NotificationsPermissionAlert1)), LayoutHelper.createLinear(-1, -2));
+        linearLayout.addView(new SectionView(context, R.drawable.msg_members_list2, LocaleController.getString(R.string.NotificationsPermissionAlert2)), LayoutHelper.createLinear(-1, -2));
+        linearLayout.addView(new SectionView(context, R.drawable.msg_customize_s, LocaleController.getString(R.string.NotificationsPermissionAlert3)), LayoutHelper.createLinear(-1, -2));
+        setCustomView(linearLayout);
+        fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
+        TextView textView3 = new TextView(context);
+        textView3.setText(LocaleController.getString(z ? R.string.NotificationsPermissionSettings : R.string.NotificationsPermissionContinue));
+        textView3.setGravity(17);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextSize(1, 14.0f);
+        textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        textView3.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i), 8.0f));
+        textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                NotificationPermissionDialog.this.lambda$new$1(view);
+            }
+        });
+        linearLayout.addView(textView3, LayoutHelper.createLinear(-1, 48, 14.0f, 14.0f, 14.0f, 10.0f));
+        for (int i3 = 0; i3 < 4; i3++) {
+            try {
+                NotificationCenter.getInstance(i3).addObserver(this, NotificationCenter.updateInterfaces);
+            } catch (Exception unused) {
+            }
+        }
+    }
+
+    public static void askLater() {
+        long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsDuration", 86400000L);
+        long currentTimeMillis = System.currentTimeMillis() + j;
+        long j2 = 259200000;
+        if (j >= 259200000) {
+            j2 = 604800000;
+            if (j >= 604800000) {
+                j2 = 2592000000L;
+            }
+        }
+        MessagesController.getGlobalMainSettings().edit().putLong("askNotificationsAfter", currentTimeMillis).putLong("askNotificationsDuration", j2).apply();
+    }
+
+    public void lambda$new$0(View view) {
+        if (this.rLottieImageView.isPlaying()) {
+            return;
+        }
+        this.rLottieImageView.setProgress(0.0f);
+        this.rLottieImageView.playAnimation();
+    }
+
+    public void lambda$new$1(View view) {
+        Utilities.Callback callback = this.whenGranted;
+        if (callback != null) {
+            callback.run(Boolean.TRUE);
+            this.whenGranted = null;
+        }
+        dismiss();
+    }
+
     public static boolean shouldAsk(Activity activity) {
         int checkSelfPermission;
         if (activity == null || Build.VERSION.SDK_INT < 23) {
@@ -331,16 +289,49 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         return false;
     }
 
-    public static void askLater() {
-        long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsDuration", 86400000L);
-        long currentTimeMillis = System.currentTimeMillis() + j;
-        long j2 = 259200000;
-        if (j >= 259200000) {
-            j2 = 604800000;
-            if (j >= 604800000) {
-                j2 = 2592000000L;
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) < 0) {
+            return;
+        }
+        updateCounter();
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        Utilities.Callback callback = this.whenGranted;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
+            this.whenGranted = null;
+            askLater();
+        }
+        for (int i = 0; i < 4; i++) {
+            try {
+                NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.updateInterfaces);
+            } catch (Exception unused) {
             }
         }
-        MessagesController.getGlobalMainSettings().edit().putLong("askNotificationsAfter", currentTimeMillis).putLong("askNotificationsDuration", j2).apply();
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        this.showTime = System.currentTimeMillis();
+    }
+
+    public void updateCounter() {
+        int i = 0;
+        for (int i2 = 0; i2 < 4; i2++) {
+            MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
+            if (messagesStorage != null) {
+                i += messagesStorage.getMainUnreadCount();
+            }
+        }
+        if (!this.counterView.setCount(i) || this.rLottieImageView.isPlaying()) {
+            return;
+        }
+        this.rLottieImageView.setProgress(0.0f);
+        this.rLottieImageView.playAnimation();
     }
 }

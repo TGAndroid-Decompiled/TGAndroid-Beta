@@ -16,15 +16,15 @@ public class EmptyCell extends FrameLayout {
         this.cellHeight = i;
     }
 
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.cellHeight, 1073741824));
+    }
+
     public void setHeight(int i) {
         if (this.cellHeight != i) {
             this.cellHeight = i;
             requestLayout();
         }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.cellHeight, 1073741824));
     }
 }

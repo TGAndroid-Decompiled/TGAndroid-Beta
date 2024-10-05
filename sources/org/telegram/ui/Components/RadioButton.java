@@ -11,7 +11,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 
@@ -52,62 +51,11 @@ public class RadioButton extends View {
         }
     }
 
-    @Keep
-    public void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
-        invalidate();
-    }
-
-    @Keep
-    public float getProgress() {
-        return this.progress;
-    }
-
-    public void setSize(int i) {
-        if (this.size == i) {
-            return;
-        }
-        this.size = i;
-    }
-
-    public void setIcon(Drawable drawable) {
-        this.icon = drawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
-    }
-
-    public int getColor() {
-        return this.color;
-    }
-
-    public void setColor(int i, int i2) {
-        this.color = i;
-        this.checkedColor = i2;
-        Drawable drawable = this.icon;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        this.color = i;
-        Drawable drawable = this.icon;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
-    }
-
-    public void setCheckedColor(int i) {
-        this.checkedColor = i;
-        invalidate();
+    private void animateToCheckedState(boolean z) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = ofFloat;
+        ofFloat.setDuration(200L);
+        this.checkAnimator.start();
     }
 
     private void cancelCheckAnimator() {
@@ -117,11 +65,16 @@ public class RadioButton extends View {
         }
     }
 
-    private void animateToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.setDuration(200L);
-        this.checkAnimator.start();
+    public int getColor() {
+        return this.color;
+    }
+
+    public float getProgress() {
+        return this.progress;
+    }
+
+    public boolean isChecked() {
+        return this.isChecked;
     }
 
     @Override
@@ -134,23 +87,6 @@ public class RadioButton extends View {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attachedToWindow = false;
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        if (z == this.isChecked) {
-            return;
-        }
-        this.isChecked = z;
-        if (this.attachedToWindow && z2) {
-            animateToCheckedState(z);
-        } else {
-            cancelCheckAnimator();
-            setProgress(z ? 1.0f : 0.0f);
-        }
-    }
-
-    public boolean isChecked() {
-        return this.isChecked;
     }
 
     @Override
@@ -200,5 +136,66 @@ public class RadioButton extends View {
             }
             canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, (Paint) null);
         }
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        this.color = i;
+        Drawable drawable = this.icon;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
+        }
+        invalidate();
+    }
+
+    public void setChecked(boolean z, boolean z2) {
+        if (z == this.isChecked) {
+            return;
+        }
+        this.isChecked = z;
+        if (this.attachedToWindow && z2) {
+            animateToCheckedState(z);
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
+        }
+    }
+
+    public void setCheckedColor(int i) {
+        this.checkedColor = i;
+        invalidate();
+    }
+
+    public void setColor(int i, int i2) {
+        this.color = i;
+        this.checkedColor = i2;
+        Drawable drawable = this.icon;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
+        }
+        invalidate();
+    }
+
+    public void setIcon(Drawable drawable) {
+        this.icon = drawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
+        }
+        invalidate();
+    }
+
+    public void setProgress(float f) {
+        if (this.progress == f) {
+            return;
+        }
+        this.progress = f;
+        invalidate();
+    }
+
+    public void setSize(int i) {
+        if (this.size == i) {
+            return;
+        }
+        this.size = i;
     }
 }

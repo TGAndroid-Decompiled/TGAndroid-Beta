@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_updateQuickReplies extends TLRPC$Update {
-    public ArrayList<TLRPC$TL_quickReply> quick_replies = new ArrayList<>();
+    public ArrayList quick_replies = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -27,7 +27,7 @@ public class TLRPC$TL_updateQuickReplies extends TLRPC$Update {
         int size = this.quick_replies.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.quick_replies.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_quickReply) this.quick_replies.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

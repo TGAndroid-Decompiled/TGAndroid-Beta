@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_updateFolderPeers extends TLRPC$Update {
-    public ArrayList<TLRPC$TL_folderPeer> folder_peers = new ArrayList<>();
+    public ArrayList folder_peers = new ArrayList();
     public int pts;
     public int pts_count;
 
@@ -35,7 +35,7 @@ public class TLRPC$TL_updateFolderPeers extends TLRPC$Update {
         int size = this.folder_peers.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.folder_peers.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_folderPeer) this.folder_peers.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(this.pts);
         abstractSerializedData.writeInt32(this.pts_count);

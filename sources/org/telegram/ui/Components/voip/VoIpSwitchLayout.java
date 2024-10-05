@@ -3,7 +3,6 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -22,7 +21,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.voip.VoIpSwitchLayout;
 
-@SuppressLint({"ViewConstructor"})
 public class VoIpSwitchLayout extends FrameLayout {
     public int animationDelay;
     private final VoIPBackgroundProvider backgroundProvider;
@@ -30,43 +28,6 @@ public class VoIpSwitchLayout extends FrameLayout {
     private final TextView newTextView;
     private Type type;
     private VoIpButtonView voIpButtonView;
-
-    public enum Type {
-        MICRO,
-        CAMERA,
-        VIDEO,
-        BLUETOOTH,
-        SPEAKER
-    }
-
-    public void setOnBtnClickedListener(VoIpButtonView.OnBtnClickedListener onBtnClickedListener) {
-        this.voIpButtonView.setOnBtnClickedListener(onBtnClickedListener);
-    }
-
-    public VoIpSwitchLayout(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(context);
-        this.backgroundProvider = voIPBackgroundProvider;
-        setWillNotDraw(true);
-        VoIpButtonView voIpButtonView = new VoIpButtonView(context, voIPBackgroundProvider);
-        this.voIpButtonView = voIpButtonView;
-        addView(voIpButtonView, LayoutHelper.createFrame(53.5f, 53.5f, 1));
-        TextView textView = new TextView(context);
-        this.currentTextView = textView;
-        textView.setGravity(1);
-        textView.setTextSize(1, 11.0f);
-        textView.setTextColor(-1);
-        textView.setImportantForAccessibility(2);
-        addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
-        TextView textView2 = new TextView(context);
-        this.newTextView = textView2;
-        textView2.setGravity(1);
-        textView2.setTextSize(1, 11.0f);
-        textView2.setTextColor(-1);
-        textView2.setImportantForAccessibility(2);
-        addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
-        textView.setVisibility(8);
-        textView2.setVisibility(8);
-    }
 
     public static class AnonymousClass4 {
         static final int[] $SwitchMap$org$telegram$ui$Components$voip$VoIpSwitchLayout$Type;
@@ -97,125 +58,12 @@ public class VoIpSwitchLayout extends FrameLayout {
         }
     }
 
-    private void setText(Type type, boolean z) {
-        final String string;
-        int i = AnonymousClass4.$SwitchMap$org$telegram$ui$Components$voip$VoIpSwitchLayout$Type[type.ordinal()];
-        if (i != 1) {
-            if (i == 2) {
-                string = LocaleController.getString(R.string.VoipFlip);
-            } else if (i != 3) {
-                if (i == 4) {
-                    string = LocaleController.getString(R.string.VoipAudioRoutingBluetooth);
-                } else if (i == 5) {
-                    string = LocaleController.getString(R.string.VoipSpeaker);
-                } else {
-                    string = "";
-                }
-            } else if (z) {
-                string = LocaleController.getString(R.string.VoipStartVideo);
-            } else {
-                string = LocaleController.getString(R.string.VoipStopVideo);
-            }
-        } else if (z) {
-            string = LocaleController.getString(R.string.VoipUnmute);
-        } else {
-            string = LocaleController.getString(R.string.VoipMute);
-        }
-        setContentDescription(string);
-        if (this.currentTextView.getVisibility() == 8 && this.newTextView.getVisibility() == 8) {
-            this.currentTextView.setVisibility(0);
-            this.currentTextView.setText(string);
-            this.newTextView.setText(string);
-        } else {
-            if (this.newTextView.getText().equals(string) && this.currentTextView.getText().equals(string)) {
-                return;
-            }
-            this.currentTextView.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(4.0f)).setDuration(140L).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    VoIpSwitchLayout.this.currentTextView.setText(string);
-                    VoIpSwitchLayout.this.currentTextView.setTranslationY(0.0f);
-                    VoIpSwitchLayout.this.currentTextView.setAlpha(1.0f);
-                }
-            }).start();
-            this.newTextView.setText(string);
-            this.newTextView.setVisibility(0);
-            this.newTextView.setAlpha(0.0f);
-            this.newTextView.setTranslationY(AndroidUtilities.dp(5.0f));
-            this.newTextView.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    VoIpSwitchLayout.this.newTextView.setVisibility(8);
-                }
-            }).start();
-        }
-    }
-
-    private void attachNewButton(int i, int i2, boolean z, Type type) {
-        VoIpButtonView voIpButtonView = new VoIpButtonView(getContext(), this.backgroundProvider);
-        if (i == R.raw.camera_flip2) {
-            voIpButtonView.singleIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
-            voIpButtonView.singleIcon.setMasterParent(voIpButtonView);
-        } else {
-            voIpButtonView.unSelectedIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
-            voIpButtonView.selectedIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
-            voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-        }
-        voIpButtonView.setSelectedState(z, false, type);
-        voIpButtonView.setAlpha(0.0f);
-        voIpButtonView.setOnBtnClickedListener(this.voIpButtonView.onBtnClickedListener);
-        addView(voIpButtonView, LayoutHelper.createFrame(53.5f, 53.5f, 1));
-        final VoIpButtonView voIpButtonView2 = this.voIpButtonView;
-        this.voIpButtonView = voIpButtonView;
-        voIpButtonView.animate().alpha(1.0f).setDuration(250L).start();
-        voIpButtonView2.animate().alpha(0.0f).setDuration(250L).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                VoIpSwitchLayout.this.removeView(voIpButtonView2);
-            }
-        }).start();
-    }
-
-    public void setType(Type type, boolean z) {
-        setType(type, z, false);
-    }
-
-    public void setType(org.telegram.ui.Components.voip.VoIpSwitchLayout.Type r19, boolean r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.VoIpSwitchLayout.setType(org.telegram.ui.Components.voip.VoIpSwitchLayout$Type, boolean, boolean):void");
-    }
-
-    public void lambda$setType$1(final int i) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VoIpSwitchLayout.this.lambda$setType$0(i);
-            }
-        });
-    }
-
-    public void lambda$setType$3(final int i) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VoIpSwitchLayout.this.lambda$setType$2(i);
-            }
-        });
-    }
-
-    public void lambda$setType$0(int i) {
-        VoIpButtonView voIpButtonView = this.voIpButtonView;
-        int i2 = R.raw.speaker_to_bt;
-        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
-        this.voIpButtonView.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
-        this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-    }
-
-    public void lambda$setType$2(int i) {
-        VoIpButtonView voIpButtonView = this.voIpButtonView;
-        int i2 = R.raw.bt_to_speaker;
-        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
-        this.voIpButtonView.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
-        this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+    public enum Type {
+        MICRO,
+        CAMERA,
+        VIDEO,
+        BLUETOOTH,
+        SPEAKER
     }
 
     public static class VoIpButtonView extends View {
@@ -241,115 +89,6 @@ public class VoIpSwitchLayout extends FrameLayout {
 
         public interface OnBtnClickedListener {
             void onClicked(View view);
-        }
-
-        public void setSelectedState(boolean z, boolean z2, Type type) {
-            ValueAnimator valueAnimator = this.animator;
-            if (valueAnimator != null && valueAnimator.isRunning()) {
-                this.animator.removeAllUpdateListeners();
-                this.animator.cancel();
-                z2 = false;
-            }
-            if (z2) {
-                if (this.singleIcon != null) {
-                    ValueAnimator valueAnimator2 = this.animator;
-                    if (valueAnimator2 != null) {
-                        valueAnimator2.removeAllUpdateListeners();
-                        this.animator.cancel();
-                    }
-                    ValueAnimator ofInt = z ? ValueAnimator.ofInt(20, 100) : ValueAnimator.ofInt(100, 20);
-                    this.animator = ofInt;
-                    ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                            VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$0(valueAnimator3);
-                        }
-                    });
-                    this.animator.setDuration(200L);
-                    this.animator.start();
-                    if (type == Type.CAMERA) {
-                        this.singleIcon.setCurrentFrame(0, false);
-                        this.singleIcon.start();
-                    }
-                } else {
-                    ValueAnimator valueAnimator3 = this.animator;
-                    if (valueAnimator3 != null) {
-                        valueAnimator3.removeAllUpdateListeners();
-                        this.animator.cancel();
-                    }
-                    ValueAnimator ofInt2 = ValueAnimator.ofInt(0, this.maxRadius);
-                    this.animator = ofInt2;
-                    if (z) {
-                        this.unselectedRadius = this.maxRadius;
-                        ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$1(valueAnimator4);
-                            }
-                        });
-                        this.animator.addListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                VoIpButtonView.this.unselectedRadius = 0;
-                                VoIpButtonView.this.invalidate();
-                            }
-                        });
-                        this.animator.setDuration(200L);
-                        this.animator.start();
-                        this.selectedIcon.setCurrentFrame(0, false);
-                        this.selectedIcon.start();
-                    } else {
-                        this.selectedRadius = this.maxRadius;
-                        ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$2(valueAnimator4);
-                            }
-                        });
-                        this.animator.setDuration(200L);
-                        this.animator.addListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                VoIpButtonView.this.selectedRadius = 0;
-                                VoIpButtonView.this.invalidate();
-                            }
-                        });
-                        this.animator.start();
-                    }
-                }
-            } else if (z) {
-                this.selectedRadius = this.maxRadius;
-                this.unselectedRadius = 0;
-                this.singleIconBackgroundAlphaPercent = 100;
-                if (type == Type.VIDEO || type == Type.MICRO) {
-                    this.selectedIcon.setCurrentFrame(r7.getFramesCount() - 1, false);
-                }
-            } else {
-                this.selectedRadius = 0;
-                this.unselectedRadius = this.maxRadius;
-                this.singleIconBackgroundAlphaPercent = 20;
-            }
-            this.isSelectedState = z;
-            invalidate();
-        }
-
-        public void lambda$setSelectedState$0(ValueAnimator valueAnimator) {
-            this.singleIconBackgroundAlphaPercent = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            invalidate();
-        }
-
-        public void lambda$setSelectedState$1(ValueAnimator valueAnimator) {
-            this.selectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            invalidate();
-        }
-
-        public void lambda$setSelectedState$2(ValueAnimator valueAnimator) {
-            this.unselectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            invalidate();
-        }
-
-        public void setOnBtnClickedListener(OnBtnClickedListener onBtnClickedListener) {
-            this.onBtnClickedListener = onBtnClickedListener;
         }
 
         public VoIpButtonView(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
@@ -379,6 +118,36 @@ public class VoIpSwitchLayout extends FrameLayout {
             paint3.setAlpha(35);
         }
 
+        private boolean isAnimating() {
+            int i = this.unselectedRadius;
+            int i2 = this.maxRadius;
+            return ((i == i2 && this.selectedRadius == 0) || (this.selectedRadius == i2 && i == 0)) ? false : true;
+        }
+
+        private boolean isClick(float f, float f2, float f3, float f4) {
+            return Math.abs(f - f2) <= ((float) AndroidUtilities.dp(48.0f)) && Math.abs(f3 - f4) <= ((float) AndroidUtilities.dp(48.0f));
+        }
+
+        public void lambda$setPressedBtn$3(ValueAnimator valueAnimator) {
+            this.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            invalidate();
+        }
+
+        public void lambda$setSelectedState$0(ValueAnimator valueAnimator) {
+            this.singleIconBackgroundAlphaPercent = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            invalidate();
+        }
+
+        public void lambda$setSelectedState$1(ValueAnimator valueAnimator) {
+            this.selectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            invalidate();
+        }
+
+        public void lambda$setSelectedState$2(ValueAnimator valueAnimator) {
+            this.unselectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            invalidate();
+        }
+
         private void setPressedBtn(boolean z) {
             ValueAnimator valueAnimator = this.pressedScaleAnimator;
             if (valueAnimator != null) {
@@ -396,11 +165,6 @@ public class VoIpSwitchLayout extends FrameLayout {
             this.pressedScaleAnimator.start();
         }
 
-        public void lambda$setPressedBtn$3(ValueAnimator valueAnimator) {
-            this.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
-        }
-
         @Override
         protected void onDraw(Canvas canvas) {
             canvas.save();
@@ -410,19 +174,19 @@ public class VoIpSwitchLayout extends FrameLayout {
             float height = getHeight() / 2.0f;
             this.backgroundProvider.setLightTranslation(getX() + ((View) getParent()).getX(), getY() + ((View) ((View) getParent()).getParent()).getY());
             if (this.singleIcon != null) {
-                if (this.singleIconBackgroundAlphaPercent > 20) {
-                    this.darkPaint.setAlpha((int) ((r2 * 35) / 100.0f));
-                    this.whiteCirclePaint.setAlpha((int) ((this.singleIconBackgroundAlphaPercent * 255) / 100.0f));
-                    canvas.drawCircle(width, height, this.maxRadius, this.whiteCirclePaint);
-                    this.singleIcon.draw(canvas, this.maskPaint);
-                    this.singleIcon.draw(canvas, this.darkPaint);
+                if (this.singleIconBackgroundAlphaPercent <= 20) {
+                    canvas.drawCircle(width, height, this.maxRadius, this.backgroundProvider.getLightPaint());
+                    if (this.backgroundProvider.isReveal()) {
+                        canvas.drawCircle(width, height, this.maxRadius, this.backgroundProvider.getRevealPaint());
+                    }
+                    this.singleIcon.draw(canvas);
                     return;
                 }
-                canvas.drawCircle(width, height, this.maxRadius, this.backgroundProvider.getLightPaint());
-                if (this.backgroundProvider.isReveal()) {
-                    canvas.drawCircle(width, height, this.maxRadius, this.backgroundProvider.getRevealPaint());
-                }
-                this.singleIcon.draw(canvas);
+                this.darkPaint.setAlpha((int) ((r2 * 35) / 100.0f));
+                this.whiteCirclePaint.setAlpha((int) ((this.singleIconBackgroundAlphaPercent * 255) / 100.0f));
+                canvas.drawCircle(width, height, this.maxRadius, this.whiteCirclePaint);
+                this.singleIcon.draw(canvas, this.maskPaint);
+                this.singleIcon.draw(canvas, this.darkPaint);
                 return;
             }
             if (this.selectedIcon == null || this.unSelectedIcon == null) {
@@ -468,14 +232,7 @@ public class VoIpSwitchLayout extends FrameLayout {
             canvas.restore();
         }
 
-        private boolean isAnimating() {
-            int i = this.unselectedRadius;
-            int i2 = this.maxRadius;
-            return ((i == i2 && this.selectedRadius == 0) || (this.selectedRadius == i2 && i == 0)) ? false : true;
-        }
-
         @Override
-        @SuppressLint({"ClickableViewAccessibility"})
         public boolean onTouchEvent(MotionEvent motionEvent) {
             OnBtnClickedListener onBtnClickedListener;
             int action = motionEvent.getAction();
@@ -494,8 +251,271 @@ public class VoIpSwitchLayout extends FrameLayout {
             return true;
         }
 
-        private boolean isClick(float f, float f2, float f3, float f4) {
-            return Math.abs(f - f2) <= ((float) AndroidUtilities.dp(48.0f)) && Math.abs(f3 - f4) <= ((float) AndroidUtilities.dp(48.0f));
+        public void setOnBtnClickedListener(OnBtnClickedListener onBtnClickedListener) {
+            this.onBtnClickedListener = onBtnClickedListener;
         }
+
+        public void setSelectedState(boolean z, boolean z2, Type type) {
+            RLottieDrawable rLottieDrawable;
+            ValueAnimator valueAnimator = this.animator;
+            if (valueAnimator != null && valueAnimator.isRunning()) {
+                this.animator.removeAllUpdateListeners();
+                this.animator.cancel();
+                z2 = false;
+            }
+            if (z2) {
+                if (this.singleIcon != null) {
+                    ValueAnimator valueAnimator2 = this.animator;
+                    if (valueAnimator2 != null) {
+                        valueAnimator2.removeAllUpdateListeners();
+                        this.animator.cancel();
+                    }
+                    ValueAnimator ofInt = z ? ValueAnimator.ofInt(20, 100) : ValueAnimator.ofInt(100, 20);
+                    this.animator = ofInt;
+                    ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                            VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$0(valueAnimator3);
+                        }
+                    });
+                    this.animator.setDuration(200L);
+                    this.animator.start();
+                    if (type == Type.CAMERA) {
+                        this.singleIcon.setCurrentFrame(0, false);
+                        rLottieDrawable = this.singleIcon;
+                        rLottieDrawable.start();
+                    }
+                } else {
+                    ValueAnimator valueAnimator3 = this.animator;
+                    if (valueAnimator3 != null) {
+                        valueAnimator3.removeAllUpdateListeners();
+                        this.animator.cancel();
+                    }
+                    ValueAnimator ofInt2 = ValueAnimator.ofInt(0, this.maxRadius);
+                    this.animator = ofInt2;
+                    int i = this.maxRadius;
+                    if (z) {
+                        this.unselectedRadius = i;
+                        ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$1(valueAnimator4);
+                            }
+                        });
+                        this.animator.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                VoIpButtonView.this.unselectedRadius = 0;
+                                VoIpButtonView.this.invalidate();
+                            }
+                        });
+                        this.animator.setDuration(200L);
+                        this.animator.start();
+                        this.selectedIcon.setCurrentFrame(0, false);
+                        rLottieDrawable = this.selectedIcon;
+                        rLottieDrawable.start();
+                    } else {
+                        this.selectedRadius = i;
+                        ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$2(valueAnimator4);
+                            }
+                        });
+                        this.animator.setDuration(200L);
+                        this.animator.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                VoIpButtonView.this.selectedRadius = 0;
+                                VoIpButtonView.this.invalidate();
+                            }
+                        });
+                        this.animator.start();
+                    }
+                }
+            } else if (z) {
+                this.selectedRadius = this.maxRadius;
+                this.unselectedRadius = 0;
+                this.singleIconBackgroundAlphaPercent = 100;
+                if (type == Type.VIDEO || type == Type.MICRO) {
+                    this.selectedIcon.setCurrentFrame(r7.getFramesCount() - 1, false);
+                }
+            } else {
+                this.selectedRadius = 0;
+                this.unselectedRadius = this.maxRadius;
+                this.singleIconBackgroundAlphaPercent = 20;
+            }
+            this.isSelectedState = z;
+            invalidate();
+        }
+    }
+
+    public VoIpSwitchLayout(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(context);
+        this.backgroundProvider = voIPBackgroundProvider;
+        setWillNotDraw(true);
+        VoIpButtonView voIpButtonView = new VoIpButtonView(context, voIPBackgroundProvider);
+        this.voIpButtonView = voIpButtonView;
+        addView(voIpButtonView, LayoutHelper.createFrame(53.5f, 53.5f, 1));
+        TextView textView = new TextView(context);
+        this.currentTextView = textView;
+        textView.setGravity(1);
+        textView.setTextSize(1, 11.0f);
+        textView.setTextColor(-1);
+        textView.setImportantForAccessibility(2);
+        addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
+        TextView textView2 = new TextView(context);
+        this.newTextView = textView2;
+        textView2.setGravity(1);
+        textView2.setTextSize(1, 11.0f);
+        textView2.setTextColor(-1);
+        textView2.setImportantForAccessibility(2);
+        addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 58.0f, 0.0f, 2.0f));
+        textView.setVisibility(8);
+        textView2.setVisibility(8);
+    }
+
+    public void lambda$setType$2(int i) {
+        VoIpButtonView voIpButtonView = this.voIpButtonView;
+        int i2 = R.raw.bt_to_speaker;
+        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
+        this.voIpButtonView.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
+        this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+    }
+
+    private void attachNewButton(int i, int i2, boolean z, Type type) {
+        VoIpButtonView voIpButtonView = new VoIpButtonView(getContext(), this.backgroundProvider);
+        if (i == R.raw.camera_flip2) {
+            voIpButtonView.singleIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
+            voIpButtonView.singleIcon.setMasterParent(voIpButtonView);
+        } else {
+            voIpButtonView.unSelectedIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
+            voIpButtonView.selectedIcon = new RLottieDrawable(i, "" + i, i2, i2, true, null);
+            voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        }
+        voIpButtonView.setSelectedState(z, false, type);
+        voIpButtonView.setAlpha(0.0f);
+        voIpButtonView.setOnBtnClickedListener(this.voIpButtonView.onBtnClickedListener);
+        addView(voIpButtonView, LayoutHelper.createFrame(53.5f, 53.5f, 1));
+        final VoIpButtonView voIpButtonView2 = this.voIpButtonView;
+        this.voIpButtonView = voIpButtonView;
+        voIpButtonView.animate().alpha(1.0f).setDuration(250L).start();
+        voIpButtonView2.animate().alpha(0.0f).setDuration(250L).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                VoIpSwitchLayout.this.removeView(voIpButtonView2);
+            }
+        }).start();
+    }
+
+    public void lambda$setType$0(int i) {
+        VoIpButtonView voIpButtonView = this.voIpButtonView;
+        int i2 = R.raw.speaker_to_bt;
+        voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
+        this.voIpButtonView.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
+        this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+    }
+
+    public void lambda$setType$1(final int i) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VoIpSwitchLayout.this.lambda$setType$0(i);
+            }
+        });
+    }
+
+    public void lambda$setType$3(final int i) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VoIpSwitchLayout.this.lambda$setType$2(i);
+            }
+        });
+    }
+
+    private void setText(Type type, boolean z) {
+        int i;
+        final String string;
+        int i2 = AnonymousClass4.$SwitchMap$org$telegram$ui$Components$voip$VoIpSwitchLayout$Type[type.ordinal()];
+        if (i2 == 1) {
+            i = z ? R.string.VoipUnmute : R.string.VoipMute;
+        } else if (i2 == 2) {
+            i = R.string.VoipFlip;
+        } else if (i2 == 3) {
+            i = z ? R.string.VoipStartVideo : R.string.VoipStopVideo;
+        } else if (i2 == 4) {
+            i = R.string.VoipAudioRoutingBluetooth;
+        } else {
+            if (i2 != 5) {
+                string = "";
+                setContentDescription(string);
+                if (this.currentTextView.getVisibility() != 8 && this.newTextView.getVisibility() == 8) {
+                    this.currentTextView.setVisibility(0);
+                    this.currentTextView.setText(string);
+                    this.newTextView.setText(string);
+                    return;
+                } else {
+                    if (this.newTextView.getText().equals(string) || !this.currentTextView.getText().equals(string)) {
+                        this.currentTextView.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(4.0f)).setDuration(140L).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                VoIpSwitchLayout.this.currentTextView.setText(string);
+                                VoIpSwitchLayout.this.currentTextView.setTranslationY(0.0f);
+                                VoIpSwitchLayout.this.currentTextView.setAlpha(1.0f);
+                            }
+                        }).start();
+                        this.newTextView.setText(string);
+                        this.newTextView.setVisibility(0);
+                        this.newTextView.setAlpha(0.0f);
+                        this.newTextView.setTranslationY(AndroidUtilities.dp(5.0f));
+                        this.newTextView.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                VoIpSwitchLayout.this.newTextView.setVisibility(8);
+                            }
+                        }).start();
+                    }
+                    return;
+                }
+            }
+            i = R.string.VoipSpeaker;
+        }
+        string = LocaleController.getString(i);
+        setContentDescription(string);
+        if (this.currentTextView.getVisibility() != 8) {
+        }
+        if (this.newTextView.getText().equals(string)) {
+        }
+        this.currentTextView.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(4.0f)).setDuration(140L).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                VoIpSwitchLayout.this.currentTextView.setText(string);
+                VoIpSwitchLayout.this.currentTextView.setTranslationY(0.0f);
+                VoIpSwitchLayout.this.currentTextView.setAlpha(1.0f);
+            }
+        }).start();
+        this.newTextView.setText(string);
+        this.newTextView.setVisibility(0);
+        this.newTextView.setAlpha(0.0f);
+        this.newTextView.setTranslationY(AndroidUtilities.dp(5.0f));
+        this.newTextView.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                VoIpSwitchLayout.this.newTextView.setVisibility(8);
+            }
+        }).start();
+    }
+
+    public void setOnBtnClickedListener(VoIpButtonView.OnBtnClickedListener onBtnClickedListener) {
+        this.voIpButtonView.setOnBtnClickedListener(onBtnClickedListener);
+    }
+
+    public void setType(Type type, boolean z) {
+        setType(type, z, false);
+    }
+
+    public void setType(org.telegram.ui.Components.voip.VoIpSwitchLayout.Type r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.VoIpSwitchLayout.setType(org.telegram.ui.Components.voip.VoIpSwitchLayout$Type, boolean, boolean):void");
     }
 }

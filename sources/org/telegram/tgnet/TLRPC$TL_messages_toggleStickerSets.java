@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_messages_toggleStickerSets extends TLObject {
     public boolean archive;
     public int flags;
-    public ArrayList<TLRPC$InputStickerSet> stickersets = new ArrayList<>();
+    public ArrayList stickersets = new ArrayList();
     public boolean unarchive;
     public boolean uninstall;
 
@@ -28,7 +28,7 @@ public class TLRPC$TL_messages_toggleStickerSets extends TLObject {
         int size = this.stickersets.size();
         abstractSerializedData.writeInt32(size);
         for (int i4 = 0; i4 < size; i4++) {
-            this.stickersets.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputStickerSet) this.stickersets.get(i4)).serializeToStream(abstractSerializedData);
         }
     }
 }

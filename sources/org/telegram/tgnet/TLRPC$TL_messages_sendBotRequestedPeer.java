@@ -6,7 +6,7 @@ public class TLRPC$TL_messages_sendBotRequestedPeer extends TLObject {
     public int button_id;
     public int msg_id;
     public TLRPC$InputPeer peer;
-    public ArrayList<TLRPC$InputPeer> requested_peers = new ArrayList<>();
+    public ArrayList requested_peers = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -23,7 +23,7 @@ public class TLRPC$TL_messages_sendBotRequestedPeer extends TLObject {
         int size = this.requested_peers.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.requested_peers.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputPeer) this.requested_peers.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -23,51 +23,6 @@ public class StatusBadgeComponent {
         this.statusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(i));
     }
 
-    public Drawable updateDrawable(TLObject tLObject, int i, boolean z) {
-        if (tLObject instanceof TLRPC$User) {
-            return updateDrawable((TLRPC$User) tLObject, null, i, z);
-        }
-        if (tLObject instanceof TLRPC$Chat) {
-            return updateDrawable(null, (TLRPC$Chat) tLObject, i, z);
-        }
-        return updateDrawable(null, null, i, z);
-    }
-
-    public Drawable updateDrawable(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, int i, boolean z) {
-        if (tLRPC$Chat != null && tLRPC$Chat.verified) {
-            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.statusDrawable;
-            Drawable drawable = this.verifiedDrawable;
-            if (drawable == null) {
-                drawable = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
-            }
-            this.verifiedDrawable = drawable;
-            swapAnimatedEmojiDrawable.set(drawable, z);
-            this.statusDrawable.setColor(null);
-        } else if (tLRPC$Chat != null && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status) != 0) {
-            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status), z);
-            this.statusDrawable.setColor(Integer.valueOf(i));
-        } else if (tLRPC$User != null && tLRPC$User.verified) {
-            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.statusDrawable;
-            Drawable drawable2 = this.verifiedDrawable;
-            if (drawable2 == null) {
-                drawable2 = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
-            }
-            this.verifiedDrawable = drawable2;
-            swapAnimatedEmojiDrawable2.set(drawable2, z);
-            this.statusDrawable.setColor(null);
-        } else if (tLRPC$User != null && DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status) != 0) {
-            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status), z);
-            this.statusDrawable.setColor(Integer.valueOf(i));
-        } else if (tLRPC$User != null && tLRPC$User.premium) {
-            this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z);
-            this.statusDrawable.setColor(Integer.valueOf(i));
-        } else {
-            this.statusDrawable.set((Drawable) null, z);
-            this.statusDrawable.setColor(null);
-        }
-        return this.statusDrawable;
-    }
-
     public Drawable getDrawable() {
         return this.statusDrawable;
     }
@@ -78,5 +33,45 @@ public class StatusBadgeComponent {
 
     public void onDetachedFromWindow() {
         this.statusDrawable.detach();
+    }
+
+    public Drawable updateDrawable(TLObject tLObject, int i, boolean z) {
+        return tLObject instanceof TLRPC$User ? updateDrawable((TLRPC$User) tLObject, null, i, z) : tLObject instanceof TLRPC$Chat ? updateDrawable(null, (TLRPC$Chat) tLObject, i, z) : updateDrawable(null, null, i, z);
+    }
+
+    public Drawable updateDrawable(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, int i, boolean z) {
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable;
+        Drawable drawable;
+        if (tLRPC$Chat == null || !tLRPC$Chat.verified) {
+            if (tLRPC$Chat != null && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status) != 0) {
+                this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$Chat.emoji_status), z);
+            } else if (tLRPC$User != null && tLRPC$User.verified) {
+                swapAnimatedEmojiDrawable = this.statusDrawable;
+                drawable = this.verifiedDrawable;
+                if (drawable == null) {
+                    drawable = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
+                }
+            } else if (tLRPC$User != null && DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status) != 0) {
+                this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(tLRPC$User.emoji_status), z);
+            } else {
+                if (tLRPC$User == null || !tLRPC$User.premium) {
+                    this.statusDrawable.set((Drawable) null, z);
+                    this.statusDrawable.setColor(null);
+                    return this.statusDrawable;
+                }
+                this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z);
+            }
+            this.statusDrawable.setColor(Integer.valueOf(i));
+            return this.statusDrawable;
+        }
+        swapAnimatedEmojiDrawable = this.statusDrawable;
+        drawable = this.verifiedDrawable;
+        if (drawable == null) {
+            drawable = new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
+        }
+        this.verifiedDrawable = drawable;
+        swapAnimatedEmojiDrawable.set(drawable, z);
+        this.statusDrawable.setColor(null);
+        return this.statusDrawable;
     }
 }

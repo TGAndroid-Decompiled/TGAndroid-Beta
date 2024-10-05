@@ -21,15 +21,32 @@ public class WallpaperParallaxEffect implements SensorEventListener {
         void onOffsetsChanged(int i, int i2, float f);
     }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-    }
-
     public WallpaperParallaxEffect(Context context) {
         this.wm = (WindowManager) context.getSystemService("window");
         SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
         this.sensorManager = sensorManager;
         this.accelerometer = sensorManager.getDefaultSensor(1);
+    }
+
+    public float getScale(int i, int i2) {
+        float f = i;
+        float dp = AndroidUtilities.dp(16.0f) * 2;
+        float f2 = (f + dp) / f;
+        float f3 = i2;
+        return Math.max(f2, (dp + f3) / f3);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+    }
+
+    @Override
+    public void onSensorChanged(android.hardware.SensorEvent r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.WallpaperParallaxEffect.onSensorChanged(android.hardware.SensorEvent):void");
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 
     public void setEnabled(boolean z) {
@@ -45,22 +62,5 @@ public class WallpaperParallaxEffect implements SensorEventListener {
                 this.sensorManager.unregisterListener(this);
             }
         }
-    }
-
-    public void setCallback(Callback callback) {
-        this.callback = callback;
-    }
-
-    public float getScale(int i, int i2) {
-        float f = i;
-        float dp = AndroidUtilities.dp(16.0f) * 2;
-        float f2 = (f + dp) / f;
-        float f3 = i2;
-        return Math.max(f2, (dp + f3) / f3);
-    }
-
-    @Override
-    public void onSensorChanged(android.hardware.SensorEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.WallpaperParallaxEffect.onSensorChanged(android.hardware.SensorEvent):void");
     }
 }

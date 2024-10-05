@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class ArticleViewer$WindowView$$ExternalSyntheticApiModelOutline0 {
+public abstract class ArticleViewer$WindowView$$ExternalSyntheticApiModelOutline0 {
 }

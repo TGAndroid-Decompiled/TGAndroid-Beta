@@ -979,7 +979,6 @@
     <string name="PermissionNoLocation">Telegram deve accedere alla tua posizione perché tu possa condividerla con i tuoi amici.</string>
     <string name="PermissionNoLocationFriends">**Telegram** deve accedere alla posizione perché tu possa condividerla con i tuoi amici. Tocca Impostazioni &gt; Permessi, e attiva **Posizione**.</string>
     <string name="PermissionNoLocationNavigation">**Telegram** deve accedere alla posizione per poter ottenere le indicazioni. Tocca Impostazioni &gt; Permessi, e attiva **Posizione**.</string>
-    <string name="PermissionNoLocationPeopleNearby">**Telegram** deve accedere alla posizione per poter trovare persone vicine. Tocca Impostazioni &gt; Permessi, e attiva **Posizione**.</string>
     <string name="PermissionNoLocationStory">Telegram deve accedere alla tua posizione perché tu possa aggiungere il widget meteo alle tue storie.</string>
     <string name="PermissionNoStorageAvatar">**Telegram** deve accedere all\'archivio per poter caricare foto del profilo. Tocca Impostazioni &gt; Permessi, e attiva **File e media**.</string>
     <string name="PermissionOpenSettings">Impostazioni</string>

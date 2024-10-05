@@ -1,6 +1,5 @@
 package org.telegram.messenger.video;
 
-import android.annotation.TargetApi;
 import android.opengl.EGL14;
 import android.opengl.EGLConfig;
 import android.opengl.EGLContext;
@@ -9,7 +8,6 @@ import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
 import android.view.Surface;
 
-@TargetApi(17)
 public class InputSurface {
     private static final int EGL_OPENGL_ES2_BIT = 4;
     private static final int EGL_RECORDABLE_ANDROID = 12610;
@@ -22,6 +20,16 @@ public class InputSurface {
         surface.getClass();
         this.mSurface = surface;
         eglSetup();
+    }
+
+    private void checkEglError(String str) {
+        boolean z = false;
+        while (EGL14.eglGetError() != 12288) {
+            z = true;
+        }
+        if (z) {
+            throw new RuntimeException("EGL error encountered (see log)");
+        }
     }
 
     private void eglSetup() {
@@ -51,6 +59,18 @@ public class InputSurface {
         }
     }
 
+    public Surface getSurface() {
+        return this.mSurface;
+    }
+
+    public void makeCurrent() {
+        EGLDisplay eGLDisplay = this.mEGLDisplay;
+        EGLSurface eGLSurface = this.mEGLSurface;
+        if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
+            throw new RuntimeException("eglMakeCurrent failed");
+        }
+    }
+
     public void release() {
         if (EGL14.eglGetCurrentContext().equals(this.mEGLContext)) {
             EGLDisplay eGLDisplay = this.mEGLDisplay;
@@ -66,34 +86,11 @@ public class InputSurface {
         this.mSurface = null;
     }
 
-    public void makeCurrent() {
-        EGLDisplay eGLDisplay = this.mEGLDisplay;
-        EGLSurface eGLSurface = this.mEGLSurface;
-        if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
-            throw new RuntimeException("eglMakeCurrent failed");
-        }
-    }
-
-    public boolean swapBuffers() {
-        return EGL14.eglSwapBuffers(this.mEGLDisplay, this.mEGLSurface);
-    }
-
-    public Surface getSurface() {
-        return this.mSurface;
-    }
-
-    @TargetApi(18)
     public void setPresentationTime(long j) {
         EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j);
     }
 
-    private void checkEglError(String str) {
-        boolean z = false;
-        while (EGL14.eglGetError() != 12288) {
-            z = true;
-        }
-        if (z) {
-            throw new RuntimeException("EGL error encountered (see log)");
-        }
+    public boolean swapBuffers() {
+        return EGL14.eglSwapBuffers(this.mEGLDisplay, this.mEGLSurface);
     }
 }

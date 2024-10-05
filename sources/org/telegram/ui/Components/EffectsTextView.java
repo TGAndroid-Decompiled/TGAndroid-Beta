@@ -22,7 +22,7 @@ public class EffectsTextView extends SpoilersTextView {
     private LinkSpanDrawable.LinkCollector links;
     private LinkSpanDrawable.LinksTextView.OnLinkPress onLongPressListener;
     private LinkSpanDrawable.LinksTextView.OnLinkPress onPressListener;
-    private LinkSpanDrawable<ClickableSpan> pressedLink;
+    private LinkSpanDrawable pressedLink;
     private Theme.ResourcesProvider resourcesProvider;
 
     public EffectsTextView(Context context) {
@@ -36,29 +36,14 @@ public class EffectsTextView extends SpoilersTextView {
         this.resourcesProvider = resourcesProvider;
     }
 
-    @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), bufferType);
-    }
-
-    public void setDisablePaddingsOffset(boolean z) {
-        this.disablePaddingsOffset = z;
-    }
-
-    public void setDisablePaddingsOffsetX(boolean z) {
-        this.disablePaddingsOffsetX = z;
-    }
-
-    public void setDisablePaddingsOffsetY(boolean z) {
-        this.disablePaddingsOffsetY = z;
-    }
-
-    public void setOnLinkPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
-        this.onPressListener = onLinkPress;
-    }
-
-    public void setOnLinkLongPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
-        this.onLongPressListener = onLinkPress;
+    public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
+        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+            return;
+        }
+        onLinkPress.run(clickableSpan);
+        this.pressedLink = null;
+        this.links.clear();
     }
 
     public ClickableSpan hit(int i, int i2) {
@@ -82,12 +67,27 @@ public class EffectsTextView extends SpoilersTextView {
     }
 
     @Override
+    protected void onDraw(Canvas canvas) {
+        if (!this.isCustomLinkCollector) {
+            canvas.save();
+            if (!this.disablePaddingsOffset) {
+                canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
+            }
+            if (this.links.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (this.links != null) {
             Layout layout = getLayout();
             final ClickableSpan hit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
             if (hit != null && motionEvent.getAction() == 0) {
-                final LinkSpanDrawable<ClickableSpan> linkSpanDrawable = new LinkSpanDrawable<>(hit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
+                final LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(hit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
                 this.pressedLink = linkSpanDrawable;
                 this.links.addLink(linkSpanDrawable);
                 SpannableString spannableString = new SpannableString(layout.getText());
@@ -106,13 +106,13 @@ public class EffectsTextView extends SpoilersTextView {
             }
             if (motionEvent.getAction() == 1) {
                 this.links.clear();
-                LinkSpanDrawable<ClickableSpan> linkSpanDrawable2 = this.pressedLink;
+                LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
                 if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == hit) {
                     LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onPressListener;
                     if (onLinkPress != null) {
-                        onLinkPress.run(this.pressedLink.getSpan());
+                        onLinkPress.run((ClickableSpan) this.pressedLink.getSpan());
                     } else if (this.pressedLink.getSpan() != null) {
-                        this.pressedLink.getSpan().onClick(this);
+                        ((ClickableSpan) this.pressedLink.getSpan()).onClick(this);
                     }
                     this.pressedLink = null;
                     return true;
@@ -127,28 +127,28 @@ public class EffectsTextView extends SpoilersTextView {
         return this.pressedLink != null || super.onTouchEvent(motionEvent);
     }
 
-    public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
-        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
-        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
-            return;
-        }
-        onLinkPress.run(clickableSpan);
-        this.pressedLink = null;
-        this.links.clear();
+    public void setDisablePaddingsOffset(boolean z) {
+        this.disablePaddingsOffset = z;
+    }
+
+    public void setDisablePaddingsOffsetX(boolean z) {
+        this.disablePaddingsOffsetX = z;
+    }
+
+    public void setDisablePaddingsOffsetY(boolean z) {
+        this.disablePaddingsOffsetY = z;
+    }
+
+    public void setOnLinkLongPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
+        this.onLongPressListener = onLinkPress;
+    }
+
+    public void setOnLinkPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
+        this.onPressListener = onLinkPress;
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (!this.isCustomLinkCollector) {
-            canvas.save();
-            if (!this.disablePaddingsOffset) {
-                canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
-            }
-            if (this.links.draw(canvas)) {
-                invalidate();
-            }
-            canvas.restore();
-        }
-        super.onDraw(canvas);
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), bufferType);
     }
 }

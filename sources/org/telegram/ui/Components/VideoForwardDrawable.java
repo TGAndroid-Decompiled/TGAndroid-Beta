@@ -34,20 +34,6 @@ public class VideoForwardDrawable extends Drawable {
         void onAnimationEnd();
     }
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    public void setTime(long j) {
-        this.time = j;
-        if (j >= 1000) {
-            this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j / 1000), new Object[0]);
-        } else {
-            this.timeStr = null;
-        }
-    }
-
     public VideoForwardDrawable(boolean z) {
         this.isRound = z;
         this.paint.setColor(-1);
@@ -61,39 +47,79 @@ public class VideoForwardDrawable extends Drawable {
                 this.path1.close();
                 return;
             }
+            Path path = this.path1;
+            int i2 = i * 2;
             if (i == 0) {
-                int i2 = i * 2;
-                this.path1.moveTo(AndroidUtilities.dp(r0[i2]), AndroidUtilities.dp(r0[i2 + 1]));
+                path.moveTo(AndroidUtilities.dp(r0[i2]), AndroidUtilities.dp(r0[i2 + 1]));
             } else {
-                int i3 = i * 2;
-                this.path1.lineTo(AndroidUtilities.dp(r0[i3]), AndroidUtilities.dp(r0[i3 + 1]));
+                path.lineTo(AndroidUtilities.dp(r0[i2]), AndroidUtilities.dp(r0[i2 + 1]));
             }
             i++;
         }
     }
 
-    public void setPlayScaleFactor(float f) {
-        this.playScaleFactor = f;
-        invalidate();
+    private void invalidate() {
+        VideoForwardDrawableDelegate videoForwardDrawableDelegate = this.delegate;
+        if (videoForwardDrawableDelegate != null) {
+            videoForwardDrawableDelegate.invalidate();
+        } else {
+            invalidateSelf();
+        }
+    }
+
+    public void addTime(long j) {
+        long j2 = this.time + j;
+        this.time = j2;
+        this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j2 / 1000), new Object[0]);
+    }
+
+    @Override
+    public void draw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoForwardDrawable.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public int getMinimumHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public int getMinimumWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
     }
 
     public boolean isAnimating() {
         return this.animating;
     }
 
-    public void startAnimation() {
-        this.animating = true;
-        this.animationProgress = 0.0f;
-        invalidateSelf();
+    @Override
+    public void setAlpha(int i) {
+        this.paint.setAlpha(i);
+        this.textPaint.setAlpha(i);
     }
 
-    public void setOneShootAnimation(boolean z) {
-        if (this.isOneShootAnimation != z) {
-            this.isOneShootAnimation = z;
-            this.timeStr = null;
-            this.time = 0L;
-            this.animationProgress = 0.0f;
-        }
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.paint.setColorFilter(colorFilter);
+    }
+
+    public void setDelegate(VideoForwardDrawableDelegate videoForwardDrawableDelegate) {
+        this.delegate = videoForwardDrawableDelegate;
     }
 
     public void setLeftSide(boolean z) {
@@ -109,24 +135,18 @@ public class VideoForwardDrawable extends Drawable {
         startAnimation();
     }
 
-    public void setDelegate(VideoForwardDrawableDelegate videoForwardDrawableDelegate) {
-        this.delegate = videoForwardDrawableDelegate;
+    public void setOneShootAnimation(boolean z) {
+        if (this.isOneShootAnimation != z) {
+            this.isOneShootAnimation = z;
+            this.timeStr = null;
+            this.time = 0L;
+            this.animationProgress = 0.0f;
+        }
     }
 
-    @Override
-    public void setAlpha(int i) {
-        this.paint.setAlpha(i);
-        this.textPaint.setAlpha(i);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.paint.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public void draw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoForwardDrawable.draw(android.graphics.Canvas):void");
+    public void setPlayScaleFactor(float f) {
+        this.playScaleFactor = f;
+        invalidate();
     }
 
     public void setShowing(boolean z) {
@@ -134,38 +154,14 @@ public class VideoForwardDrawable extends Drawable {
         invalidate();
     }
 
-    private void invalidate() {
-        VideoForwardDrawableDelegate videoForwardDrawableDelegate = this.delegate;
-        if (videoForwardDrawableDelegate != null) {
-            videoForwardDrawableDelegate.invalidate();
-        } else {
-            invalidateSelf();
-        }
+    public void setTime(long j) {
+        this.time = j;
+        this.timeStr = j >= 1000 ? LocaleController.formatPluralString("Seconds", (int) (j / 1000), new Object[0]) : null;
     }
 
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    @Override
-    public int getMinimumWidth() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    @Override
-    public int getMinimumHeight() {
-        return AndroidUtilities.dp(32.0f);
-    }
-
-    public void addTime(long j) {
-        long j2 = this.time + j;
-        this.time = j2;
-        this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j2 / 1000), new Object[0]);
+    public void startAnimation() {
+        this.animating = true;
+        this.animationProgress = 0.0f;
+        invalidateSelf();
     }
 }

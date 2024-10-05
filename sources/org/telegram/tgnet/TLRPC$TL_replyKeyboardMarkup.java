@@ -45,7 +45,7 @@ public class TLRPC$TL_replyKeyboardMarkup extends TLRPC$ReplyMarkup {
         int size = this.rows.size();
         abstractSerializedData.writeInt32(size);
         for (int i5 = 0; i5 < size; i5++) {
-            this.rows.get(i5).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_keyboardButtonRow) this.rows.get(i5)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 8) != 0) {
             abstractSerializedData.writeString(this.placeholder);

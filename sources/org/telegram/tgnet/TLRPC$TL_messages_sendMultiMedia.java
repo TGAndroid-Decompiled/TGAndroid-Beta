@@ -8,7 +8,7 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
     public long effect;
     public int flags;
     public boolean invert_media;
-    public ArrayList<TLRPC$TL_inputSingleMedia> multi_media = new ArrayList<>();
+    public ArrayList multi_media = new ArrayList();
     public boolean noforwards;
     public TLRPC$InputPeer peer;
     public TLRPC$InputQuickReplyShortcut quick_reply_shortcut;
@@ -47,7 +47,7 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         int size = this.multi_media.size();
         abstractSerializedData.writeInt32(size);
         for (int i7 = 0; i7 < size; i7++) {
-            this.multi_media.get(i7).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_inputSingleMedia) this.multi_media.get(i7)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1024) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);

@@ -6,7 +6,7 @@ public class TLRPC$TL_updateUserName extends TLRPC$Update {
     public String first_name;
     public String last_name;
     public long user_id;
-    public ArrayList<TLRPC$TL_username> usernames = new ArrayList<>();
+    public ArrayList usernames = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -40,7 +40,7 @@ public class TLRPC$TL_updateUserName extends TLRPC$Update {
         int size = this.usernames.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.usernames.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_username) this.usernames.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

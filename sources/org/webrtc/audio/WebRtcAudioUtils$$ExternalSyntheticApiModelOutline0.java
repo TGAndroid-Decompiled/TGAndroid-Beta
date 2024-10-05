@@ -1,4 +1,4 @@
 package org.webrtc.audio;
 
-public final class WebRtcAudioUtils$$ExternalSyntheticApiModelOutline0 {
+public abstract class WebRtcAudioUtils$$ExternalSyntheticApiModelOutline0 {
 }

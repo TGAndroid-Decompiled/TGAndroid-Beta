@@ -9,13 +9,7 @@ import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanReplacement;
 
-public class CustomHtml {
-    public static String toHtml(Spanned spanned) {
-        StringBuilder sb = new StringBuilder();
-        toHTML_0_wrapQuote(sb, spanned, 0, spanned.length());
-        return sb.toString();
-    }
-
+public abstract class CustomHtml {
     private static void toHTML_0_wrapQuote(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
             int nextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
@@ -39,6 +33,7 @@ public class CustomHtml {
     }
 
     private static void toHTML_1_wrapTextStyle(StringBuilder sb, Spanned spanned, int i, int i2) {
+        String str;
         while (i < i2) {
             int nextSpanTransition = spanned.nextSpanTransition(i, i2, TextStyleSpan.class);
             if (nextSpanTransition < 0) {
@@ -67,10 +62,12 @@ public class CustomHtml {
                         if ((styleFlags & 128) > 0 && textStyleSpan.getTextStyleRun() != null && textStyleSpan.getTextStyleRun().urlEntity != null) {
                             sb.append("<a href=\"");
                             sb.append(textStyleSpan.getTextStyleRun().urlEntity.url);
-                            sb.append("\">");
+                            str = "\">";
+                            sb.append(str);
                         }
                     } else if (textStyleSpan instanceof URLSpanMono) {
-                        sb.append("<pre>");
+                        str = "<pre>";
+                        sb.append(str);
                     }
                 }
             }
@@ -155,6 +152,7 @@ public class CustomHtml {
     }
 
     private static void toHTML_4_wrapMonoscape2(StringBuilder sb, Spanned spanned, int i, int i2) {
+        String str;
         while (i < i2) {
             int nextSpanTransition = spanned.nextSpanTransition(i, i2, CodeHighlighting.Span.class);
             if (nextSpanTransition < 0) {
@@ -165,12 +163,13 @@ public class CustomHtml {
                 for (CodeHighlighting.Span span : spanArr) {
                     if (span != null) {
                         if (TextUtils.isEmpty(span.lng)) {
-                            sb.append("<pre>");
+                            str = "<pre>";
                         } else {
                             sb.append("<pre lang=\"");
                             sb.append(span.lng);
-                            sb.append("\">");
+                            str = "\">";
                         }
+                        sb.append(str);
                     }
                 }
             }
@@ -215,41 +214,52 @@ public class CustomHtml {
     private static void toHTML_7_withinStyle(StringBuilder sb, CharSequence charSequence, int i, int i2) {
         int i3;
         char charAt;
+        String str;
         while (i < i2) {
             char charAt2 = charSequence.charAt(i);
             if (charAt2 == '\n') {
-                sb.append("<br>");
+                str = "<br>";
             } else if (charAt2 == '<') {
-                sb.append("&lt;");
+                str = "&lt;";
             } else if (charAt2 == '>') {
-                sb.append("&gt;");
+                str = "&gt;";
             } else if (charAt2 == '&') {
-                sb.append("&amp;");
-            } else if (charAt2 < 55296 || charAt2 > 57343) {
-                if (charAt2 > '~' || charAt2 < ' ') {
-                    sb.append("&#");
-                    sb.append((int) charAt2);
-                    sb.append(";");
-                } else if (charAt2 == ' ') {
-                    while (true) {
-                        int i4 = i + 1;
-                        if (i4 >= i2 || charSequence.charAt(i4) != ' ') {
-                            break;
+                str = "&amp;";
+            } else {
+                if (charAt2 < 55296 || charAt2 > 57343) {
+                    if (charAt2 > '~' || charAt2 < ' ') {
+                        sb.append("&#");
+                        sb.append((int) charAt2);
+                        sb.append(";");
+                    } else if (charAt2 == ' ') {
+                        while (true) {
+                            int i4 = i + 1;
+                            if (i4 >= i2 || charSequence.charAt(i4) != ' ') {
+                                break;
+                            }
+                            sb.append("&nbsp;");
+                            i = i4;
                         }
-                        sb.append("&nbsp;");
-                        i = i4;
+                        sb.append(' ');
+                    } else {
+                        sb.append(charAt2);
                     }
-                    sb.append(' ');
-                } else {
-                    sb.append(charAt2);
+                } else if (charAt2 < 56320 && (i3 = i + 1) < i2 && (charAt = charSequence.charAt(i3)) >= 56320 && charAt <= 57343) {
+                    sb.append("&#");
+                    sb.append(((charAt2 - 55296) << 10) | 65536 | (charAt - 56320));
+                    sb.append(";");
+                    i = i3;
                 }
-            } else if (charAt2 < 56320 && (i3 = i + 1) < i2 && (charAt = charSequence.charAt(i3)) >= 56320 && charAt <= 57343) {
-                sb.append("&#");
-                sb.append(((charAt2 - 55296) << 10) | 65536 | (charAt - 56320));
-                sb.append(";");
-                i = i3;
+                i++;
             }
+            sb.append(str);
             i++;
         }
+    }
+
+    public static String toHtml(Spanned spanned) {
+        StringBuilder sb = new StringBuilder();
+        toHTML_0_wrapQuote(sb, spanned, 0, spanned.length());
+        return sb.toString();
     }
 }

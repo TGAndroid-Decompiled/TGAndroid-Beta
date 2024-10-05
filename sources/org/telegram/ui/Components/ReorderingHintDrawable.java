@@ -19,13 +19,38 @@ public class ReorderingHintDrawable extends Drawable {
     private final int intrinsicHeight = AndroidUtilities.dp(24.0f);
     private long startedTime = -1;
 
-    @Override
-    public int getOpacity() {
-        return -3;
-    }
+    public static class RectDrawable extends Drawable {
+        private final RectF tempRect = new RectF();
+        private final Paint paint = new Paint(1);
 
-    @Override
-    public void setAlpha(int i) {
+        protected RectDrawable() {
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            this.tempRect.set(getBounds());
+            float height = this.tempRect.height() * 0.2f;
+            canvas.drawRoundRect(this.tempRect, height, height, this.paint);
+        }
+
+        @Override
+        public int getOpacity() {
+            return -3;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.paint.setAlpha(i);
+        }
+
+        public void setColor(int i) {
+            this.paint.setColor(i);
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+            this.paint.setColorFilter(colorFilter);
+        }
     }
 
     public ReorderingHintDrawable() {
@@ -35,57 +60,6 @@ public class ReorderingHintDrawable extends Drawable {
         RectDrawable rectDrawable2 = new RectDrawable();
         this.secondaryRectDrawable = rectDrawable2;
         rectDrawable2.setColor(-2130706433);
-    }
-
-    public void startAnimation() {
-        this.startedTime = System.currentTimeMillis();
-        invalidateSelf();
-    }
-
-    public void resetAnimation() {
-        this.startedTime = -1L;
-        invalidateSelf();
-    }
-
-    @Override
-    protected void onBoundsChange(android.graphics.Rect rect) {
-        this.scaleX = rect.width() / this.intrinsicWidth;
-        this.scaleY = rect.height() / this.intrinsicHeight;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        if (this.startedTime > 0) {
-            int currentTimeMillis = (int) (System.currentTimeMillis() - this.startedTime);
-            int i = currentTimeMillis - 300;
-            if (i < 0) {
-                drawStage1(canvas, 0.0f);
-            } else if (i < 150) {
-                drawStage1(canvas, i / 150.0f);
-            } else {
-                int i2 = currentTimeMillis - 750;
-                if (i2 < 0) {
-                    drawStage1(canvas, 1.0f);
-                } else if (i2 < 200) {
-                    drawStage2(canvas, i2 / 200.0f);
-                } else {
-                    int i3 = currentTimeMillis - 1250;
-                    if (i3 < 0) {
-                        drawStage2(canvas, 1.0f);
-                    } else if (i3 < 150) {
-                        drawStage3(canvas, i3 / 150.0f);
-                    } else {
-                        drawStage3(canvas, 1.0f);
-                        if (currentTimeMillis - 1400 >= 100) {
-                            this.startedTime = System.currentTimeMillis();
-                        }
-                    }
-                }
-            }
-            invalidateSelf();
-            return;
-        }
-        drawStage1(canvas, 0.0f);
     }
 
     private void drawStage1(Canvas canvas, float f) {
@@ -157,10 +131,47 @@ public class ReorderingHintDrawable extends Drawable {
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.primaryRectDrawable.setColorFilter(colorFilter);
-        this.secondaryRectDrawable.setColorFilter(colorFilter);
+    public void draw(Canvas canvas) {
+        float f = 0.0f;
+        if (this.startedTime <= 0) {
+            drawStage1(canvas, 0.0f);
+            return;
+        }
+        int currentTimeMillis = (int) (System.currentTimeMillis() - this.startedTime);
+        int i = currentTimeMillis - 300;
+        if (i >= 0) {
+            if (i < 150) {
+                drawStage1(canvas, i / 150.0f);
+            } else {
+                int i2 = currentTimeMillis - 750;
+                f = 1.0f;
+                if (i2 >= 0) {
+                    if (i2 < 200) {
+                        drawStage2(canvas, i2 / 200.0f);
+                    } else {
+                        int i3 = currentTimeMillis - 1250;
+                        if (i3 < 0) {
+                            drawStage2(canvas, 1.0f);
+                        } else if (i3 < 150) {
+                            drawStage3(canvas, i3 / 150.0f);
+                        } else {
+                            drawStage3(canvas, 1.0f);
+                            if (currentTimeMillis - 1400 >= 100) {
+                                this.startedTime = System.currentTimeMillis();
+                            }
+                        }
+                    }
+                }
+            }
+            invalidateSelf();
+        }
+        drawStage1(canvas, f);
         invalidateSelf();
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return this.intrinsicHeight;
     }
 
     @Override
@@ -169,41 +180,34 @@ public class ReorderingHintDrawable extends Drawable {
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return this.intrinsicHeight;
+    public int getOpacity() {
+        return -3;
     }
 
-    public static class RectDrawable extends Drawable {
-        private final RectF tempRect = new RectF();
-        private final Paint paint = new Paint(1);
+    @Override
+    protected void onBoundsChange(android.graphics.Rect rect) {
+        this.scaleX = rect.width() / this.intrinsicWidth;
+        this.scaleY = rect.height() / this.intrinsicHeight;
+    }
 
-        @Override
-        public int getOpacity() {
-            return -3;
-        }
+    public void resetAnimation() {
+        this.startedTime = -1L;
+        invalidateSelf();
+    }
 
-        protected RectDrawable() {
-        }
+    @Override
+    public void setAlpha(int i) {
+    }
 
-        @Override
-        public void draw(Canvas canvas) {
-            this.tempRect.set(getBounds());
-            float height = this.tempRect.height() * 0.2f;
-            canvas.drawRoundRect(this.tempRect, height, height, this.paint);
-        }
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.primaryRectDrawable.setColorFilter(colorFilter);
+        this.secondaryRectDrawable.setColorFilter(colorFilter);
+        invalidateSelf();
+    }
 
-        public void setColor(int i) {
-            this.paint.setColor(i);
-        }
-
-        @Override
-        public void setAlpha(int i) {
-            this.paint.setAlpha(i);
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-            this.paint.setColorFilter(colorFilter);
-        }
+    public void startAnimation() {
+        this.startedTime = System.currentTimeMillis();
+        invalidateSelf();
     }
 }

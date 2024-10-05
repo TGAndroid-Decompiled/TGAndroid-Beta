@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 
 public abstract class TLRPC$VideoSize extends TLObject {
-    public ArrayList<Integer> background_colors = new ArrayList<>();
+    public ArrayList background_colors = new ArrayList();
     public int flags;
     public int h;
     public TLRPC$FileLocation location;
@@ -15,6 +15,7 @@ public abstract class TLRPC$VideoSize extends TLObject {
 
     public static TLRPC$VideoSize TLdeserialize(long j, long j2, AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$VideoSize tLRPC$TL_videoSize;
+        int charAt;
         switch (i) {
             case -567037804:
                 tLRPC$TL_videoSize = new TLRPC$TL_videoSize();
@@ -60,18 +61,19 @@ public abstract class TLRPC$VideoSize extends TLObject {
         if (tLRPC$TL_videoSize != null) {
             tLRPC$TL_videoSize.readParams(abstractSerializedData, z);
             if (tLRPC$TL_videoSize.location == null) {
-                if (!TextUtils.isEmpty(tLRPC$TL_videoSize.type) && (j != 0 || j2 != 0)) {
+                if (TextUtils.isEmpty(tLRPC$TL_videoSize.type) || (j == 0 && j2 == 0)) {
+                    tLRPC$TL_videoSize.location = new TLRPC$TL_fileLocationUnavailable();
+                } else {
                     TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
                     tLRPC$TL_videoSize.location = tLRPC$TL_fileLocationToBeDeprecated;
                     if (j != 0) {
                         tLRPC$TL_fileLocationToBeDeprecated.volume_id = -j;
-                        tLRPC$TL_fileLocationToBeDeprecated.local_id = tLRPC$TL_videoSize.type.charAt(0);
+                        charAt = tLRPC$TL_videoSize.type.charAt(0);
                     } else {
                         tLRPC$TL_fileLocationToBeDeprecated.volume_id = -j2;
-                        tLRPC$TL_fileLocationToBeDeprecated.local_id = tLRPC$TL_videoSize.type.charAt(0) + 1000;
+                        charAt = tLRPC$TL_videoSize.type.charAt(0) + 1000;
                     }
-                } else {
-                    tLRPC$TL_videoSize.location = new TLRPC$TL_fileLocationUnavailable();
+                    tLRPC$TL_fileLocationToBeDeprecated.local_id = charAt;
                 }
             }
         }

@@ -30,7 +30,6 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$TL_messages_getWebPagePreview;
 import org.telegram.tgnet.TLRPC$TL_webPagePending;
 import org.telegram.tgnet.TLRPC$WebPage;
@@ -71,426 +70,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     private Pattern urlPattern;
     private TLRPC$WebPage webpage;
     private long webpageId;
-    private Utilities.Callback<LinkPreview.WebPagePreview> whenDone;
-
-    public StoryLinkSheet(final Context context, Theme.ResourcesProvider resourcesProvider, final PreviewView previewView, Utilities.Callback<LinkPreview.WebPagePreview> callback) {
-        super(context, null, true, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
-        this.requestPreview = new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.this.lambda$new$7();
-            }
-        };
-        this.whenDone = callback;
-        fixNavigationBar();
-        setSlidingActionBar();
-        this.headerPaddingTop = AndroidUtilities.dp(4.0f);
-        this.headerPaddingBottom = AndroidUtilities.dp(-15.0f);
-        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkURLPlaceholder), true, -1, resourcesProvider);
-        this.urlEditText = editTextCell;
-        editTextCell.whenHitEnter(new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.this.processDone();
-            }
-        });
-        this.urlEditText.editText.setHandlesColor(-12476440);
-        this.urlEditText.editText.setCursorColor(-11230757);
-        final String str = "https://";
-        this.urlEditText.editText.setText("https://");
-        this.urlEditText.editText.setSelection(8);
-        final TextView textView = new TextView(getContext());
-        textView.setTextSize(1, 12.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(R.string.Paste));
-        textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-        textView.setGravity(17);
-        int themedColor = getThemedColor(Theme.key_windowBackgroundWhiteBlueText2);
-        textView.setTextColor(themedColor);
-        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(themedColor, 0.12f), Theme.multAlpha(themedColor, 0.15f)));
-        ScaleStateListAnimator.apply(textView, 0.1f, 1.5f);
-        this.urlEditText.addView(textView, LayoutHelper.createFrame(-2, 26.0f, 21, 0.0f, 4.0f, 24.0f, 3.0f));
-        final Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.this.lambda$new$0(str, textView);
-            }
-        };
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                StoryLinkSheet.this.lambda$new$1(runnable, view);
-            }
-        });
-        runnable.run();
-        this.urlEditText.editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                int i4;
-                if (StoryLinkSheet.this.ignoreUrlEdit) {
-                    return;
-                }
-                StoryLinkSheet storyLinkSheet = StoryLinkSheet.this;
-                boolean z = false;
-                if (charSequence != null && i == str.length() && charSequence.subSequence(0, i).toString().equals(str) && charSequence.length() >= (i4 = i3 + i) && charSequence.subSequence(i, i4).toString().startsWith(str)) {
-                    z = true;
-                }
-                storyLinkSheet.needRemoveDefPrefix = z;
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                runnable.run();
-                if (StoryLinkSheet.this.ignoreUrlEdit) {
-                    return;
-                }
-                if (!StoryLinkSheet.this.needRemoveDefPrefix || editable == null) {
-                    StoryLinkSheet.this.checkEditURL(editable == null ? null : editable.toString());
-                    return;
-                }
-                String substring = editable.toString().substring(str.length());
-                StoryLinkSheet.this.ignoreUrlEdit = true;
-                StoryLinkSheet.this.urlEditText.editText.setText(substring);
-                StoryLinkSheet.this.urlEditText.editText.setSelection(0, StoryLinkSheet.this.urlEditText.editText.getText().length());
-                StoryLinkSheet.this.ignoreUrlEdit = false;
-                StoryLinkSheet.this.needRemoveDefPrefix = false;
-                StoryLinkSheet.this.checkEditURL(substring);
-            }
-        });
-        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, -1, resourcesProvider);
-        this.nameEditText = editTextCell2;
-        editTextCell2.whenHitEnter(new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.this.processDone();
-            }
-        });
-        this.buttonContainer = new FrameLayout(context);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.StoryLinkAdd), false);
-        this.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                StoryLinkSheet.this.lambda$new$2(view);
-            }
-        });
-        this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
-        this.buttonContainer.addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        this.topPadding = 0.2f;
-        this.takeTranslationIntoAccount = true;
-        this.smoothKeyboardAnimationEnabled = true;
-        this.smoothKeyboardByBottom = true;
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
-            @Override
-            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
-                super.onMoveAnimationUpdate(viewHolder);
-                ((BottomSheet) StoryLinkSheet.this).containerView.invalidate();
-            }
-        };
-        defaultItemAnimator.setSupportsChangeAnimations(false);
-        defaultItemAnimator.setDelayAnimations(false);
-        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        defaultItemAnimator.setDurations(350L);
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
-        RecyclerListView recyclerListView = this.recyclerListView;
-        int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, 0);
-        this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-            @Override
-            public final void onItemClick(View view, int i2) {
-                StoryLinkSheet.this.lambda$new$4(context, previewView, view, i2);
-            }
-        });
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(false);
-        }
-    }
-
-    public void lambda$new$0(String str, TextView textView) {
-        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        boolean z = (TextUtils.isEmpty(this.urlEditText.editText.getText()) || TextUtils.equals(this.urlEditText.editText.getText(), str) || TextUtils.isEmpty(this.urlEditText.editText.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip();
-        textView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.7f).scaleY(z ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
-    }
-
-    public void lambda$new$1(Runnable runnable, View view) {
-        CharSequence charSequence;
-        try {
-            charSequence = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
-        } catch (Exception e) {
-            FileLog.e(e);
-            charSequence = null;
-        }
-        if (charSequence != null) {
-            this.urlEditText.editText.setText(charSequence.toString());
-            EditTextBoldCursor editTextBoldCursor = this.urlEditText.editText;
-            editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
-        }
-        runnable.run();
-    }
-
-    public void lambda$new$2(View view) {
-        processDone();
-    }
-
-    public void lambda$new$4(Context context, PreviewView previewView, View view, int i) {
-        TLRPC$WebPage tLRPC$WebPage;
-        UItem item = this.adapter.getItem(i - 1);
-        if (item == null) {
-            return;
-        }
-        if (item.instanceOf(WebpagePreviewView.Factory.class) && (tLRPC$WebPage = this.webpage) != null && !isPreviewEmpty(tLRPC$WebPage)) {
-            StoryLinkPreviewDialog storyLinkPreviewDialog = new StoryLinkPreviewDialog(context, this.currentAccount);
-            LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
-            webPagePreview.url = this.urlEditText.editText.getText().toString();
-            webPagePreview.name = this.nameOpen ? this.nameEditText.editText.getText().toString() : null;
-            webPagePreview.webpage = this.webpage;
-            webPagePreview.largePhoto = this.photoLarge;
-            webPagePreview.captionAbove = this.captionAbove;
-            storyLinkPreviewDialog.set(webPagePreview, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    StoryLinkSheet.this.lambda$new$3((LinkPreview.WebPagePreview) obj);
-                }
-            });
-            storyLinkPreviewDialog.setStoryPreviewView(previewView);
-            storyLinkPreviewDialog.show();
-            return;
-        }
-        if (item.id == 2 && (view instanceof TextCheckCell)) {
-            boolean z = !this.nameOpen;
-            this.nameOpen = z;
-            ((TextCheckCell) view).setChecked(z);
-            this.adapter.update(true);
-            if (this.nameOpen) {
-                this.nameEditText.requestFocus();
-            } else {
-                this.urlEditText.requestFocus();
-            }
-        }
-    }
-
-    public void lambda$new$3(LinkPreview.WebPagePreview webPagePreview) {
-        if (webPagePreview == null) {
-            closePreview(null);
-        } else {
-            this.photoLarge = webPagePreview.largePhoto;
-            this.captionAbove = webPagePreview.captionAbove;
-        }
-    }
-
-    public void processDone() {
-        if (this.button.isEnabled()) {
-            if (this.whenDone != null) {
-                LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
-                webPagePreview.url = this.urlEditText.editText.getText().toString();
-                webPagePreview.name = this.nameOpen ? this.nameEditText.editText.getText().toString() : null;
-                webPagePreview.webpage = this.webpage;
-                webPagePreview.largePhoto = this.photoLarge;
-                webPagePreview.captionAbove = this.captionAbove;
-                this.whenDone.run(webPagePreview);
-                this.whenDone = null;
-            }
-            dismiss();
-        }
-    }
-
-    public void set(LinkPreview.WebPagePreview webPagePreview) {
-        this.ignoreUrlEdit = true;
-        this.editing = true;
-        if (webPagePreview != null) {
-            this.webpage = webPagePreview.webpage;
-            this.loading = false;
-            this.urlEditText.setText(webPagePreview.url);
-            this.nameEditText.setText(webPagePreview.name);
-            this.nameOpen = true ^ TextUtils.isEmpty(webPagePreview.name);
-            this.captionAbove = webPagePreview.captionAbove;
-            this.photoLarge = webPagePreview.largePhoto;
-        } else {
-            this.urlEditText.setText("");
-            this.nameEditText.setText("");
-            this.captionAbove = true;
-            this.photoLarge = false;
-        }
-        this.button.setText(LocaleController.getString(R.string.StoryLinkEdit), false);
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(false);
-        }
-        this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
-        this.ignoreUrlEdit = false;
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.StoryLinkCreate);
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                StoryLinkSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider) {
-            @Override
-            public int getThemedColor(int i) {
-                if (i == Theme.key_dialogBackgroundGray) {
-                    return -15921907;
-                }
-                return super.getThemedColor(i);
-            }
-        };
-        this.adapter = universalAdapter;
-        return universalAdapter;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i != NotificationCenter.didReceivedWebpagesInUpdates || this.webpageId == 0) {
-            return;
-        }
-        LongSparseArray longSparseArray = (LongSparseArray) objArr[0];
-        for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
-            TLRPC$WebPage tLRPC$WebPage = (TLRPC$WebPage) longSparseArray.valueAt(i3);
-            if (tLRPC$WebPage != null && this.webpageId == tLRPC$WebPage.id) {
-                if (isPreviewEmpty(tLRPC$WebPage)) {
-                    tLRPC$WebPage = null;
-                }
-                this.webpage = tLRPC$WebPage;
-                this.loading = false;
-                this.webpageId = 0L;
-                UniversalAdapter universalAdapter = this.adapter;
-                if (universalAdapter != null) {
-                    universalAdapter.update(true);
-                    return;
-                }
-                return;
-            }
-        }
-    }
-
-    public void checkEditURL(String str) {
-        if (str == null || TextUtils.equals(str, this.lastCheckedStr)) {
-            return;
-        }
-        this.lastCheckedStr = str;
-        boolean containsURL = containsURL(str);
-        AndroidUtilities.cancelRunOnUIThread(this.requestPreview);
-        if (containsURL) {
-            if (!this.loading || this.webpage != null) {
-                this.loading = true;
-                this.webpage = null;
-                UniversalAdapter universalAdapter = this.adapter;
-                if (universalAdapter != null) {
-                    universalAdapter.update(true);
-                }
-            }
-            AndroidUtilities.runOnUIThread(this.requestPreview, 700L);
-        } else if (this.loading || this.webpage != null) {
-            this.loading = false;
-            this.webpage = null;
-            if (this.reqId != 0) {
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-                this.reqId = 0;
-            }
-            UniversalAdapter universalAdapter2 = this.adapter;
-            if (universalAdapter2 != null) {
-                universalAdapter2.update(true);
-            }
-        }
-        this.button.setEnabled(containsURL);
-    }
-
-    public void lambda$new$7() {
-        TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview = new TLRPC$TL_messages_getWebPagePreview();
-        tLRPC$TL_messages_getWebPagePreview.message = this.urlEditText.editText.getText().toString();
-        this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getWebPagePreview, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoryLinkSheet.this.lambda$new$6(tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public void lambda$new$6(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.this.lambda$new$5(tLObject);
-            }
-        });
-    }
-
-    public void lambda$new$5(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$TL_messageMediaWebPage) {
-            TLRPC$WebPage tLRPC$WebPage = ((TLRPC$TL_messageMediaWebPage) tLObject).webpage;
-            this.webpage = tLRPC$WebPage;
-            if (isPreviewEmpty(tLRPC$WebPage)) {
-                TLRPC$WebPage tLRPC$WebPage2 = this.webpage;
-                this.webpageId = tLRPC$WebPage2 == null ? 0L : tLRPC$WebPage2.id;
-                this.webpage = null;
-            } else {
-                this.webpageId = 0L;
-            }
-        } else {
-            this.webpage = null;
-            this.webpageId = 0L;
-        }
-        this.loading = this.webpageId != 0;
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(true);
-        }
-    }
-
-    public void closePreview(View view) {
-        this.loading = false;
-        this.webpage = null;
-        if (this.reqId != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-            this.reqId = 0;
-        }
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(true);
-        }
-    }
-
-    private boolean containsURL(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        if (this.urlPattern == null) {
-            this.urlPattern = Pattern.compile("((https?)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?]?.+)");
-        }
-        return this.urlPattern.matcher(str).find();
-    }
-
-    public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
-        if (this.loading || this.webpage != null) {
-            arrayList.add(WebpagePreviewView.Factory.item(this.webpage, new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    StoryLinkSheet.this.closePreview(view);
-                }
-            }));
-        }
-        arrayList.add(UItem.asCustom(this.urlEditText));
-        arrayList.add(UItem.asShadow(1, null));
-        arrayList.add(UItem.asCheck(2, LocaleController.getString(R.string.StoryLinkNameHeader)).setChecked(this.nameOpen));
-        if (this.nameOpen) {
-            arrayList.add(UItem.asCustom(this.nameEditText));
-        }
-        arrayList.add(UItem.asShadow(3, null));
-        arrayList.add(UItem.asCustom(this.buttonContainer));
-    }
+    private Utilities.Callback whenDone;
 
     public static class WebpagePreviewView extends FrameLayout {
         private final ImageView closeView;
@@ -501,6 +81,31 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         private final Paint separatorPaint;
         private final SpannableString titleLoading;
         private final AnimatedTextView titleView;
+
+        public static class Factory extends UItem.UItemFactory {
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            public static UItem item(TLRPC$WebPage tLRPC$WebPage, View.OnClickListener onClickListener) {
+                UItem ofFactory = UItem.ofFactory(Factory.class);
+                ofFactory.object = tLRPC$WebPage;
+                ofFactory.clickCallback = onClickListener;
+                return ofFactory;
+            }
+
+            @Override
+            public void bindView(View view, UItem uItem, boolean z) {
+                WebpagePreviewView webpagePreviewView = (WebpagePreviewView) view;
+                Object obj = uItem.object;
+                webpagePreviewView.set(obj instanceof TLRPC$WebPage ? (TLRPC$WebPage) obj : null, uItem.clickCallback, false);
+            }
+
+            @Override
+            public WebpagePreviewView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new WebpagePreviewView(context);
+            }
+        }
 
         public WebpagePreviewView(Context context) {
             super(context);
@@ -581,13 +186,14 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
 
         public void set(TLRPC$WebPage tLRPC$WebPage, View.OnClickListener onClickListener, boolean z) {
             boolean z2 = (tLRPC$WebPage == null || (tLRPC$WebPage instanceof TLRPC$TL_webPagePending)) ? false : true;
+            ImageView imageView = this.imageView;
             if (z) {
-                ViewPropertyAnimator duration = this.imageView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.4f).scaleY(z2 ? 1.0f : 0.4f).setDuration(320L);
+                ViewPropertyAnimator duration = imageView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.4f).scaleY(z2 ? 1.0f : 0.4f).setDuration(320L);
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
                 duration.setInterpolator(cubicBezierInterpolator).start();
                 this.loadingView.animate().alpha(z2 ? 0.0f : 1.0f).scaleX(z2 ? 0.4f : 1.0f).scaleY(z2 ? 0.4f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
             } else {
-                this.imageView.setAlpha(z2 ? 1.0f : 0.0f);
+                imageView.setAlpha(z2 ? 1.0f : 0.0f);
                 this.imageView.setScaleX(z2 ? 1.0f : 0.4f);
                 this.imageView.setScaleY(z2 ? 1.0f : 0.4f);
                 this.loadingView.setAlpha(z2 ? 0.0f : 1.0f);
@@ -603,31 +209,424 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             }
             this.closeView.setOnClickListener(onClickListener);
         }
+    }
 
-        public static class Factory extends UItem.UItemFactory<WebpagePreviewView> {
+    public StoryLinkSheet(final Context context, Theme.ResourcesProvider resourcesProvider, final PreviewView previewView, Utilities.Callback callback) {
+        super(context, null, true, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
+        this.requestPreview = new Runnable() {
             @Override
-            public WebpagePreviewView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new WebpagePreviewView(context);
+            public final void run() {
+                StoryLinkSheet.this.lambda$new$7();
+            }
+        };
+        this.whenDone = callback;
+        fixNavigationBar();
+        setSlidingActionBar();
+        this.headerPaddingTop = AndroidUtilities.dp(4.0f);
+        this.headerPaddingBottom = AndroidUtilities.dp(-15.0f);
+        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkURLPlaceholder), true, -1, resourcesProvider);
+        this.urlEditText = editTextCell;
+        editTextCell.whenHitEnter(new Runnable() {
+            @Override
+            public final void run() {
+                StoryLinkSheet.this.processDone();
+            }
+        });
+        this.urlEditText.editText.setHandlesColor(-12476440);
+        this.urlEditText.editText.setCursorColor(-11230757);
+        final String str = "https://";
+        this.urlEditText.editText.setText("https://");
+        this.urlEditText.editText.setSelection(8);
+        final TextView textView = new TextView(getContext());
+        textView.setTextSize(1, 12.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setText(LocaleController.getString(R.string.Paste));
+        textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        textView.setGravity(17);
+        int themedColor = getThemedColor(Theme.key_windowBackgroundWhiteBlueText2);
+        textView.setTextColor(themedColor);
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(themedColor, 0.12f), Theme.multAlpha(themedColor, 0.15f)));
+        ScaleStateListAnimator.apply(textView, 0.1f, 1.5f);
+        this.urlEditText.addView(textView, LayoutHelper.createFrame(-2, 26.0f, 21, 0.0f, 4.0f, 24.0f, 3.0f));
+        final Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                StoryLinkSheet.this.lambda$new$0(str, textView);
+            }
+        };
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                StoryLinkSheet.this.lambda$new$1(runnable, view);
+            }
+        });
+        runnable.run();
+        this.urlEditText.editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                runnable.run();
+                if (StoryLinkSheet.this.ignoreUrlEdit) {
+                    return;
+                }
+                if (!StoryLinkSheet.this.needRemoveDefPrefix || editable == null) {
+                    StoryLinkSheet.this.checkEditURL(editable == null ? null : editable.toString());
+                    return;
+                }
+                String substring = editable.toString().substring(str.length());
+                StoryLinkSheet.this.ignoreUrlEdit = true;
+                StoryLinkSheet.this.urlEditText.editText.setText(substring);
+                StoryLinkSheet.this.urlEditText.editText.setSelection(0, StoryLinkSheet.this.urlEditText.editText.getText().length());
+                StoryLinkSheet.this.ignoreUrlEdit = false;
+                StoryLinkSheet.this.needRemoveDefPrefix = false;
+                StoryLinkSheet.this.checkEditURL(substring);
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
-                WebpagePreviewView webpagePreviewView = (WebpagePreviewView) view;
-                Object obj = uItem.object;
-                webpagePreviewView.set(obj instanceof TLRPC$WebPage ? (TLRPC$WebPage) obj : null, uItem.clickCallback, false);
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
 
-            public static UItem item(TLRPC$WebPage tLRPC$WebPage, View.OnClickListener onClickListener) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = tLRPC$WebPage;
-                ofFactory.clickCallback = onClickListener;
-                return ofFactory;
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                int i4;
+                if (StoryLinkSheet.this.ignoreUrlEdit) {
+                    return;
+                }
+                StoryLinkSheet storyLinkSheet = StoryLinkSheet.this;
+                boolean z = false;
+                if (charSequence != null && i == str.length() && charSequence.subSequence(0, i).toString().equals(str) && charSequence.length() >= (i4 = i3 + i) && charSequence.subSequence(i, i4).toString().startsWith(str)) {
+                    z = true;
+                }
+                storyLinkSheet.needRemoveDefPrefix = z;
+            }
+        });
+        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, -1, resourcesProvider);
+        this.nameEditText = editTextCell2;
+        editTextCell2.whenHitEnter(new Runnable() {
+            @Override
+            public final void run() {
+                StoryLinkSheet.this.processDone();
+            }
+        });
+        this.buttonContainer = new FrameLayout(context);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        this.button = buttonWithCounterView;
+        buttonWithCounterView.setText(LocaleController.getString(R.string.StoryLinkAdd), false);
+        this.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                StoryLinkSheet.this.lambda$new$2(view);
+            }
+        });
+        this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
+        this.buttonContainer.addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
+        this.topPadding = 0.2f;
+        this.takeTranslationIntoAccount = true;
+        this.smoothKeyboardAnimationEnabled = true;
+        this.smoothKeyboardByBottom = true;
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
+            @Override
+            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onMoveAnimationUpdate(viewHolder);
+                ((BottomSheet) StoryLinkSheet.this).containerView.invalidate();
+            }
+        };
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDurations(350L);
+        this.recyclerListView.setItemAnimator(defaultItemAnimator);
+        RecyclerListView recyclerListView = this.recyclerListView;
+        int i = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i, 0, i, 0);
+        this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view, int i2) {
+                StoryLinkSheet.this.lambda$new$4(context, previewView, view, i2);
+            }
+        });
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter != null) {
+            universalAdapter.update(false);
+        }
+    }
+
+    public void checkEditURL(String str) {
+        if (str == null || TextUtils.equals(str, this.lastCheckedStr)) {
+            return;
+        }
+        this.lastCheckedStr = str;
+        boolean containsURL = containsURL(str);
+        AndroidUtilities.cancelRunOnUIThread(this.requestPreview);
+        boolean z = this.loading;
+        if (containsURL) {
+            if (!z || this.webpage != null) {
+                this.loading = true;
+                this.webpage = null;
+                UniversalAdapter universalAdapter = this.adapter;
+                if (universalAdapter != null) {
+                    universalAdapter.update(true);
+                }
+            }
+            AndroidUtilities.runOnUIThread(this.requestPreview, 700L);
+        } else if (z || this.webpage != null) {
+            this.loading = false;
+            this.webpage = null;
+            if (this.reqId != 0) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
+                this.reqId = 0;
+            }
+            UniversalAdapter universalAdapter2 = this.adapter;
+            if (universalAdapter2 != null) {
+                universalAdapter2.update(true);
             }
         }
+        this.button.setEnabled(containsURL);
+    }
+
+    public void closePreview(View view) {
+        this.loading = false;
+        this.webpage = null;
+        if (this.reqId != 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
+            this.reqId = 0;
+        }
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter != null) {
+            universalAdapter.update(true);
+        }
+    }
+
+    private boolean containsURL(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        if (this.urlPattern == null) {
+            this.urlPattern = Pattern.compile("((https?)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?]?.+)");
+        }
+        return this.urlPattern.matcher(str).find();
     }
 
     public static boolean isPreviewEmpty(TLRPC$WebPage tLRPC$WebPage) {
         return (tLRPC$WebPage instanceof TLRPC$TL_webPagePending) || (TextUtils.isEmpty(tLRPC$WebPage.title) && TextUtils.isEmpty(tLRPC$WebPage.description));
+    }
+
+    public void lambda$new$0(String str, TextView textView) {
+        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
+        boolean z = (TextUtils.isEmpty(this.urlEditText.editText.getText()) || TextUtils.equals(this.urlEditText.editText.getText(), str) || TextUtils.isEmpty(this.urlEditText.editText.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip();
+        textView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.7f).scaleY(z ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
+    }
+
+    public void lambda$new$1(Runnable runnable, View view) {
+        CharSequence charSequence;
+        try {
+            charSequence = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
+        } catch (Exception e) {
+            FileLog.e(e);
+            charSequence = null;
+        }
+        if (charSequence != null) {
+            this.urlEditText.editText.setText(charSequence.toString());
+            EditTextBoldCursor editTextBoldCursor = this.urlEditText.editText;
+            editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
+        }
+        runnable.run();
+    }
+
+    public void lambda$new$2(View view) {
+        processDone();
+    }
+
+    public void lambda$new$3(LinkPreview.WebPagePreview webPagePreview) {
+        if (webPagePreview == null) {
+            closePreview(null);
+        } else {
+            this.photoLarge = webPagePreview.largePhoto;
+            this.captionAbove = webPagePreview.captionAbove;
+        }
+    }
+
+    public void lambda$new$4(Context context, PreviewView previewView, View view, int i) {
+        TLRPC$WebPage tLRPC$WebPage;
+        UItem item = this.adapter.getItem(i - 1);
+        if (item == null) {
+            return;
+        }
+        if (!item.instanceOf(WebpagePreviewView.Factory.class) || (tLRPC$WebPage = this.webpage) == null || isPreviewEmpty(tLRPC$WebPage)) {
+            if (item.id == 2 && (view instanceof TextCheckCell)) {
+                boolean z = !this.nameOpen;
+                this.nameOpen = z;
+                ((TextCheckCell) view).setChecked(z);
+                this.adapter.update(true);
+                (this.nameOpen ? this.nameEditText : this.urlEditText).requestFocus();
+                return;
+            }
+            return;
+        }
+        StoryLinkPreviewDialog storyLinkPreviewDialog = new StoryLinkPreviewDialog(context, this.currentAccount);
+        LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
+        webPagePreview.url = this.urlEditText.editText.getText().toString();
+        webPagePreview.name = this.nameOpen ? this.nameEditText.editText.getText().toString() : null;
+        webPagePreview.webpage = this.webpage;
+        webPagePreview.largePhoto = this.photoLarge;
+        webPagePreview.captionAbove = this.captionAbove;
+        storyLinkPreviewDialog.set(webPagePreview, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                StoryLinkSheet.this.lambda$new$3((LinkPreview.WebPagePreview) obj);
+            }
+        });
+        storyLinkPreviewDialog.setStoryPreviewView(previewView);
+        storyLinkPreviewDialog.show();
+    }
+
+    public void lambda$new$5(org.telegram.tgnet.TLObject r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryLinkSheet.lambda$new$5(org.telegram.tgnet.TLObject):void");
+    }
+
+    public void lambda$new$6(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StoryLinkSheet.this.lambda$new$5(tLObject);
+            }
+        });
+    }
+
+    public void lambda$new$7() {
+        TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview = new TLRPC$TL_messages_getWebPagePreview();
+        tLRPC$TL_messages_getWebPagePreview.message = this.urlEditText.editText.getText().toString();
+        this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getWebPagePreview, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                StoryLinkSheet.this.lambda$new$6(tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$show$8() {
+        if (isShowing()) {
+            this.urlEditText.editText.requestFocus();
+            AndroidUtilities.showKeyboard(this.urlEditText.editText);
+        }
+    }
+
+    public void processDone() {
+        if (this.button.isEnabled()) {
+            if (this.whenDone != null) {
+                LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
+                webPagePreview.url = this.urlEditText.editText.getText().toString();
+                webPagePreview.name = this.nameOpen ? this.nameEditText.editText.getText().toString() : null;
+                webPagePreview.webpage = this.webpage;
+                webPagePreview.largePhoto = this.photoLarge;
+                webPagePreview.captionAbove = this.captionAbove;
+                this.whenDone.run(webPagePreview);
+                this.whenDone = null;
+            }
+            dismiss();
+        }
+    }
+
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                StoryLinkSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, this.resourcesProvider) {
+            @Override
+            public int getThemedColor(int i) {
+                if (i == Theme.key_dialogBackgroundGray) {
+                    return -15921907;
+                }
+                return super.getThemedColor(i);
+            }
+        };
+        this.adapter = universalAdapter;
+        return universalAdapter;
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i != NotificationCenter.didReceivedWebpagesInUpdates || this.webpageId == 0) {
+            return;
+        }
+        LongSparseArray longSparseArray = (LongSparseArray) objArr[0];
+        for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
+            TLRPC$WebPage tLRPC$WebPage = (TLRPC$WebPage) longSparseArray.valueAt(i3);
+            if (tLRPC$WebPage != null && this.webpageId == tLRPC$WebPage.id) {
+                if (isPreviewEmpty(tLRPC$WebPage)) {
+                    tLRPC$WebPage = null;
+                }
+                this.webpage = tLRPC$WebPage;
+                this.loading = false;
+                this.webpageId = 0L;
+                UniversalAdapter universalAdapter = this.adapter;
+                if (universalAdapter != null) {
+                    universalAdapter.update(true);
+                    return;
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void dismiss() {
+        AndroidUtilities.hideKeyboard(this.urlEditText.editText);
+        AndroidUtilities.hideKeyboard(this.nameEditText.editText);
+        super.dismiss();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+    }
+
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        if (this.loading || this.webpage != null) {
+            arrayList.add(WebpagePreviewView.Factory.item(this.webpage, new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    StoryLinkSheet.this.closePreview(view);
+                }
+            }));
+        }
+        arrayList.add(UItem.asCustom(this.urlEditText));
+        arrayList.add(UItem.asShadow(1, null));
+        arrayList.add(UItem.asCheck(2, LocaleController.getString(R.string.StoryLinkNameHeader)).setChecked(this.nameOpen));
+        if (this.nameOpen) {
+            arrayList.add(UItem.asCustom(this.nameEditText));
+        }
+        arrayList.add(UItem.asShadow(3, null));
+        arrayList.add(UItem.asCustom(this.buttonContainer));
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.StoryLinkCreate);
+    }
+
+    public void set(LinkPreview.WebPagePreview webPagePreview) {
+        this.ignoreUrlEdit = true;
+        this.editing = true;
+        if (webPagePreview != null) {
+            this.webpage = webPagePreview.webpage;
+            this.loading = false;
+            this.urlEditText.setText(webPagePreview.url);
+            this.nameEditText.setText(webPagePreview.name);
+            this.nameOpen = true ^ TextUtils.isEmpty(webPagePreview.name);
+            this.captionAbove = webPagePreview.captionAbove;
+            this.photoLarge = webPagePreview.largePhoto;
+        } else {
+            this.urlEditText.setText("");
+            this.nameEditText.setText("");
+            this.captionAbove = true;
+            this.photoLarge = false;
+        }
+        this.button.setText(LocaleController.getString(R.string.StoryLinkEdit), false);
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter != null) {
+            universalAdapter.update(false);
+        }
+        this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
+        this.ignoreUrlEdit = false;
     }
 
     @Override
@@ -640,20 +639,5 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
                 StoryLinkSheet.this.lambda$show$8();
             }
         }, 150L);
-    }
-
-    public void lambda$show$8() {
-        if (isShowing()) {
-            this.urlEditText.editText.requestFocus();
-            AndroidUtilities.showKeyboard(this.urlEditText.editText);
-        }
-    }
-
-    @Override
-    public void dismiss() {
-        AndroidUtilities.hideKeyboard(this.urlEditText.editText);
-        AndroidUtilities.hideKeyboard(this.nameEditText.editText);
-        super.dismiss();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
     }
 }

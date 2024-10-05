@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import androidx.annotation.Keep;
 import java.util.ArrayList;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.tgnet.tl.TL_bots$TL_updateBotMenuButton;
@@ -8,7 +7,6 @@ import org.telegram.tgnet.tl.TL_stories$TL_updateReadStories;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStoriesStealthMode;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
 
-@Keep
 public abstract class TLRPC$Update extends TLObject {
     public static TLRPC$Update TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Update tLRPC$TL_updateTheme;
@@ -77,7 +75,7 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case -1906403213:
                 tLRPC$TL_updateTheme = new TLRPC$Update() {
-                    public ArrayList<TLRPC$TL_dcOption> dc_options = new ArrayList<>();
+                    public ArrayList dc_options = new ArrayList();
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
@@ -105,7 +103,7 @@ public abstract class TLRPC$Update extends TLObject {
                         int size = this.dc_options.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.dc_options.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_dcOption) this.dc_options.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -207,7 +205,7 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case -1512627963:
                 tLRPC$TL_updateTheme = new TLRPC$Update() {
-                    public ArrayList<Integer> order = new ArrayList<>();
+                    public ArrayList order = new ArrayList();
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
@@ -231,7 +229,7 @@ public abstract class TLRPC$Update extends TLObject {
                         int size = this.order.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32(this.order.get(i2).intValue());
+                            abstractSerializedData2.writeInt32(((Integer) this.order.get(i2)).intValue());
                         }
                     }
                 };
@@ -258,7 +256,39 @@ public abstract class TLRPC$Update extends TLObject {
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateEncryption();
                 break;
             case -1263546448:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updatePeerLocated();
+                tLRPC$TL_updateTheme = new TLRPC$Update() {
+                    public ArrayList peers = new ArrayList();
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            }
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            TLRPC$PeerLocated TLdeserialize = TLRPC$PeerLocated.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.peers.add(TLdeserialize);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1263546448);
+                        abstractSerializedData2.writeInt32(481674261);
+                        int size = this.peers.size();
+                        abstractSerializedData2.writeInt32(size);
+                        for (int i2 = 0; i2 < size; i2++) {
+                            ((TLRPC$PeerLocated) this.peers.get(i2)).serializeToStream(abstractSerializedData2);
+                        }
+                    }
+                };
                 break;
             case -1218471511:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateReadChannelOutbox();
@@ -436,7 +466,7 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 619974263:
                 tLRPC$TL_updateTheme = new TLRPC$Update() {
-                    public ArrayList<byte[]> options = new ArrayList<>();
+                    public ArrayList options = new ArrayList();
                     public TLRPC$Peer peer;
                     public long poll_id;
                     public int qts;
@@ -468,7 +498,7 @@ public abstract class TLRPC$Update extends TLObject {
                         int size = this.options.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeByteArray(this.options.get(i2));
+                            abstractSerializedData2.writeByteArray((byte[]) this.options.get(i2));
                         }
                         abstractSerializedData2.writeInt32(this.qts);
                     }
@@ -482,6 +512,28 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 674706841:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateUserEmojiStatus();
+                break;
+            case 675009298:
+                tLRPC$TL_updateTheme = new TLRPC$Update() {
+                    public String payload;
+                    public int qts;
+                    public long user_id;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.user_id = abstractSerializedData2.readInt64(z2);
+                        this.payload = abstractSerializedData2.readString(z2);
+                        this.qts = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(675009298);
+                        abstractSerializedData2.writeInt64(this.user_id);
+                        abstractSerializedData2.writeString(this.payload);
+                        abstractSerializedData2.writeInt32(this.qts);
+                    }
+                };
                 break;
             case 738741697:
                 tLRPC$TL_updateTheme = new TL_stories$TL_updateStoriesStealthMode();
@@ -561,6 +613,9 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 1318109142:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageID();
+                break;
+            case 1372224236:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updatePaidReactionPrivacy();
                 break;
             case 1407644140:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateDeleteQuickReply();

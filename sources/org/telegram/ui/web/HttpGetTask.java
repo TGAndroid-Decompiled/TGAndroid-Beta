@@ -9,42 +9,36 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.Utilities;
 
-public class HttpGetTask extends AsyncTask<String, Void, String> {
-    private final Utilities.Callback<String> callback;
+public class HttpGetTask extends AsyncTask {
+    private final Utilities.Callback callback;
     private Exception exception;
-    private final HashMap<String, String> headers = new HashMap<>();
+    private final HashMap headers = new HashMap();
 
-    public HttpGetTask(Utilities.Callback<String> callback) {
+    public HttpGetTask(Utilities.Callback callback) {
         this.callback = callback;
     }
 
     @Override
     public String doInBackground(String... strArr) {
-        BufferedReader bufferedReader;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(strArr[0]).openConnection();
-            for (Map.Entry<String, String> entry : this.headers.entrySet()) {
+            for (Map.Entry entry : this.headers.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
-                    httpURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
+                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                 }
             }
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setDoInput(true);
             int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            } else {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
-            }
+            BufferedReader bufferedReader = (responseCode < 200 || responseCode >= 300) ? new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream())) : new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             StringBuilder sb = new StringBuilder();
             while (true) {
                 String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    sb.append(readLine);
-                } else {
+                if (readLine == null) {
                     bufferedReader.close();
                     return sb.toString();
                 }
+                sb.append(readLine);
             }
         } catch (Exception e) {
             this.exception = e;
@@ -54,13 +48,12 @@ public class HttpGetTask extends AsyncTask<String, Void, String> {
 
     @Override
     public void onPostExecute(String str) {
-        Utilities.Callback<String> callback = this.callback;
+        Utilities.Callback callback = this.callback;
         if (callback != null) {
-            if (this.exception == null) {
-                callback.run(str);
-            } else {
-                callback.run(null);
+            if (this.exception != null) {
+                str = null;
             }
+            callback.run(str);
         }
     }
 }

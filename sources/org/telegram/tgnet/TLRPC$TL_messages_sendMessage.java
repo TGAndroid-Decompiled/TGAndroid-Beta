@@ -6,7 +6,7 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
     public boolean background;
     public boolean clear_draft;
     public long effect;
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
     public int flags;
     public boolean invert_media;
     public String message;
@@ -59,7 +59,7 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i8 = 0; i8 < size; i8++) {
-                this.entities.get(i8).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i8)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1024) != 0) {

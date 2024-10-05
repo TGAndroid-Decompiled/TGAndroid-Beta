@@ -71,7 +71,7 @@ public class TL_bots$TL_botInfo extends TL_bots$BotInfo {
             int size = this.commands.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                this.commands.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$TL_botCommand) this.commands.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 8) != 0) {

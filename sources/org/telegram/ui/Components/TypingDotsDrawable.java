@@ -20,36 +20,25 @@ public class TypingDotsDrawable extends StatusDrawable {
     private boolean started = false;
     private DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     public TypingDotsDrawable(boolean z) {
         if (z) {
             this.currentPaint = new Paint(1);
         }
     }
 
-    @Override
-    public void setColor(int i) {
-        Paint paint = this.currentPaint;
-        if (paint != null) {
-            paint.setColor(i);
+    public void checkUpdate() {
+        if (this.started) {
+            if (NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress()) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        TypingDotsDrawable.this.checkUpdate();
+                    }
+                }, 100L);
+            } else {
+                update();
+            }
         }
-    }
-
-    @Override
-    public void setIsChat(boolean z) {
-        this.isChat = z;
     }
 
     private void update() {
@@ -83,6 +72,57 @@ public class TypingDotsDrawable extends StatusDrawable {
     }
 
     @Override
+    public void draw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(this.isChat ? 8.5f : 9.3f) + getBounds().top;
+        Paint paint = this.currentPaint;
+        if (paint == null) {
+            paint = Theme.chat_statusPaint;
+            paint.setAlpha(255);
+        }
+        float f = dp;
+        canvas.drawCircle(AndroidUtilities.dp(3.0f), f, this.scales[0] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(9.0f), f, this.scales[1] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(15.0f), f, this.scales[2] * AndroidUtilities.density, paint);
+        checkUpdate();
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColor(int i) {
+        Paint paint = this.currentPaint;
+        if (paint != null) {
+            paint.setColor(i);
+        }
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    @Override
+    public void setIsChat(boolean z) {
+        this.isChat = z;
+    }
+
+    @Override
     public void start() {
         this.lastUpdateTime = System.currentTimeMillis();
         this.started = true;
@@ -100,54 +140,5 @@ public class TypingDotsDrawable extends StatusDrawable {
         fArr[1] = 150.0f;
         fArr[2] = 300.0f;
         this.started = false;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        int dp;
-        int i;
-        if (this.isChat) {
-            dp = AndroidUtilities.dp(8.5f);
-            i = getBounds().top;
-        } else {
-            dp = AndroidUtilities.dp(9.3f);
-            i = getBounds().top;
-        }
-        int i2 = dp + i;
-        Paint paint = this.currentPaint;
-        if (paint == null) {
-            paint = Theme.chat_statusPaint;
-            paint.setAlpha(255);
-        }
-        float f = i2;
-        canvas.drawCircle(AndroidUtilities.dp(3.0f), f, this.scales[0] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(9.0f), f, this.scales[1] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(15.0f), f, this.scales[2] * AndroidUtilities.density, paint);
-        checkUpdate();
-    }
-
-    public void checkUpdate() {
-        if (this.started) {
-            if (!NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress()) {
-                update();
-            } else {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        TypingDotsDrawable.this.checkUpdate();
-                    }
-                }, 100L);
-            }
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
     }
 }

@@ -27,23 +27,24 @@ class LowLatencyAudioBufferManager {
                 }
                 this.keepLoweringBufferSize = false;
                 this.prevUnderrunCount = underrunCount;
-                this.ticksUntilNextDecrease = 10;
-                return;
-            }
-            if (this.keepLoweringBufferSize) {
+            } else {
+                if (!this.keepLoweringBufferSize) {
+                    return;
+                }
                 int i = this.ticksUntilNextDecrease - 1;
                 this.ticksUntilNextDecrease = i;
-                if (i <= 0) {
-                    int playbackRate2 = audioTrack.getPlaybackRate() / 100;
-                    bufferSizeInFrames = audioTrack.getBufferSizeInFrames();
-                    int max = Math.max(playbackRate2, bufferSizeInFrames - playbackRate2);
-                    if (max != bufferSizeInFrames) {
-                        Logging.d("LowLatencyAudioBufferManager", "Lowering AudioTrack buffer size from " + bufferSizeInFrames + " to " + max);
-                        audioTrack.setBufferSizeInFrames(max);
-                    }
-                    this.ticksUntilNextDecrease = 10;
+                if (i > 0) {
+                    return;
+                }
+                int playbackRate2 = audioTrack.getPlaybackRate() / 100;
+                bufferSizeInFrames = audioTrack.getBufferSizeInFrames();
+                int max = Math.max(playbackRate2, bufferSizeInFrames - playbackRate2);
+                if (max != bufferSizeInFrames) {
+                    Logging.d("LowLatencyAudioBufferManager", "Lowering AudioTrack buffer size from " + bufferSizeInFrames + " to " + max);
+                    audioTrack.setBufferSizeInFrames(max);
                 }
             }
+            this.ticksUntilNextDecrease = 10;
         }
     }
 }

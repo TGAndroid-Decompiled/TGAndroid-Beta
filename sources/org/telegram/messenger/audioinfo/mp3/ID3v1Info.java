@@ -1,29 +1,11 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.EOFException;
-import java.io.IOException;
 import java.io.InputStream;
 import org.telegram.messenger.audioinfo.AudioInfo;
 
 public class ID3v1Info extends AudioInfo {
-    public static boolean isID3v1StartPosition(InputStream inputStream) throws IOException {
-        boolean z;
-        inputStream.mark(3);
-        try {
-            if (inputStream.read() == 84 && inputStream.read() == 65) {
-                if (inputStream.read() == 71) {
-                    z = true;
-                    return z;
-                }
-            }
-            z = false;
-            return z;
-        } finally {
-            inputStream.reset();
-        }
-    }
-
-    public ID3v1Info(InputStream inputStream) throws IOException {
+    public ID3v1Info(InputStream inputStream) {
         byte b;
         if (isID3v1StartPosition(inputStream)) {
             this.brand = "ID3";
@@ -50,17 +32,21 @@ public class ID3v1Info extends AudioInfo {
         }
     }
 
-    byte[] readBytes(InputStream inputStream, int i) throws IOException {
-        byte[] bArr = new byte[i];
-        int i2 = 0;
-        while (i2 < i) {
-            int read = inputStream.read(bArr, i2, i - i2);
-            if (read <= 0) {
-                throw new EOFException();
+    public static boolean isID3v1StartPosition(InputStream inputStream) {
+        boolean z;
+        inputStream.mark(3);
+        try {
+            if (inputStream.read() == 84 && inputStream.read() == 65) {
+                if (inputStream.read() == 71) {
+                    z = true;
+                    return z;
+                }
             }
-            i2 += read;
+            z = false;
+            return z;
+        } finally {
+            inputStream.reset();
         }
-        return bArr;
     }
 
     String extractString(byte[] bArr, int i, int i2) {
@@ -71,5 +57,18 @@ public class ID3v1Info extends AudioInfo {
         } catch (Exception unused) {
             return "";
         }
+    }
+
+    byte[] readBytes(InputStream inputStream, int i) {
+        byte[] bArr = new byte[i];
+        int i2 = 0;
+        while (i2 < i) {
+            int read = inputStream.read(bArr, i2, i - i2);
+            if (read <= 0) {
+                throw new EOFException();
+            }
+            i2 += read;
+        }
+        return bArr;
     }
 }

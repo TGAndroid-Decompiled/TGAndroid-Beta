@@ -65,49 +65,6 @@ public class PremiumFeatureCell extends FrameLayout {
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
-    public void setData(PremiumPreviewFragment.PremiumFeatureData premiumFeatureData, boolean z) {
-        if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && premiumFeatureData.type == 12 && premiumFeatureData.icon == R.drawable.filled_premium_status2) {
-            this.nextIcon.setVisibility(8);
-            if (this.imageDrawable == null) {
-                this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, false, AndroidUtilities.dp(24.0f), 13);
-                if (isAttachedToWindow()) {
-                    this.imageDrawable.attach();
-                }
-            }
-            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-            setEmoji(emojiStatusDocumentId == null ? 0L : emojiStatusDocumentId.longValue(), false);
-        } else {
-            this.nextIcon.setVisibility(0);
-            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.imageDrawable;
-            if (swapAnimatedEmojiDrawable != null) {
-                swapAnimatedEmojiDrawable.detach();
-                this.imageDrawable = null;
-            }
-        }
-        this.data = premiumFeatureData;
-        this.title.setText(premiumFeatureData.title);
-        this.description.setText(premiumFeatureData.description);
-        this.imageView.setImageResource(premiumFeatureData.icon);
-        this.drawDivider = z;
-    }
-
-    public void setEmoji(long j, boolean z) {
-        if (j == 0) {
-            if (this.premiumStar == null) {
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
-                this.premiumStar = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
-            }
-            this.imageDrawable.set(this.premiumStar, z);
-            return;
-        }
-        this.imageDrawable.set(j, z);
-    }
-
-    public void updateImageBounds() {
-        this.imageDrawable.setBounds((getWidth() - this.imageDrawable.getIntrinsicWidth()) - AndroidUtilities.dp(21.0f), (getHeight() - this.imageDrawable.getIntrinsicHeight()) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.imageDrawable.getIntrinsicHeight()) / 2);
-    }
-
     @Override
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
@@ -137,5 +94,48 @@ public class PremiumFeatureCell extends FrameLayout {
             swapAnimatedEmojiDrawable.detach();
         }
         super.onDetachedFromWindow();
+    }
+
+    public void setData(PremiumPreviewFragment.PremiumFeatureData premiumFeatureData, boolean z) {
+        if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && premiumFeatureData.type == 12 && premiumFeatureData.icon == R.drawable.filled_premium_status2) {
+            this.nextIcon.setVisibility(8);
+            if (this.imageDrawable == null) {
+                this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, false, AndroidUtilities.dp(24.0f), 13);
+                if (isAttachedToWindow()) {
+                    this.imageDrawable.attach();
+                }
+            }
+            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+            setEmoji(emojiStatusDocumentId == null ? 0L : emojiStatusDocumentId.longValue(), false);
+        } else {
+            this.nextIcon.setVisibility(0);
+            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.imageDrawable;
+            if (swapAnimatedEmojiDrawable != null) {
+                swapAnimatedEmojiDrawable.detach();
+                this.imageDrawable = null;
+            }
+        }
+        this.data = premiumFeatureData;
+        this.title.setText(premiumFeatureData.title);
+        this.description.setText(premiumFeatureData.description);
+        this.imageView.setImageResource(premiumFeatureData.icon);
+        this.drawDivider = z;
+    }
+
+    public void setEmoji(long j, boolean z) {
+        if (j != 0) {
+            this.imageDrawable.set(j, z);
+            return;
+        }
+        if (this.premiumStar == null) {
+            Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
+            this.premiumStar = mutate;
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
+        }
+        this.imageDrawable.set(this.premiumStar, z);
+    }
+
+    public void updateImageBounds() {
+        this.imageDrawable.setBounds((getWidth() - this.imageDrawable.getIntrinsicWidth()) - AndroidUtilities.dp(21.0f), (getHeight() - this.imageDrawable.getIntrinsicHeight()) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.imageDrawable.getIntrinsicHeight()) / 2);
     }
 }

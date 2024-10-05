@@ -1,4 +1,4 @@
 package org.telegram.messenger.voip;
 
-public final class JNIUtilities$$ExternalSyntheticApiModelOutline5 {
+public abstract class JNIUtilities$$ExternalSyntheticApiModelOutline5 {
 }

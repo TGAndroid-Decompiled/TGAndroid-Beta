@@ -50,7 +50,7 @@ public class TLRPC$TL_decryptedMessage_layer45 extends TLRPC$TL_decryptedMessage
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.entities.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 2048) != 0) {

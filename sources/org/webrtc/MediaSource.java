@@ -4,15 +4,12 @@ public class MediaSource {
     private long nativeSource;
     private final RefCountDelegate refCountDelegate;
 
-    private static native State nativeGetState(long j);
-
     public enum State {
         INITIALIZING,
         LIVE,
         ENDED,
         MUTED;
 
-        @CalledByNative("State")
         static State fromNativeIndex(int i) {
             return values()[i];
         }
@@ -28,10 +25,13 @@ public class MediaSource {
         this.nativeSource = j;
     }
 
-    public State state() {
-        checkMediaSourceExists();
-        return nativeGetState(this.nativeSource);
+    private void checkMediaSourceExists() {
+        if (this.nativeSource == 0) {
+            throw new IllegalStateException("MediaSource has been disposed.");
+        }
     }
+
+    private static native State nativeGetState(long j);
 
     public void dispose() {
         checkMediaSourceExists();
@@ -54,9 +54,8 @@ public class MediaSource {
         }
     }
 
-    private void checkMediaSourceExists() {
-        if (this.nativeSource == 0) {
-            throw new IllegalStateException("MediaSource has been disposed.");
-        }
+    public State state() {
+        checkMediaSourceExists();
+        return nativeGetState(this.nativeSource);
     }
 }

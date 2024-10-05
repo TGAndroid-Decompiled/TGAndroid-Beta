@@ -10,7 +10,7 @@ public abstract class TLRPC$DecryptedMessageAction extends TLObject {
     public byte[] g_b;
     public long key_fingerprint;
     public int layer;
-    public ArrayList<Long> random_ids = new ArrayList<>();
+    public ArrayList random_ids = new ArrayList();
     public int start_seq_no;
     public int ttl_seconds;
 

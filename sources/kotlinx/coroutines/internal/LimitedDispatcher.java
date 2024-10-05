@@ -9,7 +9,7 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Runn
     private final Delay $$delegate_0;
     private final CoroutineDispatcher dispatcher;
     private final int parallelism;
-    private final LockFreeTaskQueue<Runnable> queue;
+    private final LockFreeTaskQueue queue;
     private volatile int runningWorkers;
     private final Object workerAllocationLock;
 
@@ -18,20 +18,13 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Runn
         this.parallelism = i;
         Delay delay = coroutineDispatcher instanceof Delay ? (Delay) coroutineDispatcher : null;
         this.$$delegate_0 = delay == null ? DefaultExecutorKt.getDefaultDelay() : delay;
-        this.queue = new LockFreeTaskQueue<>(false);
+        this.queue = new LockFreeTaskQueue(false);
         this.workerAllocationLock = new Object();
     }
 
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.LimitedDispatcher.run():void");
-    }
-
-    @Override
-    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        if (!addAndTryDispatching(runnable) && tryAllocateWorker()) {
-            this.dispatcher.dispatch(this, this);
-        }
+    private final boolean addAndTryDispatching(Runnable runnable) {
+        this.queue.addLast(runnable);
+        return this.runningWorkers >= this.parallelism;
     }
 
     private final boolean tryAllocateWorker() {
@@ -44,8 +37,15 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Runn
         }
     }
 
-    private final boolean addAndTryDispatching(Runnable runnable) {
-        this.queue.addLast(runnable);
-        return this.runningWorkers >= this.parallelism;
+    @Override
+    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        if (!addAndTryDispatching(runnable) && tryAllocateWorker()) {
+            this.dispatcher.dispatch(this, this);
+        }
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.LimitedDispatcher.run():void");
     }
 }

@@ -1,14 +1,13 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_businessIntro extends TLObject {
-    public static int constructor = 1510606445;
     public String description;
     public int flags;
     public TLRPC$Document sticker;
     public String title;
 
     public static TLRPC$TL_businessIntro TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (i != constructor) {
+        if (i != 1510606445) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_businessIntro", Integer.valueOf(i)));
             }
@@ -31,7 +30,7 @@ public class TLRPC$TL_businessIntro extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1510606445);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeString(this.description);

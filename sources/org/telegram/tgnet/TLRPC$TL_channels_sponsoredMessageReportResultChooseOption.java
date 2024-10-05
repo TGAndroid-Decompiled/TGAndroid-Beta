@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_channels_sponsoredMessageReportResultChooseOption extends TLRPC$channels_SponsoredMessageReportResult {
-    public ArrayList<TLRPC$TL_sponsoredMessageReportOption> options = new ArrayList<>();
+    public ArrayList options = new ArrayList();
     public String title;
 
     @Override
@@ -34,7 +34,7 @@ public class TLRPC$TL_channels_sponsoredMessageReportResultChooseOption extends 
         int size = this.options.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.options.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_sponsoredMessageReportOption) this.options.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

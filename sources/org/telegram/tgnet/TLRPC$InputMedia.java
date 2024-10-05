@@ -25,8 +25,8 @@ public abstract class TLRPC$InputMedia extends TLObject {
     public String vcard;
     public String venue_id;
     public String venue_type;
-    public ArrayList<TLRPC$InputDocument> stickers = new ArrayList<>();
-    public ArrayList<TLRPC$DocumentAttribute> attributes = new ArrayList<>();
+    public ArrayList stickers = new ArrayList();
+    public ArrayList attributes = new ArrayList();
 
     public static TLRPC$InputMedia TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$InputMedia tLRPC$TL_inputMediaEmpty;
@@ -38,7 +38,42 @@ public abstract class TLRPC$InputMedia extends TLObject {
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaGeoLive();
                 break;
             case -1436147773:
-                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPaidMedia();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPaidMedia() {
+                    public ArrayList extended_media = new ArrayList();
+                    public long stars_amount;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.stars_amount = abstractSerializedData2.readInt64(z2);
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            }
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            TLRPC$InputMedia TLdeserialize = TLRPC$InputMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.extended_media.add(TLdeserialize);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1436147773);
+                        abstractSerializedData2.writeInt64(this.stars_amount);
+                        abstractSerializedData2.writeInt32(481674261);
+                        int size = this.extended_media.size();
+                        abstractSerializedData2.writeInt32(size);
+                        for (int i2 = 0; i2 < size; i2++) {
+                            ((TLRPC$InputMedia) this.extended_media.get(i2)).serializeToStream(abstractSerializedData2);
+                        }
+                    }
+                };
                 break;
             case -1279654347:
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPhoto();
@@ -48,6 +83,9 @@ public abstract class TLRPC$InputMedia extends TLObject {
                 break;
             case -1038383031:
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaWebPage();
+                break;
+            case -1005571194:
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPaidMedia();
                 break;
             case -750828557:
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaGame();

@@ -44,13 +44,12 @@ public class AnimatedAvatarContainer extends FrameLayout {
         setClipChildren(false);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i) + this.titleTextView.getPaddingRight();
-        int dp = size - AndroidUtilities.dp(16.0f);
-        this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f) + this.titleTextView.getPaddingRight(), Integer.MIN_VALUE));
-        this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-        setMeasuredDimension(size, View.MeasureSpec.getSize(i2));
+    public AnimatedTextView getSubtitleTextView() {
+        return this.subtitleTextView;
+    }
+
+    public AnimatedTextView getTitle() {
+        return this.titleTextView;
     }
 
     @Override
@@ -65,11 +64,12 @@ public class AnimatedAvatarContainer extends FrameLayout {
         this.subtitleTextView.layout(i5, AndroidUtilities.dp(20.0f) + currentActionBarHeight, this.subtitleTextView.getMeasuredWidth() + i5, currentActionBarHeight + this.subtitleTextView.getTextHeight() + AndroidUtilities.dp(24.0f));
     }
 
-    public AnimatedTextView getTitle() {
-        return this.titleTextView;
-    }
-
-    public AnimatedTextView getSubtitleTextView() {
-        return this.subtitleTextView;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i) + this.titleTextView.getPaddingRight();
+        int dp = size - AndroidUtilities.dp(16.0f);
+        this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f) + this.titleTextView.getPaddingRight(), Integer.MIN_VALUE));
+        this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
+        setMeasuredDimension(size, View.MeasureSpec.getSize(i2));
     }
 }

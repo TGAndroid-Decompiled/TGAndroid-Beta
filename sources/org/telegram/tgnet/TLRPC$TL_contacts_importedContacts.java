@@ -3,10 +3,10 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_contacts_importedContacts extends TLObject {
-    public ArrayList<TLRPC$TL_importedContact> imported = new ArrayList<>();
-    public ArrayList<TLRPC$TL_popularContact> popular_invites = new ArrayList<>();
-    public ArrayList<Long> retry_contacts = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList imported = new ArrayList();
+    public ArrayList popular_invites = new ArrayList();
+    public ArrayList retry_contacts = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_contacts_importedContacts TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (2010127419 != i) {
@@ -87,25 +87,25 @@ public class TLRPC$TL_contacts_importedContacts extends TLObject {
         int size = this.imported.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.imported.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_importedContact) this.imported.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.popular_invites.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.popular_invites.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_popularContact) this.popular_invites.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.retry_contacts.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            abstractSerializedData.writeInt64(this.retry_contacts.get(i3).longValue());
+            abstractSerializedData.writeInt64(((Long) this.retry_contacts.get(i3)).longValue());
         }
         abstractSerializedData.writeInt32(481674261);
         int size4 = this.users.size();
         abstractSerializedData.writeInt32(size4);
         for (int i4 = 0; i4 < size4; i4++) {
-            this.users.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i4)).serializeToStream(abstractSerializedData);
         }
     }
 }

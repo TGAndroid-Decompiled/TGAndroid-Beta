@@ -18,6 +18,10 @@ public class AnimationNotificationsLocker {
         this.allowedNotifications = iArr;
     }
 
+    public void disable() {
+        this.disabled = true;
+    }
+
     public void lock() {
         if (this.disabled) {
             return;
@@ -38,9 +42,5 @@ public class AnimationNotificationsLocker {
         }
         NotificationCenter.getInstance(this.currentAccount).onAnimationFinish(this.notificationsIndex);
         NotificationCenter.getGlobalInstance().onAnimationFinish(this.globalNotificationsIndex);
-    }
-
-    public void disable() {
-        this.disabled = true;
     }
 }

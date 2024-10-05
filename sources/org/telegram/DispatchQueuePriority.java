@@ -11,9 +11,24 @@ public class DispatchQueuePriority {
     private volatile CountDownLatch pauseLatch;
     ThreadPoolExecutor threadPoolExecutor;
 
+    public static class PriorityRunnable implements Runnable {
+        final int priority;
+        final Runnable runnable;
+
+        private PriorityRunnable(int i, Runnable runnable) {
+            this.priority = i;
+            this.runnable = runnable;
+        }
+
+        @Override
+        public void run() {
+            this.runnable.run();
+        }
+    }
+
     public DispatchQueuePriority(String str) {
         int i = 1;
-        this.threadPoolExecutor = new ThreadPoolExecutor(i, 1, 60L, TimeUnit.SECONDS, new PriorityBlockingQueue(10, new Comparator<Runnable>() {
+        this.threadPoolExecutor = new ThreadPoolExecutor(i, 1, 60L, TimeUnit.SECONDS, new PriorityBlockingQueue(10, new Comparator() {
             @Override
             public int compare(Runnable runnable, Runnable runnable2) {
                 return (runnable2 instanceof PriorityRunnable ? ((PriorityRunnable) runnable2).priority : 1) - (runnable instanceof PriorityRunnable ? ((PriorityRunnable) runnable).priority : 1);
@@ -33,18 +48,6 @@ public class DispatchQueuePriority {
         };
     }
 
-    public void postRunnable(Runnable runnable) {
-        this.threadPoolExecutor.execute(runnable);
-    }
-
-    public Runnable postRunnable(Runnable runnable, int i) {
-        if (i != 1) {
-            runnable = new PriorityRunnable(i, runnable);
-        }
-        postRunnable(runnable);
-        return runnable;
-    }
-
     public void cancelRunnable(Runnable runnable) {
         if (runnable == null) {
             return;
@@ -58,26 +61,23 @@ public class DispatchQueuePriority {
         }
     }
 
+    public Runnable postRunnable(Runnable runnable, int i) {
+        if (i != 1) {
+            runnable = new PriorityRunnable(i, runnable);
+        }
+        postRunnable(runnable);
+        return runnable;
+    }
+
+    public void postRunnable(Runnable runnable) {
+        this.threadPoolExecutor.execute(runnable);
+    }
+
     public void resume() {
         CountDownLatch countDownLatch = this.pauseLatch;
         if (countDownLatch != null) {
             countDownLatch.countDown();
             this.pauseLatch = null;
-        }
-    }
-
-    public static class PriorityRunnable implements Runnable {
-        final int priority;
-        final Runnable runnable;
-
-        private PriorityRunnable(int i, Runnable runnable) {
-            this.priority = i;
-            this.runnable = runnable;
-        }
-
-        @Override
-        public void run() {
-            this.runnable.run();
         }
     }
 }

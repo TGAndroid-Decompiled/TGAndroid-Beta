@@ -12,8 +12,8 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
     public boolean show_in_attach_menu;
     public boolean show_in_side_menu;
     public boolean side_menu_disclaimer_needed;
-    public ArrayList<TLRPC$AttachMenuPeerType> peer_types = new ArrayList<>();
-    public ArrayList<TLRPC$TL_attachMenuBotIcon> icons = new ArrayList<>();
+    public ArrayList peer_types = new ArrayList();
+    public ArrayList icons = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -81,13 +81,13 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
         int size = this.peer_types.size();
         abstractSerializedData.writeInt32(size);
         for (int i7 = 0; i7 < size; i7++) {
-            this.peer_types.get(i7).serializeToStream(abstractSerializedData);
+            ((TLRPC$AttachMenuPeerType) this.peer_types.get(i7)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.icons.size();
         abstractSerializedData.writeInt32(size2);
         for (int i8 = 0; i8 < size2; i8++) {
-            this.icons.get(i8).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_attachMenuBotIcon) this.icons.get(i8)).serializeToStream(abstractSerializedData);
         }
     }
 }

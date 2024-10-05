@@ -17,7 +17,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public class SuperRippleFallback extends ISuperRipple {
     public final int MAX_COUNT;
-    public final ArrayList<Effect> effects;
+    public final ArrayList effects;
     private final ViewOutlineProvider outlineProvider;
     private final Path outlineProviderPath;
     public final float[] radii;
@@ -64,7 +64,7 @@ public class SuperRippleFallback extends ISuperRipple {
                 }
             }
         };
-        this.effects = new ArrayList<>();
+        this.effects = new ArrayList();
         this.MAX_COUNT = 10;
         int i = Build.VERSION.SDK_INT;
         if (i >= 23) {
@@ -111,6 +111,48 @@ public class SuperRippleFallback extends ISuperRipple {
         path.addRoundRect(0.0f, 0.0f, view.getWidth(), view.getHeight(), fArr, Path.Direction.CW);
     }
 
+    public void lambda$animate$0(Effect effect, ValueAnimator valueAnimator) {
+        effect.t = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        updateProperties();
+    }
+
+    public void updateProperties() {
+        ViewOutlineProvider outlineProvider;
+        Iterator it = this.effects.iterator();
+        float f = 1.0f;
+        float f2 = 0.0f;
+        float f3 = 0.0f;
+        float f4 = 0.0f;
+        float f5 = 1.0f;
+        while (it.hasNext()) {
+            Effect effect = (Effect) it.next();
+            double d = effect.t / effect.duration;
+            Double.isNaN(d);
+            float sin = 1.0f - ((float) Math.sin(d * 3.141592653589793d));
+            float f6 = effect.intensity * 0.04f;
+            f5 *= (1.0f - f6) + (f6 * sin);
+            f4 += effect.cx * 1.0f;
+            f3 += effect.cy * 1.0f;
+            f2 += 1.0f;
+        }
+        if (f2 < 1.0f) {
+            float f7 = 1.0f - f2;
+            f4 += (this.view.getWidth() / 2.0f) * f7;
+            f3 += (this.view.getHeight() / 2.0f) * f7;
+        } else {
+            f = f2;
+        }
+        this.view.setScaleX(f5);
+        this.view.setScaleY(f5);
+        this.view.setPivotX(f4 / f);
+        this.view.setPivotY(f3 / f);
+        outlineProvider = this.view.getOutlineProvider();
+        if (outlineProvider != (this.effects.isEmpty() ? null : this.outlineProvider)) {
+            this.view.setOutlineProvider(this.effects.isEmpty() ? null : this.outlineProvider);
+            this.view.invalidate();
+        }
+    }
+
     @Override
     public void animate(float f, float f2, float f3) {
         if (this.effects.size() >= 10) {
@@ -137,47 +179,5 @@ public class SuperRippleFallback extends ISuperRipple {
         this.effects.add(effect);
         updateProperties();
         ofFloat.start();
-    }
-
-    public void lambda$animate$0(Effect effect, ValueAnimator valueAnimator) {
-        effect.t = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateProperties();
-    }
-
-    public void updateProperties() {
-        ViewOutlineProvider outlineProvider;
-        Iterator<Effect> it = this.effects.iterator();
-        float f = 1.0f;
-        float f2 = 0.0f;
-        float f3 = 0.0f;
-        float f4 = 0.0f;
-        float f5 = 1.0f;
-        while (it.hasNext()) {
-            Effect next = it.next();
-            double d = next.t / next.duration;
-            Double.isNaN(d);
-            float sin = 1.0f - ((float) Math.sin(d * 3.141592653589793d));
-            float f6 = next.intensity * 0.04f;
-            f5 *= (1.0f - f6) + (f6 * sin);
-            f4 += next.cx * 1.0f;
-            f3 += next.cy * 1.0f;
-            f2 += 1.0f;
-        }
-        if (f2 < 1.0f) {
-            float f7 = 1.0f - f2;
-            f4 += (this.view.getWidth() / 2.0f) * f7;
-            f3 += (this.view.getHeight() / 2.0f) * f7;
-        } else {
-            f = f2;
-        }
-        this.view.setScaleX(f5);
-        this.view.setScaleY(f5);
-        this.view.setPivotX(f4 / f);
-        this.view.setPivotY(f3 / f);
-        outlineProvider = this.view.getOutlineProvider();
-        if (outlineProvider != (this.effects.isEmpty() ? null : this.outlineProvider)) {
-            this.view.setOutlineProvider(this.effects.isEmpty() ? null : this.outlineProvider);
-            this.view.invalidate();
-        }
     }
 }

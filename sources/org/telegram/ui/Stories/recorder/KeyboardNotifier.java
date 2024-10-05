@@ -11,18 +11,18 @@ public class KeyboardNotifier {
     public boolean ignoring;
     private int keyboardHeight;
     private int lastKeyboardHeight;
-    private final Utilities.Callback<Integer> listener;
+    private final Utilities.Callback listener;
     private final ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
     private final View.OnLayoutChangeListener onLayoutChangeListener;
     private View realRootView;
     private final Rect rect;
     private final View rootView;
 
-    public KeyboardNotifier(View view, Utilities.Callback<Integer> callback) {
+    public KeyboardNotifier(View view, Utilities.Callback callback) {
         this(view, false, callback);
     }
 
-    public KeyboardNotifier(final View view, final boolean z, Utilities.Callback<Integer> callback) {
+    public KeyboardNotifier(final View view, final boolean z, Utilities.Callback callback) {
         this.rect = new Rect();
         View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
             @Override
@@ -85,17 +85,8 @@ public class KeyboardNotifier {
         }
     }
 
-    public int getKeyboardHeight() {
-        return this.keyboardHeight;
-    }
-
-    public boolean keyboardVisible() {
-        return this.keyboardHeight > AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(20.0f) || this.awaitingKeyboard;
-    }
-
-    public void ignore(boolean z) {
-        this.ignoring = z;
-        update();
+    public void awaitKeyboard() {
+        this.awaitingKeyboard = true;
     }
 
     public void fire() {
@@ -106,13 +97,22 @@ public class KeyboardNotifier {
                 this.awaitingKeyboard = false;
             }
         }
-        Utilities.Callback<Integer> callback = this.listener;
+        Utilities.Callback callback = this.listener;
         if (callback != null) {
             callback.run(Integer.valueOf(this.keyboardHeight));
         }
     }
 
-    public void awaitKeyboard() {
-        this.awaitingKeyboard = true;
+    public int getKeyboardHeight() {
+        return this.keyboardHeight;
+    }
+
+    public void ignore(boolean z) {
+        this.ignoring = z;
+        update();
+    }
+
+    public boolean keyboardVisible() {
+        return this.keyboardHeight > AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(20.0f) || this.awaitingKeyboard;
     }
 }

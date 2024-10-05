@@ -16,9 +16,6 @@ class StringMaker {
     boolean includeEnclosingPoint = true;
     boolean shortKindName = true;
 
-    StringMaker() {
-    }
-
     static {
         StringMaker stringMaker = new StringMaker();
         shortStringMaker = stringMaker;
@@ -49,6 +46,41 @@ class StringMaker {
         stringMaker3.cacheOffset = 2;
     }
 
+    StringMaker() {
+    }
+
+    public void addSignature(StringBuffer stringBuffer, Class[] clsArr) {
+        String str;
+        if (clsArr == null) {
+            return;
+        }
+        if (this.includeArgs) {
+            stringBuffer.append("(");
+            addTypeNames(stringBuffer, clsArr);
+            str = ")";
+        } else {
+            str = clsArr.length == 0 ? "()" : "(..)";
+        }
+        stringBuffer.append(str);
+    }
+
+    public void addThrows(StringBuffer stringBuffer, Class[] clsArr) {
+        if (!this.includeThrows || clsArr == null || clsArr.length == 0) {
+            return;
+        }
+        stringBuffer.append(" throws ");
+        addTypeNames(stringBuffer, clsArr);
+    }
+
+    public void addTypeNames(StringBuffer stringBuffer, Class[] clsArr) {
+        for (int i = 0; i < clsArr.length; i++) {
+            if (i > 0) {
+                stringBuffer.append(", ");
+            }
+            stringBuffer.append(makeTypeName(clsArr[i]));
+        }
+    }
+
     public String makeKindName(String str) {
         int lastIndexOf = str.lastIndexOf(45);
         return lastIndexOf == -1 ? str : str.substring(lastIndexOf + 1);
@@ -68,9 +100,12 @@ class StringMaker {
         return stringBuffer.toString();
     }
 
-    String stripPackageName(String str) {
-        int lastIndexOf = str.lastIndexOf(46);
-        return lastIndexOf == -1 ? str : str.substring(lastIndexOf + 1);
+    public String makePrimaryTypeName(Class cls, String str) {
+        return makeTypeName(cls, str, this.shortPrimaryTypeNames);
+    }
+
+    public String makeTypeName(Class cls) {
+        return makeTypeName(cls, cls.getName(), this.shortTypeNames);
     }
 
     String makeTypeName(Class cls, String str, boolean z) {
@@ -78,10 +113,7 @@ class StringMaker {
             return "ANONYMOUS";
         }
         if (!cls.isArray()) {
-            if (z) {
-                return stripPackageName(str).replace('$', '.');
-            }
-            return str.replace('$', '.');
+            return z ? stripPackageName(str).replace('$', '.') : str.replace('$', '.');
         }
         Class<?> componentType = cls.getComponentType();
         StringBuffer stringBuffer = new StringBuffer();
@@ -90,46 +122,8 @@ class StringMaker {
         return stringBuffer.toString();
     }
 
-    public String makeTypeName(Class cls) {
-        return makeTypeName(cls, cls.getName(), this.shortTypeNames);
-    }
-
-    public String makePrimaryTypeName(Class cls, String str) {
-        return makeTypeName(cls, str, this.shortPrimaryTypeNames);
-    }
-
-    public void addTypeNames(StringBuffer stringBuffer, Class[] clsArr) {
-        for (int i = 0; i < clsArr.length; i++) {
-            if (i > 0) {
-                stringBuffer.append(", ");
-            }
-            stringBuffer.append(makeTypeName(clsArr[i]));
-        }
-    }
-
-    public void addSignature(StringBuffer stringBuffer, Class[] clsArr) {
-        if (clsArr == null) {
-            return;
-        }
-        if (!this.includeArgs) {
-            if (clsArr.length == 0) {
-                stringBuffer.append("()");
-                return;
-            } else {
-                stringBuffer.append("(..)");
-                return;
-            }
-        }
-        stringBuffer.append("(");
-        addTypeNames(stringBuffer, clsArr);
-        stringBuffer.append(")");
-    }
-
-    public void addThrows(StringBuffer stringBuffer, Class[] clsArr) {
-        if (!this.includeThrows || clsArr == null || clsArr.length == 0) {
-            return;
-        }
-        stringBuffer.append(" throws ");
-        addTypeNames(stringBuffer, clsArr);
+    String stripPackageName(String str) {
+        int lastIndexOf = str.lastIndexOf(46);
+        return lastIndexOf == -1 ? str : str.substring(lastIndexOf + 1);
     }
 }

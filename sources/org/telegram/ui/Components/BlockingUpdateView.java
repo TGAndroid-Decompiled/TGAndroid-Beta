@@ -40,7 +40,7 @@ import org.telegram.tgnet.TLRPC$TL_help_getAppUpdate;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
-public class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+public abstract class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private FrameLayout acceptButton;
     private TextView acceptTextView;
     private int accountNum;
@@ -126,10 +126,9 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             @Override
             protected void onMeasure(int i5, int i6) {
                 if (View.MeasureSpec.getSize(i5) > AndroidUtilities.dp(260.0f)) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(320.0f), 1073741824), i6);
-                } else {
-                    super.onMeasure(i5, i6);
+                    i5 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(320.0f), 1073741824);
                 }
+                super.onMeasure(i5, i6);
             }
         };
         this.acceptButton = frameLayout3;
@@ -152,17 +151,17 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         this.acceptButton.addView(this.acceptTextView, LayoutHelper.createFrame(-2, -2, 17));
         FrameLayout frameLayout4 = new FrameLayout(context) {
             @Override
+            protected void onDraw(Canvas canvas) {
+                BlockingUpdateView.this.radialProgress.draw(canvas);
+            }
+
+            @Override
             protected void onLayout(boolean z, int i5, int i6, int i7, int i8) {
                 super.onLayout(z, i5, i6, i7, i8);
                 int dp = AndroidUtilities.dp(36.0f);
                 int i9 = ((i7 - i5) - dp) / 2;
                 int i10 = ((i8 - i6) - dp) / 2;
                 BlockingUpdateView.this.radialProgress.setProgressRect(i9, i10, i9 + dp, dp + i10);
-            }
-
-            @Override
-            protected void onDraw(Canvas canvas) {
-                BlockingUpdateView.this.radialProgress.draw(canvas);
             }
         };
         this.radialProgressView = frameLayout4;
@@ -189,71 +188,47 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
     }
 
     public void lambda$new$1(Context context, View view) {
-        if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
-            if (ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(getContext())) {
-                TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = this.appUpdate;
-                if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
-                    if (ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document)) {
-                        return;
-                    }
-                    FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
-                    showProgress(true);
-                    return;
-                }
-                if (tLRPC$TL_help_appUpdate.url != null) {
-                    Browser.openUrl(getContext(), this.appUpdate.url);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        if (BuildVars.isHuaweiStoreApp()) {
-            Browser.openUrl(context, BuildVars.HUAWEI_STORE_URL);
+        String str;
+        if (!ApplicationLoader.isStandaloneBuild() && !BuildVars.DEBUG_VERSION) {
+            str = BuildVars.isHuaweiStoreApp() ? BuildVars.HUAWEI_STORE_URL : BuildVars.PLAYSTORE_APP_URL;
         } else {
-            Browser.openUrl(context, BuildVars.PLAYSTORE_APP_URL);
+            if (!ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(getContext())) {
+                return;
+            }
+            TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = this.appUpdate;
+            if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
+                if (ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document)) {
+                    return;
+                }
+                FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
+                showProgress(true);
+                return;
+            }
+            if (tLRPC$TL_help_appUpdate.url == null) {
+                return;
+            }
+            context = getContext();
+            str = this.appUpdate.url;
         }
+        Browser.openUrl(context, str);
     }
 
-    @Override
-    public void setVisibility(int i) {
-        super.setVisibility(i);
-        if (i == 8) {
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+    public void lambda$show$2(TLObject tLObject) {
+        if (!(tLObject instanceof TLRPC$TL_help_appUpdate) || ((TLRPC$TL_help_appUpdate) tLObject).can_not_skip) {
+            return;
         }
+        setVisibility(8);
+        SharedConfig.pendingAppUpdate = null;
+        SharedConfig.saveConfig();
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.fileLoaded) {
-            String str = (String) objArr[0];
-            String str2 = this.fileName;
-            if (str2 == null || !str2.equals(str)) {
-                return;
+    public void lambda$show$3(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BlockingUpdateView.this.lambda$show$2(tLObject);
             }
-            showProgress(false);
-            ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document);
-            return;
-        }
-        if (i == NotificationCenter.fileLoadFailed) {
-            String str3 = (String) objArr[0];
-            String str4 = this.fileName;
-            if (str4 == null || !str4.equals(str3)) {
-                return;
-            }
-            showProgress(false);
-            return;
-        }
-        if (i == NotificationCenter.fileLoadProgressChanged) {
-            String str5 = (String) objArr[0];
-            String str6 = this.fileName;
-            if (str6 == null || !str6.equals(str5)) {
-                return;
-            }
-            this.radialProgress.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
-        }
+        });
     }
 
     private void showProgress(final boolean z) {
@@ -291,30 +266,78 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         }
         this.progressAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animator) {
-                if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
-                    return;
-                }
-                if (!z) {
-                    BlockingUpdateView.this.radialProgressView.setVisibility(4);
-                } else {
-                    BlockingUpdateView.this.acceptTextView.setVisibility(4);
-                }
-            }
-
-            @Override
             public void onAnimationCancel(Animator animator) {
                 if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
                     return;
                 }
                 BlockingUpdateView.this.progressAnimation = null;
             }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
+                    return;
+                }
+                (!z ? BlockingUpdateView.this.radialProgressView : BlockingUpdateView.this.acceptTextView).setVisibility(4);
+            }
         });
         this.progressAnimation.setDuration(150L);
         this.progressAnimation.start();
     }
 
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.fileLoaded) {
+            String str = (String) objArr[0];
+            String str2 = this.fileName;
+            if (str2 == null || !str2.equals(str)) {
+                return;
+            }
+            showProgress(false);
+            ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document);
+            return;
+        }
+        if (i == NotificationCenter.fileLoadFailed) {
+            String str3 = (String) objArr[0];
+            String str4 = this.fileName;
+            if (str4 == null || !str4.equals(str3)) {
+                return;
+            }
+            showProgress(false);
+            return;
+        }
+        if (i == NotificationCenter.fileLoadProgressChanged) {
+            String str5 = (String) objArr[0];
+            String str6 = this.fileName;
+            if (str6 == null || !str6.equals(str5)) {
+                return;
+            }
+            this.radialProgress.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
+        }
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.gradientDrawableTop.setBounds(this.scrollView.getLeft(), this.scrollView.getTop(), this.scrollView.getRight(), this.scrollView.getTop() + AndroidUtilities.dp(16.0f));
+        this.gradientDrawableTop.draw(canvas);
+        this.gradientDrawableBottom.setBounds(this.scrollView.getLeft(), this.scrollView.getBottom() - AndroidUtilities.dp(18.0f), this.scrollView.getRight(), this.scrollView.getBottom());
+        this.gradientDrawableBottom.draw(canvas);
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        super.setVisibility(i);
+        if (i == 8) {
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+        }
+    }
+
     public void show(int i, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, boolean z) {
+        TextView textView;
+        String string;
         this.pressCount = 0;
         this.appUpdate = tLRPC$TL_help_appUpdate;
         this.accountNum = i;
@@ -329,10 +352,13 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
         this.textView.setText(spannableStringBuilder);
         if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
-            this.acceptTextView.setText(LocaleController.getString(R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
+            textView = this.acceptTextView;
+            string = LocaleController.getString(R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size));
         } else {
-            this.acceptTextView.setText(LocaleController.getString(R.string.Update));
+            textView = this.acceptTextView;
+            string = LocaleController.getString(R.string.Update);
         }
+        textView.setText(string);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadFailed);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadProgressChanged);
@@ -352,32 +378,5 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
                 }
             });
         }
-    }
-
-    public void lambda$show$3(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BlockingUpdateView.this.lambda$show$2(tLObject);
-            }
-        });
-    }
-
-    public void lambda$show$2(TLObject tLObject) {
-        if (!(tLObject instanceof TLRPC$TL_help_appUpdate) || ((TLRPC$TL_help_appUpdate) tLObject).can_not_skip) {
-            return;
-        }
-        setVisibility(8);
-        SharedConfig.pendingAppUpdate = null;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.gradientDrawableTop.setBounds(this.scrollView.getLeft(), this.scrollView.getTop(), this.scrollView.getRight(), this.scrollView.getTop() + AndroidUtilities.dp(16.0f));
-        this.gradientDrawableTop.draw(canvas);
-        this.gradientDrawableBottom.setBounds(this.scrollView.getLeft(), this.scrollView.getBottom() - AndroidUtilities.dp(18.0f), this.scrollView.getRight(), this.scrollView.getBottom());
-        this.gradientDrawableBottom.draw(canvas);
     }
 }

@@ -27,25 +27,54 @@ public class UserListPoller {
     private static UserListPoller[] istances = new UserListPoller[4];
     final int currentAccount;
     LongSparseLongArray userPollLastTime = new LongSparseLongArray();
-    ArrayList<Long> dialogIds = new ArrayList<>();
-    ArrayList<Long> collectedDialogIds = new ArrayList<>();
-    ArrayList<Integer> runningRequests = new ArrayList<>();
+    ArrayList dialogIds = new ArrayList();
+    ArrayList collectedDialogIds = new ArrayList();
+    ArrayList runningRequests = new ArrayList();
     Runnable requestCollectedRunnables = new AnonymousClass1();
-
-    private UserListPoller(int i) {
-        this.currentAccount = i;
-    }
-
-    public static UserListPoller getInstance(int i) {
-        UserListPoller[] userListPollerArr = istances;
-        if (userListPollerArr[i] == null) {
-            userListPollerArr[i] = new UserListPoller(i);
-        }
-        return istances[i];
-    }
 
     public class AnonymousClass1 implements Runnable {
         AnonymousClass1() {
+        }
+
+        public void lambda$run$0(TLObject tLObject, ArrayList arrayList) {
+            if (tLObject != null) {
+                TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
+                ArrayList arrayList2 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
+                for (int i = 0; i < tLRPC$Vector.objects.size(); i++) {
+                    long longValue = ((Long) arrayList.get(i)).longValue();
+                    MessagesController messagesController = MessagesController.getInstance(UserListPoller.this.currentAccount);
+                    Long l = (Long) arrayList.get(i);
+                    if (longValue > 0) {
+                        TLRPC$User user = messagesController.getUser(l);
+                        if (user != null) {
+                            int intValue = ((Integer) tLRPC$Vector.objects.get(i)).intValue();
+                            user.stories_max_id = intValue;
+                            user.flags2 = intValue != 0 ? user.flags2 | 32 : user.flags2 & (-33);
+                            arrayList2.add(user);
+                        }
+                    } else {
+                        TLRPC$Chat chat = messagesController.getChat(l);
+                        if (chat != null) {
+                            int intValue2 = ((Integer) tLRPC$Vector.objects.get(i)).intValue();
+                            chat.stories_max_id = intValue2;
+                            chat.flags2 = intValue2 != 0 ? chat.flags2 | 16 : chat.flags2 & (-17);
+                            arrayList3.add(chat);
+                        }
+                    }
+                }
+                MessagesStorage.getInstance(UserListPoller.this.currentAccount).putUsersAndChats(arrayList2, arrayList3, true, true);
+                NotificationCenter.getInstance(UserListPoller.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
+            }
+        }
+
+        public void lambda$run$1(final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserListPoller.AnonymousClass1.this.lambda$run$0(tLObject, arrayList);
+                }
+            });
         }
 
         @Override
@@ -66,73 +95,29 @@ public class UserListPoller {
                 }
             });
         }
+    }
 
-        public void lambda$run$1(final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    UserListPoller.AnonymousClass1.this.lambda$run$0(tLObject, arrayList);
-                }
-            });
-        }
+    private UserListPoller(int i) {
+        this.currentAccount = i;
+    }
 
-        public void lambda$run$0(TLObject tLObject, ArrayList arrayList) {
-            if (tLObject != null) {
-                TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                for (int i = 0; i < tLRPC$Vector.objects.size(); i++) {
-                    if (((Long) arrayList.get(i)).longValue() > 0) {
-                        TLRPC$User user = MessagesController.getInstance(UserListPoller.this.currentAccount).getUser((Long) arrayList.get(i));
-                        if (user != null) {
-                            int intValue = ((Integer) tLRPC$Vector.objects.get(i)).intValue();
-                            user.stories_max_id = intValue;
-                            if (intValue != 0) {
-                                user.flags2 |= 32;
-                            } else {
-                                user.flags2 &= -33;
-                            }
-                            arrayList2.add(user);
-                        }
-                    } else {
-                        TLRPC$Chat chat = MessagesController.getInstance(UserListPoller.this.currentAccount).getChat((Long) arrayList.get(i));
-                        if (chat != null) {
-                            int intValue2 = ((Integer) tLRPC$Vector.objects.get(i)).intValue();
-                            chat.stories_max_id = intValue2;
-                            if (intValue2 != 0) {
-                                chat.flags2 |= 16;
-                            } else {
-                                chat.flags2 &= -17;
-                            }
-                            arrayList3.add(chat);
-                        }
-                    }
-                }
-                MessagesStorage.getInstance(UserListPoller.this.currentAccount).putUsersAndChats(arrayList2, arrayList3, true, true);
-                NotificationCenter.getInstance(UserListPoller.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
-            }
+    public static UserListPoller getInstance(int i) {
+        UserListPoller[] userListPollerArr = istances;
+        if (userListPollerArr[i] == null) {
+            userListPollerArr[i] = new UserListPoller(i);
         }
+        return istances[i];
     }
 
     public void checkList(RecyclerListView recyclerListView) {
-        long dialogId;
+        TLRPC$User user;
         TLRPC$UserStatus tLRPC$UserStatus;
         long currentTimeMillis = System.currentTimeMillis();
         this.dialogIds.clear();
         for (int i = 0; i < recyclerListView.getChildCount(); i++) {
             View childAt = recyclerListView.getChildAt(i);
-            if (childAt instanceof DialogCell) {
-                dialogId = ((DialogCell) childAt).getDialogId();
-            } else {
-                dialogId = childAt instanceof UserCell ? ((UserCell) childAt).getDialogId() : 0L;
-            }
-            if (dialogId > 0) {
-                TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId));
-                if (user != null && !user.bot && !user.self && !user.contact && (tLRPC$UserStatus = user.status) != null && !(tLRPC$UserStatus instanceof TLRPC$TL_userStatusEmpty) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
-                    this.userPollLastTime.put(dialogId, currentTimeMillis);
-                    this.dialogIds.add(Long.valueOf(dialogId));
-                }
-            } else if (ChatObject.isChannel(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId))) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
+            long dialogId = childAt instanceof DialogCell ? ((DialogCell) childAt).getDialogId() : childAt instanceof UserCell ? ((UserCell) childAt).getDialogId() : 0L;
+            if (dialogId <= 0 ? !(!ChatObject.isChannel(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId))) || currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000) : !((user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId))) == null || user.bot || user.self || user.contact || (tLRPC$UserStatus = user.status) == null || (tLRPC$UserStatus instanceof TLRPC$TL_userStatusEmpty) || currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000)) {
                 this.userPollLastTime.put(dialogId, currentTimeMillis);
                 this.dialogIds.add(Long.valueOf(dialogId));
             }

@@ -2,9 +2,9 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 
-public class TLRPC$help_timezonesList extends TLObject {
+public abstract class TLRPC$help_timezonesList extends TLObject {
     public int hash;
-    public ArrayList<TLRPC$TL_timezone> timezones = new ArrayList<>();
+    public ArrayList timezones = new ArrayList();
 
     public static TLRPC$help_timezonesList TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$help_timezonesList tLRPC$help_timezonesList = i != -1761146676 ? i != 2071260529 ? null : new TLRPC$help_timezonesList() {
@@ -30,7 +30,7 @@ public class TLRPC$help_timezonesList extends TLObject {
                 int size = this.timezones.size();
                 abstractSerializedData2.writeInt32(size);
                 for (int i2 = 0; i2 < size; i2++) {
-                    this.timezones.get(i2).serializeToStream(abstractSerializedData2);
+                    ((TLRPC$TL_timezone) this.timezones.get(i2)).serializeToStream(abstractSerializedData2);
                 }
                 abstractSerializedData2.writeInt32(this.hash);
             }

@@ -45,7 +45,7 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.SeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.SpeedIconDrawable;
 
-public class ActionBarMenuSlider extends FrameLayout {
+public abstract class ActionBarMenuSlider extends FrameLayout {
     private boolean backgroundDark;
     private Paint backgroundPaint;
     private Bitmap blurBitmap;
@@ -63,7 +63,7 @@ public class ActionBarMenuSlider extends FrameLayout {
     private float fromValue;
     private float fromX;
     private int[] location;
-    private Utilities.Callback2<Float, Boolean> onValueChange;
+    private Utilities.Callback2 onValueChange;
     private Runnable prepareBlur;
     private boolean preparingBlur;
     private int pseudoBlurColor1;
@@ -81,17 +81,81 @@ public class ActionBarMenuSlider extends FrameLayout {
     private ValueAnimator valueAnimator;
     private ColorFilter whiteColorFilter;
 
-    protected int getColorValue(float f) {
-        return -1;
-    }
+    public static class SpeedSlider extends ActionBarMenuSlider {
+        private final SeekBarAccessibilityDelegate seekBarAccessibilityDelegate;
 
-    protected String getStringValue(float f) {
-        return null;
-    }
+        public SpeedSlider(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+            setFocusable(true);
+            setFocusableInTouchMode(true);
+            setImportantForAccessibility(1);
+            FloatSeekBarAccessibilityDelegate floatSeekBarAccessibilityDelegate = new FloatSeekBarAccessibilityDelegate(false) {
+                @Override
+                public CharSequence getContentDescription(View view) {
+                    return SpeedIconDrawable.formatNumber(SpeedSlider.this.getSpeed()) + "x  " + LocaleController.getString(R.string.AccDescrSpeedSlider);
+                }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
+                @Override
+                public float getDelta() {
+                    return 0.2f;
+                }
+
+                @Override
+                protected float getMaxValue() {
+                    return 2.5f;
+                }
+
+                @Override
+                protected float getMinValue() {
+                    return 0.2f;
+                }
+
+                @Override
+                public float getProgress() {
+                    return SpeedSlider.this.getSpeed();
+                }
+
+                @Override
+                public void setProgress(float f) {
+                    SpeedSlider.this.setSpeed(f, true);
+                }
+            };
+            this.seekBarAccessibilityDelegate = floatSeekBarAccessibilityDelegate;
+            setAccessibilityDelegate(floatSeekBarAccessibilityDelegate);
+        }
+
+        @Override
+        protected int getColorValue(float f) {
+            return ColorUtils.blendARGB(Theme.getColor(Theme.key_color_lightblue, this.resourcesProvider), Theme.getColor(Theme.key_color_blue, this.resourcesProvider), MathUtils.clamp((((f * 2.3f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f));
+        }
+
+        public float getSpeed() {
+            return getSpeed(getValue());
+        }
+
+        public float getSpeed(float f) {
+            return (f * 2.3f) + 0.2f;
+        }
+
+        @Override
+        protected String getStringValue(float f) {
+            return SpeedIconDrawable.formatNumber((f * 2.3f) + 0.2f) + "x";
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            this.seekBarAccessibilityDelegate.onInitializeAccessibilityNodeInfoInternal(this, accessibilityNodeInfo);
+        }
+
+        @Override
+        public boolean performAccessibilityAction(int i, Bundle bundle) {
+            return super.performAccessibilityAction(i, bundle) || this.seekBarAccessibilityDelegate.performAccessibilityActionInternal(this, i, bundle);
+        }
+
+        public void setSpeed(float f, boolean z) {
+            setValue((f - 0.2f) / 2.3f, z);
+        }
     }
 
     public ActionBarMenuSlider(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -146,103 +210,35 @@ public class ActionBarMenuSlider extends FrameLayout {
         this.brightenBlurPaint.setColor(Theme.multAlpha(-1, 0.35f));
     }
 
-    public float getValue() {
-        return this.value;
-    }
-
-    public void setValue(float f, boolean z) {
-        ValueAnimator valueAnimator = this.valueAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.valueAnimator = null;
-        }
-        final float clamp = MathUtils.clamp(f, 0.0f, 1.0f);
-        if (!z) {
-            this.value = clamp;
-            invalidate();
-        } else {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.value, clamp);
-            this.valueAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ActionBarMenuSlider.this.lambda$setValue$0(valueAnimator2);
-                }
-            });
-            this.valueAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ActionBarMenuSlider.this.valueAnimator = null;
-                    ActionBarMenuSlider.this.value = clamp;
-                    ActionBarMenuSlider.this.invalidate();
-                }
-            });
-            this.valueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.valueAnimator.setDuration(220L);
-            this.valueAnimator.start();
-        }
-        String stringValue = getStringValue(clamp);
-        if (stringValue != null && !TextUtils.equals(this.textDrawable.getText(), stringValue)) {
-            this.textDrawable.cancelAnimation();
-            this.textDrawable.setText(stringValue, true);
-        }
-        this.fillPaint.setColor(getColorValue(clamp));
-    }
-
-    public void lambda$setValue$0(ValueAnimator valueAnimator) {
-        this.value = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        this.backgroundPaint.setColor(i);
-        boolean z = AndroidUtilities.computePerceivedBrightness(this.backgroundPaint.getColor()) <= 0.721f;
-        this.backgroundDark = z;
-        this.textDrawable.setTextColor(z ? -1 : -16777216);
-    }
-
-    public void setTextColor(int i) {
-        this.textDrawable.setTextColor(i);
-    }
-
-    private void updateValue(float f, boolean z) {
-        setValue(f, false);
-        Utilities.Callback2<Float, Boolean> callback2 = this.onValueChange;
-        if (callback2 != null) {
-            callback2.run(Float.valueOf(this.value), Boolean.valueOf(z));
-        }
-    }
-
-    public void setOnValueChange(Utilities.Callback2<Float, Boolean> callback2) {
-        this.onValueChange = callback2;
-    }
-
-    public void setDrawShadow(boolean z) {
-        this.drawShadow = z;
-        int dp = z ? AndroidUtilities.dp(8.0f) : 0;
-        setPadding(dp, dp, dp, dp);
-        invalidate();
-    }
-
-    public void setDrawBlur(boolean z) {
-        this.drawBlur = z;
-        invalidate();
-    }
-
-    public void setRoundRadiusDp(float f) {
-        this.roundRadiusDp = f;
-        invalidate();
-    }
-
-    public void lambda$new$2() {
-        this.preparingBlur = true;
-        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ActionBarMenuSlider.this.lambda$new$1((Bitmap) obj);
+    private void drawText(Canvas canvas, boolean z) {
+        ColorFilter colorFilter;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
+        if (z) {
+            colorFilter = this.whiteColorFilter;
+            if (colorFilter == null) {
+                colorFilter = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+                this.whiteColorFilter = colorFilter;
             }
-        }, 8.0f);
+        } else {
+            colorFilter = null;
+        }
+        animatedTextDrawable.setColorFilter(colorFilter);
+        this.textDrawable.setBounds(getPaddingLeft() + AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2, (getMeasuredWidth() - getPaddingRight()) - AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2);
+        this.textDrawable.draw(canvas);
+    }
+
+    private Pair getBitmapGradientColors(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+        float f = this.location[0] / AndroidUtilities.displaySize.x;
+        int width = (int) (f * bitmap.getWidth());
+        int measuredWidth = (int) (((r1 + getMeasuredWidth()) / AndroidUtilities.displaySize.x) * bitmap.getWidth());
+        int currentActionBarHeight = (int) ((((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y) * bitmap.getHeight());
+        if (width < 0 || width >= bitmap.getWidth() || measuredWidth < 0 || measuredWidth >= bitmap.getWidth() || currentActionBarHeight < 0 || currentActionBarHeight >= bitmap.getHeight()) {
+            return null;
+        }
+        return new Pair(Integer.valueOf(bitmap.getPixel(width, currentActionBarHeight)), Integer.valueOf(bitmap.getPixel(measuredWidth, currentActionBarHeight)));
     }
 
     public void lambda$new$1(Bitmap bitmap) {
@@ -268,16 +264,75 @@ public class ActionBarMenuSlider extends FrameLayout {
         invalidate();
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        if (this.drawShadow) {
-            i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i) + getPaddingRight() + getPaddingLeft(), 1073741824);
+    public void lambda$new$2() {
+        this.preparingBlur = true;
+        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ActionBarMenuSlider.this.lambda$new$1((Bitmap) obj);
+            }
+        }, 8.0f);
+    }
+
+    public void lambda$setValue$0(ValueAnimator valueAnimator) {
+        this.value = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    private void updatePseudoBlurColors() {
+        int color;
+        int i;
+        if (this.blurIsInChat) {
+            Drawable cachedWallpaper = Theme.getCachedWallpaper();
+            if (cachedWallpaper instanceof ColorDrawable) {
+                color = ((ColorDrawable) cachedWallpaper).getColor();
+            } else {
+                Pair bitmapGradientColors = getBitmapGradientColors(cachedWallpaper instanceof MotionBackgroundDrawable ? ((MotionBackgroundDrawable) cachedWallpaper).getBitmap() : cachedWallpaper instanceof BitmapDrawable ? ((BitmapDrawable) cachedWallpaper).getBitmap() : null);
+                if (bitmapGradientColors != null) {
+                    int intValue = ((Integer) bitmapGradientColors.first).intValue();
+                    i = ((Integer) bitmapGradientColors.second).intValue();
+                    color = intValue;
+                    if (this.pseudoBlurGradient == null && this.pseudoBlurColor1 == color && this.pseudoBlurColor2 == i) {
+                        return;
+                    }
+                    this.pseudoBlurColor1 = color;
+                    this.pseudoBlurColor2 = i;
+                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.pseudoBlurGradient = linearGradient;
+                    this.pseudoBlurPaint.setShader(linearGradient);
+                }
+                color = Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), 0.25f);
+            }
+        } else {
+            color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
+            if (!Theme.isCurrentThemeDark()) {
+                color = Theme.blendOver(color, Theme.multAlpha(-16777216, 0.18f));
+            }
         }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f) + getPaddingTop() + getPaddingBottom(), 1073741824));
-        boolean z = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(256);
-        if (this.drawBlur && this.blurBitmap == null && !this.preparingBlur && z) {
-            this.prepareBlur.run();
+        i = color;
+        if (this.pseudoBlurGradient == null) {
         }
+        this.pseudoBlurColor1 = color;
+        this.pseudoBlurColor2 = i;
+        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.pseudoBlurGradient = linearGradient2;
+        this.pseudoBlurPaint.setShader(linearGradient2);
+    }
+
+    private void updateValue(float f, boolean z) {
+        setValue(f, false);
+        Utilities.Callback2 callback2 = this.onValueChange;
+        if (callback2 != null) {
+            callback2.run(Float.valueOf(this.value), Boolean.valueOf(z));
+        }
+    }
+
+    protected abstract int getColorValue(float f);
+
+    protected abstract String getStringValue(float f);
+
+    public float getValue() {
+        return this.value;
     }
 
     public void invalidateBlur(boolean z) {
@@ -289,26 +344,6 @@ public class ActionBarMenuSlider extends FrameLayout {
             bitmap.recycle();
             this.blurBitmap = null;
         }
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        getLocationOnScreen(this.location);
-        Matrix matrix = this.blurBitmapMatrix;
-        if (matrix != null) {
-            matrix.reset();
-            this.blurBitmapMatrix.postScale(8.0f, 8.0f);
-            Matrix matrix2 = this.blurBitmapMatrix;
-            int[] iArr = this.location;
-            matrix2.postTranslate(-iArr[0], -iArr[1]);
-            BitmapShader bitmapShader = this.blurBitmapShader;
-            if (bitmapShader != null) {
-                bitmapShader.setLocalMatrix(this.blurBitmapMatrix);
-                invalidate();
-            }
-        }
-        updatePseudoBlurColors();
     }
 
     @Override
@@ -367,81 +402,41 @@ public class ActionBarMenuSlider extends FrameLayout {
         }
     }
 
-    private void drawText(Canvas canvas, boolean z) {
-        ColorFilter colorFilter;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-        if (z) {
-            colorFilter = this.whiteColorFilter;
-            if (colorFilter == null) {
-                colorFilter = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-                this.whiteColorFilter = colorFilter;
-            }
-        } else {
-            colorFilter = null;
-        }
-        animatedTextDrawable.setColorFilter(colorFilter);
-        this.textDrawable.setBounds(getPaddingLeft() + AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2, (getMeasuredWidth() - getPaddingRight()) - AndroidUtilities.dp(20.0f), getMeasuredHeight() / 2);
-        this.textDrawable.draw(canvas);
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
-    private Pair<Integer, Integer> getBitmapGradientColors(Bitmap bitmap) {
-        if (bitmap == null) {
-            return null;
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        getLocationOnScreen(this.location);
+        Matrix matrix = this.blurBitmapMatrix;
+        if (matrix != null) {
+            matrix.reset();
+            this.blurBitmapMatrix.postScale(8.0f, 8.0f);
+            Matrix matrix2 = this.blurBitmapMatrix;
+            int[] iArr = this.location;
+            matrix2.postTranslate(-iArr[0], -iArr[1]);
+            BitmapShader bitmapShader = this.blurBitmapShader;
+            if (bitmapShader != null) {
+                bitmapShader.setLocalMatrix(this.blurBitmapMatrix);
+                invalidate();
+            }
         }
-        float f = this.location[0] / AndroidUtilities.displaySize.x;
-        int width = (int) (f * bitmap.getWidth());
-        int measuredWidth = (int) (((r1 + getMeasuredWidth()) / AndroidUtilities.displaySize.x) * bitmap.getWidth());
-        int currentActionBarHeight = (int) ((((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y) * bitmap.getHeight());
-        if (width < 0 || width >= bitmap.getWidth() || measuredWidth < 0 || measuredWidth >= bitmap.getWidth() || currentActionBarHeight < 0 || currentActionBarHeight >= bitmap.getHeight()) {
-            return null;
-        }
-        return new Pair<>(Integer.valueOf(bitmap.getPixel(width, currentActionBarHeight)), Integer.valueOf(bitmap.getPixel(measuredWidth, currentActionBarHeight)));
+        updatePseudoBlurColors();
     }
 
-    private void updatePseudoBlurColors() {
-        int color;
-        int i;
-        Bitmap bitmap;
-        if (this.blurIsInChat) {
-            Drawable cachedWallpaper = Theme.getCachedWallpaper();
-            if (cachedWallpaper instanceof ColorDrawable) {
-                color = ((ColorDrawable) cachedWallpaper).getColor();
-            } else {
-                if (cachedWallpaper instanceof MotionBackgroundDrawable) {
-                    bitmap = ((MotionBackgroundDrawable) cachedWallpaper).getBitmap();
-                } else {
-                    bitmap = cachedWallpaper instanceof BitmapDrawable ? ((BitmapDrawable) cachedWallpaper).getBitmap() : null;
-                }
-                Pair<Integer, Integer> bitmapGradientColors = getBitmapGradientColors(bitmap);
-                if (bitmapGradientColors != null) {
-                    int intValue = ((Integer) bitmapGradientColors.first).intValue();
-                    i = ((Integer) bitmapGradientColors.second).intValue();
-                    color = intValue;
-                    if (this.pseudoBlurGradient == null && this.pseudoBlurColor1 == color && this.pseudoBlurColor2 == i) {
-                        return;
-                    }
-                    this.pseudoBlurColor1 = color;
-                    this.pseudoBlurColor2 = i;
-                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.pseudoBlurGradient = linearGradient;
-                    this.pseudoBlurPaint.setShader(linearGradient);
-                }
-                color = Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), 0.25f);
-            }
-        } else {
-            color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
-            if (!Theme.isCurrentThemeDark()) {
-                color = Theme.blendOver(color, Theme.multAlpha(-16777216, 0.18f));
-            }
+    @Override
+    protected void onMeasure(int i, int i2) {
+        if (this.drawShadow) {
+            i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i) + getPaddingRight() + getPaddingLeft(), 1073741824);
         }
-        i = color;
-        if (this.pseudoBlurGradient == null) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f) + getPaddingTop() + getPaddingBottom(), 1073741824));
+        boolean z = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(256);
+        if (this.drawBlur && this.blurBitmap == null && !this.preparingBlur && z) {
+            this.prepareBlur.run();
         }
-        this.pseudoBlurColor1 = color;
-        this.pseudoBlurColor2 = i;
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.pseudoBlurGradient = linearGradient2;
-        this.pseudoBlurPaint.setShader(linearGradient2);
     }
 
     @Override
@@ -458,7 +453,7 @@ public class ActionBarMenuSlider extends FrameLayout {
                 this.dragging = false;
                 if (System.currentTimeMillis() - this.tapStart < ViewConfiguration.getTapTimeout()) {
                     float paddingLeft = (x - getPaddingLeft()) / ((getWidth() - getPaddingLeft()) - getPaddingRight());
-                    Utilities.Callback2<Float, Boolean> callback2 = this.onValueChange;
+                    Utilities.Callback2 callback2 = this.onValueChange;
                     if (callback2 != null) {
                         callback2.run(Float.valueOf(paddingLeft), Boolean.TRUE);
                     }
@@ -470,80 +465,75 @@ public class ActionBarMenuSlider extends FrameLayout {
         return true;
     }
 
-    public static class SpeedSlider extends ActionBarMenuSlider {
-        private final SeekBarAccessibilityDelegate seekBarAccessibilityDelegate;
+    @Override
+    public void setBackgroundColor(int i) {
+        this.backgroundPaint.setColor(i);
+        boolean z = AndroidUtilities.computePerceivedBrightness(this.backgroundPaint.getColor()) <= 0.721f;
+        this.backgroundDark = z;
+        this.textDrawable.setTextColor(z ? -1 : -16777216);
+    }
 
-        public float getSpeed(float f) {
-            return (f * 2.3f) + 0.2f;
+    public void setDrawBlur(boolean z) {
+        this.drawBlur = z;
+        invalidate();
+    }
+
+    public void setDrawShadow(boolean z) {
+        this.drawShadow = z;
+        int dp = z ? AndroidUtilities.dp(8.0f) : 0;
+        setPadding(dp, dp, dp, dp);
+        invalidate();
+    }
+
+    public void setOnValueChange(Utilities.Callback2<Float, Boolean> callback2) {
+        this.onValueChange = callback2;
+    }
+
+    public void setRoundRadiusDp(float f) {
+        this.roundRadiusDp = f;
+        invalidate();
+    }
+
+    public void setTextColor(int i) {
+        this.textDrawable.setTextColor(i);
+    }
+
+    public void setValue(float f, boolean z) {
+        ValueAnimator valueAnimator = this.valueAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.valueAnimator = null;
         }
-
-        public SpeedSlider(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context, resourcesProvider);
-            setFocusable(true);
-            setFocusableInTouchMode(true);
-            setImportantForAccessibility(1);
-            FloatSeekBarAccessibilityDelegate floatSeekBarAccessibilityDelegate = new FloatSeekBarAccessibilityDelegate(false) {
+        final float clamp = MathUtils.clamp(f, 0.0f, 1.0f);
+        if (z) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.value, clamp);
+            this.valueAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
-                public float getDelta() {
-                    return 0.2f;
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    ActionBarMenuSlider.this.lambda$setValue$0(valueAnimator2);
                 }
-
+            });
+            this.valueAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
-                protected float getMaxValue() {
-                    return 2.5f;
+                public void onAnimationEnd(Animator animator) {
+                    ActionBarMenuSlider.this.valueAnimator = null;
+                    ActionBarMenuSlider.this.value = clamp;
+                    ActionBarMenuSlider.this.invalidate();
                 }
-
-                @Override
-                protected float getMinValue() {
-                    return 0.2f;
-                }
-
-                @Override
-                public float getProgress() {
-                    return SpeedSlider.this.getSpeed();
-                }
-
-                @Override
-                public void setProgress(float f) {
-                    SpeedSlider.this.setSpeed(f, true);
-                }
-
-                @Override
-                public CharSequence getContentDescription(View view) {
-                    return SpeedIconDrawable.formatNumber(SpeedSlider.this.getSpeed()) + "x  " + LocaleController.getString(R.string.AccDescrSpeedSlider);
-                }
-            };
-            this.seekBarAccessibilityDelegate = floatSeekBarAccessibilityDelegate;
-            setAccessibilityDelegate(floatSeekBarAccessibilityDelegate);
+            });
+            this.valueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.valueAnimator.setDuration(220L);
+            this.valueAnimator.start();
+        } else {
+            this.value = clamp;
+            invalidate();
         }
-
-        @Override
-        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            this.seekBarAccessibilityDelegate.onInitializeAccessibilityNodeInfoInternal(this, accessibilityNodeInfo);
+        String stringValue = getStringValue(clamp);
+        if (stringValue != null && !TextUtils.equals(this.textDrawable.getText(), stringValue)) {
+            this.textDrawable.cancelAnimation();
+            this.textDrawable.setText(stringValue, true);
         }
-
-        @Override
-        public boolean performAccessibilityAction(int i, Bundle bundle) {
-            return super.performAccessibilityAction(i, bundle) || this.seekBarAccessibilityDelegate.performAccessibilityActionInternal(this, i, bundle);
-        }
-
-        public float getSpeed() {
-            return getSpeed(getValue());
-        }
-
-        public void setSpeed(float f, boolean z) {
-            setValue((f - 0.2f) / 2.3f, z);
-        }
-
-        @Override
-        protected String getStringValue(float f) {
-            return SpeedIconDrawable.formatNumber((f * 2.3f) + 0.2f) + "x";
-        }
-
-        @Override
-        protected int getColorValue(float f) {
-            return ColorUtils.blendARGB(Theme.getColor(Theme.key_color_lightblue, this.resourcesProvider), Theme.getColor(Theme.key_color_blue, this.resourcesProvider), MathUtils.clamp((((f * 2.3f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f));
-        }
+        this.fillPaint.setColor(getColorValue(clamp));
     }
 }

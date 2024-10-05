@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_emojiKeyword extends TLRPC$EmojiKeyword {
-    public ArrayList<String> emoticons = new ArrayList<>();
+    public ArrayList emoticons = new ArrayList();
     public String keyword;
 
     @Override
@@ -30,7 +30,7 @@ public class TLRPC$TL_emojiKeyword extends TLRPC$EmojiKeyword {
         int size = this.emoticons.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeString(this.emoticons.get(i));
+            abstractSerializedData.writeString((String) this.emoticons.get(i));
         }
     }
 }

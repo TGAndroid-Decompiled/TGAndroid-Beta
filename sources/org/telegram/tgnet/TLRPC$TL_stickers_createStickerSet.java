@@ -8,7 +8,7 @@ public class TLRPC$TL_stickers_createStickerSet extends TLObject {
     public boolean masks;
     public String short_name;
     public String software;
-    public ArrayList<TLRPC$TL_inputStickerSetItem> stickers = new ArrayList<>();
+    public ArrayList stickers = new ArrayList();
     public TLRPC$InputDocument thumb;
     public String title;
     public TLRPC$InputUser user_id;
@@ -36,7 +36,7 @@ public class TLRPC$TL_stickers_createStickerSet extends TLObject {
         int size = this.stickers.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            this.stickers.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_inputStickerSetItem) this.stickers.get(i3)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 8) != 0) {
             abstractSerializedData.writeString(this.software);

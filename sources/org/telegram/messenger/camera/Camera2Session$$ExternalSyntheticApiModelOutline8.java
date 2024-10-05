@@ -1,4 +1,4 @@
 package org.telegram.messenger.camera;
 
-public final class Camera2Session$$ExternalSyntheticApiModelOutline8 {
+public abstract class Camera2Session$$ExternalSyntheticApiModelOutline8 {
 }

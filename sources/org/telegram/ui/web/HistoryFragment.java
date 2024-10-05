@@ -41,26 +41,168 @@ public class HistoryFragment extends UniversalFragment {
     private ActionBarMenuItem searchItem;
     private boolean searchLoading;
     private NumberTextView selectedCount;
-    private final Utilities.Callback<BrowserHistory.Entry> whenClicked;
-    private ArrayList<BrowserHistory.Entry> history = BrowserHistory.getHistory(new Utilities.Callback() {
+    private final Utilities.Callback whenClicked;
+    private ArrayList history = BrowserHistory.getHistory(new Utilities.Callback() {
         @Override
         public final void run(Object obj) {
             HistoryFragment.this.lambda$new$0((ArrayList) obj);
         }
     });
-    private final ArrayList<BrowserHistory.Entry> searchResults = new ArrayList<>();
-    public HashSet<Integer> selected = new HashSet<>();
+    private final ArrayList searchResults = new ArrayList();
+    public HashSet selected = new HashSet();
+
+    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
+        AnonymousClass1() {
+        }
+
+        public static void lambda$onItemClick$0(View view) {
+            if (view instanceof AddressBarList.BookmarkView) {
+                ((AddressBarList.BookmarkView) view).setChecked(false);
+            }
+        }
+
+        @Override
+        public void onItemClick(int i) {
+            if (i == -1) {
+                if (!((BaseFragment) HistoryFragment.this).actionBar.isActionModeShowed()) {
+                    HistoryFragment.this.lambda$onBackPressed$307();
+                    return;
+                }
+                ((BaseFragment) HistoryFragment.this).actionBar.hideActionMode();
+                HistoryFragment.this.selected.clear();
+                AndroidUtilities.forEachViews((RecyclerView) HistoryFragment.this.listView, new Consumer() {
+                    @Override
+                    public final void accept(Object obj) {
+                        HistoryFragment.AnonymousClass1.lambda$onItemClick$0((View) obj);
+                    }
+                });
+            }
+        }
+    }
+
+    public class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
+        private Runnable applySearch = new Runnable() {
+            @Override
+            public final void run() {
+                HistoryFragment.AnonymousClass2.this.lambda$$2();
+            }
+        };
+
+        AnonymousClass2() {
+        }
+
+        public void lambda$$0(ArrayList arrayList) {
+            HistoryFragment.this.searchResults.clear();
+            HistoryFragment.this.searchResults.addAll(arrayList);
+            HistoryFragment.this.searchLoading = false;
+            UniversalRecyclerView universalRecyclerView = HistoryFragment.this.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
+            }
+        }
+
+        public void lambda$$1(ArrayList arrayList, String str) {
+            WebMetadataCache.WebMetadata webMetadata;
+            final ArrayList arrayList2 = new ArrayList();
+            for (int i = 0; i < arrayList.size(); i++) {
+                BrowserHistory.Entry entry = (BrowserHistory.Entry) arrayList.get(i);
+                if (matches(entry.url, str) || ((webMetadata = entry.meta) != null && (matches(webMetadata.title, str) || matches(entry.meta.sitename, str)))) {
+                    arrayList2.add(entry);
+                }
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    HistoryFragment.AnonymousClass2.this.lambda$$0(arrayList2);
+                }
+            });
+        }
+
+        public void lambda$$2() {
+            final ArrayList arrayList = new ArrayList(HistoryFragment.this.history);
+            final String str = HistoryFragment.this.query;
+            Utilities.searchQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    HistoryFragment.AnonymousClass2.this.lambda$$1(arrayList, str);
+                }
+            });
+        }
+
+        private void scheduleSearch() {
+            HistoryFragment.this.searchLoading = true;
+            AndroidUtilities.cancelRunOnUIThread(this.applySearch);
+            AndroidUtilities.runOnUIThread(this.applySearch, 500L);
+        }
+
+        public boolean matches(String str, String str2) {
+            if (str == null || str2 == null) {
+                return false;
+            }
+            String lowerCase = str.toLowerCase();
+            String lowerCase2 = str2.toLowerCase();
+            if (!lowerCase.startsWith(lowerCase2)) {
+                if (!lowerCase.contains(" " + lowerCase2)) {
+                    if (!lowerCase.contains("." + lowerCase2)) {
+                        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                        String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                        if (!translitSafe.startsWith(translitSafe2)) {
+                            if (!translitSafe.contains(" " + translitSafe2)) {
+                                if (!translitSafe.contains("." + translitSafe2)) {
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+            return true;
+        }
+
+        @Override
+        public void onSearchCollapse() {
+            HistoryFragment.this.query = null;
+            HistoryFragment.this.searchLoading = false;
+            AndroidUtilities.cancelRunOnUIThread(this.applySearch);
+            UniversalRecyclerView universalRecyclerView = HistoryFragment.this.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
+                HistoryFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
+            }
+            HistoryFragment.this.emptyView.title.setText(LocaleController.getString(TextUtils.isEmpty(HistoryFragment.this.query) ? R.string.WebNoHistory : R.string.WebNoSearchedHistory));
+        }
+
+        @Override
+        public void onSearchExpand() {
+        }
+
+        @Override
+        public void onTextChanged(EditText editText) {
+            boolean z = !TextUtils.isEmpty(HistoryFragment.this.query);
+            String obj = editText.getText().toString();
+            if (!TextUtils.equals(HistoryFragment.this.query, obj)) {
+                HistoryFragment.this.query = obj;
+                scheduleSearch();
+                HistoryFragment.this.emptyView.title.setText(LocaleController.getString(TextUtils.isEmpty(obj) ? R.string.WebNoHistory : R.string.WebNoSearchedHistory));
+            }
+            UniversalRecyclerView universalRecyclerView = HistoryFragment.this.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
+                if (z != (!TextUtils.isEmpty(obj))) {
+                    HistoryFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
+                }
+            }
+        }
+    }
+
+    public HistoryFragment(Runnable runnable, Utilities.Callback callback) {
+        this.closeToTabs = runnable;
+        this.whenClicked = callback;
+    }
 
     public static boolean lambda$createView$1(View view, MotionEvent motionEvent) {
         return true;
-    }
-
-    public void clickSelect(UItem uItem, View view) {
-    }
-
-    @Override
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
-        return false;
     }
 
     public void lambda$new$0(ArrayList arrayList) {
@@ -70,9 +212,7 @@ public class HistoryFragment extends UniversalFragment {
         }
     }
 
-    public HistoryFragment(Runnable runnable, Utilities.Callback<BrowserHistory.Entry> callback) {
-        this.closeToTabs = runnable;
-        this.whenClicked = callback;
+    public void clickSelect(UItem uItem, View view) {
     }
 
     @Override
@@ -135,166 +275,16 @@ public class HistoryFragment extends UniversalFragment {
         return this.fragmentView;
     }
 
-    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
-        AnonymousClass1() {
-        }
-
-        @Override
-        public void onItemClick(int i) {
-            if (i == -1) {
-                if (((BaseFragment) HistoryFragment.this).actionBar.isActionModeShowed()) {
-                    ((BaseFragment) HistoryFragment.this).actionBar.hideActionMode();
-                    HistoryFragment.this.selected.clear();
-                    AndroidUtilities.forEachViews((RecyclerView) HistoryFragment.this.listView, (Consumer<View>) new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            HistoryFragment.AnonymousClass1.lambda$onItemClick$0((View) obj);
-                        }
-                    });
-                    return;
-                }
-                HistoryFragment.this.lambda$onBackPressed$308();
-            }
-        }
-
-        public static void lambda$onItemClick$0(View view) {
-            if (view instanceof AddressBarList.BookmarkView) {
-                ((AddressBarList.BookmarkView) view).setChecked(false);
-            }
-        }
-    }
-
-    public class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
-        private Runnable applySearch = new Runnable() {
-            @Override
-            public final void run() {
-                HistoryFragment.AnonymousClass2.this.lambda$$2();
-            }
-        };
-
-        @Override
-        public void onSearchExpand() {
-        }
-
-        AnonymousClass2() {
-        }
-
-        @Override
-        public void onSearchCollapse() {
-            HistoryFragment.this.query = null;
-            HistoryFragment.this.searchLoading = false;
-            AndroidUtilities.cancelRunOnUIThread(this.applySearch);
-            UniversalRecyclerView universalRecyclerView = HistoryFragment.this.listView;
-            if (universalRecyclerView != null) {
-                universalRecyclerView.adapter.update(true);
-                HistoryFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-            }
-            HistoryFragment.this.emptyView.title.setText(LocaleController.getString(TextUtils.isEmpty(HistoryFragment.this.query) ? R.string.WebNoHistory : R.string.WebNoSearchedHistory));
-        }
-
-        @Override
-        public void onTextChanged(EditText editText) {
-            boolean z = !TextUtils.isEmpty(HistoryFragment.this.query);
-            String obj = editText.getText().toString();
-            if (!TextUtils.equals(HistoryFragment.this.query, obj)) {
-                HistoryFragment.this.query = obj;
-                scheduleSearch();
-                HistoryFragment.this.emptyView.title.setText(LocaleController.getString(TextUtils.isEmpty(obj) ? R.string.WebNoHistory : R.string.WebNoSearchedHistory));
-            }
-            UniversalRecyclerView universalRecyclerView = HistoryFragment.this.listView;
-            if (universalRecyclerView != null) {
-                universalRecyclerView.adapter.update(true);
-                if (z != (!TextUtils.isEmpty(obj))) {
-                    HistoryFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-                }
-            }
-        }
-
-        private void scheduleSearch() {
-            HistoryFragment.this.searchLoading = true;
-            AndroidUtilities.cancelRunOnUIThread(this.applySearch);
-            AndroidUtilities.runOnUIThread(this.applySearch, 500L);
-        }
-
-        public void lambda$$2() {
-            final ArrayList arrayList = new ArrayList(HistoryFragment.this.history);
-            final String str = HistoryFragment.this.query;
-            Utilities.searchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    HistoryFragment.AnonymousClass2.this.lambda$$1(arrayList, str);
-                }
-            });
-        }
-
-        public void lambda$$1(ArrayList arrayList, String str) {
-            WebMetadataCache.WebMetadata webMetadata;
-            final ArrayList arrayList2 = new ArrayList();
-            for (int i = 0; i < arrayList.size(); i++) {
-                BrowserHistory.Entry entry = (BrowserHistory.Entry) arrayList.get(i);
-                if (matches(entry.url, str) || ((webMetadata = entry.meta) != null && (matches(webMetadata.title, str) || matches(entry.meta.sitename, str)))) {
-                    arrayList2.add(entry);
-                }
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    HistoryFragment.AnonymousClass2.this.lambda$$0(arrayList2);
-                }
-            });
-        }
-
-        public void lambda$$0(ArrayList arrayList) {
-            HistoryFragment.this.searchResults.clear();
-            HistoryFragment.this.searchResults.addAll(arrayList);
-            HistoryFragment.this.searchLoading = false;
-            UniversalRecyclerView universalRecyclerView = HistoryFragment.this.listView;
-            if (universalRecyclerView != null) {
-                universalRecyclerView.adapter.update(true);
-            }
-        }
-
-        public boolean matches(String str, String str2) {
-            if (str == null || str2 == null) {
-                return false;
-            }
-            String lowerCase = str.toLowerCase();
-            String lowerCase2 = str2.toLowerCase();
-            if (!lowerCase.startsWith(lowerCase2)) {
-                if (!lowerCase.contains(" " + lowerCase2)) {
-                    if (!lowerCase.contains("." + lowerCase2)) {
-                        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                        String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                        if (!translitSafe.startsWith(translitSafe2)) {
-                            if (!translitSafe.contains(" " + translitSafe2)) {
-                                if (!translitSafe.contains("." + translitSafe2)) {
-                                    return false;
-                                }
-                            }
-                        }
-                        return true;
-                    }
-                }
-            }
-            return true;
-        }
-    }
-
     @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.WebHistory);
-    }
-
-    @Override
-    public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getDefault());
         int i = 0;
         if (TextUtils.isEmpty(this.query)) {
-            ArrayList<BrowserHistory.Entry> arrayList2 = this.history;
+            ArrayList arrayList2 = this.history;
             if (arrayList2 != null) {
                 for (int size = arrayList2.size() - 1; size >= 0; size--) {
-                    BrowserHistory.Entry entry = this.history.get(size);
+                    BrowserHistory.Entry entry = (BrowserHistory.Entry) this.history.get(size);
                     calendar.setTimeInMillis(entry.time);
                     int i2 = (calendar.get(1) * 10000) + (calendar.get(2) * 100) + calendar.get(5);
                     if (i != i2) {
@@ -306,7 +296,7 @@ public class HistoryFragment extends UniversalFragment {
             }
         } else {
             for (int size2 = this.searchResults.size() - 1; size2 >= 0; size2--) {
-                BrowserHistory.Entry entry2 = this.searchResults.get(size2);
+                BrowserHistory.Entry entry2 = (BrowserHistory.Entry) this.searchResults.get(size2);
                 calendar.setTimeInMillis(entry2.time);
                 int i3 = (calendar.get(1) * 10000) + (calendar.get(2) * 100) + calendar.get(5);
                 if (i != i3) {
@@ -328,19 +318,29 @@ public class HistoryFragment extends UniversalFragment {
     }
 
     @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.WebHistory);
+    }
+
+    @Override
+    public boolean isLightStatusBar() {
+        return AndroidUtilities.computePerceivedBrightness(getThemedColor(Theme.key_windowBackgroundWhite)) > 0.721f;
+    }
+
+    @Override
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
             } else {
-                lambda$onBackPressed$308();
+                lambda$onBackPressed$307();
                 this.whenClicked.run((BrowserHistory.Entry) uItem.object2);
             }
         }
     }
 
     @Override
-    public boolean isLightStatusBar() {
-        return AndroidUtilities.computePerceivedBrightness(getThemedColor(Theme.key_windowBackgroundWhite)) > 0.721f;
+    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        return false;
     }
 }

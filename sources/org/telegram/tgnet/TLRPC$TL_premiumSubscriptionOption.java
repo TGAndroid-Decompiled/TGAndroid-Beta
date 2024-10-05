@@ -12,37 +12,32 @@ public class TLRPC$TL_premiumSubscriptionOption extends TLObject {
     public String transaction;
 
     public static TLRPC$TL_premiumSubscriptionOption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$TL_premiumSubscriptionOption tLRPC$TL_premiumSubscriptionOption;
-        if (i != -1225711938) {
-            tLRPC$TL_premiumSubscriptionOption = i != 1596792306 ? null : new TLRPC$TL_premiumSubscriptionOption();
-        } else {
-            tLRPC$TL_premiumSubscriptionOption = new TLRPC$TL_premiumSubscriptionOption() {
-                @Override
-                public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                    this.flags = abstractSerializedData2.readInt32(z2);
-                    this.months = abstractSerializedData2.readInt32(z2);
-                    this.currency = abstractSerializedData2.readString(z2);
-                    this.amount = abstractSerializedData2.readInt64(z2);
-                    this.bot_url = abstractSerializedData2.readString(z2);
-                    if ((this.flags & 1) != 0) {
-                        this.store_product = abstractSerializedData2.readString(z2);
-                    }
+        TLRPC$TL_premiumSubscriptionOption tLRPC$TL_premiumSubscriptionOption = i != -1225711938 ? i != 1596792306 ? null : new TLRPC$TL_premiumSubscriptionOption() : new TLRPC$TL_premiumSubscriptionOption() {
+            @Override
+            public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                this.flags = abstractSerializedData2.readInt32(z2);
+                this.months = abstractSerializedData2.readInt32(z2);
+                this.currency = abstractSerializedData2.readString(z2);
+                this.amount = abstractSerializedData2.readInt64(z2);
+                this.bot_url = abstractSerializedData2.readString(z2);
+                if ((this.flags & 1) != 0) {
+                    this.store_product = abstractSerializedData2.readString(z2);
                 }
+            }
 
-                @Override
-                public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(-1225711938);
-                    abstractSerializedData2.writeInt32(this.flags);
-                    abstractSerializedData2.writeInt32(this.months);
-                    abstractSerializedData2.writeString(this.currency);
-                    abstractSerializedData2.writeInt64(this.amount);
-                    abstractSerializedData2.writeString(this.bot_url);
-                    if ((this.flags & 1) != 0) {
-                        abstractSerializedData2.writeString(this.store_product);
-                    }
+            @Override
+            public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                abstractSerializedData2.writeInt32(-1225711938);
+                abstractSerializedData2.writeInt32(this.flags);
+                abstractSerializedData2.writeInt32(this.months);
+                abstractSerializedData2.writeString(this.currency);
+                abstractSerializedData2.writeInt64(this.amount);
+                abstractSerializedData2.writeString(this.bot_url);
+                if ((this.flags & 1) != 0) {
+                    abstractSerializedData2.writeString(this.store_product);
                 }
-            };
-        }
+            }
+        };
         if (tLRPC$TL_premiumSubscriptionOption == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in TL_premiumSubscriptionOption", Integer.valueOf(i)));
         }

@@ -49,7 +49,7 @@ public abstract class TLRPC$Theme extends TLObject {
                             this.document.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 8) != 0) {
-                            this.settings.get(0).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$ThemeSettings) this.settings.get(0)).serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 16) != 0) {
                             abstractSerializedData2.writeInt32(this.installs_count);
@@ -131,7 +131,7 @@ public abstract class TLRPC$Theme extends TLObject {
                             this.document.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 8) != 0) {
-                            this.settings.get(0).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$ThemeSettings) this.settings.get(0)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(this.installs_count);
                     }

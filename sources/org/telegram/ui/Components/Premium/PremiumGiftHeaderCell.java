@@ -55,6 +55,21 @@ public class PremiumGiftHeaderCell extends LinearLayout {
         setWillNotDraw(false);
     }
 
+    public void bind(TLRPC$User tLRPC$User) {
+        this.user = tLRPC$User;
+        this.avatarDrawable.setInfo(tLRPC$User);
+        this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+        this.titleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GiftTelegramPremiumTitle)));
+        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTelegramPremiumDescription, tLRPC$User.first_name)));
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        this.drawable.onDraw(canvas);
+        invalidate();
+    }
+
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
@@ -65,20 +80,5 @@ public class PremiumGiftHeaderCell extends LinearLayout {
         if (z) {
             this.drawable.resetPositions();
         }
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        this.drawable.onDraw(canvas);
-        invalidate();
-    }
-
-    public void bind(TLRPC$User tLRPC$User) {
-        this.user = tLRPC$User;
-        this.avatarDrawable.setInfo(tLRPC$User);
-        this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
-        this.titleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GiftTelegramPremiumTitle)));
-        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTelegramPremiumDescription, tLRPC$User.first_name)));
     }
 }

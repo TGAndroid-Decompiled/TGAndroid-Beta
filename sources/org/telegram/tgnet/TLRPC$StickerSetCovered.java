@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class TLRPC$StickerSetCovered extends TLObject {
     public TLRPC$Document cover;
-    public ArrayList<TLRPC$Document> covers = new ArrayList<>();
+    public ArrayList covers = new ArrayList();
     public TLRPC$StickerSet set;
 
     public static TLRPC$StickerSetCovered TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -55,13 +55,13 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
                         int size = this.packs.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.packs.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_stickerPack) this.packs.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size2 = this.documents.size();
                         abstractSerializedData2.writeInt32(size2);
                         for (int i3 = 0; i3 < size2; i3++) {
-                            this.documents.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Document) this.documents.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -96,7 +96,7 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
                         int size = this.covers.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.covers.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Document) this.covers.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };

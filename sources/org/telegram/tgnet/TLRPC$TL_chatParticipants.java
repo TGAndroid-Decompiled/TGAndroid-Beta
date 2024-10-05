@@ -30,7 +30,7 @@ public class TLRPC$TL_chatParticipants extends TLRPC$ChatParticipants {
         int size = this.participants.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.participants.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$ChatParticipant) this.participants.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(this.version);
     }

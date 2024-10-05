@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.net.Uri;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
@@ -13,17 +12,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
-import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$MessageReplyHeader;
-import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageEntitySpoiler;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
-import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
-import org.telegram.tgnet.TLRPC$TL_messageReplyHeader;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_pollAnswerVoters;
 import org.telegram.tgnet.TLRPC$TL_pollResults;
 import org.telegram.tgnet.TLRPC$WebPage;
@@ -57,16 +49,6 @@ public class MessagePreviewParams {
     public boolean webpageTop;
     public boolean willSeeSenders;
 
-    public static class PreviewMediaPoll extends TLRPC$TL_messageMediaPoll {
-        public int totalVotersCached;
-    }
-
-    public static ArrayList<MessageObject> singletonArrayList(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList = new ArrayList<>();
-        arrayList.add(messageObject);
-        return arrayList;
-    }
-
     public class Messages {
         private long dialogId;
         public LongSparseArray<MessageObject.GroupedMessages> groupedMessagesMap;
@@ -78,14 +60,6 @@ public class MessagePreviewParams {
         public ArrayList<MessageObject> previewMessages;
         public SparseBooleanArray selectedIds;
         private int type;
-
-        public Messages(MessagePreviewParams messagePreviewParams, Boolean bool, int i, MessageObject messageObject) {
-            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), messageObject.getDialogId(), null);
-        }
-
-        public Messages(MessagePreviewParams messagePreviewParams, Boolean bool, int i, MessageObject messageObject, long j) {
-            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), j, null);
-        }
 
         public Messages(Boolean bool, int i, ArrayList<MessageObject> arrayList, long j, SparseBooleanArray sparseBooleanArray) {
             this.groupedMessagesMap = new LongSparseArray<>();
@@ -108,10 +82,10 @@ public class MessagePreviewParams {
                 }
                 MessageObject previewMessage = MessagePreviewParams.this.toPreviewMessage(messageObject, bool, i);
                 if (!this.hasSpoilers) {
-                    Iterator<TLRPC$MessageEntity> it = previewMessage.messageOwner.entities.iterator();
+                    Iterator it = previewMessage.messageOwner.entities.iterator();
                     while (true) {
                         if (it.hasNext()) {
-                            if (it.next() instanceof TLRPC$TL_messageEntitySpoiler) {
+                            if (((TLRPC$MessageEntity) it.next()) instanceof TLRPC$TL_messageEntitySpoiler) {
                                 this.hasSpoilers = true;
                                 break;
                             }
@@ -144,7 +118,7 @@ public class MessagePreviewParams {
                     if (messageObject.canUnvote()) {
                         int size = tLRPC$TL_messageMediaPoll.results.results.size();
                         for (int i5 = 0; i5 < size; i5++) {
-                            TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters = tLRPC$TL_messageMediaPoll.results.results.get(i5);
+                            TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters = (TLRPC$TL_pollAnswerVoters) tLRPC$TL_messageMediaPoll.results.results.get(i5);
                             if (tLRPC$TL_pollAnswerVoters.chosen) {
                                 TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters2 = new TLRPC$TL_pollAnswerVoters();
                                 tLRPC$TL_pollAnswerVoters2.chosen = tLRPC$TL_pollAnswerVoters.chosen;
@@ -169,26 +143,18 @@ public class MessagePreviewParams {
             LongSparseArray<MessageObject.GroupedMessages> longSparseArray = this.groupedMessagesMap;
             if (longSparseArray != null && longSparseArray.size() > 0) {
                 this.hasText = this.groupedMessagesMap.valueAt(0).findCaptionMessageObject() != null;
-                return;
-            }
-            if (arrayList.size() == 1) {
+            } else if (arrayList.size() == 1) {
                 int i7 = arrayList.get(0).type;
-                if (i7 == 0 || i7 == 19) {
-                    this.hasText = !TextUtils.isEmpty(r1.messageText);
-                } else {
-                    this.hasText = !TextUtils.isEmpty(r1.caption);
-                }
+                this.hasText = !TextUtils.isEmpty((i7 == 0 || i7 == 19) ? r1.messageText : r1.caption);
             }
         }
 
-        public void getSelectedMessages(ArrayList<MessageObject> arrayList) {
-            arrayList.clear();
-            for (int i = 0; i < this.messages.size(); i++) {
-                MessageObject messageObject = this.messages.get(i);
-                if (this.selectedIds.get(messageObject.getId(), false)) {
-                    arrayList.add(messageObject);
-                }
-            }
+        public Messages(MessagePreviewParams messagePreviewParams, Boolean bool, int i, MessageObject messageObject) {
+            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), messageObject.getDialogId(), null);
+        }
+
+        public Messages(MessagePreviewParams messagePreviewParams, Boolean bool, int i, MessageObject messageObject, long j) {
+            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), j, null);
         }
 
         public Messages checkEdits(ArrayList<MessageObject> arrayList) {
@@ -219,199 +185,25 @@ public class MessagePreviewParams {
             }
             return null;
         }
+
+        public void getSelectedMessages(ArrayList<MessageObject> arrayList) {
+            arrayList.clear();
+            for (int i = 0; i < this.messages.size(); i++) {
+                MessageObject messageObject = this.messages.get(i);
+                if (this.selectedIds.get(messageObject.getId(), false)) {
+                    arrayList.add(messageObject);
+                }
+            }
+        }
+    }
+
+    public static class PreviewMediaPoll extends TLRPC$TL_messageMediaPoll {
+        public int totalVotersCached;
     }
 
     public MessagePreviewParams(boolean z, boolean z2) {
         this.isSecret = z;
         this.noforwards = z || z2;
-    }
-
-    public void updateReply(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, long j, ChatActivity.ReplyQuote replyQuote) {
-        ChatActivity.ReplyQuote replyQuote2;
-        int i;
-        MessageObject messageObject2 = messageObject;
-        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21 || i == 18 || i == 25 || i == 16) {
-            messageObject2 = null;
-            replyQuote2 = null;
-        } else {
-            replyQuote2 = replyQuote;
-        }
-        this.hasSecretMessages = messageObject2 != null && (messageObject2.isVoiceOnce() || messageObject2.isRoundOnce() || messageObject2.type == 30);
-        if (messageObject2 != null || replyQuote2 != null) {
-            if (groupedMessages != null) {
-                this.replyMessage = new Messages(null, 1, groupedMessages.messages, j, null);
-            } else {
-                if (messageObject2 == null) {
-                    messageObject2 = replyQuote2.message;
-                }
-                this.replyMessage = new Messages(this, null, 1, messageObject2, j);
-            }
-            if (!this.replyMessage.messages.isEmpty()) {
-                this.quote = replyQuote2;
-                if (replyQuote2 != null) {
-                    this.quoteStart = replyQuote2.start;
-                    this.quoteEnd = replyQuote2.end;
-                    return;
-                }
-                return;
-            }
-            this.replyMessage = null;
-            return;
-        }
-        this.replyMessage = null;
-        this.quote = null;
-    }
-
-    public void updateLinkInvertMedia(boolean z) {
-        this.webpageTop = z;
-    }
-
-    public void updateLink(int i, TLRPC$WebPage tLRPC$WebPage, CharSequence charSequence, MessageObject messageObject, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject2) {
-        TLRPC$MessageMedia tLRPC$MessageMedia;
-        TLRPC$Message tLRPC$Message;
-        TLRPC$MessageMedia tLRPC$MessageMedia2;
-        TLRPC$Message tLRPC$Message2;
-        boolean z = false;
-        this.hasMedia = false;
-        this.isVideo = false;
-        this.singleLink = true;
-        boolean z2 = this.webpage != tLRPC$WebPage;
-        this.webpage = tLRPC$WebPage;
-        if (TextUtils.isEmpty(charSequence) && this.webpage == null) {
-            this.linkMessage = null;
-        } else {
-            if (charSequence == null) {
-                charSequence = "";
-            }
-            Messages messages = this.linkMessage;
-            boolean z3 = messages == null || z2;
-            if (messages == null && messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null) {
-                this.webpageTop = tLRPC$Message2.invert_media;
-                TLRPC$MessageMedia tLRPC$MessageMedia3 = tLRPC$Message2.media;
-                if (tLRPC$MessageMedia3 != null && tLRPC$MessageMedia3.force_small_media) {
-                    this.webpageSmall = true;
-                }
-            }
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            CharSequence[] charSequenceArr = {new SpannableStringBuilder(AndroidUtilities.getTrimmedString(charSequence))};
-            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-            tLRPC$TL_message.peer_id = tLRPC$TL_peerUser;
-            tLRPC$TL_peerUser.user_id = UserConfig.getInstance(i).getClientUserId();
-            TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
-            tLRPC$TL_message.from_id = tLRPC$TL_peerUser2;
-            tLRPC$TL_peerUser2.user_id = UserConfig.getInstance(i).getClientUserId();
-            tLRPC$TL_message.entities = MediaDataController.getInstance(i).getEntities(charSequenceArr, true);
-            tLRPC$TL_message.message = charSequenceArr[0].toString();
-            tLRPC$TL_message.invert_media = this.webpageTop;
-            if (tLRPC$WebPage != null) {
-                tLRPC$TL_message.flags |= 512;
-                TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = new TLRPC$TL_messageMediaWebPage();
-                tLRPC$TL_message.media = tLRPC$TL_messageMediaWebPage;
-                tLRPC$TL_messageMediaWebPage.webpage = tLRPC$WebPage;
-                boolean z4 = this.webpageSmall;
-                tLRPC$TL_messageMediaWebPage.force_large_media = !z4;
-                tLRPC$TL_messageMediaWebPage.force_small_media = z4;
-                this.hasMedia = tLRPC$WebPage.photo != null;
-                this.isVideo = MessageObject.isVideoDocument(tLRPC$WebPage.document);
-            } else {
-                this.hasMedia = false;
-            }
-            tLRPC$TL_message.out = true;
-            tLRPC$TL_message.unread = false;
-            if (messageObject != null) {
-                tLRPC$TL_message.replyMessage = messageObject.messageOwner;
-                TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
-                tLRPC$TL_message.reply_to = tLRPC$TL_messageReplyHeader;
-                if (replyQuote != null) {
-                    tLRPC$TL_messageReplyHeader.quote_text = replyQuote.getText();
-                    TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$TL_message.reply_to;
-                    tLRPC$MessageReplyHeader.flags |= 64;
-                    tLRPC$MessageReplyHeader.quote_entities = replyQuote.getEntities();
-                    TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader2 = tLRPC$TL_message.reply_to;
-                    if (tLRPC$MessageReplyHeader2.quote_entities != null) {
-                        tLRPC$MessageReplyHeader2.flags |= 128;
-                    }
-                }
-            }
-            Messages messages2 = new Messages(this, Boolean.TRUE, 2, new MessageObject(i, tLRPC$TL_message, true, false));
-            this.linkMessage = messages2;
-            if (messages2.messages.isEmpty()) {
-                this.linkMessage = null;
-            } else {
-                MessageObject messageObject3 = this.linkMessage.messages.get(0);
-                CharSequence charSequence2 = messageObject3.messageText;
-                if ((charSequence2 instanceof Spanned) && !TextUtils.isEmpty(charSequence2)) {
-                    CharSequence charSequence3 = messageObject3.messageText;
-                    URLSpan[] uRLSpanArr = (URLSpan[]) ((Spanned) charSequence3).getSpans(0, charSequence3.length(), URLSpan.class);
-                    this.singleLink = uRLSpanArr == null || uRLSpanArr.length <= 1;
-                } else {
-                    CharSequence charSequence4 = messageObject3.caption;
-                    if ((charSequence4 instanceof Spanned) && !TextUtils.isEmpty(charSequence4)) {
-                        URLSpan[] uRLSpanArr2 = (URLSpan[]) ((Spanned) messageObject3.messageText).getSpans(0, messageObject3.caption.length(), URLSpan.class);
-                        this.singleLink = uRLSpanArr2 == null || uRLSpanArr2.length <= 1;
-                    }
-                }
-                this.hasMedia = messageObject3.hasLinkMediaToMakeSmall();
-                if (z3 && messageObject2 != null && (tLRPC$Message = messageObject2.messageOwner) != null && (tLRPC$MessageMedia2 = tLRPC$Message.media) != null) {
-                    if (tLRPC$MessageMedia2.force_small_media || (messageObject3.isLinkMediaSmall() && !messageObject2.messageOwner.media.force_large_media)) {
-                        z = true;
-                    }
-                    this.webpageSmall = z;
-                } else if (z3) {
-                    this.webpageSmall = messageObject3.isLinkMediaSmall();
-                }
-                TLRPC$Message tLRPC$Message3 = messageObject3.messageOwner;
-                if (tLRPC$Message3 != null && (tLRPC$MessageMedia = tLRPC$Message3.media) != null) {
-                    boolean z5 = this.webpageSmall;
-                    tLRPC$MessageMedia.force_large_media = !z5;
-                    tLRPC$MessageMedia.force_small_media = z5;
-                }
-            }
-        }
-        MessagePreviewView messagePreviewView = this.previewView;
-        if (messagePreviewView != null) {
-            messagePreviewView.updateLink();
-        }
-    }
-
-    public void checkCurrentLink(MessageObject messageObject) {
-        TLRPC$WebPage tLRPC$WebPage;
-        this.currentLink = null;
-        if (messageObject != null) {
-            CharSequence charSequence = messageObject.messageText;
-            if (!(charSequence instanceof Spanned) || (tLRPC$WebPage = this.webpage) == null || tLRPC$WebPage.url == null) {
-                return;
-            }
-            Spanned spanned = (Spanned) charSequence;
-            URLSpan[] uRLSpanArr = (URLSpan[]) spanned.getSpans(0, spanned.length(), URLSpan.class);
-            for (int i = 0; i < uRLSpanArr.length; i++) {
-                if (areUrlsEqual(uRLSpanArr[i].getURL(), this.webpage.url)) {
-                    this.currentLink = uRLSpanArr[i];
-                    return;
-                }
-            }
-        }
-    }
-
-    public boolean hasLink(CharSequence charSequence, String str) {
-        if (str != null) {
-            try {
-                SpannableString valueOf = SpannableString.valueOf(charSequence);
-                try {
-                    AndroidUtilities.addLinksSafe(valueOf, 1, false, true);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                for (URLSpan uRLSpan : (URLSpan[]) valueOf.getSpans(0, valueOf.length(), URLSpan.class)) {
-                    if (areUrlsEqual(uRLSpan.getURL(), str)) {
-                        return true;
-                    }
-                }
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-        }
-        return false;
     }
 
     public static boolean areUrlsEqual(String str, String str2) {
@@ -445,75 +237,37 @@ public class MessagePreviewParams {
         return str + "/";
     }
 
-    public void updateForward(ArrayList<MessageObject> arrayList, long j) {
-        long j2;
-        long j3;
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
-        this.hasCaption = false;
-        this.hasSenders = false;
-        this.isSecret = DialogObject.isEncryptedDialog(j);
-        this.multipleUsers = false;
-        if (arrayList != null) {
-            ArrayList arrayList2 = new ArrayList();
-            for (int i = 0; i < arrayList.size(); i++) {
-                MessageObject messageObject = arrayList.get(i);
-                if (!TextUtils.isEmpty(messageObject.caption)) {
-                    this.hasCaption = true;
-                }
-                if (!this.isSecret && (tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from) != null && tLRPC$MessageFwdHeader.from_id == null && !arrayList2.contains(tLRPC$MessageFwdHeader.from_name)) {
-                    arrayList2.add(tLRPC$MessageFwdHeader.from_name);
-                }
-            }
-            Boolean bool = Boolean.TRUE;
-            Messages messages = this.forwardMessages;
-            Messages messages2 = new Messages(bool, 0, arrayList, j, messages != null ? messages.selectedIds : null);
-            this.forwardMessages = messages2;
-            if (messages2.messages.isEmpty()) {
-                this.forwardMessages = null;
-            }
-            ArrayList arrayList3 = new ArrayList();
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                MessageObject messageObject2 = arrayList.get(i2);
-                if (messageObject2.isFromUser()) {
-                    j3 = messageObject2.messageOwner.from_id.user_id;
-                } else {
-                    TLRPC$Chat chat = MessagesController.getInstance(messageObject2.currentAccount).getChat(Long.valueOf(messageObject2.messageOwner.peer_id.channel_id));
-                    if (ChatObject.isChannel(chat) && chat.megagroup && messageObject2.isForwardedChannelPost()) {
-                        j2 = messageObject2.messageOwner.fwd_from.from_id.channel_id;
-                    } else {
-                        j2 = messageObject2.messageOwner.peer_id.channel_id;
-                    }
-                    j3 = -j2;
-                }
-                if (!arrayList3.contains(Long.valueOf(j3))) {
-                    arrayList3.add(Long.valueOf(j3));
-                }
-            }
-            if (arrayList3.size() + arrayList2.size() > 1) {
-                this.multipleUsers = true;
-                return;
-            }
-            return;
-        }
-        this.forwardMessages = null;
+    public static ArrayList<MessageObject> singletonArrayList(MessageObject messageObject) {
+        ArrayList<MessageObject> arrayList = new ArrayList<>();
+        arrayList.add(messageObject);
+        return arrayList;
     }
 
     public org.telegram.messenger.MessageObject toPreviewMessage(org.telegram.messenger.MessageObject r12, java.lang.Boolean r13, final int r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagePreviewParams.toPreviewMessage(org.telegram.messenger.MessageObject, java.lang.Boolean, int):org.telegram.messenger.MessageObject");
     }
 
-    public boolean isEmpty() {
-        Messages messages;
-        Messages messages2;
-        ArrayList<MessageObject> arrayList;
-        ArrayList<MessageObject> arrayList2;
-        ArrayList<MessageObject> arrayList3;
-        Messages messages3 = this.forwardMessages;
-        return (messages3 == null || (arrayList3 = messages3.messages) == null || arrayList3.isEmpty()) && ((messages = this.replyMessage) == null || (arrayList2 = messages.messages) == null || arrayList2.isEmpty()) && ((messages2 = this.linkMessage) == null || (arrayList = messages2.messages) == null || arrayList.isEmpty());
-    }
-
     public void attach(MessagePreviewView messagePreviewView) {
         this.previewView = messagePreviewView;
+    }
+
+    public void checkCurrentLink(MessageObject messageObject) {
+        TLRPC$WebPage tLRPC$WebPage;
+        this.currentLink = null;
+        if (messageObject != null) {
+            CharSequence charSequence = messageObject.messageText;
+            if (!(charSequence instanceof Spanned) || (tLRPC$WebPage = this.webpage) == null || tLRPC$WebPage.url == null) {
+                return;
+            }
+            Spanned spanned = (Spanned) charSequence;
+            URLSpan[] uRLSpanArr = (URLSpan[]) spanned.getSpans(0, spanned.length(), URLSpan.class);
+            for (int i = 0; i < uRLSpanArr.length; i++) {
+                if (areUrlsEqual(uRLSpanArr[i].getURL(), this.webpage.url)) {
+                    this.currentLink = uRLSpanArr[i];
+                    return;
+                }
+            }
+        }
     }
 
     public void checkEdits(ArrayList<MessageObject> arrayList) {
@@ -545,5 +299,125 @@ public class MessagePreviewParams {
             return;
         }
         messagePreviewView.updateAll();
+    }
+
+    public boolean hasLink(CharSequence charSequence, String str) {
+        if (str != null) {
+            try {
+                SpannableString valueOf = SpannableString.valueOf(charSequence);
+                try {
+                    AndroidUtilities.addLinksSafe(valueOf, 1, false, true);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                for (URLSpan uRLSpan : (URLSpan[]) valueOf.getSpans(0, valueOf.length(), URLSpan.class)) {
+                    if (areUrlsEqual(uRLSpan.getURL(), str)) {
+                        return true;
+                    }
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+        }
+        return false;
+    }
+
+    public boolean isEmpty() {
+        Messages messages;
+        Messages messages2;
+        ArrayList<MessageObject> arrayList;
+        ArrayList<MessageObject> arrayList2;
+        ArrayList<MessageObject> arrayList3;
+        Messages messages3 = this.forwardMessages;
+        return (messages3 == null || (arrayList3 = messages3.messages) == null || arrayList3.isEmpty()) && ((messages = this.replyMessage) == null || (arrayList2 = messages.messages) == null || arrayList2.isEmpty()) && ((messages2 = this.linkMessage) == null || (arrayList = messages2.messages) == null || arrayList.isEmpty());
+    }
+
+    public void updateForward(ArrayList<MessageObject> arrayList, long j) {
+        long j2;
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
+        this.hasCaption = false;
+        this.hasSenders = false;
+        this.isSecret = DialogObject.isEncryptedDialog(j);
+        this.multipleUsers = false;
+        if (arrayList == null) {
+            this.forwardMessages = null;
+            return;
+        }
+        ArrayList arrayList2 = new ArrayList();
+        for (int i = 0; i < arrayList.size(); i++) {
+            MessageObject messageObject = arrayList.get(i);
+            if (!TextUtils.isEmpty(messageObject.caption)) {
+                this.hasCaption = true;
+            }
+            if (!this.isSecret && (tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from) != null && tLRPC$MessageFwdHeader.from_id == null && !arrayList2.contains(tLRPC$MessageFwdHeader.from_name)) {
+                arrayList2.add(tLRPC$MessageFwdHeader.from_name);
+            }
+        }
+        Boolean bool = Boolean.TRUE;
+        Messages messages = this.forwardMessages;
+        Messages messages2 = new Messages(bool, 0, arrayList, j, messages != null ? messages.selectedIds : null);
+        this.forwardMessages = messages2;
+        if (messages2.messages.isEmpty()) {
+            this.forwardMessages = null;
+        }
+        ArrayList arrayList3 = new ArrayList();
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            MessageObject messageObject2 = arrayList.get(i2);
+            if (messageObject2.isFromUser()) {
+                j2 = messageObject2.messageOwner.from_id.user_id;
+            } else {
+                TLRPC$Chat chat = MessagesController.getInstance(messageObject2.currentAccount).getChat(Long.valueOf(messageObject2.messageOwner.peer_id.channel_id));
+                j2 = -((ChatObject.isChannel(chat) && chat.megagroup && messageObject2.isForwardedChannelPost()) ? messageObject2.messageOwner.fwd_from.from_id : messageObject2.messageOwner.peer_id).channel_id;
+            }
+            if (!arrayList3.contains(Long.valueOf(j2))) {
+                arrayList3.add(Long.valueOf(j2));
+            }
+        }
+        if (arrayList3.size() + arrayList2.size() > 1) {
+            this.multipleUsers = true;
+        }
+    }
+
+    public void updateLink(int r8, org.telegram.tgnet.TLRPC$WebPage r9, java.lang.CharSequence r10, org.telegram.messenger.MessageObject r11, org.telegram.ui.ChatActivity.ReplyQuote r12, org.telegram.messenger.MessageObject r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagePreviewParams.updateLink(int, org.telegram.tgnet.TLRPC$WebPage, java.lang.CharSequence, org.telegram.messenger.MessageObject, org.telegram.ui.ChatActivity$ReplyQuote, org.telegram.messenger.MessageObject):void");
+    }
+
+    public void updateLinkInvertMedia(boolean z) {
+        this.webpageTop = z;
+    }
+
+    public void updateReply(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, long j, ChatActivity.ReplyQuote replyQuote) {
+        ChatActivity.ReplyQuote replyQuote2;
+        int i;
+        MessageObject messageObject2 = messageObject;
+        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21 || i == 18 || i == 25 || i == 16) {
+            messageObject2 = null;
+            replyQuote2 = null;
+        } else {
+            replyQuote2 = replyQuote;
+        }
+        this.hasSecretMessages = messageObject2 != null && (messageObject2.isVoiceOnce() || messageObject2.isRoundOnce() || messageObject2.type == 30);
+        if (messageObject2 == null && replyQuote2 == null) {
+            this.replyMessage = null;
+            this.quote = null;
+            return;
+        }
+        if (groupedMessages != null) {
+            this.replyMessage = new Messages(null, 1, groupedMessages.messages, j, null);
+        } else {
+            if (messageObject2 == null) {
+                messageObject2 = replyQuote2.message;
+            }
+            this.replyMessage = new Messages(this, null, 1, messageObject2, j);
+        }
+        if (this.replyMessage.messages.isEmpty()) {
+            this.replyMessage = null;
+            return;
+        }
+        this.quote = replyQuote2;
+        if (replyQuote2 != null) {
+            this.quoteStart = replyQuote2.start;
+            this.quoteEnd = replyQuote2.end;
+        }
     }
 }

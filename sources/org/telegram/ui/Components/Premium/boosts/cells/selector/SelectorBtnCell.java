@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.cells.selector;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -10,7 +9,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.RecyclerListView;
 
-@SuppressLint({"ViewConstructor"})
 public class SelectorBtnCell extends LinearLayout {
     private final AnimatedFloat alpha;
     private final Paint dividerPaint;

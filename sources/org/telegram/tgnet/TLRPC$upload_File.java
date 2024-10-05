@@ -7,7 +7,7 @@ public abstract class TLRPC$upload_File extends TLObject {
     public int dc_id;
     public byte[] encryption_iv;
     public byte[] encryption_key;
-    public ArrayList<TLRPC$TL_fileHash> file_hashes = new ArrayList<>();
+    public ArrayList file_hashes = new ArrayList();
     public byte[] file_token;
     public int mtime;
     public TLRPC$storage_FileType type;
@@ -48,7 +48,7 @@ public abstract class TLRPC$upload_File extends TLObject {
                 int size = this.file_hashes.size();
                 abstractSerializedData2.writeInt32(size);
                 for (int i2 = 0; i2 < size; i2++) {
-                    this.file_hashes.get(i2).serializeToStream(abstractSerializedData2);
+                    ((TLRPC$TL_fileHash) this.file_hashes.get(i2)).serializeToStream(abstractSerializedData2);
                 }
             }
         };

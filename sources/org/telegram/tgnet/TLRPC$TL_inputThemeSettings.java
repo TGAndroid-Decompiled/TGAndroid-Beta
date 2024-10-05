@@ -6,7 +6,7 @@ public class TLRPC$TL_inputThemeSettings extends TLObject {
     public int accent_color;
     public TLRPC$BaseTheme base_theme;
     public int flags;
-    public ArrayList<Integer> message_colors = new ArrayList<>();
+    public ArrayList message_colors = new ArrayList();
     public boolean message_colors_animated;
     public int outbox_accent_color;
     public TLRPC$InputWallPaper wallpaper;
@@ -60,7 +60,7 @@ public class TLRPC$TL_inputThemeSettings extends TLObject {
             int size = this.message_colors.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                abstractSerializedData.writeInt32(this.message_colors.get(i2).intValue());
+                abstractSerializedData.writeInt32(((Integer) this.message_colors.get(i2)).intValue());
             }
         }
         if ((this.flags & 2) != 0) {

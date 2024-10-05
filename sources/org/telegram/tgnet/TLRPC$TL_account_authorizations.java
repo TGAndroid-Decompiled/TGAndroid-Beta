@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_account_authorizations extends TLObject {
     public int authorization_ttl_days;
-    public ArrayList<TLRPC$TL_authorization> authorizations = new ArrayList<>();
+    public ArrayList authorizations = new ArrayList();
 
     public static TLRPC$TL_account_authorizations TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (1275039392 != i) {
@@ -46,7 +46,7 @@ public class TLRPC$TL_account_authorizations extends TLObject {
         int size = this.authorizations.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.authorizations.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_authorization) this.authorizations.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

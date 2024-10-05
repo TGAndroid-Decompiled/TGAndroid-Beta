@@ -1,4 +1,4 @@
 package org.telegram.ui.Cells;
 
-public final class ThemesHorizontalListCell$InnerThemeView$$ExternalSyntheticApiModelOutline0 {
+public abstract class ThemesHorizontalListCell$InnerThemeView$$ExternalSyntheticApiModelOutline0 {
 }

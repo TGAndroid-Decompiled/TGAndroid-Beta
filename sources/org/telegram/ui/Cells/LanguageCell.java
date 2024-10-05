@@ -60,6 +60,17 @@ public class LanguageCell extends FrameLayout {
         addView(textView5, LayoutHelper.createFrame(-1, -1.0f, (z3 ? 5 : 3) | 48, z3 ? this.marginEndDp : this.marginStartDp, 20.0f, z3 ? this.marginStartDp : this.marginEndDp, 0.0f));
     }
 
+    public LocaleController.LocaleInfo getCurrentLocale() {
+        return this.currentLocale;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (this.needDivider) {
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(this.marginStartDp - 3), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(this.marginStartDp - 3) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824));
@@ -76,26 +87,15 @@ public class LanguageCell extends FrameLayout {
         this.needDivider = z;
     }
 
+    public void setLanguageSelected(boolean z, boolean z2) {
+        this.radioButton.setChecked(z, z2);
+    }
+
     public void setValue(CharSequence charSequence, CharSequence charSequence2) {
         this.textView.setText(charSequence);
         this.textView2.setText(charSequence2);
         this.radioButton.setChecked(false, false);
         this.currentLocale = null;
         this.needDivider = false;
-    }
-
-    public LocaleController.LocaleInfo getCurrentLocale() {
-        return this.currentLocale;
-    }
-
-    public void setLanguageSelected(boolean z, boolean z2) {
-        this.radioButton.setChecked(z, z2);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(this.marginStartDp - 3), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(this.marginStartDp - 3) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
     }
 }

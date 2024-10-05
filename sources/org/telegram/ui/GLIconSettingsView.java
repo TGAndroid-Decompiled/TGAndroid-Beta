@@ -43,15 +43,15 @@ public class GLIconSettingsView extends LinearLayout {
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
-            }
-
-            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 Icon3D icon3D = gLIconRenderer.model;
                 if (icon3D != null) {
                     icon3D.spec1 = f * 2.0f;
                 }
+            }
+
+            @Override
+            public void onSeekBarPressed(boolean z) {
             }
         });
         Icon3D icon3D = gLIconRenderer.model;
@@ -80,15 +80,15 @@ public class GLIconSettingsView extends LinearLayout {
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
-            }
-
-            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 Icon3D icon3D2 = gLIconRenderer.model;
                 if (icon3D2 != null) {
                     icon3D2.spec2 = f * 2.0f;
                 }
+            }
+
+            @Override
+            public void onSeekBarPressed(boolean z) {
             }
         });
         Icon3D icon3D2 = gLIconRenderer.model;
@@ -170,15 +170,15 @@ public class GLIconSettingsView extends LinearLayout {
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
-            }
-
-            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 Icon3D icon3D3 = gLIconRenderer.model;
                 if (icon3D3 != null) {
                     icon3D3.diffuse = f;
                 }
+            }
+
+            @Override
+            public void onSeekBarPressed(boolean z) {
             }
         });
         Icon3D icon3D3 = gLIconRenderer.model;
@@ -207,15 +207,15 @@ public class GLIconSettingsView extends LinearLayout {
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
-            }
-
-            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 Icon3D icon3D4 = gLIconRenderer.model;
                 if (icon3D4 != null) {
                     icon3D4.normalSpec = f * 2.0f;
                 }
+            }
+
+            @Override
+            public void onSeekBarPressed(boolean z) {
             }
         });
         Icon3D icon3D4 = gLIconRenderer.model;
@@ -296,12 +296,12 @@ public class GLIconSettingsView extends LinearLayout {
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
+            public void onSeekBarDrag(boolean z, float f) {
+                GLIconSettingsView.smallStarsSize = f * 2.0f;
             }
 
             @Override
-            public void onSeekBarDrag(boolean z, float f) {
-                GLIconSettingsView.smallStarsSize = f * 2.0f;
+            public void onSeekBarPressed(boolean z) {
             }
         });
         seekBarView5.setProgress(smallStarsSize / 2.0f);

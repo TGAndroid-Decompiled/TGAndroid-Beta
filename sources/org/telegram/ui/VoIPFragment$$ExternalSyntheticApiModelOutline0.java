@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class VoIPFragment$$ExternalSyntheticApiModelOutline0 {
+public abstract class VoIPFragment$$ExternalSyntheticApiModelOutline0 {
 }

@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class NoClipCanvas$$ExternalSyntheticApiModelOutline9 {
+public abstract class NoClipCanvas$$ExternalSyntheticApiModelOutline9 {
 }

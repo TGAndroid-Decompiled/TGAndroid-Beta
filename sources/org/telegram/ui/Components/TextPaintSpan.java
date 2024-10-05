@@ -11,7 +11,7 @@ public class TextPaintSpan extends MetricAffectingSpan {
     }
 
     @Override
-    public void updateMeasureState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         textPaint.setColor(this.textPaint.getColor());
         textPaint.setTypeface(this.textPaint.getTypeface());
         textPaint.setFlags(this.textPaint.getFlags());
@@ -22,7 +22,7 @@ public class TextPaintSpan extends MetricAffectingSpan {
     }
 
     @Override
-    public void updateDrawState(TextPaint textPaint) {
+    public void updateMeasureState(TextPaint textPaint) {
         textPaint.setColor(this.textPaint.getColor());
         textPaint.setTypeface(this.textPaint.getTypeface());
         textPaint.setFlags(this.textPaint.getFlags());

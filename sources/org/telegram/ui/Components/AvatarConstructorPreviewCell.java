@@ -20,7 +20,7 @@ import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarConstructorFragment;
 
-public class AvatarConstructorPreviewCell extends FrameLayout {
+public abstract class AvatarConstructorPreviewCell extends FrameLayout {
     private AnimatedEmojiDrawable animatedEmojiDrawable;
     int backgroundIndex;
     private final int currentAccount;
@@ -29,6 +29,8 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
     int emojiIndex;
     TLRPC$TL_emojiList emojiList;
     public final boolean forUser;
+    private boolean isAllEmojiDrawablesLoaded;
+    private AnimatedEmojiDrawable nextAnimatedEmojiDrawable;
     GradientTools nextBackgroundDrawable;
     BackupImageView nextImage;
     float progressToNext;
@@ -54,42 +56,42 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
                 if (avatarConstructorPreviewCell.progressToNext != 1.0f) {
                     return;
                 }
-                int i2 = avatarConstructorPreviewCell.emojiIndex + 1;
-                avatarConstructorPreviewCell.emojiIndex = i2;
-                avatarConstructorPreviewCell.backgroundIndex++;
-                if (i2 > avatarConstructorPreviewCell.emojiList.document_id.size() - 1) {
-                    AvatarConstructorPreviewCell.this.emojiIndex = 0;
+                if (avatarConstructorPreviewCell.isAllEmojiDrawablesLoaded || (AvatarConstructorPreviewCell.this.nextAnimatedEmojiDrawable.getImageReceiver() != null && AvatarConstructorPreviewCell.this.nextAnimatedEmojiDrawable.getImageReceiver().hasImageLoaded())) {
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell2 = AvatarConstructorPreviewCell.this;
+                    int i2 = avatarConstructorPreviewCell2.emojiIndex + 1;
+                    avatarConstructorPreviewCell2.emojiIndex = i2;
+                    avatarConstructorPreviewCell2.backgroundIndex++;
+                    if (i2 > avatarConstructorPreviewCell2.emojiList.document_id.size() - 1) {
+                        AvatarConstructorPreviewCell.this.emojiIndex = 0;
+                    }
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell3 = AvatarConstructorPreviewCell.this;
+                    int i3 = avatarConstructorPreviewCell3.backgroundIndex;
+                    int[][] iArr = AvatarConstructorFragment.defaultColors;
+                    if (i3 > iArr.length - 1) {
+                        avatarConstructorPreviewCell3.backgroundIndex = 0;
+                    }
+                    int i4 = AvatarConstructorPreviewCell.this.currentAccount;
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell4 = AvatarConstructorPreviewCell.this;
+                    avatarConstructorPreviewCell3.animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i4, ((Long) avatarConstructorPreviewCell4.emojiList.document_id.get(avatarConstructorPreviewCell4.emojiIndex)).longValue());
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell5 = AvatarConstructorPreviewCell.this;
+                    avatarConstructorPreviewCell5.nextImage.setAnimatedEmojiDrawable(avatarConstructorPreviewCell5.animatedEmojiDrawable);
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell6 = AvatarConstructorPreviewCell.this;
+                    int[] iArr2 = iArr[avatarConstructorPreviewCell6.backgroundIndex];
+                    int i5 = iArr2[0];
+                    int i6 = iArr2[1];
+                    int i7 = iArr2[2];
+                    int i8 = iArr2[3];
+                    avatarConstructorPreviewCell6.nextBackgroundDrawable = new GradientTools();
+                    AvatarConstructorPreviewCell.this.nextBackgroundDrawable.setColors(i5, i6, i7, i8);
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell7 = AvatarConstructorPreviewCell.this;
+                    avatarConstructorPreviewCell7.progressToNext = 0.0f;
+                    avatarConstructorPreviewCell7.preloadNextEmojiDrawable();
+                    AvatarConstructorPreviewCell.this.invalidate();
                 }
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell2 = AvatarConstructorPreviewCell.this;
-                int i3 = avatarConstructorPreviewCell2.backgroundIndex;
-                int[][] iArr = AvatarConstructorFragment.defaultColors;
-                if (i3 > iArr.length - 1) {
-                    avatarConstructorPreviewCell2.backgroundIndex = 0;
-                }
-                int i4 = AvatarConstructorPreviewCell.this.currentAccount;
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell3 = AvatarConstructorPreviewCell.this;
-                avatarConstructorPreviewCell2.animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i4, avatarConstructorPreviewCell3.emojiList.document_id.get(avatarConstructorPreviewCell3.emojiIndex).longValue());
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell4 = AvatarConstructorPreviewCell.this;
-                avatarConstructorPreviewCell4.nextImage.setAnimatedEmojiDrawable(avatarConstructorPreviewCell4.animatedEmojiDrawable);
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell5 = AvatarConstructorPreviewCell.this;
-                int[] iArr2 = iArr[avatarConstructorPreviewCell5.backgroundIndex];
-                int i5 = iArr2[0];
-                int i6 = iArr2[1];
-                int i7 = iArr2[2];
-                int i8 = iArr2[3];
-                avatarConstructorPreviewCell5.nextBackgroundDrawable = new GradientTools();
-                AvatarConstructorPreviewCell.this.nextBackgroundDrawable.setColors(i5, i6, i7, i8);
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell6 = AvatarConstructorPreviewCell.this;
-                avatarConstructorPreviewCell6.progressToNext = 0.0f;
-                avatarConstructorPreviewCell6.invalidate();
             }
         };
         this.forUser = z;
-        if (z) {
-            this.emojiList = MediaDataController.getInstance(i).profileAvatarConstructorDefault;
-        } else {
-            this.emojiList = MediaDataController.getInstance(i).groupAvatarConstructorDefault;
-        }
+        this.emojiList = z ? MediaDataController.getInstance(i).profileAvatarConstructorDefault : MediaDataController.getInstance(i).groupAvatarConstructorDefault;
         TLRPC$TL_emojiList tLRPC$TL_emojiList = this.emojiList;
         if (tLRPC$TL_emojiList == null || tLRPC$TL_emojiList.document_id.isEmpty()) {
             ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i).getStickerSets(5);
@@ -104,7 +106,7 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
                     } else if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered) {
                         TLRPC$TL_stickerSetFullCovered tLRPC$TL_stickerSetFullCovered = (TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered;
                         if (!tLRPC$TL_stickerSetFullCovered.documents.isEmpty()) {
-                            this.emojiList.document_id.add(Long.valueOf(tLRPC$TL_stickerSetFullCovered.documents.get(0).id));
+                            this.emojiList.document_id.add(Long.valueOf(((TLRPC$Document) tLRPC$TL_stickerSetFullCovered.documents.get(0)).id));
                         }
                     }
                 }
@@ -112,7 +114,7 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
                 for (int i3 = 0; i3 < stickerSets.size(); i3++) {
                     TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSets.get(i3);
                     if (!tLRPC$TL_messages_stickerSet.documents.isEmpty()) {
-                        this.emojiList.document_id.add(Long.valueOf(tLRPC$TL_messages_stickerSet.documents.get(Math.abs(Utilities.fastRandom.nextInt() % tLRPC$TL_messages_stickerSet.documents.size())).id));
+                        this.emojiList.document_id.add(Long.valueOf(((TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(Math.abs(Utilities.fastRandom.nextInt() % tLRPC$TL_messages_stickerSet.documents.size()))).id));
                     }
                 }
             }
@@ -123,9 +125,10 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
         addView(this.nextImage, LayoutHelper.createFrame(50, 50, 1));
         TLRPC$TL_emojiList tLRPC$TL_emojiList2 = this.emojiList;
         if (tLRPC$TL_emojiList2 != null && !tLRPC$TL_emojiList2.document_id.isEmpty()) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, this.emojiList.document_id.get(0).longValue());
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, ((Long) this.emojiList.document_id.get(0)).longValue());
             this.animatedEmojiDrawable = animatedEmojiDrawable;
             this.currentImage.setAnimatedEmojiDrawable(animatedEmojiDrawable);
+            preloadNextEmojiDrawable();
         }
         int[] iArr = AvatarConstructorFragment.defaultColors[this.backgroundIndex];
         int i4 = iArr[0];
@@ -145,19 +148,18 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
         addView(this.textView, LayoutHelper.createFrame(-1, 28.0f, 80, 10.0f, 10.0f, 10.0f, 10.0f));
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        int top = (int) (this.textView.getTop() * 0.7f);
-        int i3 = (int) ((r3 - top) * 0.7f);
-        ViewGroup.LayoutParams layoutParams = this.currentImage.getLayoutParams();
-        this.currentImage.getLayoutParams().height = top;
-        layoutParams.width = top;
-        ViewGroup.LayoutParams layoutParams2 = this.nextImage.getLayoutParams();
-        this.nextImage.getLayoutParams().height = top;
-        layoutParams2.width = top;
-        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i3;
-        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i3;
+    public void preloadNextEmojiDrawable() {
+        if (this.isAllEmojiDrawablesLoaded) {
+            return;
+        }
+        int i = this.emojiIndex + 1;
+        if (i > this.emojiList.document_id.size() - 1) {
+            this.isAllEmojiDrawablesLoaded = true;
+            return;
+        }
+        AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, ((Long) this.emojiList.document_id.get(i)).longValue());
+        this.nextAnimatedEmojiDrawable = animatedEmojiDrawable;
+        animatedEmojiDrawable.preload();
     }
 
     @Override
@@ -206,16 +208,8 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
         super.dispatchDraw(canvas);
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.scheduleSwitchToNextRunnable, 1000L);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.scheduleSwitchToNextRunnable);
+    public AnimatedEmojiDrawable getAnimatedEmoji() {
+        return this.animatedEmojiDrawable;
     }
 
     public AvatarConstructorFragment.BackgroundGradient getBackgroundGradient() {
@@ -228,7 +222,30 @@ public class AvatarConstructorPreviewCell extends FrameLayout {
         return backgroundGradient;
     }
 
-    public AnimatedEmojiDrawable getAnimatedEmoji() {
-        return this.animatedEmojiDrawable;
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        AndroidUtilities.runOnUIThread(this.scheduleSwitchToNextRunnable, 1000L);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        AndroidUtilities.cancelRunOnUIThread(this.scheduleSwitchToNextRunnable);
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        int top = (int) (this.textView.getTop() * 0.7f);
+        int i3 = (int) ((r3 - top) * 0.7f);
+        ViewGroup.LayoutParams layoutParams = this.currentImage.getLayoutParams();
+        this.currentImage.getLayoutParams().height = top;
+        layoutParams.width = top;
+        ViewGroup.LayoutParams layoutParams2 = this.nextImage.getLayoutParams();
+        this.nextImage.getLayoutParams().height = top;
+        layoutParams2.width = top;
+        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i3;
+        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i3;
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_channels_getChannels extends TLObject {
-    public ArrayList<TLRPC$InputChannel> id = new ArrayList<>();
+    public ArrayList id = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -17,7 +17,7 @@ public class TLRPC$TL_channels_getChannels extends TLObject {
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.id.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputChannel) this.id.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

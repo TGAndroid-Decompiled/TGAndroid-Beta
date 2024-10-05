@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
@@ -21,30 +20,67 @@ import com.google.android.gms.tasks.Task;
 import org.telegram.messenger.ILocationServiceProvider;
 import org.telegram.messenger.PushListenerController;
 
-@SuppressLint({"MissingPermission"})
 public class GoogleLocationProvider implements ILocationServiceProvider {
     private FusedLocationProviderClient locationProviderClient;
     private SettingsClient settingsClient;
 
-    @Override
-    public void init(Context context) {
-        this.locationProviderClient = LocationServices.getFusedLocationProviderClient(context);
-        this.settingsClient = LocationServices.getSettingsClient(context);
+    public static final class GoogleApiClientImpl implements ILocationServiceProvider.IMapApiClient {
+        private GoogleApiClient apiClient;
+
+        private GoogleApiClientImpl(GoogleApiClient googleApiClient) {
+            this.apiClient = googleApiClient;
+        }
+
+        @Override
+        public void connect() {
+            this.apiClient.connect();
+        }
+
+        @Override
+        public void disconnect() {
+            this.apiClient.disconnect();
+        }
     }
 
-    @Override
-    public ILocationServiceProvider.ILocationRequest onCreateLocationRequest() {
-        return new GoogleLocationRequest(LocationRequest.create());
+    public static final class GoogleLocationRequest implements ILocationServiceProvider.ILocationRequest {
+        private LocationRequest request;
+
+        private GoogleLocationRequest(LocationRequest locationRequest) {
+            this.request = locationRequest;
+        }
+
+        @Override
+        public void setFastestInterval(long j) {
+            this.request.setFastestInterval(j);
+        }
+
+        @Override
+        public void setInterval(long j) {
+            this.request.setInterval(j);
+        }
+
+        @Override
+        public void setPriority(int i) {
+            this.request.setPriority(i != 1 ? i != 2 ? i != 3 ? 100 : 105 : 104 : 102);
+        }
     }
 
-    @Override
-    public void getLastLocation(final Consumer<Location> consumer) {
-        this.locationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener() {
-            @Override
-            public final void onComplete(Task task) {
-                GoogleLocationProvider.lambda$getLastLocation$0(Consumer.this, task);
+    public static void lambda$checkLocationSettings$1(Consumer consumer, Task task) {
+        int i;
+        try {
+            task.getResult(ApiException.class);
+            consumer.accept(0);
+        } catch (ApiException e) {
+            int statusCode = e.getStatusCode();
+            if (statusCode == 6) {
+                i = 1;
+            } else if (statusCode != 8502) {
+                return;
+            } else {
+                i = 2;
             }
-        });
+            consumer.accept(Integer.valueOf(i));
+        }
     }
 
     public static void lambda$getLastLocation$0(Consumer consumer, Task task) {
@@ -55,27 +91,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
     }
 
     @Override
-    public void requestLocationUpdates(ILocationServiceProvider.ILocationRequest iLocationRequest, final ILocationServiceProvider.ILocationListener iLocationListener) {
-        this.locationProviderClient.requestLocationUpdates(((GoogleLocationRequest) iLocationRequest).request, new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                iLocationListener.onLocationChanged(locationResult.getLastLocation());
-            }
-        }, Looper.getMainLooper());
-    }
-
-    @Override
-    public void removeLocationUpdates(final ILocationServiceProvider.ILocationListener iLocationListener) {
-        this.locationProviderClient.removeLocationUpdates(new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                iLocationListener.onLocationChanged(locationResult.getLastLocation());
-            }
-        });
-    }
-
-    @Override
-    public void checkLocationSettings(ILocationServiceProvider.ILocationRequest iLocationRequest, final Consumer<Integer> consumer) {
+    public void checkLocationSettings(ILocationServiceProvider.ILocationRequest iLocationRequest, final Consumer consumer) {
         this.settingsClient.checkLocationSettings(new LocationSettingsRequest.Builder().addLocationRequest(((GoogleLocationRequest) iLocationRequest).request).build()).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public final void onComplete(Task task) {
@@ -84,21 +100,30 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         });
     }
 
-    public static void lambda$checkLocationSettings$1(Consumer consumer, Task task) {
-        try {
-            task.getResult(ApiException.class);
-            consumer.accept(0);
-        } catch (ApiException e) {
-            int statusCode = e.getStatusCode();
-            if (statusCode == 6) {
-                consumer.accept(1);
-            } else {
-                if (statusCode != 8502) {
-                    return;
-                }
-                consumer.accept(2);
+    @Override
+    public boolean checkServices() {
+        return PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices();
+    }
+
+    @Override
+    public void getLastLocation(final Consumer consumer) {
+        this.locationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public final void onComplete(Task task) {
+                GoogleLocationProvider.lambda$getLastLocation$0(Consumer.this, task);
             }
-        }
+        });
+    }
+
+    @Override
+    public void init(Context context) {
+        this.locationProviderClient = LocationServices.getFusedLocationProviderClient(context);
+        this.settingsClient = LocationServices.getSettingsClient(context);
+    }
+
+    @Override
+    public ILocationServiceProvider.ILocationRequest onCreateLocationRequest() {
+        return new GoogleLocationRequest(LocationRequest.create());
     }
 
     @Override
@@ -122,48 +147,22 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
     }
 
     @Override
-    public boolean checkServices() {
-        return PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices();
+    public void removeLocationUpdates(final ILocationServiceProvider.ILocationListener iLocationListener) {
+        this.locationProviderClient.removeLocationUpdates(new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                iLocationListener.onLocationChanged(locationResult.getLastLocation());
+            }
+        });
     }
 
-    public static final class GoogleLocationRequest implements ILocationServiceProvider.ILocationRequest {
-        private LocationRequest request;
-
-        private GoogleLocationRequest(LocationRequest locationRequest) {
-            this.request = locationRequest;
-        }
-
-        @Override
-        public void setPriority(int i) {
-            this.request.setPriority(i != 1 ? i != 2 ? i != 3 ? 100 : 105 : 104 : 102);
-        }
-
-        @Override
-        public void setInterval(long j) {
-            this.request.setInterval(j);
-        }
-
-        @Override
-        public void setFastestInterval(long j) {
-            this.request.setFastestInterval(j);
-        }
-    }
-
-    public static final class GoogleApiClientImpl implements ILocationServiceProvider.IMapApiClient {
-        private GoogleApiClient apiClient;
-
-        private GoogleApiClientImpl(GoogleApiClient googleApiClient) {
-            this.apiClient = googleApiClient;
-        }
-
-        @Override
-        public void connect() {
-            this.apiClient.connect();
-        }
-
-        @Override
-        public void disconnect() {
-            this.apiClient.disconnect();
-        }
+    @Override
+    public void requestLocationUpdates(ILocationServiceProvider.ILocationRequest iLocationRequest, final ILocationServiceProvider.ILocationListener iLocationListener) {
+        this.locationProviderClient.requestLocationUpdates(((GoogleLocationRequest) iLocationRequest).request, new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                iLocationListener.onLocationChanged(locationResult.getLastLocation());
+            }
+        }, Looper.getMainLooper());
     }
 }

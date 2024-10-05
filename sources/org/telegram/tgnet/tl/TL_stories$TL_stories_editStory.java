@@ -15,9 +15,9 @@ public class TL_stories$TL_stories_editStory extends TLObject {
     public int id;
     public TLRPC$InputMedia media;
     public TLRPC$InputPeer peer;
-    public ArrayList<TL_stories$MediaArea> media_areas = new ArrayList<>();
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
-    public ArrayList<TLRPC$InputPrivacyRule> privacy_rules = new ArrayList<>();
+    public ArrayList media_areas = new ArrayList();
+    public ArrayList entities = new ArrayList();
+    public ArrayList privacy_rules = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -38,7 +38,7 @@ public class TL_stories$TL_stories_editStory extends TLObject {
             int size = this.media_areas.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.media_areas.get(i).serializeToStream(abstractSerializedData);
+                ((TL_stories$MediaArea) this.media_areas.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 2) != 0) {
@@ -49,7 +49,7 @@ public class TL_stories$TL_stories_editStory extends TLObject {
             int size2 = this.entities.size();
             abstractSerializedData.writeInt32(size2);
             for (int i2 = 0; i2 < size2; i2++) {
-                this.entities.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {
@@ -57,7 +57,7 @@ public class TL_stories$TL_stories_editStory extends TLObject {
             int size3 = this.privacy_rules.size();
             abstractSerializedData.writeInt32(size3);
             for (int i3 = 0; i3 < size3; i3++) {
-                this.privacy_rules.get(i3).serializeToStream(abstractSerializedData);
+                ((TLRPC$InputPrivacyRule) this.privacy_rules.get(i3)).serializeToStream(abstractSerializedData);
             }
         }
     }

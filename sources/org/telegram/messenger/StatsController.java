@@ -40,58 +40,8 @@ public class StatsController extends BaseController {
     };
     private static volatile StatsController[] Instance = new StatsController[4];
 
-    public byte[] intToBytes(int i) {
-        byte[] bArr = this.buffer;
-        bArr[0] = (byte) (i >>> 24);
-        bArr[1] = (byte) (i >>> 16);
-        bArr[2] = (byte) (i >>> 8);
-        bArr[3] = (byte) i;
-        return bArr;
-    }
-
-    private int bytesToInt(byte[] bArr) {
-        return (bArr[3] & 255) | (bArr[0] << 24) | ((bArr[1] & 255) << 16) | ((bArr[2] & 255) << 8);
-    }
-
-    public byte[] longToBytes(long j) {
-        byte[] bArr = this.buffer;
-        bArr[0] = (byte) (j >>> 56);
-        bArr[1] = (byte) (j >>> 48);
-        bArr[2] = (byte) (j >>> 40);
-        bArr[3] = (byte) (j >>> 32);
-        bArr[4] = (byte) (j >>> 24);
-        bArr[5] = (byte) (j >>> 16);
-        bArr[6] = (byte) (j >>> 8);
-        bArr[7] = (byte) j;
-        return bArr;
-    }
-
-    private long bytesToLong(byte[] bArr) {
-        return ((bArr[0] & 255) << 56) | ((bArr[1] & 255) << 48) | ((bArr[2] & 255) << 40) | ((bArr[3] & 255) << 32) | ((bArr[4] & 255) << 24) | ((bArr[5] & 255) << 16) | ((bArr[6] & 255) << 8) | (255 & bArr[7]);
-    }
-
-    public static StatsController getInstance(int i) {
-        StatsController statsController = Instance[i];
-        if (statsController == null) {
-            synchronized (StatsController.class) {
-                try {
-                    statsController = Instance[i];
-                    if (statsController == null) {
-                        StatsController[] statsControllerArr = Instance;
-                        StatsController statsController2 = new StatsController(i);
-                        statsControllerArr[i] = statsController2;
-                        statsController = statsController2;
-                    }
-                } finally {
-                }
-            }
-        }
-        return statsController;
-    }
-
     private StatsController(int i) {
         super(i);
-        SharedPreferences sharedPreferences;
         this.buffer = new byte[8];
         Class cls = Long.TYPE;
         this.sentBytes = (long[][]) Array.newInstance((Class<?>) cls, 3, 8);
@@ -196,11 +146,7 @@ public class StatsController extends BaseController {
             }
         } catch (Exception unused) {
         }
-        if (i == 0) {
-            sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("stats", 0);
-        } else {
-            sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("stats" + i, 0);
-        }
+        SharedPreferences sharedPreferences = i == 0 ? ApplicationLoader.applicationContext.getSharedPreferences("stats", 0) : ApplicationLoader.applicationContext.getSharedPreferences("stats" + i, 0);
         boolean z2 = false;
         for (int i5 = 0; i5 < 3; i5++) {
             this.callsTotalTime[i5] = sharedPreferences.getInt("callsTotalTime" + i5, 0);
@@ -222,21 +168,106 @@ public class StatsController extends BaseController {
         }
     }
 
-    public void incrementReceivedItemsCount(int i, int i2, int i3) {
-        int[] iArr = this.receivedItems[i];
-        iArr[i2] = iArr[i2] + i3;
-        saveStats();
+    private int bytesToInt(byte[] bArr) {
+        return (bArr[3] & 255) | (bArr[0] << 24) | ((bArr[1] & 255) << 16) | ((bArr[2] & 255) << 8);
     }
 
-    public void incrementSentItemsCount(int i, int i2, int i3) {
-        int[] iArr = this.sentItems[i];
-        iArr[i2] = iArr[i2] + i3;
-        saveStats();
+    private long bytesToLong(byte[] bArr) {
+        return ((bArr[0] & 255) << 56) | ((bArr[1] & 255) << 48) | ((bArr[2] & 255) << 40) | ((bArr[3] & 255) << 32) | ((bArr[4] & 255) << 24) | ((bArr[5] & 255) << 16) | ((bArr[6] & 255) << 8) | (255 & bArr[7]);
+    }
+
+    public static StatsController getInstance(int i) {
+        StatsController statsController = Instance[i];
+        if (statsController == null) {
+            synchronized (StatsController.class) {
+                try {
+                    statsController = Instance[i];
+                    if (statsController == null) {
+                        StatsController[] statsControllerArr = Instance;
+                        StatsController statsController2 = new StatsController(i);
+                        statsControllerArr[i] = statsController2;
+                        statsController = statsController2;
+                    }
+                } finally {
+                }
+            }
+        }
+        return statsController;
+    }
+
+    public byte[] intToBytes(int i) {
+        byte[] bArr = this.buffer;
+        bArr[0] = (byte) (i >>> 24);
+        bArr[1] = (byte) (i >>> 16);
+        bArr[2] = (byte) (i >>> 8);
+        bArr[3] = (byte) i;
+        return bArr;
+    }
+
+    public byte[] longToBytes(long j) {
+        byte[] bArr = this.buffer;
+        bArr[0] = (byte) (j >>> 56);
+        bArr[1] = (byte) (j >>> 48);
+        bArr[2] = (byte) (j >>> 40);
+        bArr[3] = (byte) (j >>> 32);
+        bArr[4] = (byte) (j >>> 24);
+        bArr[5] = (byte) (j >>> 16);
+        bArr[6] = (byte) (j >>> 8);
+        bArr[7] = (byte) j;
+        return bArr;
+    }
+
+    private void saveStats() {
+        long currentTimeMillis = System.currentTimeMillis();
+        ThreadLocal<Long> threadLocal = lastStatsSaveTime;
+        if (Math.abs(currentTimeMillis - threadLocal.get().longValue()) >= 2000) {
+            threadLocal.set(Long.valueOf(currentTimeMillis));
+            statsSaveQueue.cancelRunnable(this.saveRunnable);
+            statsSaveQueue.postRunnable(this.saveRunnable);
+        }
+    }
+
+    public int getCallsTotalTime(int i) {
+        return this.callsTotalTime[i];
+    }
+
+    public long getReceivedBytesCount(int i, int i2) {
+        if (i2 != 1) {
+            return this.receivedBytes[i][i2];
+        }
+        long[] jArr = this.receivedBytes[i];
+        return ((((jArr[6] - jArr[5]) - jArr[3]) - jArr[2]) - jArr[4]) - jArr[7];
+    }
+
+    public int getRecivedItemsCount(int i, int i2) {
+        return this.receivedItems[i][i2];
+    }
+
+    public long getResetStatsDate(int i) {
+        return this.resetStatsDate[i];
+    }
+
+    public long getSentBytesCount(int i, int i2) {
+        if (i2 != 1) {
+            return this.sentBytes[i][i2];
+        }
+        long[] jArr = this.sentBytes[i];
+        return ((((jArr[6] - jArr[5]) - jArr[3]) - jArr[2]) - jArr[4]) - jArr[7];
+    }
+
+    public int getSentItemsCount(int i, int i2) {
+        return this.sentItems[i][i2];
     }
 
     public void incrementReceivedBytesCount(int i, int i2, long j) {
         long[] jArr = this.receivedBytes[i];
         jArr[i2] = jArr[i2] + j;
+        saveStats();
+    }
+
+    public void incrementReceivedItemsCount(int i, int i2, int i3) {
+        int[] iArr = this.receivedItems[i];
+        iArr[i2] = iArr[i2] + i3;
         saveStats();
     }
 
@@ -246,42 +277,16 @@ public class StatsController extends BaseController {
         saveStats();
     }
 
+    public void incrementSentItemsCount(int i, int i2, int i3) {
+        int[] iArr = this.sentItems[i];
+        iArr[i2] = iArr[i2] + i3;
+        saveStats();
+    }
+
     public void incrementTotalCallsTime(int i, int i2) {
         int[] iArr = this.callsTotalTime;
         iArr[i] = iArr[i] + i2;
         saveStats();
-    }
-
-    public int getRecivedItemsCount(int i, int i2) {
-        return this.receivedItems[i][i2];
-    }
-
-    public int getSentItemsCount(int i, int i2) {
-        return this.sentItems[i][i2];
-    }
-
-    public long getSentBytesCount(int i, int i2) {
-        if (i2 == 1) {
-            long[] jArr = this.sentBytes[i];
-            return ((((jArr[6] - jArr[5]) - jArr[3]) - jArr[2]) - jArr[4]) - jArr[7];
-        }
-        return this.sentBytes[i][i2];
-    }
-
-    public long getReceivedBytesCount(int i, int i2) {
-        if (i2 == 1) {
-            long[] jArr = this.receivedBytes[i];
-            return ((((jArr[6] - jArr[5]) - jArr[3]) - jArr[2]) - jArr[4]) - jArr[7];
-        }
-        return this.receivedBytes[i][i2];
-    }
-
-    public int getCallsTotalTime(int i) {
-        return this.callsTotalTime[i];
-    }
-
-    public long getResetStatsDate(int i) {
-        return this.resetStatsDate[i];
     }
 
     public void resetStats(int i) {
@@ -294,15 +299,5 @@ public class StatsController extends BaseController {
         }
         this.callsTotalTime[i] = 0;
         saveStats();
-    }
-
-    private void saveStats() {
-        long currentTimeMillis = System.currentTimeMillis();
-        ThreadLocal<Long> threadLocal = lastStatsSaveTime;
-        if (Math.abs(currentTimeMillis - threadLocal.get().longValue()) >= 2000) {
-            threadLocal.set(Long.valueOf(currentTimeMillis));
-            statsSaveQueue.cancelRunnable(this.saveRunnable);
-            statsSaveQueue.postRunnable(this.saveRunnable);
-        }
     }
 }

@@ -1,4 +1,4 @@
 package org.telegram.ui.Cells;
 
-public final class ChannelRecommendationsCell$ChannelBlock$$ExternalSyntheticApiModelOutline0 {
+public abstract class ChannelRecommendationsCell$ChannelBlock$$ExternalSyntheticApiModelOutline0 {
 }

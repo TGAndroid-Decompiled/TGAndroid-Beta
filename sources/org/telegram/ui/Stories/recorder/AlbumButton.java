@@ -35,7 +35,9 @@ public class AlbumButton extends View {
 
     public AlbumButton(Context context, MediaController.PhotoEntry photoEntry, CharSequence charSequence, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        StringBuilder sb;
         String str;
+        String sb2;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.imageReceiver = imageReceiver;
         TextPaint textPaint = new TextPaint(1);
@@ -61,41 +63,25 @@ public class AlbumButton extends View {
         CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), -13750737), mutate);
         combinedDrawable.setFullsize(false);
         combinedDrawable.setIconSize(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
-        if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
-            imageReceiver.setImage(ImageLocation.getForPath(str), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-            return;
-        }
-        if (photoEntry != null && photoEntry.path != null) {
-            if (photoEntry.isVideo) {
-                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
+        if (photoEntry == null || (sb2 = photoEntry.thumbPath) == null) {
+            if (photoEntry == null || photoEntry.path == null) {
+                imageReceiver.setImageBitmap(combinedDrawable);
                 return;
             }
-            imageReceiver.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-            return;
+            if (photoEntry.isVideo) {
+                sb = new StringBuilder();
+                str = "vthumb://";
+            } else {
+                sb = new StringBuilder();
+                str = "thumb://";
+            }
+            sb.append(str);
+            sb.append(photoEntry.imageId);
+            sb.append(":");
+            sb.append(photoEntry.path);
+            sb2 = sb.toString();
         }
-        imageReceiver.setImageBitmap(combinedDrawable);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.imageReceiver.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.imageReceiver.onDetachedFromWindow();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        updateLayouts((((View.MeasureSpec.getSize(i) - AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(12.0f)) - getPaddingLeft()) - getPaddingRight());
-        if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
-            setMeasuredDimension((int) Math.min(getPaddingLeft() + AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(12.0f) + this.nameLayoutWidth + AndroidUtilities.dp(8.0f) + this.countLayoutWidth + getPaddingRight(), View.MeasureSpec.getSize(i)), AndroidUtilities.dp(48.0f));
-        } else if (View.MeasureSpec.getMode(i) == 1073741824) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(48.0f));
-        }
+        imageReceiver.setImage(ImageLocation.getForPath(sb2), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
     }
 
     private void updateLayouts(int i) {
@@ -138,5 +124,31 @@ public class AlbumButton extends View {
             this.countLayout.draw(canvas);
             canvas.restore();
         }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.imageReceiver.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.imageReceiver.onDetachedFromWindow();
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size;
+        updateLayouts((((View.MeasureSpec.getSize(i) - AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(12.0f)) - getPaddingLeft()) - getPaddingRight());
+        if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
+            size = (int) Math.min(getPaddingLeft() + AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(12.0f) + this.nameLayoutWidth + AndroidUtilities.dp(8.0f) + this.countLayoutWidth + getPaddingRight(), View.MeasureSpec.getSize(i));
+        } else if (View.MeasureSpec.getMode(i) != 1073741824) {
+            return;
+        } else {
+            size = View.MeasureSpec.getSize(i);
+        }
+        setMeasuredDimension(size, AndroidUtilities.dp(48.0f));
     }
 }

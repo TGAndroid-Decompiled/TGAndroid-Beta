@@ -28,7 +28,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.annotation.Keep;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -47,7 +46,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.PaymentFormActivity;
 
-@Deprecated
 public class UndoView extends FrameLayout {
     public static int ACTION_RINGTONE_ADDED = 83;
     private float additionalTranslationY;
@@ -57,7 +55,7 @@ public class UndoView extends FrameLayout {
     private int currentAction;
     private Runnable currentActionRunnable;
     private Runnable currentCancelRunnable;
-    private ArrayList<Long> currentDialogIds;
+    private ArrayList currentDialogIds;
     private Object currentInfoObject;
     private Object currentInfoObject2;
     float enterOffset;
@@ -88,24 +86,6 @@ public class UndoView extends FrameLayout {
     private TextView undoTextView;
     private int undoViewHeight;
 
-    public static boolean lambda$new$1(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    public static boolean lambda$showWithAction$3(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    protected boolean canUndo() {
-        return true;
-    }
-
-    public void didPressUrl(CharacterStyle characterStyle) {
-    }
-
-    protected void onRemoveDialogAction(long j, int i) {
-    }
-
     public class LinkMovementMethodMy extends LinkMovementMethod {
         public LinkMovementMethodMy() {
         }
@@ -115,15 +95,15 @@ public class UndoView extends FrameLayout {
             CharacterStyle[] characterStyleArr;
             try {
                 if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                    if (motionEvent.getAction() == 1) {
-                        CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                        if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                            UndoView.this.didPressUrl(characterStyleArr2[0]);
-                        }
-                        Selection.removeSelection(spannable);
-                        return true;
+                    if (motionEvent.getAction() != 1) {
+                        return super.onTouchEvent(textView, spannable, motionEvent);
                     }
-                    return super.onTouchEvent(textView, spannable, motionEvent);
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        UndoView.this.didPressUrl(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
                 }
                 return false;
             } catch (Exception e) {
@@ -245,24 +225,8 @@ public class UndoView extends FrameLayout {
         setVisibility(4);
     }
 
-    public void lambda$new$0(View view) {
-        if (canUndo()) {
-            hide(false, 1);
-        }
-    }
-
-    public void setColors(int i, int i2) {
-        Theme.setDrawableColor(this.backgroundDrawable, i);
-        this.infoTextView.setTextColor(i2);
-        this.subinfoTextView.setTextColor(i2);
-        int i3 = i | (-16777216);
-        this.leftImageView.setLayerColor("info1.**", i3);
-        this.leftImageView.setLayerColor("info2.**", i3);
-    }
-
-    private boolean isTooltipAction() {
-        int i = this.currentAction;
-        return i == 6 || i == 3 || i == 5 || i == 7 || i == 8 || i == 87 || i == 9 || i == 10 || i == 13 || i == 14 || i == 19 || i == 20 || i == 21 || i == 22 || i == 23 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 35 || i == 36 || i == 74 || i == 37 || i == 38 || i == 39 || i == 40 || i == 42 || i == 43 || i == 77 || i == 44 || i == 78 || i == 79 || i == 100 || i == 101 || i == ACTION_RINGTONE_ADDED;
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     private boolean hasSubInfo() {
@@ -272,23 +236,103 @@ public class UndoView extends FrameLayout {
         return i2 == 11 || i2 == 24 || i2 == 6 || i2 == 3 || i2 == 5 || i2 == 13 || i2 == 14 || i2 == 74 || (i2 == 7 && MessagesController.getInstance(this.currentAccount).dialogFilters.isEmpty()) || (i = this.currentAction) == ACTION_RINGTONE_ADDED || i == 85 || (i == 88 && (obj = this.currentInfoObject2) != null && ((Integer) obj).intValue() > 0);
     }
 
-    public boolean isMultilineSubInfo() {
+    private boolean isTooltipAction() {
         int i = this.currentAction;
-        return i == 12 || i == 15 || i == 24 || i == 74 || i == ACTION_RINGTONE_ADDED;
+        return i == 6 || i == 3 || i == 5 || i == 7 || i == 8 || i == 87 || i == 9 || i == 10 || i == 13 || i == 14 || i == 19 || i == 20 || i == 21 || i == 22 || i == 23 || i == 30 || i == 31 || i == 32 || i == 33 || i == 34 || i == 35 || i == 36 || i == 74 || i == 37 || i == 38 || i == 39 || i == 40 || i == 42 || i == 43 || i == 77 || i == 44 || i == 78 || i == 79 || i == 100 || i == 101 || i == ACTION_RINGTONE_ADDED;
     }
 
-    public void setAdditionalTranslationY(float f) {
-        if (this.additionalTranslationY != f) {
-            this.additionalTranslationY = f;
-            updatePosition();
+    public void lambda$new$0(View view) {
+        if (canUndo()) {
+            hide(false, 1);
         }
+    }
+
+    public static boolean lambda$new$1(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    public void lambda$showWithAction$2(View view) {
+        hide(false, 1);
+    }
+
+    public static boolean lambda$showWithAction$3(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    public void lambda$showWithAction$4(TLObject tLObject) {
+        if (tLObject instanceof TLRPC$PaymentReceipt) {
+            this.parentFragment.presentFragment(new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject));
+        }
+    }
+
+    public void lambda$showWithAction$5(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                UndoView.this.lambda$showWithAction$4(tLObject);
+            }
+        });
+    }
+
+    public void lambda$showWithAction$6(TLRPC$Message tLRPC$Message, View view) {
+        hide(true, 1);
+        TLRPC$TL_payments_getPaymentReceipt tLRPC$TL_payments_getPaymentReceipt = new TLRPC$TL_payments_getPaymentReceipt();
+        tLRPC$TL_payments_getPaymentReceipt.msg_id = tLRPC$Message.id;
+        tLRPC$TL_payments_getPaymentReceipt.peer = this.parentFragment.getMessagesController().getInputPeer(tLRPC$Message.peer_id);
+        this.parentFragment.getConnectionsManager().sendRequest(tLRPC$TL_payments_getPaymentReceipt, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                UndoView.this.lambda$showWithAction$5(tLObject, tLRPC$TL_error);
+            }
+        }, 2);
+    }
+
+    public void lambda$showWithAction$7() {
+        this.leftImageView.performHapticFeedback(3, 2);
+    }
+
+    private void updatePosition() {
+        setTranslationY(((this.enterOffset - this.enterOffsetMargin) + AndroidUtilities.dp(8.0f)) - this.additionalTranslationY);
+        invalidate();
+    }
+
+    protected boolean canUndo() {
+        return true;
+    }
+
+    public void didPressUrl(CharacterStyle characterStyle) {
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        if (this.additionalTranslationY == 0.0f) {
+            super.dispatchDraw(canvas);
+            return;
+        }
+        canvas.save();
+        float measuredHeight = (getMeasuredHeight() - this.enterOffset) + AndroidUtilities.dp(9.0f);
+        if (measuredHeight > 0.0f) {
+            canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight);
+            super.dispatchDraw(canvas);
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public Drawable getBackground() {
+        return this.backgroundDrawable;
     }
 
     public Object getCurrentInfoObject() {
         return this.currentInfoObject;
     }
 
+    public float getEnterOffset() {
+        return this.enterOffset;
+    }
+
     public void hide(boolean z, int i) {
+        long j;
         if (getVisibility() == 0 && this.isShown) {
             this.currentInfoObject = null;
             this.currentInfoObject2 = null;
@@ -310,125 +354,51 @@ public class UndoView extends FrameLayout {
             int i2 = this.currentAction;
             if (i2 == 0 || i2 == 1 || i2 == 26 || i2 == 27) {
                 for (int i3 = 0; i3 < this.currentDialogIds.size(); i3++) {
-                    long longValue = this.currentDialogIds.get(i3).longValue();
+                    long longValue = ((Long) this.currentDialogIds.get(i3)).longValue();
                     MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
                     int i4 = this.currentAction;
                     messagesController.removeDialogAction(longValue, i4 == 0 || i4 == 26, z);
                     onRemoveDialogAction(longValue, this.currentAction);
                 }
             }
-            if (i != 0) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                if (i == 1) {
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, "enterOffset", (this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight)));
-                    animatorSet.setDuration(250L);
-                } else {
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.ALPHA, 0.0f));
-                    animatorSet.setDuration(180L);
-                }
-                animatorSet.setInterpolator(new DecelerateInterpolator());
-                animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        UndoView.this.setVisibility(4);
-                        UndoView.this.setScaleX(1.0f);
-                        UndoView.this.setScaleY(1.0f);
-                        UndoView.this.setAlpha(1.0f);
-                    }
-                });
-                animatorSet.start();
+            if (i == 0) {
+                setEnterOffset((this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight));
+                setVisibility(4);
                 return;
             }
-            setEnterOffset((this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight));
-            setVisibility(4);
-        }
-    }
-
-    public void showWithAction(long j, int i, Runnable runnable) {
-        showWithAction(j, i, (Object) null, (Object) null, runnable, (Runnable) null);
-    }
-
-    public void showWithAction(long j, int i, Object obj) {
-        showWithAction(j, i, obj, (Object) null, (Runnable) null, (Runnable) null);
-    }
-
-    public void showWithAction(long j, int i, Runnable runnable, Runnable runnable2) {
-        showWithAction(j, i, (Object) null, (Object) null, runnable, runnable2);
-    }
-
-    public void showWithAction(long j, int i, Object obj, Runnable runnable, Runnable runnable2) {
-        showWithAction(j, i, obj, (Object) null, runnable, runnable2);
-    }
-
-    public void showWithAction(long j, int i, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        ArrayList<Long> arrayList = new ArrayList<>();
-        arrayList.add(Long.valueOf(j));
-        showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
-    }
-
-    public void showWithAction(java.util.ArrayList<java.lang.Long> r25, int r26, java.lang.Object r27, java.lang.Object r28, java.lang.Runnable r29, java.lang.Runnable r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
-    }
-
-    public void lambda$showWithAction$2(View view) {
-        hide(false, 1);
-    }
-
-    public void lambda$showWithAction$6(TLRPC$Message tLRPC$Message, View view) {
-        hide(true, 1);
-        TLRPC$TL_payments_getPaymentReceipt tLRPC$TL_payments_getPaymentReceipt = new TLRPC$TL_payments_getPaymentReceipt();
-        tLRPC$TL_payments_getPaymentReceipt.msg_id = tLRPC$Message.id;
-        tLRPC$TL_payments_getPaymentReceipt.peer = this.parentFragment.getMessagesController().getInputPeer(tLRPC$Message.peer_id);
-        this.parentFragment.getConnectionsManager().sendRequest(tLRPC$TL_payments_getPaymentReceipt, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                UndoView.this.lambda$showWithAction$5(tLObject, tLRPC$TL_error);
+            AnimatorSet animatorSet = new AnimatorSet();
+            if (i == 1) {
+                animatorSet.playTogether(ObjectAnimator.ofFloat(this, "enterOffset", (this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight)));
+                j = 250;
+            } else {
+                animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.ALPHA, 0.0f));
+                j = 180;
             }
-        }, 2);
-    }
-
-    public void lambda$showWithAction$5(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                UndoView.this.lambda$showWithAction$4(tLObject);
-            }
-        });
-    }
-
-    public void lambda$showWithAction$4(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$PaymentReceipt) {
-            this.parentFragment.presentFragment(new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject));
+            animatorSet.setDuration(j);
+            animatorSet.setInterpolator(new DecelerateInterpolator());
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    UndoView.this.setVisibility(4);
+                    UndoView.this.setScaleX(1.0f);
+                    UndoView.this.setScaleY(1.0f);
+                    UndoView.this.setAlpha(1.0f);
+                }
+            });
+            animatorSet.start();
         }
-    }
-
-    public void lambda$showWithAction$7() {
-        this.leftImageView.performHapticFeedback(3, 2);
-    }
-
-    public void setEnterOffsetMargin(int i) {
-        this.enterOffsetMargin = i;
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.undoViewHeight, 1073741824));
-        this.backgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+    public void invalidate() {
+        super.invalidate();
+        this.infoTextView.invalidate();
+        this.leftImageView.invalidate();
     }
 
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        if (this.additionalTranslationY != 0.0f) {
-            canvas.save();
-            float measuredHeight = (getMeasuredHeight() - this.enterOffset) + AndroidUtilities.dp(9.0f);
-            if (measuredHeight > 0.0f) {
-                canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight);
-                super.dispatchDraw(canvas);
-            }
-            canvas.restore();
-            return;
-        }
-        super.dispatchDraw(canvas);
+    public boolean isMultilineSubInfo() {
+        int i = this.currentAction;
+        return i == 12 || i == 15 || i == 24 || i == 74 || i == ACTION_RINGTONE_ADDED;
     }
 
     @Override
@@ -510,26 +480,30 @@ public class UndoView extends FrameLayout {
     }
 
     @Override
-    public void invalidate() {
-        super.invalidate();
-        this.infoTextView.invalidate();
-        this.leftImageView.invalidate();
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.undoViewHeight, 1073741824));
+        this.backgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
     }
 
-    public void setInfoText(CharSequence charSequence) {
-        this.infoText = charSequence;
+    protected void onRemoveDialogAction(long j, int i) {
     }
 
-    public void setHideAnimationType(int i) {
-        this.hideAnimationType = i;
+    public void setAdditionalTranslationY(float f) {
+        if (this.additionalTranslationY != f) {
+            this.additionalTranslationY = f;
+            updatePosition();
+        }
     }
 
-    @Keep
-    public float getEnterOffset() {
-        return this.enterOffset;
+    public void setColors(int i, int i2) {
+        Theme.setDrawableColor(this.backgroundDrawable, i);
+        this.infoTextView.setTextColor(i2);
+        this.subinfoTextView.setTextColor(i2);
+        int i3 = i | (-16777216);
+        this.leftImageView.setLayerColor("info1.**", i3);
+        this.leftImageView.setLayerColor("info2.**", i3);
     }
 
-    @Keep
     public void setEnterOffset(float f) {
         if (this.enterOffset != f) {
             this.enterOffset = f;
@@ -537,17 +511,41 @@ public class UndoView extends FrameLayout {
         }
     }
 
-    private void updatePosition() {
-        setTranslationY(((this.enterOffset - this.enterOffsetMargin) + AndroidUtilities.dp(8.0f)) - this.additionalTranslationY);
-        invalidate();
+    public void setEnterOffsetMargin(int i) {
+        this.enterOffsetMargin = i;
     }
 
-    @Override
-    public Drawable getBackground() {
-        return this.backgroundDrawable;
+    public void setHideAnimationType(int i) {
+        this.hideAnimationType = i;
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public void setInfoText(CharSequence charSequence) {
+        this.infoText = charSequence;
+    }
+
+    public void showWithAction(long j, int i, Object obj) {
+        showWithAction(j, i, obj, (Object) null, (Runnable) null, (Runnable) null);
+    }
+
+    public void showWithAction(long j, int i, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(Long.valueOf(j));
+        showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
+    }
+
+    public void showWithAction(long j, int i, Object obj, Runnable runnable, Runnable runnable2) {
+        showWithAction(j, i, obj, (Object) null, runnable, runnable2);
+    }
+
+    public void showWithAction(long j, int i, Runnable runnable) {
+        showWithAction(j, i, (Object) null, (Object) null, runnable, (Runnable) null);
+    }
+
+    public void showWithAction(long j, int i, Runnable runnable, Runnable runnable2) {
+        showWithAction(j, i, (Object) null, (Object) null, runnable, runnable2);
+    }
+
+    public void showWithAction(java.util.ArrayList r25, int r26, java.lang.Object r27, java.lang.Object r28, java.lang.Runnable r29, java.lang.Runnable r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 }

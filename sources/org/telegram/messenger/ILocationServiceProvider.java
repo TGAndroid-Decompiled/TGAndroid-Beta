@@ -3,10 +3,8 @@ package org.telegram.messenger;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
-import androidx.annotation.Keep;
 import androidx.core.util.Consumer;
 
-@Keep
 public interface ILocationServiceProvider {
     public static final int PRIORITY_BALANCED_POWER_ACCURACY = 1;
     public static final int PRIORITY_HIGH_ACCURACY = 0;
@@ -44,11 +42,11 @@ public interface ILocationServiceProvider {
         void disconnect();
     }
 
-    void checkLocationSettings(ILocationRequest iLocationRequest, Consumer<Integer> consumer);
+    void checkLocationSettings(ILocationRequest iLocationRequest, Consumer consumer);
 
     boolean checkServices();
 
-    void getLastLocation(Consumer<Location> consumer);
+    void getLastLocation(Consumer consumer);
 
     void init(Context context);
 

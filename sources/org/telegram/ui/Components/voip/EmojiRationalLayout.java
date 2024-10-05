@@ -1,13 +1,11 @@
 package org.telegram.ui.Components.voip;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 
-@SuppressLint({"ViewConstructor"})
 public class EmojiRationalLayout extends LinearLayout {
     private final VoIPBackgroundProvider backgroundProvider;
     private final RectF bgRect;

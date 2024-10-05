@@ -30,7 +30,7 @@ public class TLRPC$TL_videoSizeStickerMarkup extends TLRPC$VideoSize {
         int size = this.background_colors.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.background_colors.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.background_colors.get(i)).intValue());
         }
     }
 }

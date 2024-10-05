@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_updateDialogFiltersOrder extends TLObject {
-    public ArrayList<Integer> order = new ArrayList<>();
+    public ArrayList order = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -17,7 +17,7 @@ public class TLRPC$TL_messages_updateDialogFiltersOrder extends TLObject {
         int size = this.order.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.order.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.order.get(i)).intValue());
         }
     }
 }

@@ -4,23 +4,14 @@ public abstract class TLRPC$Reaction extends TLObject {
     public long tag_long_id;
 
     public static TLRPC$Reaction TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$Reaction tLRPC$TL_reactionCustomEmoji;
-        if (i == -1992950669) {
-            tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
-        } else if (i == 455247544) {
-            tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionEmoji();
-        } else if (i != 1379771627) {
-            tLRPC$TL_reactionCustomEmoji = i != 2046153753 ? null : new TLRPC$TL_reactionEmpty();
-        } else {
-            tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionPaid();
-        }
-        if (tLRPC$TL_reactionCustomEmoji == null && z) {
+        TLRPC$Reaction tLRPC$TL_reactionEmpty = i != -1992950669 ? i != 455247544 ? i != 1379771627 ? i != 2046153753 ? null : new TLRPC$TL_reactionEmpty() : new TLRPC$TL_reactionPaid() : new TLRPC$TL_reactionEmoji() : new TLRPC$TL_reactionCustomEmoji();
+        if (tLRPC$TL_reactionEmpty == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in Reaction", Integer.valueOf(i)));
         }
-        if (tLRPC$TL_reactionCustomEmoji != null) {
-            tLRPC$TL_reactionCustomEmoji.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_reactionEmpty != null) {
+            tLRPC$TL_reactionEmpty.readParams(abstractSerializedData, z);
         }
-        return tLRPC$TL_reactionCustomEmoji;
+        return tLRPC$TL_reactionEmpty;
     }
 
     public boolean equals(TLRPC$Reaction tLRPC$Reaction) {

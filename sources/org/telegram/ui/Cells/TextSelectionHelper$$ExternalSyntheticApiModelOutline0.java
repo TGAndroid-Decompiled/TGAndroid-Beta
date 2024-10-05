@@ -1,4 +1,4 @@
 package org.telegram.ui.Cells;
 
-public final class TextSelectionHelper$$ExternalSyntheticApiModelOutline0 {
+public abstract class TextSelectionHelper$$ExternalSyntheticApiModelOutline0 {
 }

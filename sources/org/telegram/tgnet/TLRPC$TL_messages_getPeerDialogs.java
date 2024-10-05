@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_getPeerDialogs extends TLObject {
-    public ArrayList<TLRPC$InputDialogPeer> peers = new ArrayList<>();
+    public ArrayList peers = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -17,7 +17,7 @@ public class TLRPC$TL_messages_getPeerDialogs extends TLObject {
         int size = this.peers.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.peers.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputDialogPeer) this.peers.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

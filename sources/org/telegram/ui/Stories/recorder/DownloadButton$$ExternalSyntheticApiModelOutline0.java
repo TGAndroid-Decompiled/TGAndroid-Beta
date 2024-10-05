@@ -1,4 +1,4 @@
 package org.telegram.ui.Stories.recorder;
 
-public final class DownloadButton$$ExternalSyntheticApiModelOutline0 {
+public abstract class DownloadButton$$ExternalSyntheticApiModelOutline0 {
 }

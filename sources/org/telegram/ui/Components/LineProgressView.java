@@ -75,30 +75,6 @@ public class LineProgressView extends View {
         }
     }
 
-    public void setProgressColor(int i) {
-        this.progressColor = i;
-    }
-
-    public void setBackColor(int i) {
-        this.backColor = i;
-    }
-
-    public void setProgress(float f, boolean z) {
-        if (!z) {
-            this.animatedProgressValue = f;
-            this.animationProgressStart = f;
-        } else {
-            this.animationProgressStart = this.animatedProgressValue;
-        }
-        if (f != 1.0f) {
-            this.animatedAlphaValue = 1.0f;
-        }
-        this.currentProgress = f;
-        this.currentProgressTime = 0L;
-        this.lastUpdateTime = System.currentTimeMillis();
-        invalidate();
-    }
-
     public float getCurrentProgress() {
         return this.currentProgress;
     }
@@ -130,5 +106,29 @@ public class LineProgressView extends View {
             invalidate();
         }
         updateAnimation();
+    }
+
+    public void setBackColor(int i) {
+        this.backColor = i;
+    }
+
+    public void setProgress(float f, boolean z) {
+        if (z) {
+            this.animationProgressStart = this.animatedProgressValue;
+        } else {
+            this.animatedProgressValue = f;
+            this.animationProgressStart = f;
+        }
+        if (f != 1.0f) {
+            this.animatedAlphaValue = 1.0f;
+        }
+        this.currentProgress = f;
+        this.currentProgressTime = 0L;
+        this.lastUpdateTime = System.currentTimeMillis();
+        invalidate();
+    }
+
+    public void setProgressColor(int i) {
+        this.progressColor = i;
     }
 }

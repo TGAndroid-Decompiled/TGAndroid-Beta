@@ -1,4 +1,4 @@
 package org.telegram.ui.ActionBar;
 
-public final class DrawerLayoutContainer$$ExternalSyntheticApiModelOutline2 {
+public abstract class DrawerLayoutContainer$$ExternalSyntheticApiModelOutline2 {
 }

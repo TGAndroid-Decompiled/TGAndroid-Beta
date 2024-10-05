@@ -6,7 +6,7 @@ public class TLRPC$TL_channels_reorderPinnedForumTopics extends TLObject {
     public TLRPC$InputChannel channel;
     public int flags;
     public boolean force;
-    public ArrayList<Integer> order = new ArrayList<>();
+    public ArrayList order = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -24,7 +24,7 @@ public class TLRPC$TL_channels_reorderPinnedForumTopics extends TLObject {
         int size = this.order.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            abstractSerializedData.writeInt32(this.order.get(i2).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.order.get(i2)).intValue());
         }
     }
 }

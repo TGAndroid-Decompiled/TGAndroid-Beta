@@ -82,7 +82,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private final BitmapShader[] nextRenderingShader;
     private final BitmapShader[] nextRenderingShader2;
     private View parentView;
-    private final ArrayList<ImageReceiver> parents;
+    private final ArrayList parents;
     private File path;
     private boolean pendingRemoveLoading;
     private int pendingRemoveLoadingFramesReset;
@@ -104,7 +104,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private float scaleFactor;
     private float scaleX;
     private float scaleY;
-    private final ArrayList<View> secondParentViews;
+    private final ArrayList secondParentViews;
     private Matrix[] shaderMatrix;
     private final Matrix[] shaderMatrixBackground;
     private boolean singleFrameDecoded;
@@ -118,46 +118,34 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private Runnable uiRunnable;
     private Runnable uiRunnableGenerateCache;
     private Runnable uiRunnableNoFrame;
-    ArrayList<Bitmap> unusedBitmaps;
+    ArrayList unusedBitmaps;
     private boolean useSharedQueue;
     private static float[] radii = new float[8];
     private static ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(8, new ThreadPoolExecutor.DiscardPolicy());
 
-    public static native long createDecoder(String str, int[] iArr, int i, long j, Object obj, boolean z);
-
-    public static native void destroyDecoder(long j);
-
-    private static native int getFrameAtTime(long j, long j2, Bitmap bitmap, int[] iArr, int i);
-
-    public static native int getVideoFrame(long j, Bitmap bitmap, int[] iArr, int i, boolean z, float f, float f2, boolean z2);
-
-    private static native void getVideoInfo(int i, String str, int[] iArr);
-
-    private static native void prepareToSeek(long j);
-
-    public static native void seekToMs(long j, long j2, boolean z);
-
-    private static native void stopDecoder(long j);
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    static int access$1010(AnimatedFileDrawable animatedFileDrawable) {
-        int i = animatedFileDrawable.pendingRemoveLoadingFramesReset;
-        animatedFileDrawable.pendingRemoveLoadingFramesReset = i - 1;
-        return i;
-    }
-
-    static int access$3608(AnimatedFileDrawable animatedFileDrawable) {
-        int i = animatedFileDrawable.decoderTryCount;
-        animatedFileDrawable.decoderTryCount = i + 1;
-        return i;
-    }
-
     public class AnonymousClass2 implements Runnable {
         AnonymousClass2() {
+        }
+
+        public void lambda$run$0() {
+            if (AnimatedFileDrawable.this.cacheGenRunnable != null) {
+                BitmapsCache.decrementTaskCounter();
+                AnimatedFileDrawable.this.cacheGenRunnable = null;
+            }
+            AnimatedFileDrawable animatedFileDrawable = AnimatedFileDrawable.this;
+            animatedFileDrawable.generatingCache = false;
+            animatedFileDrawable.chekDestroyDecoder();
+            AnimatedFileDrawable.this.scheduleNextGetFrame();
+        }
+
+        public void lambda$run$1() {
+            AnimatedFileDrawable.this.bitmapsCache.createCache();
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    AnimatedFileDrawable.AnonymousClass2.this.lambda$run$0();
+                }
+            });
         }
 
         @Override
@@ -188,27 +176,30 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             animatedFileDrawable3.cacheGenRunnable = runnable;
             dispatchQueue.postRunnable(runnable);
         }
+    }
 
-        public void lambda$run$1() {
-            AnimatedFileDrawable.this.bitmapsCache.createCache();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    AnimatedFileDrawable.AnonymousClass2.this.lambda$run$0();
-                }
-            });
-        }
+    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions) {
+        this(file, z, j, i, tLRPC$Document, imageLocation, obj, j2, i2, z2, i3, i4, cacheOptions, tLRPC$Document != null ? 1 : 0);
+    }
 
-        public void lambda$run$0() {
-            if (AnimatedFileDrawable.this.cacheGenRunnable != null) {
-                BitmapsCache.decrementTaskCounter();
-                AnimatedFileDrawable.this.cacheGenRunnable = null;
-            }
-            AnimatedFileDrawable animatedFileDrawable = AnimatedFileDrawable.this;
-            animatedFileDrawable.generatingCache = false;
-            animatedFileDrawable.chekDestroyDecoder();
-            AnimatedFileDrawable.this.scheduleNextGetFrame();
-        }
+    public AnimatedFileDrawable(java.io.File r17, boolean r18, long r19, int r21, org.telegram.tgnet.TLRPC$Document r22, org.telegram.messenger.ImageLocation r23, java.lang.Object r24, long r25, int r27, boolean r28, int r29, int r30, org.telegram.messenger.utils.BitmapsCache.CacheOptions r31, int r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedFileDrawable.<init>(java.io.File, boolean, long, int, org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.ImageLocation, java.lang.Object, long, int, boolean, int, int, org.telegram.messenger.utils.BitmapsCache$CacheOptions, int):void");
+    }
+
+    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, BitmapsCache.CacheOptions cacheOptions) {
+        this(file, z, j, i, tLRPC$Document, imageLocation, obj, j2, i2, z2, 0, 0, cacheOptions);
+    }
+
+    static int access$1010(AnimatedFileDrawable animatedFileDrawable) {
+        int i = animatedFileDrawable.pendingRemoveLoadingFramesReset;
+        animatedFileDrawable.pendingRemoveLoadingFramesReset = i - 1;
+        return i;
+    }
+
+    static int access$3608(AnimatedFileDrawable animatedFileDrawable) {
+        int i = animatedFileDrawable.decoderTryCount;
+        animatedFileDrawable.decoderTryCount = i + 1;
+        return i;
     }
 
     public void chekDestroyDecoder() {
@@ -235,43 +226,132 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             this.decodeQueue = null;
         }
         for (int i = 0; i < this.unusedBitmaps.size(); i++) {
-            this.unusedBitmaps.get(i).recycle();
+            ((Bitmap) this.unusedBitmaps.get(i)).recycle();
         }
         this.unusedBitmaps.clear();
         invalidateInternal();
     }
 
-    public void invalidateInternal() {
-        for (int i = 0; i < this.parents.size(); i++) {
-            this.parents.get(i).invalidate();
+    public static native long createDecoder(String str, int[] iArr, int i, long j, Object obj, boolean z);
+
+    public static native void destroyDecoder(long j);
+
+    private void drawBitmap(RectF rectF, Paint paint, Canvas canvas, float f, float f2) {
+        canvas.translate(rectF.left, rectF.top);
+        int i = this.metaData[2];
+        if (i == 90) {
+            canvas.rotate(90.0f);
+            canvas.translate(0.0f, -rectF.width());
+        } else if (i == 180) {
+            canvas.rotate(180.0f);
+            canvas.translate(-rectF.width(), -rectF.height());
+        } else if (i == 270) {
+            canvas.rotate(270.0f);
+            canvas.translate(-rectF.height(), 0.0f);
         }
+        canvas.scale(f, f2);
+        canvas.drawBitmap(this.renderingBitmap, 0.0f, 0.0f, paint);
     }
 
-    public void checkRepeat() {
-        if (this.ignoreNoParent) {
-            start();
-            return;
-        }
+    private static native int getFrameAtTime(long j, long j2, Bitmap bitmap, int[] iArr, int i);
+
+    public static native int getVideoFrame(long j, Bitmap bitmap, int[] iArr, int i, boolean z, float f, float f2, boolean z2);
+
+    private static native void getVideoInfo(int i, String str, int[] iArr);
+
+    public static void getVideoInfo(String str, int[] iArr) {
+        getVideoInfo(Build.VERSION.SDK_INT, str, iArr);
+    }
+
+    public boolean hasRoundRadius() {
         int i = 0;
-        int i2 = 0;
-        while (i < this.parents.size()) {
-            ImageReceiver imageReceiver = this.parents.get(i);
-            if (!imageReceiver.isAttachedToWindow()) {
-                this.parents.remove(i);
-                i--;
+        while (true) {
+            int[] iArr = this.roundRadius;
+            if (i >= iArr.length) {
+                return false;
             }
-            int i3 = imageReceiver.animatedFileDrawableRepeatMaxCount;
-            if (i3 > 0 && this.repeatCount >= i3) {
-                i2++;
+            if (iArr[i] != 0) {
+                return true;
             }
             i++;
         }
-        if (this.parents.size() == i2) {
-            stop();
-        } else {
-            start();
+    }
+
+    public void invalidateInternal() {
+        for (int i = 0; i < this.parents.size(); i++) {
+            ((ImageReceiver) this.parents.get(i)).invalidate();
         }
     }
+
+    public void lambda$checkCacheCancel$1() {
+        BitmapsCache bitmapsCache = this.bitmapsCache;
+        if (bitmapsCache != null) {
+            bitmapsCache.cancelCreate();
+        }
+    }
+
+    public void lambda$new$0() {
+        View view;
+        if (!this.secondParentViews.isEmpty()) {
+            int size = this.secondParentViews.size();
+            for (int i = 0; i < size; i++) {
+                ((View) this.secondParentViews.get(i)).invalidate();
+            }
+        }
+        if ((this.secondParentViews.isEmpty() || this.invalidateParentViewWithSecond) && (view = this.parentView) != null) {
+            view.invalidate();
+        }
+    }
+
+    private static native void prepareToSeek(long j);
+
+    public void scheduleNextGetFrame() {
+        if (this.loadFrameTask == null) {
+            if (((this.PRERENDER_FRAME && this.nextRenderingBitmap2 == null) || this.nextRenderingBitmap == null) && canLoadFrames() && !this.destroyWhenDone) {
+                if (!this.isRunning) {
+                    boolean z = this.decodeSingleFrame;
+                    if (!z) {
+                        return;
+                    }
+                    if (z && this.singleFrameDecoded) {
+                        return;
+                    }
+                }
+                if ((this.parents.size() != 0 || this.ignoreNoParent) && !this.generatingCache) {
+                    long j = 0;
+                    if (this.lastFrameDecodeTime != 0) {
+                        long j2 = this.invalidateAfter;
+                        j = Math.min(j2, Math.max(0L, j2 - (System.currentTimeMillis() - this.lastFrameDecodeTime)));
+                    }
+                    if (this.useSharedQueue) {
+                        if (this.limitFps) {
+                            Runnable runnable = this.loadFrameRunnable;
+                            this.loadFrameTask = runnable;
+                            DispatchQueuePoolBackground.execute(runnable);
+                            return;
+                        } else {
+                            ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = executor;
+                            Runnable runnable2 = this.loadFrameRunnable;
+                            this.loadFrameTask = runnable2;
+                            scheduledThreadPoolExecutor.schedule(runnable2, j, TimeUnit.MILLISECONDS);
+                            return;
+                        }
+                    }
+                    if (this.decodeQueue == null) {
+                        this.decodeQueue = new DispatchQueue("decodeQueue" + this);
+                    }
+                    DispatchQueue dispatchQueue = this.decodeQueue;
+                    Runnable runnable3 = this.loadFrameRunnable;
+                    this.loadFrameTask = runnable3;
+                    dispatchQueue.postRunnable(runnable3, j);
+                }
+            }
+        }
+    }
+
+    public static native void seekToMs(long j, long j2, boolean z);
+
+    private static native void stopDecoder(long j);
 
     public void updateScaleFactor() {
         int i;
@@ -282,83 +362,11 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         if (!this.isWebmSticker && (i = this.renderingHeight) > 0 && (i2 = this.renderingWidth) > 0 && (i3 = (iArr = this.metaData)[0]) > 0 && (i4 = iArr[1]) > 0) {
             float max = Math.max(i2 / i3, i / i4);
             this.scaleFactor = max;
-            if (max <= 0.0f || max > 0.7d) {
-                this.scaleFactor = 1.0f;
+            if (max > 0.0f && max <= 0.7d) {
                 return;
             }
-            return;
         }
         this.scaleFactor = 1.0f;
-    }
-
-    public void lambda$new$0() {
-        View view;
-        if (!this.secondParentViews.isEmpty()) {
-            int size = this.secondParentViews.size();
-            for (int i = 0; i < size; i++) {
-                this.secondParentViews.get(i).invalidate();
-            }
-        }
-        if ((this.secondParentViews.isEmpty() || this.invalidateParentViewWithSecond) && (view = this.parentView) != null) {
-            view.invalidate();
-        }
-    }
-
-    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, BitmapsCache.CacheOptions cacheOptions) {
-        this(file, z, j, i, tLRPC$Document, imageLocation, obj, j2, i2, z2, 0, 0, cacheOptions);
-    }
-
-    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions) {
-        this(file, z, j, i, tLRPC$Document, imageLocation, obj, j2, i2, z2, i3, i4, cacheOptions, tLRPC$Document != null ? 1 : 0);
-    }
-
-    public AnimatedFileDrawable(java.io.File r17, boolean r18, long r19, int r21, org.telegram.tgnet.TLRPC$Document r22, org.telegram.messenger.ImageLocation r23, java.lang.Object r24, long r25, int r27, boolean r28, int r29, int r30, org.telegram.messenger.utils.BitmapsCache.CacheOptions r31, int r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedFileDrawable.<init>(java.io.File, boolean, long, int, org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.ImageLocation, java.lang.Object, long, int, boolean, int, int, org.telegram.messenger.utils.BitmapsCache$CacheOptions, int):void");
-    }
-
-    public void setIsWebmSticker(boolean z) {
-        this.isWebmSticker = z;
-        if (z) {
-            this.PRERENDER_FRAME = false;
-            this.useSharedQueue = true;
-        }
-    }
-
-    public Bitmap getFrameAtTime(long j) {
-        return getFrameAtTime(j, false);
-    }
-
-    public Bitmap getFrameAtTime(long j, boolean z) {
-        int videoFrame;
-        if (!this.decoderCreated || this.nativePtr == 0) {
-            return null;
-        }
-        AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
-        if (animatedFileDrawableStream != null) {
-            animatedFileDrawableStream.cancel(false);
-            this.stream.reset();
-        }
-        if (!z) {
-            seekToMs(this.nativePtr, j, z);
-        }
-        int[] iArr = this.metaData;
-        Bitmap createBitmap = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
-        if (z) {
-            videoFrame = getFrameAtTime(this.nativePtr, j, createBitmap, this.metaData, createBitmap.getRowBytes());
-        } else {
-            videoFrame = getVideoFrame(this.nativePtr, createBitmap, this.metaData, createBitmap.getRowBytes(), true, 0.0f, 0.0f, true);
-        }
-        if (videoFrame != 0) {
-            return createBitmap;
-        }
-        return null;
-    }
-
-    public void setParentView(View view) {
-        if (this.parentView != null) {
-            return;
-        }
-        this.parentView = view;
     }
 
     public void addParent(ImageReceiver imageReceiver) {
@@ -371,12 +379,15 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         checkCacheCancel();
     }
 
-    public void removeParent(ImageReceiver imageReceiver) {
-        this.parents.remove(imageReceiver);
-        if (this.parents.size() == 0) {
-            this.repeatCount = 0;
+    public void addSecondParentView(View view) {
+        if (view == null || this.secondParentViews.contains(view)) {
+            return;
         }
-        checkCacheCancel();
+        this.secondParentViews.add(view);
+    }
+
+    public boolean canLoadFrames() {
+        return this.precache ? this.bitmapsCache != null : (this.nativePtr == 0 && this.decoderCreated) ? false : true;
     }
 
     public void checkCacheCancel() {
@@ -403,75 +414,350 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
     }
 
-    public void lambda$checkCacheCancel$1() {
-        BitmapsCache bitmapsCache = this.bitmapsCache;
-        if (bitmapsCache != null) {
-            bitmapsCache.cancelCreate();
-        }
-    }
-
-    public void setInvalidateParentViewWithSecond(boolean z) {
-        this.invalidateParentViewWithSecond = z;
-    }
-
-    public void addSecondParentView(View view) {
-        if (view == null || this.secondParentViews.contains(view)) {
+    public void checkRepeat() {
+        if (this.ignoreNoParent) {
+            start();
             return;
         }
-        this.secondParentViews.add(view);
-    }
-
-    public void removeSecondParentView(View view) {
-        this.secondParentViews.remove(view);
-        if (this.secondParentViews.isEmpty()) {
-            if (this.recycleWithSecond) {
-                recycle();
-                return;
+        int i = 0;
+        int i2 = 0;
+        while (i < this.parents.size()) {
+            ImageReceiver imageReceiver = (ImageReceiver) this.parents.get(i);
+            if (!imageReceiver.isAttachedToWindow()) {
+                this.parents.remove(i);
+                i--;
             }
-            int[] iArr = this.roundRadiusBackup;
-            if (iArr != null) {
-                setRoundRadius(iArr);
+            int i3 = imageReceiver.animatedFileDrawableRepeatMaxCount;
+            if (i3 > 0 && this.repeatCount >= i3) {
+                i2++;
             }
+            i++;
+        }
+        if (this.parents.size() == i2) {
+            stop();
+        } else {
+            start();
         }
     }
 
-    public void setAllowDecodeSingleFrame(boolean z) {
-        this.decodeSingleFrame = z;
-        if (z) {
-            scheduleNextGetFrame();
+    @Override
+    public void draw(Canvas canvas) {
+        drawInternal(canvas, false, System.currentTimeMillis(), 0);
+    }
+
+    public void drawInBackground(Canvas canvas, float f, float f2, float f3, float f4, int i, ColorFilter colorFilter, int i2) {
+        RectF[] rectFArr = this.dstRectBackground;
+        if (rectFArr[i2] == null) {
+            rectFArr[i2] = new RectF();
+            this.backgroundPaint[i2] = new Paint();
+            this.backgroundPaint[i2].setFilterBitmap(true);
+        }
+        this.backgroundPaint[i2].setAlpha(i);
+        this.backgroundPaint[i2].setColorFilter(colorFilter);
+        this.dstRectBackground[i2].set(f, f2, f3 + f, f4 + f2);
+        drawInternal(canvas, true, 0L, i2);
+    }
+
+    public void drawInternal(android.graphics.Canvas r17, boolean r18, long r19, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedFileDrawable.drawInternal(android.graphics.Canvas, boolean, long, int):void");
+    }
+
+    protected void finalize() {
+        try {
+            this.secondParentViews.clear();
+            recycle();
+        } finally {
+            super.finalize();
         }
     }
 
-    public void seekTo(long j, boolean z) {
-        seekTo(j, z, false);
+    public Bitmap getAnimatedBitmap() {
+        Bitmap bitmap = this.renderingBitmap;
+        if (bitmap != null) {
+            return bitmap;
+        }
+        Bitmap bitmap2 = this.nextRenderingBitmap;
+        if (bitmap2 != null) {
+            return bitmap2;
+        }
+        Bitmap bitmap3 = this.nextRenderingBitmap2;
+        if (bitmap3 != null) {
+            return bitmap3;
+        }
+        return null;
     }
 
-    public void seekTo(long j, boolean z, boolean z2) {
-        AnimatedFileDrawableStream animatedFileDrawableStream;
-        synchronized (this.sync) {
-            try {
-                this.pendingSeekTo = j;
-                this.pendingSeekToUI = j;
-                if (this.nativePtr != 0) {
-                    prepareToSeek(this.nativePtr);
-                }
-                if (this.decoderCreated && (animatedFileDrawableStream = this.stream) != null) {
-                    animatedFileDrawableStream.cancel(z);
-                    this.pendingRemoveLoading = z;
-                    this.pendingRemoveLoadingFramesReset = z ? 0 : 10;
-                }
-                if (z2 && this.decodeSingleFrame) {
-                    this.singleFrameDecoded = false;
-                    if (this.loadFrameTask == null) {
-                        scheduleNextGetFrame();
-                    } else {
-                        this.forceDecodeAfterNextFrame = true;
-                    }
-                }
-            } catch (Throwable th) {
-                throw th;
+    public Bitmap getBackgroundBitmap() {
+        return this.backgroundBitmap;
+    }
+
+    public float getCurrentProgress() {
+        if (this.metaData[4] == 0) {
+            return 0.0f;
+        }
+        if (this.pendingSeekToUI >= 0) {
+            return ((float) this.pendingSeekToUI) / this.metaData[4];
+        }
+        int[] iArr = this.metaData;
+        return iArr[3] / iArr[4];
+    }
+
+    public int getCurrentProgressMs() {
+        if (this.pendingSeekToUI >= 0) {
+            return (int) this.pendingSeekToUI;
+        }
+        int i = this.nextRenderingBitmapTime;
+        return i != 0 ? i : this.renderingBitmapTime;
+    }
+
+    public int getDurationMs() {
+        return this.metaData[4];
+    }
+
+    public Bitmap getFirstFrame(Bitmap bitmap) {
+        Bitmap createBitmap = bitmap == null ? Bitmap.createBitmap(this.renderingWidth, this.renderingHeight, Bitmap.Config.ARGB_8888) : bitmap;
+        Canvas canvas = new Canvas(createBitmap);
+        long createDecoder = createDecoder(this.path.getAbsolutePath(), this.metaData, this.currentAccount, this.streamFileSize, this.stream, false);
+        if (createDecoder == 0) {
+            return createBitmap;
+        }
+        if (this.generatingCacheBitmap == null) {
+            this.generatingCacheBitmap = Bitmap.createBitmap(Math.max(1, this.metaData[0]), Math.max(1, this.metaData[1]), Bitmap.Config.ARGB_8888);
+        }
+        Bitmap bitmap2 = this.generatingCacheBitmap;
+        getVideoFrame(createDecoder, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, true);
+        destroyDecoder(createDecoder);
+        createBitmap.eraseColor(0);
+        canvas.save();
+        float width = this.renderingWidth / this.generatingCacheBitmap.getWidth();
+        canvas.scale(width, width);
+        canvas.drawBitmap(this.generatingCacheBitmap, 0.0f, 0.0f, (Paint) null);
+        canvas.restore();
+        return createBitmap;
+    }
+
+    public int getFps() {
+        return this.metaData[5];
+    }
+
+    public Bitmap getFrameAtTime(long j) {
+        return getFrameAtTime(j, false);
+    }
+
+    public Bitmap getFrameAtTime(long j, boolean z) {
+        if (!this.decoderCreated || this.nativePtr == 0) {
+            return null;
+        }
+        AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
+        if (animatedFileDrawableStream != null) {
+            animatedFileDrawableStream.cancel(false);
+            this.stream.reset();
+        }
+        if (!z) {
+            seekToMs(this.nativePtr, j, z);
+        }
+        int[] iArr = this.metaData;
+        Bitmap createBitmap = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
+        if ((z ? getFrameAtTime(this.nativePtr, j, createBitmap, this.metaData, createBitmap.getRowBytes()) : getVideoFrame(this.nativePtr, createBitmap, this.metaData, createBitmap.getRowBytes(), true, 0.0f, 0.0f, true)) != 0) {
+            return createBitmap;
+        }
+        return null;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        int i = 0;
+        if (this.decoderCreated) {
+            int[] iArr = this.metaData;
+            int i2 = iArr[2];
+            i = (i2 == 90 || i2 == 270) ? iArr[0] : iArr[1];
+        }
+        return i == 0 ? AndroidUtilities.dp(100.0f) : (int) (i * this.scaleFactor);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        int i = 0;
+        if (this.decoderCreated) {
+            int[] iArr = this.metaData;
+            int i2 = iArr[2];
+            i = (i2 == 90 || i2 == 270) ? iArr[1] : iArr[0];
+        }
+        return i == 0 ? AndroidUtilities.dp(100.0f) : (int) (i * this.scaleFactor);
+    }
+
+    public long getLastFrameTimestamp() {
+        return this.lastTimeStamp;
+    }
+
+    @Override
+    public int getMinimumHeight() {
+        int i = 0;
+        if (this.decoderCreated) {
+            int[] iArr = this.metaData;
+            int i2 = iArr[2];
+            i = (i2 == 90 || i2 == 270) ? iArr[0] : iArr[1];
+        }
+        return i == 0 ? AndroidUtilities.dp(100.0f) : i;
+    }
+
+    @Override
+    public int getMinimumWidth() {
+        int i = 0;
+        if (this.decoderCreated) {
+            int[] iArr = this.metaData;
+            int i2 = iArr[2];
+            i = (i2 == 90 || i2 == 270) ? iArr[1] : iArr[0];
+        }
+        return i == 0 ? AndroidUtilities.dp(100.0f) : i;
+    }
+
+    @Override
+    public int getNextFrame(Bitmap bitmap) {
+        int i;
+        if (this.cacheGenerateNativePtr == 0) {
+            return -1;
+        }
+        Canvas canvas = new Canvas(bitmap);
+        if (this.generatingCacheBitmap == null) {
+            int[] iArr = this.metaData;
+            this.generatingCacheBitmap = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
+        }
+        long j = this.cacheGenerateNativePtr;
+        Bitmap bitmap2 = this.generatingCacheBitmap;
+        getVideoFrame(j, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, true);
+        long j2 = this.cacheGenerateTimestamp;
+        if (j2 != 0 && ((i = this.metaData[3]) == 0 || j2 > i)) {
+            return 0;
+        }
+        int i2 = this.lastMetadata;
+        int i3 = this.metaData[3];
+        if (i2 == i3) {
+            int i4 = this.tryCount + 1;
+            this.tryCount = i4;
+            if (i4 > 5) {
+                return 0;
             }
         }
+        this.lastMetadata = i3;
+        bitmap.eraseColor(0);
+        canvas.save();
+        float width = this.renderingWidth / this.generatingCacheBitmap.getWidth();
+        canvas.scale(width, width);
+        canvas.drawBitmap(this.generatingCacheBitmap, 0.0f, 0.0f, (Paint) null);
+        canvas.restore();
+        this.cacheGenerateTimestamp = this.metaData[3];
+        return 1;
+    }
+
+    public Bitmap getNextFrame(boolean z) {
+        Bitmap createBitmap;
+        if (this.nativePtr == 0) {
+            return this.backgroundBitmap;
+        }
+        if (this.backgroundBitmap == null) {
+            if (this.unusedBitmaps.isEmpty()) {
+                float f = this.metaData[0];
+                float f2 = this.scaleFactor;
+                createBitmap = Bitmap.createBitmap((int) (f * f2), (int) (r0[1] * f2), Bitmap.Config.ARGB_8888);
+            } else {
+                createBitmap = (Bitmap) this.unusedBitmaps.remove(0);
+            }
+            this.backgroundBitmap = createBitmap;
+        }
+        long j = this.nativePtr;
+        Bitmap bitmap = this.backgroundBitmap;
+        getVideoFrame(j, bitmap, this.metaData, bitmap.getRowBytes(), false, this.startTime, this.endTime, z);
+        return this.backgroundBitmap;
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    public int getOrientation() {
+        return this.metaData[2];
+    }
+
+    public ArrayList getParents() {
+        return this.parents;
+    }
+
+    public int getProgressMs() {
+        return this.metaData[3];
+    }
+
+    public int getRenderingHeight() {
+        return this.renderingHeight;
+    }
+
+    public int getRenderingWidth() {
+        return this.renderingWidth;
+    }
+
+    public long getStartTime() {
+        return this.startTime * 1000.0f;
+    }
+
+    public boolean hasBitmap() {
+        return canLoadFrames() && !(this.renderingBitmap == null && this.nextRenderingBitmap == null);
+    }
+
+    public boolean isLoadingStream() {
+        AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
+        return animatedFileDrawableStream != null && animatedFileDrawableStream.isWaitingForLoad();
+    }
+
+    public boolean isRecycled() {
+        return this.isRecycled || this.decoderTryCount >= 15;
+    }
+
+    @Override
+    public boolean isRunning() {
+        return this.isRunning;
+    }
+
+    public AnimatedFileDrawable makeCopy() {
+        AnimatedFileDrawable animatedFileDrawable;
+        AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
+        if (animatedFileDrawableStream != null) {
+            File file = this.path;
+            long j = this.streamFileSize;
+            int i = this.streamLoadingPriority;
+            TLRPC$Document document = animatedFileDrawableStream.getDocument();
+            ImageLocation location = this.stream.getLocation();
+            Object parentObject = this.stream.getParentObject();
+            long j2 = this.pendingSeekToUI;
+            int i2 = this.currentAccount;
+            AnimatedFileDrawableStream animatedFileDrawableStream2 = this.stream;
+            animatedFileDrawable = new AnimatedFileDrawable(file, false, j, i, document, location, parentObject, j2, i2, animatedFileDrawableStream2 != null && animatedFileDrawableStream2.isPreview(), null);
+        } else {
+            File file2 = this.path;
+            long j3 = this.streamFileSize;
+            int i3 = this.streamLoadingPriority;
+            TLRPC$Document tLRPC$Document = this.document;
+            long j4 = this.pendingSeekToUI;
+            int i4 = this.currentAccount;
+            AnimatedFileDrawableStream animatedFileDrawableStream3 = this.stream;
+            animatedFileDrawable = new AnimatedFileDrawable(file2, false, j3, i3, tLRPC$Document, null, null, j4, i4, animatedFileDrawableStream3 != null && animatedFileDrawableStream3.isPreview(), null);
+        }
+        int[] iArr = animatedFileDrawable.metaData;
+        int[] iArr2 = this.metaData;
+        iArr[0] = iArr2[0];
+        iArr[1] = iArr2[1];
+        return animatedFileDrawable;
+    }
+
+    @Override
+    protected void onBoundsChange(android.graphics.Rect rect) {
+        super.onBoundsChange(rect);
+        this.applyTransformation = true;
+    }
+
+    @Override
+    public void prepareForGenerateCache() {
+        this.cacheGenerateNativePtr = createDecoder(this.path.getAbsolutePath(), this.metaData, this.currentAccount, this.streamFileSize, this.stream, false);
     }
 
     public void recycle() {
@@ -520,251 +806,81 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         invalidateInternal();
     }
 
+    @Override
+    public void releaseForGenerateCache() {
+        long j = this.cacheGenerateNativePtr;
+        if (j != 0) {
+            destroyDecoder(j);
+        }
+    }
+
+    public void removeParent(ImageReceiver imageReceiver) {
+        this.parents.remove(imageReceiver);
+        if (this.parents.size() == 0) {
+            this.repeatCount = 0;
+        }
+        checkCacheCancel();
+    }
+
+    public void removeSecondParentView(View view) {
+        this.secondParentViews.remove(view);
+        if (this.secondParentViews.isEmpty()) {
+            if (this.recycleWithSecond) {
+                recycle();
+                return;
+            }
+            int[] iArr = this.roundRadiusBackup;
+            if (iArr != null) {
+                setRoundRadius(iArr);
+            }
+        }
+    }
+
     public void resetStream(boolean z) {
         AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
         if (animatedFileDrawableStream != null) {
             animatedFileDrawableStream.cancel(true);
         }
         if (this.nativePtr != 0) {
+            long j = this.nativePtr;
             if (z) {
-                stopDecoder(this.nativePtr);
+                stopDecoder(j);
             } else {
-                prepareToSeek(this.nativePtr);
+                prepareToSeek(j);
             }
         }
     }
 
-    public void setUseSharedQueue(boolean z) {
-        if (this.isWebmSticker) {
-            return;
-        }
-        this.useSharedQueue = z;
+    public void seekTo(long j, boolean z) {
+        seekTo(j, z, false);
     }
 
-    protected void finalize() throws Throwable {
-        try {
-            this.secondParentViews.clear();
-            recycle();
-        } finally {
-            super.finalize();
-        }
-    }
-
-    @Override
-    public void start() {
-        if (this.isRunning) {
-            return;
-        }
-        if (this.parents.size() != 0 || this.ignoreNoParent) {
-            this.isRunning = true;
-            scheduleNextGetFrame();
-            AndroidUtilities.runOnUIThread(this.mStartTask);
-        }
-    }
-
-    public float getCurrentProgress() {
-        if (this.metaData[4] == 0) {
-            return 0.0f;
-        }
-        if (this.pendingSeekToUI >= 0) {
-            return ((float) this.pendingSeekToUI) / this.metaData[4];
-        }
-        int[] iArr = this.metaData;
-        return iArr[3] / iArr[4];
-    }
-
-    public int getCurrentProgressMs() {
-        if (this.pendingSeekToUI >= 0) {
-            return (int) this.pendingSeekToUI;
-        }
-        int i = this.nextRenderingBitmapTime;
-        return i != 0 ? i : this.renderingBitmapTime;
-    }
-
-    public int getProgressMs() {
-        return this.metaData[3];
-    }
-
-    public int getDurationMs() {
-        return this.metaData[4];
-    }
-
-    public void scheduleNextGetFrame() {
-        if (this.loadFrameTask == null) {
-            if (((this.PRERENDER_FRAME && this.nextRenderingBitmap2 == null) || this.nextRenderingBitmap == null) && canLoadFrames() && !this.destroyWhenDone) {
-                if (!this.isRunning) {
-                    boolean z = this.decodeSingleFrame;
-                    if (!z) {
-                        return;
-                    }
-                    if (z && this.singleFrameDecoded) {
-                        return;
+    public void seekTo(long j, boolean z, boolean z2) {
+        AnimatedFileDrawableStream animatedFileDrawableStream;
+        synchronized (this.sync) {
+            try {
+                this.pendingSeekTo = j;
+                this.pendingSeekToUI = j;
+                if (this.nativePtr != 0) {
+                    prepareToSeek(this.nativePtr);
+                }
+                if (this.decoderCreated && (animatedFileDrawableStream = this.stream) != null) {
+                    animatedFileDrawableStream.cancel(z);
+                    this.pendingRemoveLoading = z;
+                    this.pendingRemoveLoadingFramesReset = z ? 0 : 10;
+                }
+                if (z2 && this.decodeSingleFrame) {
+                    this.singleFrameDecoded = false;
+                    if (this.loadFrameTask == null) {
+                        scheduleNextGetFrame();
+                    } else {
+                        this.forceDecodeAfterNextFrame = true;
                     }
                 }
-                if ((this.parents.size() != 0 || this.ignoreNoParent) && !this.generatingCache) {
-                    long j = 0;
-                    if (this.lastFrameDecodeTime != 0) {
-                        long j2 = this.invalidateAfter;
-                        j = Math.min(j2, Math.max(0L, j2 - (System.currentTimeMillis() - this.lastFrameDecodeTime)));
-                    }
-                    if (this.useSharedQueue) {
-                        if (this.limitFps) {
-                            Runnable runnable = this.loadFrameRunnable;
-                            this.loadFrameTask = runnable;
-                            DispatchQueuePoolBackground.execute(runnable);
-                            return;
-                        } else {
-                            ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = executor;
-                            Runnable runnable2 = this.loadFrameRunnable;
-                            this.loadFrameTask = runnable2;
-                            scheduledThreadPoolExecutor.schedule(runnable2, j, TimeUnit.MILLISECONDS);
-                            return;
-                        }
-                    }
-                    if (this.decodeQueue == null) {
-                        this.decodeQueue = new DispatchQueue("decodeQueue" + this);
-                    }
-                    DispatchQueue dispatchQueue = this.decodeQueue;
-                    Runnable runnable3 = this.loadFrameRunnable;
-                    this.loadFrameTask = runnable3;
-                    dispatchQueue.postRunnable(runnable3, j);
-                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
-    }
-
-    public boolean isLoadingStream() {
-        AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
-        return animatedFileDrawableStream != null && animatedFileDrawableStream.isWaitingForLoad();
-    }
-
-    @Override
-    public void stop() {
-        this.isRunning = false;
-    }
-
-    @Override
-    public boolean isRunning() {
-        return this.isRunning;
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        int i = 0;
-        if (this.decoderCreated) {
-            int[] iArr = this.metaData;
-            int i2 = iArr[2];
-            i = (i2 == 90 || i2 == 270) ? iArr[0] : iArr[1];
-        }
-        if (i == 0) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        return (int) (i * this.scaleFactor);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        int i = 0;
-        if (this.decoderCreated) {
-            int[] iArr = this.metaData;
-            int i2 = iArr[2];
-            i = (i2 == 90 || i2 == 270) ? iArr[1] : iArr[0];
-        }
-        if (i == 0) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        return (int) (i * this.scaleFactor);
-    }
-
-    @Override
-    protected void onBoundsChange(android.graphics.Rect rect) {
-        super.onBoundsChange(rect);
-        this.applyTransformation = true;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        drawInternal(canvas, false, System.currentTimeMillis(), 0);
-    }
-
-    public void drawInBackground(Canvas canvas, float f, float f2, float f3, float f4, int i, ColorFilter colorFilter, int i2) {
-        RectF[] rectFArr = this.dstRectBackground;
-        if (rectFArr[i2] == null) {
-            rectFArr[i2] = new RectF();
-            this.backgroundPaint[i2] = new Paint();
-            this.backgroundPaint[i2].setFilterBitmap(true);
-        }
-        this.backgroundPaint[i2].setAlpha(i);
-        this.backgroundPaint[i2].setColorFilter(colorFilter);
-        this.dstRectBackground[i2].set(f, f2, f3 + f, f4 + f2);
-        drawInternal(canvas, true, 0L, i2);
-    }
-
-    public void drawInternal(android.graphics.Canvas r17, boolean r18, long r19, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedFileDrawable.drawInternal(android.graphics.Canvas, boolean, long, int):void");
-    }
-
-    private void drawBitmap(RectF rectF, Paint paint, Canvas canvas, float f, float f2) {
-        canvas.translate(rectF.left, rectF.top);
-        int i = this.metaData[2];
-        if (i == 90) {
-            canvas.rotate(90.0f);
-            canvas.translate(0.0f, -rectF.width());
-        } else if (i == 180) {
-            canvas.rotate(180.0f);
-            canvas.translate(-rectF.width(), -rectF.height());
-        } else if (i == 270) {
-            canvas.rotate(270.0f);
-            canvas.translate(-rectF.height(), 0.0f);
-        }
-        canvas.scale(f, f2);
-        canvas.drawBitmap(this.renderingBitmap, 0.0f, 0.0f, paint);
-    }
-
-    public long getLastFrameTimestamp() {
-        return this.lastTimeStamp;
-    }
-
-    @Override
-    public int getMinimumHeight() {
-        int i = 0;
-        if (this.decoderCreated) {
-            int[] iArr = this.metaData;
-            int i2 = iArr[2];
-            i = (i2 == 90 || i2 == 270) ? iArr[0] : iArr[1];
-        }
-        return i == 0 ? AndroidUtilities.dp(100.0f) : i;
-    }
-
-    @Override
-    public int getMinimumWidth() {
-        int i = 0;
-        if (this.decoderCreated) {
-            int[] iArr = this.metaData;
-            int i2 = iArr[2];
-            i = (i2 == 90 || i2 == 270) ? iArr[1] : iArr[0];
-        }
-        return i == 0 ? AndroidUtilities.dp(100.0f) : i;
-    }
-
-    public Bitmap getBackgroundBitmap() {
-        return this.backgroundBitmap;
-    }
-
-    public Bitmap getAnimatedBitmap() {
-        Bitmap bitmap = this.renderingBitmap;
-        if (bitmap != null) {
-            return bitmap;
-        }
-        Bitmap bitmap2 = this.nextRenderingBitmap;
-        if (bitmap2 != null) {
-            return bitmap2;
-        }
-        Bitmap bitmap3 = this.nextRenderingBitmap2;
-        if (bitmap3 != null) {
-            return bitmap3;
-        }
-        return null;
     }
 
     public void setActualDrawRect(float f, float f2, float f3, float f4) {
@@ -776,6 +892,39 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
         rectF.set(f, f2, f6, f5);
         this.invalidatePath = true;
+    }
+
+    public void setAllowDecodeSingleFrame(boolean z) {
+        this.decodeSingleFrame = z;
+        if (z) {
+            scheduleNextGetFrame();
+        }
+    }
+
+    public void setInvalidateParentViewWithSecond(boolean z) {
+        this.invalidateParentViewWithSecond = z;
+    }
+
+    public void setIsWebmSticker(boolean z) {
+        this.isWebmSticker = z;
+        if (z) {
+            this.PRERENDER_FRAME = false;
+            this.useSharedQueue = true;
+        }
+    }
+
+    public void setLimitFps(boolean z) {
+        this.limitFps = z;
+        if (z) {
+            this.PRERENDER_FRAME = false;
+        }
+    }
+
+    public void setParentView(View view) {
+        if (this.parentView != null) {
+            return;
+        }
+        this.parentView = view;
     }
 
     public void setRoundRadius(int[] iArr) {
@@ -795,64 +944,6 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
     }
 
-    public boolean hasRoundRadius() {
-        int i = 0;
-        while (true) {
-            int[] iArr = this.roundRadius;
-            if (i >= iArr.length) {
-                return false;
-            }
-            if (iArr[i] != 0) {
-                return true;
-            }
-            i++;
-        }
-    }
-
-    public boolean hasBitmap() {
-        return canLoadFrames() && !(this.renderingBitmap == null && this.nextRenderingBitmap == null);
-    }
-
-    public int getOrientation() {
-        return this.metaData[2];
-    }
-
-    public AnimatedFileDrawable makeCopy() {
-        AnimatedFileDrawable animatedFileDrawable;
-        AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
-        if (animatedFileDrawableStream != null) {
-            File file = this.path;
-            long j = this.streamFileSize;
-            int i = this.streamLoadingPriority;
-            TLRPC$Document document = animatedFileDrawableStream.getDocument();
-            ImageLocation location = this.stream.getLocation();
-            Object parentObject = this.stream.getParentObject();
-            long j2 = this.pendingSeekToUI;
-            int i2 = this.currentAccount;
-            AnimatedFileDrawableStream animatedFileDrawableStream2 = this.stream;
-            animatedFileDrawable = new AnimatedFileDrawable(file, false, j, i, document, location, parentObject, j2, i2, animatedFileDrawableStream2 != null && animatedFileDrawableStream2.isPreview(), null);
-        } else {
-            File file2 = this.path;
-            long j3 = this.streamFileSize;
-            int i3 = this.streamLoadingPriority;
-            TLRPC$Document tLRPC$Document = this.document;
-            long j4 = this.pendingSeekToUI;
-            int i4 = this.currentAccount;
-            AnimatedFileDrawableStream animatedFileDrawableStream3 = this.stream;
-            animatedFileDrawable = new AnimatedFileDrawable(file2, false, j3, i3, tLRPC$Document, null, null, j4, i4, animatedFileDrawableStream3 != null && animatedFileDrawableStream3.isPreview(), null);
-        }
-        AnimatedFileDrawable animatedFileDrawable2 = animatedFileDrawable;
-        int[] iArr = animatedFileDrawable2.metaData;
-        int[] iArr2 = this.metaData;
-        iArr[0] = iArr2[0];
-        iArr[1] = iArr2[1];
-        return animatedFileDrawable2;
-    }
-
-    public static void getVideoInfo(String str, int[] iArr) {
-        getVideoInfo(Build.VERSION.SDK_INT, str, iArr);
-    }
-
     public void setStartEndTime(long j, long j2) {
         this.startTime = ((float) j) / 1000.0f;
         this.endTime = ((float) j2) / 1000.0f;
@@ -861,129 +952,38 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
     }
 
-    public long getStartTime() {
-        return this.startTime * 1000.0f;
-    }
-
-    public boolean isRecycled() {
-        return this.isRecycled || this.decoderTryCount >= 15;
-    }
-
-    public Bitmap getNextFrame(boolean z) {
-        if (this.nativePtr == 0) {
-            return this.backgroundBitmap;
+    public void setUseSharedQueue(boolean z) {
+        if (this.isWebmSticker) {
+            return;
         }
-        if (this.backgroundBitmap == null) {
-            if (!this.unusedBitmaps.isEmpty()) {
-                this.backgroundBitmap = this.unusedBitmaps.remove(0);
-            } else {
-                float f = this.metaData[0];
-                float f2 = this.scaleFactor;
-                this.backgroundBitmap = Bitmap.createBitmap((int) (f * f2), (int) (r0[1] * f2), Bitmap.Config.ARGB_8888);
-            }
-        }
-        long j = this.nativePtr;
-        Bitmap bitmap = this.backgroundBitmap;
-        getVideoFrame(j, bitmap, this.metaData, bitmap.getRowBytes(), false, this.startTime, this.endTime, z);
-        return this.backgroundBitmap;
-    }
-
-    public void setLimitFps(boolean z) {
-        this.limitFps = z;
-        if (z) {
-            this.PRERENDER_FRAME = false;
-        }
-    }
-
-    public ArrayList<ImageReceiver> getParents() {
-        return this.parents;
+        this.useSharedQueue = z;
     }
 
     @Override
-    public void prepareForGenerateCache() {
-        this.cacheGenerateNativePtr = createDecoder(this.path.getAbsolutePath(), this.metaData, this.currentAccount, this.streamFileSize, this.stream, false);
-    }
-
-    @Override
-    public void releaseForGenerateCache() {
-        long j = this.cacheGenerateNativePtr;
-        if (j != 0) {
-            destroyDecoder(j);
+    public void start() {
+        if (this.isRunning) {
+            return;
+        }
+        if (this.parents.size() != 0 || this.ignoreNoParent) {
+            this.isRunning = true;
+            scheduleNextGetFrame();
+            AndroidUtilities.runOnUIThread(this.mStartTask);
         }
     }
 
     @Override
-    public int getNextFrame(Bitmap bitmap) {
-        int i;
-        if (this.cacheGenerateNativePtr == 0) {
-            return -1;
-        }
-        Canvas canvas = new Canvas(bitmap);
-        if (this.generatingCacheBitmap == null) {
-            int[] iArr = this.metaData;
-            this.generatingCacheBitmap = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
-        }
-        long j = this.cacheGenerateNativePtr;
-        Bitmap bitmap2 = this.generatingCacheBitmap;
-        getVideoFrame(j, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, true);
-        long j2 = this.cacheGenerateTimestamp;
-        if (j2 != 0 && ((i = this.metaData[3]) == 0 || j2 > i)) {
-            return 0;
-        }
-        int i2 = this.lastMetadata;
-        int i3 = this.metaData[3];
-        if (i2 == i3) {
-            int i4 = this.tryCount + 1;
-            this.tryCount = i4;
-            if (i4 > 5) {
-                return 0;
-            }
-        }
-        this.lastMetadata = i3;
-        bitmap.eraseColor(0);
-        canvas.save();
-        float width = this.renderingWidth / this.generatingCacheBitmap.getWidth();
-        canvas.scale(width, width);
-        canvas.drawBitmap(this.generatingCacheBitmap, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
-        this.cacheGenerateTimestamp = this.metaData[3];
-        return 1;
-    }
-
-    public Bitmap getFirstFrame(Bitmap bitmap) {
-        Bitmap createBitmap = bitmap == null ? Bitmap.createBitmap(this.renderingWidth, this.renderingHeight, Bitmap.Config.ARGB_8888) : bitmap;
-        Canvas canvas = new Canvas(createBitmap);
-        long createDecoder = createDecoder(this.path.getAbsolutePath(), this.metaData, this.currentAccount, this.streamFileSize, this.stream, false);
-        if (createDecoder == 0) {
-            return createBitmap;
-        }
-        if (this.generatingCacheBitmap == null) {
-            this.generatingCacheBitmap = Bitmap.createBitmap(Math.max(1, this.metaData[0]), Math.max(1, this.metaData[1]), Bitmap.Config.ARGB_8888);
-        }
-        Bitmap bitmap2 = this.generatingCacheBitmap;
-        getVideoFrame(createDecoder, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, true);
-        destroyDecoder(createDecoder);
-        createBitmap.eraseColor(0);
-        canvas.save();
-        float width = this.renderingWidth / this.generatingCacheBitmap.getWidth();
-        canvas.scale(width, width);
-        canvas.drawBitmap(this.generatingCacheBitmap, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
-        return createBitmap;
-    }
-
-    public boolean canLoadFrames() {
-        return this.precache ? this.bitmapsCache != null : (this.nativePtr == 0 && this.decoderCreated) ? false : true;
+    public void stop() {
+        this.isRunning = false;
     }
 
     public void updateCurrentFrame(long j, boolean z) {
         if (this.isRunning) {
             Bitmap bitmap = this.renderingBitmap;
-            if (bitmap == null && this.nextRenderingBitmap == null) {
-                scheduleNextGetFrame();
-                return;
-            }
-            if (this.nextRenderingBitmap != null && (bitmap == null || (Math.abs(j - this.lastFrameTime) >= this.invalidateAfter && !this.skipFrameUpdate))) {
+            if (bitmap != null || this.nextRenderingBitmap != null) {
+                if (this.nextRenderingBitmap == null || (bitmap != null && (Math.abs(j - this.lastFrameTime) < this.invalidateAfter || this.skipFrameUpdate))) {
+                    invalidateInternal();
+                    return;
+                }
                 this.unusedBitmaps.add(this.renderingBitmap);
                 this.renderingBitmap = this.nextRenderingBitmap;
                 this.renderingBitmapTime = this.nextRenderingBitmapTime;
@@ -995,16 +995,8 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
                     bitmapShaderArr2[i] = bitmapShaderArr3[i];
                     bitmapShaderArr3[i] = null;
                 }
-                this.nextRenderingBitmap = this.nextRenderingBitmap2;
-                this.nextRenderingBitmapTime = this.nextRenderingBitmapTime2;
-                this.nextRenderingBitmap2 = null;
-                this.nextRenderingBitmapTime2 = 0;
-                this.lastFrameTime = j;
-                scheduleNextGetFrame();
-                return;
             }
-            invalidateInternal();
-            return;
+            scheduleNextGetFrame();
         }
         if (this.isRunning || !this.decodeSingleFrame || Math.abs(j - this.lastFrameTime) < this.invalidateAfter || this.nextRenderingBitmap == null) {
             return;
@@ -1026,17 +1018,5 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         this.nextRenderingBitmapTime2 = 0;
         this.lastFrameTime = j;
         scheduleNextGetFrame();
-    }
-
-    public int getFps() {
-        return this.metaData[5];
-    }
-
-    public int getRenderingWidth() {
-        return this.renderingWidth;
-    }
-
-    public int getRenderingHeight() {
-        return this.renderingHeight;
     }
 }

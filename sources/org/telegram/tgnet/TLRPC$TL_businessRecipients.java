@@ -9,7 +9,7 @@ public class TLRPC$TL_businessRecipients extends TLObject {
     public int flags;
     public boolean new_chats;
     public boolean non_contacts;
-    public ArrayList<Long> users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_businessRecipients TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (i != 554733559) {
@@ -66,7 +66,7 @@ public class TLRPC$TL_businessRecipients extends TLObject {
             int size = this.users.size();
             abstractSerializedData.writeInt32(size);
             for (int i6 = 0; i6 < size; i6++) {
-                abstractSerializedData.writeInt64(this.users.get(i6).longValue());
+                abstractSerializedData.writeInt64(((Long) this.users.get(i6)).longValue());
             }
         }
     }

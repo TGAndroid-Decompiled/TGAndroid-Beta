@@ -6,8 +6,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$User;
 
 public class TL_stories$TL_stories_storyViews extends TLObject {
-    public ArrayList<TL_stories$StoryViews> views = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList views = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TL_stories$TL_stories_storyViews TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-560009955 != i) {
@@ -62,13 +62,13 @@ public class TL_stories$TL_stories_storyViews extends TLObject {
         int size = this.views.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.views.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stories$StoryViews) this.views.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.users.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.users.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i2)).serializeToStream(abstractSerializedData);
         }
     }
 }

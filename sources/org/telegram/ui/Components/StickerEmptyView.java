@@ -13,6 +13,7 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
@@ -54,18 +55,20 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         this.showProgressRunnable = new Runnable() {
             @Override
             public void run() {
+                ViewPropertyAnimator scaleX;
                 StickerEmptyView stickerEmptyView = StickerEmptyView.this;
                 View view2 = stickerEmptyView.progressView;
-                if (view2 == null) {
-                    stickerEmptyView.progressBar.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
-                    return;
+                if (view2 != null) {
+                    if (view2.getVisibility() != 0) {
+                        StickerEmptyView.this.progressView.setVisibility(0);
+                        StickerEmptyView.this.progressView.setAlpha(0.0f);
+                    }
+                    StickerEmptyView.this.progressView.animate().setListener(null).cancel();
+                    scaleX = StickerEmptyView.this.progressView.animate().alpha(1.0f);
+                } else {
+                    scaleX = stickerEmptyView.progressBar.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f);
                 }
-                if (view2.getVisibility() != 0) {
-                    StickerEmptyView.this.progressView.setVisibility(0);
-                    StickerEmptyView.this.progressView.setAlpha(0.0f);
-                }
-                StickerEmptyView.this.progressView.animate().setListener(null).cancel();
-                StickerEmptyView.this.progressView.animate().alpha(1.0f).setDuration(150L).start();
+                scaleX.setDuration(150L).start();
             }
         };
         this.colorKey1 = Theme.key_emptyListPlaceholder;
@@ -130,8 +133,71 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         }
     }
 
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    private int getWhitespaceCount(CharSequence charSequence) {
+        int i = 0;
+        for (int i2 = 0; i2 < charSequence.length(); i2++) {
+            if (Character.isWhitespace(charSequence.charAt(i2))) {
+                i++;
+            }
+        }
+        return i;
+    }
+
     public void lambda$new$0(View view) {
         this.stickerView.getImageReceiver().startAnimation();
+    }
+
+    public void setSticker() {
+        TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet;
+        TLRPC$Document tLRPC$Document;
+        int i;
+        ImageReceiver imageReceiver;
+        TLRPC$Document tLRPC$Document2 = null;
+        String str = null;
+        tLRPC$Document2 = null;
+        tLRPC$Document2 = null;
+        if (this.stickerType == 16) {
+            tLRPC$Document = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker("👍");
+            tLRPC$TL_messages_stickerSet = null;
+        } else {
+            TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName("tg_placeholders_android");
+            if (stickerSetByName == null) {
+                stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
+            }
+            if (stickerSetByName != null && (i = this.stickerType) >= 0 && i < stickerSetByName.documents.size()) {
+                tLRPC$Document2 = (TLRPC$Document) stickerSetByName.documents.get(this.stickerType);
+            }
+            tLRPC$TL_messages_stickerSet = stickerSetByName;
+            tLRPC$Document = tLRPC$Document2;
+            str = "130_130";
+        }
+        if (!LiteMode.isEnabled(3)) {
+            str = str + "_firstframe";
+        }
+        String str2 = str;
+        int i2 = 1;
+        if (tLRPC$Document == null) {
+            MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, tLRPC$TL_messages_stickerSet == null);
+            this.stickerView.getImageReceiver().clearImage();
+            return;
+        }
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, this.colorKey1, 0.2f);
+        if (svgThumb != null) {
+            svgThumb.overrideWidthAndHeight(512, 512);
+        }
+        this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$Document), str2, "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
+        int i3 = this.stickerType;
+        if (i3 == 9 || i3 == 0) {
+            imageReceiver = this.stickerView.getImageReceiver();
+        } else {
+            imageReceiver = this.stickerView.getImageReceiver();
+            i2 = 2;
+        }
+        imageReceiver.setAutoRepeat(i2);
     }
 
     public void createButtonLayout(CharSequence charSequence, final Runnable runnable) {
@@ -165,6 +231,28 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
     }
 
     @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
+            setSticker();
+        }
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (getVisibility() == 0) {
+            setSticker();
+        }
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5;
         super.onLayout(z, i, i2, i3, i4);
@@ -186,132 +274,16 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         this.lastH = getMeasuredHeight();
     }
 
+    public void setAnimateLayoutChange(boolean z) {
+        this.animateLayoutChange = z;
+    }
+
     public void setColors(int i, int i2, int i3, int i4) {
         this.title.setTag(Integer.valueOf(i));
         this.title.setTextColor(getThemedColor(i));
         this.subtitle.setTag(Integer.valueOf(i2));
         this.subtitle.setTextColor(getThemedColor(i2));
         this.colorKey1 = i3;
-    }
-
-    @Override
-    public void setVisibility(int i) {
-        if (getVisibility() != i && i == 0) {
-            if (this.progressShowing) {
-                this.linearLayout.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
-                this.progressView.animate().setListener(null).cancel();
-                this.progressView.setVisibility(0);
-                this.progressView.setAlpha(1.0f);
-            } else {
-                this.linearLayout.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
-                View view = this.progressView;
-                if (view != null) {
-                    view.animate().setListener(null).cancel();
-                    this.progressView.animate().setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            StickerEmptyView.this.progressView.setVisibility(8);
-                        }
-                    }).alpha(0.0f).setDuration(150L).start();
-                } else {
-                    this.progressBar.animate().alpha(0.0f).scaleY(0.5f).scaleX(0.5f).setDuration(150L).start();
-                }
-                this.stickerView.getImageReceiver().startAnimation();
-            }
-        }
-        super.setVisibility(i);
-        if (getVisibility() == 0) {
-            setSticker();
-            return;
-        }
-        this.lastH = 0;
-        this.linearLayout.setAlpha(0.0f);
-        this.linearLayout.setScaleX(0.8f);
-        this.linearLayout.setScaleY(0.8f);
-        View view2 = this.progressView;
-        if (view2 != null) {
-            view2.animate().setListener(null).cancel();
-            this.progressView.animate().setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    StickerEmptyView.this.progressView.setVisibility(8);
-                }
-            }).alpha(0.0f).setDuration(150L).start();
-        } else {
-            this.progressBar.setAlpha(0.0f);
-            this.progressBar.setScaleX(0.5f);
-            this.progressBar.setScaleY(0.5f);
-        }
-        this.stickerView.getImageReceiver().stopAnimation();
-        this.stickerView.getImageReceiver().clearImage();
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (getVisibility() == 0) {
-            setSticker();
-        }
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    public void setSticker() {
-        TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet;
-        TLRPC$Document tLRPC$Document;
-        int i;
-        TLRPC$Document tLRPC$Document2 = null;
-        String str = null;
-        tLRPC$Document2 = null;
-        tLRPC$Document2 = null;
-        if (this.stickerType == 16) {
-            tLRPC$Document = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker("👍");
-            tLRPC$TL_messages_stickerSet = null;
-        } else {
-            TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName("tg_placeholders_android");
-            if (stickerSetByName == null) {
-                stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
-            }
-            if (stickerSetByName != null && (i = this.stickerType) >= 0 && i < stickerSetByName.documents.size()) {
-                tLRPC$Document2 = stickerSetByName.documents.get(this.stickerType);
-            }
-            tLRPC$TL_messages_stickerSet = stickerSetByName;
-            tLRPC$Document = tLRPC$Document2;
-            str = "130_130";
-        }
-        if (!LiteMode.isEnabled(3)) {
-            str = str + "_firstframe";
-        }
-        String str2 = str;
-        if (tLRPC$Document != null) {
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, this.colorKey1, 0.2f);
-            if (svgThumb != null) {
-                svgThumb.overrideWidthAndHeight(512, 512);
-            }
-            this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$Document), str2, "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
-            int i2 = this.stickerType;
-            if (i2 == 9 || i2 == 0) {
-                this.stickerView.getImageReceiver().setAutoRepeat(1);
-                return;
-            } else {
-                this.stickerView.getImageReceiver().setAutoRepeat(2);
-                return;
-            }
-        }
-        MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, tLRPC$TL_messages_stickerSet == null);
-        this.stickerView.getImageReceiver().clearImage();
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
-            setSticker();
-        }
     }
 
     public void setKeyboardHeight(int i, boolean z) {
@@ -321,93 +293,23 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
             }
             this.keyboardSize = i;
             float dp = (-(i >> 1)) + (i > 0 ? AndroidUtilities.dp(20.0f) : 0);
-            if (z) {
-                ViewPropertyAnimator translationY = this.linearLayout.animate().translationY(dp);
-                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-                translationY.setInterpolator(cubicBezierInterpolator).setDuration(250L);
+            if (!z) {
+                this.linearLayout.setTranslationY(dp);
                 RadialProgressView radialProgressView = this.progressBar;
                 if (radialProgressView != null) {
-                    radialProgressView.animate().translationY(dp).setInterpolator(cubicBezierInterpolator).setDuration(250L);
+                    radialProgressView.setTranslationY(dp);
                     return;
                 }
                 return;
             }
-            this.linearLayout.setTranslationY(dp);
+            ViewPropertyAnimator translationY = this.linearLayout.animate().translationY(dp);
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+            translationY.setInterpolator(cubicBezierInterpolator).setDuration(250L);
             RadialProgressView radialProgressView2 = this.progressBar;
             if (radialProgressView2 != null) {
-                radialProgressView2.setTranslationY(dp);
+                radialProgressView2.animate().translationY(dp).setInterpolator(cubicBezierInterpolator).setDuration(250L);
             }
         }
-    }
-
-    public void showProgress(boolean z) {
-        showProgress(z, true);
-    }
-
-    public void showProgress(boolean z, boolean z2) {
-        if (this.progressShowing != z) {
-            this.progressShowing = z;
-            if (getVisibility() != 0) {
-                return;
-            }
-            if (z2) {
-                if (z) {
-                    this.linearLayout.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
-                    this.showProgressRunnable.run();
-                    return;
-                }
-                this.linearLayout.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
-                View view = this.progressView;
-                if (view != null) {
-                    view.animate().setListener(null).cancel();
-                    this.progressView.animate().setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            StickerEmptyView.this.progressView.setVisibility(8);
-                        }
-                    }).alpha(0.0f).setDuration(150L).start();
-                } else {
-                    this.progressBar.animate().alpha(0.0f).scaleY(0.5f).scaleX(0.5f).setDuration(150L).start();
-                }
-                this.stickerView.getImageReceiver().startAnimation();
-                return;
-            }
-            if (z) {
-                this.linearLayout.animate().cancel();
-                this.linearLayout.setAlpha(0.0f);
-                this.linearLayout.setScaleX(0.8f);
-                this.linearLayout.setScaleY(0.8f);
-                View view2 = this.progressView;
-                if (view2 != null) {
-                    view2.animate().setListener(null).cancel();
-                    this.progressView.setAlpha(1.0f);
-                    this.progressView.setVisibility(0);
-                    return;
-                } else {
-                    this.progressBar.setAlpha(1.0f);
-                    this.progressBar.setScaleX(1.0f);
-                    this.progressBar.setScaleY(1.0f);
-                    return;
-                }
-            }
-            this.linearLayout.animate().cancel();
-            this.linearLayout.setAlpha(1.0f);
-            this.linearLayout.setScaleX(1.0f);
-            this.linearLayout.setScaleY(1.0f);
-            View view3 = this.progressView;
-            if (view3 != null) {
-                view3.animate().setListener(null).cancel();
-                this.progressView.setVisibility(8);
-            } else {
-                this.progressBar.setAlpha(0.0f);
-                this.progressBar.setScaleX(0.5f);
-                this.progressBar.setScaleY(0.5f);
-            }
-        }
-    }
-
-    public void setAnimateLayoutChange(boolean z) {
-        this.animateLayoutChange = z;
     }
 
     public void setPreventMoving(boolean z) {
@@ -420,10 +322,6 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         if (radialProgressView != null) {
             radialProgressView.setTranslationY(0.0f);
         }
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
     }
 
     public void setStickerType(int i) {
@@ -454,13 +352,131 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         this.subtitle.setText(charSequence);
     }
 
-    private int getWhitespaceCount(CharSequence charSequence) {
-        int i = 0;
-        for (int i2 = 0; i2 < charSequence.length(); i2++) {
-            if (Character.isWhitespace(charSequence.charAt(i2))) {
-                i++;
+    @Override
+    public void setVisibility(int i) {
+        ViewPropertyAnimator scaleX;
+        if (getVisibility() != i && i == 0) {
+            if (this.progressShowing) {
+                this.linearLayout.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
+                this.progressView.animate().setListener(null).cancel();
+                this.progressView.setVisibility(0);
+                this.progressView.setAlpha(1.0f);
+            } else {
+                this.linearLayout.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                View view = this.progressView;
+                if (view != null) {
+                    view.animate().setListener(null).cancel();
+                    scaleX = this.progressView.animate().setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            StickerEmptyView.this.progressView.setVisibility(8);
+                        }
+                    }).alpha(0.0f);
+                } else {
+                    scaleX = this.progressBar.animate().alpha(0.0f).scaleY(0.5f).scaleX(0.5f);
+                }
+                scaleX.setDuration(150L).start();
+                this.stickerView.getImageReceiver().startAnimation();
             }
         }
-        return i;
+        super.setVisibility(i);
+        if (getVisibility() == 0) {
+            setSticker();
+            return;
+        }
+        this.lastH = 0;
+        this.linearLayout.setAlpha(0.0f);
+        this.linearLayout.setScaleX(0.8f);
+        this.linearLayout.setScaleY(0.8f);
+        View view2 = this.progressView;
+        if (view2 != null) {
+            view2.animate().setListener(null).cancel();
+            this.progressView.animate().setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    StickerEmptyView.this.progressView.setVisibility(8);
+                }
+            }).alpha(0.0f).setDuration(150L).start();
+        } else {
+            this.progressBar.setAlpha(0.0f);
+            this.progressBar.setScaleX(0.5f);
+            this.progressBar.setScaleY(0.5f);
+        }
+        this.stickerView.getImageReceiver().stopAnimation();
+        this.stickerView.getImageReceiver().clearImage();
+    }
+
+    public void showProgress(boolean z) {
+        showProgress(z, true);
+    }
+
+    public void showProgress(boolean z, boolean z2) {
+        View view;
+        int i;
+        ViewPropertyAnimator scaleX;
+        if (this.progressShowing != z) {
+            this.progressShowing = z;
+            if (getVisibility() != 0) {
+                return;
+            }
+            if (z2) {
+                if (z) {
+                    this.linearLayout.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
+                    this.showProgressRunnable.run();
+                    return;
+                }
+                this.linearLayout.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                View view2 = this.progressView;
+                if (view2 != null) {
+                    view2.animate().setListener(null).cancel();
+                    scaleX = this.progressView.animate().setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            StickerEmptyView.this.progressView.setVisibility(8);
+                        }
+                    }).alpha(0.0f);
+                } else {
+                    scaleX = this.progressBar.animate().alpha(0.0f).scaleY(0.5f).scaleX(0.5f);
+                }
+                scaleX.setDuration(150L).start();
+                this.stickerView.getImageReceiver().startAnimation();
+                return;
+            }
+            if (z) {
+                this.linearLayout.animate().cancel();
+                this.linearLayout.setAlpha(0.0f);
+                this.linearLayout.setScaleX(0.8f);
+                this.linearLayout.setScaleY(0.8f);
+                View view3 = this.progressView;
+                if (view3 == null) {
+                    this.progressBar.setAlpha(1.0f);
+                    this.progressBar.setScaleX(1.0f);
+                    this.progressBar.setScaleY(1.0f);
+                    return;
+                } else {
+                    view3.animate().setListener(null).cancel();
+                    this.progressView.setAlpha(1.0f);
+                    view = this.progressView;
+                    i = 0;
+                }
+            } else {
+                this.linearLayout.animate().cancel();
+                this.linearLayout.setAlpha(1.0f);
+                this.linearLayout.setScaleX(1.0f);
+                this.linearLayout.setScaleY(1.0f);
+                View view4 = this.progressView;
+                if (view4 == null) {
+                    this.progressBar.setAlpha(0.0f);
+                    this.progressBar.setScaleX(0.5f);
+                    this.progressBar.setScaleY(0.5f);
+                    return;
+                } else {
+                    view4.animate().setListener(null).cancel();
+                    view = this.progressView;
+                    i = 8;
+                }
+            }
+            view.setVisibility(i);
+        }
     }
 }

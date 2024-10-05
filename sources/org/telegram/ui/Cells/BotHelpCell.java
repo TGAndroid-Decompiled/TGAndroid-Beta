@@ -9,7 +9,6 @@ import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextUtils;
-import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.Iterator;
@@ -49,7 +48,7 @@ public class BotHelpCell extends View {
     private LinkSpanDrawable.LinkCollector links;
     private String oldText;
     private int photoHeight;
-    private LinkSpanDrawable<ClickableSpan> pressedLink;
+    private LinkSpanDrawable pressedLink;
     private Theme.ResourcesProvider resourcesProvider;
     private Drawable selectorDrawable;
     private int selectorDrawableRadius;
@@ -81,8 +80,14 @@ public class BotHelpCell extends View {
         createRadSelectorDrawable.setCallback(this);
     }
 
-    public void setDelegate(BotHelpCellDelegate botHelpCellDelegate) {
-        this.delegate = botHelpCellDelegate;
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    private Drawable getThemedDrawable(String str) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Drawable drawable = resourcesProvider != null ? resourcesProvider.getDrawable(str) : null;
+        return drawable != null ? drawable : Theme.getThemeDrawable(str);
     }
 
     private void resetPressedLink() {
@@ -91,6 +96,113 @@ public class BotHelpCell extends View {
         }
         this.links.clear();
         invalidate();
+    }
+
+    public boolean animating() {
+        return this.animating;
+    }
+
+    public CharSequence getText() {
+        StaticLayout staticLayout = this.textLayout;
+        if (staticLayout == null) {
+            return null;
+        }
+        return staticLayout.getText();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.imageReceiver.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.imageReceiver.onDetachedFromWindow();
+        this.wasDraw = false;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        int width = (getWidth() - this.width) / 2;
+        int dp = this.photoHeight + AndroidUtilities.dp(2.0f);
+        Drawable shadowDrawable = Theme.chat_msgInMediaDrawable.getShadowDrawable();
+        if (shadowDrawable != null) {
+            shadowDrawable.setBounds(width, dp, this.width + width, this.height + dp);
+            shadowDrawable.draw(canvas);
+        }
+        Point point = AndroidUtilities.displaySize;
+        int i = point.x;
+        int i2 = point.y;
+        if (getParent() instanceof View) {
+            View view = (View) getParent();
+            i = view.getMeasuredWidth();
+            i2 = view.getMeasuredHeight();
+        }
+        int i3 = i2;
+        Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) getThemedDrawable("drawableMsgInMedia");
+        messageDrawable.setTop((int) getY(), i, i3, false, false);
+        messageDrawable.setBounds(width, 0, this.width + width, this.height);
+        messageDrawable.draw(canvas);
+        Drawable drawable = this.selectorDrawable;
+        if (drawable != null) {
+            int i4 = this.selectorDrawableRadius;
+            int i5 = SharedConfig.bubbleRadius;
+            if (i4 != i5) {
+                this.selectorDrawableRadius = i5;
+                Theme.setMaskDrawableRad(drawable, i5, i5);
+            }
+            this.selectorDrawable.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.width + width) - AndroidUtilities.dp(2.0f), this.height - AndroidUtilities.dp(2.0f));
+            this.selectorDrawable.draw(canvas);
+        }
+        this.imageReceiver.setImageCoords(width + r3, this.imagePadding, this.width - (r3 * 2), this.photoHeight - r3);
+        this.imageReceiver.draw(canvas);
+        Theme.chat_msgTextPaint.setColor(getThemedColor(Theme.key_chat_messageTextIn));
+        Theme.chat_msgTextPaint.linkColor = getThemedColor(Theme.key_chat_messageLinkIn);
+        canvas.save();
+        int dp2 = AndroidUtilities.dp(this.isPhotoVisible ? 14.0f : 11.0f) + width;
+        this.textX = dp2;
+        float f = dp2;
+        int dp3 = AndroidUtilities.dp(11.0f) + dp;
+        this.textY = dp3;
+        canvas.translate(f, dp3);
+        if (this.links.draw(canvas)) {
+            invalidate();
+        }
+        StaticLayout staticLayout = this.textLayout;
+        if (staticLayout != null) {
+            staticLayout.draw(canvas);
+        }
+        canvas.restore();
+        this.wasDraw = true;
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        StaticLayout staticLayout = this.textLayout;
+        if (staticLayout != null) {
+            accessibilityNodeInfo.setText(staticLayout.getText());
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), this.height + AndroidUtilities.dp(8.0f));
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.BotHelpCell.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public void setAnimating(boolean z) {
+        this.animating = z;
+    }
+
+    public void setDelegate(BotHelpCellDelegate botHelpCellDelegate) {
+        this.delegate = botHelpCellDelegate;
     }
 
     public void setText(boolean z, String str) {
@@ -197,119 +309,6 @@ public class BotHelpCell extends View {
             this.photoHeight = i5;
             this.height = i4 + i5 + AndroidUtilities.dp(4.0f);
         }
-    }
-
-    public CharSequence getText() {
-        StaticLayout staticLayout = this.textLayout;
-        if (staticLayout == null) {
-            return null;
-        }
-        return staticLayout.getText();
-    }
-
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.BotHelpCell.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), this.height + AndroidUtilities.dp(8.0f));
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        int width = (getWidth() - this.width) / 2;
-        int dp = this.photoHeight + AndroidUtilities.dp(2.0f);
-        Drawable shadowDrawable = Theme.chat_msgInMediaDrawable.getShadowDrawable();
-        if (shadowDrawable != null) {
-            shadowDrawable.setBounds(width, dp, this.width + width, this.height + dp);
-            shadowDrawable.draw(canvas);
-        }
-        Point point = AndroidUtilities.displaySize;
-        int i = point.x;
-        int i2 = point.y;
-        if (getParent() instanceof View) {
-            View view = (View) getParent();
-            i = view.getMeasuredWidth();
-            i2 = view.getMeasuredHeight();
-        }
-        int i3 = i2;
-        Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) getThemedDrawable("drawableMsgInMedia");
-        messageDrawable.setTop((int) getY(), i, i3, false, false);
-        messageDrawable.setBounds(width, 0, this.width + width, this.height);
-        messageDrawable.draw(canvas);
-        Drawable drawable = this.selectorDrawable;
-        if (drawable != null) {
-            int i4 = this.selectorDrawableRadius;
-            int i5 = SharedConfig.bubbleRadius;
-            if (i4 != i5) {
-                this.selectorDrawableRadius = i5;
-                Theme.setMaskDrawableRad(drawable, i5, i5);
-            }
-            this.selectorDrawable.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.width + width) - AndroidUtilities.dp(2.0f), this.height - AndroidUtilities.dp(2.0f));
-            this.selectorDrawable.draw(canvas);
-        }
-        this.imageReceiver.setImageCoords(width + r3, this.imagePadding, this.width - (r3 * 2), this.photoHeight - r3);
-        this.imageReceiver.draw(canvas);
-        Theme.chat_msgTextPaint.setColor(getThemedColor(Theme.key_chat_messageTextIn));
-        Theme.chat_msgTextPaint.linkColor = getThemedColor(Theme.key_chat_messageLinkIn);
-        canvas.save();
-        int dp2 = AndroidUtilities.dp(this.isPhotoVisible ? 14.0f : 11.0f) + width;
-        this.textX = dp2;
-        float f = dp2;
-        int dp3 = AndroidUtilities.dp(11.0f) + dp;
-        this.textY = dp3;
-        canvas.translate(f, dp3);
-        if (this.links.draw(canvas)) {
-            invalidate();
-        }
-        StaticLayout staticLayout = this.textLayout;
-        if (staticLayout != null) {
-            staticLayout.draw(canvas);
-        }
-        canvas.restore();
-        this.wasDraw = true;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.imageReceiver.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.imageReceiver.onDetachedFromWindow();
-        this.wasDraw = false;
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        StaticLayout staticLayout = this.textLayout;
-        if (staticLayout != null) {
-            accessibilityNodeInfo.setText(staticLayout.getText());
-        }
-    }
-
-    public boolean animating() {
-        return this.animating;
-    }
-
-    public void setAnimating(boolean z) {
-        this.animating = z;
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    private Drawable getThemedDrawable(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Drawable drawable = resourcesProvider != null ? resourcesProvider.getDrawable(str) : null;
-        return drawable != null ? drawable : Theme.getThemeDrawable(str);
     }
 
     @Override

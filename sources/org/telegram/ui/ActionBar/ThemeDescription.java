@@ -87,7 +87,7 @@ public class ThemeDescription {
     public static int FLAG_TEXTCOLOR = 4;
     public static int FLAG_USEBACKGROUNDDRAWABLE = 131072;
     private int alphaOverride;
-    private HashMap<String, Field> cachedFields;
+    private HashMap cachedFields;
     private int changeFlags;
     private int currentColor;
     private int currentKey;
@@ -96,7 +96,7 @@ public class ThemeDescription {
     private Class[] listClasses;
     private String[] listClassesFieldName;
     private String lottieLayerName;
-    private HashMap<String, Boolean> notFoundCachedFields;
+    private HashMap notFoundCachedFields;
     private Paint[] paintToUpdate;
     private int previousColor;
     private boolean[] previousIsDefault;
@@ -105,7 +105,7 @@ public class ThemeDescription {
 
     public interface ThemeDescriptionDelegate {
 
-        public final class CC {
+        public abstract class CC {
             public static void $default$onAnimationProgress(ThemeDescriptionDelegate themeDescriptionDelegate, float f) {
             }
         }
@@ -113,21 +113,6 @@ public class ThemeDescription {
         void didSetColor();
 
         void onAnimationProgress(float f);
-    }
-
-    public ThemeDescription(View view, int i, Class[] clsArr, Paint[] paintArr, Drawable[] drawableArr, ThemeDescriptionDelegate themeDescriptionDelegate, int i2, Object obj) {
-        this.alphaOverride = -1;
-        this.previousIsDefault = new boolean[1];
-        this.currentKey = i2;
-        this.paintToUpdate = paintArr;
-        this.drawablesToUpdate = drawableArr;
-        this.viewToInvalidate = view;
-        this.changeFlags = i;
-        this.listClasses = clsArr;
-        this.delegate = themeDescriptionDelegate;
-        if (view instanceof EditTextEmoji) {
-            this.viewToInvalidate = ((EditTextEmoji) view).getEditText();
-        }
     }
 
     public ThemeDescription(View view, int i, Class[] clsArr, Paint paint, Drawable[] drawableArr, ThemeDescriptionDelegate themeDescriptionDelegate, int i2) {
@@ -147,6 +132,61 @@ public class ThemeDescription {
         }
     }
 
+    public ThemeDescription(View view, int i, Class[] clsArr, Paint[] paintArr, Drawable[] drawableArr, ThemeDescriptionDelegate themeDescriptionDelegate, int i2, Object obj) {
+        this.alphaOverride = -1;
+        this.previousIsDefault = new boolean[1];
+        this.currentKey = i2;
+        this.paintToUpdate = paintArr;
+        this.drawablesToUpdate = drawableArr;
+        this.viewToInvalidate = view;
+        this.changeFlags = i;
+        this.listClasses = clsArr;
+        this.delegate = themeDescriptionDelegate;
+        if (view instanceof EditTextEmoji) {
+            this.viewToInvalidate = ((EditTextEmoji) view).getEditText();
+        }
+    }
+
+    public ThemeDescription(View view, int i, Class[] clsArr, String[] strArr, String str, int i2) {
+        this.alphaOverride = -1;
+        this.previousIsDefault = new boolean[1];
+        this.currentKey = i2;
+        this.lottieLayerName = str;
+        this.viewToInvalidate = view;
+        this.changeFlags = i;
+        this.listClasses = clsArr;
+        this.listClassesFieldName = strArr;
+        this.cachedFields = new HashMap();
+        this.notFoundCachedFields = new HashMap();
+        View view2 = this.viewToInvalidate;
+        if (view2 instanceof EditTextEmoji) {
+            this.viewToInvalidate = ((EditTextEmoji) view2).getEditText();
+        }
+    }
+
+    public ThemeDescription(View view, int i, Class[] clsArr, String[] strArr, Paint[] paintArr, Drawable[] drawableArr, int i2, ThemeDescriptionDelegate themeDescriptionDelegate, int i3) {
+        this.previousIsDefault = new boolean[1];
+        this.currentKey = i3;
+        this.paintToUpdate = paintArr;
+        this.drawablesToUpdate = drawableArr;
+        this.viewToInvalidate = view;
+        this.changeFlags = i;
+        this.listClasses = clsArr;
+        this.listClassesFieldName = strArr;
+        this.alphaOverride = i2;
+        this.delegate = themeDescriptionDelegate;
+        this.cachedFields = new HashMap();
+        this.notFoundCachedFields = new HashMap();
+        View view2 = this.viewToInvalidate;
+        if (view2 instanceof EditTextEmoji) {
+            this.viewToInvalidate = ((EditTextEmoji) view2).getEditText();
+        }
+    }
+
+    public ThemeDescription(View view, int i, Class[] clsArr, String[] strArr, Paint[] paintArr, Drawable[] drawableArr, ThemeDescriptionDelegate themeDescriptionDelegate, int i2) {
+        this(view, i, clsArr, strArr, paintArr, drawableArr, -1, themeDescriptionDelegate, i2);
+    }
+
     public ThemeDescription(View view, int i, Class[] clsArr, RLottieDrawable[] rLottieDrawableArr, String str, int i2) {
         this.alphaOverride = -1;
         this.previousIsDefault = new boolean[1];
@@ -161,56 +201,6 @@ public class ThemeDescription {
         }
     }
 
-    public ThemeDescription(View view, int i, Class[] clsArr, String[] strArr, Paint[] paintArr, Drawable[] drawableArr, ThemeDescriptionDelegate themeDescriptionDelegate, int i2) {
-        this(view, i, clsArr, strArr, paintArr, drawableArr, -1, themeDescriptionDelegate, i2);
-    }
-
-    public ThemeDescription(View view, int i, Class[] clsArr, String[] strArr, Paint[] paintArr, Drawable[] drawableArr, int i2, ThemeDescriptionDelegate themeDescriptionDelegate, int i3) {
-        this.previousIsDefault = new boolean[1];
-        this.currentKey = i3;
-        this.paintToUpdate = paintArr;
-        this.drawablesToUpdate = drawableArr;
-        this.viewToInvalidate = view;
-        this.changeFlags = i;
-        this.listClasses = clsArr;
-        this.listClassesFieldName = strArr;
-        this.alphaOverride = i2;
-        this.delegate = themeDescriptionDelegate;
-        this.cachedFields = new HashMap<>();
-        this.notFoundCachedFields = new HashMap<>();
-        View view2 = this.viewToInvalidate;
-        if (view2 instanceof EditTextEmoji) {
-            this.viewToInvalidate = ((EditTextEmoji) view2).getEditText();
-        }
-    }
-
-    public ThemeDescription(View view, int i, Class[] clsArr, String[] strArr, String str, int i2) {
-        this.alphaOverride = -1;
-        this.previousIsDefault = new boolean[1];
-        this.currentKey = i2;
-        this.lottieLayerName = str;
-        this.viewToInvalidate = view;
-        this.changeFlags = i;
-        this.listClasses = clsArr;
-        this.listClassesFieldName = strArr;
-        this.cachedFields = new HashMap<>();
-        this.notFoundCachedFields = new HashMap<>();
-        View view2 = this.viewToInvalidate;
-        if (view2 instanceof EditTextEmoji) {
-            this.viewToInvalidate = ((EditTextEmoji) view2).getEditText();
-        }
-    }
-
-    public ThemeDescriptionDelegate setDelegateDisabled() {
-        ThemeDescriptionDelegate themeDescriptionDelegate = this.delegate;
-        this.delegate = null;
-        return themeDescriptionDelegate;
-    }
-
-    public void setColor(int i, boolean z) {
-        setColor(i, z, true);
-    }
-
     private boolean checkTag(int i, View view) {
         if (i < 0 || view == null) {
             return false;
@@ -219,9 +209,324 @@ public class ThemeDescription {
         return (tag instanceof Integer) && ((Integer) tag).intValue() == i;
     }
 
+    private void processViewColor(View view, int i) {
+        Drawable selectorDrawable;
+        boolean z;
+        Object obj;
+        TypefaceSpan[] typefaceSpanArr;
+        TypefaceSpan[] typefaceSpanArr2;
+        Drawable drawable;
+        PorterDuffColorFilter porterDuffColorFilter;
+        RadioButton radioButton;
+        TypefaceSpan[] typefaceSpanArr3;
+        int i2 = 0;
+        while (true) {
+            Class[] clsArr = this.listClasses;
+            if (i2 >= clsArr.length) {
+                return;
+            }
+            if (clsArr[i2].isInstance(view)) {
+                view.invalidate();
+                boolean z2 = true;
+                if ((this.changeFlags & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, view)) {
+                    view.invalidate();
+                    if (this.listClassesFieldName != null || (this.changeFlags & FLAG_BACKGROUNDFILTER) == 0) {
+                        int i3 = this.changeFlags;
+                        if ((FLAG_CELLBACKGROUNDCOLOR & i3) != 0) {
+                            view.setBackgroundColor(i);
+                        } else if ((FLAG_TEXTCOLOR & i3) != 0) {
+                            if (view instanceof TextView) {
+                                ((TextView) view).setTextColor(i);
+                            } else if (view instanceof AudioPlayerAlert.ClippingTextViewSwitcher) {
+                                int i4 = 0;
+                                while (i4 < 2) {
+                                    AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = (AudioPlayerAlert.ClippingTextViewSwitcher) view;
+                                    TextView textView = i4 == 0 ? clippingTextViewSwitcher.getTextView() : clippingTextViewSwitcher.getNextTextView();
+                                    if (textView != null) {
+                                        textView.setTextColor(i);
+                                    }
+                                    i4++;
+                                }
+                            }
+                        } else if ((FLAG_SERVICEBACKGROUND & i3) == 0) {
+                            if ((FLAG_SELECTOR & i3) != 0) {
+                                selectorDrawable = Theme.getSelectorDrawable(false);
+                            } else if ((i3 & FLAG_SELECTORWHITE) != 0) {
+                                selectorDrawable = Theme.getSelectorDrawable(true);
+                            }
+                            view.setBackgroundDrawable(selectorDrawable);
+                        }
+                    } else {
+                        Drawable background = view.getBackground();
+                        if (background != null) {
+                            int i5 = this.changeFlags;
+                            if ((FLAG_CELLBACKGROUNDCOLOR & i5) == 0) {
+                                if (background instanceof CombinedDrawable) {
+                                    background = ((CombinedDrawable) background).getIcon();
+                                } else if ((background instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(background))) {
+                                    Theme.setSelectorDrawableColor(background, i, (i5 & FLAG_DRAWABLESELECTEDSTATE) != 0);
+                                }
+                                background.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                            } else if (background instanceof CombinedDrawable) {
+                                Drawable background2 = ((CombinedDrawable) background).getBackground();
+                                if (background2 instanceof ColorDrawable) {
+                                    ((ColorDrawable) background2).setColor(i);
+                                }
+                            }
+                        }
+                    }
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (this.listClassesFieldName != null) {
+                    String str = this.listClasses[i2] + "_" + this.listClassesFieldName[i2];
+                    HashMap hashMap = this.notFoundCachedFields;
+                    if (hashMap == null || !hashMap.containsKey(str)) {
+                        try {
+                            Field field = (Field) this.cachedFields.get(str);
+                            if (field == null && (field = this.listClasses[i2].getDeclaredField(this.listClassesFieldName[i2])) != null) {
+                                field.setAccessible(true);
+                                this.cachedFields.put(str, field);
+                            }
+                            if (field != null && (obj = field.get(view)) != null && (z || !(obj instanceof View) || checkTag(this.currentKey, (View) obj))) {
+                                if (obj instanceof View) {
+                                    ((View) obj).invalidate();
+                                }
+                                if (this.lottieLayerName != null && (obj instanceof RLottieImageView)) {
+                                    ((RLottieImageView) obj).setLayerColor(this.lottieLayerName + ".**", i);
+                                }
+                                if ((this.changeFlags & FLAG_USEBACKGROUNDDRAWABLE) != 0 && (obj instanceof View)) {
+                                    obj = ((View) obj).getBackground();
+                                }
+                                int i6 = this.changeFlags;
+                                if ((FLAG_BACKGROUND & i6) != 0 && (obj instanceof View)) {
+                                    View view2 = (View) obj;
+                                    Drawable background3 = view2.getBackground();
+                                    if (background3 instanceof MessageBackgroundDrawable) {
+                                        ((MessageBackgroundDrawable) background3).setColor(i);
+                                        ((MessageBackgroundDrawable) background3).setCustomPaint(null);
+                                    } else {
+                                        view2.setBackgroundColor(i);
+                                    }
+                                } else if (obj instanceof EditTextCaption) {
+                                    if ((FLAG_HINTTEXTCOLOR & i6) != 0) {
+                                        ((EditTextCaption) obj).setHintColor(i);
+                                        ((EditTextCaption) obj).setHintTextColor(i);
+                                    } else if ((i6 & FLAG_CURSORCOLOR) != 0) {
+                                        ((EditTextCaption) obj).setCursorColor(i);
+                                    } else {
+                                        ((EditTextCaption) obj).setTextColor(i);
+                                    }
+                                } else if (!(obj instanceof SimpleTextView)) {
+                                    if (obj instanceof TextView) {
+                                        TextView textView2 = (TextView) obj;
+                                        if ((FLAG_IMAGECOLOR & i6) != 0) {
+                                            Drawable[] compoundDrawables = textView2.getCompoundDrawables();
+                                            if (compoundDrawables != null) {
+                                                for (Drawable drawable2 : compoundDrawables) {
+                                                    if (drawable2 != null) {
+                                                        drawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                                    }
+                                                }
+                                            }
+                                        } else if ((FLAG_LINKCOLOR & i6) != 0) {
+                                            textView2.getPaint().linkColor = i;
+                                            radioButton = textView2;
+                                        } else if ((i6 & FLAG_FASTSCROLL) != 0) {
+                                            CharSequence text = textView2.getText();
+                                            if ((text instanceof SpannedString) && (typefaceSpanArr3 = (TypefaceSpan[]) ((SpannedString) text).getSpans(0, text.length(), TypefaceSpan.class)) != null && typefaceSpanArr3.length > 0) {
+                                                for (TypefaceSpan typefaceSpan : typefaceSpanArr3) {
+                                                    typefaceSpan.setColor(i);
+                                                }
+                                            }
+                                        } else {
+                                            textView2.setTextColor(i);
+                                        }
+                                    } else {
+                                        if (obj instanceof ImageView) {
+                                            ImageView imageView = (ImageView) obj;
+                                            Drawable drawable3 = imageView.getDrawable();
+                                            if (!(drawable3 instanceof CombinedDrawable)) {
+                                                imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            } else if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
+                                                drawable = ((CombinedDrawable) drawable3).getBackground();
+                                                porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                            } else {
+                                                drawable = ((CombinedDrawable) drawable3).getIcon();
+                                                porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                            }
+                                        } else if (obj instanceof BackupImageView) {
+                                            drawable = ((BackupImageView) obj).getImageReceiver().getStaticThumb();
+                                            if (drawable instanceof CombinedDrawable) {
+                                                if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
+                                                    drawable = ((CombinedDrawable) drawable).getBackground();
+                                                    porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                                } else {
+                                                    drawable = ((CombinedDrawable) drawable).getIcon();
+                                                    porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                                }
+                                            } else if (drawable != null) {
+                                                porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                            }
+                                        } else if (obj instanceof Drawable) {
+                                            if (obj instanceof LetterDrawable) {
+                                                if ((i6 & FLAG_BACKGROUNDFILTER) != 0) {
+                                                    ((LetterDrawable) obj).setBackgroundColor(i);
+                                                } else {
+                                                    ((LetterDrawable) obj).setColor(i);
+                                                }
+                                            } else if (!(obj instanceof CombinedDrawable)) {
+                                                if (!(obj instanceof StateListDrawable) && (Build.VERSION.SDK_INT < 21 || !AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(obj))) {
+                                                    if (obj instanceof GradientDrawable) {
+                                                        ((GradientDrawable) obj).setColor(i);
+                                                    } else {
+                                                        drawable = (Drawable) obj;
+                                                        porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                                    }
+                                                }
+                                                Drawable drawable4 = (Drawable) obj;
+                                                if ((i6 & FLAG_DRAWABLESELECTEDSTATE) == 0) {
+                                                    z2 = false;
+                                                }
+                                                Theme.setSelectorDrawableColor(drawable4, i, z2);
+                                            } else if ((i6 & FLAG_BACKGROUNDFILTER) != 0) {
+                                                drawable = ((CombinedDrawable) obj).getBackground();
+                                                porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                            } else {
+                                                drawable = ((CombinedDrawable) obj).getIcon();
+                                                porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                                            }
+                                        } else if (obj instanceof CheckBox) {
+                                            if ((FLAG_CHECKBOX & i6) != 0) {
+                                                ((CheckBox) obj).setBackgroundColor(i);
+                                            } else if ((i6 & FLAG_CHECKBOXCHECK) != 0) {
+                                                ((CheckBox) obj).setCheckColor(i);
+                                            }
+                                        } else if (obj instanceof GroupCreateCheckBox) {
+                                            ((GroupCreateCheckBox) obj).updateColors();
+                                        } else if (obj instanceof Integer) {
+                                            field.set(view, Integer.valueOf(i));
+                                        } else if (obj instanceof RadioButton) {
+                                            if ((FLAG_CHECKBOX & i6) != 0) {
+                                                ((RadioButton) obj).setBackgroundColor(i);
+                                            } else if ((i6 & FLAG_CHECKBOXCHECK) != 0) {
+                                                ((RadioButton) obj).setCheckedColor(i);
+                                            }
+                                            radioButton = (RadioButton) obj;
+                                        } else if (obj instanceof TextPaint) {
+                                            if ((i6 & FLAG_LINKCOLOR) != 0) {
+                                                ((TextPaint) obj).linkColor = i;
+                                            } else {
+                                                ((TextPaint) obj).setColor(i);
+                                            }
+                                        } else if (obj instanceof LineProgressView) {
+                                            if ((i6 & FLAG_PROGRESSBAR) != 0) {
+                                                ((LineProgressView) obj).setProgressColor(i);
+                                            } else {
+                                                ((LineProgressView) obj).setBackColor(i);
+                                            }
+                                        } else if (obj instanceof RadialProgressView) {
+                                            ((RadialProgressView) obj).setProgressColor(i);
+                                        } else if (obj instanceof Paint) {
+                                            ((Paint) obj).setColor(i);
+                                            view.invalidate();
+                                        } else if (obj instanceof SeekBarView) {
+                                            if ((i6 & FLAG_PROGRESSBAR) != 0) {
+                                                ((SeekBarView) obj).setOuterColor(i);
+                                            } else {
+                                                ((SeekBarView) obj).setInnerColor(i);
+                                            }
+                                        } else if (obj instanceof AudioPlayerAlert.ClippingTextViewSwitcher) {
+                                            if ((FLAG_FASTSCROLL & i6) != 0) {
+                                                int i7 = 0;
+                                                while (i7 < 2) {
+                                                    TextView textView3 = i7 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
+                                                    if (textView3 != null) {
+                                                        CharSequence text2 = textView3.getText();
+                                                        if ((text2 instanceof SpannedString) && (typefaceSpanArr2 = (TypefaceSpan[]) ((SpannedString) text2).getSpans(0, text2.length(), TypefaceSpan.class)) != null && typefaceSpanArr2.length > 0) {
+                                                            for (TypefaceSpan typefaceSpan2 : typefaceSpanArr2) {
+                                                                typefaceSpan2.setColor(i);
+                                                            }
+                                                        }
+                                                    }
+                                                    i7++;
+                                                }
+                                            } else if ((FLAG_TEXTCOLOR & i6) != 0 && ((i6 & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, (View) obj))) {
+                                                int i8 = 0;
+                                                while (i8 < 2) {
+                                                    TextView textView4 = i8 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
+                                                    if (textView4 != null) {
+                                                        textView4.setTextColor(i);
+                                                        CharSequence text3 = textView4.getText();
+                                                        if ((text3 instanceof SpannedString) && (typefaceSpanArr = (TypefaceSpan[]) ((SpannedString) text3).getSpans(0, text3.length(), TypefaceSpan.class)) != null && typefaceSpanArr.length > 0) {
+                                                            for (TypefaceSpan typefaceSpan3 : typefaceSpanArr) {
+                                                                typefaceSpan3.setColor(i);
+                                                            }
+                                                        }
+                                                    }
+                                                    i8++;
+                                                }
+                                            }
+                                        }
+                                        drawable.setColorFilter(porterDuffColorFilter);
+                                    }
+                                    radioButton.invalidate();
+                                } else if ((i6 & FLAG_LINKCOLOR) != 0) {
+                                    ((SimpleTextView) obj).setLinkTextColor(i);
+                                } else {
+                                    ((SimpleTextView) obj).setTextColor(i);
+                                }
+                            }
+                        } catch (Throwable th) {
+                            FileLog.e(th);
+                            this.notFoundCachedFields.put(str, Boolean.TRUE);
+                        }
+                    }
+                } else if (view instanceof GroupCreateSpan) {
+                    ((GroupCreateSpan) view).updateColors();
+                }
+            }
+            i2++;
+        }
+    }
+
+    public int getCurrentColor() {
+        return this.currentColor;
+    }
+
+    public int getCurrentKey() {
+        return this.currentKey;
+    }
+
+    public int getSetColor() {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Integer valueOf = resourcesProvider != null ? Integer.valueOf(resourcesProvider.getColor(this.currentKey)) : null;
+        return valueOf != null ? valueOf.intValue() : Theme.getColor(this.currentKey);
+    }
+
+    public String getTitle() {
+        return ThemeColors.getStringName(this.currentKey);
+    }
+
+    public void setAnimatedColor(int i) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider != null) {
+            resourcesProvider.setAnimatedColor(getCurrentKey(), i);
+        } else {
+            Theme.setAnimatedColor(getCurrentKey(), i);
+        }
+    }
+
+    public void setColor(int i, boolean z) {
+        setColor(i, z, true);
+    }
+
     public void setColor(int i, boolean z, boolean z2) {
         Class[] clsArr;
+        Drawable selectorDrawable;
         Drawable[] compoundDrawables;
+        PorterDuffColorFilter porterDuffColorFilter;
         if (z2) {
             Theme.setColor(this.currentKey, i, z);
         }
@@ -261,22 +566,26 @@ public class ThemeDescription {
                         ((BackDrawable) drawable).setColor(i);
                     } else if (drawable instanceof ScamDrawable) {
                         ((ScamDrawable) drawable).setColor(i);
-                    } else if (drawable instanceof RLottieDrawable) {
-                        if (this.lottieLayerName != null) {
-                            ((RLottieDrawable) drawable).setLayerColor(this.lottieLayerName + ".**", i);
-                        }
-                    } else if (drawable instanceof CombinedDrawable) {
-                        if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
-                            ((CombinedDrawable) drawable).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                    } else if (!(drawable instanceof RLottieDrawable)) {
+                        if (drawable instanceof CombinedDrawable) {
+                            CombinedDrawable combinedDrawable = (CombinedDrawable) drawable;
+                            if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
+                                drawable = combinedDrawable.getBackground();
+                                porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                            } else {
+                                drawable = combinedDrawable.getIcon();
+                                porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+                            }
+                        } else if (drawable instanceof AvatarDrawable) {
+                            ((AvatarDrawable) drawable).setColor(i);
+                        } else if (drawable instanceof AnimatedArrowDrawable) {
+                            ((AnimatedArrowDrawable) drawable).setColor(i);
                         } else {
-                            ((CombinedDrawable) drawable).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                            porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
                         }
-                    } else if (drawable instanceof AvatarDrawable) {
-                        ((AvatarDrawable) drawable).setColor(i);
-                    } else if (drawable instanceof AnimatedArrowDrawable) {
-                        ((AnimatedArrowDrawable) drawable).setColor(i);
-                    } else {
-                        drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                        drawable.setColorFilter(porterDuffColorFilter);
+                    } else if (this.lottieLayerName != null) {
+                        ((RLottieDrawable) drawable).setLayerColor(this.lottieLayerName + ".**", i);
                     }
                 }
                 i4++;
@@ -304,11 +613,8 @@ public class ThemeDescription {
                 } else {
                     Drawable background2 = this.viewToInvalidate.getBackground();
                     if (background2 instanceof CombinedDrawable) {
-                        if ((this.changeFlags & FLAG_DRAWABLESELECTEDSTATE) != 0) {
-                            background2 = ((CombinedDrawable) background2).getBackground();
-                        } else {
-                            background2 = ((CombinedDrawable) background2).getIcon();
-                        }
+                        CombinedDrawable combinedDrawable2 = (CombinedDrawable) background2;
+                        background2 = (this.changeFlags & FLAG_DRAWABLESELECTEDSTATE) != 0 ? combinedDrawable2.getBackground() : combinedDrawable2.getIcon();
                     }
                     if (background2 != null) {
                         if ((background2 instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(background2))) {
@@ -375,10 +681,11 @@ public class ThemeDescription {
         if (view5 instanceof RadialProgressView) {
             ((RadialProgressView) view5).setProgressColor(i);
         } else if (view5 instanceof LineProgressView) {
+            LineProgressView lineProgressView = (LineProgressView) view5;
             if ((this.changeFlags & FLAG_PROGRESSBAR) != 0) {
-                ((LineProgressView) view5).setProgressColor(i);
+                lineProgressView.setProgressColor(i);
             } else {
-                ((LineProgressView) view5).setBackColor(i);
+                lineProgressView.setBackColor(i);
             }
         } else if (view5 instanceof ContextProgressView) {
             ((ContextProgressView) view5).updateColors();
@@ -408,10 +715,11 @@ public class ThemeDescription {
         if ((FLAG_HINTTEXTCOLOR & i9) != 0) {
             View view8 = this.viewToInvalidate;
             if (view8 instanceof EditTextBoldCursor) {
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view8;
                 if ((i9 & FLAG_PROGRESSBAR) != 0) {
-                    ((EditTextBoldCursor) view8).setHeaderHintColor(i);
+                    editTextBoldCursor.setHeaderHintColor(i);
                 } else {
-                    ((EditTextBoldCursor) view8).setHintColor(i);
+                    editTextBoldCursor.setHintColor(i);
                 }
             } else if (view8 instanceof EditText) {
                 ((EditText) view8).setHintTextColor(i);
@@ -422,13 +730,14 @@ public class ThemeDescription {
         if ((FLAG_IMAGECOLOR & i10) != 0 && ((i10 & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, view9))) {
             View view10 = this.viewToInvalidate;
             if (view10 instanceof ImageView) {
+                ImageView imageView = (ImageView) view10;
                 if ((this.changeFlags & FLAG_USEBACKGROUNDDRAWABLE) != 0) {
-                    Drawable drawable2 = ((ImageView) view10).getDrawable();
+                    Drawable drawable2 = imageView.getDrawable();
                     if ((drawable2 instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable2))) {
                         Theme.setSelectorDrawableColor(drawable2, i, (this.changeFlags & FLAG_DRAWABLESELECTEDSTATE) != 0);
                     }
                 } else {
-                    ((ImageView) view10).setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                    imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                 }
             } else if (!(view10 instanceof BackupImageView)) {
                 if (view10 instanceof SimpleTextView) {
@@ -483,10 +792,11 @@ public class ThemeDescription {
         } else if (view13 != null && ((clsArr = this.listClasses) == null || clsArr.length == 0)) {
             int i13 = this.changeFlags;
             if ((FLAG_SELECTOR & i13) != 0) {
-                view13.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                selectorDrawable = Theme.getSelectorDrawable(false);
             } else if ((i13 & FLAG_SELECTORWHITE) != 0) {
-                view13.setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                selectorDrawable = Theme.getSelectorDrawable(true);
             }
+            view13.setBackgroundDrawable(selectorDrawable);
         }
         if (this.listClasses != null) {
             View view14 = this.viewToInvalidate;
@@ -526,316 +836,23 @@ public class ThemeDescription {
         }
     }
 
-    private void processViewColor(View view, int i) {
-        boolean z;
-        Object obj;
-        TypefaceSpan[] typefaceSpanArr;
-        TypefaceSpan[] typefaceSpanArr2;
-        TypefaceSpan[] typefaceSpanArr3;
-        int i2 = 0;
-        while (true) {
-            Class[] clsArr = this.listClasses;
-            if (i2 >= clsArr.length) {
-                return;
-            }
-            if (clsArr[i2].isInstance(view)) {
-                view.invalidate();
-                boolean z2 = true;
-                if ((this.changeFlags & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, view)) {
-                    view.invalidate();
-                    if (this.listClassesFieldName == null && (this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
-                        Drawable background = view.getBackground();
-                        if (background != null) {
-                            int i3 = this.changeFlags;
-                            if ((FLAG_CELLBACKGROUNDCOLOR & i3) != 0) {
-                                if (background instanceof CombinedDrawable) {
-                                    Drawable background2 = ((CombinedDrawable) background).getBackground();
-                                    if (background2 instanceof ColorDrawable) {
-                                        ((ColorDrawable) background2).setColor(i);
-                                    }
-                                }
-                            } else {
-                                if (background instanceof CombinedDrawable) {
-                                    background = ((CombinedDrawable) background).getIcon();
-                                } else if ((background instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(background))) {
-                                    Theme.setSelectorDrawableColor(background, i, (i3 & FLAG_DRAWABLESELECTEDSTATE) != 0);
-                                }
-                                background.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                            }
-                        }
-                    } else {
-                        int i4 = this.changeFlags;
-                        if ((FLAG_CELLBACKGROUNDCOLOR & i4) != 0) {
-                            view.setBackgroundColor(i);
-                        } else if ((FLAG_TEXTCOLOR & i4) != 0) {
-                            if (view instanceof TextView) {
-                                ((TextView) view).setTextColor(i);
-                            } else if (view instanceof AudioPlayerAlert.ClippingTextViewSwitcher) {
-                                int i5 = 0;
-                                while (i5 < 2) {
-                                    TextView textView = i5 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) view).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) view).getNextTextView();
-                                    if (textView != null) {
-                                        textView.setTextColor(i);
-                                    }
-                                    i5++;
-                                }
-                            }
-                        } else if ((FLAG_SERVICEBACKGROUND & i4) == 0) {
-                            if ((FLAG_SELECTOR & i4) != 0) {
-                                view.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                            } else if ((i4 & FLAG_SELECTORWHITE) != 0) {
-                                view.setBackgroundDrawable(Theme.getSelectorDrawable(true));
-                            }
-                        }
-                    }
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (this.listClassesFieldName != null) {
-                    String str = this.listClasses[i2] + "_" + this.listClassesFieldName[i2];
-                    HashMap<String, Boolean> hashMap = this.notFoundCachedFields;
-                    if (hashMap == null || !hashMap.containsKey(str)) {
-                        try {
-                            Field field = this.cachedFields.get(str);
-                            if (field == null && (field = this.listClasses[i2].getDeclaredField(this.listClassesFieldName[i2])) != null) {
-                                field.setAccessible(true);
-                                this.cachedFields.put(str, field);
-                            }
-                            if (field != null && (obj = field.get(view)) != null && (z || !(obj instanceof View) || checkTag(this.currentKey, (View) obj))) {
-                                if (obj instanceof View) {
-                                    ((View) obj).invalidate();
-                                }
-                                if (this.lottieLayerName != null && (obj instanceof RLottieImageView)) {
-                                    ((RLottieImageView) obj).setLayerColor(this.lottieLayerName + ".**", i);
-                                }
-                                if ((this.changeFlags & FLAG_USEBACKGROUNDDRAWABLE) != 0 && (obj instanceof View)) {
-                                    obj = ((View) obj).getBackground();
-                                }
-                                int i6 = this.changeFlags;
-                                if ((FLAG_BACKGROUND & i6) != 0 && (obj instanceof View)) {
-                                    View view2 = (View) obj;
-                                    Drawable background3 = view2.getBackground();
-                                    if (background3 instanceof MessageBackgroundDrawable) {
-                                        ((MessageBackgroundDrawable) background3).setColor(i);
-                                        ((MessageBackgroundDrawable) background3).setCustomPaint(null);
-                                    } else {
-                                        view2.setBackgroundColor(i);
-                                    }
-                                } else if (obj instanceof EditTextCaption) {
-                                    if ((FLAG_HINTTEXTCOLOR & i6) != 0) {
-                                        ((EditTextCaption) obj).setHintColor(i);
-                                        ((EditTextCaption) obj).setHintTextColor(i);
-                                    } else if ((i6 & FLAG_CURSORCOLOR) != 0) {
-                                        ((EditTextCaption) obj).setCursorColor(i);
-                                    } else {
-                                        ((EditTextCaption) obj).setTextColor(i);
-                                    }
-                                } else if (obj instanceof SimpleTextView) {
-                                    if ((i6 & FLAG_LINKCOLOR) != 0) {
-                                        ((SimpleTextView) obj).setLinkTextColor(i);
-                                    } else {
-                                        ((SimpleTextView) obj).setTextColor(i);
-                                    }
-                                } else if (obj instanceof TextView) {
-                                    TextView textView2 = (TextView) obj;
-                                    if ((FLAG_IMAGECOLOR & i6) != 0) {
-                                        Drawable[] compoundDrawables = textView2.getCompoundDrawables();
-                                        if (compoundDrawables != null) {
-                                            for (Drawable drawable : compoundDrawables) {
-                                                if (drawable != null) {
-                                                    drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                                }
-                                            }
-                                        }
-                                    } else if ((FLAG_LINKCOLOR & i6) != 0) {
-                                        textView2.getPaint().linkColor = i;
-                                        textView2.invalidate();
-                                    } else if ((i6 & FLAG_FASTSCROLL) != 0) {
-                                        CharSequence text = textView2.getText();
-                                        if ((text instanceof SpannedString) && (typefaceSpanArr3 = (TypefaceSpan[]) ((SpannedString) text).getSpans(0, text.length(), TypefaceSpan.class)) != null && typefaceSpanArr3.length > 0) {
-                                            for (TypefaceSpan typefaceSpan : typefaceSpanArr3) {
-                                                typefaceSpan.setColor(i);
-                                            }
-                                        }
-                                    } else {
-                                        textView2.setTextColor(i);
-                                    }
-                                } else if (obj instanceof ImageView) {
-                                    ImageView imageView = (ImageView) obj;
-                                    Drawable drawable2 = imageView.getDrawable();
-                                    if (drawable2 instanceof CombinedDrawable) {
-                                        if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
-                                            ((CombinedDrawable) drawable2).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                        } else {
-                                            ((CombinedDrawable) drawable2).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                        }
-                                    } else {
-                                        imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                    }
-                                } else if (obj instanceof BackupImageView) {
-                                    Drawable staticThumb = ((BackupImageView) obj).getImageReceiver().getStaticThumb();
-                                    if (staticThumb instanceof CombinedDrawable) {
-                                        if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
-                                            ((CombinedDrawable) staticThumb).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                        } else {
-                                            ((CombinedDrawable) staticThumb).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                        }
-                                    } else if (staticThumb != null) {
-                                        staticThumb.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                    }
-                                } else if (obj instanceof Drawable) {
-                                    if (obj instanceof LetterDrawable) {
-                                        if ((i6 & FLAG_BACKGROUNDFILTER) != 0) {
-                                            ((LetterDrawable) obj).setBackgroundColor(i);
-                                        } else {
-                                            ((LetterDrawable) obj).setColor(i);
-                                        }
-                                    } else if (obj instanceof CombinedDrawable) {
-                                        if ((i6 & FLAG_BACKGROUNDFILTER) != 0) {
-                                            ((CombinedDrawable) obj).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                        } else {
-                                            ((CombinedDrawable) obj).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                        }
-                                    } else {
-                                        if (!(obj instanceof StateListDrawable) && (Build.VERSION.SDK_INT < 21 || !AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(obj))) {
-                                            if (obj instanceof GradientDrawable) {
-                                                ((GradientDrawable) obj).setColor(i);
-                                            } else {
-                                                ((Drawable) obj).setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                                            }
-                                        }
-                                        Drawable drawable3 = (Drawable) obj;
-                                        if ((i6 & FLAG_DRAWABLESELECTEDSTATE) == 0) {
-                                            z2 = false;
-                                        }
-                                        Theme.setSelectorDrawableColor(drawable3, i, z2);
-                                    }
-                                } else if (obj instanceof CheckBox) {
-                                    if ((FLAG_CHECKBOX & i6) != 0) {
-                                        ((CheckBox) obj).setBackgroundColor(i);
-                                    } else if ((i6 & FLAG_CHECKBOXCHECK) != 0) {
-                                        ((CheckBox) obj).setCheckColor(i);
-                                    }
-                                } else if (obj instanceof GroupCreateCheckBox) {
-                                    ((GroupCreateCheckBox) obj).updateColors();
-                                } else if (obj instanceof Integer) {
-                                    field.set(view, Integer.valueOf(i));
-                                } else if (obj instanceof RadioButton) {
-                                    if ((FLAG_CHECKBOX & i6) != 0) {
-                                        ((RadioButton) obj).setBackgroundColor(i);
-                                        ((RadioButton) obj).invalidate();
-                                    } else if ((i6 & FLAG_CHECKBOXCHECK) != 0) {
-                                        ((RadioButton) obj).setCheckedColor(i);
-                                        ((RadioButton) obj).invalidate();
-                                    }
-                                } else if (obj instanceof TextPaint) {
-                                    if ((i6 & FLAG_LINKCOLOR) != 0) {
-                                        ((TextPaint) obj).linkColor = i;
-                                    } else {
-                                        ((TextPaint) obj).setColor(i);
-                                    }
-                                } else if (obj instanceof LineProgressView) {
-                                    if ((i6 & FLAG_PROGRESSBAR) != 0) {
-                                        ((LineProgressView) obj).setProgressColor(i);
-                                    } else {
-                                        ((LineProgressView) obj).setBackColor(i);
-                                    }
-                                } else if (obj instanceof RadialProgressView) {
-                                    ((RadialProgressView) obj).setProgressColor(i);
-                                } else if (obj instanceof Paint) {
-                                    ((Paint) obj).setColor(i);
-                                    view.invalidate();
-                                } else if (obj instanceof SeekBarView) {
-                                    if ((i6 & FLAG_PROGRESSBAR) != 0) {
-                                        ((SeekBarView) obj).setOuterColor(i);
-                                    } else {
-                                        ((SeekBarView) obj).setInnerColor(i);
-                                    }
-                                } else if (obj instanceof AudioPlayerAlert.ClippingTextViewSwitcher) {
-                                    if ((FLAG_FASTSCROLL & i6) != 0) {
-                                        int i7 = 0;
-                                        while (i7 < 2) {
-                                            TextView textView3 = i7 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
-                                            if (textView3 != null) {
-                                                CharSequence text2 = textView3.getText();
-                                                if ((text2 instanceof SpannedString) && (typefaceSpanArr2 = (TypefaceSpan[]) ((SpannedString) text2).getSpans(0, text2.length(), TypefaceSpan.class)) != null && typefaceSpanArr2.length > 0) {
-                                                    for (TypefaceSpan typefaceSpan2 : typefaceSpanArr2) {
-                                                        typefaceSpan2.setColor(i);
-                                                    }
-                                                }
-                                            }
-                                            i7++;
-                                        }
-                                    } else if ((FLAG_TEXTCOLOR & i6) != 0 && ((i6 & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, (View) obj))) {
-                                        int i8 = 0;
-                                        while (i8 < 2) {
-                                            TextView textView4 = i8 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
-                                            if (textView4 != null) {
-                                                textView4.setTextColor(i);
-                                                CharSequence text3 = textView4.getText();
-                                                if ((text3 instanceof SpannedString) && (typefaceSpanArr = (TypefaceSpan[]) ((SpannedString) text3).getSpans(0, text3.length(), TypefaceSpan.class)) != null && typefaceSpanArr.length > 0) {
-                                                    for (TypefaceSpan typefaceSpan3 : typefaceSpanArr) {
-                                                        typefaceSpan3.setColor(i);
-                                                    }
-                                                }
-                                            }
-                                            i8++;
-                                        }
-                                    }
-                                }
-                            }
-                        } catch (Throwable th) {
-                            FileLog.e(th);
-                            this.notFoundCachedFields.put(str, Boolean.TRUE);
-                        }
-                    }
-                } else if (view instanceof GroupCreateSpan) {
-                    ((GroupCreateSpan) view).updateColors();
-                }
-            }
-            i2++;
-        }
-    }
-
-    public int getCurrentKey() {
-        return this.currentKey;
-    }
-
-    public void startEditing() {
-        int color = Theme.getColor(this.currentKey, this.previousIsDefault);
-        this.previousColor = color;
-        this.currentColor = color;
-    }
-
-    public int getCurrentColor() {
-        return this.currentColor;
-    }
-
-    public int getSetColor() {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer valueOf = resourcesProvider != null ? Integer.valueOf(resourcesProvider.getColor(this.currentKey)) : null;
-        return valueOf != null ? valueOf.intValue() : Theme.getColor(this.currentKey);
-    }
-
-    public void setAnimatedColor(int i) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (resourcesProvider != null) {
-            resourcesProvider.setAnimatedColor(getCurrentKey(), i);
-        } else {
-            Theme.setAnimatedColor(getCurrentKey(), i);
-        }
-    }
-
     public void setDefaultColor() {
         setColor(Theme.getDefaultColor(this.currentKey), true);
+    }
+
+    public ThemeDescriptionDelegate setDelegateDisabled() {
+        ThemeDescriptionDelegate themeDescriptionDelegate = this.delegate;
+        this.delegate = null;
+        return themeDescriptionDelegate;
     }
 
     public void setPreviousColor() {
         setColor(this.previousColor, this.previousIsDefault[0]);
     }
 
-    public String getTitle() {
-        return ThemeColors.getStringName(this.currentKey);
+    public void startEditing() {
+        int color = Theme.getColor(this.currentKey, this.previousIsDefault);
+        this.previousColor = color;
+        this.currentColor = color;
     }
 }

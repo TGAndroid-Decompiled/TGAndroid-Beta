@@ -69,28 +69,6 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         }
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(400.0f), View.MeasureSpec.getSize(i)), 1073741824), i2);
-    }
-
-    private void updateText() {
-        TLRPC$TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
-        String string = LocaleController.getString(globalPrivacySettings != null ? globalPrivacySettings.keep_archived_unmuted : true ? "ArchiveHintSubtitle" : "ArchiveHintSubtitleUnmutedMove");
-        int i = Theme.key_chat_messageLinkIn;
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i, 0, this.linkCallback);
-        SpannableString spannableString = new SpannableString(">");
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(mutate);
-        coloredImageSpan.setColorKey(i);
-        coloredImageSpan.setSize(AndroidUtilities.dp(18.0f));
-        coloredImageSpan.setWidth(AndroidUtilities.dp(11.0f));
-        coloredImageSpan.setTranslateX(-AndroidUtilities.dp(5.0f));
-        spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-        this.subtitleTextView.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
-    }
-
     private FrameLayout makeHint(int i, CharSequence charSequence, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {
         FrameLayout frameLayout = new FrameLayout(getContext());
         ImageView imageView = new ImageView(getContext());
@@ -115,6 +93,30 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         return frameLayout;
     }
 
+    private void updateText() {
+        TLRPC$TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
+        String string = LocaleController.getString(globalPrivacySettings != null ? globalPrivacySettings.keep_archived_unmuted : true ? "ArchiveHintSubtitle" : "ArchiveHintSubtitleUnmutedMove");
+        int i = Theme.key_chat_messageLinkIn;
+        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i, 0, this.linkCallback);
+        SpannableString spannableString = new SpannableString(">");
+        Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(mutate);
+        coloredImageSpan.setColorKey(i);
+        coloredImageSpan.setSize(AndroidUtilities.dp(18.0f));
+        coloredImageSpan.setWidth(AndroidUtilities.dp(11.0f));
+        coloredImageSpan.setTranslateX(-AndroidUtilities.dp(5.0f));
+        spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+        this.subtitleTextView.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.privacyRulesUpdated) {
+            updateText();
+        }
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -129,9 +131,7 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.privacyRulesUpdated) {
-            updateText();
-        }
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(400.0f), View.MeasureSpec.getSize(i)), 1073741824), i2);
     }
 }

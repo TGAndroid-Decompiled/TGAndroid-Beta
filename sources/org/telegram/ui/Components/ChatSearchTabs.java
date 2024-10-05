@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.ViewPagerFixed;
 
-public class ChatSearchTabs extends BlurredFrameLayout {
+public abstract class ChatSearchTabs extends BlurredFrameLayout {
     private ValueAnimator actionBarTagsAnimator;
     private float actionBarTagsT;
     private Paint backgroundPaint2;
@@ -18,17 +18,46 @@ public class ChatSearchTabs extends BlurredFrameLayout {
     public float shownT;
     public ViewPagerFixed.TabsView tabs;
 
-    protected void onShownUpdate(boolean z) {
-    }
-
     public ChatSearchTabs(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
         super(context, sizeNotifierFrameLayout);
         this.showWithCut = true;
     }
 
-    public void setTabs(ViewPagerFixed.TabsView tabsView) {
-        this.tabs = tabsView;
-        addView(tabsView, LayoutHelper.createFrame(-1, -1.0f));
+    public void lambda$show$0(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.actionBarTagsT = floatValue;
+        setShown(floatValue);
+        onShownUpdate(false);
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        if (this.showWithCut) {
+            canvas.clipRect(0, 0, getWidth(), getCurrentHeight());
+        }
+        if (this.backgroundPaint2 != null) {
+            canvas.drawRect(0.0f, 0.0f, getWidth(), getCurrentHeight(), this.backgroundPaint2);
+        }
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    public int getCurrentHeight() {
+        return (int) (getMeasuredHeight() * this.shownT);
+    }
+
+    protected abstract void onShownUpdate(boolean z);
+
+    @Override
+    public void setBackgroundColor(int i) {
+        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null) {
+            super.setBackgroundColor(i);
+            return;
+        }
+        Paint paint = new Paint(1);
+        this.backgroundPaint2 = paint;
+        paint.setColor(i);
     }
 
     public void setShown(float f) {
@@ -49,6 +78,11 @@ public class ChatSearchTabs extends BlurredFrameLayout {
             setAlpha(f);
         }
         invalidate();
+    }
+
+    public void setTabs(ViewPagerFixed.TabsView tabsView) {
+        this.tabs = tabsView;
+        addView(tabsView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
     public void show(final boolean z) {
@@ -88,42 +122,7 @@ public class ChatSearchTabs extends BlurredFrameLayout {
         this.actionBarTagsAnimator.start();
     }
 
-    public void lambda$show$0(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.actionBarTagsT = floatValue;
-        setShown(floatValue);
-        onShownUpdate(false);
-    }
-
     public boolean shown() {
         return this.shownT > 0.5f;
-    }
-
-    public int getCurrentHeight() {
-        return (int) (getMeasuredHeight() * this.shownT);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null) {
-            super.setBackgroundColor(i);
-            return;
-        }
-        Paint paint = new Paint(1);
-        this.backgroundPaint2 = paint;
-        paint.setColor(i);
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        if (this.showWithCut) {
-            canvas.clipRect(0, 0, getWidth(), getCurrentHeight());
-        }
-        if (this.backgroundPaint2 != null) {
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getCurrentHeight(), this.backgroundPaint2);
-        }
-        super.dispatchDraw(canvas);
-        canvas.restore();
     }
 }

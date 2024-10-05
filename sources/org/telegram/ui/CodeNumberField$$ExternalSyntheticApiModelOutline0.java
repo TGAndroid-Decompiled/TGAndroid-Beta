@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class CodeNumberField$$ExternalSyntheticApiModelOutline0 {
+public abstract class CodeNumberField$$ExternalSyntheticApiModelOutline0 {
 }

@@ -47,10 +47,6 @@ public class GroupCreateSpan extends View {
         this(context, obj, null);
     }
 
-    public GroupCreateSpan(Context context, ContactsController.Contact contact) {
-        this(context, null, contact);
-    }
-
     public GroupCreateSpan(Context context, Object obj, ContactsController.Contact contact) {
         this(context, obj, contact, null);
     }
@@ -63,33 +59,8 @@ public class GroupCreateSpan extends View {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCreateSpan.<init>(android.content.Context, java.lang.Object, org.telegram.messenger.ContactsController$Contact, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
-    public void updateColors() {
-        int color = this.avatarDrawable.getColor();
-        int color2 = Theme.getColor(Theme.key_groupcreate_spanBackground, this.resourcesProvider);
-        int color3 = Theme.getColor(Theme.key_groupcreate_spanDelete, this.resourcesProvider);
-        this.colors[0] = Color.red(color2);
-        this.colors[1] = Color.red(color);
-        this.colors[2] = Color.green(color2);
-        this.colors[3] = Color.green(color);
-        this.colors[4] = Color.blue(color2);
-        this.colors[5] = Color.blue(color);
-        this.colors[6] = Color.alpha(color2);
-        this.colors[7] = Color.alpha(color);
-        this.deleteDrawable.setColorFilter(new PorterDuffColorFilter(color3, PorterDuff.Mode.MULTIPLY));
-        backPaint.setColor(color2);
-    }
-
-    public boolean isDeleting() {
-        return this.deleting;
-    }
-
-    public void startDeleteAnimation() {
-        if (this.deleting) {
-            return;
-        }
-        this.deleting = true;
-        this.lastUpdateTime = System.currentTimeMillis();
-        invalidate();
+    public GroupCreateSpan(Context context, ContactsController.Contact contact) {
+        this(context, null, contact);
     }
 
     public void cancelDeleteAnimation() {
@@ -100,21 +71,20 @@ public class GroupCreateSpan extends View {
         }
     }
 
-    public long getUid() {
-        return this.uid;
+    public ContactsController.Contact getContact() {
+        return this.currentContact;
     }
 
     public String getKey() {
         return this.key;
     }
 
-    public ContactsController.Contact getContact() {
-        return this.currentContact;
+    public long getUid() {
+        return this.uid;
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(AndroidUtilities.dp((this.small ? 20 : 32) + 25) + this.textWidth, AndroidUtilities.dp(this.small ? 28.0f : 32.0f));
+    public boolean isDeleting() {
+        return this.deleting;
     }
 
     @Override
@@ -181,5 +151,35 @@ public class GroupCreateSpan extends View {
         accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
         id = accessibilityAction.getId();
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString(R.string.Delete)));
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        setMeasuredDimension(AndroidUtilities.dp((this.small ? 20 : 32) + 25) + this.textWidth, AndroidUtilities.dp(this.small ? 28.0f : 32.0f));
+    }
+
+    public void startDeleteAnimation() {
+        if (this.deleting) {
+            return;
+        }
+        this.deleting = true;
+        this.lastUpdateTime = System.currentTimeMillis();
+        invalidate();
+    }
+
+    public void updateColors() {
+        int color = this.avatarDrawable.getColor();
+        int color2 = Theme.getColor(Theme.key_groupcreate_spanBackground, this.resourcesProvider);
+        int color3 = Theme.getColor(Theme.key_groupcreate_spanDelete, this.resourcesProvider);
+        this.colors[0] = Color.red(color2);
+        this.colors[1] = Color.red(color);
+        this.colors[2] = Color.green(color2);
+        this.colors[3] = Color.green(color);
+        this.colors[4] = Color.blue(color2);
+        this.colors[5] = Color.blue(color);
+        this.colors[6] = Color.alpha(color2);
+        this.colors[7] = Color.alpha(color);
+        this.deleteDrawable.setColorFilter(new PorterDuffColorFilter(color3, PorterDuff.Mode.MULTIPLY));
+        backPaint.setColor(color2);
     }
 }

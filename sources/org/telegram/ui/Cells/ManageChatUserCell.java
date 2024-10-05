@@ -51,11 +51,6 @@ public class ManageChatUserCell extends FrameLayout {
         boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell, boolean z);
     }
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
-
     public ManageChatUserCell(Context context, int i, int i2, boolean z) {
         this(context, i, i2, z, null);
     }
@@ -73,19 +68,19 @@ public class ManageChatUserCell extends FrameLayout {
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
             public void onDraw(Canvas canvas) {
-                if (ManageChatUserCell.this.storyItem != null) {
-                    float dp = AndroidUtilities.dp(1.0f);
-                    ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(dp, dp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
-                    ManageChatUserCell.this.storyAvatarParams.drawSegments = false;
-                    ManageChatUserCell.this.storyAvatarParams.animate = false;
-                    ManageChatUserCell.this.storyAvatarParams.drawInside = true;
-                    ManageChatUserCell.this.storyAvatarParams.isArchive = false;
-                    ManageChatUserCell.this.storyAvatarParams.resourcesProvider = resourcesProvider;
-                    ManageChatUserCell.this.storyAvatarParams.storyItem = ManageChatUserCell.this.storyItem;
-                    StoriesUtilities.drawAvatarWithStory(ManageChatUserCell.this.storyItem.dialogId, canvas, this.imageReceiver, ManageChatUserCell.this.storyAvatarParams);
+                if (ManageChatUserCell.this.storyItem == null) {
+                    super.onDraw(canvas);
                     return;
                 }
-                super.onDraw(canvas);
+                float dp = AndroidUtilities.dp(1.0f);
+                ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(dp, dp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
+                ManageChatUserCell.this.storyAvatarParams.drawSegments = false;
+                ManageChatUserCell.this.storyAvatarParams.animate = false;
+                ManageChatUserCell.this.storyAvatarParams.drawInside = true;
+                ManageChatUserCell.this.storyAvatarParams.isArchive = false;
+                ManageChatUserCell.this.storyAvatarParams.resourcesProvider = resourcesProvider;
+                ManageChatUserCell.this.storyAvatarParams.storyItem = ManageChatUserCell.this.storyItem;
+                StoriesUtilities.drawAvatarWithStory(ManageChatUserCell.this.storyItem.dialogId, canvas, this.imageReceiver, ManageChatUserCell.this.storyAvatarParams);
             }
         };
         this.avatarImageView = backupImageView;
@@ -130,21 +125,61 @@ public class ManageChatUserCell extends FrameLayout {
         this.delegate.onOptionsButtonCheck(this, true);
     }
 
-    public void setStoryItem(TL_stories$StoryItem tL_stories$StoryItem, View.OnClickListener onClickListener) {
-        this.storyItem = tL_stories$StoryItem;
-        this.avatarImageView.setOnClickListener(onClickListener);
+    public BackupImageView getAvatarImageView() {
+        return this.avatarImageView;
+    }
+
+    public Object getCurrentObject() {
+        return this.currentObject;
+    }
+
+    public StoriesUtilities.AvatarStoryParams getStoryAvatarParams() {
+        return this.storyAvatarParams;
     }
 
     public TL_stories$StoryItem getStoryItem() {
         return this.storyItem;
     }
 
-    public BackupImageView getAvatarImageView() {
-        return this.avatarImageView;
+    public long getUserId() {
+        Object obj = this.currentObject;
+        if (obj instanceof TLRPC$User) {
+            return ((TLRPC$User) obj).id;
+        }
+        return 0L;
     }
 
-    public StoriesUtilities.AvatarStoryParams getStoryAvatarParams() {
-        return this.storyAvatarParams;
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (this.needDivider) {
+            int i = this.dividerColor;
+            if (i >= 0) {
+                Theme.dividerExtraPaint.setColor(Theme.getColor(i, this.resourcesProvider));
+            }
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerColor >= 0 ? Theme.dividerExtraPaint : Theme.dividerPaint);
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    }
+
+    public void recycle() {
+        this.avatarImageView.getImageReceiver().cancelLoadImage();
+    }
+
+    public void setCustomImageVisible(boolean z) {
+        ImageView imageView = this.customImageView;
+        if (imageView == null) {
+            return;
+        }
+        imageView.setVisibility(z ? 0 : 8);
     }
 
     public void setCustomRightImage(int i) {
@@ -156,15 +191,9 @@ public class ManageChatUserCell extends FrameLayout {
         addView(this.customImageView, LayoutHelper.createFrame(52, 64, (LocaleController.isRTL ? 3 : 5) | 48));
     }
 
-    public void setCustomImageVisible(boolean z) {
-        ImageView imageView = this.customImageView;
-        if (imageView == null) {
-            return;
-        }
-        imageView.setVisibility(z ? 0 : 8);
-    }
-
     public void setData(Object obj, CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        SimpleTextView simpleTextView;
+        int i;
         float f;
         float f2;
         if (obj == null) {
@@ -179,57 +208,66 @@ public class ManageChatUserCell extends FrameLayout {
         this.currentStatus = charSequence2;
         this.currentName = charSequence;
         this.currentObject = obj;
-        if (this.optionsButton != null) {
-            boolean onOptionsButtonCheck = this.delegate.onOptionsButtonCheck(this, false);
-            this.optionsButton.setVisibility(onOptionsButtonCheck ? 0 : 4);
-            SimpleTextView simpleTextView = this.nameTextView;
-            boolean z2 = LocaleController.isRTL;
-            simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : onOptionsButtonCheck ? 46 : 28, 0.0f));
-            SimpleTextView simpleTextView2 = this.statusTextView;
-            boolean z3 = LocaleController.isRTL;
-            int i = (z3 ? 5 : 3) | 48;
-            float f3 = z3 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68;
-            if (z3) {
-                f2 = this.namePadding + 68;
-            } else {
-                f2 = onOptionsButtonCheck ? 46 : 28;
-            }
-            simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i, f3, 34.5f, f2, 0.0f));
-        } else {
+        int i2 = 28;
+        if (this.optionsButton == null) {
             ImageView imageView = this.customImageView;
             if (imageView != null) {
-                boolean z4 = imageView.getVisibility() == 0;
-                SimpleTextView simpleTextView3 = this.nameTextView;
-                boolean z5 = LocaleController.isRTL;
-                simpleTextView3.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z5 ? 5 : 3) | 48, z5 ? z4 ? 54 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : z4 ? 54 : 28, 0.0f));
-                SimpleTextView simpleTextView4 = this.statusTextView;
-                boolean z6 = LocaleController.isRTL;
-                int i2 = (z6 ? 5 : 3) | 48;
-                float f4 = z6 ? z4 ? 54 : 28 : this.namePadding + 68;
-                if (z6) {
-                    f = this.namePadding + 68;
-                } else {
-                    f = z4 ? 54 : 28;
+                boolean z2 = imageView.getVisibility() == 0;
+                SimpleTextView simpleTextView2 = this.nameTextView;
+                boolean z3 = LocaleController.isRTL;
+                simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? z2 ? 54 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : z2 ? 54 : 28, 0.0f));
+                simpleTextView = this.statusTextView;
+                boolean z4 = LocaleController.isRTL;
+                i = (z4 ? 5 : 3) | 48;
+                f = z4 ? z2 ? 54 : 28 : this.namePadding + 68;
+                if (!z4) {
+                    if (z2) {
+                        i2 = 54;
+                    }
+                    f2 = i2;
                 }
-                simpleTextView4.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i2, f4, 34.5f, f, 0.0f));
+                f2 = this.namePadding + 68;
             }
+            this.needDivider = z;
+            setWillNotDraw(!z);
+            update(0);
         }
+        boolean onOptionsButtonCheck = this.delegate.onOptionsButtonCheck(this, false);
+        this.optionsButton.setVisibility(onOptionsButtonCheck ? 0 : 4);
+        SimpleTextView simpleTextView3 = this.nameTextView;
+        boolean z5 = LocaleController.isRTL;
+        simpleTextView3.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z5 ? 5 : 3) | 48, z5 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : onOptionsButtonCheck ? 46 : 28, 0.0f));
+        simpleTextView = this.statusTextView;
+        boolean z6 = LocaleController.isRTL;
+        i = (z6 ? 5 : 3) | 48;
+        f = z6 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68;
+        if (!z6) {
+            if (onOptionsButtonCheck) {
+                i2 = 46;
+            }
+            f2 = i2;
+        }
+        f2 = this.namePadding + 68;
+        simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i, f, 34.5f, f2, 0.0f));
         this.needDivider = z;
         setWillNotDraw(!z);
         update(0);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    public void setDelegate(ManageChatUserCellDelegate manageChatUserCellDelegate) {
+        this.delegate = manageChatUserCellDelegate;
     }
 
-    public long getUserId() {
-        Object obj = this.currentObject;
-        if (obj instanceof TLRPC$User) {
-            return ((TLRPC$User) obj).id;
-        }
-        return 0L;
+    public void setDividerColor(int i) {
+        this.dividerColor = i;
+    }
+
+    public void setIsAdmin(boolean z) {
+        this.isAdmin = z;
+    }
+
+    public void setNameColor(int i) {
+        this.nameTextView.setTextColor(i);
     }
 
     public void setStatusColors(int i, int i2) {
@@ -237,46 +275,12 @@ public class ManageChatUserCell extends FrameLayout {
         this.statusOnlineColor = i2;
     }
 
-    public void setIsAdmin(boolean z) {
-        this.isAdmin = z;
-    }
-
-    public boolean hasAvatarSet() {
-        return this.avatarImageView.getImageReceiver().hasNotThumb();
-    }
-
-    public void setNameColor(int i) {
-        this.nameTextView.setTextColor(i);
-    }
-
-    public void setDividerColor(int i) {
-        this.dividerColor = i;
+    public void setStoryItem(TL_stories$StoryItem tL_stories$StoryItem, View.OnClickListener onClickListener) {
+        this.storyItem = tL_stories$StoryItem;
+        this.avatarImageView.setOnClickListener(onClickListener);
     }
 
     public void update(int r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ManageChatUserCell.update(int):void");
-    }
-
-    public void recycle() {
-        this.avatarImageView.getImageReceiver().cancelLoadImage();
-    }
-
-    public void setDelegate(ManageChatUserCellDelegate manageChatUserCellDelegate) {
-        this.delegate = manageChatUserCellDelegate;
-    }
-
-    public Object getCurrentObject() {
-        return this.currentObject;
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.needDivider) {
-            int i = this.dividerColor;
-            if (i >= 0) {
-                Theme.dividerExtraPaint.setColor(Theme.getColor(i, this.resourcesProvider));
-            }
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerColor >= 0 ? Theme.dividerExtraPaint : Theme.dividerPaint);
-        }
     }
 }

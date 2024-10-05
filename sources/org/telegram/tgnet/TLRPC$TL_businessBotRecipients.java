@@ -9,8 +9,8 @@ public class TLRPC$TL_businessBotRecipients extends TLObject {
     public int flags;
     public boolean new_chats;
     public boolean non_contacts;
-    public ArrayList<Long> users = new ArrayList<>();
-    public ArrayList<Long> exclude_users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
+    public ArrayList exclude_users = new ArrayList();
 
     public static TLRPC$TL_businessBotRecipients TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (i != -1198722189) {
@@ -81,7 +81,7 @@ public class TLRPC$TL_businessBotRecipients extends TLObject {
             int size = this.users.size();
             abstractSerializedData.writeInt32(size);
             for (int i6 = 0; i6 < size; i6++) {
-                abstractSerializedData.writeInt64(this.users.get(i6).longValue());
+                abstractSerializedData.writeInt64(((Long) this.users.get(i6)).longValue());
             }
         }
         if ((this.flags & 64) != 0) {
@@ -89,7 +89,7 @@ public class TLRPC$TL_businessBotRecipients extends TLObject {
             int size2 = this.exclude_users.size();
             abstractSerializedData.writeInt32(size2);
             for (int i7 = 0; i7 < size2; i7++) {
-                abstractSerializedData.writeInt64(this.exclude_users.get(i7).longValue());
+                abstractSerializedData.writeInt64(((Long) this.exclude_users.get(i7)).longValue());
             }
         }
     }

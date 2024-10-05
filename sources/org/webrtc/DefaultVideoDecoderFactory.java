@@ -10,11 +10,6 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
     private final VideoDecoderFactory platformSoftwareVideoDecoderFactory;
     private final VideoDecoderFactory softwareVideoDecoderFactory;
 
-    @Override
-    public VideoDecoder createDecoder(String str) {
-        return VideoDecoderFactory.CC.$default$createDecoder(this, str);
-    }
-
     public DefaultVideoDecoderFactory(EglBase.Context context) {
         this.softwareVideoDecoderFactory = new SoftwareVideoDecoderFactory();
         this.hardwareVideoDecoderFactory = new HardwareVideoDecoderFactory(context);
@@ -28,6 +23,11 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
     }
 
     @Override
+    public VideoDecoder createDecoder(String str) {
+        return VideoDecoderFactory.CC.$default$createDecoder(this, str);
+    }
+
+    @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
         VideoDecoderFactory videoDecoderFactory;
         VideoDecoder createDecoder = this.softwareVideoDecoderFactory.createDecoder(videoCodecInfo);
@@ -35,10 +35,7 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
         if (createDecoder == null && (videoDecoderFactory = this.platformSoftwareVideoDecoderFactory) != null) {
             createDecoder = videoDecoderFactory.createDecoder(videoCodecInfo);
         }
-        if (createDecoder2 == null || createDecoder == null) {
-            return createDecoder2 != null ? createDecoder2 : createDecoder;
-        }
-        return new VideoDecoderFallback(createDecoder, createDecoder2);
+        return (createDecoder2 == null || createDecoder == null) ? createDecoder2 != null ? createDecoder2 : createDecoder : new VideoDecoderFallback(createDecoder, createDecoder2);
     }
 
     @Override

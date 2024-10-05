@@ -4,7 +4,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
 import org.telegram.ui.Charts.data.ChartData;
@@ -15,7 +14,7 @@ public class StackLinearChartData extends ChartData {
     long[] ySum;
     SegmentTree ySumSegmentTree;
 
-    public StackLinearChartData(JSONObject jSONObject, boolean z) throws JSONException {
+    public StackLinearChartData(JSONObject jSONObject, boolean z) {
         super(jSONObject);
         if (z) {
             long[] jArr = new long[this.lines.size()];
@@ -24,7 +23,7 @@ public class StackLinearChartData extends ChartData {
             for (int i = 0; i < this.lines.size(); i++) {
                 int length = this.x.length;
                 for (int i2 = 0; i2 < length; i2++) {
-                    long j2 = this.lines.get(i).y[i2];
+                    long j2 = ((ChartData.Line) this.lines.get(i)).y[i2];
                     jArr[i] = jArr[i] + j2;
                     if (j2 == 0) {
                         iArr[i] = iArr[i] + 1;
@@ -39,7 +38,7 @@ public class StackLinearChartData extends ChartData {
                 Double.isNaN(d);
                 Double.isNaN(d2);
                 if (d / d2 < 0.01d && iArr[i3] > this.x.length / 2.0f) {
-                    arrayList.add(this.lines.get(i3));
+                    arrayList.add((ChartData.Line) this.lines.get(i3));
                 }
             }
             Iterator it = arrayList.iterator();
@@ -47,14 +46,14 @@ public class StackLinearChartData extends ChartData {
                 this.lines.remove((ChartData.Line) it.next());
             }
         }
-        int length2 = this.lines.get(0).y.length;
+        int length2 = ((ChartData.Line) this.lines.get(0)).y.length;
         int size = this.lines.size();
         this.ySum = new long[length2];
         for (int i4 = 0; i4 < length2; i4++) {
             this.ySum[i4] = 0;
             for (int i5 = 0; i5 < size; i5++) {
                 long[] jArr2 = this.ySum;
-                jArr2[i4] = jArr2[i4] + this.lines.get(i5).y[i4];
+                jArr2[i4] = jArr2[i4] + ((ChartData.Line) this.lines.get(i5)).y[i4];
             }
         }
         this.ySumSegmentTree = new SegmentTree(this.ySum);
@@ -77,22 +76,22 @@ public class StackLinearChartData extends ChartData {
         int i3 = (i2 - i) + 1;
         this.x = new long[i3];
         this.xPercentage = new float[i3];
-        this.lines = new ArrayList<>();
+        this.lines = new ArrayList();
         for (int i4 = 0; i4 < chartData.lines.size(); i4++) {
             ChartData.Line line = new ChartData.Line();
             line.y = new long[i3];
-            line.id = chartData.lines.get(i4).id;
-            line.name = chartData.lines.get(i4).name;
-            line.colorKey = chartData.lines.get(i4).colorKey;
-            line.color = chartData.lines.get(i4).color;
-            line.colorDark = chartData.lines.get(i4).colorDark;
+            line.id = ((ChartData.Line) chartData.lines.get(i4)).id;
+            line.name = ((ChartData.Line) chartData.lines.get(i4)).name;
+            line.colorKey = ((ChartData.Line) chartData.lines.get(i4)).colorKey;
+            line.color = ((ChartData.Line) chartData.lines.get(i4)).color;
+            line.colorDark = ((ChartData.Line) chartData.lines.get(i4)).colorDark;
             this.lines.add(line);
         }
         int i5 = 0;
         while (i <= i2) {
             this.x[i5] = chartData.x[i];
             for (int i6 = 0; i6 < this.lines.size(); i6++) {
-                this.lines.get(i6).y[i5] = chartData.lines.get(i6).y[i];
+                ((ChartData.Line) this.lines.get(i6)).y[i5] = ((ChartData.Line) chartData.lines.get(i6)).y[i];
             }
             i5++;
             i++;
@@ -113,7 +112,7 @@ public class StackLinearChartData extends ChartData {
         long[] jArr = new long[size];
         for (int i2 = 0; i2 < length; i2++) {
             for (int i3 = 0; i3 < size; i3++) {
-                long j = this.lines.get(i3).y[i2];
+                long j = ((ChartData.Line) this.lines.get(i3)).y[i2];
                 if (j > jArr[i3]) {
                     jArr[i3] = j;
                 }

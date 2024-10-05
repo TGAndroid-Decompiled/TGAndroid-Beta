@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_getFactCheck extends TLObject {
-    public ArrayList<Integer> msg_id = new ArrayList<>();
+    public ArrayList msg_id = new ArrayList();
     public TLRPC$InputPeer peer;
 
     @Override
@@ -28,7 +28,7 @@ public class TLRPC$TL_getFactCheck extends TLObject {
         int size = this.msg_id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.msg_id.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.msg_id.get(i)).intValue());
         }
     }
 }

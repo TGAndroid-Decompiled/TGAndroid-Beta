@@ -51,7 +51,7 @@ public class StoryContainsEmojiButton extends View {
     private static TLRPC$Vector lastResponse;
     private final ColorFilter colorFilter;
     private boolean emoji;
-    private ArrayList<TLRPC$InputStickerSet> inputSets;
+    private ArrayList inputSets;
     private int lastContentWidth;
     private StaticLayout layout;
     private float layoutLeft;
@@ -62,7 +62,7 @@ public class StoryContainsEmojiButton extends View {
     private final Path loadingPath;
     private Object parentObject;
     private final Theme.ResourcesProvider resourcesProvider;
-    private ArrayList<TLRPC$StickerSetCovered> sets;
+    private ArrayList sets;
     private int shiftDp;
     private AnimatedEmojiSpan.EmojiGroupedSpans stack;
     private boolean stickers;
@@ -70,7 +70,7 @@ public class StoryContainsEmojiButton extends View {
     private CharSequence toSetText;
     private TLRPC$Vector vector;
 
-    public StoryContainsEmojiButton(Context context, int i, TLObject tLObject, Object obj, boolean z, ArrayList<TLRPC$InputStickerSet> arrayList, Theme.ResourcesProvider resourcesProvider) {
+    public StoryContainsEmojiButton(Context context, int i, TLObject tLObject, Object obj, boolean z, ArrayList arrayList, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.shiftDp = -12;
         this.resourcesProvider = resourcesProvider;
@@ -95,59 +95,204 @@ public class StoryContainsEmojiButton extends View {
         load(i, z, tLObject, arrayList, obj);
     }
 
-    public EmojiPacksAlert getAlert() {
-        if (this.inputSets == null) {
-            int i = -this.shiftDp;
-            this.shiftDp = i;
-            AndroidUtilities.shakeViewSpring(this, i);
-            BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            return null;
+    private void animateLoad(boolean z) {
+        final boolean z2 = true;
+        ValueAnimator valueAnimator = this.loadAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        return new EmojiPacksAlert(null, getContext(), this.resourcesProvider, this.inputSets);
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.loadingDrawable || super.verifyDrawable(drawable);
-    }
-
-    public void setText(CharSequence charSequence) {
-        if (getMeasuredWidth() <= 0) {
-            this.toSetText = charSequence;
+        if (!z) {
+            this.loadT = 1.0f;
+            invalidate();
+            post(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryContainsEmojiButton.this.requestLayout();
+                }
+            });
             return;
         }
-        int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        if (measuredWidth <= 0) {
-            this.toSetText = charSequence;
-            return;
+        this.loadAnimator = ValueAnimator.ofFloat(this.loadT, 1.0f);
+        if (this.layout != null && Math.abs(getMeasuredHeight() - ((getPaddingTop() + this.layout.getHeight()) + getPaddingBottom())) <= AndroidUtilities.dp(3.0f)) {
+            z2 = false;
         }
-        StaticLayout staticLayout = new StaticLayout(charSequence, this.textPaint, measuredWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.layout = staticLayout;
-        this.layoutLeft = staticLayout.getLineCount() > 0 ? this.layout.getLineLeft(0) : 0.0f;
-        this.layoutWidth = this.layout.getLineCount() > 0 ? this.layout.getLineWidth(0) : 0.0f;
-        this.stack = AnimatedEmojiSpan.update(0, this, this.stack, this.layout);
+        this.loadAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                StoryContainsEmojiButton.this.lambda$animateLoad$5(z2, valueAnimator2);
+            }
+        });
+        this.loadAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.loadAnimator.setStartDelay(150L);
+        this.loadAnimator.setDuration(400L);
+        this.loadAnimator.start();
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        boolean z = View.MeasureSpec.getMode(i) == 1073741824;
-        int paddingTop = getPaddingTop();
-        int dp = AndroidUtilities.dp(29.0f);
-        StaticLayout staticLayout = this.layout;
-        setMeasuredDimension(z ? View.MeasureSpec.getSize(i) : getMinimumWidth(), paddingTop + AndroidUtilities.lerp(dp, staticLayout == null ? AndroidUtilities.dp(29.0f) : staticLayout.getHeight(), this.loadT) + getPaddingBottom());
-        int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
+    public void lambda$animateLoad$5(boolean z, ValueAnimator valueAnimator) {
+        this.loadT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
         if (z) {
-            CharSequence charSequence = this.toSetText;
-            if (charSequence == null && (this.layout == null || this.lastContentWidth == size)) {
+            requestLayout();
+        }
+    }
+
+    public void lambda$load$0(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+        set(tLRPC$TL_messages_stickerSet);
+        animateLoad(false);
+    }
+
+    public void lambda$load$1(TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
+        if (tLObject == null) {
+            return;
+        }
+        TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
+        this.vector = tLRPC$Vector;
+        lastRequestParentObject = obj;
+        lastResponse = tLRPC$Vector;
+        for (int i2 = 0; i2 < tLRPC$Vector.objects.size(); i2++) {
+            TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) tLRPC$Vector.objects.get(i2);
+            this.sets.add(tLRPC$StickerSetCovered);
+            TLRPC$StickerSet tLRPC$StickerSet = tLRPC$StickerSetCovered.set;
+            if (tLRPC$StickerSet != null) {
+                this.inputSets.add(MediaDataController.getInputStickerSet(tLRPC$StickerSet));
+                TLRPC$StickerSet tLRPC$StickerSet2 = tLRPC$StickerSetCovered.set;
+                if (tLRPC$StickerSet2.emojis) {
+                    this.emoji = true;
+                } else if (!tLRPC$StickerSet2.masks) {
+                    this.stickers = true;
+                }
+            }
+        }
+        int size = arrayList != null ? arrayList.size() : 0;
+        ArrayList arrayList2 = this.sets;
+        int size2 = size + (arrayList2 == null ? 0 : arrayList2.size());
+        if (this.inputSets != null && arrayList != null && !arrayList.isEmpty()) {
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                TLRPC$InputStickerSet tLRPC$InputStickerSet = (TLRPC$InputStickerSet) arrayList.get(i3);
+                long j = tLRPC$InputStickerSet.id;
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= this.inputSets.size()) {
+                        this.inputSets.add(tLRPC$InputStickerSet);
+                        break;
+                    } else if (((TLRPC$InputStickerSet) this.inputSets.get(i4)).id == j) {
+                        break;
+                    } else {
+                        i4++;
+                    }
+                }
+            }
+            this.emoji = true;
+            this.vector = null;
+        }
+        if (size2 != 1) {
+            set(size2);
+        } else if (this.sets.size() >= 1) {
+            set((TLRPC$StickerSetCovered) this.sets.get(0));
+        } else {
+            if (arrayList != null && arrayList.size() >= 1) {
+                zArr[0] = false;
+                MediaDataController.getInstance(i).getStickerSet((TLRPC$InputStickerSet) arrayList.get(0), 0, false, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj2) {
+                        StoryContainsEmojiButton.this.lambda$load$0((TLRPC$TL_messages_stickerSet) obj2);
+                    }
+                });
                 return;
             }
-            if (charSequence == null) {
-                charSequence = this.layout.getText();
-            }
-            setText(charSequence);
-            this.toSetText = null;
-            this.lastContentWidth = size;
+            set(0);
         }
+        animateLoad(zArr[0]);
+    }
+
+    public void lambda$load$2(final Object obj, final ArrayList arrayList, final boolean[] zArr, final int i, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StoryContainsEmojiButton.this.lambda$load$1(tLObject, obj, arrayList, zArr, i);
+            }
+        });
+    }
+
+    public static void lambda$load$3(Object obj, int i, TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        if (tLRPC$TL_error == null || !FileRefController.isFileRefError(tLRPC$TL_error.text) || obj == null) {
+            requestDelegate.run(tLObject, tLRPC$TL_error);
+        } else {
+            FileRefController.getInstance(i).requestReference(obj, tLRPC$TL_messages_getAttachedStickers, requestDelegate);
+        }
+    }
+
+    public void lambda$load$4(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+        set(tLRPC$TL_messages_stickerSet);
+        animateLoad(true);
+    }
+
+    private void set(int i) {
+        boolean z = this.emoji;
+        setText(AndroidUtilities.replaceSingleTag((z && this.stickers) ? LocaleController.formatPluralString("StoryContainsStickersEmoji", i, new Object[0]) : z ? LocaleController.formatPluralString("StoryContainsEmoji", i, new Object[0]) : LocaleController.formatPluralString("StoryContainsStickers", i, new Object[0]), 0, Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider), null));
+    }
+
+    private void set(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
+        CharSequence charSequence;
+        SpannableString spannableString = new SpannableString("x " + tLRPC$StickerSetCovered.set.title);
+        spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+        TLRPC$Document tLRPC$Document = tLRPC$StickerSetCovered.cover;
+        if (tLRPC$Document == null && (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered)) {
+            ArrayList arrayList = ((TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered).documents;
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (((TLRPC$Document) arrayList.get(i)).id == tLRPC$StickerSetCovered.set.thumb_document_id) {
+                    tLRPC$Document = (TLRPC$Document) arrayList.get(i);
+                }
+            }
+            if (tLRPC$Document == null && !arrayList.isEmpty()) {
+                tLRPC$Document = (TLRPC$Document) arrayList.get(0);
+            }
+        }
+        if (tLRPC$Document != null) {
+            spannableString.setSpan(new AnimatedEmojiSpan(tLRPC$Document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
+            charSequence = spannableString;
+        } else {
+            charSequence = spannableString.subSequence(2, spannableString.length());
+        }
+        boolean z = this.emoji;
+        setText(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString((z && this.stickers) ? R.string.StoryContainsStickersEmojiFrom : z ? R.string.StoryContainsEmojiFrom : R.string.StoryContainsStickersFrom), charSequence));
+    }
+
+    private void set(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+        TLRPC$Document tLRPC$Document;
+        CharSequence charSequence;
+        if (tLRPC$TL_messages_stickerSet == null) {
+            return;
+        }
+        SpannableString spannableString = new SpannableString("x " + tLRPC$TL_messages_stickerSet.set.title);
+        spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+        ArrayList arrayList = tLRPC$TL_messages_stickerSet.documents;
+        int i = 0;
+        while (true) {
+            if (i >= arrayList.size()) {
+                tLRPC$Document = null;
+                break;
+            } else {
+                if (((TLRPC$Document) arrayList.get(i)).id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
+                    tLRPC$Document = (TLRPC$Document) arrayList.get(i);
+                    break;
+                }
+                i++;
+            }
+        }
+        if (tLRPC$Document == null && !arrayList.isEmpty()) {
+            tLRPC$Document = (TLRPC$Document) arrayList.get(0);
+        }
+        if (tLRPC$Document != null) {
+            spannableString.setSpan(new AnimatedEmojiSpan(tLRPC$Document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
+            charSequence = spannableString;
+        } else {
+            charSequence = spannableString.subSequence(2, spannableString.length());
+        }
+        boolean z = this.emoji;
+        setText(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString((z && this.stickers) ? R.string.StoryContainsStickersEmojiFrom : z ? R.string.StoryContainsEmojiFrom : R.string.StoryContainsStickersFrom), charSequence));
     }
 
     @Override
@@ -180,302 +325,154 @@ public class StoryContainsEmojiButton extends View {
         }
     }
 
-    public void load(final int i, boolean z, TLObject tLObject, final ArrayList<TLRPC$InputStickerSet> arrayList, final Object obj) {
+    public EmojiPacksAlert getAlert() {
+        if (this.inputSets != null) {
+            return new EmojiPacksAlert(null, getContext(), this.resourcesProvider, this.inputSets);
+        }
+        int i = -this.shiftDp;
+        this.shiftDp = i;
+        AndroidUtilities.shakeViewSpring(this, i);
+        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        return null;
+    }
+
+    public void load(final int i, boolean z, TLObject tLObject, final ArrayList arrayList, final Object obj) {
+        final RequestDelegate requestDelegate;
         TLRPC$Vector tLRPC$Vector;
+        TLRPC$TL_inputStickeredMediaDocument tLRPC$TL_inputStickeredMediaDocument;
         final boolean[] zArr = {true};
         this.parentObject = obj;
-        if (z) {
-            this.sets = new ArrayList<>();
-            this.inputSets = new ArrayList<>();
-            this.emoji = false;
+        if (!z) {
+            this.emoji = true;
             this.stickers = false;
-            final TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers = new TLRPC$TL_messages_getAttachedStickers();
-            if (tLObject instanceof TLRPC$Photo) {
-                TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
-                TLRPC$TL_inputStickeredMediaPhoto tLRPC$TL_inputStickeredMediaPhoto = new TLRPC$TL_inputStickeredMediaPhoto();
-                TLRPC$TL_inputPhoto tLRPC$TL_inputPhoto = new TLRPC$TL_inputPhoto();
-                tLRPC$TL_inputStickeredMediaPhoto.id = tLRPC$TL_inputPhoto;
-                tLRPC$TL_inputPhoto.id = tLRPC$Photo.id;
-                tLRPC$TL_inputPhoto.access_hash = tLRPC$Photo.access_hash;
-                byte[] bArr = tLRPC$Photo.file_reference;
-                tLRPC$TL_inputPhoto.file_reference = bArr;
-                if (bArr == null) {
-                    tLRPC$TL_inputPhoto.file_reference = new byte[0];
-                }
-                tLRPC$TL_messages_getAttachedStickers.media = tLRPC$TL_inputStickeredMediaPhoto;
-            } else if (tLObject instanceof TLRPC$Document) {
+            ArrayList arrayList2 = new ArrayList();
+            this.inputSets = arrayList2;
+            arrayList2.addAll(arrayList);
+            if (this.inputSets.size() == 1) {
+                MediaDataController.getInstance(i).getStickerSet((TLRPC$InputStickerSet) this.inputSets.get(0), 0, false, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj2) {
+                        StoryContainsEmojiButton.this.lambda$load$4((TLRPC$TL_messages_stickerSet) obj2);
+                    }
+                });
+                return;
+            } else {
+                set(this.inputSets.size());
+                animateLoad(false);
+                return;
+            }
+        }
+        this.sets = new ArrayList();
+        this.inputSets = new ArrayList();
+        this.emoji = false;
+        this.stickers = false;
+        final TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers = new TLRPC$TL_messages_getAttachedStickers();
+        if (!(tLObject instanceof TLRPC$Photo)) {
+            if (tLObject instanceof TLRPC$Document) {
                 TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
-                TLRPC$TL_inputStickeredMediaDocument tLRPC$TL_inputStickeredMediaDocument = new TLRPC$TL_inputStickeredMediaDocument();
+                TLRPC$TL_inputStickeredMediaDocument tLRPC$TL_inputStickeredMediaDocument2 = new TLRPC$TL_inputStickeredMediaDocument();
                 TLRPC$TL_inputDocument tLRPC$TL_inputDocument = new TLRPC$TL_inputDocument();
-                tLRPC$TL_inputStickeredMediaDocument.id = tLRPC$TL_inputDocument;
+                tLRPC$TL_inputStickeredMediaDocument2.id = tLRPC$TL_inputDocument;
                 tLRPC$TL_inputDocument.id = tLRPC$Document.id;
                 tLRPC$TL_inputDocument.access_hash = tLRPC$Document.access_hash;
-                byte[] bArr2 = tLRPC$Document.file_reference;
-                tLRPC$TL_inputDocument.file_reference = bArr2;
-                if (bArr2 == null) {
+                byte[] bArr = tLRPC$Document.file_reference;
+                tLRPC$TL_inputDocument.file_reference = bArr;
+                tLRPC$TL_inputStickeredMediaDocument = tLRPC$TL_inputStickeredMediaDocument2;
+                if (bArr == null) {
                     tLRPC$TL_inputDocument.file_reference = new byte[0];
+                    tLRPC$TL_inputStickeredMediaDocument = tLRPC$TL_inputStickeredMediaDocument2;
                 }
-                tLRPC$TL_messages_getAttachedStickers.media = tLRPC$TL_inputStickeredMediaDocument;
             }
-            final RequestDelegate requestDelegate = new RequestDelegate() {
+            requestDelegate = new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
                     StoryContainsEmojiButton.this.lambda$load$2(obj, arrayList, zArr, i, tLObject2, tLRPC$TL_error);
                 }
             };
-            if (lastRequestParentObject == obj && (tLRPC$Vector = lastResponse) != null) {
-                zArr[0] = false;
-                requestDelegate.run(tLRPC$Vector, null);
-                return;
-            } else {
+            if (lastRequestParentObject == obj || (tLRPC$Vector = lastResponse) == null) {
                 ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getAttachedStickers, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
                         StoryContainsEmojiButton.lambda$load$3(obj, i, tLRPC$TL_messages_getAttachedStickers, requestDelegate, tLObject2, tLRPC$TL_error);
                     }
                 });
+            } else {
+                zArr[0] = false;
+                requestDelegate.run(tLRPC$Vector, null);
                 return;
             }
         }
-        this.emoji = true;
-        this.stickers = false;
-        ArrayList<TLRPC$InputStickerSet> arrayList2 = new ArrayList<>();
-        this.inputSets = arrayList2;
-        arrayList2.addAll(arrayList);
-        if (this.inputSets.size() == 1) {
-            MediaDataController.getInstance(i).getStickerSet(this.inputSets.get(0), 0, false, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj2) {
-                    StoryContainsEmojiButton.this.lambda$load$4((TLRPC$TL_messages_stickerSet) obj2);
-                }
-            });
-        } else {
-            set(this.inputSets.size());
-            animateLoad(false);
+        TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
+        TLRPC$TL_inputStickeredMediaPhoto tLRPC$TL_inputStickeredMediaPhoto = new TLRPC$TL_inputStickeredMediaPhoto();
+        TLRPC$TL_inputPhoto tLRPC$TL_inputPhoto = new TLRPC$TL_inputPhoto();
+        tLRPC$TL_inputStickeredMediaPhoto.id = tLRPC$TL_inputPhoto;
+        tLRPC$TL_inputPhoto.id = tLRPC$Photo.id;
+        tLRPC$TL_inputPhoto.access_hash = tLRPC$Photo.access_hash;
+        byte[] bArr2 = tLRPC$Photo.file_reference;
+        tLRPC$TL_inputPhoto.file_reference = bArr2;
+        tLRPC$TL_inputStickeredMediaDocument = tLRPC$TL_inputStickeredMediaPhoto;
+        if (bArr2 == null) {
+            tLRPC$TL_inputPhoto.file_reference = new byte[0];
+            tLRPC$TL_inputStickeredMediaDocument = tLRPC$TL_inputStickeredMediaPhoto;
         }
-    }
-
-    public void lambda$load$2(final Object obj, final ArrayList arrayList, final boolean[] zArr, final int i, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
+        tLRPC$TL_messages_getAttachedStickers.media = tLRPC$TL_inputStickeredMediaDocument;
+        requestDelegate = new RequestDelegate() {
             @Override
-            public final void run() {
-                StoryContainsEmojiButton.this.lambda$load$1(tLObject, obj, arrayList, zArr, i);
+            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
+                StoryContainsEmojiButton.this.lambda$load$2(obj, arrayList, zArr, i, tLObject2, tLRPC$TL_error);
+            }
+        };
+        if (lastRequestParentObject == obj) {
+        }
+        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getAttachedStickers, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
+                StoryContainsEmojiButton.lambda$load$3(obj, i, tLRPC$TL_messages_getAttachedStickers, requestDelegate, tLObject2, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$load$1(TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
-        if (tLObject == null) {
-            return;
-        }
-        TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
-        this.vector = tLRPC$Vector;
-        lastRequestParentObject = obj;
-        lastResponse = tLRPC$Vector;
-        for (int i2 = 0; i2 < tLRPC$Vector.objects.size(); i2++) {
-            TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) tLRPC$Vector.objects.get(i2);
-            this.sets.add(tLRPC$StickerSetCovered);
-            TLRPC$StickerSet tLRPC$StickerSet = tLRPC$StickerSetCovered.set;
-            if (tLRPC$StickerSet != null) {
-                this.inputSets.add(MediaDataController.getInputStickerSet(tLRPC$StickerSet));
-                TLRPC$StickerSet tLRPC$StickerSet2 = tLRPC$StickerSetCovered.set;
-                if (tLRPC$StickerSet2.emojis) {
-                    this.emoji = true;
-                } else if (!tLRPC$StickerSet2.masks) {
-                    this.stickers = true;
-                }
-            }
-        }
-        int size = arrayList != null ? arrayList.size() : 0;
-        ArrayList<TLRPC$StickerSetCovered> arrayList2 = this.sets;
-        int size2 = size + (arrayList2 == null ? 0 : arrayList2.size());
-        if (this.inputSets != null && arrayList != null && !arrayList.isEmpty()) {
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                TLRPC$InputStickerSet tLRPC$InputStickerSet = (TLRPC$InputStickerSet) arrayList.get(i3);
-                long j = tLRPC$InputStickerSet.id;
-                int i4 = 0;
-                while (true) {
-                    if (i4 >= this.inputSets.size()) {
-                        this.inputSets.add(tLRPC$InputStickerSet);
-                        break;
-                    } else if (this.inputSets.get(i4).id == j) {
-                        break;
-                    } else {
-                        i4++;
-                    }
-                }
-            }
-            this.emoji = true;
-            this.vector = null;
-        }
-        if (size2 == 1) {
-            if (this.sets.size() >= 1) {
-                set(this.sets.get(0));
-            } else {
-                if (arrayList != null && arrayList.size() >= 1) {
-                    zArr[0] = false;
-                    MediaDataController.getInstance(i).getStickerSet((TLRPC$InputStickerSet) arrayList.get(0), 0, false, new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj2) {
-                            StoryContainsEmojiButton.this.lambda$load$0((TLRPC$TL_messages_stickerSet) obj2);
-                        }
-                    });
-                    return;
-                }
-                set(0);
-            }
-        } else {
-            set(size2);
-        }
-        animateLoad(zArr[0]);
-    }
-
-    public void lambda$load$0(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        set(tLRPC$TL_messages_stickerSet);
-        animateLoad(false);
-    }
-
-    public static void lambda$load$3(Object obj, int i, TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error != null && FileRefController.isFileRefError(tLRPC$TL_error.text) && obj != null) {
-            FileRefController.getInstance(i).requestReference(obj, tLRPC$TL_messages_getAttachedStickers, requestDelegate);
-        } else {
-            requestDelegate.run(tLObject, tLRPC$TL_error);
-        }
-    }
-
-    public void lambda$load$4(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        set(tLRPC$TL_messages_stickerSet);
-        animateLoad(true);
-    }
-
-    private void set(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        TLRPC$Document tLRPC$Document;
-        CharSequence charSequence;
-        String string;
-        if (tLRPC$TL_messages_stickerSet == null) {
-            return;
-        }
-        SpannableString spannableString = new SpannableString("x " + tLRPC$TL_messages_stickerSet.set.title);
-        spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
-        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
-        ArrayList<TLRPC$Document> arrayList = tLRPC$TL_messages_stickerSet.documents;
-        int i = 0;
-        while (true) {
-            if (i >= arrayList.size()) {
-                tLRPC$Document = null;
-                break;
-            } else {
-                if (arrayList.get(i).id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
-                    tLRPC$Document = arrayList.get(i);
-                    break;
-                }
-                i++;
-            }
-        }
-        if (tLRPC$Document == null && !arrayList.isEmpty()) {
-            tLRPC$Document = arrayList.get(0);
-        }
-        if (tLRPC$Document != null) {
-            spannableString.setSpan(new AnimatedEmojiSpan(tLRPC$Document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
-            charSequence = spannableString;
-        } else {
-            charSequence = spannableString.subSequence(2, spannableString.length());
-        }
-        boolean z = this.emoji;
-        if (z && this.stickers) {
-            string = LocaleController.getString(R.string.StoryContainsStickersEmojiFrom);
-        } else if (z) {
-            string = LocaleController.getString(R.string.StoryContainsEmojiFrom);
-        } else {
-            string = LocaleController.getString(R.string.StoryContainsStickersFrom);
-        }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequence));
-    }
-
-    private void set(TLRPC$StickerSetCovered tLRPC$StickerSetCovered) {
-        CharSequence charSequence;
-        String string;
-        SpannableString spannableString = new SpannableString("x " + tLRPC$StickerSetCovered.set.title);
-        spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
-        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
-        TLRPC$Document tLRPC$Document = tLRPC$StickerSetCovered.cover;
-        if (tLRPC$Document == null && (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered)) {
-            ArrayList<TLRPC$Document> arrayList = ((TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered).documents;
-            for (int i = 0; i < arrayList.size(); i++) {
-                if (arrayList.get(i).id == tLRPC$StickerSetCovered.set.thumb_document_id) {
-                    tLRPC$Document = arrayList.get(i);
-                }
-            }
-            if (tLRPC$Document == null && !arrayList.isEmpty()) {
-                tLRPC$Document = arrayList.get(0);
-            }
-        }
-        if (tLRPC$Document != null) {
-            spannableString.setSpan(new AnimatedEmojiSpan(tLRPC$Document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
-            charSequence = spannableString;
-        } else {
-            charSequence = spannableString.subSequence(2, spannableString.length());
-        }
-        boolean z = this.emoji;
-        if (z && this.stickers) {
-            string = LocaleController.getString(R.string.StoryContainsStickersEmojiFrom);
-        } else if (z) {
-            string = LocaleController.getString(R.string.StoryContainsEmojiFrom);
-        } else {
-            string = LocaleController.getString(R.string.StoryContainsStickersFrom);
-        }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequence));
-    }
-
-    private void set(int i) {
-        boolean z = this.emoji;
-        if (z && this.stickers) {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickersEmoji", i, new Object[0]), 0, Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider), null));
-        } else if (z) {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsEmoji", i, new Object[0]), 0, Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider), null));
-        } else {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickers", i, new Object[0]), 0, Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider), null));
-        }
-    }
-
-    private void animateLoad(boolean z) {
-        final boolean z2 = true;
-        ValueAnimator valueAnimator = this.loadAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
+    @Override
+    protected void onMeasure(int i, int i2) {
+        boolean z = View.MeasureSpec.getMode(i) == 1073741824;
+        int paddingTop = getPaddingTop();
+        int dp = AndroidUtilities.dp(29.0f);
+        StaticLayout staticLayout = this.layout;
+        setMeasuredDimension(z ? View.MeasureSpec.getSize(i) : getMinimumWidth(), paddingTop + AndroidUtilities.lerp(dp, staticLayout == null ? AndroidUtilities.dp(29.0f) : staticLayout.getHeight(), this.loadT) + getPaddingBottom());
+        int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
         if (z) {
-            this.loadAnimator = ValueAnimator.ofFloat(this.loadT, 1.0f);
-            if (this.layout != null && Math.abs(getMeasuredHeight() - ((getPaddingTop() + this.layout.getHeight()) + getPaddingBottom())) <= AndroidUtilities.dp(3.0f)) {
-                z2 = false;
+            CharSequence charSequence = this.toSetText;
+            if (charSequence == null && (this.layout == null || this.lastContentWidth == size)) {
+                return;
             }
-            this.loadAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StoryContainsEmojiButton.this.lambda$animateLoad$5(z2, valueAnimator2);
-                }
-            });
-            this.loadAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.loadAnimator.setStartDelay(150L);
-            this.loadAnimator.setDuration(400L);
-            this.loadAnimator.start();
-            return;
+            if (charSequence == null) {
+                charSequence = this.layout.getText();
+            }
+            setText(charSequence);
+            this.toSetText = null;
+            this.lastContentWidth = size;
         }
-        this.loadT = 1.0f;
-        invalidate();
-        post(new Runnable() {
-            @Override
-            public final void run() {
-                StoryContainsEmojiButton.this.requestLayout();
-            }
-        });
     }
 
-    public void lambda$animateLoad$5(boolean z, ValueAnimator valueAnimator) {
-        this.loadT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-        if (z) {
-            requestLayout();
+    public void setText(CharSequence charSequence) {
+        if (getMeasuredWidth() <= 0) {
+            this.toSetText = charSequence;
+            return;
         }
+        int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+        if (measuredWidth <= 0) {
+            this.toSetText = charSequence;
+            return;
+        }
+        StaticLayout staticLayout = new StaticLayout(charSequence, this.textPaint, measuredWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.layout = staticLayout;
+        this.layoutLeft = staticLayout.getLineCount() > 0 ? this.layout.getLineLeft(0) : 0.0f;
+        this.layoutWidth = this.layout.getLineCount() > 0 ? this.layout.getLineWidth(0) : 0.0f;
+        this.stack = AnimatedEmojiSpan.update(0, this, this.stack, this.layout);
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.loadingDrawable || super.verifyDrawable(drawable);
     }
 }

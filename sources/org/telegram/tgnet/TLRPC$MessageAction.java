@@ -32,7 +32,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
     public long total_amount;
     public int ttl;
     public long user_id;
-    public ArrayList<Long> users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
     public boolean video;
     public TLRPC$WallPaper wallpaper;
 
@@ -70,6 +70,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         }
                     }
                 };
+                break;
+            case -2015170219:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiveawayResults();
                 break;
             case -1892568281:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
@@ -192,10 +195,13 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         int size = this.users.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32((int) this.users.get(i2).longValue());
+                            abstractSerializedData2.writeInt32((int) ((Long) this.users.get(i2)).longValue());
                         }
                     }
                 };
+                break;
+            case -1475391004:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiveawayLaunch();
                 break;
             case -1441072131:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSetMessagesTTL() {
@@ -229,6 +235,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         abstractSerializedData2.writeString(this.domain);
                     }
                 };
+                break;
+            case -1341372510:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionPrizeStars();
                 break;
             case -1336546578:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChannelMigrateFrom() {
@@ -516,18 +525,29 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatAddUser();
                 break;
             case 715107781:
-                tLRPC$MessageAction = new TLRPC$TL_messageActionGiveawayResults();
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiveawayResults() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.winners_count = abstractSerializedData2.readInt32(z2);
+                        this.unclaimed_count = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(715107781);
+                        abstractSerializedData2.writeInt32(this.winners_count);
+                        abstractSerializedData2.writeInt32(this.unclaimed_count);
+                    }
+                };
                 break;
             case 827428507:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionRequestedPeer();
                 break;
             case 858499565:
-                tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 858499565;
-
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiveawayLaunch() {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(858499565);
                     }
                 };
                 break;
@@ -602,7 +622,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         int size = this.users.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32((int) this.users.get(i2).longValue());
+                            abstractSerializedData2.writeInt32((int) ((Long) this.users.get(i2)).longValue());
                         }
                     }
                 };
@@ -736,7 +756,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         int size = this.users.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32((int) this.users.get(i2).longValue());
+                            abstractSerializedData2.writeInt32((int) ((Long) this.users.get(i2)).longValue());
                         }
                     }
                 };

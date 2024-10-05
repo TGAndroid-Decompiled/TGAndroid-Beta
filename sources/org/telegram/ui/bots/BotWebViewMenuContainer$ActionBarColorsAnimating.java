@@ -14,15 +14,8 @@ public class BotWebViewMenuContainer$ActionBarColorsAnimating {
     SparseIntArray toColors = new SparseIntArray();
     int[] colorKeys = {Theme.key_windowBackgroundWhiteBlackText, Theme.key_actionBarWhiteSelector, Theme.key_actionBarDefaultSubmenuBackground, Theme.key_actionBarDefaultSubmenuItem, Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_dialogButtonSelector, Theme.key_sheet_scrollUp};
 
-    public void setFrom(int i, Theme.ResourcesProvider resourcesProvider) {
-        updateColors(this.fromColors, i, resourcesProvider);
-    }
-
-    public void setTo(int i, Theme.ResourcesProvider resourcesProvider) {
-        updateColors(this.toColors, i, resourcesProvider);
-    }
-
     private void updateColors(SparseIntArray sparseIntArray, int i, Theme.ResourcesProvider resourcesProvider) {
+        int color;
         int i2;
         int i3 = 0;
         if (i == 0) {
@@ -45,14 +38,18 @@ public class BotWebViewMenuContainer$ActionBarColorsAnimating {
                 }
                 int i6 = iArr2[i3];
                 if (i6 == Theme.key_actionBarDefaultSubmenuBackground || i6 == Theme.key_actionBarDefaultSubmenuItem || i6 == Theme.key_actionBarDefaultSubmenuItemIcon || i6 == (i2 = Theme.key_dialogButtonSelector)) {
-                    sparseIntArray.put(i6, Theme.getColor(i6, resourcesProvider));
+                    color = Theme.getColor(i6, resourcesProvider);
                 } else if (i6 == Theme.key_sheet_scrollUp) {
-                    sparseIntArray.put(i6, ColorUtils.blendARGB(i, i5, 0.5f));
-                } else if (i6 == Theme.key_actionBarWhiteSelector || i6 == i2) {
-                    sparseIntArray.put(i6, alphaComponent);
+                    color = ColorUtils.blendARGB(i, i5, 0.5f);
                 } else {
-                    sparseIntArray.put(i6, i5);
+                    if (i6 == Theme.key_actionBarWhiteSelector || i6 == i2) {
+                        sparseIntArray.put(i6, alphaComponent);
+                    } else {
+                        sparseIntArray.put(i6, i5);
+                    }
+                    i3++;
                 }
+                sparseIntArray.put(i6, color);
                 i3++;
             }
         }
@@ -60,6 +57,14 @@ public class BotWebViewMenuContainer$ActionBarColorsAnimating {
 
     public int getColor(int i) {
         return ColorUtils.blendARGB(this.fromColors.get(i), this.toColors.get(i), this.progress);
+    }
+
+    public void setFrom(int i, Theme.ResourcesProvider resourcesProvider) {
+        updateColors(this.fromColors, i, resourcesProvider);
+    }
+
+    public void setTo(int i, Theme.ResourcesProvider resourcesProvider) {
+        updateColors(this.toColors, i, resourcesProvider);
     }
 
     public void updateActionBar(ActionBar actionBar, float f) {

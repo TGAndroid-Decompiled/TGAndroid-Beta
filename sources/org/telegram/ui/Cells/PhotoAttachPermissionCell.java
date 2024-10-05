@@ -46,24 +46,8 @@ public class PhotoAttachPermissionCell extends FrameLayout {
         this.itemSize = AndroidUtilities.dp(80.0f);
     }
 
-    public void setItemSize(int i) {
-        this.itemSize = i;
-    }
-
-    public void setType(int i) {
-        if (i == 0) {
-            this.imageView.setImageResource(R.drawable.permissions_camera1);
-            this.imageView2.setImageResource(R.drawable.permissions_camera2);
-            this.textView.setText(LocaleController.getString(R.string.CameraPermissionText));
-            this.imageView.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
-            this.imageView2.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
-            return;
-        }
-        this.imageView.setImageResource(R.drawable.permissions_gallery1);
-        this.imageView2.setImageResource(R.drawable.permissions_gallery2);
-        this.textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
-        this.imageView.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
-        this.imageView2.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     @Override
@@ -71,7 +55,42 @@ public class PhotoAttachPermissionCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(5.0f), 1073741824));
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public void setItemSize(int i) {
+        this.itemSize = i;
+    }
+
+    public void setType(int i) {
+        ImageView imageView;
+        float f;
+        float f2;
+        int i2;
+        float f3;
+        int i3;
+        float f4;
+        if (i == 0) {
+            this.imageView.setImageResource(R.drawable.permissions_camera1);
+            this.imageView2.setImageResource(R.drawable.permissions_camera2);
+            this.textView.setText(LocaleController.getString(R.string.CameraPermissionText));
+            imageView = this.imageView;
+            f = 0.0f;
+            f2 = 27.0f;
+            i2 = 44;
+            f3 = 44.0f;
+            i3 = 17;
+            f4 = 5.0f;
+        } else {
+            this.imageView.setImageResource(R.drawable.permissions_gallery1);
+            this.imageView2.setImageResource(R.drawable.permissions_gallery2);
+            this.textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
+            imageView = this.imageView;
+            f = 2.0f;
+            f2 = 27.0f;
+            i2 = 44;
+            f3 = 44.0f;
+            i3 = 17;
+            f4 = 0.0f;
+        }
+        imageView.setLayoutParams(LayoutHelper.createFrame(i2, f3, i3, f4, 0.0f, f, f2));
+        this.imageView2.setLayoutParams(LayoutHelper.createFrame(44, f3, i3, f4, 0.0f, f, f2));
     }
 }

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.RLottieDrawable;
 
 public class SuperRipple extends ISuperRipple {
     public final int MAX_COUNT;
@@ -20,7 +19,7 @@ public class SuperRipple extends ISuperRipple {
     public int count;
     public float density;
     public RenderEffect effect;
-    public final ArrayList<Effect> effects;
+    public final ArrayList effects;
     public int height;
     public final float[] intensity;
     public final RuntimeShader shader;
@@ -45,53 +44,26 @@ public class SuperRipple extends ISuperRipple {
     public SuperRipple(View view) {
         super(view);
         RenderEffect createRuntimeShaderEffect;
-        this.effects = new ArrayList<>();
+        this.effects = new ArrayList();
         this.MAX_COUNT = 7;
         this.t = new float[7];
         this.centerX = new float[7];
         this.centerY = new float[7];
         this.intensity = new float[7];
-        RuntimeShader runtimeShader = new RuntimeShader(RLottieDrawable.readRes(null, R.raw.superripple_effect));
+        RuntimeShader runtimeShader = new RuntimeShader(AndroidUtilities.readRes(R.raw.superripple_effect));
         this.shader = runtimeShader;
         setupSizeUniforms(true);
         createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
         this.effect = createRuntimeShaderEffect;
     }
 
-    private void setupSizeUniforms(boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.SuperRipple.setupSizeUniforms(boolean):void");
-    }
-
-    @Override
-    public void animate(float f, float f2, float f3) {
-        if (this.effects.size() >= 7) {
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, (Math.max(Math.max(MathUtils.distance(0.0f, 0.0f, f, f2), MathUtils.distance(this.view.getWidth(), 0.0f, f, f2)), Math.max(MathUtils.distance(0.0f, this.view.getHeight(), f, f2), MathUtils.distance(this.view.getWidth(), this.view.getHeight(), f, f2))) * 2.0f) / (AndroidUtilities.density * 1200.0f));
-        final Effect effect = new Effect(f, f2, f3, ofFloat);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                SuperRipple.this.lambda$animate$0(effect, valueAnimator);
-            }
-        });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                SuperRipple.this.effects.remove(effect);
-                SuperRipple.this.updateProperties();
-            }
-        });
-        ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        ofFloat.setDuration(r2 * 1000.0f);
-        this.effects.add(effect);
-        updateProperties();
-        ofFloat.start();
-    }
-
     public void lambda$animate$0(Effect effect, ValueAnimator valueAnimator) {
         effect.t = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         updateProperties();
+    }
+
+    private void setupSizeUniforms(boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.SuperRipple.setupSizeUniforms(boolean):void");
     }
 
     public void updateProperties() {
@@ -102,7 +74,7 @@ public class SuperRipple extends ISuperRipple {
             boolean z3 = this.count != Math.min(7, this.effects.size());
             this.count = Math.min(7, this.effects.size());
             for (int i = 0; i < this.count; i++) {
-                Effect effect = this.effects.get(i);
+                Effect effect = (Effect) this.effects.get(i);
                 boolean z4 = z3 || Math.abs(this.t[i] - effect.t) > 0.001f;
                 this.t[i] = effect.t;
                 boolean z5 = z4 || Math.abs(this.centerX[i] - effect.cx) > 0.001f;
@@ -131,5 +103,32 @@ public class SuperRipple extends ISuperRipple {
         if (z) {
             this.view.invalidate();
         }
+    }
+
+    @Override
+    public void animate(float f, float f2, float f3) {
+        if (this.effects.size() >= 7) {
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, (Math.max(Math.max(MathUtils.distance(0.0f, 0.0f, f, f2), MathUtils.distance(this.view.getWidth(), 0.0f, f, f2)), Math.max(MathUtils.distance(0.0f, this.view.getHeight(), f, f2), MathUtils.distance(this.view.getWidth(), this.view.getHeight(), f, f2))) * 2.0f) / (AndroidUtilities.density * 1200.0f));
+        final Effect effect = new Effect(f, f2, f3, ofFloat);
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                SuperRipple.this.lambda$animate$0(effect, valueAnimator);
+            }
+        });
+        ofFloat.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                SuperRipple.this.effects.remove(effect);
+                SuperRipple.this.updateProperties();
+            }
+        });
+        ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+        ofFloat.setDuration(r2 * 1000.0f);
+        this.effects.add(effect);
+        updateProperties();
+        ofFloat.start();
     }
 }

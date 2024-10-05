@@ -62,94 +62,38 @@ public class StickerCell extends FrameLayout {
         addView(this.premiumIconView, LayoutHelper.createFrame(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f) + getPaddingLeft() + getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f), 1073741824));
-    }
-
-    @Override
-    public void setPressed(boolean z) {
-        if (this.imageView.getImageReceiver().getPressed() != z) {
-            this.imageView.getImageReceiver().setPressed(z ? 1 : 0);
-            this.imageView.invalidate();
+    private void updatePremiumStatus(boolean z) {
+        PremiumLockIconView premiumLockIconView;
+        float f;
+        if (this.isPremiumSticker) {
+            this.showPremiumLock = true;
+        } else {
+            this.showPremiumLock = false;
         }
-        super.setPressed(z);
-    }
-
-    public void setClearsInputField(boolean z) {
-        this.clearsInputField = z;
-    }
-
-    public boolean isClearsInputField() {
-        return this.clearsInputField;
-    }
-
-    public void setSticker(TLRPC$Document tLRPC$Document, Object obj) {
-        this.parentObject = obj;
-        boolean isPremiumSticker = MessageObject.isPremiumSticker(tLRPC$Document);
-        this.isPremiumSticker = isPremiumSticker;
-        if (isPremiumSticker) {
-            this.premiumIconView.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            this.premiumIconView.setWaitingImage();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.premiumIconView.getLayoutParams();
+        if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+            int dp = AndroidUtilities.dp(16.0f);
+            layoutParams.width = dp;
+            layoutParams.height = dp;
+            layoutParams.gravity = 85;
+            layoutParams.bottomMargin = AndroidUtilities.dp(8.0f);
+            layoutParams.rightMargin = AndroidUtilities.dp(8.0f);
+            premiumLockIconView = this.premiumIconView;
+            f = 1.0f;
+        } else {
+            int dp2 = AndroidUtilities.dp(24.0f);
+            layoutParams.width = dp2;
+            layoutParams.height = dp2;
+            layoutParams.gravity = 81;
+            layoutParams.rightMargin = 0;
+            layoutParams.bottomMargin = 0;
+            premiumLockIconView = this.premiumIconView;
+            f = 4.0f;
         }
-        if (tLRPC$Document != null) {
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 1.0f, 1.0f, this.resourcesProvider);
-            if (MessageObject.canAutoplayAnimatedSticker(tLRPC$Document)) {
-                if (svgThumb != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", (String) null, svgThumb, this.parentObject);
-                } else if (closestPhotoSizeWithSize != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), (String) null, 0, this.parentObject);
-                } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", (String) null, (Drawable) null, this.parentObject);
-                }
-            } else if (svgThumb == null) {
-                this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), (String) null, "webp", (Drawable) null, this.parentObject);
-            } else if (closestPhotoSizeWithSize != null) {
-                this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), (String) null, "webp", svgThumb, this.parentObject);
-            } else {
-                this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), (String) null, "webp", svgThumb, this.parentObject);
-            }
-        }
-        this.sticker = tLRPC$Document;
-        Drawable background = getBackground();
-        if (background != null) {
-            background.setAlpha(230);
-            background.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_stickersHintPanel), PorterDuff.Mode.MULTIPLY));
-        }
-        updatePremiumStatus(false);
-    }
-
-    public TLRPC$Document getSticker() {
-        return this.sticker;
-    }
-
-    public Object getParentObject() {
-        return this.parentObject;
-    }
-
-    public void setScaled(boolean z) {
-        this.scaled = z;
-        this.lastUpdateTime = System.currentTimeMillis();
+        premiumLockIconView.setPadding(AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f));
+        this.premiumIconView.setLocked(true ^ UserConfig.getInstance(UserConfig.selectedAccount).isPremium());
+        AndroidUtilities.updateViewVisibilityAnimated(this.premiumIconView, this.showPremiumLock, 0.9f, z);
         invalidate();
-    }
-
-    public boolean showingBitmap() {
-        return this.imageView.getImageReceiver().getBitmap() != null;
-    }
-
-    public MessageObject.SendAnimationData getSendAnimationData() {
-        ImageReceiver imageReceiver = this.imageView.getImageReceiver();
-        if (!imageReceiver.hasNotThumb()) {
-            return null;
-        }
-        MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-        this.imageView.getLocationInWindow(new int[2]);
-        sendAnimationData.x = imageReceiver.getCenterX() + r2[0];
-        sendAnimationData.y = imageReceiver.getCenterY() + r2[1];
-        sendAnimationData.width = imageReceiver.getImageWidth();
-        sendAnimationData.height = imageReceiver.getImageHeight();
-        return sendAnimationData;
     }
 
     @Override
@@ -187,6 +131,32 @@ public class StickerCell extends FrameLayout {
         return drawChild;
     }
 
+    public Object getParentObject() {
+        return this.parentObject;
+    }
+
+    public MessageObject.SendAnimationData getSendAnimationData() {
+        ImageReceiver imageReceiver = this.imageView.getImageReceiver();
+        if (!imageReceiver.hasNotThumb()) {
+            return null;
+        }
+        MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
+        this.imageView.getLocationInWindow(new int[2]);
+        sendAnimationData.x = imageReceiver.getCenterX() + r2[0];
+        sendAnimationData.y = imageReceiver.getCenterY() + r2[1];
+        sendAnimationData.width = imageReceiver.getImageWidth();
+        sendAnimationData.height = imageReceiver.getImageHeight();
+        return sendAnimationData;
+    }
+
+    public TLRPC$Document getSticker() {
+        return this.sticker;
+    }
+
+    public boolean isClearsInputField() {
+        return this.clearsInputField;
+    }
+
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -201,40 +171,84 @@ public class StickerCell extends FrameLayout {
                 str = (str2 == null || str2.length() <= 0) ? null : tLRPC$DocumentAttribute.alt;
             }
         }
-        if (str != null) {
-            accessibilityNodeInfo.setText(str + " " + LocaleController.getString(R.string.AttachSticker));
-        } else {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachSticker));
-        }
+        accessibilityNodeInfo.setText(str != null ? str + " " + LocaleController.getString(R.string.AttachSticker) : LocaleController.getString(R.string.AttachSticker));
         accessibilityNodeInfo.setEnabled(true);
     }
 
-    private void updatePremiumStatus(boolean z) {
-        if (this.isPremiumSticker) {
-            this.showPremiumLock = true;
-        } else {
-            this.showPremiumLock = false;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f) + getPaddingLeft() + getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f), 1073741824));
+    }
+
+    public void setClearsInputField(boolean z) {
+        this.clearsInputField = z;
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        if (this.imageView.getImageReceiver().getPressed() != z) {
+            this.imageView.getImageReceiver().setPressed(z ? 1 : 0);
+            this.imageView.invalidate();
         }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.premiumIconView.getLayoutParams();
-        if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-            int dp = AndroidUtilities.dp(24.0f);
-            layoutParams.width = dp;
-            layoutParams.height = dp;
-            layoutParams.gravity = 81;
-            layoutParams.rightMargin = 0;
-            layoutParams.bottomMargin = 0;
-            this.premiumIconView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        } else {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            layoutParams.width = dp2;
-            layoutParams.height = dp2;
-            layoutParams.gravity = 85;
-            layoutParams.bottomMargin = AndroidUtilities.dp(8.0f);
-            layoutParams.rightMargin = AndroidUtilities.dp(8.0f);
-            this.premiumIconView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-        }
-        this.premiumIconView.setLocked(true ^ UserConfig.getInstance(UserConfig.selectedAccount).isPremium());
-        AndroidUtilities.updateViewVisibilityAnimated(this.premiumIconView, this.showPremiumLock, 0.9f, z);
+        super.setPressed(z);
+    }
+
+    public void setScaled(boolean z) {
+        this.scaled = z;
+        this.lastUpdateTime = System.currentTimeMillis();
         invalidate();
+    }
+
+    public void setSticker(TLRPC$Document tLRPC$Document, Object obj) {
+        BackupImageView backupImageView;
+        ImageLocation forDocument;
+        Object obj2;
+        String str;
+        String str2;
+        this.parentObject = obj;
+        boolean isPremiumSticker = MessageObject.isPremiumSticker(tLRPC$Document);
+        this.isPremiumSticker = isPremiumSticker;
+        if (isPremiumSticker) {
+            this.premiumIconView.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            this.premiumIconView.setWaitingImage();
+        }
+        if (tLRPC$Document != null) {
+            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 1.0f, 1.0f, this.resourcesProvider);
+            if (MessageObject.canAutoplayAnimatedSticker(tLRPC$Document)) {
+                if (svgThumb != null) {
+                    backupImageView = this.imageView;
+                    forDocument = ImageLocation.getForDocument(tLRPC$Document);
+                    obj2 = this.parentObject;
+                    str = "80_80";
+                    str2 = null;
+                    backupImageView.setImage(forDocument, str, str2, svgThumb, obj2);
+                } else if (closestPhotoSizeWithSize != null) {
+                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), (String) null, 0, this.parentObject);
+                } else {
+                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", (String) null, (Drawable) null, this.parentObject);
+                }
+            } else if (svgThumb != null) {
+                backupImageView = this.imageView;
+                forDocument = closestPhotoSizeWithSize != null ? ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document) : ImageLocation.getForDocument(tLRPC$Document);
+                obj2 = this.parentObject;
+                str = null;
+                str2 = "webp";
+                backupImageView.setImage(forDocument, str, str2, svgThumb, obj2);
+            } else {
+                this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), (String) null, "webp", (Drawable) null, this.parentObject);
+            }
+        }
+        this.sticker = tLRPC$Document;
+        Drawable background = getBackground();
+        if (background != null) {
+            background.setAlpha(230);
+            background.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_stickersHintPanel), PorterDuff.Mode.MULTIPLY));
+        }
+        updatePremiumStatus(false);
+    }
+
+    public boolean showingBitmap() {
+        return this.imageView.getImageReceiver().getBitmap() != null;
     }
 }

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class TLRPC$TL_account_authorizationForm extends TLObject {
     public int flags;
     public String privacy_policy_url;
-    public ArrayList<TLRPC$SecureRequiredType> required_types = new ArrayList<>();
-    public ArrayList<TLRPC$TL_secureValue> values = new ArrayList<>();
-    public ArrayList<TLRPC$SecureValueError> errors = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList required_types = new ArrayList();
+    public ArrayList values = new ArrayList();
+    public ArrayList errors = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_account_authorizationForm TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1389486888 != i) {
@@ -98,25 +98,25 @@ public class TLRPC$TL_account_authorizationForm extends TLObject {
         int size = this.required_types.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.required_types.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$SecureRequiredType) this.required_types.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.values.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.values.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_secureValue) this.values.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.errors.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.errors.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$SecureValueError) this.errors.get(i3)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size4 = this.users.size();
         abstractSerializedData.writeInt32(size4);
         for (int i4 = 0; i4 < size4; i4++) {
-            this.users.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i4)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.privacy_policy_url);

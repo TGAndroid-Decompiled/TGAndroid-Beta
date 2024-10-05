@@ -193,7 +193,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i13 = 0; i13 < size; i13++) {
-                this.entities.get(i13).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i13)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1024) != 0) {
@@ -222,7 +222,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
             int size2 = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size2);
             for (int i14 = 0; i14 < size2; i14++) {
-                this.restriction_reason.get(i14).serializeToStream(abstractSerializedData);
+                ((TLRPC$RestrictionReason) this.restriction_reason.get(i14)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 33554432) != 0) {

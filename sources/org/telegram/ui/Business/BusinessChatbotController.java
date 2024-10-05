@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 public class BusinessChatbotController {
     private static volatile BusinessChatbotController[] Instance = new BusinessChatbotController[4];
     private static final Object[] lockObjects = new Object[4];
-    private ArrayList<Utilities.Callback<TLRPC$TL_account_connectedBots>> callbacks = new ArrayList<>();
+    private ArrayList callbacks = new ArrayList();
     private final int currentAccount;
     private long lastTime;
     private boolean loaded;
@@ -24,6 +24,10 @@ public class BusinessChatbotController {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
+    }
+
+    private BusinessChatbotController(int i) {
+        this.currentAccount = i;
     }
 
     public static BusinessChatbotController getInstance(int i) {
@@ -45,55 +49,6 @@ public class BusinessChatbotController {
         return businessChatbotController;
     }
 
-    private BusinessChatbotController(int i) {
-        this.currentAccount = i;
-    }
-
-    public void load(Utilities.Callback<TLRPC$TL_account_connectedBots> callback) {
-        boolean z;
-        this.callbacks.add(callback);
-        if (this.loading) {
-            return;
-        }
-        if (System.currentTimeMillis() - this.lastTime > 60000 || !(z = this.loaded)) {
-            this.loading = true;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-                public static int constructor = 1319421967;
-
-                @Override
-                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
-                    return TLRPC$TL_account_connectedBots.TLdeserialize(abstractSerializedData, i, z2);
-                }
-
-                @Override
-                public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
-                }
-            }, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BusinessChatbotController.this.lambda$load$1(tLObject, tLRPC$TL_error);
-                }
-            });
-        } else if (z) {
-            for (int i = 0; i < this.callbacks.size(); i++) {
-                if (this.callbacks.get(i) != null) {
-                    this.callbacks.get(i).run(this.value);
-                }
-            }
-            this.callbacks.clear();
-        }
-    }
-
-    public void lambda$load$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BusinessChatbotController.this.lambda$load$0(tLObject);
-            }
-        });
-    }
-
     public void lambda$load$0(TLObject tLObject) {
         this.loading = false;
         TLRPC$TL_account_connectedBots tLRPC$TL_account_connectedBots = tLObject instanceof TLRPC$TL_account_connectedBots ? (TLRPC$TL_account_connectedBots) tLObject : null;
@@ -105,16 +60,59 @@ public class BusinessChatbotController {
         this.loaded = true;
         for (int i = 0; i < this.callbacks.size(); i++) {
             if (this.callbacks.get(i) != null) {
-                this.callbacks.get(i).run(this.value);
+                ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
             }
         }
         this.callbacks.clear();
+    }
+
+    public void lambda$load$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BusinessChatbotController.this.lambda$load$0(tLObject);
+            }
+        });
     }
 
     public void invalidate(boolean z) {
         this.loaded = false;
         if (z) {
             load(null);
+        }
+    }
+
+    public void load(Utilities.Callback callback) {
+        boolean z;
+        this.callbacks.add(callback);
+        if (this.loading) {
+            return;
+        }
+        if (System.currentTimeMillis() - this.lastTime > 60000 || !(z = this.loaded)) {
+            this.loading = true;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
+                @Override
+                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
+                    return TLRPC$TL_account_connectedBots.TLdeserialize(abstractSerializedData, i, z2);
+                }
+
+                @Override
+                public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+                    abstractSerializedData.writeInt32(1319421967);
+                }
+            }, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    BusinessChatbotController.this.lambda$load$1(tLObject, tLRPC$TL_error);
+                }
+            });
+        } else if (z) {
+            for (int i = 0; i < this.callbacks.size(); i++) {
+                if (this.callbacks.get(i) != null) {
+                    ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
+                }
+            }
+            this.callbacks.clear();
         }
     }
 }

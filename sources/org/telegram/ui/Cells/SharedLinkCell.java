@@ -2,6 +2,7 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Region;
@@ -44,8 +45,8 @@ public class SharedLinkCell extends FrameLayout {
     private int description2Y;
     private StaticLayout descriptionLayout;
     private StaticLayout descriptionLayout2;
-    private List<SpoilerEffect> descriptionLayout2Spoilers;
-    private List<SpoilerEffect> descriptionLayoutSpoilers;
+    private List descriptionLayout2Spoilers;
+    private List descriptionLayoutSpoilers;
     private TextPaint descriptionTextPaint;
     private int descriptionY;
     private boolean drawLinkImageView;
@@ -54,16 +55,16 @@ public class SharedLinkCell extends FrameLayout {
     private int fromInfoLayoutY;
     private LetterDrawable letterDrawable;
     private ImageReceiver linkImageView;
-    private ArrayList<StaticLayout> linkLayout;
+    private ArrayList linkLayout;
     private boolean linkPreviewPressed;
-    private SparseArray<List<SpoilerEffect>> linkSpoilers;
+    private SparseArray linkSpoilers;
     private int linkY;
-    ArrayList<CharSequence> links;
+    ArrayList links;
     private LinkSpanDrawable.LinkCollector linksCollector;
     private MessageObject message;
     private boolean needDivider;
-    private AtomicReference<Layout> patchedDescriptionLayout;
-    private AtomicReference<Layout> patchedDescriptionLayout2;
+    private AtomicReference patchedDescriptionLayout;
+    private AtomicReference patchedDescriptionLayout2;
     private Path path;
     private CheckForLongPress pendingCheckForLongPress;
     private CheckForTap pendingCheckForTap;
@@ -73,24 +74,33 @@ public class SharedLinkCell extends FrameLayout {
     private Theme.ResourcesProvider resourcesProvider;
     private SpoilerEffect spoilerPressed;
     private int spoilerTypePressed;
-    private Stack<SpoilerEffect> spoilersPool;
+    private Stack spoilersPool;
     private StaticLayout titleLayout;
     private TextPaint titleTextPaint;
     private int titleY;
     private int viewType;
 
-    public interface SharedLinkCellDelegate {
-        boolean canPerformActions();
+    public class CheckForLongPress implements Runnable {
+        public int currentPressCount;
 
-        void needOpenWebView(TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject);
+        CheckForLongPress() {
+        }
 
-        void onLinkPress(String str, boolean z);
-    }
-
-    static int access$104(SharedLinkCell sharedLinkCell) {
-        int i = sharedLinkCell.pressCount + 1;
-        sharedLinkCell.pressCount = i;
-        return i;
+        @Override
+        public void run() {
+            if (SharedLinkCell.this.checkingForLongPress && SharedLinkCell.this.getParent() != null && this.currentPressCount == SharedLinkCell.this.pressCount) {
+                SharedLinkCell.this.checkingForLongPress = false;
+                SharedLinkCell.this.performHapticFeedback(0);
+                if (SharedLinkCell.this.pressedLinkIndex >= 0) {
+                    SharedLinkCellDelegate sharedLinkCellDelegate = SharedLinkCell.this.delegate;
+                    SharedLinkCell sharedLinkCell = SharedLinkCell.this;
+                    sharedLinkCellDelegate.onLinkPress(((CharSequence) sharedLinkCell.links.get(sharedLinkCell.pressedLinkIndex)).toString(), true);
+                }
+                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                SharedLinkCell.this.onTouchEvent(obtain);
+                obtain.recycle();
+            }
+        }
     }
 
     public final class CheckForTap implements Runnable {
@@ -109,50 +119,12 @@ public class SharedLinkCell extends FrameLayout {
         }
     }
 
-    public class CheckForLongPress implements Runnable {
-        public int currentPressCount;
+    public interface SharedLinkCellDelegate {
+        boolean canPerformActions();
 
-        CheckForLongPress() {
-        }
+        void needOpenWebView(TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject);
 
-        @Override
-        public void run() {
-            if (SharedLinkCell.this.checkingForLongPress && SharedLinkCell.this.getParent() != null && this.currentPressCount == SharedLinkCell.this.pressCount) {
-                SharedLinkCell.this.checkingForLongPress = false;
-                SharedLinkCell.this.performHapticFeedback(0);
-                if (SharedLinkCell.this.pressedLinkIndex >= 0) {
-                    SharedLinkCellDelegate sharedLinkCellDelegate = SharedLinkCell.this.delegate;
-                    SharedLinkCell sharedLinkCell = SharedLinkCell.this;
-                    sharedLinkCellDelegate.onLinkPress(sharedLinkCell.links.get(sharedLinkCell.pressedLinkIndex).toString(), true);
-                }
-                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                SharedLinkCell.this.onTouchEvent(obtain);
-                obtain.recycle();
-            }
-        }
-    }
-
-    protected void startCheckLongPress() {
-        if (this.checkingForLongPress) {
-            return;
-        }
-        this.checkingForLongPress = true;
-        if (this.pendingCheckForTap == null) {
-            this.pendingCheckForTap = new CheckForTap();
-        }
-        postDelayed(this.pendingCheckForTap, ViewConfiguration.getTapTimeout());
-    }
-
-    protected void cancelCheckLongPress() {
-        this.checkingForLongPress = false;
-        CheckForLongPress checkForLongPress = this.pendingCheckForLongPress;
-        if (checkForLongPress != null) {
-            removeCallbacks(checkForLongPress);
-        }
-        CheckForTap checkForTap = this.pendingCheckForTap;
-        if (checkForTap != null) {
-            removeCallbacks(checkForTap);
-        }
+        void onLinkPress(String str, boolean z);
     }
 
     public SharedLinkCell(Context context, int i) {
@@ -166,19 +138,19 @@ public class SharedLinkCell extends FrameLayout {
         this.pressCount = 0;
         this.pendingCheckForTap = null;
         this.linksCollector = new LinkSpanDrawable.LinkCollector(this);
-        this.links = new ArrayList<>();
-        this.linkLayout = new ArrayList<>();
-        this.linkSpoilers = new SparseArray<>();
+        this.links = new ArrayList();
+        this.linkLayout = new ArrayList();
+        this.linkSpoilers = new SparseArray();
         this.descriptionLayoutSpoilers = new ArrayList();
         this.descriptionLayout2Spoilers = new ArrayList();
-        this.spoilersPool = new Stack<>();
+        this.spoilersPool = new Stack();
         this.path = new Path();
         this.spoilerTypePressed = -1;
         this.titleY = AndroidUtilities.dp(10.0f);
         this.descriptionY = AndroidUtilities.dp(30.0f);
-        this.patchedDescriptionLayout = new AtomicReference<>();
+        this.patchedDescriptionLayout = new AtomicReference();
         this.description2Y = AndroidUtilities.dp(30.0f);
-        this.patchedDescriptionLayout2 = new AtomicReference<>();
+        this.patchedDescriptionLayout2 = new AtomicReference();
         this.captionY = AndroidUtilities.dp(30.0f);
         this.fromInfoLayoutY = AndroidUtilities.dp(30.0f);
         this.resourcesProvider = resourcesProvider;
@@ -215,52 +187,31 @@ public class SharedLinkCell extends FrameLayout {
         textPaint3.setTextSize(AndroidUtilities.dp(13.0f));
     }
 
-    @Override
-    @android.annotation.SuppressLint({"DrawAllocation"})
-    protected void onMeasure(int r31, int r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onMeasure(int, int):void");
+    static int access$104(SharedLinkCell sharedLinkCell) {
+        int i = sharedLinkCell.pressCount + 1;
+        sharedLinkCell.pressCount = i;
+        return i;
     }
 
-    public void setLink(MessageObject messageObject, boolean z) {
-        this.needDivider = z;
-        resetPressedLink();
-        this.message = messageObject;
-        requestLayout();
+    private int getYOffsetForType(int i) {
+        return i != 1 ? i != 2 ? this.linkY : this.description2Y : this.descriptionY;
     }
 
-    public ImageReceiver getLinkImageView() {
-        return this.linkImageView;
+    public void lambda$startSpoilerRipples$0() {
+        this.message.isSpoilersRevealed = true;
+        this.linkSpoilers.clear();
+        this.descriptionLayoutSpoilers.clear();
+        this.descriptionLayout2Spoilers.clear();
+        invalidate();
     }
 
-    public void setDelegate(SharedLinkCellDelegate sharedLinkCellDelegate) {
-        this.delegate = sharedLinkCellDelegate;
-    }
-
-    public MessageObject getMessage() {
-        return this.message;
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (this.drawLinkImageView) {
-            this.linkImageView.onDetachedFromWindow();
-        }
-        AnimatedEmojiSpan.release(this, this.fromInfoLayoutEmojis);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.drawLinkImageView) {
-            this.linkImageView.onAttachedToWindow();
-        }
-        this.fromInfoLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.fromInfoLayoutEmojis, this.fromInfoLayout);
-    }
-
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onTouchEvent(android.view.MotionEvent):boolean");
+    public void lambda$startSpoilerRipples$1() {
+        post(new Runnable() {
+            @Override
+            public final void run() {
+                SharedLinkCell.this.lambda$startSpoilerRipples$0();
+            }
+        });
     }
 
     private void startSpoilerRipples(int i, int i2, int i3) {
@@ -278,44 +229,44 @@ public class SharedLinkCell extends FrameLayout {
         if (i5 == 0) {
             float f = 0.0f;
             for (int i6 = 0; i6 < this.linkLayout.size(); i6++) {
-                StaticLayout staticLayout = this.linkLayout.get(i6);
-                f += staticLayout.getLineBottom(staticLayout.getLineCount() - 1);
-                Iterator<SpoilerEffect> it = this.linkSpoilers.get(i6).iterator();
+                Layout layout = (Layout) this.linkLayout.get(i6);
+                f += layout.getLineBottom(layout.getLineCount() - 1);
+                Iterator it = ((List) this.linkSpoilers.get(i6)).iterator();
                 while (it.hasNext()) {
-                    it.next().startRipple(i4, ((i2 - getYOffsetForType(0)) - i3) + f, sqrt);
+                    ((SpoilerEffect) it.next()).startRipple(i4, ((i2 - getYOffsetForType(0)) - i3) + f, sqrt);
                 }
             }
         } else if (i5 == 1) {
-            Iterator<SpoilerEffect> it2 = this.descriptionLayoutSpoilers.iterator();
+            Iterator it2 = this.descriptionLayoutSpoilers.iterator();
             while (it2.hasNext()) {
-                it2.next().startRipple(i4, i2 - getYOffsetForType(1), sqrt);
+                ((SpoilerEffect) it2.next()).startRipple(i4, i2 - getYOffsetForType(1), sqrt);
             }
         } else if (i5 == 2) {
-            Iterator<SpoilerEffect> it3 = this.descriptionLayout2Spoilers.iterator();
+            Iterator it3 = this.descriptionLayout2Spoilers.iterator();
             while (it3.hasNext()) {
-                it3.next().startRipple(i4, i2 - getYOffsetForType(2), sqrt);
+                ((SpoilerEffect) it3.next()).startRipple(i4, i2 - getYOffsetForType(2), sqrt);
             }
         }
         for (int i7 = 0; i7 <= 2; i7++) {
             if (i7 != this.spoilerTypePressed) {
                 if (i7 == 0) {
                     for (int i8 = 0; i8 < this.linkLayout.size(); i8++) {
-                        StaticLayout staticLayout2 = this.linkLayout.get(i8);
-                        staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
-                        Iterator<SpoilerEffect> it4 = this.linkSpoilers.get(i8).iterator();
+                        Layout layout2 = (Layout) this.linkLayout.get(i8);
+                        layout2.getLineBottom(layout2.getLineCount() - 1);
+                        Iterator it4 = ((List) this.linkSpoilers.get(i8)).iterator();
                         while (it4.hasNext()) {
-                            it4.next().startRipple(r1.getBounds().centerX(), r1.getBounds().centerY(), sqrt);
+                            ((SpoilerEffect) it4.next()).startRipple(r1.getBounds().centerX(), r1.getBounds().centerY(), sqrt);
                         }
                     }
                 } else if (i7 == 1) {
-                    Iterator<SpoilerEffect> it5 = this.descriptionLayoutSpoilers.iterator();
+                    Iterator it5 = this.descriptionLayoutSpoilers.iterator();
                     while (it5.hasNext()) {
-                        it5.next().startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
+                        ((SpoilerEffect) it5.next()).startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
                     }
                 } else if (i7 == 2) {
-                    Iterator<SpoilerEffect> it6 = this.descriptionLayout2Spoilers.iterator();
+                    Iterator it6 = this.descriptionLayout2Spoilers.iterator();
                     while (it6.hasNext()) {
-                        it6.next().startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
+                        ((SpoilerEffect) it6.next()).startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
                     }
                 }
             }
@@ -324,58 +275,58 @@ public class SharedLinkCell extends FrameLayout {
         this.spoilerPressed = null;
     }
 
-    public void lambda$startSpoilerRipples$1() {
-        post(new Runnable() {
-            @Override
-            public final void run() {
-                SharedLinkCell.this.lambda$startSpoilerRipples$0();
-            }
-        });
-    }
-
-    public void lambda$startSpoilerRipples$0() {
-        this.message.isSpoilersRevealed = true;
-        this.linkSpoilers.clear();
-        this.descriptionLayoutSpoilers.clear();
-        this.descriptionLayout2Spoilers.clear();
-        invalidate();
-    }
-
-    private int getYOffsetForType(int i) {
-        if (i == 1) {
-            return this.descriptionY;
+    protected void cancelCheckLongPress() {
+        this.checkingForLongPress = false;
+        CheckForLongPress checkForLongPress = this.pendingCheckForLongPress;
+        if (checkForLongPress != null) {
+            removeCallbacks(checkForLongPress);
         }
-        if (i != 2) {
-            return this.linkY;
+        CheckForTap checkForTap = this.pendingCheckForTap;
+        if (checkForTap != null) {
+            removeCallbacks(checkForTap);
         }
-        return this.description2Y;
     }
 
     public String getLink(int i) {
         if (i < 0 || i >= this.links.size()) {
             return null;
         }
-        return this.links.get(i).toString();
+        return ((CharSequence) this.links.get(i)).toString();
     }
 
-    protected void resetPressedLink() {
-        this.linksCollector.clear(true);
-        this.pressedLinkIndex = -1;
-        this.pressedLink = null;
-        this.linkPreviewPressed = false;
-        cancelCheckLongPress();
-        invalidate();
+    public ImageReceiver getLinkImageView() {
+        return this.linkImageView;
     }
 
-    public void setChecked(boolean z, boolean z2) {
-        if (this.checkBox.getVisibility() != 0) {
-            this.checkBox.setVisibility(0);
+    public MessageObject getMessage() {
+        return this.message;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.drawLinkImageView) {
+            this.linkImageView.onAttachedToWindow();
         }
-        this.checkBox.setChecked(z, z2);
+        this.fromInfoLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.fromInfoLayoutEmojis, this.fromInfoLayout);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.drawLinkImageView) {
+            this.linkImageView.onDetachedFromWindow();
+        }
+        AnimatedEmojiSpan.release(this, this.fromInfoLayoutEmojis);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        float dp;
+        float measuredHeight;
+        float measuredWidth;
+        float measuredHeight2;
+        Paint paint;
         if (this.viewType == 1) {
             this.description2TextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
         }
@@ -387,11 +338,11 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.titleLayout != null) {
             canvas.save();
-            float dp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
+            float dp2 = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL) {
-                dp += this.dateLayout == null ? 0.0f : r1.getWidth() + AndroidUtilities.dp(4.0f);
+                dp2 += this.dateLayout == null ? 0.0f : r1.getWidth() + AndroidUtilities.dp(4.0f);
             }
-            canvas.translate(dp, this.titleY);
+            canvas.translate(dp2, this.titleY);
             this.titleLayout.draw(canvas);
             canvas.restore();
         }
@@ -420,16 +371,16 @@ public class SharedLinkCell extends FrameLayout {
             this.descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
             int i = 0;
             for (int i2 = 0; i2 < this.linkLayout.size(); i2++) {
-                StaticLayout staticLayout = this.linkLayout.get(i2);
-                List<SpoilerEffect> list = this.linkSpoilers.get(i2);
+                StaticLayout staticLayout = (StaticLayout) this.linkLayout.get(i2);
+                List list = (List) this.linkSpoilers.get(i2);
                 if (staticLayout.getLineCount() > 0) {
                     canvas.save();
                     canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + i);
                     this.path.rewind();
                     if (list != null) {
-                        Iterator<SpoilerEffect> it = list.iterator();
+                        Iterator it = list.iterator();
                         while (it.hasNext()) {
-                            Rect bounds = it.next().getBounds();
+                            Rect bounds = ((SpoilerEffect) it.next()).getBounds();
                             this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
                         }
                     }
@@ -441,15 +392,15 @@ public class SharedLinkCell extends FrameLayout {
                     canvas.clipPath(this.path);
                     this.path.rewind();
                     if (list != null && !list.isEmpty()) {
-                        list.get(0).getRipplePath(this.path);
+                        ((SpoilerEffect) list.get(0)).getRipplePath(this.path);
                     }
                     canvas.clipPath(this.path);
                     staticLayout.draw(canvas);
                     canvas.restore();
                     if (list != null) {
-                        Iterator<SpoilerEffect> it2 = list.iterator();
+                        Iterator it2 = list.iterator();
                         while (it2.hasNext()) {
-                            it2.next().draw(canvas);
+                            ((SpoilerEffect) it2.next()).draw(canvas);
                         }
                     }
                     canvas.restore();
@@ -473,10 +424,19 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.needDivider) {
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
+                measuredHeight = getMeasuredHeight() - 1;
+                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+                measuredHeight2 = getMeasuredHeight() - 1;
+                paint = Theme.dividerPaint;
+                dp = 0.0f;
             } else {
-                canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                dp = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+                measuredHeight = getMeasuredHeight() - 1;
+                measuredWidth = getMeasuredWidth();
+                measuredHeight2 = getMeasuredHeight() - 1;
+                paint = Theme.dividerPaint;
             }
+            canvas.drawLine(dp, measuredHeight, measuredWidth, measuredHeight2, paint);
         }
     }
 
@@ -501,5 +461,53 @@ public class SharedLinkCell extends FrameLayout {
             accessibilityNodeInfo.setChecked(true);
             accessibilityNodeInfo.setCheckable(true);
         }
+    }
+
+    @Override
+    protected void onMeasure(int r31, int r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onMeasure(int, int):void");
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    protected void resetPressedLink() {
+        this.linksCollector.clear(true);
+        this.pressedLinkIndex = -1;
+        this.pressedLink = null;
+        this.linkPreviewPressed = false;
+        cancelCheckLongPress();
+        invalidate();
+    }
+
+    public void setChecked(boolean z, boolean z2) {
+        if (this.checkBox.getVisibility() != 0) {
+            this.checkBox.setVisibility(0);
+        }
+        this.checkBox.setChecked(z, z2);
+    }
+
+    public void setDelegate(SharedLinkCellDelegate sharedLinkCellDelegate) {
+        this.delegate = sharedLinkCellDelegate;
+    }
+
+    public void setLink(MessageObject messageObject, boolean z) {
+        this.needDivider = z;
+        resetPressedLink();
+        this.message = messageObject;
+        requestLayout();
+    }
+
+    protected void startCheckLongPress() {
+        if (this.checkingForLongPress) {
+            return;
+        }
+        this.checkingForLongPress = true;
+        if (this.pendingCheckForTap == null) {
+            this.pendingCheckForTap = new CheckForTap();
+        }
+        postDelayed(this.pendingCheckForTap, ViewConfiguration.getTapTimeout());
     }
 }

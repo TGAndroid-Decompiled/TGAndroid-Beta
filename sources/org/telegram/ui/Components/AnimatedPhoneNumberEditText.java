@@ -10,7 +10,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.TypedValue;
-import androidx.annotation.Keep;
 import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
@@ -19,29 +18,116 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class AnimatedPhoneNumberEditText extends HintEditText {
+public abstract class AnimatedPhoneNumberEditText extends HintEditText {
     private ObjectAnimator animator;
     private Runnable hintAnimationCallback;
-    private List<Float> hintAnimationValues;
-    private List<SpringAnimation> hintAnimations;
+    private List hintAnimationValues;
+    private List hintAnimations;
     private HintFadeProperty hintFadeProperty;
-    private ArrayList<StaticLayout> letters;
-    private ArrayList<StaticLayout> oldLetters;
+    private ArrayList letters;
+    private ArrayList oldLetters;
     private String oldText;
     private float progress;
     private TextPaint textPaint;
     private String wasHint;
     private Boolean wasHintVisible;
 
+    public final class HintFadeProperty extends FloatPropertyCompat {
+        public HintFadeProperty() {
+            super("hint_fade");
+        }
+
+        @Override
+        public float getValue(Integer num) {
+            if (num.intValue() < AnimatedPhoneNumberEditText.this.hintAnimationValues.size()) {
+                return ((Float) AnimatedPhoneNumberEditText.this.hintAnimationValues.get(num.intValue())).floatValue() * 100.0f;
+            }
+            return 0.0f;
+        }
+
+        @Override
+        public void setValue(Integer num, float f) {
+            if (num.intValue() < AnimatedPhoneNumberEditText.this.hintAnimationValues.size()) {
+                AnimatedPhoneNumberEditText.this.hintAnimationValues.set(num.intValue(), Float.valueOf(f / 100.0f));
+                AnimatedPhoneNumberEditText.this.invalidate();
+            }
+        }
+    }
+
     public AnimatedPhoneNumberEditText(Context context) {
         super(context);
-        this.letters = new ArrayList<>();
-        this.oldLetters = new ArrayList<>();
+        this.letters = new ArrayList();
+        this.oldLetters = new ArrayList();
         this.textPaint = new TextPaint(1);
         this.oldText = "";
         this.hintFadeProperty = new HintFadeProperty();
         this.hintAnimationValues = new ArrayList();
         this.hintAnimations = new ArrayList();
+    }
+
+    public void lambda$setHintText$0(boolean z, String str) {
+        this.hintAnimationValues.clear();
+        Iterator it = this.hintAnimations.iterator();
+        while (it.hasNext()) {
+            ((SpringAnimation) it.next()).cancel();
+        }
+        if (z) {
+            return;
+        }
+        super.setHintText(str);
+    }
+
+    private void runHintAnimation(int i, boolean z, Runnable runnable) {
+        Runnable runnable2 = this.hintAnimationCallback;
+        if (runnable2 != null) {
+            removeCallbacks(runnable2);
+        }
+        for (int i2 = 0; i2 < i; i2++) {
+            float f = 0.0f;
+            float f2 = z ? 0.0f : 1.0f;
+            if (z) {
+                f = 1.0f;
+            }
+            float f3 = f * 100.0f;
+            final SpringAnimation springAnimation = (SpringAnimation) new SpringAnimation(Integer.valueOf(i2), this.hintFadeProperty).setSpring(new SpringForce(f3).setStiffness(500.0f).setDampingRatio(1.0f).setFinalPosition(f3)).setStartValue(100.0f * f2);
+            this.hintAnimations.add(springAnimation);
+            this.hintAnimationValues.add(Float.valueOf(f2));
+            Objects.requireNonNull(springAnimation);
+            postDelayed(new Runnable() {
+                @Override
+                public final void run() {
+                    SpringAnimation.this.start();
+                }
+            }, i2 * 5);
+        }
+        this.hintAnimationCallback = runnable;
+        postDelayed(runnable, (i * 5) + 150);
+    }
+
+    @Override
+    public String getHintText() {
+        return this.wasHint;
+    }
+
+    public float getProgress() {
+        return this.progress;
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void onPreDrawHintCharacter(int i, Canvas canvas, float f, float f2) {
+        if (i < this.hintAnimationValues.size()) {
+            this.hintPaint.setAlpha((int) (((Float) this.hintAnimationValues.get(i)).floatValue() * 255.0f));
+        }
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        super.onTextChanged(charSequence, i, i2, i3);
     }
 
     @Override
@@ -51,9 +137,9 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
         Boolean bool = this.wasHintVisible;
         if (bool == null || bool.booleanValue() != z) {
             this.hintAnimationValues.clear();
-            Iterator<SpringAnimation> it = this.hintAnimations.iterator();
+            Iterator it = this.hintAnimations.iterator();
             while (it.hasNext()) {
-                it.next().cancel();
+                ((SpringAnimation) it.next()).cancel();
             }
             this.hintAnimations.clear();
             this.wasHintVisible = Boolean.valueOf(z);
@@ -79,72 +165,6 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
         }
     }
 
-    public void lambda$setHintText$0(boolean z, String str) {
-        this.hintAnimationValues.clear();
-        Iterator<SpringAnimation> it = this.hintAnimations.iterator();
-        while (it.hasNext()) {
-            it.next().cancel();
-        }
-        if (z) {
-            return;
-        }
-        super.setHintText(str);
-    }
-
-    @Override
-    public String getHintText() {
-        return this.wasHint;
-    }
-
-    private void runHintAnimation(int i, boolean z, Runnable runnable) {
-        Runnable runnable2 = this.hintAnimationCallback;
-        if (runnable2 != null) {
-            removeCallbacks(runnable2);
-        }
-        for (int i2 = 0; i2 < i; i2++) {
-            float f = 0.0f;
-            float f2 = z ? 0.0f : 1.0f;
-            if (z) {
-                f = 1.0f;
-            }
-            float f3 = f * 100.0f;
-            final SpringAnimation startValue = new SpringAnimation(Integer.valueOf(i2), this.hintFadeProperty).setSpring(new SpringForce(f3).setStiffness(500.0f).setDampingRatio(1.0f).setFinalPosition(f3)).setStartValue(100.0f * f2);
-            this.hintAnimations.add(startValue);
-            this.hintAnimationValues.add(Float.valueOf(f2));
-            Objects.requireNonNull(startValue);
-            postDelayed(new Runnable() {
-                @Override
-                public final void run() {
-                    SpringAnimation.this.start();
-                }
-            }, i2 * 5);
-        }
-        this.hintAnimationCallback = runnable;
-        postDelayed(runnable, (i * 5) + 150);
-    }
-
-    @Override
-    public void setTextSize(int i, float f) {
-        super.setTextSize(i, f);
-        this.textPaint.setTextSize(TypedValue.applyDimension(i, f, getResources().getDisplayMetrics()));
-    }
-
-    @Override
-    public void setTextColor(int i) {
-        super.setTextColor(i);
-        this.textPaint.setColor(i);
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        super.onTextChanged(charSequence, i, i2, i3);
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-    }
-
     public void setNewText(String str) {
         if (this.oldLetters == null || this.letters == null || Objects.equals(this.oldText, str)) {
             return;
@@ -164,14 +184,14 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
             int i2 = i + 1;
             String substring = str.substring(i, i2);
             String substring2 = (this.oldLetters.isEmpty() || i >= this.oldText.length()) ? null : this.oldText.substring(i, i2);
-            if (!z && substring2 != null && substring2.equals(substring)) {
-                this.letters.add(this.oldLetters.get(i));
-                this.oldLetters.set(i, null);
-            } else {
+            if (z || substring2 == null || !substring2.equals(substring)) {
                 if (z && substring2 == null) {
                     this.oldLetters.add(new StaticLayout("", this.textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
                 this.letters.add(new StaticLayout(substring, this.textPaint, (int) Math.ceil(r9.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+            } else {
+                this.letters.add((StaticLayout) this.oldLetters.get(i));
+                this.oldLetters.set(i, null);
             }
             i = i2;
         }
@@ -192,14 +212,6 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
         invalidate();
     }
 
-    @Override
-    protected void onPreDrawHintCharacter(int i, Canvas canvas, float f, float f2) {
-        if (i < this.hintAnimationValues.size()) {
-            this.hintPaint.setAlpha((int) (this.hintAnimationValues.get(i).floatValue() * 255.0f));
-        }
-    }
-
-    @Keep
     public void setProgress(float f) {
         if (this.progress == f) {
             return;
@@ -208,30 +220,15 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
         invalidate();
     }
 
-    @Keep
-    public float getProgress() {
-        return this.progress;
+    @Override
+    public void setTextColor(int i) {
+        super.setTextColor(i);
+        this.textPaint.setColor(i);
     }
 
-    public final class HintFadeProperty extends FloatPropertyCompat<Integer> {
-        public HintFadeProperty() {
-            super("hint_fade");
-        }
-
-        @Override
-        public float getValue(Integer num) {
-            if (num.intValue() < AnimatedPhoneNumberEditText.this.hintAnimationValues.size()) {
-                return ((Float) AnimatedPhoneNumberEditText.this.hintAnimationValues.get(num.intValue())).floatValue() * 100.0f;
-            }
-            return 0.0f;
-        }
-
-        @Override
-        public void setValue(Integer num, float f) {
-            if (num.intValue() < AnimatedPhoneNumberEditText.this.hintAnimationValues.size()) {
-                AnimatedPhoneNumberEditText.this.hintAnimationValues.set(num.intValue(), Float.valueOf(f / 100.0f));
-                AnimatedPhoneNumberEditText.this.invalidate();
-            }
-        }
+    @Override
+    public void setTextSize(int i, float f) {
+        super.setTextSize(i, f);
+        this.textPaint.setTextSize(TypedValue.applyDimension(i, f, getResources().getDisplayMetrics()));
     }
 }

@@ -17,6 +17,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -64,19 +65,6 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private boolean withCounterIcon;
     public boolean wrapContentDynamic;
     private boolean wrapWidth;
-
-    protected float calculateCounterWidth(float f, float f2) {
-        return f * f2;
-    }
-
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        return false;
-    }
-
-    protected boolean subTextSplitToWords() {
-        return true;
-    }
 
     public ButtonWithCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
         this(context, true, resourcesProvider);
@@ -134,216 +122,6 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         updateColors();
     }
 
-    public void disableRippleView() {
-        removeView(this.rippleView);
-    }
-
-    public void setColor(int i) {
-        if (this.filled) {
-            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), i));
-        }
-    }
-
-    public void updateColors() {
-        this.text.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
-        if (this.filled) {
-            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 8, 8));
-        } else {
-            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(this.text.getTextColor(), 0.1f), 8, 8));
-        }
-        this.subText.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
-        this.countText.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
-    }
-
-    public void setCounterColor(int i) {
-        this.countText.setTextColor(i);
-        this.counterDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-    }
-
-    public void setTextColor(int i) {
-        this.text.setTextColor(i);
-        if (this.filled) {
-            return;
-        }
-        this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(this.text.getTextColor(), 0.1f), 8, 8));
-    }
-
-    public void setCountFilled(boolean z) {
-        int textColor;
-        this.countFilled = z;
-        this.countText.setTextSize(AndroidUtilities.dp(z ? 12.0f : 14.0f));
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        if (this.countFilled) {
-            textColor = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
-        } else {
-            textColor = this.text.getTextColor();
-        }
-        animatedTextDrawable.setTextColor(textColor);
-    }
-
-    public void setTimer(int i, final Runnable runnable) {
-        AndroidUtilities.cancelRunOnUIThread(this.tick);
-        setCountFilled(false);
-        this.timerSeconds = i;
-        setCount(i, false);
-        setShowZero(false);
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                ButtonWithCounterView.this.lambda$setTimer$0(runnable);
-            }
-        };
-        this.tick = runnable2;
-        AndroidUtilities.runOnUIThread(runnable2, 1000L);
-    }
-
-    public void lambda$setTimer$0(Runnable runnable) {
-        int i = this.timerSeconds - 1;
-        this.timerSeconds = i;
-        setCount(i, true);
-        if (this.timerSeconds > 0) {
-            AndroidUtilities.runOnUIThread(this.tick, 1000L);
-            return;
-        }
-        setClickable(true);
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public boolean isTimerActive() {
-        return this.timerSeconds > 0;
-    }
-
-    public void setText(CharSequence charSequence, boolean z) {
-        setText(charSequence, z, true);
-    }
-
-    public void setText(CharSequence charSequence, boolean z, boolean z2) {
-        if (z) {
-            this.text.cancelAnimation();
-        }
-        this.text.setText(charSequence, z, z2);
-        setContentDescription(charSequence);
-        invalidate();
-    }
-
-    private void cleanSubTextVisibleAnimator() {
-        ValueAnimator valueAnimator = this.subTextVisibleAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.subTextVisibleAnimator = null;
-        }
-    }
-
-    public void setSubText(CharSequence charSequence, boolean z) {
-        boolean z2 = charSequence != null;
-        if (z) {
-            this.subText.cancelAnimation();
-        }
-        setContentDescription(charSequence);
-        invalidate();
-        if (this.subTextVisible && !z2) {
-            cleanSubTextVisibleAnimator();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.subTextT, 0.0f);
-            this.subTextVisibleAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ButtonWithCounterView.this.lambda$setSubText$1(valueAnimator);
-                }
-            });
-            this.subTextVisibleAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ButtonWithCounterView.this.subTextVisible = false;
-                    ButtonWithCounterView.this.subText.setText(null, false);
-                }
-            });
-            this.subTextVisibleAnimator.setDuration(200L);
-            this.subTextVisibleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            this.subTextVisibleAnimator.start();
-        } else {
-            this.subText.setText(charSequence, z);
-        }
-        if (this.subTextVisible || !z2) {
-            return;
-        }
-        this.subTextVisible = true;
-        cleanSubTextVisibleAnimator();
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.subTextT, 1.0f);
-        this.subTextVisibleAnimator = ofFloat2;
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ButtonWithCounterView.this.lambda$setSubText$2(valueAnimator);
-            }
-        });
-        this.subTextVisibleAnimator.setDuration(200L);
-        this.subTextVisibleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.subTextVisibleAnimator.start();
-    }
-
-    public void lambda$setSubText$1(ValueAnimator valueAnimator) {
-        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void lambda$setSubText$2(ValueAnimator valueAnimator) {
-        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    @Override
-    public void setLoading(final boolean z) {
-        if (this.loading != z) {
-            if (this.flickeringLoading) {
-                this.loading = z;
-                invalidate();
-                return;
-            }
-            ValueAnimator valueAnimator = this.loadingAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.loadingAnimator = null;
-            }
-            float f = this.loadingT;
-            this.loading = z;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
-            this.loadingAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setLoading$3(valueAnimator2);
-                }
-            });
-            this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ButtonWithCounterView.this.loadingT = z ? 1.0f : 0.0f;
-                    ButtonWithCounterView.this.invalidate();
-                }
-            });
-            this.loadingAnimator.setDuration(320L);
-            this.loadingAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.loadingAnimator.start();
-        }
-    }
-
-    public void lambda$setLoading$3(ValueAnimator valueAnimator) {
-        this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void setFlickeringLoading(boolean z) {
-        this.flickeringLoading = z;
-    }
-
-    @Override
-    public boolean isLoading() {
-        return this.loading;
-    }
-
     private void animateCount() {
         ValueAnimator valueAnimator = this.countAnimator;
         if (valueAnimator != null) {
@@ -370,62 +148,64 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this.countAnimator.start();
     }
 
+    private void cleanSubTextVisibleAnimator() {
+        ValueAnimator valueAnimator = this.subTextVisibleAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.subTextVisibleAnimator = null;
+        }
+    }
+
     public void lambda$animateCount$4(ValueAnimator valueAnimator) {
         this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
         invalidate();
     }
 
-    public void withCounterIcon() {
-        this.withCounterIcon = true;
-        Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.mini_boost_button).mutate();
-        this.counterDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
-    }
-
-    public void setShowZero(boolean z) {
-        this.showZero = z;
-    }
-
-    public void setCount(int i, boolean z) {
-        int i2;
-        if (z) {
-            this.countText.cancelAnimation();
-        }
-        if (z && i != (i2 = this.lastCount) && i > 0 && i2 > 0) {
-            animateCount();
-        }
-        this.lastCount = i;
-        this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
-        this.countText.setText("" + i, z);
-        invalidate();
-    }
-
-    @Override
-    public void setEnabled(boolean z) {
-        if (this.enabled != z) {
-            ValueAnimator valueAnimator = this.enabledAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.enabledAnimator = null;
-            }
-            float f = this.enabledT;
-            this.enabled = z;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
-            this.enabledAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setEnabled$5(valueAnimator2);
-                }
-            });
-            this.enabledAnimator.start();
-        }
-        super.setEnabled(z);
-    }
-
     public void lambda$setEnabled$5(ValueAnimator valueAnimator) {
         this.enabledT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
+    }
+
+    public void lambda$setLoading$3(ValueAnimator valueAnimator) {
+        this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$setSubText$1(ValueAnimator valueAnimator) {
+        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$setSubText$2(ValueAnimator valueAnimator) {
+        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$setTimer$0(Runnable runnable) {
+        int i = this.timerSeconds - 1;
+        this.timerSeconds = i;
+        setCount(i, true);
+        if (this.timerSeconds > 0) {
+            AndroidUtilities.runOnUIThread(this.tick, 1000L);
+            return;
+        }
+        setClickable(true);
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    protected float calculateCounterWidth(float f, float f2) {
+        return f * f2;
+    }
+
+    public void disableRippleView() {
+        removeView(this.rippleView);
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        return false;
     }
 
     @Override
@@ -434,8 +214,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return this.flickeringLoadingDrawable == drawable || this.text == drawable || this.subText == drawable || this.countText == drawable || super.verifyDrawable(drawable);
+    public boolean isLoading() {
+        return this.loading;
+    }
+
+    public boolean isTimerActive() {
+        return this.timerSeconds > 0;
     }
 
     @Override
@@ -550,16 +334,110 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
-    public void setTextAlpha(float f) {
-        this.text.setAlpha((int) (f * 255.0f));
+    @Override
+    public void onMeasure(int i, int i2) {
+        if (this.wrapWidth) {
+            i = View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(getPaddingLeft() + this.text.getCurrentWidth() + getPaddingRight(), this.minWidth), View.MeasureSpec.getSize(i)), 1073741824);
+        }
+        super.onMeasure(i, i2);
+    }
+
+    public void setColor(int i) {
+        if (this.filled) {
+            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), i));
+        }
+    }
+
+    public void setCount(int i, boolean z) {
+        int i2;
+        if (z) {
+            this.countText.cancelAnimation();
+        }
+        if (z && i != (i2 = this.lastCount) && i > 0 && i2 > 0) {
+            animateCount();
+        }
+        this.lastCount = i;
+        this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
+        this.countText.setText(LocaleController.formatNumber(i, ' '), z);
+        invalidate();
+    }
+
+    public void setCountFilled(boolean z) {
+        this.countFilled = z;
+        this.countText.setTextSize(AndroidUtilities.dp(z ? 12.0f : 14.0f));
+        this.countText.setTextColor(this.countFilled ? Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider) : this.text.getTextColor());
+    }
+
+    public void setCounterColor(int i) {
+        this.countText.setTextColor(i);
+        this.counterDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+    }
+
+    @Override
+    public void setEnabled(boolean z) {
+        if (this.enabled != z) {
+            ValueAnimator valueAnimator = this.enabledAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.enabledAnimator = null;
+            }
+            float f = this.enabledT;
+            this.enabled = z;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
+            this.enabledAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    ButtonWithCounterView.this.lambda$setEnabled$5(valueAnimator2);
+                }
+            });
+            this.enabledAnimator.start();
+        }
+        super.setEnabled(z);
+    }
+
+    public void setFlickeringLoading(boolean z) {
+        this.flickeringLoading = z;
     }
 
     public void setGlobalAlpha(float f) {
         this.globalAlpha = (int) (f * 255.0f);
     }
 
-    public void wrapContentDynamic() {
-        this.wrapContentDynamic = true;
+    @Override
+    public void setLoading(final boolean z) {
+        if (this.loading != z) {
+            if (this.flickeringLoading) {
+                this.loading = z;
+                invalidate();
+                return;
+            }
+            ValueAnimator valueAnimator = this.loadingAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.loadingAnimator = null;
+            }
+            float f = this.loadingT;
+            this.loading = z;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
+            this.loadingAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    ButtonWithCounterView.this.lambda$setLoading$3(valueAnimator2);
+                }
+            });
+            this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    ButtonWithCounterView.this.loadingT = z ? 1.0f : 0.0f;
+                    ButtonWithCounterView.this.invalidate();
+                }
+            });
+            this.loadingAnimator.setDuration(320L);
+            this.loadingAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.loadingAnimator.start();
+        }
     }
 
     public void setMinWidth(int i) {
@@ -567,12 +445,132 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this.minWidth = i;
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        if (this.wrapWidth) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(getPaddingLeft() + this.text.getCurrentWidth() + getPaddingRight(), this.minWidth), View.MeasureSpec.getSize(i)), 1073741824), i2);
-        } else {
-            super.onMeasure(i, i2);
+    public void setShowZero(boolean z) {
+        this.showZero = z;
+    }
+
+    public void setSubText(CharSequence charSequence, boolean z) {
+        boolean z2 = charSequence != null;
+        if (z) {
+            this.subText.cancelAnimation();
         }
+        setContentDescription(charSequence);
+        invalidate();
+        if (!this.subTextVisible || z2) {
+            this.subText.setText(charSequence, z);
+        } else {
+            cleanSubTextVisibleAnimator();
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.subTextT, 0.0f);
+            this.subTextVisibleAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    ButtonWithCounterView.this.lambda$setSubText$1(valueAnimator);
+                }
+            });
+            this.subTextVisibleAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    ButtonWithCounterView.this.subTextVisible = false;
+                    ButtonWithCounterView.this.subText.setText(null, false);
+                }
+            });
+            this.subTextVisibleAnimator.setDuration(200L);
+            this.subTextVisibleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.subTextVisibleAnimator.start();
+        }
+        if (this.subTextVisible || !z2) {
+            return;
+        }
+        this.subTextVisible = true;
+        cleanSubTextVisibleAnimator();
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.subTextT, 1.0f);
+        this.subTextVisibleAnimator = ofFloat2;
+        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                ButtonWithCounterView.this.lambda$setSubText$2(valueAnimator);
+            }
+        });
+        this.subTextVisibleAnimator.setDuration(200L);
+        this.subTextVisibleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.subTextVisibleAnimator.start();
+    }
+
+    public void setText(CharSequence charSequence, boolean z) {
+        setText(charSequence, z, true);
+    }
+
+    public void setText(CharSequence charSequence, boolean z, boolean z2) {
+        if (z) {
+            this.text.cancelAnimation();
+        }
+        this.text.setText(charSequence, z, z2);
+        setContentDescription(charSequence);
+        invalidate();
+    }
+
+    public void setTextAlpha(float f) {
+        this.text.setAlpha((int) (f * 255.0f));
+    }
+
+    public void setTextColor(int i) {
+        this.text.setTextColor(i);
+        if (this.filled) {
+            return;
+        }
+        this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(this.text.getTextColor(), 0.1f), 8, 8));
+    }
+
+    public void setTimer(int i, final Runnable runnable) {
+        AndroidUtilities.cancelRunOnUIThread(this.tick);
+        setCountFilled(false);
+        this.timerSeconds = i;
+        setCount(i, false);
+        setShowZero(false);
+        Runnable runnable2 = new Runnable() {
+            @Override
+            public final void run() {
+                ButtonWithCounterView.this.lambda$setTimer$0(runnable);
+            }
+        };
+        this.tick = runnable2;
+        AndroidUtilities.runOnUIThread(runnable2, 1000L);
+    }
+
+    protected boolean subTextSplitToWords() {
+        return true;
+    }
+
+    public void updateColors() {
+        View view;
+        int multAlpha;
+        this.text.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
+        if (this.filled) {
+            view = this.rippleView;
+            multAlpha = Theme.getColor(Theme.key_listSelector, this.resourcesProvider);
+        } else {
+            view = this.rippleView;
+            multAlpha = Theme.multAlpha(this.text.getTextColor(), 0.1f);
+        }
+        view.setBackground(Theme.createRadSelectorDrawable(multAlpha, 8, 8));
+        this.subText.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
+        this.countText.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return this.flickeringLoadingDrawable == drawable || this.text == drawable || this.subText == drawable || this.countText == drawable || super.verifyDrawable(drawable);
+    }
+
+    public void withCounterIcon() {
+        this.withCounterIcon = true;
+        Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.mini_boost_button).mutate();
+        this.counterDrawable = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+    }
+
+    public void wrapContentDynamic() {
+        this.wrapContentDynamic = true;
     }
 }

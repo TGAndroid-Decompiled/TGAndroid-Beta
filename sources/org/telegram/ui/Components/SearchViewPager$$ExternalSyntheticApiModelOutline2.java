@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class SearchViewPager$$ExternalSyntheticApiModelOutline2 {
+public abstract class SearchViewPager$$ExternalSyntheticApiModelOutline2 {
 }

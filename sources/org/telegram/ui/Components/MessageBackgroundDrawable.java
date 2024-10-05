@@ -22,17 +22,78 @@ public class MessageBackgroundDrawable extends Drawable {
     private float touchOverrideX = -1.0f;
     private float touchOverrideY = -1.0f;
 
+    public MessageBackgroundDrawable(View view) {
+        this.parentView = view;
+    }
+
+    private void calcRadius() {
+        android.graphics.Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float f = bounds.left - centerX;
+        float centerY = bounds.top - bounds.centerY();
+        this.finalRadius = (float) Math.ceil(Math.sqrt((f * f) + (centerY * centerY)));
+    }
+
+    private void invalidate() {
+        View view = this.parentView;
+        if (view != null) {
+            view.invalidate();
+            if (this.parentView.getParent() != null) {
+                ((ViewGroup) this.parentView.getParent()).invalidate();
+            }
+        }
+    }
+
+    @Override
+    public void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MessageBackgroundDrawable.draw(android.graphics.Canvas):void");
+    }
+
+    public long getLastTouchTime() {
+        return this.lastTouchTime;
+    }
+
     @Override
     public int getOpacity() {
         return -2;
     }
 
-    public MessageBackgroundDrawable(View view) {
-        this.parentView = view;
+    public float getTouchX() {
+        return this.touchX;
+    }
+
+    public float getTouchY() {
+        return this.touchY;
+    }
+
+    public boolean isAnimationInProgress() {
+        return this.animationInProgress;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.paint.setAlpha(i);
+    }
+
+    @Override
+    public void setBounds(int i, int i2, int i3, int i4) {
+        super.setBounds(i, i2, i3, i4);
+        calcRadius();
+    }
+
+    @Override
+    public void setBounds(android.graphics.Rect rect) {
+        super.setBounds(rect);
+        calcRadius();
     }
 
     public void setColor(int i) {
         this.paint.setColor(i);
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.paint.setColorFilter(colorFilter);
     }
 
     public void setCustomPaint(Paint paint) {
@@ -59,24 +120,6 @@ public class MessageBackgroundDrawable extends Drawable {
         invalidate();
     }
 
-    private void invalidate() {
-        View view = this.parentView;
-        if (view != null) {
-            view.invalidate();
-            if (this.parentView.getParent() != null) {
-                ((ViewGroup) this.parentView.getParent()).invalidate();
-            }
-        }
-    }
-
-    private void calcRadius() {
-        android.graphics.Rect bounds = getBounds();
-        float centerX = bounds.centerX();
-        float f = bounds.left - centerX;
-        float centerY = bounds.top - bounds.centerY();
-        this.finalRadius = (float) Math.ceil(Math.sqrt((f * f) + (centerY * centerY)));
-    }
-
     public void setTouchCoords(float f, float f2) {
         this.touchX = f;
         this.touchY = f2;
@@ -86,48 +129,5 @@ public class MessageBackgroundDrawable extends Drawable {
     public void setTouchCoordsOverride(float f, float f2) {
         this.touchOverrideX = f;
         this.touchOverrideY = f2;
-    }
-
-    public float getTouchX() {
-        return this.touchX;
-    }
-
-    public float getTouchY() {
-        return this.touchY;
-    }
-
-    public long getLastTouchTime() {
-        return this.lastTouchTime;
-    }
-
-    public boolean isAnimationInProgress() {
-        return this.animationInProgress;
-    }
-
-    @Override
-    public void setBounds(int i, int i2, int i3, int i4) {
-        super.setBounds(i, i2, i3, i4);
-        calcRadius();
-    }
-
-    @Override
-    public void setBounds(android.graphics.Rect rect) {
-        super.setBounds(rect);
-        calcRadius();
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.paint.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        this.paint.setAlpha(i);
-    }
-
-    @Override
-    public void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MessageBackgroundDrawable.draw(android.graphics.Canvas):void");
     }
 }

@@ -62,177 +62,24 @@ public class PremiumLockIconView extends ImageView {
         this.type = i;
         this.resourcesProvider = resourcesProvider;
         setImageResource(i == TYPE_REACTIONS ? R.drawable.msg_premium_lock2 : R.drawable.msg_mini_premiumlock);
-        if (i == TYPE_REACTIONS) {
-            StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(5);
-            this.starParticles = drawable;
-            drawable.updateColors();
-            StarParticlesView.Drawable drawable2 = this.starParticles;
-            drawable2.roundEffect = false;
-            drawable2.size2 = 4;
-            drawable2.size3 = 4;
-            drawable2.size1 = 2;
-            drawable2.speedScale = 0.1f;
-            drawable2.init();
-            return;
-        }
-        if (i == TYPE_REACTIONS_LOCK) {
-            this.iconScale = 0.8f;
-            this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        if (this.type == TYPE_REACTIONS) {
-            this.path.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            Path path = this.path;
-            float width = rectF.width() / 2.0f;
-            float centerY = rectF.centerY();
-            float width2 = rectF.width() / 2.0f;
-            Path.Direction direction = Path.Direction.CW;
-            path.addCircle(width, centerY, width2, direction);
-            rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
-            this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
-            this.path.close();
-            this.starParticles.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.starParticles.rect.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-            return;
-        }
-        updateGradient();
-    }
-
-    public void setColor(int i) {
-        this.colorRetrieved = true;
-        if (this.currentColor != i) {
-            this.currentColor = i;
-            int i2 = this.type;
-            if (i2 == TYPE_REACTIONS || i2 == TYPE_REACTIONS_LOCK) {
-                Paint paint = this.paint;
-                if (paint != null) {
-                    paint.setColor(i);
-                }
-            } else {
-                updateGradient();
-            }
-            invalidate();
-        }
-    }
-
-    public void resetColor() {
-        Paint paint;
-        this.colorRetrieved = false;
-        this.currentColor = -1;
-        if (this.type != TYPE_REACTIONS_LOCK || (paint = this.paint) == null) {
-            return;
-        }
-        paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.waitingImage) {
-            ImageReceiver imageReceiver = this.imageReceiver;
-            if (imageReceiver != null && imageReceiver.getBitmap() != null) {
-                this.waitingImage = false;
-                setColor(AndroidUtilities.getDominantColor(this.imageReceiver.getBitmap()));
-            } else {
-                AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
-                if (animatedEmojiDrawable != null) {
-                    int dominantColor = AnimatedEmojiDrawable.getDominantColor(animatedEmojiDrawable);
-                    if (dominantColor != 0) {
-                        this.waitingImage = false;
-                        setColor(dominantColor);
-                    } else {
-                        invalidate();
-                    }
-                } else {
-                    invalidate();
-                }
-            }
-        }
-        Paint paint = this.paint;
-        if (paint != null) {
-            int i = this.type;
+        if (i != TYPE_REACTIONS) {
             if (i == TYPE_REACTIONS_LOCK) {
-                float measuredWidth = getMeasuredWidth() / 2.0f;
-                canvas.drawCircle(measuredWidth, getMeasuredHeight() / 2.0f, measuredWidth, this.paint);
-            } else if (i == TYPE_REACTIONS) {
-                if (this.currentColor != 0) {
-                    canvas.drawPath(this.path, paint);
-                } else {
-                    PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(24.0f), 0.0f);
-                    canvas.drawPath(this.path, PremiumGradient.getInstance().getMainGradientPaint());
-                }
-                if (this.cellFlickerDrawable == null) {
-                    this.cellFlickerDrawable = new CellFlickerDrawable();
-                }
-                this.cellFlickerDrawable.setParentWidth(getMeasuredWidth() / 2);
-                CellFlickerDrawable cellFlickerDrawable = this.cellFlickerDrawable;
-                cellFlickerDrawable.drawFrame = false;
-                cellFlickerDrawable.draw(canvas, this.path, this);
-                canvas.save();
-                canvas.clipPath(this.path);
-                this.starParticles.onDraw(canvas);
-                canvas.restore();
-                invalidate();
-            } else {
-                float measuredWidth2 = getMeasuredWidth() / 2.0f;
-                float measuredHeight = getMeasuredHeight() / 2.0f;
-                if (this.oldShaderPaint == null) {
-                    this.shaderCrossfadeProgress = 1.0f;
-                }
-                float f = this.shaderCrossfadeProgress;
-                if (f != 1.0f) {
-                    this.paint.setAlpha((int) (f * 255.0f));
-                    canvas.drawCircle(measuredWidth2, measuredHeight, measuredWidth2, this.oldShaderPaint);
-                    canvas.drawCircle(measuredWidth2, measuredHeight, measuredWidth2, this.paint);
-                    float f2 = this.shaderCrossfadeProgress + 0.10666667f;
-                    this.shaderCrossfadeProgress = f2;
-                    if (f2 > 1.0f) {
-                        this.shaderCrossfadeProgress = 1.0f;
-                        this.oldShaderPaint = null;
-                    }
-                    invalidate();
-                    this.paint.setAlpha(255);
-                } else {
-                    canvas.drawCircle(measuredWidth2, measuredHeight, measuredWidth2, this.paint);
-                }
+                this.iconScale = 0.8f;
+                this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                return;
             }
+            return;
         }
-        boolean z = this.iconScale != 1.0f;
-        if (z) {
-            canvas.save();
-            float f3 = this.iconScale;
-            canvas.scale(f3, f3, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        }
-        super.onDraw(canvas);
-        if (z) {
-            canvas.restore();
-        }
-        this.wasDrawn = true;
-    }
-
-    public void setImageReceiver(ImageReceiver imageReceiver) {
-        this.imageReceiver = imageReceiver;
-        if (imageReceiver != null) {
-            this.waitingImage = true;
-            invalidate();
-        }
-    }
-
-    public void setAnimatedEmojiDrawable(AnimatedEmojiDrawable animatedEmojiDrawable) {
-        this.emojiDrawable = animatedEmojiDrawable;
-        if (animatedEmojiDrawable != null) {
-            this.waitingImage = true;
-            invalidate();
-        }
-    }
-
-    public ImageReceiver getImageReceiver() {
-        return this.imageReceiver;
+        StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(5);
+        this.starParticles = drawable;
+        drawable.updateColors();
+        StarParticlesView.Drawable drawable2 = this.starParticles;
+        drawable2.roundEffect = false;
+        drawable2.size2 = 4;
+        drawable2.size3 = 4;
+        drawable2.size1 = 2;
+        drawable2.speedScale = 0.1f;
+        drawable2.init();
     }
 
     private void updateGradient() {
@@ -268,6 +115,14 @@ public class PremiumLockIconView extends ImageView {
         invalidate();
     }
 
+    public boolean done() {
+        return this.colorRetrieved;
+    }
+
+    public ImageReceiver getImageReceiver() {
+        return this.imageReceiver;
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -290,14 +145,108 @@ public class PremiumLockIconView extends ImageView {
         this.wasDrawn = false;
     }
 
-    public void setWaitingImage() {
-        this.waitingImage = true;
-        this.wasDrawn = false;
-        invalidate();
+    @Override
+    protected void onDraw(Canvas canvas) {
+        float measuredWidth;
+        float measuredHeight;
+        int dominantColor;
+        if (this.waitingImage) {
+            ImageReceiver imageReceiver = this.imageReceiver;
+            if (imageReceiver == null || imageReceiver.getBitmap() == null) {
+                AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
+                if (animatedEmojiDrawable == null || (dominantColor = AnimatedEmojiDrawable.getDominantColor(animatedEmojiDrawable)) == 0) {
+                    invalidate();
+                } else {
+                    this.waitingImage = false;
+                }
+            } else {
+                this.waitingImage = false;
+                dominantColor = AndroidUtilities.getDominantColor(this.imageReceiver.getBitmap());
+            }
+            setColor(dominantColor);
+        }
+        Paint paint = this.paint;
+        if (paint != null) {
+            int i = this.type;
+            if (i == TYPE_REACTIONS_LOCK) {
+                measuredWidth = getMeasuredWidth() / 2.0f;
+                measuredHeight = getMeasuredHeight() / 2.0f;
+            } else if (i == TYPE_REACTIONS) {
+                if (this.currentColor != 0) {
+                    canvas.drawPath(this.path, paint);
+                } else {
+                    PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(24.0f), 0.0f);
+                    canvas.drawPath(this.path, PremiumGradient.getInstance().getMainGradientPaint());
+                }
+                if (this.cellFlickerDrawable == null) {
+                    this.cellFlickerDrawable = new CellFlickerDrawable();
+                }
+                this.cellFlickerDrawable.setParentWidth(getMeasuredWidth() / 2);
+                CellFlickerDrawable cellFlickerDrawable = this.cellFlickerDrawable;
+                cellFlickerDrawable.drawFrame = false;
+                cellFlickerDrawable.draw(canvas, this.path, this);
+                canvas.save();
+                canvas.clipPath(this.path);
+                this.starParticles.onDraw(canvas);
+                canvas.restore();
+                invalidate();
+            } else {
+                measuredWidth = getMeasuredWidth() / 2.0f;
+                measuredHeight = getMeasuredHeight() / 2.0f;
+                if (this.oldShaderPaint == null) {
+                    this.shaderCrossfadeProgress = 1.0f;
+                }
+                float f = this.shaderCrossfadeProgress;
+                if (f != 1.0f) {
+                    this.paint.setAlpha((int) (f * 255.0f));
+                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.oldShaderPaint);
+                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+                    float f2 = this.shaderCrossfadeProgress + 0.10666667f;
+                    this.shaderCrossfadeProgress = f2;
+                    if (f2 > 1.0f) {
+                        this.shaderCrossfadeProgress = 1.0f;
+                        this.oldShaderPaint = null;
+                    }
+                    invalidate();
+                    this.paint.setAlpha(255);
+                }
+            }
+            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+        }
+        boolean z = this.iconScale != 1.0f;
+        if (z) {
+            canvas.save();
+            float f3 = this.iconScale;
+            canvas.scale(f3, f3, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        }
+        super.onDraw(canvas);
+        if (z) {
+            canvas.restore();
+        }
+        this.wasDrawn = true;
     }
 
-    public boolean done() {
-        return this.colorRetrieved;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        if (this.type != TYPE_REACTIONS) {
+            updateGradient();
+            return;
+        }
+        this.path.rewind();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        Path path = this.path;
+        float width = rectF.width() / 2.0f;
+        float centerY = rectF.centerY();
+        float width2 = rectF.width() / 2.0f;
+        Path.Direction direction = Path.Direction.CW;
+        path.addCircle(width, centerY, width2, direction);
+        rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
+        this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
+        this.path.close();
+        this.starParticles.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        this.starParticles.rect.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
     }
 
     public void play(int i) {
@@ -317,9 +266,58 @@ public class PremiumLockIconView extends ImageView {
         setScaleY(0.0f);
     }
 
+    public void resetColor() {
+        Paint paint;
+        this.colorRetrieved = false;
+        this.currentColor = -1;
+        if (this.type != TYPE_REACTIONS_LOCK || (paint = this.paint) == null) {
+            return;
+        }
+        paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
+    }
+
+    public void setAnimatedEmojiDrawable(AnimatedEmojiDrawable animatedEmojiDrawable) {
+        this.emojiDrawable = animatedEmojiDrawable;
+        if (animatedEmojiDrawable != null) {
+            this.waitingImage = true;
+            invalidate();
+        }
+    }
+
+    public void setColor(int i) {
+        this.colorRetrieved = true;
+        if (this.currentColor != i) {
+            this.currentColor = i;
+            int i2 = this.type;
+            if (i2 == TYPE_REACTIONS || i2 == TYPE_REACTIONS_LOCK) {
+                Paint paint = this.paint;
+                if (paint != null) {
+                    paint.setColor(i);
+                }
+            } else {
+                updateGradient();
+            }
+            invalidate();
+        }
+    }
+
+    public void setImageReceiver(ImageReceiver imageReceiver) {
+        this.imageReceiver = imageReceiver;
+        if (imageReceiver != null) {
+            this.waitingImage = true;
+            invalidate();
+        }
+    }
+
     public void setLocked(boolean z) {
         if (this.type != TYPE_REACTIONS) {
             setImageResource(z ? R.drawable.msg_mini_premiumlock : R.drawable.msg_mini_stickerstar);
         }
+    }
+
+    public void setWaitingImage() {
+        this.waitingImage = true;
+        this.wasDrawn = false;
+        invalidate();
     }
 }

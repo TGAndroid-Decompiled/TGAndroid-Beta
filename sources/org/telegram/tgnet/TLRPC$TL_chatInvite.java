@@ -82,7 +82,7 @@ public class TLRPC$TL_chatInvite extends TLRPC$ChatInvite {
             int size = this.participants.size();
             abstractSerializedData.writeInt32(size);
             for (int i11 = 0; i11 < size; i11++) {
-                this.participants.get(i11).serializeToStream(abstractSerializedData);
+                ((TLRPC$User) this.participants.get(i11)).serializeToStream(abstractSerializedData);
             }
         }
         abstractSerializedData.writeInt32(this.color);

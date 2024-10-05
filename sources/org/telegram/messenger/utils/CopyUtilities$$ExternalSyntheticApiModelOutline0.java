@@ -1,4 +1,4 @@
 package org.telegram.messenger.utils;
 
-public final class CopyUtilities$$ExternalSyntheticApiModelOutline0 {
+public abstract class CopyUtilities$$ExternalSyntheticApiModelOutline0 {
 }

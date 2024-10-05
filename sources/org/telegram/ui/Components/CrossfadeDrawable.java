@@ -12,11 +12,6 @@ public class CrossfadeDrawable extends Drawable {
     private float progress;
     private final Drawable topDrawable;
 
-    @Override
-    public int getOpacity() {
-        return -3;
-    }
-
     public CrossfadeDrawable(Drawable drawable, Drawable drawable2) {
         this.topDrawable = drawable;
         this.bottomDrawable = drawable2;
@@ -70,54 +65,8 @@ public class CrossfadeDrawable extends Drawable {
         }
     }
 
-    @Override
-    protected void onBoundsChange(android.graphics.Rect rect) {
-        this.topDrawable.setBounds(rect);
-        this.bottomDrawable.setBounds(rect);
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        Drawable drawable = this.topDrawable;
-        int i = (int) (this.globalAlpha * (1.0f - this.progress));
-        drawable.setAlpha(i);
-        Drawable drawable2 = this.bottomDrawable;
-        int i2 = (int) (this.globalAlpha * this.progress);
-        drawable2.setAlpha(i2);
-        if (i > 0) {
-            this.topDrawable.draw(canvas);
-        }
-        if (i2 > 0) {
-            this.bottomDrawable.draw(canvas);
-        }
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        this.globalAlpha = i;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.topDrawable.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return this.topDrawable.getIntrinsicWidth();
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return this.topDrawable.getIntrinsicHeight();
-    }
-
-    public float getProgress() {
-        return this.progress;
-    }
-
-    public void setProgress(float f) {
-        this.progress = f;
+    public void lambda$animateToProgress$0(ValueAnimator valueAnimator) {
+        setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
         invalidateSelf();
     }
 
@@ -139,8 +88,59 @@ public class CrossfadeDrawable extends Drawable {
         this.animator.start();
     }
 
-    public void lambda$animateToProgress$0(ValueAnimator valueAnimator) {
-        setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    @Override
+    public void draw(Canvas canvas) {
+        Drawable drawable = this.topDrawable;
+        int i = (int) (this.globalAlpha * (1.0f - this.progress));
+        drawable.setAlpha(i);
+        Drawable drawable2 = this.bottomDrawable;
+        int i2 = (int) (this.globalAlpha * this.progress);
+        drawable2.setAlpha(i2);
+        if (i > 0) {
+            this.topDrawable.draw(canvas);
+        }
+        if (i2 > 0) {
+            this.bottomDrawable.draw(canvas);
+        }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return this.topDrawable.getIntrinsicHeight();
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return this.topDrawable.getIntrinsicWidth();
+    }
+
+    @Override
+    public int getOpacity() {
+        return -3;
+    }
+
+    public float getProgress() {
+        return this.progress;
+    }
+
+    @Override
+    protected void onBoundsChange(android.graphics.Rect rect) {
+        this.topDrawable.setBounds(rect);
+        this.bottomDrawable.setBounds(rect);
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.globalAlpha = i;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.topDrawable.setColorFilter(colorFilter);
+    }
+
+    public void setProgress(float f) {
+        this.progress = f;
         invalidateSelf();
     }
 }

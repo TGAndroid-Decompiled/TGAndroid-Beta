@@ -140,12 +140,17 @@ public class ChooseSpeedLayout {
     }
 
     public void update(float f, boolean z) {
-        for (int i = 0; i < this.speedItems.length; i++) {
-            if (z && ((i == 0 && Math.abs(f - 0.2f) < 0.01f) || ((i == 1 && Math.abs(f - 0.5f) < 0.1f) || ((i == 2 && Math.abs(f - 1.0f) < 0.1f) || ((i == 3 && Math.abs(f - 1.5f) < 0.1f) || (i == 4 && Math.abs(f - 2.0f) < 0.1f)))))) {
-                this.speedItems[i].setColors(-9718023, -9718023);
+        ActionBarMenuSubItem actionBarMenuSubItem;
+        int i;
+        for (int i2 = 0; i2 < this.speedItems.length; i2++) {
+            if (!z || ((i2 != 0 || Math.abs(f - 0.2f) >= 0.01f) && ((i2 != 1 || Math.abs(f - 0.5f) >= 0.1f) && ((i2 != 2 || Math.abs(f - 1.0f) >= 0.1f) && ((i2 != 3 || Math.abs(f - 1.5f) >= 0.1f) && (i2 != 4 || Math.abs(f - 2.0f) >= 0.1f)))))) {
+                actionBarMenuSubItem = this.speedItems[i2];
+                i = -328966;
             } else {
-                this.speedItems[i].setColors(-328966, -328966);
+                actionBarMenuSubItem = this.speedItems[i2];
+                i = -9718023;
             }
+            actionBarMenuSubItem.setColors(i, i);
         }
         this.slider.setSpeed(f, true);
     }

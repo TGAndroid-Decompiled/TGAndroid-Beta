@@ -56,7 +56,7 @@ public class TLRPC$TL_phoneCall extends TLRPC$PhoneCall {
         int size = this.connections.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            this.connections.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$PhoneConnection) this.connections.get(i3)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(this.start_date);
         if ((this.flags & 128) != 0) {

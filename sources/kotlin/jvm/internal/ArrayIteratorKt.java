@@ -2,8 +2,8 @@ package kotlin.jvm.internal;
 
 import java.util.Iterator;
 
-public final class ArrayIteratorKt {
-    public static final <T> Iterator<T> iterator(T[] array) {
+public abstract class ArrayIteratorKt {
+    public static final Iterator iterator(Object[] array) {
         Intrinsics.checkNotNullParameter(array, "array");
         return new ArrayIterator(array);
     }

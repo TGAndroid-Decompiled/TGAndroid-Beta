@@ -13,5 +13,5 @@ public interface VideoCapturer {
 
     void startCapture(int i, int i2, int i3);
 
-    void stopCapture() throws InterruptedException;
+    void stopCapture();
 }

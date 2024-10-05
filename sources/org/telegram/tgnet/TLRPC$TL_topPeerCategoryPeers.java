@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_topPeerCategoryPeers extends TLObject {
     public TLRPC$TopPeerCategory category;
     public int count;
-    public ArrayList<TLRPC$TL_topPeer> peers = new ArrayList<>();
+    public ArrayList peers = new ArrayList();
 
     public static TLRPC$TL_topPeerCategoryPeers TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-75283823 != i) {
@@ -49,7 +49,7 @@ public class TLRPC$TL_topPeerCategoryPeers extends TLObject {
         int size = this.peers.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.peers.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_topPeer) this.peers.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

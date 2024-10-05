@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_searchResultsPositions extends TLObject {
     public int count;
-    public ArrayList<TLRPC$TL_searchResultPosition> positions = new ArrayList<>();
+    public ArrayList positions = new ArrayList();
 
     public static TLRPC$TL_messages_searchResultsPositions TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (1404185519 != i) {
@@ -46,7 +46,7 @@ public class TLRPC$TL_messages_searchResultsPositions extends TLObject {
         int size = this.positions.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.positions.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_searchResultPosition) this.positions.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

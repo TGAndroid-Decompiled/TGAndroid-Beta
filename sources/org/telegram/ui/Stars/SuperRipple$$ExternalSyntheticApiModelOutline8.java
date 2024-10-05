@@ -1,4 +1,4 @@
 package org.telegram.ui.Stars;
 
-public final class SuperRipple$$ExternalSyntheticApiModelOutline8 {
+public abstract class SuperRipple$$ExternalSyntheticApiModelOutline8 {
 }

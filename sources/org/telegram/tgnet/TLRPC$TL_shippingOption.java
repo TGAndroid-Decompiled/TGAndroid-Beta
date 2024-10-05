@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_shippingOption extends TLObject {
     public String id;
-    public ArrayList<TLRPC$TL_labeledPrice> prices = new ArrayList<>();
+    public ArrayList prices = new ArrayList();
     public String title;
 
     public static TLRPC$TL_shippingOption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -49,7 +49,7 @@ public class TLRPC$TL_shippingOption extends TLObject {
         int size = this.prices.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.prices.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_labeledPrice) this.prices.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

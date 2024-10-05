@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class PhotoViewer$$ExternalSyntheticApiModelOutline0 {
+public abstract class PhotoViewer$$ExternalSyntheticApiModelOutline0 {
 }

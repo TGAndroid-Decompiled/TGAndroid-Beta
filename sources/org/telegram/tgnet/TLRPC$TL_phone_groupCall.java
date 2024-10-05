@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class TLRPC$TL_phone_groupCall extends TLObject {
     public TLRPC$GroupCall call;
     public String participants_next_offset;
-    public ArrayList<TLRPC$TL_groupCallParticipant> participants = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList participants = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_phone_groupCall TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1636664659 != i) {
@@ -80,20 +80,20 @@ public class TLRPC$TL_phone_groupCall extends TLObject {
         int size = this.participants.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.participants.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_groupCallParticipant) this.participants.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeString(this.participants_next_offset);
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.users.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

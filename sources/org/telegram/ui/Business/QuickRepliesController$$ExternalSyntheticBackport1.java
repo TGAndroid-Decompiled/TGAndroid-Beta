@@ -3,7 +3,7 @@ package org.telegram.ui.Business;
 import org.telegram.messenger.MessagesController$$ExternalSyntheticBackport13;
 import org.telegram.messenger.MessagesController$$ExternalSyntheticBackport14;
 
-public final class QuickRepliesController$$ExternalSyntheticBackport1 {
+public abstract class QuickRepliesController$$ExternalSyntheticBackport1 {
     public static long m(CharSequence charSequence, int i, int i2, int i3) {
         int i4 = i2 - i;
         if (i4 == 0) {

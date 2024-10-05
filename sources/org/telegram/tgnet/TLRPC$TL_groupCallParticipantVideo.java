@@ -7,7 +7,7 @@ public class TLRPC$TL_groupCallParticipantVideo extends TLObject {
     public String endpoint;
     public int flags;
     public boolean paused;
-    public ArrayList<TLRPC$TL_groupCallParticipantVideoSourceGroup> source_groups = new ArrayList<>();
+    public ArrayList source_groups = new ArrayList();
 
     public static TLRPC$TL_groupCallParticipantVideo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (1735736008 != i) {
@@ -58,7 +58,7 @@ public class TLRPC$TL_groupCallParticipantVideo extends TLObject {
         int size = this.source_groups.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.source_groups.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_groupCallParticipantVideoSourceGroup) this.source_groups.get(i2)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(this.audio_source);

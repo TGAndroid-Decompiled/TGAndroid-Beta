@@ -24,10 +24,6 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
     private Paint backgroundPaint;
     private PhotoPickerAlbumsCellDelegate delegate;
 
-    public interface PhotoPickerAlbumsCellDelegate {
-        void didSelectAlbum(MediaController.AlbumEntry albumEntry);
-    }
-
     private class AlbumView extends FrameLayout {
         private TextView countTextView;
         private BackupImageView imageView;
@@ -70,14 +66,6 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            if (Build.VERSION.SDK_INT >= 21) {
-                this.selector.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
-            }
-            return super.onTouchEvent(motionEvent);
-        }
-
-        @Override
         protected void onDraw(Canvas canvas) {
             if (this.imageView.getImageReceiver().hasNotThumb() && this.imageView.getImageReceiver().getCurrentAlpha() == 1.0f) {
                 return;
@@ -85,6 +73,18 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
             PhotoPickerAlbumsCell.this.backgroundPaint.setColor(Theme.getColor(Theme.key_chat_attachPhotoBackground));
             canvas.drawRect(0.0f, 0.0f, this.imageView.getMeasuredWidth(), this.imageView.getMeasuredHeight(), PhotoPickerAlbumsCell.this.backgroundPaint);
         }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            if (Build.VERSION.SDK_INT >= 21) {
+                this.selector.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
+            }
+            return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public interface PhotoPickerAlbumsCellDelegate {
+        void didSelectAlbum(MediaController.AlbumEntry albumEntry);
     }
 
     public PhotoPickerAlbumsCell(Context context) {
@@ -113,57 +113,9 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
         }
     }
 
-    public void setAlbumsCount(int i) {
-        int i2 = 0;
-        while (true) {
-            AlbumView[] albumViewArr = this.albumViews;
-            if (i2 < albumViewArr.length) {
-                albumViewArr[i2].setVisibility(i2 < i ? 0 : 4);
-                i2++;
-            } else {
-                this.albumsCount = i;
-                return;
-            }
-        }
-    }
-
-    public void setDelegate(PhotoPickerAlbumsCellDelegate photoPickerAlbumsCellDelegate) {
-        this.delegate = photoPickerAlbumsCellDelegate;
-    }
-
-    public void setAlbum(int i, MediaController.AlbumEntry albumEntry) {
-        this.albumEntries[i] = albumEntry;
-        if (albumEntry != null) {
-            AlbumView albumView = this.albumViews[i];
-            albumView.imageView.setOrientation(0, true);
-            MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
-            if (photoEntry == null || photoEntry.path == null) {
-                albumView.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
-            } else {
-                BackupImageView backupImageView = albumView.imageView;
-                MediaController.PhotoEntry photoEntry2 = albumEntry.coverPhoto;
-                backupImageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
-                if (albumEntry.coverPhoto.isVideo) {
-                    albumView.imageView.setImage("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
-                } else {
-                    albumView.imageView.setImage("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
-                }
-            }
-            albumView.nameTextView.setText(albumEntry.bucketName);
-            albumView.countTextView.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
-            return;
-        }
-        this.albumViews[i].setVisibility(4);
-    }
-
     @Override
     protected void onMeasure(int i, int i2) {
-        int dp;
-        if (AndroidUtilities.isTablet()) {
-            dp = ((AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.dp(4.0f))) / this.albumsCount;
-        } else {
-            dp = ((AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.dp(4.0f))) / this.albumsCount;
-        }
+        int dp = (((AndroidUtilities.isTablet() ? AndroidUtilities.dp(490.0f) : AndroidUtilities.displaySize.x) - AndroidUtilities.dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.dp(4.0f))) / this.albumsCount;
         for (int i3 = 0; i3 < this.albumsCount; i3++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.albumViews[i3].getLayoutParams();
             layoutParams.topMargin = AndroidUtilities.dp(4.0f);
@@ -174,5 +126,60 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
             this.albumViews[i3].setLayoutParams(layoutParams);
         }
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f) + dp, 1073741824));
+    }
+
+    public void setAlbum(int i, MediaController.AlbumEntry albumEntry) {
+        BackupImageView backupImageView;
+        StringBuilder sb;
+        String str;
+        this.albumEntries[i] = albumEntry;
+        if (albumEntry == null) {
+            this.albumViews[i].setVisibility(4);
+            return;
+        }
+        AlbumView albumView = this.albumViews[i];
+        albumView.imageView.setOrientation(0, true);
+        MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
+        if (photoEntry == null || photoEntry.path == null) {
+            albumView.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
+        } else {
+            BackupImageView backupImageView2 = albumView.imageView;
+            MediaController.PhotoEntry photoEntry2 = albumEntry.coverPhoto;
+            backupImageView2.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
+            if (albumEntry.coverPhoto.isVideo) {
+                backupImageView = albumView.imageView;
+                sb = new StringBuilder();
+                str = "vthumb://";
+            } else {
+                backupImageView = albumView.imageView;
+                sb = new StringBuilder();
+                str = "thumb://";
+            }
+            sb.append(str);
+            sb.append(albumEntry.coverPhoto.imageId);
+            sb.append(":");
+            sb.append(albumEntry.coverPhoto.path);
+            backupImageView.setImage(sb.toString(), null, Theme.chat_attachEmptyDrawable);
+        }
+        albumView.nameTextView.setText(albumEntry.bucketName);
+        albumView.countTextView.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
+    }
+
+    public void setAlbumsCount(int i) {
+        int i2 = 0;
+        while (true) {
+            AlbumView[] albumViewArr = this.albumViews;
+            if (i2 >= albumViewArr.length) {
+                this.albumsCount = i;
+                return;
+            } else {
+                albumViewArr[i2].setVisibility(i2 < i ? 0 : 4);
+                i2++;
+            }
+        }
+    }
+
+    public void setDelegate(PhotoPickerAlbumsCellDelegate photoPickerAlbumsCellDelegate) {
+        this.delegate = photoPickerAlbumsCellDelegate;
     }
 }

@@ -27,12 +27,6 @@ public class VoIPTimerView extends View {
     StaticLayout timerLayout;
     Runnable updater;
 
-    public void lambda$new$0() {
-        if (getVisibility() == 0) {
-            updateTimer();
-        }
-    }
-
     public VoIPTimerView(Context context) {
         super(context);
         this.rectF = new RectF();
@@ -56,52 +50,10 @@ public class VoIPTimerView extends View {
         drawable.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        StaticLayout staticLayout = this.timerLayout;
-        if (staticLayout != null) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), staticLayout.getHeight());
-        } else {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(15.0f));
+    public void lambda$new$0() {
+        if (getVisibility() == 0) {
+            updateTimer();
         }
-    }
-
-    public void updateTimer() {
-        removeCallbacks(this.updater);
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null) {
-            return;
-        }
-        String formatLongDuration = AndroidUtilities.formatLongDuration((int) (sharedInstance.getCallDuration() / 1000));
-        String str = this.currentTimeStr;
-        if (str == null || !str.equals(formatLongDuration)) {
-            this.currentTimeStr = formatLongDuration;
-            if (this.timerLayout == null) {
-                requestLayout();
-            }
-            String str2 = this.currentTimeStr;
-            TextPaint textPaint = this.textPaint;
-            this.timerLayout = new StaticLayout(str2, textPaint, (int) textPaint.measureText(str2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        postDelayed(this.updater, 300L);
-        invalidate();
-    }
-
-    @Override
-    public void setVisibility(int i) {
-        if (getVisibility() != i) {
-            if (i == 0) {
-                this.currentTimeStr = "00:00";
-                String str = this.currentTimeStr;
-                TextPaint textPaint = this.textPaint;
-                this.timerLayout = new StaticLayout(str, textPaint, (int) textPaint.measureText(str), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                updateTimer();
-            } else {
-                this.currentTimeStr = null;
-                this.timerLayout = null;
-            }
-        }
-        super.setVisibility(i);
     }
 
     @Override
@@ -134,13 +86,57 @@ public class VoIPTimerView extends View {
         canvas.restore();
     }
 
+    @Override
+    protected void onMeasure(int i, int i2) {
+        StaticLayout staticLayout = this.timerLayout;
+        setMeasuredDimension(View.MeasureSpec.getSize(i), staticLayout != null ? staticLayout.getHeight() : AndroidUtilities.dp(15.0f));
+    }
+
+    public void setDrawCallIcon() {
+        this.isDrawCallIcon = true;
+        invalidate();
+    }
+
     public void setSignalBarCount(int i) {
         this.signalBarCount = i;
         invalidate();
     }
 
-    public void setDrawCallIcon() {
-        this.isDrawCallIcon = true;
+    @Override
+    public void setVisibility(int i) {
+        if (getVisibility() != i) {
+            if (i == 0) {
+                this.currentTimeStr = "00:00";
+                String str = this.currentTimeStr;
+                TextPaint textPaint = this.textPaint;
+                this.timerLayout = new StaticLayout(str, textPaint, (int) textPaint.measureText(str), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                updateTimer();
+            } else {
+                this.currentTimeStr = null;
+                this.timerLayout = null;
+            }
+        }
+        super.setVisibility(i);
+    }
+
+    public void updateTimer() {
+        removeCallbacks(this.updater);
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance == null) {
+            return;
+        }
+        String formatLongDuration = AndroidUtilities.formatLongDuration((int) (sharedInstance.getCallDuration() / 1000));
+        String str = this.currentTimeStr;
+        if (str == null || !str.equals(formatLongDuration)) {
+            this.currentTimeStr = formatLongDuration;
+            if (this.timerLayout == null) {
+                requestLayout();
+            }
+            String str2 = this.currentTimeStr;
+            TextPaint textPaint = this.textPaint;
+            this.timerLayout = new StaticLayout(str2, textPaint, (int) textPaint.measureText(str2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        }
+        postDelayed(this.updater, 300L);
         invalidate();
     }
 }

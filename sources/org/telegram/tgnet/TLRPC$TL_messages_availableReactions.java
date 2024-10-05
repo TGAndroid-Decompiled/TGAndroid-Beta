@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_availableReactions extends TLRPC$messages_AvailableReactions {
     public int hash;
-    public ArrayList<TLRPC$TL_availableReaction> reactions = new ArrayList<>();
+    public ArrayList reactions = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -34,7 +34,7 @@ public class TLRPC$TL_messages_availableReactions extends TLRPC$messages_Availab
         int size = this.reactions.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.reactions.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_availableReaction) this.reactions.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

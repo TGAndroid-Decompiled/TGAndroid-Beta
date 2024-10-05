@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -15,7 +14,6 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-@SuppressLint({"ViewConstructor"})
 public class ChatCell extends BaseCell {
     private TLRPC$Chat chat;
     private ChatDeleteListener chatDeleteListener;
@@ -24,11 +22,6 @@ public class ChatCell extends BaseCell {
 
     public interface ChatDeleteListener {
         void onChatDeleted(TLRPC$Chat tLRPC$Chat);
-    }
-
-    @Override
-    protected boolean needCheck() {
-        return false;
     }
 
     public ChatCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -47,18 +40,30 @@ public class ChatCell extends BaseCell {
         this.titleTextView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.deleteImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public void lambda$setChat$0(TLRPC$Chat tLRPC$Chat, View view) {
+        ChatDeleteListener chatDeleteListener = this.chatDeleteListener;
+        if (chatDeleteListener != null) {
+            chatDeleteListener.onChatDeleted(tLRPC$Chat);
+        }
     }
 
     public TLRPC$Chat getChat() {
         return this.chat;
     }
 
+    @Override
+    protected boolean needCheck() {
+        return false;
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.deleteImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    }
+
     public void setChat(final TLRPC$Chat tLRPC$Chat, int i, boolean z, int i2) {
-        String string;
+        String formatPluralString;
         this.removable = z;
         this.chat = tLRPC$Chat;
         this.avatarDrawable.setInfo(tLRPC$Chat);
@@ -66,22 +71,21 @@ public class ChatCell extends BaseCell {
         this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
         this.titleTextView.setText(Emoji.replaceEmoji(tLRPC$Chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
-        if (z) {
-            if (i2 >= 1) {
-                string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
-            } else {
-                string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
-            }
-            setSubtitle(string);
+        if (!z) {
+            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]);
+        } else if (i2 >= 1) {
+            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
         } else {
-            setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
+            formatPluralString = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
         }
+        setSubtitle(formatPluralString);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
         setDivider(true);
+        ImageView imageView = this.deleteImageView;
         if (z) {
-            this.deleteImageView.setVisibility(0);
+            imageView.setVisibility(0);
         } else {
-            this.deleteImageView.setVisibility(4);
+            imageView.setVisibility(4);
         }
         this.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,29 +95,20 @@ public class ChatCell extends BaseCell {
         });
     }
 
-    public void lambda$setChat$0(TLRPC$Chat tLRPC$Chat, View view) {
-        ChatDeleteListener chatDeleteListener = this.chatDeleteListener;
-        if (chatDeleteListener != null) {
-            chatDeleteListener.onChatDeleted(tLRPC$Chat);
-        }
-    }
-
     public void setChatDeleteListener(ChatDeleteListener chatDeleteListener) {
         this.chatDeleteListener = chatDeleteListener;
     }
 
     public void setCounter(int i, int i2) {
-        String string;
+        String formatPluralString;
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chat);
         if (!this.removable) {
-            setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
-            return;
-        }
-        if (i2 >= 1) {
-            string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
+            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]);
+        } else if (i2 >= 1) {
+            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
         } else {
-            string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+            formatPluralString = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
         }
-        setSubtitle(string);
+        setSubtitle(formatPluralString);
     }
 }

@@ -3,12 +3,11 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_account_connectedBots extends TLObject {
-    public static int constructor = 400029819;
-    public ArrayList<TLRPC$TL_connectedBot> connected_bots = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList connected_bots = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_account_connectedBots TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (i != constructor) {
+        if (i != 400029819) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_account_connectedBots", Integer.valueOf(i)));
             }
@@ -47,16 +46,16 @@ public class TLRPC$TL_account_connectedBots extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(400029819);
         abstractSerializedData.writeInt32(481674261);
         abstractSerializedData.writeInt32(this.connected_bots.size());
         for (int i = 0; i < this.connected_bots.size(); i++) {
-            this.connected_bots.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_connectedBot) this.connected_bots.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         abstractSerializedData.writeInt32(this.users.size());
         for (int i2 = 0; i2 < this.users.size(); i2++) {
-            this.users.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i2)).serializeToStream(abstractSerializedData);
         }
     }
 }

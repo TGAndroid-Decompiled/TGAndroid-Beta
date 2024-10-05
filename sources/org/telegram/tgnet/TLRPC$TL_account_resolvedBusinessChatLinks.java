@@ -6,9 +6,9 @@ public class TLRPC$TL_account_resolvedBusinessChatLinks extends TLObject {
     public int flags;
     public String message;
     public TLRPC$Peer peer;
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_account_resolvedBusinessChatLinks TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1708937439 != i) {
@@ -87,20 +87,20 @@ public class TLRPC$TL_account_resolvedBusinessChatLinks extends TLObject {
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.entities.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.users.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

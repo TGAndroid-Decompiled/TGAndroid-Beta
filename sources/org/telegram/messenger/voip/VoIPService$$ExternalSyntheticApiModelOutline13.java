@@ -1,4 +1,4 @@
 package org.telegram.messenger.voip;
 
-public final class VoIPService$$ExternalSyntheticApiModelOutline13 {
+public abstract class VoIPService$$ExternalSyntheticApiModelOutline13 {
 }

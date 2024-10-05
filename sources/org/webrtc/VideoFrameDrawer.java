@@ -20,22 +20,6 @@ public class VideoFrameDrawer {
     private final Matrix renderMatrix = new Matrix();
     private final Matrix renderRotateMatrix = new Matrix();
 
-    public static void drawTexture(RendererCommon.GlDrawer glDrawer, VideoFrame.TextureBuffer textureBuffer, Matrix matrix, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, boolean z) {
-        Matrix matrix2 = new Matrix(textureBuffer.getTransformMatrix());
-        matrix2.preConcat(matrix);
-        float[] convertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
-        int i9 = AnonymousClass1.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
-        if (i9 == 1) {
-            glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
-        } else {
-            if (i9 == 2) {
-                glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
-                return;
-            }
-            throw new RuntimeException("Unknown texture type.");
-        }
-    }
-
     public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type;
 
@@ -53,12 +37,6 @@ public class VideoFrameDrawer {
         }
     }
 
-    public void getRenderBufferBitmap(RendererCommon.GlDrawer glDrawer, int i, GlGenericDrawer.TextureCallback textureCallback) {
-        if (glDrawer instanceof GlGenericDrawer) {
-            ((GlGenericDrawer) glDrawer).getRenderBufferBitmap(i, textureCallback);
-        }
-    }
-
     public static class YuvUploader {
         private ByteBuffer copyBuffer;
         private int[] yuvTextures;
@@ -68,6 +46,23 @@ public class VideoFrameDrawer {
 
         YuvUploader(AnonymousClass1 anonymousClass1) {
             this();
+        }
+
+        public int[] getYuvTextures() {
+            return this.yuvTextures;
+        }
+
+        public void release() {
+            this.copyBuffer = null;
+            int[] iArr = this.yuvTextures;
+            if (iArr != null) {
+                GLES20.glDeleteTextures(3, iArr, 0);
+                this.yuvTextures = null;
+            }
+        }
+
+        public int[] uploadFromBuffer(VideoFrame.I420Buffer i420Buffer) {
+            return uploadYuvData(i420Buffer.getWidth(), i420Buffer.getHeight(), new int[]{i420Buffer.getStrideY(), i420Buffer.getStrideU(), i420Buffer.getStrideV()}, new ByteBuffer[]{i420Buffer.getDataY(), i420Buffer.getDataU(), i420Buffer.getDataV()});
         }
 
         public int[] uploadYuvData(int i, int i2, int[] iArr, ByteBuffer[] byteBufferArr) {
@@ -109,27 +104,6 @@ public class VideoFrameDrawer {
             }
             return this.yuvTextures;
         }
-
-        public int[] uploadFromBuffer(VideoFrame.I420Buffer i420Buffer) {
-            return uploadYuvData(i420Buffer.getWidth(), i420Buffer.getHeight(), new int[]{i420Buffer.getStrideY(), i420Buffer.getStrideU(), i420Buffer.getStrideV()}, new ByteBuffer[]{i420Buffer.getDataY(), i420Buffer.getDataU(), i420Buffer.getDataV()});
-        }
-
-        public int[] getYuvTextures() {
-            return this.yuvTextures;
-        }
-
-        public void release() {
-            this.copyBuffer = null;
-            int[] iArr = this.yuvTextures;
-            if (iArr != null) {
-                GLES20.glDeleteTextures(3, iArr, 0);
-                this.yuvTextures = null;
-            }
-        }
-    }
-
-    private static int distance(float f, float f2, float f3, float f4) {
-        return (int) Math.round(Math.hypot(f3 - f, f4 - f2));
     }
 
     private void calculateTransformedRenderSize(int i, int i2, Matrix matrix) {
@@ -150,6 +124,25 @@ public class VideoFrameDrawer {
         this.renderWidth = distance(fArr2[0], fArr2[1], fArr2[2], fArr2[3]);
         float[] fArr3 = this.dstPoints;
         this.renderHeight = distance(fArr3[0], fArr3[1], fArr3[4], fArr3[5]);
+    }
+
+    private static int distance(float f, float f2, float f3, float f4) {
+        return (int) Math.round(Math.hypot(f3 - f, f4 - f2));
+    }
+
+    public static void drawTexture(RendererCommon.GlDrawer glDrawer, VideoFrame.TextureBuffer textureBuffer, Matrix matrix, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, boolean z) {
+        Matrix matrix2 = new Matrix(textureBuffer.getTransformMatrix());
+        matrix2.preConcat(matrix);
+        float[] convertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
+        int i9 = AnonymousClass1.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
+        if (i9 == 1) {
+            glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
+        } else {
+            if (i9 != 2) {
+                throw new RuntimeException("Unknown texture type.");
+            }
+            glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
+        }
     }
 
     public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer) {
@@ -190,6 +183,12 @@ public class VideoFrameDrawer {
             i420.release();
         }
         glDrawer.drawYuv(this.yuvUploader.getYuvTextures(), videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotatedWidth(), videoFrame.getRotatedHeight(), RendererCommon.convertMatrixFromAndroidGraphicsMatrix(this.renderMatrix), this.renderWidth, this.renderHeight, i, i2, i3, i4, z2);
+    }
+
+    public void getRenderBufferBitmap(RendererCommon.GlDrawer glDrawer, int i, GlGenericDrawer.TextureCallback textureCallback) {
+        if (glDrawer instanceof GlGenericDrawer) {
+            ((GlGenericDrawer) glDrawer).getRenderBufferBitmap(i, textureCallback);
+        }
     }
 
     public VideoFrame.Buffer prepareBufferForViewportSize(VideoFrame.Buffer buffer, int i, int i2) {

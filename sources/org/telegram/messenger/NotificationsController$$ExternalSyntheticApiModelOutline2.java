@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class NotificationsController$$ExternalSyntheticApiModelOutline2 {
+public abstract class NotificationsController$$ExternalSyntheticApiModelOutline2 {
 }

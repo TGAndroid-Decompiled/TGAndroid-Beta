@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 public class TLRPC$TL_messages_sendPaidReaction extends TLObject {
     public int count;
     public int flags;
-    public boolean isPrivate;
+    public Boolean isPrivate;
     public int msg_id;
     public TLRPC$InputPeer peer;
     public long random_id;
@@ -15,13 +15,16 @@ public class TLRPC$TL_messages_sendPaidReaction extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(633929278);
-        int i = this.isPrivate ? this.flags | 1 : this.flags & (-2);
+        abstractSerializedData.writeInt32(-1646877061);
+        int i = this.isPrivate != null ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.msg_id);
         abstractSerializedData.writeInt32(this.count);
         abstractSerializedData.writeInt64(this.random_id);
+        if ((this.flags & 1) != 0) {
+            abstractSerializedData.writeBool(this.isPrivate.booleanValue());
+        }
     }
 }

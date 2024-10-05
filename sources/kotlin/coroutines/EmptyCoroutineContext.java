@@ -8,14 +8,17 @@ import kotlin.jvm.internal.Intrinsics;
 public final class EmptyCoroutineContext implements CoroutineContext, Serializable {
     public static final EmptyCoroutineContext INSTANCE = new EmptyCoroutineContext();
 
-    @Override
-    public <R> R fold(R r, Function2<? super R, ? super CoroutineContext.Element, ? extends R> operation) {
-        Intrinsics.checkNotNullParameter(operation, "operation");
-        return r;
+    private EmptyCoroutineContext() {
     }
 
     @Override
-    public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
+    public Object fold(Object obj, Function2 operation) {
+        Intrinsics.checkNotNullParameter(operation, "operation");
+        return obj;
+    }
+
+    @Override
+    public CoroutineContext.Element get(CoroutineContext.Key key) {
         Intrinsics.checkNotNullParameter(key, "key");
         return null;
     }
@@ -25,12 +28,9 @@ public final class EmptyCoroutineContext implements CoroutineContext, Serializab
     }
 
     @Override
-    public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
+    public CoroutineContext minusKey(CoroutineContext.Key key) {
         Intrinsics.checkNotNullParameter(key, "key");
         return this;
-    }
-
-    private EmptyCoroutineContext() {
     }
 
     public String toString() {

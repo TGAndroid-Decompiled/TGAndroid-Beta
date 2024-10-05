@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class ProxySettingsActivity$$ExternalSyntheticApiModelOutline0 {
+public abstract class ProxySettingsActivity$$ExternalSyntheticApiModelOutline0 {
 }

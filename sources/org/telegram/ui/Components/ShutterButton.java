@@ -12,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.DecelerateInterpolator;
-import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -71,14 +70,6 @@ public class ShutterButton extends View {
         this.state = State.DEFAULT;
     }
 
-    public void setDelegate(ShutterButtonDelegate shutterButtonDelegate) {
-        this.delegate = shutterButtonDelegate;
-    }
-
-    public ShutterButtonDelegate getDelegate() {
-        return this.delegate;
-    }
-
     private void setHighlighted(boolean z) {
         AnimatorSet animatorSet = new AnimatorSet();
         if (z) {
@@ -92,11 +83,8 @@ public class ShutterButton extends View {
         animatorSet.start();
     }
 
-    @Override
-    @Keep
-    public void setScaleX(float f) {
-        super.setScaleX(f);
-        invalidate();
+    public ShutterButtonDelegate getDelegate() {
+        return this.delegate;
     }
 
     public State getState() {
@@ -105,6 +93,7 @@ public class ShutterButton extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        float dp;
         int measuredWidth = getMeasuredWidth() / 2;
         int measuredHeight = getMeasuredHeight() / 2;
         this.shadowDrawable.setBounds(measuredWidth - AndroidUtilities.dp(36.0f), measuredHeight - AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f) + measuredWidth, AndroidUtilities.dp(36.0f) + measuredHeight);
@@ -121,27 +110,48 @@ public class ShutterButton extends View {
         float f = measuredWidth;
         float f2 = measuredHeight;
         canvas.drawCircle(f, f2, AndroidUtilities.dp(26.0f), this.whitePaint);
-        if (this.state != State.RECORDING) {
-            if (this.redProgress != 0.0f) {
-                canvas.drawCircle(f, f2, AndroidUtilities.dp(26.5f) * scaleX, this.redPaint);
-                return;
+        if (this.state == State.RECORDING) {
+            if (this.redProgress != 1.0f) {
+                long abs = Math.abs(System.currentTimeMillis() - this.lastUpdateTime);
+                if (abs > 17) {
+                    abs = 17;
+                }
+                long j = this.totalTime + abs;
+                this.totalTime = j;
+                if (j > 120) {
+                    this.totalTime = 120L;
+                }
+                this.redProgress = this.interpolator.getInterpolation(((float) this.totalTime) / 120.0f);
+                invalidate();
             }
+            dp = AndroidUtilities.dp(26.5f) * scaleX;
+            scaleX = this.redProgress;
+        } else if (this.redProgress == 0.0f) {
             return;
+        } else {
+            dp = AndroidUtilities.dp(26.5f);
         }
-        if (this.redProgress != 1.0f) {
-            long abs = Math.abs(System.currentTimeMillis() - this.lastUpdateTime);
-            if (abs > 17) {
-                abs = 17;
-            }
-            long j = this.totalTime + abs;
-            this.totalTime = j;
-            if (j > 120) {
-                this.totalTime = 120L;
-            }
-            this.redProgress = this.interpolator.getInterpolation(((float) this.totalTime) / 120.0f);
-            invalidate();
+        canvas.drawCircle(f, f2, dp * scaleX, this.redPaint);
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
+        int id;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction2;
+        int id2;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+        accessibilityNodeInfo.setClickable(true);
+        accessibilityNodeInfo.setLongClickable(true);
+        if (Build.VERSION.SDK_INT >= 21) {
+            accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
+            id = accessibilityAction.getId();
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString(R.string.AccActionTakePicture)));
+            accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK;
+            id2 = accessibilityAction2.getId();
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id2, LocaleController.getString(R.string.AccActionRecordVideo)));
         }
-        canvas.drawCircle(f, f2, AndroidUtilities.dp(26.5f) * scaleX * this.redProgress, this.redPaint);
     }
 
     @Override
@@ -188,41 +198,17 @@ public class ShutterButton extends View {
         return true;
     }
 
-    public void setState(State state, boolean z) {
-        if (this.state != state) {
-            this.state = state;
-            if (z) {
-                this.lastUpdateTime = System.currentTimeMillis();
-                this.totalTime = 0L;
-                if (this.state != State.RECORDING) {
-                    this.redProgress = 0.0f;
-                }
-            } else if (state == State.RECORDING) {
-                this.redProgress = 1.0f;
-            } else {
-                this.redProgress = 0.0f;
-            }
-            invalidate();
-        }
+    public void setDelegate(ShutterButtonDelegate shutterButtonDelegate) {
+        this.delegate = shutterButtonDelegate;
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
-        int id;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction2;
-        int id2;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-        accessibilityNodeInfo.setClickable(true);
-        accessibilityNodeInfo.setLongClickable(true);
-        if (Build.VERSION.SDK_INT >= 21) {
-            accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
-            id = accessibilityAction.getId();
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString(R.string.AccActionTakePicture)));
-            accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK;
-            id2 = accessibilityAction2.getId();
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id2, LocaleController.getString(R.string.AccActionRecordVideo)));
-        }
+    public void setScaleX(float f) {
+        super.setScaleX(f);
+        invalidate();
+    }
+
+    public void setState(org.telegram.ui.Components.ShutterButton.State r2, boolean r3) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShutterButton.setState(org.telegram.ui.Components.ShutterButton$State, boolean):void");
     }
 }

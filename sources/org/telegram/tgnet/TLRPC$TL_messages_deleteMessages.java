@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_deleteMessages extends TLObject {
     public int flags;
-    public ArrayList<Integer> id = new ArrayList<>();
+    public ArrayList id = new ArrayList();
     public boolean revoke;
 
     public static TLRPC$TL_messages_deleteMessages TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -52,7 +52,7 @@ public class TLRPC$TL_messages_deleteMessages extends TLObject {
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            abstractSerializedData.writeInt32(this.id.get(i2).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.id.get(i2)).intValue());
         }
     }
 }

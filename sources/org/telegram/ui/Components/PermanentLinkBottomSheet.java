@@ -150,27 +150,12 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         if (chat != null && ChatObject.isPublic(chat)) {
             linkActionView.setLink("https://t.me/" + ChatObject.getPublicUsername(chat));
             textView3.setVisibility(8);
-        } else if (tLRPC$ChatFull != null && (tLRPC$TL_chatInviteExported = tLRPC$ChatFull.exported_invite) != null) {
-            linkActionView.setLink(tLRPC$TL_chatInviteExported.link);
-        } else {
+        } else if (tLRPC$ChatFull == null || (tLRPC$TL_chatInviteExported = tLRPC$ChatFull.exported_invite) == null) {
             generateLink(false);
+        } else {
+            linkActionView.setLink(tLRPC$TL_chatInviteExported.link);
         }
         updateColors();
-    }
-
-    public void lambda$new$0(View view) {
-        dismiss();
-    }
-
-    public void lambda$new$1() {
-        generateLink(true);
-    }
-
-    public void lambda$new$2(TLRPC$ChatFull tLRPC$ChatFull, BaseFragment baseFragment, View view) {
-        ManageLinksActivity manageLinksActivity = new ManageLinksActivity(tLRPC$ChatFull.id, 0L, 0);
-        manageLinksActivity.setInfo(tLRPC$ChatFull, tLRPC$ChatFull.exported_invite);
-        baseFragment.presentFragment(manageLinksActivity);
-        dismiss();
     }
 
     private void generateLink(final boolean z) {
@@ -185,15 +170,6 @@ public class PermanentLinkBottomSheet extends BottomSheet {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 PermanentLinkBottomSheet.this.lambda$generateLink$4(z, tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public void lambda$generateLink$4(final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                PermanentLinkBottomSheet.this.lambda$generateLink$3(tLRPC$TL_error, tLObject, z);
             }
         });
     }
@@ -217,24 +193,61 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         this.linkGenerating = false;
     }
 
-    @Override
-    public void show() {
-        super.show();
+    public void lambda$generateLink$4(final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PermanentLinkBottomSheet.this.lambda$show$5();
+                PermanentLinkBottomSheet.this.lambda$generateLink$3(tLRPC$TL_error, tLObject, z);
             }
-        }, 50L);
+        });
+    }
+
+    public void lambda$new$0(View view) {
+        dismiss();
+    }
+
+    public void lambda$new$1() {
+        generateLink(true);
+    }
+
+    public void lambda$new$2(TLRPC$ChatFull tLRPC$ChatFull, BaseFragment baseFragment, View view) {
+        ManageLinksActivity manageLinksActivity = new ManageLinksActivity(tLRPC$ChatFull.id, 0L, 0);
+        manageLinksActivity.setInfo(tLRPC$ChatFull, tLRPC$ChatFull.exported_invite);
+        baseFragment.presentFragment(manageLinksActivity);
+        dismiss();
     }
 
     public void lambda$show$5() {
         this.linkIcon.start();
     }
 
+    public void updateColors() {
+        RLottieImageView rLottieImageView = this.imageView;
+        int dp = AndroidUtilities.dp(90.0f);
+        int i = Theme.key_featuredStickers_addButton;
+        rLottieImageView.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
+        this.manage.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
+        int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
+        this.linkIcon.setLayerColor("Top.**", color);
+        this.linkIcon.setLayerColor("Bottom.**", color);
+        this.linkIcon.setLayerColor("Center.**", color);
+        this.linkActionView.updateColors();
+        setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
+    }
+
     @Override
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
+    public void dismiss() {
+        super.dismiss();
+    }
+
+    @Override
+    public void dismissInternal() {
+        super.dismissInternal();
+    }
+
+    @Override
+    public ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
@@ -258,27 +271,14 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         return arrayList;
     }
 
-    public void updateColors() {
-        RLottieImageView rLottieImageView = this.imageView;
-        int dp = AndroidUtilities.dp(90.0f);
-        int i = Theme.key_featuredStickers_addButton;
-        rLottieImageView.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
-        this.manage.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
-        int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
-        this.linkIcon.setLayerColor("Top.**", color);
-        this.linkIcon.setLayerColor("Bottom.**", color);
-        this.linkIcon.setLayerColor("Center.**", color);
-        this.linkActionView.updateColors();
-        setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
-    }
-
     @Override
-    public void dismissInternal() {
-        super.dismissInternal();
-    }
-
-    @Override
-    public void dismiss() {
-        super.dismiss();
+    public void show() {
+        super.show();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PermanentLinkBottomSheet.this.lambda$show$5();
+            }
+        }, 50L);
     }
 }

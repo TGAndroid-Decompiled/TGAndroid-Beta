@@ -1,15 +1,14 @@
 package org.telegram.messenger.audioinfo.m4a;
 
-import java.io.IOException;
 import java.io.InputStream;
 import org.telegram.messenger.audioinfo.util.PositionInputStream;
 
-public final class MP4Input extends MP4Box<PositionInputStream> {
+public final class MP4Input extends MP4Box {
     public MP4Input(InputStream inputStream) {
         super(new PositionInputStream(inputStream), null, "");
     }
 
-    public MP4Atom nextChildUpTo(String str) throws IOException {
+    public MP4Atom nextChildUpTo(String str) {
         MP4Atom nextChild;
         do {
             nextChild = nextChild();

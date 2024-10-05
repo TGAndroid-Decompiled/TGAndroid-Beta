@@ -1,4 +1,4 @@
 package org.webrtc;
 
-public final class Camera2Session$CaptureSessionCallback$$ExternalSyntheticApiModelOutline0 {
+public abstract class Camera2Session$CaptureSessionCallback$$ExternalSyntheticApiModelOutline0 {
 }

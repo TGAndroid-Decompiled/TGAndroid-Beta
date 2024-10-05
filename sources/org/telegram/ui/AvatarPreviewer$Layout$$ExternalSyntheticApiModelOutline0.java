@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class AvatarPreviewer$Layout$$ExternalSyntheticApiModelOutline0 {
+public abstract class AvatarPreviewer$Layout$$ExternalSyntheticApiModelOutline0 {
 }

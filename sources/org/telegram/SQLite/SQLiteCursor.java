@@ -13,6 +13,30 @@ public class SQLiteCursor {
     private boolean inRow = false;
     private SQLitePreparedStatement preparedStatement;
 
+    public SQLiteCursor(SQLitePreparedStatement sQLitePreparedStatement) {
+        this.preparedStatement = sQLitePreparedStatement;
+    }
+
+    public byte[] byteArrayValue(int i) {
+        checkRow();
+        return columnByteArrayValue(this.preparedStatement.getStatementHandle(), i);
+    }
+
+    public NativeByteBuffer byteBufferValue(int i) {
+        checkRow();
+        long columnByteBufferValue = columnByteBufferValue(this.preparedStatement.getStatementHandle(), i);
+        if (columnByteBufferValue != 0) {
+            return NativeByteBuffer.wrap(columnByteBufferValue);
+        }
+        return null;
+    }
+
+    void checkRow() {
+        if (!this.inRow) {
+            throw new SQLiteException("You must call next before");
+        }
+    }
+
     native byte[] columnByteArrayValue(long j, int i);
 
     native long columnByteBufferValue(long j, int i);
@@ -31,59 +55,48 @@ public class SQLiteCursor {
 
     native int columnType(long j, int i);
 
-    public SQLiteCursor(SQLitePreparedStatement sQLitePreparedStatement) {
-        this.preparedStatement = sQLitePreparedStatement;
+    public void dispose() {
+        this.preparedStatement.dispose();
     }
 
-    public boolean isNull(int i) throws SQLiteException {
+    public double doubleValue(int i) {
         checkRow();
-        return columnIsNull(this.preparedStatement.getStatementHandle(), i) == 1;
+        return columnDoubleValue(this.preparedStatement.getStatementHandle(), i);
+    }
+
+    public int getColumnCount() {
+        return columnCount(this.preparedStatement.getStatementHandle());
     }
 
     public SQLitePreparedStatement getPreparedStatement() {
         return this.preparedStatement;
     }
 
-    public int intValue(int i) throws SQLiteException {
-        checkRow();
-        return columnIntValue(this.preparedStatement.getStatementHandle(), i);
+    public long getStatementHandle() {
+        return this.preparedStatement.getStatementHandle();
     }
 
-    public double doubleValue(int i) throws SQLiteException {
-        checkRow();
-        return columnDoubleValue(this.preparedStatement.getStatementHandle(), i);
-    }
-
-    public long longValue(int i) throws SQLiteException {
-        checkRow();
-        return columnLongValue(this.preparedStatement.getStatementHandle(), i);
-    }
-
-    public String stringValue(int i) throws SQLiteException {
-        checkRow();
-        return columnStringValue(this.preparedStatement.getStatementHandle(), i);
-    }
-
-    public byte[] byteArrayValue(int i) throws SQLiteException {
-        checkRow();
-        return columnByteArrayValue(this.preparedStatement.getStatementHandle(), i);
-    }
-
-    public NativeByteBuffer byteBufferValue(int i) throws SQLiteException {
-        checkRow();
-        long columnByteBufferValue = columnByteBufferValue(this.preparedStatement.getStatementHandle(), i);
-        if (columnByteBufferValue != 0) {
-            return NativeByteBuffer.wrap(columnByteBufferValue);
-        }
-        return null;
-    }
-
-    public int getTypeOf(int i) throws SQLiteException {
+    public int getTypeOf(int i) {
         checkRow();
         return columnType(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public boolean next() throws SQLiteException {
+    public int intValue(int i) {
+        checkRow();
+        return columnIntValue(this.preparedStatement.getStatementHandle(), i);
+    }
+
+    public boolean isNull(int i) {
+        checkRow();
+        return columnIsNull(this.preparedStatement.getStatementHandle(), i) == 1;
+    }
+
+    public long longValue(int i) {
+        checkRow();
+        return columnLongValue(this.preparedStatement.getStatementHandle(), i);
+    }
+
+    public boolean next() {
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int step = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
         if (step == -1) {
@@ -116,21 +129,8 @@ public class SQLiteCursor {
         return z;
     }
 
-    public long getStatementHandle() {
-        return this.preparedStatement.getStatementHandle();
-    }
-
-    public int getColumnCount() {
-        return columnCount(this.preparedStatement.getStatementHandle());
-    }
-
-    public void dispose() {
-        this.preparedStatement.dispose();
-    }
-
-    void checkRow() throws SQLiteException {
-        if (!this.inRow) {
-            throw new SQLiteException("You must call next before");
-        }
+    public String stringValue(int i) {
+        checkRow();
+        return columnStringValue(this.preparedStatement.getStatementHandle(), i);
     }
 }

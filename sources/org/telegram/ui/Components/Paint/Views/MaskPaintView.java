@@ -33,7 +33,7 @@ import org.telegram.ui.Components.Paint.UndoStore;
 import org.telegram.ui.Components.Paint.Views.PaintWeightChooserView;
 import org.telegram.ui.Components.Size;
 
-public class MaskPaintView extends FrameLayout {
+public abstract class MaskPaintView extends FrameLayout {
     private float baseScale;
     private Bitmap bitmapToEdit;
     public final FrameLayout buttonsLayout;
@@ -43,7 +43,7 @@ public class MaskPaintView extends FrameLayout {
     public final TextView doneButton;
     private boolean eraser;
     private Rect exclusionRect;
-    private ArrayList<Rect> exclusionRects;
+    private ArrayList exclusionRects;
     private boolean ignoreLayout;
     private float imageHeight;
     private float imageWidth;
@@ -62,20 +62,6 @@ public class MaskPaintView extends FrameLayout {
     public PaintWeightChooserView weightChooserView;
     private PaintWeightChooserView.ValueOverride weightDefaultValueOverride;
 
-    public int getAdditionalBottom() {
-        return 0;
-    }
-
-    public int getAdditionalTop() {
-        return 0;
-    }
-
-    protected void onDrawn() {
-    }
-
-    public void onRenderViewAlphaUpdate(ValueAnimator valueAnimator) {
-    }
-
     public MaskPaintView(Context context, int i, Bitmap bitmap, Bitmap bitmap2, int i2, MediaController.CropState cropState) {
         super(context);
         this.weightDefaultValueOverride = new PaintWeightChooserView.ValueOverride() {
@@ -91,7 +77,7 @@ public class MaskPaintView extends FrameLayout {
                 MaskPaintView.this.renderView.setBrushSize(f);
             }
         };
-        this.exclusionRects = new ArrayList<>();
+        this.exclusionRects = new ArrayList();
         this.exclusionRect = new Rect();
         this.currentAccount = i;
         this.inBubbleMode = context instanceof BubbleActivity;
@@ -116,15 +102,6 @@ public class MaskPaintView extends FrameLayout {
             }
 
             @Override
-            public void resetBrush() {
-            }
-
-            @Override
-            public boolean shouldDraw() {
-                return true;
-            }
-
-            @Override
             public void onBeganDrawing() {
                 MaskPaintView.this.weightChooserView.setViewHidden(true);
             }
@@ -146,6 +123,15 @@ public class MaskPaintView extends FrameLayout {
                         MaskPaintView.this.onRenderViewAlphaUpdate(valueAnimator);
                     }
                 }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            }
+
+            @Override
+            public void resetBrush() {
+            }
+
+            @Override
+            public boolean shouldDraw() {
+                return true;
             }
         });
         renderView.setUndoStore(this.undoStore);
@@ -192,18 +178,6 @@ public class MaskPaintView extends FrameLayout {
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, 44.0f, 5, 0.0f, 0.0f, -8.0f, 0.0f));
     }
 
-    public boolean canUndo() {
-        return this.undoStore.canUndo();
-    }
-
-    public boolean undo() {
-        if (!this.undoStore.canUndo()) {
-            return false;
-        }
-        this.undoStore.undo();
-        return true;
-    }
-
     private Size getPaintingSize() {
         Size size = this.paintingSize;
         if (size != null) {
@@ -220,6 +194,183 @@ public class MaskPaintView extends FrameLayout {
         }
         this.paintingSize = size2;
         return size2;
+    }
+
+    public static void lambda$shutdown$0() {
+        Looper myLooper = Looper.myLooper();
+        if (myLooper != null) {
+            myLooper.quit();
+        }
+    }
+
+    public boolean canUndo() {
+        return this.undoStore.canUndo();
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        int i = 0;
+        if (view == this.renderView && this.currentCropState != null) {
+            canvas.save();
+            if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
+                i = AndroidUtilities.statusBarHeight;
+            }
+            int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + i;
+            int measuredWidth = view.getMeasuredWidth();
+            int measuredHeight = view.getMeasuredHeight();
+            MediaController.CropState cropState = this.currentCropState;
+            int i2 = cropState.transformRotation;
+            if (i2 != 90 && i2 != 270) {
+                measuredHeight = measuredWidth;
+                measuredWidth = measuredHeight;
+            }
+            float scaleX = measuredHeight * cropState.cropPw * view.getScaleX();
+            MediaController.CropState cropState2 = this.currentCropState;
+            int i3 = (int) (scaleX / cropState2.cropScale);
+            int scaleY = (int) (((measuredWidth * cropState2.cropPh) * view.getScaleY()) / this.currentCropState.cropScale);
+            float ceil = ((float) Math.ceil((getMeasuredWidth() - i3) / 2.0f)) + this.transformX;
+            float measuredHeight2 = (((((getMeasuredHeight() - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + i + this.transformY;
+            canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, measuredHeight2), Math.min(ceil + i3, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
+            i = 1;
+        }
+        boolean drawChild = super.drawChild(canvas, view, j);
+        if (i != 0) {
+            canvas.restore();
+        }
+        return drawChild;
+    }
+
+    public int getAdditionalBottom() {
+        return 0;
+    }
+
+    public int getAdditionalTop() {
+        return 0;
+    }
+
+    public Bitmap getBitmap() {
+        Bitmap resultBitmap = this.renderView.getResultBitmap(false, false);
+        if (this.orientation == 0) {
+            return resultBitmap;
+        }
+        int width = resultBitmap.getWidth();
+        int height = resultBitmap.getHeight();
+        if ((this.orientation / 90) % 2 != 0) {
+            width = resultBitmap.getHeight();
+            height = resultBitmap.getWidth();
+        }
+        Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        canvas.translate(width / 2.0f, height / 2.0f);
+        canvas.rotate(-this.orientation);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((-resultBitmap.getWidth()) / 2.0f, (-resultBitmap.getHeight()) / 2.0f, resultBitmap.getWidth() / 2.0f, resultBitmap.getHeight() / 2.0f);
+        canvas.drawBitmap(resultBitmap, (Rect) null, rectF, new Paint(3));
+        resultBitmap.recycle();
+        return createBitmap;
+    }
+
+    public RenderView getRenderView() {
+        return this.renderView;
+    }
+
+    public void init() {
+        this.renderView.setVisibility(0);
+        this.buttonsLayout.setVisibility(0);
+        this.buttonsLayout.setTranslationY(AndroidUtilities.dp(18.0f));
+        ViewPropertyAnimator translationY = this.buttonsLayout.animate().alpha(1.0f).translationY(0.0f);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        translationY.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
+        this.weightChooserView.animate().alpha(1.0f).translationX(0.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
+    }
+
+    protected abstract void onDrawn();
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        int i5 = i3 - i;
+        int i6 = i4 - i2;
+        if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
+            int i7 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
+        }
+        int ceil = (int) Math.ceil((i5 - this.renderView.getMeasuredWidth()) / 2.0f);
+        int measuredHeight = (i6 - this.renderView.getMeasuredHeight()) / 2;
+        RenderView renderView = this.renderView;
+        renderView.layout(ceil, measuredHeight, renderView.getMeasuredWidth() + ceil, this.renderView.getMeasuredHeight() + measuredHeight);
+        FrameLayout frameLayout = this.buttonsLayout;
+        frameLayout.layout(0, i6 - frameLayout.getMeasuredHeight(), this.buttonsLayout.getMeasuredWidth(), i6);
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        float f;
+        float f2;
+        this.ignoreLayout = true;
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        setMeasuredDimension(size, size2);
+        int i3 = AndroidUtilities.displaySize.y;
+        Bitmap bitmap = this.bitmapToEdit;
+        if (bitmap != null) {
+            f2 = bitmap.getWidth();
+            f = this.bitmapToEdit.getHeight();
+        } else {
+            f = size2;
+            f2 = size;
+        }
+        float f3 = size;
+        float floor = (float) Math.floor((f3 * f) / f2);
+        float f4 = i3;
+        if (floor > f4) {
+            f3 = (float) Math.floor((f2 * f4) / f);
+            floor = f4;
+        }
+        this.renderView.measure(View.MeasureSpec.makeMeasureSpec((int) f3, 1073741824), View.MeasureSpec.makeMeasureSpec((int) floor, 1073741824));
+        this.baseScale = 1.0f;
+        measureChild(this.weightChooserView, i, i2);
+        measureChild(this.buttonsLayout, i, i2);
+        this.ignoreLayout = false;
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.exclusionRects.clear();
+            this.exclusionRects.add(this.exclusionRect);
+            int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
+            this.exclusionRect.set(0, (getMeasuredHeight() - measuredHeight) / 2, AndroidUtilities.dp(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
+            setSystemGestureExclusionRects(this.exclusionRects);
+        }
+    }
+
+    public void onRenderViewAlphaUpdate(ValueAnimator valueAnimator) {
+    }
+
+    public boolean onTouch(MotionEvent motionEvent) {
+        float x = ((motionEvent.getX() - this.renderView.getTranslationX()) - (getMeasuredWidth() / 2.0f)) / this.renderView.getScaleX();
+        float y = ((motionEvent.getY() - this.renderView.getTranslationY()) - (getMeasuredHeight() / 2.0f)) / this.renderView.getScaleY();
+        double d = x;
+        double radians = (float) Math.toRadians(-this.renderView.getRotation());
+        double cos = Math.cos(radians);
+        Double.isNaN(d);
+        double d2 = y;
+        double sin = Math.sin(radians);
+        Double.isNaN(d2);
+        float measuredWidth = ((float) ((cos * d) - (sin * d2))) + (this.renderView.getMeasuredWidth() / 2.0f);
+        double sin2 = Math.sin(radians);
+        Double.isNaN(d);
+        double cos2 = Math.cos(radians);
+        Double.isNaN(d2);
+        MotionEvent obtain = MotionEvent.obtain(motionEvent);
+        obtain.setLocation(measuredWidth, ((float) ((d * sin2) + (d2 * cos2))) + (this.renderView.getMeasuredHeight() / 2.0f));
+        this.renderView.onTouch(obtain);
+        obtain.recycle();
+        return true;
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.ignoreLayout) {
+            return;
+        }
+        super.requestLayout();
     }
 
     public void setEraser(boolean z) {
@@ -276,159 +427,6 @@ public class MaskPaintView extends FrameLayout {
         invalidate();
     }
 
-    public void init() {
-        this.renderView.setVisibility(0);
-        this.buttonsLayout.setVisibility(0);
-        this.buttonsLayout.setTranslationY(AndroidUtilities.dp(18.0f));
-        ViewPropertyAnimator translationY = this.buttonsLayout.animate().alpha(1.0f).translationY(0.0f);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        translationY.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
-        this.weightChooserView.animate().alpha(1.0f).translationX(0.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        float f;
-        float f2;
-        this.ignoreLayout = true;
-        int size = View.MeasureSpec.getSize(i);
-        int size2 = View.MeasureSpec.getSize(i2);
-        setMeasuredDimension(size, size2);
-        int i3 = AndroidUtilities.displaySize.y;
-        Bitmap bitmap = this.bitmapToEdit;
-        if (bitmap != null) {
-            f2 = bitmap.getWidth();
-            f = this.bitmapToEdit.getHeight();
-        } else {
-            f = size2;
-            f2 = size;
-        }
-        float f3 = size;
-        float floor = (float) Math.floor((f3 * f) / f2);
-        float f4 = i3;
-        if (floor > f4) {
-            f3 = (float) Math.floor((f2 * f4) / f);
-            floor = f4;
-        }
-        this.renderView.measure(View.MeasureSpec.makeMeasureSpec((int) f3, 1073741824), View.MeasureSpec.makeMeasureSpec((int) floor, 1073741824));
-        this.baseScale = 1.0f;
-        measureChild(this.weightChooserView, i, i2);
-        measureChild(this.buttonsLayout, i, i2);
-        this.ignoreLayout = false;
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.exclusionRects.clear();
-            this.exclusionRects.add(this.exclusionRect);
-            int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
-            this.exclusionRect.set(0, (getMeasuredHeight() - measuredHeight) / 2, AndroidUtilities.dp(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
-            setSystemGestureExclusionRects(this.exclusionRects);
-        }
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        int i5 = i3 - i;
-        int i6 = i4 - i2;
-        if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
-            int i7 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
-        }
-        int ceil = (int) Math.ceil((i5 - this.renderView.getMeasuredWidth()) / 2.0f);
-        int measuredHeight = (i6 - this.renderView.getMeasuredHeight()) / 2;
-        RenderView renderView = this.renderView;
-        renderView.layout(ceil, measuredHeight, renderView.getMeasuredWidth() + ceil, this.renderView.getMeasuredHeight() + measuredHeight);
-        FrameLayout frameLayout = this.buttonsLayout;
-        frameLayout.layout(0, i6 - frameLayout.getMeasuredHeight(), this.buttonsLayout.getMeasuredWidth(), i6);
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        int i = 0;
-        if (view == this.renderView && this.currentCropState != null) {
-            canvas.save();
-            if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
-                i = AndroidUtilities.statusBarHeight;
-            }
-            int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + i;
-            int measuredWidth = view.getMeasuredWidth();
-            int measuredHeight = view.getMeasuredHeight();
-            MediaController.CropState cropState = this.currentCropState;
-            int i2 = cropState.transformRotation;
-            if (i2 != 90 && i2 != 270) {
-                measuredHeight = measuredWidth;
-                measuredWidth = measuredHeight;
-            }
-            float scaleX = measuredHeight * cropState.cropPw * view.getScaleX();
-            MediaController.CropState cropState2 = this.currentCropState;
-            int i3 = (int) (scaleX / cropState2.cropScale);
-            int scaleY = (int) (((measuredWidth * cropState2.cropPh) * view.getScaleY()) / this.currentCropState.cropScale);
-            float ceil = ((float) Math.ceil((getMeasuredWidth() - i3) / 2.0f)) + this.transformX;
-            float measuredHeight2 = (((((getMeasuredHeight() - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + i + this.transformY;
-            canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, measuredHeight2), Math.min(ceil + i3, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
-            i = 1;
-        }
-        boolean drawChild = super.drawChild(canvas, view, j);
-        if (i != 0) {
-            canvas.restore();
-        }
-        return drawChild;
-    }
-
-    public boolean onTouch(MotionEvent motionEvent) {
-        float x = ((motionEvent.getX() - this.renderView.getTranslationX()) - (getMeasuredWidth() / 2.0f)) / this.renderView.getScaleX();
-        float y = ((motionEvent.getY() - this.renderView.getTranslationY()) - (getMeasuredHeight() / 2.0f)) / this.renderView.getScaleY();
-        double d = x;
-        double radians = (float) Math.toRadians(-this.renderView.getRotation());
-        double cos = Math.cos(radians);
-        Double.isNaN(d);
-        double d2 = y;
-        double sin = Math.sin(radians);
-        Double.isNaN(d2);
-        float measuredWidth = ((float) ((cos * d) - (sin * d2))) + (this.renderView.getMeasuredWidth() / 2.0f);
-        double sin2 = Math.sin(radians);
-        Double.isNaN(d);
-        double cos2 = Math.cos(radians);
-        Double.isNaN(d2);
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.setLocation(measuredWidth, ((float) ((d * sin2) + (d2 * cos2))) + (this.renderView.getMeasuredHeight() / 2.0f));
-        this.renderView.onTouch(obtain);
-        obtain.recycle();
-        return true;
-    }
-
-    public Bitmap getBitmap() {
-        Bitmap resultBitmap = this.renderView.getResultBitmap(false, false);
-        if (this.orientation == 0) {
-            return resultBitmap;
-        }
-        int width = resultBitmap.getWidth();
-        int height = resultBitmap.getHeight();
-        if ((this.orientation / 90) % 2 != 0) {
-            width = resultBitmap.getHeight();
-            height = resultBitmap.getWidth();
-        }
-        Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        canvas.translate(width / 2.0f, height / 2.0f);
-        canvas.rotate(-this.orientation);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((-resultBitmap.getWidth()) / 2.0f, (-resultBitmap.getHeight()) / 2.0f, resultBitmap.getWidth() / 2.0f, resultBitmap.getHeight() / 2.0f);
-        canvas.drawBitmap(resultBitmap, (Rect) null, rectF, new Paint(3));
-        resultBitmap.recycle();
-        return createBitmap;
-    }
-
-    public RenderView getRenderView() {
-        return this.renderView;
-    }
-
     public void shutdown() {
         this.renderView.shutdown();
         this.queue.postRunnable(new Runnable() {
@@ -439,10 +437,11 @@ public class MaskPaintView extends FrameLayout {
         });
     }
 
-    public static void lambda$shutdown$0() {
-        Looper myLooper = Looper.myLooper();
-        if (myLooper != null) {
-            myLooper.quit();
+    public boolean undo() {
+        if (!this.undoStore.canUndo()) {
+            return false;
         }
+        this.undoStore.undo();
+        return true;
     }
 }

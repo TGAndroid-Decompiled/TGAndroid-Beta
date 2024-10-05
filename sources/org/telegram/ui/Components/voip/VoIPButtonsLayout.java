@@ -28,29 +28,6 @@ public class VoIPButtonsLayout extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        this.visibleChildCount = 0;
-        for (int i3 = 0; i3 < getChildCount(); i3++) {
-            if (getChildAt(i3).getVisibility() != 8) {
-                this.visibleChildCount++;
-            }
-        }
-        this.childWidth = AndroidUtilities.dp(this.childSize);
-        this.childPadding = ((size / getChildCount()) - this.childWidth) / 2;
-        int i4 = 0;
-        for (int i5 = 0; i5 < getChildCount(); i5++) {
-            if (getChildAt(i5).getVisibility() != 8) {
-                getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(this.childWidth, 1073741824), i2);
-                if (getChildAt(i5).getMeasuredHeight() > i4) {
-                    i4 = getChildAt(i5).getMeasuredHeight();
-                }
-            }
-        }
-        setMeasuredDimension(size, Math.max(i4, AndroidUtilities.dp(80.0f)));
-    }
-
-    @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         if (this.startPadding) {
             int childCount = (int) (((getChildCount() - this.visibleChildCount) / 2.0f) * (this.childWidth + (this.childPadding * 2)));
@@ -74,6 +51,29 @@ public class VoIPButtonsLayout extends FrameLayout {
                 i7++;
             }
         }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        this.visibleChildCount = 0;
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            if (getChildAt(i3).getVisibility() != 8) {
+                this.visibleChildCount++;
+            }
+        }
+        this.childWidth = AndroidUtilities.dp(this.childSize);
+        this.childPadding = ((size / getChildCount()) - this.childWidth) / 2;
+        int i4 = 0;
+        for (int i5 = 0; i5 < getChildCount(); i5++) {
+            if (getChildAt(i5).getVisibility() != 8) {
+                getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(this.childWidth, 1073741824), i2);
+                if (getChildAt(i5).getMeasuredHeight() > i4) {
+                    i4 = getChildAt(i5).getMeasuredHeight();
+                }
+            }
+        }
+        setMeasuredDimension(size, Math.max(i4, AndroidUtilities.dp(80.0f)));
     }
 
     public void setChildSize(int i) {

@@ -38,31 +38,20 @@ public class BlurredFrameLayout extends FrameLayout {
             View view = this;
             while (true) {
                 SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
-                if (view != sizeNotifierFrameLayout) {
-                    f += view.getY();
-                    Object parent = view.getParent();
-                    if (parent instanceof View) {
-                        view = (View) parent;
-                    } else {
-                        super.dispatchDraw(canvas);
-                        return;
-                    }
-                } else {
+                if (view == sizeNotifierFrameLayout) {
                     sizeNotifierFrameLayout.drawBlurRect(canvas, f, this.blurBounds, this.backgroundPaint, this.isTopView);
                     break;
                 }
+                f += view.getY();
+                Object parent = view.getParent();
+                if (!(parent instanceof View)) {
+                    super.dispatchDraw(canvas);
+                    return;
+                }
+                view = (View) parent;
             }
         }
         super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null) {
-            this.backgroundColor = i;
-        } else {
-            super.setBackgroundColor(i);
-        }
     }
 
     @Override
@@ -81,5 +70,14 @@ public class BlurredFrameLayout extends FrameLayout {
             sizeNotifierFrameLayout.blurBehindViews.remove(this);
         }
         super.onDetachedFromWindow();
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null) {
+            super.setBackgroundColor(i);
+        } else {
+            this.backgroundColor = i;
+        }
     }
 }

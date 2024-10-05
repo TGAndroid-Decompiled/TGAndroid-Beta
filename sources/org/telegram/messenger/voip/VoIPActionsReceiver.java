@@ -7,25 +7,28 @@ import android.content.Intent;
 public class VoIPActionsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        int i;
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().handleNotificationAction(intent);
             return;
         }
         String packageName = context.getPackageName();
         if ((packageName + ".END_CALL").equals(intent.getAction())) {
-            VoIPPreNotificationService.decline(context, 1);
-            return;
+            i = 1;
+        } else {
+            if (!(packageName + ".DECLINE_CALL").equals(intent.getAction())) {
+                if ((packageName + ".ANSWER_CALL").equals(intent.getAction())) {
+                    VoIPPreNotificationService.answer(context);
+                    return;
+                }
+                if ((packageName + ".HIDE_CALL").equals(intent.getAction())) {
+                    VoIPPreNotificationService.dismiss(context);
+                    return;
+                }
+                return;
+            }
+            i = 4;
         }
-        if ((packageName + ".DECLINE_CALL").equals(intent.getAction())) {
-            VoIPPreNotificationService.decline(context, 4);
-            return;
-        }
-        if ((packageName + ".ANSWER_CALL").equals(intent.getAction())) {
-            VoIPPreNotificationService.answer(context);
-            return;
-        }
-        if ((packageName + ".HIDE_CALL").equals(intent.getAction())) {
-            VoIPPreNotificationService.dismiss(context);
-        }
+        VoIPPreNotificationService.decline(context, i);
     }
 }

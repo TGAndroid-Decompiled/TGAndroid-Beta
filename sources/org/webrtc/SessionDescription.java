@@ -17,18 +17,15 @@ public class SessionDescription {
         }
     }
 
-    @CalledByNative
     public SessionDescription(Type type, String str) {
         this.type = type;
         this.description = str;
     }
 
-    @CalledByNative
     String getDescription() {
         return this.description;
     }
 
-    @CalledByNative
     String getTypeInCanonicalForm() {
         return this.type.canonicalForm();
     }

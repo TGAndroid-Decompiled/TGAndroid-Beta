@@ -23,7 +23,7 @@ public class TLRPC$TL_decryptedMessageActionReadMessages extends TLRPC$Decrypted
         int size = this.random_ids.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt64(this.random_ids.get(i).longValue());
+            abstractSerializedData.writeInt64(((Long) this.random_ids.get(i)).longValue());
         }
     }
 }

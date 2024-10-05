@@ -31,10 +31,6 @@ public class NotificationsCheckCell extends FrameLayout {
     private TextView textView;
     private AnimatedTextView valueTextView;
 
-    protected int processColor(int i) {
-        return i;
-    }
-
     public NotificationsCheckCell(Context context) {
         this(context, 21, 70, false, null);
     }
@@ -156,79 +152,6 @@ public class NotificationsCheckCell extends FrameLayout {
         return this.checkBox;
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        if (this.isMultiline) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.currentHeight), 1073741824));
-        }
-    }
-
-    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
-        setTextAndValueAndCheck(charSequence, charSequence2, z, 0, false, z2);
-    }
-
-    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, int i, boolean z2, boolean z3) {
-        setTextAndValueAndIconAndCheck(charSequence, charSequence2, 0, z, i, z2, z3);
-    }
-
-    public void setTextAndValueAndIconAndCheck(CharSequence charSequence, CharSequence charSequence2, int i, boolean z, int i2, boolean z2, boolean z3) {
-        setTextAndValueAndIconAndCheck(charSequence, charSequence2, i, z, i2, z2, z3, false);
-    }
-
-    public void setTextAndValueAndIconAndCheck(CharSequence charSequence, CharSequence charSequence2, int i, boolean z, int i2, boolean z2, boolean z3, boolean z4) {
-        this.textView.setText(charSequence);
-        ImageView imageView = this.imageView;
-        if (imageView != null) {
-            imageView.setImageResource(i);
-            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
-        }
-        this.checkBox.setChecked(z, i2, this.animationsEnabled);
-        setMultiline(z2);
-        if (this.isMultiline) {
-            this.multilineValueTextView.setText(charSequence2);
-        } else {
-            this.valueTextView.setText(charSequence2, z4);
-        }
-        (this.isMultiline ? this.multilineValueTextView : this.valueTextView).setVisibility(0);
-        this.checkBox.setContentDescription(charSequence);
-        this.needDivider = z3;
-    }
-
-    public void setMultiline(boolean z) {
-        this.isMultiline = z;
-        if (z) {
-            this.multilineValueTextView.setVisibility(0);
-            this.valueTextView.setVisibility(8);
-            this.multilineValueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
-        } else {
-            this.multilineValueTextView.setVisibility(8);
-            this.valueTextView.setVisibility(0);
-            this.valueTextView.setPadding(0, 0, 0, 0);
-        }
-    }
-
-    public void setValue(CharSequence charSequence) {
-        if (this.isMultiline) {
-            this.multilineValueTextView.setText(charSequence);
-        } else {
-            this.valueTextView.setText(charSequence, true);
-        }
-    }
-
-    public void setDrawLine(boolean z) {
-        this.drawLine = z;
-    }
-
-    public void setChecked(boolean z) {
-        this.checkBox.setChecked(z, true);
-    }
-
-    public void setChecked(boolean z, int i) {
-        this.checkBox.setChecked(z, i, true);
-    }
-
     public boolean isChecked() {
         return this.checkBox.isChecked();
     }
@@ -258,12 +181,9 @@ public class NotificationsCheckCell extends FrameLayout {
         }
     }
 
-    public void setAnimationsEnabled(boolean z) {
-        this.animationsEnabled = z;
-    }
-
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        CharSequence text;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         StringBuilder sb = new StringBuilder();
@@ -272,17 +192,96 @@ public class NotificationsCheckCell extends FrameLayout {
             TextView textView = this.multilineValueTextView;
             if (textView != null && !TextUtils.isEmpty(textView.getText())) {
                 sb.append("\n");
-                sb.append(this.multilineValueTextView.getText());
+                text = this.multilineValueTextView.getText();
+                sb.append(text);
             }
         } else {
             AnimatedTextView animatedTextView = this.valueTextView;
             if (animatedTextView != null && !TextUtils.isEmpty(animatedTextView.getText())) {
                 sb.append("\n");
-                sb.append(this.valueTextView.getText());
+                text = this.valueTextView.getText();
+                sb.append(text);
             }
         }
         accessibilityNodeInfo.setContentDescription(sb);
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), this.isMultiline ? View.MeasureSpec.makeMeasureSpec(0, 0) : View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.currentHeight), 1073741824));
+    }
+
+    protected int processColor(int i) {
+        return i;
+    }
+
+    public void setAnimationsEnabled(boolean z) {
+        this.animationsEnabled = z;
+    }
+
+    public void setChecked(boolean z) {
+        this.checkBox.setChecked(z, true);
+    }
+
+    public void setChecked(boolean z, int i) {
+        this.checkBox.setChecked(z, i, true);
+    }
+
+    public void setDrawLine(boolean z) {
+        this.drawLine = z;
+    }
+
+    public void setMultiline(boolean z) {
+        this.isMultiline = z;
+        if (z) {
+            this.multilineValueTextView.setVisibility(0);
+            this.valueTextView.setVisibility(8);
+            this.multilineValueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
+        } else {
+            this.multilineValueTextView.setVisibility(8);
+            this.valueTextView.setVisibility(0);
+            this.valueTextView.setPadding(0, 0, 0, 0);
+        }
+    }
+
+    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, int i, boolean z2, boolean z3) {
+        setTextAndValueAndIconAndCheck(charSequence, charSequence2, 0, z, i, z2, z3);
+    }
+
+    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
+        setTextAndValueAndCheck(charSequence, charSequence2, z, 0, false, z2);
+    }
+
+    public void setTextAndValueAndIconAndCheck(CharSequence charSequence, CharSequence charSequence2, int i, boolean z, int i2, boolean z2, boolean z3) {
+        setTextAndValueAndIconAndCheck(charSequence, charSequence2, i, z, i2, z2, z3, false);
+    }
+
+    public void setTextAndValueAndIconAndCheck(CharSequence charSequence, CharSequence charSequence2, int i, boolean z, int i2, boolean z2, boolean z3, boolean z4) {
+        this.textView.setText(charSequence);
+        ImageView imageView = this.imageView;
+        if (imageView != null) {
+            imageView.setImageResource(i);
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
+        }
+        this.checkBox.setChecked(z, i2, this.animationsEnabled);
+        setMultiline(z2);
+        if (this.isMultiline) {
+            this.multilineValueTextView.setText(charSequence2);
+        } else {
+            this.valueTextView.setText(charSequence2, z4);
+        }
+        (this.isMultiline ? this.multilineValueTextView : this.valueTextView).setVisibility(0);
+        this.checkBox.setContentDescription(charSequence);
+        this.needDivider = z3;
+    }
+
+    public void setValue(CharSequence charSequence) {
+        if (this.isMultiline) {
+            this.multilineValueTextView.setText(charSequence);
+        } else {
+            this.valueTextView.setText(charSequence, true);
+        }
     }
 }

@@ -25,7 +25,7 @@ public class TLRPC$TL_messageActionInviteToGroupCall extends TLRPC$MessageAction
         int size = this.users.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt64(this.users.get(i).longValue());
+            abstractSerializedData.writeInt64(((Long) this.users.get(i)).longValue());
         }
     }
 }

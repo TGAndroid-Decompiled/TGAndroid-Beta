@@ -17,19 +17,6 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
     private boolean started = false;
     boolean increment = true;
 
-    @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     public ChoosingStickerStatusDrawable(boolean z) {
         if (z) {
             this.strokePaint = new Paint(1);
@@ -39,30 +26,20 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
         }
     }
 
-    @Override
-    public void start() {
-        this.lastUpdateTime = System.currentTimeMillis();
-        this.started = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public void stop() {
-        this.started = false;
-    }
-
-    @Override
-    public void setIsChat(boolean z) {
-        this.isChat = z;
-    }
-
-    @Override
-    public void setColor(int i) {
-        if (this.color != i) {
-            this.fillPaint.setColor(i);
-            this.strokePaint.setColor(i);
+    private void update() {
+        long currentTimeMillis = System.currentTimeMillis();
+        long j = currentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = currentTimeMillis;
+        if (j > 16) {
+            j = 16;
         }
-        this.color = i;
+        float f = this.progress + (((float) j) / 500.0f);
+        this.progress = f;
+        if (f >= 2.0f) {
+            this.progress = 0.0f;
+            this.increment = !this.increment;
+        }
+        invalidateSelf();
     }
 
     @Override
@@ -112,20 +89,9 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
         }
     }
 
-    private void update() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = currentTimeMillis;
-        if (j > 16) {
-            j = 16;
-        }
-        float f = this.progress + (((float) j) / 500.0f);
-        this.progress = f;
-        if (f >= 2.0f) {
-            this.progress = 0.0f;
-            this.increment = !this.increment;
-        }
-        invalidateSelf();
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
     }
 
     @Override
@@ -134,7 +100,41 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
+    public int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColor(int i) {
+        if (this.color != i) {
+            this.fillPaint.setColor(i);
+            this.strokePaint.setColor(i);
+        }
+        this.color = i;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    @Override
+    public void setIsChat(boolean z) {
+        this.isChat = z;
+    }
+
+    @Override
+    public void start() {
+        this.lastUpdateTime = System.currentTimeMillis();
+        this.started = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public void stop() {
+        this.started = false;
     }
 }

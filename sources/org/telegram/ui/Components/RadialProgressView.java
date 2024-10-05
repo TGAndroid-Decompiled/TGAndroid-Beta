@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -56,12 +55,51 @@ public class RadialProgressView extends View {
         this.progressPaint.setColor(this.progressColor);
     }
 
-    public void setUseSelfAlpha(boolean z) {
-        this.useSelfAlpha = z;
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    private void updateAnimation() {
+        long currentTimeMillis = System.currentTimeMillis();
+        long j = currentTimeMillis - this.lastUpdateTime;
+        if (j > 17) {
+            j = 17;
+        }
+        this.lastUpdateTime = currentTimeMillis;
+        updateAnimation(j);
+    }
+
+    private void updateAnimation(long r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RadialProgressView.updateAnimation(long):void");
+    }
+
+    public void draw(Canvas canvas, float f, float f2) {
+        float f3 = this.size / 2.0f;
+        this.cicleRect.set(f - f3, f2 - f3, f + f3, f2 + f3);
+        RectF rectF = this.cicleRect;
+        float f4 = this.radOffset;
+        float f5 = this.currentCircleLength;
+        this.drawingCircleLenght = f5;
+        canvas.drawArc(rectF, f4, f5, false, this.progressPaint);
+        updateAnimation();
+    }
+
+    public boolean isCircle() {
+        return Math.abs(this.drawingCircleLenght) >= 360.0f;
     }
 
     @Override
-    @Keep
+    public void onDraw(Canvas canvas) {
+        this.cicleRect.set((getMeasuredWidth() - this.size) / 2, (getMeasuredHeight() - this.size) / 2, r0 + r2, r1 + r2);
+        RectF rectF = this.cicleRect;
+        float f = this.radOffset;
+        float f2 = this.currentCircleLength;
+        this.drawingCircleLenght = f2;
+        canvas.drawArc(rectF, f, f2, false, this.progressPaint);
+        updateAnimation();
+    }
+
+    @Override
     public void setAlpha(float f) {
         super.setAlpha(f);
         if (this.useSelfAlpha) {
@@ -87,6 +125,24 @@ public class RadialProgressView extends View {
         this.progressTime = 0;
     }
 
+    public void setProgressColor(int i) {
+        this.progressColor = i;
+        this.progressPaint.setColor(i);
+    }
+
+    public void setSize(int i) {
+        this.size = i;
+        invalidate();
+    }
+
+    public void setStrokeWidth(float f) {
+        this.progressPaint.setStrokeWidth(AndroidUtilities.dp(f));
+    }
+
+    public void setUseSelfAlpha(boolean z) {
+        this.useSelfAlpha = z;
+    }
+
     public void sync(RadialProgressView radialProgressView) {
         this.lastUpdateTime = radialProgressView.lastUpdateTime;
         this.radOffset = radialProgressView.radOffset;
@@ -104,69 +160,11 @@ public class RadialProgressView extends View {
         updateAnimation(85L);
     }
 
-    private void updateAnimation() {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.lastUpdateTime;
-        if (j > 17) {
-            j = 17;
-        }
-        this.lastUpdateTime = currentTimeMillis;
-        updateAnimation(j);
-    }
-
-    private void updateAnimation(long r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RadialProgressView.updateAnimation(long):void");
-    }
-
-    public void setSize(int i) {
-        this.size = i;
-        invalidate();
-    }
-
-    public void setStrokeWidth(float f) {
-        this.progressPaint.setStrokeWidth(AndroidUtilities.dp(f));
-    }
-
-    public void setProgressColor(int i) {
-        this.progressColor = i;
-        this.progressPaint.setColor(i);
-    }
-
     public void toCircle(boolean z, boolean z2) {
         this.toCircle = z;
         if (z2) {
             return;
         }
         this.toCircleProgress = z ? 1.0f : 0.0f;
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        this.cicleRect.set((getMeasuredWidth() - this.size) / 2, (getMeasuredHeight() - this.size) / 2, r0 + r2, r1 + r2);
-        RectF rectF = this.cicleRect;
-        float f = this.radOffset;
-        float f2 = this.currentCircleLength;
-        this.drawingCircleLenght = f2;
-        canvas.drawArc(rectF, f, f2, false, this.progressPaint);
-        updateAnimation();
-    }
-
-    public void draw(Canvas canvas, float f, float f2) {
-        float f3 = this.size / 2.0f;
-        this.cicleRect.set(f - f3, f2 - f3, f + f3, f2 + f3);
-        RectF rectF = this.cicleRect;
-        float f4 = this.radOffset;
-        float f5 = this.currentCircleLength;
-        this.drawingCircleLenght = f5;
-        canvas.drawArc(rectF, f4, f5, false, this.progressPaint);
-        updateAnimation();
-    }
-
-    public boolean isCircle() {
-        return Math.abs(this.drawingCircleLenght) >= 360.0f;
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
     }
 }

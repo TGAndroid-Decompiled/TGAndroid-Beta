@@ -6,7 +6,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
     public double _long;
     public long access_hash;
     public String address;
-    public ArrayList<TLRPC$DocumentAttribute> attributes = new ArrayList<>();
+    public ArrayList attributes = new ArrayList();
     public String caption;
     public int date;
     public int dc_id;
@@ -255,7 +255,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         int size = this.attributes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.attributes.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$DocumentAttribute) this.attributes.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeString(this.caption);
                     }

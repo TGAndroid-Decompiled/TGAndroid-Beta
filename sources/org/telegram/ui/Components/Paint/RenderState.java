@@ -16,6 +16,30 @@ public class RenderState {
     public float spacing;
     public float viewportScale;
 
+    public boolean addPoint(PointF pointF, float f, float f2, float f3, int i) {
+        if ((i != -1 && i >= this.allocatedCount) || this.buffer.position() == this.buffer.limit()) {
+            resizeBuffer();
+            return false;
+        }
+        if (i != -1) {
+            this.buffer.position(i * 20);
+        }
+        this.buffer.putFloat(pointF.x);
+        this.buffer.putFloat(pointF.y);
+        this.buffer.putFloat(f);
+        this.buffer.putFloat(f2);
+        this.buffer.putFloat(f3);
+        return true;
+    }
+
+    public void appendValuesCount(int i) {
+        int i2 = this.count + i;
+        if (i2 > this.allocatedCount || this.buffer == null) {
+            resizeBuffer();
+        }
+        this.count = i2;
+    }
+
     public int getCount() {
         return this.count;
     }
@@ -36,20 +60,13 @@ public class RenderState {
         return this.buffer.getFloat();
     }
 
-    public void setPosition(int i) {
+    public void reset() {
+        this.count = 0;
+        this.remainder = 0.0d;
         ByteBuffer byteBuffer = this.buffer;
-        if (byteBuffer == null || i < 0 || i >= this.allocatedCount) {
-            return;
+        if (byteBuffer != null) {
+            byteBuffer.position(0);
         }
-        byteBuffer.position(i * 20);
-    }
-
-    public void appendValuesCount(int i) {
-        int i2 = this.count + i;
-        if (i2 > this.allocatedCount || this.buffer == null) {
-            resizeBuffer();
-        }
-        this.count = i2;
     }
 
     public void resizeBuffer() {
@@ -64,28 +81,11 @@ public class RenderState {
         this.buffer.position(0);
     }
 
-    public boolean addPoint(PointF pointF, float f, float f2, float f3, int i) {
-        if ((i != -1 && i >= this.allocatedCount) || this.buffer.position() == this.buffer.limit()) {
-            resizeBuffer();
-            return false;
-        }
-        if (i != -1) {
-            this.buffer.position(i * 20);
-        }
-        this.buffer.putFloat(pointF.x);
-        this.buffer.putFloat(pointF.y);
-        this.buffer.putFloat(f);
-        this.buffer.putFloat(f2);
-        this.buffer.putFloat(f3);
-        return true;
-    }
-
-    public void reset() {
-        this.count = 0;
-        this.remainder = 0.0d;
+    public void setPosition(int i) {
         ByteBuffer byteBuffer = this.buffer;
-        if (byteBuffer != null) {
-            byteBuffer.position(0);
+        if (byteBuffer == null || i < 0 || i >= this.allocatedCount) {
+            return;
         }
+        byteBuffer.position(i * 20);
     }
 }

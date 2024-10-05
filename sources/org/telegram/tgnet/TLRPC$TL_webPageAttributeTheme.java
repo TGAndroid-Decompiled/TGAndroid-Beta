@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_webPageAttributeTheme extends TLRPC$WebPageAttribute {
-    public ArrayList<TLRPC$Document> documents = new ArrayList<>();
+    public ArrayList documents = new ArrayList();
     public TLRPC$ThemeSettings settings;
 
     @Override
@@ -41,7 +41,7 @@ public class TLRPC$TL_webPageAttributeTheme extends TLRPC$WebPageAttribute {
             int size = this.documents.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.documents.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$Document) this.documents.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 2) != 0) {

@@ -32,28 +32,10 @@ public final class Factory {
         NO_ARGS = new Object[0];
     }
 
-    public static Class makeClass(String str, ClassLoader classLoader) {
-        if (str.equals("*")) {
-            return null;
-        }
-        Class cls = (Class) prims.get(str);
-        if (cls != null) {
-            return cls;
-        }
-        try {
-            if (classLoader == null) {
-                return Class.forName(str);
-            }
-            return Class.forName(str, false, classLoader);
-        } catch (ClassNotFoundException unused) {
-            Class cls2 = class$java$lang$ClassNotFoundException;
-            if (cls2 != null) {
-                return cls2;
-            }
-            Class class$ = class$("java.lang.ClassNotFoundException");
-            class$java$lang$ClassNotFoundException = class$;
-            return class$;
-        }
+    public Factory(String str, Class cls) {
+        this.filename = str;
+        this.lexicalClass = cls;
+        this.lookupClassLoader = cls.getClassLoader();
     }
 
     static Class class$(String str) {
@@ -64,16 +46,25 @@ public final class Factory {
         }
     }
 
-    public Factory(String str, Class cls) {
-        this.filename = str;
-        this.lexicalClass = cls;
-        this.lookupClassLoader = cls.getClassLoader();
-    }
-
-    public JoinPoint.StaticPart makeSJP(String str, Signature signature, int i) {
-        int i2 = this.count;
-        this.count = i2 + 1;
-        return new JoinPointImpl.StaticPartImpl(i2, str, signature, makeSourceLoc(i, -1));
+    public static Class makeClass(String str, ClassLoader classLoader) {
+        if (str.equals("*")) {
+            return null;
+        }
+        Class cls = (Class) prims.get(str);
+        if (cls != null) {
+            return cls;
+        }
+        try {
+            return classLoader == null ? Class.forName(str) : Class.forName(str, false, classLoader);
+        } catch (ClassNotFoundException unused) {
+            Class cls2 = class$java$lang$ClassNotFoundException;
+            if (cls2 != null) {
+                return cls2;
+            }
+            Class class$ = class$("java.lang.ClassNotFoundException");
+            class$java$lang$ClassNotFoundException = class$;
+            return class$;
+        }
     }
 
     public static JoinPoint makeJP(JoinPoint.StaticPart staticPart, Object obj, Object obj2) {
@@ -106,6 +97,12 @@ public final class Factory {
             clsArr2[i3] = makeClass(stringTokenizer3.nextToken(), this.lookupClassLoader);
         }
         return new MethodSignatureImpl(parseInt, str2, makeClass, clsArr, strArr, clsArr2, makeClass(str7, this.lookupClassLoader));
+    }
+
+    public JoinPoint.StaticPart makeSJP(String str, Signature signature, int i) {
+        int i2 = this.count;
+        this.count = i2 + 1;
+        return new JoinPointImpl.StaticPartImpl(i2, str, signature, makeSourceLoc(i, -1));
     }
 
     public SourceLocation makeSourceLoc(int i, int i2) {

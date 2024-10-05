@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_channels_inviteToChannel extends TLObject {
     public TLRPC$InputChannel channel;
-    public ArrayList<TLRPC$InputUser> users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -19,7 +19,7 @@ public class TLRPC$TL_channels_inviteToChannel extends TLObject {
         int size = this.users.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.users.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputUser) this.users.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

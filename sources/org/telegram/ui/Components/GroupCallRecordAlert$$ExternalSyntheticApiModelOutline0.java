@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class GroupCallRecordAlert$$ExternalSyntheticApiModelOutline0 {
+public abstract class GroupCallRecordAlert$$ExternalSyntheticApiModelOutline0 {
 }

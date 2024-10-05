@@ -2,6 +2,7 @@ package org.telegram.ui.Stories.recorder;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -39,175 +40,48 @@ public class PreviewButtons extends FrameLayout {
     private ValueAnimator appearAnimator;
     private float appearT;
     private boolean appearing;
-    private ArrayList<ButtonView> buttons;
+    private ArrayList buttons;
     private boolean isShareEnabled;
-    private Utilities.Callback<Integer> onClickListener;
+    private Utilities.Callback onClickListener;
     private View shadowView;
     private boolean shareArrow;
     public ShareButtonView shareButton;
     private String shareText;
 
-    public PreviewButtons(Context context) {
-        super(context);
-        this.buttons = new ArrayList<>();
-        this.shareArrow = true;
-        this.isShareEnabled = true;
-        View view = new View(context);
-        this.shadowView = view;
-        view.setBackground(new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{1711276032, 0}));
-        addView(this.shadowView, LayoutHelper.createFrame(-1, -1, 119));
-        addButton(0, R.drawable.media_draw, LocaleController.getString(R.string.AccDescrPaint));
-        addButton(2, R.drawable.msg_photo_sticker, LocaleController.getString(R.string.AccDescrStickers));
-        addButton(1, R.drawable.msg_photo_text2, LocaleController.getString(R.string.AccDescrPlaceText));
-        addButton(3, R.drawable.msg_photo_settings, LocaleController.getString(R.string.AccDescrPhotoAdjust));
-        int i = R.string.Send;
-        String string = LocaleController.getString(i);
-        this.shareText = string;
-        this.shareArrow = true;
-        ShareButtonView shareButtonView = new ShareButtonView(context, string, true);
-        this.shareButton = shareButtonView;
-        shareButtonView.setContentDescription(LocaleController.getString(i));
-        addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
-        updateAppearT();
-    }
+    public class ButtonView extends ImageView {
+        public final int id;
 
-    public void setFiltersVisible(boolean z) {
-        for (int i = 0; i < this.buttons.size(); i++) {
-            ButtonView buttonView = this.buttons.get(i);
-            if (buttonView.id == 3) {
-                buttonView.setVisibility(z ? 0 : 8);
-            }
-        }
-    }
-
-    private boolean isFiltersVisible() {
-        for (int i = 0; i < this.buttons.size(); i++) {
-            ButtonView buttonView = this.buttons.get(i);
-            if (buttonView.id == 3) {
-                return buttonView.getVisibility() == 0;
-            }
-        }
-        return false;
-    }
-
-    public void setShareText(String str, boolean z) {
-        if (TextUtils.equals(str, this.shareText) && z == this.shareArrow) {
-            return;
-        }
-        removeView(this.shareButton);
-        Context context = getContext();
-        this.shareText = str;
-        this.shareArrow = z;
-        ShareButtonView shareButtonView = new ShareButtonView(context, str, z);
-        this.shareButton = shareButtonView;
-        shareButtonView.setContentDescription(str);
-        addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
-        updateAppearT();
-    }
-
-    private void addButton(int i, int i2, CharSequence charSequence) {
-        ButtonView buttonView = new ButtonView(getContext(), i, i2);
-        buttonView.setContentDescription(charSequence);
-        this.buttons.add(buttonView);
-        addView(buttonView);
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int i5 = i3 - i;
-        int i6 = i4 - i2;
-        this.shadowView.layout(0, 0, i5, i6);
-        ShareButtonView shareButtonView = this.shareButton;
-        shareButtonView.layout(i5 - shareButtonView.getMeasuredWidth(), (i6 - this.shareButton.getMeasuredHeight()) / 2, i5, (this.shareButton.getMeasuredHeight() + i6) / 2);
-        int dp = (i5 - AndroidUtilities.dp(32.33f)) - this.shareButton.getMeasuredWidth();
-        int i7 = 0;
-        for (int i8 = 0; i8 < this.buttons.size(); i8++) {
-            if (this.buttons.get(i8).getVisibility() == 0) {
-                i7++;
-            }
-        }
-        int min = Math.min(AndroidUtilities.dp(isFiltersVisible() ? 20.0f : 30.0f), i7 < 2 ? 0 : (dp - (AndroidUtilities.dp(40.0f) * i7)) / (i7 - 1));
-        int dp2 = (i6 - AndroidUtilities.dp(40.0f)) / 2;
-        int dp3 = (i6 + AndroidUtilities.dp(40.0f)) / 2;
-        int dp4 = AndroidUtilities.dp(12.33f) + (!isFiltersVisible() ? ((dp - (AndroidUtilities.dp(40.0f) * i7)) - ((i7 - 1) * min)) / 2 : 0);
-        for (int i9 = 0; i9 < this.buttons.size(); i9++) {
-            if (this.buttons.get(i9).getVisibility() == 0) {
-                this.buttons.get(i9).layout(dp4, dp2, AndroidUtilities.dp(40.0f) + dp4, dp3);
-                dp4 += AndroidUtilities.dp(40.0f) + min;
-            }
-        }
-    }
-
-    public void setOnClickListener(Utilities.Callback<Integer> callback) {
-        this.onClickListener = callback;
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
-    }
-
-    public void setShareEnabled(boolean z) {
-        if (this.isShareEnabled != z) {
-            this.isShareEnabled = z;
-            ShareButtonView shareButtonView = this.shareButton;
-            shareButtonView.enabled = z;
-            shareButtonView.invalidate();
-        }
-    }
-
-    public boolean isShareEnabled() {
-        return this.isShareEnabled;
-    }
-
-    public void appear(boolean z, boolean z2) {
-        if (this.appearing == z) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.appearAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        this.appearing = z;
-        if (z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.appearT, z ? 1.0f : 0.0f);
-            this.appearAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        public ButtonView(Context context, final int i, int i2) {
+            super(context);
+            this.id = i;
+            setBackground(Theme.createSelectorDrawable(1090519039));
+            setScaleType(ImageView.ScaleType.CENTER);
+            setImageResource(i2);
+            setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+            setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    PreviewButtons.this.lambda$appear$0(valueAnimator2);
+                public final void onClick(View view) {
+                    PreviewButtons.ButtonView.this.lambda$new$0(i, view);
                 }
             });
-            if (this.appearing) {
-                this.appearAnimator.setDuration(450L);
-                this.appearAnimator.setInterpolator(new LinearInterpolator());
-            } else {
-                this.appearAnimator.setDuration(350L);
-                this.appearAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            }
-            this.appearAnimator.start();
-            return;
         }
-        this.appearT = z ? 1.0f : 0.0f;
-        updateAppearT();
-    }
 
-    public void lambda$appear$0(ValueAnimator valueAnimator) {
-        this.appearT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateAppearT();
-    }
-
-    private void updateAppearT() {
-        this.shadowView.setAlpha(this.appearT);
-        this.shadowView.setTranslationY((1.0f - this.appearT) * AndroidUtilities.dp(16.0f));
-        for (int i = 1; i < getChildCount(); i++) {
-            View childAt = getChildAt(i);
-            float f = this.appearT;
-            if (this.appearing) {
-                f = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(AndroidUtilities.cascade(f, i - 1, getChildCount() - 1, 3.0f));
+        public void lambda$new$0(int i, View view) {
+            if (!PreviewButtons.this.appearing || PreviewButtons.this.onClickListener == null) {
+                return;
             }
-            childAt.setAlpha(f);
-            childAt.setTranslationY((1.0f - f) * AndroidUtilities.dp(24.0f));
+            PreviewButtons.this.onClickListener.run(Integer.valueOf(i));
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.Button");
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            setMeasuredDimension(AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
         }
     }
 
@@ -249,11 +123,7 @@ public class PreviewButtons extends FrameLayout {
                 mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 mutate.setBounds(0, 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
                 spannableString.setSpan(new ImageSpan(mutate, 2), 0, spannableString.length(), 33);
-                if (LocaleController.isRTL) {
-                    upperCase = new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase());
-                } else {
-                    upperCase = new SpannableStringBuilder(str.toUpperCase()).append((CharSequence) "\u2009").append((CharSequence) spannableString);
-                }
+                upperCase = LocaleController.isRTL ? new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase()) : new SpannableStringBuilder(str.toUpperCase()).append((CharSequence) "\u2009").append((CharSequence) spannableString);
             } else {
                 upperCase = str.toUpperCase();
             }
@@ -282,9 +152,9 @@ public class PreviewButtons extends FrameLayout {
             PreviewButtons.this.onClickListener.run(4);
         }
 
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.w, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
+        public void lambda$setPressed$1(ValueAnimator valueAnimator) {
+            this.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            invalidate();
         }
 
         @Override
@@ -316,6 +186,17 @@ public class PreviewButtons extends FrameLayout {
             this.staticLayout.draw(canvas);
             canvas.restore();
             canvas.restoreToCount(saveCount);
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.Button");
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.w, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
         }
 
         @Override
@@ -354,53 +235,174 @@ public class PreviewButtons extends FrameLayout {
                 }
             }
         }
+    }
 
-        public void lambda$setPressed$1(ValueAnimator valueAnimator) {
-            this.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+    public PreviewButtons(Context context) {
+        super(context);
+        this.buttons = new ArrayList();
+        this.shareArrow = true;
+        this.isShareEnabled = true;
+        View view = new View(context);
+        this.shadowView = view;
+        view.setBackground(new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{1711276032, 0}));
+        addView(this.shadowView, LayoutHelper.createFrame(-1, -1, 119));
+        addButton(0, R.drawable.media_draw, LocaleController.getString(R.string.AccDescrPaint));
+        addButton(2, R.drawable.msg_photo_sticker, LocaleController.getString(R.string.AccDescrStickers));
+        addButton(1, R.drawable.msg_photo_text2, LocaleController.getString(R.string.AccDescrPlaceText));
+        addButton(3, R.drawable.msg_photo_settings, LocaleController.getString(R.string.AccDescrPhotoAdjust));
+        int i = R.string.Send;
+        String string = LocaleController.getString(i);
+        this.shareText = string;
+        this.shareArrow = true;
+        ShareButtonView shareButtonView = new ShareButtonView(context, string, true);
+        this.shareButton = shareButtonView;
+        shareButtonView.setContentDescription(LocaleController.getString(i));
+        addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
+        updateAppearT();
+    }
+
+    private void addButton(int i, int i2, CharSequence charSequence) {
+        ButtonView buttonView = new ButtonView(getContext(), i, i2);
+        buttonView.setContentDescription(charSequence);
+        this.buttons.add(buttonView);
+        addView(buttonView);
+    }
+
+    private boolean isFiltersVisible() {
+        for (int i = 0; i < this.buttons.size(); i++) {
+            ButtonView buttonView = (ButtonView) this.buttons.get(i);
+            if (buttonView.id == 3) {
+                return buttonView.getVisibility() == 0;
+            }
         }
+        return false;
+    }
 
-        @Override
-        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setClassName("android.widget.Button");
+    public void lambda$appear$0(ValueAnimator valueAnimator) {
+        this.appearT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        updateAppearT();
+    }
+
+    private void updateAppearT() {
+        this.shadowView.setAlpha(this.appearT);
+        this.shadowView.setTranslationY((1.0f - this.appearT) * AndroidUtilities.dp(16.0f));
+        for (int i = 1; i < getChildCount(); i++) {
+            View childAt = getChildAt(i);
+            float f = this.appearT;
+            if (this.appearing) {
+                f = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(AndroidUtilities.cascade(f, i - 1, getChildCount() - 1, 3.0f));
+            }
+            childAt.setAlpha(f);
+            childAt.setTranslationY((1.0f - f) * AndroidUtilities.dp(24.0f));
         }
     }
 
-    public class ButtonView extends ImageView {
-        public final int id;
-
-        public ButtonView(Context context, final int i, int i2) {
-            super(context);
-            this.id = i;
-            setBackground(Theme.createSelectorDrawable(1090519039));
-            setScaleType(ImageView.ScaleType.CENTER);
-            setImageResource(i2);
-            setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-            setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    PreviewButtons.ButtonView.this.lambda$new$0(i, view);
-                }
-            });
+    public void appear(boolean z, boolean z2) {
+        ValueAnimator valueAnimator;
+        TimeInterpolator timeInterpolator;
+        if (this.appearing == z) {
+            return;
         }
-
-        public void lambda$new$0(int i, View view) {
-            if (!PreviewButtons.this.appearing || PreviewButtons.this.onClickListener == null) {
-                return;
+        ValueAnimator valueAnimator2 = this.appearAnimator;
+        if (valueAnimator2 != null) {
+            valueAnimator2.cancel();
+        }
+        this.appearing = z;
+        if (!z2) {
+            this.appearT = z ? 1.0f : 0.0f;
+            updateAppearT();
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.appearT, z ? 1.0f : 0.0f);
+        this.appearAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                PreviewButtons.this.lambda$appear$0(valueAnimator3);
             }
-            PreviewButtons.this.onClickListener.run(Integer.valueOf(i));
+        });
+        if (this.appearing) {
+            this.appearAnimator.setDuration(450L);
+            valueAnimator = this.appearAnimator;
+            timeInterpolator = new LinearInterpolator();
+        } else {
+            this.appearAnimator.setDuration(350L);
+            valueAnimator = this.appearAnimator;
+            timeInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         }
+        valueAnimator.setInterpolator(timeInterpolator);
+        this.appearAnimator.start();
+    }
 
-        @Override
-        protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-        }
+    public boolean isShareEnabled() {
+        return this.isShareEnabled;
+    }
 
-        @Override
-        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setClassName("android.widget.Button");
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int i5 = i3 - i;
+        int i6 = i4 - i2;
+        this.shadowView.layout(0, 0, i5, i6);
+        ShareButtonView shareButtonView = this.shareButton;
+        shareButtonView.layout(i5 - shareButtonView.getMeasuredWidth(), (i6 - this.shareButton.getMeasuredHeight()) / 2, i5, (this.shareButton.getMeasuredHeight() + i6) / 2);
+        int dp = (i5 - AndroidUtilities.dp(32.33f)) - this.shareButton.getMeasuredWidth();
+        int i7 = 0;
+        for (int i8 = 0; i8 < this.buttons.size(); i8++) {
+            if (((ButtonView) this.buttons.get(i8)).getVisibility() == 0) {
+                i7++;
+            }
         }
+        int min = Math.min(AndroidUtilities.dp(isFiltersVisible() ? 20.0f : 30.0f), i7 < 2 ? 0 : (dp - (AndroidUtilities.dp(40.0f) * i7)) / (i7 - 1));
+        int dp2 = (i6 - AndroidUtilities.dp(40.0f)) / 2;
+        int dp3 = (i6 + AndroidUtilities.dp(40.0f)) / 2;
+        int dp4 = AndroidUtilities.dp(12.33f) + (!isFiltersVisible() ? ((dp - (AndroidUtilities.dp(40.0f) * i7)) - ((i7 - 1) * min)) / 2 : 0);
+        for (int i9 = 0; i9 < this.buttons.size(); i9++) {
+            if (((ButtonView) this.buttons.get(i9)).getVisibility() == 0) {
+                ((ButtonView) this.buttons.get(i9)).layout(dp4, dp2, AndroidUtilities.dp(40.0f) + dp4, dp3);
+                dp4 += AndroidUtilities.dp(40.0f) + min;
+            }
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+    }
+
+    public void setFiltersVisible(boolean z) {
+        for (int i = 0; i < this.buttons.size(); i++) {
+            ButtonView buttonView = (ButtonView) this.buttons.get(i);
+            if (buttonView.id == 3) {
+                buttonView.setVisibility(z ? 0 : 8);
+            }
+        }
+    }
+
+    public void setOnClickListener(Utilities.Callback<Integer> callback) {
+        this.onClickListener = callback;
+    }
+
+    public void setShareEnabled(boolean z) {
+        if (this.isShareEnabled != z) {
+            this.isShareEnabled = z;
+            ShareButtonView shareButtonView = this.shareButton;
+            shareButtonView.enabled = z;
+            shareButtonView.invalidate();
+        }
+    }
+
+    public void setShareText(String str, boolean z) {
+        if (TextUtils.equals(str, this.shareText) && z == this.shareArrow) {
+            return;
+        }
+        removeView(this.shareButton);
+        Context context = getContext();
+        this.shareText = str;
+        this.shareArrow = z;
+        ShareButtonView shareButtonView = new ShareButtonView(context, str, z);
+        this.shareButton = shareButtonView;
+        shareButtonView.setContentDescription(str);
+        addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
+        updateAppearT();
     }
 }

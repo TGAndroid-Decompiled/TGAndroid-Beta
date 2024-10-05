@@ -18,43 +18,18 @@ public class LetterDrawable extends Drawable {
     private static TextPaint namePaintSmallTopic;
     private static TextPaint namePaintTopic;
     public static Paint paint = new Paint();
-    private RectF rect;
-    public float scale;
-    private StringBuilder stringBuilder;
     int style;
     private float textHeight;
     private StaticLayout textLayout;
     private float textLeft;
     final TextPaint textPaint;
     private float textWidth;
-
-    @Override
-    public int getIntrinsicHeight() {
-        return 0;
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return 0;
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public LetterDrawable() {
-        this(null, 0);
-    }
+    private RectF rect = new RectF();
+    private StringBuilder stringBuilder = new StringBuilder(5);
+    public float scale = 1.0f;
 
     public LetterDrawable(Theme.ResourcesProvider resourcesProvider, int i) {
-        this.rect = new RectF();
-        this.stringBuilder = new StringBuilder(5);
-        this.scale = 1.0f;
+        TextPaint textPaint;
         this.style = i;
         if (i == 0) {
             if (namePaint == null) {
@@ -63,58 +38,25 @@ public class LetterDrawable extends Drawable {
             namePaint.setTextSize(AndroidUtilities.dp(28.0f));
             paint.setColor(Theme.getColor(Theme.key_sharedMedia_linkPlaceholder, resourcesProvider));
             namePaint.setColor(Theme.getColor(Theme.key_sharedMedia_linkPlaceholderText, resourcesProvider));
-            this.textPaint = namePaint;
-            return;
-        }
-        if (i == 1) {
+            textPaint = namePaint;
+        } else if (i == 1) {
             if (namePaintTopic == null) {
                 namePaintTopic = new TextPaint(1);
             }
             namePaintTopic.setColor(-1);
             namePaintTopic.setTextSize(AndroidUtilities.dp(13.0f));
             namePaintTopic.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.textPaint = namePaintTopic;
-            return;
-        }
-        if (namePaintSmallTopic == null) {
-            namePaintSmallTopic = new TextPaint(1);
-        }
-        namePaintSmallTopic.setColor(-1);
-        namePaintSmallTopic.setTextSize(Theme.chat_topicTextPaint.getTextSize() * 0.75f);
-        namePaintSmallTopic.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-        this.textPaint = namePaintSmallTopic;
-    }
-
-    public void setBackgroundColor(int i) {
-        paint.setColor(i);
-    }
-
-    public void setColor(int i) {
-        this.textPaint.setColor(i);
-    }
-
-    public void setTitle(String str) {
-        this.stringBuilder.setLength(0);
-        if (str != null && str.length() > 0) {
-            this.stringBuilder.append(str.substring(0, 1));
-        }
-        if (this.stringBuilder.length() > 0) {
-            try {
-                StaticLayout staticLayout = new StaticLayout(this.stringBuilder.toString().toUpperCase(), this.textPaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.textLayout = staticLayout;
-                if (staticLayout.getLineCount() > 0) {
-                    this.textLeft = this.textLayout.getLineLeft(0);
-                    this.textWidth = this.textLayout.getLineWidth(0);
-                    this.textHeight = this.textLayout.getLineBottom(0);
-                    return;
-                }
-                return;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
+            textPaint = namePaintTopic;
+        } else {
+            if (namePaintSmallTopic == null) {
+                namePaintSmallTopic = new TextPaint(1);
             }
+            namePaintSmallTopic.setColor(-1);
+            namePaintSmallTopic.setTextSize(Theme.chat_topicTextPaint.getTextSize() * 0.75f);
+            namePaintSmallTopic.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            textPaint = namePaintSmallTopic;
         }
-        this.textLayout = null;
+        this.textPaint = textPaint;
     }
 
     @Override
@@ -141,8 +83,57 @@ public class LetterDrawable extends Drawable {
     }
 
     @Override
+    public int getIntrinsicHeight() {
+        return 0;
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return 0;
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
     public void setAlpha(int i) {
         this.textPaint.setAlpha(i);
         paint.setAlpha(i);
+    }
+
+    public void setBackgroundColor(int i) {
+        paint.setColor(i);
+    }
+
+    public void setColor(int i) {
+        this.textPaint.setColor(i);
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public void setTitle(String str) {
+        this.stringBuilder.setLength(0);
+        if (str != null && str.length() > 0) {
+            this.stringBuilder.append(str.substring(0, 1));
+        }
+        if (this.stringBuilder.length() <= 0) {
+            this.textLayout = null;
+            return;
+        }
+        try {
+            StaticLayout staticLayout = new StaticLayout(this.stringBuilder.toString().toUpperCase(), this.textPaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.textLayout = staticLayout;
+            if (staticLayout.getLineCount() > 0) {
+                this.textLeft = this.textLayout.getLineLeft(0);
+                this.textWidth = this.textLayout.getLineWidth(0);
+                this.textHeight = this.textLayout.getLineBottom(0);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

@@ -8,7 +8,7 @@ public class TLRPC$TL_messages_sendReaction extends TLObject {
     public int flags;
     public int msg_id;
     public TLRPC$InputPeer peer;
-    public ArrayList<TLRPC$Reaction> reaction = new ArrayList<>();
+    public ArrayList reaction = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -30,7 +30,7 @@ public class TLRPC$TL_messages_sendReaction extends TLObject {
             int size = this.reaction.size();
             abstractSerializedData.writeInt32(size);
             for (int i3 = 0; i3 < size; i3++) {
-                this.reaction.get(i3).serializeToStream(abstractSerializedData);
+                ((TLRPC$Reaction) this.reaction.get(i3)).serializeToStream(abstractSerializedData);
             }
         }
     }

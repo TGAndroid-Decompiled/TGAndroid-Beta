@@ -3,14 +3,14 @@ package kotlinx.coroutines;
 import kotlin.ExceptionsKt__ExceptionsKt;
 import kotlin.coroutines.CoroutineContext;
 
-public final class CoroutineExceptionHandlerKt {
+public abstract class CoroutineExceptionHandlerKt {
     public static final void handleCoroutineException(CoroutineContext coroutineContext, Throwable th) {
         try {
             CoroutineExceptionHandler coroutineExceptionHandler = (CoroutineExceptionHandler) coroutineContext.get(CoroutineExceptionHandler.Key);
-            if (coroutineExceptionHandler != null) {
-                coroutineExceptionHandler.handleException(coroutineContext, th);
-            } else {
+            if (coroutineExceptionHandler == null) {
                 CoroutineExceptionHandlerImplKt.handleCoroutineExceptionImpl(coroutineContext, th);
+            } else {
+                coroutineExceptionHandler.handleException(coroutineContext, th);
             }
         } catch (Throwable th2) {
             CoroutineExceptionHandlerImplKt.handleCoroutineExceptionImpl(coroutineContext, handlerException(th, th2));

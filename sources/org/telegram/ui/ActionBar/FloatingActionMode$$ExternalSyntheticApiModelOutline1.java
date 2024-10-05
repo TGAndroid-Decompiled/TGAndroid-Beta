@@ -1,4 +1,4 @@
 package org.telegram.ui.ActionBar;
 
-public final class FloatingActionMode$$ExternalSyntheticApiModelOutline1 {
+public abstract class FloatingActionMode$$ExternalSyntheticApiModelOutline1 {
 }

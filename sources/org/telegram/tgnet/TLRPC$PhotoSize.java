@@ -15,6 +15,7 @@ public abstract class TLRPC$PhotoSize extends TLObject {
 
     public static TLRPC$PhotoSize TLdeserialize(long j, long j2, long j3, AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PhotoSize tLRPC$TL_photoPathSize;
+        int charAt;
         switch (i) {
             case -668906175:
                 tLRPC$TL_photoPathSize = new TLRPC$TL_photoPathSize();
@@ -75,8 +76,8 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                         if (this.sizes.isEmpty()) {
                             return;
                         }
-                        ArrayList<Integer> arrayList = this.sizes;
-                        this.size = arrayList.get(arrayList.size() - 1).intValue();
+                        ArrayList arrayList = this.sizes;
+                        this.size = ((Integer) arrayList.get(arrayList.size() - 1)).intValue();
                     }
 
                     @Override
@@ -90,7 +91,7 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32(this.sizes.get(i2).intValue());
+                            abstractSerializedData2.writeInt32(((Integer) this.sizes.get(i2)).intValue());
                         }
                     }
                 };
@@ -111,21 +112,22 @@ public abstract class TLRPC$PhotoSize extends TLObject {
         if (tLRPC$TL_photoPathSize != null) {
             tLRPC$TL_photoPathSize.readParams(abstractSerializedData, z);
             if (tLRPC$TL_photoPathSize.location == null) {
-                if (!TextUtils.isEmpty(tLRPC$TL_photoPathSize.type) && (j != 0 || j2 != 0 || j3 != 0)) {
+                if (TextUtils.isEmpty(tLRPC$TL_photoPathSize.type) || (j == 0 && j2 == 0 && j3 == 0)) {
+                    tLRPC$TL_photoPathSize.location = new TLRPC$TL_fileLocationUnavailable();
+                } else {
                     TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
                     tLRPC$TL_photoPathSize.location = tLRPC$TL_fileLocationToBeDeprecated;
                     if (j != 0) {
                         tLRPC$TL_fileLocationToBeDeprecated.volume_id = -j;
-                        tLRPC$TL_fileLocationToBeDeprecated.local_id = tLRPC$TL_photoPathSize.type.charAt(0);
+                        charAt = tLRPC$TL_photoPathSize.type.charAt(0);
                     } else if (j2 != 0) {
                         tLRPC$TL_fileLocationToBeDeprecated.volume_id = -j2;
-                        tLRPC$TL_fileLocationToBeDeprecated.local_id = tLRPC$TL_photoPathSize.type.charAt(0) + 1000;
+                        charAt = tLRPC$TL_photoPathSize.type.charAt(0) + 1000;
                     } else if (j3 != 0) {
                         tLRPC$TL_fileLocationToBeDeprecated.volume_id = -j3;
-                        tLRPC$TL_fileLocationToBeDeprecated.local_id = tLRPC$TL_photoPathSize.type.charAt(0) + 2000;
+                        charAt = tLRPC$TL_photoPathSize.type.charAt(0) + 2000;
                     }
-                } else {
-                    tLRPC$TL_photoPathSize.location = new TLRPC$TL_fileLocationUnavailable();
+                    tLRPC$TL_fileLocationToBeDeprecated.local_id = charAt;
                 }
             }
         }

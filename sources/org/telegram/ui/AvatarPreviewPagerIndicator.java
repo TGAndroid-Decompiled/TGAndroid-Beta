@@ -54,10 +54,6 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
     private final GradientDrawable topOverlayGradient;
     private final Rect topOverlayRect;
 
-    @Override
-    public void onPhotosLoaded() {
-    }
-
     public AvatarPreviewPagerIndicator(Context context) {
         super(context);
         this.indicatorRect = new RectF();
@@ -131,11 +127,69 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
         this.textPaint.setTextSize(AndroidUtilities.dpf2(15.0f));
     }
 
+    private String getCurrentTitle() {
+        if (this.lastCurrentItem != this.profileGalleryView.getCurrentItem()) {
+            this.title = this.profileGalleryView.getAdapter().getPageTitle(this.profileGalleryView.getCurrentItem()).toString();
+            this.lastCurrentItem = this.profileGalleryView.getCurrentItem();
+        }
+        return this.title;
+    }
+
     public void lambda$new$0(ValueAnimator valueAnimator) {
         float[] fArr = this.animatorValues;
         float animatedFraction = valueAnimator.getAnimatedFraction();
         this.currentAnimationValue = animatedFraction;
         setAlphaValue(AndroidUtilities.lerp(fArr, animatedFraction), true);
+    }
+
+    public ProfileGalleryView getProfileGalleryView() {
+        return this.profileGalleryView;
+    }
+
+    @Override
+    public void onDown(boolean z) {
+        this.pressedOverlayVisible[!z ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public void onDraw(android.graphics.Canvas r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.AvatarPreviewPagerIndicator.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.path.reset();
+        this.rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
+        this.path.addRoundRect(this.rectF, new float[]{AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
+    }
+
+    @Override
+    public void onPhotosLoaded() {
+    }
+
+    @Override
+    public void onRelease() {
+        Arrays.fill(this.pressedOverlayVisible, false);
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
+        int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
+        this.topOverlayRect.set(0, 0, i, (int) (currentActionBarHeight * 0.5f));
+        this.bottomOverlayRect.set(0, (int) (i2 - (AndroidUtilities.dp(72.0f) * 0.5f)), i, i2);
+        this.topOverlayGradient.setBounds(0, this.topOverlayRect.bottom, i, currentActionBarHeight + AndroidUtilities.dp(16.0f));
+        this.bottomOverlayGradient.setBounds(0, (i2 - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i, this.bottomOverlayRect.top);
+        int i5 = i / 5;
+        this.pressedOverlayGradient[0].setBounds(0, 0, i5, i2);
+        this.pressedOverlayGradient[1].setBounds(i - i5, 0, i, i2);
+    }
+
+    @Override
+    public void onVideoSet() {
+        invalidate();
     }
 
     public void saveCurrentPageProgress() {
@@ -159,61 +213,7 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
         invalidate();
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.path.reset();
-        this.rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
-        this.path.addRoundRect(this.rectF, new float[]{AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
-    }
-
-    @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
-        this.topOverlayRect.set(0, 0, i, (int) (currentActionBarHeight * 0.5f));
-        this.bottomOverlayRect.set(0, (int) (i2 - (AndroidUtilities.dp(72.0f) * 0.5f)), i, i2);
-        this.topOverlayGradient.setBounds(0, this.topOverlayRect.bottom, i, currentActionBarHeight + AndroidUtilities.dp(16.0f));
-        this.bottomOverlayGradient.setBounds(0, (i2 - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i, this.bottomOverlayRect.top);
-        int i5 = i / 5;
-        this.pressedOverlayGradient[0].setBounds(0, 0, i5, i2);
-        this.pressedOverlayGradient[1].setBounds(i - i5, 0, i, i2);
-    }
-
-    @Override
-    public void onDraw(android.graphics.Canvas r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.AvatarPreviewPagerIndicator.onDraw(android.graphics.Canvas):void");
-    }
-
-    private String getCurrentTitle() {
-        if (this.lastCurrentItem != this.profileGalleryView.getCurrentItem()) {
-            this.title = this.profileGalleryView.getAdapter().getPageTitle(this.profileGalleryView.getCurrentItem()).toString();
-            this.lastCurrentItem = this.profileGalleryView.getCurrentItem();
-        }
-        return this.title;
-    }
-
-    @Override
-    public void onDown(boolean z) {
-        this.pressedOverlayVisible[!z ? 1 : 0] = true;
-        postInvalidateOnAnimation();
-    }
-
-    @Override
-    public void onRelease() {
-        Arrays.fill(this.pressedOverlayVisible, false);
-        postInvalidateOnAnimation();
-    }
-
-    @Override
-    public void onVideoSet() {
-        invalidate();
-    }
-
     public void setProfileGalleryView(ProfileGalleryView profileGalleryView) {
         this.profileGalleryView = profileGalleryView;
-    }
-
-    public ProfileGalleryView getProfileGalleryView() {
-        return this.profileGalleryView;
     }
 }

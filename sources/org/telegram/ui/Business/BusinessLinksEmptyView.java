@@ -1,6 +1,5 @@
 package org.telegram.ui.Business;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -17,7 +16,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.LayoutHelper;
 
-@SuppressLint({"ViewConstructor"})
 public class BusinessLinksEmptyView extends LinearLayout {
     private TextView descriptionView;
     private ImageView imageView;

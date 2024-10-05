@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_account_themes extends TLRPC$account_Themes {
     public long hash;
-    public ArrayList<TLRPC$TL_theme> themes = new ArrayList<>();
+    public ArrayList themes = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -34,7 +34,7 @@ public class TLRPC$TL_account_themes extends TLRPC$account_Themes {
         int size = this.themes.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.themes.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_theme) this.themes.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -932,7 +932,6 @@
     <string name="PermissionNoLocation">Telegram benötigt Zugriff auf deinen Standort, damit du ihn mit Freunden teilen kannst. </string>
     <string name="PermissionNoLocationFriends">**Telegram** benötigt Zugriff auf deinen **Standort**, damit du ihn mit Freunden teilen kannst. Tippe unten auf Einstellungen &gt; Berechtigungen und aktiviere den Zugriff.</string>
     <string name="PermissionNoLocationNavigation">**Telegram** benötigt Zugriff auf deinen **Standort**, damit du Anweisungen erhalten kannst. Tippe unten auf Einstellungen &gt; Berechtigungen und aktiviere den Zugriff.</string>
-    <string name="PermissionNoLocationPeopleNearby">**Telegram** benötigt Zugriff auf deinen **Standort**, damit dich Leute in der Nähe finden können. Tippe unten auf Einstellungen &gt; Berechtigungen und aktiviere den Zugriff.</string>
     <string name="PermissionNoLocationStory">Telegram braucht Zugriff auf deinen Standort, damit du das Wetter-Widget deiner Story hinzufügen kannst.</string>
     <string name="PermissionNoStorageAvatar">**Telegram** benötigt Zugriff auf deinen **Speicher**, damit du ein Profilbild hochladen kannst. Tippe auf Einstellungen &gt; Berechtigungen und aktiviere den Zugriff.</string>
     <string name="PermissionOpenSettings">Einstellungen</string>

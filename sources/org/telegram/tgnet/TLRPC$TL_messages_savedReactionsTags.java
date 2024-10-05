@@ -28,7 +28,7 @@ public class TLRPC$TL_messages_savedReactionsTags extends TLRPC$messages_SavedRe
         int size = this.tags.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.tags.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_savedReactionTag) this.tags.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt64(this.hash);
     }
