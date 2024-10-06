@@ -5799,6 +5799,7 @@
     <string name="Report2CommentInfo">Please help us by telling what is wrong with the message you have selected.</string>
     <string name="Report2CommentInfoChannel">Please help us by telling what is wrong with the channel you have selected.</string>
     <string name="Report2CommentInfoGroup">Please help us by telling what is wrong with the group you have selected.</string>
+    <string name="Report2CommentInfoMany">Please help us by telling what is wrong with the message you have selected.</string>
     <string name="Report2CommentInfoUser">Please help us by telling what is wrong with the user you have selected.</string>
     <string name="Report2CommentOptional">Add Comment (Optional)</string>
     <string name="Report2Send">Send Report</string>

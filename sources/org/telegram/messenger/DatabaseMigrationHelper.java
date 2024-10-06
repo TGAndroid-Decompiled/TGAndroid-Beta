@@ -1394,7 +1394,7 @@ public class DatabaseMigrationHelper {
             return i7;
         }
         sQLiteDatabase.executeFast("DELETE FROM star_gifts2").stepThis().dispose();
-        sQLiteDatabase.executeFast("ALTER TABLE star_gifts2 ADD COLUMN index INTEGER default 0;").stepThis().dispose();
+        sQLiteDatabase.executeFast("ALTER TABLE star_gifts2 ADD COLUMN pos INTEGER default 0;").stepThis().dispose();
         sQLiteDatabase.executeFast("PRAGMA user_version = 159").stepThis().dispose();
         return 159;
     }
