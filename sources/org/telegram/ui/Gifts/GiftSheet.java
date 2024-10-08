@@ -316,8 +316,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
 
         public void setStarsGift(TL_stars.StarGift starGift) {
-            TextView textView;
-            int i;
             Runnable runnable = this.cancel;
             if (runnable != null) {
                 runnable.run();
@@ -328,7 +326,12 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             this.subtitleView.setVisibility(8);
             this.imageView.setTranslationY(0.0f);
             this.lockView.setVisibility(8);
-            if (starGift.limited) {
+            boolean z = starGift.limited;
+            if (z && starGift.availability_remains <= 0) {
+                this.ribbon.setVisibility(0);
+                this.ribbon.setColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
+                this.ribbon.setText(LocaleController.getString(R.string.Gift2SoldOut), true);
+            } else if (z) {
                 this.ribbon.setVisibility(0);
                 this.ribbon.setColor(-12147470);
                 this.ribbon.setText(LocaleController.getString(R.string.Gift2LimitedRibbon), false);
@@ -336,20 +339,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 this.ribbon.setVisibility(8);
             }
             this.avatarView.setVisibility(8);
-            if (!starGift.limited || starGift.availability_remains > 0) {
-                this.priceView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f), 0);
-                this.priceView.setText(StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(starGift.stars, ','), 0.71f));
-                this.priceView.setBackground(new StarsBackground());
-                textView = this.priceView;
-                i = -4229632;
-            } else {
-                this.priceView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-                this.priceView.setText(LocaleController.getString(R.string.Gift2SoldOut));
-                this.priceView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.multAlpha(Theme.getColor(Theme.key_text_RedRegular, this.resourcesProvider), 0.1f)));
-                textView = this.priceView;
-                i = Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider);
-            }
-            textView.setTextColor(i);
+            this.priceView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f), 0);
+            this.priceView.setText(StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(starGift.stars, ','), 0.71f));
+            this.priceView.setBackground(new StarsBackground());
+            this.priceView.setTextColor(-4229632);
             ((ViewGroup.MarginLayoutParams) this.priceView.getLayoutParams()).topMargin = AndroidUtilities.dp(103.0f);
             this.lastTier = null;
         }

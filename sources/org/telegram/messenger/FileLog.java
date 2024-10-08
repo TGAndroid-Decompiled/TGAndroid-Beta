@@ -469,6 +469,13 @@ public class FileLog {
             for (StackTraceElement stackTraceElement : th.getStackTrace()) {
                 getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTraceElement + "\n");
             }
+            Throwable cause = th.getCause();
+            if (cause != null) {
+                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
+                for (StackTraceElement stackTraceElement2 : cause.getStackTrace()) {
+                    getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTraceElement2 + "\n");
+                }
+            }
             getInstance().streamWriter.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -480,6 +487,13 @@ public class FileLog {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th + "\n");
             for (StackTraceElement stackTraceElement : th.getStackTrace()) {
                 getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: \tat " + stackTraceElement + "\n");
+            }
+            Throwable cause = th.getCause();
+            if (cause != null) {
+                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
+                for (StackTraceElement stackTraceElement2 : cause.getStackTrace()) {
+                    getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTraceElement2 + "\n");
+                }
             }
             getInstance().streamWriter.flush();
         } catch (Exception e) {

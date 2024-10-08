@@ -422,7 +422,6 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         CharSequence charSequence4;
         boolean z3;
         ChatActionCell chatActionCell;
-        String forcedFirstName;
         int i4;
         String str5;
         CharSequence string3;
@@ -497,20 +496,15 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     long j2 = tL_messageActionStarGift.convert_stars;
                     long fromChatId = messageObject.getFromChatId();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    if (tL_messageActionStarGift.name_hidden) {
-                        forcedFirstName = messageObject.isOutOwner() ? LocaleController.formatString(R.string.Gift2ActionTitleInAnonymous, UserObject.getForcedFirstName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())))) : LocaleController.getString(R.string.Gift2ActionTitleAnonymous);
-                    } else {
-                        TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
-                        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActionTitle)).append((CharSequence) " ");
-                        if (user2 != null && user2.photo != null) {
-                            spannableStringBuilder.append((CharSequence) "a ");
-                            AvatarSpan avatarSpan = new AvatarSpan(this, this.currentAccount, 18.0f);
-                            avatarSpan.setUser(user2);
-                            spannableStringBuilder.setSpan(avatarSpan, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 33);
-                        }
-                        forcedFirstName = UserObject.getForcedFirstName(user2);
+                    TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(fromChatId));
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActionTitle)).append((CharSequence) " ");
+                    if (user2 != null && user2.photo != null) {
+                        spannableStringBuilder.append((CharSequence) "a ");
+                        AvatarSpan avatarSpan = new AvatarSpan(this, this.currentAccount, 18.0f);
+                        avatarSpan.setUser(user2);
+                        spannableStringBuilder.setSpan(avatarSpan, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 33);
                     }
-                    spannableStringBuilder.append((CharSequence) forcedFirstName);
+                    spannableStringBuilder.append((CharSequence) UserObject.getForcedFirstName(user2));
                     TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGift.message;
                     if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(tL_messageActionStarGift.message.text);

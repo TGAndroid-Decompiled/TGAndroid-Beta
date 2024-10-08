@@ -1281,12 +1281,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         private boolean expanded;
         private final FireworksOverlay fireworksOverlay;
         private final FrameLayout footerView;
-        private Runnable whenPurchased;
 
         public StarsOptionsSheet(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, null, false, false, false, resourcesProvider);
             this.BUTTON_EXPAND = -1;
-            this.whenPurchased = this.whenPurchased;
             RecyclerListView recyclerListView = this.recyclerListView;
             int i = this.backgroundPaddingLeft;
             recyclerListView.setPadding(i, 0, i, 0);
