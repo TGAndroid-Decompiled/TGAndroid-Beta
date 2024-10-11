@@ -1904,12 +1904,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         PaymentFormCallback paymentFormCallback;
         PaymentFormCallback paymentFormCallback2;
         this.paymentStatusSent = true;
-        InvoiceStatus invoiceStatus = InvoiceStatus.PAID;
-        this.invoiceStatus = invoiceStatus;
-        PaymentFormCallback paymentFormCallback3 = this.paymentFormCallback;
-        if (paymentFormCallback3 != null) {
-            paymentFormCallback3.onInvoiceStatusChanged(invoiceStatus);
-        }
+        this.invoiceStatus = InvoiceStatus.PAID;
         onCheckoutSuccess(iNavigationLayout, activity);
         TLRPC$InputInvoice tLRPC$InputInvoice = this.invoiceInput;
         boolean z = tLRPC$InputInvoice instanceof TLRPC$TL_inputInvoiceStars;

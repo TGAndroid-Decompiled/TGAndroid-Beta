@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 public class TLRPC$TL_messageActionGiftCode extends TLRPC$MessageAction {
     public TLRPC$Peer boost_peer;
+    public TLRPC$TL_textWithEntities message;
     public String slug;
     public boolean unclaimed;
     public boolean via_giveaway;
@@ -19,21 +20,20 @@ public class TLRPC$TL_messageActionGiftCode extends TLRPC$MessageAction {
         this.slug = abstractSerializedData.readString(z);
         if ((this.flags & 4) != 0) {
             this.currency = abstractSerializedData.readString(z);
-        }
-        if ((this.flags & 4) != 0) {
             this.amount = abstractSerializedData.readInt64(z);
         }
         if ((this.flags & 8) != 0) {
             this.cryptoCurrency = abstractSerializedData.readString(z);
-        }
-        if ((this.flags & 8) != 0) {
             this.cryptoAmount = abstractSerializedData.readInt64(z);
+        }
+        if ((this.flags & 16) != 0) {
+            this.message = TLRPC$TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1737240073);
+        abstractSerializedData.writeInt32(1456486804);
         int i = this.via_giveaway ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.unclaimed ? i | 4 : i & (-5);
@@ -46,15 +46,14 @@ public class TLRPC$TL_messageActionGiftCode extends TLRPC$MessageAction {
         abstractSerializedData.writeString(this.slug);
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeString(this.currency);
-        }
-        if ((this.flags & 4) != 0) {
             abstractSerializedData.writeInt64(this.amount);
         }
         if ((this.flags & 8) != 0) {
             abstractSerializedData.writeString(this.cryptoCurrency);
-        }
-        if ((this.flags & 8) != 0) {
             abstractSerializedData.writeInt64(this.cryptoAmount);
+        }
+        if ((this.flags & 16) != 0) {
+            this.message.serializeToStream(abstractSerializedData);
         }
     }
 }

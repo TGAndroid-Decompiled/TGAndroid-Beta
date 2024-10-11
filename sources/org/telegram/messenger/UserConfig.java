@@ -176,6 +176,7 @@ public class UserConfig extends BaseController {
     public void lambda$checkPremiumSelf$2(TLRPC$User tLRPC$User) {
         getMessagesController().updatePremium(tLRPC$User.premium);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
+        getMediaDataController().loadPremiumPromo(true);
     }
 
     public void lambda$loadGlobalTTl$3(TLObject tLObject) {

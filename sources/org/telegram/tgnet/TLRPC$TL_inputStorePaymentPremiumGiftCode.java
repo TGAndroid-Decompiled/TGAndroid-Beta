@@ -7,6 +7,7 @@ public class TLRPC$TL_inputStorePaymentPremiumGiftCode extends TLRPC$InputStoreP
     public TLRPC$InputPeer boost_peer;
     public String currency;
     public int flags;
+    public TLRPC$TL_textWithEntities message;
     public ArrayList users = new ArrayList();
 
     @Override
@@ -32,11 +33,14 @@ public class TLRPC$TL_inputStorePaymentPremiumGiftCode extends TLRPC$InputStoreP
         }
         this.currency = abstractSerializedData.readString(z);
         this.amount = abstractSerializedData.readInt64(z);
+        if ((this.flags & 2) != 0) {
+            this.message = TLRPC$TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1551868097);
+        abstractSerializedData.writeInt32(-75955309);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(481674261);
         int size = this.users.size();
@@ -49,5 +53,8 @@ public class TLRPC$TL_inputStorePaymentPremiumGiftCode extends TLRPC$InputStoreP
         }
         abstractSerializedData.writeString(this.currency);
         abstractSerializedData.writeInt64(this.amount);
+        if ((this.flags & 2) != 0) {
+            this.message.serializeToStream(abstractSerializedData);
+        }
     }
 }

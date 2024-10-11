@@ -757,7 +757,6 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_iv_navigationBackground, "iv_navigationBackground");
         sparseArray.put(Theme.key_iv_ab_progress, "iv_ab_progress");
         sparseArray.put(Theme.key_reactionStarSelector, "reactionStarSelector");
-        sparseArray.put(Theme.key_dialogCardBackground, "dialogCardBackground");
         sparseArray.put(Theme.key_dialogCardShadow, "dialogCardShadow");
         sparseArray.put(Theme.key_dialogGiftsBackground, "dialogGiftsBackground");
         sparseArray.put(Theme.key_dialogGiftsTabText, "dialogGiftsTabText");
@@ -824,7 +823,6 @@ public abstract class ThemeColors {
         iArr[Theme.key_dialogEmptyText] = -7565164;
         iArr[Theme.key_dialogSwipeRemove] = -1743531;
         iArr[Theme.key_dialogReactionMentionBackground] = -1026983;
-        iArr[Theme.key_dialogCardBackground] = -1;
         iArr[Theme.key_dialogCardShadow] = 815372697;
         iArr[Theme.key_dialogGiftsBackground] = -657673;
         iArr[Theme.key_dialogGiftsTabText] = -11118244;

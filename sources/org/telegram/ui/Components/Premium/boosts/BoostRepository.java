@@ -1,6 +1,7 @@
 package org.telegram.ui.Components.Premium.boosts;
 
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Pair;
 import androidx.core.util.Consumer;
 import com.android.billingclient.api.BillingFlowParams;
@@ -956,6 +957,10 @@ public abstract class BoostRepository {
             tLRPC$TL_inputStorePaymentPremiumGiftCode.flags = 1;
             tLRPC$TL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
         }
+        if (tLRPC$TL_textWithEntities != null && !TextUtils.isEmpty(tLRPC$TL_textWithEntities.text)) {
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.flags |= 2;
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.message = tLRPC$TL_textWithEntities;
+        }
         BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tLRPC$TL_premiumGiftCodeOption.store_product).build()), new ProductDetailsResponseListener() {
             @Override
             public final void onProductDetailsResponse(BillingResult billingResult, List list2) {
@@ -977,6 +982,10 @@ public abstract class BoostRepository {
             if (tLObject instanceof TLRPC$User) {
                 tLRPC$TL_inputStorePaymentPremiumGiftCode.users.add(messagesController.getInputUser((TLRPC$User) tLObject));
             }
+        }
+        if (tLRPC$TL_textWithEntities != null && !TextUtils.isEmpty(tLRPC$TL_textWithEntities.text)) {
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.flags |= 2;
+            tLRPC$TL_inputStorePaymentPremiumGiftCode.message = tLRPC$TL_textWithEntities;
         }
         if (tLRPC$Chat != null) {
             tLRPC$TL_inputStorePaymentPremiumGiftCode.flags |= 1;

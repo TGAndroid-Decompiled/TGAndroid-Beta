@@ -42,7 +42,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
@@ -153,7 +152,6 @@ import org.telegram.ui.ImageReceiverSpan;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -1320,12 +1318,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         private boolean expanded;
         private final FireworksOverlay fireworksOverlay;
         private final FrameLayout footerView;
-        private Runnable whenPurchased;
 
         public StarsOptionsSheet(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, null, false, false, false, resourcesProvider);
             this.BUTTON_EXPAND = -1;
-            this.whenPurchased = this.whenPurchased;
             RecyclerListView recyclerListView = this.recyclerListView;
             int i = this.backgroundPaddingLeft;
             recyclerListView.setPadding(i, 0, i, 0);
@@ -2352,6 +2348,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static void lambda$setGiftImage$16(int i, int i2, ImageReceiver imageReceiver, final boolean[] zArr) {
+        TLRPC$Document tLRPC$Document;
         String str = UserConfig.getInstance(i).premiumGiftsStickerPack;
         if (str == null) {
             MediaDataController.getInstance(i).checkPremiumGiftStickers();
@@ -2362,7 +2359,6 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             stickerSetByName = MediaDataController.getInstance(i).getStickerSetByEmojiOrName(str);
         }
         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
-        TLRPC$Document tLRPC$Document = null;
         if (tLRPC$TL_messages_stickerSet != null) {
             String str2 = i2 == 2 ? "2⃣" : i2 == 3 ? "3⃣" : "4⃣";
             int i3 = 0;
@@ -2373,16 +2369,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 TLRPC$TL_stickerPack tLRPC$TL_stickerPack = (TLRPC$TL_stickerPack) tLRPC$TL_messages_stickerSet.packs.get(i3);
                 if (TextUtils.equals(tLRPC$TL_stickerPack.emoticon, str2) && !tLRPC$TL_stickerPack.documents.isEmpty()) {
                     long longValue = ((Long) tLRPC$TL_stickerPack.documents.get(0)).longValue();
-                    int i4 = 0;
-                    while (true) {
-                        if (i4 < tLRPC$TL_messages_stickerSet.documents.size()) {
-                            TLRPC$Document tLRPC$Document2 = (TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(i4);
-                            if (tLRPC$Document2 != null && tLRPC$Document2.id == longValue) {
-                                tLRPC$Document = tLRPC$Document2;
-                                break;
-                            }
-                            i4++;
-                        } else {
+                    for (int i4 = 0; i4 < tLRPC$TL_messages_stickerSet.documents.size(); i4++) {
+                        tLRPC$Document = (TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(i4);
+                        if (tLRPC$Document != null && tLRPC$Document.id == longValue) {
                             break;
                         }
                     }
@@ -2390,9 +2379,12 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     i3++;
                 }
             }
+            tLRPC$Document = null;
             if (tLRPC$Document == null && !tLRPC$TL_messages_stickerSet.documents.isEmpty()) {
                 tLRPC$Document = (TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(0);
             }
+        } else {
+            tLRPC$Document = null;
         }
         if (tLRPC$Document == null) {
             MediaDataController.getInstance(i).loadStickersByEmojiOrName(str, false, tLRPC$TL_messages_stickerSet == null);
@@ -2422,8 +2414,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
         });
         Drawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 0.3f);
+        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 160, true, null, true);
         imageReceiver.setAutoRepeat(0);
-        imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), String.format(Locale.US, "%d_%d_nr", 160, 160), svgThumb, "tgs", tLRPC$TL_messages_stickerSet, 1);
+        imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "160_160", svgThumb, tLRPC$Document.size, "tgs", tLRPC$TL_messages_stickerSet, 1);
     }
 
     public static void lambda$setGiftImage$19(Runnable runnable, Runnable runnable2) {
@@ -2494,10 +2487,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             bottomSheetArr[0].dismiss();
-            StarsController.GiftsList profileGiftsList = StarsController.getInstance(i).getProfileGiftsList(j, false);
-            if (profileGiftsList != null) {
-                profileGiftsList.invalidate();
-            }
+            StarsController.getInstance(i).invalidateProfileGifts(j);
             BulletinFactory.of(safeLastFragment).createEmojiBulletin(tL_stars$StarGift.sticker, LocaleController.getString(z ? R.string.Gift2MadePrivateTitle : R.string.Gift2MadePublicTitle), AndroidUtilities.replaceSingleTag(LocaleController.getString(z ? R.string.Gift2MadePrivate : R.string.Gift2MadePublic), safeLastFragment instanceof ProfileActivity ? null : new Runnable() {
                 @Override
                 public final void run() {
@@ -2568,10 +2558,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             return;
         }
         bottomSheetArr[0].dismiss();
-        StarsController.GiftsList profileGiftsList = StarsController.getInstance(i).getProfileGiftsList(j, false);
-        if (profileGiftsList != null) {
-            profileGiftsList.invalidate();
-        }
+        StarsController.getInstance(i).invalidateProfileGifts(j);
         TLRPC$UserFull userFull = MessagesController.getInstance(i).getUserFull(j2);
         if (userFull != null) {
             int max = Math.max(0, userFull.stargifts_count - 1);
@@ -2715,10 +2702,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             bottomSheetArr[0].dismiss();
-            StarsController.GiftsList profileGiftsList = StarsController.getInstance(i).getProfileGiftsList(j, false);
-            if (profileGiftsList != null) {
-                profileGiftsList.invalidate();
-            }
+            StarsController.getInstance(i).invalidateProfileGifts(j);
             BulletinFactory.of(safeLastFragment).createEmojiBulletin(tL_stars$StarGift.sticker, LocaleController.getString(z ? R.string.Gift2MadePrivateTitle : R.string.Gift2MadePublicTitle), AndroidUtilities.replaceSingleTag(LocaleController.getString(z ? R.string.Gift2MadePrivate : R.string.Gift2MadePublic), safeLastFragment instanceof ProfileActivity ? null : new Runnable() {
                 @Override
                 public final void run() {
@@ -2789,10 +2773,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             return;
         }
         bottomSheetArr[0].dismiss();
-        StarsController.GiftsList profileGiftsList = StarsController.getInstance(i).getProfileGiftsList(j, false);
-        if (profileGiftsList != null) {
-            profileGiftsList.invalidate();
-        }
+        StarsController.getInstance(i).invalidateProfileGifts(j);
         TLRPC$UserFull userFull = MessagesController.getInstance(i).getUserFull(j2);
         if (userFull != null) {
             int max = Math.max(0, userFull.stargifts_count - 1);

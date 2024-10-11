@@ -6459,7 +6459,7 @@ public class MessageObject {
         int i;
         TLRPC$Message tLRPC$Message;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
-        if (this.isRepostPreview) {
+        if (this.isRepostPreview || getDialogId() == 489000) {
             return false;
         }
         if (this.isSaved) {

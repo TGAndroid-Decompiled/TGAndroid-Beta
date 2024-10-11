@@ -2992,7 +2992,57 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$loadPremiumPromo$7() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$loadPremiumPromo$7():void");
+        TLRPC$TL_help_premiumPromo tLRPC$TL_help_premiumPromo;
+        SQLiteCursor sQLiteCursor;
+        SQLiteCursor sQLiteCursor2 = null;
+        r1 = null;
+        r1 = null;
+        TLRPC$TL_help_premiumPromo tLRPC$TL_help_premiumPromo2 = null;
+        sQLiteCursor2 = null;
+        int i = 0;
+        try {
+            try {
+                sQLiteCursor = getMessagesStorage().getDatabase().queryFinalized("SELECT data, date FROM premium_promo", new Object[0]);
+            } catch (Exception e) {
+                e = e;
+                tLRPC$TL_help_premiumPromo = null;
+            }
+        } catch (Throwable th) {
+            th = th;
+        }
+        try {
+            if (sQLiteCursor.next()) {
+                NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
+                if (byteBufferValue != null) {
+                    tLRPC$TL_help_premiumPromo2 = TLRPC$TL_help_premiumPromo.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), true);
+                    byteBufferValue.reuse();
+                }
+                i = sQLiteCursor.intValue(1);
+            }
+        } catch (Exception e2) {
+            e = e2;
+            tLRPC$TL_help_premiumPromo = tLRPC$TL_help_premiumPromo2;
+            sQLiteCursor2 = sQLiteCursor;
+            FileLog.e((Throwable) e, false);
+            if (sQLiteCursor2 != null) {
+                TLRPC$TL_help_premiumPromo tLRPC$TL_help_premiumPromo3 = tLRPC$TL_help_premiumPromo;
+                sQLiteCursor = sQLiteCursor2;
+                tLRPC$TL_help_premiumPromo2 = tLRPC$TL_help_premiumPromo3;
+                sQLiteCursor.dispose();
+                tLRPC$TL_help_premiumPromo = tLRPC$TL_help_premiumPromo2;
+            }
+            processLoadedPremiumPromo(tLRPC$TL_help_premiumPromo, i, true);
+        } catch (Throwable th2) {
+            th = th2;
+            sQLiteCursor2 = sQLiteCursor;
+            if (sQLiteCursor2 != null) {
+                sQLiteCursor2.dispose();
+            }
+            throw th;
+        }
+        sQLiteCursor.dispose();
+        tLRPC$TL_help_premiumPromo = tLRPC$TL_help_premiumPromo2;
+        processLoadedPremiumPromo(tLRPC$TL_help_premiumPromo, i, true);
     }
 
     public void lambda$loadPremiumPromo$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -6373,10 +6423,12 @@ public class MediaDataController extends BaseController {
     }
 
     public void checkPremiumPromo() {
-        if (this.isLoadingPremiumPromo || Math.abs((System.currentTimeMillis() / 1000) - this.premiumPromoUpdateDate) < 3600) {
+        if (this.isLoadingPremiumPromo) {
             return;
         }
-        loadPremiumPromo(true);
+        if (this.premiumPromo == null || Math.abs((System.currentTimeMillis() / 1000) - this.premiumPromoUpdateDate) >= 3600) {
+            loadPremiumPromo(true);
+        }
     }
 
     public void checkReactions() {
@@ -8472,20 +8524,26 @@ public class MediaDataController extends BaseController {
     }
 
     public void processLoadedPremiumPromo(TLRPC$TL_help_premiumPromo tLRPC$TL_help_premiumPromo, int i, boolean z) {
-        this.premiumPromo = tLRPC$TL_help_premiumPromo;
-        this.premiumPromoUpdateDate = i;
-        getMessagesController().putUsers(tLRPC$TL_help_premiumPromo.users, z);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MediaDataController.this.lambda$processLoadedPremiumPromo$9();
-            }
-        });
-        if (!z) {
-            putPremiumPromoToCache(tLRPC$TL_help_premiumPromo, i);
-        } else if (Math.abs((System.currentTimeMillis() / 1000) - i) >= 86400 || BuildVars.DEBUG_PRIVATE_VERSION) {
-            loadPremiumPromo(false);
+        if (tLRPC$TL_help_premiumPromo != null) {
+            this.premiumPromo = tLRPC$TL_help_premiumPromo;
+            this.premiumPromoUpdateDate = i;
+            getMessagesController().putUsers(tLRPC$TL_help_premiumPromo.users, z);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MediaDataController.this.lambda$processLoadedPremiumPromo$9();
+                }
+            });
         }
+        if (z) {
+            if (tLRPC$TL_help_premiumPromo == null || Math.abs((System.currentTimeMillis() / 1000) - i) >= 86400) {
+                loadPremiumPromo(false);
+                return;
+            }
+        } else if (tLRPC$TL_help_premiumPromo != null) {
+            putPremiumPromoToCache(tLRPC$TL_help_premiumPromo, i);
+        }
+        this.isLoadingPremiumPromo = false;
     }
 
     public void processLoadedReactions(List<TLRPC$TL_availableReaction> list, int i, int i2, boolean z) {

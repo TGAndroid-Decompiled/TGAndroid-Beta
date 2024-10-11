@@ -443,6 +443,7 @@ import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.ThemeActivity;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
@@ -6959,6 +6960,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         this.fullUsers.put(tLRPC$User.id, tLRPC$UserFull);
         getTranslateController().updateDialogFull(tLRPC$User.id);
+        StarsController.getInstance(this.currentAccount).invalidateProfileGifts(tLRPC$UserFull);
         this.loadingFullUsers.remove(Long.valueOf(tLRPC$User.id));
         this.loadedFullUsers.put(tLRPC$User.id, System.currentTimeMillis());
         String str = tLRPC$User.first_name + tLRPC$User.last_name + UserObject.getPublicUsername(tLRPC$User);
@@ -8974,6 +8976,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (this.fullUsers.get(tLRPC$User.id) == null) {
                 this.fullUsers.put(tLRPC$User.id, tLRPC$UserFull);
                 getTranslateController().updateDialogFull(tLRPC$User.id);
+                StarsController.getInstance(this.currentAccount).invalidateProfileGifts(tLRPC$UserFull);
                 int indexOfKey = this.blockePeers.indexOfKey(tLRPC$User.id);
                 if (tLRPC$UserFull.blocked) {
                     if (indexOfKey < 0) {

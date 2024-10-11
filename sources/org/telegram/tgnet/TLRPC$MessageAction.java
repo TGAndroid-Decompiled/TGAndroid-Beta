@@ -366,7 +366,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 tLRPC$MessageAction = new TLRPC$TL_messageActionBotAllowed();
                 break;
             case -935499028:
-                tLRPC$MessageAction = new TLRPC$MessageAction() {
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiftPremium() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -713,6 +713,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
             case 1431655927:
                 tLRPC$MessageAction = new TLRPC$TL_messageEncryptedAction();
                 break;
+            case 1456486804:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiftCode();
+                break;
             case 1474192222:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSuggestProfilePhoto();
                 break;
@@ -731,7 +734,67 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 };
                 break;
             case 1737240073:
-                tLRPC$MessageAction = new TLRPC$TL_messageActionGiftCode();
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiftCode() {
+                    public TLRPC$Peer boost_peer;
+                    public String slug;
+                    public boolean unclaimed;
+                    public boolean via_giveaway;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.via_giveaway = (readInt32 & 1) != 0;
+                        this.unclaimed = (readInt32 & 4) != 0;
+                        if ((readInt32 & 2) != 0) {
+                            this.boost_peer = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        this.months = abstractSerializedData2.readInt32(z2);
+                        this.slug = abstractSerializedData2.readString(z2);
+                        if ((this.flags & 4) != 0) {
+                            this.currency = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.amount = abstractSerializedData2.readInt64(z2);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            this.cryptoCurrency = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            this.cryptoAmount = abstractSerializedData2.readInt64(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1737240073);
+                        int i2 = this.via_giveaway ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        int i3 = this.unclaimed ? i2 | 4 : i2 & (-5);
+                        this.flags = i3;
+                        abstractSerializedData2.writeInt32(i3);
+                        if ((this.flags & 2) != 0) {
+                            this.boost_peer.serializeToStream(abstractSerializedData2);
+                        }
+                        abstractSerializedData2.writeInt32(this.months);
+                        abstractSerializedData2.writeString(this.slug);
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeString(this.currency);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeInt64(this.amount);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeString(this.cryptoCurrency);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeInt64(this.cryptoAmount);
+                        }
+                    }
+                };
+                break;
+            case 1818391802:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiftPremium();
                 break;
             case 1991897370:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionInviteToGroupCall() {

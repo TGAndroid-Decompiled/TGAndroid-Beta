@@ -533,7 +533,7 @@ public class ReportBottomSheet extends BottomSheet {
                     UItem asCustom3 = UItem.asCustom(this.editTextCell);
                     asCustom3.id = -3;
                     arrayList.add(asCustom3);
-                    arrayList.add(UItem.asShadow(LocaleController.getString(DialogObject.isUserDialog(ReportBottomSheet.this.dialogId) ? R.string.Report2CommentInfoUser : ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(((BottomSheet) ReportBottomSheet.this).currentAccount).getChat(Long.valueOf(-ReportBottomSheet.this.dialogId))) ? R.string.Report2CommentInfoChannel : R.string.Report2CommentInfoGroup)));
+                    arrayList.add(UItem.asShadow(LocaleController.getString((ReportBottomSheet.this.messageIds == null || ReportBottomSheet.this.messageIds.isEmpty()) ? DialogObject.isUserDialog(ReportBottomSheet.this.dialogId) ? R.string.Report2CommentInfoUser : ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(((BottomSheet) ReportBottomSheet.this).currentAccount).getChat(Long.valueOf(-ReportBottomSheet.this.dialogId))) ? R.string.Report2CommentInfoChannel : R.string.Report2CommentInfoGroup : ReportBottomSheet.this.messageIds.size() > 1 ? R.string.Report2CommentInfoMany : R.string.Report2CommentInfo)));
                     if (this.buttonContainer == null) {
                         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), ((BottomSheet) ReportBottomSheet.this).resourcesProvider);
                         this.button = buttonWithCounterView;
