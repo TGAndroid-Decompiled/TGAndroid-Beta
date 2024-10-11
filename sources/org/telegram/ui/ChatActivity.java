@@ -19786,6 +19786,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (TextUtils.isEmpty(str)) {
             str = FileLoader.getInstance(this.currentAccount).getPathToMessage(messageObject.messageOwner).toString();
         }
+        if (messageObject.qualityToSave != null) {
+            File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(messageObject.qualityToSave.document, null, false, true);
+            if (pathToAttach == null) {
+                return;
+            } else {
+                str = pathToAttach.getPath();
+            }
+        }
         MediaController.saveFile(str, getParentActivity(), messageObject.isVideo() ? 1 : 0, null, null);
     }
 

@@ -143,6 +143,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private int topResId;
     private View topView;
     private boolean verticalButtons;
+    private boolean withCancelDialog;
 
     public static class AlertDialogCell extends FrameLayout {
         private ImageView imageView;
@@ -293,7 +294,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
         @Override
         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            if (AlertDialog.this.progressViewStyle != 3) {
+            if (!AlertDialog.this.withCancelDialog) {
                 return super.onInterceptTouchEvent(motionEvent);
             }
             AlertDialog.this.showCancelAlert();
@@ -336,7 +337,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
-            if (AlertDialog.this.progressViewStyle != 3) {
+            if (!AlertDialog.this.withCancelDialog) {
                 return super.onTouchEvent(motionEvent);
             }
             AlertDialog.this.showCancelAlert();
@@ -649,6 +650,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             mutate.setColorFilter(new PorterDuffColorFilter(this.backgroundColor, PorterDuff.Mode.MULTIPLY));
             this.shadowDrawable.getPadding(this.backgroundPaddings);
         }
+        this.withCancelDialog = this.progressViewStyle == 3;
         this.progressViewStyle = i;
     }
 
@@ -789,31 +791,6 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             this.shadowAnimation[i].start();
         } catch (Exception e) {
             FileLog.e(e);
-        }
-    }
-
-    public void showCancelAlert() {
-        if (this.canCacnel && this.cancelDialog == null) {
-            Builder builder = new Builder(getContext(), this.resourcesProvider);
-            builder.setTitle(LocaleController.getString(R.string.StopLoadingTitle));
-            builder.setMessage(LocaleController.getString(R.string.StopLoading));
-            builder.setPositiveButton(LocaleController.getString(R.string.WaitMore), null);
-            builder.setNegativeButton(LocaleController.getString(R.string.Stop), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    AlertDialog.this.lambda$showCancelAlert$6(dialogInterface, i);
-                }
-            });
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    AlertDialog.this.lambda$showCancelAlert$7(dialogInterface);
-                }
-            });
-            try {
-                this.cancelDialog = builder.show();
-            } catch (Exception unused) {
-            }
         }
     }
 
@@ -962,6 +939,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.canCacnel = z;
     }
 
+    public void setCancelDialog(boolean z) {
+        this.withCancelDialog = z;
+    }
+
     @Override
     public void setCanceledOnTouchOutside(boolean z) {
         super.setCanceledOnTouchOutside(z);
@@ -1100,6 +1081,31 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 this.progressViewContainer.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
             }
             this.shownAt = System.currentTimeMillis();
+        }
+    }
+
+    public void showCancelAlert() {
+        if (this.canCacnel && this.cancelDialog == null) {
+            Builder builder = new Builder(getContext(), this.resourcesProvider);
+            builder.setTitle(LocaleController.getString(R.string.StopLoadingTitle));
+            builder.setMessage(LocaleController.getString(R.string.StopLoading));
+            builder.setPositiveButton(LocaleController.getString(R.string.WaitMore), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Stop), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    AlertDialog.this.lambda$showCancelAlert$6(dialogInterface, i);
+                }
+            });
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    AlertDialog.this.lambda$showCancelAlert$7(dialogInterface);
+                }
+            });
+            try {
+                this.cancelDialog = builder.show();
+            } catch (Exception unused) {
+            }
         }
     }
 

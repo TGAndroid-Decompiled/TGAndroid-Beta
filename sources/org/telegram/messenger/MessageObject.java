@@ -252,6 +252,7 @@ public class MessageObject {
     public String previousMessage;
     public ArrayList<TLRPC.MessageEntity> previousMessageEntities;
     public boolean putInDownloadsStore;
+    public VideoPlayer.QualityUri qualityToSave;
     public String quick_reply_shortcut;
     private byte[] randomWaveform;
     public boolean reactionsChanged;

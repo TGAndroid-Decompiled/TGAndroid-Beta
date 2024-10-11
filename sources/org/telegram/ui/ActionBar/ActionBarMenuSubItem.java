@@ -182,7 +182,12 @@ public class ActionBarMenuSubItem extends FrameLayout {
         }
         this.textView.setLayoutParams(layoutParams);
         setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 18.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 8.0f), 0);
-        this.rightIcon.setImageResource(i);
+        if (i == 0) {
+            this.rightIcon.setVisibility(8);
+        } else {
+            this.rightIcon.setVisibility(0);
+            this.rightIcon.setImageResource(i);
+        }
     }
 
     public void setSelectorColor(int i) {

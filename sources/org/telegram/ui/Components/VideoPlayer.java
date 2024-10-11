@@ -808,8 +808,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public static ArrayList getQualities(int i, TLRPC.Document document, ArrayList arrayList, int i2, boolean z) {
         String str;
         ArrayList arrayList2 = new ArrayList();
-        arrayList2.add(document);
-        arrayList2.addAll(arrayList);
+        if (document != null) {
+            arrayList2.add(document);
+        }
+        if (arrayList != null) {
+            arrayList2.addAll(arrayList);
+        }
         LongSparseArray longSparseArray = new LongSparseArray();
         int i3 = 0;
         while (i3 < arrayList2.size()) {

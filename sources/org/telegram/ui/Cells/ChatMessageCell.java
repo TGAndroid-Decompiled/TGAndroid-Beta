@@ -4387,7 +4387,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         int canDownloadMediaType = DownloadController.getInstance(this.currentAccount).canDownloadMediaType(messageObject);
         TLRPC.Document document = messageObject.getDocument();
-        if (MessageObject.isStickerDocument(document) || MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isGifDocument(document) || MessageObject.isRoundVideoDocument(document) || this.isSmallImage) {
+        if (MessageObject.isStickerDocument(document) || MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isGifDocument(document) || MessageObject.isRoundVideoDocument(document) || messageObject.hasVideoQualities() || this.isSmallImage) {
             return;
         }
         TLRPC.PhotoSize closestPhotoSizeWithSize = document == null ? FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()) : null;

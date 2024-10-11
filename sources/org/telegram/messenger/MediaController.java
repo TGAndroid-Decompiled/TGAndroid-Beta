@@ -79,6 +79,7 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
 public class MediaController implements AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, SensorEventListener {
     private static final int AUDIO_FOCUSED = 2;
@@ -1086,11 +1087,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoaded);
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoadProgressChanged);
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoadFailed);
-            AlertDialog alertDialog = new AlertDialog(context, 2);
+            AlertDialog alertDialog = new AlertDialog(context, 2, PhotoViewer.getInstance().isVisible() ? new DarkThemeResourceProvider() : null);
             this.progressDialog = alertDialog;
             alertDialog.setMessage(LocaleController.getString(R.string.Loading));
-            this.progressDialog.setCanceledOnTouchOutside(false);
             this.progressDialog.setCancelable(true);
+            this.progressDialog.setCancelDialog(true);
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
@@ -1125,6 +1126,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         public void lambda$addMessageToLoad$5(MessageObject messageObject) {
             TLRPC.Document document = messageObject.getDocument();
+            VideoPlayer.QualityUri qualityUri = messageObject.qualityToSave;
+            if (qualityUri != null) {
+                document = qualityUri.document;
+            }
             if (document == null) {
                 return;
             }
@@ -1203,31 +1208,47 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public void lambda$start$2() {
+            File file;
             StringBuilder sb;
+            File pathToMessage;
+            TLRPC.Document document;
             try {
                 if (Build.VERSION.SDK_INT >= 29) {
                     int size = this.messageObjects.size();
                     for (int i = 0; i < size; i++) {
                         MessageObject messageObject = this.messageObjects.get(i);
                         String str = messageObject.messageOwner.attachPath;
-                        String documentFileName = FileLoader.getDocumentFileName(messageObject.getDocument());
+                        TLRPC.Document document2 = messageObject.getDocument();
+                        VideoPlayer.QualityUri qualityUri = messageObject.qualityToSave;
+                        if (qualityUri != null) {
+                            document2 = qualityUri.document;
+                            str = null;
+                        }
+                        String documentFileName = FileLoader.getDocumentFileName(document2);
                         if (str != null && str.length() > 0 && !new File(str).exists()) {
                             str = null;
                         }
                         if (TextUtils.isEmpty(str)) {
                             FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
                             TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
-                            File pathToMessage = fileLoader.getPathToMessage(messageObject.messageOwner, true);
-                            if (media instanceof TLRPC.TL_messageMediaDocument) {
-                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) media;
-                                if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
-                                    pathToMessage = fileLoader.getPathToAttach(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
+                            VideoPlayer.QualityUri qualityUri2 = messageObject.qualityToSave;
+                            if (qualityUri2 != null) {
+                                document = qualityUri2.document;
+                            } else {
+                                pathToMessage = fileLoader.getPathToMessage(messageObject.messageOwner, true);
+                                if (media instanceof TLRPC.TL_messageMediaDocument) {
+                                    TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) media;
+                                    if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
+                                        document = tL_messageMediaDocument.alt_documents.get(0);
+                                    }
                                 }
+                                str = pathToMessage.toString();
                             }
+                            pathToMessage = fileLoader.getPathToAttach(document, null, false, true);
                             str = pathToMessage.toString();
                         }
-                        File file = new File(str);
-                        if (!file.exists()) {
+                        File file2 = new File(str);
+                        if (!file2.exists()) {
                             this.waitingForFile = new CountDownLatch(1);
                             addMessageToLoad(messageObject);
                             this.waitingForFile.await();
@@ -1235,17 +1256,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         if (this.cancelled) {
                             break;
                         }
-                        if (!file.exists()) {
-                            file = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject.messageOwner, true);
+                        if (!file2.exists()) {
+                            file2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject.messageOwner, true);
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append("saving file: correcting path from ");
                             sb2.append(str);
                             sb2.append(" to ");
-                            sb2.append(file == null ? null : file.getAbsolutePath());
+                            sb2.append(file2 == null ? null : file2.getAbsolutePath());
                             FileLog.d(sb2.toString());
                         }
-                        if (file != null && file.exists()) {
-                            MediaController.saveFileInternal(this.isMusic ? 3 : 2, file, documentFileName);
+                        if (file2 != null && file2.exists()) {
+                            MediaController.saveFileInternal(this.isMusic ? 3 : 2, file2, documentFileName);
                             this.copiedFiles++;
                         }
                     }
@@ -1255,10 +1276,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     int size2 = this.messageObjects.size();
                     for (int i2 = 0; i2 < size2; i2++) {
                         MessageObject messageObject2 = this.messageObjects.get(i2);
-                        String documentName = messageObject2.getDocumentName();
-                        File file2 = new File(externalStoragePublicDirectory, documentName);
-                        if (file2.exists()) {
-                            int lastIndexOf = documentName.lastIndexOf(46);
+                        TLRPC.Document document3 = messageObject2.getDocument();
+                        VideoPlayer.QualityUri qualityUri3 = messageObject2.qualityToSave;
+                        if (qualityUri3 != null) {
+                            document3 = qualityUri3.document;
+                        }
+                        String documentFileName2 = FileLoader.getDocumentFileName(document3);
+                        File file3 = new File(externalStoragePublicDirectory, documentFileName2);
+                        if (file3.exists()) {
+                            int lastIndexOf = documentFileName2.lastIndexOf(46);
                             int i3 = 0;
                             while (true) {
                                 if (i3 >= 10) {
@@ -1267,46 +1293,53 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 String str2 = ")";
                                 if (lastIndexOf != -1) {
                                     sb = new StringBuilder();
-                                    sb.append(documentName.substring(0, lastIndexOf));
+                                    sb.append(documentFileName2.substring(0, lastIndexOf));
                                     sb.append("(");
                                     sb.append(i3 + 1);
                                     sb.append(")");
-                                    str2 = documentName.substring(lastIndexOf);
+                                    str2 = documentFileName2.substring(lastIndexOf);
                                 } else {
                                     sb = new StringBuilder();
-                                    sb.append(documentName);
+                                    sb.append(documentFileName2);
                                     sb.append("(");
                                     sb.append(i3 + 1);
                                 }
                                 sb.append(str2);
-                                File file3 = new File(externalStoragePublicDirectory, sb.toString());
-                                if (!file3.exists()) {
-                                    file2 = file3;
+                                File file4 = new File(externalStoragePublicDirectory, sb.toString());
+                                if (!file4.exists()) {
+                                    file3 = file4;
                                     break;
                                 } else {
                                     i3++;
-                                    file2 = file3;
+                                    file3 = file4;
                                 }
                             }
                         }
-                        if (!file2.exists()) {
-                            file2.createNewFile();
+                        if (!file3.exists()) {
+                            file3.createNewFile();
                         }
                         String str3 = messageObject2.messageOwner.attachPath;
+                        if (messageObject2.qualityToSave != null) {
+                            str3 = null;
+                        }
                         if (str3 != null && str3.length() > 0 && !new File(str3).exists()) {
                             str3 = null;
                         }
-                        if (str3 == null || str3.length() == 0) {
-                            str3 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
+                        if (messageObject2.qualityToSave != null) {
+                            file = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject2.qualityToSave.document, null, false, true);
+                        } else {
+                            if (str3 == null || str3.length() == 0) {
+                                str3 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
+                            }
+                            file = new File(str3);
                         }
-                        File file4 = new File(str3);
-                        if (!file4.exists()) {
+                        if (!file.exists()) {
                             this.waitingForFile = new CountDownLatch(1);
                             addMessageToLoad(messageObject2);
                             this.waitingForFile.await();
                         }
-                        if (file4.exists()) {
-                            copyFile(file4, file2, messageObject2.getMimeType());
+                        if (file.exists()) {
+                            copyFile(file, file3, messageObject2.getMimeType());
                             this.copiedFiles++;
                         }
                     }
