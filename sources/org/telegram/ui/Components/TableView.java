@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -26,6 +27,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.ButtonSpan;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -277,15 +279,20 @@ public class TableView extends android.widget.TableLayout {
     }
 
     public TableRow addRow(CharSequence charSequence, CharSequence charSequence2) {
-        TextView textView = new TextView(getContext());
-        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-        textView.setTextSize(1, 14.0f);
-        textView.setText(charSequence2);
+        ButtonSpan.TextViewButtons textViewButtons = new ButtonSpan.TextViewButtons(getContext());
+        textViewButtons.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+        textViewButtons.setTextSize(1, 14.0f);
+        textViewButtons.setText(charSequence2);
         TableRow tableRow = new TableRow(getContext());
         tableRow.addView(new TableRowTitle(this, charSequence), new TableRow.LayoutParams(-2, -1));
-        tableRow.addView(new TableRowContent(this, textView), new TableRow.LayoutParams(0, -1, 1.0f));
+        tableRow.addView(new TableRowContent(this, textViewButtons), new TableRow.LayoutParams(0, -1, 1.0f));
         addView(tableRow);
         return tableRow;
+    }
+
+    public TableRow addRowDateTime(CharSequence charSequence, int i) {
+        long j = i * 1000;
+        return addRow(charSequence, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(j)), LocaleController.getInstance().getFormatterDay().format(new Date(j))));
     }
 
     public void addRowLink(CharSequence charSequence, CharSequence charSequence2, final Runnable runnable) {
@@ -317,28 +324,33 @@ public class TableView extends android.widget.TableLayout {
         addRowUnpadded(charSequence, linksTextView);
     }
 
-    public void addRowUnpadded(CharSequence charSequence, View view) {
+    public TableRow addRowUnpadded(CharSequence charSequence, View view) {
         TableRow tableRow = new TableRow(getContext());
         tableRow.addView(new TableRowTitle(this, charSequence), new TableRow.LayoutParams(-2, -1));
         tableRow.addView(new TableRowContent(this, view, true), new TableRow.LayoutParams(0, -1, 1.0f));
         addView(tableRow);
+        return tableRow;
     }
 
-    public void addRowUser(CharSequence charSequence, int i, long j, final Runnable runnable) {
+    public TableRow addRowUser(CharSequence charSequence, int i, long j, Runnable runnable) {
+        return addRowUser(charSequence, i, j, runnable, null, null);
+    }
+
+    public TableRow addRowUser(CharSequence charSequence, int i, long j, final Runnable runnable, CharSequence charSequence2, Runnable runnable2) {
         boolean z;
         String str;
         String str2;
         boolean z2;
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);
-        linksTextView.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        linksTextView.setEllipsize(TextUtils.TruncateAt.END);
+        ButtonSpan.TextViewButtons textViewButtons = new ButtonSpan.TextViewButtons(getContext(), this.resourcesProvider);
+        textViewButtons.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+        textViewButtons.setEllipsize(TextUtils.TruncateAt.END);
         int i2 = Theme.key_chat_messageLinkIn;
-        linksTextView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
-        linksTextView.setLinkTextColor(Theme.getColor(i2, this.resourcesProvider));
-        linksTextView.setTextSize(1, 14.0f);
-        linksTextView.setSingleLine(true);
-        linksTextView.setDisablePaddingsOffsetY(true);
-        AvatarSpan avatarSpan = new AvatarSpan(linksTextView, i, 24.0f);
+        textViewButtons.setTextColor(Theme.getColor(i2, this.resourcesProvider));
+        textViewButtons.setLinkTextColor(Theme.getColor(i2, this.resourcesProvider));
+        textViewButtons.setTextSize(1, 14.0f);
+        textViewButtons.setSingleLine(true);
+        textViewButtons.setDisablePaddingsOffsetY(true);
+        AvatarSpan avatarSpan = new AvatarSpan(textViewButtons, i, 24.0f);
         if (j == 2666000) {
             str2 = LocaleController.getString(R.string.StarsTransactionHidden);
             CombinedDrawable platformDrawable = StarsIntroActivity.StarsTransactionView.getPlatformDrawable("anonymous");
@@ -376,9 +388,9 @@ public class TableView extends android.widget.TableLayout {
             spannableStringBuilder.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
-                    Runnable runnable2 = runnable;
-                    if (runnable2 != null) {
-                        runnable2.run();
+                    Runnable runnable3 = runnable;
+                    if (runnable3 != null) {
+                        runnable3.run();
                     }
                 }
 
@@ -388,11 +400,14 @@ public class TableView extends android.widget.TableLayout {
                 }
             }, 3, spannableStringBuilder.length(), 33);
         }
-        linksTextView.setText(spannableStringBuilder);
-        if (z) {
-            return;
+        if (charSequence2 != null) {
+            spannableStringBuilder.append((CharSequence) " ").append(ButtonSpan.make(charSequence2, runnable2, this.resourcesProvider));
         }
-        addRowUnpadded(charSequence, linksTextView);
+        textViewButtons.setText(spannableStringBuilder);
+        if (z) {
+            return null;
+        }
+        return addRowUnpadded(charSequence, textViewButtons);
     }
 
     @Override

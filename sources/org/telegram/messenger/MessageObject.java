@@ -252,7 +252,7 @@ public class MessageObject {
     public String previousMessage;
     public ArrayList<TLRPC.MessageEntity> previousMessageEntities;
     public boolean putInDownloadsStore;
-    public VideoPlayer.QualityUri qualityToSave;
+    public TLRPC.Document qualityToSave;
     public String quick_reply_shortcut;
     private byte[] randomWaveform;
     public boolean reactionsChanged;
@@ -2285,6 +2285,9 @@ public class MessageObject {
     public static long getMediaSize(TLRPC.MessageMedia messageMedia) {
         TLRPC.WebPage webPage;
         TLRPC.Document document = (!(messageMedia instanceof TLRPC.TL_messageMediaWebPage) || (webPage = messageMedia.webpage) == null) ? messageMedia instanceof TLRPC.TL_messageMediaGame ? messageMedia.game.document : messageMedia != null ? messageMedia.document : null : webPage.document;
+        if (messageMedia != null && !messageMedia.alt_documents.isEmpty()) {
+            document = VideoPlayer.getDocumentForThumb(UserConfig.selectedAccount, messageMedia);
+        }
         if (document != null) {
             return document.size;
         }

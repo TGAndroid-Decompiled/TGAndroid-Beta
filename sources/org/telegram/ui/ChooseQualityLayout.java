@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -154,48 +153,28 @@ public class ChooseQualityLayout {
     }
 
     public boolean update(VideoPlayer videoPlayer) {
-        String str;
-        String str2;
+        String quality;
         if (videoPlayer == null || videoPlayer.getQualitiesCount() <= 1) {
             return false;
         }
         this.buttonsLayout.removeAllViews();
         final int i = -1;
         while (i < videoPlayer.getQualitiesCount()) {
-            VideoPlayer.QualityUri quality = i == -1 ? null : videoPlayer.getQuality(i);
-            String str3 = "";
-            if (quality == null) {
-                str2 = LocaleController.getString(R.string.QualityAuto);
+            VideoPlayer.Quality quality2 = i == -1 ? null : videoPlayer.getQuality(i);
+            String str = "";
+            if (quality2 == null) {
+                quality = LocaleController.getString(R.string.QualityAuto);
             } else {
-                if (SharedConfig.debugVideoQualities) {
-                    str = quality.width + "x" + quality.height;
-                    str3 = "" + AndroidUtilities.formatFileSize((long) quality.bitrate).replace(" ", "") + "/s";
-                    if (quality.codec != null) {
-                        str3 = str3 + ", " + quality.codec;
-                    }
-                } else {
-                    int min = Math.min(quality.width, quality.height);
-                    if (Math.abs(min - 1080) < 30) {
-                        min = 1080;
-                    } else if (Math.abs(min - 720) < 30) {
-                        min = 720;
-                    } else if (Math.abs(min - 360) < 30) {
-                        min = 360;
-                    } else if (Math.abs(min - 240) < 30) {
-                        min = 240;
-                    } else if (Math.abs(min - 144) < 30) {
-                        min = 144;
-                    }
-                    str = min + "p";
-                    if (quality.original) {
-                        str2 = str + " (" + LocaleController.getString(R.string.QualitySource) + ")";
-                    }
+                quality = quality2.toString();
+                if (quality.contains("\n")) {
+                    String substring = quality.substring(0, quality.indexOf("\n"));
+                    str = quality.substring(quality.indexOf("\n") + 1);
+                    quality = substring;
                 }
-                str2 = str;
             }
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.buttonsLayout, 0, str2, true, null);
-            if (!TextUtils.isEmpty(str3)) {
-                addItem.setSubtext(str3);
+            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.buttonsLayout, 0, quality, true, null);
+            if (!TextUtils.isEmpty(str)) {
+                addItem.setSubtext(str);
             }
             addItem.setChecked(i == videoPlayer.getSelectedQuality());
             addItem.setColors(-328966, -328966);

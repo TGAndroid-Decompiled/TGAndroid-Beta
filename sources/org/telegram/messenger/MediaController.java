@@ -1126,9 +1126,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         public void lambda$addMessageToLoad$5(MessageObject messageObject) {
             TLRPC.Document document = messageObject.getDocument();
-            VideoPlayer.QualityUri qualityUri = messageObject.qualityToSave;
-            if (qualityUri != null) {
-                document = qualityUri.document;
+            TLRPC.Document document2 = messageObject.qualityToSave;
+            if (document2 != null) {
+                document = document2;
             }
             if (document == null) {
                 return;
@@ -1211,40 +1211,40 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             File file;
             StringBuilder sb;
             File pathToMessage;
-            TLRPC.Document document;
+            File pathToAttach;
             try {
                 if (Build.VERSION.SDK_INT >= 29) {
                     int size = this.messageObjects.size();
                     for (int i = 0; i < size; i++) {
                         MessageObject messageObject = this.messageObjects.get(i);
                         String str = messageObject.messageOwner.attachPath;
-                        TLRPC.Document document2 = messageObject.getDocument();
-                        VideoPlayer.QualityUri qualityUri = messageObject.qualityToSave;
-                        if (qualityUri != null) {
-                            document2 = qualityUri.document;
+                        TLRPC.Document document = messageObject.getDocument();
+                        TLRPC.Document document2 = messageObject.qualityToSave;
+                        if (document2 != null) {
                             str = null;
+                            document = document2;
                         }
-                        String documentFileName = FileLoader.getDocumentFileName(document2);
+                        String documentFileName = FileLoader.getDocumentFileName(document);
                         if (str != null && str.length() > 0 && !new File(str).exists()) {
                             str = null;
                         }
                         if (TextUtils.isEmpty(str)) {
                             FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
                             TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
-                            VideoPlayer.QualityUri qualityUri2 = messageObject.qualityToSave;
-                            if (qualityUri2 != null) {
-                                document = qualityUri2.document;
+                            TLRPC.Document document3 = messageObject.qualityToSave;
+                            if (document3 != null) {
+                                pathToAttach = fileLoader.getPathToAttach(document3, null, false, true);
                             } else {
                                 pathToMessage = fileLoader.getPathToMessage(messageObject.messageOwner, true);
                                 if (media instanceof TLRPC.TL_messageMediaDocument) {
                                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) media;
                                     if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
-                                        document = tL_messageMediaDocument.alt_documents.get(0);
+                                        pathToAttach = fileLoader.getPathToAttach(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
                                     }
                                 }
                                 str = pathToMessage.toString();
                             }
-                            pathToMessage = fileLoader.getPathToAttach(document, null, false, true);
+                            pathToMessage = pathToAttach;
                             str = pathToMessage.toString();
                         }
                         File file2 = new File(str);
@@ -1276,12 +1276,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     int size2 = this.messageObjects.size();
                     for (int i2 = 0; i2 < size2; i2++) {
                         MessageObject messageObject2 = this.messageObjects.get(i2);
-                        TLRPC.Document document3 = messageObject2.getDocument();
-                        VideoPlayer.QualityUri qualityUri3 = messageObject2.qualityToSave;
-                        if (qualityUri3 != null) {
-                            document3 = qualityUri3.document;
+                        TLRPC.Document document4 = messageObject2.getDocument();
+                        TLRPC.Document document5 = messageObject2.qualityToSave;
+                        if (document5 != null) {
+                            document4 = document5;
                         }
-                        String documentFileName2 = FileLoader.getDocumentFileName(document3);
+                        String documentFileName2 = FileLoader.getDocumentFileName(document4);
                         File file3 = new File(externalStoragePublicDirectory, documentFileName2);
                         if (file3.exists()) {
                             int lastIndexOf = documentFileName2.lastIndexOf(46);
@@ -1326,7 +1326,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             str3 = null;
                         }
                         if (messageObject2.qualityToSave != null) {
-                            file = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject2.qualityToSave.document, null, false, true);
+                            file = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject2.qualityToSave, null, false, true);
                         } else {
                             if (str3 == null || str3.length() == 0) {
                                 str3 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();

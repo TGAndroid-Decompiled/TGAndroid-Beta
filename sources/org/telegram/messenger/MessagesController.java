@@ -468,6 +468,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean sponsoredLinksInappAllow;
     private LongSparseArray sponsoredMessages;
     public boolean stargiftsBlocked;
+    public int stargiftsConvertPeriodMax;
     public int stargiftsMessageLengthMax;
     public boolean starsGiftsEnabled;
     public boolean starsLocked;
@@ -547,6 +548,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private UserNameResolver userNameResolver;
     private final ConcurrentHashMap<Long, TLRPC.User> users;
     public String venueSearchBot;
+    public boolean videoIgnoreAltDocuments;
     private ArrayList<Long> visibleDialogMainThreadIds;
     private ArrayList<Long> visibleScheduledDialogMainThreadIds;
     public String weatherSearchUsername;
@@ -2440,6 +2442,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.chatlistJoinedLimitDefault = this.mainPreferences.getInt("chatlistJoinedLimitDefault", 2);
         this.chatlistJoinedLimitPremium = this.mainPreferences.getInt("chatlistJoinedLimitPremium", z ? 5 : 20);
         this.stargiftsMessageLengthMax = this.mainPreferences.getInt("stargiftsMessageLengthMax", 255);
+        this.stargiftsConvertPeriodMax = this.mainPreferences.getInt("stargiftsConvertPeriodMax", z ? 300 : 7776000);
+        this.videoIgnoreAltDocuments = this.mainPreferences.getBoolean("videoIgnoreAltDocuments", false);
         this.storiesPosting = this.mainPreferences.getString("storiesPosting", "enabled");
         this.storiesEntities = this.mainPreferences.getString("storiesEntities", "premium");
         this.storiesExportNopublicLink = this.mainPreferences.getBoolean("storiesExportNopublicLink", false);

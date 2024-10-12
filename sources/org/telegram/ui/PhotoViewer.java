@@ -11152,17 +11152,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         BulletinFactory.createSaveToGalleryBulletin(frameLayoutDrawer, true, -115203550, -1).show();
     }
 
-    public void lambda$setParentActivity$13(MessageObject messageObject, VideoPlayer.QualityUri qualityUri) {
-        if (qualityUri == null) {
+    public void lambda$setParentActivity$13(MessageObject messageObject, VideoPlayer.Quality quality) {
+        TLRPC.Document downloadDocument;
+        if (quality == null || (downloadDocument = quality.getDownloadDocument()) == null) {
             return;
         }
-        File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(qualityUri.document, null, false, true);
+        File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(downloadDocument, null, false, true);
         if (pathToAttach == null || !pathToAttach.exists()) {
-            pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(qualityUri.document, null, true, true);
+            pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(downloadDocument, null, true, true);
         }
         if (pathToAttach == null || !pathToAttach.exists()) {
             ArrayList arrayList = new ArrayList();
-            messageObject.qualityToSave = qualityUri;
+            messageObject.qualityToSave = downloadDocument;
             arrayList.add(messageObject);
             MediaController.saveFilesFromMessages(this.parentActivity, AccountInstance.getInstance(this.currentAccount), arrayList, new MessagesStorage.IntCallback() {
                 @Override
@@ -11222,6 +11223,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             return;
         }
         this.actionBar.getActionBarMenuOnItemClick().onItemClick(1);
+        this.menuItem.toggleSubMenu();
     }
 
     public void lambda$setParentActivity$16(View view) {
@@ -11933,7 +11935,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void lambda$setParentActivity$9(int i, boolean z, boolean z2) {
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer != null) {
-            videoPlayer.setSelectedQuality(i, false);
+            videoPlayer.setSelectedQuality(i);
         }
         if (i == -1) {
             VideoPlayer.saveQuality(null, this.currentMessageObject);
@@ -15601,7 +15603,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.qualityItem.setSubtext(LocaleController.getString(R.string.QualityAuto));
             } else {
                 VideoPlayer videoPlayer = this.videoPlayer;
-                VideoPlayer.QualityUri quality = videoPlayer.getQuality(videoPlayer.getSelectedQuality());
+                VideoPlayer.Quality quality = videoPlayer.getQuality(videoPlayer.getSelectedQuality());
                 ActionBarMenuSubItem actionBarMenuSubItem = this.qualityItem;
                 if (quality != null) {
                     str = Math.min(quality.width, quality.height) + "p";
@@ -15610,7 +15612,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 actionBarMenuSubItem.setSubtext(str);
             }
-            VideoPlayer.QualityUri currentQuality = this.videoPlayer.getCurrentQuality();
+            VideoPlayer.Quality currentQuality = this.videoPlayer.getCurrentQuality();
             if (currentQuality != null) {
                 int max = Math.max(currentQuality.width, currentQuality.height);
                 int min = Math.min(currentQuality.width, currentQuality.height);
@@ -16810,8 +16812,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         });
         this.chooseDownloadQualityLayout = new ChooseDownloadQualityLayout(this.activityContext, this.menuItem.getPopupLayout().getSwipeBack(), new ChooseDownloadQualityLayout.Callback() {
             @Override
-            public final void onQualitySelected(MessageObject messageObject, VideoPlayer.QualityUri qualityUri) {
-                PhotoViewer.this.lambda$setParentActivity$13(messageObject, qualityUri);
+            public final void onQualitySelected(MessageObject messageObject, VideoPlayer.Quality quality) {
+                PhotoViewer.this.lambda$setParentActivity$13(messageObject, quality);
             }
         });
         this.chooseSpeedLayout = new ChooseSpeedLayout(this.activityContext, this.menuItem.getPopupLayout().getSwipeBack(), new ChooseSpeedLayout.Callback() {
