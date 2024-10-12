@@ -8549,7 +8549,7 @@ public final class R {
         public static final int QrCode = 0x7f0f1607;
         public static final int Quality = 0x7f0f1608;
         public static final int QualityAuto = 0x7f0f1609;
-        public static final int QualityOriginal = 0x7f0f160a;
+        public static final int QualitySource = 0x7f0f160a;
         public static final int QuestionHint = 0x7f0f160b;
         public static final int QuickReplyDefault1 = 0x7f0f160c;
         public static final int QuickReplyDefault2 = 0x7f0f160d;

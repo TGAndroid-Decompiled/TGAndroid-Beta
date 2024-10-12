@@ -8423,7 +8423,7 @@
     <public type="string" name="QrCode" id="0x7f0f1607" />
     <public type="string" name="Quality" id="0x7f0f1608" />
     <public type="string" name="QualityAuto" id="0x7f0f1609" />
-    <public type="string" name="QualityOriginal" id="0x7f0f160a" />
+    <public type="string" name="QualitySource" id="0x7f0f160a" />
     <public type="string" name="QuestionHint" id="0x7f0f160b" />
     <public type="string" name="QuickReplyDefault1" id="0x7f0f160c" />
     <public type="string" name="QuickReplyDefault2" id="0x7f0f160d" />

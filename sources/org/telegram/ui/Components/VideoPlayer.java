@@ -80,7 +80,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FourierTransform;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.tgnet.TLRPC;
@@ -868,7 +867,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         HashMap hashMap = new HashMap();
         for (int i6 = 0; i6 < arrayList5.size(); i6++) {
             QualityUri qualityUri2 = (QualityUri) arrayList5.get(i6);
-            if (!SharedConfig.debugVideoQualities || !qualityUri2.original) {
+            if (!qualityUri2.original) {
                 int min = Math.min(qualityUri2.width, qualityUri2.height);
                 Double d = (Double) hashMap.get(Integer.valueOf(min));
                 if (d == null || d.doubleValue() > qualityUri2.bitrate) {
@@ -882,7 +881,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             QualityUri qualityUri3 = (QualityUri) arrayList5.get(i7);
             int min2 = Math.min(qualityUri3.width, qualityUri3.height);
             Double d2 = (Double) hashMap.get(Integer.valueOf(min2));
-            if (!SharedConfig.debugVideoQualities || !qualityUri3.original) {
+            if (!qualityUri3.original) {
                 if (!hashSet.contains(Integer.valueOf(min2)) && (d2 == null || Math.abs(d2.doubleValue() - qualityUri3.bitrate) < 1.0d)) {
                     hashSet.add(Integer.valueOf(min2));
                 }

@@ -18,16 +18,17 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     public static final ConcurrentHashMap<Long, FileStreamLoadOperation> allStreams = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<Long, Integer> priorityMap = new ConcurrentHashMap<>();
     private long bytesRemaining;
+    private long bytesTransferred;
     private CountDownLatch countDownLatch;
     private int currentAccount;
     File currentFile;
     private long currentOffset;
-    private boolean customLength;
     private TLRPC.Document document;
     private RandomAccessFile file;
     private FileLoadOperation loadOperation;
     private boolean opened;
     private Object parentObject;
+    private long requestedLength;
     private Uri uri;
 
     public FileStreamLoadOperation() {
@@ -156,7 +157,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public int read(byte[] r17, int r18, int r19) {
+    public int read(byte[] r13, int r14, int r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 }

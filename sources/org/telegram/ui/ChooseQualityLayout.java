@@ -155,6 +155,7 @@ public class ChooseQualityLayout {
 
     public boolean update(VideoPlayer videoPlayer) {
         String str;
+        String str2;
         if (videoPlayer == null || videoPlayer.getQualitiesCount() <= 1) {
             return false;
         }
@@ -162,37 +163,39 @@ public class ChooseQualityLayout {
         final int i = -1;
         while (i < videoPlayer.getQualitiesCount()) {
             VideoPlayer.QualityUri quality = i == -1 ? null : videoPlayer.getQuality(i);
-            String str2 = "";
+            String str3 = "";
             if (quality == null) {
-                str = LocaleController.getString(R.string.QualityAuto);
-            } else if (SharedConfig.debugVideoQualities) {
-                String str3 = quality.width + "x" + quality.height;
-                if (quality.original) {
-                    str3 = str3 + " (" + LocaleController.getString(R.string.QualityOriginal).toLowerCase() + ")";
-                }
-                str2 = "" + AndroidUtilities.formatFileSize((long) quality.bitrate).replace(" ", "") + "/s";
-                if (quality.codec != null) {
-                    str2 = str2 + ", " + quality.codec;
-                }
-                str = str3;
+                str2 = LocaleController.getString(R.string.QualityAuto);
             } else {
-                int min = Math.min(quality.width, quality.height);
-                if (Math.abs(min - 1080) < 30) {
-                    min = 1080;
-                } else if (Math.abs(min - 720) < 30) {
-                    min = 720;
-                } else if (Math.abs(min - 360) < 30) {
-                    min = 360;
-                } else if (Math.abs(min - 240) < 30) {
-                    min = 240;
-                } else if (Math.abs(min - 144) < 30) {
-                    min = 144;
+                if (SharedConfig.debugVideoQualities) {
+                    str = quality.width + "x" + quality.height;
+                    str3 = "" + AndroidUtilities.formatFileSize((long) quality.bitrate).replace(" ", "") + "/s";
+                    if (quality.codec != null) {
+                        str3 = str3 + ", " + quality.codec;
+                    }
+                } else {
+                    int min = Math.min(quality.width, quality.height);
+                    if (Math.abs(min - 1080) < 30) {
+                        min = 1080;
+                    } else if (Math.abs(min - 720) < 30) {
+                        min = 720;
+                    } else if (Math.abs(min - 360) < 30) {
+                        min = 360;
+                    } else if (Math.abs(min - 240) < 30) {
+                        min = 240;
+                    } else if (Math.abs(min - 144) < 30) {
+                        min = 144;
+                    }
+                    str = min + "p";
+                    if (quality.original) {
+                        str2 = str + " (" + LocaleController.getString(R.string.QualitySource) + ")";
+                    }
                 }
-                str = min + "p";
+                str2 = str;
             }
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.buttonsLayout, 0, str, true, null);
-            if (!TextUtils.isEmpty(str2)) {
-                addItem.setSubtext(str2);
+            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.buttonsLayout, 0, str2, true, null);
+            if (!TextUtils.isEmpty(str3)) {
+                addItem.setSubtext(str3);
             }
             addItem.setChecked(i == videoPlayer.getSelectedQuality());
             addItem.setColors(-328966, -328966);

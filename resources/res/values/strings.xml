@@ -5626,7 +5626,7 @@
     <string name="QrCode">QR Code</string>
     <string name="Quality">Quality</string>
     <string name="QualityAuto">Auto</string>
-    <string name="QualityOriginal">Original</string>
+    <string name="QualitySource">Source</string>
     <string name="QuestionHint">Ask a question</string>
     <string name="QuickReplyDefault1">Can\'t talk now. What\'s up?</string>
     <string name="QuickReplyDefault2">I\'ll call you right back.</string>
