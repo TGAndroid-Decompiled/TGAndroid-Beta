@@ -535,8 +535,8 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 videoUri.manifestDocId = document2.id;
                 videoUri.m3u8uri = getUri(i, document2, i2);
                 File pathToAttach = FileLoader.getInstance(i).getPathToAttach(document2, null, false, true);
-                if (pathToAttach != null) {
-                    pathToAttach.exists();
+                if (pathToAttach != null && pathToAttach.exists()) {
+                    videoUri.m3u8uri = Uri.fromFile(pathToAttach);
                 }
             }
             videoUri.codec = str;
@@ -552,8 +552,8 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 videoUri.bitrate = d2 / d;
             }
             File pathToAttach2 = FileLoader.getInstance(i).getPathToAttach(document, null, false, true);
-            if (pathToAttach2 != null) {
-                pathToAttach2.exists();
+            if (pathToAttach2 != null && pathToAttach2.exists()) {
+                videoUri.uri = Uri.fromFile(pathToAttach2);
             }
             return videoUri;
         }
@@ -939,6 +939,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public static ArrayList getQualities(int i, TLRPC.Document document, ArrayList arrayList, int i2, boolean z) {
+        StringBuilder sb;
         String str;
         ArrayList arrayList2 = new ArrayList();
         if (document != null) {
@@ -947,6 +948,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         if (!MessagesController.getInstance(i).videoIgnoreAltDocuments && arrayList != null) {
             arrayList2.addAll(arrayList);
         }
+        FileLog.e("VideoPlayer.getQualities: videoIgnoreAltDocuments=" + MessagesController.getInstance(i).videoIgnoreAltDocuments);
         LongSparseArray longSparseArray = new LongSparseArray();
         int i3 = 0;
         while (i3 < arrayList2.size()) {
@@ -986,8 +988,18 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             if (str2 != null) {
                 if (z) {
                     if (!"avc".equals(str2) && !"h264".equals(videoUri.codec) && !"h265".equals(videoUri.codec) && !"hevc".equals(videoUri.codec) && !"vp9".equals(videoUri.codec) && !"vp8".equals(videoUri.codec)) {
+                        sb = new StringBuilder();
+                        sb.append("VideoPlayer.getQualities: filter out codec ");
+                        sb.append(videoUri.codec);
+                        FileLog.e(sb.toString());
                     }
                 } else if (("av1".equals(str2) || "hevc".equals(videoUri.codec) || "vp9".equals(videoUri.codec)) && !supportsHardwareDecoder(videoUri.codec)) {
+                    sb = new StringBuilder();
+                    sb.append("VideoPlayer.getQualities: 2 filter out codec ");
+                    sb.append(videoUri.codec);
+                    sb.append(" hardware: ");
+                    sb.append(!supportsHardwareDecoder(videoUri.codec));
+                    FileLog.e(sb.toString());
                 }
             }
             arrayList4.add(videoUri);
@@ -1061,8 +1073,15 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public static boolean hasQualities(int i, TLRPC.MessageMedia messageMedia) {
-        ArrayList qualities;
-        return (messageMedia instanceof TLRPC.TL_messageMediaDocument) && (qualities = getQualities(i, messageMedia.document, messageMedia.alt_documents, 0, false)) != null && qualities.size() > 1;
+        if (!(messageMedia instanceof TLRPC.TL_messageMediaDocument)) {
+            return false;
+        }
+        ArrayList qualities = getQualities(i, messageMedia.document, messageMedia.alt_documents, 0, false);
+        StringBuilder sb = new StringBuilder();
+        sb.append("VideoPlayer.hasQualities: qualities.size = ");
+        sb.append(qualities == null ? "null" : Integer.valueOf(qualities.size()));
+        FileLog.e(sb.toString());
+        return qualities != null && qualities.size() > 1;
     }
 
     public void lambda$onPlayerError$0() {

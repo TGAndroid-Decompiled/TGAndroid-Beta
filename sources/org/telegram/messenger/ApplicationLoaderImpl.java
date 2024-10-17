@@ -140,7 +140,14 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 customProperties.set("hardware", Build.HARDWARE);
                 customProperties.set("user", Build.USER);
                 AppCenter.setCustomProperties(customProperties);
-                AppCenter.setUserId("uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
+                String str3 = "uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() != null) {
+                    String publicUsername = UserObject.getPublicUsername(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+                    if (!TextUtils.isEmpty(publicUsername)) {
+                        str3 = str3 + " @" + publicUsername;
+                    }
+                }
+                AppCenter.setUserId(str3);
             }
         } catch (Throwable th) {
             FileLog.e(th);

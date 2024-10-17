@@ -1060,6 +1060,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             public static void $default$didPressVoteButtons(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, ArrayList arrayList, int i, int i2, int i3) {
             }
 
+            public static void $default$didPressWebPage(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
+                Browser.openUrl(chatMessageCell.getContext(), str);
+            }
+
             public static void $default$didStartVideoStream(ChatMessageCellDelegate chatMessageCellDelegate, MessageObject messageObject) {
             }
 
@@ -3904,7 +3908,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         ChatMessageCellDelegate chatMessageCellDelegate;
         ChatMessageCellDelegate chatMessageCellDelegate2;
         TLRPC.WebPage webPage;
-        boolean z;
         TLRPC.MessageMedia messageMedia;
         TLRPC.ReplyMarkup replyMarkup;
         if (this.currentMessageObject.hasMediaSpoilers() && !this.currentMessageObject.needDrawBluredPreview()) {
@@ -3965,12 +3968,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             } else {
                 int i4 = this.documentAttachType;
                 if (i4 == 4) {
-                    int i5 = this.buttonState;
-                    if (i5 != -1 && (!(z = this.drawVideoImageButton) || (!this.autoPlayingMedia && (!SharedConfig.streamMedia || !this.canStreamVideo)))) {
-                        if (z) {
+                    if (this.buttonState != -1 && (!this.drawVideoImageButton || (!this.autoPlayingMedia && ((!SharedConfig.streamMedia || !this.canStreamVideo) && !messageObject3.hasVideoQualities())))) {
+                        if (this.drawVideoImageButton) {
                             didPressButton(true, true);
                             return;
-                        } else if (i5 != 0 && i5 != 3) {
+                        }
+                        int i5 = this.buttonState;
+                        if (i5 != 0 && i5 != 3) {
                             return;
                         }
                     }
