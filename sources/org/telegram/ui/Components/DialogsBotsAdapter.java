@@ -79,6 +79,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
             this.whenUpdated.run();
             if (this.bots.isEmpty() || System.currentTimeMillis() - this.cacheTime > 3600000) {
                 this.bots.clear();
+                this.endReached = true;
                 this.lastOffset = null;
                 load();
             }
