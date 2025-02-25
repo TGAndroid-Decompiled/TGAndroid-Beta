@@ -724,7 +724,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
-    public static void continueReport(ChatActivity chatActivity, byte[] bArr, ArrayList arrayList, Utilities.Callback callback) {
+    public static void continueReport(ChatActivity chatActivity, byte[] bArr, String str, ArrayList arrayList, Utilities.Callback callback) {
         if (chatActivity == null) {
             return;
         }
@@ -734,7 +734,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, dialogId, false, arrayList, BulletinFactory.of(chatActivity), chatActivity.getResourceProvider(), bArr, callback);
+        open(currentAccount, context, dialogId, false, arrayList, BulletinFactory.of(chatActivity), chatActivity.getResourceProvider(), bArr, str, callback);
     }
 
     public static void lambda$open$5(boolean[] zArr, Utilities.Callback callback) {
@@ -762,24 +762,29 @@ public class ReportBottomSheet extends BottomSheet {
         reportBottomSheet.show();
     }
 
-    public static void lambda$open$7(boolean[] zArr, Utilities.Callback callback, BulletinFactory bulletinFactory) {
+    public static void lambda$open$7() {
+        BulletinFactory of;
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null || (of = BulletinFactory.of(safeLastFragment)) == null) {
+            return;
+        }
+        of.createSimpleBulletin(R.raw.msg_antispam, LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2)).setDuration(5000).show();
+    }
+
+    public static void lambda$open$8(boolean[] zArr, Utilities.Callback callback) {
         if (!zArr[0] && callback != null) {
             zArr[0] = true;
             callback.run(Boolean.TRUE);
         }
-        if (LaunchActivity.getSafeLastFragment() == null) {
-            return;
-        }
-        if (bulletinFactory == null) {
-            bulletinFactory = BulletinFactory.of(LaunchActivity.getSafeLastFragment());
-        }
-        if (bulletinFactory == null) {
-            return;
-        }
-        bulletinFactory.createSimpleBulletin(R.raw.msg_antispam, LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2)).setDuration(5000).show();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ReportBottomSheet.lambda$open$7();
+            }
+        }, 220L);
     }
 
-    public static void lambda$open$8(final Context context, final Theme.ResourcesProvider resourcesProvider, final boolean z, final long j, final ArrayList arrayList, final boolean[] zArr, final Utilities.Callback callback, final BulletinFactory bulletinFactory, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$open$9(final Context context, final Theme.ResourcesProvider resourcesProvider, final boolean z, final long j, final ArrayList arrayList, final boolean[] zArr, final Utilities.Callback callback, final BulletinFactory bulletinFactory, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             if ((tLObject instanceof TLRPC.TL_reportResultChooseOption) || (tLObject instanceof TLRPC.TL_reportResultAddComment)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -792,14 +797,18 @@ public class ReportBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$open$7(zArr, callback, bulletinFactory);
+                        ReportBottomSheet.lambda$open$8(zArr, callback);
                     }
                 }, 200L);
             }
         }
     }
 
-    public static void lambda$openSponsored$11(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
+    public static void lambda$openSponsored$10(TLObject tLObject, Context context, Theme.ResourcesProvider resourcesProvider, long j, byte[] bArr, ChatActivity chatActivity, MessageObject messageObject) {
+        new ReportBottomSheet(context, resourcesProvider, j, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass4(chatActivity, context, resourcesProvider, messageObject)).show();
+    }
+
+    public static void lambda$openSponsored$12(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
@@ -810,14 +819,14 @@ public class ReportBottomSheet extends BottomSheet {
         chatActivity.removeMessageWithThanos(messageObject);
     }
 
-    public static void lambda$openSponsored$12(ChatActivity chatActivity, int i, MessageObject messageObject) {
+    public static void lambda$openSponsored$13(ChatActivity chatActivity, int i, MessageObject messageObject) {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
         MessagesController.getInstance(i).disableAds(false);
         chatActivity.removeFromSponsored(messageObject);
         chatActivity.removeMessageWithThanos(messageObject);
     }
 
-    public static void lambda$openSponsored$14(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
+    public static void lambda$openSponsored$15(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
@@ -828,14 +837,14 @@ public class ReportBottomSheet extends BottomSheet {
         chatActivity.removeMessageWithThanos(messageObject);
     }
 
-    public static void lambda$openSponsored$15(final Context context, final Theme.ResourcesProvider resourcesProvider, final long j, final byte[] bArr, final ChatActivity chatActivity, final MessageObject messageObject, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$openSponsored$16(final Context context, final Theme.ResourcesProvider resourcesProvider, final long j, final byte[] bArr, final ChatActivity chatActivity, final MessageObject messageObject, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         Runnable runnable;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsored$9(TLObject.this, context, resourcesProvider, j, bArr, chatActivity, messageObject);
+                        ReportBottomSheet.lambda$openSponsored$10(TLObject.this, context, resourcesProvider, j, bArr, chatActivity, messageObject);
                     }
                 });
                 return;
@@ -843,7 +852,7 @@ public class ReportBottomSheet extends BottomSheet {
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsored$11(ChatActivity.this, context, resourcesProvider, messageObject);
+                        ReportBottomSheet.lambda$openSponsored$12(ChatActivity.this, context, resourcesProvider, messageObject);
                     }
                 };
             } else if (!(tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden)) {
@@ -852,7 +861,7 @@ public class ReportBottomSheet extends BottomSheet {
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsored$12(ChatActivity.this, i, messageObject);
+                        ReportBottomSheet.lambda$openSponsored$13(ChatActivity.this, i, messageObject);
                     }
                 };
             }
@@ -862,15 +871,11 @@ public class ReportBottomSheet extends BottomSheet {
             runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.lambda$openSponsored$14(ChatActivity.this, context, resourcesProvider, messageObject);
+                    ReportBottomSheet.lambda$openSponsored$15(ChatActivity.this, context, resourcesProvider, messageObject);
                 }
             };
         }
         AndroidUtilities.runOnUIThread(runnable, 200L);
-    }
-
-    public static void lambda$openSponsored$9(TLObject tLObject, Context context, Theme.ResourcesProvider resourcesProvider, long j, byte[] bArr, ChatActivity chatActivity, MessageObject messageObject) {
-        new ReportBottomSheet(context, resourcesProvider, j, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass4(chatActivity, context, resourcesProvider, messageObject)).show();
     }
 
     public static void lambda$setReportChooseOption$0(View[] viewArr, TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption) {
@@ -885,20 +890,20 @@ public class ReportBottomSheet extends BottomSheet {
         ((Page) viewArr[0]).setOption(tL_reportResultAddComment);
     }
 
-    public void lambda$submitOption$3(org.telegram.tgnet.TLObject r4, java.lang.CharSequence r5, org.telegram.tgnet.TLRPC.TL_error r6, byte[] r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ReportBottomSheet.lambda$submitOption$3(org.telegram.tgnet.TLObject, java.lang.CharSequence, org.telegram.tgnet.TLRPC$TL_error, byte[]):void");
+    public void lambda$submitOption$3(org.telegram.tgnet.TLObject r4, java.lang.CharSequence r5, org.telegram.tgnet.TLRPC.TL_error r6, byte[] r7, java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ReportBottomSheet.lambda$submitOption$3(org.telegram.tgnet.TLObject, java.lang.CharSequence, org.telegram.tgnet.TLRPC$TL_error, byte[], java.lang.String):void");
     }
 
-    public void lambda$submitOption$4(final CharSequence charSequence, final byte[] bArr, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$submitOption$4(final CharSequence charSequence, final byte[] bArr, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ReportBottomSheet.this.lambda$submitOption$3(tLObject, charSequence, tL_error, bArr);
+                ReportBottomSheet.this.lambda$submitOption$3(tLObject, charSequence, tL_error, bArr, str);
             }
         });
     }
 
-    public static void open(int i, final Context context, final long j, final boolean z, final ArrayList arrayList, final BulletinFactory bulletinFactory, final Theme.ResourcesProvider resourcesProvider, byte[] bArr, final Utilities.Callback callback) {
+    public static void open(int i, final Context context, final long j, final boolean z, final ArrayList arrayList, final BulletinFactory bulletinFactory, final Theme.ResourcesProvider resourcesProvider, byte[] bArr, String str, final Utilities.Callback callback) {
         TLRPC.TL_messages_report tL_messages_report;
         if (context == null || arrayList == null) {
             return;
@@ -909,20 +914,20 @@ public class ReportBottomSheet extends BottomSheet {
             tL_stories_report.peer = MessagesController.getInstance(i).getInputPeer(j);
             tL_stories_report.id.addAll(arrayList);
             tL_stories_report.option = bArr;
-            tL_stories_report.message = "";
+            tL_stories_report.message = TextUtils.isEmpty(str) ? "" : str;
             tL_messages_report = tL_stories_report;
         } else {
             TLRPC.TL_messages_report tL_messages_report2 = new TLRPC.TL_messages_report();
             tL_messages_report2.peer = MessagesController.getInstance(i).getInputPeer(j);
             tL_messages_report2.id.addAll(arrayList);
             tL_messages_report2.option = bArr;
-            tL_messages_report2.message = "";
+            tL_messages_report2.message = TextUtils.isEmpty(str) ? "" : str;
             tL_messages_report = tL_messages_report2;
         }
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_report, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReportBottomSheet.lambda$open$8(context, resourcesProvider, z, j, arrayList, zArr, callback, bulletinFactory, tLObject, tL_error);
+                ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, j, arrayList, zArr, callback, bulletinFactory, tLObject, tL_error);
             }
         });
     }
@@ -936,7 +941,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, j, false, new ArrayList(), null, null, new byte[0], null);
+        open(currentAccount, context, j, false, new ArrayList(), null, null, new byte[0], null, null);
     }
 
     public static void openChat(ChatActivity chatActivity) {
@@ -949,7 +954,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, dialogId, false, new ArrayList(), null, null, new byte[0], null);
+        open(currentAccount, context, dialogId, false, new ArrayList(), null, null, new byte[0], null, null);
     }
 
     public static void openMessage(BaseFragment baseFragment, MessageObject messageObject) {
@@ -961,7 +966,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, messageObject.getDialogId(), false, new ArrayList(Collections.singleton(Integer.valueOf(messageObject.getId()))), BulletinFactory.of(baseFragment), baseFragment.getResourceProvider(), new byte[0], null);
+        open(currentAccount, context, messageObject.getDialogId(), false, new ArrayList(Collections.singleton(Integer.valueOf(messageObject.getId()))), BulletinFactory.of(baseFragment), baseFragment.getResourceProvider(), new byte[0], null, null);
     }
 
     public static void openSponsored(final ChatActivity chatActivity, final MessageObject messageObject, final Theme.ResourcesProvider resourcesProvider) {
@@ -982,35 +987,32 @@ public class ReportBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(currentAccount).sendRequest(tL_messages_reportSponsoredMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReportBottomSheet.lambda$openSponsored$15(context, resourcesProvider, dialogId, bArr, chatActivity, messageObject, currentAccount, tLObject, tL_error);
+                ReportBottomSheet.lambda$openSponsored$16(context, resourcesProvider, dialogId, bArr, chatActivity, messageObject, currentAccount, tLObject, tL_error);
             }
         });
     }
 
     public static void openStory(int i, Context context, TL_stories.StoryItem storyItem, BulletinFactory bulletinFactory, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback) {
-        open(i, context, storyItem.dialogId, true, new ArrayList(Collections.singleton(Integer.valueOf(storyItem.id))), bulletinFactory, resourcesProvider, new byte[0], callback);
+        open(i, context, storyItem.dialogId, true, new ArrayList(Collections.singleton(Integer.valueOf(storyItem.id))), bulletinFactory, resourcesProvider, new byte[0], null, callback);
     }
 
-    public void submitOption(final CharSequence charSequence, final byte[] bArr, String str) {
+    public void submitOption(final CharSequence charSequence, final byte[] bArr, final String str) {
         TLRPC.TL_messages_report tL_messages_report;
-        ?? r8;
         if (this.sponsored) {
-            r8 = new TLRPC.TL_messages_reportSponsoredMessage();
-            r8.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            r8.random_id = this.sponsoredId;
-            r8.option = bArr;
+            TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
+            tL_messages_reportSponsoredMessage.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            tL_messages_reportSponsoredMessage.random_id = this.sponsoredId;
+            tL_messages_reportSponsoredMessage.option = bArr;
+            tL_messages_report = tL_messages_reportSponsoredMessage;
         } else {
             if (this.stories) {
-                ?? tL_stories_report = new TL_stories.TL_stories_report();
+                TL_stories.TL_stories_report tL_stories_report = new TL_stories.TL_stories_report();
                 tL_stories_report.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
                 ArrayList arrayList = this.messageIds;
                 if (arrayList != null) {
                     tL_stories_report.id.addAll(arrayList);
                 }
-                if (str == null) {
-                    str = "";
-                }
-                tL_stories_report.message = str;
+                tL_stories_report.message = str != null ? str : "";
                 tL_stories_report.option = bArr;
                 tL_messages_report = tL_stories_report;
             } else {
@@ -1020,19 +1022,15 @@ public class ReportBottomSheet extends BottomSheet {
                 if (arrayList2 != null) {
                     tL_messages_report2.id.addAll(arrayList2);
                 }
-                if (str == null) {
-                    str = "";
-                }
-                tL_messages_report2.message = str;
+                tL_messages_report2.message = str != null ? str : "";
                 tL_messages_report2.option = bArr;
                 tL_messages_report = tL_messages_report2;
             }
-            r8 = tL_messages_report;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(r8, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_report, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReportBottomSheet.this.lambda$submitOption$4(charSequence, bArr, tLObject, tL_error);
+                ReportBottomSheet.this.lambda$submitOption$4(charSequence, bArr, str, tLObject, tL_error);
             }
         });
     }

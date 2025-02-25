@@ -835,6 +835,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private ReplyQuote replyingQuote;
     private MessageObject.GroupedMessages replyingQuoteGroup;
     public MessageObject replyingTopMessage;
+    private String reportMessage;
     private byte[] reportOption;
     private TextView reportSpamButton;
     private AnimatorSet reportSpamViewAnimator;
@@ -20405,7 +20406,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 arrayList.add(Integer.valueOf(this.selectedMessagesIds[0].keyAt(i)));
             }
             showBottomOverlayProgress(true, true);
-            ReportBottomSheet.continueReport(this, this.reportOption, arrayList, new Utilities.Callback() {
+            ReportBottomSheet.continueReport(this, this.reportOption, this.reportMessage, arrayList, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     ChatActivity.this.lambda$createView$58((Boolean) obj);
@@ -24299,22 +24300,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static ChatActivity openReportChat(long j, String str, byte[] bArr) {
-        String str2;
+    public static ChatActivity openReportChat(long j, String str, byte[] bArr, String str2) {
+        String str3;
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return null;
         }
         Bundle bundle = new Bundle();
         if (DialogObject.isUserDialog(j)) {
-            str2 = "user_id";
+            str3 = "user_id";
         } else {
             j = -j;
-            str2 = "chat_id";
+            str3 = "chat_id";
         }
-        bundle.putLong(str2, j);
+        bundle.putLong(str3, j);
         bundle.putString("reportTitle", str);
         bundle.putByteArray("reportOption", bArr);
+        bundle.putString("reportMessage", str2);
         ChatActivity chatActivity = new ChatActivity(bundle);
         safeLastFragment.presentFragment(chatActivity);
         return chatActivity;

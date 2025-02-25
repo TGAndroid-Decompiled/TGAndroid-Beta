@@ -494,6 +494,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean isPressed;
     public boolean isRepliesChat;
     public boolean isReplyQuote;
+    public boolean isReportChat;
     private boolean isRoundVideo;
     public boolean isSavedChat;
     public boolean isSavedPreviewChat;
