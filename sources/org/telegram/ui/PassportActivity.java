@@ -303,7 +303,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$onItemClick$4() {
-            PassportActivity.this.lambda$onBackPressed$323();
+            PassportActivity.this.lambda$onBackPressed$335();
         }
 
         public void lambda$onItemClick$5(TLRPC.TL_error tL_error, Runnable runnable, ErrorRunnable errorRunnable, TL_account.verifyEmail verifyemail) {
@@ -1134,7 +1134,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public void lambda$resendCode$1(AlertDialog alertDialog, int i) {
             onBackPressed(true);
-            PassportActivity.this.lambda$onBackPressed$323();
+            PassportActivity.this.lambda$onBackPressed$335();
         }
 
         public void lambda$resendCode$2(TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject, TLRPC.TL_auth_resendCode tL_auth_resendCode) {
@@ -2171,7 +2171,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             this.chatAttachAlert = chatAttachAlert;
             chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
                 @Override
-                public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+                public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
                     if (PassportActivity.this.getParentActivity() == null || PassportActivity.this.chatAttachAlert == null) {
                         return;
                     }
@@ -2241,8 +2241,8 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 }
 
                 @Override
-                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
                 }
             });
         }
@@ -3207,7 +3207,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$checkDiscard$69(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public void lambda$checkNativeFields$58() {
@@ -3277,7 +3277,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
         this.currentDocumentValues.clear();
         this.delegate.deleteValue(this.currentType, this.currentDocumentsType, this.availableDocumentTypes, zArr[0], null, null);
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public static void lambda$createDocumentDeleteAlert$39(boolean[] zArr, View view) {
@@ -3833,7 +3833,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         if (tL_error == null) {
             this.ignoreOnFailure = true;
             callCallback(true);
-            lambda$onBackPressed$323();
+            lambda$onBackPressed$335();
         } else {
             showEditDoneProgress(false, false);
             if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {

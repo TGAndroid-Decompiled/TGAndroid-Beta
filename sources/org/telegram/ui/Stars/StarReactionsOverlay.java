@@ -219,7 +219,7 @@ public class StarReactionsOverlay extends View {
         }
         int i5 = this.pos[0];
         int[] iArr4 = this.pos2;
-        canvas.translate(i5 - iArr4[0], r5[1] - iArr4[1]);
+        canvas.translate(i5 - iArr4[0], (r5[1] - iArr4[1]) + this.cell.getPaddingTop());
         BaseCell baseCell2 = this.cell;
         if (baseCell2 instanceof ChatMessageCell) {
             ChatMessageCell chatMessageCell = (ChatMessageCell) baseCell2;

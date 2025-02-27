@@ -290,7 +290,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
 
         @Override
-        public void didSelectLocation(final TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+        public void didSelectLocation(final TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
             TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint;
             TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint2;
             if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
@@ -301,8 +301,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     return;
                 }
                 TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) messageMedia;
-                long j = tL_messageMediaVenue.query_id;
-                if (j == -1 || j == -2) {
+                long j2 = tL_messageMediaVenue.query_id;
+                if (j2 == -1 || j2 == -2) {
                     final TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint3 = new TL_stories.TL_mediaAreaGeoPoint();
                     tL_mediaAreaGeoPoint3.geo = messageMedia.geo;
                     TL_stories.TL_geoPointAddress tL_geoPointAddress = tL_messageMediaVenue.geoAddress;
@@ -3271,7 +3271,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
                 MessageObject messageObject;
                 if (arrayList.isEmpty() || (messageObject = (MessageObject) arrayList.get(0)) == null) {
                     return;
@@ -3286,7 +3286,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         final ChatAttachAlert[] chatAttachAlertArr = {chatAttachAlert};
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
             }
 
             @Override
@@ -3325,8 +3325,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
             }
         });
         chatAttachAlertArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -3478,7 +3478,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new AnonymousClass24(null, callback2), false, true, false, this.resourcesProvider);
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
             }
 
             @Override
@@ -3517,8 +3517,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
             }
         });
         if (locationView != null && (messageMedia = locationView.location) != null && (geoPoint = messageMedia.geo) != null) {

@@ -1013,6 +1013,70 @@
         <item name="android:scaleType">center</item>
         <item name="android:minWidth">56dp</item>
     </style>
+    <style name="CastExpandedController" parent="">
+        <item name="castAdBreakMarkerColor">@color/cast_expanded_controller_ad_break_marker_color</item>
+        <item name="castAdInProgressLabelTextAppearance">@style/TextAppearance.CastExpandedController.AdInProgressLabel</item>
+        <item name="castAdInProgressText">@string/cast_expanded_controller_ad_in_progress</item>
+        <item name="castAdInProgressTextColor">@color/cast_expanded_controller_ad_in_progress_text_color</item>
+        <item name="castAdLabelColor">@color/cast_expanded_controller_ad_label_background_color</item>
+        <item name="castAdLabelTextAppearance">@style/TextAppearance.CastExpandedController.AdLabel</item>
+        <item name="castAdLabelTextColor">@color/cast_expanded_controller_ad_label_text_color</item>
+        <item name="castButtonColor">@null</item>
+        <item name="castClosedCaptionsButtonDrawable">@drawable/cast_ic_expanded_controller_closed_caption</item>
+        <item name="castControlButtons">@array/cast_expanded_controller_default_control_buttons</item>
+        <item name="castDefaultAdPosterUrl">@null</item>
+        <item name="castExpandedControllerLoadingIndicatorColor">@color/cast_expanded_controller_loading_indicator_color</item>
+        <item name="castForward30ButtonDrawable">@drawable/cast_ic_expanded_controller_forward30</item>
+        <item name="castLiveIndicatorColor">@color/cast_expanded_controller_live_indicator_color</item>
+        <item name="castMuteToggleButtonDrawable">@drawable/cast_ic_expanded_controller_mute</item>
+        <item name="castPauseButtonDrawable">@drawable/cast_ic_expanded_controller_pause</item>
+        <item name="castPlayButtonDrawable">@drawable/cast_ic_expanded_controller_play</item>
+        <item name="castRewind30ButtonDrawable">@drawable/cast_ic_expanded_controller_rewind30</item>
+        <item name="castSeekBarProgressAndThumbColor">@color/cast_seekbar_progress_thumb_color</item>
+        <item name="castSeekBarProgressDrawable">@drawable/cast_expanded_controller_seekbar_track</item>
+        <item name="castSeekBarSecondaryProgressColor">@color/cast_seekbar_secondary_progress_color</item>
+        <item name="castSeekBarThumbDrawable">@drawable/cast_expanded_controller_seekbar_thumb</item>
+        <item name="castSeekBarTooltipBackgroundColor">@color/cast_seekbar_tooltip_background_color</item>
+        <item name="castSeekBarUnseekableProgressColor">@color/cast_seekbar_unseekable_progress_color</item>
+        <item name="castSkipNextButtonDrawable">@drawable/cast_ic_expanded_controller_skip_next</item>
+        <item name="castSkipPreviousButtonDrawable">@drawable/cast_ic_expanded_controller_skip_previous</item>
+        <item name="castStopButtonDrawable">@drawable/cast_ic_expanded_controller_pause</item>
+    </style>
+    <style name="CastIntroOverlay" parent="">
+        <item name="castBackgroundColor">@color/cast_intro_overlay_background_color</item>
+        <item name="castButtonBackgroundColor">@color/cast_intro_overlay_button_background_color</item>
+        <item name="castButtonText">@string/cast_intro_overlay_button_text</item>
+        <item name="castButtonTextAppearance">@style/TextAppearance.CastIntroOverlay.Button</item>
+        <item name="castFocusRadius">@dimen/cast_intro_overlay_focus_radius</item>
+        <item name="castTitleTextAppearance">@style/TextAppearance.CastIntroOverlay.Title</item>
+    </style>
+    <style name="CastMiniController" parent="">
+        <item name="castBackground">?android:attr/colorBackground</item>
+        <item name="castButtonColor">@null</item>
+        <item name="castClosedCaptionsButtonDrawable">@drawable/cast_ic_mini_controller_closed_caption</item>
+        <item name="castControlButtons">@array/cast_mini_controller_default_control_buttons</item>
+        <item name="castForward30ButtonDrawable">@drawable/cast_ic_mini_controller_forward30</item>
+        <item name="castLargePauseButtonDrawable">@drawable/cast_ic_mini_controller_pause_large</item>
+        <item name="castLargePlayButtonDrawable">@drawable/cast_ic_mini_controller_play_large</item>
+        <item name="castLargeStopButtonDrawable">@drawable/cast_ic_mini_controller_pause_large</item>
+        <item name="castMiniControllerLoadingIndicatorColor">@color/cast_mini_controller_loading_indicator_color</item>
+        <item name="castMuteToggleButtonDrawable">@drawable/cast_ic_mini_controller_mute</item>
+        <item name="castPauseButtonDrawable">@drawable/cast_ic_mini_controller_pause</item>
+        <item name="castPlayButtonDrawable">@drawable/cast_ic_mini_controller_play</item>
+        <item name="castProgressBarColor">@color/cast_seekbar_progress_thumb_color</item>
+        <item name="castRewind30ButtonDrawable">@drawable/cast_ic_mini_controller_rewind30</item>
+        <item name="castShowImageThumbnail">true</item>
+        <item name="castSkipNextButtonDrawable">@drawable/cast_ic_mini_controller_skip_next</item>
+        <item name="castSkipPreviousButtonDrawable">@drawable/cast_ic_mini_controller_skip_prev</item>
+        <item name="castStopButtonDrawable">@drawable/cast_ic_mini_controller_pause</item>
+        <item name="castSubtitleTextAppearance">@style/TextAppearance.CastMiniController.Subtitle</item>
+        <item name="castTitleTextAppearance">@style/TextAppearance.CastMiniController.Title</item>
+    </style>
+    <style name="CustomCastTheme" parent="">
+        <item name="castExpandedControllerStyle">@style/CastExpandedController</item>
+        <item name="castIntroOverlayStyle">@style/CastIntroOverlay</item>
+        <item name="castMiniControllerStyle">@style/CastMiniController</item>
+    </style>
     <style name="DialogNoAnimation" parent="">
         <item name="android:windowEnterAnimation">@anim/no_animation</item>
         <item name="android:windowExitAnimation">@anim/no_animation</item>
@@ -1324,19 +1388,72 @@
     </style>
     <style name="TextAppearance.AppCompat.Widget.TextView.SpinnerItem" parent="@style/Base.TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
     </style>
+    <style name="TextAppearance.CastExpandedController.AdInProgressLabel" parent="@android:style/TextAppearance.Small">
+    </style>
+    <style name="TextAppearance.CastExpandedController.AdLabel" parent="@android:style/TextAppearance.Small">
+    </style>
+    <style name="TextAppearance.CastIntroOverlay.Button" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="TextAppearance.CastIntroOverlay.Title" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="TextAppearance.CastMiniController.Subtitle" parent="@android:style/TextAppearance.Small">
+    </style>
+    <style name="TextAppearance.CastMiniController.Title" parent="@android:style/TextAppearance.Medium">
+    </style>
     <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.StatusBar.EventContent">
     </style>
     <style name="TextAppearance.Compat.Notification.Info" parent="@style/TextAppearance.Compat.Notification">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
+    <style name="TextAppearance.Compat.Notification.Info.Media" parent="@style/TextAppearance.Compat.Notification.Info">
+    </style>
     <style name="TextAppearance.Compat.Notification.Line2" parent="@style/TextAppearance.Compat.Notification.Info">
+    </style>
+    <style name="TextAppearance.Compat.Notification.Line2.Media" parent="@style/TextAppearance.Compat.Notification.Info.Media">
+    </style>
+    <style name="TextAppearance.Compat.Notification.Media" parent="@style/TextAppearance.Compat.Notification">
     </style>
     <style name="TextAppearance.Compat.Notification.Time" parent="@style/TextAppearance.Compat.Notification">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
+    <style name="TextAppearance.Compat.Notification.Time.Media" parent="@style/TextAppearance.Compat.Notification.Time">
+    </style>
     <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title">
+    </style>
+    <style name="TextAppearance.Compat.Notification.Title.Media" parent="@style/TextAppearance.Compat.Notification.Title">
+    </style>
+    <style name="TextAppearance.MediaRouter.Dynamic.Body" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">@dimen/mr_dynamic_dialog_route_text_size</item>
+        <item name="android:textColor">@color/mr_dynamic_dialog_route_text_color_dark</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="TextAppearance.MediaRouter.Dynamic.Body.Light" parent="@style/TextAppearance.MediaRouter.Dynamic.Body">
+        <item name="android:textColor">@color/mr_dynamic_dialog_route_text_color_light</item>
+    </style>
+    <style name="TextAppearance.MediaRouter.Dynamic.Header" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">@dimen/mr_dynamic_dialog_header_text_size</item>
+        <item name="android:textColor">@color/mr_dynamic_dialog_header_text_color_dark</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="TextAppearance.MediaRouter.Dynamic.Header.Light" parent="@style/TextAppearance.MediaRouter.Dynamic.Header">
+        <item name="android:textColor">@color/mr_dynamic_dialog_header_text_color_light</item>
+    </style>
+    <style name="TextAppearance.MediaRouter.Dynamic.Metadata.PrimaryText" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:textColor">@color/mr_cast_meta_default_text_color</item>
+    </style>
+    <style name="TextAppearance.MediaRouter.Dynamic.Metadata.SecondaryText" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">@dimen/mr_cast_meta_subtitle_text_size</item>
+    </style>
+    <style name="TextAppearance.MediaRouter.PrimaryText" parent="@style/TextAppearance.AppCompat.Subhead">
+    </style>
+    <style name="TextAppearance.MediaRouter.SecondaryText" parent="@style/TextAppearance.AppCompat.Body1">
+    </style>
+    <style name="TextAppearance.MediaRouter.Title" parent="@style/TextAppearance.AppCompat.Title">
     </style>
     <style name="TextAppearance.Widget.AppCompat.ExpandedMenu.Item" parent="@style/Base.TextAppearance.Widget.AppCompat.ExpandedMenu.Item">
     </style>
@@ -1391,6 +1508,48 @@
     <style name="Theme.AppCompat.NoActionBar" parent="@style/Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MediaRouter" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
+        <item name="mediaRouteBodyTextAppearance">@style/TextAppearance.MediaRouter.Dynamic.Body</item>
+        <item name="mediaRouteButtonStyle">@style/Widget.MediaRouter.MediaRouteButton</item>
+        <item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_dark</item>
+        <item name="mediaRouteControlPanelThemeOverlay">@null</item>
+        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_disconnected_dark</item>
+        <item name="mediaRouteDividerColor">@color/mr_cast_route_divider_dark</item>
+        <item name="mediaRouteHeaderTextAppearance">@style/TextAppearance.MediaRouter.Dynamic.Header</item>
+        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
+        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
+        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_dark</item>
+        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_dark</item>
+        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
+        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_dark</item>
+        <item name="mediaRouteWifiIconDrawable">@drawable/mr_wifi_icon_dark</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MediaRouter.Light" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
+        <item name="mediaRouteBodyTextAppearance">@style/TextAppearance.MediaRouter.Dynamic.Body.Light</item>
+        <item name="mediaRouteButtonStyle">@style/Widget.MediaRouter.Light.MediaRouteButton</item>
+        <item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_light</item>
+        <item name="mediaRouteControlPanelThemeOverlay">@null</item>
+        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_grey</item>
+        <item name="mediaRouteDividerColor">@color/mr_cast_route_divider_light</item>
+        <item name="mediaRouteHeaderTextAppearance">@style/TextAppearance.MediaRouter.Dynamic.Header.Light</item>
+        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
+        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
+        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_light</item>
+        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_light</item>
+        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
+        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_light</item>
+        <item name="mediaRouteWifiIconDrawable">@drawable/mr_wifi_icon_light</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MediaRouter.Light.DarkControlPanel" parent="@style/Theme.MediaRouter.Light">
+        <item name="mediaRouteControlPanelThemeOverlay">@style/ThemeOverlay.MediaRouter.Dark</item>
+    </style>
+    <style name="Theme.MediaRouter.LightControlPanel" parent="@style/Theme.MediaRouter">
+        <item name="mediaRouteControlPanelThemeOverlay">@style/ThemeOverlay.MediaRouter.Light</item>
     </style>
     <style name="Theme.PlayCore.Transparent" parent="@android:style/Theme">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -1529,6 +1688,20 @@
     <style name="ThemeOverlay.AppCompat.Dialog.Alert" parent="@style/Base.ThemeOverlay.AppCompat.Dialog.Alert">
     </style>
     <style name="ThemeOverlay.AppCompat.Light" parent="@style/Base.ThemeOverlay.AppCompat.Light">
+    </style>
+    <style name="ThemeOverlay.MediaRouter.Dark" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
+        <item name="mediaRouteDividerColor">@color/mr_cast_route_divider_dark</item>
+        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
+        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
+        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
+    </style>
+    <style name="ThemeOverlay.MediaRouter.Light" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
+        <item name="mediaRouteDividerColor">@color/mr_cast_route_divider_light</item>
+        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
+        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
+        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
     </style>
     <style name="TransparentDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -1737,6 +1910,14 @@
     <style name="Widget.Compat.NotificationActionContainer" parent="">
     </style>
     <style name="Widget.Compat.NotificationActionText" parent="">
+    </style>
+    <style name="Widget.MediaRouter.Light.MediaRouteButton" parent="@style/Widget.AppCompat.Light.ActionButton">
+        <item name="externalRouteEnabledDrawable">@drawable/mr_button_light</item>
+        <item name="externalRouteEnabledDrawableStatic">@drawable/mr_button_light_static</item>
+    </style>
+    <style name="Widget.MediaRouter.MediaRouteButton" parent="@style/Widget.AppCompat.ActionButton">
+        <item name="externalRouteEnabledDrawable">@drawable/mr_button_dark</item>
+        <item name="externalRouteEnabledDrawableStatic">@drawable/mr_button_dark_static</item>
     </style>
     <style name="scrollbarShapeStyle" parent="">
         <item name="android:scrollbarSize">8dp</item>

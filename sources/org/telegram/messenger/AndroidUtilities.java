@@ -3664,8 +3664,8 @@ public class AndroidUtilities {
         return createBitmap;
     }
 
-    public static SpannableStringBuilder makeClickable(String str, final int i, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+    public static SpannableStringBuilder makeClickable(CharSequence charSequence, final int i, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         if (i == 0 || i == 3 || i == 2 || i == 4) {
             spannableStringBuilder.setSpan(new ClickableSpan() {
                 @Override
@@ -3699,8 +3699,8 @@ public class AndroidUtilities {
         return spannableStringBuilder;
     }
 
-    public static SpannableStringBuilder makeClickable(String str, Runnable runnable) {
-        return makeClickable(str, 0, runnable, null);
+    public static SpannableStringBuilder makeClickable(CharSequence charSequence, Runnable runnable) {
+        return makeClickable(charSequence, 0, runnable, null);
     }
 
     public static void makeGlobalBlurBitmap(Utilities.Callback<Bitmap> callback, float f) {
@@ -4095,13 +4095,18 @@ public class AndroidUtilities {
     }
 
     public static CharSequence replaceArrows(CharSequence charSequence, boolean z) {
-        return replaceArrows(charSequence, z, dp(2.6666667f), 0.0f);
+        return replaceArrows(charSequence, z, dp(2.6666667f), 0.0f, 1.0f);
     }
 
     public static CharSequence replaceArrows(CharSequence charSequence, boolean z, float f, float f2) {
+        return replaceArrows(charSequence, z, f, f2, 1.0f);
+    }
+
+    public static CharSequence replaceArrows(CharSequence charSequence, boolean z, float f, float f2, float f3) {
         int i = R.drawable.msg_mini_forumarrow;
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(i, 0);
-        coloredImageSpan.setScale(0.88f, 0.88f);
+        float f4 = f3 * 0.88f;
+        coloredImageSpan.setScale(f4, f4);
         coloredImageSpan.translate(-f, f2);
         coloredImageSpan.spaceScaleX = 0.8f;
         if (z) {
@@ -4114,7 +4119,7 @@ public class AndroidUtilities {
         spannableString2.setSpan(coloredImageSpan, 0, 1, 33);
         CharSequence replaceMultipleCharSequence2 = replaceMultipleCharSequence(">", replaceMultipleCharSequence, spannableString2);
         ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(i, 0);
-        coloredImageSpan2.setScale(0.88f, 0.88f);
+        coloredImageSpan2.setScale(f4, f4);
         coloredImageSpan2.translate(f, f2);
         coloredImageSpan2.rotate(180.0f);
         coloredImageSpan2.spaceScaleX = 0.8f;
@@ -5511,6 +5516,21 @@ public class AndroidUtilities {
 
     public static void updateViewVisibilityAnimated(View view, boolean z, float f, boolean z2, boolean z3) {
         updateViewVisibilityAnimated(view, z, f, z2, 1.0f, z3);
+    }
+
+    public static void updateVisibleRow(RecyclerListView recyclerListView, int i) {
+        RecyclerView.Adapter adapter;
+        RecyclerView.ViewHolder childViewHolder;
+        if (recyclerListView == null || (adapter = recyclerListView.getAdapter()) == null) {
+            return;
+        }
+        for (int i2 = 0; i2 < recyclerListView.getChildCount(); i2++) {
+            View childAt = recyclerListView.getChildAt(i2);
+            int childAdapterPosition = recyclerListView.getChildAdapterPosition(childAt);
+            if (childAdapterPosition >= 0 && (childViewHolder = recyclerListView.getChildViewHolder(childAt)) != null && !childViewHolder.shouldIgnore() && childViewHolder.getAdapterPosition() == i) {
+                adapter.onBindViewHolder(childViewHolder, childAdapterPosition);
+            }
+        }
     }
 
     public static void updateVisibleRows(RecyclerListView recyclerListView) {

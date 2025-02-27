@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="56999"
-    android:versionName="11.7.5"
+    android:versionCode="57469"
+    android:versionName="11.8.0"
     android:installLocation="auto"
     android:compileSdkVersion="34"
     android:compileSdkVersionCodename="14"
@@ -132,6 +132,7 @@
             <action android:name="android.intent.action.VIEW"/>
             <data android:scheme="ton"/>
         </intent>
+        <package android:name="com.google.android.gms.policy_cast_dynamite"/>
         <intent>
             <action android:name="com.android.vending.billing.InAppBillingService.BIND"/>
         </intent>
@@ -809,6 +810,15 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.5"/>
+        <meta-data
+            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+            android:value="org.telegram.messenger.chromecast.ChromecastOptionsProvider"/>
+        <receiver
+            android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver"
+            android:exported="false"/>
+        <service
+            android:name="com.google.android.gms.cast.framework.ReconnectionService"
+            android:exported="false"/>
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false"/>

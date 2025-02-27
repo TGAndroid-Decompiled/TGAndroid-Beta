@@ -1251,6 +1251,20 @@ public class LocaleController {
         }
     }
 
+    public static String formatRelativeDate(long j) {
+        try {
+            long j2 = j / 60;
+            long j3 = j2 / 60;
+            long j4 = j3 / 24;
+            long j5 = j4 / 30;
+            long j6 = j4 / 365;
+            return j6 >= 1 ? j6 == 1 ? getString(R.string.YearAgo) : formatPluralStringComma("YearsAgo", (int) j6) : j5 >= 1 ? j5 == 1 ? getString(R.string.MonthAgo) : formatPluralStringComma("MonthsAgo", (int) j5) : j4 >= 1 ? j4 == 1 ? getString(R.string.DayAgo) : formatPluralStringComma("DaysAgo", (int) j4) : j3 >= 1 ? j3 == 1 ? getString(R.string.HourAgo) : formatPluralStringComma("HoursAgo", (int) j3) : j2 >= 1 ? j2 == 1 ? getString(R.string.MinuteAgo) : formatPluralStringComma("MinutesAgo", (int) j2) : getString(R.string.LessMinuteAgo);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return "LOC_ERR";
+        }
+    }
+
     public static String formatSectionDate(long j) {
         return formatYearMont(j, false);
     }
@@ -1506,6 +1520,7 @@ public class LocaleController {
         return formatString(str, i, objArr);
     }
 
+    @Deprecated
     public static String formatString(String str, int i, Object... objArr) {
         return formatString(str, null, i, 0, objArr);
     }

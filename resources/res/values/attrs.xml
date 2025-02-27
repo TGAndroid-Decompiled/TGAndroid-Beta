@@ -223,6 +223,96 @@
     </attr>
     <attr name="cameraZoom" format="float">
     </attr>
+    <attr name="castAdBreakMarkerColor" format="color">
+    </attr>
+    <attr name="castAdInProgressLabelTextAppearance" format="reference">
+    </attr>
+    <attr name="castAdInProgressText" format="reference|string">
+    </attr>
+    <attr name="castAdInProgressTextColor" format="color">
+    </attr>
+    <attr name="castAdLabelColor" format="color">
+    </attr>
+    <attr name="castAdLabelTextAppearance" format="reference">
+    </attr>
+    <attr name="castAdLabelTextColor" format="color">
+    </attr>
+    <attr name="castBackground" format="reference|color">
+    </attr>
+    <attr name="castBackgroundColor" format="reference|color">
+    </attr>
+    <attr name="castButtonBackgroundColor" format="reference|color">
+    </attr>
+    <attr name="castButtonColor" format="reference|color">
+    </attr>
+    <attr name="castButtonText" format="reference|string">
+    </attr>
+    <attr name="castButtonTextAppearance" format="reference">
+    </attr>
+    <attr name="castClosedCaptionsButtonDrawable" format="reference">
+    </attr>
+    <attr name="castControlButtons" format="reference">
+    </attr>
+    <attr name="castDefaultAdPosterUrl" format="reference|string">
+    </attr>
+    <attr name="castExpandedControllerLoadingIndicatorColor" format="color">
+    </attr>
+    <attr name="castExpandedControllerStyle" format="reference">
+    </attr>
+    <attr name="castExpandedControllerToolbarStyle" format="reference">
+    </attr>
+    <attr name="castFocusRadius" format="reference|dimension">
+    </attr>
+    <attr name="castForward30ButtonDrawable" format="reference">
+    </attr>
+    <attr name="castIntroOverlayStyle" format="reference">
+    </attr>
+    <attr name="castLargePauseButtonDrawable" format="reference">
+    </attr>
+    <attr name="castLargePlayButtonDrawable" format="reference">
+    </attr>
+    <attr name="castLargeStopButtonDrawable" format="reference">
+    </attr>
+    <attr name="castLiveIndicatorColor" format="color">
+    </attr>
+    <attr name="castMiniControllerLoadingIndicatorColor" format="color">
+    </attr>
+    <attr name="castMiniControllerStyle" format="reference">
+    </attr>
+    <attr name="castMuteToggleButtonDrawable" format="reference">
+    </attr>
+    <attr name="castPauseButtonDrawable" format="reference">
+    </attr>
+    <attr name="castPlayButtonDrawable" format="reference">
+    </attr>
+    <attr name="castProgressBarColor" format="color">
+    </attr>
+    <attr name="castRewind30ButtonDrawable" format="reference">
+    </attr>
+    <attr name="castSeekBarProgressAndThumbColor" format="color">
+    </attr>
+    <attr name="castSeekBarProgressDrawable" format="reference">
+    </attr>
+    <attr name="castSeekBarSecondaryProgressColor" format="color">
+    </attr>
+    <attr name="castSeekBarThumbDrawable" format="reference">
+    </attr>
+    <attr name="castSeekBarTooltipBackgroundColor" format="color">
+    </attr>
+    <attr name="castSeekBarUnseekableProgressColor" format="color">
+    </attr>
+    <attr name="castShowImageThumbnail" format="boolean">
+    </attr>
+    <attr name="castSkipNextButtonDrawable" format="reference">
+    </attr>
+    <attr name="castSkipPreviousButtonDrawable" format="reference">
+    </attr>
+    <attr name="castStopButtonDrawable" format="reference">
+    </attr>
+    <attr name="castSubtitleTextAppearance" format="reference">
+    </attr>
+    <attr name="castTitleTextAppearance" format="reference">
+    </attr>
     <attr name="checkMarkCompat" format="reference">
     </attr>
     <attr name="checkMarkTint" format="color">
@@ -386,6 +476,10 @@
         <enum name="strict_sandbox" value="2" />
     </attr>
     <attr name="expandActivityOverflowButtonDrawable" format="reference">
+    </attr>
+    <attr name="externalRouteEnabledDrawable" format="reference">
+    </attr>
+    <attr name="externalRouteEnabledDrawableStatic" format="reference">
     </attr>
     <attr name="featureType">
         <enum name="match_global_nicknames" value="1" />
@@ -562,6 +656,40 @@
     <attr name="maxButtonHeight" format="dimension">
     </attr>
     <attr name="measureWithLargestChild" format="boolean">
+    </attr>
+    <attr name="mediaRouteAudioTrackDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteBodyTextAppearance" format="reference">
+    </attr>
+    <attr name="mediaRouteButtonStyle" format="reference">
+    </attr>
+    <attr name="mediaRouteButtonTint" format="color">
+    </attr>
+    <attr name="mediaRouteCloseDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteControlPanelThemeOverlay" format="reference">
+    </attr>
+    <attr name="mediaRouteDefaultIconDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteDividerColor" format="color">
+    </attr>
+    <attr name="mediaRouteHeaderTextAppearance" format="reference">
+    </attr>
+    <attr name="mediaRoutePauseDrawable" format="reference">
+    </attr>
+    <attr name="mediaRoutePlayDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteSpeakerGroupIconDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteSpeakerIconDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteStopDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteTheme" format="reference">
+    </attr>
+    <attr name="mediaRouteTvIconDrawable" format="reference">
+    </attr>
+    <attr name="mediaRouteWifiIconDrawable" format="reference">
     </attr>
     <attr name="menu" format="reference">
     </attr>

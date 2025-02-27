@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.voip.JNIUtilities$$ExternalSyntheticApiModelOutline3;
+import org.telegram.messenger.voip.JNIUtilities$$ExternalSyntheticApiModelOutline1;
 import org.webrtc.NetworkChangeDetector;
 import org.webrtc.NetworkMonitorAutoDetect;
 
@@ -152,7 +152,7 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             Iterator it = linkAddresses2.iterator();
             int i = 0;
             while (it.hasNext()) {
-                address = JNIUtilities$$ExternalSyntheticApiModelOutline3.m(it.next()).getAddress();
+                address = JNIUtilities$$ExternalSyntheticApiModelOutline1.m(it.next()).getAddress();
                 iPAddressArr[i] = new NetworkChangeDetector.IPAddress(address.getAddress());
                 i++;
             }

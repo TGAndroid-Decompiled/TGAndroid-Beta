@@ -908,6 +908,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return "business_links";
             case 38:
                 return "effects";
+            case 39:
+                return "paid_messages";
             default:
                 return null;
         }
@@ -965,6 +967,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         arrayList.add(new PremiumFeatureData(11, R.drawable.msg_premium_emoji, LocaleController.getString(R.string.PremiumPreviewEmoji), LocaleController.getString(R.string.PremiumPreviewEmojiDescription)));
         arrayList.add(new PremiumFeatureData(9, R.drawable.menu_premium_tools, LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement), LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagementDescription)));
         arrayList.add(new PremiumFeatureData(6, R.drawable.msg_premium_badge, LocaleController.getString(R.string.PremiumPreviewProfileBadge), LocaleController.getString(R.string.PremiumPreviewProfileBadgeDescription)));
+        arrayList.add(new PremiumFeatureData(39, R.drawable.filled_messages_paid, LocaleController.getString(R.string.PremiumPreviewPaidMessages), LocaleController.getString(R.string.PremiumPreviewPaidMessagesDescription)));
         arrayList.add(new PremiumFeatureData(7, R.drawable.msg_premium_avatar, LocaleController.getString(R.string.PremiumPreviewAnimatedProfiles), LocaleController.getString(R.string.PremiumPreviewAnimatedProfilesDescription)));
         arrayList.add(new PremiumFeatureData(24, R.drawable.premium_tags, LocaleController.getString(R.string.PremiumPreviewTags2), LocaleController.getString(R.string.PremiumPreviewTagsDescription2)));
         arrayList.add(new PremiumFeatureData(10, R.drawable.msg_premium_icons, LocaleController.getString(R.string.PremiumPreviewAppIcon), LocaleController.getString(R.string.PremiumPreviewAppIconDescription)));
@@ -974,8 +977,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         arrayList.add(new PremiumFeatureData(23, R.drawable.premium_colors, LocaleController.getString(R.string.PremiumPreviewProfileColor), LocaleController.getString(R.string.PremiumPreviewProfileColorDescription)));
         arrayList.add(new PremiumFeatureData(26, R.drawable.menu_premium_seen, LocaleController.getString(R.string.PremiumPreviewLastSeen), LocaleController.getString(R.string.PremiumPreviewLastSeenDescription)));
         arrayList.add(new PremiumFeatureData(27, R.drawable.menu_premium_privacy, LocaleController.getString(R.string.PremiumPreviewMessagePrivacy), LocaleController.getString(R.string.PremiumPreviewMessagePrivacyDescription)));
-        arrayList.add(new PremiumFeatureData(28, R.drawable.filled_premium_business, applyNewSpan(LocaleController.getString(R.string.TelegramBusiness)), LocaleController.getString(R.string.PremiumPreviewBusinessDescription)));
-        arrayList.add(new PremiumFeatureData(38, R.drawable.menu_premium_effects, applyNewSpan(LocaleController.getString(R.string.PremiumPreviewEffects)), LocaleController.getString(R.string.PremiumPreviewEffectsDescription)));
+        arrayList.add(new PremiumFeatureData(28, R.drawable.filled_premium_business, LocaleController.getString(R.string.TelegramBusiness), LocaleController.getString(R.string.PremiumPreviewBusinessDescription)));
+        arrayList.add(new PremiumFeatureData(38, R.drawable.menu_premium_effects, LocaleController.getString(R.string.PremiumPreviewEffects), LocaleController.getString(R.string.PremiumPreviewEffectsDescription)));
         if (messagesController.premiumFeaturesTypesToPosition.size() > 0) {
             while (i2 < arrayList.size()) {
                 if (messagesController.premiumFeaturesTypesToPosition.get(((PremiumFeatureData) arrayList.get(i2)).type, -1) == -1 && !BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -1588,156 +1591,163 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 }
                 c = 65535;
                 break;
+            case -1409665697:
+                if (str.equals("paid_messages")) {
+                    c = 17;
+                    break;
+                }
+                c = 65535;
+                break;
             case -1225497630:
                 if (str.equals("translations")) {
-                    c = 17;
+                    c = 18;
                     break;
                 }
                 c = 65535;
                 break;
             case -1146830912:
                 if (str.equals("business")) {
-                    c = 18;
+                    c = 19;
                     break;
                 }
                 c = 65535;
                 break;
             case -1040323278:
                 if (str.equals("no_ads")) {
-                    c = 19;
+                    c = 20;
                     break;
                 }
                 c = 65535;
                 break;
             case -1023650261:
                 if (str.equals("more_upload")) {
-                    c = 20;
+                    c = 21;
                     break;
                 }
                 c = 65535;
                 break;
             case -969043445:
                 if (str.equals("emoji_status")) {
-                    c = 21;
+                    c = 22;
                     break;
                 }
                 c = 65535;
                 break;
             case -730864243:
                 if (str.equals("profile_badge")) {
-                    c = 22;
+                    c = 23;
                     break;
                 }
                 c = 65535;
                 break;
             case -448825858:
                 if (str.equals("faster_download")) {
-                    c = 23;
+                    c = 24;
                     break;
                 }
                 c = 65535;
                 break;
             case -294265343:
                 if (str.equals("greeting_message")) {
-                    c = 24;
+                    c = 25;
                     break;
                 }
                 c = 65535;
                 break;
             case -165039170:
                 if (str.equals("premium_stickers")) {
-                    c = 25;
+                    c = 26;
                     break;
                 }
                 c = 65535;
                 break;
             case -96210874:
                 if (str.equals("double_limits")) {
-                    c = 26;
+                    c = 27;
                     break;
                 }
                 c = 65535;
                 break;
             case 110781770:
                 if (str.equals("folder_tags")) {
-                    c = 27;
+                    c = 28;
                     break;
                 }
                 c = 65535;
                 break;
             case 234735554:
                 if (str.equals("stories__expiration_durations")) {
-                    c = 28;
+                    c = 29;
                     break;
                 }
                 c = 65535;
                 break;
             case 388416338:
                 if (str.equals("stories__stealth_mode")) {
-                    c = 29;
+                    c = 30;
                     break;
                 }
                 c = 65535;
                 break;
             case 480338102:
                 if (str.equals("quick_replies")) {
-                    c = 30;
+                    c = 31;
                     break;
                 }
                 c = 65535;
                 break;
             case 629542059:
                 if (str.equals("business_bots")) {
-                    c = 31;
+                    c = ' ';
                     break;
                 }
                 c = 65535;
                 break;
             case 705083174:
                 if (str.equals("stories__priority_order")) {
-                    c = ' ';
+                    c = '!';
                     break;
                 }
                 c = 65535;
                 break;
             case 1080006662:
                 if (str.equals("stories__links_and_formatting")) {
-                    c = '!';
+                    c = '\"';
                     break;
                 }
                 c = 65535;
                 break;
             case 1219849581:
                 if (str.equals("advanced_chat_management")) {
-                    c = '\"';
+                    c = '#';
                     break;
                 }
                 c = 65535;
                 break;
             case 1438966047:
                 if (str.equals("stories__permanent_views_history")) {
-                    c = '#';
+                    c = '$';
                     break;
                 }
                 c = 65535;
                 break;
             case 1537309393:
                 if (str.equals("saved_tags")) {
-                    c = '$';
+                    c = '%';
                     break;
                 }
                 c = 65535;
                 break;
             case 1832801148:
                 if (str.equals("app_icons")) {
-                    c = '%';
+                    c = '&';
                     break;
                 }
                 c = 65535;
                 break;
             case 2013274756:
                 if (str.equals("last_seen")) {
-                    c = '&';
+                    c = '\'';
                     break;
                 }
                 c = 65535;
@@ -1782,48 +1792,50 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             case 16:
                 return 11;
             case 17:
-                return 13;
+                return 39;
             case 18:
-                return 28;
+                return 13;
             case 19:
-                return 3;
+                return 28;
             case 20:
-                return 1;
+                return 3;
             case 21:
-                return 12;
+                return 1;
             case 22:
-                return 6;
+                return 12;
             case 23:
-                return 2;
+                return 6;
             case 24:
-                return 32;
+                return 2;
             case 25:
-                return 5;
+                return 32;
             case 26:
-                return 0;
+                return 5;
             case 27:
-                return 35;
+                return 0;
             case 28:
-                return 17;
+                return 35;
             case 29:
-                return 15;
+                return 17;
             case 30:
-                return 31;
+                return 15;
             case 31:
-                return 34;
+                return 31;
             case ' ':
-                return 20;
+                return 34;
             case '!':
-                return 19;
+                return 20;
             case '\"':
-                return 9;
+                return 19;
             case '#':
-                return 16;
+                return 9;
             case '$':
-                return 24;
+                return 16;
             case '%':
-                return 10;
+                return 24;
             case '&':
+                return 10;
+            case '\'':
                 return 26;
             default:
                 return -1;
@@ -2322,7 +2334,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PremiumPreviewFragment.this.lambda$onBackPressed$323();
+                    PremiumPreviewFragment.this.lambda$onBackPressed$335();
                 }
             }
         });

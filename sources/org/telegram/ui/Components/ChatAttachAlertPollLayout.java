@@ -790,7 +790,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public interface PollCreateActivityDelegate {
-        void sendPoll(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i);
+        void sendPoll(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i, long j);
     }
 
     public class TouchHelperCallback extends ItemTouchHelper.Callback {
@@ -1018,7 +1018,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatAttachAlertPollLayout.this.lambda$animateEmojiViewTranslationY$5(f, f2, valueAnimator);
+                ChatAttachAlertPollLayout.this.lambda$animateEmojiViewTranslationY$6(f, f2, valueAnimator);
             }
         });
         ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -1045,7 +1045,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             builder.setPositiveButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    ChatAttachAlertPollLayout.this.lambda$checkDiscard$2(alertDialog, i2);
+                    ChatAttachAlertPollLayout.this.lambda$checkDiscard$3(alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1170,7 +1170,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ChatAttachAlertPollLayout.this.lambda$hideEmojiPopup$4(valueAnimator);
+                        ChatAttachAlertPollLayout.this.lambda$hideEmojiPopup$5(valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
@@ -1189,15 +1189,15 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$animateEmojiViewTranslationY$5(float f, float f2, ValueAnimator valueAnimator) {
+    public void lambda$animateEmojiViewTranslationY$6(float f, float f2, ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
     }
 
-    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) {
+    public void lambda$checkDiscard$3(AlertDialog alertDialog, int i) {
         this.parentAlert.lambda$new$0();
     }
 
-    public void lambda$hideEmojiPopup$4(ValueAnimator valueAnimator) {
+    public void lambda$hideEmojiPopup$5(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -1299,12 +1299,26 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$onMenuItemClick$1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
-        this.delegate.sendPoll(tL_messageMediaPoll, hashMap, z, i);
+    public void lambda$onMenuItemClick$1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, Long l, boolean z, int i) {
+        this.delegate.sendPoll(tL_messageMediaPoll, hashMap, z, i, l.longValue());
         this.parentAlert.dismiss(true);
     }
 
-    public void lambda$showEmojiPopup$3(ValueAnimator valueAnimator) {
+    public void lambda$onMenuItemClick$2(ChatActivity chatActivity, final TLRPC.TL_messageMediaPoll tL_messageMediaPoll, final HashMap hashMap, final Long l) {
+        if (chatActivity.isInScheduleMode()) {
+            AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+                @Override
+                public final void didSelectDate(boolean z, int i) {
+                    ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$1(tL_messageMediaPoll, hashMap, l, z, i);
+                }
+            });
+        } else {
+            this.delegate.sendPoll(tL_messageMediaPoll, hashMap, true, 0, l.longValue());
+            this.parentAlert.dismiss(true);
+        }
+    }
+
+    public void lambda$showEmojiPopup$4(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -1434,7 +1448,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatAttachAlertPollLayout.this.lambda$showEmojiPopup$3(valueAnimator);
+                    ChatAttachAlertPollLayout.this.lambda$showEmojiPopup$4(valueAnimator);
                 }
             });
             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -1798,18 +1812,14 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     tL_messageMediaPoll.results.flags |= 16;
                 }
             }
-            ChatActivity chatActivity = (ChatActivity) this.parentAlert.baseFragment;
-            if (chatActivity.isInScheduleMode()) {
-                AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
-                    @Override
-                    public final void didSelectDate(boolean z, int i7) {
-                        ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$1(tL_messageMediaPoll, hashMap, z, i7);
-                    }
-                });
-            } else {
-                this.delegate.sendPoll(tL_messageMediaPoll, hashMap, true, 0);
-                this.parentAlert.dismiss(true);
-            }
+            ChatAttachAlert chatAttachAlert = this.parentAlert;
+            final ChatActivity chatActivity = (ChatActivity) chatAttachAlert.baseFragment;
+            AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$2(chatActivity, tL_messageMediaPoll, hashMap, (Long) obj);
+                }
+            });
         }
     }
 

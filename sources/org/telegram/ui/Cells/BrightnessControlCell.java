@@ -58,6 +58,11 @@ public abstract class BrightnessControlCell extends FrameLayout {
             }
 
             @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 BrightnessControlCell.this.didChangedValue(f);
             }

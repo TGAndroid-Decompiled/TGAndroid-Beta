@@ -444,10 +444,6 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         return sparseArray;
     }
 
-    public void resetTab() {
-        this.selectedTabId = -1;
-    }
-
     public void scrollTo(int i) {
         scrollTo(i, this.idToPosition.get(i), null);
     }

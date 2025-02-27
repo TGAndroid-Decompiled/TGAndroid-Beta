@@ -12,7 +12,7 @@ import kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt;
 import kotlin.coroutines.jvm.internal.DebugProbesKt;
 import kotlin.jvm.internal.Intrinsics;
 
-final class SequenceBuilderIterator extends SequenceScope implements Iterator, Continuation {
+public final class SequenceBuilderIterator extends SequenceScope implements Iterator, Continuation {
     private Iterator nextIterator;
     private Continuation nextStep;
     private Object nextValue;
@@ -68,7 +68,7 @@ final class SequenceBuilderIterator extends SequenceScope implements Iterator, C
             Intrinsics.checkNotNull(continuation);
             this.nextStep = null;
             Result.Companion companion = Result.Companion;
-            continuation.resumeWith(Result.m160constructorimpl(Unit.INSTANCE));
+            continuation.resumeWith(Result.m162constructorimpl(Unit.INSTANCE));
         }
     }
 

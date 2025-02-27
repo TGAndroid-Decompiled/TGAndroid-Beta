@@ -170,7 +170,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                     NotificationsSoundActivity.this.hideActionMode();
                     return;
                 } else {
-                    NotificationsSoundActivity.this.lambda$onBackPressed$323();
+                    NotificationsSoundActivity.this.lambda$onBackPressed$335();
                     return;
                 }
             }
@@ -868,7 +868,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     }
 
     @Override
-    public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, boolean z, int i, long j, boolean z2) {
+    public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, boolean z, int i, long j, boolean z2, long j2) {
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             getMediaDataController().uploadRingtone((String) arrayList.get(i2));
         }
@@ -876,8 +876,8 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     }
 
     @Override
-    public void didSelectPhotos(ArrayList arrayList, boolean z, int i) {
-        ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$didSelectPhotos(this, arrayList, z, i);
+    public void didSelectPhotos(ArrayList arrayList, boolean z, int i, long j) {
+        ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$didSelectPhotos(this, arrayList, z, i, j);
     }
 
     @Override

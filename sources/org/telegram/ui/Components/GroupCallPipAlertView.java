@@ -242,10 +242,13 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.groupCall != null) {
             AvatarDrawable avatarDrawable = new AvatarDrawable();
-            avatarDrawable.setColor(Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(sharedInstance.getChat().id)]), Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(sharedInstance.getChat().id)]));
-            avatarDrawable.setInfo(this.currentAccount, sharedInstance.getChat());
-            this.avatarImageView.setImage(ImageLocation.getForLocal(sharedInstance.getChat().photo.photo_small), "50_50", avatarDrawable, (Object) null);
-            String str = !TextUtils.isEmpty(sharedInstance.groupCall.call.title) ? sharedInstance.groupCall.call.title : sharedInstance.getChat().title;
+            TLRPC.Chat chat = sharedInstance.getChat();
+            avatarDrawable.setColor(Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(chat != null ? chat.id : 0L)]), Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(chat != null ? chat.id : 0L)]));
+            avatarDrawable.setInfo(this.currentAccount, chat);
+            if (chat != null) {
+                this.avatarImageView.setImage(ImageLocation.getForLocal(chat.photo.photo_small), "50_50", avatarDrawable, (Object) null);
+            }
+            String str = !TextUtils.isEmpty(sharedInstance.groupCall.call.title) ? sharedInstance.groupCall.call.title : chat != null ? chat.title : "";
             if (str != null) {
                 str = str.replace("\n", " ").replaceAll(" +", " ").trim();
             }

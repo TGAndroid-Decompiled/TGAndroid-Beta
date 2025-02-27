@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.Components.BackupImageView;
 
@@ -180,8 +181,19 @@ public class DialogObject {
         return (draftMessage == null || (i = draftMessage.date) < dialog.last_message_date) ? dialog.last_message_date : i;
     }
 
+    public static long getMessagesStarsPrice(TL_account.RequirementToContact requirementToContact) {
+        if (requirementToContact instanceof TL_account.requirementToContactPaidMessages) {
+            return ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+        }
+        return 0L;
+    }
+
+    public static String getName(int i, long j) {
+        return getName(MessagesController.getInstance(i).getUserOrChat(j));
+    }
+
     public static String getName(long j) {
-        return getName(MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j));
+        return getName(UserConfig.selectedAccount, j);
     }
 
     public static String getName(TLObject tLObject) {
@@ -262,6 +274,10 @@ public class DialogObject {
         }
         TLRPC.User user = (TLRPC.User) tLObject;
         return str == null ? getPublicUsername(user.username, user.usernames, false) : getSimilarPublicUsername(user.username, user.usernames, str);
+    }
+
+    public static String getShortName(int i, long j) {
+        return getShortName(MessagesController.getInstance(i).getUserOrChat(j));
     }
 
     public static String getShortName(long j) {
@@ -361,12 +377,20 @@ public class DialogObject {
         return (tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000));
     }
 
+    public static boolean isEmpty(TL_account.RequirementToContact requirementToContact) {
+        return requirementToContact == null || (requirementToContact instanceof TL_account.requirementToContactEmpty);
+    }
+
     public static boolean isEncryptedDialog(long j) {
         return (4611686018427387904L & j) != 0 && (j & Long.MIN_VALUE) == 0;
     }
 
     public static boolean isFolderDialogId(long j) {
         return (2305843009213693952L & j) != 0 && (j & Long.MIN_VALUE) == 0;
+    }
+
+    public static boolean isPremiumBlocked(TL_account.RequirementToContact requirementToContact) {
+        return requirementToContact instanceof TL_account.requirementToContactPremium;
     }
 
     public static boolean isUserDialog(long j) {

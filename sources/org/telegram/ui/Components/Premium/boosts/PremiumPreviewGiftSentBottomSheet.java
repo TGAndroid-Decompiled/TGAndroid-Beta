@@ -227,7 +227,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
         int size = this.selectedUsers.size();
         if (size == 1) {
-            formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersOne", R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0))));
+            formatString = LocaleController.formatString(R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString(R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0))));
         } else if (size == 2) {
             formatString = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1))));
         } else if (size != 3) {

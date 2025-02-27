@@ -29,6 +29,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -95,6 +96,8 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     private Theme.ResourcesProvider resourcesProvider;
     private boolean savedMessages;
     private boolean showPremiumBlocked;
+    private final AnimatedFloat starsBlockedT;
+    private long starsPriceBlocked;
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable statusDrawable;
     private StaticLayout statusLayout;
     private int statusLeft;
@@ -113,7 +116,9 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
         this.countTop = AndroidUtilities.dp(19.0f);
-        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
+        this.starsBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.avatarStoryParams = new StoriesUtilities.AvatarStoryParams(false);
         this.rect = new RectF();
         this.openButtonBounce = new ButtonBounce(this);
@@ -508,17 +513,42 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        ContactsController.Contact contact;
+        MessagesController messagesController;
+        TLRPC.User user;
+        TL_account.RequirementToContact requirementToContact;
         if (i != NotificationCenter.emojiLoaded) {
             if (i != NotificationCenter.userIsPremiumBlockedUpadted) {
                 return;
             }
-            boolean z = this.premiumBlocked;
-            boolean z2 = this.showPremiumBlocked && ((this.user != null && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.user.id)) || !((contact = this.contact) == null || contact.user == null || !MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.contact.user.id)));
-            this.premiumBlocked = z2;
-            if (z2 == z) {
+            if (this.user != null) {
+                if (this.showPremiumBlocked) {
+                    messagesController = MessagesController.getInstance(this.currentAccount);
+                    user = this.user;
+                    requirementToContact = messagesController.isUserContactBlocked(user.id);
+                }
+                requirementToContact = null;
+            } else {
+                TLRPC.Chat chat = this.chat;
+                if (chat != null) {
+                    requirementToContact = ChatObject.getRequirementToContact(chat);
+                } else {
+                    ContactsController.Contact contact = this.contact;
+                    if (contact == null) {
+                        return;
+                    }
+                    if (this.showPremiumBlocked && contact.user != null) {
+                        messagesController = MessagesController.getInstance(this.currentAccount);
+                        user = this.contact.user;
+                        requirementToContact = messagesController.isUserContactBlocked(user.id);
+                    }
+                    requirementToContact = null;
+                }
+            }
+            if (this.premiumBlocked == DialogObject.isPremiumBlocked(requirementToContact) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(requirementToContact)) {
                 return;
             }
+            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContact);
         }
         invalidate();
     }
@@ -639,27 +669,44 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     }
 
     public void setData(Object obj, TLRPC.EncryptedChat encryptedChat, CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
+        long messagesStarsPrice;
         this.currentName = charSequence;
+        TL_account.RequirementToContact requirementToContact = null;
         if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             this.user = user;
             this.chat = null;
             this.contact = null;
-            this.premiumBlocked = this.showPremiumBlocked && user != null && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.user.id);
+            if (this.showPremiumBlocked && user != null) {
+                requirementToContact = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id);
+            }
+            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContact);
             setOpenBotButton(this.allowBotOpenButton && this.user.bot_has_main_app);
         } else {
             if (obj instanceof TLRPC.Chat) {
-                this.chat = (TLRPC.Chat) obj;
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
+                this.chat = chat;
                 this.user = null;
                 this.contact = null;
-                this.premiumBlocked = false;
-            } else if (obj instanceof ContactsController.Contact) {
-                ContactsController.Contact contact = (ContactsController.Contact) obj;
-                this.contact = contact;
-                this.chat = null;
-                this.user = null;
-                this.premiumBlocked = this.showPremiumBlocked && contact != null && contact.user != null && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.contact.user.id);
+                TL_account.RequirementToContact requirementToContact2 = ChatObject.getRequirementToContact(chat);
+                this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact2);
+                messagesStarsPrice = DialogObject.getMessagesStarsPrice(requirementToContact2);
+            } else {
+                if (obj instanceof ContactsController.Contact) {
+                    ContactsController.Contact contact = (ContactsController.Contact) obj;
+                    this.contact = contact;
+                    this.chat = null;
+                    this.user = null;
+                    if (this.showPremiumBlocked && contact != null && contact.user != null) {
+                        requirementToContact = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.contact.user.id);
+                    }
+                    this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
+                    messagesStarsPrice = DialogObject.getMessagesStarsPrice(requirementToContact);
+                }
+                setOpenBotButton(false);
             }
+            this.starsPriceBlocked = messagesStarsPrice;
             setOpenBotButton(false);
         }
         this.encryptedChat = encryptedChat;

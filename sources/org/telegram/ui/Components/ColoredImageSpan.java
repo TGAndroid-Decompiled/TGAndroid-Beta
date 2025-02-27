@@ -1,16 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.ActionBar.Theme;
 
 public class ColoredImageSpan extends ReplacementSpan {
     private float alpha;
@@ -64,54 +59,8 @@ public class ColoredImageSpan extends ReplacementSpan {
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        Runnable runnable = this.checkColorDelegate;
-        if (runnable != null) {
-            runnable.run();
-        } else if (this.recolorDrawable) {
-            int i6 = this.overrideColor;
-            if (i6 == 0) {
-                i6 = (this.useLinkPaintColor && (paint instanceof TextPaint)) ? ((TextPaint) paint).linkColor : this.usePaintColor ? paint.getColor() : Theme.getColor(this.colorKey);
-            }
-            if (this.drawableColor != i6) {
-                this.drawableColor = i6;
-                this.drawable.setColorFilter(new PorterDuffColorFilter(this.drawableColor, PorterDuff.Mode.MULTIPLY));
-            }
-        }
-        canvas.save();
-        Drawable drawable = this.drawable;
-        int i7 = i5 - (drawable != null ? drawable.getBounds().bottom : i5);
-        int i8 = this.verticalAlignment;
-        if (i8 != 1) {
-            if (i8 == 2) {
-                int i9 = i3 + ((i5 - i3) / 2);
-                Drawable drawable2 = this.drawable;
-                i7 = i9 - (drawable2 != null ? drawable2.getBounds().height() / 2 : 0);
-            } else if (i8 == 0) {
-                int i10 = i5 - i3;
-                int i11 = this.size;
-                if (i11 == 0) {
-                    i11 = this.drawable.getIntrinsicHeight();
-                }
-                i7 = AndroidUtilities.dp(this.topOffset) + i3 + ((i10 - i11) / 2);
-            }
-        }
-        canvas.translate(f + this.translateX, i7 + this.translateY);
-        if (this.drawable != null) {
-            float f2 = this.scaleX;
-            if (f2 != 1.0f || this.scaleY != 1.0f) {
-                canvas.scale(f2, this.scaleY, 0.0f, r2.getBounds().centerY());
-            }
-            float f3 = this.rotate;
-            if (f3 != 1.0f) {
-                canvas.rotate(f3, this.drawable.getBounds().centerX(), this.drawable.getBounds().centerY());
-            }
-            if (this.alpha != 1.0f || paint.getAlpha() != 255) {
-                this.drawable.setAlpha((int) (this.alpha * paint.getAlpha()));
-            }
-            this.drawable.draw(canvas);
-        }
-        canvas.restore();
+    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ColoredImageSpan.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
     }
 
     @Override

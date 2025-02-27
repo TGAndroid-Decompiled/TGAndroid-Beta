@@ -326,7 +326,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.avatarEditor.playAnimation();
     }
 
-    public void lambda$createView$5(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+    public void lambda$createView$5(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         this.currentGroupCreateLocation.setLatitude(messageMedia.geo.lat);
         this.currentGroupCreateLocation.setLongitude(messageMedia.geo._long);
         this.currentGroupCreateAddress = messageMedia.address;
@@ -341,8 +341,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             locationActivity.setDialogId(0L);
             locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
                 @Override
-                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3) {
-                    GroupCreateFinalActivity.this.lambda$createView$5(messageMedia, i2, z, i3);
+                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3, long j) {
+                    GroupCreateFinalActivity.this.lambda$createView$5(messageMedia, i2, z, i3, j);
                 }
             });
             presentFragment(locationActivity);
@@ -573,7 +573,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupCreateFinalActivity.this.lambda$onBackPressed$323();
+                    GroupCreateFinalActivity.this.lambda$onBackPressed$335();
                 }
             }
         });

@@ -7336,7 +7336,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo1014getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1045getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 
@@ -7414,7 +7414,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1014getWindowView() {
+        public WindowView mo1045getWindowView() {
             return this.windowView;
         }
 
@@ -7840,6 +7840,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 @Override
                 public int getStepsCount() {
                     return TextSizeCell.this.endFontSize - TextSizeCell.this.startFontSize;
+                }
+
+                @Override
+                public boolean needVisuallyDivideSteps() {
+                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
                 }
 
                 @Override

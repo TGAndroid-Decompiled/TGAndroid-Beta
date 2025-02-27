@@ -685,11 +685,11 @@ public class TL_phone {
     public static class createConferenceCall extends TLObject {
         public static final int constructor = -540472917;
         public long key_fingerprint;
-        public TLRPC.TL_inputGroupCall peer;
+        public TLRPC.TL_inputPhoneCall peer;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return PhoneCall.TLdeserialize(inputSerializedData, i, z);
+            return TL_phone_phoneCall.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
@@ -1188,11 +1188,12 @@ public class TL_phone {
     }
 
     public static class joinGroupCall extends TLObject {
-        public static final int constructor = -1322057861;
+        public static final int constructor = -702669325;
         public TLRPC.TL_inputGroupCall call;
         public int flags;
         public String invite_hash;
         public TLRPC.InputPeer join_as;
+        public long key_fingerprint;
         public boolean muted;
         public TLRPC.TL_dataJSON params;
         public boolean video_stopped;
@@ -1204,7 +1205,7 @@ public class TL_phone {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1322057861);
+            outputSerializedData.writeInt32(-702669325);
             int i = this.muted ? this.flags | 1 : this.flags & (-2);
             this.flags = i;
             int i2 = this.video_stopped ? i | 4 : i & (-5);
@@ -1214,6 +1215,9 @@ public class TL_phone {
             this.join_as.serializeToStream(outputSerializedData);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.invite_hash);
+            }
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt64(this.key_fingerprint);
             }
             this.params.serializeToStream(outputSerializedData);
         }

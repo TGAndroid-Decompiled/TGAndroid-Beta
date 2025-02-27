@@ -1191,7 +1191,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
     }
 
-    public static void lambda$openSharingLocation$14(LocationController.SharingLocationInfo sharingLocationInfo, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+    public static void lambda$openSharingLocation$14(LocationController.SharingLocationInfo sharingLocationInfo, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j2) {
         SendMessagesHelper.getInstance(sharingLocationInfo.messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2));
     }
 
@@ -1211,8 +1211,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         final long dialogId = sharingLocationInfo.messageObject.getDialogId();
         locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
             @Override
-            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
-                FragmentContextView.lambda$openSharingLocation$14(LocationController.SharingLocationInfo.this, dialogId, messageMedia, i, z, i2);
+            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+                FragmentContextView.lambda$openSharingLocation$14(LocationController.SharingLocationInfo.this, dialogId, messageMedia, i, z, i2, j);
             }
         });
         launchActivity.lambda$runLinkRequest$95(locationActivity);

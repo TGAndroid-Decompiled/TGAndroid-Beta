@@ -3098,6 +3098,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         public TLRPC.InputStickerSet needLoadSet;
         public int resId;
         public TLRPC.StickerSet set;
+        public Long thumbDocumentId;
     }
 
     private class EmojiPackButton extends FrameLayout {

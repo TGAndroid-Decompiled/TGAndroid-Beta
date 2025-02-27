@@ -193,7 +193,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
             getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.lambda$onBackPressed$323();
+        dialogsActivity.lambda$onBackPressed$335();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }
@@ -216,7 +216,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         lambda$new$0();
     }
 
-    public static void show(String str, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, TLRPC.User user, Browser.Progress progress) {
+    public static void show(String str, Browser.Progress progress) {
         GiftInfoBottomSheet.show(LaunchActivity.getLastFragment(), str, progress);
     }
 
@@ -225,7 +225,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         if (lastFragment == null || instance != null) {
             return;
         }
-        PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = new PremiumPreviewGiftLinkBottomSheet(lastFragment, UserConfig.selectedAccount, user, new GiftPremiumBottomSheet$GiftTier(tL_premiumGiftOption), str, z, lastFragment.getResourceProvider());
+        PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = new PremiumPreviewGiftLinkBottomSheet(lastFragment, UserConfig.selectedAccount, user, new GiftPremiumBottomSheet$GiftTier(tL_premiumGiftOption, (Object) null), str, z, lastFragment.getResourceProvider());
         premiumPreviewGiftLinkBottomSheet.show();
         instance = premiumPreviewGiftLinkBottomSheet;
     }

@@ -170,7 +170,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     ChannelCreateActivity.this.showDoneCancelDialog();
                     return;
                 } else {
-                    ChannelCreateActivity.this.lambda$onBackPressed$323();
+                    ChannelCreateActivity.this.lambda$onBackPressed$335();
                     return;
                 }
             }

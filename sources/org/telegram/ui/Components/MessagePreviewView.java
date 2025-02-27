@@ -42,6 +42,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -404,7 +405,9 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                         @Override
                         public boolean canPerformReply() {
-                            return canPerformActions();
+                            boolean canPerformActions;
+                            canPerformActions = canPerformActions();
+                            return canPerformActions;
                         }
 
                         @Override
@@ -614,7 +617,22 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                         @Override
                         public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str, boolean z) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell2, webPage, str, z);
+                            Browser.openUrl(chatMessageCell2.getContext(), str);
+                        }
+
+                        @Override
+                        public void didQuickShareEnd(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareEnd(this, chatMessageCell2, f, f2);
+                        }
+
+                        @Override
+                        public void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell2, f, f2);
+                        }
+
+                        @Override
+                        public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell2, f, f2);
                         }
 
                         @Override
@@ -809,7 +827,9 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                     @Override
                     public boolean canPerformReply() {
-                        return canPerformActions();
+                        boolean canPerformActions;
+                        canPerformActions = canPerformActions();
+                        return canPerformActions;
                     }
 
                     @Override
@@ -1032,7 +1052,22 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                     @Override
                     public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str, boolean z) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell2, webPage, str, z);
+                        Browser.openUrl(chatMessageCell2.getContext(), str);
+                    }
+
+                    @Override
+                    public void didQuickShareEnd(ChatMessageCell chatMessageCell2, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareEnd(this, chatMessageCell2, f, f2);
+                    }
+
+                    @Override
+                    public void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell2, f, f2);
+                    }
+
+                    @Override
+                    public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell2, f, f2);
                     }
 
                     @Override

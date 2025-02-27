@@ -1,5 +1,6 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.OutputSerializedData;
@@ -24,7 +25,13 @@ public class MessageCustomParamsHelper {
             this.flags = i3;
             int i4 = i3 | (message.translatedToLanguage != null ? 8 : 0);
             this.flags = i4;
-            this.flags = i4 | (message.translatedText != null ? 16 : 0);
+            int i5 = i4 | (message.translatedText != null ? 16 : 0);
+            this.flags = i5;
+            int i6 = i5 | (message.translatedPoll != null ? 32 : 0);
+            this.flags = i6;
+            int i7 = i6 | (message.errorAllowedPriceStars != 0 ? 64 : 0);
+            this.flags = i7;
+            this.flags = i7 | (message.errorNewPriceStars != 0 ? 128 : 0);
         }
 
         @Override
@@ -49,6 +56,15 @@ public class MessageCustomParamsHelper {
             }
             if ((this.flags & 16) != 0) {
                 this.message.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 32) != 0) {
+                this.message.translatedPoll = TranslateController.PollText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 64) != 0) {
+                this.message.errorAllowedPriceStars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 128) != 0) {
+                this.message.errorNewPriceStars = inputSerializedData.readInt64(z);
             }
         }
 
@@ -75,6 +91,15 @@ public class MessageCustomParamsHelper {
             if ((this.flags & 16) != 0) {
                 this.message.translatedText.serializeToStream(outputSerializedData);
             }
+            if ((this.flags & 32) != 0) {
+                this.message.translatedPoll.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 64) != 0) {
+                outputSerializedData.writeInt64(this.message.errorAllowedPriceStars);
+            }
+            if ((this.flags & 128) != 0) {
+                outputSerializedData.writeInt64(this.message.errorNewPriceStars);
+            }
         }
     }
 
@@ -88,11 +113,14 @@ public class MessageCustomParamsHelper {
         message2.premiumEffectWasPlayed = message.premiumEffectWasPlayed;
         message2.originalLanguage = message.originalLanguage;
         message2.translatedToLanguage = message.translatedToLanguage;
+        message2.translatedPoll = message.translatedPoll;
         message2.translatedText = message.translatedText;
+        message2.errorAllowedPriceStars = message.errorAllowedPriceStars;
+        message2.errorNewPriceStars = message.errorNewPriceStars;
     }
 
     public static boolean isEmpty(TLRPC.Message message) {
-        return message.voiceTranscription == null && !message.voiceTranscriptionOpen && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedText == null;
+        return message.voiceTranscription == null && !message.voiceTranscriptionOpen && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedPoll == null && message.translatedText == null && message.errorAllowedPriceStars == 0 && message.errorNewPriceStars == 0;
     }
 
     public static void readLocalParams(TLRPC.Message message, NativeByteBuffer nativeByteBuffer) {

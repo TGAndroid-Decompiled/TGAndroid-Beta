@@ -244,6 +244,11 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                         }
 
                         @Override
+                        public boolean needVisuallyDivideSteps() {
+                            return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                        }
+
+                        @Override
                         public void onSeekBarDrag(boolean r10, float r11) {
                             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SaveToGallerySettingsActivity.Adapter.AnonymousClass1.onSeekBarDrag(boolean, float):void");
                         }
@@ -491,7 +496,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             saveGalleryExceptions.put(dialogException.dialogId, dialogException);
             getUserConfig().updateSaveGalleryExceptions(this.type, saveGalleryExceptions);
         }
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public void onSettingsUpdated() {
@@ -523,7 +528,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    SaveToGallerySettingsActivity.this.lambda$onBackPressed$323();
+                    SaveToGallerySettingsActivity.this.lambda$onBackPressed$335();
                 }
             }
         });

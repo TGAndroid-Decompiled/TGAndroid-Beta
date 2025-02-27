@@ -465,7 +465,7 @@ public class QuickRepliesController {
         }
     }
 
-    public void lambda$sendQuickReplyTo$24(TLObject tLObject, ArrayList arrayList, TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages, TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages, TLRPC.TL_error tL_error) {
+    public void lambda$sendQuickReplyTo$24(TLObject tLObject, ArrayList arrayList, TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages, TLRPC.TL_error tL_error) {
         if (!(tLObject instanceof TLRPC.TL_messages_messages)) {
             FileLog.e("received " + tLObject + " " + tL_error + " on getQuickReplyMessages when trying to send quick reply");
             return;
@@ -480,26 +480,26 @@ public class QuickRepliesController {
         for (int i = 0; i < arrayList.size(); i++) {
             tL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getQuickReplyMessages, null);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_sendQuickReplyMessages, null);
     }
 
-    public void lambda$sendQuickReplyTo$25(final ArrayList arrayList, final TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages, final TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$sendQuickReplyTo$25(final ArrayList arrayList, final TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.this.lambda$sendQuickReplyTo$24(tLObject, arrayList, tL_messages_sendQuickReplyMessages, tL_messages_getQuickReplyMessages, tL_error);
+                QuickRepliesController.this.lambda$sendQuickReplyTo$24(tLObject, arrayList, tL_messages_sendQuickReplyMessages, tL_error);
             }
         });
     }
 
     public void lambda$sendQuickReplyTo$26(final ArrayList arrayList, QuickReply quickReply, final TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages) {
         if (arrayList.isEmpty() || arrayList.size() < quickReply.getMessagesCount()) {
-            final TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages = new TLRPC.TL_messages_getQuickReplyMessages();
+            TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages = new TLRPC.TL_messages_getQuickReplyMessages();
             tL_messages_getQuickReplyMessages.shortcut_id = quickReply.id;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getQuickReplyMessages, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    QuickRepliesController.this.lambda$sendQuickReplyTo$25(arrayList, tL_messages_sendQuickReplyMessages, tL_messages_getQuickReplyMessages, tLObject, tL_error);
+                    QuickRepliesController.this.lambda$sendQuickReplyTo$25(arrayList, tL_messages_sendQuickReplyMessages, tLObject, tL_error);
                 }
             });
         } else {

@@ -196,6 +196,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private int sendAfterDone;
     private boolean sendAfterDoneNotify;
     private boolean sendAfterDoneOnce;
+    private long sendAfterDonePayStars;
     private int sendAfterDoneScheduleDate;
     private SensorManager sensorManager;
     private boolean sensorsStarted;
@@ -336,7 +337,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         return;
                     }
                     MediaController mediaController = MediaController.this;
-                    mediaController.stopRecordingInternal(mediaController.sendAfterDone, MediaController.this.sendAfterDoneNotify, MediaController.this.sendAfterDoneScheduleDate, MediaController.this.sendAfterDoneOnce);
+                    mediaController.stopRecordingInternal(mediaController.sendAfterDone, MediaController.this.sendAfterDoneNotify, MediaController.this.sendAfterDoneScheduleDate, MediaController.this.sendAfterDoneOnce, MediaController.this.sendAfterDonePayStars);
                     return;
                 }
                 allocateDirect.limit(read);
@@ -412,7 +413,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AnonymousClass4() {
         }
 
-        public void lambda$onCallStateChanged$0(int r5) {
+        public void lambda$onCallStateChanged$0(int r9) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.AnonymousClass4.lambda$onCallStateChanged$0(int):void");
         }
 
@@ -3029,10 +3030,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStopped, Integer.valueOf(this.recordingGuid), Integer.valueOf(i == 2 ? 1 : 0));
     }
 
-    public void lambda$stopRecording$42(final int i, boolean z, int i2, boolean z2) {
+    public void lambda$stopRecording$42(final int i, boolean z, int i2, boolean z2, long j) {
         if (this.sendAfterDone == 3) {
             this.sendAfterDone = 0;
-            stopRecordingInternal(i, z, i2, z2);
+            stopRecordingInternal(i, z, i2, z2, j);
             return;
         }
         AudioRecord audioRecord = this.audioRecorder;
@@ -3048,6 +3049,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.sendAfterDoneNotify = z;
             this.sendAfterDoneScheduleDate = i2;
             this.sendAfterDoneOnce = z2;
+            this.sendAfterDonePayStars = j;
             audioRecord.stop();
             setBluetoothScoOn(false);
         } catch (Exception e) {
@@ -3060,7 +3062,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
         if (i == 0) {
-            stopRecordingInternal(0, false, 0, false);
+            stopRecordingInternal(0, false, 0, false, 0L);
         }
         try {
             this.feedbackView.performHapticFeedback(3, 2);
@@ -3074,7 +3076,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         });
     }
 
-    public void lambda$stopRecordingInternal$39(File file, TLRPC.TL_document tL_document, int i, boolean z, int i2, boolean z2) {
+    public void lambda$stopRecordingInternal$39(File file, TLRPC.TL_document tL_document, int i, boolean z, int i2, boolean z2, long j) {
         boolean z3;
         char c;
         String str;
@@ -3103,19 +3105,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (waveform2 != null) {
             tL_documentAttributeAudio.flags |= 4;
         }
-        long j = this.recordTimeCount;
-        double d = j;
+        long j2 = this.recordTimeCount;
+        double d = j2;
         Double.isNaN(d);
         tL_documentAttributeAudio.duration = d / 1000.0d;
         tL_document.attributes.clear();
         tL_document.attributes.add(tL_documentAttributeAudio);
-        if (j > 700) {
+        if (j2 > 700) {
             if (i == 1) {
                 c = 1;
                 SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(tL_document, null, file.getAbsolutePath(), this.recordDialogId, this.recordReplyingMsg, this.recordReplyingTopMsg, null, null, null, null, z, i2, z2 ? Integer.MAX_VALUE : 0, null, null, false);
                 of.replyToStoryItem = this.recordReplyingStory;
                 of.quick_reply_shortcut = this.recordQuickReplyShortcut;
                 of.quick_reply_shortcut_id = this.recordQuickReplyShortcutId;
+                of.payStars = j;
                 SendMessagesHelper.getInstance(this.recordingCurrentAccount).sendMessage(of);
             } else {
                 c = 1;
@@ -3133,7 +3136,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, objArr);
         } else {
             z3 = false;
-            NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.recordingGuid), Boolean.FALSE, Integer.valueOf((int) j));
+            NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.recordingGuid), Boolean.FALSE, Integer.valueOf((int) j2));
             if (file != null) {
                 AutoDeleteMediaTask.unlockFile(file);
                 file.delete();
@@ -3142,7 +3145,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         requestRecordAudioFocus(z3);
     }
 
-    public void lambda$stopRecordingInternal$40(final File file, final TLRPC.TL_document tL_document, final int i, final boolean z, final int i2, final boolean z2) {
+    public void lambda$stopRecordingInternal$40(final File file, final TLRPC.TL_document tL_document, final int i, final boolean z, final int i2, final boolean z2, final long j) {
         String str;
         stopRecord(false);
         if (BuildVars.LOGS_ENABLED) {
@@ -3159,7 +3162,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.this.lambda$stopRecordingInternal$39(file, tL_document, i, z, i2, z2);
+                MediaController.this.lambda$stopRecordingInternal$39(file, tL_document, i, z, i2, z2, j);
             }
         });
     }
@@ -3363,7 +3366,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return;
         }
         if (!z) {
-            stopRecording(2, false, 0, false);
+            stopRecording(2, false, 0, false, 0L);
             return;
         }
         int currentAccount = this.raiseChat.getCurrentAccount();
@@ -3678,7 +3681,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     private native void stopRecord(boolean z);
 
-    public void stopRecordingInternal(final int i, final boolean z, final int i2, final boolean z2) {
+    public void stopRecordingInternal(final int i, final boolean z, final int i2, final boolean z2, final long j) {
         final File file;
         if (i == 0 || (file = this.recordingAudioFile) == null) {
             AutoDeleteMediaTask.unlockFile(this.recordingAudioFile);
@@ -3695,7 +3698,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.fileEncodingQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.this.lambda$stopRecordingInternal$40(file, tL_document, i, z, i2, z2);
+                    MediaController.this.lambda$stopRecordingInternal$40(file, tL_document, i, z, i2, z2, j);
                 }
             });
         }
@@ -4225,6 +4228,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public boolean isRecordingOrListeningByProximity() {
         MessageObject messageObject;
         return this.proximityTouched && (isRecordingAudio() || ((messageObject = this.playingMessageObject) != null && (messageObject.isVoice() || this.playingMessageObject.isRoundVideo())));
+    }
+
+    public boolean isRecordingPaused() {
+        return this.audioRecorderPaused;
     }
 
     public boolean isStreamingCurrentAudio() {
@@ -4873,7 +4880,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return;
         }
         if (z2) {
-            stopRecording(z ? 2 : 0, false, 0, false);
+            stopRecording(z ? 2 : 0, false, 0, false, 0L);
         }
         if (!this.sensorsStarted || this.ignoreOnPause) {
             return;
@@ -4900,7 +4907,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.proximityWakeLock.release();
     }
 
-    public void stopRecording(final int i, final boolean z, final int i2, final boolean z2) {
+    public void stopRecording(final int i, final boolean z, final int i2, final boolean z2, final long j) {
         Runnable runnable = this.recordStartRunnable;
         if (runnable != null) {
             this.recordQueue.cancelRunnable(runnable);
@@ -4909,7 +4916,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.this.lambda$stopRecording$42(i, z, i2, z2);
+                MediaController.this.lambda$stopRecording$42(i, z, i2, z2, j);
             }
         });
     }

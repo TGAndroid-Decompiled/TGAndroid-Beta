@@ -21,6 +21,7 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.GroupCallActivity;
 
@@ -1686,6 +1687,15 @@ public class ChatObject {
             return null;
         }
         return chat.username;
+    }
+
+    public static TL_account.RequirementToContact getRequirementToContact(TLRPC.Chat chat) {
+        if (chat == null || chat.send_paid_messages_stars == 0) {
+            return null;
+        }
+        TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
+        requirementtocontactpaidmessages.stars_amount = chat.send_paid_messages_stars;
+        return requirementtocontactpaidmessages;
     }
 
     public static String getRestrictedErrorText(TLRPC.Chat chat, int i) {

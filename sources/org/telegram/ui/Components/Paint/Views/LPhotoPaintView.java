@@ -2859,7 +2859,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             long start;
 
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
                 try {
                     HashMap<Object, Object> selectedPhotos = chatAttachAlert.getPhotoLayout().getSelectedPhotos();
                     if (selectedPhotos.isEmpty()) {
@@ -2915,8 +2915,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
             }
         });
         chatAttachAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {

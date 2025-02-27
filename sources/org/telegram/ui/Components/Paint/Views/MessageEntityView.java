@@ -595,8 +595,8 @@ public abstract class MessageEntityView extends EntityView {
                                     currentMessagesGroup.transitionParams.pinnedBotton = chatMessageCell3.isPinnedBottom();
                                     int left = chatMessageCell3.getLeft() + chatMessageCell3.getBackgroundDrawableLeft();
                                     int left2 = chatMessageCell3.getLeft() + chatMessageCell3.getBackgroundDrawableRight();
-                                    int top = chatMessageCell3.getTop() + chatMessageCell3.getBackgroundDrawableTop();
-                                    int top2 = chatMessageCell3.getTop() + chatMessageCell3.getBackgroundDrawableBottom();
+                                    int top = chatMessageCell3.getTop() + chatMessageCell3.getPaddingTop() + chatMessageCell3.getBackgroundDrawableTop();
+                                    int top2 = chatMessageCell3.getTop() + chatMessageCell3.getPaddingTop() + chatMessageCell3.getBackgroundDrawableBottom();
                                     if ((chatMessageCell3.getCurrentPosition().flags & i4) == 0) {
                                         top -= AndroidUtilities.dp(10.0f);
                                     }

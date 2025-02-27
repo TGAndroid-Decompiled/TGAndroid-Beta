@@ -77,6 +77,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private AnimatorSet currentAnimation;
     private GroupCreateSpan currentDeletingSpan;
     private AnimatorSet currentDoneButtonAnimation;
+    private String customTitle;
     private GroupCreateActivityDelegate delegate;
     private ContactsAddActivityDelegate delegate2;
     private boolean doneButtonVisible;
@@ -857,7 +858,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         if (contactsAddActivityDelegate != null) {
             contactsAddActivityDelegate.didSelectUsers(arrayList, i);
         }
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public boolean onDonePressed(boolean z) {
@@ -961,7 +962,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     if (groupCreateActivityDelegate != null) {
                         groupCreateActivityDelegate.didSelectUsers(this.selectedPremium != null, this.selectedMiniapps != null, arrayList2);
                     }
-                    lambda$onBackPressed$323();
+                    lambda$onBackPressed$335();
                 } else {
                     Bundle bundle2 = new Bundle();
                     int size = arrayList2.size();
@@ -1299,5 +1300,9 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
     public void setInfo(TLRPC.ChatFull chatFull) {
         this.info = chatFull;
+    }
+
+    public void setTitle(String str) {
+        this.customTitle = str;
     }
 }

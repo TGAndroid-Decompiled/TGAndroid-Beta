@@ -4,11 +4,107 @@ import android.text.TextUtils;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 
 public class UserObject {
     public static final long ANONYMOUS = 2666000;
     public static final long REPLY_BOT = 1271266957;
     public static final long VERIFY = 489000;
+
+    public static boolean applyRequirementToContact(TLRPC.User user, TL_account.RequirementToContact requirementToContact) {
+        int i;
+        if (user == null) {
+            return false;
+        }
+        long j = 0;
+        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
+            if (!user.contact_require_premium && user.send_paid_messages_stars == 0) {
+                return false;
+            }
+            user.contact_require_premium = false;
+        } else {
+            if (!(requirementToContact instanceof TL_account.requirementToContactPremium)) {
+                if (!(requirementToContact instanceof TL_account.requirementToContactPaidMessages)) {
+                    return false;
+                }
+                j = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+                if (!user.contact_require_premium && user.send_paid_messages_stars == j) {
+                    return false;
+                }
+                user.contact_require_premium = false;
+                i = user.flags2 | 16384;
+                user.flags2 = i;
+                user.send_paid_messages_stars = j;
+                return true;
+            }
+            if (user.contact_require_premium && user.send_paid_messages_stars == 0) {
+                return false;
+            }
+            user.contact_require_premium = true;
+        }
+        i = user.flags2 & (-16385);
+        user.flags2 = i;
+        user.send_paid_messages_stars = j;
+        return true;
+    }
+
+    public static boolean applyRequirementToContact(TLRPC.UserFull userFull, TL_account.RequirementToContact requirementToContact) {
+        int i;
+        if (userFull == null) {
+            return false;
+        }
+        long j = 0;
+        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
+            if (!userFull.contact_require_premium && userFull.send_paid_messages_stars == 0) {
+                return false;
+            }
+            userFull.contact_require_premium = false;
+        } else {
+            if (!(requirementToContact instanceof TL_account.requirementToContactPremium)) {
+                if (!(requirementToContact instanceof TL_account.requirementToContactPaidMessages)) {
+                    return false;
+                }
+                j = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+                if (!userFull.contact_require_premium && userFull.send_paid_messages_stars == j) {
+                    return false;
+                }
+                userFull.contact_require_premium = false;
+                i = userFull.flags2 | 16384;
+                userFull.flags2 = i;
+                userFull.send_paid_messages_stars = j;
+                return true;
+            }
+            if (userFull.contact_require_premium && userFull.send_paid_messages_stars == 0) {
+                return false;
+            }
+            userFull.contact_require_premium = true;
+        }
+        i = userFull.flags2 & (-16385);
+        userFull.flags2 = i;
+        userFull.send_paid_messages_stars = j;
+        return true;
+    }
+
+    public static boolean eq(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
+        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
+            requirementToContact = null;
+        }
+        if (requirementToContact2 instanceof TL_account.requirementToContactEmpty) {
+            requirementToContact2 = null;
+        }
+        if (requirementToContact == null && requirementToContact2 == null) {
+            return true;
+        }
+        if (requirementToContact != null && requirementToContact2 != null) {
+            if ((requirementToContact instanceof TL_account.requirementToContactPremium) && (requirementToContact2 instanceof TL_account.requirementToContactPremium)) {
+                return true;
+            }
+            if ((requirementToContact instanceof TL_account.requirementToContactPaidMessages) && (requirementToContact2 instanceof TL_account.requirementToContactPaidMessages) && ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount == ((TL_account.requirementToContactPaidMessages) requirementToContact2).stars_amount) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static int getColorId(TLRPC.User user) {
         if (user == null) {
@@ -153,6 +249,36 @@ public class UserObject {
                     return tL_username.username;
                 }
             }
+        }
+        return null;
+    }
+
+    public static TL_account.RequirementToContact getRequirementToContact(TLRPC.User user) {
+        if (user == null) {
+            return null;
+        }
+        if (user.send_paid_messages_stars != 0) {
+            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
+            requirementtocontactpaidmessages.stars_amount = user.send_paid_messages_stars;
+            return requirementtocontactpaidmessages;
+        }
+        if (user.contact_require_premium) {
+            return new TL_account.requirementToContactPremium();
+        }
+        return null;
+    }
+
+    public static TL_account.RequirementToContact getRequirementToContact(TLRPC.UserFull userFull) {
+        if (userFull == null) {
+            return null;
+        }
+        if (userFull.send_paid_messages_stars != 0) {
+            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
+            requirementtocontactpaidmessages.stars_amount = userFull.send_paid_messages_stars;
+            return requirementtocontactpaidmessages;
+        }
+        if (userFull.contact_require_premium) {
+            return new TL_account.requirementToContactPremium();
         }
         return null;
     }

@@ -156,7 +156,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+        public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
             try {
                 HashMap<Object, Object> selectedPhotos = this.val$chatAttachAlert.getPhotoLayout().getSelectedPhotos();
                 if (selectedPhotos.isEmpty()) {
@@ -262,8 +262,8 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
         }
     }
 
@@ -284,7 +284,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+        public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
             try {
                 HashMap<Object, Object> selectedPhotos = ChatThemeBottomSheet.this.chatAttachAlert.getPhotoLayout().getSelectedPhotos();
                 if (selectedPhotos.isEmpty()) {
@@ -373,8 +373,8 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
         }
     }
 

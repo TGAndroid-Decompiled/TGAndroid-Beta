@@ -916,7 +916,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 this.startedTrackingX = (int) motionEvent.getX();
                 int y2 = (int) motionEvent.getY();
                 this.startedTrackingY = y2;
-                if (y2 < BottomSheet.this.containerView.getTop() || this.startedTrackingX < BottomSheet.this.containerView.getLeft() || this.startedTrackingX > BottomSheet.this.containerView.getRight()) {
+                if (BottomSheet.this.isTouchOutside(this.startedTrackingX, y2)) {
                     BottomSheet.this.onDismissWithTouchOutside();
                     return true;
                 }
@@ -1358,9 +1358,15 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 BottomSheet.this.lambda$startOpenAnimation$5(valueAnimator2);
             }
         });
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.currentSheetAnimation = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofInt(this.backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, this.dimBehind ? this.dimBehindAlpha : 0), this.navigationBarAnimation);
+        this.currentSheetAnimation = new AnimatorSet();
+        ArrayList<Animator> arrayList = new ArrayList<>();
+        arrayList.add(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_X, 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.ALPHA, 1.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f));
+        arrayList.add(ObjectAnimator.ofInt(this.backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, this.dimBehind ? this.dimBehindAlpha : 0));
+        arrayList.add(this.navigationBarAnimation);
+        appendOpenAnimator(true, arrayList);
+        this.currentSheetAnimation.playTogether(arrayList);
         if (this.transitionFromRight) {
             this.currentSheetAnimation.setDuration(250L);
             animatorSet = this.currentSheetAnimation;
@@ -1377,8 +1383,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.currentSheetAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationCancel(Animator animator) {
-                AnimatorSet animatorSet3 = BottomSheet.this.currentSheetAnimation;
-                if (animatorSet3 == null || !animatorSet3.equals(animator)) {
+                AnimatorSet animatorSet2 = BottomSheet.this.currentSheetAnimation;
+                if (animatorSet2 == null || !animatorSet2.equals(animator)) {
                     return;
                 }
                 BottomSheet bottomSheet = BottomSheet.this;
@@ -1388,8 +1394,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                AnimatorSet animatorSet3 = BottomSheet.this.currentSheetAnimation;
-                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                AnimatorSet animatorSet2 = BottomSheet.this.currentSheetAnimation;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     BottomSheet bottomSheet = BottomSheet.this;
                     bottomSheet.currentSheetAnimation = null;
                     bottomSheet.currentSheetAnimationType = 0;
@@ -1419,6 +1425,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         }
         this.currentSheetAnimation.start();
+    }
+
+    protected void appendOpenAnimator(boolean z, ArrayList<Animator> arrayList) {
     }
 
     @Override
@@ -1662,7 +1671,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1014getWindowView() {
+    public View mo1045getWindowView() {
         return this.container;
     }
 
@@ -1691,6 +1700,10 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     @Override
     public boolean isShown() {
         return !this.dismissed;
+    }
+
+    public boolean isTouchOutside(float f, float f2) {
+        return f2 < ((float) this.containerView.getTop()) || f < ((float) this.containerView.getLeft()) || f > ((float) this.containerView.getRight());
     }
 
     public void mainContainerDispatchDraw(Canvas canvas) {
@@ -1956,7 +1969,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-            AndroidUtilities.setLightNavigationBar(mo1014getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1045getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(getWindow(), this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);

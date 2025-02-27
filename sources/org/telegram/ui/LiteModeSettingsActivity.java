@@ -333,6 +333,11 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 }
 
                 @Override
+                public boolean needVisuallyDivideSteps() {
+                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                }
+
+                @Override
                 public void onSeekBarDrag(boolean z, float f) {
                     int round = Math.round(f * 100.0f);
                     if (round != LiteMode.getPowerSaverLevel()) {
@@ -975,7 +980,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LiteModeSettingsActivity.this.lambda$onBackPressed$323();
+                    LiteModeSettingsActivity.this.lambda$onBackPressed$335();
                 }
             }
         });

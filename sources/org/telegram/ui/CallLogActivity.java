@@ -57,6 +57,7 @@ import org.telegram.ui.Cells.LoadingCell;
 import org.telegram.ui.Cells.LocationCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -359,6 +360,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         private int callsEndRow;
         private int callsHeaderRow;
         private int callsStartRow;
+        private int createLinkInfoRow;
+        private int createLinkRow;
         private int loadingCallsRow;
         private Context mContext;
         private int rowsCount;
@@ -377,7 +380,9 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             this.callsEndRow = -1;
             this.loadingCallsRow = -1;
             this.sectionRow = -1;
-            this.rowsCount = 0;
+            this.createLinkRow = 0;
+            this.rowsCount = 2;
+            this.createLinkInfoRow = 1;
             if (!CallLogActivity.this.activeGroupCalls.isEmpty()) {
                 int i = this.rowsCount;
                 int i2 = i + 1;
@@ -429,13 +434,16 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             if (i == this.loadingCallsRow) {
                 return 1;
             }
-            return i == this.sectionRow ? 5 : 2;
+            if (i == this.sectionRow || i == this.createLinkInfoRow) {
+                return 5;
+            }
+            return i == this.createLinkRow ? 6 : 2;
         }
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             int itemViewType = viewHolder.getItemViewType();
-            return itemViewType == 0 || itemViewType == 4;
+            return itemViewType == 0 || itemViewType == 4 || itemViewType == 6;
         }
 
         @Override
@@ -541,10 +549,29 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (itemViewType != 4) {
-                return;
+                if (itemViewType != 5) {
+                    if (itemViewType != 6) {
+                        return;
+                    }
+                    TextCell textCell = (TextCell) viewHolder.itemView;
+                    textCell.setTextAndIcon((CharSequence) "Create Call Link", R.drawable.menu_link_create, false);
+                    int i6 = Theme.key_windowBackgroundWhiteBlueText4;
+                    textCell.setColors(i6, i6);
+                    return;
+                }
+                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                if (i == this.createLinkInfoRow) {
+                    textInfoPrivacyCell.setText("You can create a link that will allow your friends on Telegram to join the call.");
+                    textInfoPrivacyCell.setFixedSize(0);
+                    return;
+                } else {
+                    textInfoPrivacyCell.setText(null);
+                    textInfoPrivacyCell.setFixedSize(12);
+                    return;
+                }
             }
-            int i6 = i - this.activeStartRow;
-            TLRPC.Chat chat = CallLogActivity.this.getMessagesController().getChat((Long) CallLogActivity.this.activeGroupCalls.get(i6));
+            int i7 = i - this.activeStartRow;
+            TLRPC.Chat chat = CallLogActivity.this.getMessagesController().getChat((Long) CallLogActivity.this.activeGroupCalls.get(i7));
             GroupCallCell groupCallCell = (GroupCallCell) viewHolder.itemView;
             groupCallCell.setChat(chat);
             groupCallCell.button.setTag(Long.valueOf(chat.id));
@@ -555,7 +582,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     string = LocaleController.getString(R.string.MegaLocation);
                     String str2 = string;
                     ProfileSearchCell profileSearchCell = groupCallCell.profileSearchCell;
-                    if (i6 != CallLogActivity.this.activeGroupCalls.size() - 1 && !CallLogActivity.this.endReached) {
+                    if (i7 != CallLogActivity.this.activeGroupCalls.size() - 1 && !CallLogActivity.this.endReached) {
                         r5 = true;
                     }
                     profileSearchCell.useSeparator = r5;
@@ -566,7 +593,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             string = LocaleController.getString(i3).toLowerCase();
             String str22 = string;
             ProfileSearchCell profileSearchCell2 = groupCallCell.profileSearchCell;
-            if (i6 != CallLogActivity.this.activeGroupCalls.size() - 1) {
+            if (i7 != CallLogActivity.this.activeGroupCalls.size() - 1) {
                 r5 = true;
             }
             profileSearchCell2.useSeparator = r5;
@@ -575,26 +602,37 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View callCell;
+            FrameLayout frameLayout;
+            FrameLayout frameLayout2;
             if (i == 0) {
-                callCell = new CallCell(this.mContext);
+                frameLayout = new CallCell(this.mContext);
             } else if (i == 1) {
                 FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext);
                 flickerLoadingView.setIsSingleCell(true);
                 flickerLoadingView.setViewType(8);
                 flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 flickerLoadingView.showDate(false);
-                callCell = flickerLoadingView;
-            } else if (i == 2) {
-                callCell = new TextInfoPrivacyCell(this.mContext);
-                callCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-            } else if (i != 3) {
-                callCell = i != 4 ? new ShadowSectionCell(this.mContext) : new GroupCallCell(this.mContext);
+                frameLayout = flickerLoadingView;
+            } else if (i != 2) {
+                if (i == 3) {
+                    frameLayout2 = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 2, false, CallLogActivity.this.getResourceProvider());
+                } else if (i == 4) {
+                    frameLayout = new GroupCallCell(this.mContext);
+                } else if (i != 6) {
+                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
+                    textInfoPrivacyCell.setFixedSize(12);
+                    frameLayout = textInfoPrivacyCell;
+                } else {
+                    frameLayout2 = new TextCell(this.mContext);
+                }
+                frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                frameLayout = frameLayout2;
             } else {
-                callCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 2, false, CallLogActivity.this.getResourceProvider());
-                callCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                FrameLayout textInfoPrivacyCell2 = new TextInfoPrivacyCell(this.mContext);
+                textInfoPrivacyCell2.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                frameLayout = textInfoPrivacyCell2;
             }
-            return new RecyclerListView.Holder(callCell);
+            return new RecyclerListView.Holder(frameLayout);
         }
 
         @Override
@@ -1060,7 +1098,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         CallLogActivity.this.hideActionMode(true);
                         return;
                     } else {
-                        CallLogActivity.this.lambda$onBackPressed$323();
+                        CallLogActivity.this.lambda$onBackPressed$335();
                         return;
                     }
                 }

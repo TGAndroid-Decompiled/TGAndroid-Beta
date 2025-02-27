@@ -32,6 +32,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -340,11 +341,16 @@ public class PhonebookShareAlert extends BottomSheet {
     }
 
     public void lambda$new$4(boolean z, int i) {
-        this.delegate.didSelectContact(this.currentUser, z, i, 0L, false);
+        this.delegate.didSelectContact(this.currentUser, z, i, 0L, false, 0L);
         lambda$new$0();
     }
 
-    public void lambda$new$5(Theme.ResourcesProvider resourcesProvider, View view) {
+    public void lambda$new$5(Long l) {
+        this.delegate.didSelectContact(this.currentUser, true, 0, 0L, false, l.longValue());
+        lambda$new$0();
+    }
+
+    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) {
         StringBuilder sb;
         if (this.isImport) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -475,8 +481,13 @@ public class PhonebookShareAlert extends BottomSheet {
                 }
             }, resourcesProvider);
         } else {
-            this.delegate.didSelectContact(this.currentUser, true, 0, 0L, false);
-            lambda$new$0();
+            BaseFragment baseFragment2 = this.parentFragment;
+            AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, baseFragment2 instanceof ChatActivity ? ((ChatActivity) baseFragment2).getDialogId() : 0L, 1, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    PhonebookShareAlert.this.lambda$new$5((Long) obj);
+                }
+            });
         }
     }
 

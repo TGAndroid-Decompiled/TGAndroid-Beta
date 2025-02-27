@@ -157,7 +157,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
 
         @Override
-        public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+        public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
             BaseFragment baseFragment = ImageUpdater.this.parentFragment;
             if (baseFragment == null || baseFragment.getParentActivity() == null || ImageUpdater.this.chatAttachAlert == null) {
                 return;
@@ -259,8 +259,8 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
 
         @Override
-        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
         }
     }
 
@@ -432,7 +432,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
 
                 @Override
-                public void didPressedButton(int i2, boolean z2, boolean z22, int i22, long j, boolean z3, boolean z4) {
+                public void didPressedButton(int i2, boolean z2, boolean z22, int i22, long j, boolean z3, boolean z4, long j2) {
                     BaseFragment baseFragment2 = ImageUpdater.this.parentFragment;
                     if (baseFragment2 == null || baseFragment2.getParentActivity() == null || ImageUpdater.this.chatAttachAlert == null) {
                         return;
@@ -534,8 +534,8 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
 
                 @Override
-                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i2, long j, boolean z22) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i2, j, z22);
+                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i2, long j, boolean z22, long j2) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i2, j, z22, j2);
                 }
             });
             this.chatAttachAlert.setImageUpdater(this);

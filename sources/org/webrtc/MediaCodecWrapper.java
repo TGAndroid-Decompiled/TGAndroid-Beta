@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import android.media.MediaCodec;
+import android.media.MediaCodecInfo;
 import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Bundle;
@@ -18,11 +19,17 @@ interface MediaCodecWrapper {
 
     void flush();
 
-    ByteBuffer[] getInputBuffers();
+    MediaCodecInfo getCodecInfo();
 
-    ByteBuffer[] getOutputBuffers();
+    ByteBuffer getInputBuffer(int i);
+
+    MediaFormat getInputFormat();
+
+    ByteBuffer getOutputBuffer(int i);
 
     MediaFormat getOutputFormat();
+
+    MediaFormat getOutputFormat(int i);
 
     void queueInputBuffer(int i, int i2, int i3, long j, int i4);
 

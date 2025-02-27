@@ -53,6 +53,11 @@ public class BlurSettingsBottomSheet extends BottomSheet {
             }
 
             @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 BlurSettingsBottomSheet.saturation = f;
                 textView.setText("Saturation " + (f * 5.0f));
@@ -88,6 +93,11 @@ public class BlurSettingsBottomSheet extends BottomSheet {
             }
 
             @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 textView2.setText("Alpha " + BlurSettingsBottomSheet.blurAlpha);
                 BlurSettingsBottomSheet.blurAlpha = f;
@@ -119,6 +129,11 @@ public class BlurSettingsBottomSheet extends BottomSheet {
             @Override
             public int getStepsCount() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
             }
 
             @Override

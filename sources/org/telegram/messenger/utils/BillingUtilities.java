@@ -117,11 +117,12 @@ public abstract class BillingUtilities {
                         FileLog.e("Billing: Extract payload, failed to get purpose", e);
                         inputStorePaymentPurpose = null;
                     }
-                    AccountInstance findAccountById = findAccountById(Long.parseLong(new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8)));
+                    long parseLong = Long.parseLong(new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8));
+                    AccountInstance findAccountById = findAccountById(parseLong);
                     if (findAccountById != null) {
                         return Pair.create(findAccountById, inputStorePaymentPurpose);
                     }
-                    FileLog.d("Billing: Extract payload. AccountInstance not found");
+                    FileLog.d("Billing: Extract payload. AccountInstance not found, accountId=" + parseLong);
                     return null;
                 }
             } catch (Exception e2) {

@@ -128,6 +128,11 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                 }
 
                 @Override
+                public boolean needVisuallyDivideSteps() {
+                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                }
+
+                @Override
                 public void onSeekBarDrag(boolean z, float f) {
                     SeekBarCell seekBarCell = SeekBarCell.this;
                     seekBarCell.value = seekBarCell.min + ((SeekBarCell.this.max - SeekBarCell.this.min) * f);

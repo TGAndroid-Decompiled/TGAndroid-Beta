@@ -195,7 +195,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public interface LocationActivityDelegate {
-        void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2);
+        void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j);
     }
 
     public class MapOverlayView extends FrameLayout {
@@ -207,8 +207,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$addInfoView$0(VenueLocation venueLocation, boolean z, int i) {
-            LocationActivity.this.delegate.didSelectLocation(venueLocation.venue, LocationActivity.this.locationType, z, i);
-            LocationActivity.this.lambda$onBackPressed$323();
+            LocationActivity.this.delegate.didSelectLocation(venueLocation.venue, LocationActivity.this.locationType, z, i, 0L);
+            LocationActivity.this.lambda$onBackPressed$335();
         }
 
         public void lambda$addInfoView$1(final VenueLocation venueLocation, View view) {
@@ -220,8 +220,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                     }
                 });
             } else {
-                LocationActivity.this.delegate.didSelectLocation(venueLocation.venue, LocationActivity.this.locationType, true, 0);
-                LocationActivity.this.lambda$onBackPressed$323();
+                LocationActivity.this.delegate.didSelectLocation(venueLocation.venue, LocationActivity.this.locationType, true, 0, 0L);
+                LocationActivity.this.lambda$onBackPressed$335();
             }
         }
 
@@ -1033,8 +1033,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         } catch (Throwable unused) {
         }
         alertDialogArr[0] = null;
-        this.delegate.didSelectLocation(tL_messageMediaVenue, 4, true, 0);
-        lambda$onBackPressed$323();
+        this.delegate.didSelectLocation(tL_messageMediaVenue, 4, true, 0, 0L);
+        lambda$onBackPressed$335();
     }
 
     public void lambda$createView$13(final AlertDialog[] alertDialogArr, final TLRPC.TL_messageMediaVenue tL_messageMediaVenue, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1051,26 +1051,21 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$createView$15(TLRPC.TL_messageMediaGeo tL_messageMediaGeo, boolean z, int i) {
-        this.delegate.didSelectLocation(tL_messageMediaGeo, this.locationType, z, i);
-        lambda$onBackPressed$323();
+        this.delegate.didSelectLocation(tL_messageMediaGeo, this.locationType, z, i, 0L);
+        lambda$onBackPressed$335();
     }
 
     public void lambda$createView$16(Object obj, boolean z, int i) {
-        this.delegate.didSelectLocation((TLRPC.TL_messageMediaVenue) obj, this.locationType, z, i);
-        lambda$onBackPressed$323();
+        this.delegate.didSelectLocation((TLRPC.TL_messageMediaVenue) obj, this.locationType, z, i, 0L);
+        lambda$onBackPressed$335();
     }
 
     public void lambda$createView$17(View view, int i) {
-        Activity parentActivity;
-        long dialogId;
-        AlertsCreator.ScheduleDatePickerDelegate scheduleDatePickerDelegate;
-        LocationActivityDelegate locationActivityDelegate;
-        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         MessageObject messageObject;
         IMapsProvider.IMap iMap;
         IMapsProvider mapsProvider;
         IMapsProvider.LatLng latLng;
-        final TLRPC.TL_messageMediaVenue tL_messageMediaVenue2;
+        final TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         this.selectedMarkerId = -1L;
         int i2 = this.locationType;
         if (i2 != 4) {
@@ -1109,20 +1104,15 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                         }
                         ChatActivity chatActivity = this.parentFragment;
                         if (chatActivity != null && chatActivity.isInScheduleMode()) {
-                            parentActivity = getParentActivity();
-                            dialogId = this.parentFragment.getDialogId();
-                            scheduleDatePickerDelegate = new AlertsCreator.ScheduleDatePickerDelegate() {
+                            AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                                 @Override
                                 public final void didSelectDate(boolean z, int i3) {
                                     LocationActivity.this.lambda$createView$16(item, z, i3);
                                 }
-                            };
-                            AlertsCreator.createScheduleDatePickerDialog(parentActivity, dialogId, scheduleDatePickerDelegate);
+                            });
                             return;
                         }
-                        tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) item;
-                        locationActivityDelegate = this.delegate;
-                        locationActivityDelegate.didSelectLocation(tL_messageMediaVenue, this.locationType, true, 0);
+                        this.delegate.didSelectLocation((TLRPC.TL_messageMediaVenue) item, this.locationType, true, 0, 0L);
                     } else if (!getLocationController().isSharingLocation(this.dialogId)) {
                         openShareLiveLocation(false, 0);
                         return;
@@ -1146,41 +1136,36 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 tL_messageMediaGeo.geo._long = AndroidUtilities.fixLocationCoord(this.userLocation.getLongitude());
                 ChatActivity chatActivity2 = this.parentFragment;
                 if (chatActivity2 != null && chatActivity2.isInScheduleMode()) {
-                    parentActivity = getParentActivity();
-                    dialogId = this.parentFragment.getDialogId();
-                    scheduleDatePickerDelegate = new AlertsCreator.ScheduleDatePickerDelegate() {
+                    AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i3) {
                             LocationActivity.this.lambda$createView$15(tL_messageMediaGeo, z, i3);
                         }
-                    };
-                    AlertsCreator.createScheduleDatePickerDialog(parentActivity, dialogId, scheduleDatePickerDelegate);
+                    });
                     return;
                 }
-                tL_messageMediaVenue = tL_messageMediaGeo;
-                locationActivityDelegate = this.delegate;
-                locationActivityDelegate.didSelectLocation(tL_messageMediaVenue, this.locationType, true, 0);
+                this.delegate.didSelectLocation(tL_messageMediaGeo, this.locationType, true, 0, 0L);
             }
             iMap.animateCamera(mapsProvider.newCameraUpdateLatLngZoom(latLng, this.map.getMaxZoomLevel() - 4.0f));
             return;
         }
-        if (i != 1 || (tL_messageMediaVenue2 = (TLRPC.TL_messageMediaVenue) this.adapter.getItem(i)) == null) {
+        if (i != 1 || (tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.adapter.getItem(i)) == null) {
             return;
         }
         if (this.dialogId != 0) {
             final AlertDialog[] alertDialogArr = {new AlertDialog(getParentActivity(), 3)};
             TLRPC.TL_channels_editLocation tL_channels_editLocation = new TLRPC.TL_channels_editLocation();
-            tL_channels_editLocation.address = tL_messageMediaVenue2.address;
+            tL_channels_editLocation.address = tL_messageMediaVenue.address;
             tL_channels_editLocation.channel = getMessagesController().getInputChannel(-this.dialogId);
             TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
             tL_channels_editLocation.geo_point = tL_inputGeoPoint;
-            TLRPC.GeoPoint geoPoint3 = tL_messageMediaVenue2.geo;
+            TLRPC.GeoPoint geoPoint3 = tL_messageMediaVenue.geo;
             tL_inputGeoPoint.lat = geoPoint3.lat;
             tL_inputGeoPoint._long = geoPoint3._long;
             final int sendRequest = getConnectionsManager().sendRequest(tL_channels_editLocation, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    LocationActivity.this.lambda$createView$13(alertDialogArr, tL_messageMediaVenue2, tLObject, tL_error);
+                    LocationActivity.this.lambda$createView$13(alertDialogArr, tL_messageMediaVenue, tLObject, tL_error);
                 }
             });
             alertDialogArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -1192,8 +1177,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             showDialog(alertDialogArr[0]);
             return;
         }
-        this.delegate.didSelectLocation(tL_messageMediaVenue2, 4, true, 0);
-        lambda$onBackPressed$323();
+        this.delegate.didSelectLocation(tL_messageMediaVenue, 4, true, 0, 0L);
+        lambda$onBackPressed$335();
     }
 
     public boolean lambda$createView$18(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
@@ -1332,8 +1317,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$createView$26(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, boolean z, int i) {
-        this.delegate.didSelectLocation(tL_messageMediaVenue, this.locationType, z, i);
-        lambda$onBackPressed$323();
+        this.delegate.didSelectLocation(tL_messageMediaVenue, this.locationType, z, i, 0L);
+        lambda$onBackPressed$335();
     }
 
     public void lambda$createView$27(ActionBarMenu actionBarMenu, View view, int i) {
@@ -1354,8 +1339,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 });
                 return;
             } else {
-                this.delegate.didSelectLocation(item, this.locationType, true, 0);
-                lambda$onBackPressed$323();
+                this.delegate.didSelectLocation(item, this.locationType, true, 0, 0L);
+                lambda$onBackPressed$335();
                 return;
             }
         }
@@ -1602,7 +1587,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             FileLog.e(e);
         }
         this.hasScreenshot = true;
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public void lambda$onCheckGlScreenshot$45(Bitmap bitmap, final GLSurfaceView gLSurfaceView) {
@@ -2085,9 +2070,9 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         tL_messageMediaGeoLive.period = i;
         tL_messageMediaGeoLive.proximity_notification_radius = i2;
         tL_messageMediaGeoLive.flags = i3 | 9;
-        this.delegate.didSelectLocation(tL_messageMediaGeoLive, this.locationType, true, 0);
+        this.delegate.didSelectLocation(tL_messageMediaGeoLive, this.locationType, true, 0, 0L);
         if (i2 <= 0) {
-            lambda$onBackPressed$323();
+            lambda$onBackPressed$335();
             return;
         }
         this.proximitySheet.setRadiusSet();

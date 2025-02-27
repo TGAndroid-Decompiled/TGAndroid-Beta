@@ -1069,13 +1069,37 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     }
 
     public void updateReorder(RecyclerView.ViewHolder viewHolder, boolean z) {
-        if (viewHolder != null && viewHolder.getItemViewType() == 16) {
+        if (viewHolder == null) {
+            return;
+        }
+        int itemViewType = viewHolder.getItemViewType();
+        if (itemViewType < UItem.factoryViewTypeStartsWith) {
+            if (itemViewType != 16) {
+                return;
+            }
             ((QuickRepliesActivity.QuickReplyView) viewHolder.itemView).setReorder(z);
+        } else {
+            UItem.UItemFactory findFactory = UItem.findFactory(itemViewType);
+            if (findFactory != null) {
+                findFactory.attachedView(viewHolder.itemView, getItem(viewHolder.getAdapterPosition()));
+            }
         }
     }
 
     public void updateReorder(boolean z) {
         this.allowReorder = z;
+    }
+
+    public void updateWithoutNotify() {
+        this.oldItems.clear();
+        this.oldItems.addAll(this.items);
+        this.items.clear();
+        this.whiteSections.clear();
+        this.reorderSections.clear();
+        Utilities.Callback2 callback2 = this.fillItems;
+        if (callback2 != null) {
+            callback2.run(this.items, this);
+        }
     }
 
     public void whiteSectionEnd() {

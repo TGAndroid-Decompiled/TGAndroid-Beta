@@ -1,7 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda42;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda43;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
@@ -103,6 +103,19 @@ public class TL_account {
                 tL_reactionNotificationsFromAll.readParams(inputSerializedData, z);
             }
             return tL_reactionNotificationsFromAll;
+        }
+    }
+
+    public static class RequirementToContact extends TLObject {
+        public static RequirementToContact TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            RequirementToContact requirementtocontactempty = i != -1258914157 ? i != -444472087 ? i != 84580409 ? null : new requirementToContactEmpty() : new requirementToContactPremium() : new requirementToContactPaidMessages();
+            if (requirementtocontactempty == null && z) {
+                throw new RuntimeException(String.format("can't parse magic %x in RequirementToContact", Integer.valueOf(i)));
+            }
+            if (requirementtocontactempty != null) {
+                requirementtocontactempty.readParams(inputSerializedData, z);
+            }
+            return requirementtocontactempty;
         }
     }
 
@@ -355,7 +368,7 @@ public class TL_account {
             this.link = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda43(), z);
             }
             if ((this.flags & 2) != 0) {
                 this.title = inputSerializedData.readString(z);
@@ -838,7 +851,7 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda43(), z);
             }
             if ((this.flags & 2) != 0) {
                 this.title = inputSerializedData.readString(z);
@@ -1362,6 +1375,27 @@ public class TL_account {
             outputSerializedData.writeString(this.public_key);
             Vector.serialize(outputSerializedData, this.value_hashes);
             this.credentials.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class addNoPaidMessagesException extends TLObject {
+        public static final int constructor = 1869122215;
+        public int flags;
+        public boolean refund_charged;
+        public TLRPC.InputUser user_id;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1869122215);
+            int i = this.refund_charged ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            outputSerializedData.writeInt32(i);
+            this.user_id.serializeToStream(outputSerializedData);
         }
     }
 
@@ -2231,6 +2265,22 @@ public class TL_account {
         }
     }
 
+    public static class getPaidMessagesRevenue extends TLObject {
+        public static final int constructor = -249139400;
+        public TLRPC.InputUser user_id;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return paidMessagesRevenue.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-249139400);
+            this.user_id.serializeToStream(outputSerializedData);
+        }
+    }
+
     public static class getPassword extends TLObject {
         public static final int constructor = 1418342645;
 
@@ -2304,6 +2354,32 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(257392901);
             outputSerializedData.writeInt64(this.hash);
+        }
+    }
+
+    public static class getRequirementsToContact extends TLObject {
+        public static final int constructor = -660962397;
+        public ArrayList<TLRPC.InputUser> id = new ArrayList<>();
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Vector.TLDeserialize(inputSerializedData, i, z, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i2, boolean z2) {
+                    return TL_account.RequirementToContact.TLdeserialize(inputSerializedData2, i2, z2);
+                }
+            });
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.id = Vector.deserialize(inputSerializedData, new TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0(), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-660962397);
+            Vector.serialize(outputSerializedData, this.id);
         }
     }
 
@@ -2505,6 +2581,34 @@ public class TL_account {
             outputSerializedData.writeInt32(-18000023);
             this.wallpaper.serializeToStream(outputSerializedData);
             this.settings.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class paidMessagesRevenue extends TLObject {
+        public static final int constructor = 504403720;
+        public long stars_amount;
+
+        public static paidMessagesRevenue TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (i != 504403720) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in paidMessagesRevenue", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            paidMessagesRevenue paidmessagesrevenue = new paidMessagesRevenue();
+            paidmessagesrevenue.readParams(inputSerializedData, z);
+            return paidmessagesrevenue;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.stars_amount = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(504403720);
+            outputSerializedData.writeInt64(this.stars_amount);
         }
     }
 
@@ -2736,6 +2840,40 @@ public class TL_account {
         }
     }
 
+    public static class requirementToContactEmpty extends RequirementToContact {
+        public static final int constructor = 84580409;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(84580409);
+        }
+    }
+
+    public static class requirementToContactPaidMessages extends RequirementToContact {
+        public static final int constructor = -1258914157;
+        public long stars_amount;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.stars_amount = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1258914157);
+            outputSerializedData.writeInt64(this.stars_amount);
+        }
+    }
+
+    public static class requirementToContactPremium extends RequirementToContact {
+        public static final int constructor = -444472087;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-444472087);
+        }
+    }
+
     public static class resendPasswordEmail extends TLObject {
         public static final int constructor = 2055154197;
 
@@ -2922,7 +3060,7 @@ public class TL_account {
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda43(), z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);

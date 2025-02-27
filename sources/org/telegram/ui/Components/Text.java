@@ -10,6 +10,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -19,6 +20,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 
 public class Text {
+    private Layout.Alignment align;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojis;
     private int animatedEmojisCacheType;
     private ColorFilter animatedEmojisColorFilter;
@@ -32,6 +34,8 @@ public class Text {
     private boolean hackClipBounds;
     private StaticLayout layout;
     private float left;
+    private float lineSpacingAdd;
+    private int maxLines;
     private float maxWidth;
     private final TextPaint paint;
     private View parentView;
@@ -44,6 +48,8 @@ public class Text {
 
     public Text(CharSequence charSequence, float f, Typeface typeface) {
         this.maxWidth = 9999.0f;
+        this.maxLines = 1;
+        this.align = Layout.Alignment.ALIGN_NORMAL;
         this.animatedEmojisCacheType = 0;
         this.ellipsizeWidth = -1.0f;
         TextPaint textPaint = new TextPaint(1);
@@ -55,10 +61,20 @@ public class Text {
 
     public Text(CharSequence charSequence, TextPaint textPaint) {
         this.maxWidth = 9999.0f;
+        this.maxLines = 1;
+        this.align = Layout.Alignment.ALIGN_NORMAL;
         this.animatedEmojisCacheType = 0;
         this.ellipsizeWidth = -1.0f;
         this.paint = textPaint;
         setText(charSequence);
+    }
+
+    public Text align(Layout.Alignment alignment) {
+        if (this.align != alignment) {
+            this.align = alignment;
+            setText(this.layout.getText());
+        }
+        return this;
     }
 
     public void draw(Canvas canvas) {
@@ -118,7 +134,7 @@ public class Text {
         if (!this.doNotSave) {
             canvas.save();
         }
-        canvas.translate(f, f2 - (this.layout.getHeight() / 2.0f));
+        canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
         draw(canvas);
         if (this.doNotSave) {
             return;
@@ -131,14 +147,16 @@ public class Text {
             return;
         }
         this.paint.setColor(i);
-        int alpha = this.paint.getAlpha();
+        TextPaint textPaint = this.paint;
+        textPaint.linkColor = i;
+        int alpha = textPaint.getAlpha();
         if (f3 != 1.0f) {
             this.paint.setAlpha((int) (alpha * f3));
         }
         if (!this.doNotSave) {
             canvas.save();
         }
-        canvas.translate(f, f2 - (this.layout.getHeight() / 2.0f));
+        canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
         draw(canvas);
         if (!this.doNotSave) {
             canvas.restore();
@@ -163,6 +181,10 @@ public class Text {
         return this.layout.getHeight();
     }
 
+    public Layout getLayout() {
+        return this.layout;
+    }
+
     public int getLineCount() {
         return this.layout.getLineCount();
     }
@@ -183,6 +205,20 @@ public class Text {
 
     public Text hackClipBounds() {
         this.hackClipBounds = true;
+        return this;
+    }
+
+    public Text lineSpacing(float f) {
+        if (this.lineSpacingAdd != f) {
+            this.lineSpacingAdd = f;
+            setText(this.layout.getText());
+        }
+        return this;
+    }
+
+    public Text multiline(int i) {
+        this.maxLines = i;
+        setText(this.layout.getText());
         return this;
     }
 
@@ -214,9 +250,28 @@ public class Text {
     }
 
     public void setText(CharSequence charSequence) {
-        this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder alignment;
+        StaticLayout.Builder maxLines;
+        StaticLayout.Builder lineSpacing;
+        StaticLayout build;
+        if (this.maxLines <= 1 || Build.VERSION.SDK_INT < 23) {
+            this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), this.align, 1.0f, this.lineSpacingAdd, false);
+        } else {
+            obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.paint, (int) Math.max(this.maxWidth, 1.0f));
+            alignment = obtain.setAlignment(this.align);
+            maxLines = alignment.setMaxLines(this.maxLines);
+            lineSpacing = maxLines.setLineSpacing(this.lineSpacingAdd, 1.0f);
+            build = lineSpacing.build();
+            this.layout = build;
+        }
+        if (this.align == Layout.Alignment.ALIGN_CENTER) {
+            this.width = this.layout.getWidth();
+            this.left = 0.0f;
+            return;
+        }
         this.width = 0.0f;
-        this.left = r8.getWidth();
+        this.left = this.layout.getWidth();
         for (int i = 0; i < this.layout.getLineCount(); i++) {
             this.width = Math.max(this.width, this.layout.getLineWidth(i));
             this.left = Math.min(this.left, this.layout.getLineLeft(i));

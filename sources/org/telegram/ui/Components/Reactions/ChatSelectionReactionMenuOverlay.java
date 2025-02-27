@@ -275,7 +275,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     public void setSelectedMessages(List<MessageObject> list) {
         boolean z;
         this.selectedMessages = list;
-        if (!this.parentFragment.isSecretChat() && ((this.parentFragment.getCurrentChatInfo() == null || !(this.parentFragment.getCurrentChatInfo().available_reactions instanceof TLRPC.TL_chatReactionsNone)) && !list.isEmpty())) {
+        if (!this.parentFragment.isReport() && !this.parentFragment.isSecretChat() && ((this.parentFragment.getCurrentChatInfo() == null || !(this.parentFragment.getCurrentChatInfo().available_reactions instanceof TLRPC.TL_chatReactionsNone)) && !list.isEmpty())) {
             Iterator<MessageObject> it = list.iterator();
             long j = 0;
             boolean z2 = false;

@@ -360,7 +360,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void onSend(final androidx.collection.LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic) {
+        public void onSend(final androidx.collection.LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

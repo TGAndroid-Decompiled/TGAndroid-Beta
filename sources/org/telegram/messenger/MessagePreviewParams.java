@@ -294,6 +294,14 @@ public class MessagePreviewParams {
         messagePreviewView.updateAll();
     }
 
+    public int getForwardedMessagesCount() {
+        Messages messages = this.forwardMessages;
+        if (messages == null) {
+            return 0;
+        }
+        return messages.selectedIds.size();
+    }
+
     public boolean hasLink(CharSequence charSequence, String str) {
         if (str != null) {
             try {

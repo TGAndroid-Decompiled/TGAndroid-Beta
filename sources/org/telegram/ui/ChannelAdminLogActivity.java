@@ -48,7 +48,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import j$.util.Collection$EL;
+import j$.util.Collection;
 import j$.util.function.Function;
 import j$.util.function.Predicate;
 import java.io.BufferedWriter;
@@ -367,7 +367,9 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public boolean canPerformReply() {
-                return canPerformActions();
+                boolean canPerformActions;
+                canPerformActions = canPerformActions();
+                return canPerformActions;
             }
 
             @Override
@@ -764,7 +766,22 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell, webPage, str, z);
+                Browser.openUrl(chatMessageCell.getContext(), str);
+            }
+
+            @Override
+            public void didQuickShareEnd(ChatMessageCell chatMessageCell, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareEnd(this, chatMessageCell, f, f2);
+            }
+
+            @Override
+            public void didQuickShareMove(ChatMessageCell chatMessageCell, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell, f, f2);
+            }
+
+            @Override
+            public void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell, f, f2);
             }
 
             @Override
@@ -1379,7 +1396,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             j = -1;
         }
         messageObject.actionDeleteGroupEventId = j;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(MessageObject.replaceWithLink(LocaleController.formatPluralString(z2 ? "EventLogDeletedMultipleMessagesToExpand" : "EventLogDeletedMultipleMessages", arrayList.size(), TextUtils.join(", ", Collection$EL.stream(arrayList).map(new Function() {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(MessageObject.replaceWithLink(LocaleController.formatPluralString(z2 ? "EventLogDeletedMultipleMessagesToExpand" : "EventLogDeletedMultipleMessages", arrayList.size(), TextUtils.join(", ", Collection.EL.stream(arrayList).map(new Function() {
             @Override
             public Function andThen(Function function) {
                 return Function.CC.$default$andThen(this, function);
@@ -2874,7 +2891,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$323();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$335();
                 }
             }
         });

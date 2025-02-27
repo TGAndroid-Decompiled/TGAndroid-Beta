@@ -20,6 +20,7 @@ import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
 public class PremiumLockIconView extends ImageView {
     public static int TYPE_GIFT_LOCK = 3;
+    public static int TYPE_GIFT_PIN = 4;
     public static int TYPE_REACTIONS = 0;
     public static int TYPE_REACTIONS_LOCK = 2;
     public static int TYPE_STICKERS_PREMIUM_LOCKED = 1;
@@ -53,6 +54,7 @@ public class PremiumLockIconView extends ImageView {
 
     public PremiumLockIconView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        int i2;
         this.colorFloat = new float[3];
         this.iconScale = 1.0f;
         this.colorRetrieved = false;
@@ -64,30 +66,35 @@ public class PremiumLockIconView extends ImageView {
         this.type = i;
         this.resourcesProvider = resourcesProvider;
         setImageResource(i == TYPE_REACTIONS ? R.drawable.msg_premium_lock2 : R.drawable.msg_mini_premiumlock);
-        if (i != TYPE_REACTIONS) {
-            if (i == TYPE_REACTIONS_LOCK) {
-                this.iconScale = 0.8f;
-                this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                return;
-            } else {
-                if (i == TYPE_GIFT_LOCK) {
-                    setScaleType(ImageView.ScaleType.CENTER);
-                    setImageResource(R.drawable.msg_archive_hide);
-                    return;
-                }
+        if (i == TYPE_REACTIONS) {
+            StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(5);
+            this.starParticles = drawable;
+            drawable.updateColors();
+            StarParticlesView.Drawable drawable2 = this.starParticles;
+            drawable2.roundEffect = false;
+            drawable2.size2 = 4;
+            drawable2.size3 = 4;
+            drawable2.size1 = 2;
+            drawable2.speedScale = 0.1f;
+            drawable2.init();
+            return;
+        }
+        if (i == TYPE_REACTIONS_LOCK) {
+            this.iconScale = 0.8f;
+            this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
+            return;
+        }
+        if (i == TYPE_GIFT_LOCK) {
+            setScaleType(ImageView.ScaleType.CENTER);
+            i2 = R.drawable.msg_archive_hide;
+        } else {
+            if (i != TYPE_GIFT_PIN) {
                 return;
             }
+            setScaleType(ImageView.ScaleType.CENTER);
+            i2 = R.drawable.msg_limit_pin;
         }
-        StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(5);
-        this.starParticles = drawable;
-        drawable.updateColors();
-        StarParticlesView.Drawable drawable2 = this.starParticles;
-        drawable2.roundEffect = false;
-        drawable2.size2 = 4;
-        drawable2.size3 = 4;
-        drawable2.size1 = 2;
-        drawable2.speedScale = 0.1f;
-        drawable2.init();
+        setImageResource(i2);
     }
 
     private void updateGradient() {

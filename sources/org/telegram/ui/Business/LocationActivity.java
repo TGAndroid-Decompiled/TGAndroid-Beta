@@ -124,7 +124,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$onBackPressed$3(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public void lambda$onClick$4(TLRPC.TL_error tL_error, TLObject tLObject) {
@@ -134,7 +134,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         } else if (tLObject instanceof TLRPC.TL_boolFalse) {
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$323();
+            lambda$onBackPressed$335();
         }
     }
 
@@ -168,7 +168,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
         } else if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
-            lambda$onBackPressed$323();
+            lambda$onBackPressed$335();
         } else {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
@@ -184,7 +184,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         });
     }
 
-    public void lambda$showLocationAlert$7(org.telegram.ui.LocationActivity locationActivity, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+    public void lambda$showLocationAlert$7(org.telegram.ui.LocationActivity locationActivity, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         this.geo = messageMedia.geo;
         if ((TextUtils.isEmpty(this.address) && !TextUtils.isEmpty(locationActivity.getAddressName())) || this.mapAddress) {
             this.mapAddress = true;
@@ -270,7 +270,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         boolean z = this.geo == null && TextUtils.isEmpty(this.address);
         if (!z) {
             if (!hasChanges()) {
-                lambda$onBackPressed$323();
+                lambda$onBackPressed$335();
                 return;
             }
             String str = this.address;
@@ -372,8 +372,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
         locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
             @Override
-            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
-                LocationActivity.this.lambda$showLocationAlert$7(locationActivity, messageMedia, i, z, i2);
+            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+                LocationActivity.this.lambda$showLocationAlert$7(locationActivity, messageMedia, i, z, i2, j);
             }
         });
         if (this.geo != null || TextUtils.isEmpty(this.address)) {
@@ -422,7 +422,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (LocationActivity.this.onBackPressed()) {
-                        LocationActivity.this.lambda$onBackPressed$323();
+                        LocationActivity.this.lambda$onBackPressed$335();
                     }
                 } else if (i == 1) {
                     LocationActivity.this.processDone();

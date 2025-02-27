@@ -37,7 +37,6 @@ public class Camera2Session implements CameraSession {
     private final int framerate;
     private final int height;
     private boolean isCameraFrontFacing;
-    private OrientationHelper orientationHelper;
     private SessionState state = SessionState.RUNNING;
     private Surface surface;
     private final SurfaceTextureHelper surfaceTextureHelper;
@@ -162,10 +161,9 @@ public class Camera2Session implements CameraSession {
             key = CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION;
             obj = cameraCharacteristics.get(key);
             int[] iArr = (int[]) obj;
-            int i = 0;
             if (iArr != null) {
-                for (int i2 : iArr) {
-                    if (i2 == 1) {
+                for (int i : iArr) {
+                    if (i == 1) {
                         key5 = CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE;
                         builder.set(key5, 1);
                         key6 = CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE;
@@ -179,22 +177,19 @@ public class Camera2Session implements CameraSession {
             key2 = CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES;
             obj2 = cameraCharacteristics2.get(key2);
             int[] iArr2 = (int[]) obj2;
-            int length = iArr2.length;
-            while (true) {
-                if (i >= length) {
-                    str = "Stabilization not available.";
-                    break;
+            if (iArr2 != null) {
+                for (int i2 : iArr2) {
+                    if (i2 == 1) {
+                        key3 = CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE;
+                        builder.set(key3, 1);
+                        key4 = CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE;
+                        builder.set(key4, 0);
+                        str = "Using video stabilization.";
+                        break;
+                    }
                 }
-                if (iArr2[i] == 1) {
-                    key3 = CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE;
-                    builder.set(key3, 1);
-                    key4 = CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE;
-                    builder.set(key4, 0);
-                    str = "Using video stabilization.";
-                    break;
-                }
-                i++;
             }
+            str = "Stabilization not available.";
             Logging.d("Camera2Session", str);
         }
 
@@ -276,7 +271,6 @@ public class Camera2Session implements CameraSession {
         this.width = i;
         this.height = i2;
         this.framerate = i3;
-        this.orientationHelper = new OrientationHelper();
         start();
     }
 
@@ -316,13 +310,11 @@ public class Camera2Session implements CameraSession {
     }
 
     public int getFrameOrientation() {
-        int orientation = this.orientationHelper.getOrientation();
-        OrientationHelper.cameraOrientation = orientation;
-        if (this.isCameraFrontFacing) {
-            orientation = 360 - orientation;
+        int deviceOrientation = CameraSession.CC.getDeviceOrientation(this.applicationContext);
+        if (!this.isCameraFrontFacing) {
+            deviceOrientation = 360 - deviceOrientation;
         }
-        OrientationHelper.cameraRotation = orientation;
-        return (this.cameraOrientation + orientation) % 360;
+        return (this.cameraOrientation + deviceOrientation) % 360;
     }
 
     private void openCamera() {
@@ -331,7 +323,7 @@ public class Camera2Session implements CameraSession {
         this.events.onCameraOpening();
         try {
             this.cameraManager.openCamera(this.cameraId, new CameraStateCallback(), this.cameraThreadHandler);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | SecurityException e) {
             reportError("Failed to open camera: " + e);
         }
     }
@@ -360,19 +352,20 @@ public class Camera2Session implements CameraSession {
         try {
             cameraCharacteristics = this.cameraManager.getCameraCharacteristics(this.cameraId);
             this.cameraCharacteristics = cameraCharacteristics;
-            this.orientationHelper.start();
-            CameraCharacteristics cameraCharacteristics2 = this.cameraCharacteristics;
             key = CameraCharacteristics.SENSOR_ORIENTATION;
-            obj = cameraCharacteristics2.get(key);
+            obj = cameraCharacteristics.get(key);
             this.cameraOrientation = ((Integer) obj).intValue();
-            CameraCharacteristics cameraCharacteristics3 = this.cameraCharacteristics;
+            CameraCharacteristics cameraCharacteristics2 = this.cameraCharacteristics;
             key2 = CameraCharacteristics.LENS_FACING;
-            obj2 = cameraCharacteristics3.get(key2);
+            obj2 = cameraCharacteristics2.get(key2);
             this.isCameraFrontFacing = ((Integer) obj2).intValue() == 0;
             findCaptureFormat();
+            if (this.captureFormat == null) {
+                return;
+            }
             openCamera();
-        } catch (Throwable th) {
-            reportError("getCameraCharacteristics(): " + th.getMessage());
+        } catch (IllegalArgumentException e) {
+            reportError("getCameraCharacteristics(): " + e.getMessage());
         }
     }
 
@@ -394,10 +387,6 @@ public class Camera2Session implements CameraSession {
         if (cameraDevice != null) {
             cameraDevice.close();
             this.cameraDevice = null;
-        }
-        OrientationHelper orientationHelper = this.orientationHelper;
-        if (orientationHelper != null) {
-            orientationHelper.stop();
         }
         Logging.d("Camera2Session", "Stop done");
     }

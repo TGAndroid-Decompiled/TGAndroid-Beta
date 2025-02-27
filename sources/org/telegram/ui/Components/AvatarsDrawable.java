@@ -33,6 +33,7 @@ public class AvatarsDrawable {
     public boolean drawStoriesCircle;
     public int height;
     private boolean isInCall;
+    public float maxX;
     private int overrideSize;
     View parent;
     private boolean showSavedMessages;
@@ -43,8 +44,8 @@ public class AvatarsDrawable {
     Runnable updateDelegate;
     boolean wasDraw;
     public int width;
-    DrawingState[] currentStates = new DrawingState[3];
-    DrawingState[] animatingStates = new DrawingState[3];
+    public DrawingState[] currentStates = new DrawingState[3];
+    public DrawingState[] animatingStates = new DrawingState[3];
     float transitionProgress = 1.0f;
     private Paint paint = new Paint(1);
     private Paint xRefP = new Paint(1);
@@ -57,7 +58,7 @@ public class AvatarsDrawable {
 
     public static class DrawingState {
         private int animationType;
-        private AvatarDrawable avatarDrawable;
+        public AvatarDrawable avatarDrawable;
         private long id;
         private ImageReceiver imageReceiver;
         private long lastSpeakTime;
@@ -66,9 +67,6 @@ public class AvatarsDrawable {
         private TLObject object;
         TLRPC.TL_groupCallParticipant participant;
         private GroupCallUserCell.AvatarWavesDrawable wavesDrawable;
-
-        private DrawingState() {
-        }
     }
 
     public AvatarsDrawable(View view, boolean z) {
@@ -241,6 +239,10 @@ public class AvatarsDrawable {
         invalidate();
     }
 
+    public float getMaxX() {
+        return this.maxX;
+    }
+
     public int getSize() {
         int i = this.overrideSize;
         if (i != 0) {
@@ -275,7 +277,7 @@ public class AvatarsDrawable {
         }
     }
 
-    public void onDraw(android.graphics.Canvas r37) {
+    public void onDraw(android.graphics.Canvas r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.onDraw(android.graphics.Canvas):void");
     }
 
@@ -290,14 +292,16 @@ public class AvatarsDrawable {
     }
 
     public void setAvatarsTextSize(int i) {
+        AvatarDrawable avatarDrawable;
+        AvatarDrawable avatarDrawable2;
         for (int i2 = 0; i2 < 3; i2++) {
             DrawingState drawingState = this.currentStates[i2];
-            if (drawingState != null && drawingState.avatarDrawable != null) {
-                this.currentStates[i2].avatarDrawable.setTextSize(i);
+            if (drawingState != null && (avatarDrawable2 = drawingState.avatarDrawable) != null) {
+                avatarDrawable2.setTextSize(i);
             }
             DrawingState drawingState2 = this.animatingStates[i2];
-            if (drawingState2 != null && drawingState2.avatarDrawable != null) {
-                this.animatingStates[i2].avatarDrawable.setTextSize(i);
+            if (drawingState2 != null && (avatarDrawable = drawingState2.avatarDrawable) != null) {
+                avatarDrawable.setTextSize(i);
             }
         }
     }

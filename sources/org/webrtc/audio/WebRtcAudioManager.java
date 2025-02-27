@@ -4,7 +4,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
-import android.os.Build;
 import org.webrtc.Logging;
 
 class WebRtcAudioManager {
@@ -62,11 +61,11 @@ class WebRtcAudioManager {
         return Integer.parseInt(property);
     }
 
-    private static boolean isLowLatencyInputSupported(Context context) {
-        return Build.VERSION.SDK_INT >= 21 && isLowLatencyOutputSupported(context);
+    static boolean isLowLatencyInputSupported(Context context) {
+        return isLowLatencyOutputSupported(context);
     }
 
-    private static boolean isLowLatencyOutputSupported(Context context) {
+    static boolean isLowLatencyOutputSupported(Context context) {
         return context.getPackageManager().hasSystemFeature("android.hardware.audio.low_latency");
     }
 }

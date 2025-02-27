@@ -227,7 +227,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public void lambda$setNextSticker$3(TLRPC.Document document, View view) {
+    public void lambda$setNextSticker$2(TLRPC.Document document, View view) {
         Listener listener = this.listener;
         if (listener != null) {
             listener.onGreetings(document);
@@ -239,21 +239,14 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.premiumIconView.playAnimation();
     }
 
-    public static void lambda$setPremiumLock$1(View view) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.presentFragment(new PremiumPreviewFragment("contact"));
-        }
-    }
-
-    public void lambda$setSticker$2(TLRPC.Document document, View view) {
+    public void lambda$setSticker$1(TLRPC.Document document, View view) {
         Listener listener = this.listener;
         if (listener != null) {
             listener.onGreetings(document);
         }
     }
 
-    public static void lambda$showPremiumSheet$4(BottomSheet bottomSheet, View view) {
+    public static void lambda$showPremiumSheet$3(BottomSheet bottomSheet, View view) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null) {
             lastFragment.presentFragment(new PremiumPreviewFragment("contact"));
@@ -295,7 +288,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
             premiumButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatGreetingsView.lambda$showPremiumSheet$4(BottomSheet.this, view);
+                    ChatGreetingsView.lambda$showPremiumSheet$3(BottomSheet.this, view);
                 }
             });
             premiumButtonView.setOverlayText(LocaleController.getString(R.string.PremiumMessageButton), false, false);
@@ -462,6 +455,10 @@ public abstract class ChatGreetingsView extends LinearLayout {
         super.requestLayout();
     }
 
+    public void resetPremiumLock() {
+        setPremiumLock(false, null, null, null);
+    }
+
     @Override
     public void setBackground(Drawable drawable) {
         super.setBackground(drawable);
@@ -490,13 +487,12 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.nextStickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatGreetingsView.this.lambda$setNextSticker$3(document, view);
+                ChatGreetingsView.this.lambda$setNextSticker$2(document, view);
             }
         });
     }
 
-    public void setPremiumLock(boolean z, long j) {
-        TLRPC.User user;
+    public void setPremiumLock(boolean z, CharSequence charSequence, CharSequence charSequence2, View.OnClickListener onClickListener) {
         if (this.premiumLock == z) {
             return;
         }
@@ -524,8 +520,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
                 this.premiumTextView.setGravity(17);
                 this.premiumTextView.setTextSize(1, 13.0f);
             }
-            String userName = (j < 0 || (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) == null) ? "" : UserObject.getUserName(user);
-            this.premiumTextView.setText(AndroidUtilities.replaceTags(MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() ? LocaleController.formatString(R.string.MessageLockedPremiumLocked, userName) : LocaleController.formatString(R.string.MessageLockedPremium, userName)));
+            this.premiumTextView.setText(charSequence);
             TextView textView2 = this.premiumTextView;
             textView2.setMaxWidth(HintView2.cutInFancyHalf(textView2.getText(), this.premiumTextView.getPaint()));
             TextView textView3 = this.premiumTextView;
@@ -583,18 +578,13 @@ public abstract class ChatGreetingsView extends LinearLayout {
                 this.premiumButtonView.setGravity(17);
                 this.premiumButtonView.setTypeface(AndroidUtilities.bold());
                 this.premiumButtonView.setTextSize(1, 14.0f);
-                this.premiumButtonView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(6.66f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(7.0f));
+                this.premiumButtonView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
                 this.premiumButtonView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(15.0f), 503316480, 855638016));
                 ScaleStateListAnimator.apply(this.premiumButtonView);
             }
-            this.premiumButtonView.setText(LocaleController.getString(R.string.MessagePremiumUnlock));
+            this.premiumButtonView.setText(charSequence2);
             this.premiumButtonView.setTextColor(getThemedColor(i));
-            this.premiumButtonView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ChatGreetingsView.lambda$setPremiumLock$1(view);
-                }
-            });
+            this.premiumButtonView.setOnClickListener(onClickListener);
         }
         updateLayout();
     }
@@ -639,7 +629,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.stickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatGreetingsView.this.lambda$setSticker$2(document, view);
+                ChatGreetingsView.this.lambda$setSticker$1(document, view);
             }
         });
     }

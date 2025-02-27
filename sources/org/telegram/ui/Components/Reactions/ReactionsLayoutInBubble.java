@@ -1094,19 +1094,23 @@ public class ReactionsLayoutInBubble {
         if (this.isEmpty || this.isSmall || (messageObject = this.messageObject) == null || (message = messageObject.messageOwner) == null || message.reactions == null) {
             return false;
         }
+        float y = motionEvent.getY();
+        if (this.parentView instanceof ChatMessageCell) {
+            y -= r2.getPaddingTop();
+        }
         float x = motionEvent.getX() - this.x;
-        float y = motionEvent.getY() - this.y;
+        float f = y - this.y;
         if (motionEvent.getAction() == 0) {
             int size = this.reactionButtons.size();
             while (true) {
                 if (i >= size) {
                     break;
                 }
-                if (x <= ((ReactionButton) this.reactionButtons.get(i)).x || x >= ((ReactionButton) this.reactionButtons.get(i)).x + ((ReactionButton) this.reactionButtons.get(i)).width || y <= ((ReactionButton) this.reactionButtons.get(i)).y || y >= ((ReactionButton) this.reactionButtons.get(i)).y + ((ReactionButton) this.reactionButtons.get(i)).height) {
+                if (x <= ((ReactionButton) this.reactionButtons.get(i)).x || x >= ((ReactionButton) this.reactionButtons.get(i)).x + ((ReactionButton) this.reactionButtons.get(i)).width || f <= ((ReactionButton) this.reactionButtons.get(i)).y || f >= ((ReactionButton) this.reactionButtons.get(i)).y + ((ReactionButton) this.reactionButtons.get(i)).height) {
                     i++;
                 } else {
                     this.lastX = motionEvent.getX();
-                    this.lastY = motionEvent.getY();
+                    this.lastY = y;
                     this.lastSelectedButton = (ReactionButton) this.reactionButtons.get(i);
                     Runnable runnable = this.longPressRunnable;
                     if (runnable != null) {
@@ -1127,7 +1131,7 @@ public class ReactionsLayoutInBubble {
                 }
             }
         } else if (motionEvent.getAction() == 2) {
-            if ((this.pressed && Math.abs(motionEvent.getX() - this.lastX) > this.touchSlop) || Math.abs(motionEvent.getY() - this.lastY) > this.touchSlop) {
+            if ((this.pressed && Math.abs(motionEvent.getX() - this.lastX) > this.touchSlop) || Math.abs(y - this.lastY) > this.touchSlop) {
                 this.pressed = false;
                 ReactionButton reactionButton2 = this.lastSelectedButton;
                 if (reactionButton2 != null) {
@@ -1147,7 +1151,7 @@ public class ReactionsLayoutInBubble {
                 this.longPressRunnable = null;
             }
             if (this.pressed && this.lastSelectedButton != null && motionEvent.getAction() == 1) {
-                didPressReaction(this.lastSelectedButton.reactionCount, false, motionEvent.getX(), motionEvent.getY());
+                didPressReaction(this.lastSelectedButton.reactionCount, false, motionEvent.getX(), y);
             }
             this.pressed = false;
             ReactionButton reactionButton3 = this.lastSelectedButton;

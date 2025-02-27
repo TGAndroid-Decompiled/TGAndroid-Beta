@@ -43,12 +43,13 @@ public class ContactsController extends BaseController {
     public static final int PRIVACY_RULES_TYPE_BIO = 9;
     public static final int PRIVACY_RULES_TYPE_BIRTHDAY = 11;
     public static final int PRIVACY_RULES_TYPE_CALLS = 2;
-    public static final int PRIVACY_RULES_TYPE_COUNT = 13;
+    public static final int PRIVACY_RULES_TYPE_COUNT = 14;
     public static final int PRIVACY_RULES_TYPE_FORWARDS = 5;
     public static final int PRIVACY_RULES_TYPE_GIFTS = 12;
     public static final int PRIVACY_RULES_TYPE_INVITE = 1;
     public static final int PRIVACY_RULES_TYPE_LASTSEEN = 0;
     public static final int PRIVACY_RULES_TYPE_MESSAGES = 10;
+    public static final int PRIVACY_RULES_TYPE_NO_PAID_MESSAGES = 13;
     public static final int PRIVACY_RULES_TYPE_P2P = 3;
     public static final int PRIVACY_RULES_TYPE_PHONE = 6;
     public static final int PRIVACY_RULES_TYPE_PHOTO = 4;
@@ -86,6 +87,7 @@ public class ContactsController extends BaseController {
     private int loadingGlobalSettings;
     private int[] loadingPrivacyInfo;
     private boolean migratingContacts;
+    private ArrayList<TLRPC.PrivacyRule> noPaidMessagesPrivacyRules;
     private final Object observerLock;
     private ArrayList<TLRPC.PrivacyRule> p2pPrivacyRules;
     public HashMap<String, Contact> phoneBookByShortPhones;
@@ -190,7 +192,7 @@ public class ContactsController extends BaseController {
         this.lastContactsVersions = "";
         this.delayedContactsUpdate = new ArrayList<>();
         this.sectionsToReplace = new HashMap<>();
-        this.loadingPrivacyInfo = new int[13];
+        this.loadingPrivacyInfo = new int[14];
         this.projectionPhones = new String[]{"lookup", "data1", "data2", "data3", "display_name", "account_type"};
         this.projectionNames = new String[]{"lookup", "data2", "data3", "data5"};
         this.contactsBook = new HashMap<>();
@@ -483,6 +485,20 @@ public class ContactsController extends BaseController {
                 this.ignoreChanges = false;
             }
         }
+    }
+
+    public static <T extends TLRPC.PrivacyRule> T findRule(ArrayList<TLRPC.PrivacyRule> arrayList, Class<T> cls) {
+        if (arrayList == null) {
+            return null;
+        }
+        Iterator<TLRPC.PrivacyRule> it = arrayList.iterator();
+        while (it.hasNext()) {
+            TLRPC.PrivacyRule next = it.next();
+            if (cls.isInstance(next)) {
+                return cls.cast(next);
+            }
+        }
+        return null;
     }
 
     public static String formatName(String str, String str2) {
@@ -1188,6 +1204,9 @@ public class ContactsController extends BaseController {
                     break;
                 case 12:
                     this.giftsPrivacyRules = arrayList;
+                    break;
+                case 13:
+                    this.noPaidMessagesPrivacyRules = arrayList;
                     break;
             }
             this.loadingPrivacyInfo[i] = 2;
@@ -2388,6 +2407,8 @@ public class ContactsController extends BaseController {
                 return this.birthdayPrivacyRules;
             case 12:
                 return this.giftsPrivacyRules;
+            case 13:
+                return this.noPaidMessagesPrivacyRules;
         }
     }
 
@@ -2497,6 +2518,9 @@ public class ContactsController extends BaseController {
                         break;
                     case 12:
                         tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyStarGiftsAutoSave();
+                        break;
+                    case 13:
+                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyNoPaidMessages();
                         break;
                 }
                 getprivacy.key = tL_inputPrivacyKeyStatusTimestamp;
@@ -2672,6 +2696,9 @@ public class ContactsController extends BaseController {
                 break;
             case 12:
                 this.giftsPrivacyRules = arrayList;
+                break;
+            case 13:
+                this.noPaidMessagesPrivacyRules = arrayList;
                 break;
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);

@@ -464,7 +464,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         });
     }
 
-    public static String lambda$fillItems$11(Integer num) {
+    public static CharSequence lambda$fillItems$11(Integer num) {
         return String.format(Locale.US, "%.1f%%", Float.valueOf(num.intValue() / 10.0f));
     }
 
@@ -703,7 +703,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         UItem asIntSlideView = UItem.asIntSlideView(1, getMessagesController().starrefMinCommissionPermille, this.program.commission_permille, getMessagesController().starrefMaxCommissionPermille, new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                String lambda$fillItems$11;
+                CharSequence lambda$fillItems$11;
                 lambda$fillItems$11 = AffiliateProgramFragment.lambda$fillItems$11((Integer) obj);
                 return lambda$fillItems$11;
             }

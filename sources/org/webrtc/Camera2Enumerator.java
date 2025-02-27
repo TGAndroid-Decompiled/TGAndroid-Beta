@@ -11,6 +11,7 @@ import android.os.SystemClock;
 import android.util.AndroidException;
 import android.util.Range;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -48,7 +49,10 @@ public class Camera2Enumerator implements CameraEnumerator {
     private static List<Size> convertSizes(android.util.Size[] sizeArr) {
         int width;
         int height;
-        ArrayList arrayList = new ArrayList();
+        if (sizeArr == null || sizeArr.length == 0) {
+            return Collections.emptyList();
+        }
+        ArrayList arrayList = new ArrayList(sizeArr.length);
         for (android.util.Size size : sizeArr) {
             width = size.getWidth();
             height = size.getHeight();
@@ -133,7 +137,7 @@ public class Camera2Enumerator implements CameraEnumerator {
                     Logging.d("Camera2Enumerator", "Get supported formats for camera index " + str + " done. Time spent: " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms.");
                     return arrayList;
                 } catch (Exception e) {
-                    Logging.e("Camera2Enumerator", "getCameraCharacteristics(): " + e);
+                    Logging.e("Camera2Enumerator", "getCameraCharacteristics()", e);
                     return new ArrayList();
                 }
             } catch (Throwable th) {
@@ -178,9 +182,6 @@ public class Camera2Enumerator implements CameraEnumerator {
         CameraCharacteristics cameraCharacteristics;
         CameraCharacteristics.Key key;
         Object obj;
-        if (Build.VERSION.SDK_INT < 21) {
-            return false;
-        }
         CameraManager m = Camera2Session$$ExternalSyntheticApiModelOutline9.m(context.getSystemService("camera"));
         try {
             cameraIdList = m.getCameraIdList();

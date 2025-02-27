@@ -17,6 +17,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -48,6 +49,8 @@ public class HintDialogCell extends FrameLayout {
     private Theme.ResourcesProvider resourcesProvider;
     float showOnlineProgress;
     private boolean showPremiumBlocked;
+    private final AnimatedFloat starsBlockedT;
+    private long starsPriceBlocked;
     boolean wasDraw;
 
     public HintDialogCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
@@ -55,7 +58,9 @@ public class HintDialogCell extends FrameLayout {
         this.avatarDrawable = new AvatarDrawable();
         this.rect = new RectF();
         this.currentAccount = UserConfig.selectedAccount;
-        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
+        this.starsBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.backgroundColorKey = Theme.key_windowBackgroundWhite;
         this.drawCheckbox = z;
         BackupImageView backupImageView = new BackupImageView(context);
@@ -112,15 +117,17 @@ public class HintDialogCell extends FrameLayout {
     }
 
     private void updatePremiumBlocked(boolean z) {
-        boolean z2 = this.premiumBlocked;
-        boolean z3 = this.showPremiumBlocked && this.currentUser != null && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.currentUser.id);
-        this.premiumBlocked = z3;
-        if (z2 != z3) {
-            if (!z) {
-                this.premiumBlockedT.set(z3, true);
-            }
-            invalidate();
+        TL_account.RequirementToContact isUserContactBlocked = (!this.showPremiumBlocked || this.currentUser == null) ? null : MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.currentUser.id);
+        if (this.premiumBlocked == DialogObject.isPremiumBlocked(isUserContactBlocked) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(isUserContactBlocked)) {
+            return;
         }
+        this.premiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
+        this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(isUserContactBlocked);
+        if (!z) {
+            this.premiumBlockedT.set(this.premiumBlocked, true);
+            this.starsBlockedT.set(this.starsPriceBlocked > 0, true);
+        }
+        invalidate();
     }
 
     @Override

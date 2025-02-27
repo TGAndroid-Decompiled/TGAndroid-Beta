@@ -354,7 +354,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$43(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public void lambda$checkDiscard$44(AlertDialog alertDialog, int i) {
@@ -362,10 +362,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$45(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
-    public void lambda$createView$10(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+    public void lambda$createView$10(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
         tL_channelLocation.address = messageMedia.address;
         tL_channelLocation.geo_point = messageMedia.geo;
@@ -389,8 +389,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             }
             locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
                 @Override
-                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
-                    ChatEditActivity.this.lambda$createView$10(messageMedia, i, z, i2);
+                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+                    ChatEditActivity.this.lambda$createView$10(messageMedia, i, z, i2, j);
                 }
             });
             presentFragment(locationActivity);
@@ -655,7 +655,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -877,7 +877,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$processDone$46() {
         this.progressDialog.dismiss();
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public void lambda$processDone$47(TL_bots.setBotInfo setbotinfo, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1050,7 +1050,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 }
             }
         }
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     private void setAvatar() {
@@ -1120,7 +1120,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatEditActivity.updateCanForum():void");
     }
 
-    private void updateFields(boolean r17, boolean r18) {
+    private void updateFields(boolean r16, boolean r17) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatEditActivity.updateFields(boolean, boolean):void");
     }
 

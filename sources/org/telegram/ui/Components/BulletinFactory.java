@@ -37,6 +37,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.LaunchActivity;
@@ -196,13 +197,19 @@ public final class BulletinFactory {
         return of(baseFragment).createCopyLinkBulletin();
     }
 
-    public static Bulletin createForwardedBulletin(Context context, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4) {
+    public static Bulletin createForwardedBulletin(Context context, final BaseFragment baseFragment, FrameLayout frameLayout, int i, final long j, int i2, int i3, int i4, int i5) {
+        final Bulletin.LottieLayout lottieLayout;
         SpannableStringBuilder replaceTags;
+        Bulletin make;
         String formatString;
+        String formatString2;
         String string;
         BulletinFactory$$ExternalSyntheticLambda0 bulletinFactory$$ExternalSyntheticLambda0;
-        final Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(context, null, i3, i4);
-        int i5 = 300;
+        if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || baseFragment == null || i > 1 || j != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+            lottieLayout = new Bulletin.LottieLayout(context, baseFragment != null ? baseFragment.getResourceProvider() : null, i3, i4);
+        } else {
+            lottieLayout = new Bulletin.LottieLayoutWithReactions(baseFragment, i2);
+        }
         if (i > 1) {
             Object[] objArr = new Object[0];
             replaceTags = AndroidUtilities.replaceTags(i2 <= 1 ? LocaleController.formatPluralString("FwdMessageToManyChats", i, objArr) : LocaleController.formatPluralString("FwdMessagesToManyChats", i, objArr));
@@ -215,31 +222,74 @@ public final class BulletinFactory {
                 string = LocaleController.getString(R.string.FwdMessagesToSavedMessages);
                 bulletinFactory$$ExternalSyntheticLambda0 = new BulletinFactory$$ExternalSyntheticLambda0();
             }
-            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, bulletinFactory$$ExternalSyntheticLambda0);
+            replaceTags = AndroidUtilities.replaceSingleTag(string, -1, 2, bulletinFactory$$ExternalSyntheticLambda0);
             lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
-            replaceTags = replaceSingleTag;
-            i5 = -1;
         } else {
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    BulletinFactory.lambda$createForwardedBulletin$6(BaseFragment.this, j);
+                }
+            };
             if (DialogObject.isChatDialog(j)) {
                 TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
-                formatString = i2 <= 1 ? LocaleController.formatString("FwdMessageToGroup", R.string.FwdMessageToGroup, chat.title) : LocaleController.formatString("FwdMessagesToGroup", R.string.FwdMessagesToGroup, chat.title);
+                if (i2 <= 1) {
+                    if (baseFragment != null) {
+                        formatString2 = LocaleController.formatString(R.string.FwdMessageToGroup, chat.title);
+                        replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
+                    } else {
+                        formatString = LocaleController.formatString(R.string.FwdMessageToGroup, chat.title);
+                        replaceTags = AndroidUtilities.replaceTags(formatString);
+                    }
+                } else if (baseFragment != null) {
+                    formatString2 = LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title);
+                    replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
+                } else {
+                    formatString = LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title);
+                    replaceTags = AndroidUtilities.replaceTags(formatString);
+                }
             } else {
                 TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
-                formatString = i2 <= 1 ? LocaleController.formatString("FwdMessageToUser", R.string.FwdMessageToUser, UserObject.getFirstName(user)) : LocaleController.formatString("FwdMessagesToUser", R.string.FwdMessagesToUser, UserObject.getFirstName(user));
+                if (i2 <= 1) {
+                    if (baseFragment != null) {
+                        formatString2 = LocaleController.formatString(R.string.FwdMessageToUser, UserObject.getFirstName(user));
+                        replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
+                    } else {
+                        formatString = LocaleController.formatString(R.string.FwdMessageToUser, UserObject.getFirstName(user));
+                        replaceTags = AndroidUtilities.replaceTags(formatString);
+                    }
+                } else if (baseFragment != null) {
+                    formatString2 = LocaleController.formatString(R.string.FwdMessagesToUser, UserObject.getFirstName(user));
+                    replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
+                } else {
+                    formatString = LocaleController.formatString(R.string.FwdMessagesToUser, UserObject.getFirstName(user));
+                    replaceTags = AndroidUtilities.replaceTags(formatString);
+                }
             }
-            replaceTags = AndroidUtilities.replaceTags(formatString);
             lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
         }
         lottieLayout.textView.setText(replaceTags);
-        if (i5 > 0) {
-            lottieLayout.postDelayed(new Runnable() {
-                @Override
-                public final void run() {
-                    Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
-                }
-            }, i5);
+        lottieLayout.postDelayed(new Runnable() {
+            @Override
+            public final void run() {
+                Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
+            }
+        }, 300);
+        if (frameLayout != null) {
+            make = Bulletin.make(frameLayout, lottieLayout, i5);
+        } else {
+            if (baseFragment == null) {
+                throw new IllegalArgumentException();
+            }
+            make = Bulletin.make(baseFragment, lottieLayout, i5);
         }
-        return Bulletin.make(frameLayout, lottieLayout, 1500);
+        if (lottieLayout instanceof Bulletin.LottieLayoutWithReactions) {
+            lottieLayout.textView.setSingleLine(false);
+            lottieLayout.textView.setMaxLines(2);
+            ((Bulletin.LottieLayoutWithReactions) lottieLayout).setBulletin(make);
+            make.hideAfterBottomSheet(false);
+        }
+        return make;
     }
 
     public static Bulletin createInviteSentBulletin(Context context, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4) {
@@ -447,6 +497,12 @@ public final class BulletinFactory {
         Intent intent = new Intent("android.intent.action.VIEW_DOWNLOADS");
         intent.setFlags(268468224);
         LaunchActivity.instance.startActivity(intent);
+    }
+
+    public static void lambda$createForwardedBulletin$6(BaseFragment baseFragment, long j) {
+        if (baseFragment != null) {
+            baseFragment.presentFragment(ChatActivity.of(j));
+        }
     }
 
     public static BulletinFactory of(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {

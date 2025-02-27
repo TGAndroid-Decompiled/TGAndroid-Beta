@@ -24,7 +24,7 @@ public abstract class NavigationExt {
                             ((BaseFragment) arrayList.get(size2)).removeSelfFromStack();
                         }
                     }
-                    lastFragment.lambda$onBackPressed$323();
+                    lastFragment.lambda$onBackPressed$335();
                     return true;
                 }
                 arrayList.add((BaseFragment) fragmentStack.get(size));

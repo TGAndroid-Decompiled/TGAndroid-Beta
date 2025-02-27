@@ -6100,6 +6100,11 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.isOutOwner():boolean");
     }
 
+    public boolean isPaid() {
+        TLRPC.Message message = this.messageOwner;
+        return message != null && message.paid_message_stars > 0;
+    }
+
     public boolean isPaidReactionChosen() {
         if (this.messageOwner.reactions == null) {
             return false;
@@ -7088,26 +7093,28 @@ public class MessageObject {
     }
 
     public boolean updateTranslation(boolean z) {
-        String str;
         TLRPC.Message message;
         MessageObject messageObject = this.replyMessageObject;
         boolean z2 = (messageObject == null || messageObject == this || !messageObject.updateTranslation(z)) ? false : true;
         TranslateController translateController = MessagesController.getInstance(this.currentAccount).getTranslateController();
-        if (!TranslateController.isTranslatable(this) || !translateController.isTranslatingDialog(getDialogId()) || translateController.isTranslateDialogHidden(getDialogId()) || (message = this.messageOwner) == null || message.translatedText == null || !TextUtils.equals(translateController.getDialogTranslateTo(getDialogId()), this.messageOwner.translatedToLanguage)) {
-            TLRPC.Message message2 = this.messageOwner;
-            if (message2 == null || !(z || this.translated)) {
-                return z2;
-            }
-            this.translated = false;
-            str = message2.message;
-        } else {
+        if (TranslateController.isTranslatable(this) && translateController.isTranslatingDialog(getDialogId()) && !translateController.isTranslateDialogHidden(getDialogId()) && (message = this.messageOwner) != null && ((message.translatedText != null || message.translatedPoll != null) && TextUtils.equals(translateController.getDialogTranslateTo(getDialogId()), this.messageOwner.translatedToLanguage))) {
             if (this.translated) {
                 return z2;
             }
             this.translated = true;
-            str = this.messageOwner.translatedText.text;
+            TLRPC.TL_textWithEntities tL_textWithEntities = this.messageOwner.translatedText;
+            if (tL_textWithEntities != null) {
+                applyNewText(tL_textWithEntities.text);
+                generateCaption();
+            }
+            return true;
         }
-        applyNewText(str);
+        TLRPC.Message message2 = this.messageOwner;
+        if (message2 == null || !(z || this.translated)) {
+            return z2;
+        }
+        this.translated = false;
+        applyNewText(message2.message);
         generateCaption();
         return true;
     }

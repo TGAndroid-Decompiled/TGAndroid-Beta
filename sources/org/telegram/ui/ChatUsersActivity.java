@@ -56,6 +56,7 @@ import org.telegram.ui.Cells.LoadingCell;
 import org.telegram.ui.Cells.ManageChatTextCell;
 import org.telegram.ui.Cells.ManageChatUserCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextCheckCell2;
@@ -105,6 +106,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int dontRestrictBoostersSliderRow;
     private int embedLinksRow;
     private StickerEmptyView emptyView;
+    private boolean enablePrice;
     private boolean firstLoaded;
     private FlickerLoadingView flickerLoadingView;
     private int gigaConvertRow;
@@ -116,9 +118,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private LongSparseArray ignoredUsers;
     private TLRPC.ChatFull info;
     private String initialBannedRights;
+    private boolean initialEnablePrice;
     private boolean initialProfiles;
     private boolean initialSignatures;
     private int initialSlowmode;
+    private long initialStarsPrice;
     private boolean isChannel;
     private boolean isEnabledNotRestrictBoosters;
     private boolean isForum;
@@ -141,8 +145,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int participantsInfoRow;
     private LongSparseArray participantsMap;
     private int participantsStartRow;
+    private int payInfoRow;
+    private int payRow;
     private int permissionsSectionRow;
     private int pinMessagesRow;
+    private int priceHeaderRow;
+    private int priceInfoRow;
+    private int priceRow;
     private boolean profiles;
     private View progressBar;
     private int recentActionsRow;
@@ -174,6 +183,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int slowmodeInfoRow;
     private int slowmodeRow;
     private int slowmodeSelectRow;
+    private long starsPrice;
     private int type;
     private UndoView undoView;
 
@@ -188,7 +198,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
             BaseFragment baseFragment = (BaseFragment) ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 2);
             if (!(baseFragment instanceof ChatEditActivity)) {
-                ChatUsersActivity.this.lambda$onBackPressed$323();
+                ChatUsersActivity.this.lambda$onBackPressed$335();
                 return;
             }
             baseFragment.removeSelfFromStack();
@@ -197,7 +207,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             ChatEditActivity chatEditActivity = new ChatEditActivity(bundle);
             chatEditActivity.setInfo(ChatUsersActivity.this.info);
             ((BaseFragment) ChatUsersActivity.this).parentLayout.addFragmentToStack(chatEditActivity, ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 1);
-            ChatUsersActivity.this.lambda$onBackPressed$323();
+            ChatUsersActivity.this.lambda$onBackPressed$335();
             chatEditActivity.showConvertTooltip();
         }
 
@@ -464,6 +474,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             put(i + 15, ChatUsersActivity.this.signMessagesRow, sparseIntArray);
             put(i + 16, ChatUsersActivity.this.signMessagesProfilesRow, sparseIntArray);
             put(i + 17, ChatUsersActivity.this.signMessagesInfoRow, sparseIntArray);
+            put(i + 18, ChatUsersActivity.this.payRow, sparseIntArray);
+            put(i + 19, ChatUsersActivity.this.payInfoRow, sparseIntArray);
+            put(i + 20, ChatUsersActivity.this.priceHeaderRow, sparseIntArray);
+            put(i + 21, ChatUsersActivity.this.priceRow, sparseIntArray);
+            put(i + 22, ChatUsersActivity.this.priceInfoRow, sparseIntArray);
         }
 
         @Override
@@ -482,6 +497,18 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         public ListAdapter(Context context) {
             this.mContext = context;
+        }
+
+        public static CharSequence lambda$onBindViewHolder$3(Integer num, Integer num2) {
+            if (num.intValue() == 0) {
+                return LocaleController.formatPluralStringComma("Stars", num2.intValue());
+            }
+            return "" + num2;
+        }
+
+        public void lambda$onBindViewHolder$4(Integer num) {
+            ChatUsersActivity.this.starsPrice = num.intValue();
+            AndroidUtilities.updateVisibleRow(ChatUsersActivity.this.listView, ChatUsersActivity.this.priceInfoRow);
         }
 
         public boolean lambda$onCreateViewHolder$0(ManageChatUserCell manageChatUserCell, boolean z) {
@@ -541,10 +568,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (i == ChatUsersActivity.this.addNewSectionRow || i == ChatUsersActivity.this.participantsDividerRow || i == ChatUsersActivity.this.participantsDivider2Row) {
                 return 3;
             }
-            if (i == ChatUsersActivity.this.restricted1SectionRow || i == ChatUsersActivity.this.permissionsSectionRow || i == ChatUsersActivity.this.slowmodeRow || i == ChatUsersActivity.this.gigaHeaderRow) {
+            if (i == ChatUsersActivity.this.restricted1SectionRow || i == ChatUsersActivity.this.permissionsSectionRow || i == ChatUsersActivity.this.slowmodeRow || i == ChatUsersActivity.this.gigaHeaderRow || i == ChatUsersActivity.this.priceHeaderRow) {
                 return 5;
             }
-            if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.dontRestrictBoostersInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow || i == ChatUsersActivity.this.signMessagesInfoRow) {
+            if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.dontRestrictBoostersInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow || i == ChatUsersActivity.this.signMessagesInfoRow || i == ChatUsersActivity.this.payInfoRow || i == ChatUsersActivity.this.priceInfoRow) {
                 return 1;
             }
             if (i == ChatUsersActivity.this.blockedEmptyRow) {
@@ -580,7 +607,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (i == ChatUsersActivity.this.dontRestrictBoostersSliderRow) {
                 return 15;
             }
-            return (i == ChatUsersActivity.this.signMessagesRow || i == ChatUsersActivity.this.signMessagesProfilesRow) ? 16 : 0;
+            if (i == ChatUsersActivity.this.signMessagesRow || i == ChatUsersActivity.this.signMessagesProfilesRow || i == ChatUsersActivity.this.payRow) {
+                return 16;
+            }
+            return i == ChatUsersActivity.this.priceRow ? 17 : 0;
         }
 
         @Override
@@ -752,6 +782,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     break;
                 case 16:
                     view3 = new TextCheckCell(this.mContext, ChatUsersActivity.this.getResourceProvider());
+                    view3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    view2 = view3;
+                    break;
+                case 17:
+                    view3 = new SlideIntChooseView(this.mContext, ChatUsersActivity.this.getResourceProvider());
                     view3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     view2 = view3;
                     break;
@@ -1065,6 +1100,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.participantsMap = new LongSparseArray();
         this.botsMap = new LongSparseArray();
         this.contactsMap = new LongSparseArray();
+        this.initialStarsPrice = 10L;
+        this.starsPrice = 10L;
         this.chatId = this.arguments.getLong("chat_id");
         this.type = this.arguments.getInt("type");
         this.needOpenSearch = this.arguments.getBoolean("open_search");
@@ -1323,7 +1360,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$323();
+        lambda$onBackPressed$335();
     }
 
     public static void lambda$createMenuForParticipant$10(Utilities.Callback callback) {
@@ -1513,7 +1550,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         loadChatParticipants(0, 200);
     }
 
-    public void lambda$getThemeDescriptions$30() {
+    public void lambda$getThemeDescriptions$32() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
@@ -1526,7 +1563,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$loadChatParticipants$26(ArrayList arrayList, ArrayList arrayList2) {
+    public void lambda$loadChatParticipants$28(ArrayList arrayList, ArrayList arrayList2) {
         int i;
         ArrayList arrayList3;
         LongSparseArray longSparseArray;
@@ -1657,7 +1694,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         resumeDelayedFragmentAnimation();
     }
 
-    public static void lambda$loadChatParticipants$27(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
+    public static void lambda$loadChatParticipants$29(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
         if (tL_error == null && (tLObject instanceof TLRPC.TL_channels_channelParticipants)) {
             arrayList.set(i, (TLRPC.TL_channels_channelParticipants) tLObject);
         }
@@ -1667,11 +1704,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static void lambda$loadChatParticipants$28(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void lambda$loadChatParticipants$30(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatUsersActivity.lambda$loadChatParticipants$27(TLRPC.TL_error.this, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
+                ChatUsersActivity.lambda$loadChatParticipants$29(TLRPC.TL_error.this, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
             }
         });
     }
@@ -1693,6 +1730,18 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
+    public static void lambda$processDone$26() {
+    }
+
+    public static void lambda$processDone$27(TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatUsersActivity.lambda$processDone$26();
+            }
+        });
+    }
+
     public int lambda$sortAdmins$7(TLObject tLObject, TLObject tLObject2) {
         int channelAdminParticipantType = getChannelAdminParticipantType(tLObject);
         int channelAdminParticipantType2 = getChannelAdminParticipantType(tLObject2);
@@ -1708,7 +1757,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return 0;
     }
 
-    public int lambda$sortUsers$29(int i, TLObject tLObject, TLObject tLObject2) {
+    public int lambda$sortUsers$31(int i, TLObject tLObject, TLObject tLObject2) {
         int i2;
         TLRPC.UserStatus userStatus;
         TLRPC.UserStatus userStatus2;
@@ -1773,7 +1822,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatUsersActivity.this.lambda$loadChatParticipants$26(loadChatParticipantsRequests, arrayList);
+                    ChatUsersActivity.this.lambda$loadChatParticipants$28(loadChatParticipantsRequests, arrayList);
                 }
             };
             final AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -1783,7 +1832,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest((TLObject) loadChatParticipantsRequests.get(i3), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ChatUsersActivity.lambda$loadChatParticipants$28(arrayList, i4, atomicInteger, loadChatParticipantsRequests, runnable, tLObject, tL_error);
+                        ChatUsersActivity.lambda$loadChatParticipants$30(arrayList, i4, atomicInteger, loadChatParticipantsRequests, runnable, tLObject, tL_error);
                     }
                 }), this.classGuid);
                 i3++;
@@ -2148,7 +2197,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (chatUsersActivityDelegate != null) {
                 chatUsersActivityDelegate.didKickParticipant(j);
             }
-            lambda$onBackPressed$323();
+            lambda$onBackPressed$335();
         }
     }
 
@@ -2293,9 +2342,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$sortUsers$29;
-                lambda$sortUsers$29 = ChatUsersActivity.this.lambda$sortUsers$29(currentTime, (TLObject) obj, (TLObject) obj2);
-                return lambda$sortUsers$29;
+                int lambda$sortUsers$31;
+                lambda$sortUsers$31 = ChatUsersActivity.this.lambda$sortUsers$31(currentTime, (TLObject) obj, (TLObject) obj2);
+                return lambda$sortUsers$31;
             }
         });
     }
@@ -2345,7 +2394,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     removeSelfFromStack();
                     return;
                 } else {
-                    lambda$onBackPressed$323();
+                    lambda$onBackPressed$335();
                     return;
                 }
             }
@@ -2366,6 +2415,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 int i3 = this.info.boosts_unrestrict;
                 this.isEnabledNotRestrictBoosters = i3 > 0;
                 this.notRestrictBoosters = i3;
+                long sendPaidMessagesStars = getMessagesController().getSendPaidMessagesStars(-this.chatId);
+                boolean z2 = sendPaidMessagesStars > 0;
+                this.enablePrice = z2;
+                this.initialEnablePrice = z2;
+                if (sendPaidMessagesStars <= 0) {
+                    sendPaidMessagesStars = 10;
+                }
+                long clamp = Utilities.clamp(sendPaidMessagesStars, getMessagesController().starsPaidMessageAmountMax, 1L);
+                this.starsPrice = clamp;
+                this.initialStarsPrice = clamp;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2382,7 +2441,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatUsersActivity.this.lambda$getThemeDescriptions$30();
+                ChatUsersActivity.this.lambda$getThemeDescriptions$32();
             }
 
             @Override
@@ -2553,6 +2612,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             int i = this.info.boosts_unrestrict;
             this.isEnabledNotRestrictBoosters = i > 0;
             this.notRestrictBoosters = i;
+            long sendPaidMessagesStars = getMessagesController().getSendPaidMessagesStars(-this.chatId);
+            boolean z = sendPaidMessagesStars > 0;
+            this.enablePrice = z;
+            this.initialEnablePrice = z;
+            if (sendPaidMessagesStars <= 0) {
+                sendPaidMessagesStars = 10;
+            }
+            long clamp = Utilities.clamp(sendPaidMessagesStars, getMessagesController().starsPaidMessageAmountMax, 1L);
+            this.starsPrice = clamp;
+            this.initialStarsPrice = clamp;
         }
     }
 

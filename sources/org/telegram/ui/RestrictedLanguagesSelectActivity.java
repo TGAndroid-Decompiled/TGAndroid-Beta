@@ -16,7 +16,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.common.collect.Sets;
-import j$.util.Collection$EL;
+import j$.util.Collection;
 import j$.util.function.Predicate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -261,7 +261,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
                 LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
                 final String str = language.code;
                 if (this.selectedLanguages.contains(str)) {
-                    Collection$EL.removeIf(this.selectedLanguages, new Predicate() {
+                    Collection.EL.removeIf(this.selectedLanguages, new Predicate() {
                         @Override
                         public Predicate and(Predicate predicate) {
                             return Predicate.CC.$default$and(this, predicate);
@@ -449,7 +449,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    RestrictedLanguagesSelectActivity.this.lambda$onBackPressed$323();
+                    RestrictedLanguagesSelectActivity.this.lambda$onBackPressed$335();
                 }
             }
         });

@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Collection$EL;
+import j$.util.Collection;
 import j$.util.DesugarArrays;
 import j$.util.function.Function;
 import j$.util.function.Predicate;
@@ -33,7 +33,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CollapseTextCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda296;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda306;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -420,7 +420,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 public Function compose(Function function) {
                     return Function.CC.$default$compose(this, function);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda296()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda306()));
             Action action = new Action(2, arrayList2);
             this.banOrRestrict = action;
             action.setFilter(this.banFilter);
@@ -754,7 +754,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             if (tLObject instanceof TLRPC.Chat) {
                 inputPeer = MessagesController.getInputPeer((TLRPC.Chat) tLObject);
             }
-            tL_channels_reportSpam.id = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
+            tL_channels_reportSpam.id = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
                 @Override
                 public Predicate and(Predicate predicate) {
                     return Predicate.CC.$default$and(this, predicate);
@@ -798,12 +798,12 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                     lambda$performDelete$14 = DeleteMessagesBottomSheet.lambda$performDelete$14(TLObject.this, (MessageObject) obj);
                     return lambda$performDelete$14;
                 }
-            }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda296()));
+            }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda306()));
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_reportSpam, null);
         }
         inputPeer = MessagesController.getInputPeer((TLRPC.User) tLObject);
         tL_channels_reportSpam.participant = inputPeer;
-        tL_channels_reportSpam.id = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
+        tL_channels_reportSpam.id = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
             @Override
             public Predicate and(Predicate predicate) {
                 return Predicate.CC.$default$and(this, predicate);
@@ -847,7 +847,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$14 = DeleteMessagesBottomSheet.lambda$performDelete$14(TLObject.this, (MessageObject) obj);
                 return lambda$performDelete$14;
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda296()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda306()));
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_reportSpam, null);
     }
 
@@ -865,7 +865,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
     public void lambda$updateParticipantMessageCounts$5(TLObject tLObject, final TLRPC.InputPeer inputPeer, int i, int[] iArr) {
         if (tLObject instanceof TLRPC.TL_messages_channelMessages) {
-            this.participantMessageCounts[i] = ((TLRPC.TL_messages_channelMessages) tLObject).count - ((int) Collection$EL.stream(this.messages).filter(new Predicate() {
+            this.participantMessageCounts[i] = ((TLRPC.TL_messages_channelMessages) tLObject).count - ((int) Collection.EL.stream(this.messages).filter(new Predicate() {
                 @Override
                 public Predicate and(Predicate predicate) {
                     return Predicate.CC.$default$and(this, predicate);
@@ -1082,7 +1082,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     private void performDelete() {
-        ArrayList<Integer> arrayList = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
+        ArrayList<Integer> arrayList = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
             @Override
             public Predicate and(Predicate predicate) {
                 return Predicate.CC.$default$and(this, predicate);
@@ -1104,8 +1104,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$10 = DeleteMessagesBottomSheet.this.lambda$performDelete$10((MessageObject) obj);
                 return lambda$performDelete$10;
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda296()));
-        ArrayList<Integer> arrayList2 = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda306()));
+        ArrayList<Integer> arrayList2 = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
             @Override
             public Predicate and(Predicate predicate) {
                 return Predicate.CC.$default$and(this, predicate);
@@ -1127,7 +1127,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$11 = DeleteMessagesBottomSheet.this.lambda$performDelete$11((MessageObject) obj);
                 return lambda$performDelete$11;
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda296()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda306()));
         if (!arrayList.isEmpty()) {
             MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList, null, null, -this.inChat.id, this.topicId, false, this.mode);
         }

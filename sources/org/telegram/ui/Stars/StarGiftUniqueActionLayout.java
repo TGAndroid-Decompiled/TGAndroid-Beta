@@ -210,7 +210,7 @@ public class StarGiftUniqueActionLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.onTouchEvent(float, float, android.view.MotionEvent):boolean");
     }
 
-    public void set(org.telegram.messenger.MessageObject r13, boolean r14) {
+    public void set(org.telegram.messenger.MessageObject r18, boolean r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.set(org.telegram.messenger.MessageObject, boolean):void");
     }
 }

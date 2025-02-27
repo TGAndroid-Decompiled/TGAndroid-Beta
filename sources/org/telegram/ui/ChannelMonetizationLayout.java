@@ -860,6 +860,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.currentAccount = i;
         this.dialogId = j;
         initLevel();
+        TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         this.titleInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.MonetizationInfo, 50), -1, 3, new Runnable() {
             @Override
             public final void run() {
@@ -880,7 +881,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 ChannelMonetizationLayout.this.lambda$new$2(i3);
             }
         }, resourcesProvider), true);
-        this.starsBalanceInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.MonetizationStarsInfo), new Runnable() {
+        this.starsBalanceInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(chat) ? R.string.MonetizationStarsInfo : R.string.MonetizationStarsInfoGroup), new Runnable() {
             @Override
             public final void run() {
                 ChannelMonetizationLayout.this.lambda$new$3();
@@ -1074,8 +1075,10 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         });
         linearLayout4.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
-        linearLayout4.addView(new Space(context), LayoutHelper.createLinear(8, 48, 0.0f, 119));
-        linearLayout4.addView(buttonWithCounterView3, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
+        if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+            linearLayout4.addView(new Space(context), LayoutHelper.createLinear(8, 48, 0.0f, 119));
+            linearLayout4.addView(buttonWithCounterView3, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
+        }
         linearLayout2.addView(linearLayout4, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
         this.starsBalanceEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -1134,7 +1137,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         int i8 = Theme.key_player_actionBarSubtitle;
         textView2.setTextColor(Theme.getColor(i8));
         textView2.setTag(Integer.valueOf(i8));
-        textView2.setText(LocaleController.getString("LoadingStatsDescription", R.string.LoadingStatsDescription));
+        textView2.setText(LocaleController.getString(R.string.LoadingStatsDescription));
         textView2.setGravity(1);
         linearLayout5.addView(rLottieImageView, LayoutHelper.createLinear(120, 120, 1, 0, 0, 0, 20));
         linearLayout5.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 10));
@@ -1164,7 +1167,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView != null) {
-            universalRecyclerView.adapter.update(true);
+            universalRecyclerView.adapter.update(false);
+            this.listView.scrollToPosition(0);
         }
     }
 
@@ -1219,7 +1223,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 arrayList.add(UItem.asShadow(-6, this.starsBalanceInfo));
             }
         }
-        if (MessagesController.getInstance(this.currentAccount).starrefConnectAllowed) {
+        if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId))) && MessagesController.getInstance(this.currentAccount).starrefConnectAllowed) {
             arrayList.add(AffiliateProgramFragment.ColorfulTextCell.Factory.as(4, Theme.getColor(Theme.key_color_green, this.resourcesProvider), R.drawable.filled_earn_stars, ChatEditActivity.applyNewSpan(LocaleController.getString(R.string.ChannelAffiliateProgramRowTitle)), LocaleController.getString(R.string.ChannelAffiliateProgramRowText)));
             arrayList.add(UItem.asShadow(-7, null));
         }
@@ -1239,31 +1243,30 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         });
         loadStarsStats();
-        if (!this.tonRevenueAvailable || ChatObject.isMegagroup(chat)) {
-            return;
-        }
-        TL_stats.TL_getBroadcastRevenueStats tL_getBroadcastRevenueStats = new TL_stats.TL_getBroadcastRevenueStats();
-        tL_getBroadcastRevenueStats.dark = Theme.isCurrentThemeDark();
-        tL_getBroadcastRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
-        if (chatFull != null) {
-            int i2 = chatFull.stats_dc;
-            boolean z = chatFull.restricted_sponsored;
-            this.switchOffValue = z;
-            this.initialSwitchOffValue = z;
-            i = i2;
-        } else {
-            i = -1;
-        }
-        if (i == -1) {
-            return;
-        }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getBroadcastRevenueStats, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelMonetizationLayout.this.lambda$initLevel$33(tLObject, tL_error);
+        if (this.tonRevenueAvailable) {
+            TL_stats.TL_getBroadcastRevenueStats tL_getBroadcastRevenueStats = new TL_stats.TL_getBroadcastRevenueStats();
+            tL_getBroadcastRevenueStats.dark = Theme.isCurrentThemeDark();
+            tL_getBroadcastRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
+            if (chatFull != null) {
+                int i2 = chatFull.stats_dc;
+                boolean z = chatFull.restricted_sponsored;
+                this.switchOffValue = z;
+                this.initialSwitchOffValue = z;
+                i = i2;
+            } else {
+                i = -1;
             }
-        }, null, null, 0, i, 1, true);
+            if (i == -1) {
+                return;
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getBroadcastRevenueStats, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelMonetizationLayout.this.lambda$initLevel$33(tLObject, tL_error);
+                }
+            }, null, null, 0, i, 1, true);
+        }
     }
 
     private void initWithdraw(final boolean z, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
@@ -1394,7 +1397,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         int i2;
         if (tL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$323();
+            twoStepVerificationActivity.lambda$onBackPressed$335();
             if (tLObject instanceof TL_stats.TL_broadcastRevenueWithdrawalUrl) {
                 Browser.openUrl(getContext(), ((TL_stats.TL_broadcastRevenueWithdrawalUrl) tLObject).url);
                 return;
@@ -1419,7 +1422,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$323();
+                twoStepVerificationActivity.lambda$onBackPressed$335();
             }
             BulletinFactory.showError(tL_error);
             return;

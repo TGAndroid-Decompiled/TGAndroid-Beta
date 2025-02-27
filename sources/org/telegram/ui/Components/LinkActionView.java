@@ -302,15 +302,17 @@ public class LinkActionView extends LinearLayout {
             String str = this.link;
             baseFragment.showDialog(new ShareAlert(context, null, str, false, str, false, baseFragment.getResourceProvider()) {
                 @Override
-                public void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic) {
+                public void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
                     String formatString;
-                    if (longSparseArray == null || longSparseArray.size() != 1) {
-                        formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0]));
-                    } else {
-                        long j = ((TLRPC.Dialog) longSparseArray.valueAt(0)).id;
-                        formatString = (j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId()) ? LocaleController.getString(R.string.InvLinkToSavedMessages) : LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j, true));
+                    if (z) {
+                        if (longSparseArray == null || longSparseArray.size() != 1) {
+                            formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0]));
+                        } else {
+                            long j = ((TLRPC.Dialog) longSparseArray.valueAt(0)).id;
+                            formatString = (j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId()) ? LocaleController.getString(R.string.InvLinkToSavedMessages) : LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j, true));
+                        }
+                        LinkActionView.this.showBulletin(R.raw.forward, AndroidUtilities.replaceTags(formatString));
                     }
-                    LinkActionView.this.showBulletin(R.raw.forward, AndroidUtilities.replaceTags(formatString));
                 }
             });
         } catch (Exception e) {

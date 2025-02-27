@@ -74,7 +74,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     private AnimatorSet shadowAnimation;
 
     public interface AudioSelectDelegate {
-        void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2);
+        void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2);
     }
 
     public class ListAdapter extends RecyclerListView.SelectionAdapter {
@@ -481,13 +481,13 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         updateEmptyView();
     }
 
-    public void lambda$loadAudio$3(ArrayList arrayList) {
+    public void lambda$loadAudio$4(ArrayList arrayList) {
         this.loadingAudio = false;
         this.audioEntries = arrayList;
         this.listAdapter.notifyDataSetChanged();
     }
 
-    public void lambda$loadAudio$4() {
+    public void lambda$loadAudio$5() {
         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
         final ArrayList arrayList = new ArrayList();
         try {
@@ -558,7 +558,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertAudioLayout.this.lambda$loadAudio$3(arrayList);
+                ChatAttachAlertAudioLayout.this.lambda$loadAudio$4(arrayList);
             }
         });
     }
@@ -576,17 +576,22 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         return true;
     }
 
+    public void lambda$sendSelectedItems$3(ArrayList arrayList, boolean z, int i, long j, boolean z2, Long l) {
+        this.delegate.didSelectAudio(arrayList, this.parentAlert.getCommentView().getText(), z, i, j, z2, l.longValue());
+        this.parentAlert.dismiss(true);
+    }
+
     private void loadAudio() {
         this.loadingAudio = true;
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertAudioLayout.this.lambda$loadAudio$4();
+                ChatAttachAlertAudioLayout.this.lambda$loadAudio$5();
             }
         });
     }
 
-    private void onItemClick(android.view.View r13) {
+    private void onItemClick(android.view.View r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(android.view.View):void");
     }
 
@@ -857,16 +862,22 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
+    public boolean sendSelectedItems(final boolean z, final int i, final long j, final boolean z2) {
         if (this.selectedAudios.size() == 0 || this.delegate == null || this.sendPressed) {
-            return;
+            return false;
         }
         this.sendPressed = true;
-        ArrayList arrayList = new ArrayList();
+        final ArrayList arrayList = new ArrayList();
         for (int i2 = 0; i2 < this.selectedAudiosOrder.size(); i2++) {
             arrayList.add(((MediaController.AudioEntry) this.selectedAudiosOrder.get(i2)).messageObject);
         }
-        this.delegate.didSelectAudio(arrayList, this.parentAlert.getCommentView().getText(), z, i, j, z2);
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        return AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), arrayList.size() + this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ChatAttachAlertAudioLayout.this.lambda$sendSelectedItems$3(arrayList, z, i, j, z2, (Long) obj);
+            }
+        });
     }
 
     public void setDelegate(AudioSelectDelegate audioSelectDelegate) {

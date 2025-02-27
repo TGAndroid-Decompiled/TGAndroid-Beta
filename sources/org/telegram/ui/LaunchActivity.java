@@ -1299,7 +1299,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return handleIntent(intent, z, z2, z3, null, true, false);
     }
 
-    private boolean handleIntent(android.content.Intent r109, boolean r110, boolean r111, boolean r112, org.telegram.messenger.browser.Browser.Progress r113, boolean r114, boolean r115) {
+    private boolean handleIntent(android.content.Intent r111, boolean r112, boolean r113, boolean r114, org.telegram.messenger.browser.Browser.Progress r115, boolean r116, boolean r117) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean, boolean):boolean");
     }
 
@@ -1530,7 +1530,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         MessagesController.getInstance(this.currentAccount).performLogout(2);
     }
 
-    public static void lambda$didReceivedNotification$144(HashMap hashMap, int i, TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3) {
+    public static void lambda$didReceivedNotification$144(HashMap hashMap, int i, TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3, long j) {
         Iterator it = hashMap.entrySet().iterator();
         while (it.hasNext()) {
             MessageObject messageObject = (MessageObject) ((Map.Entry) it.next()).getValue();
@@ -1544,8 +1544,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             LocationActivity locationActivity = new LocationActivity(0);
             locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
                 @Override
-                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4) {
-                    LaunchActivity.lambda$didReceivedNotification$144(hashMap, i, messageMedia, i3, z, i4);
+                public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
+                    LaunchActivity.lambda$didReceivedNotification$144(hashMap, i, messageMedia, i3, z, i4, j);
                 }
             });
             lambda$runLinkRequest$95(locationActivity);
@@ -1653,7 +1653,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$didSelectDialogs$137(ChatActivity chatActivity, ArrayList arrayList, int i, CharSequence charSequence, int i2, boolean z, TLRPC.User user, boolean z2, int i3, long j, boolean z3) {
+    public void lambda$didSelectDialogs$137(ChatActivity chatActivity, ArrayList arrayList, int i, CharSequence charSequence, int i2, boolean z, TLRPC.User user, boolean z2, int i3, long j, boolean z3, long j2) {
         MessageObject messageObject;
         TLRPC.TL_forumTopic findTopic;
         if (chatActivity != null) {
@@ -1661,23 +1661,23 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
         for (int i4 = 0; i4 < arrayList.size(); i4++) {
-            long j2 = ((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId;
-            long j3 = ((MessagesStorage.TopicKey) arrayList.get(i4)).topicId;
-            if (j3 == 0 || (findTopic = accountInstance.getMessagesController().getTopicsController().findTopic(-j2, j3)) == null || findTopic.topicStartMessage == null) {
+            long j3 = ((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId;
+            long j4 = ((MessagesStorage.TopicKey) arrayList.get(i4)).topicId;
+            if (j4 == 0 || (findTopic = accountInstance.getMessagesController().getTopicsController().findTopic(-j3, j4)) == null || findTopic.topicStartMessage == null) {
                 messageObject = null;
             } else {
                 MessageObject messageObject2 = new MessageObject(accountInstance.getCurrentAccount(), findTopic.topicStartMessage, false, false);
                 messageObject2.isTopicMainMessage = true;
                 messageObject = messageObject2;
             }
-            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(user, j2, messageObject, messageObject, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z2, i3 != 0 ? i3 : i);
+            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(user, j3, messageObject, messageObject, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z2, i3 != 0 ? i3 : i);
             if (TextUtils.isEmpty(charSequence)) {
                 of.effect_id = j;
             }
             of.invert_media = z3;
             SendMessagesHelper.getInstance(i2).sendMessage(of);
             if (!TextUtils.isEmpty(charSequence)) {
-                SendMessagesHelper.prepareSendingText(accountInstance, charSequence.toString(), j2, z, i3 != 0 ? i3 : i, j);
+                SendMessagesHelper.prepareSendingText(accountInstance, charSequence.toString(), j3, z, i3 != 0 ? i3 : i, j);
             }
         }
     }
@@ -1719,7 +1719,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$handleIntent$20(int[] iArr, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2) {
+    public static void lambda$handleIntent$20(int[] iArr, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j2) {
         SendMessagesHelper.getInstance(iArr[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2));
     }
 
@@ -1732,8 +1732,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final long dialogId = sharingLocationInfo.messageObject.getDialogId();
         locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
             @Override
-            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3) {
-                LaunchActivity.lambda$handleIntent$20(iArr, dialogId, messageMedia, i2, z, i3);
+            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3, long j) {
+                LaunchActivity.lambda$handleIntent$20(iArr, dialogId, messageMedia, i2, z, i3, j);
             }
         });
         lambda$runLinkRequest$95(locationActivity);
@@ -5188,7 +5188,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r40, final java.util.ArrayList r41, final java.lang.CharSequence r42, final boolean r43, boolean r44, int r45, org.telegram.ui.TopicsFragment r46) {
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r42, final java.util.ArrayList r43, final java.lang.CharSequence r44, final boolean r45, boolean r46, int r47, org.telegram.ui.TopicsFragment r48) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
@@ -5502,7 +5502,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 } else if (this.rightActionBarLayout.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$323();
+                        baseFragment.lambda$onBackPressed$335();
                         return;
                     }
                     return;

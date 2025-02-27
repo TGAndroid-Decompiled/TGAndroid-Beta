@@ -122,6 +122,10 @@ public class SeekBarView extends FrameLayout {
                 return 0;
             }
 
+            public static boolean $default$needVisuallyDivideSteps(SeekBarViewDelegate seekBarViewDelegate) {
+                return false;
+            }
+
             public static void $default$onSeekBarPressed(SeekBarViewDelegate seekBarViewDelegate, boolean z) {
             }
         }
@@ -129,6 +133,8 @@ public class SeekBarView extends FrameLayout {
         CharSequence getContentDescription();
 
         int getStepsCount();
+
+        boolean needVisuallyDivideSteps();
 
         void onSeekBarDrag(boolean z, float f);
 
@@ -145,7 +151,7 @@ public class SeekBarView extends FrameLayout {
 
     public SeekBarView(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.animatedThumbX = new AnimatedFloat(this, 0L, 80L, CubicBezierInterpolator.EASE_OUT);
+        this.animatedThumbX = new AnimatedFloat(this, 0L, 60L, CubicBezierInterpolator.EASE_OUT);
         this.progressToSet = -100.0f;
         this.minProgress = -1.0f;
         this.pressedState = new int[]{16842910, 16842919};

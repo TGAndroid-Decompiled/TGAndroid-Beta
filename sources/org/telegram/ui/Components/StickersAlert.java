@@ -471,7 +471,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (StickersAlert.this.delegate == null) {
                 return;
             }
-            StickersAlert.this.delegate.lambda$onStickerSelected$68(document, str, obj, null, StickersAlert.this.clearsInputField, z, i);
+            StickersAlert.this.delegate.lambda$onStickerSelected$71(document, str, obj, null, StickersAlert.this.clearsInputField, z, i);
             StickersAlert.this.lambda$new$0();
         }
 
@@ -519,13 +519,15 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
 
         @Override
-        public void onSend(final LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StickersAlert.AnonymousClass11.this.lambda$onSend$0(longSparseArray, i);
-                }
-            }, 100L);
+        public void onSend(final LongSparseArray longSparseArray, final int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+            if (z) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StickersAlert.AnonymousClass11.this.lambda$onSend$0(longSparseArray, i);
+                    }
+                }, 100L);
+            }
         }
     }
 
@@ -802,7 +804,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         boolean isInScheduleMode();
 
-        void lambda$onStickerSelected$68(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i);
+        void lambda$onStickerSelected$71(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i);
     }
 
     public interface StickersAlertInstallDelegate {
@@ -1782,7 +1784,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
     public void lambda$init$13(View view) {
         if (this.importingStickersPaths == null) {
-            this.delegate.lambda$onStickerSelected$68(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0);
+            this.delegate.lambda$onStickerSelected$71(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0);
             lambda$new$0();
         } else {
             removeSticker(this.selectedStickerPath);

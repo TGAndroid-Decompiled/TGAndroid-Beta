@@ -43,6 +43,11 @@ public class GLIconSettingsView extends LinearLayout {
             }
 
             @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 Icon3D icon3D = gLIconRenderer.model;
                 if (icon3D != null) {
@@ -77,6 +82,11 @@ public class GLIconSettingsView extends LinearLayout {
             @Override
             public int getStepsCount() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
             }
 
             @Override
@@ -170,6 +180,11 @@ public class GLIconSettingsView extends LinearLayout {
             }
 
             @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 Icon3D icon3D3 = gLIconRenderer.model;
                 if (icon3D3 != null) {
@@ -204,6 +219,11 @@ public class GLIconSettingsView extends LinearLayout {
             @Override
             public int getStepsCount() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
             }
 
             @Override
@@ -293,6 +313,11 @@ public class GLIconSettingsView extends LinearLayout {
             @Override
             public int getStepsCount() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
             }
 
             @Override

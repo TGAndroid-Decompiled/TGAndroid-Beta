@@ -78,6 +78,9 @@ public class ItemOptions {
     private Theme.ResourcesProvider resourcesProvider;
     private View scrimView;
     private Drawable scrimViewBackground;
+    private Drawable scrimViewDrawable;
+    private int scrimViewDrawableHeight;
+    private int scrimViewDrawableWidth;
     private int scrimViewPadding;
     private int scrimViewRoundRadius;
     private Integer selectorColor;
@@ -236,6 +239,17 @@ public class ItemOptions {
                     }
                     if (ItemOptions.this.scrimView instanceof ScrimView) {
                         ((ScrimView) ItemOptions.this.scrimView).drawScrim(canvas, getAlpha());
+                    } else if (ItemOptions.this.scrimViewDrawable != null) {
+                        this.bounds.set(0.0f, 0.0f, ItemOptions.this.scrimView.getWidth(), ItemOptions.this.scrimView.getHeight());
+                        this.bounds.offset(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top);
+                        RectF rectF3 = AndroidUtilities.rectTmp;
+                        rectF3.set(0.0f, 0.0f, ItemOptions.this.scrimViewDrawableWidth, ItemOptions.this.scrimViewDrawableHeight);
+                        rectF3.offset(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top);
+                        AndroidUtilities.lerp(rectF3, this.bounds, getAlpha(), this.bounds);
+                        Drawable drawable3 = ItemOptions.this.scrimViewDrawable;
+                        RectF rectF4 = this.bounds;
+                        drawable3.setBounds((int) rectF4.left, (int) rectF4.top, (int) rectF4.right, (int) rectF4.bottom);
+                        ItemOptions.this.scrimViewDrawable.draw(canvas);
                     } else {
                         ItemOptions.this.scrimView.draw(canvas);
                     }
@@ -1168,6 +1182,8 @@ public class ItemOptions {
 
     public ItemOptions show() {
         float f;
+        float measuredWidth;
+        int measuredHeight;
         float f2;
         int width;
         int height;
@@ -1224,7 +1240,14 @@ public class ItemOptions {
             if (view2 instanceof ScrimView) {
                 ((ScrimView) view2).getBounds(rectF);
             } else {
-                rectF.set(0.0f, 0.0f, view2.getMeasuredWidth(), this.scrimView.getMeasuredHeight());
+                if (this.scrimViewDrawable != null) {
+                    measuredWidth = this.scrimViewDrawableWidth;
+                    measuredHeight = this.scrimViewDrawableHeight;
+                } else {
+                    measuredWidth = view2.getMeasuredWidth();
+                    measuredHeight = this.scrimView.getMeasuredHeight();
+                }
+                rectF.set(0.0f, 0.0f, measuredWidth, measuredHeight);
             }
             float f6 = f + rectF.left;
             float f7 = f4 + rectF.top;

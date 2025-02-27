@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,20 +10,20 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
 
 public class RadioButton extends View {
     private static Paint checkedPaint;
     private static Paint eraser;
     private static Paint paint;
     private boolean attachedToWindow;
-    private Bitmap bitmap;
-    private Canvas bitmapCanvas;
     private ObjectAnimator checkAnimator;
     private int checkedColor;
     private int color;
     private Drawable icon;
+    private int iconColor;
     private boolean isChecked;
     private float progress;
     private int size;
@@ -42,12 +41,6 @@ public class RadioButton extends View {
             eraser = paint3;
             paint3.setColor(0);
             eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        }
-        try {
-            this.bitmap = Bitmap.createBitmap(AndroidUtilities.dp(this.size), AndroidUtilities.dp(this.size), Bitmap.Config.ARGB_4444);
-            this.bitmapCanvas = new Canvas(this.bitmap);
-        } catch (Throwable th) {
-            FileLog.e(th);
         }
     }
 
@@ -92,20 +85,6 @@ public class RadioButton extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         float f;
-        Bitmap bitmap = this.bitmap;
-        if (bitmap == null || bitmap.getWidth() != getMeasuredWidth()) {
-            Bitmap bitmap2 = this.bitmap;
-            if (bitmap2 != null) {
-                bitmap2.recycle();
-                this.bitmap = null;
-            }
-            try {
-                this.bitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                this.bitmapCanvas = new Canvas(this.bitmap);
-            } catch (Throwable th) {
-                FileLog.e(th);
-            }
-        }
         float f2 = this.progress;
         if (f2 <= 0.5f) {
             paint.setColor(this.color);
@@ -114,37 +93,37 @@ public class RadioButton extends View {
         } else {
             f = 2.0f - (f2 / 0.5f);
             float f3 = 1.0f - f;
-            int rgb = Color.rgb(Color.red(this.color) + ((int) ((Color.red(this.checkedColor) - r5) * f3)), Color.green(this.color) + ((int) ((Color.green(this.checkedColor) - r8) * f3)), Color.blue(this.color) + ((int) ((Color.blue(this.checkedColor) - r10) * f3)));
+            int rgb = Color.rgb(Color.red(this.color) + ((int) ((Color.red(this.checkedColor) - r4) * f3)), Color.green(this.color) + ((int) ((Color.green(this.checkedColor) - r7) * f3)), Color.blue(this.color) + ((int) ((Color.blue(this.checkedColor) - r9) * f3)));
             paint.setColor(rgb);
             checkedPaint.setColor(rgb);
         }
-        Drawable drawable = this.icon;
-        if (drawable != null) {
-            drawable.setBounds((int) ((getWidth() / 2.0f) - (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.icon.getIntrinsicHeight() / 2.0f)), (int) ((getWidth() / 2.0f) + (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) + (this.icon.getIntrinsicHeight() / 2.0f)));
-            this.icon.draw(canvas);
-        }
-        Bitmap bitmap3 = this.bitmap;
-        if (bitmap3 != null) {
-            bitmap3.eraseColor(0);
-            float f4 = (this.size / 2) - ((f + 1.0f) * AndroidUtilities.density);
-            this.bitmapCanvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4, paint);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        float f4 = (this.size / 2) - ((f + 1.0f) * AndroidUtilities.density);
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4, paint);
+        if (this.icon == null) {
             if (this.progress <= 0.5f) {
-                this.bitmapCanvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4 - AndroidUtilities.dp(1.0f), checkedPaint);
-                this.bitmapCanvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (f4 - AndroidUtilities.dp(1.0f)) * (1.0f - f), eraser);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4 - AndroidUtilities.dp(1.0f), checkedPaint);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (f4 - AndroidUtilities.dp(1.0f)) * (1.0f - f), eraser);
             } else {
-                this.bitmapCanvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (this.size / 4) + (((f4 - AndroidUtilities.dp(1.0f)) - (this.size / 4)) * f), checkedPaint);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (this.size / 4) + (((f4 - AndroidUtilities.dp(1.0f)) - (this.size / 4)) * f), checkedPaint);
             }
-            canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, (Paint) null);
+        }
+        canvas.restore();
+        if (this.icon != null) {
+            int blendARGB = ColorUtils.blendARGB(this.color, this.checkedColor, Utilities.clamp(this.progress, 1.0f, 0.0f));
+            if (this.iconColor != blendARGB) {
+                Drawable drawable = this.icon;
+                this.iconColor = blendARGB;
+                drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.SRC_IN));
+            }
+            this.icon.setBounds((int) ((getWidth() / 2.0f) - (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.icon.getIntrinsicHeight() / 2.0f)), (int) ((getWidth() / 2.0f) + (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) + (this.icon.getIntrinsicHeight() / 2.0f)));
+            this.icon.draw(canvas);
         }
     }
 
     @Override
     public void setBackgroundColor(int i) {
         this.color = i;
-        Drawable drawable = this.icon;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
-        }
         invalidate();
     }
 
@@ -169,18 +148,12 @@ public class RadioButton extends View {
     public void setColor(int i, int i2) {
         this.color = i;
         this.checkedColor = i2;
-        Drawable drawable = this.icon;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
-        }
         invalidate();
     }
 
     public void setIcon(Drawable drawable) {
+        this.iconColor = 0;
         this.icon = drawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(this.color, PorterDuff.Mode.SRC_IN));
-        }
         invalidate();
     }
 

@@ -52,6 +52,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -294,6 +295,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             AndroidUtilities.showKeyboard(view);
             if (MessageSendPreview.this.anchorSendButton != null) {
                 MessageSendPreview.this.anchorSendButton.getLocationOnScreen(MessageSendPreview.this.sendButtonInitialPosition);
+                int[] iArr = MessageSendPreview.this.sendButtonInitialPosition;
+                iArr[0] = iArr[0] + ((MessageSendPreview.this.anchorSendButton.getWidth() - MessageSendPreview.this.anchorSendButton.width(MessageSendPreview.this.anchorSendButton.getHeight())) - AndroidUtilities.dp(6.0f));
             }
         }
 
@@ -673,8 +676,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                                     currentMessagesGroup.transitionParams.pinnedBotton = chatMessageCell.isPinnedBottom();
                                     int x = (int) (chatMessageCell.getX() + chatMessageCell.getBackgroundDrawableLeft());
                                     int x2 = (int) (chatMessageCell.getX() + chatMessageCell.getBackgroundDrawableRight());
-                                    int y = (int) (chatMessageCell.getY() + chatMessageCell.getBackgroundDrawableTop());
-                                    int y2 = (int) (chatMessageCell.getY() + chatMessageCell.getBackgroundDrawableBottom());
+                                    int y = (int) (chatMessageCell.getY() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableTop());
+                                    int y2 = (int) (chatMessageCell.getY() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableBottom());
                                     if ((chatMessageCell.getCurrentPosition().flags & 4) == 0) {
                                         y -= AndroidUtilities.dp(10.0f);
                                     }
@@ -798,8 +801,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                                     currentMessagesGroup.transitionParams.pinnedBotton = chatMessageCell2.isPinnedBottom();
                                     int x = (int) (chatMessageCell2.getX() + chatMessageCell2.getBackgroundDrawableLeft());
                                     int x2 = (int) (chatMessageCell2.getX() + chatMessageCell2.getBackgroundDrawableRight());
-                                    int y = (int) (chatMessageCell2.getY() + chatMessageCell2.getBackgroundDrawableTop());
-                                    int y2 = (int) (chatMessageCell2.getY() + chatMessageCell2.getBackgroundDrawableBottom());
+                                    int y = (int) (chatMessageCell2.getY() + chatMessageCell2.getPaddingTop() + chatMessageCell2.getBackgroundDrawableTop());
+                                    int y2 = (int) (chatMessageCell2.getY() + chatMessageCell2.getPaddingTop() + chatMessageCell2.getBackgroundDrawableBottom());
                                     if ((chatMessageCell2.getCurrentPosition().flags & 4) == 0) {
                                         y -= AndroidUtilities.dp(10.0f);
                                     }
@@ -886,12 +889,15 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 canvas.translate(chatMessageCell.getX(), chatMessageCell.getY());
                 canvas.scale(chatMessageCell.getScaleX(), chatMessageCell.getScaleY(), chatMessageCell.getPivotX(), chatMessageCell.getPivotY());
                 if (chatMessageCell.drawBackgroundInParent() && chatMessageCell.getCurrentPosition() == null) {
+                    canvas.save();
+                    canvas.translate(0.0f, chatMessageCell.getPaddingTop());
                     chatMessageCell.drawBackgroundInternal(canvas, true);
+                    canvas.restore();
                 }
                 canvas.restore();
                 boolean drawChild = super.drawChild(canvas, view, j);
                 canvas.save();
-                canvas.translate(chatMessageCell.getX(), chatMessageCell.getY());
+                canvas.translate(chatMessageCell.getX(), chatMessageCell.getY() + chatMessageCell.getPaddingTop());
                 canvas.scale(chatMessageCell.getScaleX(), chatMessageCell.getScaleY(), chatMessageCell.getPivotX(), chatMessageCell.getPivotY());
                 if (chatMessageCell.getCurrentPosition() != null && (((chatMessageCell.getCurrentPosition().flags & chatMessageCell.captionFlag()) != 0 && (chatMessageCell.getCurrentPosition().flags & 1) != 0) || (chatMessageCell.getCurrentMessagesGroup() != null && chatMessageCell.getCurrentMessagesGroup().isDocuments))) {
                     chatMessageCell.drawCaptionLayout(canvas, false, chatMessageCell.getAlpha());
@@ -1113,7 +1119,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
                     @Override
                     public boolean canPerformReply() {
-                        return canPerformActions();
+                        boolean canPerformActions;
+                        canPerformActions = canPerformActions();
+                        return canPerformActions;
                     }
 
                     @Override
@@ -1323,7 +1331,22 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
                     @Override
                     public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell, webPage, str, z);
+                        Browser.openUrl(chatMessageCell.getContext(), str);
+                    }
+
+                    @Override
+                    public void didQuickShareEnd(ChatMessageCell chatMessageCell, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareEnd(this, chatMessageCell, f, f2);
+                    }
+
+                    @Override
+                    public void didQuickShareMove(ChatMessageCell chatMessageCell, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell, f, f2);
+                    }
+
+                    @Override
+                    public void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell, f, f2);
                     }
 
                     @Override
@@ -1694,7 +1717,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         onBackPressed();
     }
 
-    public void lambda$prepareBlur$9(View view, Bitmap bitmap) {
+    public void lambda$prepareBlur$9(float f, View view, Bitmap bitmap) {
+        ChatActivityEnterView.SendButton sendButton = this.anchorSendButton;
+        if (sendButton != null) {
+            sendButton.setAlpha(f);
+        }
         if (view != null) {
             view.setVisibility(0);
         }
@@ -1719,10 +1746,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
         int[] iArr = new int[2];
         this.anchorSendButton.getLocationOnScreen(iArr);
+        int width = iArr[0] + ((this.anchorSendButton.getWidth() - this.anchorSendButton.width()) - AndroidUtilities.dp(6.0f));
+        iArr[0] = width;
         int[] iArr2 = this.sendButtonInitialPosition;
-        iArr2[0] = iArr[0];
+        iArr2[0] = width;
         iArr2[1] = iArr[1];
-        int measuredHeight = (this.chatListView.getMeasuredHeight() - this.sendButton.getWidth()) + (this.effectSelector != null ? AndroidUtilities.dp(320.0f) : 0);
+        int measuredHeight = (this.chatListView.getMeasuredHeight() - this.sendButton.getHeight()) + (this.effectSelector != null ? AndroidUtilities.dp(320.0f) : 0);
         int dp = this.insets.top + AndroidUtilities.dp(8.0f);
         int dp2 = AndroidUtilities.dp(this.messageObjects.isEmpty() ? -6.0f : 48.0f);
         View view = this.optionsView;
@@ -1734,16 +1763,16 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         if (iArr[1] - measuredHeight < dp) {
             iArr[1] = dp + measuredHeight;
         }
-        if (iArr[1] + measuredHeight2 > measuredHeight3) {
-            iArr[1] = measuredHeight3 - measuredHeight2;
+        if (iArr[1] + this.anchorSendButton.getHeight() + measuredHeight2 > measuredHeight3) {
+            iArr[1] = (measuredHeight3 - measuredHeight2) - this.anchorSendButton.getHeight();
         }
-        this.sendButton.setX(iArr[0]);
+        this.sendButton.setX((iArr[0] - (r3.getWidth() - this.sendButton.width())) + AndroidUtilities.dp(6.0f));
         this.sendButton.setY(iArr[1]);
         this.chatListView.setX((iArr[0] + AndroidUtilities.dp(7.0f)) - this.chatListView.getMeasuredWidth());
         if (this.layoutDone) {
-            this.chatListView.animate().translationY(((iArr[1] + this.sendButton.getWidth()) - this.chatListView.getMeasuredHeight()) - this.chatListView.getTop()).setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR).setDuration(250L).start();
+            this.chatListView.animate().translationY(((iArr[1] + this.sendButton.getHeight()) - this.chatListView.getMeasuredHeight()) - this.chatListView.getTop()).setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR).setDuration(250L).start();
         } else {
-            this.chatListView.setY((iArr[1] + this.sendButton.getWidth()) - this.chatListView.getMeasuredHeight());
+            this.chatListView.setY((iArr[1] + this.sendButton.getHeight()) - this.chatListView.getMeasuredHeight());
         }
         View view2 = this.optionsView;
         if (view2 != null) {
@@ -1752,7 +1781,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
         FrameLayout frameLayout = this.effectSelectorContainer;
         if (frameLayout != null) {
-            frameLayout.setX(Math.max(0, ((iArr[0] + this.sendButton.getWidth()) - this.effectSelectorContainer.getMeasuredWidth()) - AndroidUtilities.dp(6.0f)));
+            frameLayout.setX(Math.max(0, ((iArr[0] + this.sendButton.width()) - this.effectSelectorContainer.getMeasuredWidth()) - AndroidUtilities.dp(6.0f)));
             RectF rectF = this.cameraRect;
             if (rectF != null) {
                 FrameLayout frameLayout2 = this.effectSelectorContainer;
@@ -1766,14 +1795,14 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 }
                 return;
             }
-            float width = (iArr[1] + this.sendButton.getWidth()) - this.chatListView.getMeasuredHeight();
+            float height = (iArr[1] + this.sendButton.getHeight()) - this.chatListView.getMeasuredHeight();
             FrameLayout frameLayout3 = this.effectSelectorContainer;
-            float max2 = Math.max(this.insets.top, width - frameLayout3.getMeasuredHeight()) + AndroidUtilities.dp(24.0f);
+            float max2 = Math.max(this.insets.top, height - frameLayout3.getMeasuredHeight()) + AndroidUtilities.dp(24.0f);
             this.effectSelectorContainerY = max2;
             frameLayout3.setY(max2);
             ReactionsContainerLayout reactionsContainerLayout2 = this.effectSelector;
             if (reactionsContainerLayout2 != null) {
-                reactionsContainerLayout2.setY(Math.max(0.0f, (width - reactionsContainerLayout2.getMeasuredHeight()) - this.effectSelectorContainerY));
+                reactionsContainerLayout2.setY(Math.max(0.0f, (height - reactionsContainerLayout2.getMeasuredHeight()) - this.effectSelectorContainerY));
             }
         }
     }
@@ -1782,10 +1811,15 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         if (view != null) {
             view.setVisibility(4);
         }
+        final float alpha = this.anchorSendButton.getAlpha();
+        ChatActivityEnterView.SendButton sendButton = this.anchorSendButton;
+        if (sendButton != null) {
+            sendButton.setAlpha(0.0f);
+        }
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                MessageSendPreview.this.lambda$prepareBlur$9(view, (Bitmap) obj);
+                MessageSendPreview.this.lambda$prepareBlur$9(alpha, view, (Bitmap) obj);
             }
         }, 14.0f);
     }
@@ -2099,7 +2133,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.isCurrentThemeDark());
     }
 
-    protected void onEffectChange(long j) {
+    public void onEffectChange(long j) {
     }
 
     public void scrollTo(boolean z) {
@@ -2195,7 +2229,6 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     public void setSendButton(final ChatActivityEnterView.SendButton sendButton, final boolean z, View.OnClickListener onClickListener) {
         this.anchorSendButton = sendButton;
         sendButton.getLocationOnScreen(this.sendButtonInitialPosition);
-        this.sendButtonWidth = this.anchorSendButton.getWidth();
         ChatActivityEnterView.SendButton sendButton2 = new ChatActivityEnterView.SendButton(getContext(), sendButton.resId, this.resourcesProvider) {
             @Override
             public int getFillColor() {
@@ -2214,7 +2247,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
             @Override
             public boolean isOpen() {
-                return (z && MessageSendPreview.this.dismissing) ? false : true;
+                return (z && MessageSendPreview.this.dismissing && !super.isOpen()) ? false : true;
             }
 
             @Override
@@ -2223,13 +2256,15 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         };
         this.sendButton = sendButton2;
-        this.anchorSendButton.copyCountTo(sendButton2);
-        this.anchorSendButton.copyEmojiTo(this.sendButton);
+        this.anchorSendButton.copyTo(sendButton2);
         ChatActivityEnterView.SendButton sendButton3 = this.sendButton;
         sendButton3.center = sendButton.center;
         sendButton3.open.set(sendButton.open.get(), true);
         this.sendButton.setOnClickListener(onClickListener);
         this.containerView.addView(this.sendButton, new ViewGroup.LayoutParams(sendButton.getWidth(), sendButton.getHeight()));
+        this.sendButtonWidth = this.anchorSendButton.width(sendButton.getHeight());
+        int[] iArr = this.sendButtonInitialPosition;
+        iArr[0] = iArr[0] + ((this.anchorSendButton.getWidth() - this.anchorSendButton.width(sendButton.getHeight())) - AndroidUtilities.dp(6.0f));
     }
 
     public void setStars(long j) {

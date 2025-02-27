@@ -3,7 +3,7 @@ package org.webrtc;
 public interface VideoDecoder {
 
     public abstract class CC {
-        public static long $default$createNativeVideoDecoder(VideoDecoder videoDecoder) {
+        public static long $default$createNative(VideoDecoder videoDecoder, long j) {
             return 0L;
         }
     }
@@ -34,13 +34,11 @@ public interface VideoDecoder {
         }
     }
 
-    long createNativeVideoDecoder();
+    long createNative(long j);
 
     VideoCodecStatus decode(EncodedImage encodedImage, DecodeInfo decodeInfo);
 
     String getImplementationName();
-
-    boolean getPrefersLateDecoding();
 
     VideoCodecStatus initDecode(Settings settings, Callback callback);
 

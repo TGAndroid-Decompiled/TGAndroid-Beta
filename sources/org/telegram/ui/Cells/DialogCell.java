@@ -52,6 +52,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
@@ -290,6 +291,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private Drawable starBg;
     private int starBgColor;
     private Drawable starFg;
+    private final AnimatedFloat starsBlockedT;
+    private long starsPriceBlocked;
     private boolean statusDrawableAnimationInProgress;
     private ValueAnimator statusDrawableAnimator;
     private int statusDrawableLeft;
@@ -465,7 +468,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
     }
 
-    public static class ForumFormattedNames {
+    private static class ForumFormattedNames {
         CharSequence formattedNames;
         boolean isLoadingState;
         int lastMessageId;
@@ -547,7 +550,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.avatarImage = new ImageReceiver(this);
         this.avatarDrawable = new AvatarDrawable();
         this.interpolator = new BounceInterpolator();
-        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
+        this.starsBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.spoilersPool = new Stack();
         this.spoilers = new ArrayList();
         this.spoilersPool2 = new Stack();
@@ -994,15 +999,17 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private void updatePremiumBlocked(boolean z) {
-        boolean z2 = this.premiumBlocked;
-        boolean z3 = (this.unsubscribePremiumBlocked == null || this.user == null || !MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.user.id)) ? false : true;
-        this.premiumBlocked = z3;
-        if (z2 != z3) {
-            if (!z) {
-                this.premiumBlockedT.set(z3, true);
-            }
-            invalidate();
+        TL_account.RequirementToContact isUserContactBlocked = (this.unsubscribePremiumBlocked == null || this.user == null) ? null : MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id);
+        if (this.premiumBlocked == DialogObject.isPremiumBlocked(isUserContactBlocked) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(isUserContactBlocked)) {
+            return;
         }
+        this.premiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
+        this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(isUserContactBlocked);
+        if (!z) {
+            this.premiumBlockedT.set(this.premiumBlocked, true);
+            this.starsBlockedT.set(this.starsPriceBlocked > 0, true);
+        }
+        invalidate();
     }
 
     private void updateThumbsPosition() {
@@ -1215,6 +1222,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     public android.text.SpannableStringBuilder getMessageStringFormatted(int r17, java.lang.String r18, java.lang.CharSequence r19, boolean r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.getMessageStringFormatted(int, java.lang.String, java.lang.CharSequence, boolean):android.text.SpannableStringBuilder");
+    }
+
+    public long getStarsPrice() {
+        return this.starsPriceBlocked;
     }
 
     @Override

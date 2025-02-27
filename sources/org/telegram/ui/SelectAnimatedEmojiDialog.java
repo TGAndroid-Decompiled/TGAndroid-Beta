@@ -1393,14 +1393,14 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
         }
 
-        public void setText(String str, String str2, boolean z) {
+        public void setText(CharSequence charSequence, String str, boolean z) {
             int indexOf;
-            if (str != null && str2 != null && (indexOf = str.toLowerCase().indexOf(str2.toLowerCase())) >= 0) {
-                SpannableString spannableString = new SpannableString(str);
-                spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_emojiPanelStickerSetNameHighlight, SelectAnimatedEmojiDialog.this.resourcesProvider)), indexOf, str2.length() + indexOf, 33);
-                str = spannableString;
+            if (charSequence != null && str != null && (indexOf = charSequence.toString().toLowerCase().indexOf(str.toLowerCase())) >= 0) {
+                SpannableString spannableString = new SpannableString(charSequence);
+                spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_emojiPanelStickerSetNameHighlight, SelectAnimatedEmojiDialog.this.resourcesProvider)), indexOf, str.length() + indexOf, 33);
+                charSequence = spannableString;
             }
-            this.textView.setText(str);
+            this.textView.setText(charSequence);
             updateLock(z, false);
         }
 
@@ -3177,10 +3177,10 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
     }
 
     public static class SetTitleDocument extends TLRPC.Document {
-        public final String title;
+        public final CharSequence title;
 
-        public SetTitleDocument(String str) {
-            this.title = str;
+        public SetTitleDocument(CharSequence charSequence) {
+            this.title = charSequence;
         }
     }
 
@@ -3199,7 +3199,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         this(baseFragment, context, z, num, i, z2, resourcesProvider, i2, Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider));
     }
 
-    public SelectAnimatedEmojiDialog(org.telegram.ui.ActionBar.BaseFragment r38, android.content.Context r39, boolean r40, java.lang.Integer r41, final int r42, boolean r43, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r44, int r45, int r46) {
+    public SelectAnimatedEmojiDialog(org.telegram.ui.ActionBar.BaseFragment r36, android.content.Context r37, boolean r38, java.lang.Integer r39, final int r40, boolean r41, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r42, int r43, int r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SelectAnimatedEmojiDialog.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, boolean, java.lang.Integer, int, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int, int):void");
     }
 
@@ -4070,7 +4070,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         updateRows(z, z2, true);
     }
 
-    public void updateRows(boolean r29, boolean r30, boolean r31) {
+    public void updateRows(boolean r27, boolean r28, boolean r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SelectAnimatedEmojiDialog.updateRows(boolean, boolean, boolean):void");
     }
 
@@ -4298,8 +4298,8 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             }
             for (int i2 = 0; i2 < this.positionToSection.size(); i2++) {
                 int keyAt = this.positionToSection.keyAt(i2);
-                int i3 = i2 - (!this.defaultStatuses.isEmpty() ? 1 : 0);
-                EmojiView.EmojiPack emojiPack = i3 >= 0 ? (EmojiView.EmojiPack) this.packs.get(i3) : null;
+                int valueAt = this.positionToSection.valueAt(i2);
+                EmojiView.EmojiPack emojiPack = valueAt >= 0 ? (EmojiView.EmojiPack) this.packs.get(valueAt) : null;
                 if (emojiPack != null) {
                     boolean z = emojiPack.expanded;
                     int size = emojiPack.documents.size();
@@ -4307,7 +4307,8 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                         size = Math.min(24, size);
                     }
                     if (i > keyAt && i <= keyAt + 1 + size) {
-                        this.emojiTabs.select(i2 + 1);
+                        EmojiTabsStrip emojiTabsStrip = this.emojiTabs;
+                        emojiTabsStrip.select((emojiTabsStrip.recentTab != null ? 1 : 0) + (emojiTabsStrip.isGiftsVisible() ? 1 : 0) + valueAt);
                         return;
                     }
                 }

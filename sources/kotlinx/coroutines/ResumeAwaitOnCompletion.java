@@ -31,6 +31,6 @@ public final class ResumeAwaitOnCompletion extends JobNode {
             Result.Companion companion2 = Result.Companion;
             unboxState = JobSupportKt.unboxState(state$kotlinx_coroutines_core);
         }
-        cancellableContinuationImpl.resumeWith(Result.m160constructorimpl(unboxState));
+        cancellableContinuationImpl.resumeWith(Result.m162constructorimpl(unboxState));
     }
 }

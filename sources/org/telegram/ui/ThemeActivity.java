@@ -263,6 +263,11 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 }
 
                 @Override
+                public boolean needVisuallyDivideSteps() {
+                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                }
+
+                @Override
                 public void onSeekBarDrag(boolean z, float f) {
                     ThemeActivity.this.setBubbleRadius(Math.round(r4.startRadius + ((BubbleRadiusCell.this.endRadius - BubbleRadiusCell.this.startRadius) * f)), false);
                 }
@@ -928,6 +933,11 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 @Override
                 public int getStepsCount() {
                     return TextSizeCell.this.endFontSize - TextSizeCell.this.startFontSize;
+                }
+
+                @Override
+                public boolean needVisuallyDivideSteps() {
+                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
                 }
 
                 @Override

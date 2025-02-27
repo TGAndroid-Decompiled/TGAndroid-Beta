@@ -29,6 +29,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -185,7 +186,9 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public boolean canPerformReply() {
-                return canPerformActions();
+                boolean canPerformActions;
+                canPerformActions = canPerformActions();
+                return canPerformActions;
             }
 
             @Override
@@ -395,7 +398,22 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str2, boolean z) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell2, webPage, str2, z);
+                Browser.openUrl(chatMessageCell2.getContext(), str2);
+            }
+
+            @Override
+            public void didQuickShareEnd(ChatMessageCell chatMessageCell2, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareEnd(this, chatMessageCell2, f, f2);
+            }
+
+            @Override
+            public void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell2, f, f2);
+            }
+
+            @Override
+            public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell2, f, f2);
             }
 
             @Override
@@ -705,7 +723,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                 hashMap.put("query_id", "" + tL_messages_preparedInlineMessage.query_id);
                 hashMap.put("id", "" + tL_messages_preparedInlineMessage.result.id);
                 hashMap.put("bot", "" + j);
-                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, hashMap, j2, messageObject, messageObject, null, null, z2, i2, null, 0);
+                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, hashMap, j2, messageObject, messageObject, null, null, z2, i2, null, 0, 0L);
                 if (charSequence != null) {
                     SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, messageObject, messageObject, null, true, null, null, null, true, 0, null, false));
                 }
@@ -719,10 +737,10 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             }
         }
         if (topicsFragment != null) {
-            topicsFragment.lambda$onBackPressed$323();
+            topicsFragment.lambda$onBackPressed$335();
             dialogsActivity.removeSelfFromStack();
         } else {
-            dialogsActivity.lambda$onBackPressed$323();
+            dialogsActivity.lambda$onBackPressed$335();
         }
         return true;
     }

@@ -69,6 +69,11 @@ public abstract class MaxFileSizeCell extends FrameLayout {
             }
 
             @Override
+            public boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 int i;
                 float f2;

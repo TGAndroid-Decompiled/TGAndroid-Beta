@@ -12,15 +12,21 @@ public final class GiftPremiumBottomSheet$GiftTier {
     public ProductDetails googlePlayProductDetails;
     private long pricePerMonth;
     private long pricePerMonthRegular;
+    public final TLRPC.TL_premiumGiftCodeOption starsCodeOption;
+    public final TLRPC.TL_premiumGiftOption starsOption;
 
-    public GiftPremiumBottomSheet$GiftTier(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption) {
+    public GiftPremiumBottomSheet$GiftTier(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, Object obj) {
         this.giftOption = null;
         this.giftCodeOption = tL_premiumGiftCodeOption;
+        this.starsOption = obj instanceof TLRPC.TL_premiumGiftOption ? (TLRPC.TL_premiumGiftOption) obj : null;
+        this.starsCodeOption = obj instanceof TLRPC.TL_premiumGiftCodeOption ? (TLRPC.TL_premiumGiftCodeOption) obj : null;
     }
 
-    public GiftPremiumBottomSheet$GiftTier(TLRPC.TL_premiumGiftOption tL_premiumGiftOption) {
+    public GiftPremiumBottomSheet$GiftTier(TLRPC.TL_premiumGiftOption tL_premiumGiftOption, Object obj) {
         this.giftOption = tL_premiumGiftOption;
         this.giftCodeOption = null;
+        this.starsOption = obj instanceof TLRPC.TL_premiumGiftOption ? (TLRPC.TL_premiumGiftOption) obj : null;
+        this.starsCodeOption = obj instanceof TLRPC.TL_premiumGiftCodeOption ? (TLRPC.TL_premiumGiftCodeOption) obj : null;
     }
 
     public String getCurrency() {
@@ -98,6 +104,30 @@ public final class GiftPremiumBottomSheet$GiftTier {
         return this.pricePerMonth;
     }
 
+    public Object getStarsOption() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.starsOption;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.starsCodeOption;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption;
+        }
+        return null;
+    }
+
+    public long getStarsPrice() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.starsOption;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption.amount;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.starsCodeOption;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption.amount;
+        }
+        return 0L;
+    }
+
     public String getStoreProduct() {
         TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.giftOption;
         if (tL_premiumGiftOption != null) {
@@ -108,6 +138,10 @@ public final class GiftPremiumBottomSheet$GiftTier {
             return tL_premiumGiftCodeOption.store_product;
         }
         return null;
+    }
+
+    public boolean isStarsPaymentAvailable() {
+        return (this.starsOption == null && this.starsCodeOption == null) ? false : true;
     }
 
     public void setGooglePlayProductDetails(ProductDetails productDetails) {

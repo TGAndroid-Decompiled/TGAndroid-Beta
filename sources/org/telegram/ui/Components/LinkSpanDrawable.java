@@ -505,6 +505,7 @@ public class LinkSpanDrawable {
         private boolean isCustomLinkCollector;
         private final LinkCollector links;
         private boolean loggedError;
+        private int maxWidth;
         private OnLinkPress onLongPressListener;
         private OnLinkPress onPressListener;
         private LinkSpanDrawable pressedLink;
@@ -604,6 +605,10 @@ public class LinkSpanDrawable {
 
         @Override
         public void onMeasure(int i, int i2) {
+            int i3 = this.maxWidth;
+            if (i3 > 0) {
+                i = View.MeasureSpec.makeMeasureSpec(Math.min(i3, View.MeasureSpec.getSize(i)), View.MeasureSpec.getMode(i));
+            }
             super.onMeasure(i, i2);
             this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
         }
@@ -699,6 +704,11 @@ public class LinkSpanDrawable {
                     this.links.addLoading(makeLoading);
                 }
             }
+        }
+
+        @Override
+        public void setMaxWidth(int i) {
+            this.maxWidth = i;
         }
 
         public void setOnLinkLongPressListener(OnLinkPress onLinkPress) {

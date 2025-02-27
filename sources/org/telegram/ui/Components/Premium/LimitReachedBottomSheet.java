@@ -35,6 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +44,7 @@ import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -69,6 +71,7 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.ChannelColorActivity;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatEditActivity;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -1546,7 +1549,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 lambda$new$0();
                 return;
             } else {
-                sendInviteMessages();
+                sendInviteMessages(null);
                 return;
             }
         }
@@ -1652,7 +1655,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         BulletinFactory global = BulletinFactory.global();
         if (global != null) {
             if (this.selectedChats.size() == 1) {
-                createSimpleBulletin = global.createSimpleBulletin(R.raw.voip_invite, AndroidUtilities.replaceTags(LocaleController.formatString("InviteLinkSentSingle", R.string.InviteLinkSentSingle, ContactsController.formatName((TLRPC.User) this.selectedChats.iterator().next()))));
+                createSimpleBulletin = global.createSimpleBulletin(R.raw.voip_invite, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.InviteLinkSentSingle, ContactsController.formatName((TLRPC.User) this.selectedChats.iterator().next()))));
             } else {
                 createSimpleBulletin = global.createSimpleBulletin(R.raw.voip_invite, AndroidUtilities.replaceTags(LocaleController.formatPluralString("InviteLinkSent", this.selectedChats.size(), Integer.valueOf(this.selectedChats.size()))));
             }
@@ -1891,7 +1894,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         revokeLinks(arrayList);
     }
 
-    private void sendInviteMessages() {
+    public void sendInviteMessages(HashMap hashMap) {
         String str;
         TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.fromChat.id);
         if (chatFull == null) {
@@ -1908,17 +1911,51 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             }
             str = tL_chatInviteExported.link;
         }
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
         Iterator it = this.selectedChats.iterator();
         while (it.hasNext()) {
-            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(str, ((TLRPC.User) it.next()).id, null, null, null, true, null, null, null, false, 0, null, false));
-            str = str;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LimitReachedBottomSheet.this.lambda$sendInviteMessages$20();
+            TLRPC.User user = (TLRPC.User) it.next();
+            long sendPaidMessagesStars = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(user.id);
+            if (sendPaidMessagesStars <= 0) {
+                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(this.currentAccount).isUserContactBlocked(user.id));
             }
-        });
+            (sendPaidMessagesStars >= 0 ? arrayList : arrayList2).add(user);
+        }
+        if (hashMap == null && !arrayList.isEmpty()) {
+            ArrayList arrayList3 = new ArrayList();
+            Iterator it2 = arrayList.iterator();
+            while (it2.hasNext()) {
+                arrayList3.add(Long.valueOf(((TLRPC.User) it2.next()).id));
+            }
+            AlertsCreator.ensurePaidMessagesMultiConfirmation(this.currentAccount, arrayList3, 1, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    LimitReachedBottomSheet.this.sendInviteMessages((HashMap) obj);
+                }
+            });
+            return;
+        }
+        Iterator it3 = this.selectedChats.iterator();
+        boolean z = false;
+        while (it3.hasNext()) {
+            TLRPC.User user2 = (TLRPC.User) it3.next();
+            long longValue = hashMap == null ? 0L : ((Long) hashMap.get(Long.valueOf(user2.id))).longValue();
+            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(str, user2.id, null, null, null, true, null, null, null, false, 0, null, false);
+            of.payStars = longValue;
+            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
+            if (of.payStars > 0) {
+                z = true;
+            }
+        }
+        if (!z) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LimitReachedBottomSheet.this.lambda$sendInviteMessages$20();
+                }
+            });
+        }
         lambda$new$0();
     }
 
@@ -2106,14 +2143,14 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             }
             lambda$new$0();
             if (!booleanValue) {
-                lastFragment2.lambda$onBackPressed$323();
+                lastFragment2.lambda$onBackPressed$335();
                 BoostDialogs.showBulletin(baseFragment2, chat, false);
                 return;
             } else {
                 if (baseFragment2 instanceof ProfileActivity) {
                     getBaseFragment().getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                lastFragment2.lambda$onBackPressed$323();
+                lastFragment2.lambda$onBackPressed$335();
                 BoostDialogs.showBulletin(r5, chat, true);
                 return;
             }
@@ -2140,7 +2177,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             while (it.hasNext()) {
                 getBaseFragment().getParentLayout().removeFragmentFromStack((BaseFragment) it.next());
             }
-            getBaseFragment().lambda$onBackPressed$323();
+            getBaseFragment().lambda$onBackPressed$335();
             lambda$new$0();
             BoostDialogs.showBulletin(r5, chat, true);
             return;
@@ -2168,7 +2205,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
         List fragmentStack3 = getBaseFragment().getParentLayout().getFragmentStack();
         r5 = fragmentStack3.size() >= 2 ? (BaseFragment) fragmentStack3.get(fragmentStack3.size() - 2) : null;
-        getBaseFragment().lambda$onBackPressed$323();
+        getBaseFragment().lambda$onBackPressed$335();
         lambda$new$0();
         if (r5 instanceof ChatActivity) {
             BoostDialogs.showBulletin(r5, chat, true);

@@ -33,6 +33,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -45,6 +46,7 @@ import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.Text;
 
 public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final AvatarDrawable avatarDrawable;
@@ -60,8 +62,13 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     private boolean premiumBlocked;
     private final AnimatedFloat premiumBlockedT;
     private PremiumGradient.PremiumGradientTools premiumGradient;
+    private final Paint priceBackgroundPaint;
+    private Text priceText;
+    private long priceTextValue;
     private RepostStoryDrawable repostStoryDrawable;
     public final Theme.ResourcesProvider resourcesProvider;
+    private final AnimatedFloat starsBlockedT;
+    private long starsPriceBlocked;
     private final SimpleTextView topicTextView;
     private boolean topicWasVisible;
     private TLRPC.User user;
@@ -148,7 +155,10 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         int i2;
         float f;
         this.currentAccount = UserConfig.selectedAccount;
-        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
+        this.starsBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
+        this.priceBackgroundPaint = new Paint();
         this.resourcesProvider = resourcesProvider;
         this.avatarDrawable = new AvatarDrawable(resourcesProvider) {
             @Override
@@ -235,18 +245,21 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.userIsPremiumBlockedUpadted) {
-            boolean z = this.premiumBlocked;
-            boolean z2 = this.user != null && MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(this.user.id);
-            this.premiumBlocked = z2;
-            this.nameTextView.setTextColor(getThemedColor(z2 ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack));
-            if (this.premiumBlocked != z) {
-                invalidate();
+            TL_account.RequirementToContact isUserContactBlocked = this.user != null ? MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id) : null;
+            long sendPaidMessagesStars = this.currentDialog < 0 ? MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(this.currentDialog) : DialogObject.getMessagesStarsPrice(isUserContactBlocked);
+            if (this.premiumBlocked == DialogObject.isPremiumBlocked(isUserContactBlocked) && this.starsPriceBlocked == sendPaidMessagesStars) {
+                return;
             }
+            boolean isPremiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
+            this.premiumBlocked = isPremiumBlocked;
+            this.starsPriceBlocked = sendPaidMessagesStars;
+            this.nameTextView.setTextColor(getThemedColor(isPremiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack));
+            invalidate();
         }
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r26, android.view.View r27, long r28) {
+    protected boolean drawChild(android.graphics.Canvas r32, android.view.View r33, long r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ShareDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
@@ -256,6 +269,10 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
 
     public BackupImageView getImageView() {
         return this.imageView;
+    }
+
+    public long getStarsPrice() {
+        return this.starsPriceBlocked;
     }
 
     public boolean isBlocked() {
@@ -325,10 +342,12 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         } else {
             if (DialogObject.isUserDialog(j)) {
                 this.user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
-                boolean isUserPremiumBlocked = MessagesController.getInstance(this.currentAccount).isUserPremiumBlocked(j);
-                this.premiumBlocked = isUserPremiumBlocked;
-                this.nameTextView.setTextColor(getThemedColor(isUserPremiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack));
-                this.premiumBlockedT.set(this.premiumBlocked, true);
+                TL_account.RequirementToContact isUserContactBlocked = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(j);
+                this.premiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
+                this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(isUserContactBlocked);
+                this.nameTextView.setTextColor(getThemedColor(this.premiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack));
+                this.premiumBlockedT.force(this.premiumBlocked);
+                this.starsBlockedT.force(this.starsPriceBlocked > 0);
                 invalidate();
                 this.avatarDrawable.setInfo(this.currentAccount, this.user);
                 if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
@@ -360,7 +379,9 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             } else {
                 this.user = null;
                 this.premiumBlocked = false;
-                this.premiumBlockedT.set(0.0f, true);
+                this.premiumBlockedT.force(0.0f);
+                this.starsPriceBlocked = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(j);
+                this.starsBlockedT.force(false);
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
                 if (charSequence != null) {
                     this.nameTextView.setText(charSequence);

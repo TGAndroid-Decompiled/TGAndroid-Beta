@@ -1110,6 +1110,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
+            public boolean isVideoRecordingPaused() {
+                return false;
+            }
+
+            @Override
             public int measureKeyboardHeight() {
                 return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$measureKeyboardHeight(this);
             }
@@ -1134,7 +1139,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void needStartRecordVideo(int i2, boolean z, int i3, int i4, long j) {
+            public void needStartRecordVideo(int i2, boolean z, int i3, int i4, long j, long j2) {
             }
 
             @Override
@@ -1174,7 +1179,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void onMessageSend(CharSequence charSequence, boolean z, int i2) {
+            public void onMessageSend(CharSequence charSequence, boolean z, int i2, long j) {
                 if (PopupNotificationActivity.this.currentMessageObject == null) {
                     return;
                 }

@@ -91,6 +91,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.chromecast.ChromecastMedia;
+import org.telegram.messenger.chromecast.ChromecastMediaVariations;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.VideoPlayer;
@@ -1713,6 +1715,25 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return 0L;
     }
 
+    public ChromecastMediaVariations getCurrentChromecastMedia(String str, String str2, String str3) {
+        if (this.videoQualities == null) {
+            if (this.videoUri == null) {
+                return null;
+            }
+            return ChromecastMediaVariations.of(ChromecastMedia.Builder.fromUri(this.videoUri, "/mtproto_" + str, "video/mp4").setTitle(str2).setSubtitle(str3).build());
+        }
+        ChromecastMediaVariations.Builder builder = new ChromecastMediaVariations.Builder();
+        Iterator it = this.videoQualities.iterator();
+        while (it.hasNext()) {
+            Iterator it2 = ((Quality) it.next()).uris.iterator();
+            while (it2.hasNext()) {
+                VideoUri videoUri = (VideoUri) it2.next();
+                builder.add(ChromecastMedia.Builder.fromUri(videoUri.uri, "/mtproto_" + videoUri.docId, "video/mp4").setTitle(str2).setSubtitle(str3).setSize(videoUri.width, videoUri.height).build());
+            }
+        }
+        return builder.build();
+    }
+
     public TLRPC.Document getCurrentDocument() {
         Format videoFormat;
         ArrayList arrayList;
@@ -1873,6 +1894,15 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
 
     public boolean getPlayWhenReady() {
         return this.player.getPlayWhenReady();
+    }
+
+    public float getPlaybackSpeed() {
+        PlaybackParameters playbackParameters;
+        ExoPlayer exoPlayer = this.player;
+        if (exoPlayer == null || (playbackParameters = exoPlayer.getPlaybackParameters()) == null) {
+            return 1.0f;
+        }
+        return playbackParameters.speed;
     }
 
     public int getPlaybackState() {

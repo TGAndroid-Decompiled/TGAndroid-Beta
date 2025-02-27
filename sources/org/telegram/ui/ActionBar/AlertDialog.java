@@ -37,7 +37,6 @@ import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController$$ExternalSyntheticLambda10;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -53,6 +52,8 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stars.StarsReactionsSheet;
 
 public class AlertDialog extends Dialog implements Drawable.Callback, NotificationCenter.NotificationCenterDelegate {
     private View aboveMessageView;
@@ -93,6 +94,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private boolean dismissed;
     private boolean drawBackground;
     private boolean focusable;
+    private FrameLayout fullscreenContainerView;
     private int[] itemIcons;
     private ArrayList itemViews;
     private CharSequence[] items;
@@ -102,6 +104,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private CharSequence message;
     private TextView messageTextView;
     private boolean messageTextViewClickable;
+    private boolean needStarsBalance;
     private OnButtonClickListener negativeButtonListener;
     private CharSequence negativeButtonText;
     private OnButtonClickListener neutralButtonListener;
@@ -127,6 +130,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private boolean[] shadowVisibility;
     private Runnable showRunnable;
     private long shownAt;
+    private StarsReactionsSheet.BalanceCloud starsBalanceCloud;
     private CharSequence subtitle;
     private TextView subtitleTextView;
     private CharSequence title;
@@ -338,11 +342,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
-            if (!AlertDialog.this.withCancelDialog) {
-                return super.onTouchEvent(motionEvent);
+            if (AlertDialog.this.withCancelDialog) {
+                AlertDialog.this.showCancelAlert();
+                return false;
             }
-            AlertDialog.this.showCancelAlert();
-            return false;
+            super.onTouchEvent(motionEvent);
+            return true;
         }
 
         @Override
@@ -621,7 +626,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.dismissDialogByButtons = true;
         this.containerViewLocation = new int[2];
         this.checkFocusable = true;
-        this.dismissRunnable = new BillingController$$ExternalSyntheticLambda10(this);
+        this.dismissRunnable = new AlertDialog$$ExternalSyntheticLambda3(this);
         this.showRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -678,6 +683,14 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     }
 
     public void lambda$inflateContent$1(View view) {
+        dismiss();
+    }
+
+    public void lambda$inflateContent$2(View view) {
+        new StarsIntroActivity.StarsOptionsSheet(getContext(), this.resourcesProvider).show();
+    }
+
+    public void lambda$inflateContent$3(View view) {
         DialogInterface.OnClickListener onClickListener = this.onClickListener;
         if (onClickListener != null) {
             onClickListener.onClick(this, ((Integer) view.getTag()).intValue());
@@ -685,7 +698,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         dismiss();
     }
 
-    public void lambda$inflateContent$2(TextViewWithLoading textViewWithLoading, View view) {
+    public void lambda$inflateContent$4(TextViewWithLoading textViewWithLoading, View view) {
         if (textViewWithLoading.isLoading()) {
             return;
         }
@@ -698,7 +711,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void lambda$inflateContent$3(TextViewWithLoading textViewWithLoading, View view) {
+    public void lambda$inflateContent$5(TextViewWithLoading textViewWithLoading, View view) {
         if (textViewWithLoading.isLoading()) {
             return;
         }
@@ -711,7 +724,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void lambda$inflateContent$4(TextViewWithLoading textViewWithLoading, View view) {
+    public void lambda$inflateContent$6(TextViewWithLoading textViewWithLoading, View view) {
         if (textViewWithLoading.isLoading()) {
             return;
         }
@@ -724,7 +737,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void lambda$inflateContent$5(Bitmap bitmap) {
+    public void lambda$inflateContent$7(Bitmap bitmap) {
         if (bitmap == null) {
             return;
         }
@@ -747,13 +760,13 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.containerView.invalidate();
     }
 
-    public static void lambda$makeButtonLoading$6(View view) {
+    public static void lambda$makeButtonLoading$8(View view) {
         if (view instanceof TextViewWithLoading) {
             ((TextViewWithLoading) view).setLoading(true, true);
         }
     }
 
-    public void lambda$makeButtonLoading$7(View view) {
+    public void lambda$makeButtonLoading$9(View view) {
         if (view instanceof TextViewWithLoading) {
             ((TextViewWithLoading) view).setLoading(false, true);
         }
@@ -770,7 +783,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void lambda$showCancelAlert$8(AlertDialog alertDialog, int i) {
+    public void lambda$showCancelAlert$10(AlertDialog alertDialog, int i) {
         DialogInterface.OnCancelListener onCancelListener = this.onCancelListener;
         if (onCancelListener != null) {
             onCancelListener.onCancel(this);
@@ -778,7 +791,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         dismiss();
     }
 
-    public void lambda$showCancelAlert$9(DialogInterface dialogInterface) {
+    public void lambda$showCancelAlert$11(DialogInterface dialogInterface) {
         this.cancelDialog = null;
     }
 
@@ -840,7 +853,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         Utilities.Callback callback = this.overridenDissmissListener;
         if (callback != null) {
             this.overridenDissmissListener = null;
-            callback.run(new BillingController$$ExternalSyntheticLambda10(this));
+            callback.run(new AlertDialog$$ExternalSyntheticLambda3(this));
             return;
         }
         if (this.dismissed) {
@@ -873,7 +886,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     public void dismissUnless(long j) {
         long currentTimeMillis = System.currentTimeMillis() - this.shownAt;
         if (currentTimeMillis < j) {
-            AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda10(this), currentTimeMillis - j);
+            AndroidUtilities.runOnUIThread(new AlertDialog$$ExternalSyntheticLambda3(this), currentTimeMillis - j);
         } else {
             dismiss();
         }
@@ -907,7 +920,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public android.view.View inflateContent(boolean r32) {
+    public android.view.View inflateContent(boolean r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.AlertDialog.inflateContent(boolean):android.view.View");
     }
 
@@ -923,12 +936,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return new Browser.Progress(new Runnable() {
             @Override
             public final void run() {
-                AlertDialog.lambda$makeButtonLoading$6(button);
+                AlertDialog.lambda$makeButtonLoading$8(button);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                AlertDialog.this.lambda$makeButtonLoading$7(button);
+                AlertDialog.this.lambda$makeButtonLoading$9(button);
             }
         });
     }
@@ -1081,6 +1094,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
+    public void setShowStarsBalance(boolean z) {
+        this.needStarsBalance = z;
+    }
+
     public void setTextColor(int i) {
         SpoilersTextView spoilersTextView = this.titleTextView;
         if (spoilersTextView != null) {
@@ -1136,13 +1153,13 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             builder.setNegativeButton(LocaleController.getString(R.string.Stop), new OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    AlertDialog.this.lambda$showCancelAlert$8(alertDialog, i);
+                    AlertDialog.this.lambda$showCancelAlert$10(alertDialog, i);
                 }
             });
             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    AlertDialog.this.lambda$showCancelAlert$9(dialogInterface);
+                    AlertDialog.this.lambda$showCancelAlert$11(dialogInterface);
                 }
             });
             try {

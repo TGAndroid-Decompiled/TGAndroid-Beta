@@ -294,9 +294,30 @@
     </style>
     <style name="TextAppearance.Compat.Notification.Info" parent="@android:style/TextAppearance.Material.Notification.Info">
     </style>
+    <style name="TextAppearance.Compat.Notification.Info.Media" parent="@style/TextAppearance.Compat.Notification.Info">
+        <item name="android:textColor">@color/secondary_text_default_material_dark</item>
+    </style>
+    <style name="TextAppearance.Compat.Notification.Media" parent="@style/TextAppearance.Compat.Notification">
+        <item name="android:textColor">@color/secondary_text_default_material_dark</item>
+    </style>
     <style name="TextAppearance.Compat.Notification.Time" parent="@android:style/TextAppearance.Material.Notification.Time">
     </style>
+    <style name="TextAppearance.Compat.Notification.Time.Media" parent="@style/TextAppearance.Compat.Notification.Time">
+        <item name="android:textColor">@color/secondary_text_default_material_dark</item>
+    </style>
     <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.Material.Notification.Title">
+    </style>
+    <style name="TextAppearance.Compat.Notification.Title.Media" parent="@style/TextAppearance.Compat.Notification.Title">
+        <item name="android:textColor">@color/primary_text_default_material_dark</item>
+    </style>
+    <style name="Theme.CastDialog" parent="@style/Theme.AppCompat.DayNight.Dialog">
+        <item name="android:colorBackground">#222222</item>
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:windowBackground">#222222</item>
+        <item name="colorAccent">#4991cc</item>
+        <item name="colorPrimary">#222222</item>
+        <item name="dialogCornerRadius">16dp</item>
     </style>
     <style name="Theme.TMessages" parent="@style/Theme.AppCompat.Light">
         <item name="android:colorBackground">@android:color/white</item>

@@ -506,17 +506,19 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                 String str = this.invite.link;
                 manageLinksActivity.showDialog(new ShareAlert(context, null, str, false, str, false, ManageLinksActivity.this.getResourceProvider()) {
                     @Override
-                    public void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic) {
+                    public void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
                         String formatString;
-                        if (longSparseArray == null || longSparseArray.size() != 1) {
-                            formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0]));
-                        } else {
-                            long j = ((TLRPC.Dialog) longSparseArray.valueAt(0)).id;
-                            formatString = (j == 0 || j == ManageLinksActivity.this.getUserConfig().getClientUserId()) ? LocaleController.getString(R.string.InvLinkToSavedMessages) : LocaleController.formatString(R.string.InvLinkToUser, ManageLinksActivity.this.getMessagesController().getPeerName(j, true));
+                        if (z) {
+                            if (longSparseArray == null || longSparseArray.size() != 1) {
+                                formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0]));
+                            } else {
+                                long j = ((TLRPC.Dialog) longSparseArray.valueAt(0)).id;
+                                formatString = (j == 0 || j == ManageLinksActivity.this.getUserConfig().getClientUserId()) ? LocaleController.getString(R.string.InvLinkToSavedMessages) : LocaleController.formatString(R.string.InvLinkToUser, ManageLinksActivity.this.getMessagesController().getPeerName(j, true));
+                            }
+                            Bulletin createSimpleBulletin = BulletinFactory.of(ManageLinksActivity.this).createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(formatString));
+                            createSimpleBulletin.hideAfterBottomSheet = false;
+                            createSimpleBulletin.show(true);
                         }
-                        Bulletin createSimpleBulletin = BulletinFactory.of(ManageLinksActivity.this).createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(formatString));
-                        createSimpleBulletin.hideAfterBottomSheet = false;
-                        createSimpleBulletin.show(true);
                     }
                 });
             } catch (Exception e) {
@@ -1435,7 +1437,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ManageLinksActivity.this.lambda$onBackPressed$323();
+                    ManageLinksActivity.this.lambda$onBackPressed$335();
                 }
             }
         });
@@ -1533,7 +1535,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             if (iNavigationLayout == null || iNavigationLayout.getLastFragment() != this) {
                 removeSelfFromStack();
             } else {
-                lambda$onBackPressed$323();
+                lambda$onBackPressed$335();
             }
         }
     }

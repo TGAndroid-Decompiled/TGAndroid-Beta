@@ -45,15 +45,17 @@ public class CornerPath extends Path {
             RectF rectF2 = (RectF) list.get(i);
             if (rectF2.width() != 0.0f) {
                 float f = rectF.bottom;
-                float f2 = rectF2.top;
-                if (f >= f2) {
-                    float f3 = rectF.left;
-                    if (f3 <= rectF2.right) {
-                        float f4 = rectF.right;
-                        float f5 = rectF2.left;
-                        if (f4 >= f5) {
-                            if (f3 != f5) {
-                                super.lineTo(f3 - this.paddingX, f2);
+                float f2 = this.paddingY;
+                float f3 = f + f2;
+                float f4 = rectF2.top;
+                if (f3 >= f4 - f2) {
+                    float f5 = rectF.left;
+                    if (f5 <= rectF2.right) {
+                        float f6 = rectF.right;
+                        float f7 = rectF2.left;
+                        if (f6 >= f7) {
+                            if (f5 != f7) {
+                                super.lineTo(f5 - this.paddingX, f4);
                                 super.lineTo(rectF2.left - this.paddingX, rectF2.top);
                             }
                             rectF = rectF2;
@@ -70,9 +72,9 @@ public class CornerPath extends Path {
         for (int i2 = size - 1; i2 >= 0; i2--) {
             RectF rectF3 = (RectF) list.get(i2);
             if (rectF3.width() != 0.0f) {
-                float f6 = rectF.right;
-                if (f6 != rectF3.right) {
-                    super.lineTo(f6 + this.paddingX, rectF.top);
+                float f8 = rectF.right;
+                if (f8 != rectF3.right) {
+                    super.lineTo(f8 + this.paddingX, rectF.top);
                     super.lineTo(rectF3.right + this.paddingX, rectF.top);
                 }
                 rectF = rectF3;
@@ -97,18 +99,21 @@ public class CornerPath extends Path {
     @Override
     public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
         if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            super.addRect(f, f2, f3, f4, direction);
+            float f5 = this.paddingX;
+            float f6 = f - f5;
+            float f7 = this.paddingY;
+            super.addRect(f6, f2 - f7, f3 + f5, f4 + f7, direction);
             return;
         }
         if (this.rects.size() > 0) {
-            if (((RectF) this.rects.get(r7.size() - 1)).contains(f, f2, f3, f4)) {
+            if (((RectF) this.rects.get(r12.size() - 1)).contains(f, f2, f3, f4)) {
                 return;
             }
         }
         if (this.rects.size() > 0) {
-            if (Math.abs(f2 - ((RectF) this.rects.get(r7.size() - 1)).top) <= this.rectsUnionDiffDelta) {
-                if (Math.abs(f4 - ((RectF) this.rects.get(r7.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ((RectF) this.rects.get(r7.size() - 1)).union(f, f2, f3, f4);
+            if (Math.abs(f2 - ((RectF) this.rects.get(r12.size() - 1)).top) <= this.rectsUnionDiffDelta) {
+                if (Math.abs(f4 - ((RectF) this.rects.get(r12.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
+                    ((RectF) this.rects.get(r12.size() - 1)).union(f, f2, f3, f4);
                     this.isPathCreated = false;
                 }
             }
@@ -123,18 +128,23 @@ public class CornerPath extends Path {
     @Override
     public void addRect(RectF rectF, Path.Direction direction) {
         if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            super.addRect(rectF.left, rectF.top, rectF.right, rectF.bottom, direction);
+            float f = rectF.left;
+            float f2 = this.paddingX;
+            float f3 = f - f2;
+            float f4 = rectF.top;
+            float f5 = this.paddingY;
+            super.addRect(f3, f4 - f5, rectF.right + f2, rectF.bottom + f5, direction);
             return;
         }
         if (this.rects.size() > 0) {
-            if (((RectF) this.rects.get(r9.size() - 1)).contains(rectF)) {
+            if (((RectF) this.rects.get(r10.size() - 1)).contains(rectF)) {
                 return;
             }
         }
         if (this.rects.size() > 0) {
             if (Math.abs(rectF.top - ((RectF) this.rects.get(r1.size() - 1)).top) <= this.rectsUnionDiffDelta) {
                 if (Math.abs(rectF.bottom - ((RectF) this.rects.get(r1.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ((RectF) this.rects.get(r9.size() - 1)).union(rectF);
+                    ((RectF) this.rects.get(r10.size() - 1)).union(rectF);
                     this.isPathCreated = false;
                 }
             }
@@ -170,6 +180,11 @@ public class CornerPath extends Path {
             return;
         }
         resetRects();
+    }
+
+    public void setPadding(int i, int i2) {
+        this.paddingX = i;
+        this.paddingY = i2;
     }
 
     public void setRectsUnionDiffDelta(float f) {

@@ -657,7 +657,7 @@ public class SecretChatHelper extends BaseController {
         for (int i = 0; i < arrayList.size(); i++) {
             MessageObject messageObject = new MessageObject(this.currentAccount, (TLRPC.Message) arrayList.get(i), false, true);
             messageObject.resendAsIs = true;
-            getSendMessagesHelper().retrySendMessage(messageObject, true);
+            getSendMessagesHelper().retrySendMessage(messageObject, true, 0L);
         }
     }
 

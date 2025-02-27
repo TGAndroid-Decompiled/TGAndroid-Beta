@@ -1031,7 +1031,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         public void shutdown(int i, boolean z, int i2, int i3, long j) {
             Handler handler = getHandler();
             if (handler != null) {
-                sendMessage(handler.obtainMessage(1, i, 0, new SendOptions(z, i2, i3, j)), 0);
+                sendMessage(handler.obtainMessage(1, i, 0, new SendOptions(z, i2, i3, j, 0L)), 0);
             }
         }
     }
@@ -1060,7 +1060,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         boolean isSecretChat();
 
-        void sendMedia(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z, int i, boolean z2);
+        void sendMedia(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z, int i, boolean z2, long j);
     }
 
     public static class EncoderHandler extends Handler {
@@ -1180,13 +1180,15 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         long effectId;
         boolean notify;
         int scheduleDate;
+        long stars;
         int ttl;
 
-        public SendOptions(boolean z, int i, int i2, long j) {
+        public SendOptions(boolean z, int i, int i2, long j, long j2) {
             this.notify = z;
             this.scheduleDate = i;
             this.ttl = i2;
             this.effectId = j;
+            this.stars = j2;
         }
     }
 
@@ -1746,7 +1748,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     photoEntry.ttl = sendOptions.ttl;
                     photoEntry.effectId = sendOptions.effectId;
                 }
-                InstantCameraView.this.delegate.sendMedia(photoEntry, videoEditedInfo4, sendOptions == null || sendOptions.notify, sendOptions != null ? sendOptions.scheduleDate : 0, false);
+                InstantCameraView.this.delegate.sendMedia(photoEntry, videoEditedInfo4, sendOptions == null || sendOptions.notify, sendOptions != null ? sendOptions.scheduleDate : 0, false, sendOptions != null ? sendOptions.stars : 0L);
             }
             InstantCameraView.this.videoEditedInfo = null;
         }
@@ -1790,7 +1792,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 photoEntry.ttl = sendOptions.ttl;
                 photoEntry.effectId = sendOptions.effectId;
             }
-            InstantCameraView.this.delegate.sendMedia(photoEntry, InstantCameraView.this.videoEditedInfo, sendOptions == null || sendOptions.notify, sendOptions != null ? sendOptions.scheduleDate : 0, false);
+            InstantCameraView.this.delegate.sendMedia(photoEntry, InstantCameraView.this.videoEditedInfo, sendOptions == null || sendOptions.notify, sendOptions != null ? sendOptions.scheduleDate : 0, false, sendOptions != null ? sendOptions.stars : 0L);
         }
 
         public void lambda$handleStopRecording$7(CountDownLatch countDownLatch) {
@@ -1808,7 +1810,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 photoEntry.ttl = sendOptions.ttl;
                 photoEntry.effectId = sendOptions.effectId;
             }
-            InstantCameraView.this.delegate.sendMedia(photoEntry, videoEditedInfo, z || sendOptions == null || sendOptions.notify, i != 0 ? i : sendOptions != null ? sendOptions.scheduleDate : 0, false);
+            InstantCameraView.this.delegate.sendMedia(photoEntry, videoEditedInfo, z || sendOptions == null || sendOptions.notify, i != 0 ? i : sendOptions != null ? sendOptions.scheduleDate : 0, false, sendOptions != null ? sendOptions.stars : 0L);
             InstantCameraView.this.startAnimation(false, false);
         }
 
@@ -3055,7 +3057,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         } else {
             VideoRecorder videoRecorder = this.videoEncoder;
             if (videoRecorder != null) {
-                videoRecorder.stopRecording(0, new SendOptions(true, 0, 0, 0L));
+                videoRecorder.stopRecording(0, new SendOptions(true, 0, 0, 0L, 0L));
             }
         }
         if (this.cameraFile != null) {
@@ -3234,6 +3236,10 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
     }
 
+    public boolean isPaused() {
+        return !this.recording;
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -3406,8 +3412,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.cameraFile = null;
     }
 
-    public void send(int r25, boolean r26, int r27, int r28, long r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InstantCameraView.send(int, boolean, int, int, long):void");
+    public void send(int r25, boolean r26, int r27, int r28, long r29, long r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InstantCameraView.send(int, boolean, int, int, long, long):void");
     }
 
     public void setIsMessageTransition(boolean z) {

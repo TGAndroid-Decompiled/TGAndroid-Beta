@@ -392,16 +392,16 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     public interface DocumentSelectActivityDelegate {
 
         public abstract class CC {
-            public static void $default$didSelectPhotos(DocumentSelectActivityDelegate documentSelectActivityDelegate, ArrayList arrayList, boolean z, int i) {
+            public static void $default$didSelectPhotos(DocumentSelectActivityDelegate documentSelectActivityDelegate, ArrayList arrayList, boolean z, int i, long j) {
             }
 
             public static void $default$startMusicSelectActivity(DocumentSelectActivityDelegate documentSelectActivityDelegate) {
             }
         }
 
-        void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, boolean z, int i, long j, boolean z2);
+        void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, boolean z, int i, long j, boolean z2, long j2);
 
-        void didSelectPhotos(ArrayList arrayList, boolean z, int i);
+        void didSelectPhotos(ArrayList arrayList, boolean z, int i, long j);
 
         void startDocumentSelectActivity();
 
@@ -1954,7 +1954,17 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.backgroundListView.invalidate();
     }
 
-    public int lambda$sortFileItems$6(ListItem listItem, ListItem listItem2) {
+    public void lambda$sendSelectedItems$5(ArrayList arrayList, String str, ArrayList arrayList2, boolean z, int i, long j, boolean z2, Long l) {
+        this.sendPressed = true;
+        this.delegate.didSelectFiles(arrayList, str, arrayList2, z, i, j, z2, l.longValue());
+        this.parentAlert.dismiss(true);
+    }
+
+    public void lambda$sendSelectedPhotos$6(ArrayList arrayList, boolean z, int i, Long l) {
+        this.delegate.didSelectPhotos(arrayList, z, i, l.longValue());
+    }
+
+    public int lambda$sortFileItems$8(ListItem listItem, ListItem listItem2) {
         File file = listItem.file;
         if (file == null) {
             return -1;
@@ -1977,7 +1987,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         return lastModified > lastModified2 ? -1 : 1;
     }
 
-    public int lambda$sortRecentItems$5(ListItem listItem, ListItem listItem2) {
+    public int lambda$sortRecentItems$7(ListItem listItem, ListItem listItem2) {
         boolean z = this.sortByName;
         File file = listItem.file;
         if (z) {
@@ -2234,12 +2244,12 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.listAnimation.start();
     }
 
-    public void sendSelectedPhotos(HashMap hashMap, ArrayList arrayList, boolean z, int i) {
+    public void sendSelectedPhotos(HashMap hashMap, ArrayList arrayList, final boolean z, final int i) {
         if (hashMap.isEmpty() || this.delegate == null || this.sendPressed) {
             return;
         }
         this.sendPressed = true;
-        ArrayList arrayList2 = new ArrayList();
+        final ArrayList arrayList2 = new ArrayList();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             Object obj = hashMap.get(arrayList.get(i2));
             SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -2262,7 +2272,13 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 sendingMediaInfo.ttl = photoEntry.ttl;
             }
         }
-        this.delegate.didSelectPhotos(arrayList2, z, i);
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), arrayList2.size() + this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj2) {
+                ChatAttachAlertDocumentLayout.this.lambda$sendSelectedPhotos$6(arrayList2, z, i, (Long) obj2);
+            }
+        });
     }
 
     private void showErrorBox(String str) {
@@ -2276,9 +2292,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         Collections.sort(this.listAdapter.items, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$sortFileItems$6;
-                lambda$sortFileItems$6 = ChatAttachAlertDocumentLayout.this.lambda$sortFileItems$6((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
-                return lambda$sortFileItems$6;
+                int lambda$sortFileItems$8;
+                lambda$sortFileItems$8 = ChatAttachAlertDocumentLayout.this.lambda$sortFileItems$8((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
+                return lambda$sortFileItems$8;
             }
         });
     }
@@ -2287,9 +2303,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         Collections.sort(this.listAdapter.recentItems, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$sortRecentItems$5;
-                lambda$sortRecentItems$5 = ChatAttachAlertDocumentLayout.this.lambda$sortRecentItems$5((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
-                return lambda$sortRecentItems$5;
+                int lambda$sortRecentItems$7;
+                lambda$sortRecentItems$7 = ChatAttachAlertDocumentLayout.this.lambda$sortRecentItems$7((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
+                return lambda$sortRecentItems$7;
             }
         });
     }
@@ -2556,18 +2572,24 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
+    public boolean sendSelectedItems(final boolean z, final int i, final long j, final boolean z2) {
         if ((this.selectedFiles.size() == 0 && this.selectedMessages.size() == 0) || this.delegate == null || this.sendPressed) {
-            return;
+            return false;
         }
-        this.sendPressed = true;
-        ArrayList arrayList = new ArrayList();
+        final ArrayList arrayList = new ArrayList();
         Iterator it = this.selectedMessages.keySet().iterator();
         while (it.hasNext()) {
             arrayList.add((MessageObject) this.selectedMessages.get((FilteredSearchView.MessageHashId) it.next()));
         }
-        this.delegate.didSelectFiles(new ArrayList(this.selectedFilesOrder), this.parentAlert.getCommentView().getText().toString(), arrayList, z, i, j, z2);
-        this.parentAlert.dismiss(true);
+        final ArrayList arrayList2 = new ArrayList(this.selectedFilesOrder);
+        final String obj = this.parentAlert.getCommentView().getText().toString();
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        return AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), (!TextUtils.isEmpty(obj) ? 1 : 0) + arrayList2.size() + this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj2) {
+                ChatAttachAlertDocumentLayout.this.lambda$sendSelectedItems$5(arrayList2, obj, arrayList, z, i, j, z2, (Long) obj2);
+            }
+        });
     }
 
     public void setCanSelectOnlyImageFiles(boolean z) {

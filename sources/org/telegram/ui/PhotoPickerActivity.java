@@ -162,7 +162,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$323();
+            PhotoPickerActivity.this.lambda$onBackPressed$335();
             return true;
         }
 
@@ -400,7 +400,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$323();
+            PhotoPickerActivity.this.lambda$onBackPressed$335();
             return true;
         }
 
@@ -792,7 +792,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     PhotoPickerActivity.this.delegate.onOpenInPressed();
                 }
             }
-            PhotoPickerActivity.this.lambda$onBackPressed$323();
+            PhotoPickerActivity.this.lambda$onBackPressed$335();
         }
     }
 
@@ -829,7 +829,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean canCollapseSearch() {
-            PhotoPickerActivity.this.lambda$onBackPressed$323();
+            PhotoPickerActivity.this.lambda$onBackPressed$335();
             return false;
         }
 
@@ -1792,7 +1792,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         if (this.selectPhotoType != PhotoAlbumPickerActivity.SELECT_TYPE_WALLPAPER) {
             PhotoPickerActivityDelegate photoPickerActivityDelegate = this.delegate;
             if (photoPickerActivityDelegate == null || photoPickerActivityDelegate.canFinishFragment()) {
-                lambda$onBackPressed$323();
+                lambda$onBackPressed$335();
             }
         }
     }
@@ -2003,7 +2003,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                         PhotoPickerActivity.this.delegate.onOpenInPressed();
                     }
                 }
-                PhotoPickerActivity.this.lambda$onBackPressed$323();
+                PhotoPickerActivity.this.lambda$onBackPressed$335();
             }
         });
         if (this.isDocumentsPicker) {

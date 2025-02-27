@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import android.media.MediaCodec;
+import android.media.MediaCodecInfo;
 import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Bundle;
@@ -42,18 +43,41 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public ByteBuffer[] getInputBuffers() {
-            return this.mediaCodec.getInputBuffers();
+        public MediaCodecInfo getCodecInfo() {
+            return this.mediaCodec.getCodecInfo();
         }
 
         @Override
-        public ByteBuffer[] getOutputBuffers() {
-            return this.mediaCodec.getOutputBuffers();
+        public ByteBuffer getInputBuffer(int i) {
+            ByteBuffer inputBuffer;
+            inputBuffer = this.mediaCodec.getInputBuffer(i);
+            return inputBuffer;
+        }
+
+        @Override
+        public MediaFormat getInputFormat() {
+            MediaFormat inputFormat;
+            inputFormat = this.mediaCodec.getInputFormat();
+            return inputFormat;
+        }
+
+        @Override
+        public ByteBuffer getOutputBuffer(int i) {
+            ByteBuffer outputBuffer;
+            outputBuffer = this.mediaCodec.getOutputBuffer(i);
+            return outputBuffer;
         }
 
         @Override
         public MediaFormat getOutputFormat() {
             return this.mediaCodec.getOutputFormat();
+        }
+
+        @Override
+        public MediaFormat getOutputFormat(int i) {
+            MediaFormat outputFormat;
+            outputFormat = this.mediaCodec.getOutputFormat(i);
+            return outputFormat;
         }
 
         @Override
