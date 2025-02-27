@@ -4056,17 +4056,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 notificationCenter.removeObserver(profileActivity, i2);
                 if (i == 2) {
                     ProfileActivity.this.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                    ProfileActivity.this.updateRowsIds();
-                    if (ProfileActivity.this.listAdapter != null) {
-                        ProfileActivity.this.listAdapter.notifyDataSetChanged();
-                    }
+                    ProfileActivity.this.updateListAnimated(false);
                     Browser.openUrl(getContext(), ProfileActivity.this.getMessagesController().premiumManageSubscriptionUrl);
                 } else {
                     ProfileActivity.this.getMessagesController().removeSuggestion(0L, i == 0 ? "VALIDATE_PHONE_NUMBER" : "VALIDATE_PASSWORD");
-                    ProfileActivity.this.updateRowsIds();
-                    if (ProfileActivity.this.listAdapter != null) {
-                        ProfileActivity.this.listAdapter.notifyDataSetChanged();
-                    }
+                    ProfileActivity.this.updateListAnimated(false);
                 }
                 ProfileActivity.this.getNotificationCenter().addObserver(ProfileActivity.this, i2);
             }
@@ -4518,17 +4512,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             notificationCenter.removeObserver(profileActivity3, i22);
                             if (i5 == 2) {
                                 ProfileActivity.this.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                                ProfileActivity.this.updateRowsIds();
-                                if (ProfileActivity.this.listAdapter != null) {
-                                    ProfileActivity.this.listAdapter.notifyDataSetChanged();
-                                }
+                                ProfileActivity.this.updateListAnimated(false);
                                 Browser.openUrl(getContext(), ProfileActivity.this.getMessagesController().premiumManageSubscriptionUrl);
                             } else {
                                 ProfileActivity.this.getMessagesController().removeSuggestion(0L, i5 == 0 ? "VALIDATE_PHONE_NUMBER" : "VALIDATE_PASSWORD");
-                                ProfileActivity.this.updateRowsIds();
-                                if (ProfileActivity.this.listAdapter != null) {
-                                    ProfileActivity.this.listAdapter.notifyDataSetChanged();
-                                }
+                                ProfileActivity.this.updateListAnimated(false);
                             }
                             ProfileActivity.this.getNotificationCenter().addObserver(ProfileActivity.this, i22);
                         }

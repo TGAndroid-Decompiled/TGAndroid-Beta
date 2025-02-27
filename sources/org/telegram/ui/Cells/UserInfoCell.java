@@ -185,8 +185,9 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             this.commonChats = commonChats;
             int count = commonChats.getCount();
             Row row = this.groupsRow;
-            if (row == null) {
+            if (row == null || count <= 0) {
                 set(this.dialogId, MessagesController.getInstance(this.currentAccount).getPeerSettings(this.dialogId));
+                requestLayout();
             } else {
                 row.value = new Text(LocaleController.formatPluralString("Groups", count, new Object[0]), 12.0f, AndroidUtilities.bold());
                 this.groupsAvatars.setCount(Math.min(3, this.commonChats.chats.size()));
@@ -366,36 +367,49 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         if (userFull != null) {
             MessagesController.CommonChatsList commonChats = MessagesController.getInstance(this.currentAccount).getCommonChats(j);
             this.commonChats = commonChats;
-            this.groupsRow = addRow(LocaleController.getString(R.string.ContactInfoCommonGroups), LocaleController.formatPluralString("Groups", Math.max(userFull.common_chats_count, commonChats.getCount()), new Object[0]), true);
-            this.groupsAvatars.setCount(Math.min(3, this.commonChats.chats.size()));
-            for (int i2 = 0; i2 < Math.min(3, this.commonChats.chats.size()); i2++) {
-                this.groupsAvatars.setObject(i2, this.currentAccount, this.commonChats.chats.get(i2));
+            int max = Math.max(userFull.common_chats_count, commonChats.getCount());
+            if (max > 0) {
+                this.groupsRow = addRow(LocaleController.getString(R.string.ContactInfoCommonGroups), LocaleController.formatPluralString("Groups", max, new Object[0]), true);
+                this.groupsAvatars.setCount(Math.min(3, this.commonChats.chats.size()));
+                for (int i2 = 0; i2 < Math.min(3, this.commonChats.chats.size()); i2++) {
+                    this.groupsAvatars.setObject(i2, this.currentAccount, this.commonChats.chats.get(i2));
+                }
+                this.groupsAvatars.commitTransition(true);
+                this.rowsWidth = this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + this.rowsValuesWidth;
+                if (user != null || user.verified || UserObject.isService(user.id)) {
+                    this.footer = null;
+                } else {
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("i  ");
+                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.filled_info);
+                    coloredImageSpan.setScale(0.55f, -0.55f);
+                    coloredImageSpan.translate(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(-1.0f));
+                    spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ContactInfoNotVerified));
+                    this.footer = new Text(spannableStringBuilder, 12.0f);
+                    this.height += AndroidUtilities.dp(12.0f) + this.footer.getHeight() + AndroidUtilities.dp(15.33f);
+                }
+                float max2 = Math.max(this.width, this.title.getWidth());
+                this.width = max2;
+                float max3 = Math.max(max2, this.subtitle.getWidth());
+                this.width = max3;
+                float max4 = Math.max(max3, this.rowsWidth);
+                this.width = max4;
+                this.width = Math.min(max4 + AndroidUtilities.dp(32.0f), i);
             }
-            this.groupsAvatars.commitTransition(true);
-        } else {
-            this.commonChats = null;
-            this.groupsRow = null;
         }
+        this.commonChats = null;
+        this.groupsRow = null;
         this.rowsWidth = this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + this.rowsValuesWidth;
-        if (user == null || user.verified || UserObject.isService(user.id)) {
-            this.footer = null;
-        } else {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("i  ");
-            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.filled_info);
-            coloredImageSpan.setScale(0.55f, -0.55f);
-            coloredImageSpan.translate(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(-1.0f));
-            spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
-            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ContactInfoNotVerified));
-            this.footer = new Text(spannableStringBuilder, 12.0f);
-            this.height += AndroidUtilities.dp(12.0f) + this.footer.getHeight() + AndroidUtilities.dp(15.33f);
+        if (user != null) {
         }
-        float max = Math.max(this.width, this.title.getWidth());
-        this.width = max;
-        float max2 = Math.max(max, this.subtitle.getWidth());
-        this.width = max2;
-        float max3 = Math.max(max2, this.rowsWidth);
-        this.width = max3;
-        this.width = Math.min(max3 + AndroidUtilities.dp(32.0f), i);
+        this.footer = null;
+        float max22 = Math.max(this.width, this.title.getWidth());
+        this.width = max22;
+        float max32 = Math.max(max22, this.subtitle.getWidth());
+        this.width = max32;
+        float max42 = Math.max(max32, this.rowsWidth);
+        this.width = max42;
+        this.width = Math.min(max42 + AndroidUtilities.dp(32.0f), i);
     }
 
     public void setAnimating(boolean z) {
