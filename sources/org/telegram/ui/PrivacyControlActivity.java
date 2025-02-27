@@ -79,6 +79,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PrivacyControlActivity;
+import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class PrivacyControlActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
@@ -315,7 +316,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 return LocaleController.formatNumber(num2.intValue(), ',');
             }
             if (PrivacyControlActivity.this.getUserConfig().isPremium()) {
-                return LocaleController.formatPluralStringComma("Stars", num2.intValue());
+                return StarsIntroActivity.replaceStars(LocaleController.formatPluralStringComma("Stars", num2.intValue()));
             }
             if (PrivacyControlActivity.this.lockSpan == null) {
                 SpannableString spannableString = new SpannableString("l");
@@ -327,7 +328,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append(PrivacyControlActivity.this.lockSpan);
             spannableStringBuilder.append((CharSequence) " ");
-            spannableStringBuilder.append((CharSequence) LocaleController.formatPluralStringComma("Stars", num2.intValue()));
+            spannableStringBuilder.append((CharSequence) StarsIntroActivity.replaceStars(LocaleController.formatPluralStringComma("Stars", num2.intValue())));
             return spannableStringBuilder;
         }
 
@@ -800,11 +801,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 @Override
                 public void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell2, f, f2);
-                }
-
-                @Override
-                public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell2, f, f2);
                 }
 
                 @Override

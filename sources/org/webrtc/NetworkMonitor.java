@@ -57,14 +57,14 @@ public class NetworkMonitor {
         }
     }
 
-    static NetworkMonitorAutoDetect createAndSetAutoDetectForTest(Context context, String str) {
+    static NetworkMonitorAutoDetect createAndSetAutoDetectForTest(Context context) {
         NetworkMonitor networkMonitor = getInstance();
-        NetworkChangeDetector createNetworkChangeDetector = networkMonitor.createNetworkChangeDetector(context, str);
+        NetworkChangeDetector createNetworkChangeDetector = networkMonitor.createNetworkChangeDetector(context);
         networkMonitor.networkChangeDetector = createNetworkChangeDetector;
         return (NetworkMonitorAutoDetect) createNetworkChangeDetector;
     }
 
-    private NetworkChangeDetector createNetworkChangeDetector(Context context, String str) {
+    private NetworkChangeDetector createNetworkChangeDetector(Context context) {
         return this.networkChangeDetectorFactory.create(new NetworkChangeDetector.Observer() {
             @Override
             public void onConnectionTypeChanged(NetworkChangeDetector.ConnectionType connectionType) {
@@ -178,12 +178,12 @@ public class NetworkMonitor {
         getInstance().removeObserver(networkObserver);
     }
 
-    private void startMonitoring(Context context, long j, String str) {
-        Logging.d("NetworkMonitor", "Start monitoring with native observer " + j + " fieldTrialsString: " + str);
+    private void startMonitoring(Context context, long j) {
+        Logging.d("NetworkMonitor", "Start monitoring with native observer " + j);
         if (context == null) {
             context = ContextUtils.getApplicationContext();
         }
-        startMonitoring(context, str);
+        startMonitoring(context);
         synchronized (this.nativeNetworkObservers) {
             this.nativeNetworkObservers.add(Long.valueOf(j));
         }
@@ -210,7 +210,7 @@ public class NetworkMonitor {
             NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
             activeNetworkList = networkChangeDetector == null ? null : networkChangeDetector.getActiveNetworkList();
         }
-        if (activeNetworkList == null) {
+        if (activeNetworkList == null || activeNetworkList.size() == 0) {
             return;
         }
         nativeNotifyOfActiveNetworkList(j, (NetworkChangeDetector.NetworkInformation[]) activeNetworkList.toArray(new NetworkChangeDetector.NetworkInformation[activeNetworkList.size()]));
@@ -251,20 +251,15 @@ public class NetworkMonitor {
 
     @Deprecated
     public void startMonitoring() {
-        startMonitoring(ContextUtils.getApplicationContext(), "");
+        startMonitoring(ContextUtils.getApplicationContext());
     }
 
-    @Deprecated
     public void startMonitoring(Context context) {
-        startMonitoring(context, "");
-    }
-
-    public void startMonitoring(Context context, String str) {
         synchronized (this.networkChangeDetectorLock) {
             try {
                 this.numObservers++;
                 if (this.networkChangeDetector == null) {
-                    this.networkChangeDetector = createNetworkChangeDetector(context, str);
+                    this.networkChangeDetector = createNetworkChangeDetector(context);
                 }
                 this.currentConnectionType = this.networkChangeDetector.getCurrentConnectionType();
             } catch (Throwable th) {

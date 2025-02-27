@@ -67,7 +67,6 @@ public class RtpParameters {
 
     public static class Encoding {
         public boolean active;
-        public boolean adaptiveAudioPacketTime;
         public double bitratePriority;
         public Integer maxBitrateBps;
         public Integer maxFramerate;
@@ -78,7 +77,7 @@ public class RtpParameters {
         public Double scaleResolutionDownBy;
         public Long ssrc;
 
-        Encoding(String str, boolean z, double d, int i, Integer num, Integer num2, Integer num3, Integer num4, Double d2, Long l, boolean z2) {
+        Encoding(String str, boolean z, double d, int i, Integer num, Integer num2, Integer num3, Integer num4, Double d2, Long l) {
             this.rid = str;
             this.active = z;
             this.bitratePriority = d;
@@ -89,7 +88,6 @@ public class RtpParameters {
             this.numTemporalLayers = num4;
             this.scaleResolutionDownBy = d2;
             this.ssrc = l;
-            this.adaptiveAudioPacketTime = z2;
         }
 
         public Encoding(String str, boolean z, Double d) {
@@ -102,10 +100,6 @@ public class RtpParameters {
 
         boolean getActive() {
             return this.active;
-        }
-
-        boolean getAdaptivePTime() {
-            return this.adaptiveAudioPacketTime;
         }
 
         double getBitratePriority() {

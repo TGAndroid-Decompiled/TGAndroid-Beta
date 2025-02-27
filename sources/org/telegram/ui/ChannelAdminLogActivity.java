@@ -780,11 +780,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell, f, f2);
-            }
-
-            @Override
             public void didStartVideoStream(MessageObject messageObject) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject);
             }

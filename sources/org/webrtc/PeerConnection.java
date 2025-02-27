@@ -280,16 +280,7 @@ public class PeerConnection {
     public interface Observer {
 
         public abstract class CC {
-            public static void $default$onAddTrack(Observer observer, RtpReceiver rtpReceiver, MediaStream[] mediaStreamArr) {
-            }
-
             public static void $default$onConnectionChange(Observer observer, PeerConnectionState peerConnectionState) {
-            }
-
-            public static void $default$onIceCandidateError(Observer observer, IceCandidateErrorEvent iceCandidateErrorEvent) {
-            }
-
-            public static void $default$onRemoveTrack(Observer observer, RtpReceiver rtpReceiver) {
             }
 
             public static void $default$onSelectedCandidatePairChanged(Observer observer, CandidatePairChangeEvent candidatePairChangeEvent) {
@@ -312,8 +303,6 @@ public class PeerConnection {
 
         void onIceCandidate(IceCandidate iceCandidate);
 
-        void onIceCandidateError(IceCandidateErrorEvent iceCandidateErrorEvent);
-
         void onIceCandidatesRemoved(IceCandidate[] iceCandidateArr);
 
         void onIceConnectionChange(IceConnectionState iceConnectionState);
@@ -323,8 +312,6 @@ public class PeerConnection {
         void onIceGatheringChange(IceGatheringState iceGatheringState);
 
         void onRemoveStream(MediaStream mediaStream);
-
-        void onRemoveTrack(RtpReceiver rtpReceiver);
 
         void onRenegotiationNeeded();
 
@@ -384,20 +371,22 @@ public class PeerConnection {
         public Integer iceUnwritableTimeMs = null;
         public Integer iceUnwritableMinChecks = null;
         public Integer stunCandidateKeepaliveIntervalMs = null;
-        public Integer stableWritableConnectionPingIntervalMs = null;
         public boolean disableIPv6OnWifi = false;
         public int maxIPv6Networks = 5;
+        public boolean disableIpv6 = false;
         public boolean enableDscp = false;
         public boolean enableCpuOveruseDetection = true;
+        public boolean enableRtpDataChannel = false;
         public boolean suspendBelowMinBitrate = false;
         public Integer screencastMinBitrate = null;
+        public Boolean combinedAudioVideoBwe = null;
+        public Boolean enableDtlsSrtp = null;
         public AdapterType networkPreference = AdapterType.UNKNOWN;
-        public SdpSemantics sdpSemantics = SdpSemantics.UNIFIED_PLAN;
+        public SdpSemantics sdpSemantics = SdpSemantics.PLAN_B;
         public boolean activeResetSrtpParams = false;
         public CryptoOptions cryptoOptions = null;
         public String turnLoggingId = null;
-        public boolean enableImplicitRollback = false;
-        public boolean offerExtmapAllowMixed = true;
+        public Boolean allowCodecSwitching = null;
 
         public RTCConfiguration(List<IceServer> list) {
             this.iceServers = list;
@@ -405,6 +394,10 @@ public class PeerConnection {
 
         boolean getActiveResetSrtpParams() {
             return this.activeResetSrtpParams;
+        }
+
+        Boolean getAllowCodecSwitching() {
+            return this.allowCodecSwitching;
         }
 
         boolean getAudioJitterBufferFastAccelerate() {
@@ -427,6 +420,10 @@ public class PeerConnection {
             return this.certificate;
         }
 
+        Boolean getCombinedAudioVideoBwe() {
+            return this.combinedAudioVideoBwe;
+        }
+
         ContinualGatheringPolicy getContinualGatheringPolicy() {
             return this.continualGatheringPolicy;
         }
@@ -439,6 +436,10 @@ public class PeerConnection {
             return this.disableIPv6OnWifi;
         }
 
+        boolean getDisableIpv6() {
+            return this.disableIpv6;
+        }
+
         boolean getEnableCpuOveruseDetection() {
             return this.enableCpuOveruseDetection;
         }
@@ -447,8 +448,12 @@ public class PeerConnection {
             return this.enableDscp;
         }
 
-        boolean getEnableImplicitRollback() {
-            return this.enableImplicitRollback;
+        Boolean getEnableDtlsSrtp() {
+            return this.enableDtlsSrtp;
+        }
+
+        boolean getEnableRtpDataChannel() {
+            return this.enableRtpDataChannel;
         }
 
         int getIceBackupCandidatePairPingInterval() {
@@ -503,10 +508,6 @@ public class PeerConnection {
             return this.networkPreference;
         }
 
-        boolean getOfferExtmapAllowMixed() {
-            return this.offerExtmapAllowMixed;
-        }
-
         boolean getPresumeWritableWhenFullyRelayed() {
             return this.presumeWritableWhenFullyRelayed;
         }
@@ -525,10 +526,6 @@ public class PeerConnection {
 
         SdpSemantics getSdpSemantics() {
             return this.sdpSemantics;
-        }
-
-        Integer getStableWritableConnectionPingIntervalMs() {
-            return this.stableWritableConnectionPingIntervalMs;
         }
 
         Integer getStunCandidateKeepaliveInterval() {
@@ -611,8 +608,6 @@ public class PeerConnection {
 
     private native boolean nativeAddIceCandidate(String str, int i, String str2);
 
-    private native void nativeAddIceCandidateWithObserver(String str, int i, String str2, AddIceObserver addIceObserver);
-
     private native boolean nativeAddLocalStream(long j);
 
     private native RtpSender nativeAddTrack(long j, List<String> list);
@@ -657,10 +652,6 @@ public class PeerConnection {
 
     private native void nativeNewGetStats(RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native void nativeNewGetStatsReceiver(long j, RTCStatsCollectorCallback rTCStatsCollectorCallback);
-
-    private native void nativeNewGetStatsSender(long j, RTCStatsCollectorCallback rTCStatsCollectorCallback);
-
     private native boolean nativeOldGetStats(StatsObserver statsObserver, long j);
 
     private native boolean nativeRemoveIceCandidates(IceCandidate[] iceCandidateArr);
@@ -668,8 +659,6 @@ public class PeerConnection {
     private native void nativeRemoveLocalStream(long j);
 
     private native boolean nativeRemoveTrack(long j);
-
-    private native void nativeRestartIce();
 
     private native void nativeSetAudioPlayout(boolean z);
 
@@ -681,8 +670,6 @@ public class PeerConnection {
 
     private native void nativeSetLocalDescription(SdpObserver sdpObserver, SessionDescription sessionDescription);
 
-    private native void nativeSetLocalDescriptionAutomatically(SdpObserver sdpObserver);
-
     private native void nativeSetRemoteDescription(SdpObserver sdpObserver, SessionDescription sessionDescription);
 
     private native SignalingState nativeSignalingState();
@@ -690,10 +677,6 @@ public class PeerConnection {
     private native boolean nativeStartRtcEventLog(int i, int i2);
 
     private native void nativeStopRtcEventLog();
-
-    public void addIceCandidate(IceCandidate iceCandidate, AddIceObserver addIceObserver) {
-        nativeAddIceCandidateWithObserver(iceCandidate.sdpMid, iceCandidate.sdpMLineIndex, iceCandidate.sdp, addIceObserver);
-    }
 
     public boolean addIceCandidate(IceCandidate iceCandidate) {
         return nativeAddIceCandidate(iceCandidate.sdpMid, iceCandidate.sdpMLineIndex, iceCandidate.sdp);
@@ -858,14 +841,6 @@ public class PeerConnection {
         nativeNewGetStats(rTCStatsCollectorCallback);
     }
 
-    public void getStats(RtpReceiver rtpReceiver, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
-        nativeNewGetStatsReceiver(rtpReceiver.getNativeRtpReceiver(), rTCStatsCollectorCallback);
-    }
-
-    public void getStats(RtpSender rtpSender, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
-        nativeNewGetStatsSender(rtpSender.getNativeRtpSender(), rTCStatsCollectorCallback);
-    }
-
     @Deprecated
     public boolean getStats(StatsObserver statsObserver, MediaStreamTrack mediaStreamTrack) {
         return nativeOldGetStats(statsObserver, mediaStreamTrack == null ? 0L : mediaStreamTrack.getNativeMediaStreamTrack());
@@ -905,10 +880,6 @@ public class PeerConnection {
         throw new NullPointerException("No RtpSender specified for removeTrack.");
     }
 
-    public void restartIce() {
-        nativeRestartIce();
-    }
-
     public void setAudioPlayout(boolean z) {
         nativeSetAudioPlayout(z);
     }
@@ -923,10 +894,6 @@ public class PeerConnection {
 
     public boolean setConfiguration(RTCConfiguration rTCConfiguration) {
         return nativeSetConfiguration(rTCConfiguration);
-    }
-
-    public void setLocalDescription(SdpObserver sdpObserver) {
-        nativeSetLocalDescriptionAutomatically(sdpObserver);
     }
 
     public void setLocalDescription(SdpObserver sdpObserver, SessionDescription sessionDescription) {

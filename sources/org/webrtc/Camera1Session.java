@@ -107,52 +107,42 @@ public class Camera1Session implements CameraSession {
         }
     }
 
-    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
+    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, int i, int i2, int i3, int i4) {
         long nanoTime = System.nanoTime();
-        Logging.d("Camera1Session", "Open camera " + str);
+        Logging.d("Camera1Session", "Open camera " + i);
         events.onCameraOpening();
         try {
-            int cameraIndex = Camera1Enumerator.getCameraIndex(str);
-            try {
-                Camera open = Camera.open(cameraIndex);
-                if (open == null) {
-                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, "Camera.open returned null for camera id = " + cameraIndex);
-                    return;
-                }
-                try {
-                    open.setPreviewTexture(surfaceTextureHelper.getSurfaceTexture());
-                    Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-                    Camera.getCameraInfo(cameraIndex, cameraInfo);
-                    try {
-                        Camera.Parameters parameters = open.getParameters();
-                        CameraEnumerationAndroid.CaptureFormat findClosestCaptureFormat = findClosestCaptureFormat(parameters, i, i2, i3);
-                        updateCameraParameters(open, parameters, findClosestCaptureFormat, findClosestPictureSize(parameters, i, i2), z);
-                        if (!z) {
-                            int frameSize = findClosestCaptureFormat.frameSize();
-                            for (int i4 = 0; i4 < 3; i4++) {
-                                open.addCallbackBuffer(ByteBuffer.allocateDirect(frameSize).array());
-                            }
-                        }
-                        try {
-                            open.setDisplayOrientation(0);
-                            createSessionCallback.onDone(new Camera1Session(events, z, context, surfaceTextureHelper, cameraIndex, open, cameraInfo, findClosestCaptureFormat, nanoTime));
-                        } catch (RuntimeException e) {
-                            open.release();
-                            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e.getMessage());
-                        }
-                    } catch (RuntimeException e2) {
-                        open.release();
-                        createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e2.getMessage());
-                    }
-                } catch (IOException | RuntimeException e3) {
-                    open.release();
-                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e3.getMessage());
-                }
-            } catch (RuntimeException e4) {
-                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e4.getMessage());
+            Camera open = Camera.open(i);
+            if (open == null) {
+                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, "android.hardware.Camera.open returned null for camera id = " + i);
+                return;
             }
-        } catch (IllegalArgumentException e5) {
-            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e5.getMessage());
+            try {
+                open.setPreviewTexture(surfaceTextureHelper.getSurfaceTexture());
+                Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+                Camera.getCameraInfo(i, cameraInfo);
+                try {
+                    Camera.Parameters parameters = open.getParameters();
+                    CameraEnumerationAndroid.CaptureFormat findClosestCaptureFormat = findClosestCaptureFormat(parameters, i2, i3, i4);
+                    updateCameraParameters(open, parameters, findClosestCaptureFormat, findClosestPictureSize(parameters, i2, i3), z);
+                    if (!z) {
+                        int frameSize = findClosestCaptureFormat.frameSize();
+                        for (int i5 = 0; i5 < 3; i5++) {
+                            open.addCallbackBuffer(ByteBuffer.allocateDirect(frameSize).array());
+                        }
+                    }
+                    open.setDisplayOrientation(0);
+                    createSessionCallback.onDone(new Camera1Session(events, z, context, surfaceTextureHelper, i, open, cameraInfo, findClosestCaptureFormat, nanoTime));
+                } catch (RuntimeException e) {
+                    open.release();
+                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e.getMessage());
+                }
+            } catch (IOException | RuntimeException e2) {
+                open.release();
+                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e2.getMessage());
+            }
+        } catch (RuntimeException e3) {
+            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e3.getMessage());
         }
     }
 
@@ -239,6 +229,7 @@ public class Camera1Session implements CameraSession {
         } else {
             listenForBytebufferFrames();
         }
+        this.orientationHelper.start();
         try {
             this.camera.startPreview();
         } catch (RuntimeException e) {
@@ -282,7 +273,7 @@ public class Camera1Session implements CameraSession {
         if (parameters.isVideoStabilizationSupported()) {
             parameters.setVideoStabilization(true);
         }
-        if (supportedFocusModes != null && supportedFocusModes.contains("continuous-video")) {
+        if (supportedFocusModes.contains("continuous-video")) {
             parameters.setFocusMode("continuous-video");
         }
         camera.setParameters(parameters);

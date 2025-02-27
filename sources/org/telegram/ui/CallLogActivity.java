@@ -372,6 +372,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
 
         private void updateRows() {
+            this.createLinkRow = -1;
+            this.createLinkInfoRow = -1;
             this.activeHeaderRow = -1;
             this.callsHeaderRow = -1;
             this.activeStartRow = -1;
@@ -380,9 +382,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             this.callsEndRow = -1;
             this.loadingCallsRow = -1;
             this.sectionRow = -1;
-            this.createLinkRow = 0;
-            this.rowsCount = 2;
-            this.createLinkInfoRow = 1;
+            this.rowsCount = 0;
             if (!CallLogActivity.this.activeGroupCalls.isEmpty()) {
                 int i = this.rowsCount;
                 int i2 = i + 1;

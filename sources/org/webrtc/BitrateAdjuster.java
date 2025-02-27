@@ -3,9 +3,9 @@ package org.webrtc;
 interface BitrateAdjuster {
     int getAdjustedBitrateBps();
 
-    double getAdjustedFramerateFps();
+    int getCodecConfigFramerate();
 
     void reportEncodedFrame(int i);
 
-    void setTargets(int i, double d);
+    void setTargets(int i, int i2);
 }

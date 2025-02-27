@@ -1,35 +1,41 @@
 package org.webrtc;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SoftwareVideoDecoderFactory implements VideoDecoderFactory {
-    private static final String TAG = "SoftwareVideoDecoderFactory";
-    private final long nativeFactory = nativeCreateFactory();
-
-    public static native long nativeCreate(long j, long j2, VideoCodecInfo videoCodecInfo);
-
-    private static native long nativeCreateFactory();
-
-    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j);
-
-    private static native boolean nativeIsSupported(long j, VideoCodecInfo videoCodecInfo);
+    static VideoCodecInfo[] supportedCodecs() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new VideoCodecInfo("VP8", new HashMap()));
+        if (LibvpxVp9Decoder.nativeIsSupported()) {
+            arrayList.add(new VideoCodecInfo("VP9", new HashMap()));
+        }
+        arrayList.add(new VideoCodecInfo("H264", new HashMap()));
+        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
+    }
 
     @Override
-    public VideoDecoder createDecoder(final VideoCodecInfo videoCodecInfo) {
-        if (nativeIsSupported(this.nativeFactory, videoCodecInfo)) {
-            return new WrappedNativeVideoDecoder() {
-                @Override
-                public long createNative(long j) {
-                    return SoftwareVideoDecoderFactory.nativeCreate(SoftwareVideoDecoderFactory.this.nativeFactory, j, videoCodecInfo);
-                }
-            };
+    @Deprecated
+    public VideoDecoder createDecoder(String str) {
+        return createDecoder(new VideoCodecInfo(str, new HashMap()));
+    }
+
+    @Override
+    public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
+        if (videoCodecInfo.getName().equalsIgnoreCase("VP8")) {
+            return new LibvpxVp8Decoder();
         }
-        Logging.w("SoftwareVideoDecoderFactory", "Trying to create decoder for unsupported format. " + videoCodecInfo);
+        if (videoCodecInfo.getName().equalsIgnoreCase("VP9") && LibvpxVp9Decoder.nativeIsSupported()) {
+            return new LibvpxVp9Decoder();
+        }
+        if (videoCodecInfo.getName().equalsIgnoreCase("H264")) {
+            return new OpenH264Decoder();
+        }
         return null;
     }
 
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
-        return (VideoCodecInfo[]) nativeGetSupportedCodecs(this.nativeFactory).toArray(new VideoCodecInfo[0]);
+        return supportedCodecs();
     }
 }

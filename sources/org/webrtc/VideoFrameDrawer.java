@@ -167,6 +167,7 @@ public class VideoFrameDrawer {
         }
         this.renderMatrix.preRotate(videoFrame.getRotation());
         this.renderMatrix.preTranslate(-0.5f, -0.5f);
+        this.renderRotateMatrix.set(this.renderMatrix);
         if (matrix != null) {
             this.renderMatrix.preConcat(matrix);
         }

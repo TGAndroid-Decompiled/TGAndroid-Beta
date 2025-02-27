@@ -1082,9 +1082,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             public static void $default$didQuickShareMove(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, float f, float f2) {
             }
 
-            public static void $default$didQuickShareStart(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, float f, float f2) {
-            }
-
             public static void $default$didStartVideoStream(ChatMessageCellDelegate chatMessageCellDelegate, MessageObject messageObject) {
             }
 
@@ -1274,8 +1271,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         void didQuickShareEnd(ChatMessageCell chatMessageCell, float f, float f2);
 
         void didQuickShareMove(ChatMessageCell chatMessageCell, float f, float f2);
-
-        void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2);
 
         void didStartVideoStream(MessageObject messageObject);
 

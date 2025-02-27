@@ -57,8 +57,4 @@ public class VideoCodecInfo {
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.name.toUpperCase(Locale.ROOT), this.params});
     }
-
-    public String toString() {
-        return "VideoCodec{" + this.name + " " + this.params + "}";
-    }
 }

@@ -631,11 +631,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell2, f, f2);
-                        }
-
-                        @Override
                         public void didStartVideoStream(MessageObject messageObject2) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject2);
                         }
@@ -1063,11 +1058,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                     @Override
                     public void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell2, f, f2);
-                    }
-
-                    @Override
-                    public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell2, f, f2);
                     }
 
                     @Override

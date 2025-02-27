@@ -2747,11 +2747,6 @@ public class Bulletin {
         layout.updatePosition();
     }
 
-    public Bulletin allowBlur() {
-        this.allowBlurAnimation = true;
-        return this;
-    }
-
     public Layout getLayout() {
         return this.layout;
     }

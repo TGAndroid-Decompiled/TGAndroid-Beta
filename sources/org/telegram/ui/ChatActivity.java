@@ -805,7 +805,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private QuickRepliesEmptyView quickRepliesEmptyView;
     private MessageObject quickReplyMessage;
     public String quickReplyShortcut;
-    private QuickShareSelectorOverlayLayout quickShareSelectorOverlay;
     private AlertDialog quoteMessageUpdateAlert;
     private ValueAnimator reactionsMentionButtonAnimation;
     private float reactionsMentionButtonEnterProgress;
@@ -4943,9 +4942,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (isFastScrollAnimationRunning()) {
                 return false;
             }
-            if (ChatActivity.this.quickShareSelectorOverlay != null && ChatActivity.this.quickShareSelectorOverlay.isActive()) {
-                return false;
-            }
+            ChatActivity.access$13800(ChatActivity.this);
             boolean onInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
             if (!((BaseFragment) ChatActivity.this).actionBar.isActionModeShowed() && !ChatActivity.this.isReport()) {
                 processTouchEvent(motionEvent);
@@ -12168,32 +12165,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.presentFragment(profileActivity);
         }
 
-        private Bulletin sendMessageFromQuickShare(ChatMessageCell chatMessageCell) {
-            MessageObject.GroupedMessages groupedMessages;
-            if (ChatActivity.this.quickShareSelectorOverlay == null) {
-                return null;
-            }
-            MessageObject selectedMessageObject = ChatActivity.this.quickShareSelectorOverlay.getSelectedMessageObject(chatMessageCell);
-            long selectedDialogId = ChatActivity.this.quickShareSelectorOverlay.getSelectedDialogId(chatMessageCell);
-            if (selectedMessageObject == null || selectedDialogId == 0 || AlertsCreator.checkSlowMode(ChatActivity.this.getContext(), ((BaseFragment) ChatActivity.this).currentAccount, selectedDialogId, false)) {
-                return null;
-            }
-            ArrayList<MessageObject> arrayList = (selectedMessageObject.getGroupId() == 0 || (groupedMessages = (MessageObject.GroupedMessages) ChatActivity.this.groupedMessagesMap.get(selectedMessageObject.getGroupId())) == null) ? null : groupedMessages.messages;
-            if (arrayList == null) {
-                arrayList = new ArrayList<>();
-                arrayList.add(selectedMessageObject);
-            }
-            int sendMessage = SendMessagesHelper.getInstance(((BaseFragment) ChatActivity.this).currentAccount).sendMessage(arrayList, selectedDialogId, false, false, true, 0, null, -1, 0L);
-            AlertsCreator.showSendMediaAlert(sendMessage, ChatActivity.this, null);
-            if (sendMessage != 0) {
-                return null;
-            }
-            Context context = ChatActivity.this.getContext();
-            ChatActivity chatActivity = ChatActivity.this;
-            Bulletin createForwardedBulletin = BulletinFactory.createForwardedBulletin(context, chatActivity, null, 1, selectedDialogId, 1, chatActivity.getThemedColor(Theme.key_undo_background), ChatActivity.this.getThemedColor(Theme.key_undo_infoColor), 2750);
-            return createForwardedBulletin.allowBlur().show(createForwardedBulletin.getLayout() instanceof Bulletin.LottieLayoutWithReactions);
-        }
-
         @Override
         public boolean canDrawOutboundsContent() {
             return false;
@@ -13227,30 +13198,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public void didQuickShareEnd(ChatMessageCell chatMessageCell, float f, float f2) {
-            if (ChatActivity.this.quickShareSelectorOverlay == null) {
-                return;
-            }
-            ChatActivity.this.quickShareSelectorOverlay.close(chatMessageCell, sendMessageFromQuickShare(chatMessageCell));
+            ChatActivity.access$13800(ChatActivity.this);
         }
 
         @Override
         public void didQuickShareMove(ChatMessageCell chatMessageCell, float f, float f2) {
-            if (ChatActivity.this.quickShareSelectorOverlay != null) {
-                ChatActivity.this.quickShareSelectorOverlay.onTouchMoveEvent(chatMessageCell, f, f2);
-            }
-        }
-
-        @Override
-        public void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2) {
-            if (ChatActivity.this.getParentActivity() == null) {
-                return;
-            }
-            if (ChatActivity.this.quickShareSelectorOverlay == null) {
-                ChatActivity.this.quickShareSelectorOverlay = new QuickShareSelectorOverlayLayout(ChatActivity.this.getContext());
-                ChatActivity chatActivity = ChatActivity.this;
-                chatActivity.contentView.addView(chatActivity.quickShareSelectorOverlay, LayoutHelper.createFrame(-1, -1, 48));
-            }
-            ChatActivity.this.quickShareSelectorOverlay.open(chatMessageCell);
+            ChatActivity.access$13800(ChatActivity.this);
         }
 
         @Override
@@ -15368,6 +15321,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         };
         this.preventReopenSearchWithText = false;
+    }
+
+    static QuickShareSelectorOverlayLayout access$13800(ChatActivity chatActivity) {
+        chatActivity.getClass();
+        return null;
     }
 
     static float access$15116(ChatActivity chatActivity, float f) {
@@ -28608,11 +28566,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     @Override
     public boolean canBeginSlide() {
-        if ((this.chatMode == 5 && (this.messages.isEmpty() || this.threadMessageId == 0)) || !this.swipeBackEnabled || !this.chatActivityEnterView.swipeToBackEnabled() || this.pullingDownOffset != 0.0f) {
-            return false;
-        }
-        QuickShareSelectorOverlayLayout quickShareSelectorOverlayLayout = this.quickShareSelectorOverlay;
-        return quickShareSelectorOverlayLayout == null || !quickShareSelectorOverlayLayout.isActive();
+        return !(this.chatMode == 5 && (this.messages.isEmpty() || this.threadMessageId == 0)) && this.swipeBackEnabled && this.chatActivityEnterView.swipeToBackEnabled() && this.pullingDownOffset == 0.0f;
     }
 
     public boolean canScheduleMessage() {
@@ -30484,11 +30438,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return false;
         }
         MessagePreviewView messagePreviewView = this.forwardingPreviewView;
-        if (messagePreviewView != null && messagePreviewView.isShowing()) {
-            return false;
-        }
-        QuickShareSelectorOverlayLayout quickShareSelectorOverlayLayout = this.quickShareSelectorOverlay;
-        return quickShareSelectorOverlayLayout == null || !quickShareSelectorOverlayLayout.isActive();
+        return messagePreviewView == null || !messagePreviewView.isShowing();
     }
 
     public boolean isThreadChat() {

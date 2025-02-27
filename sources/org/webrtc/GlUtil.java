@@ -1,16 +1,15 @@
 package org.webrtc;
 
 import android.opengl.GLES20;
-import android.opengl.GLException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 public class GlUtil {
 
-    public static class GlOutOfMemoryException extends GLException {
-        public GlOutOfMemoryException(int i, String str) {
-            super(i, str);
+    public static class GlOutOfMemoryException extends RuntimeException {
+        public GlOutOfMemoryException(String str) {
+            super(str);
         }
     }
 
@@ -18,13 +17,6 @@ public class GlUtil {
     }
 
     public static void checkNoGLES2Error(String str) {
-        int glGetError = GLES20.glGetError();
-        if (glGetError != 0) {
-            if (glGetError == 1285) {
-                throw new GlOutOfMemoryException(glGetError, str);
-            }
-            throw new GLException(glGetError, str + ": GLES20 error: " + glGetError);
-        }
     }
 
     public static FloatBuffer createFloatBuffer(float[] fArr) {

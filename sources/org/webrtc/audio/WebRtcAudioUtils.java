@@ -129,6 +129,15 @@ final class WebRtcAudioUtils {
         return context.getPackageManager().hasSystemFeature("android.hardware.microphone");
     }
 
+    private static boolean isVolumeFixed(AudioManager audioManager) {
+        boolean isVolumeFixed;
+        if (Build.VERSION.SDK_INT < 21) {
+            return false;
+        }
+        isVolumeFixed = audioManager.isVolumeFixed();
+        return isVolumeFixed;
+    }
+
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
         AudioDeviceInfo[] devices;
         int type;
@@ -195,10 +204,9 @@ final class WebRtcAudioUtils {
     }
 
     private static void logAudioStateVolume(String str, AudioManager audioManager) {
-        boolean isVolumeFixed;
         int[] iArr = {0, 3, 2, 4, 5, 1};
         Logging.d(str, "Audio State: ");
-        isVolumeFixed = audioManager.isVolumeFixed();
+        boolean isVolumeFixed = isVolumeFixed(audioManager);
         Logging.d(str, "  fixed volume=" + isVolumeFixed);
         if (isVolumeFixed) {
             return;

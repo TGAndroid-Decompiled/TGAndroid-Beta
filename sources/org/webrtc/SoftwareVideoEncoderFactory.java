@@ -1,35 +1,31 @@
 package org.webrtc;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.webrtc.VideoEncoderFactory;
 
 public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
-    private static final String TAG = "SoftwareVideoEncoderFactory";
-    private final long nativeFactory = nativeCreateFactory();
-
-    private static native long nativeCreateEncoder(long j, VideoCodecInfo videoCodecInfo);
-
-    private static native long nativeCreateFactory();
-
-    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j);
+    static VideoCodecInfo[] supportedCodecs() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new VideoCodecInfo("VP8", new HashMap()));
+        arrayList.add(new VideoCodecInfo("H264", new HashMap()));
+        if (LibvpxVp9Encoder.nativeIsSupported()) {
+            arrayList.add(new VideoCodecInfo("VP9", new HashMap()));
+        }
+        return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
+    }
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        final long nativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
-        if (nativeCreateEncoder != 0) {
-            return new WrappedNativeVideoEncoder() {
-                @Override
-                public long createNativeVideoEncoder() {
-                    return nativeCreateEncoder;
-                }
-
-                @Override
-                public boolean isHardwareEncoder() {
-                    return false;
-                }
-            };
+        if (videoCodecInfo.name.equalsIgnoreCase("VP8")) {
+            return new LibvpxVp8Encoder();
         }
-        Logging.w("SoftwareVideoEncoderFactory", "Trying to create encoder for unsupported format. " + videoCodecInfo);
+        if (videoCodecInfo.name.equalsIgnoreCase("VP9") && LibvpxVp9Encoder.nativeIsSupported()) {
+            return new LibvpxVp9Encoder();
+        }
+        if (videoCodecInfo.name.equalsIgnoreCase("H264")) {
+            return new OpenH264Encoder();
+        }
         return null;
     }
 
@@ -47,6 +43,6 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
-        return (VideoCodecInfo[]) nativeGetSupportedCodecs(this.nativeFactory).toArray(new VideoCodecInfo[0]);
+        return supportedCodecs();
     }
 }
