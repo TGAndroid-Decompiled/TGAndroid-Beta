@@ -156,7 +156,7 @@ public class Text {
         if (!this.doNotSave) {
             canvas.save();
         }
-        canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
+        canvas.translate(f, f2 - (isMultiline() ? 0.0f : this.layout.getHeight() / 2.0f));
         draw(canvas);
         if (!this.doNotSave) {
             canvas.restore();
@@ -206,6 +206,10 @@ public class Text {
     public Text hackClipBounds() {
         this.hackClipBounds = true;
         return this;
+    }
+
+    public boolean isMultiline() {
+        return this.maxLines > 1;
     }
 
     public Text lineSpacing(float f) {
@@ -268,14 +272,19 @@ public class Text {
         if (this.align == Layout.Alignment.ALIGN_CENTER) {
             this.width = this.layout.getWidth();
             this.left = 0.0f;
+        } else {
+            this.width = 0.0f;
+            this.left = this.layout.getWidth();
+            for (int i = 0; i < this.layout.getLineCount(); i++) {
+                this.width = Math.max(this.width, this.layout.getLineWidth(i));
+                this.left = Math.min(this.left, this.layout.getLineLeft(i));
+            }
+        }
+        View view = this.parentView;
+        if (view == null || !view.isAttachedToWindow()) {
             return;
         }
-        this.width = 0.0f;
-        this.left = this.layout.getWidth();
-        for (int i = 0; i < this.layout.getLineCount(); i++) {
-            this.width = Math.max(this.width, this.layout.getLineWidth(i));
-            this.left = Math.min(this.left, this.layout.getLineLeft(i));
-        }
+        this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
     }
 
     public Text setTextSizePx(float f) {
