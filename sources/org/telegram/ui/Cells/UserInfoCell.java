@@ -230,7 +230,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         float scale = this.fullBounce.getScale(0.025f);
         canvas.scale(scale, scale, this.fullBounds.centerX(), this.fullBounds.centerY());
         applyServiceShaderMatrix();
-        canvas.drawRoundRect(this.fullBounds, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackgroundSelected", this.resourcesProvider));
+        canvas.drawRoundRect(this.fullBounds, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider));
         if (hasGradientService()) {
             canvas.drawRoundRect(this.fullBounds, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackgroundDarken", this.resourcesProvider));
         }

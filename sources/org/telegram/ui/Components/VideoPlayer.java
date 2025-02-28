@@ -1720,7 +1720,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             if (this.videoUri == null) {
                 return null;
             }
-            return ChromecastMediaVariations.of(ChromecastMedia.Builder.fromUri(this.videoUri, "/mtproto_" + str, "video/mp4").setTitle(str2).setSubtitle(str3).build());
+            String str4 = "/mtproto_" + str;
+            String queryParameter = this.videoUri.getQueryParameter("mime");
+            return ChromecastMediaVariations.of(ChromecastMedia.Builder.fromUri(this.videoUri, str4, TextUtils.isEmpty(queryParameter) ? "video/mp4" : queryParameter).setTitle(str2).setSubtitle(str3).build());
         }
         ChromecastMediaVariations.Builder builder = new ChromecastMediaVariations.Builder();
         Iterator it = this.videoQualities.iterator();
@@ -1728,7 +1730,13 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             Iterator it2 = ((Quality) it.next()).uris.iterator();
             while (it2.hasNext()) {
                 VideoUri videoUri = (VideoUri) it2.next();
-                builder.add(ChromecastMedia.Builder.fromUri(videoUri.uri, "/mtproto_" + videoUri.docId, "video/mp4").setTitle(str2).setSubtitle(str3).setSize(videoUri.width, videoUri.height).build());
+                String str5 = "/mtproto_" + videoUri.docId;
+                TLRPC.Document document = videoUri.document;
+                String str6 = document != null ? document.mime_type : null;
+                if (TextUtils.isEmpty(str6)) {
+                    str6 = "video/mp4";
+                }
+                builder.add(ChromecastMedia.Builder.fromUri(videoUri.uri, str5, str6).setTitle(str2).setSubtitle(str3).setSize(videoUri.width, videoUri.height).build());
             }
         }
         return builder.build();

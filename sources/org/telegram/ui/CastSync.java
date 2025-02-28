@@ -20,18 +20,19 @@ import com.google.android.gms.common.api.Status;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 
 public abstract class CastSync {
     private static boolean listened;
-    public static AtomicInteger pendingPlaying;
-    public static AtomicInteger pendingSeek;
-    public static AtomicInteger pendingVolume;
+    public static AtomicInteger pending;
     private static int savedVolume;
     private static ContentObserver syncingVolume;
+    public static int type;
 
-    public static void check() {
+    public static void check(final int i) {
         CastContext sharedInstance;
+        type = i;
         if (listened) {
             return;
         }
@@ -41,17 +42,19 @@ public abstract class CastSync {
             }
             sharedInstance.getSessionManager().addSessionManagerListener(new SessionManagerListener() {
                 @Override
-                public void onSessionEnded(CastSession castSession, int i) {
+                public void onSessionEnded(CastSession castSession, int i2) {
                     CastSync.doSyncVolume(false);
+                    CastSync.syncInterface();
                 }
 
                 @Override
                 public void onSessionEnding(CastSession castSession) {
                     CastSync.doSyncVolume(false);
+                    CastSync.syncInterface();
                 }
 
                 @Override
-                public void onSessionResumeFailed(CastSession castSession, int i) {
+                public void onSessionResumeFailed(CastSession castSession, int i2) {
                 }
 
                 @Override
@@ -63,7 +66,7 @@ public abstract class CastSync {
                 }
 
                 @Override
-                public void onSessionStartFailed(CastSession castSession, int i) {
+                public void onSessionStartFailed(CastSession castSession, int i2) {
                 }
 
                 @Override
@@ -71,6 +74,10 @@ public abstract class CastSync {
                     RemoteMediaClient remoteMediaClient;
                     if (castSession == null || (remoteMediaClient = castSession.getRemoteMediaClient()) == null) {
                         return;
+                    }
+                    AtomicInteger atomicInteger = CastSync.pending;
+                    if (atomicInteger != null) {
+                        atomicInteger.set(0);
                     }
                     remoteMediaClient.registerCallback(new RemoteMediaClient.Callback() {
                         @Override
@@ -81,11 +88,15 @@ public abstract class CastSync {
                         @Override
                         public void onStatusUpdated() {
                             FileLog.d("onStatusUpdated");
-                            if (PhotoViewer.getInstance() != null) {
-                                PhotoViewer.getInstance().syncCastedPlayer();
-                            }
+                            CastSync.syncInterface();
                         }
                     });
+                    remoteMediaClient.queueSetRepeatMode(2, null);
+                    int i2 = i;
+                    long currentPosition = i2 == 0 ? PhotoViewer.getInstance().getCurrentPosition() : i2 == 1 ? MediaController.getInstance().getCurrentPosition() : -1L;
+                    if (currentPosition >= 0) {
+                        CastSync.seekTo(currentPosition);
+                    }
                     CastSync.doSyncVolume(true);
                 }
 
@@ -94,7 +105,7 @@ public abstract class CastSync {
                 }
 
                 @Override
-                public void onSessionSuspended(CastSession castSession, int i) {
+                public void onSessionSuspended(CastSession castSession, int i2) {
                 }
             }, CastSession.class);
             listened = true;
@@ -119,7 +130,7 @@ public abstract class CastSync {
                     return;
                 }
                 audioManager2.setStreamVolume(3, savedVolume, 0);
-                PhotoViewer.getInstance().syncCastedPlayer();
+                syncInterface();
                 return;
             }
             Context context2 = getContext();
@@ -211,7 +222,12 @@ public abstract class CastSync {
             if (sharedInstance == null || (currentCastSession = sharedInstance.getSessionManager().getCurrentCastSession()) == null) {
                 return false;
             }
-            return currentCastSession.isConnected();
+            if (!currentCastSession.isConnecting()) {
+                if (!currentCastSession.isConnected()) {
+                    return false;
+                }
+            }
+            return true;
         } catch (Exception e) {
             FileLog.e(e);
             return false;
@@ -226,20 +242,29 @@ public abstract class CastSync {
         return client.isPlaying();
     }
 
+    public static boolean isUpdatePending() {
+        AtomicInteger atomicInteger = pending;
+        return atomicInteger != null && atomicInteger.get() > 0;
+    }
+
     public static void lambda$seekTo$0(Status status) {
-        pendingSeek.decrementAndGet();
+        pending.decrementAndGet();
     }
 
     public static void lambda$setPlaying$2(Status status) {
-        pendingPlaying.decrementAndGet();
+        pending.decrementAndGet();
     }
 
     public static void lambda$setPlaying$3(Status status) {
-        pendingPlaying.decrementAndGet();
+        pending.decrementAndGet();
+    }
+
+    public static void lambda$setSpeed$4(Status status) {
+        pending.decrementAndGet();
     }
 
     public static void lambda$setVolume$1(Status status) {
-        pendingVolume.decrementAndGet();
+        pending.decrementAndGet();
     }
 
     public static void seekTo(long j) {
@@ -247,10 +272,10 @@ public abstract class CastSync {
         if (client == null) {
             return;
         }
-        if (pendingSeek == null) {
-            pendingSeek = new AtomicInteger(0);
+        if (pending == null) {
+            pending = new AtomicInteger(0);
         }
-        pendingSeek.incrementAndGet();
+        pending.incrementAndGet();
         client.seek(new MediaSeekOptions.Builder().setPosition(j).build()).addStatusListener(new PendingResult.StatusListener() {
             @Override
             public final void onComplete(Status status) {
@@ -266,10 +291,10 @@ public abstract class CastSync {
         if (client == null || z == client.isPlaying()) {
             return;
         }
-        if (pendingPlaying == null) {
-            pendingPlaying = new AtomicInteger(0);
+        if (pending == null) {
+            pending = new AtomicInteger(0);
         }
-        pendingPlaying.incrementAndGet();
+        pending.incrementAndGet();
         if (z) {
             pause = client.play();
             statusListener = new PendingResult.StatusListener() {
@@ -295,7 +320,16 @@ public abstract class CastSync {
         if (client == null) {
             return;
         }
-        client.setPlaybackRate(f);
+        if (pending == null) {
+            pending = new AtomicInteger(0);
+        }
+        pending.incrementAndGet();
+        client.setPlaybackRate(f).addStatusListener(new PendingResult.StatusListener() {
+            @Override
+            public final void onComplete(Status status) {
+                CastSync.lambda$setSpeed$4(status);
+            }
+        });
     }
 
     public static void setVolume(float f) {
@@ -303,16 +337,40 @@ public abstract class CastSync {
         if (client == null) {
             return;
         }
-        if (pendingVolume == null) {
-            pendingVolume = new AtomicInteger(0);
+        if (pending == null) {
+            pending = new AtomicInteger(0);
         }
-        pendingVolume.incrementAndGet();
+        pending.incrementAndGet();
         client.setStreamVolume(f).addStatusListener(new PendingResult.StatusListener() {
             @Override
             public final void onComplete(Status status) {
                 CastSync.lambda$setVolume$1(status);
             }
         });
+    }
+
+    public static void stop() {
+        if (getContext() == null) {
+            return;
+        }
+        try {
+            CastContext sharedInstance = CastContext.getSharedInstance(getContext());
+            if (sharedInstance == null) {
+                return;
+            }
+            sharedInstance.getSessionManager().endCurrentSession(true);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public static void syncInterface() {
+        int i = type;
+        if (i == 0) {
+            PhotoViewer.getInstance().syncCastedPlayer();
+        } else if (i == 1) {
+            MediaController.getInstance().syncCastedPlayer();
+        }
     }
 
     public static void syncPosition(long j) {

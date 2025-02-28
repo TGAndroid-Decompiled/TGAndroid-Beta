@@ -123,7 +123,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
@@ -1113,8 +1112,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            public void dismiss() {
-                super.dismiss();
+            public void lambda$new$0() {
+                super.lambda$new$0();
                 if (PhotoViewer.this.masksAlert == this) {
                     PhotoViewer.this.masksAlert = null;
                 }
@@ -9130,7 +9129,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         updateQualityItems();
         this.videoItem.toggleSubMenu();
         try {
-            CastSync.check();
+            CastSync.check(0);
             ChromecastController.getInstance().setCurrentMediaAndCastIfNeeded(getCurrentChromecastMedia());
         } catch (Exception e) {
             FileLog.e(e);
@@ -10808,10 +10807,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.videoPlayerSeekbar.setProgress(0.0f);
             this.videoTimelineView.setProgress(0.0f);
             this.videoPlayerSeekbar.setBufferedProgress(0.0f);
-            ActionBarMenuItem actionBarMenuItem = this.videoItem;
-            if (actionBarMenuItem != null) {
-                actionBarMenuItem.setSubItemShown(24, this.photoViewerWebView == null);
-            }
         }
     }
 
@@ -15606,7 +15601,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         checkFullscreenButton();
         try {
-            CastSync.check();
+            CastSync.check(0);
             ChromecastController.getInstance().setCurrentMediaAndCastIfNeeded(getCurrentChromecastMedia());
         } catch (Exception e) {
             FileLog.e(e);
@@ -16723,6 +16718,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.currentIndex;
     }
 
+    public long getCurrentPosition() {
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer == null) {
+            return -1L;
+        }
+        return videoPlayer.getCurrentPosition();
+    }
+
     public float getCurrentVideoSpeed() {
         return this.currentVideoSpeed;
     }
@@ -17393,7 +17396,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             addSubItem2.setEnabledByColor(false, -1, -9194260);
             this.castItem.setSelectorColor(268435455);
             this.castItem.addView(this.castItemButton, 0, LayoutHelper.createFrame(-1, -1.0f));
-            this.videoItem.setSubItemShown(24, this.photoViewerWebView == null);
         }
         this.videoItem.redrawPopup(-115203550);
         this.videoItem.setOnMenuDismiss(new Utilities.Callback() {
@@ -18837,22 +18839,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (videoPlayer != null) {
                 videoPlayer.setMute(CastSync.isActive() || this.muteVideo);
             }
-            if (this.videoPlayer != null && CastSync.isActive()) {
+            if (this.videoPlayer != null && CastSync.isActive() && !CastSync.isUpdatePending()) {
                 long position = CastSync.getPosition();
-                AtomicInteger atomicInteger = CastSync.pendingSeek;
-                if ((atomicInteger == null || atomicInteger.get() == 0) && position >= 0 && Math.abs(this.videoPlayer.getCurrentPosition() - position) > 1000) {
+                if (position >= 0 && Math.abs(this.videoPlayer.getCurrentPosition() - position) > 1000) {
                     this.videoPlayer.seekTo(position);
                 }
-                AtomicInteger atomicInteger2 = CastSync.pendingPlaying;
-                if (atomicInteger2 == null || atomicInteger2.get() == 0) {
-                    if (CastSync.isPlaying()) {
-                        this.videoPlayer.play();
-                    } else {
-                        this.videoPlayer.pause();
-                    }
+                if (CastSync.isPlaying()) {
+                    this.videoPlayer.play();
+                } else {
+                    this.videoPlayer.pause();
                 }
-                AtomicInteger atomicInteger3 = CastSync.pendingVolume;
-                if ((atomicInteger3 == null || atomicInteger3.get() == 0) && this.activityContext != null && Math.abs(CastSync.getDeviceVolume() - CastSync.getVolume()) > 0.05f) {
+                if (this.activityContext != null && Math.abs(CastSync.getDeviceVolume() - CastSync.getVolume()) > 0.05f) {
                     AudioManager audioManager = (AudioManager) this.activityContext.getSystemService("audio");
                     int streamMaxVolume = audioManager.getStreamMaxVolume(3);
                     int streamMinVolume = (Build.VERSION.SDK_INT >= 28 ? audioManager.getStreamMinVolume(3) : 0) + ((int) ((streamMaxVolume - r5) * CastSync.getVolume()));
@@ -18860,8 +18857,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         audioManager.setStreamVolume(3, streamMinVolume, 1);
                     }
                 }
+                chooseSpeed(CastSync.getSpeed(), true, false);
             }
-            chooseSpeed(CastSync.getSpeed(), true, false);
             this.ignorePlayerUpdate = false;
         }
     }

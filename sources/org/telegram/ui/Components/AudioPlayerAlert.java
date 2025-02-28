@@ -91,6 +91,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     private boolean blurredAnimationInProgress;
     private FrameLayout blurredView;
     private View[] buttons;
+    private ActionBarMenuSubItem castItem;
+    private CastMediaRouteButton castItemButton;
     private CoverContainer coverContainer;
     private boolean currentAudioFinishedLoading;
     private String currentFile;
@@ -1475,6 +1477,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.optionsButton.hideSubItem(1);
             this.optionsButton.hideSubItem(2);
             this.optionsButton.hideSubItem(5);
+            this.optionsButton.hideSubItem(6);
             actionBarMenuItem = this.optionsButton;
             f = 16.0f;
         } else {
@@ -1482,7 +1485,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.optionsButton.showSubItem(2);
             this.optionsButton.showSubItem(5);
             actionBarMenuItem = this.optionsButton;
-            f = 157.0f;
+            f = 197.0f;
         }
         actionBarMenuItem.setAdditionalYOffset(-AndroidUtilities.dp(f));
         checkIfMusicDownloaded(playingMessageObject);
@@ -1842,6 +1845,18 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             if (Build.VERSION.SDK_INT >= 21) {
                 this.playbackSpeedButton.setBackground(Theme.createSelectorDrawable(themedColor & 436207615, 1, AndroidUtilities.dp(14.0f)));
             }
+        }
+        ActionBarMenuSubItem actionBarMenuSubItem = this.castItem;
+        if (actionBarMenuSubItem != null) {
+            CastMediaRouteButton castMediaRouteButton = this.castItemButton;
+            boolean z = castMediaRouteButton != null && castMediaRouteButton.isConnected();
+            int themedColor2 = getThemedColor(Theme.key_actionBarDefaultSubmenuItem);
+            int themedColor3 = getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon);
+            int i = Theme.key_featuredStickers_addButton;
+            actionBarMenuSubItem.setEnabledByColor(z, themedColor2, themedColor3, getThemedColor(i));
+            ActionBarMenuSubItem actionBarMenuSubItem2 = this.castItem;
+            CastMediaRouteButton castMediaRouteButton2 = this.castItemButton;
+            actionBarMenuSubItem2.setSelectorColor((castMediaRouteButton2 == null || !castMediaRouteButton2.isConnected()) ? getThemedColor(Theme.key_listSelector) : Theme.multAlpha(getThemedColor(i), 0.1f));
         }
     }
 }

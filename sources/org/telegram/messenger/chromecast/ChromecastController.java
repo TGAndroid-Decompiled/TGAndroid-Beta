@@ -268,9 +268,8 @@ public class ChromecastController implements SessionManagerListener {
         Log.d("CAST_CONTROLLER", "set current media");
         ChromecastMediaVariations media = this.state.getMedia();
         if (CastSync.isActive() && eq(media, chromecastMediaVariations)) {
-            PhotoViewer.getInstance().syncCastedPlayer();
-        } else {
-            this.state.setMedia(chromecastMediaVariations);
+            return;
         }
+        this.state.setMedia(chromecastMediaVariations);
     }
 }
