@@ -3247,6 +3247,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         @Override
         public void onStateChanged(boolean z, int i) {
+            if (PhotoViewer.this.videoPlayer != null) {
+                PhotoViewer.this.videoPlayer.setMute(CastSync.isActive() || PhotoViewer.this.muteVideo);
+            }
             if (this.firstState && PhotoViewer.this.videoPlayer != null && PhotoViewer.this.videoPlayer.getDuration() != -9223372036854775807L) {
                 this.firstState = false;
                 if (PhotoViewer.this.imagesArr.isEmpty() && PhotoViewer.this.secureDocuments.isEmpty() && PhotoViewer.this.imagesArrLocations.isEmpty() && !PhotoViewer.this.imagesArrLocals.isEmpty() && PhotoViewer.this.switchingToIndex >= 0 && PhotoViewer.this.switchingToIndex < PhotoViewer.this.imagesArrLocals.size()) {
@@ -9131,6 +9134,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         try {
             CastSync.check(0);
             ChromecastController.getInstance().setCurrentMediaAndCastIfNeeded(getCurrentChromecastMedia());
+            VideoPlayer videoPlayer3 = this.videoPlayer;
+            if (videoPlayer3 != null) {
+                CastSync.setPlaying(videoPlayer3.isPlaying());
+            }
         } catch (Exception e) {
             FileLog.e(e);
         }

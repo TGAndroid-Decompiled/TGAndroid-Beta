@@ -85,7 +85,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(822083583, 8, 8);
         this.groupsRipple = createRadSelectorDrawable;
         createRadSelectorDrawable.setCallback(this);
-        avatarsDrawable.width = AndroidUtilities.dp(28.0f);
+        avatarsDrawable.width = AndroidUtilities.dp(50.0f);
         avatarsDrawable.height = AndroidUtilities.dp(13.0f);
         avatarsDrawable.drawStoriesCircle = false;
         avatarsDrawable.setSize(AndroidUtilities.dp(13.0f));

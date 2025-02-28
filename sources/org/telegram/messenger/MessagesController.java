@@ -2368,7 +2368,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.loadingPinnedDialogs = new SparseIntArray();
         this.faqSearchArray = new ArrayList<>();
         this.suggestContacts = true;
-        this.themeCheckRunnable = new MessagesController$$ExternalSyntheticLambda114();
+        this.themeCheckRunnable = new MessagesController$$ExternalSyntheticLambda113();
         this.passwordCheckRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -3036,7 +3036,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 this.proxyDialogAddress = null;
                 this.nextPromoInfoCheckTime = getConnectionsManager().getCurrentTime() + 3600;
                 getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda87(this));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda86(this));
             }
         }
     }
@@ -10672,6 +10672,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             edit.remove("dialog_botid" + j).remove("dialog_boturl" + j).remove("dialog_botflags" + j);
         }
+        edit.putLong("dialog_bar_paying_" + j, peerSettings.charge_paid_message_stars);
         if (this.notificationsPreferences.getInt("dialog_bar_vis3" + j, 0) == 3) {
             edit.apply();
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(j));
@@ -10693,7 +10694,6 @@ public class MessagesController extends BaseController implements NotificationCe
         edit.putString("dialog_bar_chat_with_admin_title" + j, peerSettings.request_chat_title);
         edit.putBoolean("dialog_bar_chat_with_channel" + j, peerSettings.request_chat_broadcast);
         edit.putInt("dialog_bar_chat_with_date" + j, peerSettings.request_chat_date);
-        edit.putLong("dialog_bar_paying_" + j, peerSettings.charge_paid_message_stars);
         if (this.notificationsPreferences.getInt("dialog_bar_distance" + j, -1) != -2) {
             if ((peerSettings.flags & 64) != 0) {
                 edit.putInt("dialog_bar_distance" + j, peerSettings.geo_distance);
@@ -14579,6 +14579,10 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void loadPeerSettings(TLRPC.User user, TLRPC.Chat chat) {
+        loadPeerSettings(user, chat, false);
+    }
+
+    public void loadPeerSettings(TLRPC.User user, TLRPC.Chat chat, boolean z) {
         if (user == null && chat == null) {
             return;
         }
@@ -14591,7 +14595,7 @@ public class MessagesController extends BaseController implements NotificationCe
             FileLog.d("request spam button for " + j);
         }
         int i = this.notificationsPreferences.getInt("dialog_bar_vis3" + j, 0);
-        if (i != 1 && i != 3) {
+        if (z || !(i == 1 || i == 3)) {
             TLRPC.TL_messages_getPeerSettings tL_messages_getPeerSettings = new TLRPC.TL_messages_getPeerSettings();
             tL_messages_getPeerSettings.peer = getInputPeer(user != null ? user.id : -chat.id);
             getConnectionsManager().sendRequest(tL_messages_getPeerSettings, new RequestDelegate() {

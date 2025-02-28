@@ -2239,8 +2239,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         long j = starsAmount.amount;
         int i = starsAmount.nanos;
-        long j2 = j + ((i >= 0 || j <= 0) ? (i <= 0 || j >= 0) ? 0 : 1 : -1);
-        boolean z = j2 < 0;
+        boolean z = false;
+        long j2 = ((i >= 0 || j <= 0) ? (i <= 0 || j >= 0) ? 0 : 1 : -1) + j;
+        if (j != 0 ? j < 0 : i < 0) {
+            z = true;
+        }
         if (i != 0) {
             StringBuilder sb = new StringBuilder();
             sb.append(z ? "-" : "");
@@ -2282,8 +2285,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         long j = starsAmount.amount;
         int i = starsAmount.nanos;
-        long j2 = j + ((i >= 0 || j <= 0) ? (i <= 0 || j >= 0) ? 0 : 1 : -1);
-        boolean z = j2 < 0;
+        long j2 = ((i >= 0 || j <= 0) ? (i <= 0 || j >= 0) ? 0 : 1 : -1) + j;
+        boolean z = j != 0 ? j < 0 : i < 0;
         if (Math.abs(j2) > 1000 || starsAmount.nanos == 0) {
             if (starsAmount.amount <= 1000) {
                 sb = new StringBuilder();
@@ -2333,8 +2336,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         long j = starsAmount.amount;
         int i = starsAmount.nanos;
+        boolean z = false;
         long j2 = ((i >= 0 || j <= 0) ? (i <= 0 || j >= 0) ? 0 : 1 : -1) + j;
-        boolean z = j2 < 0;
+        if (j != 0 ? j < 0 : i < 0) {
+            z = true;
+        }
         if (i != 0) {
             StringBuilder sb = new StringBuilder();
             sb.append(z ? "-" : "");

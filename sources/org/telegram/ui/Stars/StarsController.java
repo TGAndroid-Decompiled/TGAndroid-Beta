@@ -3101,10 +3101,10 @@ public class StarsController {
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
             if (userFull != null && (peerSettings = userFull.settings) != null) {
-                userFull.flags &= -16385;
+                peerSettings.flags &= -16385;
                 peerSettings.charge_paid_message_stars = 0L;
             }
-            MessagesController.getInstance(this.currentAccount).loadPeerSettings(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j)));
+            MessagesController.getInstance(this.currentAccount).loadPeerSettings(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)), true);
             ContactsController.getInstance(this.currentAccount).loadPrivacySettings();
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesFeeUpdated, Long.valueOf(j));
         }
