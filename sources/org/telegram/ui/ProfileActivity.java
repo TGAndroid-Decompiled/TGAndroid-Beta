@@ -4029,9 +4029,24 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        class AnonymousClass8 extends SettingsSuggestionCell {
+        public class AnonymousClass8 extends SettingsSuggestionCell {
             AnonymousClass8(Context context, Theme.ResourcesProvider resourcesProvider) {
                 super(context, resourcesProvider);
+            }
+
+            public void lambda$onYesClick$0(int i) {
+                NotificationCenter notificationCenter = ProfileActivity.this.getNotificationCenter();
+                ProfileActivity profileActivity = ProfileActivity.this;
+                int i2 = NotificationCenter.newSuggestionsAvailable;
+                notificationCenter.removeObserver(profileActivity, i2);
+                if (i == 2) {
+                    ProfileActivity.this.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
+                    Browser.openUrl(getContext(), ProfileActivity.this.getMessagesController().premiumManageSubscriptionUrl);
+                } else {
+                    ProfileActivity.this.getMessagesController().removeSuggestion(0L, i == 0 ? "VALIDATE_PHONE_NUMBER" : "VALIDATE_PASSWORD");
+                }
+                ProfileActivity.this.getNotificationCenter().addObserver(ProfileActivity.this, i2);
+                ProfileActivity.this.updateListAnimated(false);
             }
 
             @Override
@@ -4049,20 +4064,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void onYesClick(int i) {
-                NotificationCenter notificationCenter = ProfileActivity.this.getNotificationCenter();
-                ProfileActivity profileActivity = ProfileActivity.this;
-                int i2 = NotificationCenter.newSuggestionsAvailable;
-                notificationCenter.removeObserver(profileActivity, i2);
-                if (i == 2) {
-                    ProfileActivity.this.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                    ProfileActivity.this.updateListAnimated(false);
-                    Browser.openUrl(getContext(), ProfileActivity.this.getMessagesController().premiumManageSubscriptionUrl);
-                } else {
-                    ProfileActivity.this.getMessagesController().removeSuggestion(0L, i == 0 ? "VALIDATE_PHONE_NUMBER" : "VALIDATE_PASSWORD");
-                    ProfileActivity.this.updateListAnimated(false);
-                }
-                ProfileActivity.this.getNotificationCenter().addObserver(ProfileActivity.this, i2);
+            protected void onYesClick(final int i) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ProfileActivity.ListAdapter.AnonymousClass8.this.lambda$onYesClick$0(i);
+                    }
+                });
             }
         }
 
@@ -4485,42 +4493,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     view2 = ProfileActivity.this.sharedMediaLayout;
                     break;
                 case 15:
-                    view2 = new SettingsSuggestionCell(this.mContext, ProfileActivity.this.resourcesProvider) {
-                        AnonymousClass8(Context context2, Theme.ResourcesProvider resourcesProvider) {
-                            super(context2, resourcesProvider);
-                        }
-
-                        @Override
-                        protected void onNoClick(int i5) {
-                            ProfileActivity profileActivity3;
-                            BaseFragment twoStepVerificationSetupActivity;
-                            if (i5 == 0) {
-                                profileActivity3 = ProfileActivity.this;
-                                twoStepVerificationSetupActivity = new ActionIntroActivity(3);
-                            } else {
-                                profileActivity3 = ProfileActivity.this;
-                                twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(8, null);
-                            }
-                            profileActivity3.presentFragment(twoStepVerificationSetupActivity);
-                        }
-
-                        @Override
-                        protected void onYesClick(int i5) {
-                            NotificationCenter notificationCenter = ProfileActivity.this.getNotificationCenter();
-                            ProfileActivity profileActivity3 = ProfileActivity.this;
-                            int i22 = NotificationCenter.newSuggestionsAvailable;
-                            notificationCenter.removeObserver(profileActivity3, i22);
-                            if (i5 == 2) {
-                                ProfileActivity.this.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                                ProfileActivity.this.updateListAnimated(false);
-                                Browser.openUrl(getContext(), ProfileActivity.this.getMessagesController().premiumManageSubscriptionUrl);
-                            } else {
-                                ProfileActivity.this.getMessagesController().removeSuggestion(0L, i5 == 0 ? "VALIDATE_PHONE_NUMBER" : "VALIDATE_PASSWORD");
-                                ProfileActivity.this.updateListAnimated(false);
-                            }
-                            ProfileActivity.this.getNotificationCenter().addObserver(ProfileActivity.this, i22);
-                        }
-                    };
+                    view2 = new AnonymousClass8(this.mContext, ProfileActivity.this.resourcesProvider);
                     break;
                 case 17:
                     view = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
@@ -12801,7 +12774,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         diffCallback.fillPositions(diffCallback.newPositionToItem);
         try {
             DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this.listAdapter);
-        } catch (Exception unused) {
+        } catch (Exception e) {
+            FileLog.e(e);
             this.listAdapter.notifyDataSetChanged();
         }
         int i = this.savedScrollPosition;
@@ -13551,7 +13525,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                                     return;
                                                 }
                                             } else {
-                                                if (i != NotificationCenter.starUserGiftsLoaded || ((Long) objArr[0]).longValue() != getDialogId()) {
+                                                if (i != NotificationCenter.starUserGiftsLoaded || ((Long) objArr[0]).longValue() != getDialogId() || isSettings()) {
                                                     return;
                                                 }
                                                 if (this.sharedMediaRow >= 0) {

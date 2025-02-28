@@ -2416,14 +2416,15 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 int i3 = this.info.boosts_unrestrict;
                 this.isEnabledNotRestrictBoosters = i3 > 0;
                 this.notRestrictBoosters = i3;
-                long sendPaidMessagesStars = getMessagesController().getSendPaidMessagesStars(-this.chatId);
-                boolean z2 = sendPaidMessagesStars > 0;
+                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+                long j = chat == null ? 0L : chat.send_paid_messages_stars;
+                boolean z2 = j > 0;
                 this.enablePrice = z2;
                 this.initialEnablePrice = z2;
-                if (sendPaidMessagesStars <= 0) {
-                    sendPaidMessagesStars = 10;
+                if (j <= 0) {
+                    j = 10;
                 }
-                long clamp = Utilities.clamp(sendPaidMessagesStars, getMessagesController().starsPaidMessageAmountMax, 1L);
+                long clamp = Utilities.clamp(j, getMessagesController().starsPaidMessageAmountMax, 1L);
                 this.starsPrice = clamp;
                 this.initialStarsPrice = clamp;
             }
@@ -2613,14 +2614,15 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             int i = this.info.boosts_unrestrict;
             this.isEnabledNotRestrictBoosters = i > 0;
             this.notRestrictBoosters = i;
-            long sendPaidMessagesStars = getMessagesController().getSendPaidMessagesStars(-this.chatId);
-            boolean z = sendPaidMessagesStars > 0;
+            TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
+            long j = chat == null ? 0L : chat.send_paid_messages_stars;
+            boolean z = j > 0;
             this.enablePrice = z;
             this.initialEnablePrice = z;
-            if (sendPaidMessagesStars <= 0) {
-                sendPaidMessagesStars = 10;
+            if (j <= 0) {
+                j = 10;
             }
-            long clamp = Utilities.clamp(sendPaidMessagesStars, getMessagesController().starsPaidMessageAmountMax, 1L);
+            long clamp = Utilities.clamp(j, getMessagesController().starsPaidMessageAmountMax, 1L);
             this.starsPrice = clamp;
             this.initialStarsPrice = clamp;
         }

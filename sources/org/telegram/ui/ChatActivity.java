@@ -30957,7 +30957,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 public final void run() {
                     ChatActivity.this.lambda$onEditTextDialogClose$111();
                 }
-            }, 50L);
+            }, 200L);
             if (z2) {
                 this.openKeyboardOnAttachMenuClose = false;
             }

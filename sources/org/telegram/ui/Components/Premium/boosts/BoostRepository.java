@@ -336,7 +336,7 @@ public abstract class BoostRepository {
             ArrayList arrayList = new ArrayList();
             for (int i = 0; i < tL_channels_channelParticipants.participants.size(); i++) {
                 TLRPC.Peer peer = tL_channels_channelParticipants.participants.get(i).peer;
-                if (MessageObject.getPeerId(peer) != clientUserId && (user = messagesController.getUser(Long.valueOf(peer.user_id))) != null && !UserObject.isDeleted(user) && !user.bot) {
+                if (peer != null && MessageObject.getPeerId(peer) != clientUserId && (user = messagesController.getUser(Long.valueOf(peer.user_id))) != null && !UserObject.isDeleted(user) && !user.bot) {
                     arrayList.add(messagesController.getInputPeer(peer));
                 }
             }
