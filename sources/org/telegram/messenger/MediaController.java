@@ -39,6 +39,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.gms.cast.MediaMetadata;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileInputStream;
@@ -2269,7 +2270,33 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             if (file != null && file.exists()) {
                 String mimeType = this.playingMessageObject.getMimeType();
-                return ChromecastMediaVariations.of(ChromecastMedia.Builder.fromUri(Uri.parse("file://" + file.getAbsolutePath()), "/player_" + this.playingMessageObject.getId(), mimeType).setTitle(musicTitle).setSubtitle(musicAuthor).build());
+                Uri parse = Uri.parse("file://" + file.getAbsolutePath());
+                MediaMetadata mediaMetadata = new MediaMetadata();
+                AudioInfo audioInfo = this.audioInfo;
+                if (audioInfo != null) {
+                    if (!TextUtils.isEmpty(audioInfo.getTitle())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", this.audioInfo.getTitle());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getArtist())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ARTIST", this.audioInfo.getArtist());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getAlbum())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ALBUM_TITLE", this.audioInfo.getAlbum());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getAlbumArtist())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ALBUM_ARTIST", this.audioInfo.getAlbumArtist());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getComposer())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.COMPOSER", this.audioInfo.getComposer());
+                    }
+                    if (this.audioInfo.getDisc() != 0) {
+                        mediaMetadata.putInt("com.google.android.gms.cast.metadata.DISC_NUMBER", this.audioInfo.getDisc());
+                    }
+                    if (this.audioInfo.getTrack() != 0) {
+                        mediaMetadata.putInt("com.google.android.gms.cast.metadata.TRACK_NUMBER", this.audioInfo.getTrack());
+                    }
+                }
+                return ChromecastMediaVariations.of(ChromecastMedia.Builder.fromUri(parse, "/player_" + this.playingMessageObject.getId(), mimeType).setTitle(musicTitle).setSubtitle(musicAuthor).setMetadata(mediaMetadata).build());
             }
         }
         VideoPlayer videoPlayer = this.videoPlayer;

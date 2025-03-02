@@ -2378,67 +2378,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return i != 3 ? i != 6 ? i != 12 ? i != 24 ? "1⃣" : "5⃣" : "4⃣" : "3⃣" : "2⃣";
     }
 
-    public static CharSequence getTransactionTitle(int i, boolean z, TL_stars.StarsTransaction starsTransaction) {
-        if (starsTransaction.premium_gift) {
-            return LocaleController.getString(R.string.StarsTransactionPremiumGift);
-        }
-        if (starsTransaction.paid_message) {
-            return LocaleController.formatPluralStringComma("StarsTransactionMessageFee", starsTransaction.paid_messages);
-        }
-        if (starsTransaction.floodskip) {
-            return LocaleController.getString(R.string.StarsTransactionFloodskip);
-        }
-        if (!starsTransaction.extended_media.isEmpty()) {
-            return LocaleController.getString(R.string.StarMediaPurchase);
-        }
-        int i2 = starsTransaction.flags;
-        if ((131072 & i2) == 0 && (65536 & i2) != 0) {
-            return LocaleController.formatString(R.string.StarTransactionCommission, AffiliateProgramFragment.percents(starsTransaction.starref_commission_permille));
-        }
-        if (starsTransaction.stargift != null) {
-            if (starsTransaction.refund) {
-                return LocaleController.getString(starsTransaction.stars.amount > 0 ? starsTransaction.stargift_upgrade ? R.string.Gift2TransactionRefundedUpgrade : R.string.Gift2TransactionRefundedSent : R.string.Gift2TransactionRefundedConverted);
-            }
-            return LocaleController.getString(starsTransaction.stars.amount > 0 ? R.string.Gift2TransactionConverted : starsTransaction.stargift_upgrade ? R.string.Gift2TransactionUpgraded : R.string.Gift2TransactionSent);
-        }
-        if (starsTransaction.subscription) {
-            int i3 = starsTransaction.subscription_period;
-            if (i3 == 2592000) {
-                return LocaleController.getString(R.string.StarSubscriptionPurchase);
-            }
-            if (i3 == 300) {
-                return "5-minute subscription fee";
-            }
-            if (i3 == 60) {
-                return "Minute subscription fee";
-            }
-        }
-        if ((i2 & 8192) != 0) {
-            return LocaleController.getString(R.string.StarsGiveawayPrizeReceived);
-        }
-        if (starsTransaction.gift) {
-            if (starsTransaction.sent_by != null) {
-                return LocaleController.getString(UserObject.isUserSelf(MessagesController.getInstance(i).getUser(Long.valueOf(DialogObject.getPeerDialogId(starsTransaction.sent_by)))) ? R.string.StarsGiftSent : R.string.StarsGiftReceived);
-            }
-            return LocaleController.getString(R.string.StarsGiftReceived);
-        }
-        String str = starsTransaction.title;
-        if (str != null) {
-            return str;
-        }
-        long peerDialogId = DialogObject.getPeerDialogId(starsTransaction.peer.peer);
-        if (peerDialogId != 0) {
-            if (peerDialogId >= 0) {
-                return UserObject.getUserName(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(peerDialogId)));
-            }
-            TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-peerDialogId));
-            return chat == null ? "" : chat.title;
-        }
-        TL_stars.StarsTransactionPeer starsTransactionPeer = starsTransaction.peer;
-        if (starsTransactionPeer instanceof TL_stars.TL_starsTransactionPeerFragment) {
-            return LocaleController.getString(z ? R.string.StarsTransactionWithdrawFragment : R.string.StarsTransactionFragment);
-        }
-        return starsTransactionPeer instanceof TL_stars.TL_starsTransactionPeerPremiumBot ? LocaleController.getString(R.string.StarsTransactionBot) : LocaleController.getString(R.string.StarsTransactionUnsupported);
+    public static java.lang.CharSequence getTransactionTitle(int r5, boolean r6, org.telegram.tgnet.tl.TL_stars.StarsTransaction r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.getTransactionTitle(int, boolean, org.telegram.tgnet.tl.TL_stars$StarsTransaction):java.lang.CharSequence");
     }
 
     public static void lambda$addAvailabilityRow$92(TextView textView, TL_stars.StarGift starGift) {
@@ -4021,13 +3962,15 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     private void updateBalance() {
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
         StarsController starsController = StarsController.getInstance(this.currentAccount);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) this.starBalanceIcon);
         spannableStringBuilder.append(formatStarsAmount(starsController.getBalance(), 0.66f, ' '));
         this.starBalanceTextView.setText(spannableStringBuilder);
         this.buyButton.setText(LocaleController.getString(starsController.getBalance().amount > 0 ? R.string.StarsBuyMore : R.string.StarsBuy), true);
-        updateButtonsLayouts(starsController.getBalance().amount > 0 && BotStarsController.getInstance(this.currentAccount).getStarsRevenueStats(getUserConfig().getClientUserId()) != null, true);
+        TLRPC.TL_payments_starsRevenueStats starsRevenueStats = BotStarsController.getInstance(this.currentAccount).getStarsRevenueStats(getUserConfig().getClientUserId());
+        updateButtonsLayouts((starsRevenueStats == null || (tL_starsRevenueStatus = starsRevenueStats.status) == null || !tL_starsRevenueStatus.overall_revenue.positive()) ? false : true, true);
     }
 
     private void updateButtonsLayouts(final boolean z, boolean z2) {

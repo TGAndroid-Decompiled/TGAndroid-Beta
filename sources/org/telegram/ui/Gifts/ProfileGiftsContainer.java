@@ -49,6 +49,7 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Stars.ProfileGiftsView;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -115,7 +116,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public ProfileGiftsContainer(BaseFragment baseFragment, Context context, final int i, final long j, final Theme.ResourcesProvider resourcesProvider) {
+    public ProfileGiftsContainer(final BaseFragment baseFragment, Context context, final int i, final long j, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.checkboxRequestId = -1;
         this.visibleHeight = AndroidUtilities.displaySize.y;
@@ -202,6 +203,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
+                ProfileGiftsView profileGiftsView;
                 if (!ProfileGiftsContainer.this.reordering || !isPinnedAndSaved(getSavedGift(viewHolder)) || !isPinnedAndSaved(getSavedGift(viewHolder2))) {
                     return false;
                 }
@@ -210,6 +212,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 ProfileGiftsContainer.this.list.reorderPinned(adapterPosition - 1, adapterPosition2 - 1);
                 ProfileGiftsContainer.this.listView.adapter.notifyItemMoved(adapterPosition, adapterPosition2);
                 ProfileGiftsContainer.this.listView.adapter.updateWithoutNotify();
+                BaseFragment baseFragment2 = baseFragment;
+                if (!(baseFragment2 instanceof ProfileActivity) || (profileGiftsView = ((ProfileActivity) baseFragment2).giftsView) == null) {
+                    return true;
+                }
+                profileGiftsView.update();
                 return true;
             }
 
@@ -488,6 +495,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     }
 
     public boolean canFilterHidden() {
+        if (this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            return true;
+        }
         if (this.dialogId >= 0) {
             return false;
         }

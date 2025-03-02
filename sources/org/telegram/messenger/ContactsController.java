@@ -2461,78 +2461,11 @@ public class ContactsController extends BaseController {
     }
 
     public void loadPrivacySettings() {
-        TLRPC.InputPrivacyKey tL_inputPrivacyKeyStatusTimestamp;
-        if (this.loadingDeleteInfo == 0) {
-            this.loadingDeleteInfo = 1;
-            getConnectionsManager().sendRequest(new TL_account.getAccountTTL(), new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ContactsController.this.lambda$loadPrivacySettings$63(tLObject, tL_error);
-                }
-            });
-        }
-        loadGlobalPrivacySetting();
-        final int i = 0;
-        while (true) {
-            int[] iArr = this.loadingPrivacyInfo;
-            if (i >= iArr.length) {
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);
-                return;
-            }
-            if (iArr[i] == 0) {
-                iArr[i] = 1;
-                TL_account.getPrivacy getprivacy = new TL_account.getPrivacy();
-                switch (i) {
-                    case 0:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
-                        break;
-                    case 1:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyChatInvite();
-                        break;
-                    case 2:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyPhoneCall();
-                        break;
-                    case 3:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyPhoneP2P();
-                        break;
-                    case 4:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyProfilePhoto();
-                        break;
-                    case 5:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyForwards();
-                        break;
-                    case 6:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyPhoneNumber();
-                        break;
-                    case 7:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyAddedByPhone();
-                        break;
-                    case 8:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyVoiceMessages();
-                        break;
-                    case 9:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyAbout();
-                        break;
-                    case 11:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyBirthday();
-                        break;
-                    case 12:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyStarGiftsAutoSave();
-                        break;
-                    case 13:
-                        tL_inputPrivacyKeyStatusTimestamp = new TLRPC.TL_inputPrivacyKeyNoPaidMessages();
-                        break;
-                }
-                getprivacy.key = tL_inputPrivacyKeyStatusTimestamp;
-                getConnectionsManager().sendRequest(getprivacy, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ContactsController.this.lambda$loadPrivacySettings$65(i, tLObject, tL_error);
-                    }
-                });
-            }
-            i++;
-        }
+        loadPrivacySettings(false);
+    }
+
+    public void loadPrivacySettings(boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ContactsController.loadPrivacySettings(boolean):void");
     }
 
     public void markAsContacted(final String str) {

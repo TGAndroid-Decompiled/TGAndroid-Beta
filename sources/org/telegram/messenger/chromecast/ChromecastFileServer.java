@@ -11,6 +11,9 @@ import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.gms.cast.MediaMetadata;
 import fi.iki.elonen.NanoHTTPD;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
@@ -34,6 +37,7 @@ class ChromecastFileServer extends NanoHTTPD {
     private final DataSource.Factory fileDataSourceFactory;
     private final DataSource.Factory mediaDataSourceFactory;
     private final AtomicInteger reqId;
+    private final HashMap savedFiles;
     private boolean started;
 
     public static class DataSourceInputStream extends InputStream {
@@ -105,6 +109,7 @@ class ChromecastFileServer extends NanoHTTPD {
     public ChromecastFileServer() {
         super(61578);
         this.castedFiles = new HashMap();
+        this.savedFiles = new HashMap();
         this.started = false;
         this.reqId = new AtomicInteger();
         this.assetDataSourceFactory = new DataSource.Factory() {
@@ -128,7 +133,7 @@ class ChromecastFileServer extends NanoHTTPD {
     }
 
     private void check() {
-        if (this.castedFiles.isEmpty()) {
+        if (this.castedFiles.isEmpty() && this.savedFiles.isEmpty()) {
             if (this.started) {
                 stop();
                 this.started = false;
@@ -246,7 +251,17 @@ class ChromecastFileServer extends NanoHTTPD {
             }
             i++;
         }
+        for (Map.Entry entry2 : this.savedFiles.entrySet()) {
+            if (sb.length() > 0) {
+                sb.append('\n');
+            }
+            sb.append(getUrlToSource(str, (String) entry2.getKey()));
+        }
         return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, "text/plain", sb.toString());
+    }
+
+    private NanoHTTPD.Response serveFileImpl(NanoHTTPD.IHTTPSession iHTTPSession, File file) {
+        return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, "image/jpeg", new BufferedInputStream(new FileInputStream(file)), 0L);
     }
 
     private NanoHTTPD.Response serveFileImpl(NanoHTTPD.IHTTPSession iHTTPSession, ChromecastMedia chromecastMedia) {
@@ -300,6 +315,10 @@ class ChromecastFileServer extends NanoHTTPD {
             ChromecastMedia file = getFile(path);
             if (file != null) {
                 return serveFileImpl(iHTTPSession, file);
+            }
+            File file2 = (File) this.savedFiles.get(path);
+            if (file2 != null) {
+                return serveFileImpl(iHTTPSession, file2);
             }
             status = NanoHTTPD.Response.Status.NOT_FOUND;
             str = "file not found";

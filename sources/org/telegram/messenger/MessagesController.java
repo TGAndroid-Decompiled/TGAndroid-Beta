@@ -257,6 +257,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private final SharedPreferences emojiPreferences;
     public HashMap<String, EmojiSound> emojiSounds;
     private final ConcurrentHashMap<Long, Integer> emojiStatusUntilValues;
+    public boolean enableGiftsInProfile;
     public boolean enableJoined;
     private final ConcurrentHashMap<Integer, TLRPC.EncryptedChat> encryptedChats;
     public Set<String> exportGroupUri;
@@ -2626,6 +2627,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.starsPaidMessageCommissionPermille = this.mainPreferences.getInt("starsPaidMessageCommissionPermille", 850);
         this.stargiftsPinnedToTopLimit = this.mainPreferences.getInt("stargiftsPinnedToTopLimit", 6);
         this.starsPaidMessagesAvailable = this.mainPreferences.getBoolean("starsPaidMessagesAvailable", true);
+        this.enableGiftsInProfile = this.mainPreferences.getBoolean("enableGiftsInProfile", true);
         this.storiesPosting = this.mainPreferences.getString("storiesPosting", "enabled");
         this.storiesEntities = this.mainPreferences.getString("storiesEntities", "premium");
         this.storiesExportNopublicLink = this.mainPreferences.getBoolean("storiesExportNopublicLink", false);
@@ -14590,12 +14592,12 @@ public class MessagesController extends BaseController implements NotificationCe
         if (this.loadingPeerSettings.indexOfKey(j) >= 0) {
             return;
         }
-        this.loadingPeerSettings.put(j, Boolean.TRUE);
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("request spam button for " + j);
         }
         int i = this.notificationsPreferences.getInt("dialog_bar_vis3" + j, 0);
         if (z || !(i == 1 || i == 3)) {
+            this.loadingPeerSettings.put(j, Boolean.TRUE);
             TLRPC.TL_messages_getPeerSettings tL_messages_getPeerSettings = new TLRPC.TL_messages_getPeerSettings();
             tL_messages_getPeerSettings.peer = getInputPeer(user != null ? user.id : -chat.id);
             getConnectionsManager().sendRequest(tL_messages_getPeerSettings, new RequestDelegate() {
@@ -14604,7 +14606,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     MessagesController.this.lambda$loadPeerSettings$73(j, tLObject, tL_error);
                 }
             });
-        } else if (BuildVars.LOGS_ENABLED) {
+            return;
+        }
+        if (BuildVars.LOGS_ENABLED) {
             FileLog.d("dialog bar already hidden for " + j);
         }
     }

@@ -13,6 +13,7 @@ public class ChromecastMedia {
     public final int width;
 
     public static class Builder {
+        private MediaMetadata baseMetadata;
         private final String externalPath;
         private int height;
         private final Uri internalUri;
@@ -30,7 +31,7 @@ public class ChromecastMedia {
         public MediaMetadata buildMetadata() {
             String str = this.mimeType;
             str.hashCode();
-            int i = 1;
+            int i = 3;
             char c = 65535;
             switch (str.hashCode()) {
                 case -1487394660:
@@ -65,11 +66,18 @@ public class ChromecastMedia {
                     break;
                 case 1:
                 case 3:
+                    i = 1;
                     break;
                 default:
-                    return null;
+                    if (!this.mimeType.startsWith("audio/")) {
+                        return null;
+                    }
+                    break;
             }
-            MediaMetadata mediaMetadata = new MediaMetadata(i);
+            MediaMetadata mediaMetadata = this.baseMetadata;
+            if (mediaMetadata == null) {
+                mediaMetadata = new MediaMetadata(i);
+            }
             StringBuilder sb = new StringBuilder();
             StringBuilder sb2 = new StringBuilder();
             String str2 = this.title;
@@ -106,6 +114,11 @@ public class ChromecastMedia {
 
         public ChromecastMedia build() {
             return new ChromecastMedia(this);
+        }
+
+        public Builder setMetadata(MediaMetadata mediaMetadata) {
+            this.baseMetadata = mediaMetadata;
+            return this;
         }
 
         public Builder setSize(int i, int i2) {

@@ -282,7 +282,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         } else if (i == 1) {
             BotStarsController.getInstance(this.currentAccount).preloadTonStats(j);
         }
-        this.withdrawInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(z ? R.string.SelfStarsWithdrawInfo : R.string.BotStarsWithdrawInfo), new Runnable() {
+        this.withdrawInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(z ? LocaleController.formatPluralStringComma("SelfStarsWithdrawInfo", (int) getMessagesController().starsRevenueWithdrawalMin) : LocaleController.getString(R.string.BotStarsWithdrawInfo), new Runnable() {
             @Override
             public final void run() {
                 BotStarsActivity.this.lambda$new$0();
