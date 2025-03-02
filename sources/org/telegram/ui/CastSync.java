@@ -235,11 +235,10 @@ public abstract class CastSync {
     }
 
     public static boolean isPlaying() {
-        RemoteMediaClient client = getClient();
-        if (client == null) {
+        if (getClient() == null) {
             return false;
         }
-        return client.isPlaying();
+        return !r0.isPaused();
     }
 
     public static boolean isUpdatePending() {

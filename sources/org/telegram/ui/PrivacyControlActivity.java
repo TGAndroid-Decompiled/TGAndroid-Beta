@@ -40,7 +40,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -578,9 +577,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
 
                 @Override
                 public boolean canPerformReply() {
-                    boolean canPerformActions;
-                    canPerformActions = canPerformActions();
-                    return canPerformActions;
+                    return canPerformActions();
                 }
 
                 @Override
@@ -790,7 +787,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
 
                 @Override
                 public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str, boolean z) {
-                    Browser.openUrl(chatMessageCell2.getContext(), str);
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressWebPage(this, chatMessageCell2, webPage, str, z);
                 }
 
                 @Override

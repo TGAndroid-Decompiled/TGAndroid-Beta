@@ -39,7 +39,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.gms.cast.MediaMetadata;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileInputStream;
@@ -60,8 +59,6 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.audioinfo.AudioInfo;
-import org.telegram.messenger.chromecast.ChromecastMedia;
-import org.telegram.messenger.chromecast.ChromecastMediaVariations;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
@@ -2254,66 +2251,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    private ChromecastMediaVariations getCurrentChromecastMedia() {
-        MessageObject messageObject = this.playingMessageObject;
-        if (messageObject == null) {
-            return null;
-        }
-        String musicTitle = messageObject.getMusicTitle();
-        String musicAuthor = this.playingMessageObject.getMusicAuthor();
-        TLRPC.Document document = this.playingMessageObject.getDocument();
-        if (this.playingMessageObject.isRoundVideo() || this.playingMessageObject.isVideo() || this.playingMessageObject.isMusic()) {
-            MessageObject messageObject2 = this.playingMessageObject;
-            File file = (!messageObject2.attachPathExists || messageObject2.messageOwner == null) ? null : new File(this.playingMessageObject.messageOwner.attachPath);
-            if (file == null || !file.exists()) {
-                file = FileLoader.getInstance(this.playingMessageObject.currentAccount).getPathToMessage(this.playingMessageObject.messageOwner);
-            }
-            if (file != null && file.exists()) {
-                String mimeType = this.playingMessageObject.getMimeType();
-                Uri parse = Uri.parse("file://" + file.getAbsolutePath());
-                MediaMetadata mediaMetadata = new MediaMetadata();
-                AudioInfo audioInfo = this.audioInfo;
-                if (audioInfo != null) {
-                    if (!TextUtils.isEmpty(audioInfo.getTitle())) {
-                        mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", this.audioInfo.getTitle());
-                    }
-                    if (!TextUtils.isEmpty(this.audioInfo.getArtist())) {
-                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ARTIST", this.audioInfo.getArtist());
-                    }
-                    if (!TextUtils.isEmpty(this.audioInfo.getAlbum())) {
-                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ALBUM_TITLE", this.audioInfo.getAlbum());
-                    }
-                    if (!TextUtils.isEmpty(this.audioInfo.getAlbumArtist())) {
-                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ALBUM_ARTIST", this.audioInfo.getAlbumArtist());
-                    }
-                    if (!TextUtils.isEmpty(this.audioInfo.getComposer())) {
-                        mediaMetadata.putString("com.google.android.gms.cast.metadata.COMPOSER", this.audioInfo.getComposer());
-                    }
-                    if (this.audioInfo.getDisc() != 0) {
-                        mediaMetadata.putInt("com.google.android.gms.cast.metadata.DISC_NUMBER", this.audioInfo.getDisc());
-                    }
-                    if (this.audioInfo.getTrack() != 0) {
-                        mediaMetadata.putInt("com.google.android.gms.cast.metadata.TRACK_NUMBER", this.audioInfo.getTrack());
-                    }
-                }
-                return ChromecastMediaVariations.of(ChromecastMedia.Builder.fromUri(parse, "/player_" + this.playingMessageObject.getId(), mimeType).setTitle(musicTitle).setSubtitle(musicAuthor).setMetadata(mediaMetadata).build());
-            }
-        }
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer != null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(document != null ? document.id : this.playingMessageObject.getId());
-            sb.append("");
-            return videoPlayer.getCurrentChromecastMedia(sb.toString(), musicTitle, musicAuthor);
-        }
-        VideoPlayer videoPlayer2 = this.audioPlayer;
-        if (videoPlayer2 == null) {
-            return null;
-        }
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(document != null ? document.id : this.playingMessageObject.getId());
-        sb2.append("");
-        return videoPlayer2.getCurrentChromecastMedia(sb2.toString(), musicTitle, musicAuthor);
+    private org.telegram.messenger.chromecast.ChromecastMediaVariations getCurrentChromecastMedia() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.getCurrentChromecastMedia():org.telegram.messenger.chromecast.ChromecastMediaVariations");
     }
 
     public static String getFileName(Uri uri) {

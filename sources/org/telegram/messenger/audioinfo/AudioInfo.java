@@ -18,6 +18,7 @@ public abstract class AudioInfo {
     protected String composer;
     protected String copyright;
     protected Bitmap cover;
+    private File coverFile;
     protected short disc;
     protected short discs;
     protected long duration;
@@ -90,6 +91,10 @@ public abstract class AudioInfo {
         return this.cover;
     }
 
+    public File getCoverFile() {
+        return this.coverFile;
+    }
+
     public short getDisc() {
         return this.disc;
     }
@@ -136,5 +141,9 @@ public abstract class AudioInfo {
 
     public boolean isCompilation() {
         return this.compilation;
+    }
+
+    public void setCoverFile(File file) {
+        this.coverFile = file;
     }
 }

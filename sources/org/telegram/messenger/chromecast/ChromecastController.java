@@ -11,6 +11,7 @@ import com.google.android.gms.cast.framework.CastStateListener;
 import com.google.android.gms.cast.framework.SessionManager;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
+import java.io.File;
 import java.util.Objects;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.CastSync;
@@ -262,6 +263,10 @@ public class ChromecastController implements SessionManagerListener {
     @Override
     public void onSessionSuspended(CastSession castSession, int i) {
         Log.d("CAST_SESSION", "onSessionStartSuspended " + castSession.getSessionId() + " " + i);
+    }
+
+    public String setCover(File file) {
+        return this.state.setCoverFile(file);
     }
 
     public void setCurrentMediaAndCastIfNeeded(ChromecastMediaVariations chromecastMediaVariations) {
