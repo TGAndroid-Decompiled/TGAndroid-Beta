@@ -87,6 +87,7 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.SessionCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatEditActivity;
+import org.telegram.ui.ChatUsersActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -3055,10 +3056,19 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         });
     }
 
-    public static void lambda$showTransactionSheet$26() {
+    public static void lambda$showTransactionSheet$26(long j) {
+        BaseFragment chatUsersActivity;
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
-            safeLastFragment.presentFragment(new PrivacyControlActivity(10));
+            if (j > 0) {
+                chatUsersActivity = new PrivacyControlActivity(10);
+            } else {
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", -j);
+                bundle.putInt("type", 3);
+                chatUsersActivity = new ChatUsersActivity(bundle);
+            }
+            safeLastFragment.presentFragment(chatUsersActivity);
         }
     }
 
@@ -3957,7 +3967,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return showTransactionSheet(context, z, 0L, i, starsTransaction, resourcesProvider);
     }
 
-    public static org.telegram.ui.ActionBar.BottomSheet showTransactionSheet(final android.content.Context r51, final boolean r52, final long r53, final int r55, final org.telegram.tgnet.tl.TL_stars.StarsTransaction r56, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r57) {
+    public static org.telegram.ui.ActionBar.BottomSheet showTransactionSheet(final android.content.Context r52, final boolean r53, final long r54, final int r56, final org.telegram.tgnet.tl.TL_stars.StarsTransaction r57, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r58) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.showTransactionSheet(android.content.Context, boolean, long, int, org.telegram.tgnet.tl.TL_stars$StarsTransaction, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.ActionBar.BottomSheet");
     }
 

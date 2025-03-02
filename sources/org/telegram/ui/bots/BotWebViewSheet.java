@@ -60,6 +60,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
@@ -2239,8 +2240,84 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotWebViewSheet.requestWebView(org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.bots.WebViewRequestProps):void");
     }
 
-    public boolean restoreState(org.telegram.ui.ActionBar.BaseFragment r11, org.telegram.ui.ActionBar.BottomSheetTabs.WebTabData r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotWebViewSheet.restoreState(org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.ActionBar.BottomSheetTabs$WebTabData):boolean");
+    public boolean restoreState(BaseFragment baseFragment, BottomSheetTabs.WebTabData webTabData) {
+        int i;
+        if (webTabData == null || webTabData.props == null) {
+            return false;
+        }
+        this.fromTab = true;
+        boolean z = webTabData.overrideBackgroundColor;
+        this.overrideBackgroundColor = z;
+        if (z) {
+            setBackgroundColor(webTabData.backgroundColor, true, false);
+        }
+        if (webTabData.overrideActionBarColor) {
+            i = webTabData.actionBarColor;
+        } else {
+            int i2 = webTabData.actionBarColorKey;
+            if (i2 < 0) {
+                i2 = Theme.key_windowBackgroundWhite;
+            }
+            i = Theme.getColor(i2, this.resourcesProvider);
+        }
+        setActionBarColor(i, webTabData.overrideActionBarColor, false);
+        setNavigationBarColor(webTabData.navigationBarColor, false);
+        this.showExpanded = webTabData.expanded;
+        this.showOffsetY = webTabData.expandedOffset;
+        BotWebViewContainer botWebViewContainer = this.webViewContainer;
+        boolean z2 = webTabData.backButton;
+        this.backButtonShown = z2;
+        botWebViewContainer.setIsBackButtonVisible(z2);
+        this.swipeContainer.setAllowSwipes(webTabData.allowSwipes);
+        AndroidUtilities.updateImageViewImageAnimated(this.actionBar.getBackButton(), this.backButtonShown ? R.drawable.ic_ab_back : R.drawable.ic_close_white);
+        BotFullscreenButtons botFullscreenButtons = this.fullscreenButtons;
+        if (botFullscreenButtons != null) {
+            botFullscreenButtons.setBack(this.backButtonShown, false);
+        }
+        this.needCloseConfirmation = webTabData.confirmDismiss;
+        this.fullsize = Boolean.valueOf(webTabData.fullsize);
+        this.needsContext = webTabData.needsContext;
+        BotSensors botSensors = webTabData.sensors;
+        this.sensors = botSensors;
+        if (botSensors != null) {
+            botSensors.resume();
+        }
+        BotButtons.ButtonsState buttonsState = webTabData.buttons;
+        if (buttonsState != null) {
+            this.botButtons.setState(buttonsState, false);
+        }
+        setFullscreen(webTabData.fullscreen, false);
+        WebViewRequestProps webViewRequestProps = webTabData.props;
+        this.currentAccount = webViewRequestProps != null ? webViewRequestProps.currentAccount : UserConfig.selectedAccount;
+        BotWebViewContainer.MyWebView myWebView = webTabData.webView;
+        if (myWebView != null) {
+            myWebView.onResume();
+            this.webViewContainer.replaceWebView(this.currentAccount, webTabData.webView, webTabData.proxy);
+            this.webViewContainer.setState(webTabData.ready || webTabData.webView.isPageLoaded(), webTabData.lastUrl);
+            if (Theme.isCurrentThemeDark() != webTabData.themeIsDark) {
+                this.webViewContainer.notifyThemeChanged();
+            }
+        } else {
+            webViewRequestProps.response = null;
+            webViewRequestProps.responseTime = 0L;
+        }
+        requestWebView(baseFragment, webTabData.props);
+        this.hasSettings = webTabData.settings;
+        if (webTabData.error) {
+            this.errorShown = true;
+            createErrorContainer();
+            ArticleViewer.ErrorContainer errorContainer = this.errorContainer;
+            String userName = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)));
+            String str = webTabData.errorDescription;
+            this.errorCode = str;
+            errorContainer.set(userName, str);
+            this.errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(this.backgroundPaint.getColor()) <= 0.721f, false);
+            this.errorContainer.setBackgroundColor(this.backgroundPaint.getColor());
+            this.errorContainer.setVisibility(0);
+            this.errorContainer.setAlpha(1.0f);
+        }
+        lockOrientation(webTabData.orientationLocked);
+        return true;
     }
 
     @Override
