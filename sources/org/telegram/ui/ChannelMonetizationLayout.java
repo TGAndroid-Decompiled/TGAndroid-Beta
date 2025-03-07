@@ -1149,6 +1149,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         FrameLayout frameLayout;
         ChartData chartData;
         ArrayList arrayList;
+        boolean z = this.starsRevenueChart == null;
         this.stars_rate = tL_payments_starsRevenueStats.usd_rate;
         StatisticActivity.ChartViewData createViewData = StatisticActivity.createViewData(tL_payments_starsRevenueStats.revenue_graph, LocaleController.getString(R.string.MonetizationGraphStarsRevenue), 2);
         this.starsRevenueChart = createViewData;
@@ -1167,8 +1168,10 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView != null) {
-            universalRecyclerView.adapter.update(false);
-            this.listView.scrollToPosition(0);
+            universalRecyclerView.adapter.update(!z);
+            if (z) {
+                this.listView.scrollToPosition(0);
+            }
         }
     }
 
@@ -1242,7 +1245,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 ChannelMonetizationLayout.this.lambda$initLevel$30((TL_stories.TL_premium_boostsStatus) obj);
             }
         });
-        loadStarsStats();
+        loadStarsStats(false);
         if (this.tonRevenueAvailable) {
             TL_stats.TL_getBroadcastRevenueStats tL_getBroadcastRevenueStats = new TL_stats.TL_getBroadcastRevenueStats();
             tL_getBroadcastRevenueStats.dark = Theme.isCurrentThemeDark();
@@ -1400,15 +1403,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             twoStepVerificationActivity.lambda$onBackPressed$335();
             if (tLObject instanceof TL_stats.TL_broadcastRevenueWithdrawalUrl) {
                 Browser.openUrl(getContext(), ((TL_stats.TL_broadcastRevenueWithdrawalUrl) tLObject).url);
-                return;
-            } else {
-                if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
-                    Browser.openUrl(getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
-                    loadStarsStats();
-                    return;
-                }
-                return;
+            } else if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
+                Browser.openUrl(getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
+                loadStarsStats(true);
             }
+            reloadTransactions();
+            return;
         }
         if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
             if ("SRP_ID_INVALID".equals(tL_error.text)) {
@@ -1796,9 +1796,9 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         Browser.openUrl(context, tL_broadcastRevenueTransactionWithdrawal.transaction_url);
     }
 
-    private void loadStarsStats() {
+    private void loadStarsStats(boolean z) {
         if (this.starsRevenueAvailable) {
-            final TLRPC.TL_payments_starsRevenueStats starsRevenueStats = BotStarsController.getInstance(this.currentAccount).getStarsRevenueStats(this.dialogId);
+            final TLRPC.TL_payments_starsRevenueStats starsRevenueStats = BotStarsController.getInstance(this.currentAccount).getStarsRevenueStats(this.dialogId, z);
             if (starsRevenueStats != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override

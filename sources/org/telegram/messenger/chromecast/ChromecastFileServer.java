@@ -333,6 +333,22 @@ public class ChromecastFileServer extends NanoHTTPD {
         check();
     }
 
+    public File getCoverFile() {
+        Pair pair = this.coverFile;
+        if (pair == null) {
+            return null;
+        }
+        return (File) pair.second;
+    }
+
+    public String getCoverPath() {
+        Pair pair = this.coverFile;
+        if (pair == null) {
+            return null;
+        }
+        return (String) pair.first;
+    }
+
     public void removeFileFromCast(ChromecastMedia chromecastMedia) {
         this.castedFiles.remove(chromecastMedia.externalPath);
         check();

@@ -70,8 +70,10 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.CastSync;
 import org.telegram.ui.Cells.AudioPlayerCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChooseQualityLayout$QualityIcon;
 import org.telegram.ui.Components.AudioPlayerAlert;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -116,6 +118,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     private RecyclerListView listView;
     private RLottieImageView nextButton;
     private ActionBarMenuItem optionsButton;
+    private ChooseQualityLayout$QualityIcon optionsIcon;
     private LaunchActivity parentActivity;
     private ImageView playButton;
     private PlayPauseDrawable playPauseDrawable;
@@ -1540,40 +1543,41 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         if (i == NotificationCenter.messagePlayingDidStart || i == NotificationCenter.messagePlayingPlayStateChanged || i == NotificationCenter.messagePlayingDidReset) {
             int i3 = NotificationCenter.messagePlayingDidReset;
             updateTitle(i == i3 && ((Boolean) objArr[1]).booleanValue());
-            if (i != i3 && i != NotificationCenter.messagePlayingPlayStateChanged) {
-                if (((MessageObject) objArr[0]).eventId != 0) {
-                    return;
-                }
+            if (i == i3 || i == NotificationCenter.messagePlayingPlayStateChanged) {
                 int childCount = this.listView.getChildCount();
                 for (int i4 = 0; i4 < childCount; i4++) {
                     View childAt = this.listView.getChildAt(i4);
-                    if ((childAt instanceof AudioPlayerCell) && (messageObject2 = (audioPlayerCell2 = (AudioPlayerCell) childAt).getMessageObject()) != null && (messageObject2.isVoice() || messageObject2.isMusic())) {
+                    if ((childAt instanceof AudioPlayerCell) && (messageObject = (audioPlayerCell = (AudioPlayerCell) childAt).getMessageObject()) != null && (messageObject.isVoice() || messageObject.isMusic())) {
+                        audioPlayerCell.updateButtonState(false, true);
+                    }
+                }
+                if (i == NotificationCenter.messagePlayingPlayStateChanged && MediaController.getInstance().getPlayingMessageObject() != null) {
+                    if (MediaController.getInstance().isMessagePaused()) {
+                        startForwardRewindingSeek();
+                    } else if (this.rewindingState == 1 && this.rewindingProgress != -1.0f) {
+                        AndroidUtilities.cancelRunOnUIThread(this.forwardSeek);
+                        this.lastUpdateRewindingPlayerTime = 0L;
+                        this.forwardSeek.run();
+                        this.rewindingProgress = -1.0f;
+                    }
+                }
+            } else {
+                if (((MessageObject) objArr[0]).eventId != 0) {
+                    return;
+                }
+                int childCount2 = this.listView.getChildCount();
+                for (int i5 = 0; i5 < childCount2; i5++) {
+                    View childAt2 = this.listView.getChildAt(i5);
+                    if ((childAt2 instanceof AudioPlayerCell) && (messageObject2 = (audioPlayerCell2 = (AudioPlayerCell) childAt2).getMessageObject()) != null && (messageObject2.isVoice() || messageObject2.isMusic())) {
                         audioPlayerCell2.updateButtonState(false, true);
                     }
                 }
+            }
+            ChooseQualityLayout$QualityIcon chooseQualityLayout$QualityIcon = this.optionsIcon;
+            if (chooseQualityLayout$QualityIcon != null) {
+                chooseQualityLayout$QualityIcon.setCasting(CastSync.isActive(), true);
                 return;
             }
-            int childCount2 = this.listView.getChildCount();
-            for (int i5 = 0; i5 < childCount2; i5++) {
-                View childAt2 = this.listView.getChildAt(i5);
-                if ((childAt2 instanceof AudioPlayerCell) && (messageObject = (audioPlayerCell = (AudioPlayerCell) childAt2).getMessageObject()) != null && (messageObject.isVoice() || messageObject.isMusic())) {
-                    audioPlayerCell.updateButtonState(false, true);
-                }
-            }
-            if (i != NotificationCenter.messagePlayingPlayStateChanged || MediaController.getInstance().getPlayingMessageObject() == null) {
-                return;
-            }
-            if (MediaController.getInstance().isMessagePaused()) {
-                startForwardRewindingSeek();
-                return;
-            }
-            if (this.rewindingState != 1 || this.rewindingProgress == -1.0f) {
-                return;
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.forwardSeek);
-            this.lastUpdateRewindingPlayerTime = 0L;
-            this.forwardSeek.run();
-            this.rewindingProgress = -1.0f;
             return;
         }
         if (i == NotificationCenter.messagePlayingProgressDidChanged) {

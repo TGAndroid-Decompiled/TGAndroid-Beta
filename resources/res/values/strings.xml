@@ -4347,8 +4347,12 @@
     <string name="LimitReachedSharedFolders">You can only have %1$d shareable folders.\nUpgrade to **Telegram Premium** to increase this limit to **%2$d**.</string>
     <string name="LimitReachedSharedFoldersLocked">You can only have %1$d shareable folders. We are working to let you increase this limit in the future.</string>
     <string name="LimitReachedSharedFoldersPremium">You can only have %1$d shareable folders. Try deleting some shareable folder.</string>
-    <string name="LimitReachedStoriesCount">You can post **%1$d** stories in **24** hours.\nSubscribe to **Telegram Premium** to increase this limit to **%2$d**.</string>
-    <string name="LimitReachedStoriesCountPremium">Sorry, you can’t post more than **%1$d** stories in **24** hours.</string>
+    <string name="LimitReachedStoriesCount2First_one">You can post **%d** story in **24** hours.</string>
+    <string name="LimitReachedStoriesCount2First_other">You can post **%d** stories in **24** hours.</string>
+    <string name="LimitReachedStoriesCount2Premium_one">Sorry, you can’t post more than **%d** story in **24** hours.</string>
+    <string name="LimitReachedStoriesCount2Premium_other">Sorry, you can’t post more than **%d** stories in **24** hours.</string>
+    <string name="LimitReachedStoriesCount2Second_one">Subscribe to **Telegram Premium** to increase this limit to **%d**.</string>
+    <string name="LimitReachedStoriesCount2Second_other">Subscribe to **Telegram Premium** to increase this limit to **%d**.</string>
     <string name="LimitReachedStoriesMonthly">You can post **%1$d** stories in a month.\nSubscribe to **Telegram Premium** to increase this limit to **%2$d**.</string>
     <string name="LimitReachedStoriesMonthlyPremium">Sorry, you can’t post more than **%1$d** stories in a month.</string>
     <string name="LimitReachedStoriesWeekly">You can post **%1$d** stories in a week.\nSubscribe to **Telegram Premium** to increase this limit to **%2$d**.</string>
@@ -7314,6 +7318,7 @@
     <string name="StarsSentTitle">Stars sent!</string>
     <string name="StarsSentTitleChannel">Stars sent as %s!</string>
     <string name="StarsSentUndo">Undo</string>
+    <string name="StarsStats">Stats</string>
     <string name="StarsSubscribeButton">Subscribe</string>
     <string name="StarsSubscribeInfo">By subscribing you agree to the **Terms of Service**.</string>
     <string name="StarsSubscribeInfoLink">https://telegram.org/tos/stars</string>

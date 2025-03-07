@@ -310,11 +310,13 @@
     <style name="TextAppearance.Compat.Notification.Title.Media" parent="@style/TextAppearance.Compat.Notification.Title">
         <item name="android:textColor">@color/primary_text_default_material_dark</item>
     </style>
-    <style name="Theme.CastDialog" parent="@style/Theme.AppCompat.DayNight.Dialog">
+    <style name="Theme.CastDialog" parent="@style/Theme.TMessages.Dark.Dialog.Alert">
         <item name="android:colorBackground">#222222</item>
         <item name="android:backgroundDimAmount">0.5</item>
         <item name="android:textColorPrimary">#ffffff</item>
         <item name="android:windowBackground">#222222</item>
+        <item name="android:panelBackground">#222222</item>
+        <item name="android:textColor">#ffffff</item>
         <item name="colorAccent">#4991cc</item>
         <item name="colorPrimary">#222222</item>
         <item name="dialogCornerRadius">16dp</item>

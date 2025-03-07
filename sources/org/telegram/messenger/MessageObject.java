@@ -3350,6 +3350,162 @@ public class MessageObject {
         return message.unread;
     }
 
+    public static boolean isV(String str) {
+        if (str == null) {
+            return true;
+        }
+        switch (str.toLowerCase().hashCode()) {
+            case -1535907675:
+            case -1422950858:
+            case -1253501876:
+            case -907685685:
+            case -788047292:
+            case -338481545:
+            case 3106:
+            case 3184:
+            case 3215:
+            case 3401:
+            case 3494:
+            case 3580:
+            case 3581:
+            case 3593:
+            case 3632:
+            case 3669:
+            case 3756:
+            case 3804:
+            case 96400:
+            case 96586:
+            case 96796:
+            case 96801:
+            case 97013:
+            case 97300:
+            case 97301:
+            case 97543:
+            case 98437:
+            case 98472:
+            case 98618:
+            case 98689:
+            case 98719:
+            case 98789:
+            case 98808:
+            case 98819:
+            case 99338:
+            case 99351:
+            case 99548:
+            case 99556:
+            case 99582:
+            case 99640:
+            case 99752:
+            case 100208:
+            case 100511:
+            case 100542:
+            case 100730:
+            case 100882:
+            case 100958:
+            case 101460:
+            case 101671:
+            case 101854:
+            case 102556:
+            case 102572:
+            case 103404:
+            case 103438:
+            case 103637:
+            case 103649:
+            case 104074:
+            case 104269:
+            case 104417:
+            case 104430:
+            case 104435:
+            case 104474:
+            case 104479:
+            case 104582:
+            case 104587:
+            case 104987:
+            case 105532:
+            case 105543:
+            case 105551:
+            case 106202:
+            case 106496:
+            case 107141:
+            case 107305:
+            case 107932:
+            case 107988:
+            case 107989:
+            case 108341:
+            case 108382:
+            case 108413:
+            case 108419:
+            case 108426:
+            case 108430:
+            case 108570:
+            case 109824:
+            case 109860:
+            case 110754:
+            case 110801:
+            case 110834:
+            case 110883:
+            case 110989:
+            case 111052:
+            case 111220:
+            case 111265:
+            case 111269:
+            case 111390:
+            case 111420:
+            case 111482:
+            case 111494:
+            case 112185:
+            case 112712:
+            case 112788:
+            case 112862:
+            case 113115:
+            case 113132:
+            case 113291:
+            case 113698:
+            case 113700:
+            case 113837:
+            case 113854:
+            case 114101:
+            case 114130:
+            case 114381:
+            case 114809:
+            case 114922:
+            case 114970:
+            case 115161:
+            case 115312:
+            case 115639:
+            case 116079:
+            case 116537:
+            case 116551:
+            case 116609:
+            case 117218:
+            case 117537:
+            case 117840:
+            case 117938:
+            case 118023:
+            case 118026:
+            case 118028:
+            case 118439:
+            case 118783:
+            case 118939:
+            case 120703:
+            case 3016404:
+            case 3088960:
+            case 3213227:
+            case 3358271:
+            case 3444044:
+            case 3446979:
+            case 3447940:
+            case 3524225:
+            case 3524692:
+            case 3526257:
+            case 3682393:
+            case 35379135:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     public static boolean isVideoDocument(TLRPC.Document document) {
         int lastIndexOf;
         if (document == null) {
@@ -3375,17 +3531,8 @@ public class MessageObject {
                 str = documentAttribute.file_name;
             }
         }
-        if (str != null && (lastIndexOf = str.lastIndexOf(".")) >= 0) {
-            switch (str.substring(lastIndexOf + 1).toLowerCase().hashCode()) {
-                case 3669:
-                case 96796:
-                case 98689:
-                case 99351:
-                case 99582:
-                case 104987:
-                case 3213227:
-                    return false;
-            }
+        if (str != null && (lastIndexOf = str.lastIndexOf(".")) >= 0 && isV(str.substring(lastIndexOf + 1))) {
+            return false;
         }
         if (z && (i > 1280 || i2 > 1280)) {
             z = false;
