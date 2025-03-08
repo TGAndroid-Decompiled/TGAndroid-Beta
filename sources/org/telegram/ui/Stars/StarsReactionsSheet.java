@@ -144,7 +144,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             int i2 = Theme.key_undo_cancelColor;
             linksTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
             linksTextView.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
-            linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.premiumText("Get More Stars >", new Runnable() {
+            linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new Runnable() {
                 @Override
                 public final void run() {
                     StarsReactionsSheet.BalanceCloud.lambda$new$0(context, resourcesProvider);
@@ -160,8 +160,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
 
         private void updateBalance(boolean z) {
-            long j = StarsController.getInstance(this.currentAccount).getBalance().amount;
-            this.textView1.setText(StarsIntroActivity.replaceStarsWithPlain("Your balance is ⭐️" + LocaleController.formatNumber(j, ','), 0.6f));
+            this.textView1.setText(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(R.string.Gift2MessageStarsInfo, LocaleController.formatNumber(StarsController.getInstance(this.currentAccount).getBalance().amount, ',')), 0.6f));
         }
 
         @Override

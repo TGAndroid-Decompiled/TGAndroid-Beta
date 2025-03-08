@@ -8,7 +8,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -22,7 +21,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -31,25 +29,19 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
-import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.Stars.ProfileGiftsView;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -116,225 +108,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public ProfileGiftsContainer(final BaseFragment baseFragment, Context context, final int i, final long j, final Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        this.checkboxRequestId = -1;
-        this.visibleHeight = AndroidUtilities.displaySize.y;
-        this.fragment = baseFragment;
-        this.currentAccount = i;
-        this.dialogId = j;
-        StarsController.getInstance(i).invalidateProfileGifts(j);
-        StarsController.GiftsList profileGiftsList = StarsController.getInstance(i).getProfileGiftsList(j);
-        this.list = profileGiftsList;
-        profileGiftsList.shown = true;
-        profileGiftsList.resetFilters();
-        profileGiftsList.load();
-        this.resourcesProvider = resourcesProvider;
-        int i2 = Theme.key_windowBackgroundWhite;
-        int color = Theme.getColor(i2, resourcesProvider);
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        setBackgroundColor(Theme.blendOver(color, Theme.multAlpha(Theme.getColor(i3, resourcesProvider), 0.04f)));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, false, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                ProfileGiftsContainer.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                ProfileGiftsContainer.this.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, new Utilities.Callback5Return() {
-            @Override
-            public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                return Boolean.valueOf(ProfileGiftsContainer.this.onItemLongPress((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
-            }
-        }, resourcesProvider, 3);
-        this.listView = universalRecyclerView;
-        universalRecyclerView.adapter.setApplyBackground(false);
-        universalRecyclerView.setSelectorType(9);
-        universalRecyclerView.setSelectorDrawableColor(0);
-        universalRecyclerView.setPadding(AndroidUtilities.dp(9.0f), 0, AndroidUtilities.dp(9.0f), 0);
-        universalRecyclerView.setClipToPadding(false);
-        universalRecyclerView.setClipChildren(false);
-        addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 119));
-        universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
-                if (!ProfileGiftsContainer.this.listView.canScrollVertically(1) || ProfileGiftsContainer.this.isLoadingVisible()) {
-                    ProfileGiftsContainer.this.list.load();
-                }
-            }
-        });
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
-            private TL_stars.SavedStarGift getSavedGift(RecyclerView.ViewHolder viewHolder) {
-                View view = viewHolder.itemView;
-                if (view instanceof GiftSheet.GiftCell) {
-                    return ((GiftSheet.GiftCell) view).getSavedGift();
-                }
-                return null;
-            }
-
-            private boolean isPinnedAndSaved(TL_stars.SavedStarGift savedStarGift) {
-                return (savedStarGift == null || !savedStarGift.pinned_to_top || savedStarGift.unsaved) ? false : true;
-            }
-
-            @Override
-            public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                super.clearView(recyclerView, viewHolder);
-                viewHolder.itemView.setPressed(false);
-            }
-
-            @Override
-            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                TL_stars.SavedStarGift savedGift = getSavedGift(viewHolder);
-                return (ProfileGiftsContainer.this.reordering && savedGift != null && savedGift.pinned_to_top) ? ItemTouchHelper.Callback.makeMovementFlags(15, 0) : ItemTouchHelper.Callback.makeMovementFlags(0, 0);
-            }
-
-            @Override
-            public boolean isItemViewSwipeEnabled() {
-                return ProfileGiftsContainer.this.reordering;
-            }
-
-            @Override
-            public boolean isLongPressDragEnabled() {
-                return ProfileGiftsContainer.this.reordering;
-            }
-
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-                ProfileGiftsView profileGiftsView;
-                if (!ProfileGiftsContainer.this.reordering || !isPinnedAndSaved(getSavedGift(viewHolder)) || !isPinnedAndSaved(getSavedGift(viewHolder2))) {
-                    return false;
-                }
-                int adapterPosition = viewHolder.getAdapterPosition();
-                int adapterPosition2 = viewHolder2.getAdapterPosition();
-                ProfileGiftsContainer.this.list.reorderPinned(adapterPosition - 1, adapterPosition2 - 1);
-                ProfileGiftsContainer.this.listView.adapter.notifyItemMoved(adapterPosition, adapterPosition2);
-                ProfileGiftsContainer.this.listView.adapter.updateWithoutNotify();
-                BaseFragment baseFragment2 = baseFragment;
-                if (!(baseFragment2 instanceof ProfileActivity) || (profileGiftsView = ((ProfileActivity) baseFragment2).giftsView) == null) {
-                    return true;
-                }
-                profileGiftsView.update();
-                return true;
-            }
-
-            @Override
-            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i4) {
-                ProfileGiftsContainer profileGiftsContainer = ProfileGiftsContainer.this;
-                if (i4 == 0) {
-                    profileGiftsContainer.list.reorderDone();
-                } else {
-                    if (profileGiftsContainer.listView != null) {
-                        ProfileGiftsContainer.this.listView.cancelClickRunnables(false);
-                    }
-                    if (viewHolder != null) {
-                        viewHolder.itemView.setPressed(true);
-                    }
-                }
-                super.onSelectedChanged(viewHolder, i4);
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int i4) {
-            }
-        });
-        this.reorder = itemTouchHelper;
-        itemTouchHelper.attachToRecyclerView(universalRecyclerView);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.emptyView = frameLayout;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
-        BackupImageView backupImageView = new BackupImageView(context);
-        backupImageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
-        linearLayout.addView(backupImageView, LayoutHelper.createLinear(120, 120, 1, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.emptyViewTitle = textView;
-        textView.setTextSize(1, 17.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextColor(Theme.getColor(i3, resourcesProvider));
-        textView.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundTitle));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 12, 0, 0));
-        TextView textView2 = new TextView(context);
-        this.emptyViewButton = textView2;
-        textView2.setTextSize(1, 14.0f);
-        int i4 = Theme.key_featuredStickers_addButton;
-        textView2.setTextColor(Theme.getColor(i4, resourcesProvider));
-        textView2.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundButton));
-        textView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ProfileGiftsContainer.this.lambda$new$0(view);
-            }
-        });
-        textView2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f));
-        textView2.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(Theme.getColor(i4, resourcesProvider), 0.1f), 4, 4));
-        ScaleStateListAnimator.apply(textView2);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
-        addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
-        universalRecyclerView.setEmptyView(frameLayout);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.buttonContainer = frameLayout2;
-        frameLayout2.setBackgroundColor(Theme.getColor(i2, resourcesProvider));
-        addView(frameLayout2, LayoutHelper.createFrame(-1, -2, 87));
-        View view = new View(context);
-        this.buttonShadow = view;
-        view.setBackgroundColor(Theme.getColor(Theme.key_dialogGrayLine, resourcesProvider));
-        frameLayout2.addView(view, LayoutHelper.createFrame(-1.0f, 1.0f / AndroidUtilities.density, 55));
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.bulletinContainer = frameLayout3;
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        this.checkboxLayout = linearLayout2;
-        linearLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
-        linearLayout2.setClipToPadding(false);
-        linearLayout2.setOrientation(0);
-        linearLayout2.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
-        CheckBox2 checkBox2 = new CheckBox2(context, 24, resourcesProvider);
-        this.checkbox = checkBox2;
-        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
-        checkBox2.setDrawUnchecked(true);
-        checkBox2.setChecked(false, false);
-        checkBox2.setDrawBackgroundAsArc(10);
-        linearLayout2.addView(checkBox2, LayoutHelper.createLinear(26, 26, 16, 0, 0, 0, 0));
-        TextView textView3 = new TextView(context);
-        this.checkboxTextView = textView3;
-        textView3.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
-        textView3.setTextSize(1, 14.0f);
-        textView3.setText(LocaleController.getString(R.string.Gift2ChannelNotify));
-        linearLayout2.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 9, 0, 0, 0));
-        frameLayout2.addView(linearLayout2, LayoutHelper.createFrame(-2, 38.0f, 17, 0.0f, (1.0f / AndroidUtilities.density) + 6.0f, 0.0f, 6.0f));
-        ScaleStateListAnimator.apply(linearLayout2, 0.025f, 1.5f);
-        linearLayout2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                ProfileGiftsContainer.this.lambda$new$3(resourcesProvider, i, j, view2);
-            }
-        });
-        Boolean bool = profileGiftsList.chat_notifications_enabled;
-        if (bool != null) {
-            checkBox2.setChecked(bool.booleanValue(), false);
-        }
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        this.button = buttonWithCounterView;
-        StringBuilder sb = new StringBuilder();
-        sb.append("G ");
-        sb.append(LocaleController.getString(j < 0 ? R.string.ProfileGiftsSendChannel : R.string.ProfileGiftsSend));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb.toString());
-        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_gift_simple), 0, 1, 33);
-        buttonWithCounterView.setText(spannableStringBuilder, false);
-        frameLayout2.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                ProfileGiftsContainer.this.lambda$new$4(j, i, view2);
-            }
-        });
-        buttonWithCounterView.setVisibility(canSwitchNotify() ? 8 : 0);
-        linearLayout2.setVisibility(canSwitchNotify() ? 0 : 8);
-        this.buttonContainerHeightDp = canSwitchNotify() ? 50 : 68;
-        addView(frameLayout3, LayoutHelper.createFrame(-1, 200, 87));
+    public ProfileGiftsContainer(final org.telegram.ui.ActionBar.BaseFragment r34, android.content.Context r35, final int r36, final long r37, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.ProfileGiftsContainer.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
     public boolean isLoadingVisible() {
@@ -386,8 +161,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         });
     }
 
-    public void lambda$new$4(long j, int i, View view) {
-        if (j < 0) {
+    public void lambda$new$4(boolean z, int i, long j, View view) {
+        if (z) {
             new GiftSheet(getContext(), i, j, null, null).show();
         } else {
             UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());

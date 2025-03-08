@@ -120,6 +120,9 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             FileLog.e(e);
             str2 = null;
         }
+        if (str != null && str.equalsIgnoreCase("ft")) {
+            str2 = LocaleController.getString(R.string.ContactInfoPhoneFragment);
+        }
         if (TextUtils.isEmpty(str2)) {
             spannableStringBuilder.append((CharSequence) str);
         } else {

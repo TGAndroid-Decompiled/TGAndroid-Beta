@@ -980,7 +980,7 @@ public class StarsController {
             return ((TLRPC.TL_messages_sendInlineBotResult) tLObject).allow_paid_stars;
         }
         if (tLObject instanceof TLRPC.TL_messages_forwardMessages) {
-            return ((TLRPC.TL_messages_forwardMessages) tLObject).allow_paid_stars;
+            return ((TLRPC.TL_messages_forwardMessages) tLObject).allow_paid_stars / r4.id.size();
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMedia) {
             return ((TLRPC.TL_messages_sendMedia) tLObject).allow_paid_stars;

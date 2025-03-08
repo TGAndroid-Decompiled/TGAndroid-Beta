@@ -3262,7 +3262,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         StarsController.getInstance(this.currentAccount).showPriceChangedToast(arrayList);
     }
 
-    public void lambda$sendMessage$16(final long r29, final int r31, boolean r32, boolean r33, androidx.collection.LongSparseArray r34, java.util.ArrayList r35, final java.util.ArrayList r36, final org.telegram.messenger.MessageObject r37, final org.telegram.tgnet.TLRPC.Peer r38, final org.telegram.tgnet.TLRPC.TL_messages_forwardMessages r39, org.telegram.tgnet.TLObject r40, final org.telegram.tgnet.TLRPC.TL_error r41) {
+    public void lambda$sendMessage$16(final long r29, final int r31, boolean r32, boolean r33, androidx.collection.LongSparseArray r34, java.util.ArrayList r35, final java.util.ArrayList r36, final org.telegram.messenger.MessageObject r37, final org.telegram.tgnet.TLRPC.Peer r38, final org.telegram.tgnet.TLRPC.TL_messages_forwardMessages r39, org.telegram.tgnet.TLObject r40, org.telegram.tgnet.TLRPC.TL_error r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$sendMessage$16(long, int, boolean, boolean, androidx.collection.LongSparseArray, java.util.ArrayList, java.util.ArrayList, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$Peer, org.telegram.tgnet.TLRPC$TL_messages_forwardMessages, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 

@@ -21,9 +21,7 @@ public abstract class SequencesKt__SequenceBuilderKt {
         return new Sequence() {
             @Override
             public Iterator iterator() {
-                Iterator it;
-                it = SequencesKt__SequenceBuilderKt.iterator(Function2.this);
-                return it;
+                return SequencesKt.iterator(Function2.this);
             }
         };
     }

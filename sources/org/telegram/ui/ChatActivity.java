@@ -328,6 +328,7 @@ import org.telegram.ui.Components.URLSpanReplacement;
 import org.telegram.ui.Components.URLSpanUserMention;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.UnreadCounterTextView;
+import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.quickforward.QuickShareSelectorOverlayLayout;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
@@ -18146,7 +18147,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath) && new File(messageObject.messageOwner.attachPath).exists()) {
                 z = true;
             }
-            if ((z || !messageObject.mediaExists) ? z : true) {
+            if ((z || !messageObject.mediaExists()) ? z : true) {
                 if (messageObject.getDocument() != null && !messageObject.isMusic() && (str2 = messageObject.getDocument().mime_type) != null) {
                     if (messageObject.getDocumentName().toLowerCase().endsWith("attheme")) {
                         return 10;
@@ -25480,20 +25481,27 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void saveMessageToGallery(MessageObject messageObject) {
+        File pathToAttach;
+        VideoPlayer.VideoUri videoUri;
+        File pathToMessage;
         String str = messageObject.messageOwner.attachPath;
         if (!TextUtils.isEmpty(str) && !new File(str).exists()) {
             str = null;
         }
-        if (TextUtils.isEmpty(str)) {
-            str = FileLoader.getInstance(this.currentAccount).getPathToMessage(messageObject.messageOwner).toString();
+        if (TextUtils.isEmpty(str) && (pathToMessage = FileLoader.getInstance(this.currentAccount).getPathToMessage(messageObject.messageOwner)) != null && pathToMessage.exists()) {
+            str = pathToMessage.getPath();
         }
-        if (messageObject.qualityToSave != null) {
-            File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(messageObject.qualityToSave, null, false, true);
-            if (pathToAttach == null) {
-                return;
-            } else {
-                str = pathToAttach.getPath();
+        if (TextUtils.isEmpty(str) && (videoUri = messageObject.cachedQuality) != null && videoUri.isCached()) {
+            File file = new File(messageObject.cachedQuality.uri.getPath());
+            if (file.exists()) {
+                str = file.getPath();
             }
+        }
+        if (TextUtils.isEmpty(str) && messageObject.qualityToSave != null && (pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(messageObject.qualityToSave, null, false, true)) != null && pathToAttach.exists()) {
+            str = pathToAttach.getPath();
+        }
+        if (TextUtils.isEmpty(str)) {
+            return;
         }
         MediaController.saveFile(str, getParentActivity(), messageObject.isVideo() ? 1 : 0, null, null);
     }
