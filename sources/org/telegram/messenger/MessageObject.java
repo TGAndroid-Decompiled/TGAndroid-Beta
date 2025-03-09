@@ -3365,6 +3365,7 @@ public class MessageObject {
             case 3184:
             case 3215:
             case 3401:
+            case 3479:
             case 3494:
             case 3580:
             case 3581:
@@ -3377,6 +3378,7 @@ public class MessageObject {
             case 96586:
             case 96796:
             case 96801:
+            case 96894:
             case 97013:
             case 97300:
             case 97301:
@@ -3444,6 +3446,7 @@ public class MessageObject {
             case 110801:
             case 110834:
             case 110883:
+            case 110968:
             case 110989:
             case 111052:
             case 111220:
@@ -3466,6 +3469,7 @@ public class MessageObject {
             case 113854:
             case 114101:
             case 114130:
+            case 114276:
             case 114381:
             case 114809:
             case 114922:
@@ -3486,11 +3490,14 @@ public class MessageObject {
             case 118028:
             case 118439:
             case 118783:
+            case 118807:
             case 118939:
             case 120703:
+            case 3003834:
             case 3016404:
             case 3088960:
             case 3213227:
+            case 3271912:
             case 3358271:
             case 3444044:
             case 3446979:
@@ -3500,6 +3507,7 @@ public class MessageObject {
             case 3526257:
             case 3682393:
             case 35379135:
+            case 114035747:
                 return true;
             default:
                 return false;

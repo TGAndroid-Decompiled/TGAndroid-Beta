@@ -1112,8 +1112,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            public void dismiss() {
-                super.dismiss();
+            public void lambda$new$0() {
+                super.lambda$new$0();
                 if (PhotoViewer.this.masksAlert == this) {
                     PhotoViewer.this.masksAlert = null;
                 }

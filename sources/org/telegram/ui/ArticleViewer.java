@@ -12582,7 +12582,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
         BottomSheet bottomSheet = this.linkSheet;
         if (bottomSheet != null) {
-            bottomSheet.dismiss();
+            bottomSheet.lambda$new$0();
             this.linkSheet = null;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(this.parentActivity);

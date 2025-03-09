@@ -308,24 +308,19 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    private int addSection(ArrayList arrayList, CharSequence charSequence, final ArrayList arrayList2, boolean z) {
+    private int addSection(ArrayList arrayList, CharSequence charSequence, ArrayList arrayList2, boolean z) {
+        int i = 0;
         if (arrayList2.isEmpty()) {
             return 0;
         }
         ArrayList arrayList3 = new ArrayList();
         Iterator it = arrayList2.iterator();
-        int i = 0;
-        int i2 = 0;
-        final boolean z2 = true;
         while (it.hasNext()) {
             TLRPC.User user = (TLRPC.User) it.next();
             if (user != null && !user.bot && !UserObject.isService(user.id)) {
                 long j = user.id;
                 if (j != this.userId) {
-                    if (!this.selectedIds.contains(Long.valueOf(j))) {
-                        z2 = false;
-                    }
-                    i2++;
+                    this.selectedIds.contains(Long.valueOf(j));
                     i += AndroidUtilities.dp(56.0f);
                     arrayList3.add(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id))).withOptions(openOptions(user)));
                 }
@@ -335,16 +330,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             return i;
         }
         int dp = i + AndroidUtilities.dp(32.0f);
-        SelectorAdapter.Item asTopSection = SelectorAdapter.Item.asTopSection(charSequence);
-        if (z && i2 > 1) {
-            asTopSection.withRightText(LocaleController.getString(z2 ? R.string.DeselectAll : R.string.SelectAll), new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    UserSelectorBottomSheet.this.lambda$addSection$10(z2, arrayList2, view);
-                }
-            });
-        }
-        arrayList.add(asTopSection);
+        arrayList.add(SelectorAdapter.Item.asTopSection(charSequence));
         arrayList.addAll(arrayList3);
         return dp;
     }
@@ -457,40 +443,6 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         return !TextUtils.isEmpty(this.query);
     }
 
-    public void lambda$addSection$10(boolean z, ArrayList arrayList, View view) {
-        if (z) {
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                TLRPC.User user = (TLRPC.User) it.next();
-                this.selectedIds.remove(Long.valueOf(user.id));
-                this.allSelectedObjects.remove(Long.valueOf(user.id));
-            }
-        } else {
-            Iterator it2 = arrayList.iterator();
-            while (it2.hasNext()) {
-                TLRPC.User user2 = (TLRPC.User) it2.next();
-                if (!this.selectedIds.contains(Long.valueOf(user2.id))) {
-                    this.selectedIds.add(Long.valueOf(user2.id));
-                    this.allSelectedObjects.put(Long.valueOf(user2.id), user2);
-                }
-            }
-        }
-        checkEditTextHint();
-        this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
-            @Override
-            public final void run() {
-                UserSelectorBottomSheet.this.lambda$addSection$9();
-            }
-        }, null);
-        updateList(true, true);
-        clearSearchAfterSelect();
-    }
-
-    public void lambda$addSection$9() {
-        checkEditTextHint();
-        updateList(true, false);
-    }
-
     public void lambda$checkEditTextHint$2() {
         this.searchField.setHintText(LocaleController.getString(R.string.Search), true);
     }
@@ -562,7 +514,9 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 return;
             }
             if (i == 0 || i == 2) {
-                new GiftSheet(getContext(), this.currentAccount, j, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, 1)), new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this)).show();
+                GiftSheet giftSheet = new GiftSheet(getContext(), this.currentAccount, j, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, 1)), new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
+                BirthdayController.BirthdayState birthdayState = this.birthdays;
+                giftSheet.setBirthday(birthdayState != null && birthdayState.contains(j)).show();
                 return;
             }
             if (this.selectedIds.contains(Long.valueOf(j))) {

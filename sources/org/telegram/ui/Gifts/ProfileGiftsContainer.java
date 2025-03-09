@@ -163,7 +163,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
     public void lambda$new$4(boolean z, int i, long j, View view) {
         if (z) {
-            new GiftSheet(getContext(), i, j, null, null).show();
+            new GiftSheet(getContext(), i, j, null, null).setBirthday(BirthdayController.getInstance(i).isToday(j)).show();
         } else {
             UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());
         }

@@ -789,7 +789,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                    protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                         super.onLayout(z, i3, i4, i5, i6);
                         Page.this.updateLinkHighlight(this);
                     }
