@@ -1,5 +1,6 @@
 package kotlinx.coroutines.sync;
 
+import androidx.activity.result.ActivityResultRegistry$$ExternalSyntheticThrowCCEIfNotNull0;
 import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Unit;
@@ -17,6 +18,7 @@ import kotlinx.coroutines.DebugStringsKt;
 import kotlinx.coroutines.Waiter;
 import kotlinx.coroutines.internal.Segment;
 import kotlinx.coroutines.internal.Symbol;
+import kotlinx.coroutines.selects.SelectInstance;
 
 public class MutexImpl extends SemaphoreImpl implements Mutex {
     private static final AtomicReferenceFieldUpdater owner$FU = AtomicReferenceFieldUpdater.newUpdater(MutexImpl.class, Object.class, "owner");
@@ -30,6 +32,11 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
         public CancellableContinuationWithOwner(CancellableContinuationImpl cancellableContinuationImpl, Object obj) {
             this.cont = cancellableContinuationImpl;
             this.owner = obj;
+        }
+
+        @Override
+        public boolean cancel(Throwable th) {
+            return this.cont.cancel(th);
         }
 
         @Override
@@ -122,6 +129,31 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
             {
                 super(3);
             }
+
+            @Override
+            public Object invoke(Object obj, Object obj2, Object obj3) {
+                ActivityResultRegistry$$ExternalSyntheticThrowCCEIfNotNull0.m(obj);
+                return invoke((SelectInstance) null, obj2, obj3);
+            }
+
+            public final Function1 invoke(SelectInstance selectInstance, final Object obj, Object obj2) {
+                final MutexImpl mutexImpl = MutexImpl.this;
+                return new Function1() {
+                    {
+                        super(1);
+                    }
+
+                    @Override
+                    public Object invoke(Object obj3) {
+                        invoke((Throwable) obj3);
+                        return Unit.INSTANCE;
+                    }
+
+                    public final void invoke(Throwable th) {
+                        MutexImpl.this.unlock(obj);
+                    }
+                };
+            }
         };
     }
 
@@ -185,6 +217,7 @@ public class MutexImpl extends SemaphoreImpl implements Mutex {
         return 0;
     }
 
+    @Override
     public boolean isLocked() {
         return getAvailablePermits() == 0;
     }

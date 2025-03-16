@@ -1,6 +1,7 @@
 package kotlin.collections;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import kotlin.jvm.internal.Intrinsics;
 
@@ -42,5 +43,13 @@ public abstract class ArraysKt___ArraysJvmKt extends ArraysKt__ArraysKt {
     public static final void fill(Object[] objArr, Object obj, int i, int i2) {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         Arrays.fill(objArr, i, i2, obj);
+    }
+
+    public static final void sortWith(Object[] objArr, Comparator comparator) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        Intrinsics.checkNotNullParameter(comparator, "comparator");
+        if (objArr.length > 1) {
+            Arrays.sort(objArr, comparator);
+        }
     }
 }

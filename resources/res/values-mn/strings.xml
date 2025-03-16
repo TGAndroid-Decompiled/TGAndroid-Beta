@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google-р нэвтрэх:</string>
     <string name="confirm_device_credential_password">Нууц үг ашиглах</string>
     <string name="default_error_msg">Тодорхойгүй алдаа гарлаа</string>
-    <string name="fcm_fallback_notification_channel_label">Бусад</string>
     <string name="fingerprint_dialog_touch_sensor">Хурууны хээ мэдрэгчид хүрнэ үү</string>
     <string name="fingerprint_error_hw_not_available">Хурууны хээний төхөөрөмж боломжгүй байна.</string>
     <string name="fingerprint_error_hw_not_present">Энэ төхөөрөмжид хурууны хээ мэдрэгч алга байна</string>

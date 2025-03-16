@@ -342,6 +342,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         return true;
     }
 
+    @Override
     public long processNextEvent() {
         ThreadSafeHeapNode threadSafeHeapNode;
         if (processUnconfinedEvent()) {

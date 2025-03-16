@@ -281,10 +281,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         final String val$startCommand;
         final ChatAttachAlertBotWebViewLayout val$webViewLayout;
 
-        class C00231 extends AnimatorListenerAdapter {
+        class C00251 extends AnimatorListenerAdapter {
             final boolean val$isVisible;
 
-            C00231(boolean z) {
+            C00251(boolean z) {
                 r2 = z;
             }
 
@@ -517,7 +517,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         this.botButtonAnimator.addListener(new AnimatorListenerAdapter() {
                             final boolean val$isVisible;
 
-                            C00231(boolean z5) {
+                            C00251(boolean z5) {
                                 r2 = z5;
                             }
 
@@ -3825,13 +3825,16 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         };
         this.buttonsRecyclerView = anonymousClass11;
+        anonymousClass11.setClipChildren(true);
+        this.buttonsRecyclerView.setClipToPadding(true);
+        RecyclerListView recyclerListView = this.buttonsRecyclerView;
         ButtonsAdapter buttonsAdapter = new ButtonsAdapter(context2);
         this.buttonsAdapter = buttonsAdapter;
-        anonymousClass11.setAdapter(buttonsAdapter);
-        RecyclerListView recyclerListView = this.buttonsRecyclerView;
+        recyclerListView.setAdapter(buttonsAdapter);
+        RecyclerListView recyclerListView2 = this.buttonsRecyclerView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context2, 0, false);
         this.buttonsLayoutManager = linearLayoutManager;
-        recyclerListView.setLayoutManager(linearLayoutManager);
+        recyclerListView2.setLayoutManager(linearLayoutManager);
         this.buttonsRecyclerView.setVerticalScrollBarEnabled(false);
         this.buttonsRecyclerView.setHorizontalScrollBarEnabled(false);
         this.buttonsRecyclerView.setItemAnimator(null);

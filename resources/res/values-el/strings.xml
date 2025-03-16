@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Συνδεθείτε με το Google</string>
     <string name="confirm_device_credential_password">Χρήση κωδικού πρόσβασης</string>
     <string name="default_error_msg">Άγνωστο σφάλμα</string>
-    <string name="fcm_fallback_notification_channel_label">Διάφορα</string>
     <string name="fingerprint_dialog_touch_sensor">Αγγίξτε τον αισθ. δακτ. αποτ.</string>
     <string name="fingerprint_error_hw_not_available">Ο εξοπλισμός δακτυλικού αποτυπώματος δεν είναι διαθέσιμος.</string>
     <string name="fingerprint_error_hw_not_present">Αυτή η συσκευή δεν διαθέτει αισθητήρα δακτυλικού αποτυπώματος</string>

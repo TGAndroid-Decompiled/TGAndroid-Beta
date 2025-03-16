@@ -40,6 +40,13 @@ public abstract class Intrinsics {
         return i == i2 ? 0 : 1;
     }
 
+    public static int compare(long j, long j2) {
+        if (j < j2) {
+            return -1;
+        }
+        return j == j2 ? 0 : 1;
+    }
+
     private static String createParameterIsNullExceptionMessage(String str) {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         String name = Intrinsics.class.getName();
@@ -69,6 +76,10 @@ public abstract class Intrinsics {
         }
         th.setStackTrace((StackTraceElement[]) Arrays.copyOfRange(stackTrace, i + 1, length));
         return th;
+    }
+
+    public static String stringPlus(String str, Object obj) {
+        return str + obj;
     }
 
     public static void throwJavaNpe() {

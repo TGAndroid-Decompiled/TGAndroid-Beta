@@ -633,7 +633,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             return Uri.parse("tg://" + MessageObject.getFileName(document) + sb.toString());
         }
 
-        public static VideoUri of(int i, TLRPC.Document document, TLRPC.Document document2, int i2) {
+        public static VideoUri of(int i, TLRPC.Document document, TLRPC.Document document2, int i2, boolean z) {
             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
             Uri fromFile;
             Uri fromFile2;
@@ -661,9 +661,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 videoUri.manifestDocument = document2;
                 videoUri.manifestDocId = document2.id;
                 videoUri.m3u8uri = getUri(i, document2, i2);
-                File pathToAttach = FileLoader.getInstance(i).getPathToAttach(document2, null, false, true);
+                File pathToAttach = FileLoader.getInstance(i).getPathToAttach(document2, null, false, z);
                 if (pathToAttach == null || !pathToAttach.exists()) {
-                    File pathToAttach2 = FileLoader.getInstance(i).getPathToAttach(document2, null, true, true);
+                    File pathToAttach2 = FileLoader.getInstance(i).getPathToAttach(document2, null, true, z);
                     if (pathToAttach2 != null && pathToAttach2.exists()) {
                         fromFile2 = Uri.fromFile(pathToAttach2);
                     }
@@ -684,9 +684,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 Double.isNaN(d2);
                 videoUri.bitrate = d2 / d;
             }
-            File pathToAttach3 = FileLoader.getInstance(i).getPathToAttach(document, null, false, true);
+            File pathToAttach3 = FileLoader.getInstance(i).getPathToAttach(document, null, false, z);
             if (pathToAttach3 == null || !pathToAttach3.exists()) {
-                File pathToAttach4 = FileLoader.getInstance(i).getPathToAttach(document, null, true, true);
+                File pathToAttach4 = FileLoader.getInstance(i).getPathToAttach(document, null, true, z);
                 if (pathToAttach4 != null && pathToAttach4.exists()) {
                     fromFile = Uri.fromFile(pathToAttach4);
                 }
@@ -1118,6 +1118,10 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public static ArrayList getQualities(int i, TLRPC.Document document, ArrayList arrayList, int i2, boolean z) {
+        return getQualities(i, document, arrayList, i2, z, true);
+    }
+
+    public static ArrayList getQualities(int i, TLRPC.Document document, ArrayList arrayList, int i2, boolean z, boolean z2) {
         String str;
         ArrayList arrayList2 = new ArrayList();
         if (document != null) {
@@ -1146,7 +1150,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             try {
                 TLRPC.Document document3 = (TLRPC.Document) arrayList2.get(i4);
                 if (!"application/x-mpegurl".equalsIgnoreCase(document3.mime_type)) {
-                    VideoUri of = VideoUri.of(i, document3, (TLRPC.Document) longSparseArray.get(document3.id), i2);
+                    VideoUri of = VideoUri.of(i, document3, (TLRPC.Document) longSparseArray.get(document3.id), i2, z2);
                     if (of.width > 0 && of.height > 0) {
                         if (document3 == document) {
                             of.original = true;
@@ -1192,8 +1196,8 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return Quality.group(arrayList5);
     }
 
-    public static ArrayList getQualities(int i, TLRPC.MessageMedia messageMedia) {
-        return !(messageMedia instanceof TLRPC.TL_messageMediaDocument) ? new ArrayList() : getQualities(i, messageMedia.document, messageMedia.alt_documents, 0, false);
+    public static ArrayList getQualities(int i, TLRPC.MessageMedia messageMedia, boolean z) {
+        return !(messageMedia instanceof TLRPC.TL_messageMediaDocument) ? new ArrayList() : getQualities(i, messageMedia.document, messageMedia.alt_documents, 0, false, z);
     }
 
     public static VideoUri getQualityForPlayer(ArrayList arrayList) {

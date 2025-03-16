@@ -45,9 +45,9 @@ public abstract class DispatchedTaskKt {
             Result.Companion companion2 = Result.Companion;
             successfulResult$kotlinx_coroutines_core = dispatchedTask.getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
         }
-        Object m162constructorimpl = Result.m162constructorimpl(successfulResult$kotlinx_coroutines_core);
+        Object m209constructorimpl = Result.m209constructorimpl(successfulResult$kotlinx_coroutines_core);
         if (!z) {
-            continuation.resumeWith(m162constructorimpl);
+            continuation.resumeWith(m209constructorimpl);
             return;
         }
         Intrinsics.checkNotNull(continuation, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<T of kotlinx.coroutines.DispatchedTaskKt.resume>");
@@ -58,7 +58,7 @@ public abstract class DispatchedTaskKt {
         Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
         UndispatchedCoroutine updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, updateThreadContext) : null;
         try {
-            dispatchedContinuation.continuation.resumeWith(m162constructorimpl);
+            dispatchedContinuation.continuation.resumeWith(m209constructorimpl);
             Unit unit = Unit.INSTANCE;
         } finally {
             if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {

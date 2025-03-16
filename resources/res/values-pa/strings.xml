@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google ਨਾਲ ਸਾਈਨ-ਇਨ ਕਰੋ</string>
     <string name="confirm_device_credential_password">ਪਾਸਵਰਡ ਵਰਤੋ</string>
     <string name="default_error_msg">ਅਗਿਆਤ ਗੜਬੜ</string>
-    <string name="fcm_fallback_notification_channel_label">ਫੁਟਕਲ</string>
     <string name="fingerprint_dialog_touch_sensor">ਫਿੰਗਰਪ੍ਰਿੰਟ ਸੈਂਸਰ ਨੂੰ ਸਪਰਸ਼ ਕਰੋ</string>
     <string name="fingerprint_error_hw_not_available">ਫਿੰਗਰਪ੍ਰਿੰਟ ਹਾਰਡਵੇਅਰ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
     <string name="fingerprint_error_hw_not_present">ਇਸ ਡੀਵਾਈਸ ਵਿੱਚ ਫਿੰਗਰਪ੍ਰਿੰਟ ਸੈਂਸਰ ਨਹੀਂ ਹੈ</string>

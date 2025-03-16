@@ -853,7 +853,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                         public final void run(Object obj) {
                             BotShareSheet.lambda$share$1(fileArr, alertDialog, runnable2, (File) obj);
                         }
-                    });
+                    }, null);
                     httpGetFileTask.setDestFile(file);
                     httpGetFileTask.setMaxSize(8388608L);
                     httpGetFileTask.execute(str3);

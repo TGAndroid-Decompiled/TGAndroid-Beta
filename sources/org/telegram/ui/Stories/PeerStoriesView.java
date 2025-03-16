@@ -4518,7 +4518,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyItem.close_friends = i2 == 1;
             storyItem.contacts = i2 == 2;
             storyItem.selected_contacts = i2 == 3;
-            MessagesController.getInstance(this.currentAccount).getStoriesController().updateStoryItem(storyItem.dialogId, storyItem);
+            MessagesController.getInstance(this.currentAccount).getStoriesController().updateStoryItem(storyItem.dialogId, storyItem, true, true);
             this.editedPrivacy = true;
             int i3 = storyPrivacy.type;
             if (i3 == 4) {

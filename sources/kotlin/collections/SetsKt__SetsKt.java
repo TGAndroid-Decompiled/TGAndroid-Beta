@@ -3,7 +3,7 @@ package kotlin.collections;
 import java.util.Set;
 import kotlin.jvm.internal.Intrinsics;
 
-abstract class SetsKt__SetsKt extends SetsKt__SetsJVMKt {
+public abstract class SetsKt__SetsKt extends SetsKt__SetsJVMKt {
     public static final Set emptySet() {
         return EmptySet.INSTANCE;
     }

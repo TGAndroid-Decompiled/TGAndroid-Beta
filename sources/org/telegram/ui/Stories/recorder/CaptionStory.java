@@ -108,8 +108,7 @@ public abstract class CaptionStory extends CaptionContainerView {
             int i = R.raw.chat_audio_record_delete_3;
             RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
             this.drawable = rLottieDrawable;
-            rLottieDrawable.setCurrentParentView(view);
-            this.drawable.setInvalidateOnProgressSet(true);
+            rLottieDrawable.setInvalidateOnProgressSet(true);
             updateColors();
         }
 

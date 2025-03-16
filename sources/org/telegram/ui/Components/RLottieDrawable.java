@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -26,7 +27,9 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.BitmapsCache;
+import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.LaunchActivity;
 
 public class RLottieDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
     public static DispatchQueue lottieCacheGenerateQueue;
@@ -45,7 +48,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     protected Runnable cacheGenerateTask;
     private boolean createdForFirstFrame;
     protected int currentFrame;
-    private View currentParentView;
     protected int customEndFrame;
     private boolean decodeSingleFrame;
     protected boolean destroyAfterLoading;
@@ -1299,10 +1301,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         }
     }
 
-    public void setCurrentParentView(View view) {
-        this.currentParentView = view;
-    }
-
     public boolean setCustomEndFrame(int i) {
         if (this.customEndFrame == i || i > this.metaData[0]) {
             return false;
@@ -1438,9 +1436,13 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 return;
             }
             HashMap hashMap = this.vibrationPattern;
-            if (hashMap != null && this.currentParentView != null && this.allowVibration && (num = (Integer) hashMap.get(Integer.valueOf(this.currentFrame - 1))) != null) {
+            if (hashMap != null && this.allowVibration && (num = (Integer) hashMap.get(Integer.valueOf(this.currentFrame - 1))) != null) {
                 try {
-                    this.currentParentView.performHapticFeedback(num.intValue() == 1 ? 0 : 3, 2);
+                    Activity activity = LaunchActivity.instance;
+                    if (activity == null) {
+                        activity = BubbleActivity.instance;
+                    }
+                    activity.getWindow().getDecorView().performHapticFeedback(num.intValue() == 1 ? 0 : 3, 2);
                 } catch (Exception unused) {
                 }
             }

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Conectați-vă cu Google</string>
     <string name="confirm_device_credential_password">Folosiți parola</string>
     <string name="default_error_msg">Eroare necunoscută</string>
-    <string name="fcm_fallback_notification_channel_label">Diverse</string>
     <string name="fingerprint_dialog_touch_sensor">Atingeți senzorul de amprentă</string>
     <string name="fingerprint_error_hw_not_available">Hardware-ul pentru amprentă nu este disponibil.</string>
     <string name="fingerprint_error_hw_not_present">Acest dispozitiv nu are senzor de amprentă</string>

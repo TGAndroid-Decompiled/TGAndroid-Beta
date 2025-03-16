@@ -116,7 +116,6 @@
     <string name="common_signin_button_text_long">使用 Google 帳戶登入</string>
     <string name="confirm_device_credential_password">使用密碼</string>
     <string name="default_error_msg">不明的錯誤</string>
-    <string name="fcm_fallback_notification_channel_label">其他</string>
     <string name="fingerprint_dialog_touch_sensor">請輕觸指紋感應器</string>
     <string name="fingerprint_error_hw_not_available">指紋硬體無法使用。</string>
     <string name="fingerprint_error_hw_not_present">這個裝置沒有指紋感應器</string>

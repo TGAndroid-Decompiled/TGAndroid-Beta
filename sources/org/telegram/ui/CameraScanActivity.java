@@ -142,8 +142,8 @@ public class CameraScanActivity extends BaseFragment {
         final boolean val$gallery;
         final int val$type;
 
-        public class C00121 extends CameraScanActivity {
-            C00121(int i) {
+        public class C00141 extends CameraScanActivity {
+            C00141(int i) {
                 super(i);
             }
 
@@ -166,8 +166,8 @@ public class CameraScanActivity extends BaseFragment {
             this.val$gallery = z2;
             this.val$cameraDelegate = cameraScanActivityDelegate;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
-            C00121 c00121 = new CameraScanActivity(i) {
-                C00121(int i2) {
+            C00141 c00141 = new CameraScanActivity(i) {
+                C00141(int i2) {
                     super(i2);
                 }
 
@@ -182,9 +182,9 @@ public class CameraScanActivity extends BaseFragment {
                     AnonymousClass1.this.lambda$new$0();
                 }
             };
-            this.fragment = c00121;
-            c00121.shownAsBottomSheet = true;
-            ((CameraScanActivity) c00121).needGalleryButton = z2;
+            this.fragment = c00141;
+            c00141.shownAsBottomSheet = true;
+            ((CameraScanActivity) c00141).needGalleryButton = z2;
             iNavigationLayoutArr[0].addFragmentToStack(this.fragment);
             iNavigationLayoutArr[0].showLastFragment();
             ViewGroup view = iNavigationLayoutArr[0].getView();

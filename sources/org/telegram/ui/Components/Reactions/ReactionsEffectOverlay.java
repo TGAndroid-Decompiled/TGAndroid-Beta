@@ -38,7 +38,6 @@ public class ReactionsEffectOverlay {
     private final AnimationView effectImageView;
     private final AnimationView emojiImageView;
     private final AnimationView emojiStaticImageView;
-    private final BaseFragment fragment;
     private final long groupId;
     private ReactionsContainerLayout.ReactionHolderView holderView;
     boolean isFinished;

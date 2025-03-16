@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="confirm_device_credential_password">Use password</string>
     <string name="default_error_msg">Unknown error</string>
-    <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
     <string name="fingerprint_dialog_touch_sensor">Touch the fingerprint sensor</string>
     <string name="fingerprint_error_hw_not_available">Fingerprint hardware not available.</string>
     <string name="fingerprint_error_hw_not_present">This device does not have a fingerprint sensor</string>

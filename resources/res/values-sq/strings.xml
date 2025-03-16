@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Identifikohu me Google</string>
     <string name="confirm_device_credential_password">Përdor fjalëkalimin</string>
     <string name="default_error_msg">Gabim i panjohur</string>
-    <string name="fcm_fallback_notification_channel_label">Të ndryshme</string>
     <string name="fingerprint_dialog_touch_sensor">Prek sensorin e gjurmës së gishtit</string>
     <string name="fingerprint_error_hw_not_available">Hardueri i gjurmës së gishtit nuk mundësohet.</string>
     <string name="fingerprint_error_hw_not_present">Kjo pajisje nuk ka një sensor të gjurmës së gishtit</string>

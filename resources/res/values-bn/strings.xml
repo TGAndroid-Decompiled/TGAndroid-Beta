@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google এর মাধ্যমে সাইন-ইন করুন</string>
     <string name="confirm_device_credential_password">পাসওয়ার্ড ব্যবহার করুন</string>
     <string name="default_error_msg">অজানা সমস্যা</string>
-    <string name="fcm_fallback_notification_channel_label">বিবিধ</string>
     <string name="fingerprint_dialog_touch_sensor">আঙ্গুলের ছাপের সেন্সর টাচ করুন</string>
     <string name="fingerprint_error_hw_not_available">আঙ্গুলের ছাপ নেওয়ার হার্ডওয়্যার উপলভ্য নয়।</string>
     <string name="fingerprint_error_hw_not_present">এই ডিভাইসে আঙ্গুলের ছাপ নেওয়ার সেন্সর নেই</string>

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google मार्फत साइन‍ इन गर्नुहोस्</string>
     <string name="confirm_device_credential_password">पासवर्ड प्रयोग गर्नुहोस्</string>
     <string name="default_error_msg">अज्ञात त्रुटि</string>
-    <string name="fcm_fallback_notification_channel_label">विविध</string>
     <string name="fingerprint_dialog_touch_sensor">फिंगरप्रिन्ट सेन्सरमा छुनुहोस्‌</string>
     <string name="fingerprint_error_hw_not_available">फिंगरप्रिन्ट हार्डवेयर उपलब्ध छैन।</string>
     <string name="fingerprint_error_hw_not_present">यो यन्त्रमा कुनै फिंगरप्रिन्ट सेन्सर छैन</string>

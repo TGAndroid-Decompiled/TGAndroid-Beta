@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Log masuk dengan Google</string>
     <string name="confirm_device_credential_password">Guna kata laluan</string>
     <string name="default_error_msg">Ralat tidak diketahui</string>
-    <string name="fcm_fallback_notification_channel_label">Pelbagai</string>
     <string name="fingerprint_dialog_touch_sensor">Sentuh penderia cap jari</string>
     <string name="fingerprint_error_hw_not_available">Perkakasan cap jari tidak tersedia.</string>
     <string name="fingerprint_error_hw_not_present">Peranti ini tiada penderia cap jari</string>

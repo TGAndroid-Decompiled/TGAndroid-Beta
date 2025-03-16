@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -80,7 +81,7 @@ public class FactCheckController {
         }
 
         public int hashCode() {
-            return FactCheckController$Key$$ExternalSyntheticBackport0.m(this.hash);
+            return SessionDetails$$ExternalSyntheticBackport0.m(this.hash);
         }
     }
 

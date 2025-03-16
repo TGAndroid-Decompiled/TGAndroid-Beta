@@ -272,37 +272,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         }
     }
 
-    public void setSelectedMessages(List<MessageObject> list) {
-        boolean z;
-        this.selectedMessages = list;
-        if (!this.parentFragment.isReport() && !this.parentFragment.isSecretChat() && ((this.parentFragment.getCurrentChatInfo() == null || !(this.parentFragment.getCurrentChatInfo().available_reactions instanceof TLRPC.TL_chatReactionsNone)) && !list.isEmpty())) {
-            Iterator<MessageObject> it = list.iterator();
-            long j = 0;
-            boolean z2 = false;
-            while (true) {
-                z = true;
-                if (!it.hasNext()) {
-                    break;
-                }
-                MessageObject next = it.next();
-                if (!isMessageTypeAllowed(next)) {
-                    break;
-                }
-                if (!z2) {
-                    j = next.getGroupId();
-                    z2 = true;
-                } else if (j != next.getGroupId() || j == 0) {
-                    break;
-                }
-            }
-        }
-        z = false;
-        if (z != this.isVisible) {
-            this.isVisible = z;
-            this.hiddenByScroll = false;
-            animateVisible(z);
-        } else if (z) {
-            this.currentPrimaryObject = findPrimaryObject();
-        }
+    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.setSelectedMessages(java.util.List):void");
     }
 }

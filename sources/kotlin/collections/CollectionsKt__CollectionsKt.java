@@ -1,5 +1,6 @@
 package kotlin.collections;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import kotlin.jvm.internal.Intrinsics;
@@ -14,7 +15,7 @@ public abstract class CollectionsKt__CollectionsKt extends CollectionsKt__Collec
         return EmptyList.INSTANCE;
     }
 
-    public static final int getLastIndex(List list) {
+    public static int getLastIndex(List list) {
         Intrinsics.checkNotNullParameter(list, "<this>");
         return list.size() - 1;
     }
@@ -29,6 +30,11 @@ public abstract class CollectionsKt__CollectionsKt extends CollectionsKt__Collec
         }
         emptyList = emptyList();
         return emptyList;
+    }
+
+    public static List mutableListOf(Object... elements) {
+        Intrinsics.checkNotNullParameter(elements, "elements");
+        return elements.length == 0 ? new ArrayList() : new ArrayList(new ArrayAsCollection(elements, true));
     }
 
     public static List optimizeReadOnlyList(List list) {

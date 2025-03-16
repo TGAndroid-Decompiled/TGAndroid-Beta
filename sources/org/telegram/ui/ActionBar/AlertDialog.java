@@ -920,7 +920,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public android.view.View inflateContent(boolean r35) {
+    public android.view.View inflateContent(boolean r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.AlertDialog.inflateContent(boolean):android.view.View");
     }
 

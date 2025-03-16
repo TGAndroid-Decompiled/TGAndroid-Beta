@@ -77,7 +77,7 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
     public static Map toMap(Map map) {
         Intrinsics.checkNotNullParameter(map, "<this>");
         int size = map.size();
-        return size != 0 ? size != 1 ? toMutableMap(map) : MapsKt__MapsJVMKt.toSingletonMap(map) : MapsKt.emptyMap();
+        return size != 0 ? size != 1 ? MapsKt.toMutableMap(map) : MapsKt__MapsJVMKt.toSingletonMap(map) : MapsKt.emptyMap();
     }
 
     public static final Map toMap(Pair[] pairArr, Map destination) {
@@ -87,7 +87,7 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
         return destination;
     }
 
-    public static final Map toMutableMap(Map map) {
+    public static Map toMutableMap(Map map) {
         Intrinsics.checkNotNullParameter(map, "<this>");
         return new LinkedHashMap(map);
     }

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Hasi saioa Google-ko kontuarekin</string>
     <string name="confirm_device_credential_password">Erabili pasahitza</string>
     <string name="default_error_msg">Errore ezezaguna</string>
-    <string name="fcm_fallback_notification_channel_label">Askotarikoak</string>
     <string name="fingerprint_dialog_touch_sensor">Sakatu hatz-marken sentsorea</string>
     <string name="fingerprint_error_hw_not_available">Hatz-marken hardwarea ez dago erabilgarri.</string>
     <string name="fingerprint_error_hw_not_present">Gailu honek ez du hatz-marken sentsorerik</string>

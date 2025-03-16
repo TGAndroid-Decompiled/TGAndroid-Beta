@@ -2251,10 +2251,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    private org.telegram.messenger.chromecast.ChromecastMediaVariations getCurrentChromecastMedia() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.getCurrentChromecastMedia():org.telegram.messenger.chromecast.ChromecastMediaVariations");
-    }
-
     public static String getFileName(Uri uri) {
         if (uri == null) {
             return "";
@@ -4106,6 +4102,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public AudioInfo getAudioInfo() {
         return this.audioInfo;
+    }
+
+    public org.telegram.messenger.chromecast.ChromecastMediaVariations getCurrentChromecastMedia() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.getCurrentChromecastMedia():org.telegram.messenger.chromecast.ChromecastMediaVariations");
     }
 
     public VideoConvertMessage getCurrentForegroundConverMessage() {

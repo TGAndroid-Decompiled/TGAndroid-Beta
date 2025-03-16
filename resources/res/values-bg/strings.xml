@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Вход с Google</string>
     <string name="confirm_device_credential_password">Използване на парола</string>
     <string name="default_error_msg">Неизвестна грешка</string>
-    <string name="fcm_fallback_notification_channel_label">Разни</string>
     <string name="fingerprint_dialog_touch_sensor">Докоснете сензора за отпечатъци</string>
     <string name="fingerprint_error_hw_not_available">Хардуерът за отпечатъци не е налице.</string>
     <string name="fingerprint_error_hw_not_present">Това устройство няма сензор за отпечатъци</string>

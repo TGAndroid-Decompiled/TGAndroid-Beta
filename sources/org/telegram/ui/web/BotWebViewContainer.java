@@ -199,8 +199,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public class AnonymousClass1 extends BackupImageView {
 
-        public class C00461 extends ImageReceiver {
-            C00461(View view) {
+        public class C00481 extends ImageReceiver {
+            C00481(View view) {
                 super(view);
             }
 
@@ -216,7 +216,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        BotWebViewContainer.AnonymousClass1.C00461.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                        BotWebViewContainer.AnonymousClass1.C00481.this.lambda$setImageBitmapByKey$0(valueAnimator);
                     }
                 });
                 duration.start();
@@ -226,7 +226,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         AnonymousClass1(Context context) {
             super(context);
-            this.imageReceiver = new C00461(this);
+            this.imageReceiver = new C00481(this);
         }
 
         @Override
@@ -2448,8 +2448,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         cellFlickerDrawable.setColors(i, 153, 204);
         AnonymousClass1 anonymousClass1 = new BackupImageView(context) {
 
-            public class C00461 extends ImageReceiver {
-                C00461(View view) {
+            public class C00481 extends ImageReceiver {
+                C00481(View view) {
                     super(view);
                 }
 
@@ -2465,7 +2465,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00461.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00481.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();
@@ -2475,7 +2475,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             AnonymousClass1(Context context2) {
                 super(context2);
-                this.imageReceiver = new C00461(this);
+                this.imageReceiver = new C00481(this);
             }
 
             @Override

@@ -10,7 +10,6 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -1940,9 +1939,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.drawTime = true;
         this.mediaSpoilerPath = new Path();
         this.mediaSpoilerRadii = new float[8];
-        this.mediaSpoilerEffect = new SpoilerEffect();
         this.unlockAlpha = 1.0f;
-        this.unlockSpoilerEffect = new SpoilerEffect();
         this.unlockSpoilerPath = new Path();
         this.unlockSpoilerRadii = new float[8];
         this.replySelectorRect = new RectF();
@@ -5863,14 +5860,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     public void drawBlurredPhotoParticles(Canvas canvas) {
-        if (this.mediaSpoilerEffect2 != null) {
-            canvas.translate(this.photoImage.getImageX(), this.photoImage.getImageY());
-            this.mediaSpoilerEffect2.draw(canvas, this, (int) this.photoImage.getImageWidth(), (int) this.photoImage.getImageHeight(), this.photoImage.getAlpha(), this.drawingToBitmap);
-        } else {
-            this.mediaSpoilerEffect.setColor(ColorUtils.setAlphaComponent(-1, (int) (Color.alpha(-1) * 0.325f * this.photoImage.getAlpha())));
-            this.mediaSpoilerEffect.setBounds((int) this.photoImage.getImageX(), (int) this.photoImage.getImageY(), (int) this.photoImage.getImageX2(), (int) this.photoImage.getImageY2());
-            this.mediaSpoilerEffect.draw(canvas);
+        if (this.mediaSpoilerEffect2 == null) {
+            return;
         }
+        canvas.save();
+        canvas.translate(this.photoImage.getImageX(), this.photoImage.getImageY());
+        this.mediaSpoilerEffect2.draw(canvas, this, (int) this.photoImage.getImageWidth(), (int) this.photoImage.getImageHeight(), this.photoImage.getAlpha(), this.drawingToBitmap);
+        canvas.restore();
         invalidate();
     }
 
@@ -7588,7 +7584,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 return true;
             }
         }
-        if (this.drawNameLayout && this.nameLayout != null && (swapAnimatedEmojiDrawable = this.currentNameStatusDrawable) != null && swapAnimatedEmojiDrawable.getDrawable() != null) {
+        if (this.drawNameLayout && this.nameLayout != null && (swapAnimatedEmojiDrawable = this.currentNameEmojiStatusDrawable) != null && !swapAnimatedEmojiDrawable.isEmpty()) {
             return true;
         }
         AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.animatedEmojiStack;
@@ -7603,6 +7599,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (groupedMessagePosition2.minY == 0 && groupedMessagePosition2.minX == 0) {
                 return true;
             }
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable3 = this.currentNameStatusDrawable;
+        if (swapAnimatedEmojiDrawable3 != null && !swapAnimatedEmojiDrawable3.isEmpty()) {
+            return true;
         }
         if (this.currentMessagesGroup == null) {
             TransitionParams transitionParams = this.transitionParams;

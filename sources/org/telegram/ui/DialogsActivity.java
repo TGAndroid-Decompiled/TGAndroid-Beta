@@ -387,6 +387,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private ActionBarMenuSubItem readItem;
     private RectF rect;
     private ActionBarMenuSubItem removeFromFolderItem;
+    public long replyMessageAuthor;
     private long requestPeerBotId;
     private TLRPC.RequestPeerType requestPeerType;
     public boolean resetDelegate;
@@ -457,6 +458,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private int topPadding;
     private UndoView[] undoView;
     private int undoViewIndex;
+    private IUpdateButton updateButton;
     private boolean updatePullAfterScroll;
     private Bulletin uploadingAvatarBulletin;
     private ViewPage[] viewPages;
@@ -4370,6 +4372,18 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return true;
     }
 
+    public void lambda$createView$17(Float f) {
+        float dp = AndroidUtilities.dp(48.0f) - f.floatValue();
+        this.additionalFloatingTranslation2 = dp;
+        if (dp < 0.0f) {
+            this.additionalFloatingTranslation2 = 0.0f;
+        }
+        if (this.floatingHidden) {
+            return;
+        }
+        updateFloatingButtonOffset();
+    }
+
     public void lambda$createView$18(View view) {
         finishPreviewFragment();
     }
@@ -6963,6 +6977,35 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void updateMenuButton(boolean z) {
+        int i;
+        if (this.menuDrawable == null || this.updateButton == null) {
+            return;
+        }
+        if (ApplicationLoader.applicationLoaderInstance.isCustomUpdate()) {
+            if (ApplicationLoader.applicationLoaderInstance.getUpdate() != null) {
+                if (ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
+                    i = MenuDrawable.TYPE_UDPATE_DOWNLOADING;
+                    r1 = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
+                }
+                i = MenuDrawable.TYPE_UDPATE_AVAILABLE;
+            }
+            i = MenuDrawable.TYPE_DEFAULT;
+        } else {
+            if (SharedConfig.isAppUpdateAvailable()) {
+                String attachFileName = FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document);
+                if (getFileLoader().isLoadingFile(attachFileName)) {
+                    int i2 = MenuDrawable.TYPE_UDPATE_DOWNLOADING;
+                    Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
+                    r1 = fileProgress != null ? fileProgress.floatValue() : 0.0f;
+                    i = i2;
+                }
+                i = MenuDrawable.TYPE_UDPATE_AVAILABLE;
+            }
+            i = MenuDrawable.TYPE_DEFAULT;
+        }
+        this.updateButton.update(z);
+        this.menuDrawable.setType(i, z);
+        this.menuDrawable.setUpdateDownloadProgress(r1, z);
     }
 
     public void updatePasscodeButton() {
@@ -7540,7 +7583,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r40) {
+    public android.view.View createView(final android.content.Context r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -7815,7 +7858,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                             SuggestClearDatabaseBottomSheet.dismissDialog();
                                             return;
                                         }
-                                        if (i != NotificationCenter.appUpdateAvailable) {
+                                        if (i != NotificationCenter.appUpdateAvailable && i != NotificationCenter.appUpdateLoading) {
                                             if (i == NotificationCenter.fileLoaded || i == NotificationCenter.fileLoadFailed || i == NotificationCenter.fileLoadProgressChanged) {
                                                 String str = (String) objArr[0];
                                                 if (!SharedConfig.isAppUpdateAvailable() || !FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str)) {
@@ -8881,6 +8924,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.initialDialogsType = this.arguments.getInt("dialogsType", 0);
             this.isQuote = this.arguments.getBoolean("quote", false);
             this.isReplyTo = this.arguments.getBoolean("reply_to", false);
+            this.replyMessageAuthor = this.arguments.getLong("reply_to_author", 0L);
             this.selectAlertString = this.arguments.getString("selectAlertString");
             this.selectAlertStringGroup = this.arguments.getString("selectAlertStringGroup");
             this.addToGroupAlertString = this.arguments.getString("addToGroupAlertString");
@@ -8954,6 +8998,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetPasscode);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.appUpdateAvailable);
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.appUpdateLoading);
         }
         getNotificationCenter().addObserver(this, NotificationCenter.messagesDeleted);
         getNotificationCenter().addObserver(this, NotificationCenter.onDatabaseMigration);
@@ -9032,6 +9077,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetPasscode);
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateAvailable);
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateLoading);
         }
         getNotificationCenter().removeObserver(this, NotificationCenter.messagesDeleted);
         getNotificationCenter().removeObserver(this, NotificationCenter.onDatabaseMigration);

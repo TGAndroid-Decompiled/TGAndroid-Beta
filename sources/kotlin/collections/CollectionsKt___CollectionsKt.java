@@ -2,6 +2,7 @@ package kotlin.collections;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -15,6 +16,22 @@ import kotlin.ranges.RangesKt___RangesKt;
 import kotlin.text.StringsKt__AppendableKt;
 
 public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___CollectionsJvmKt {
+    public static List filterNotNull(Iterable iterable) {
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        return (List) filterNotNullTo(iterable, new ArrayList());
+    }
+
+    public static final Collection filterNotNullTo(Iterable iterable, Collection destination) {
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        Intrinsics.checkNotNullParameter(destination, "destination");
+        for (Object obj : iterable) {
+            if (obj != null) {
+                destination.add(obj);
+            }
+        }
+        return destination;
+    }
+
     public static final Object first(Iterable iterable) {
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         if (iterable instanceof List) {
@@ -89,6 +106,22 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         return joinToString(iterable, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
     }
 
+    public static Comparable minOrNull(Iterable iterable) {
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        Iterator it = iterable.iterator();
+        if (!it.hasNext()) {
+            return null;
+        }
+        Comparable comparable = (Comparable) it.next();
+        while (it.hasNext()) {
+            Comparable comparable2 = (Comparable) it.next();
+            if (comparable.compareTo(comparable2) > 0) {
+                comparable = comparable2;
+            }
+        }
+        return comparable;
+    }
+
     public static List plus(Collection collection, Iterable elements) {
         Intrinsics.checkNotNullParameter(collection, "<this>");
         Intrinsics.checkNotNullParameter(elements, "elements");
@@ -102,6 +135,55 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         arrayList2.addAll(collection);
         arrayList2.addAll(collection2);
         return arrayList2;
+    }
+
+    public static Object single(Iterable iterable) {
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        if (iterable instanceof List) {
+            return single((List) iterable);
+        }
+        Iterator it = iterable.iterator();
+        if (!it.hasNext()) {
+            throw new NoSuchElementException("Collection is empty.");
+        }
+        Object next = it.next();
+        if (it.hasNext()) {
+            throw new IllegalArgumentException("Collection has more than one element.");
+        }
+        return next;
+    }
+
+    public static final Object single(List list) {
+        Intrinsics.checkNotNullParameter(list, "<this>");
+        int size = list.size();
+        if (size == 0) {
+            throw new NoSuchElementException("List is empty.");
+        }
+        if (size == 1) {
+            return list.get(0);
+        }
+        throw new IllegalArgumentException("List has more than one element.");
+    }
+
+    public static List sortedWith(Iterable iterable, Comparator comparator) {
+        List asList;
+        List list;
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        Intrinsics.checkNotNullParameter(comparator, "comparator");
+        if (!(iterable instanceof Collection)) {
+            List mutableList = toMutableList(iterable);
+            CollectionsKt__MutableCollectionsJVMKt.sortWith(mutableList, comparator);
+            return mutableList;
+        }
+        Collection collection = (Collection) iterable;
+        if (collection.size() <= 1) {
+            list = toList(iterable);
+            return list;
+        }
+        Object[] array = collection.toArray(new Object[0]);
+        ArraysKt___ArraysJvmKt.sortWith(array, comparator);
+        asList = ArraysKt___ArraysJvmKt.asList(array);
+        return asList;
     }
 
     public static List take(Iterable iterable, int i) {

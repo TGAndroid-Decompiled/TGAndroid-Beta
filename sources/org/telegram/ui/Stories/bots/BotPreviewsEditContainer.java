@@ -24,12 +24,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FactCheckController$Key$$ExternalSyntheticBackport0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -369,7 +369,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                         sharedPhotoVideoCell2.isStoryPinned = false;
                         if (uploadingStory.sharedMessageObject == null) {
                             TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                            int m = FactCheckController$Key$$ExternalSyntheticBackport0.m(uploadingStory.random_id);
+                            int m = SessionDetails$$ExternalSyntheticBackport0.m(uploadingStory.random_id);
                             tL_storyItem.messageId = m;
                             tL_storyItem.id = m;
                             tL_storyItem.attachPath = uploadingStory.firstFramePath;

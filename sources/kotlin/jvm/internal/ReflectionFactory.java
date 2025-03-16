@@ -4,6 +4,7 @@ import kotlin.reflect.KClass;
 import kotlin.reflect.KDeclarationContainer;
 import kotlin.reflect.KFunction;
 import kotlin.reflect.KProperty0;
+import kotlin.reflect.KProperty2;
 
 public class ReflectionFactory {
     public KFunction function(FunctionReference functionReference) {
@@ -20,6 +21,10 @@ public class ReflectionFactory {
 
     public KProperty0 property0(PropertyReference0 propertyReference0) {
         return propertyReference0;
+    }
+
+    public KProperty2 property2(PropertyReference2 propertyReference2) {
+        return propertyReference2;
     }
 
     public String renderLambdaToString(FunctionBase functionBase) {

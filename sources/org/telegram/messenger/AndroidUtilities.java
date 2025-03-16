@@ -1570,10 +1570,14 @@ public class AndroidUtilities {
     }
 
     public static String formatDuration(int i, boolean z) {
+        return formatDuration(i, z, false);
+    }
+
+    public static String formatDuration(int i, boolean z, boolean z2) {
         int i2 = i / 3600;
         int i3 = (i / 60) % 60;
         int i4 = i % 60;
-        return i2 == 0 ? z ? String.format(Locale.US, "%02d:%02d", Integer.valueOf(i3), Integer.valueOf(i4)) : String.format(Locale.US, "%d:%02d", Integer.valueOf(i3), Integer.valueOf(i4)) : String.format(Locale.US, "%d:%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4));
+        return i2 == 0 ? z ? String.format(Locale.US, "%02d:%02d", Integer.valueOf(i3), Integer.valueOf(i4)) : String.format(Locale.US, "%d:%02d", Integer.valueOf(i3), Integer.valueOf(i4)) : z2 ? String.format(Locale.US, "%d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)) : String.format(Locale.US, "%d:%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4));
     }
 
     public static String formatDurationNoHours(int i, boolean z) {

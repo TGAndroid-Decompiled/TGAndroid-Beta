@@ -7336,12 +7336,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo1045getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1144getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 
         @Override
-        public void dismiss() {
+        public void lambda$new$0() {
             dismiss(true);
         }
 
@@ -7414,7 +7414,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1045getWindowView() {
+        public WindowView mo1144getWindowView() {
             return this.windowView;
         }
 

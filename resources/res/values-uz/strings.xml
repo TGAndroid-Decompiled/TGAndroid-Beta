@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google orqali kirish</string>
     <string name="confirm_device_credential_password">Paroldan foydalanish</string>
     <string name="default_error_msg">Notanish xato</string>
-    <string name="fcm_fallback_notification_channel_label">Har xil</string>
     <string name="fingerprint_dialog_touch_sensor">Barmoq izi skaneriga tegining</string>
     <string name="fingerprint_error_hw_not_available">Barmoq izi skaneri ish holatida emas.</string>
     <string name="fingerprint_error_hw_not_present">Bu qurilmada barmoq izi skaneri yo‘q</string>

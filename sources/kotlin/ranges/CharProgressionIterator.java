@@ -14,7 +14,7 @@ public final class CharProgressionIterator extends CharIterator {
         this.step = i;
         this.finalElement = c2;
         boolean z = false;
-        if (i <= 0 ? Intrinsics.compare(c, c2) >= 0 : Intrinsics.compare(c, c2) <= 0) {
+        if (i <= 0 ? Intrinsics.compare((int) c, (int) c2) >= 0 : Intrinsics.compare((int) c, (int) c2) <= 0) {
             z = true;
         }
         this.hasNext = z;

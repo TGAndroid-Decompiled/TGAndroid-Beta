@@ -917,6 +917,15 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         return false;
     }
 
+    @Override
+    public Job getParent() {
+        ChildHandle parentHandle$kotlinx_coroutines_core = getParentHandle$kotlinx_coroutines_core();
+        if (parentHandle$kotlinx_coroutines_core != null) {
+            return parentHandle$kotlinx_coroutines_core.getParent();
+        }
+        return null;
+    }
+
     public final ChildHandle getParentHandle$kotlinx_coroutines_core() {
         return (ChildHandle) _parentHandle$FU.get(this);
     }
@@ -1024,6 +1033,12 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     public boolean isActive() {
         Object state$kotlinx_coroutines_core = getState$kotlinx_coroutines_core();
         return (state$kotlinx_coroutines_core instanceof Incomplete) && ((Incomplete) state$kotlinx_coroutines_core).isActive();
+    }
+
+    @Override
+    public final boolean isCancelled() {
+        Object state$kotlinx_coroutines_core = getState$kotlinx_coroutines_core();
+        return (state$kotlinx_coroutines_core instanceof CompletedExceptionally) || ((state$kotlinx_coroutines_core instanceof Finishing) && ((Finishing) state$kotlinx_coroutines_core).isCancelling());
     }
 
     public final boolean isCompleted() {

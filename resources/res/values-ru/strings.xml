@@ -342,7 +342,6 @@
     <string name="common_signin_button_text_long">Войти через аккаунт Google</string>
     <string name="confirm_device_credential_password">Ввести пароль</string>
     <string name="default_error_msg">Неизвестная ошибка</string>
-    <string name="fcm_fallback_notification_channel_label">Другое</string>
     <string name="fingerprint_dialog_touch_sensor">Коснитесь сканера отпечатков.</string>
     <string name="fingerprint_error_hw_not_available">Сканер отпечатков пальцев недоступен.</string>
     <string name="fingerprint_error_hw_not_present">На этом устройстве нет сканера отпечатков пальцев.</string>

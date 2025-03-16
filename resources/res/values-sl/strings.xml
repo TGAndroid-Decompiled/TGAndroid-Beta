@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Prijava z računom Google</string>
     <string name="confirm_device_credential_password">Uporaba gesla</string>
     <string name="default_error_msg">Neznana napaka</string>
-    <string name="fcm_fallback_notification_channel_label">Razno</string>
     <string name="fingerprint_dialog_touch_sensor">Dotaknite se tipala prst. odt.</string>
     <string name="fingerprint_error_hw_not_available">Strojna oprema za prstne odtise ni na voljo.</string>
     <string name="fingerprint_error_hw_not_present">Ta naprava nima tipala prstnih odtisov</string>

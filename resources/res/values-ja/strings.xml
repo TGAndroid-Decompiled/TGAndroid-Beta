@@ -116,7 +116,6 @@
     <string name="common_signin_button_text_long">Googleにログイン</string>
     <string name="confirm_device_credential_password">パスワードを使用</string>
     <string name="default_error_msg">不明なエラーです</string>
-    <string name="fcm_fallback_notification_channel_label">その他</string>
     <string name="fingerprint_dialog_touch_sensor">指紋認証センサーをタップ</string>
     <string name="fingerprint_error_hw_not_available">指紋認証ハードウェアは使用できません。</string>
     <string name="fingerprint_error_hw_not_present">このデバイスには指紋認証センサーがありません</string>

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Logga in med Google</string>
     <string name="confirm_device_credential_password">Använd lösenord</string>
     <string name="default_error_msg">Okänt fel</string>
-    <string name="fcm_fallback_notification_channel_label">Diverse</string>
     <string name="fingerprint_dialog_touch_sensor">Tryck på fingeravtryckssensorn</string>
     <string name="fingerprint_error_hw_not_available">Det finns ingen maskinvara för fingeravtryck.</string>
     <string name="fingerprint_error_hw_not_present">Enheten har ingen fingeravtryckssensor</string>

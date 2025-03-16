@@ -116,7 +116,6 @@
     <string name="common_signin_button_text_long">Se connecter avec Google</string>
     <string name="confirm_device_credential_password">Utiliser un mot de passe</string>
     <string name="default_error_msg">Erreur inconnue</string>
-    <string name="fcm_fallback_notification_channel_label">Divers</string>
     <string name="fingerprint_dialog_touch_sensor">Appuyez sur lecteur d\'empreinte</string>
     <string name="fingerprint_error_hw_not_available">Matériel de lecture d\'empreinte digitale indisponible.</string>
     <string name="fingerprint_error_hw_not_present">Aucun lecteur d\'empreinte digitale n\'est installé sur cet appareil</string>

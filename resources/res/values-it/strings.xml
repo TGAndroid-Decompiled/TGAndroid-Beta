@@ -1612,7 +1612,6 @@
     <string name="common_signin_button_text_long">Accedi con Google</string>
     <string name="confirm_device_credential_password">Utilizza password</string>
     <string name="default_error_msg">Errore sconosciuto</string>
-    <string name="fcm_fallback_notification_channel_label">Varie</string>
     <string name="fingerprint_dialog_touch_sensor">Tocca sensore impronte</string>
     <string name="fingerprint_error_hw_not_available">Hardware per l\'impronta non disponibile.</string>
     <string name="fingerprint_error_hw_not_present">Questo dispositivo non è dotato di sensore di impronte</string>

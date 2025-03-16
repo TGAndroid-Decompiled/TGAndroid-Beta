@@ -198,7 +198,7 @@ public class DialogObject {
 
     public static String getName(TLObject tLObject) {
         TLRPC.Chat chat;
-        return tLObject instanceof TLRPC.User ? UserObject.getUserName((TLRPC.User) tLObject) : (!(tLObject instanceof TLRPC.Chat) || (chat = (TLRPC.Chat) tLObject) == null) ? "" : chat.title;
+        return tLObject instanceof TLRPC.User ? AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName((TLRPC.User) tLObject))) : (!(tLObject instanceof TLRPC.Chat) || (chat = (TLRPC.Chat) tLObject) == null) ? "" : chat.title;
     }
 
     public static long getPeerDialogId(TLRPC.InputPeer inputPeer) {
@@ -285,8 +285,17 @@ public class DialogObject {
     }
 
     public static String getShortName(TLObject tLObject) {
-        TLRPC.Chat chat;
-        return tLObject instanceof TLRPC.User ? UserObject.getForcedFirstName((TLRPC.User) tLObject) : (!(tLObject instanceof TLRPC.Chat) || (chat = (TLRPC.Chat) tLObject) == null) ? "" : chat.title;
+        String removeDiacritics;
+        if (tLObject instanceof TLRPC.User) {
+            removeDiacritics = AndroidUtilities.removeDiacritics(UserObject.getForcedFirstName((TLRPC.User) tLObject));
+        } else {
+            if (!(tLObject instanceof TLRPC.Chat)) {
+                return "";
+            }
+            TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+            removeDiacritics = AndroidUtilities.removeDiacritics(chat != null ? chat.title : "");
+        }
+        return AndroidUtilities.removeRTL(removeDiacritics);
     }
 
     public static String getSimilarPublicUsername(String str, ArrayList<TLRPC.TL_username> arrayList, String str2) {
@@ -310,6 +319,25 @@ public class DialogObject {
             }
         }
         return str3;
+    }
+
+    public static String getStatus(int i, long j) {
+        return getStatus(i, MessagesController.getInstance(i).getUserOrChat(j));
+    }
+
+    public static String getStatus(int i, TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            return LocaleController.formatUserStatus(i, (TLRPC.User) tLObject, null, null);
+        }
+        if (!(tLObject instanceof TLRPC.Chat)) {
+            return "";
+        }
+        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+        return chat.participants_count > 1 ? ChatObject.isChannelAndNotMegaGroup(chat) ? LocaleController.formatPluralStringComma("Subscribers", chat.participants_count) : LocaleController.formatPluralStringComma("Members", chat.participants_count) : ChatObject.isChannelAndNotMegaGroup(chat) ? LocaleController.getString(R.string.DiscussChannel) : LocaleController.getString(R.string.AccDescrGroup);
+    }
+
+    public static String getStatus(long j) {
+        return getStatus(UserConfig.selectedAccount, j);
     }
 
     public static boolean hasPhoto(TLObject tLObject) {

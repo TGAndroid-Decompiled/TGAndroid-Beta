@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Logg på med Google</string>
     <string name="confirm_device_credential_password">Bruk passord</string>
     <string name="default_error_msg">Ukjent feil</string>
-    <string name="fcm_fallback_notification_channel_label">Diverse</string>
     <string name="fingerprint_dialog_touch_sensor">Trykk på fingeravtrykkssensoren</string>
     <string name="fingerprint_error_hw_not_available">Maskinvare for fingeravtrykk er ikke tilgjengelig.</string>
     <string name="fingerprint_error_hw_not_present">Denne enheten har ikke fingeravtrykkssensor</string>

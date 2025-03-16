@@ -40,7 +40,7 @@ public final class CharRange extends CharProgression {
     }
 
     public boolean isEmpty() {
-        return Intrinsics.compare(getFirst(), getLast()) > 0;
+        return Intrinsics.compare((int) getFirst(), (int) getLast()) > 0;
     }
 
     public String toString() {

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google மூலம் உள்நுழைக</string>
     <string name="confirm_device_credential_password">கடவுச்சொல்லைப் பயன்படுத்து</string>
     <string name="default_error_msg">அறியப்படாத பிழை</string>
-    <string name="fcm_fallback_notification_channel_label">மற்றவை</string>
     <string name="fingerprint_dialog_touch_sensor">கைரேகை சென்சாரைத் தொடுக</string>
     <string name="fingerprint_error_hw_not_available">கைரேகை வன்பொருள் இல்லை.</string>
     <string name="fingerprint_error_hw_not_present">இந்தச் சாதனத்தில் கைரேகை சென்சார் இல்லை</string>

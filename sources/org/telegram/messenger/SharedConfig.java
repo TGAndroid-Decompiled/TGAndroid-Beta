@@ -1520,7 +1520,7 @@ public class SharedConfig {
         }
     }
 
-    private static boolean versionBiggerOrEqual(String str, String str2) {
+    public static boolean versionBiggerOrEqual(String str, String str2) {
         String[] split = str.split("\\.");
         String[] split2 = str2.split("\\.");
         for (int i = 0; i < Math.min(split.length, split2.length); i++) {

@@ -1,14 +1,15 @@
 package kotlinx.coroutines;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-abstract class ThreadPoolDispatcherKt__ThreadPoolDispatcherKt {
+public abstract class ThreadPoolDispatcherKt__ThreadPoolDispatcherKt {
     public static final ExecutorCoroutineDispatcher newFixedThreadPoolContext(final int i, final String str) {
         if (i >= 1) {
             final AtomicInteger atomicInteger = new AtomicInteger();
-            return ExecutorsKt.from(Executors.newScheduledThreadPool(i, new ThreadFactory() {
+            return ExecutorsKt.from((ExecutorService) Executors.newScheduledThreadPool(i, new ThreadFactory() {
                 @Override
                 public final Thread newThread(Runnable runnable) {
                     Thread newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt;

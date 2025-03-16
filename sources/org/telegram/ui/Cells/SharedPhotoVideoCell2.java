@@ -43,6 +43,7 @@ import org.telegram.ui.Components.Shaker;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
+import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class SharedPhotoVideoCell2 extends FrameLayout {
     static boolean lastAutoDownload;
@@ -237,6 +238,24 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         return this.currentParentColumnsCount == 9 ? AndroidUtilities.dpf2(0.5f) : AndroidUtilities.dpf2(1.0f);
     }
 
+    private int getPrivacyType(MessageObject messageObject) {
+        TL_stories.StoryItem storyItem;
+        if (this.isStoryPinned) {
+            return 100;
+        }
+        if (!this.isStory || messageObject == null || (storyItem = messageObject.storyItem) == null) {
+            return -1;
+        }
+        if (storyItem.parsedPrivacy == null) {
+            storyItem.parsedPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(this.currentAccount, storyItem.privacy);
+        }
+        int i = messageObject.storyItem.parsedPrivacy.type;
+        if (i == 2 || i == 1 || i == 3) {
+            return i;
+        }
+        return -1;
+    }
+
     private TLRPC.MessageMedia getStoryMedia(MessageObject messageObject) {
         TL_stories.StoryItem storyItem;
         if (messageObject == null || (storyItem = messageObject.storyItem) == null) {
@@ -294,12 +313,13 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         return false;
     }
 
-    private void setPrivacyType(int i, int i2) {
+    private void setPrivacyType(int i) {
         if (this.privacyType == i) {
             return;
         }
         this.privacyType = i;
         this.privacyBitmap = null;
+        int i2 = i != 1 ? i != 2 ? i != 3 ? i != 100 ? 0 : R.drawable.msg_pin_mini : R.drawable.msg_folders_groups : R.drawable.msg_folders_private : R.drawable.msg_stories_closefriends;
         if (i2 != 0) {
             this.privacyBitmap = this.sharedResources.getPrivacyBitmap(getContext(), i2);
         }
@@ -599,7 +619,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         }
     }
 
-    public void setMessageObject(org.telegram.messenger.MessageObject r28, int r29) {
+    public void setMessageObject(org.telegram.messenger.MessageObject r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedPhotoVideoCell2.setMessageObject(org.telegram.messenger.MessageObject, int):void");
     }
 

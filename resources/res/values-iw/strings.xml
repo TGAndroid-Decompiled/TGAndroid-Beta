@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">‏היכנס באמצעות Google</string>
     <string name="confirm_device_credential_password">שימוש בסיסמה</string>
     <string name="default_error_msg">שגיאה לא ידועה</string>
-    <string name="fcm_fallback_notification_channel_label">שונות</string>
     <string name="fingerprint_dialog_touch_sensor">יש לגעת בחיישן טביעות האצבע</string>
     <string name="fingerprint_error_hw_not_available">החומרה בשביל טביעת אצבע אינה זמינה.</string>
     <string name="fingerprint_error_hw_not_present">במכשיר זה אין חיישן טביעות אצבע</string>

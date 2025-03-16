@@ -1,9 +1,35 @@
 package kotlin.text;
 
+import java.util.Collection;
+import java.util.Iterator;
+import kotlin.collections.IntIterator;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.RangesKt___RangesKt;
 
 public abstract class StringsKt__StringsJVMKt extends StringsKt__StringNumberConversionsKt {
+    public static byte[] encodeToByteArray(String str) {
+        Intrinsics.checkNotNullParameter(str, "<this>");
+        byte[] bytes = str.getBytes(Charsets.UTF_8);
+        Intrinsics.checkNotNullExpressionValue(bytes, "this as java.lang.String).getBytes(charset)");
+        return bytes;
+    }
+
+    public static final boolean isBlank(CharSequence charSequence) {
+        Intrinsics.checkNotNullParameter(charSequence, "<this>");
+        if (charSequence.length() != 0) {
+            Iterable indices = StringsKt__StringsKt.getIndices(charSequence);
+            if (!(indices instanceof Collection) || !((Collection) indices).isEmpty()) {
+                Iterator it = indices.iterator();
+                while (it.hasNext()) {
+                    if (!CharsKt__CharJVMKt.isWhitespace(charSequence.charAt(((IntIterator) it).nextInt()))) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     public static final boolean regionMatches(String str, int i, String other, int i2, int i3, boolean z) {
         Intrinsics.checkNotNullParameter(str, "<this>");
         Intrinsics.checkNotNullParameter(other, "other");

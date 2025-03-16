@@ -10,18 +10,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.Layout;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.StaticLayout;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.ReplacementSpan;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
@@ -33,13 +27,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import java.util.WeakHashMap;
-import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.QuoteSpan;
@@ -47,7 +38,12 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TextStyleSpan;
 
 public class SpoilerEffect extends Drawable {
+    public static final float[] ALPHAS;
+    public static final int MAX_PARTICLES_PER_ENTITY;
+    public static final int PARTICLES_PER_CHARACTER;
     private static WeakHashMap lazyLayoutLines;
+    private static final float[][] particlePoints;
+    private static final Path tempPath;
     private static Paint xRefPaint;
     private int bitmapSize;
     public boolean drawPoints;
@@ -62,7 +58,6 @@ public class SpoilerEffect extends Drawable {
     private int maxParticles;
     private Runnable onRippleEndCallback;
     private final Paint[] particlePaints;
-    float[][] particlePoints;
     private final float[] particleRands;
     private final ArrayList particles;
     private final Stack particlesPool;
@@ -78,10 +73,6 @@ public class SpoilerEffect extends Drawable {
     private List spaces;
     private boolean suppressUpdates;
     private RectF visibleRect;
-    public static final int MAX_PARTICLES_PER_ENTITY = measureMaxParticlesCount();
-    public static final int PARTICLES_PER_CHARACTER = measureParticlesPerCharacter();
-    public static final float[] ALPHAS = {0.3f, 0.6f, 1.0f};
-    private static Path tempPath = new Path();
 
     public static class Particle {
         private int alpha;
@@ -109,12 +100,20 @@ public class SpoilerEffect extends Drawable {
         }
     }
 
+    static {
+        int measureMaxParticlesCount = measureMaxParticlesCount();
+        MAX_PARTICLES_PER_ENTITY = measureMaxParticlesCount;
+        PARTICLES_PER_CHARACTER = measureParticlesPerCharacter();
+        ALPHAS = new float[]{0.3f, 0.6f, 1.0f};
+        particlePoints = (float[][]) Array.newInstance((Class<?>) Float.TYPE, 3, measureMaxParticlesCount * 5);
+        tempPath = new Path();
+    }
+
     public SpoilerEffect() {
         Paint paint;
         float[] fArr = ALPHAS;
         this.particlePaints = new Paint[fArr.length];
         this.particlesPool = new Stack();
-        this.particlePoints = (float[][]) Array.newInstance((Class<?>) Float.TYPE, fArr.length, MAX_PARTICLES_PER_ENTITY * 5);
         this.particleRands = new float[14];
         this.renderCount = new int[fArr.length];
         this.particles = new ArrayList();
@@ -318,146 +317,8 @@ public class SpoilerEffect extends Drawable {
         return SharedConfig.getDevicePerformanceClass() != 2 ? 10 : 30;
     }
 
-    public static void renderWithRipple(View view, boolean z, int i, int i2, AtomicReference atomicReference, int i3, Layout layout, List list, Canvas canvas, boolean z2) {
-        StaticLayout staticLayout;
-        StaticLayout.Builder obtain;
-        StaticLayout.Builder breakStrategy;
-        StaticLayout.Builder hyphenationFrequency;
-        StaticLayout.Builder alignment;
-        StaticLayout.Builder lineSpacing;
-        TextStyleSpan[] textStyleSpanArr;
-        if (list == null || list.isEmpty()) {
-            layoutDrawMaybe(layout, canvas);
-            return;
-        }
-        Layout layout2 = (Layout) atomicReference.get();
-        int i4 = 0;
-        if (layout2 == null || !layout.getText().toString().equals(layout2.getText().toString()) || layout.getWidth() != layout2.getWidth() || layout.getHeight() != layout2.getHeight()) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(layout.getText());
-            if (layout.getText() instanceof Spanned) {
-                Spanned spanned = (Spanned) layout.getText();
-                TextStyleSpan[] textStyleSpanArr2 = (TextStyleSpan[]) spanned.getSpans(0, spanned.length(), TextStyleSpan.class);
-                int i5 = 0;
-                while (i5 < Math.min(100, textStyleSpanArr2.length)) {
-                    TextStyleSpan textStyleSpan = textStyleSpanArr2[i5];
-                    if (textStyleSpan.isSpoiler()) {
-                        int spanStart = spanned.getSpanStart(textStyleSpan);
-                        int spanEnd = spanned.getSpanEnd(textStyleSpan);
-                        Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spanned.getSpans(spanStart, spanEnd, Emoji.EmojiSpan.class);
-                        int length = emojiSpanArr.length;
-                        while (true) {
-                            textStyleSpanArr = textStyleSpanArr2;
-                            if (i4 >= length) {
-                                break;
-                            }
-                            final Emoji.EmojiSpan emojiSpan = emojiSpanArr[i4];
-                            spannableStringBuilder.setSpan(new ReplacementSpan() {
-                                @Override
-                                public void draw(Canvas canvas2, CharSequence charSequence, int i6, int i7, float f, int i8, int i9, int i10, Paint paint) {
-                                }
-
-                                @Override
-                                public int getSize(Paint paint, CharSequence charSequence, int i6, int i7, Paint.FontMetricsInt fontMetricsInt) {
-                                    return Emoji.EmojiSpan.this.getSize(paint, charSequence, i6, i7, fontMetricsInt);
-                                }
-                            }, spanned.getSpanStart(emojiSpan), spanned.getSpanEnd(emojiSpan), spanned.getSpanFlags(textStyleSpan));
-                            spannableStringBuilder.removeSpan(emojiSpan);
-                            i4++;
-                            textStyleSpanArr2 = textStyleSpanArr;
-                            length = length;
-                            emojiSpanArr = emojiSpanArr;
-                        }
-                        spannableStringBuilder.setSpan(new ForegroundColorSpan(0), spanStart, spanEnd, spanned.getSpanFlags(textStyleSpan));
-                        spannableStringBuilder.removeSpan(textStyleSpan);
-                    } else {
-                        textStyleSpanArr = textStyleSpanArr2;
-                    }
-                    i5++;
-                    textStyleSpanArr2 = textStyleSpanArr;
-                    i4 = 0;
-                }
-            }
-            if (i3 == 1) {
-                staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(1.66f), false);
-            } else if (Build.VERSION.SDK_INT >= 24) {
-                obtain = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth());
-                breakStrategy = obtain.setBreakStrategy(1);
-                hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
-                alignment = hyphenationFrequency.setAlignment(layout.getAlignment());
-                lineSpacing = alignment.setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier());
-                staticLayout = lineSpacing.build();
-            } else {
-                staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), layout.getAlignment(), layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
-            }
-            layout2 = staticLayout;
-            atomicReference.set(layout2);
-        }
-        if (list.isEmpty()) {
-            layoutDrawMaybe(layout, canvas);
-        } else {
-            canvas.save();
-            canvas.translate(0.0f, i2);
-            layout2.draw(canvas);
-            canvas.restore();
-        }
-        if (list.isEmpty()) {
-            return;
-        }
-        tempPath.rewind();
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            Rect bounds = ((SpoilerEffect) it.next()).getBounds();
-            tempPath.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
-        }
-        if (!list.isEmpty() && ((SpoilerEffect) list.get(0)).rippleProgress != -1.0f) {
-            canvas.save();
-            canvas.clipPath(tempPath);
-            tempPath.rewind();
-            if (!list.isEmpty()) {
-                ((SpoilerEffect) list.get(0)).getRipplePath(tempPath);
-            }
-            canvas.clipPath(tempPath);
-            canvas.translate(0.0f, -view.getPaddingTop());
-            layoutDrawMaybe(layout, canvas);
-            canvas.restore();
-        }
-        boolean z3 = ((SpoilerEffect) list.get(0)).rippleProgress != -1.0f;
-        if (z3) {
-            int measuredWidth = view.getMeasuredWidth();
-            if (z2 && (view.getParent() instanceof View)) {
-                measuredWidth = ((View) view.getParent()).getMeasuredWidth();
-            }
-            canvas.saveLayer(0.0f, 0.0f, measuredWidth, view.getMeasuredHeight(), null, 31);
-        } else {
-            canvas.save();
-        }
-        canvas.translate(0.0f, -view.getPaddingTop());
-        Iterator it2 = list.iterator();
-        while (it2.hasNext()) {
-            SpoilerEffect spoilerEffect = (SpoilerEffect) it2.next();
-            spoilerEffect.setInvalidateParent(z);
-            if (spoilerEffect.getParentView() != view) {
-                spoilerEffect.setParentView(view);
-            }
-            if (spoilerEffect.shouldInvalidateColor()) {
-                spoilerEffect.setColor(ColorUtils.blendARGB(i, (i3 == 1 ? layout.getPaint() : Theme.chat_msgTextPaint).getColor(), Math.max(0.0f, spoilerEffect.getRippleProgress())));
-            } else {
-                spoilerEffect.setColor(i);
-            }
-            spoilerEffect.draw(canvas);
-        }
-        if (z3) {
-            tempPath.rewind();
-            ((SpoilerEffect) list.get(0)).getRipplePath(tempPath);
-            if (xRefPaint == null) {
-                Paint paint = new Paint(1);
-                xRefPaint = paint;
-                paint.setColor(-16777216);
-                xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            }
-            canvas.drawPath(tempPath, xRefPaint);
-        }
-        canvas.restore();
+    public static void renderWithRipple(android.view.View r23, boolean r24, int r25, int r26, java.util.concurrent.atomic.AtomicReference r27, int r28, android.text.Layout r29, java.util.List r30, android.graphics.Canvas r31, boolean r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.spoilers.SpoilerEffect.renderWithRipple(android.view.View, boolean, int, int, java.util.concurrent.atomic.AtomicReference, int, android.text.Layout, java.util.List, android.graphics.Canvas, boolean):void");
     }
 
     @Override
@@ -558,43 +419,44 @@ public class SpoilerEffect extends Drawable {
             for (int i14 = 0; i14 < this.particles.size(); i14++) {
                 Particle particle4 = (Particle) this.particles.get(i14);
                 if (particle4 != null && (((rectF = this.visibleRect) == null || rectF.contains(particle4.x, particle4.y)) && (particle4.alpha == length || !this.enableAlpha))) {
-                    float[] fArr2 = this.particlePoints[length];
-                    if (i13 < fArr2.length - 2) {
-                        fArr2[i13] = particle4.x;
-                        this.particlePoints[length][i13 + 1] = particle4.y;
+                    float[][] fArr2 = particlePoints;
+                    float[] fArr3 = fArr2[length];
+                    if (i13 < fArr3.length - 2) {
+                        fArr3[i13] = particle4.x;
+                        fArr2[length][i13 + 1] = particle4.y;
                         int i15 = i13 + 2;
                         if (particle4.x < strokeWidth) {
-                            float[] fArr3 = this.particlePoints[length];
-                            if (i15 < fArr3.length - 2) {
-                                fArr3[i15] = particle4.x + this.bitmapSize;
-                                this.particlePoints[length][i13 + 3] = particle4.y;
+                            float[] fArr4 = fArr2[length];
+                            if (i15 < fArr4.length - 2) {
+                                fArr4[i15] = particle4.x + this.bitmapSize;
+                                fArr2[length][i13 + 3] = particle4.y;
                                 i15 = i13 + 4;
                             }
                             i13 = i15;
                         }
                         if (particle4.x > this.bitmapSize - strokeWidth) {
-                            float[] fArr4 = this.particlePoints[length];
-                            if (i15 < fArr4.length - 2) {
-                                fArr4[i15] = particle4.x - this.bitmapSize;
-                                this.particlePoints[length][i15 + 1] = particle4.y;
+                            float[] fArr5 = fArr2[length];
+                            if (i15 < fArr5.length - 2) {
+                                fArr5[i15] = particle4.x - this.bitmapSize;
+                                fArr2[length][i15 + 1] = particle4.y;
                                 i15 += 2;
                             }
                             i13 = i15;
                         }
                         if (particle4.y < strokeWidth) {
-                            float[] fArr5 = this.particlePoints[length];
-                            if (i15 < fArr5.length - 2) {
-                                fArr5[i15] = particle4.x;
-                                this.particlePoints[length][i15 + 1] = particle4.y + this.bitmapSize;
+                            float[] fArr6 = fArr2[length];
+                            if (i15 < fArr6.length - 2) {
+                                fArr6[i15] = particle4.x;
+                                fArr2[length][i15 + 1] = particle4.y + this.bitmapSize;
                                 i15 += 2;
                             }
                             i13 = i15;
                         }
                         if (particle4.y > this.bitmapSize - strokeWidth) {
-                            float[] fArr6 = this.particlePoints[length];
-                            if (i15 < fArr6.length - 2) {
-                                fArr6[i15] = particle4.x;
-                                this.particlePoints[length][i15 + 1] = particle4.y - this.bitmapSize;
+                            float[] fArr7 = fArr2[length];
+                            if (i15 < fArr7.length - 2) {
+                                fArr7[i15] = particle4.x;
+                                fArr2[length][i15 + 1] = particle4.y - this.bitmapSize;
                                 i13 = i15 + 2;
                             }
                         }
@@ -602,7 +464,7 @@ public class SpoilerEffect extends Drawable {
                     }
                 }
             }
-            canvas.drawPoints(this.particlePoints[length], 0, i13, this.particlePaints[length]);
+            canvas.drawPoints(particlePoints[length], 0, i13, this.particlePaints[length]);
         }
     }
 

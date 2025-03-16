@@ -10,4 +10,8 @@ public abstract class MapsKt extends MapsKt___MapsKt {
     public static int mapCapacity(int i) {
         return MapsKt__MapsJVMKt.mapCapacity(i);
     }
+
+    public static Map toMutableMap(Map map) {
+        return MapsKt__MapsKt.toMutableMap(map);
+    }
 }

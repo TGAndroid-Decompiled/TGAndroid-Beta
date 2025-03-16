@@ -13,6 +13,10 @@ public abstract class BuildersKt {
         return BuildersKt__Builders_commonKt.launch(coroutineScope, coroutineContext, coroutineStart, function2);
     }
 
+    public static final Object runBlocking(CoroutineContext coroutineContext, Function2 function2) {
+        return BuildersKt__BuildersKt.runBlocking(coroutineContext, function2);
+    }
+
     public static final Object withContext(CoroutineContext coroutineContext, Function2 function2, Continuation continuation) {
         return BuildersKt__Builders_commonKt.withContext(coroutineContext, function2, continuation);
     }

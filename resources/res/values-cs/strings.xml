@@ -116,7 +116,6 @@
     <string name="common_signin_button_text_long">Přihlásit se k účtu Google</string>
     <string name="confirm_device_credential_password">Použít heslo</string>
     <string name="default_error_msg">Neznámá chyba</string>
-    <string name="fcm_fallback_notification_channel_label">Různé</string>
     <string name="fingerprint_dialog_touch_sensor">Dotkněte se snímače otisků prstů</string>
     <string name="fingerprint_error_hw_not_available">Není k dispozici hardware ke snímání otisků prstů.</string>
     <string name="fingerprint_error_hw_not_present">Toto zařízení nemá snímač otisků prstů</string>

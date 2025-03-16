@@ -287,9 +287,9 @@ public class UserObject {
         if (user == null || isDeleted(user)) {
             return LocaleController.getString(R.string.HiddenName);
         }
-        String formatName = ContactsController.formatName(user.first_name, user.last_name);
-        if (formatName.length() != 0 || TextUtils.isEmpty(user.phone)) {
-            return formatName;
+        String removeRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
+        if (removeRTL.length() != 0 || TextUtils.isEmpty(user.phone)) {
+            return removeRTL;
         }
         return PhoneFormat.getInstance().format("+" + user.phone);
     }

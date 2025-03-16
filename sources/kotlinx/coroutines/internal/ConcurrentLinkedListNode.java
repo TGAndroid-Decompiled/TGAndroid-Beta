@@ -58,6 +58,10 @@ public abstract class ConcurrentLinkedListNode {
         return getNext() == null;
     }
 
+    public final boolean markAsClosed() {
+        return AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$FU, this, null, ConcurrentLinkedListKt.access$getCLOSED$p());
+    }
+
     public final void remove() {
         Object obj;
         if (isTail()) {

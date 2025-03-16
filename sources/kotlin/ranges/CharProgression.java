@@ -27,7 +27,7 @@ public abstract class CharProgression implements Iterable {
             throw new IllegalArgumentException("Step must be greater than Int.MIN_VALUE to avoid overflow on negation.");
         }
         this.first = c;
-        this.last = (char) ProgressionUtilKt.getProgressionLastElement(c, c2, i);
+        this.last = (char) ProgressionUtilKt.getProgressionLastElement((int) c, (int) c2, i);
         this.step = i;
     }
 

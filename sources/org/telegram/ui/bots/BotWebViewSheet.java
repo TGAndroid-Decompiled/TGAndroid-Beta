@@ -71,6 +71,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheetTabDialog;
@@ -1539,7 +1540,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     public void lambda$openOptions$35() {
         Activity activity = this.parentActivity;
         if (activity instanceof LaunchActivity) {
-            ((LaunchActivity) activity).lambda$runLinkRequest$95(ChatActivity.of(this.botId));
+            ((LaunchActivity) activity).lambda$runLinkRequest$93(ChatActivity.of(this.botId));
         }
         dismiss(true);
     }
@@ -1837,14 +1838,14 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (true) {
-            if (!it.hasNext()) {
-                tL_attachMenuBot = null;
-                break;
-            } else {
+            if (it.hasNext()) {
                 tL_attachMenuBot = it.next();
                 if (tL_attachMenuBot.bot_id == this.botId) {
                     break;
                 }
+            } else {
+                tL_attachMenuBot = null;
+                break;
             }
         }
         ItemOptions itemOptions = this.options;
@@ -1909,7 +1910,23 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             public final void run() {
                 BotWebViewSheet.this.lambda$openOptions$41();
             }
-        }).setGravity(5).translate(-this.insets.right, 0.0f).forceTop(true).setDrawScrim(false).show();
+        });
+        if (this.actionBarColor != Theme.getColor(Theme.key_windowBackgroundWhite)) {
+            int i = AndroidUtilities.computePerceivedBrightness(this.actionBarColor) >= 0.721f ? -15198183 : -1;
+            int i2 = AndroidUtilities.computePerceivedBrightness(i) >= 0.721f ? -16777216 : -1;
+            int multAlpha = Theme.multAlpha(i2, 0.85f);
+            int multAlpha2 = Theme.multAlpha(i2, 0.1f);
+            makeOptions.setBackgroundColor(i);
+            for (int i3 = 0; i3 < makeOptions.getItemsCount(); i3++) {
+                View itemAt = makeOptions.getItemAt(i3);
+                if (itemAt instanceof ActionBarMenuSubItem) {
+                    ActionBarMenuSubItem actionBarMenuSubItem = (ActionBarMenuSubItem) itemAt;
+                    actionBarMenuSubItem.setColors(i2, multAlpha);
+                    actionBarMenuSubItem.setSelectorColor(multAlpha2);
+                }
+            }
+        }
+        makeOptions.setGravity(5).translate(-this.insets.right, 0.0f).forceTop(true).setDrawScrim(false).setDimAlpha(0).show();
     }
 
     private void preloadShortcutBotIcon(TLRPC.User user, TLRPC.TL_attachMenuBot tL_attachMenuBot) {
@@ -2114,7 +2131,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1045getWindowView() {
+    public WindowView mo1144getWindowView() {
         return this.windowView;
     }
 

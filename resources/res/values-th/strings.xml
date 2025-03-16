@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">ลงชื่อเข้าใช้ด้วย Google</string>
     <string name="confirm_device_credential_password">ใช้รหัสผ่าน</string>
     <string name="default_error_msg">ข้อผิดพลาดที่ไม่รู้จัก</string>
-    <string name="fcm_fallback_notification_channel_label">เบ็ดเตล็ด</string>
     <string name="fingerprint_dialog_touch_sensor">แตะเซ็นเซอร์ลายนิ้วมือ</string>
     <string name="fingerprint_error_hw_not_available">ฮาร์ดแวร์ลายนิ้วมือไม่พร้อมใช้งาน</string>
     <string name="fingerprint_error_hw_not_present">อุปกรณ์นี้ไม่มีเซ็นเซอร์ลายนิ้วมือ</string>

@@ -28,9 +28,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 
 public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
+    private static int A;
     private final int MAX_TRIES;
     private boolean PRERENDER_FRAME;
     private final boolean USE_BITMAP_SHADER;
+    private int a;
     private RectF actualDrawRect;
     private boolean applyTransformation;
     private Bitmap backgroundBitmap;
@@ -70,7 +72,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     int lastMetadata;
     private int lastTimeStamp;
     private boolean limitFps;
-    private Runnable loadFrameRunnable;
+    private final Runnable loadFrameRunnable;
     private Runnable loadFrameTask;
     private final Runnable mStartTask;
     private final int[] metaData;
@@ -104,6 +106,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private float scaleFactor;
     private float scaleX;
     private float scaleY;
+    private boolean scheduledForSeek;
     private final ArrayList secondParentViews;
     private Matrix[] shaderMatrix;
     private final Matrix[] shaderMatrixBackground;
@@ -307,38 +310,25 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         Runnable runnable;
         Runnable runnable2;
         if (this.loadFrameTask == null || z2) {
-            if (((this.PRERENDER_FRAME && this.nextRenderingBitmap2 == null) || this.nextRenderingBitmap == null) && canLoadFrames() && !this.destroyWhenDone) {
-                if (!this.isRunning) {
-                    boolean z3 = this.decodeSingleFrame;
-                    if (!z3) {
-                        return;
-                    }
-                    if (z3 && this.singleFrameDecoded) {
-                        return;
-                    }
+            long j = 0;
+            if (((!this.PRERENDER_FRAME || (this.nextRenderingBitmap2 != null && (this.scheduledForSeek || this.pendingSeekToUI < 0))) && this.nextRenderingBitmap != null) || !canLoadFrames() || this.destroyWhenDone) {
+                return;
+            }
+            if (!this.isRunning) {
+                boolean z3 = this.decodeSingleFrame;
+                if (!z3) {
+                    return;
                 }
-                if ((this.parents.size() != 0 || this.ignoreNoParent) && !this.generatingCache) {
-                    long j = 0;
-                    if (z && this.lastFrameDecodeTime != 0) {
-                        long j2 = this.invalidateAfter;
-                        j = Math.min(j2, Math.max(0L, j2 - (System.currentTimeMillis() - this.lastFrameDecodeTime)));
-                    }
-                    if (this.useSharedQueue) {
-                        if (this.limitFps) {
-                            Runnable runnable3 = this.loadFrameRunnable;
-                            this.loadFrameTask = runnable3;
-                            DispatchQueuePoolBackground.execute(runnable3);
-                            return;
-                        }
-                        if (z2 && (runnable2 = this.loadFrameTask) != null) {
-                            executor.remove(runnable2);
-                        }
-                        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = executor;
-                        Runnable runnable4 = this.loadFrameRunnable;
-                        this.loadFrameTask = runnable4;
-                        scheduledThreadPoolExecutor.schedule(runnable4, j, TimeUnit.MILLISECONDS);
-                        return;
-                    }
+                if (z3 && this.singleFrameDecoded) {
+                    return;
+                }
+            }
+            if ((this.parents.size() != 0 || this.ignoreNoParent) && !this.generatingCache) {
+                if (z && this.lastFrameDecodeTime != 0) {
+                    long j2 = this.invalidateAfter;
+                    j = Math.min(j2, Math.max(0L, j2 - (System.currentTimeMillis() - this.lastFrameDecodeTime)));
+                }
+                if (!this.useSharedQueue) {
                     if (this.decodeQueue == null) {
                         this.decodeQueue = new DispatchQueue("decodeQueue" + this);
                     }
@@ -346,10 +336,23 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
                         this.decodeQueue.cancelRunnable(runnable);
                     }
                     DispatchQueue dispatchQueue = this.decodeQueue;
+                    Runnable runnable3 = this.loadFrameRunnable;
+                    this.loadFrameTask = runnable3;
+                    dispatchQueue.postRunnable(runnable3, j);
+                } else if (this.limitFps) {
+                    Runnable runnable4 = this.loadFrameRunnable;
+                    this.loadFrameTask = runnable4;
+                    DispatchQueuePoolBackground.execute(runnable4);
+                } else {
+                    if (z2 && (runnable2 = this.loadFrameTask) != null) {
+                        executor.remove(runnable2);
+                    }
+                    ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = executor;
                     Runnable runnable5 = this.loadFrameRunnable;
                     this.loadFrameTask = runnable5;
-                    dispatchQueue.postRunnable(runnable5, j);
+                    scheduledThreadPoolExecutor.schedule(runnable5, j, TimeUnit.MILLISECONDS);
                 }
+                this.scheduledForSeek = true;
             }
         }
     }
@@ -895,6 +898,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             try {
                 this.pendingSeekTo = j;
                 this.pendingSeekToUI = j;
+                this.scheduledForSeek = false;
                 if (this.nativePtr != 0) {
                     prepareToSeek(this.nativePtr);
                 }
@@ -988,9 +992,10 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     public void setStartEndTime(long j, long j2) {
         this.startTime = ((float) j) / 1000.0f;
         this.endTime = ((float) j2) / 1000.0f;
-        if (getCurrentProgressMs() < j) {
-            seekTo(j, true);
+        if (j < 0 || getCurrentProgressMs() >= j) {
+            return;
         }
+        seekTo(j, true);
     }
 
     public void setUseSharedQueue(boolean z) {

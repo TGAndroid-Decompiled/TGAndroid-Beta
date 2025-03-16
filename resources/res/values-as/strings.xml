@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Googleৰ জৰিয়তে ছাইন ইন কৰক</string>
     <string name="confirm_device_credential_password">পাছৱৰ্ড ব্যৱহাৰ কৰক</string>
     <string name="default_error_msg">অজ্ঞাত আসোঁৱাহ</string>
-    <string name="fcm_fallback_notification_channel_label">বিবিধ</string>
     <string name="fingerprint_dialog_touch_sensor">ফিংগাৰপ্ৰিণ্ট ছেন্সৰটো স্পৰ্শ কৰক</string>
     <string name="fingerprint_error_hw_not_available">ফিংগাৰপ্ৰিণ্ট হাৰ্ডৱেৰ নাই।</string>
     <string name="fingerprint_error_hw_not_present">এই ডিভাইচটোত ফিংগাৰপ্ৰিণ্ট ছেন্সৰ নাই</string>

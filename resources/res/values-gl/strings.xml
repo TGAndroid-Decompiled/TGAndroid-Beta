@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Iniciar sesión con Google</string>
     <string name="confirm_device_credential_password">Usar contrasinal</string>
     <string name="default_error_msg">Produciuse un erro descoñecido</string>
-    <string name="fcm_fallback_notification_channel_label">Varios</string>
     <string name="fingerprint_dialog_touch_sensor">Toca o sensor de impresión dixital</string>
     <string name="fingerprint_error_hw_not_available">O hardware de impresión dixital non está dispoñible.</string>
     <string name="fingerprint_error_hw_not_present">Este dispositivo non ten sensor de impresión dixital</string>

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Googleతో సైన్ ఇన్ చేయండి</string>
     <string name="confirm_device_credential_password">పాస్‌వర్డ్‌ను ఉపయోగించు</string>
     <string name="default_error_msg">తెలియని ఎర్రర్</string>
-    <string name="fcm_fallback_notification_channel_label">ఇతరాలు</string>
     <string name="fingerprint_dialog_touch_sensor">వేలిముద్ర సెన్సార్‌ను తాకండి</string>
     <string name="fingerprint_error_hw_not_available">వేలిముద్ర హార్డ్‌వేర్ అందుబాటులో లేదు.</string>
     <string name="fingerprint_error_hw_not_present">ఈ పరికరంలో వేలిముద్ర సెన్సార్ లేదు</string>

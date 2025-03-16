@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Најави се со Google</string>
     <string name="confirm_device_credential_password">Употребете ја лозинката</string>
     <string name="default_error_msg">Непозната грешка</string>
-    <string name="fcm_fallback_notification_channel_label">Разно</string>
     <string name="fingerprint_dialog_touch_sensor">Допрете го сенз. за отпечатоци</string>
     <string name="fingerprint_error_hw_not_available">Нема достапен хардвер за отпечатоци.</string>
     <string name="fingerprint_error_hw_not_present">Уредов нема сензор за отпечатоци</string>

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Kirjaudu Google-tilille</string>
     <string name="confirm_device_credential_password">Käytä salasanaa</string>
     <string name="default_error_msg">Tuntematon virhe</string>
-    <string name="fcm_fallback_notification_channel_label">Muut</string>
     <string name="fingerprint_dialog_touch_sensor">Kosketa sormenjälkitunnistinta</string>
     <string name="fingerprint_error_hw_not_available">Sormenjälkilaitteisto ei ole käytettävissä.</string>
     <string name="fingerprint_error_hw_not_present">Laitteessa ei ole sormenjälkitunnistinta.</string>

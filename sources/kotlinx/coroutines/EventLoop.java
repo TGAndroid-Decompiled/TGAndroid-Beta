@@ -7,6 +7,16 @@ public abstract class EventLoop extends CoroutineDispatcher {
     private ArrayDeque unconfinedQueue;
     private long useCount;
 
+    public static void decrementUseCount$default(EventLoop eventLoop, boolean z, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: decrementUseCount");
+        }
+        if ((i & 1) != 0) {
+            z = false;
+        }
+        eventLoop.decrementUseCount(z);
+    }
+
     private final long delta(boolean z) {
         return z ? 4294967296L : 1L;
     }
@@ -63,6 +73,8 @@ public abstract class EventLoop extends CoroutineDispatcher {
         return true;
     }
 
+    public abstract long processNextEvent();
+
     public final boolean processUnconfinedEvent() {
         DispatchedTask dispatchedTask;
         ArrayDeque arrayDeque = this.unconfinedQueue;
@@ -71,6 +83,10 @@ public abstract class EventLoop extends CoroutineDispatcher {
         }
         dispatchedTask.run();
         return true;
+    }
+
+    public boolean shouldBeProcessedFromContext() {
+        return false;
     }
 
     public abstract void shutdown();

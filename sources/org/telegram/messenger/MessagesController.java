@@ -13656,12 +13656,15 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public String getPeerName(long j, boolean z) {
+        String str;
         if (j >= 0) {
             TLRPC.User user = getUser(Long.valueOf(j));
-            return AndroidUtilities.removeDiacritics(z ? UserObject.getFirstName(user, true) : UserObject.getUserName(user));
+            str = z ? UserObject.getFirstName(user, true) : UserObject.getUserName(user);
+        } else {
+            TLRPC.Chat chat = getChat(Long.valueOf(-j));
+            str = chat == null ? "" : chat.title;
         }
-        TLRPC.Chat chat = getChat(Long.valueOf(-j));
-        return AndroidUtilities.removeDiacritics(chat == null ? "" : chat.title);
+        return AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(str));
     }
 
     public TLRPC.PeerSettings getPeerSettings(long j) {

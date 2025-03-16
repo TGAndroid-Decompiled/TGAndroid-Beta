@@ -18,10 +18,6 @@ public abstract class DispatchedContinuationKt {
     private static final Symbol UNDEFINED = new Symbol("UNDEFINED");
     public static final Symbol REUSABLE_CLAIMED = new Symbol("REUSABLE_CLAIMED");
 
-    public static final Symbol access$getUNDEFINED$p() {
-        return UNDEFINED;
-    }
-
     public static final void resumeCancellableWith(Continuation continuation, Object obj, Function1 function1) {
         if (!(continuation instanceof DispatchedContinuation)) {
             continuation.resumeWith(obj);
@@ -63,7 +59,7 @@ public abstract class DispatchedContinuationKt {
                 CancellationException cancellationException = job.getCancellationException();
                 dispatchedContinuation.cancelCompletedResult$kotlinx_coroutines_core(state, cancellationException);
                 Result.Companion companion = Result.Companion;
-                dispatchedContinuation.resumeWith(Result.m162constructorimpl(ResultKt.createFailure(cancellationException)));
+                dispatchedContinuation.resumeWith(Result.m209constructorimpl(ResultKt.createFailure(cancellationException)));
             }
             do {
             } while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent());

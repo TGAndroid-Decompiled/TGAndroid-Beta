@@ -15,6 +15,11 @@ public final class ChildHandleNode extends JobCancellingNode implements ChildHan
     }
 
     @Override
+    public Job getParent() {
+        return getJob();
+    }
+
+    @Override
     public Object invoke(Object obj) {
         invoke((Throwable) obj);
         return Unit.INSTANCE;

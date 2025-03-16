@@ -14,7 +14,7 @@ public abstract class UInt implements Comparable {
         }
     }
 
-    public static int m170constructorimpl(int i) {
+    public static int m217constructorimpl(int i) {
         return i;
     }
 }

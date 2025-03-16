@@ -193,6 +193,10 @@ public class ApplicationLoader extends Application {
         }, 1000L);
     }
 
+    public static boolean isBetaBuild() {
+        return applicationLoaderInstance.isBeta();
+    }
+
     public static boolean isConnectedOrConnectingToWiFi() {
         try {
             ensureCurrentNetworkGet(false);
@@ -445,6 +449,9 @@ public class ApplicationLoader extends Application {
         MultiDex.install(this);
     }
 
+    public void cancelDownloadingUpdate() {
+    }
+
     public boolean checkApkInstallPermissions(Context context) {
         return false;
     }
@@ -456,11 +463,41 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
+    public void checkUpdate(boolean z, Runnable runnable) {
+    }
+
     public boolean consumePush(int i, JSONObject jSONObject) {
         return false;
     }
 
+    public void downloadUpdate() {
+    }
+
     public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
+        return false;
+    }
+
+    public File getDownloadedUpdateFile() {
+        return null;
+    }
+
+    public float getDownloadingUpdateProgress() {
+        return 0.0f;
+    }
+
+    public BetaUpdate getUpdate() {
+        return null;
+    }
+
+    protected boolean isBeta() {
+        return false;
+    }
+
+    public boolean isCustomUpdate() {
+        return false;
+    }
+
+    public boolean isDownloadingUpdate() {
         return false;
     }
 
@@ -611,6 +648,10 @@ public class ApplicationLoader extends Application {
     }
 
     public void processUpdate(int i, TLRPC.Update update) {
+    }
+
+    public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i) {
+        return false;
     }
 
     public boolean showUpdateAppPopup(Context context, TLRPC.TL_help_appUpdate tL_help_appUpdate, int i) {

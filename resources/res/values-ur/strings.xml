@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">‏Google کے ساتھ سائن ان کریں</string>
     <string name="confirm_device_credential_password">پاس ورڈ استعمال کریں</string>
     <string name="default_error_msg">نامعلوم خرابی</string>
-    <string name="fcm_fallback_notification_channel_label">متفرقات</string>
     <string name="fingerprint_dialog_touch_sensor">فنگر پرنٹ سینسر کو ٹچ کریں</string>
     <string name="fingerprint_error_hw_not_available">فنگر پرنٹ ہارڈ ویئر دستیاب نہیں ہے۔</string>
     <string name="fingerprint_error_hw_not_present">اس آلہ میں فنگر پرنٹ سینسر نہیں ہے</string>

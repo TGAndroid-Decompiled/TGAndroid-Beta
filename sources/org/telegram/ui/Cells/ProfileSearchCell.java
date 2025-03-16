@@ -243,7 +243,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                     charSequence2 = str3.replace('\n', ' ');
                 }
             }
-            str3 = AndroidUtilities.removeDiacritics(userName);
+            str3 = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(userName));
             charSequence2 = str3.replace('\n', ' ');
         }
         if (charSequence2.length() == 0) {

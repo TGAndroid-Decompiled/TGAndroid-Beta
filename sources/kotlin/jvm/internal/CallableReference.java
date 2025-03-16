@@ -1,6 +1,7 @@
 package kotlin.jvm.internal;
 
 import java.io.Serializable;
+import kotlin.jvm.KotlinReflectionNotSupportedError;
 import kotlin.reflect.KCallable;
 import kotlin.reflect.KDeclarationContainer;
 
@@ -54,6 +55,14 @@ public abstract class CallableReference implements KCallable, Serializable {
             return null;
         }
         return this.isTopLevel ? Reflection.getOrCreateKotlinPackage(cls) : Reflection.getOrCreateKotlinClass(cls);
+    }
+
+    public KCallable getReflected() {
+        KCallable compute = compute();
+        if (compute != this) {
+            return compute;
+        }
+        throw new KotlinReflectionNotSupportedError();
     }
 
     public String getSignature() {

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google-ით შესვლა</string>
     <string name="confirm_device_credential_password">პაროლის გამოყენება</string>
     <string name="default_error_msg">უცნობი შეცდომა</string>
-    <string name="fcm_fallback_notification_channel_label">სხვადასხვა</string>
     <string name="fingerprint_dialog_touch_sensor">შეეხეთ თითის ანაბეჭდის სენსორს</string>
     <string name="fingerprint_error_hw_not_available">თითის ანაბეჭდის აპარატურა მიუწვდომელია.</string>
     <string name="fingerprint_error_hw_not_present">ამ მოწყობილობას არ აქვს თითის ანაბეჭდის სენსორი</string>

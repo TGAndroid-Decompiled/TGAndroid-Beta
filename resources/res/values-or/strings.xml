@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google ସହ ସାଇନ୍‌-ଇନ୍ କରନ୍ତୁ</string>
     <string name="confirm_device_credential_password">ପାସ୍‌ୱାର୍ଡ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="default_error_msg">ଅଜଣା ତ୍ରୁଟି</string>
-    <string name="fcm_fallback_notification_channel_label">ଅନ୍ୟାନ୍ୟ</string>
     <string name="fingerprint_dialog_touch_sensor">ଟିପଚିହ୍ନ ସେନସର୍‌କୁ ଛୁଅଁନ୍ତୁ</string>
     <string name="fingerprint_error_hw_not_available">ଟିପଚିହ୍ନ ହାର୍ଡୱେର୍‍ ଉପଲବ୍ଧ ନାହିଁ।</string>
     <string name="fingerprint_error_hw_not_present">ଏହି ଡିଭାଇସ୍‌ରେ ଟିପଚିହ୍ନ ସେନସର୍‌ ନାହିଁ</string>

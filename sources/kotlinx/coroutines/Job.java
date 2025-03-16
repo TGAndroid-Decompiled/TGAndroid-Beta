@@ -56,11 +56,15 @@ public interface Job extends CoroutineContext.Element {
 
     Sequence getChildren();
 
+    Job getParent();
+
     DisposableHandle invokeOnCompletion(Function1 function1);
 
     DisposableHandle invokeOnCompletion(boolean z, boolean z2, Function1 function1);
 
     boolean isActive();
+
+    boolean isCancelled();
 
     Object join(Continuation continuation);
 

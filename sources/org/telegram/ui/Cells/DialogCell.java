@@ -144,6 +144,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private float currentRevealBounceProgress;
     private float currentRevealProgress;
     private CustomDialog customDialog;
+    private String customMessage;
     DialogCellDelegate delegate;
     private boolean dialogMuted;
     private float dialogMutedProgress;
@@ -1539,6 +1540,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public void setClipProgress(float f) {
         this.clipProgress = f;
         invalidate();
+    }
+
+    public void setCustomMessage(String str) {
+        if (TextUtils.equals(this.customMessage, str)) {
+            return;
+        }
+        this.customMessage = str;
+        buildLayout();
+        requestLayout();
     }
 
     public void setDialog(long j, MessageObject messageObject, int i, boolean z, boolean z2) {

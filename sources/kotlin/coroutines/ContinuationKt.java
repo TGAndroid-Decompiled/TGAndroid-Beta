@@ -15,6 +15,6 @@ public abstract class ContinuationKt {
         createCoroutineUnintercepted = IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted(function2, obj, completion);
         intercepted = IntrinsicsKt__IntrinsicsJvmKt.intercepted(createCoroutineUnintercepted);
         Result.Companion companion = Result.Companion;
-        intercepted.resumeWith(Result.m162constructorimpl(Unit.INSTANCE));
+        intercepted.resumeWith(Result.m209constructorimpl(Unit.INSTANCE));
     }
 }

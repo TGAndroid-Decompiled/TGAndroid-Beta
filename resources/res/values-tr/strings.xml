@@ -116,7 +116,6 @@
     <string name="common_signin_button_text_long">Google\'da oturum aç</string>
     <string name="confirm_device_credential_password">Şifre kullan</string>
     <string name="default_error_msg">Bilinmeyen hata</string>
-    <string name="fcm_fallback_notification_channel_label">Çeşitli</string>
     <string name="fingerprint_dialog_touch_sensor">Parmak izi sensörüne dokunun</string>
     <string name="fingerprint_error_hw_not_available">Parmak izi donanımı kullanılamıyor.</string>
     <string name="fingerprint_error_hw_not_present">Bu cihazda parmak izi sensörü yok</string>

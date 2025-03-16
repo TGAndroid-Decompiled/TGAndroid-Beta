@@ -11,10 +11,8 @@ import kotlinx.coroutines.intrinsics.UndispatchedKt;
 
 public abstract class CoroutineScopeKt {
     public static final CoroutineScope CoroutineScope(CoroutineContext coroutineContext) {
-        CompletableJob Job$default;
         if (coroutineContext.get(Job.Key) == null) {
-            Job$default = JobKt__JobKt.Job$default(null, 1, null);
-            coroutineContext = coroutineContext.plus(Job$default);
+            coroutineContext = coroutineContext.plus(JobKt.Job$default(null, 1, null));
         }
         return new ContextScope(coroutineContext);
     }
@@ -32,6 +30,10 @@ public abstract class CoroutineScopeKt {
             DebugProbesKt.probeCoroutineSuspended(continuation);
         }
         return startUndispatchedOrReturn;
+    }
+
+    public static final void ensureActive(CoroutineScope coroutineScope) {
+        JobKt.ensureActive(coroutineScope.getCoroutineContext());
     }
 
     public static final boolean isActive(CoroutineScope coroutineScope) {

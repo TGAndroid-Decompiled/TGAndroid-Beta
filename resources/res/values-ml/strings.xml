@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക</string>
     <string name="confirm_device_credential_password">പാസ്‌വേഡ് ഉപയോഗിക്കുക</string>
     <string name="default_error_msg">അജ്ഞാത പിശക്</string>
-    <string name="fcm_fallback_notification_channel_label">പലവക</string>
     <string name="fingerprint_dialog_touch_sensor">ഫിംഗർപ്രിന്റ് സെൻസർ സ്‌പർശിക്കുക</string>
     <string name="fingerprint_error_hw_not_available">ഫിംഗർപ്രിന്റ് ഹാർഡ്‌വെയർ ലഭ്യമല്ല.</string>
     <string name="fingerprint_error_hw_not_present">ഈ ഉപകരണത്തിൽ ഫിംഗർപ്രിന്റ് സെൻസർ ഇല്ല</string>

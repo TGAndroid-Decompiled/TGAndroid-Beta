@@ -8,6 +8,10 @@ public abstract class JobKt {
         return JobKt__JobKt.Job(job);
     }
 
+    public static CompletableJob Job$default(Job job, int i, Object obj) {
+        return JobKt__JobKt.Job$default(job, i, obj);
+    }
+
     public static final void cancel(CoroutineContext coroutineContext, CancellationException cancellationException) {
         JobKt__JobKt.cancel(coroutineContext, cancellationException);
     }

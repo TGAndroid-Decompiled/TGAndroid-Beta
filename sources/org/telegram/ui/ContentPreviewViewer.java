@@ -138,11 +138,11 @@ public class ContentPreviewViewer {
 
     public class AnonymousClass1 implements Runnable {
 
-        class ViewOnClickListenerC00391 implements View.OnClickListener {
+        class ViewOnClickListenerC00411 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            ViewOnClickListenerC00391(ArrayList arrayList, boolean z) {
+            ViewOnClickListenerC00411(ArrayList arrayList, boolean z) {
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
             }
@@ -1073,7 +1073,7 @@ public class ContentPreviewViewer {
             if (launchActivity.getActionBarLayout() != null && launchActivity.getActionBarLayout().getLastFragment() != null) {
                 launchActivity.getActionBarLayout().getLastFragment().dismissCurrentDialog();
             }
-            launchActivity.lambda$runLinkRequest$95(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
+            launchActivity.lambda$runLinkRequest$93(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
         }
         this.menuVisible = false;
         this.containerView.invalidate();

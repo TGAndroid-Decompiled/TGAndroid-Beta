@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google ဖြင့် လက်မှတ်ထိုးဝင်ရေ</string>
     <string name="confirm_device_credential_password">စကားဝှက်သုံးရန်</string>
     <string name="default_error_msg">အမျိုးအမည်မသိ အမှား</string>
-    <string name="fcm_fallback_notification_channel_label">အထွေထွေ</string>
     <string name="fingerprint_dialog_touch_sensor">လက်ဗွေအာရုံခံကိရိယာကို တို့ပါ</string>
     <string name="fingerprint_error_hw_not_available">လက်ဗွေစက်ပစ္စည်း မရနိုင်ပါ။</string>
     <string name="fingerprint_error_hw_not_present">ဤစက်ပစ္စည်းတွင် လက်ဗွေအာရုံခံကိရိယာ မရှိပါ</string>

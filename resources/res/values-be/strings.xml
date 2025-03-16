@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Увайсці праз Google</string>
     <string name="confirm_device_credential_password">Выкарыстаць пароль</string>
     <string name="default_error_msg">Невядомая памылка</string>
-    <string name="fcm_fallback_notification_channel_label">Рознае</string>
     <string name="fingerprint_dialog_touch_sensor">Дакраніцеся да сканера адбіткаў пальцаў</string>
     <string name="fingerprint_error_hw_not_available">Апаратныя сродкі для зняцця адбіткаў пальцаў недаступныя.</string>
     <string name="fingerprint_error_hw_not_present">На гэтай прыладзе няма сканера адбіткаў пальцаў</string>

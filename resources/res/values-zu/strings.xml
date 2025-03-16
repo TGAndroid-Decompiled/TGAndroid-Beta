@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Ngena ngemvume nge-Google</string>
     <string name="confirm_device_credential_password">Sebenzisa iphasiwedi</string>
     <string name="default_error_msg">Iphutha elingaziwe</string>
-    <string name="fcm_fallback_notification_channel_label">Okwahlukahlukene</string>
     <string name="fingerprint_dialog_touch_sensor">Thinta inzwa yezigxivizo zeminwe</string>
     <string name="fingerprint_error_hw_not_available">Izingxenyekazi zekhompuyutha zezigxivizo zeminwe azitholakali.</string>
     <string name="fingerprint_error_hw_not_present">Le divayisi ayinayo inzwa yezigxivizo zeminwe</string>

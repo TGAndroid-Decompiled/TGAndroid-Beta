@@ -1250,77 +1250,79 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
     public void lambda$createView$3(View view, int i) {
         BaseFragment businessLinksActivity;
-        if (i == this.showAdsRow) {
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-            if (userFull == null) {
+        if (getUserConfig().isClientActivated()) {
+            if (i == this.showAdsRow) {
+                TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+                if (userFull == null) {
+                    return;
+                }
+                TextCell textCell = (TextCell) view;
+                textCell.setChecked(!textCell.isChecked());
+                userFull.sponsored_enabled = textCell.isChecked();
+                TL_account.toggleSponsoredMessages togglesponsoredmessages = new TL_account.toggleSponsoredMessages();
+                togglesponsoredmessages.enabled = userFull.sponsored_enabled;
+                getConnectionsManager().sendRequest(togglesponsoredmessages, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        PremiumPreviewFragment.this.lambda$createView$1(tLObject, tL_error);
+                    }
+                });
+                getMessagesStorage().updateUserInfo(userFull, false);
                 return;
             }
-            TextCell textCell = (TextCell) view;
-            textCell.setChecked(!textCell.isChecked());
-            userFull.sponsored_enabled = textCell.isChecked();
-            TL_account.toggleSponsoredMessages togglesponsoredmessages = new TL_account.toggleSponsoredMessages();
-            togglesponsoredmessages.enabled = userFull.sponsored_enabled;
-            getConnectionsManager().sendRequest(togglesponsoredmessages, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    PremiumPreviewFragment.this.lambda$createView$1(tLObject, tL_error);
-                }
-            });
-            getMessagesStorage().updateUserInfo(userFull, false);
-            return;
-        }
-        if (view instanceof PremiumFeatureCell) {
-            final PremiumFeatureCell premiumFeatureCell = (PremiumFeatureCell) view;
-            SubscriptionTier subscriptionTier = null;
-            if (this.type != 1 || !getUserConfig().isPremium()) {
-                sentShowFeaturePreview(this.currentAccount, premiumFeatureCell.data.type);
-                int i2 = this.selectedTierIndex;
-                if (i2 >= 0 && i2 < this.subscriptionTiers.size()) {
-                    subscriptionTier = (SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex);
-                }
-                showDialog(new PremiumFeatureBottomSheet(this, getContext(), this.currentAccount, this.type == 1, premiumFeatureCell.data.type, false, subscriptionTier));
-                return;
-            }
-            int i3 = premiumFeatureCell.data.type;
-            if (i3 == 29) {
-                businessLinksActivity = new org.telegram.ui.Business.LocationActivity();
-            } else if (i3 == 32) {
-                businessLinksActivity = new GreetMessagesActivity();
-            } else if (i3 == 33) {
-                businessLinksActivity = new AwayMessagesActivity();
-            } else if (i3 == 30) {
-                businessLinksActivity = new OpeningHoursActivity();
-            } else if (i3 == 34) {
-                businessLinksActivity = new ChatbotsActivity();
-            } else if (i3 == 31) {
-                businessLinksActivity = new QuickRepliesActivity();
-            } else {
-                if (i3 == 14) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("dialog_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
-                    bundle.putInt("type", 1);
-                    presentFragment(new MediaActivity(bundle, null));
+            if (view instanceof PremiumFeatureCell) {
+                final PremiumFeatureCell premiumFeatureCell = (PremiumFeatureCell) view;
+                SubscriptionTier subscriptionTier = null;
+                if (this.type != 1 || !getUserConfig().isPremium()) {
+                    sentShowFeaturePreview(this.currentAccount, premiumFeatureCell.data.type);
+                    int i2 = this.selectedTierIndex;
+                    if (i2 >= 0 && i2 < this.subscriptionTiers.size()) {
+                        subscriptionTier = (SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex);
+                    }
+                    showDialog(new PremiumFeatureBottomSheet(this, getContext(), this.currentAccount, this.type == 1, premiumFeatureCell.data.type, false, subscriptionTier));
                     return;
                 }
-                if (i3 == 12) {
-                    showSelectStatusDialog(premiumFeatureCell, UserObject.getEmojiStatusDocumentId(getUserConfig().getCurrentUser()), new Utilities.Callback2() {
-                        @Override
-                        public final void run(Object obj, Object obj2) {
-                            PremiumPreviewFragment.this.lambda$createView$2(premiumFeatureCell, (Long) obj, (Integer) obj2);
-                        }
-                    });
-                    return;
-                } else if (i3 == 35) {
-                    businessLinksActivity = new FiltersSetupActivity().highlightTags();
-                } else if (i3 == 36) {
-                    businessLinksActivity = new BusinessIntroActivity();
-                } else if (i3 != 37) {
-                    return;
+                int i3 = premiumFeatureCell.data.type;
+                if (i3 == 29) {
+                    businessLinksActivity = new org.telegram.ui.Business.LocationActivity();
+                } else if (i3 == 32) {
+                    businessLinksActivity = new GreetMessagesActivity();
+                } else if (i3 == 33) {
+                    businessLinksActivity = new AwayMessagesActivity();
+                } else if (i3 == 30) {
+                    businessLinksActivity = new OpeningHoursActivity();
+                } else if (i3 == 34) {
+                    businessLinksActivity = new ChatbotsActivity();
+                } else if (i3 == 31) {
+                    businessLinksActivity = new QuickRepliesActivity();
                 } else {
-                    businessLinksActivity = new BusinessLinksActivity();
+                    if (i3 == 14) {
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("dialog_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
+                        bundle.putInt("type", 1);
+                        presentFragment(new MediaActivity(bundle, null));
+                        return;
+                    }
+                    if (i3 == 12) {
+                        showSelectStatusDialog(premiumFeatureCell, UserObject.getEmojiStatusDocumentId(getUserConfig().getCurrentUser()), new Utilities.Callback2() {
+                            @Override
+                            public final void run(Object obj, Object obj2) {
+                                PremiumPreviewFragment.this.lambda$createView$2(premiumFeatureCell, (Long) obj, (Integer) obj2);
+                            }
+                        });
+                        return;
+                    } else if (i3 == 35) {
+                        businessLinksActivity = new FiltersSetupActivity().highlightTags();
+                    } else if (i3 == 36) {
+                        businessLinksActivity = new BusinessIntroActivity();
+                    } else if (i3 != 37) {
+                        return;
+                    } else {
+                        businessLinksActivity = new BusinessLinksActivity();
+                    }
                 }
+                presentFragment(businessLinksActivity);
             }
-            presentFragment(businessLinksActivity);
         }
     }
 

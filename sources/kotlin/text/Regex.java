@@ -32,6 +32,14 @@ public final class Regex implements Serializable {
         return this.nativePattern.matcher(input).matches();
     }
 
+    public final String replace(CharSequence input, String replacement) {
+        Intrinsics.checkNotNullParameter(input, "input");
+        Intrinsics.checkNotNullParameter(replacement, "replacement");
+        String replaceAll = this.nativePattern.matcher(input).replaceAll(replacement);
+        Intrinsics.checkNotNullExpressionValue(replaceAll, "nativePattern.matcher(in…).replaceAll(replacement)");
+        return replaceAll;
+    }
+
     public String toString() {
         String pattern = this.nativePattern.toString();
         Intrinsics.checkNotNullExpressionValue(pattern, "nativePattern.toString()");

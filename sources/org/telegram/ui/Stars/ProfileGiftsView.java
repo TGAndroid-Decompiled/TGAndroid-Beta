@@ -143,17 +143,14 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
     protected void dispatchDraw(Canvas canvas) {
         float f;
         float f2;
-        float f3;
         float min;
         float dp;
+        float f3;
         float f4;
-        float f5;
-        float f6;
-        Canvas canvas2;
         if (this.gifts.isEmpty()) {
             return;
         }
-        float f7 = 1.0f;
+        float f5 = 1.0f;
         if (this.expandProgress >= 1.0f) {
             return;
         }
@@ -163,100 +160,88 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
         float height = this.avatarContainer.getHeight() * this.avatarContainer.getScaleY();
         canvas.save();
         canvas.clipRect(0.0f, 0.0f, getWidth(), this.expandY);
-        float f8 = x + (width / 2.0f);
-        float min2 = Math.min(f8, AndroidUtilities.dp(48.0f));
-        float f9 = y + (height / 2.0f);
+        float f6 = x + (width / 2.0f);
+        float min2 = Math.min(f6, AndroidUtilities.dp(48.0f));
+        float f7 = y + (height / 2.0f);
         float min3 = (Math.min(width, height) / 2.0f) + AndroidUtilities.dp(6.0f);
+        float width2 = getWidth() / 2.0f;
         float clamp01 = Utilities.clamp01((this.expandY - (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight())) / AndroidUtilities.dp(50.0f));
         int i = 0;
         while (i < this.gifts.size()) {
             Gift gift = (Gift) this.gifts.get(i);
-            float f10 = gift.animatedFloat.set(f7);
-            float lerp = AndroidUtilities.lerp(0.5f, f7, f10);
+            float f8 = gift.animatedFloat.set(f5);
+            float lerp = AndroidUtilities.lerp(0.5f, f5, f8);
             if (i == 0) {
-                double d = f8;
-                float f11 = f9;
+                double d = f6;
+                float f9 = f7;
                 double d2 = min3;
                 double cos = Math.cos(-1.1344639929903682d);
                 Double.isNaN(d2);
                 Double.isNaN(d);
-                min = (float) (d + (cos * d2));
-                f2 = clamp01;
                 f = min3;
-                double d3 = f11;
+                double d3 = f9;
                 double sin = Math.sin(-1.1344639929903682d);
                 Double.isNaN(d2);
                 Double.isNaN(d3);
-                dp = (float) (d3 + (d2 * sin));
-                float f12 = (1.0f - this.expandProgress) * f10;
-                f6 = AndroidUtilities.lerp(0.9f, 0.25f, this.actionBarProgress);
-                canvas2 = canvas;
-                f3 = f11;
-                f5 = 25.0f;
-                f4 = f12;
+                f2 = f9;
+                gift.draw(canvas, (float) (d + (cos * d2)), (float) (d3 + (d2 * sin)), lerp, 25.0f, (1.0f - this.expandProgress) * f8, AndroidUtilities.lerp(0.9f, 0.25f, this.actionBarProgress));
+                width2 = width2;
             } else {
                 f = min3;
-                f2 = clamp01;
-                f3 = f9;
+                float f10 = width2;
+                f2 = f7;
                 if (i == 1) {
-                    min = min2 + Math.min(getWidth() * 0.33f, AndroidUtilities.dp(74.0f));
-                    dp = f3 - AndroidUtilities.dp(52.0f);
-                    f4 = f10 * f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2;
-                    f5 = -12.0f;
-                } else if (i == 2) {
-                    min = min2 + Math.min(getWidth() * 0.81f, AndroidUtilities.dp(183.0f));
-                    dp = f3 - AndroidUtilities.dp(72.0f);
-                    f4 = f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2;
-                    f5 = 8.0f;
-                } else if (i == 3) {
-                    min = min2 + Math.min(getWidth() * 0.6f, AndroidUtilities.dp(136.0f));
-                    dp = f3 - AndroidUtilities.dp(46.0f);
-                    f4 = f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2;
-                    f5 = 3.0f;
-                } else if (i == 4) {
-                    min = min2 + Math.min(getWidth() * 0.08f, AndroidUtilities.dp(21.6f));
-                    dp = f3 - AndroidUtilities.dp(82.0f);
-                    f4 = f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2;
-                    f5 = -3.0f;
-                } else if (i == 5) {
-                    min = min2 + Math.min(getWidth() * 0.89f, AndroidUtilities.dp(237.0f));
-                    dp = f3 - AndroidUtilities.dp(42.33f);
-                    f4 = f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2;
-                    f5 = 2.0f;
-                } else if (i == 6) {
-                    min = min2 + Math.min(getWidth() * 0.38f, AndroidUtilities.dp(102.0f));
-                    dp = this.expandY - AndroidUtilities.dp(12.0f);
-                    f4 = f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2;
-                    f5 = 0.0f;
-                } else if (i == 7) {
-                    min = min2 + Math.min(getWidth() * 0.135f, AndroidUtilities.dp(36.0f));
-                    dp = this.expandY - AndroidUtilities.dp(17.6f);
-                    f4 = f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2;
-                    f5 = -5.0f;
+                    width2 = f10;
+                    min = AndroidUtilities.lerp(Math.min(getWidth() * 0.27f, AndroidUtilities.dp(62.0f)) + min2, width2, this.actionBarProgress * 0.5f);
+                    dp = f2 - AndroidUtilities.dp(52.0f);
+                    f3 = f8 * f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01;
+                    f4 = -4.0f;
                 } else {
-                    if (i == 8) {
-                        gift.draw(canvas, min2 + Math.min(getWidth() * 0.76f, AndroidUtilities.dp(178.0f)), this.expandY - AndroidUtilities.dp(21.66f), lerp, 5.0f, f10 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * f2, 1.0f);
+                    width2 = f10;
+                    if (i == 2) {
+                        min = AndroidUtilities.lerp(Math.min(getWidth() * 0.46f, AndroidUtilities.dp(105.0f)) + min2, width2, this.actionBarProgress * 0.5f);
+                        dp = f2 - AndroidUtilities.dp(72.0f);
+                        f3 = f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01;
+                        f4 = 8.0f;
+                    } else if (i == 3) {
+                        min = AndroidUtilities.lerp(Math.min(getWidth() * 0.6f, AndroidUtilities.dp(136.0f)) + min2, width2, this.actionBarProgress * 0.5f);
+                        dp = f2 - AndroidUtilities.dp(46.0f);
+                        f3 = f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01;
+                        f4 = 3.0f;
+                    } else if (i == 4) {
+                        min = AndroidUtilities.lerp(Math.min(getWidth() * 0.08f, AndroidUtilities.dp(21.6f)) + min2, width2, this.actionBarProgress * 0.5f);
+                        dp = f2 - AndroidUtilities.dp(82.0f);
+                        f3 = f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01;
+                        f4 = -3.0f;
+                    } else if (i == 5) {
+                        min = AndroidUtilities.lerp(Math.min(getWidth() * 0.745f, AndroidUtilities.dp(186.0f)) + min2, width2, this.actionBarProgress * 0.5f);
+                        dp = f2 - AndroidUtilities.dp(39.0f);
+                        f3 = f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01;
+                        f4 = 2.0f;
+                    } else if (i == 6) {
+                        min = min2 + Math.min(getWidth() * 0.38f, AndroidUtilities.dp(102.0f));
+                        dp = this.expandY - AndroidUtilities.dp(12.0f);
+                        f3 = f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01;
+                        f4 = 0.0f;
+                    } else if (i == 7) {
+                        min = min2 + Math.min(getWidth() * 0.135f, AndroidUtilities.dp(36.0f));
+                        dp = this.expandY - AndroidUtilities.dp(17.6f);
+                        f3 = f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01;
+                        f4 = -5.0f;
+                    } else if (i == 8) {
+                        gift.draw(canvas, min2 + Math.min(getWidth() * 0.76f, AndroidUtilities.dp(178.0f)), this.expandY - AndroidUtilities.dp(21.66f), lerp, 5.0f, f8 * (1.0f - this.expandProgress) * (1.0f - this.actionBarProgress) * clamp01, 1.0f);
                         i++;
-                        f9 = f3;
+                        f7 = f2;
                         min3 = f;
-                        clamp01 = f2;
-                        f7 = 1.0f;
+                        f5 = 1.0f;
                     }
-                    i++;
-                    f9 = f3;
-                    min3 = f;
-                    clamp01 = f2;
-                    f7 = 1.0f;
                 }
-                f6 = 1.0f;
-                canvas2 = canvas;
+                gift.draw(canvas, min, dp, lerp, f4, f3, 1.0f);
             }
-            gift.draw(canvas2, min, dp, lerp, f5, f4, f6);
             i++;
-            f9 = f3;
+            f7 = f2;
             min3 = f;
-            clamp01 = f2;
-            f7 = 1.0f;
+            f5 = 1.0f;
         }
         canvas.restore();
     }

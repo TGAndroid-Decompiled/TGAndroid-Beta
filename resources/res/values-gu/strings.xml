@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google માં સાઇન ઇન કરો</string>
     <string name="confirm_device_credential_password">પાસવર્ડનો ઉપયોગ કરો</string>
     <string name="default_error_msg">અજાણી ભૂલ</string>
-    <string name="fcm_fallback_notification_channel_label">વિવિધ</string>
     <string name="fingerprint_dialog_touch_sensor">ફિંગરપ્રિન્ટના સેન્સરને સ્પર્શ કરો</string>
     <string name="fingerprint_error_hw_not_available">ફિંગરપ્રિન્ટ હાર્ડવેર ઉપલબ્ધ નથી.</string>
     <string name="fingerprint_error_hw_not_present">આ ડિવાઇસમાં કોઈ ફિંગરપ્રિન્ટ સેન્સર નથી</string>

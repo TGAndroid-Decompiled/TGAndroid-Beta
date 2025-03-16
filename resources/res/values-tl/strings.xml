@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Mag-sign in sa Google</string>
     <string name="confirm_device_credential_password">Gamitin ang password</string>
     <string name="default_error_msg">Hindi alam na error</string>
-    <string name="fcm_fallback_notification_channel_label">Iba Pa</string>
     <string name="fingerprint_dialog_touch_sensor">Pindutin ang fingerprint sensor</string>
     <string name="fingerprint_error_hw_not_available">Hindi available ang hardware na ginagamitan ng fingerprint.</string>
     <string name="fingerprint_error_hw_not_present">Walang sensor para sa fingerprint ang device na ito</string>

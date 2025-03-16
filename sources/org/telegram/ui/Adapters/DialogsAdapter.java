@@ -41,6 +41,7 @@ import org.telegram.ui.Cells.DialogMeUrlCell;
 import org.telegram.ui.Cells.DialogsEmptyCell;
 import org.telegram.ui.Cells.DialogsHintCell;
 import org.telegram.ui.Cells.DialogsRequestedEmptyCell;
+import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.RequestPeerRequirementsCell;
@@ -588,11 +589,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         String string;
         String str4;
         TLRPC.Chat chat3;
+        DialogsActivity dialogsActivity;
         HeaderCell headerCell;
         int i4;
         String string2;
         int i5;
         int itemViewType = viewHolder.getItemViewType();
+        String str5 = null;
         if (itemViewType == 0) {
             TLRPC.Dialog dialog = (TLRPC.Dialog) getItem(i);
             TLRPC.Dialog dialog2 = (TLRPC.Dialog) getItem(i + 1);
@@ -609,7 +612,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     chat = null;
                 }
                 if (chat != null) {
-                    String str5 = chat.title;
+                    String str6 = chat.title;
                     if (!ChatObject.isChannel(chat) || chat.megagroup) {
                         i2 = chat.participants_count;
                         if (i2 != 0) {
@@ -632,7 +635,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         }
                     }
                     str3 = string;
-                    str2 = str5;
+                    str2 = str6;
                     chat2 = chat;
                 } else {
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialog.id));
@@ -659,6 +662,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     dialogCell.setDialogSelected(dialog.id == this.openedDialogId);
                 }
                 dialogCell.setChecked(this.selectedDialogs.contains(Long.valueOf(dialog.id)), false);
+                if (i == 1 && (dialogsActivity = this.parentFragment) != null && dialogsActivity.isReplyTo) {
+                    long j = dialogsActivity.replyMessageAuthor;
+                    if (j != 0 && dialog.top_message == 0) {
+                        str5 = DialogObject.getStatus(j);
+                    }
+                }
+                dialogCell.setCustomMessage(str5);
                 dialogCell.setDialog(dialog, this.dialogsType, this.folderId);
                 dialogCell.checkHeight();
                 boolean z = dialogCell.collapsed;
@@ -671,6 +681,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 if (dialogsPreloader != null && i < 10) {
                     dialogsPreloader.add(dialog.id);
                 }
+            }
+        } else if (itemViewType == 20) {
+            GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+            DialogsActivity dialogsActivity2 = this.parentFragment;
+            if (dialogsActivity2 != null && dialogsActivity2.isReplyTo) {
+                graySectionCell.setText(LocaleController.getString(i == 0 ? R.string.ReplyDialogMessageAuthor : R.string.ReplyDialogYourChats));
             }
         } else if (itemViewType == 4) {
             ((DialogMeUrlCell) viewHolder.itemView).setRecentMeUrl((TLRPC.RecentMeUrl) getItem(i));
@@ -725,8 +741,8 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 }
                 LinkSpanDrawable.LinksTextView textView = textInfoPrivacyCell.getTextView();
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
-                DialogsActivity dialogsActivity = this.parentFragment;
-                textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (dialogsActivity == null || !dialogsActivity.storiesEnabled) ? this.arrowDrawable : null, (Drawable) null);
+                DialogsActivity dialogsActivity3 = this.parentFragment;
+                textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (dialogsActivity3 == null || !dialogsActivity3.storiesEnabled) ? this.arrowDrawable : null, (Drawable) null);
                 textView.getLayoutParams().width = -2;
             } else if (itemViewType != 12) {
                 switch (itemViewType) {

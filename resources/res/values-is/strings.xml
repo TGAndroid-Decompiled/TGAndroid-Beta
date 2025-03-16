@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Skrá inn með Google</string>
     <string name="confirm_device_credential_password">Nota aðgangsorð</string>
     <string name="default_error_msg">Óþekkt villa</string>
-    <string name="fcm_fallback_notification_channel_label">Ýmislegt</string>
     <string name="fingerprint_dialog_touch_sensor">Snertu fingrafaralesarann</string>
     <string name="fingerprint_error_hw_not_available">Fingrafarsvélbúnaður ekki til staðar.</string>
     <string name="fingerprint_error_hw_not_present">Þetta tæki er ekki með fingrafaralesara</string>

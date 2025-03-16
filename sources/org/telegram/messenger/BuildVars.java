@@ -28,7 +28,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION_STRING = "11.8.2";
+        BUILD_VERSION_STRING = "11.8.3";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -45,10 +45,11 @@ public class BuildVars {
             }
             LOGS_ENABLED = z;
             if (z) {
+                final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
                     public final void uncaughtException(Thread thread, Throwable th) {
-                        FileLog.fatal(th, true);
+                        BuildVars.lambda$static$0(defaultUncaughtExceptionHandler, thread, th);
                     }
                 });
             }
@@ -86,6 +87,13 @@ public class BuildVars {
 
     public static boolean isHuaweiStoreApp() {
         return ApplicationLoader.isHuaweiStoreBuild();
+    }
+
+    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
+        FileLog.fatal(th, false);
+        if (uncaughtExceptionHandler != null) {
+            uncaughtExceptionHandler.uncaughtException(thread, th);
+        }
     }
 
     public static boolean useInvoiceBilling() {

@@ -44,7 +44,6 @@ import android.media.MediaCodecList;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
@@ -103,7 +102,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.lang.Thread;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -991,29 +989,23 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.val$context = context;
         }
 
-        public static void lambda$onItemClick$0(Thread thread, Throwable th) {
-            if (thread == Looper.getMainLooper().getThread()) {
-                FileLog.fatal(th, true);
-            }
-        }
-
-        public void lambda$onItemClick$1(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onItemClick$0(TLObject tLObject, TLRPC.TL_error tL_error) {
             ProfileActivity.this.getMessagesController().loadAppConfig();
         }
 
-        public void lambda$onItemClick$2(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onItemClick$1(TLObject tLObject, TLRPC.TL_error tL_error) {
             TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
             tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
             tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
             ProfileActivity.this.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    ProfileActivity.AnonymousClass15.this.lambda$onItemClick$1(tLObject2, tL_error2);
+                    ProfileActivity.AnonymousClass15.this.lambda$onItemClick$0(tLObject2, tL_error2);
                 }
             });
         }
 
-        public static void lambda$onItemClick$3(int i, DialogInterface dialogInterface, int i2) {
+        public static void lambda$onItemClick$2(int i, DialogInterface dialogInterface, int i2) {
             int i3 = 2 - i2;
             if (i3 == i) {
                 SharedConfig.overrideDevicePerformanceClass(-1);
@@ -1022,7 +1014,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$4(Context context, DialogInterface dialogInterface, int i) {
+        public void lambda$onItemClick$3(Context context, DialogInterface dialogInterface, int i) {
             int i2;
             String str;
             String str2;
@@ -1048,14 +1040,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (i == 4) {
-                boolean z = !BuildVars.LOGS_ENABLED;
-                BuildVars.LOGS_ENABLED = z;
-                Thread.setDefaultUncaughtExceptionHandler(z ? new Thread.UncaughtExceptionHandler() {
-                    @Override
-                    public final void uncaughtException(Thread thread, Throwable th) {
-                        ProfileActivity.AnonymousClass15.lambda$onItemClick$0(thread, th);
-                    }
-                } : null);
+                BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
                 ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
                 ProfileActivity.this.updateRowsIds();
                 ProfileActivity.this.listAdapter.notifyDataSetChanged();
@@ -1194,7 +1179,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.this.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            ProfileActivity.AnonymousClass15.this.lambda$onItemClick$2(tLObject, tL_error);
+                            ProfileActivity.AnonymousClass15.this.lambda$onItemClick$1(tLObject, tL_error);
                         }
                     });
                     return;
@@ -1219,7 +1204,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         builder.setItems(new CharSequence[]{replaceTags, replaceTags2, AndroidUtilities.replaceTags(sb3.toString())}, new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface2, int i6) {
-                                ProfileActivity.AnonymousClass15.lambda$onItemClick$3(measureDevicePerformanceClass, dialogInterface2, i6);
+                                ProfileActivity.AnonymousClass15.lambda$onItemClick$2(measureDevicePerformanceClass, dialogInterface2, i6);
                             }
                         });
                         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1525,7 +1510,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             String string6 = LocaleController.getString(str2, i4);
             String string7 = LocaleController.getString("DebugMenuClearMediaCache", R.string.DebugMenuClearMediaCache);
             String string8 = LocaleController.getString("DebugMenuCallSettings", R.string.DebugMenuCallSettings);
-            String string9 = (BuildVars.DEBUG_PRIVATE_VERSION || ApplicationLoader.isStandaloneBuild()) ? LocaleController.getString("DebugMenuCheckAppUpdate", R.string.DebugMenuCheckAppUpdate) : null;
+            String string9 = (BuildVars.DEBUG_PRIVATE_VERSION || ApplicationLoader.isStandaloneBuild() || ApplicationLoader.isBetaBuild()) ? LocaleController.getString("DebugMenuCheckAppUpdate", R.string.DebugMenuCheckAppUpdate) : null;
             String string10 = LocaleController.getString("DebugMenuReadAllDialogs", R.string.DebugMenuReadAllDialogs);
             String str4 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects" : null;
             boolean z = BuildVars.DEBUG_PRIVATE_VERSION;
@@ -1547,7 +1532,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i7) {
-                    ProfileActivity.AnonymousClass15.this.lambda$onItemClick$4(context, dialogInterface, i7);
+                    ProfileActivity.AnonymousClass15.this.lambda$onItemClick$3(context, dialogInterface, i7);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -14897,6 +14882,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 this.collectibleHint.setAlpha(0.0f);
             }
             updateCollectibleHint();
+            HintView2 hintView22 = this.collectibleHint;
+            Objects.requireNonNull(hintView22);
+            AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda58(hintView22), 6000L);
         }
     }
 

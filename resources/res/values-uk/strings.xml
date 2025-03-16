@@ -334,7 +334,6 @@
     <string name="common_signin_button_text_long">Увійти в облік. запис Google</string>
     <string name="confirm_device_credential_password">Ввести пароль</string>
     <string name="default_error_msg">Невідома помилка</string>
-    <string name="fcm_fallback_notification_channel_label">Інше</string>
     <string name="fingerprint_dialog_touch_sensor">Торкніться сканера відбитків пальців</string>
     <string name="fingerprint_error_hw_not_available">Сканер відбитків пальців недоступний.</string>
     <string name="fingerprint_error_hw_not_present">На цьому пристрої немає сканера відбитків пальців</string>

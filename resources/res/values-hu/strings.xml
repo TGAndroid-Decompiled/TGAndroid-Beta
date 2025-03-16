@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Bejelentkezés Google-fiókkal</string>
     <string name="confirm_device_credential_password">Jelszó használata</string>
     <string name="default_error_msg">Ismeretlen hiba</string>
-    <string name="fcm_fallback_notification_channel_label">Egyéb</string>
     <string name="fingerprint_dialog_touch_sensor">Érintse meg az ujjlenyomat-érzékelőt</string>
     <string name="fingerprint_error_hw_not_available">Az ujjlenyomathoz szükséges hardverhez nem lehet hozzáférni.</string>
     <string name="fingerprint_error_hw_not_present">Ez az eszköz nem rendelkezik ujjlenyomat-érzékelővel</string>

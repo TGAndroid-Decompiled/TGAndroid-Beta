@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Meld aan met Google</string>
     <string name="confirm_device_credential_password">Gebruik wagwoord</string>
     <string name="default_error_msg">Onbekende fout</string>
-    <string name="fcm_fallback_notification_channel_label">Diverse</string>
     <string name="fingerprint_dialog_touch_sensor">Raak die vingerafdruksensor</string>
     <string name="fingerprint_error_hw_not_available">Vingerafdrukhardeware is nie beskikbaar nie.</string>
     <string name="fingerprint_error_hw_not_present">Hierdie toetstel het nie \'n vingerafdruksensor nie</string>

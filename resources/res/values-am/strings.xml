@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">በGoogle ይግቡ</string>
     <string name="confirm_device_credential_password">የይለፍ ቃል ተጠቀም</string>
     <string name="default_error_msg">ያልታወቀ ስህተት</string>
-    <string name="fcm_fallback_notification_channel_label">የተለያዩ</string>
     <string name="fingerprint_dialog_touch_sensor">የጣት አሻራ ዳሳሹን ይንኩ</string>
     <string name="fingerprint_error_hw_not_available">የጣት አሻራ ሃርድዌር የለም።</string>
     <string name="fingerprint_error_hw_not_present">ይህ መሣሪያ የጣት አሻራ ዳሳሽ የለውም</string>

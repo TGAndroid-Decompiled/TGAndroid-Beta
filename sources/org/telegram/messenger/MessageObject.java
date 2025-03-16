@@ -5179,6 +5179,14 @@ public class MessageObject {
         return getFromChatId(this.messageOwner);
     }
 
+    public TLRPC.Peer getFromPeer() {
+        TLRPC.Message message = this.messageOwner;
+        if (message != null) {
+            return message.from_id;
+        }
+        return null;
+    }
+
     public TLObject getFromPeerObject() {
         TLRPC.Message message = this.messageOwner;
         if (message == null) {
@@ -5934,20 +5942,24 @@ public class MessageObject {
     }
 
     public boolean hasVideoQualities() {
+        return hasVideoQualities(true);
+    }
+
+    public boolean hasVideoQualities(boolean z) {
         TLRPC.MessageMedia messageMedia;
         if (this.videoQualitiesCached == null) {
             try {
                 TLRPC.Message message = this.messageOwner;
-                boolean z = false;
+                boolean z2 = false;
                 if (message != null && (messageMedia = message.media) != null && messageMedia.document != null && !messageMedia.alt_documents.isEmpty()) {
                     int i = this.currentAccount;
                     TLRPC.Message message2 = this.messageOwner;
-                    ArrayList<VideoPlayer.Quality> qualities = VideoPlayer.getQualities(i, message2 != null ? message2.media : null);
+                    ArrayList<VideoPlayer.Quality> qualities = VideoPlayer.getQualities(i, message2 != null ? message2.media : null, z);
                     this.videoQualities = qualities;
                     if (qualities != null && qualities.size() > 1) {
-                        z = true;
+                        z2 = true;
                     }
-                    this.videoQualitiesCached = Boolean.valueOf(z);
+                    this.videoQualitiesCached = Boolean.valueOf(z2);
                     this.highestQuality = VideoPlayer.getQualityForPlayer(this.videoQualities);
                     this.thumbQuality = VideoPlayer.getQualityForThumb(this.videoQualities);
                     this.cachedQuality = VideoPlayer.getCachedQuality(this.videoQualities);
@@ -7224,23 +7236,22 @@ public class MessageObject {
     }
 
     public void updateQualitiesCached(boolean z) {
-        VideoPlayer.VideoUri cachedQuality;
         ArrayList<VideoPlayer.Quality> arrayList = this.videoQualities;
         if (arrayList == null) {
-            cachedQuality = null;
-        } else {
-            Iterator<VideoPlayer.Quality> it = arrayList.iterator();
-            while (it.hasNext()) {
-                Iterator it2 = it.next().uris.iterator();
-                while (it2.hasNext()) {
-                    ((VideoPlayer.VideoUri) it2.next()).updateCached(z);
-                }
-            }
-            this.highestQuality = VideoPlayer.getQualityForPlayer(this.videoQualities);
-            this.thumbQuality = VideoPlayer.getQualityForThumb(this.videoQualities);
-            cachedQuality = VideoPlayer.getCachedQuality(this.videoQualities);
+            this.cachedQuality = null;
+            hasVideoQualities(z);
+            return;
         }
-        this.cachedQuality = cachedQuality;
+        Iterator<VideoPlayer.Quality> it = arrayList.iterator();
+        while (it.hasNext()) {
+            Iterator it2 = it.next().uris.iterator();
+            while (it2.hasNext()) {
+                ((VideoPlayer.VideoUri) it2.next()).updateCached(z);
+            }
+        }
+        this.highestQuality = VideoPlayer.getQualityForPlayer(this.videoQualities);
+        this.thumbQuality = VideoPlayer.getQualityForThumb(this.videoQualities);
+        this.cachedQuality = VideoPlayer.getCachedQuality(this.videoQualities);
     }
 
     public boolean updateTranslation() {

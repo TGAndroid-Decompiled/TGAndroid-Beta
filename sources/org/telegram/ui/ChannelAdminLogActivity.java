@@ -1974,19 +1974,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.scrimPopupWindow.dimBehind();
     }
 
-    public void lambda$createMenu$15(TLRPC.ChannelParticipant channelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
-        this.selectedParticipant = channelParticipant;
-        if (channelParticipant != null) {
-            if (ChatObject.canUserDoAction(this.currentChat, channelParticipant, 6) || ChatObject.canUserDoAction(this.currentChat, channelParticipant, 7)) {
-                arrayList.add(LocaleController.getString(R.string.Restrict));
-                arrayList2.add(Integer.valueOf(R.drawable.msg_block2));
-                arrayList3.add(33);
-            }
-            arrayList.add(LocaleController.getString(R.string.Ban));
-            arrayList2.add(Integer.valueOf(R.drawable.msg_block));
-            arrayList3.add(35);
-        }
-        runnable.run();
+    public void lambda$createMenu$15(org.telegram.tgnet.TLRPC.ChannelParticipant r10, java.util.ArrayList r11, java.util.ArrayList r12, java.util.ArrayList r13, java.lang.Runnable r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.lambda$createMenu$15(org.telegram.tgnet.TLRPC$ChannelParticipant, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.lang.Runnable):void");
     }
 
     public void lambda$createMenu$16(final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3, final Runnable runnable, final TLRPC.ChannelParticipant channelParticipant) {

@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Prihlásiť sa do účtu Google</string>
     <string name="confirm_device_credential_password">Použiť heslo</string>
     <string name="default_error_msg">Neznáma chyba</string>
-    <string name="fcm_fallback_notification_channel_label">Rôzne</string>
     <string name="fingerprint_dialog_touch_sensor">Dotknite sa senzora odtlačkov prstov</string>
     <string name="fingerprint_error_hw_not_available">Hardvér na snímanie odtlačku prsta nie je k dispozícii.</string>
     <string name="fingerprint_error_hw_not_present">Toto zariadenie nemá senzor odtlačkov prstov</string>

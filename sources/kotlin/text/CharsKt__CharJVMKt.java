@@ -2,7 +2,7 @@ package kotlin.text;
 
 import kotlin.ranges.IntRange;
 
-abstract class CharsKt__CharJVMKt {
+public abstract class CharsKt__CharJVMKt {
     public static final int checkRadix(int i) {
         if (new IntRange(2, 36).contains(i)) {
             return i;
@@ -12,5 +12,9 @@ abstract class CharsKt__CharJVMKt {
 
     public static final int digitOf(char c, int i) {
         return Character.digit((int) c, i);
+    }
+
+    public static final boolean isWhitespace(char c) {
+        return Character.isWhitespace(c) || Character.isSpaceChar(c);
     }
 }

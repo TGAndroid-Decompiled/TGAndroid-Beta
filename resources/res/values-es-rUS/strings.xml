@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Acceder con Google</string>
     <string name="confirm_device_credential_password">Usar contraseña</string>
     <string name="default_error_msg">Error desconocido</string>
-    <string name="fcm_fallback_notification_channel_label">Varios</string>
     <string name="fingerprint_dialog_touch_sensor">Toca el sensor de huellas dig.</string>
     <string name="fingerprint_error_hw_not_available">El hardware para detectar huellas digitales no está disponible.</string>
     <string name="fingerprint_error_hw_not_present">Este dispositivo no tiene sensor de huellas digitales</string>

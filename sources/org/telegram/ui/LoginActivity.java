@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.Layout;
@@ -84,6 +85,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -1933,7 +1935,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double d = LoginActivityPhraseView.this.lastCurrentTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivityPhraseView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivityPhraseView.access$17826(LoginActivityPhraseView.this, currentTimeMillis - d);
+                LoginActivityPhraseView.access$17926(LoginActivityPhraseView.this, currentTimeMillis - d);
                 if (LoginActivityPhraseView.this.time >= 1000) {
                     int i2 = (LoginActivityPhraseView.this.time / 1000) / 60;
                     int i3 = (LoginActivityPhraseView.this.time / 1000) - (i2 * 60);
@@ -2000,7 +2002,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivityPhraseView.<init>(org.telegram.ui.LoginActivity, android.content.Context, int):void");
         }
 
-        static int access$17826(LoginActivityPhraseView loginActivityPhraseView, double d) {
+        static int access$17926(LoginActivityPhraseView loginActivityPhraseView, double d) {
             double d2 = loginActivityPhraseView.time;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -4490,7 +4492,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double d = LoginActivitySmsView.this.lastCodeTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCodeTime = currentTimeMillis;
-                LoginActivitySmsView.access$9426(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$9526(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.codeTime <= 1000) {
                     LoginActivitySmsView.this.setProblemTextVisible(true);
                     LoginActivitySmsView.this.timeText.setVisibility(8);
@@ -4526,7 +4528,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double d = LoginActivitySmsView.this.lastCurrentTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivitySmsView.access$8426(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$8526(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.time >= 1000) {
                     int i2 = (LoginActivitySmsView.this.time / 1000) / 60;
                     int i3 = (LoginActivitySmsView.this.time / 1000) - (i2 * 60);
@@ -4539,14 +4541,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                 loadingTextView2 = LoginActivitySmsView.this.timeText;
                                 formatString = LocaleController.formatString("SmsAvailableIn", R.string.SmsAvailableIn, Integer.valueOf(i2), Integer.valueOf(i3));
                             }
-                            LoginActivitySmsView.access$10100(LoginActivitySmsView.this);
+                            LoginActivitySmsView.access$10200(LoginActivitySmsView.this);
                             return;
                         }
                         loadingTextView2 = LoginActivitySmsView.this.timeText;
                         formatString = LocaleController.formatString("ResendSmsAvailableIn", R.string.ResendSmsAvailableIn, Integer.valueOf(i2), Integer.valueOf(i3));
                     }
                     loadingTextView2.setText(formatString);
-                    LoginActivitySmsView.access$10100(LoginActivitySmsView.this);
+                    LoginActivitySmsView.access$10200(LoginActivitySmsView.this);
                     return;
                 }
                 LoginActivitySmsView.this.destroyTimer();
@@ -4590,12 +4592,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.<init>(org.telegram.ui.LoginActivity, android.content.Context, int):void");
         }
 
-        static ProgressView access$10100(LoginActivitySmsView loginActivitySmsView) {
+        static ProgressView access$10200(LoginActivitySmsView loginActivitySmsView) {
             loginActivitySmsView.getClass();
             return null;
         }
 
-        static int access$8426(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$8526(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.time;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -4603,7 +4605,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return i;
         }
 
-        static int access$9426(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$9526(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.codeTime;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -6647,7 +6649,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$fillNumber$21(List list) {
+        public void lambda$fillNumber$22(List list) {
             boolean shouldShowRequestPermissionRationale;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("firstloginshow", true)) {
@@ -6898,7 +6900,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             LoginActivity.this.lambda$onBackPressed$335();
         }
 
-        public void lambda$onNextPressed$17(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
+        public void lambda$onNextPressed$18(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
             this.nextPressed = false;
             LoginActivity.this.showDoneButton(false, true);
             if (tL_error != null) {
@@ -6918,16 +6920,16 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             LoginActivity.this.setPage(6, true, bundle, false);
         }
 
-        public void lambda$onNextPressed$18(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public void lambda$onNextPressed$19(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.PhoneView.this.lambda$onNextPressed$17(tL_error, tLObject, str);
+                    LoginActivity.PhoneView.this.lambda$onNextPressed$18(tL_error, tLObject, str);
                 }
             });
         }
 
-        public void lambda$onNextPressed$19(TLRPC.TL_error tL_error, TLObject tLObject, Bundle bundle, final String str, PhoneInputData phoneInputData, TLObject tLObject2) {
+        public void lambda$onNextPressed$20(TLRPC.TL_error tL_error, TLObject tLObject, Bundle bundle, final String str, PhoneInputData phoneInputData, TLObject tLObject2) {
             LoginActivity loginActivity;
             String string;
             int i;
@@ -6940,7 +6942,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject3, TLRPC.TL_error tL_error2) {
-                                LoginActivity.PhoneView.this.lambda$onNextPressed$18(str, tLObject3, tL_error2);
+                                LoginActivity.PhoneView.this.lambda$onNextPressed$19(str, tLObject3, tL_error2);
                             }
                         }, 10);
                     } else if (tL_error.text.contains("PHONE_NUMBER_INVALID")) {
@@ -7000,16 +7002,16 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             LoginActivity.this.needHideProgress(false);
         }
 
-        public void lambda$onNextPressed$20(final Bundle bundle, final String str, final PhoneInputData phoneInputData, final TLObject tLObject, final TLObject tLObject2, final TLRPC.TL_error tL_error) {
+        public void lambda$onNextPressed$21(final Bundle bundle, final String str, final PhoneInputData phoneInputData, final TLObject tLObject, final TLObject tLObject2, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.PhoneView.this.lambda$onNextPressed$19(tL_error, tLObject2, bundle, str, phoneInputData, tLObject);
+                    LoginActivity.PhoneView.this.lambda$onNextPressed$20(tL_error, tLObject2, bundle, str, phoneInputData, tLObject);
                 }
             });
         }
 
-        public void lambda$onShow$22() {
+        public void lambda$onShow$23() {
             LoginActivity loginActivity;
             AnimatedPhoneNumberEditText animatedPhoneNumberEditText;
             if (this.phoneField != null) {
@@ -7152,7 +7154,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         @Override
-        public void lambda$onNextPressed$14(final java.lang.String r19) {
+        public void lambda$onNextPressed$14(final java.lang.String r17) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.PhoneView.lambda$onNextPressed$14(java.lang.String):void");
         }
 
@@ -7171,7 +7173,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.PhoneView.this.lambda$onShow$22();
+                    LoginActivity.PhoneView.this.lambda$onShow$23();
                 }
             }, LoginActivity.SHOW_DELAY);
         }
@@ -7455,6 +7457,44 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         bundle.putString("emailPattern", sentemailcode.email_pattern);
         bundle.putInt("length", sentemailcode.length);
         setPage(13, true, bundle, false);
+    }
+
+    public HashSet getUserPhoneNumbers() {
+        SubscriptionManager from;
+        String number;
+        HashSet hashSet = new HashSet();
+        try {
+            String line1Number = ((TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone")).getLine1Number();
+            if (!TextUtils.isEmpty(line1Number)) {
+                hashSet.add(line1Number);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        try {
+            int i = Build.VERSION.SDK_INT;
+            if (i >= 22) {
+                from = SubscriptionManager.from(getContext());
+                List completeActiveSubscriptionInfoList = i >= 30 ? from.getCompleteActiveSubscriptionInfoList() : null;
+                if ((completeActiveSubscriptionInfoList == null || completeActiveSubscriptionInfoList.isEmpty()) && i >= 28) {
+                    completeActiveSubscriptionInfoList = from.getAccessibleSubscriptionInfoList();
+                }
+                if (completeActiveSubscriptionInfoList == null || completeActiveSubscriptionInfoList.isEmpty()) {
+                    completeActiveSubscriptionInfoList = from.getActiveSubscriptionInfoList();
+                }
+                if (completeActiveSubscriptionInfoList != null) {
+                    for (int i2 = 0; i2 < completeActiveSubscriptionInfoList.size(); i2++) {
+                        number = LoginActivity$$ExternalSyntheticApiModelOutline4.m(completeActiveSubscriptionInfoList.get(i2)).getNumber();
+                        if (!TextUtils.isEmpty(number)) {
+                            hashSet.add(number);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        return hashSet;
     }
 
     public boolean isCustomKeyboardForceDisabled() {
@@ -8589,7 +8629,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public android.view.View createView(android.content.Context r28) {
+    public android.view.View createView(android.content.Context r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.createView(android.content.Context):android.view.View");
     }
 

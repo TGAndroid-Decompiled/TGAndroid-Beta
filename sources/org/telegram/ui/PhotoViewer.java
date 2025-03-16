@@ -8335,7 +8335,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return Build.VERSION.SDK_INT >= 31 && SharedConfig.useNewBlur && SharedConfig.getDevicePerformanceClass() >= 2 && !AndroidUtilities.makingGlobalBlurBitmap;
     }
 
-    public static void access$17600(PhotoViewer photoViewer) {
+    public static void access$17700(PhotoViewer photoViewer) {
         photoViewer.updateCaptionTranslated();
     }
 
@@ -9136,7 +9136,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.videoItem.toggleSubMenu();
         try {
             CastSync.check(0);
-            ChromecastController.getInstance().setCurrentMediaAndCastIfNeeded(getCurrentChromecastMedia());
+            if (ChromecastController.getInstance().isCasting()) {
+                ChromecastController.getInstance().setCurrentMediaAndCastIfNeeded(getCurrentChromecastMedia());
+            }
             VideoPlayer videoPlayer3 = this.videoPlayer;
             if (videoPlayer3 != null) {
                 CastSync.setPlaying(videoPlayer3.isPlaying());
@@ -10079,7 +10081,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return Math.max(min / bitmapHeight, min / bitmapWidth);
     }
 
-    private ChromecastMediaVariations getCurrentChromecastMedia() {
+    public ChromecastMediaVariations getCurrentChromecastMedia() {
         String str;
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject == null) {
@@ -15612,7 +15614,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         checkFullscreenButton();
         try {
             CastSync.check(0);
-            ChromecastController.getInstance().setCurrentMediaAndCastIfNeeded(getCurrentChromecastMedia());
+            if (ChromecastController.getInstance().isCasting()) {
+                ChromecastController.getInstance().setCurrentMediaAndCastIfNeeded(getCurrentChromecastMedia());
+            }
         } catch (Exception e) {
             FileLog.e(e);
         }

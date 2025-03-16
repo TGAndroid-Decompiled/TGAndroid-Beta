@@ -87,7 +87,6 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.CacheControlActivity;
 import org.telegram.ui.Cells.AccountSelectCell;
@@ -694,226 +693,12 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void createBotLaunchAlert(final BaseFragment baseFragment, final AtomicBoolean atomicBoolean, final TLRPC.User user, final Runnable runnable) {
-        float f;
-        int dp;
-        if (baseFragment == null) {
-            return;
-        }
-        final Context context = baseFragment.getContext();
-        final CheckBoxCell[] checkBoxCellArr = new CheckBoxCell[1];
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
-            @Override
-            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-            }
-        };
-        NotificationCenter.listenEmojiLoading(linksTextView);
-        linksTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
-        linksTextView.setTextSize(1, 16.0f);
-        linksTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        FrameLayout frameLayout = new FrameLayout(context) {
-            @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, i2);
-                if (checkBoxCellArr[0] != null) {
-                    setMeasuredDimension(getMeasuredWidth(), getMeasuredHeight() + checkBoxCellArr[0].getMeasuredHeight() + AndroidUtilities.dp(7.0f));
-                }
-            }
-        };
-        builder.setCustomViewOffset(6);
-        builder.setView(frameLayout);
-        AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setTextSize(AndroidUtilities.dp(18.0f));
-        BackupImageView backupImageView = new BackupImageView(context);
-        backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        frameLayout.addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 5.0f, 22.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(context);
-        simpleTextView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
-        simpleTextView.setTextSize(20);
-        simpleTextView.setTypeface(AndroidUtilities.bold());
-        simpleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        simpleTextView.setEllipsizeByGradient(true);
-        simpleTextView.setText(user.first_name);
-        if (user.verified) {
-            Drawable mutate = context.getResources().getDrawable(R.drawable.verified_area).mutate();
-            int color = Theme.getColor(Theme.key_chats_verifiedBackground);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            mutate.setColorFilter(new PorterDuffColorFilter(color, mode));
-            Drawable mutate2 = context.getResources().getDrawable(R.drawable.verified_check).mutate();
-            mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_verifiedCheck), mode));
-            simpleTextView.setRightDrawable(new CombinedDrawable(mutate, mutate2));
-        }
-        TextView textView = new TextView(context);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue));
-        textView.setTextSize(1, 14.0f);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                AlertsCreator.lambda$createBotLaunchAlert$32(TLRPC.User.this, baseFragment, builder, view);
-            }
-        });
-        SpannableString valueOf = SpannableString.valueOf(LocaleController.getString(R.string.MoreAboutThisBot) + "  ");
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.attach_arrow_right);
-        coloredImageSpan.setTopOffset(1);
-        coloredImageSpan.setSize(AndroidUtilities.dp(10.0f));
-        valueOf.setSpan(coloredImageSpan, valueOf.length() - 1, valueOf.length(), 33);
-        textView.setText(valueOf);
-        boolean z = LocaleController.isRTL;
-        frameLayout.addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 21 : 76, 0.0f, z ? 76 : 21, 0.0f));
-        boolean z2 = LocaleController.isRTL;
-        frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 21 : 76, 24.0f, z2 ? 76 : 21, 0.0f));
-        frameLayout.addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 57.0f, 24.0f, 1.0f));
-        if (atomicBoolean != null) {
-            atomicBoolean.set(true);
-            CheckBoxCell checkBoxCell = new CheckBoxCell(context, 1, baseFragment.getResourceProvider());
-            checkBoxCellArr[0] = checkBoxCell;
-            checkBoxCell.allowMultiline();
-            checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
-            checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.OpenUrlOption2, UserObject.getUserName(user))), "", true, false);
-            CheckBoxCell checkBoxCell2 = checkBoxCellArr[0];
-            if (LocaleController.isRTL) {
-                f = 16.0f;
-                dp = AndroidUtilities.dp(16.0f);
-            } else {
-                f = 16.0f;
-                dp = AndroidUtilities.dp(8.0f);
-            }
-            checkBoxCell2.setPadding(dp, 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(f), 0);
-            checkBoxCellArr[0].setChecked(true, false);
-            frameLayout.addView(checkBoxCellArr[0], LayoutHelper.createFrame(-1, 48.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
-            checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    AlertsCreator.lambda$createBotLaunchAlert$33(atomicBoolean, view);
-                }
-            });
-        }
-        if (UserObject.isReplyUser(user)) {
-            avatarDrawable.setScaleSize(0.8f);
-            avatarDrawable.setAvatarType(12);
-            backupImageView.setImage((ImageLocation) null, (String) null, avatarDrawable, user);
-        } else {
-            avatarDrawable.setScaleSize(1.0f);
-            avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
-            backupImageView.setForUserOrChat(user, avatarDrawable);
-        }
-        builder.setPositiveButton(LocaleController.getString(R.string.Start), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                runnable.run();
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        final AlertDialog create = builder.create();
-        baseFragment.showDialog(create);
-        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebViewStartPermission2), new Runnable() {
-            @Override
-            public final void run() {
-                AlertsCreator.lambda$createBotLaunchAlert$35(AlertDialog.this, context);
-            }
-        }));
+    public static void createBotLaunchAlert(final org.telegram.ui.ActionBar.BaseFragment r29, final java.util.concurrent.atomic.AtomicBoolean r30, final org.telegram.tgnet.TLRPC.User r31, final java.lang.Runnable r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createBotLaunchAlert(org.telegram.ui.ActionBar.BaseFragment, java.util.concurrent.atomic.AtomicBoolean, org.telegram.tgnet.TLRPC$User, java.lang.Runnable):void");
     }
 
-    public static void createBotLaunchAlert(final BaseFragment baseFragment, final TLRPC.User user, final Runnable runnable, final Runnable runnable2) {
-        final Context context = baseFragment.getContext();
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
-            @Override
-            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-            }
-        };
-        NotificationCenter.listenEmojiLoading(linksTextView);
-        linksTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
-        linksTextView.setTextSize(1, 16.0f);
-        linksTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        FrameLayout frameLayout = new FrameLayout(context);
-        builder.setCustomViewOffset(6);
-        builder.setView(frameLayout);
-        AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setTextSize(AndroidUtilities.dp(18.0f));
-        BackupImageView backupImageView = new BackupImageView(context);
-        backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        frameLayout.addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 5.0f, 22.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(context);
-        simpleTextView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
-        simpleTextView.setTextSize(20);
-        simpleTextView.setTypeface(AndroidUtilities.bold());
-        simpleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        simpleTextView.setEllipsizeByGradient(true);
-        simpleTextView.setText(user.first_name);
-        if (user.verified) {
-            Drawable mutate = context.getResources().getDrawable(R.drawable.verified_area).mutate();
-            int color = Theme.getColor(Theme.key_chats_verifiedBackground);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            mutate.setColorFilter(new PorterDuffColorFilter(color, mode));
-            Drawable mutate2 = context.getResources().getDrawable(R.drawable.verified_check).mutate();
-            mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_verifiedCheck), mode));
-            simpleTextView.setRightDrawable(new CombinedDrawable(mutate, mutate2));
-        }
-        TextView textView = new TextView(context);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue));
-        textView.setTextSize(1, 14.0f);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                AlertsCreator.lambda$createBotLaunchAlert$28(TLRPC.User.this, baseFragment, builder, view);
-            }
-        });
-        SpannableString valueOf = SpannableString.valueOf(LocaleController.getString(R.string.MoreAboutThisBot) + "  ");
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.attach_arrow_right);
-        coloredImageSpan.setTopOffset(1);
-        coloredImageSpan.setSize(AndroidUtilities.dp(10.0f));
-        valueOf.setSpan(coloredImageSpan, valueOf.length() - 1, valueOf.length(), 33);
-        textView.setText(valueOf);
-        boolean z = LocaleController.isRTL;
-        frameLayout.addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 21 : 76, 0.0f, z ? 76 : 21, 0.0f));
-        boolean z2 = LocaleController.isRTL;
-        frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 21 : 76, 24.0f, z2 ? 76 : 21, 0.0f));
-        frameLayout.addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 57.0f, 24.0f, 1.0f));
-        if (UserObject.isReplyUser(user)) {
-            avatarDrawable.setScaleSize(0.8f);
-            avatarDrawable.setAvatarType(12);
-            backupImageView.setImage((ImageLocation) null, (String) null, avatarDrawable, user);
-        } else {
-            avatarDrawable.setScaleSize(1.0f);
-            avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
-            backupImageView.setForUserOrChat(user, avatarDrawable);
-        }
-        builder.setPositiveButton(LocaleController.getString(R.string.Start), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.lambda$createBotLaunchAlert$29(runnable, alertDialog, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        final AlertDialog create = builder.create();
-        baseFragment.showDialog(create, false, new DialogInterface.OnDismissListener() {
-            @Override
-            public final void onDismiss(DialogInterface dialogInterface) {
-                AlertsCreator.lambda$createBotLaunchAlert$30(runnable2, dialogInterface);
-            }
-        });
-        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebViewStartPermission2), new Runnable() {
-            @Override
-            public final void run() {
-                AlertsCreator.lambda$createBotLaunchAlert$31(AlertDialog.this, context);
-            }
-        }));
+    public static void createBotLaunchAlert(final org.telegram.ui.ActionBar.BaseFragment r25, final org.telegram.tgnet.TLRPC.User r26, final java.lang.Runnable r27, final java.lang.Runnable r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createBotLaunchAlert(org.telegram.ui.ActionBar.BaseFragment, org.telegram.tgnet.TLRPC$User, java.lang.Runnable, java.lang.Runnable):void");
     }
 
     public static BottomSheet.Builder createCalendarPickerDialog(Context context, final long j, final MessagesStorage.IntCallback intCallback, Theme.ResourcesProvider resourcesProvider) {
@@ -4369,7 +4154,7 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$createFreeSpaceDialog$158(LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
-        launchActivity.lambda$runLinkRequest$95(new CacheControlActivity());
+        launchActivity.lambda$runLinkRequest$93(new CacheControlActivity());
     }
 
     public static void lambda$createImportDialogAlert$27(Runnable runnable, AlertDialog alertDialog, int i) {
@@ -4379,7 +4164,7 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$createLanguageAlert$10(LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
-        launchActivity.lambda$runLinkRequest$95(new LanguageSelectActivity());
+        launchActivity.lambda$runLinkRequest$93(new LanguageSelectActivity());
     }
 
     public static void lambda$createLanguageAlert$11(TLRPC.TL_langPackLanguage tL_langPackLanguage, LaunchActivity launchActivity, AlertDialog alertDialog, int i) {

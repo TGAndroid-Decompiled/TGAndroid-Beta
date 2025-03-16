@@ -192,6 +192,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     }
 
     public void lambda$onItemLongPress$5(TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell, View view) {
+        BulletinFactory of;
+        int i;
+        String string;
         Bulletin createSimpleBulletin;
         if (savedStarGift.unsaved) {
             savedStarGift.unsaved = false;
@@ -203,13 +206,21 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
         boolean z = !savedStarGift.pinned_to_top;
         ((GiftSheet.GiftCell) view).setPinned(z, true);
-        if (!this.list.togglePinned(savedStarGift, z)) {
+        if (this.list.togglePinned(savedStarGift, z)) {
+            of = BulletinFactory.of(this.fragment);
+            i = R.raw.chats_infotip;
+            string = LocaleController.formatPluralStringComma("GiftsPinLimit", MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit);
+        } else {
+            of = BulletinFactory.of(this.fragment);
             if (z) {
-                createSimpleBulletin = BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.ic_pin, LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle));
+                createSimpleBulletin = of.createSimpleBulletin(R.raw.ic_pin, LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle));
+                createSimpleBulletin.show();
+                this.listView.smoothScrollToPosition(0);
             }
-            this.listView.smoothScrollToPosition(0);
+            i = R.raw.ic_unpin;
+            string = LocaleController.getString(R.string.Gift2Unpinned);
         }
-        createSimpleBulletin = BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.chats_infotip, LocaleController.formatPluralStringComma("GiftsPinLimit", MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit));
+        createSimpleBulletin = of.createSimpleBulletin(i, string);
         createSimpleBulletin.show();
         this.listView.smoothScrollToPosition(0);
     }

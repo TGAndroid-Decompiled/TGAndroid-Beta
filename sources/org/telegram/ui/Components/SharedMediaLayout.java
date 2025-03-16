@@ -42,6 +42,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,7 +56,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.FactCheckController$Key$$ExternalSyntheticBackport0;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -4350,7 +4350,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                         sharedPhotoVideoCell2.isStoryPinned = false;
                         if (uploadingStory.sharedMessageObject == null) {
                             TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                            int m = FactCheckController$Key$$ExternalSyntheticBackport0.m(uploadingStory.random_id);
+                            int m = SessionDetails$$ExternalSyntheticBackport0.m(uploadingStory.random_id);
                             tL_storyItem.messageId = m;
                             tL_storyItem.id = m;
                             tL_storyItem.attachPath = uploadingStory.firstFramePath;

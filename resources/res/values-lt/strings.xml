@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Prisijungti naudojant „Google“</string>
     <string name="confirm_device_credential_password">Naudoti slaptažodį</string>
     <string name="default_error_msg">Nežinoma klaida</string>
-    <string name="fcm_fallback_notification_channel_label">Įvairūs</string>
     <string name="fingerprint_dialog_touch_sensor">Palieskite piršto antspaudo jutiklį</string>
     <string name="fingerprint_error_hw_not_available">Piršto antspaudo aparatinė įranga nepasiekiama.</string>
     <string name="fingerprint_error_hw_not_present">Šiame įrenginyje nėra piršto antspaudo jutiklio</string>

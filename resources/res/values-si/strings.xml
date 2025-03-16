@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Google සමගින් පුරන්න</string>
     <string name="confirm_device_credential_password">මුරපදය භාවිත කරන්න</string>
     <string name="default_error_msg">නොදන්නා දෝෂයකි</string>
-    <string name="fcm_fallback_notification_channel_label">විවිධ</string>
     <string name="fingerprint_dialog_touch_sensor">ඇඟිලි සලකුණු සංවේදකය ස්පර්ශ කරන්න</string>
     <string name="fingerprint_error_hw_not_available">ඇඟිලි සලකුණු දෘඪාංගය ලද නොහැකිය.</string>
     <string name="fingerprint_error_hw_not_present">මෙම උපාංගයේ ඇඟිලි සලකුණු සංවේදකයක් නොමැත</string>

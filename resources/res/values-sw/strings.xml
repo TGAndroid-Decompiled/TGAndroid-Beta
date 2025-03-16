@@ -97,7 +97,6 @@
     <string name="common_signin_button_text_long">Ingia katika akaunti ukitumia Google</string>
     <string name="confirm_device_credential_password">Tumia nenosiri</string>
     <string name="default_error_msg">Hitilafu isiyojulikana</string>
-    <string name="fcm_fallback_notification_channel_label">Zinginezo</string>
     <string name="fingerprint_dialog_touch_sensor">Gusa kitambua alama ya kidole</string>
     <string name="fingerprint_error_hw_not_available">Maunzi ya alama ya kidole hayapatikani.</string>
     <string name="fingerprint_error_hw_not_present">Kifaa hiki hakina kitambua alama ya kidole</string>

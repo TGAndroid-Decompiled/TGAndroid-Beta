@@ -434,7 +434,7 @@ public final class ArrayDeque extends AbstractMutableList {
     @Override
     public Object removeAt(int i) {
         AbstractList.Companion.checkElementIndex$kotlin_stdlib(i, size());
-        if (i == CollectionsKt__CollectionsKt.getLastIndex(this)) {
+        if (i == CollectionsKt.getLastIndex(this)) {
             return removeLast();
         }
         if (i == 0) {
@@ -460,7 +460,7 @@ public final class ArrayDeque extends AbstractMutableList {
             objArr4[i4] = null;
             this.head = incremented(i4);
         } else {
-            int positiveMod2 = positiveMod(this.head + CollectionsKt__CollectionsKt.getLastIndex(this));
+            int positiveMod2 = positiveMod(this.head + CollectionsKt.getLastIndex(this));
             Object[] objArr5 = this.elementData;
             if (positiveMod <= positiveMod2) {
                 ArraysKt___ArraysJvmKt.copyInto(objArr5, objArr5, positiveMod, positiveMod + 1, positiveMod2 + 1);
@@ -500,7 +500,7 @@ public final class ArrayDeque extends AbstractMutableList {
         if (isEmpty()) {
             throw new NoSuchElementException("ArrayDeque is empty.");
         }
-        int positiveMod = positiveMod(this.head + CollectionsKt__CollectionsKt.getLastIndex(this));
+        int positiveMod = positiveMod(this.head + CollectionsKt.getLastIndex(this));
         Object[] objArr = this.elementData;
         Object obj = objArr[positiveMod];
         objArr[positiveMod] = null;

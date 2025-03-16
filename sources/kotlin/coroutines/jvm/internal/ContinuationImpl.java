@@ -38,7 +38,7 @@ public abstract class ContinuationImpl extends BaseContinuationImpl {
     }
 
     @Override
-    protected void releaseIntercepted() {
+    public void releaseIntercepted() {
         Continuation continuation = this.intercepted;
         if (continuation != null && continuation != this) {
             CoroutineContext.Element element = getContext().get(ContinuationInterceptor.Key);
