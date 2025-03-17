@@ -1111,8 +1111,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
     }
 
     public void lambda$new$5(StarsController.GiftsList giftsList, final long j, LinkSpanDrawable.LinksTextView linksTextView, final Runnable runnable, final Context context) {
-        Runnable runnable2;
-        String str;
+        SpannableStringBuilder makeClickable;
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -1130,32 +1129,29 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         if (hashSet2.size() > 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) LocaleController.formatString(R.string.Gift2StarsInfoProfileLink, DialogObject.getShortName(j)));
-            spannableStringBuilder2.append((CharSequence) " ");
+            spannableStringBuilder2.append((CharSequence) " ");
             Iterator it = hashSet2.iterator();
             while (it.hasNext()) {
                 TLRPC.Document document2 = (TLRPC.Document) it.next();
-                spannableStringBuilder2.append((CharSequence) "e");
+                spannableStringBuilder2.append((CharSequence) "\u2060e");
                 spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document2, linksTextView.getPaint().getFontMetricsInt()), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 33);
             }
-            spannableStringBuilder2.append((CharSequence) " >");
-            runnable2 = new Runnable() {
+            spannableStringBuilder2.append((CharSequence) " >");
+            makeClickable = AndroidUtilities.makeClickable(spannableStringBuilder2, new Runnable() {
                 @Override
                 public final void run() {
                     GiftSheet.this.lambda$new$3(runnable, j);
                 }
-            };
-            str = spannableStringBuilder2;
+            });
         } else {
-            String string = LocaleController.getString(R.string.Gift2StarsInfoLink);
-            runnable2 = new Runnable() {
+            makeClickable = AndroidUtilities.makeClickable(LocaleController.getString(R.string.Gift2StarsInfoLink), new Runnable() {
                 @Override
                 public final void run() {
                     GiftSheet.lambda$new$4(context);
                 }
-            };
-            str = string;
+            });
         }
-        spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(str, runnable2), true));
+        spannableStringBuilder.append(AndroidUtilities.replaceArrows(makeClickable, true));
         linksTextView.setText(spannableStringBuilder);
         linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), linksTextView.getPaint()));
     }

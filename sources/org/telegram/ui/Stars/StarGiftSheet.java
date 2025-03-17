@@ -3518,7 +3518,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     public void onMenuPressed(View view) {
         final String link = getLink();
         ItemOptions makeOptions = ItemOptions.makeOptions(this.container, this.resourcesProvider, view);
-        boolean z = (this.giftsList == null || this.savedStarGift == null || getInputStarGift() == null) ? false : true;
+        boolean z = (getUniqueGift() == null || !isMineWithActions(this.currentAccount, DialogObject.getPeerDialogId(getUniqueGift().owner_id)) || this.giftsList == null || this.savedStarGift == null || getInputStarGift() == null) ? false : true;
         TL_stars.SavedStarGift savedStarGift = this.savedStarGift;
         makeOptions.addIf(z, (savedStarGift == null || !savedStarGift.pinned_to_top) ? R.drawable.msg_pin : R.drawable.msg_unpin, LocaleController.getString((savedStarGift == null || !savedStarGift.pinned_to_top) ? R.string.Gift2Pin : R.string.Gift2Unpin), new Runnable() {
             @Override

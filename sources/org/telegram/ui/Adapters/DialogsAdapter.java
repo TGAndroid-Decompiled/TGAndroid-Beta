@@ -363,6 +363,14 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         this.requestPeerType = requestPeerType;
     }
 
+    private MessagesController.DialogFilter getCurrentFilter() {
+        int i = this.dialogsType;
+        if (i == 7 || i == 8) {
+            return MessagesController.getInstance(this.currentAccount).selectedDialogFilter[this.dialogsType - 7];
+        }
+        return null;
+    }
+
     public void lambda$onBindViewHolder$4() {
         this.parentFragment.setScrollDisabled(false);
     }
@@ -590,6 +598,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         String str4;
         TLRPC.Chat chat3;
         DialogsActivity dialogsActivity;
+        MessagesController.DialogFilter currentFilter;
         HeaderCell headerCell;
         int i4;
         String string2;
@@ -662,11 +671,8 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     dialogCell.setDialogSelected(dialog.id == this.openedDialogId);
                 }
                 dialogCell.setChecked(this.selectedDialogs.contains(Long.valueOf(dialog.id)), false);
-                if (i == 1 && (dialogsActivity = this.parentFragment) != null && dialogsActivity.isReplyTo) {
-                    long j = dialogsActivity.replyMessageAuthor;
-                    if (j != 0 && dialog.top_message == 0) {
-                        str5 = DialogObject.getStatus(j);
-                    }
+                if (i == 1 && (dialogsActivity = this.parentFragment) != null && dialogsActivity.isReplyTo && dialogsActivity.replyMessageAuthor != 0 && dialog.top_message == 0 && ((currentFilter = getCurrentFilter()) == null || currentFilter.isDefault())) {
+                    str5 = DialogObject.getStatus(this.parentFragment.replyMessageAuthor);
                 }
                 dialogCell.setCustomMessage(str5);
                 dialogCell.setDialog(dialog, this.dialogsType, this.folderId);

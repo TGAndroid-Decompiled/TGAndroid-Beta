@@ -7341,7 +7341,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void lambda$new$0() {
+        public void dismiss() {
             dismiss(true);
         }
 
@@ -12582,7 +12582,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
         BottomSheet bottomSheet = this.linkSheet;
         if (bottomSheet != null) {
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
             this.linkSheet = null;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(this.parentActivity);
