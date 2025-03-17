@@ -9,6 +9,7 @@ public class HttpGetFileTask extends AsyncTask {
     private Exception exception;
     private File file;
     private long max_size = -1;
+    private String overrideExt;
     private Utilities.Callback progressCallback;
 
     public HttpGetFileTask(Utilities.Callback callback, Utilities.Callback callback2) {

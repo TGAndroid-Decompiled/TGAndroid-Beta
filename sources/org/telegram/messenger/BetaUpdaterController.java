@@ -42,7 +42,7 @@ public class BetaUpdaterController {
         this.downloadingProgress = 0.0f;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
-            HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new Utilities.Callback() {
+            HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     BetaUpdaterController.this.lambda$downloadUpdate$5((File) obj);
@@ -52,9 +52,9 @@ public class BetaUpdaterController {
                 public final void run(Object obj) {
                     BetaUpdaterController.this.lambda$downloadUpdate$6((Float) obj);
                 }
-            });
-            this.downloadingTask = httpGetFileTask;
-            httpGetFileTask.execute(this.fileUrl);
+            }).setOverrideExtension("apk");
+            this.downloadingTask = overrideExtension;
+            overrideExtension.execute(this.fileUrl);
         } else if (z) {
             this.downloading = false;
         } else {

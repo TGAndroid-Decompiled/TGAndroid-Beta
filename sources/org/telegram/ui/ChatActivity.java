@@ -3588,15 +3588,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class AnonymousClass149 extends Browser.Progress {
         final ChatMessageCell val$cell;
+        final int val$id;
         final CharacterStyle val$span;
 
-        AnonymousClass149(ChatMessageCell chatMessageCell, CharacterStyle characterStyle) {
-            this.val$cell = chatMessageCell;
+        AnonymousClass149(int i, CharacterStyle characterStyle, ChatMessageCell chatMessageCell) {
+            this.val$id = i;
             this.val$span = characterStyle;
+            this.val$cell = chatMessageCell;
         }
 
-        public void lambda$end$0(ChatMessageCell chatMessageCell) {
-            if (ChatActivity.this.progressDialogAtMessageId == chatMessageCell.getMessageObject().getId()) {
+        public void lambda$end$0(int i) {
+            if (ChatActivity.this.progressDialogAtMessageId == i) {
                 ChatActivity.this.resetProgressDialogLoading();
             }
         }
@@ -3606,18 +3608,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (z) {
                 return;
             }
-            final ChatMessageCell chatMessageCell = this.val$cell;
+            final int i = this.val$id;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass149.this.lambda$end$0(chatMessageCell);
+                    ChatActivity.AnonymousClass149.this.lambda$end$0(i);
                 }
             }, 240L);
         }
 
         @Override
         public void init() {
-            ChatActivity.this.progressDialogAtMessageId = this.val$cell.getMessageObject().getId();
+            ChatActivity.this.progressDialogAtMessageId = this.val$id;
             ChatActivity.this.progressDialogAtMessageType = 1;
             ChatActivity.this.progressDialogLinkSpan = this.val$span;
             this.val$cell.invalidate();
@@ -3655,13 +3657,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class AnonymousClass150 extends Browser.Progress {
         final ChatMessageCell val$cell;
+        final int val$id;
 
-        AnonymousClass150(ChatMessageCell chatMessageCell) {
+        AnonymousClass150(int i, ChatMessageCell chatMessageCell) {
+            this.val$id = i;
             this.val$cell = chatMessageCell;
         }
 
-        public void lambda$end$0(ChatMessageCell chatMessageCell) {
-            if (ChatActivity.this.progressDialogAtMessageId == chatMessageCell.getMessageObject().getId()) {
+        public void lambda$end$0(int i) {
+            if (ChatActivity.this.progressDialogAtMessageId == i) {
                 ChatActivity.this.resetProgressDialogLoading();
             }
         }
@@ -3671,18 +3675,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (z) {
                 return;
             }
-            final ChatMessageCell chatMessageCell = this.val$cell;
+            final int i = this.val$id;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass150.this.lambda$end$0(chatMessageCell);
+                    ChatActivity.AnonymousClass150.this.lambda$end$0(i);
                 }
             }, 240L);
         }
 
         @Override
         public void init() {
-            ChatActivity.this.progressDialogAtMessageId = this.val$cell.getMessageObject().getId();
+            ChatActivity.this.progressDialogAtMessageId = this.val$id;
             ChatActivity.this.progressDialogAtMessageType = 6;
             this.val$cell.invalidate();
         }
@@ -3690,15 +3694,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class AnonymousClass151 extends Browser.Progress {
         final ChatMessageCell val$cell;
+        final int val$id;
         final String val$url;
 
-        AnonymousClass151(ChatMessageCell chatMessageCell, String str) {
-            this.val$cell = chatMessageCell;
+        AnonymousClass151(int i, String str, ChatMessageCell chatMessageCell) {
+            this.val$id = i;
             this.val$url = str;
+            this.val$cell = chatMessageCell;
         }
 
-        public void lambda$end$0(ChatMessageCell chatMessageCell) {
-            if (ChatActivity.this.progressDialogAtMessageId == chatMessageCell.getMessageObject().getId()) {
+        public void lambda$end$0(int i) {
+            if (ChatActivity.this.progressDialogAtMessageId == i) {
                 ChatActivity.this.resetProgressDialogLoading();
             }
         }
@@ -3708,18 +3714,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (z) {
                 return;
             }
-            final ChatMessageCell chatMessageCell = this.val$cell;
+            final int i = this.val$id;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass151.this.lambda$end$0(chatMessageCell);
+                    ChatActivity.AnonymousClass151.this.lambda$end$0(i);
                 }
             }, 240L);
         }
 
         @Override
         public void init() {
-            ChatActivity.this.progressDialogAtMessageId = this.val$cell.getMessageObject().getId();
+            ChatActivity.this.progressDialogAtMessageId = this.val$id;
             ChatActivity.this.progressDialogAtMessageType = 3;
             ChatActivity.this.progressDialogBotButtonUrl = this.val$url;
             this.val$cell.invalidate();
@@ -3728,13 +3734,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class AnonymousClass152 extends Browser.Progress {
         final ChatMessageCell val$cell;
+        final int val$id;
 
-        AnonymousClass152(ChatMessageCell chatMessageCell) {
+        AnonymousClass152(int i, ChatMessageCell chatMessageCell) {
+            this.val$id = i;
             this.val$cell = chatMessageCell;
         }
 
-        public void lambda$end$0(ChatMessageCell chatMessageCell) {
-            if (ChatActivity.this.progressDialogAtMessageId == chatMessageCell.getMessageObject().getId()) {
+        public void lambda$end$0(int i) {
+            if (ChatActivity.this.progressDialogAtMessageId == i) {
                 ChatActivity.this.resetProgressDialogLoading();
             }
         }
@@ -3744,18 +3752,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (z) {
                 return;
             }
-            final ChatMessageCell chatMessageCell = this.val$cell;
+            final int i = this.val$id;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass152.this.lambda$end$0(chatMessageCell);
+                    ChatActivity.AnonymousClass152.this.lambda$end$0(i);
                 }
             }, 240L);
         }
 
         @Override
         public void init() {
-            ChatActivity.this.progressDialogAtMessageId = this.val$cell.getMessageObject().getId();
+            ChatActivity.this.progressDialogAtMessageId = this.val$id;
             ChatActivity.this.progressDialogAtMessageType = 5;
             ChatActivity.this.progressDialogBotButtonUrl = null;
             this.val$cell.invalidate();
@@ -6998,7 +7006,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 for (int i = 0; i < ChatActivity.this.chatListView.getChildCount(); i++) {
                     if (ChatActivity.this.chatListView.getChildAt(i) instanceof ChatMessageCell) {
                         ChatMessageCell chatMessageCell = (ChatMessageCell) ChatActivity.this.chatListView.getChildAt(i);
-                        if (chatMessageCell.getMessageObject().getId() == messageObject.getId()) {
+                        if (chatMessageCell.getMessageObject() != null && chatMessageCell.getMessageObject().getId() == messageObject.getId()) {
                             AnimatedFileDrawable animation = chatMessageCell.getPhotoImage().getAnimation();
                             if (animation.isRunning()) {
                                 animation.stop();
@@ -7036,7 +7044,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             for (int i = 0; i < ChatActivity.this.chatListView.getChildCount(); i++) {
                 if (ChatActivity.this.chatListView.getChildAt(i) instanceof ChatMessageCell) {
                     ChatMessageCell chatMessageCell = (ChatMessageCell) ChatActivity.this.chatListView.getChildAt(i);
-                    if (chatMessageCell.getMessageObject().getId() == messageObject.getId()) {
+                    if (chatMessageCell.getMessageObject() != null && chatMessageCell.getMessageObject().getId() == messageObject.getId()) {
                         chatMessageCell.getPhotoImage().setVisible(false, true);
                     }
                 }
@@ -11628,8 +11636,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         class AnonymousClass4 extends Browser.Progress {
             final ChatMessageCell val$cell;
+            final MessageObject val$messageObject;
 
-            AnonymousClass4(ChatMessageCell chatMessageCell) {
+            AnonymousClass4(MessageObject messageObject, ChatMessageCell chatMessageCell) {
+                this.val$messageObject = messageObject;
                 this.val$cell = chatMessageCell;
             }
 
@@ -11649,7 +11659,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             @Override
             public void init() {
-                ChatActivity.this.progressDialogAtMessageId = this.val$cell.getMessageObject().getId();
+                ChatActivity.this.progressDialogAtMessageId = this.val$messageObject.getId();
                 ChatActivity.this.progressDialogAtMessageType = 0;
                 ChatActivity.this.progressDialogLinkSpan = null;
                 this.val$cell.invalidate();
@@ -12154,11 +12164,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity chatActivity = ChatActivity.this;
             TLRPC.Chat chat2 = chatActivity.currentChat;
             if (chat2 != null && chat.id == chat2.id) {
-                if (chatActivity.avatarContainer == null || i != 0) {
-                    ChatActivity.this.scrollToMessageId(i, chatMessageCell.getMessageObject().getId(), true, 0, false, 0);
+                if (chatActivity.avatarContainer != null && i == 0) {
+                    ChatActivity.this.avatarContainer.openProfile(false);
                     return;
                 } else {
-                    ChatActivity.this.avatarContainer.openProfile(false);
+                    if (chatMessageCell.getMessageObject() != null) {
+                        ChatActivity.this.scrollToMessageId(i, chatMessageCell.getMessageObject().getId(), true, 0, false, 0);
+                        return;
+                    }
                     return;
                 }
             }
@@ -24033,56 +24046,60 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public Browser.Progress makeProgressForBotButton(ChatMessageCell chatMessageCell, String str) {
         Browser.Progress progress = this.progressDialogCurrent;
-        AnonymousClass151 anonymousClass151 = null;
         if (progress != null) {
             progress.cancel(true);
             this.progressDialogCurrent = null;
         }
-        if (str != null && chatMessageCell != null && chatMessageCell.getMessageObject() != null) {
-            anonymousClass151 = new AnonymousClass151(chatMessageCell, str);
+        if (str == null || chatMessageCell == null || chatMessageCell.getMessageObject() == null) {
+            this.progressDialogCurrent = null;
+            return null;
         }
+        AnonymousClass151 anonymousClass151 = new AnonymousClass151(chatMessageCell.getMessageObject().getId(), str, chatMessageCell);
         this.progressDialogCurrent = anonymousClass151;
         return anonymousClass151;
     }
 
     public Browser.Progress makeProgressForForward(ChatMessageCell chatMessageCell) {
         Browser.Progress progress = this.progressDialogCurrent;
-        AnonymousClass150 anonymousClass150 = null;
         if (progress != null) {
             progress.cancel(true);
             this.progressDialogCurrent = null;
         }
-        if (chatMessageCell != null && chatMessageCell.getMessageObject() != null) {
-            anonymousClass150 = new AnonymousClass150(chatMessageCell);
+        if (chatMessageCell == null || chatMessageCell.getMessageObject() == null) {
+            this.progressDialogCurrent = null;
+            return null;
         }
+        AnonymousClass150 anonymousClass150 = new AnonymousClass150(chatMessageCell.getMessageObject().getId(), chatMessageCell);
         this.progressDialogCurrent = anonymousClass150;
         return anonymousClass150;
     }
 
     private Browser.Progress makeProgressForLink(ChatMessageCell chatMessageCell, CharacterStyle characterStyle) {
         Browser.Progress progress = this.progressDialogCurrent;
-        AnonymousClass149 anonymousClass149 = null;
         if (progress != null) {
             progress.cancel(true);
             this.progressDialogCurrent = null;
         }
-        if (characterStyle != null && chatMessageCell != null && chatMessageCell.getMessageObject() != null) {
-            anonymousClass149 = new AnonymousClass149(chatMessageCell, characterStyle);
+        if (characterStyle == null || chatMessageCell == null || chatMessageCell.getMessageObject() == null) {
+            this.progressDialogCurrent = null;
+            return null;
         }
+        AnonymousClass149 anonymousClass149 = new AnonymousClass149(chatMessageCell.getMessageObject().getId(), characterStyle, chatMessageCell);
         this.progressDialogCurrent = anonymousClass149;
         return anonymousClass149;
     }
 
     public Browser.Progress makeProgressForPaidMedia(ChatMessageCell chatMessageCell) {
         Browser.Progress progress = this.progressDialogCurrent;
-        AnonymousClass152 anonymousClass152 = null;
         if (progress != null) {
             progress.cancel(true);
             this.progressDialogCurrent = null;
         }
-        if (chatMessageCell != null && chatMessageCell.getMessageObject() != null) {
-            anonymousClass152 = new AnonymousClass152(chatMessageCell);
+        if (chatMessageCell == null || chatMessageCell.getMessageObject() == null) {
+            this.progressDialogCurrent = null;
+            return null;
         }
+        AnonymousClass152 anonymousClass152 = new AnonymousClass152(chatMessageCell.getMessageObject().getId(), chatMessageCell);
         this.progressDialogCurrent = anonymousClass152;
         return anonymousClass152;
     }
@@ -29428,6 +29445,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public View findCell(int i, boolean z) {
+        MessageObject messageObject;
         RecyclerListView recyclerListView = this.chatListView;
         if (recyclerListView == null) {
             return null;
@@ -29435,15 +29453,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         int childCount = recyclerListView.getChildCount();
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = this.chatListView.getChildAt(i2);
-            if ((childAt instanceof ChatMessageCell) && ((ChatMessageCell) childAt).getMessageObject().getId() == i) {
-                if (z) {
-                    if (childAt.getY() + childAt.getMeasuredHeight() < (this.chatListViewPaddingTop - this.chatListViewPaddingVisibleOffset) - AndroidUtilities.dp(4.0f) || childAt.getY() > this.chatListView.getMeasuredHeight() - this.blurredViewBottomOffset) {
-                        return null;
-                    }
-                }
-                return childAt;
+            if (childAt instanceof ChatMessageCell) {
+                messageObject = ((ChatMessageCell) childAt).getMessageObject();
+            } else if (childAt instanceof ChatActionCell) {
+                messageObject = ((ChatActionCell) childAt).getMessageObject();
+            } else {
+                continue;
             }
-            if ((childAt instanceof ChatActionCell) && ((ChatActionCell) childAt).getMessageObject().getId() == i) {
+            if (messageObject != null && messageObject.getId() == i) {
                 if (z) {
                     if (childAt.getY() + childAt.getMeasuredHeight() < (this.chatListViewPaddingTop - this.chatListViewPaddingVisibleOffset) - AndroidUtilities.dp(4.0f) || childAt.getY() > this.chatListView.getMeasuredHeight() - this.blurredViewBottomOffset) {
                         return null;
