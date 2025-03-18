@@ -120,6 +120,7 @@ public class FileLoadOperation {
     public ArrayList<RequestInfo> requestInfos;
     private long requestedBytesCount;
     private HashMap<Long, Integer> requestedPreloadedBytesRanges;
+    private boolean requestedReference;
     private boolean requestingCdnOffsets;
     protected boolean requestingReference;
     private int requestsCount;
@@ -1578,6 +1579,7 @@ public class FileLoadOperation {
         }
         clearOperation(null, false, false);
         this.requestingReference = true;
+        this.requestedReference = true;
         Object obj = this.parentObject;
         if (obj instanceof MessageObject) {
             MessageObject messageObject = (MessageObject) obj;
@@ -1873,7 +1875,7 @@ public class FileLoadOperation {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.start(org.telegram.messenger.FileLoadOperationStream, long, boolean):boolean");
     }
 
-    public void startDownloadRequest(int r29) {
+    public void startDownloadRequest(int r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.startDownloadRequest(int):void");
     }
 

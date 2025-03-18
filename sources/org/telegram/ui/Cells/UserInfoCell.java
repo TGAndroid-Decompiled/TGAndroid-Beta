@@ -256,8 +256,10 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             }
             canvas.save();
             Row row = (Row) this.rows.get(i2);
+            float dp2 = (((width2 - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f)) + this.rowsKeysWidth) - row.key.getCurrentWidth();
+            float dp3 = (width2 - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
             int i3 = i2;
-            row.key.draw(canvas, (((width2 - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f)) + this.rowsKeysWidth) - row.key.getCurrentWidth(), row.key.getHeight() / 2.0f, -1, 0.7f);
+            row.key.ellipsize((dp3 - dp2) - AndroidUtilities.dp(7.66f)).draw(canvas, dp2, row.key.getHeight() / 2.0f, -1, 0.7f);
             row.bounds.set((width2 - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f), height3, (width2 - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + (row.avatars ? AndroidUtilities.dp(5.0f) + (this.groupsArrow.getIntrinsicWidth() * 0.8f) + this.groupsAvatars.getMaxX() : 0.0f), row.value.getHeight() + height3);
             if (this.groupsRow == row) {
                 this.groupsBounds.set(row.bounds);
@@ -271,7 +273,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
                     this.groupsRipple.draw(canvas);
                 }
             }
-            row.value.draw(canvas, AndroidUtilities.dp(7.66f) + (width2 - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth, row.value.getHeight() / 2.0f, -1, 1.0f);
+            row.value.ellipsize((((this.width / 2.0f) + width2) - AndroidUtilities.dp(8.0f)) - dp3).draw(canvas, dp3, row.value.getHeight() / 2.0f, -1, 1.0f);
             if (row.avatars) {
                 canvas.save();
                 canvas.translate((width2 - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));

@@ -5343,9 +5343,14 @@ public abstract class AlertsCreator {
             CheckBoxCell checkBoxCell = new CheckBoxCell(context, 1, resourcesProvider);
             checkBoxCellArr[0] = checkBoxCell;
             checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
+            checkBoxCellArr[0].setMultiline(true);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) checkBoxCellArr[0].getCheckBoxView().getLayoutParams();
+            layoutParams.topMargin = 0;
+            layoutParams.gravity = (LocaleController.isRTL ? 5 : 3) | 16;
+            checkBoxCellArr[0].getCheckBoxView().setLayoutParams(layoutParams);
             checkBoxCellArr[0].setText(charSequence3, "", false, false);
-            checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
-            frameLayout.addView(checkBoxCellArr[0], LayoutHelper.createFrame(-1, 48.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
+            checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
+            frameLayout.addView(checkBoxCellArr[0], LayoutHelper.createFrame(-1, -2, 83));
             checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

@@ -50,4 +50,9 @@ public class HttpGetFileTask extends AsyncTask {
         this.max_size = j;
         return this;
     }
+
+    public HttpGetFileTask setOverrideExtension(String str) {
+        this.overrideExt = str;
+        return this;
+    }
 }

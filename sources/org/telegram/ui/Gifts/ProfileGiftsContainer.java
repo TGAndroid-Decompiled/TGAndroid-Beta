@@ -108,7 +108,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public ProfileGiftsContainer(final org.telegram.ui.ActionBar.BaseFragment r34, android.content.Context r35, final int r36, final long r37, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r39) {
+    public ProfileGiftsContainer(final org.telegram.ui.ActionBar.BaseFragment r33, android.content.Context r34, final int r35, long r36, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.ProfileGiftsContainer.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -141,8 +141,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         });
     }
 
-    public void lambda$new$3(final Theme.ResourcesProvider resourcesProvider, int i, long j, View view) {
-        this.checkbox.setChecked(!r9.isChecked(), true);
+    public void lambda$new$3(final Theme.ResourcesProvider resourcesProvider, int i, View view) {
+        this.checkbox.setChecked(!r7.isChecked(), true);
         boolean isChecked = this.checkbox.isChecked();
         BulletinFactory.of(this.bulletinContainer, resourcesProvider).createSimpleBulletinDetail(isChecked ? R.raw.silent_unmute : R.raw.silent_mute, LocaleController.getString(isChecked ? R.string.Gift2ChannelNotifyChecked : R.string.Gift2ChannelNotifyNotChecked)).show();
         this.list.chat_notifications_enabled = Boolean.valueOf(isChecked);
@@ -151,7 +151,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             this.checkboxRequestId = -1;
         }
         TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
-        togglechatstargiftnotifications.peer = MessagesController.getInstance(i).getInputPeer(j);
+        togglechatstargiftnotifications.peer = MessagesController.getInstance(i).getInputPeer(this.dialogId);
         togglechatstargiftnotifications.enabled = isChecked;
         ConnectionsManager.getInstance(i).sendRequest(togglechatstargiftnotifications, new RequestDelegate() {
             @Override
@@ -161,9 +161,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         });
     }
 
-    public void lambda$new$4(boolean z, int i, long j, View view) {
+    public void lambda$new$4(boolean z, int i, View view) {
         if (z) {
-            new GiftSheet(getContext(), i, j, null, null).setBirthday(BirthdayController.getInstance(i).isToday(j)).show();
+            new GiftSheet(getContext(), i, this.dialogId, null, null).setBirthday(BirthdayController.getInstance(i).isToday(this.dialogId)).show();
         } else {
             UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());
         }

@@ -27285,7 +27285,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             ChatActionCell chatActionCell = this.infoTopView;
             if (chatActionCell != null) {
-                chatActionCell.setTranslationY((this.chatListViewPaddingTop - AndroidUtilities.dp(30.0f)) + this.topViewOffset);
+                chatActionCell.setTranslationY(((this.chatListView.getTranslationY() + this.chatListViewPaddingTop) + this.topViewOffset) - AndroidUtilities.dp(30.0f));
                 float f5 = this.chatListViewPaddingTop;
                 float f6 = this.topViewOffset;
                 this.chatListViewPaddingTop = f5 + f6;

@@ -148,6 +148,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     public Runnable onSuccessRunnable;
     BaseFragment parentFragment;
     public boolean parentIsChannel;
+    boolean premiumButtonSetSubscribe;
     PremiumButtonView premiumButtonView;
     private ArrayList premiumInviteBlockedUsers;
     private ArrayList premiumMessagingBlockedUsers;
@@ -1518,30 +1519,40 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public void lambda$onViewCreated$14(View view) {
-        int i = this.type;
-        if (i == 19 || i == 32 || isMiniBoostBtnForAdminAvailable()) {
-            ChannelBoostsController.CanApplyBoost canApplyBoost = this.canApplyBoost;
-            if (canApplyBoost.canApply) {
-                this.premiumButtonView.buttonLayout.callOnClick();
-                ChannelBoostsController.CanApplyBoost canApplyBoost2 = this.canApplyBoost;
-                if (canApplyBoost2.alreadyActive && canApplyBoost2.boostedNow) {
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            LimitReachedBottomSheet.this.lambda$onViewCreated$13();
-                        }
-                    }, this.canApplyBoost.needSelector ? 300L : 0L);
+        if (!this.premiumButtonSetSubscribe) {
+            int i = this.type;
+            if (i == 19 || i == 32 || isMiniBoostBtnForAdminAvailable()) {
+                ChannelBoostsController.CanApplyBoost canApplyBoost = this.canApplyBoost;
+                if (canApplyBoost.canApply) {
+                    this.premiumButtonView.buttonLayout.callOnClick();
+                    ChannelBoostsController.CanApplyBoost canApplyBoost2 = this.canApplyBoost;
+                    if (canApplyBoost2.alreadyActive && canApplyBoost2.boostedNow) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                LimitReachedBottomSheet.this.lambda$onViewCreated$13();
+                            }
+                        }, this.canApplyBoost.needSelector ? 300L : 0L);
+                        return;
+                    }
                     return;
                 }
+                if (canApplyBoost.alreadyActive && BoostRepository.isMultiBoostsAvailable() && !this.canApplyBoost.isMaxLvl) {
+                    BoostDialogs.showMoreBoostsNeeded(this.dialogId, this);
+                    return;
+                } else {
+                    lambda$new$0();
+                    return;
+                }
+            }
+        } else {
+            if (this.parentFragment == null) {
                 return;
             }
-            if (canApplyBoost.alreadyActive && BoostRepository.isMultiBoostsAvailable() && !this.canApplyBoost.isMaxLvl) {
-                BoostDialogs.showMoreBoostsNeeded(this.dialogId, this);
-                return;
-            } else {
-                lambda$new$0();
-                return;
-            }
+            BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+            bottomSheetParams.transitionFromLeft = true;
+            bottomSheetParams.allowNestedScroll = false;
+            this.parentFragment.showAsSheet(new PremiumPreviewFragment("invite_privacy"), bottomSheetParams);
         }
         if (this.type == 11) {
             if (this.selectedChats.isEmpty()) {
@@ -2067,7 +2078,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 int i10 = this.rowCount;
                 this.rowCount = i10 + 1;
                 this.loadingRow = i10;
-            } else {
+            } else if (i8 != 11 || this.canSendLink) {
                 if (i8 != 11 || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() || ((((arrayList = this.premiumInviteBlockedUsers) == null || arrayList.isEmpty()) && ((arrayList2 = this.premiumMessagingBlockedUsers) == null || arrayList2.size() < this.restrictedUsers.size())) || (arrayList3 = this.premiumInviteBlockedUsers) == null || arrayList3.size() != 1 || (arrayList4 = this.premiumMessagingBlockedUsers) == null || arrayList4.size() != 1 || !this.canSendLink)) {
                     int i11 = this.rowCount;
                     this.chatStartRow = i11;
@@ -2314,6 +2325,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         float f = (this.backgroundPaddingLeft / AndroidUtilities.density) + 16.0f;
         frameLayout.addView(premiumButtonView2, LayoutHelper.createFrame(-1, 48.0f, 80, f, 0.0f, f, 12.0f));
         this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.dp(72.0f));
+        this.recyclerListView.setClipToPadding(false);
+        this.recyclerListView.setClipChildren(false);
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i2) {
@@ -2427,6 +2440,10 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         int i;
         PremiumButtonView premiumButtonView;
         int i2;
+        if (this.premiumButtonSetSubscribe) {
+            this.premiumButtonView.setOverlayText(LocaleController.getString(R.string.InvitePremiumBlockedSubscribe), false, false);
+            return;
+        }
         int i3 = this.type;
         if (i3 == 19 || i3 == 32 || isMiniBoostBtnForAdminAvailable()) {
             if (BoostRepository.isMultiBoostsAvailable()) {
