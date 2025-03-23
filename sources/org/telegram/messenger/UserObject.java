@@ -91,7 +91,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static boolean eq(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {

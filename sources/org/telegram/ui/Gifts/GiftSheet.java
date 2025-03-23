@@ -1211,7 +1211,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         this(context, i, j, null, runnable);
     }
 
-    public GiftSheet(final android.content.Context r28, final int r29, final long r30, java.util.List r32, final java.lang.Runnable r33) {
+    public GiftSheet(final android.content.Context r29, final int r30, final long r31, java.util.List r33, final java.lang.Runnable r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.<init>(android.content.Context, int, long, java.util.List, java.lang.Runnable):void");
     }
 
@@ -1578,7 +1578,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             long j = this.dialogId;
             if (longValue == j && j > 0) {
                 TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
-                TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = userFull != null ? userFull.disallowed_stargifts : null;
+                TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = (this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || userFull == null) ? null : userFull.disallowed_stargifts;
                 this.userSettings = disallowedGiftsSettings;
                 if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
                     lambda$new$0();
