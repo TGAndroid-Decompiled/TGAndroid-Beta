@@ -113,7 +113,7 @@ public class StarParticlesView extends View {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.StarParticlesView.Drawable.Particle.draw(android.graphics.Canvas, long, float):void");
             }
 
-            public void genPosition(long r14) {
+            public void genPosition(long r17) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.StarParticlesView.Drawable.Particle.genPosition(long):void");
             }
 

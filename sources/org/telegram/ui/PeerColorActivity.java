@@ -85,6 +85,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.PeerColorActivity;
@@ -364,8 +365,33 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         private TLRPC.Document lastDocument;
         private long lastDocumentId;
         public TL_stars.starGiftAttributePattern pattern;
+        private final GiftSheet.Ribbon ribbon;
 
-        public GiftCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        public static class Factory extends UItem.UItemFactory {
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            public static UItem asGiftCell(TL_stars.SavedStarGift savedStarGift) {
+                UItem ofFactory = UItem.ofFactory(Factory.class);
+                ofFactory.object = savedStarGift;
+                return ofFactory;
+            }
+
+            @Override
+            public void bindView(View view, UItem uItem, boolean z) {
+                GiftCell giftCell = (GiftCell) view;
+                giftCell.set(-1, (TL_stars.SavedStarGift) uItem.object);
+                giftCell.setSelected(uItem.checked, false);
+            }
+
+            @Override
+            public GiftCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new GiftCell(context, true, resourcesProvider);
+            }
+        }
+
+        public GiftCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             FrameLayout frameLayout = new FrameLayout(context);
             this.card = frameLayout;
@@ -377,6 +403,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             frameLayout.addView(backupImageView, LayoutHelper.createFrame(80, 80.0f, 17, 0.0f, 12.0f, 0.0f, 12.0f));
+            if (!z) {
+                this.ribbon = null;
+                return;
+            }
+            GiftSheet.Ribbon ribbon = new GiftSheet.Ribbon(context);
+            this.ribbon = ribbon;
+            addView(ribbon, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 2.0f, 1.0f, 0.0f));
         }
 
         private void setSticker(TLRPC.Document document, Object obj) {
@@ -397,6 +430,22 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         public long getGiftId() {
             return this.id;
+        }
+
+        public void set(int i, TL_stars.SavedStarGift savedStarGift) {
+            this.id = savedStarGift.gift.id;
+            boolean z = i % 3 == 1;
+            setPadding(z ? AndroidUtilities.dp(4.0f) : 0, 0, z ? AndroidUtilities.dp(4.0f) : 0, 0);
+            setSticker(savedStarGift.gift.getDocument(), savedStarGift.gift);
+            this.backdrop = (TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+            this.pattern = (TL_stars.starGiftAttributePattern) StarsController.findAttribute(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+            this.cardBackground.setBackdrop(this.backdrop);
+            this.cardBackground.setPattern(this.pattern);
+            GiftSheet.Ribbon ribbon = this.ribbon;
+            if (ribbon != null) {
+                ribbon.setBackdrop(this.backdrop);
+                this.ribbon.setText(9, "#" + LocaleController.formatNumber(savedStarGift.gift.num, ','), false);
+            }
         }
 
         public void set(int i, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
@@ -609,7 +658,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                         ThemePreviewMessagesCell themePreviewMessagesCell = Page.this.messagesCellPreview = new ThemePreviewMessagesCell(Page.this.getContext(), ((BaseFragment) PeerColorActivity.this).parentLayout, 3, PeerColorActivity.this.dialogId, ((BaseFragment) PeerColorActivity.this).resourceProvider);
                         themePreviewMessagesCell.setImportantForAccessibility(4);
                         themePreviewMessagesCell.fragment = PeerColorActivity.this;
-                        view2 = themePreviewMessagesCell;
+                        view3 = themePreviewMessagesCell;
                         break;
                     case 1:
                         PeerColorGrid peerColorGrid = Page.this.peerColorPicker = new PeerColorGrid(Page.this.getContext(), this.val$type, ((BaseFragment) PeerColorActivity.this).currentAccount, ((BaseFragment) PeerColorActivity.this).resourceProvider);
@@ -621,20 +670,20 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                                 PeerColorActivity.Page.AnonymousClass4.this.lambda$onCreateViewHolder$0((Integer) obj);
                             }
                         });
-                        view = peerColorGrid;
-                        view2 = view;
+                        view2 = peerColorGrid;
+                        view3 = view2;
                         break;
                     case 2:
                     default:
-                        view2 = new TextInfoPrivacyCell(Page.this.getContext(), PeerColorActivity.this.getResourceProvider());
+                        view3 = new TextInfoPrivacyCell(Page.this.getContext(), PeerColorActivity.this.getResourceProvider());
                         break;
                     case 3:
                         Page page = Page.this;
                         Page page2 = Page.this;
                         SetReplyIconCell setReplyIconCell = page.setReplyIconCell = new SetReplyIconCell(page2.getContext());
                         setReplyIconCell.update(false);
-                        view = setReplyIconCell;
-                        view2 = view;
+                        view2 = setReplyIconCell;
+                        view3 = view2;
                         break;
                     case 4:
                         View view4 = new View(Page.this.getContext()) {
@@ -644,10 +693,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                             }
                         };
                         view4.setBackground(Theme.getThemedDrawableByKey(Page.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                        view2 = view4;
+                        view3 = view4;
                         break;
                     case 5:
-                        view2 = new View(Page.this.getContext()) {
+                        view3 = new View(Page.this.getContext()) {
                             @Override
                             protected void onMeasure(int i2, int i3) {
                                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824));
@@ -655,26 +704,27 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                         };
                         break;
                     case 6:
-                        view3 = new TextCell(Page.this.getContext(), PeerColorActivity.this.getResourceProvider());
-                        view3.setBackgroundColor(PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                        view2 = view3;
+                        view = new TextCell(Page.this.getContext(), PeerColorActivity.this.getResourceProvider());
+                        view.setBackgroundColor(PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                        view3 = view;
                         break;
                     case 7:
-                        view3 = new HeaderCell(Page.this.getContext(), ((BaseFragment) PeerColorActivity.this).resourceProvider);
-                        view3.setBackgroundColor(PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                        view2 = view3;
+                        view = new HeaderCell(Page.this.getContext(), ((BaseFragment) PeerColorActivity.this).resourceProvider);
+                        view.setBackgroundColor(PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                        view3 = view;
                         break;
                     case 8:
-                        view2 = new GiftCell(Page.this.getContext(), ((BaseFragment) PeerColorActivity.this).resourceProvider);
+                        view2 = new GiftCell(Page.this.getContext(), false, ((BaseFragment) PeerColorActivity.this).resourceProvider);
+                        view3 = view2;
                         break;
                     case 9:
                         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.val$context, ((BaseFragment) PeerColorActivity.this).resourceProvider);
                         flickerLoadingView.setIsSingleCell(true);
                         flickerLoadingView.setViewType(35);
-                        view2 = flickerLoadingView;
+                        view3 = flickerLoadingView;
                         break;
                 }
-                return new RecyclerListView.Holder(view2);
+                return new RecyclerListView.Holder(view3);
             }
 
             @Override
@@ -2160,7 +2210,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         if (this.isChannel || getUserConfig().isPremium()) {
             if (this.isChannel) {
-                lambda$onBackPressed$335();
+                lambda$onBackPressed$336();
             } else {
                 TLRPC.User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser.color == null) {
@@ -2250,7 +2300,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 getMessagesController().putUser(currentUser, false);
                 getUserConfig().saveConfig(true);
-                lambda$onBackPressed$335();
+                lambda$onBackPressed$336();
                 showBulletin();
             }
             this.applying = true;
@@ -2263,13 +2313,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
         }
         apply();
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
         showBulletin();
     }
 
@@ -2287,7 +2337,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
         }
     }
 
@@ -2296,7 +2346,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
     }
 
     public void lambda$showUnsavedAlert$4(AlertDialog alertDialog, int i) {

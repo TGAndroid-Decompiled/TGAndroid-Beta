@@ -1259,12 +1259,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     if (i == 31) {
                         SharedConfig.toggleUseNewBlur();
                         return;
-                    } else if (i == 32) {
+                    }
+                    if (i == 32) {
                         SharedConfig.toggleBrowserAdaptableColors();
                         return;
+                    } else if (i == 33) {
+                        SharedConfig.toggleDebugVideoQualities();
+                        return;
                     } else {
-                        if (i == 33) {
-                            SharedConfig.toggleDebugVideoQualities();
+                        if (i == 34) {
+                            MessagesController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).loadAppConfig(true);
                             return;
                         }
                         return;
@@ -1527,7 +1531,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 str3 = null;
             }
             boolean z2 = BuildVars.DEBUG_PRIVATE_VERSION;
-            CharSequence[] charSequenceArr = {string2, string3, string4, string5, string, string6, string7, string8, null, string9, string10, str4, str5, str6, string11, string12, string13, str7, str3, z2 ? "Force remove premium suggestions" : null, z2 ? "Share device info" : null, z2 ? "Force performance class" : null, (!z2 || InstantCameraView.allowBigSizeCameraDebug()) ? null : !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round", LocaleController.getString(DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext()) ? "DebugMenuDualOff" : "DebugMenuDualOn"), BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null, !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment", BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null, i6 >= 21 ? !SharedConfig.isUsingCamera2(((BaseFragment) ProfileActivity.this).currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API" : null, BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null, BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null, (!SharedConfig.canBlurChat() || i6 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur", SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors", SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug"};
+            CharSequence[] charSequenceArr = {string2, string3, string4, string5, string, string6, string7, string8, null, string9, string10, str4, str5, str6, string11, string12, string13, str7, str3, z2 ? "Force remove premium suggestions" : null, z2 ? "Share device info" : null, z2 ? "Force performance class" : null, (!z2 || InstantCameraView.allowBigSizeCameraDebug()) ? null : !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round", LocaleController.getString(DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext()) ? "DebugMenuDualOff" : "DebugMenuDualOn"), BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null, !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment", BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null, i6 >= 21 ? !SharedConfig.isUsingCamera2(((BaseFragment) ProfileActivity.this).currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API" : null, BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null, BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null, (!SharedConfig.canBlurChat() || i6 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur", SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors", SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug", "Reload app config"};
             final Context context = this.val$context;
             builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                 @Override
@@ -2883,7 +2887,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             notificationCenter.removeObserver(profileActivity, i2);
             ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
             ProfileActivity.this.playProfileAnimation = 0;
-            ProfileActivity.this.lambda$onBackPressed$335();
+            ProfileActivity.this.lambda$onBackPressed$336();
         }
 
         public void lambda$onItemClick$1(AlertDialog alertDialog, int i) {
@@ -2922,8 +2926,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onItemClick$11(AlertDialog alertDialog, int i) {
-            ProfileActivity.this.creatingChat = true;
-            ProfileActivity.this.getSecretChatHelper().startSecretChat(ProfileActivity.this.getParentActivity(), ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId)));
+            if (MessagesController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).isFrozen()) {
+                AccountFrozenAlert.show(((BaseFragment) ProfileActivity.this).currentAccount);
+            } else {
+                ProfileActivity.this.creatingChat = true;
+                ProfileActivity.this.getSecretChatHelper().startSecretChat(ProfileActivity.this.getParentActivity(), ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId)));
+            }
         }
 
         public void lambda$onItemClick$12(boolean z, Uri uri) {
@@ -3037,7 +3045,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.this.getParentLayout().removeFragmentFromStack(fragmentStack.size() - 2);
                 }
             }
-            ProfileActivity.this.lambda$onBackPressed$335();
+            ProfileActivity.this.lambda$onBackPressed$336();
             ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(ProfileActivity.this.dialogId), user, ProfileActivity.this.currentChat, Boolean.valueOf(z));
         }
 
@@ -3068,7 +3076,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                 }
             }
-            ProfileActivity.this.lambda$onBackPressed$335();
+            ProfileActivity.this.lambda$onBackPressed$336();
             Context context = ProfileActivity.this.getContext();
             if (context != null) {
                 BulletinFactory.of(Bulletin.BulletinWindow.make(context), ProfileActivity.this.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getPluralString("TopicsDeleted", 1)).show();
@@ -6241,7 +6249,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             SearchResult searchResult5 = new SearchResult(this, 504, string, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.access$7300(ProfileActivity.this);
+                    ProfileActivity.access$7500(ProfileActivity.this);
                 }
             });
             int i = R.string.NotificationsAndSounds;
@@ -7872,18 +7880,18 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.sharedMediaPreloader = sharedMediaPreloader;
     }
 
-    public static void access$36100(ProfileActivity profileActivity, View view) {
-        profileActivity.onTextDetailCellImageClicked(view);
-    }
-
-    public static void access$7300(ProfileActivity profileActivity) {
-        profileActivity.onWriteButtonClick();
-    }
-
-    static int access$9812(ProfileActivity profileActivity, int i) {
+    static int access$10212(ProfileActivity profileActivity, int i) {
         int i2 = profileActivity.listContentHeight + i;
         profileActivity.listContentHeight = i2;
         return i2;
+    }
+
+    public static void access$36600(ProfileActivity profileActivity, View view) {
+        profileActivity.onTextDetailCellImageClicked(view);
+    }
+
+    public static void access$7500(ProfileActivity profileActivity) {
+        profileActivity.onWriteButtonClick();
     }
 
     private int applyPeerColor(int i, boolean z, Boolean bool) {
@@ -8358,7 +8366,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (i == 1) {
             this.emojiStatusGiftId = null;
         }
-        if ((emojiStatus instanceof TLRPC.TL_emojiStatus) && !this.reportSpam) {
+        if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
             TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
             if ((1 & tL_emojiStatus.flags) == 0 || tL_emojiStatus.until > ((int) (System.currentTimeMillis() / 1000))) {
                 this.emojiStatusDrawable[i].set(tL_emojiStatus.document_id, z2);
@@ -8506,7 +8514,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         getMessagesController().deleteParticipantFromChat(this.chatId, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())));
         this.playProfileAnimation = 0;
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
     }
 
     public void lambda$checkCanSendStoryForPosting$34(Boolean bool) {
@@ -10087,7 +10095,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         int i = NotificationCenter.closeChats;
         notificationCenter.removeObserver(this, i);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -11499,6 +11507,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         if (this.userId == getUserConfig().getClientUserId()) {
             presentFragment(new PremiumPreviewFragment("my_profile_gift"));
+        } else if (UserObject.areGiftsDisabled(this.userInfo)) {
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(this.userId)))).show();
         } else {
             showDialog(new GiftSheet(getContext(), this.currentAccount, this.userId, null, null));
         }
@@ -11571,7 +11581,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
         }
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
     }
 
     public void openAddMember() {
@@ -11843,7 +11853,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             BaseFragment baseFragment = (BaseFragment) this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2);
             if (baseFragment instanceof ChatActivity) {
-                lambda$onBackPressed$335();
+                lambda$onBackPressed$336();
                 ((ChatActivity) baseFragment).chatActivityEnterView.setCommand(null, str, false, false);
             }
         }
@@ -13545,7 +13555,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                                         removeSelfFromStack();
                                                         return;
                                                     } else {
-                                                        lambda$onBackPressed$335();
+                                                        lambda$onBackPressed$336();
                                                         return;
                                                     }
                                                 }

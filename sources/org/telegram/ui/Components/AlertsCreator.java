@@ -40,7 +40,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.util.Consumer;
+import j$.time.LocalDate;
 import j$.time.YearMonth;
+import j$.time.ZoneId;
+import j$.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -2060,7 +2063,6 @@ public abstract class AlertsCreator {
     public static BottomSheet.Builder createScheduleDatePickerDialog(Context context, final long j, long j2, final ScheduleDatePickerDelegate scheduleDatePickerDelegate, final Runnable runnable, final ScheduleDatePickerColors scheduleDatePickerColors, Theme.ResourcesProvider resourcesProvider) {
         LinearLayout linearLayout;
         NumberPicker numberPicker;
-        final Calendar calendar;
         TLRPC.User user;
         TLRPC.UserStatus userStatus;
         if (context == null) {
@@ -2172,12 +2174,11 @@ public abstract class AlertsCreator {
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
         linearLayout3.setWeightSum(1.0f);
-        LinearLayout linearLayout4 = linearLayout;
-        linearLayout4.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));
-        final long currentTimeMillis = System.currentTimeMillis();
-        final Calendar calendar2 = Calendar.getInstance();
-        calendar2.setTimeInMillis(currentTimeMillis);
-        final int i = calendar2.get(1);
+        linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));
+        long currentTimeMillis = System.currentTimeMillis();
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(currentTimeMillis);
+        final int i = calendar.get(1);
         final TextView textView2 = new TextView(context) {
             @Override
             public CharSequence getAccessibilityClassName() {
@@ -2192,7 +2193,7 @@ public abstract class AlertsCreator {
             @Override
             public final String format(int i2) {
                 String lambda$createScheduleDatePickerDialog$92;
-                lambda$createScheduleDatePickerDialog$92 = AlertsCreator.lambda$createScheduleDatePickerDialog$92(currentTimeMillis, calendar2, i, i2);
+                lambda$createScheduleDatePickerDialog$92 = AlertsCreator.lambda$createScheduleDatePickerDialog$92(i, i2);
                 return lambda$createScheduleDatePickerDialog$92;
             }
         });
@@ -2229,11 +2230,8 @@ public abstract class AlertsCreator {
         });
         linearLayout3.addView(numberPicker5, LayoutHelper.createLinear(0, 270, 0.3f));
         numberPicker5.setOnValueChangedListener(onValueChangeListener);
-        if (j2 <= 0 || j2 == 2147483646) {
-            calendar = calendar2;
-        } else {
+        if (j2 > 0 && j2 != 2147483646) {
             long j3 = 1000 * j2;
-            calendar = calendar2;
             calendar.setTimeInMillis(System.currentTimeMillis());
             calendar.set(12, 0);
             calendar.set(13, 0);
@@ -2255,6 +2253,7 @@ public abstract class AlertsCreator {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setBackground(Theme.AdaptiveRipple.filledRect(scheduleDatePickerColors.buttonBackgroundColor, 8.0f));
+        LinearLayout linearLayout4 = linearLayout;
         linearLayout4.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -4412,16 +4411,17 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static String lambda$createScheduleDatePickerDialog$92(long j, Calendar calendar, int i, int i2) {
+    public static String lambda$createScheduleDatePickerDialog$92(int i, int i2) {
         if (i2 == 0) {
             return LocaleController.getString(R.string.MessageScheduleToday);
         }
-        long j2 = j + (i2 * 86400000);
-        calendar.setTimeInMillis(j2);
-        if (calendar.get(1) != i) {
-            return LocaleController.getInstance().getFormatterScheduleYear().format(j2);
+        LocalDate plusDays = LocalDate.now().plusDays(i2);
+        int year = plusDays.getYear();
+        long epochMilli = plusDays.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
+        if (year != i) {
+            return LocaleController.getInstance().getFormatterScheduleYear().format(epochMilli);
         }
-        return LocaleController.getInstance().getFormatterWeek().format(j2) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(j2);
+        return LocaleController.getInstance().getFormatterWeek().format(epochMilli) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(epochMilli);
     }
 
     public static void lambda$createScheduleDatePickerDialog$93(TextView textView, long j, long j2, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, int i, int i2) {
@@ -4439,7 +4439,7 @@ public abstract class AlertsCreator {
     public static void lambda$createScheduleDatePickerDialog$96(boolean[] zArr, long j, long j2, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         zArr[0] = false;
         boolean checkScheduleDate = checkScheduleDate(null, null, j == j2 ? 1 : 0, numberPicker, numberPicker2, numberPicker3);
-        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 86400000));
+        calendar.setTimeInMillis(LocalDate.now().plusDays(numberPicker.getValue()).atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
         calendar.set(11, numberPicker2.getValue());
         calendar.set(12, numberPicker3.getValue());
         if (checkScheduleDate) {
@@ -4585,7 +4585,7 @@ public abstract class AlertsCreator {
         }
         if (baseFragment instanceof ThemePreviewActivity) {
             Theme.applyPreviousTheme();
-            baseFragment.lambda$onBackPressed$335();
+            baseFragment.lambda$onBackPressed$336();
         }
         if (themeAccent == null) {
             processCreate(editTextBoldCursor, alertDialog, baseFragment);
@@ -4718,7 +4718,11 @@ public abstract class AlertsCreator {
         }
         Activity activity = AndroidUtilities.getActivity();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        new StarsIntroActivity.StarsNeededSheet(activity, (PhotoViewer.getInstance().isVisible() || (safeLastFragment != null && safeLastFragment.hasShownSheet())) ? new DarkThemeResourceProvider() : safeLastFragment != null ? safeLastFragment.getResourceProvider() : null, j, 13, DialogObject.getShortName(i, j2), new Runnable() {
+        Theme.ResourcesProvider darkThemeResourceProvider = (PhotoViewer.getInstance().isVisible() || (safeLastFragment != null && safeLastFragment.hasShownSheet())) ? new DarkThemeResourceProvider() : safeLastFragment != null ? safeLastFragment.getResourceProvider() : null;
+        if (activity == null) {
+            return;
+        }
+        new StarsIntroActivity.StarsNeededSheet(activity, darkThemeResourceProvider, j, 13, DialogObject.getShortName(i, j2), new Runnable() {
             @Override
             public final void run() {
                 AlertsCreator.lambda$ensurePaidMessageConfirmation$39(Utilities.Callback.this, j3);
@@ -4741,15 +4745,18 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$ensurePaidMessagesMultiConfirmation$37(int i, long j, Activity activity, Theme.ResourcesProvider resourcesProvider, ArrayList arrayList, final Utilities.Callback callback, final HashMap hashMap) {
-        if (StarsController.getInstance(i).getBalance().amount < j) {
+        if (StarsController.getInstance(i).getBalance().amount >= j) {
+            callback.run(hashMap);
+        } else {
+            if (activity == null) {
+                return;
+            }
             new StarsIntroActivity.StarsNeededSheet(activity, resourcesProvider, j, 13, DialogObject.getShortName(i, ((Long) arrayList.get(0)).longValue()), new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(hashMap);
                 }
             }).show();
-        } else {
-            callback.run(hashMap);
         }
     }
 

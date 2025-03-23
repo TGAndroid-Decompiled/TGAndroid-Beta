@@ -201,7 +201,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1144getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1155getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -901,7 +901,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             if (z) {
                 List list = this.fragmentsStack;
                 if (list.get(list.size() - 1) == baseFragment) {
-                    baseFragment.lambda$onBackPressed$335();
+                    baseFragment.lambda$onBackPressed$336();
                     return;
                 }
             }
@@ -939,9 +939,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean addFragmentToStack(BaseFragment baseFragment) {
-        boolean addFragmentToStack;
-        addFragmentToStack = addFragmentToStack(baseFragment, -1);
-        return addFragmentToStack;
+        return INavigationLayout.CC.$default$addFragmentToStack(this, baseFragment);
     }
 
     @Override
@@ -1053,12 +1051,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void animateThemedValues(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2) {
-        animateThemedValues(new INavigationLayout.ThemeAnimationSettings(themeInfo, i, z, z2), null);
+        INavigationLayout.CC.$default$animateThemedValues(this, themeInfo, i, z, z2);
     }
 
     @Override
     public void animateThemedValues(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2, Runnable runnable) {
-        animateThemedValues(new INavigationLayout.ThemeAnimationSettings(themeInfo, i, z, z2), runnable);
+        INavigationLayout.CC.$default$animateThemedValues(this, themeInfo, i, z, z2, runnable);
     }
 
     public void bringToFront(int i) {
@@ -1141,7 +1139,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void closeLastFragment() {
-        closeLastFragment(true);
+        INavigationLayout.CC.$default$closeLastFragment(this);
     }
 
     @Override
@@ -1379,7 +1377,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void drawHeaderShadow(Canvas canvas, int i) {
-        drawHeaderShadow(canvas, 255, i);
+        INavigationLayout.CC.$default$drawHeaderShadow(this, canvas, i);
     }
 
     @Override
@@ -1452,6 +1450,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
         }
         return false;
+    }
+
+    @Override
+    public BaseFragment findFragment(Class cls) {
+        return INavigationLayout.CC.$default$findFragment(this, cls);
     }
 
     @Override
@@ -1849,30 +1852,22 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment);
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z);
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z, z2, z3, z4);
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4).setMenuView(actionBarPopupWindowLayout));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z, z2, z3, z4, actionBarPopupWindowLayout);
     }
 
     @Override
@@ -2220,16 +2215,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean presentFragmentAsPreview(BaseFragment baseFragment) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setPreview(true));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragmentAsPreview(this, baseFragment);
     }
 
     @Override
     public boolean presentFragmentAsPreviewWithMenu(BaseFragment baseFragment, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setPreview(true).setMenuView(actionBarPopupWindowLayout));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragmentAsPreviewWithMenu(this, baseFragment, actionBarPopupWindowLayout);
     }
 
     @Override
@@ -2303,7 +2294,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void removeFragmentFromStack(BaseFragment baseFragment) {
-        removeFragmentFromStack(baseFragment, false);
+        INavigationLayout.CC.$default$removeFragmentFromStack(this, baseFragment);
     }
 
     @Override

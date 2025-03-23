@@ -1122,7 +1122,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.access$10000(ChatActivityEnterView.this);
+                    ChatActivityEnterView.access$9900(ChatActivityEnterView.this);
                 }
             });
         }
@@ -6520,7 +6520,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.attachButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode2));
             this.attachButton.setImageResource(R.drawable.msg_input_attach2);
             if (i4 >= 21) {
-                this.attachButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
+                this.attachButton.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
             }
             this.attachLayout.addView(this.attachButton, LayoutHelper.createLinear(48, 48));
             this.attachButton.setOnClickListener(new View.OnClickListener() {
@@ -6530,6 +6530,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
             });
             this.attachButton.setContentDescription(LocaleController.getString("AccDescrAttachButton", R.string.AccDescrAttachButton));
+            updateFieldRight(1);
         }
         if (this.audioToSend != null) {
             createRecordAudioPanel();
@@ -6695,10 +6696,6 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         createMessageEditText();
     }
 
-    public static void access$10000(ChatActivityEnterView chatActivityEnterView) {
-        chatActivityEnterView.checkBirthdayHint();
-    }
-
     static float access$5316(ChatActivityEnterView chatActivityEnterView, float f) {
         float f2 = chatActivityEnterView.tooltipAlpha + f;
         chatActivityEnterView.tooltipAlpha = f2;
@@ -6721,6 +6718,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         float f2 = chatActivityEnterView.slideToCancelLockProgress - f;
         chatActivityEnterView.slideToCancelLockProgress = f2;
         return f2;
+    }
+
+    public static void access$9900(ChatActivityEnterView chatActivityEnterView) {
+        chatActivityEnterView.checkBirthdayHint();
     }
 
     public static CharSequence applyMessageEntities(ArrayList arrayList, CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt) {
@@ -8216,7 +8217,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             edit.putBoolean("show_gift_for_" + this.parentFragment.getDialogId(), false);
         }
         edit.apply();
-        AndroidUtilities.updateViewVisibilityAnimated(this.giftButton, false);
+        TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
+        if ((getParentFragment().getCurrentUserInfo() == null || !getParentFragment().getCurrentUserInfo().display_gifts_button) && (userFull == null || !userFull.display_gifts_button)) {
+            AndroidUtilities.updateViewVisibilityAnimated(this.giftButton, false);
+        }
         final TLRPC.User currentUser = getParentFragment().getCurrentUser();
         if (currentUser == null) {
             return;
@@ -8618,7 +8622,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         TLRPC.User user = this.accountInstance.getMessagesController().getUser(Long.valueOf(j));
         if (user == null) {
-            dialogsActivity.lambda$onBackPressed$335();
+            dialogsActivity.lambda$onBackPressed$336();
             return true;
         }
         long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -8640,7 +8644,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return true;
             }
         }
-        dialogsActivity.lambda$onBackPressed$335();
+        dialogsActivity.lambda$onBackPressed$336();
         return true;
     }
 
@@ -8676,7 +8680,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_sendBotRequestedPeer, null);
         }
-        dialogsActivity.lambda$onBackPressed$335();
+        dialogsActivity.lambda$onBackPressed$336();
         return true;
     }
 
@@ -9602,51 +9606,6 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         }, this.resourcesProvider);
         return true;
-    }
-
-    public boolean sendMessageInternal(final boolean z, final int i, final long j, final boolean z2) {
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                ChatActivityEnterView.this.lambda$sendMessageInternal$47(z, z2, i, j);
-            }
-        };
-        if (!z2) {
-            runnable.run();
-            return false;
-        }
-        boolean ensurePaidMessageConfirmation = AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, this.dialog_id, getMessagesCount(), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChatActivityEnterView.this.lambda$sendMessageInternal$48(z, i, (Long) obj);
-            }
-        }, j);
-        if (ensurePaidMessageConfirmation && this.sendButtonVisible) {
-            if (isInVideoMode()) {
-                if (this.delegate.isVideoRecordingPaused()) {
-                    return ensurePaidMessageConfirmation;
-                }
-                SlideTextView slideTextView = this.slideText;
-                if (slideTextView != null) {
-                    slideTextView.setEnabled(false);
-                }
-                this.delegate.toggleVideoRecordingPause();
-            } else {
-                if (MediaController.getInstance().isRecordingPaused()) {
-                    return ensurePaidMessageConfirmation;
-                }
-                if (this.sendButtonVisible) {
-                    this.calledRecordRunnable = true;
-                }
-                MediaController.getInstance().toggleRecordingPause(this.voiceOnce);
-                this.delegate.needStartRecordAudio(0);
-                SlideTextView slideTextView2 = this.slideText;
-                if (slideTextView2 != null) {
-                    slideTextView2.setEnabled(false);
-                }
-            }
-        }
-        return ensurePaidMessageConfirmation;
     }
 
     public void setBirthdayHintText() {
@@ -12358,6 +12317,51 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         return !this.recordIsCanceled && this.transformToSeekbar > 0.0f;
     }
 
+    public boolean sendMessageInternal(final boolean z, final int i, final long j, final boolean z2) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                ChatActivityEnterView.this.lambda$sendMessageInternal$47(z, z2, i, j);
+            }
+        };
+        if (!z2) {
+            runnable.run();
+            return false;
+        }
+        boolean ensurePaidMessageConfirmation = AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, this.dialog_id, getMessagesCount(), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ChatActivityEnterView.this.lambda$sendMessageInternal$48(z, i, (Long) obj);
+            }
+        }, j);
+        if (ensurePaidMessageConfirmation && this.sendButtonVisible) {
+            if (isInVideoMode()) {
+                if (this.delegate.isVideoRecordingPaused()) {
+                    return ensurePaidMessageConfirmation;
+                }
+                SlideTextView slideTextView = this.slideText;
+                if (slideTextView != null) {
+                    slideTextView.setEnabled(false);
+                }
+                this.delegate.toggleVideoRecordingPause();
+            } else {
+                if (MediaController.getInstance().isRecordingPaused()) {
+                    return ensurePaidMessageConfirmation;
+                }
+                if (this.sendButtonVisible) {
+                    this.calledRecordRunnable = true;
+                }
+                MediaController.getInstance().toggleRecordingPause(this.voiceOnce);
+                this.delegate.needStartRecordAudio(0);
+                SlideTextView slideTextView2 = this.slideText;
+                if (slideTextView2 != null) {
+                    slideTextView2.setEnabled(false);
+                }
+            }
+        }
+        return ensurePaidMessageConfirmation;
+    }
+
     public void setAdjustPanLayoutHelper(AdjustPanLayoutHelper adjustPanLayoutHelper) {
         this.adjustPanLayoutHelper = adjustPanLayoutHelper;
     }
@@ -13415,7 +13419,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         editTextCaption.setHintText(string2);
     }
 
-    public void updateGiftButton(boolean r8) {
+    public void updateGiftButton(boolean r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.updateGiftButton(boolean):void");
     }
 

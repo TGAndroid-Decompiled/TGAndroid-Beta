@@ -9,9 +9,7 @@ import android.view.MotionEvent;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -27,13 +25,13 @@ public class GallerySheet extends BottomSheet {
     private final GalleryListView listView;
     private Utilities.Callback onGalleryListener;
 
-    public GallerySheet(Context context, Theme.ResourcesProvider resourcesProvider, float f) {
+    public GallerySheet(Context context, Theme.ResourcesProvider resourcesProvider, final String str, boolean z, float f) {
         super(context, false, resourcesProvider);
         fixNavigationBar(-14737633);
-        GalleryListView galleryListView = new GalleryListView(UserConfig.selectedAccount, context, new DarkThemeResourceProvider(), null, true, f) {
+        GalleryListView galleryListView = new GalleryListView(UserConfig.selectedAccount, context, new DarkThemeResourceProvider(), null, z, f) {
             @Override
             public String getTitle() {
-                return LocaleController.getString(R.string.VideoChooseCover);
+                return str;
             }
         };
         this.listView = galleryListView;

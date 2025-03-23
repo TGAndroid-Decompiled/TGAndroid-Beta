@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
+import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -37,6 +38,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CanvasButton;
 import org.telegram.ui.Components.CheckBox2;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Premium.PremiumGradient;
@@ -48,6 +50,11 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     CanvasButton actionButton;
     private StaticLayout actionLayout;
     private int actionLeft;
+    private TLRPC.TL_sponsoredPeer ad;
+    private Paint adBackgroundPaint;
+    private final ButtonBounce adBounce;
+    private final RectF adBounds;
+    private Text adText;
     private boolean allowBotOpenButton;
     private AvatarDrawable avatarDrawable;
     public ImageReceiver avatarImage;
@@ -83,6 +90,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     private int nameTop;
     private int nameWidth;
     private Utilities.Callback onOpenButtonClick;
+    private Utilities.Callback2 onSponsoredOptionsClick;
     private boolean openBot;
     private final Paint openButtonBackgroundPaint;
     private final ButtonBounce openButtonBounce;
@@ -120,6 +128,8 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.starsBlockedT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.avatarStoryParams = new StoriesUtilities.AvatarStoryParams(false);
+        this.adBounds = new RectF();
+        this.adBounce = new ButtonBounce(this);
         this.rect = new RectF();
         this.openButtonBounce = new ButtonBounce(this);
         this.openButtonBackgroundPaint = new Paint(1);
@@ -229,6 +239,20 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             }
         }
         this.statusLeft = !LocaleController.isRTL ? AndroidUtilities.dp(AndroidUtilities.leftBaseline) : AndroidUtilities.dp(11.0f);
+        if (this.ad != null) {
+            if (this.adText == null) {
+                SpannableStringBuilder append = new SpannableStringBuilder(LocaleController.getString(R.string.SearchAd)).append((CharSequence) " i");
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ic_ab_other);
+                coloredImageSpan.setScale(0.55f, 0.55f);
+                coloredImageSpan.spaceScaleX = 0.7f;
+                coloredImageSpan.translate(-AndroidUtilities.dp(2.0f), 0.0f);
+                append.setSpan(coloredImageSpan, append.length() - 1, append.length(), 33);
+                this.adText = new Text(append, 12.0f);
+            }
+            if (this.adBackgroundPaint == null) {
+                this.adBackgroundPaint = new Paint(1);
+            }
+        }
         CharSequence charSequence2 = this.currentName;
         if (charSequence2 == null) {
             TLRPC.Chat chat2 = this.chat;
@@ -285,6 +309,13 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         this.nameWidth = dp3;
         if (this.drawNameLock) {
             this.nameWidth -= AndroidUtilities.dp(6.0f) + Theme.dialogs_lockDrawable.getIntrinsicWidth();
+        }
+        if (this.ad != null) {
+            int currentWidth = ((int) this.adText.getCurrentWidth()) + AndroidUtilities.dp(20.66f);
+            this.nameWidth -= currentWidth;
+            if (LocaleController.isRTL) {
+                this.nameLeft += currentWidth;
+            }
         }
         if (this.contact != null) {
             TextPaint textPaint6 = Theme.dialogs_countTextPaint;
@@ -594,7 +625,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r23) {
+    protected void onDraw(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ProfileSearchCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -656,8 +687,12 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r6) {
+    public boolean onTouchEvent(android.view.MotionEvent r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ProfileSearchCell.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public void setAd(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
+        this.ad = tL_sponsoredPeer;
     }
 
     public void setChecked(boolean z, boolean z2) {
@@ -714,6 +749,10 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         this.drawCount = z;
         this.savedMessages = z2;
         update(0);
+    }
+
+    public void setOnSponsoredOptionsClick(Utilities.Callback2<ProfileSearchCell, TLRPC.TL_sponsoredPeer> callback2) {
+        this.onSponsoredOptionsClick = callback2;
     }
 
     public void setOpenBotButton(boolean z) {
@@ -906,7 +945,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
         }
         long botVerificationIcon = user != null ? DialogObject.getBotVerificationIcon(user) : chat != null ? DialogObject.getBotVerificationIcon(chat) : 0L;
-        if (botVerificationIcon == 0) {
+        if (botVerificationIcon == 0 || this.savedMessages) {
             this.botVerificationDrawable.set((Drawable) null, z2);
         } else {
             this.botVerificationDrawable.set(botVerificationIcon, z2);

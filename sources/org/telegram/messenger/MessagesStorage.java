@@ -1089,12 +1089,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(200);
+                messageMedia.bytes = Utilities.intToBytes(201);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(200);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(201);
             message.flags |= 512;
         }
     }
@@ -2521,7 +2521,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$loadPendingTasks$32(long j, long j2, int i) {
-        getMessagesController().lambda$checkDeletingTask$77(j, j2, i);
+        getMessagesController().lambda$checkDeletingTask$78(j, j2, i);
     }
 
     public void lambda$loadPendingTasks$33() {

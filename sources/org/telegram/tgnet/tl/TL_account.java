@@ -341,6 +341,137 @@ public class TL_account {
         }
     }
 
+    public static class TL_businessBotRights extends TLObject {
+        public static final int constructor = -1604170505;
+        public boolean change_gift_settings;
+        public boolean delete_received_messages;
+        public boolean delete_sent_messages;
+        public boolean edit_bio;
+        public boolean edit_name;
+        public boolean edit_profile_photo;
+        public boolean edit_username;
+        public int flags;
+        public boolean manage_stories;
+        public boolean read_messages;
+        public boolean reply;
+        public boolean sell_gifts;
+        public boolean transfer_and_upgrade_gifts;
+        public boolean transfer_stars;
+        public boolean view_gifts;
+
+        public static TL_businessBotRights TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (i != -1604170505) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessBotRights", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            TL_businessBotRights tL_businessBotRights = new TL_businessBotRights();
+            tL_businessBotRights.readParams(inputSerializedData, z);
+            return tL_businessBotRights;
+        }
+
+        public static TL_businessBotRights all() {
+            TL_businessBotRights tL_businessBotRights = new TL_businessBotRights();
+            tL_businessBotRights.reply = true;
+            tL_businessBotRights.read_messages = true;
+            tL_businessBotRights.delete_sent_messages = true;
+            tL_businessBotRights.delete_received_messages = true;
+            tL_businessBotRights.edit_name = true;
+            tL_businessBotRights.edit_bio = true;
+            tL_businessBotRights.edit_profile_photo = true;
+            tL_businessBotRights.edit_username = true;
+            tL_businessBotRights.view_gifts = true;
+            tL_businessBotRights.sell_gifts = true;
+            tL_businessBotRights.change_gift_settings = true;
+            tL_businessBotRights.transfer_and_upgrade_gifts = true;
+            tL_businessBotRights.transfer_stars = true;
+            tL_businessBotRights.manage_stories = true;
+            return tL_businessBotRights;
+        }
+
+        public static TL_businessBotRights clone(TL_businessBotRights tL_businessBotRights) {
+            TL_businessBotRights tL_businessBotRights2 = new TL_businessBotRights();
+            tL_businessBotRights2.reply = tL_businessBotRights.reply;
+            tL_businessBotRights2.read_messages = tL_businessBotRights.read_messages;
+            tL_businessBotRights2.delete_sent_messages = tL_businessBotRights.delete_sent_messages;
+            tL_businessBotRights2.delete_received_messages = tL_businessBotRights.delete_received_messages;
+            tL_businessBotRights2.edit_name = tL_businessBotRights.edit_name;
+            tL_businessBotRights2.edit_bio = tL_businessBotRights.edit_bio;
+            tL_businessBotRights2.edit_profile_photo = tL_businessBotRights.edit_profile_photo;
+            tL_businessBotRights2.edit_username = tL_businessBotRights.edit_username;
+            tL_businessBotRights2.view_gifts = tL_businessBotRights.view_gifts;
+            tL_businessBotRights2.sell_gifts = tL_businessBotRights.sell_gifts;
+            tL_businessBotRights2.change_gift_settings = tL_businessBotRights.change_gift_settings;
+            tL_businessBotRights2.transfer_and_upgrade_gifts = tL_businessBotRights.transfer_and_upgrade_gifts;
+            tL_businessBotRights2.transfer_stars = tL_businessBotRights.transfer_stars;
+            tL_businessBotRights2.manage_stories = tL_businessBotRights.manage_stories;
+            return tL_businessBotRights2;
+        }
+
+        public boolean equals(Object obj) {
+            if (!(obj instanceof TL_businessBotRights)) {
+                return false;
+            }
+            TL_businessBotRights tL_businessBotRights = (TL_businessBotRights) obj;
+            return this.reply == tL_businessBotRights.reply && this.read_messages == tL_businessBotRights.read_messages && this.delete_sent_messages == tL_businessBotRights.delete_sent_messages && this.delete_received_messages == tL_businessBotRights.delete_received_messages && this.edit_name == tL_businessBotRights.edit_name && this.edit_bio == tL_businessBotRights.edit_bio && this.edit_profile_photo == tL_businessBotRights.edit_profile_photo && this.edit_username == tL_businessBotRights.edit_username && this.view_gifts == tL_businessBotRights.view_gifts && this.sell_gifts == tL_businessBotRights.sell_gifts && this.change_gift_settings == tL_businessBotRights.change_gift_settings && this.transfer_and_upgrade_gifts == tL_businessBotRights.transfer_and_upgrade_gifts && this.transfer_stars == tL_businessBotRights.transfer_stars && this.manage_stories == tL_businessBotRights.manage_stories;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.reply = (readInt32 & 1) != 0;
+            this.read_messages = (readInt32 & 2) != 0;
+            this.delete_sent_messages = (readInt32 & 4) != 0;
+            this.delete_received_messages = (readInt32 & 8) != 0;
+            this.edit_name = (readInt32 & 16) != 0;
+            this.edit_bio = (readInt32 & 32) != 0;
+            this.edit_profile_photo = (readInt32 & 64) != 0;
+            this.edit_username = (readInt32 & 128) != 0;
+            this.view_gifts = (readInt32 & 256) != 0;
+            this.sell_gifts = (readInt32 & 512) != 0;
+            this.change_gift_settings = (readInt32 & 1024) != 0;
+            this.transfer_and_upgrade_gifts = (readInt32 & 2048) != 0;
+            this.transfer_stars = (readInt32 & 4096) != 0;
+            this.manage_stories = (readInt32 & 8192) != 0;
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1604170505);
+            int i = this.reply ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.read_messages ? i | 2 : i & (-3);
+            this.flags = i2;
+            int i3 = this.delete_sent_messages ? i2 | 4 : i2 & (-5);
+            this.flags = i3;
+            int i4 = this.delete_received_messages ? i3 | 8 : i3 & (-9);
+            this.flags = i4;
+            int i5 = this.edit_name ? i4 | 16 : i4 & (-17);
+            this.flags = i5;
+            int i6 = this.edit_bio ? i5 | 32 : i5 & (-33);
+            this.flags = i6;
+            int i7 = this.edit_profile_photo ? i6 | 64 : i6 & (-65);
+            this.flags = i7;
+            int i8 = this.edit_username ? i7 | 128 : i7 & (-129);
+            this.flags = i8;
+            int i9 = this.view_gifts ? i8 | 256 : i8 & (-257);
+            this.flags = i9;
+            int i10 = this.sell_gifts ? i9 | 512 : i9 & (-513);
+            this.flags = i10;
+            int i11 = this.change_gift_settings ? i10 | 1024 : i10 & (-1025);
+            this.flags = i11;
+            int i12 = this.transfer_and_upgrade_gifts ? i11 | 2048 : i11 & (-2049);
+            this.flags = i12;
+            int i13 = this.transfer_stars ? i12 | 4096 : i12 & (-4097);
+            this.flags = i13;
+            int i14 = this.manage_stories ? i13 | 8192 : i13 & (-8193);
+            this.flags = i14;
+            outputSerializedData.writeInt32(i14);
+        }
+    }
+
     public static class TL_businessChatLink extends TLObject {
         public static final int constructor = -1263638929;
         public ArrayList<TLRPC.MessageEntity> entities = new ArrayList<>();
@@ -599,14 +730,14 @@ public class TL_account {
     }
 
     public static class TL_connectedBot extends TLObject {
-        public static final int constructor = -1123645951;
+        public static final int constructor = -849058964;
         public long bot_id;
-        public boolean can_reply;
         public int flags;
         public TL_businessBotRecipients recipients;
+        public TL_businessBotRights rights;
 
         public static TL_connectedBot TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -1123645951) {
+            if (i != -849058964) {
                 if (z) {
                     throw new RuntimeException(String.format("can't parse magic %x in TL_connectedBot", Integer.valueOf(i)));
                 }
@@ -619,21 +750,19 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.can_reply = (readInt32 & 1) != 0;
+            this.flags = inputSerializedData.readInt32(z);
             this.bot_id = inputSerializedData.readInt64(z);
             this.recipients = TL_businessBotRecipients.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.rights = TL_businessBotRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1123645951);
-            int i = this.can_reply ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            outputSerializedData.writeInt32(-849058964);
+            outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt64(this.bot_id);
             this.recipients.serializeToStream(outputSerializedData);
+            this.rights.serializeToStream(outputSerializedData);
         }
     }
 
@@ -2201,7 +2330,7 @@ public class TL_account {
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.TL_globalPrivacySettings.TLdeserialize(inputSerializedData, i, z);
+            return TLRPC.GlobalPrivacySettings.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
@@ -3350,11 +3479,11 @@ public class TL_account {
 
     public static class setGlobalPrivacySettings extends TLObject {
         public static final int constructor = 517647042;
-        public TLRPC.TL_globalPrivacySettings settings;
+        public TLRPC.GlobalPrivacySettings settings;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.TL_globalPrivacySettings.TLdeserialize(inputSerializedData, i, z);
+            return TLRPC.GlobalPrivacySettings.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
@@ -3653,12 +3782,12 @@ public class TL_account {
     }
 
     public static class updateConnectedBot extends TLObject {
-        public static final int constructor = 1138250269;
+        public static final int constructor = 1721797758;
         public TLRPC.InputUser bot;
-        public boolean can_reply;
         public boolean deleted;
         public int flags;
         public TL_inputBusinessBotRecipients recipients;
+        public TL_businessBotRights rights;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
@@ -3667,12 +3796,15 @@ public class TL_account {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1138250269);
-            int i = this.can_reply ? this.flags | 1 : this.flags & (-2);
+            outputSerializedData.writeInt32(1721797758);
+            int i = this.deleted ? this.flags | 2 : this.flags & (-3);
             this.flags = i;
-            int i2 = this.deleted ? i | 2 : i & (-3);
+            int i2 = this.rights != null ? i | 1 : i & (-3);
             this.flags = i2;
             outputSerializedData.writeInt32(i2);
+            if ((this.flags & 1) != 0) {
+                this.rights.serializeToStream(outputSerializedData);
+            }
             this.bot.serializeToStream(outputSerializedData);
             this.recipients.serializeToStream(outputSerializedData);
         }

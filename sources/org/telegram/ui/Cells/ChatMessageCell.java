@@ -163,6 +163,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private long accessibilityTextFileSize;
     private boolean accessibilityTextUnread;
     private SparseArray accessibilityVirtualViewBounds;
+    private float actionAlpha;
     private int[] adaptiveEmojiColor;
     private ColorFilter[] adaptiveEmojiColorFilter;
     private int addedCaptionHeight;
@@ -1916,6 +1917,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.rect = new RectF();
         this.foreverDrawableColor = -1;
         this.timeAlpha = 1.0f;
+        this.actionAlpha = 1.0f;
         this.controlsAlpha = 1.0f;
         this.pressedBlock = -1;
         this.links = new LinkSpanDrawable.LinkCollector(this);
@@ -7551,66 +7553,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     public boolean hasOutboundsContent() {
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable;
-        MessageObject messageObject;
-        MessageObject messageObject2;
-        int i;
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.effectDrawable;
-        if ((swapAnimatedEmojiDrawable2 != null && swapAnimatedEmojiDrawable2.isNotEmpty() > 0.0f) || this.hasFactCheck) {
-            return true;
-        }
-        if (this.transitionParams.animateExpandedQuotes && ((i = (messageObject2 = this.currentMessageObject).type) == 0 || i == 24 || i == 19 || messageObject2.isGiveawayOrGiveawayResults())) {
-            return true;
-        }
-        if (this.channelRecommendationsCell != null && (messageObject = this.currentMessageObject) != null && messageObject.type == 27) {
-            return true;
-        }
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        if (this.reactionsLayoutInBubble.hasOverlay()) {
-            return true;
-        }
-        if ((!this.transitionParams.transitionBotButtons.isEmpty() && this.transitionParams.animateBotButtonsChanged) || !this.botButtons.isEmpty() || this.drawSideButton != 0) {
-            return true;
-        }
-        if (this.starsPriceText != null) {
-            MessageObject.GroupedMessagePosition groupedMessagePosition = this.currentPosition;
-            if (groupedMessagePosition == null) {
-                return true;
-            }
-            int i2 = groupedMessagePosition.flags;
-            if ((i2 & 4) != 0 && (i2 & 1) != 0) {
-                return true;
-            }
-        }
-        if (this.drawNameLayout && this.nameLayout != null && (swapAnimatedEmojiDrawable = this.currentNameEmojiStatusDrawable) != null && !swapAnimatedEmojiDrawable.isEmpty()) {
-            return true;
-        }
-        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.animatedEmojiStack;
-        if (emojiGroupedSpans != null && !emojiGroupedSpans.holders.isEmpty()) {
-            return true;
-        }
-        if (this.drawTopic && this.topicButton != null) {
-            MessageObject.GroupedMessagePosition groupedMessagePosition2 = this.currentPosition;
-            if (groupedMessagePosition2 == null) {
-                return true;
-            }
-            if (groupedMessagePosition2.minY == 0 && groupedMessagePosition2.minX == 0) {
-                return true;
-            }
-        }
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable3 = this.currentNameStatusDrawable;
-        if (swapAnimatedEmojiDrawable3 != null && !swapAnimatedEmojiDrawable3.isEmpty()) {
-            return true;
-        }
-        if (this.currentMessagesGroup == null) {
-            TransitionParams transitionParams = this.transitionParams;
-            if (((transitionParams.animateReplaceCaptionLayout && transitionParams.animateChangeProgress != 1.0f) || (transitionParams.animateChangeProgress != 1.0f && transitionParams.animateMessageText)) && transitionParams.animateOutAnimateEmoji != null && !this.transitionParams.animateOutAnimateEmoji.holders.isEmpty()) {
-                return true;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.hasOutboundsContent():boolean");
     }
 
     public boolean hasSpoilers() {

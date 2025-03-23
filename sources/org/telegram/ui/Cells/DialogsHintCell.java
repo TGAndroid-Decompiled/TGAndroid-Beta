@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -23,6 +22,7 @@ import org.telegram.ui.Components.AvatarsImageView;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 public class DialogsHintCell extends BlurredFrameLayout {
@@ -32,8 +32,9 @@ public class DialogsHintCell extends BlurredFrameLayout {
     private final LinearLayout contentView;
     private int height;
     public final BackupImageView imageView;
-    private final TextView messageView;
+    private final LinkSpanDrawable.LinksTextView messageView;
     private final LinearLayout parentView;
+    public boolean titleIsError;
     public final AnimatedEmojiSpan.TextViewEmojis titleView;
 
     public DialogsHintCell(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
@@ -60,12 +61,11 @@ public class DialogsHintCell extends BlurredFrameLayout {
         textViewEmojis.setTypeface(AndroidUtilities.bold());
         textViewEmojis.setSingleLine();
         linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-2, -2, 0.0f, (LocaleController.isRTL ? 5 : 3) | 48));
-        TextView textView = new TextView(context);
-        this.messageView = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setMaxLines(2);
-        textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 48));
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+        this.messageView = linksTextView;
+        linksTextView.setTextSize(1, 14.0f);
+        linksTextView.setEllipsize(truncateAt);
+        linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 48));
         NotificationCenter.getGlobalInstance().listenGlobal(this, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -105,9 +105,9 @@ public class DialogsHintCell extends BlurredFrameLayout {
         if (textViewEmojis != null) {
             textViewEmojis.invalidate();
         }
-        TextView textView = this.messageView;
-        if (textView != null) {
-            textView.invalidate();
+        LinkSpanDrawable.LinksTextView linksTextView = this.messageView;
+        if (linksTextView != null) {
+            linksTextView.invalidate();
         }
     }
 
@@ -214,11 +214,26 @@ public class DialogsHintCell extends BlurredFrameLayout {
     }
 
     public void setText(CharSequence charSequence, CharSequence charSequence2) {
+        setText(charSequence, charSequence2, true, false);
+    }
+
+    public void setText(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
+        this.titleIsError = z2;
+        this.titleView.setVisibility(TextUtils.isEmpty(charSequence) ? 8 : 0);
         this.titleView.setText(charSequence);
         this.titleView.setCompoundDrawables(null, null, null, null);
         this.messageView.setText(charSequence2);
-        this.chevronView.setVisibility(0);
+        this.chevronView.setVisibility(z ? 0 : 8);
         this.closeView.setVisibility(8);
+        int dp = z ? AndroidUtilities.dp(24.0f) : 0;
+        LinearLayout linearLayout = this.contentView;
+        boolean z3 = LocaleController.isRTL;
+        int i = z3 ? dp : 0;
+        if (z3) {
+            dp = 0;
+        }
+        linearLayout.setPadding(i, 0, dp, 0);
+        updateColors();
     }
 
     public void showImage() {
@@ -226,10 +241,11 @@ public class DialogsHintCell extends BlurredFrameLayout {
     }
 
     public void updateColors() {
-        this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        TextView textView = this.messageView;
+        this.titleView.setTextColor(Theme.getColor(this.titleIsError ? Theme.key_text_RedBold : Theme.key_windowBackgroundWhiteBlackText));
+        LinkSpanDrawable.LinksTextView linksTextView = this.messageView;
         int i = Theme.key_windowBackgroundWhiteGrayText;
-        textView.setTextColor(Theme.getColor(i));
+        linksTextView.setTextColor(Theme.getColor(i));
+        this.messageView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
         ImageView imageView = this.chevronView;
         int color = Theme.getColor(i);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;

@@ -2,8 +2,10 @@ package org.telegram.ui.Gifts;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,26 +23,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Gifts.GiftSheet;
+import org.telegram.ui.Gifts.ProfileGiftsContainer;
+import org.telegram.ui.PeerColorActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
@@ -108,6 +115,114 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
+    public static class UnpinSheet extends BottomSheet {
+        long selectedGift;
+
+        public UnpinSheet(Context context, long j, final TL_stars.SavedStarGift savedStarGift, Theme.ResourcesProvider resourcesProvider, final Utilities.Callback0Return callback0Return) {
+            super(context, false, resourcesProvider);
+            this.selectedGift = 0L;
+            fixNavigationBar();
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(1);
+            TextView makeTextView = TextHelper.makeTextView(context, 20.0f, Theme.key_windowBackgroundWhiteBlackText, true, resourcesProvider);
+            makeTextView.setText(LocaleController.getString(R.string.Gift2UnpinAlertTitle));
+            linearLayout.addView(makeTextView, LayoutHelper.createLinear(-1, -2, 22.0f, 12.0f, 22.0f, 0.0f));
+            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false, resourcesProvider);
+            makeTextView2.setText(LocaleController.getString(R.string.Gift2UnpinAlertSubtitle));
+            linearLayout.addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 22.0f, 4.33f, 22.0f, 10.0f));
+            final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+            final StarsController.GiftsList profileGiftsList = StarsController.getInstance(this.currentAccount).getProfileGiftsList(j);
+            UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    ProfileGiftsContainer.UnpinSheet.this.lambda$new$0(profileGiftsList, (ArrayList) obj, (UniversalAdapter) obj2);
+                }
+            }, new Utilities.Callback5() {
+                @Override
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                    ProfileGiftsContainer.UnpinSheet.this.lambda$new$1(buttonWithCounterView, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                }
+            }, null, resourcesProvider) {
+                @Override
+                public Integer getSelectorColor(int i) {
+                    return 0;
+                }
+            };
+            universalRecyclerView.setSpanCount(3);
+            universalRecyclerView.setOverScrollMode(2);
+            universalRecyclerView.setScrollEnabled(false);
+            linearLayout.addView(universalRecyclerView, LayoutHelper.createLinear(-1, -2, 11.0f, 0.0f, 11.0f, 0.0f));
+            buttonWithCounterView.setText(LocaleController.getString(R.string.Gift2UnpinAlertButton), false);
+            linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 22.0f, 9.0f, 22.0f, 9.0f));
+            buttonWithCounterView.setEnabled(false);
+            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ProfileGiftsContainer.UnpinSheet.this.lambda$new$2(profileGiftsList, savedStarGift, callback0Return, view);
+                }
+            });
+            setCustomView(linearLayout);
+        }
+
+        public void lambda$new$0(StarsController.GiftsList giftsList, ArrayList arrayList, UniversalAdapter universalAdapter) {
+            Iterator it = giftsList.gifts.iterator();
+            while (it.hasNext()) {
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
+                if (savedStarGift.pinned_to_top) {
+                    arrayList.add(PeerColorActivity.GiftCell.Factory.asGiftCell(savedStarGift).setChecked(this.selectedGift == savedStarGift.gift.id).setSpanCount(1));
+                }
+            }
+        }
+
+        public void lambda$new$1(ButtonWithCounterView buttonWithCounterView, UItem uItem, View view, Integer num, Float f, Float f2) {
+            long j = ((TL_stars.SavedStarGift) uItem.object).gift.id;
+            if (this.selectedGift == j) {
+                this.selectedGift = 0L;
+            } else {
+                this.selectedGift = j;
+            }
+            buttonWithCounterView.setEnabled(this.selectedGift != 0);
+            if (view.getParent() instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view.getParent();
+                for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                    View childAt = viewGroup.getChildAt(i);
+                    if (childAt instanceof PeerColorActivity.GiftCell) {
+                        PeerColorActivity.GiftCell giftCell = (PeerColorActivity.GiftCell) childAt;
+                        giftCell.setSelected(this.selectedGift == giftCell.getGiftId(), true);
+                    }
+                }
+            }
+        }
+
+        public void lambda$new$2(StarsController.GiftsList giftsList, TL_stars.SavedStarGift savedStarGift, Utilities.Callback0Return callback0Return, View view) {
+            TL_stars.SavedStarGift savedStarGift2;
+            ArrayList pinned = giftsList.getPinned();
+            int i = 0;
+            while (true) {
+                if (i >= pinned.size()) {
+                    i = -1;
+                    savedStarGift2 = null;
+                    break;
+                } else {
+                    if (((TL_stars.SavedStarGift) pinned.get(i)).gift.id == this.selectedGift) {
+                        savedStarGift2 = (TL_stars.SavedStarGift) pinned.get(i);
+                        break;
+                    }
+                    i++;
+                }
+            }
+            if (savedStarGift2 == null) {
+                return;
+            }
+            savedStarGift2.pinned_to_top = false;
+            pinned.set(i, savedStarGift);
+            savedStarGift.pinned_to_top = true;
+            giftsList.setPinned(pinned);
+            lambda$new$0();
+            ((BulletinFactory) callback0Return.run()).createSimpleBulletin(R.raw.ic_pin, LocaleController.formatString(R.string.Gift2ReplacedPinTitle, StarGiftSheet.getGiftName(savedStarGift.gift)), LocaleController.formatString(R.string.Gift2ReplacedPinSubtitle, StarGiftSheet.getGiftName(savedStarGift2.gift))).show();
+        }
+    }
+
     public ProfileGiftsContainer(final org.telegram.ui.ActionBar.BaseFragment r33, android.content.Context r34, final int r35, long r36, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.ProfileGiftsContainer.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
@@ -169,33 +284,44 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public void lambda$onItemLongPress$10(TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell) {
+    public void lambda$onItemLongPress$10(TL_stars.SavedStarGift savedStarGift) {
+        new StarGiftSheet(getContext(), this.currentAccount, this.dialogId, this.resourcesProvider) {
+            @Override
+            public BulletinFactory getBulletinFactory() {
+                return BulletinFactory.of(ProfileGiftsContainer.this.fragment);
+            }
+        }.set(savedStarGift, (StarsController.GiftsList) null).onSharePressed(null);
+    }
+
+    public void lambda$onItemLongPress$11(TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell) {
+        if (savedStarGift.pinned_to_top && !savedStarGift.unsaved) {
+            giftCell.setPinned(false, true);
+            this.list.togglePinned(savedStarGift, false, false);
+        }
         savedStarGift.unsaved = !savedStarGift.unsaved;
         giftCell.setStarsGift(savedStarGift, true);
         TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
         savestargift.stargift = this.list.getInput(savedStarGift);
         savestargift.unsave = savedStarGift.unsaved;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(savestargift, null);
-        if (savedStarGift.pinned_to_top && savedStarGift.unsaved) {
-            giftCell.setPinned(false, true);
-            this.list.togglePinned(savedStarGift, false);
-        }
     }
 
-    public void lambda$onItemLongPress$11(TL_stars.SavedStarGift savedStarGift) {
+    public void lambda$onItemLongPress$12(TL_stars.SavedStarGift savedStarGift) {
         new StarGiftSheet(getContext(), this.currentAccount, this.dialogId, this.resourcesProvider) {
             @Override
-            protected BulletinFactory getBulletinFactory() {
+            public BulletinFactory getBulletinFactory() {
                 return BulletinFactory.of(ProfileGiftsContainer.this.fragment);
             }
         }.set(savedStarGift, (StarsController.GiftsList) null).openTransfer();
     }
 
-    public void lambda$onItemLongPress$5(TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell, View view) {
-        BulletinFactory of;
-        int i;
-        String string;
-        Bulletin createSimpleBulletin;
+    public BulletinFactory lambda$onItemLongPress$5(View view, boolean z) {
+        ((GiftSheet.GiftCell) view).setPinned(z, true);
+        this.listView.scrollToPosition(0);
+        return BulletinFactory.of(this.fragment);
+    }
+
+    public void lambda$onItemLongPress$6(TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell, final View view) {
         if (savedStarGift.unsaved) {
             savedStarGift.unsaved = false;
             giftCell.setStarsGift(savedStarGift, true);
@@ -204,52 +330,40 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             savestargift.unsave = savedStarGift.unsaved;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(savestargift, null, 64);
         }
-        boolean z = !savedStarGift.pinned_to_top;
-        ((GiftSheet.GiftCell) view).setPinned(z, true);
-        if (this.list.togglePinned(savedStarGift, z)) {
-            of = BulletinFactory.of(this.fragment);
-            i = R.raw.chats_infotip;
-            string = LocaleController.formatPluralStringComma("GiftsPinLimit", MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit);
-        } else {
-            of = BulletinFactory.of(this.fragment);
-            if (z) {
-                createSimpleBulletin = of.createSimpleBulletin(R.raw.ic_pin, LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle));
-                createSimpleBulletin.show();
-                this.listView.smoothScrollToPosition(0);
-            }
-            i = R.raw.ic_unpin;
-            string = LocaleController.getString(R.string.Gift2Unpinned);
+        final boolean z = !savedStarGift.pinned_to_top;
+        if (this.list.togglePinned(savedStarGift, z, false)) {
+            new UnpinSheet(getContext(), this.dialogId, savedStarGift, this.resourcesProvider, new Utilities.Callback0Return() {
+                @Override
+                public final Object run() {
+                    BulletinFactory lambda$onItemLongPress$5;
+                    lambda$onItemLongPress$5 = ProfileGiftsContainer.this.lambda$onItemLongPress$5(view, z);
+                    return lambda$onItemLongPress$5;
+                }
+            }).show();
+            return;
         }
-        createSimpleBulletin = of.createSimpleBulletin(i, string);
-        createSimpleBulletin.show();
-        this.listView.smoothScrollToPosition(0);
+        BulletinFactory of = BulletinFactory.of(this.fragment);
+        (z ? of.createSimpleBulletin(R.raw.ic_pin, LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle)) : of.createSimpleBulletin(R.raw.ic_unpin, LocaleController.getString(R.string.Gift2Unpinned))).show();
+        ((GiftSheet.GiftCell) view).setPinned(z, true);
+        this.listView.scrollToPosition(0);
     }
 
-    public void lambda$onItemLongPress$6() {
+    public void lambda$onItemLongPress$7() {
         setReordering(true);
     }
 
-    public void lambda$onItemLongPress$7(TL_stars.SavedStarGift savedStarGift) {
+    public void lambda$onItemLongPress$8(TL_stars.SavedStarGift savedStarGift) {
         new StarGiftSheet(getContext(), this.currentAccount, this.dialogId, this.resourcesProvider) {
             @Override
-            protected BulletinFactory getBulletinFactory() {
+            public BulletinFactory getBulletinFactory() {
                 return BulletinFactory.of(ProfileGiftsContainer.this.fragment);
             }
         }.set(savedStarGift, (StarsController.GiftsList) null).toggleWear(false);
     }
 
-    public void lambda$onItemLongPress$8(String str) {
+    public void lambda$onItemLongPress$9(String str) {
         AndroidUtilities.addToClipboard(str);
         BulletinFactory.of(this.fragment).createCopyLinkBulletin(false).show();
-    }
-
-    public void lambda$onItemLongPress$9(TL_stars.SavedStarGift savedStarGift) {
-        new StarGiftSheet(getContext(), this.currentAccount, this.dialogId, this.resourcesProvider) {
-            @Override
-            protected BulletinFactory getBulletinFactory() {
-                return BulletinFactory.of(ProfileGiftsContainer.this.fragment);
-            }
-        }.set(savedStarGift, (StarsController.GiftsList) null).onSharePressed(null);
     }
 
     private void setReordering(boolean z) {
@@ -504,11 +618,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     savestargift.unsave = savedStarGift.unsaved;
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(savestargift, null, 64);
                 }
-                if (this.list.togglePinned(savedStarGift, z)) {
+                if (this.list.togglePinned(savedStarGift, z, true)) {
                     BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.chats_infotip, LocaleController.formatPluralStringComma("GiftsPinLimit", MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit)).show();
                 }
                 if (z) {
-                    this.listView.smoothScrollToPosition(0);
+                    this.listView.scrollToPosition(0);
                 }
             }
         }
@@ -528,13 +642,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                         makeOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.Gift2Unpin : R.string.Gift2Pin), new Runnable() {
                             @Override
                             public final void run() {
-                                ProfileGiftsContainer.this.lambda$onItemLongPress$5(savedStarGift, giftCell, view);
+                                ProfileGiftsContainer.this.lambda$onItemLongPress$6(savedStarGift, giftCell, view);
                             }
                         });
                         makeOptions.addIf(savedStarGift.pinned_to_top, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
                             @Override
                             public final void run() {
-                                ProfileGiftsContainer.this.lambda$onItemLongPress$6();
+                                ProfileGiftsContainer.this.lambda$onItemLongPress$7();
                             }
                         });
                     }
@@ -550,20 +664,20 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                         makeOptions.add(isWorn ? R.drawable.menu_takeoff : R.drawable.menu_wear, LocaleController.getString(isWorn ? R.string.Gift2Unwear : R.string.Gift2Wear), new Runnable() {
                             @Override
                             public final void run() {
-                                ProfileGiftsContainer.this.lambda$onItemLongPress$7(savedStarGift);
+                                ProfileGiftsContainer.this.lambda$onItemLongPress$8(savedStarGift);
                             }
                         });
                     }
                     makeOptions.addIf(str != null, R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.this.lambda$onItemLongPress$8(str);
+                            ProfileGiftsContainer.this.lambda$onItemLongPress$9(str);
                         }
                     });
                     makeOptions.addIf(str != null, R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.this.lambda$onItemLongPress$9(savedStarGift);
+                            ProfileGiftsContainer.this.lambda$onItemLongPress$10(savedStarGift);
                         }
                     });
                 }
@@ -572,7 +686,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     makeOptions.add(z2 ? R.drawable.msg_message : R.drawable.menu_hide_gift, LocaleController.getString(z2 ? R.string.Gift2ShowGift : R.string.Gift2HideGift), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.this.lambda$onItemLongPress$10(savedStarGift, giftCell);
+                            ProfileGiftsContainer.this.lambda$onItemLongPress$11(savedStarGift, giftCell);
                         }
                     });
                 }
@@ -581,16 +695,23 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     makeOptions.addIf(DialogObject.getPeerDialogId(((TL_stars.TL_starGiftUnique) starGift2).owner_id) == UserConfig.getInstance(this.currentAccount).getClientUserId(), R.drawable.menu_transfer, LocaleController.getString(R.string.Gift2TransferOption), new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.this.lambda$onItemLongPress$11(savedStarGift);
+                            ProfileGiftsContainer.this.lambda$onItemLongPress$12(savedStarGift);
                         }
                     });
                 }
                 if (makeOptions.getItemsCount() <= 0) {
                     return false;
                 }
-                makeOptions.setGravity(3);
+                makeOptions.setGravity(5);
                 makeOptions.setBlur(true);
+                makeOptions.allowMoveScrim();
+                Point point = AndroidUtilities.displaySize;
+                int min = Math.min(point.x, point.y);
+                makeOptions.animateToSize(min - AndroidUtilities.dp(32.0f), (int) (min * 0.6f));
+                makeOptions.hideScrimUnder();
+                makeOptions.forceBottom(true);
                 makeOptions.show();
+                giftCell.imageView.getImageReceiver().startAnimation(true);
                 return true;
             }
         }

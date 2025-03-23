@@ -173,6 +173,66 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
+    public class AnonymousClass5 implements Listener {
+        final Context val$context;
+        final BaseFragment val$fragment;
+        final Runnable val$remove;
+        final Theme.ResourcesProvider val$resourceProvider;
+
+        AnonymousClass5(BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+            this.val$fragment = baseFragment;
+            this.val$context = context;
+            this.val$resourceProvider = resourcesProvider;
+            this.val$remove = runnable;
+        }
+
+        public static void lambda$onHidden$2(BaseFragment baseFragment, Runnable runnable) {
+            BulletinFactory.of(baseFragment).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+            AndroidUtilities.runOnUIThread(runnable);
+        }
+
+        public static void lambda$onReported$1(BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+            BulletinFactory.of(baseFragment).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
+                @Override
+                public final void run() {
+                    Browser.openUrl(context, "https://promote.telegram.org/guidelines");
+                }
+            }, resourcesProvider)).show();
+            AndroidUtilities.runOnUIThread(runnable);
+        }
+
+        @Override
+        public void onHidden() {
+            final BaseFragment baseFragment = this.val$fragment;
+            final Runnable runnable = this.val$remove;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ReportBottomSheet.AnonymousClass5.lambda$onHidden$2(BaseFragment.this, runnable);
+                }
+            }, 200L);
+        }
+
+        @Override
+        public void onPremiumRequired() {
+            this.val$fragment.showDialog(new PremiumFeatureBottomSheet(this.val$fragment, 3, true));
+        }
+
+        @Override
+        public void onReported() {
+            final BaseFragment baseFragment = this.val$fragment;
+            final Context context = this.val$context;
+            final Theme.ResourcesProvider resourcesProvider = this.val$resourceProvider;
+            final Runnable runnable = this.val$remove;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ReportBottomSheet.AnonymousClass5.lambda$onReported$1(BaseFragment.this, context, resourcesProvider, runnable);
+                }
+            }, 200L);
+        }
+    }
+
     private class ContainerView extends FrameLayout {
         private final AnimatedFloat isActionBar;
         private final Path path;
@@ -878,6 +938,77 @@ public class ReportBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(runnable, 200L);
     }
 
+    public static void lambda$openSponsoredPeer$17(TLObject tLObject, Context context, Theme.ResourcesProvider resourcesProvider, byte[] bArr, BaseFragment baseFragment, Runnable runnable) {
+        new ReportBottomSheet(context, resourcesProvider, 0L, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass5(baseFragment, context, resourcesProvider, runnable)).show();
+    }
+
+    public static void lambda$openSponsoredPeer$19(BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+        BulletinFactory.of(baseFragment).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
+            @Override
+            public final void run() {
+                Browser.openUrl(context, "https://promote.telegram.org/guidelines");
+            }
+        }, resourcesProvider)).show();
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
+    public static void lambda$openSponsoredPeer$20(BaseFragment baseFragment, int i, Runnable runnable) {
+        BulletinFactory.of(baseFragment).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        MessagesController.getInstance(i).disableAds(false);
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
+    public static void lambda$openSponsoredPeer$22(BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+        BulletinFactory.of(baseFragment).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
+            @Override
+            public final void run() {
+                Browser.openUrl(context, "https://promote.telegram.org/guidelines");
+            }
+        }, resourcesProvider)).show();
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
+    public static void lambda$openSponsoredPeer$23(final Context context, final Theme.ResourcesProvider resourcesProvider, final byte[] bArr, final BaseFragment baseFragment, final Runnable runnable, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        Runnable runnable2;
+        if (tLObject != null) {
+            if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ReportBottomSheet.lambda$openSponsoredPeer$17(TLObject.this, context, resourcesProvider, bArr, baseFragment, runnable);
+                    }
+                });
+                return;
+            } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
+                runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        ReportBottomSheet.lambda$openSponsoredPeer$19(BaseFragment.this, context, resourcesProvider, runnable);
+                    }
+                };
+            } else if (!(tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden)) {
+                return;
+            } else {
+                runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        ReportBottomSheet.lambda$openSponsoredPeer$20(BaseFragment.this, i, runnable);
+                    }
+                };
+            }
+        } else if (tL_error == null || !"AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+            return;
+        } else {
+            runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    ReportBottomSheet.lambda$openSponsoredPeer$22(BaseFragment.this, context, resourcesProvider, runnable);
+                }
+            };
+        }
+        AndroidUtilities.runOnUIThread(runnable2, 200L);
+    }
+
     public static void lambda$setReportChooseOption$0(View[] viewArr, TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption) {
         ((Page) viewArr[0]).setOption(tL_channels_sponsoredMessageReportResultChooseOption);
     }
@@ -980,7 +1111,6 @@ public class ReportBottomSheet extends BottomSheet {
             return;
         }
         TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
-        tL_messages_reportSponsoredMessage.peer = MessagesController.getInstance(currentAccount).getInputPeer(dialogId);
         final byte[] bArr = messageObject.sponsoredId;
         tL_messages_reportSponsoredMessage.random_id = bArr;
         tL_messages_reportSponsoredMessage.option = new byte[0];
@@ -988,6 +1118,26 @@ public class ReportBottomSheet extends BottomSheet {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 ReportBottomSheet.lambda$openSponsored$16(context, resourcesProvider, dialogId, bArr, chatActivity, messageObject, currentAccount, tLObject, tL_error);
+            }
+        });
+    }
+
+    public static void openSponsoredPeer(final BaseFragment baseFragment, final byte[] bArr, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
+        if (baseFragment == null) {
+            return;
+        }
+        final int currentAccount = baseFragment.getCurrentAccount();
+        final Context context = baseFragment.getContext();
+        if (context == null) {
+            return;
+        }
+        TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
+        tL_messages_reportSponsoredMessage.random_id = bArr;
+        tL_messages_reportSponsoredMessage.option = new byte[0];
+        ConnectionsManager.getInstance(currentAccount).sendRequest(tL_messages_reportSponsoredMessage, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ReportBottomSheet.lambda$openSponsoredPeer$23(context, resourcesProvider, bArr, baseFragment, runnable, currentAccount, tLObject, tL_error);
             }
         });
     }
@@ -1000,7 +1150,6 @@ public class ReportBottomSheet extends BottomSheet {
         TLRPC.TL_messages_report tL_messages_report;
         if (this.sponsored) {
             TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
-            tL_messages_reportSponsoredMessage.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
             tL_messages_reportSponsoredMessage.random_id = this.sponsoredId;
             tL_messages_reportSponsoredMessage.option = bArr;
             tL_messages_report = tL_messages_reportSponsoredMessage;

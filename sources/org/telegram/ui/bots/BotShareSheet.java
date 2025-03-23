@@ -732,10 +732,10 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             }
         }
         if (topicsFragment != null) {
-            topicsFragment.lambda$onBackPressed$335();
+            topicsFragment.lambda$onBackPressed$336();
             dialogsActivity.removeSelfFromStack();
         } else {
-            dialogsActivity.lambda$onBackPressed$335();
+            dialogsActivity.lambda$onBackPressed$336();
         }
         return true;
     }

@@ -1360,6 +1360,11 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return false;
     }
 
+    public boolean isLottieRunning() {
+        RLottieDrawable lottieAnimation = getLottieAnimation();
+        return lottieAnimation != null && lottieAnimation.isRunning();
+    }
+
     public boolean isNeedsQualityThumb() {
         return this.needsQualityThumb;
     }
@@ -2158,6 +2163,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void startAnimation() {
+        startAnimation(false);
+    }
+
+    public void startAnimation(boolean z) {
         AnimatedFileDrawable animation = getAnimation();
         if (animation != null) {
             animation.setUseSharedQueue(this.useSharedAnimationQueue);
@@ -2168,7 +2177,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (lottieAnimation == null || lottieAnimation.isRunning()) {
             return;
         }
-        lottieAnimation.restart();
+        lottieAnimation.restart(z);
     }
 
     public void startCrossfadeFromStaticThumb(Bitmap bitmap) {

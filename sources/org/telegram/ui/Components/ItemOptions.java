@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.RectF;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -19,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
@@ -41,17 +39,22 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.MessagePreviewView;
+import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class ItemOptions {
     private ActionBarPopupWindow actionBarPopupWindow;
     private boolean allowCenter;
+    private boolean allowMoveScrim;
+    private int animateToHeight;
+    private int animateToWidth;
     private boolean blur;
     private ViewGroup container;
     private Context context;
     private int dimAlpha;
-    private View dimView;
+    private ValueAnimator dimAnimator;
+    private DimView dimView;
     private Runnable dismissListener;
     public boolean dismissWithButtons;
     private boolean dontDismiss;
@@ -63,6 +66,7 @@ public class ItemOptions {
     private BaseFragment fragment;
     private Integer gapBackgroundColor;
     private int gravity;
+    private boolean hideScrimUnder;
     private Integer iconColor;
     private boolean ignoreX;
     private ActionBarPopupWindow.ActionBarPopupWindowLayout lastLayout;
@@ -74,13 +78,11 @@ public class ItemOptions {
     private float offsetY;
     public boolean onTopOfScrim;
     private final float[] point;
+    private ViewGroup pointContainer;
     private ViewTreeObserver.OnPreDrawListener preDrawListener;
     private Theme.ResourcesProvider resourcesProvider;
     private View scrimView;
     private Drawable scrimViewBackground;
-    private Drawable scrimViewDrawable;
-    private int scrimViewDrawableHeight;
-    private int scrimViewDrawableWidth;
     private int scrimViewPadding;
     private int scrimViewRoundRadius;
     private Integer selectorColor;
@@ -97,9 +99,13 @@ public class ItemOptions {
         private final RectF bounds;
         private final Bitmap cachedBitmap;
         private final Paint cachedBitmapPaint;
+        public final float clipBottom;
         private final Path clipPath;
         public final float clipTop;
         private final int dim;
+        public float dimProgress;
+        private float moveToX;
+        private float moveToY;
 
         public DimView(Context context) {
             super(context);
@@ -107,8 +113,10 @@ public class ItemOptions {
             this.bounds = new RectF();
             if (ItemOptions.this.scrimView == null || !(ItemOptions.this.scrimView.getParent() instanceof View)) {
                 this.clipTop = 0.0f;
+                this.clipBottom = 0.0f;
             } else {
                 this.clipTop = ((View) ItemOptions.this.scrimView.getParent()).getY() + ItemOptions.this.scrimView.getY();
+                this.clipBottom = ItemOptions.this.allowMoveScrim ? Math.min(AndroidUtilities.dp(68.0f), Math.max(0.0f, ((View) ItemOptions.this.scrimView.getParent()).getY() + ItemOptions.this.scrimView.getY() + ItemOptions.this.scrimView.getHeight())) : 0.0f;
             }
             this.dim = ColorUtils.setAlphaComponent(0, ItemOptions.this.dimAlpha);
             if (ItemOptions.this.drawScrim && (ItemOptions.this.scrimView instanceof UserCell) && (ItemOptions.this.fragment instanceof ProfileActivity)) {
@@ -141,88 +149,137 @@ public class ItemOptions {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            float f;
+            float f2;
+            float measuredWidth;
+            float measuredHeight;
+            float f3;
+            float f4;
+            float width;
+            int height;
             Drawable drawable;
             int i;
             int i2;
-            int width;
-            int height;
+            int width2;
+            int height2;
             int i3;
+            float f5;
+            float f6;
             Drawable drawable2;
             int i4;
             int i5;
-            int width2;
-            int height2;
+            int width3;
+            int height3;
             int i6;
             super.onDraw(canvas);
             if (this.blurBitmap != null) {
                 canvas.save();
                 float max = Math.max(getWidth() / this.blurBitmap.getWidth(), getHeight() / this.blurBitmap.getHeight());
                 canvas.scale(max, max);
+                this.blurPaint.setAlpha((int) (this.dimProgress * 255.0f));
                 canvas.drawBitmap(this.blurBitmap, 0.0f, 0.0f, this.blurPaint);
                 canvas.restore();
             } else {
-                canvas.drawColor(this.dim);
+                canvas.drawColor(Theme.multAlpha(this.dim, this.dimProgress));
             }
             if (ItemOptions.this.drawScrim) {
                 if (this.cachedBitmap != null && (ItemOptions.this.scrimView.getParent() instanceof View)) {
                     canvas.save();
                     if (this.clipTop < 1.0f) {
-                        canvas.clipRect(-ItemOptions.this.viewAdditionalOffsets.left, (((-ItemOptions.this.viewAdditionalOffsets.top) + ItemOptions.this.point[1]) - (this.clipTop * (ItemOptions.this.blur ? 1.0f - getAlpha() : 1.0f))) + 1.0f, getMeasuredWidth() + ItemOptions.this.viewAdditionalOffsets.right, getMeasuredHeight() + ItemOptions.this.viewAdditionalOffsets.bottom);
+                        canvas.clipRect(-ItemOptions.this.viewAdditionalOffsets.left, (((-ItemOptions.this.viewAdditionalOffsets.top) + ItemOptions.this.point[1]) - (this.clipTop * (ItemOptions.this.blur ? 1.0f - this.dimProgress : 1.0f))) + 1.0f, getMeasuredWidth() + ItemOptions.this.viewAdditionalOffsets.right, getMeasuredHeight() + ItemOptions.this.viewAdditionalOffsets.bottom);
                     }
-                    canvas.translate(ItemOptions.this.point[0], ItemOptions.this.point[1]);
+                    if (ItemOptions.this.allowMoveScrim) {
+                        ItemOptions.getPointOnScreen(ItemOptions.this.scrimView, ItemOptions.this.pointContainer, ItemOptions.this.point);
+                        f5 = AndroidUtilities.lerp(ItemOptions.this.point[0], this.moveToX, this.dimProgress);
+                        f6 = AndroidUtilities.lerp(ItemOptions.this.point[1], this.moveToY, this.dimProgress);
+                    } else {
+                        f5 = ItemOptions.this.point[0];
+                        f6 = ItemOptions.this.point[1];
+                    }
+                    canvas.translate(f5, f6);
                     if (ItemOptions.this.scrimViewBackground != null) {
                         if (ItemOptions.this.scrimViewBackground.getIntrinsicWidth() <= 0 || ItemOptions.this.scrimViewBackground.getIntrinsicHeight() <= 0) {
                             drawable2 = ItemOptions.this.scrimViewBackground;
                             i4 = -ItemOptions.this.viewAdditionalOffsets.left;
                             i5 = -ItemOptions.this.viewAdditionalOffsets.top;
-                            width2 = ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right;
-                            height2 = ItemOptions.this.scrimView.getHeight();
+                            width3 = ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right;
+                            height3 = ItemOptions.this.scrimView.getHeight();
                             i6 = ItemOptions.this.viewAdditionalOffsets.bottom;
                         } else {
                             drawable2 = ItemOptions.this.scrimViewBackground;
                             i4 = (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) - ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2);
                             i5 = (-ItemOptions.this.viewAdditionalOffsets.top) + (((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) - ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2);
-                            width2 = (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) + ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2);
-                            height2 = -ItemOptions.this.viewAdditionalOffsets.top;
+                            width3 = (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) + ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2);
+                            height3 = -ItemOptions.this.viewAdditionalOffsets.top;
                             i6 = ((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) + ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2;
                         }
-                        drawable2.setBounds(i4, i5, width2, height2 + i6);
+                        drawable2.setBounds(i4, i5, width3, height3 + i6);
                         ItemOptions.this.scrimViewBackground.draw(canvas);
                     }
                     if (ItemOptions.this.scrimViewPadding > 0 || ItemOptions.this.scrimViewRoundRadius > 0) {
                         this.clipPath.rewind();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        rectF.set((-ItemOptions.this.viewAdditionalOffsets.left) + (ItemOptions.this.scrimViewPadding * getAlpha()), (-ItemOptions.this.viewAdditionalOffsets.top) + (ItemOptions.this.scrimViewPadding * getAlpha()), ((-ItemOptions.this.viewAdditionalOffsets.left) + this.cachedBitmap.getWidth()) - (ItemOptions.this.scrimViewPadding * getAlpha()), ((-ItemOptions.this.viewAdditionalOffsets.top) + this.cachedBitmap.getHeight()) - (ItemOptions.this.scrimViewPadding * getAlpha()));
-                        this.clipPath.addRoundRect(rectF, ItemOptions.this.scrimViewRoundRadius * getAlpha(), ItemOptions.this.scrimViewRoundRadius * getAlpha(), Path.Direction.CW);
+                        rectF.set((-ItemOptions.this.viewAdditionalOffsets.left) + (ItemOptions.this.scrimViewPadding * this.dimProgress), (-ItemOptions.this.viewAdditionalOffsets.top) + (ItemOptions.this.scrimViewPadding * getAlpha()), ((-ItemOptions.this.viewAdditionalOffsets.left) + this.cachedBitmap.getWidth()) - (ItemOptions.this.scrimViewPadding * getAlpha()), ((-ItemOptions.this.viewAdditionalOffsets.top) + this.cachedBitmap.getHeight()) - (ItemOptions.this.scrimViewPadding * getAlpha()));
+                        this.clipPath.addRoundRect(rectF, ItemOptions.this.scrimViewRoundRadius * this.dimProgress, ItemOptions.this.scrimViewRoundRadius * this.dimProgress, Path.Direction.CW);
                         canvas.clipPath(this.clipPath);
                     }
+                    this.cachedBitmapPaint.setAlpha((int) (this.dimProgress * 255.0f));
                     canvas.drawBitmap(this.cachedBitmap, -ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, this.cachedBitmapPaint);
                 } else {
                     if (ItemOptions.this.scrimView == null || !(ItemOptions.this.scrimView.getParent() instanceof View)) {
                         return;
                     }
                     canvas.save();
-                    if (this.clipTop < 1.0f) {
-                        canvas.clipRect(-ItemOptions.this.viewAdditionalOffsets.left, (((-ItemOptions.this.viewAdditionalOffsets.top) + ItemOptions.this.point[1]) - (this.clipTop * (ItemOptions.this.blur ? 1.0f - getAlpha() : 1.0f))) + 1.0f, getMeasuredWidth() + ItemOptions.this.viewAdditionalOffsets.right, getMeasuredHeight() + ItemOptions.this.viewAdditionalOffsets.bottom);
+                    if (this.clipTop < 1.0f || this.clipBottom != 0.0f) {
+                        if (ItemOptions.this.allowMoveScrim) {
+                            f = -ItemOptions.this.viewAdditionalOffsets.left;
+                            f2 = AndroidUtilities.lerp((((-ItemOptions.this.viewAdditionalOffsets.top) + ItemOptions.this.point[1]) - (this.clipTop * (ItemOptions.this.blur ? 1.0f - this.dimProgress : 1.0f))) + 1.0f, 0.0f, this.dimProgress);
+                            measuredWidth = getMeasuredWidth() + ItemOptions.this.viewAdditionalOffsets.right;
+                            measuredHeight = (getMeasuredHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) - (this.clipBottom * (1.0f - this.dimProgress));
+                        } else {
+                            f = -ItemOptions.this.viewAdditionalOffsets.left;
+                            f2 = (((-ItemOptions.this.viewAdditionalOffsets.top) + ItemOptions.this.point[1]) - (this.clipTop * (ItemOptions.this.blur ? 1.0f - this.dimProgress : 1.0f))) + 1.0f;
+                            measuredWidth = getMeasuredWidth() + ItemOptions.this.viewAdditionalOffsets.right;
+                            measuredHeight = getMeasuredHeight() + ItemOptions.this.viewAdditionalOffsets.bottom;
+                        }
+                        canvas.clipRect(f, f2, measuredWidth, measuredHeight);
                     }
-                    canvas.translate(ItemOptions.this.point[0], ItemOptions.this.point[1]);
+                    float f7 = this.dimProgress;
+                    if (ItemOptions.this.allowMoveScrim) {
+                        ItemOptions.getPointOnScreen(ItemOptions.this.scrimView, ItemOptions.this.pointContainer, ItemOptions.this.point);
+                        f3 = AndroidUtilities.lerp(ItemOptions.this.point[0], this.moveToX, f7);
+                        f4 = AndroidUtilities.lerp(ItemOptions.this.point[1], this.moveToY, f7);
+                    } else {
+                        f3 = ItemOptions.this.point[0];
+                        f4 = ItemOptions.this.point[1];
+                    }
+                    canvas.translate(f3, f4);
+                    if (ItemOptions.this.animateToWidth == 0 || ItemOptions.this.animateToHeight == 0) {
+                        width = ItemOptions.this.scrimView.getWidth();
+                        height = ItemOptions.this.scrimView.getHeight();
+                    } else {
+                        width = AndroidUtilities.lerp(ItemOptions.this.scrimView.getWidth(), ItemOptions.this.animateToWidth, f7);
+                        height = AndroidUtilities.lerp(ItemOptions.this.scrimView.getHeight(), ItemOptions.this.animateToHeight, f7);
+                    }
+                    float f8 = height;
                     if (ItemOptions.this.scrimViewBackground != null) {
                         if (ItemOptions.this.scrimViewBackground.getIntrinsicWidth() <= 0 || ItemOptions.this.scrimViewBackground.getIntrinsicHeight() <= 0) {
                             drawable = ItemOptions.this.scrimViewBackground;
                             i = -ItemOptions.this.viewAdditionalOffsets.left;
                             i2 = -ItemOptions.this.viewAdditionalOffsets.top;
-                            width = ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right;
-                            height = ItemOptions.this.scrimView.getHeight();
+                            width2 = ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right;
+                            height2 = ItemOptions.this.scrimView.getHeight();
                             i3 = ItemOptions.this.viewAdditionalOffsets.bottom;
                         } else {
                             drawable = ItemOptions.this.scrimViewBackground;
                             i = (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) - ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2);
                             i2 = (-ItemOptions.this.viewAdditionalOffsets.top) + (((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) - ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2);
-                            width = (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) + ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2);
-                            height = -ItemOptions.this.viewAdditionalOffsets.top;
+                            width2 = (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) + ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2);
+                            height2 = -ItemOptions.this.viewAdditionalOffsets.top;
                             i3 = ((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) + ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2;
                         }
-                        drawable.setBounds(i, i2, width, height + i3);
+                        drawable.setBounds(i, i2, width2, height2 + i3);
+                        ItemOptions.this.scrimViewBackground.setAlpha((int) (this.dimProgress * 255.0f));
                         ItemOptions.this.scrimViewBackground.draw(canvas);
                     }
                     if (ItemOptions.this.scrimViewPadding > 0 || ItemOptions.this.scrimViewRoundRadius > 0) {
@@ -233,42 +290,42 @@ public class ItemOptions {
                             this.bounds.set(0.0f, 0.0f, getWidth(), getHeight());
                         }
                         RectF rectF2 = AndroidUtilities.rectTmp;
-                        rectF2.set((-ItemOptions.this.viewAdditionalOffsets.left) + this.bounds.left + (ItemOptions.this.scrimViewPadding * getAlpha()), (-ItemOptions.this.viewAdditionalOffsets.top) + this.bounds.top + (ItemOptions.this.scrimViewPadding * getAlpha()), ((-ItemOptions.this.viewAdditionalOffsets.left) + this.bounds.right) - (ItemOptions.this.scrimViewPadding * getAlpha()), ((-ItemOptions.this.viewAdditionalOffsets.top) + this.bounds.bottom) - (ItemOptions.this.scrimViewPadding * getAlpha()));
-                        this.clipPath.addRoundRect(rectF2, ItemOptions.this.scrimViewRoundRadius * getAlpha(), ItemOptions.this.scrimViewRoundRadius * getAlpha(), Path.Direction.CW);
+                        rectF2.set((-ItemOptions.this.viewAdditionalOffsets.left) + this.bounds.left + (ItemOptions.this.scrimViewPadding * this.dimProgress), (-ItemOptions.this.viewAdditionalOffsets.top) + this.bounds.top + (ItemOptions.this.scrimViewPadding * this.dimProgress), ((-ItemOptions.this.viewAdditionalOffsets.left) + this.bounds.right) - (ItemOptions.this.scrimViewPadding * this.dimProgress), ((-ItemOptions.this.viewAdditionalOffsets.top) + this.bounds.bottom) - (ItemOptions.this.scrimViewPadding * this.dimProgress));
+                        this.clipPath.addRoundRect(rectF2, ItemOptions.this.scrimViewRoundRadius * this.dimProgress, ItemOptions.this.scrimViewRoundRadius * this.dimProgress, Path.Direction.CW);
                         canvas.clipPath(this.clipPath);
                     }
-                    if (ItemOptions.this.scrimView instanceof ScrimView) {
-                        ((ScrimView) ItemOptions.this.scrimView).drawScrim(canvas, getAlpha());
-                    } else if (ItemOptions.this.scrimViewDrawable != null) {
-                        this.bounds.set(0.0f, 0.0f, ItemOptions.this.scrimView.getWidth(), ItemOptions.this.scrimView.getHeight());
-                        this.bounds.offset(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top);
-                        RectF rectF3 = AndroidUtilities.rectTmp;
-                        rectF3.set(0.0f, 0.0f, ItemOptions.this.scrimViewDrawableWidth, ItemOptions.this.scrimViewDrawableHeight);
-                        rectF3.offset(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top);
-                        AndroidUtilities.lerp(rectF3, this.bounds, getAlpha(), this.bounds);
-                        Drawable drawable3 = ItemOptions.this.scrimViewDrawable;
-                        RectF rectF4 = this.bounds;
-                        drawable3.setBounds((int) rectF4.left, (int) rectF4.top, (int) rectF4.right, (int) rectF4.bottom);
-                        ItemOptions.this.scrimViewDrawable.draw(canvas);
+                    if (!(ItemOptions.this.scrimView instanceof GiftSheet.GiftCell) || ItemOptions.this.animateToWidth == 0 || ItemOptions.this.animateToHeight == 0) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, ItemOptions.this.scrimView.getWidth(), ItemOptions.this.scrimView.getHeight(), (int) (this.dimProgress * 255.0f), 31);
+                        if (ItemOptions.this.scrimView instanceof ScrimView) {
+                            ((ScrimView) ItemOptions.this.scrimView).drawScrim(canvas, this.dimProgress);
+                        } else {
+                            ItemOptions.this.scrimView.draw(canvas);
+                        }
+                    } else if (ItemOptions.this.scrimView.getAlpha() >= 1.0f) {
+                        ((GiftSheet.GiftCell) ItemOptions.this.scrimView).customDraw(this, canvas, width, f8, this.dimProgress);
                     } else {
-                        ItemOptions.this.scrimView.draw(canvas);
+                        float f9 = width;
+                        canvas.saveLayerAlpha(0.0f, 0.0f, f9, f8, (int) (this.dimProgress * 255.0f), 31);
+                        float lerp = AndroidUtilities.lerp(1.0f, 0.9f, this.dimProgress);
+                        canvas.scale(lerp, lerp, width / 2.0f, f8 / 2.0f);
+                        ((GiftSheet.GiftCell) ItemOptions.this.scrimView).customDraw(this, canvas, f9, f8, this.dimProgress);
                     }
+                    canvas.restore();
                 }
                 canvas.restore();
             }
         }
+
+        public void setProgress(float f) {
+            if (this.dimProgress == f) {
+                return;
+            }
+            this.dimProgress = f;
+            invalidate();
+        }
     }
 
     public interface ScrimView {
-
-        public abstract class CC {
-            public static void $default$drawScrim(ScrimView scrimView, Canvas canvas, float f) {
-                if (scrimView instanceof View) {
-                    ((View) scrimView).draw(canvas);
-                }
-            }
-        }
-
         void drawScrim(Canvas canvas, float f);
 
         void getBounds(RectF rectF);
@@ -327,22 +384,51 @@ public class ItemOptions {
     }
 
     public void dismissDim(final ViewGroup viewGroup) {
-        final View view = this.dimView;
-        if (view == null) {
+        final DimView dimView = this.dimView;
+        if (dimView == null) {
             return;
         }
         this.dimView = null;
-        view.animate().cancel();
-        view.animate().alpha(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+        ValueAnimator valueAnimator = this.dimAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(dimView.dimProgress, 0.0f);
+        this.dimAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationEnd(Animator animator) {
-                AndroidUtilities.removeFromParent(view);
-                viewGroup.getViewTreeObserver().removeOnPreDrawListener(ItemOptions.this.preDrawListener);
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                ItemOptions.lambda$dismissDim$12(ItemOptions.DimView.this, valueAnimator2);
             }
         });
+        this.dimAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                dimView.setProgress(0.0f);
+                dimView.invalidate();
+                AndroidUtilities.removeFromParent(dimView);
+                viewGroup.getViewTreeObserver().removeOnPreDrawListener(ItemOptions.this.preDrawListener);
+                if (ItemOptions.this.hideScrimUnder) {
+                    ItemOptions.this.scrimView.setVisibility(0);
+                    if (ItemOptions.this.scrimView instanceof GiftSheet.GiftCell) {
+                        ((GiftSheet.GiftCell) ItemOptions.this.scrimView).invalidateCustom();
+                    }
+                }
+            }
+        });
+        if (this.allowMoveScrim) {
+            this.dimAnimator.setDuration(380L);
+            this.dimAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        } else {
+            this.dimAnimator.setDuration(150L);
+        }
+        this.dimAnimator.start();
     }
 
     public static void getPointOnScreen(View view, ViewGroup viewGroup, float[] fArr) {
+        if (view == null || viewGroup == null) {
+            return;
+        }
         float f = 0.0f;
         float f2 = 0.0f;
         while (view != viewGroup) {
@@ -444,6 +530,10 @@ public class ItemOptions {
         }
     }
 
+    public static void lambda$dismissDim$12(DimView dimView, ValueAnimator valueAnimator) {
+        dimView.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    }
+
     public void lambda$init$0(KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.actionBarPopupWindow) != null && actionBarPopupWindow.isShowing()) {
@@ -461,17 +551,16 @@ public class ItemOptions {
         }
     }
 
-    public static boolean lambda$show$10(View view) {
-        view.invalidate();
+    public static boolean lambda$show$10(DimView dimView) {
+        dimView.invalidate();
         return true;
     }
 
     public void lambda$show$11(ValueAnimator valueAnimator) {
-        View view = this.dimView;
-        if (view != null) {
-            if (this.scrimViewRoundRadius > 0 || this.scrimViewPadding > 0 || (this.blur && (view instanceof DimView) && ((DimView) view).clipTop < 1.0f)) {
-                view.invalidate();
-            }
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        DimView dimView = this.dimView;
+        if (dimView != null) {
+            dimView.setProgress(floatValue);
         }
     }
 
@@ -823,6 +912,17 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions allowMoveScrim() {
+        this.allowMoveScrim = true;
+        return this;
+    }
+
+    public ItemOptions animateToSize(int i, int i2) {
+        this.animateToWidth = i;
+        this.animateToHeight = i2;
+        return this;
+    }
+
     public void closeSwipeback() {
         dontDismiss();
         this.lastLayout.getSwipeBack().closeForeground();
@@ -938,6 +1038,11 @@ public class ItemOptions {
 
     public ViewGroup getLayout() {
         return this.layout;
+    }
+
+    public ItemOptions hideScrimUnder() {
+        this.hideScrimUnder = true;
+        return this;
     }
 
     public ItemOptions ignoreX() {
@@ -1204,187 +1309,8 @@ public class ItemOptions {
         }
     }
 
-    public ItemOptions show() {
-        float f;
-        float measuredWidth;
-        int measuredHeight;
-        float f2;
-        int width;
-        int height;
-        float x;
-        float f3;
-        if (this.actionBarPopupWindow != null || this.linearLayout != null || getItemsCount() <= 0) {
-            return this;
-        }
-        setupSelectors();
-        if (this.fixedWidthDp > 0) {
-            int i = 0;
-            while (i < this.layout.getChildCount() - 1) {
-                View childAt = i == this.layout.getChildCount() - 1 ? this.lastLayout : this.layout.getChildAt(i);
-                if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
-                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
-                    for (int i2 = 0; i2 < actionBarPopupWindowLayout.getItemsCount(); i2++) {
-                        actionBarPopupWindowLayout.getItemAt(i2).getLayoutParams().width = AndroidUtilities.dp(this.fixedWidthDp);
-                    }
-                }
-                i++;
-            }
-        } else if (this.minWidthDp > 0) {
-            int i3 = 0;
-            while (i3 < this.layout.getChildCount() - 1) {
-                View childAt2 = i3 == this.layout.getChildCount() - 1 ? this.lastLayout : this.layout.getChildAt(i3);
-                if (childAt2 instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
-                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt2;
-                    for (int i4 = 0; i4 < actionBarPopupWindowLayout2.getItemsCount(); i4++) {
-                        actionBarPopupWindowLayout2.getItemAt(i4).setMinimumWidth(AndroidUtilities.dp(this.minWidthDp));
-                    }
-                }
-                i3++;
-            }
-        }
-        ViewGroup viewGroup = this.container;
-        if (viewGroup == null) {
-            viewGroup = this.fragment.getParentLayout().getOverlayContainerView();
-        }
-        final ViewGroup viewGroup2 = viewGroup;
-        if (this.context != null && viewGroup2 != null) {
-            float f4 = AndroidUtilities.displaySize.y / 2.0f;
-            View view = this.scrimView;
-            if (view != null) {
-                getPointOnScreen(view, viewGroup2, this.point);
-                float[] fArr = this.point;
-                float f5 = fArr[1];
-                f = fArr[0];
-                f4 = f5;
-            } else {
-                f = 0.0f;
-            }
-            RectF rectF = new RectF();
-            View view2 = this.scrimView;
-            if (view2 instanceof ScrimView) {
-                ((ScrimView) view2).getBounds(rectF);
-            } else {
-                if (this.scrimViewDrawable != null) {
-                    measuredWidth = this.scrimViewDrawableWidth;
-                    measuredHeight = this.scrimViewDrawableHeight;
-                } else {
-                    measuredWidth = view2.getMeasuredWidth();
-                    measuredHeight = this.scrimView.getMeasuredHeight();
-                }
-                rectF.set(0.0f, 0.0f, measuredWidth, measuredHeight);
-            }
-            float f6 = f + rectF.left;
-            float f7 = f4 + rectF.top;
-            if (this.ignoreX) {
-                this.point[0] = 0.0f;
-                f2 = 0.0f;
-            } else {
-                f2 = f6;
-            }
-            if (this.dimAlpha > 0) {
-                final DimView dimView = new DimView(this.context);
-                this.dimView = dimView;
-                this.preDrawListener = new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public final boolean onPreDraw() {
-                        boolean lambda$show$10;
-                        lambda$show$10 = ItemOptions.lambda$show$10(dimView);
-                        return lambda$show$10;
-                    }
-                };
-                viewGroup2.getViewTreeObserver().addOnPreDrawListener(this.preDrawListener);
-                viewGroup2.addView(this.dimView, LayoutHelper.createFrame(-1, -1.0f));
-                this.dimView.setAlpha(0.0f);
-                this.dimView.animate().alpha(1.0f).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ItemOptions.this.lambda$show$11(valueAnimator);
-                    }
-                }).setDuration(150L);
-            }
-            this.layout.measure(View.MeasureSpec.makeMeasureSpec(viewGroup2.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(viewGroup2.getMeasuredHeight(), Integer.MIN_VALUE));
-            RectF rectF2 = new RectF();
-            android.graphics.Rect padding = this.lastLayout.getPadding();
-            rectF2.set(padding.left, padding.top, this.layout.getMeasuredWidth() - padding.right, this.layout.getMeasuredHeight() - padding.bottom);
-            ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.layout, -2, -2) {
-                @Override
-                public void dismiss() {
-                    super.dismiss();
-                    ItemOptions.this.dismissDim(viewGroup2);
-                    if (ItemOptions.this.dismissListener != null) {
-                        ItemOptions.this.dismissListener.run();
-                        ItemOptions.this.dismissListener = null;
-                    }
-                }
-            };
-            this.actionBarPopupWindow = actionBarPopupWindow;
-            actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                @Override
-                public void onDismiss() {
-                    ItemOptions.this.actionBarPopupWindow = null;
-                    ItemOptions.this.dismissDim(viewGroup2);
-                    if (ItemOptions.this.dismissListener != null) {
-                        ItemOptions.this.dismissListener.run();
-                        ItemOptions.this.dismissListener = null;
-                    }
-                }
-            });
-            this.actionBarPopupWindow.setOutsideTouchable(true);
-            this.actionBarPopupWindow.setFocusable(true);
-            this.actionBarPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
-            this.actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-            this.actionBarPopupWindow.setInputMethodMode(2);
-            this.actionBarPopupWindow.setSoftInputMode(0);
-            if (AndroidUtilities.isTablet()) {
-                f7 += viewGroup2.getPaddingTop();
-                f2 -= viewGroup2.getPaddingLeft();
-            }
-            if (this.scrimView != null) {
-                int i5 = this.gravity;
-                if (i5 != 5) {
-                    if (i5 == 1) {
-                        x = viewGroup2.getX() + f2 + (rectF.width() / 2.0f);
-                        f3 = this.layout.getMeasuredWidth() / 2.0f;
-                    } else if (rectF2.width() + f2 <= viewGroup2.getWidth()) {
-                        x = viewGroup2.getX() + f2;
-                        f3 = rectF2.left;
-                    }
-                    width = (int) (x - f3);
-                }
-                x = viewGroup2.getX() + f2 + rectF.width();
-                f3 = rectF2.right;
-                width = (int) (x - f3);
-            } else {
-                width = (viewGroup2.getWidth() - this.layout.getMeasuredWidth()) / 2;
-            }
-            float height2 = this.onTopOfScrim ? 0.0f : rectF.height();
-            if (this.forceBottom) {
-                height = (int) ((Math.min(f7 + height2, AndroidUtilities.displaySize.y) - this.layout.getMeasuredHeight()) + viewGroup2.getY());
-            } else if (this.scrimView != null) {
-                if (this.forceTop || f7 + height2 + this.layout.getMeasuredHeight() + AndroidUtilities.dp(16.0f) > AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) {
-                    f7 = (f7 - height2) - this.layout.getMeasuredHeight();
-                    if (this.allowCenter && Math.max(0.0f, f7 + height2) + this.layout.getMeasuredHeight() > this.point[1] + rectF.top && rectF.height() == this.scrimView.getHeight()) {
-                        f7 = (((viewGroup2.getHeight() - this.layout.getMeasuredHeight()) / 2.0f) - height2) - viewGroup2.getY();
-                    }
-                }
-                height = (int) (f7 + height2 + viewGroup2.getY());
-            } else {
-                height = (viewGroup2.getHeight() - this.layout.getMeasuredHeight()) / 2;
-            }
-            BaseFragment baseFragment = this.fragment;
-            if (baseFragment != null && baseFragment.getFragmentView() != null) {
-                this.fragment.getFragmentView().getRootView().dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-            } else if (this.container != null) {
-                viewGroup2.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-            }
-            ActionBarPopupWindow actionBarPopupWindow2 = this.actionBarPopupWindow;
-            float f8 = width + this.translateX;
-            this.offsetX = f8;
-            float f9 = height + this.translateY;
-            this.offsetY = f9;
-            actionBarPopupWindow2.showAtLocation(viewGroup2, 0, (int) f8, (int) f9);
-        }
-        return this;
+    public org.telegram.ui.Components.ItemOptions show() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ItemOptions.show():org.telegram.ui.Components.ItemOptions");
     }
 
     public ItemOptions translate(float f, float f2) {

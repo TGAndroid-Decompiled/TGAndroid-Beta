@@ -1147,7 +1147,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     SendMessagesHelper.getInstance(PhotoViewer.this.currentAccount).sendMessage(arrayList, j, false, false, true, 0, 0L);
                 }
-                dialogsActivity.lambda$onBackPressed$335();
+                dialogsActivity.lambda$onBackPressed$336();
                 if (chatActivity != null && (undoView = chatActivity.getUndoView()) != null) {
                     if (arrayList2.size() == 1) {
                         undoView.showWithAction(((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId, 53, Integer.valueOf(arrayList.size()));
@@ -1178,7 +1178,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (((LaunchActivity) PhotoViewer.this.parentActivity).presentFragment(chatActivity2, true, false)) {
                     chatActivity2.showFieldPanelForForward(true, arrayList);
                 } else {
-                    dialogsActivity.lambda$onBackPressed$335();
+                    dialogsActivity.lambda$onBackPressed$336();
                 }
             }
             return true;
@@ -4914,7 +4914,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 }
                 if (chatActivity != null) {
-                    chatActivity.lambda$openDiscussionMessageChat$353(PhotoViewer.this.animationEndRunnable);
+                    chatActivity.lambda$openDiscussionMessageChat$354(PhotoViewer.this.animationEndRunnable);
                 } else {
                     PhotoViewer.this.animationEndRunnable.run();
                     PhotoViewer.this.animationEndRunnable = null;
@@ -10038,6 +10038,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if ((i == 0 || i == 4 || i == 5) && this.sendPhotoType != 1 && isStatusBarVisible()) {
                 measuredHeight += AndroidUtilities.statusBarHeight;
             }
+            if (i == 0 && this.sendPhotoType == 2) {
+                measuredHeight += AndroidUtilities.navigationBarHeight;
+            }
         }
         if ((i == 0 && this.sendPhotoType == 1) || i == 1) {
             f = 144.0f;
@@ -11076,7 +11079,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void lambda$closePhoto$131(AnimatedFileDrawable animatedFileDrawable, TLRPC.Document document, long j, PlaceProviderObject placeProviderObject) {
         ImageReceiver imageReceiver;
         if (animatedFileDrawable != null && document != null) {
-            animatedFileDrawable.seekTo(j, !FileLoader.getInstance(this.currentAccount).isLoadingVideo(document, true));
+            FileLog.d("seeking from photo viewer to animation object");
+            animatedFileDrawable.seekTo(j, !FileLoader.getInstance(this.currentAccount).isLoadingVideo(document, true), true);
         }
         if (placeProviderObject == null || (imageReceiver = placeProviderObject.imageReceiver) == null) {
             return;

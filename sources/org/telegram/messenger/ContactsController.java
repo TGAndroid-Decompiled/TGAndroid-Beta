@@ -75,7 +75,7 @@ public class ContactsController extends BaseController {
     public boolean doneLoadingContacts;
     private ArrayList<TLRPC.PrivacyRule> forwardsPrivacyRules;
     private ArrayList<TLRPC.PrivacyRule> giftsPrivacyRules;
-    private TLRPC.TL_globalPrivacySettings globalPrivacySettings;
+    private TLRPC.GlobalPrivacySettings globalPrivacySettings;
     private ArrayList<TLRPC.PrivacyRule> groupPrivacyRules;
     private boolean ignoreChanges;
     private String inviteLink;
@@ -1124,7 +1124,7 @@ public class ContactsController extends BaseController {
 
     public void lambda$loadGlobalPrivacySetting$60(TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
-            this.globalPrivacySettings = (TLRPC.TL_globalPrivacySettings) tLObject;
+            this.globalPrivacySettings = (TLRPC.GlobalPrivacySettings) tLObject;
             this.loadingGlobalSettings = 2;
         } else {
             this.loadingGlobalSettings = 0;
@@ -2347,7 +2347,7 @@ public class ContactsController extends BaseController {
         return this.deleteAccountTTL;
     }
 
-    public TLRPC.TL_globalPrivacySettings getGlobalPrivacySettings() {
+    public TLRPC.GlobalPrivacySettings getGlobalPrivacySettings() {
         return this.globalPrivacySettings;
     }
 

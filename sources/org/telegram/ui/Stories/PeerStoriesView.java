@@ -93,6 +93,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -491,6 +492,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 PeerStoriesView.this.invalidate();
                 this.chatActivityEnterViewAnimateFromTop = PeerStoriesView.this.chatActivityEnterView.getBackgroundTop();
             }
+        }
+
+        @Override
+        protected boolean sendMessageInternal(boolean z, int i, long j, boolean z2) {
+            if (!MessagesController.getInstance(PeerStoriesView.this.currentAccount).isFrozen()) {
+                return super.sendMessageInternal(z, i, j, z2);
+            }
+            AccountFrozenAlert.show(PeerStoriesView.this.currentAccount);
+            return false;
         }
 
         @Override
@@ -3244,6 +3254,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     public boolean applyMessageToChat(final Runnable runnable) {
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
+            return true;
+        }
         int i = SharedConfig.stealthModeSendMessageConfirm;
         if (i <= 0 || !this.stealthModeIsActive) {
             runnable.run();

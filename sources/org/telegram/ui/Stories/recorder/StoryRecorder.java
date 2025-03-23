@@ -100,6 +100,7 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -8063,6 +8064,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.isShown) {
             return;
         }
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
+            return;
+        }
         int i = 0;
         this.isReposting = false;
         this.prepareClosing = false;
@@ -8124,6 +8129,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.isShown || storyEntry == null) {
             return;
         }
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
+            return;
+        }
         this.botId = j;
         this.botLang = str;
         this.isReposting = false;
@@ -8175,6 +8184,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     public void openEdit(SourceView sourceView, StoryEntry storyEntry, long j, final boolean z) {
         WindowView windowView;
         if (this.isShown) {
+            return;
+        }
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
             return;
         }
         this.isReposting = false;
@@ -8231,6 +8244,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     public void openForward(SourceView sourceView, StoryEntry storyEntry, long j, final boolean z) {
         WindowView windowView;
         if (this.isShown) {
+            return;
+        }
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
             return;
         }
         this.isReposting = false;
@@ -8290,6 +8307,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         StoriesController.StoryLimit checkStoryLimit;
         WindowView windowView;
         if (this.isShown) {
+            return;
+        }
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
             return;
         }
         this.isReposting = true;

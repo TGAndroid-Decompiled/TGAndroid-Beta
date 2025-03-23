@@ -192,10 +192,14 @@ public class StarsController {
             });
         }
 
-        public static void lambda$sendPinnedOrder$3(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void lambda$sendPinnedOrder$4(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
-        public static int lambda$togglePinned$2(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
+        public static int lambda$setPinned$2(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
+            return savedStarGift2.date - savedStarGift.date;
+        }
+
+        public static int lambda$togglePinned$3(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
             return savedStarGift2.date - savedStarGift.date;
         }
 
@@ -324,13 +328,30 @@ public class StarsController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(togglestargiftspinnedtotop, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarsController.GiftsList.lambda$sendPinnedOrder$3(tLObject, tL_error);
+                    StarsController.GiftsList.lambda$sendPinnedOrder$4(tLObject, tL_error);
                 }
             }, 64);
         }
 
-        public boolean togglePinned(TL_stars.SavedStarGift savedStarGift, boolean z) {
-            boolean z2;
+        public void setPinned(ArrayList arrayList) {
+            this.gifts.removeAll(arrayList);
+            if (this.sort_by_date) {
+                Collections.sort(this.gifts, new Comparator() {
+                    @Override
+                    public final int compare(Object obj, Object obj2) {
+                        int lambda$setPinned$2;
+                        lambda$setPinned$2 = StarsController.GiftsList.lambda$setPinned$2((TL_stars.SavedStarGift) obj, (TL_stars.SavedStarGift) obj2);
+                        return lambda$setPinned$2;
+                    }
+                });
+            }
+            this.gifts.addAll(0, arrayList);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
+            sendPinnedOrder();
+        }
+
+        public boolean togglePinned(TL_stars.SavedStarGift savedStarGift, boolean z, boolean z2) {
+            boolean z3;
             if (savedStarGift == null) {
                 return false;
             }
@@ -340,18 +361,21 @@ public class StarsController {
                     return false;
                 }
                 pinned.remove(savedStarGift);
-                z2 = false;
+                z3 = false;
             } else {
                 if (!z) {
                     return false;
                 }
-                if (pinned.size() + 1 > MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit) {
+                if (pinned.size() + 1 <= MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit) {
+                    z3 = false;
+                } else {
+                    if (!z2) {
+                        return true;
+                    }
                     while (pinned.size() > 0 && pinned.size() + 1 > MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit) {
                         ((TL_stars.SavedStarGift) pinned.remove(pinned.size() - 1)).pinned_to_top = false;
                     }
-                    z2 = true;
-                } else {
-                    z2 = false;
+                    z3 = true;
                 }
                 pinned.add(savedStarGift);
             }
@@ -361,16 +385,16 @@ public class StarsController {
                 Collections.sort(this.gifts, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        int lambda$togglePinned$2;
-                        lambda$togglePinned$2 = StarsController.GiftsList.lambda$togglePinned$2((TL_stars.SavedStarGift) obj, (TL_stars.SavedStarGift) obj2);
-                        return lambda$togglePinned$2;
+                        int lambda$togglePinned$3;
+                        lambda$togglePinned$3 = StarsController.GiftsList.lambda$togglePinned$3((TL_stars.SavedStarGift) obj, (TL_stars.SavedStarGift) obj2);
+                        return lambda$togglePinned$3;
                     }
                 });
             }
             this.gifts.addAll(0, pinned);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
             sendPinnedOrder();
-            return z2;
+            return z3;
         }
     }
 
@@ -1162,7 +1186,7 @@ public class StarsController {
         callback2.run(Boolean.valueOf(z), str);
     }
 
-    public static void lambda$buy$32(BillingResult billingResult, final Utilities.Callback2 callback2, BillingResult billingResult2) {
+    public static void lambda$buy$32(final Utilities.Callback2 callback2, BillingResult billingResult) {
         final boolean z = billingResult.getResponseCode() == 0;
         final String responseCodeString = z ? null : BillingController.getResponseCodeString(billingResult.getResponseCode());
         FileLog.d("StarsController.buy onResult " + z + " " + responseCodeString);
@@ -1188,7 +1212,7 @@ public class StarsController {
         });
     }
 
-    public static void lambda$buy$35(List list, final Utilities.Callback2 callback2, TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup, TL_stars.TL_starsTopupOption tL_starsTopupOption, final BillingResult billingResult, Activity activity) {
+    public static void lambda$buy$35(List list, final Utilities.Callback2 callback2, TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup, TL_stars.TL_starsTopupOption tL_starsTopupOption, Activity activity) {
         if (list.isEmpty()) {
             FileLog.d("StarsController.buy queryProductDetails done: no products");
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1219,7 +1243,7 @@ public class StarsController {
         BillingController.getInstance().addResultListener(productDetails.getProductId(), new Consumer() {
             @Override
             public final void accept(Object obj) {
-                StarsController.lambda$buy$32(BillingResult.this, callback2, (BillingResult) obj);
+                StarsController.lambda$buy$32(Utilities.Callback2.this, (BillingResult) obj);
             }
         });
         BillingController.getInstance().setOnCanceled(new Runnable() {
@@ -1232,11 +1256,11 @@ public class StarsController {
         BillingController.getInstance().launchBillingFlow(activity, AccountInstance.getInstance(UserConfig.selectedAccount), tL_inputStorePaymentStarsTopup, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails((ProductDetails) list.get(0)).build()));
     }
 
-    public static void lambda$buy$36(final Utilities.Callback2 callback2, final TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup, final TL_stars.TL_starsTopupOption tL_starsTopupOption, final Activity activity, final BillingResult billingResult, final List list) {
+    public static void lambda$buy$36(final Utilities.Callback2 callback2, final TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup, final TL_stars.TL_starsTopupOption tL_starsTopupOption, final Activity activity, BillingResult billingResult, final List list) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsController.lambda$buy$35(list, callback2, tL_inputStorePaymentStarsTopup, tL_starsTopupOption, billingResult, activity);
+                StarsController.lambda$buy$35(list, callback2, tL_inputStorePaymentStarsTopup, tL_starsTopupOption, activity);
             }
         });
     }
@@ -1416,9 +1440,9 @@ public class StarsController {
         double pow = Math.pow(10.0d, 6.0d);
         Double.isNaN(priceAmountMicros);
         tL_inputStorePaymentStarsGift.amount = (long) ((priceAmountMicros / pow) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsGiftOption.currency)));
-        TLRPC.TL_payments_canPurchasePremium tL_payments_canPurchasePremium = new TLRPC.TL_payments_canPurchasePremium();
-        tL_payments_canPurchasePremium.purpose = tL_inputStorePaymentStarsGift;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_canPurchasePremium, new RequestDelegate() {
+        TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+        tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGift;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 StarsController.lambda$buyGift$47(ProductDetails.this, billingResult, callback2, activity, tL_inputStorePaymentStarsGift, list, tLObject, tL_error);
@@ -1604,9 +1628,9 @@ public class StarsController {
             });
             return;
         }
-        TLRPC.TL_payments_canPurchasePremium tL_payments_canPurchasePremium = new TLRPC.TL_payments_canPurchasePremium();
-        tL_payments_canPurchasePremium.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_canPurchasePremium, new RequestDelegate() {
+        TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+        tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 StarsController.lambda$buyGiveaway$60(ProductDetails.this, billingResult, callback2, activity, tL_inputStorePaymentStarsGiveaway, list, tLObject, tL_error);
@@ -2486,11 +2510,11 @@ public class StarsController {
     }
 
     public static int lambda$loadStarGifts$100(TL_stars.StarGift starGift) {
-        return starGift.birthday ? -1 : 0;
+        return starGift.sold_out ? 1 : 0;
     }
 
     public static int lambda$loadStarGifts$101(TL_stars.StarGift starGift) {
-        return starGift.sold_out ? 1 : 0;
+        return starGift.birthday ? -1 : 0;
     }
 
     public static int lambda$loadStarGifts$102(TL_stars.StarGift starGift) {
@@ -2536,11 +2560,11 @@ public class StarsController {
     }
 
     public static int lambda$loadStarGifts$104(TL_stars.StarGift starGift) {
-        return starGift.birthday ? -1 : 0;
+        return starGift.sold_out ? 1 : 0;
     }
 
     public static int lambda$loadStarGifts$105(TL_stars.StarGift starGift) {
-        return starGift.sold_out ? 1 : 0;
+        return starGift.birthday ? -1 : 0;
     }
 
     public static int lambda$loadStarGifts$106(TL_stars.StarGift starGift) {
@@ -3119,6 +3143,7 @@ public class StarsController {
                 peerSettings.flags &= -16385;
                 peerSettings.charge_paid_message_stars = 0L;
             }
+            MessagesController.getNotificationsSettings(this.currentAccount).edit().putLong("dialog_bar_paying_" + j, 0L).apply();
             MessagesController.getInstance(this.currentAccount).loadPeerSettings(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)), true);
             ContactsController.getInstance(this.currentAccount).loadPrivacySettings(true);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesFeeUpdated, Long.valueOf(j));

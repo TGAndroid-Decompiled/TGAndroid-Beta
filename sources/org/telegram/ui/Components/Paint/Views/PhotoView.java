@@ -174,7 +174,7 @@ public class PhotoView extends EntityView {
         }
     }
 
-    public PhotoView(Context context, Point point, float f, float f2, Size size, String str, int i, int i2) {
+    public PhotoView(Context context, Point point, float f, float f2, Size size, final String str, int i, int i2) {
         super(context, point);
         this.anchor = -1;
         this.mirrored = false;
@@ -197,10 +197,17 @@ public class PhotoView extends EntityView {
         this.segmentedT = new AnimatedFloat(frameLayoutDrawer, 0L, 350L, cubicBezierInterpolator);
         this.orientation = i;
         this.invert = i2;
-        Bitmap decodeFile = BitmapFactory.decodeFile(str);
-        this.bitmap = decodeFile;
-        if (decodeFile != null) {
-            lambda$segmentImage$1(decodeFile);
+        Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
+            @Override
+            public final Bitmap decode(BitmapFactory.Options options) {
+                Bitmap decodeFile;
+                decodeFile = BitmapFactory.decodeFile(str, options);
+                return decodeFile;
+            }
+        }, 1920, 1920, false, false);
+        this.bitmap = scaledBitmap;
+        if (scaledBitmap != null) {
+            lambda$segmentImage$2(scaledBitmap);
         }
         updatePosition();
     }
@@ -276,19 +283,19 @@ public class PhotoView extends EntityView {
         return Build.VERSION.SDK_INT >= 24 && (exc instanceof MlKitException) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded");
     }
 
-    public void lambda$segmentImage$0(SubjectSegmentationResult subjectSegmentationResult) {
+    public void lambda$segmentImage$1(SubjectSegmentationResult subjectSegmentationResult) {
         this.segmentingLoaded = true;
         this.segmentingLoading = false;
     }
 
-    public void lambda$segmentImage$2(final Bitmap bitmap, Exception exc) {
+    public void lambda$segmentImage$3(final Bitmap bitmap, Exception exc) {
         this.segmentingLoading = false;
         FileLog.e(exc);
         if (isWaitingMlKitError(exc) && isAttachedToWindow()) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoView.this.lambda$segmentImage$1(bitmap);
+                    PhotoView.this.lambda$segmentImage$2(bitmap);
                 }
             }, 2000L);
         } else {
@@ -505,7 +512,7 @@ public class PhotoView extends EntityView {
         return this.segmentedFile;
     }
 
-    public void lambda$segmentImage$1(final Bitmap bitmap) {
+    public void lambda$segmentImage$2(final Bitmap bitmap) {
         if (this.segmentingLoaded || this.segmentingLoading || bitmap == null || Build.VERSION.SDK_INT < 24) {
             return;
         }
@@ -514,12 +521,12 @@ public class PhotoView extends EntityView {
         client.process(InputImage.fromBitmap(bitmap, this.orientation)).addOnSuccessListener(new OnSuccessListener() {
             @Override
             public final void onSuccess(Object obj) {
-                PhotoView.this.lambda$segmentImage$0((SubjectSegmentationResult) obj);
+                PhotoView.this.lambda$segmentImage$1((SubjectSegmentationResult) obj);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public final void onFailure(Exception exc) {
-                PhotoView.this.lambda$segmentImage$2(bitmap, exc);
+                PhotoView.this.lambda$segmentImage$3(bitmap, exc);
             }
         });
     }

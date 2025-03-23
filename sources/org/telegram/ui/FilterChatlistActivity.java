@@ -685,7 +685,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 if (FilterChatlistActivity.this.onDelete != null) {
                     FilterChatlistActivity.this.onDelete.run(FilterChatlistActivity.this.invite);
                 }
-                FilterChatlistActivity.this.lambda$onBackPressed$335();
+                FilterChatlistActivity.this.lambda$onBackPressed$336();
             }
 
             public void lambda$deleteLink$3(final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1109,7 +1109,7 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$10(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
     }
 
     public void lambda$checkDiscard$9(AlertDialog alertDialog, int i) {
@@ -1184,7 +1184,7 @@ public class FilterChatlistActivity extends BaseFragment {
             limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount, null);
         } else {
             if (tL_error == null || !"CHATLISTS_TOO_MUCH".equals(tL_error.text)) {
-                lambda$onBackPressed$335();
+                lambda$onBackPressed$336();
                 return;
             }
             limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), 13, this.currentAccount, null);
@@ -1379,7 +1379,7 @@ public class FilterChatlistActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (FilterChatlistActivity.this.checkDiscard()) {
-                        FilterChatlistActivity.this.lambda$onBackPressed$335();
+                        FilterChatlistActivity.this.lambda$onBackPressed$336();
                     }
                 } else if (i == 1) {
                     if (Math.abs(FilterChatlistActivity.this.doneButtonAlpha - 1.0f) < 0.1f) {

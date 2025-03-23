@@ -227,7 +227,7 @@ public class MessagePrivateSeenView extends FrameLayout {
             return;
         }
         TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
-        TLRPC.TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i).getGlobalPrivacySettings();
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i).getGlobalPrivacySettings();
         setglobalprivacysettings.settings = globalPrivacySettings;
         if (globalPrivacySettings == null) {
             setglobalprivacysettings.settings = new TLRPC.TL_globalPrivacySettings();

@@ -61,7 +61,15 @@ import android.widget.Space;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.util.Consumer;
 import androidx.dynamicanimation.animation.DynamicAnimation;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.ProductDetailsResponseListener;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesResponseListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -97,9 +105,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.PhoneFormat.PhoneFormat;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AuthTokensHelper;
+import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.CallReceiver;
 import org.telegram.messenger.ContactsController;
@@ -147,6 +157,9 @@ import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.LoginOrView;
 import org.telegram.ui.Components.OutlineTextContainerView;
+import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
+import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
+import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.ProxyDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
@@ -161,6 +174,8 @@ import org.telegram.ui.Components.VerticalPositionAutoAnimator;
 import org.telegram.ui.CountrySelectActivity;
 import org.telegram.ui.LoginActivity;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stars.ExplainStarsSheet;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class LoginActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private static final int SHOW_DELAY;
@@ -218,7 +233,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     private TextView startMessagingButton;
     private boolean syncContacts;
     private boolean testBackend;
-    private SlideView[] views;
+    private final SlideView[] views;
 
     public class AnonymousClass8 implements TextWatcher {
         final EditText val$editText;
@@ -644,7 +659,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$18(TLObject tLObject, Bundle bundle) {
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$335();
+                LoginActivity.this.lambda$onBackPressed$336();
                 LoginActivity.this.emailChangeFinishCallback.run();
             } else if (tLObject instanceof TL_account.TL_emailVerifiedLogin) {
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, ((TL_account.TL_emailVerifiedLogin) tLObject).sent_code);
@@ -4147,7 +4162,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             String string;
             int i;
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$335();
+                LoginActivity.this.lambda$onBackPressed$336();
                 LoginActivity.this.emailChangeFinishCallback.run();
                 return;
             }
@@ -4962,7 +4977,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$22(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$335();
+            LoginActivity.this.lambda$onBackPressed$336();
         }
 
         public void lambda$onNextPressed$23() {
@@ -4992,7 +5007,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$26(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$335();
+            LoginActivity.this.lambda$onBackPressed$336();
         }
 
         public void lambda$onNextPressed$27(Activity activity) {
@@ -5417,7 +5432,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             NotificationCenter globalInstance;
             int i;
             if (LoginActivity.this.activityMode != 0) {
-                LoginActivity.this.lambda$onBackPressed$335();
+                LoginActivity.this.lambda$onBackPressed$336();
                 return false;
             }
             int i2 = this.prevType;
@@ -5648,6 +5663,358 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 this.problemText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
             }
             this.wrongCode.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+        }
+    }
+
+    public class LoginPayView extends SlideView {
+        private ButtonWithCounterView button;
+        private ExplainStarsSheet.FeatureCell[] cells;
+        private StarParticlesView starParticlesView;
+
+        public LoginPayView(Context context) {
+            super(context);
+            this.cells = new ExplainStarsSheet.FeatureCell[3];
+            setOrientation(1);
+            setClipChildren(false);
+            setClipToPadding(false);
+            setPadding(0, 0, 0, AndroidUtilities.dp(16.0f));
+            FrameLayout frameLayout = new FrameLayout(context);
+            frameLayout.setClipChildren(false);
+            frameLayout.setClipToPadding(false);
+            addView(frameLayout, LayoutHelper.createLinear(-1, 200));
+            StarParticlesView starParticlesView = new StarParticlesView(context) {
+                @Override
+                protected void configure() {
+                    StarParticlesView.Drawable drawable = this.drawable;
+                    drawable.useGradient = true;
+                    drawable.useBlur = false;
+                    drawable.checkBounds = true;
+                    drawable.isCircle = true;
+                    drawable.centerOffsetY = AndroidUtilities.dp(-14.0f);
+                    StarParticlesView.Drawable drawable2 = this.drawable;
+                    drawable2.minLifeTime = 2000L;
+                    drawable2.randLifeTime = 3000;
+                    drawable2.size1 = 16;
+                    drawable2.useRotate = false;
+                    drawable2.type = 28;
+                    drawable2.colorKey = Theme.key_premiumGradient2;
+                    drawable2.init();
+                }
+
+                @Override
+                protected void onMeasure(int i, int i2) {
+                    super.onMeasure(i, i2);
+                    this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                }
+            };
+            this.starParticlesView = starParticlesView;
+            frameLayout.addView(starParticlesView, LayoutHelper.createFrame(-1, 200, 119));
+            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 1) {
+                @Override
+                protected void onAttachedToWindow() {
+                    super.onAttachedToWindow();
+                    setPaused(false);
+                }
+
+                @Override
+                protected void onDetachedFromWindow() {
+                    super.onDetachedFromWindow();
+                    setPaused(true);
+                }
+            };
+            gLIconTextureView.setStarParticlesView(this.starParticlesView);
+            Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            int i = Theme.key_premiumGradient2;
+            canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i), Theme.getColor(Theme.key_dialogBackground), 0.5f));
+            gLIconTextureView.setBackgroundBitmap(createBitmap);
+            GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
+            gLIconRenderer.colorKey1 = i;
+            gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
+            gLIconRenderer.updateColors();
+            frameLayout.addView(gLIconTextureView, LayoutHelper.createFrame(160, 160, 1));
+            TextView textView = new TextView(context);
+            textView.setText(LocaleController.getString(R.string.SMSFeeTitle));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            textView.setTextSize(1, 20.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setGravity(17);
+            frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 49, 16.0f, 152.0f, 16.0f, 0.0f));
+            this.cells[0] = new ExplainStarsSheet.FeatureCell(context, 1);
+            this.cells[0].set(R.drawable.menu_high_price, LocaleController.getString(R.string.SMSFee1Title), LocaleController.getString(R.string.SMSFee1Text));
+            addView(this.cells[0], LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 6));
+            this.cells[1] = new ExplainStarsSheet.FeatureCell(context, 1);
+            this.cells[1].set(R.drawable.menu_feature_code, LocaleController.getString(R.string.SMSFee2Title), LocaleController.getString(R.string.SMSFee2Text));
+            addView(this.cells[1], LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 6));
+            this.cells[2] = new ExplainStarsSheet.FeatureCell(context, 1);
+            this.cells[2].set(R.drawable.menu_feature_hands, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SMSFee3Title), new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.this.lambda$new$0();
+                }
+            }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)), LocaleController.getString(R.string.SMSFee3Text));
+            addView(this.cells[2], LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 6));
+            addView(new Space(context), LayoutHelper.createLinear(0, 0, 1.0f, 119));
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null);
+            this.button = buttonWithCounterView;
+            buttonWithCounterView.setLoading(true);
+            addView(this.button, LayoutHelper.createLinear(-1, 48, 7, 0, 16, 0, 16));
+        }
+
+        public void lambda$new$0() {
+            LoginActivity.this.presentFragment(new PremiumPreviewFragment("sms"));
+        }
+
+        public void lambda$setParams$1(String str) {
+            FileLog.d("LoginBilling purchased done " + str);
+            if ("CANCELLED".equalsIgnoreCase(str)) {
+                this.button.setLoading(false);
+            }
+        }
+
+        public void lambda$setParams$10(BillingResult billingResult, List list, String str, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable) {
+            if (billingResult.getResponseCode() == 0 && list != null && !list.isEmpty()) {
+                Iterator it = list.iterator();
+                while (it.hasNext()) {
+                    final Purchase purchase = (Purchase) it.next();
+                    if (purchase.getProducts().contains(str)) {
+                        TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
+                        TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
+                        tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
+                        tL_dataJSON.data = purchase.getOriginalJson();
+                        tL_inputStorePaymentAuthCode.restore = true;
+                        tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentAuthCode;
+                        LoginActivity.this.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                LoginActivity.LoginPayView.this.lambda$setParams$9(purchase, tL_payments_canPurchaseStore, runnable, tLObject, tL_error);
+                            }
+                        }, 74);
+                        return;
+                    }
+                }
+            }
+            runnable.run();
+        }
+
+        public void lambda$setParams$11(final String str, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, final BillingResult billingResult, final List list) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.this.lambda$setParams$10(billingResult, list, str, tL_inputStorePaymentAuthCode, tL_payments_canPurchaseStore, runnable);
+                }
+            });
+        }
+
+        public void lambda$setParams$12(final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, View view) {
+            if (this.button.isLoading()) {
+                return;
+            }
+            this.button.setLoading(true);
+            final Utilities.Callback callback = new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    LoginActivity.LoginPayView.this.lambda$setParams$1((String) obj);
+                }
+            };
+            FileLog.d("LoginBilling, querying done purchases...");
+            final Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.this.lambda$setParams$6(productDetails, callback, tL_inputStorePaymentAuthCode);
+                }
+            };
+            BillingController.getInstance().queryPurchases("inapp", new PurchasesResponseListener() {
+                @Override
+                public final void onQueryPurchasesResponse(BillingResult billingResult, List list) {
+                    LoginActivity.LoginPayView.this.lambda$setParams$11(str, tL_inputStorePaymentAuthCode, tL_payments_canPurchaseStore, runnable, billingResult, list);
+                }
+            });
+        }
+
+        public void lambda$setParams$13(TLObject tLObject, TLRPC.TL_error tL_error, ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails, final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+            FileLog.d("LoginBilling canPurchaseStore returned " + tLObject + " " + tL_error);
+            if (tLObject instanceof TLRPC.TL_boolTrue) {
+                this.button.setText(LocaleController.formatString(R.string.SMSFeePurchaseTitle, oneTimePurchaseOfferDetails.getFormattedPrice()), false);
+                this.button.setSubText(LocaleController.getString(R.string.SMSFeePurchaseText), false);
+                this.button.setLoading(false);
+                this.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        LoginActivity.LoginPayView.this.lambda$setParams$12(productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore, view);
+                    }
+                });
+                return;
+            }
+            if (tLObject instanceof TLRPC.TL_boolFalse) {
+                BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "RESPONSE_FALSE"));
+            } else if (tL_error != null) {
+                BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).showForError(tL_error);
+            }
+        }
+
+        public void lambda$setParams$14(final ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails, final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.this.lambda$setParams$13(tLObject, tL_error, oneTimePurchaseOfferDetails, productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore);
+                }
+            });
+        }
+
+        public void lambda$setParams$15(final String str, BillingResult billingResult, List list, String str2, String str3) {
+            FileLog.d("LoginBilling queried \"" + str + "\" product: " + BillingController.getResponseCodeString(billingResult.getResponseCode()));
+            if (billingResult.getResponseCode() != 0) {
+                BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, BillingController.getResponseCodeString(billingResult.getResponseCode())));
+                return;
+            }
+            if (list == null || list.isEmpty()) {
+                BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "PRODUCT_NOT_FOUND"));
+                return;
+            }
+            final ProductDetails productDetails = (ProductDetails) list.get(0);
+            final ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = productDetails.getOneTimePurchaseOfferDetails();
+            final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
+            tL_inputStorePaymentAuthCode.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
+            double priceAmountMicros = oneTimePurchaseOfferDetails.getPriceAmountMicros();
+            double pow = Math.pow(10.0d, 6.0d);
+            Double.isNaN(priceAmountMicros);
+            tL_inputStorePaymentAuthCode.amount = (long) ((priceAmountMicros / pow) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_inputStorePaymentAuthCode.currency)));
+            tL_inputStorePaymentAuthCode.phone_code_hash = TextUtils.isEmpty(str2) ? "" : str2;
+            tL_inputStorePaymentAuthCode.phone_number = str3;
+            FileLog.d("LoginBilling found \"" + str + "\" product, with currency=" + tL_inputStorePaymentAuthCode.currency + " amount=" + tL_inputStorePaymentAuthCode.amount + "; phone=" + str3 + ", phone_code_hash=" + str2);
+            final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+            tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentAuthCode;
+            ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    LoginActivity.LoginPayView.this.lambda$setParams$14(oneTimePurchaseOfferDetails, productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore, tLObject, tL_error);
+                }
+            }, 10);
+        }
+
+        public void lambda$setParams$16(final String str, final String str2, final String str3, final BillingResult billingResult, final List list) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.this.lambda$setParams$15(str, billingResult, list, str2, str3);
+                }
+            });
+        }
+
+        public void lambda$setParams$17(final String str, final String str2, final String str3) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(str).build());
+            FileLog.d("LoginBilling querying \"" + str + "\" product");
+            BillingController.getInstance().queryProductDetails(arrayList, new ProductDetailsResponseListener() {
+                @Override
+                public final void onProductDetailsResponse(BillingResult billingResult, List list) {
+                    LoginActivity.LoginPayView.this.lambda$setParams$16(str, str2, str3, billingResult, list);
+                }
+            });
+        }
+
+        public static void lambda$setParams$3(final Utilities.Callback callback, BillingResult billingResult) {
+            final String responseCodeString = billingResult.getResponseCode() == 0 ? null : BillingController.getResponseCodeString(billingResult.getResponseCode());
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run(responseCodeString);
+                }
+            });
+        }
+
+        public static void lambda$setParams$5(final Utilities.Callback callback) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run("CANCELLED");
+                }
+            });
+        }
+
+        public void lambda$setParams$6(ProductDetails productDetails, final Utilities.Callback callback, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode) {
+            BillingController.getInstance().addResultListener(productDetails.getProductId(), new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    LoginActivity.LoginPayView.lambda$setParams$3(Utilities.Callback.this, (BillingResult) obj);
+                }
+            });
+            BillingController.getInstance().setOnCanceled(new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.lambda$setParams$5(Utilities.Callback.this);
+                }
+            });
+            BillingController.getInstance().launchBillingFlow(LoginActivity.this.getParentActivity(), AccountInstance.getInstance(((BaseFragment) LoginActivity.this).currentAccount), tL_inputStorePaymentAuthCode, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(productDetails).build()));
+        }
+
+        public void lambda$setParams$7() {
+            this.button.setLoading(false);
+        }
+
+        public void lambda$setParams$9(Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+            Runnable runnable2;
+            if (tLObject instanceof TLRPC.Updates) {
+                LoginActivity.this.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                BillingController.getInstance().consumeGiftPurchase(purchase, tL_payments_canPurchaseStore.purpose, null);
+                runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        LoginActivity.LoginPayView.this.lambda$setParams$7();
+                    }
+                };
+            } else if (tL_error == null) {
+                return;
+            } else {
+                runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        runnable.run();
+                    }
+                };
+            }
+            AndroidUtilities.runOnUIThread(runnable2);
+        }
+
+        @Override
+        public void setParams(Bundle bundle, boolean z) {
+            super.setParams(bundle, z);
+            String countryName = LocaleController.getCountryName(bundle == null ? null : bundle.getString("country"));
+            if (TextUtils.isEmpty(countryName)) {
+                this.cells[0].subtitleView.setText(LocaleController.getString(R.string.SMSFee1Text));
+            } else {
+                this.cells[0].subtitleView.setText(LocaleController.formatString(R.string.SMSFee1TextCountry, countryName));
+            }
+            final String string = bundle == null ? null : bundle.getString("product");
+            final String string2 = bundle == null ? null : bundle.getString("phoneFormated");
+            final String string3 = bundle == null ? null : bundle.getString("phoneHash");
+            this.button.setEnabled(true);
+            this.button.setOnClickListener(null);
+            if (TextUtils.isEmpty(string)) {
+                this.button.setVisibility(8);
+                return;
+            }
+            if (BuildVars.useInvoiceBilling()) {
+                this.button.setVisibility(0);
+                this.button.setLoading(false);
+                this.button.setEnabled(false);
+                this.button.setText(LocaleController.getString(R.string.Unavailable), false);
+                return;
+            }
+            this.button.setVisibility(0);
+            this.button.setLoading(true);
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.this.lambda$setParams$17(string, string3, string2);
+                }
+            };
+            if (BillingController.getInstance().isReady()) {
+                runnable.run();
+            } else {
+                BillingController.getInstance().whenSetuped(runnable);
+            }
         }
     }
 
@@ -6897,7 +7264,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (UserConfig.selectedAccount != i) {
                 ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
             }
-            LoginActivity.this.lambda$onBackPressed$335();
+            LoginActivity.this.lambda$onBackPressed$336();
         }
 
         public void lambda$onNextPressed$18(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
@@ -6934,11 +7301,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             String string;
             int i;
             String str2;
+            String str3;
             this.nextPressed = false;
             if (tL_error != null) {
-                String str3 = tL_error.text;
-                if (str3 != null) {
-                    if (str3.contains("SESSION_PASSWORD_NEEDED")) {
+                String str4 = tL_error.text;
+                if (str4 != null) {
+                    if (str4.contains("SESSION_PASSWORD_NEEDED")) {
                         ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject3, TLRPC.TL_error tL_error2) {
@@ -6959,8 +7327,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             } else if (tL_error.text.contains("PHONE_CODE_EMPTY") || tL_error.text.contains("PHONE_CODE_INVALID")) {
                                 loginActivity = LoginActivity.this;
                                 string = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                                i = R.string.InvalidCode;
-                                str2 = "InvalidCode";
+                                str3 = LocaleController.getString(R.string.InvalidCode);
+                                loginActivity.needShowAlert(string, str3);
                             } else if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
                                 onBackPressed(true);
                                 LoginActivity.this.setPage(0, true, null, true);
@@ -6973,19 +7341,21 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                     AlertsCreator.processError(((BaseFragment) LoginActivity.this).currentAccount, tL_error, LoginActivity.this, tLObject2, phoneInputData.phoneNumber);
                                 }
                             }
-                            loginActivity.needShowAlert(string, LocaleController.getString(str2, i));
+                            str3 = LocaleController.getString(str2, i);
+                            loginActivity.needShowAlert(string, str3);
                         }
                         loginActivity = LoginActivity.this;
                         string = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
                         i = R.string.FloodWait;
                         str2 = "FloodWait";
-                        loginActivity.needShowAlert(string, LocaleController.getString(str2, i));
+                        str3 = LocaleController.getString(str2, i);
+                        loginActivity.needShowAlert(string, str3);
                     }
                 }
             } else if (tLObject instanceof TLRPC.TL_auth_sentCodeSuccess) {
                 TLRPC.auth_Authorization auth_authorization = ((TLRPC.TL_auth_sentCodeSuccess) tLObject).authorization;
                 if (auth_authorization instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
-                    TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject).terms_of_service;
+                    TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) auth_authorization).terms_of_service;
                     if (tL_help_termsOfService != null) {
                         LoginActivity.this.currentTermsOfService = tL_help_termsOfService;
                     }
@@ -7260,7 +7630,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public LoginActivity() {
-        this.views = new SlideView[18];
+        this.views = new SlideView[19];
         this.permissionsItems = new ArrayList();
         this.permissionsShowItems = new ArrayList();
         this.checkPermissions = true;
@@ -7277,7 +7647,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public LoginActivity(int i) {
-        this.views = new SlideView[18];
+        this.views = new SlideView[19];
         this.permissionsItems = new ArrayList();
         this.permissionsShowItems = new ArrayList();
         this.checkPermissions = true;
@@ -7332,8 +7702,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     public void lambda$fillNextCodeParams$27(final Bundle bundle, final TLRPC.auth_SentCode auth_sentcode, final boolean z) {
         Task<IntegrityTokenResponse> addOnSuccessListener;
         OnFailureListener onFailureListener;
-        TLRPC.auth_SentCodeType auth_sentcodetype = auth_sentcode.type;
         int i = 1;
+        if (auth_sentcode instanceof TLRPC.TL_auth_sentCodePaymentRequired) {
+            TLRPC.TL_auth_sentCodePaymentRequired tL_auth_sentCodePaymentRequired = (TLRPC.TL_auth_sentCodePaymentRequired) auth_sentcode;
+            bundle.putString("product", tL_auth_sentCodePaymentRequired.store_product);
+            bundle.putString("phoneHash", tL_auth_sentCodePaymentRequired.phone_code_hash);
+            setPage(18, true, bundle, true);
+            return;
+        }
+        TLRPC.auth_SentCodeType auth_sentcodetype = auth_sentcode.type;
         if ((auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeFirebaseSms) && !auth_sentcodetype.verifiedFirebase && !this.isRequestingFirebaseSms) {
             if (!PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices()) {
                 FileLog.d("{GOOGLE_PLAY_SERVICES_NOT_AVAILABLE} Resend firebase sms because firebase is not available");
@@ -7535,7 +7912,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
     public void lambda$createView$3(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
         }
     }
 
@@ -7990,7 +8367,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 }
             });
             this.pendingSwitchingAccount = false;
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
             return;
         }
         if (z && z2) {
@@ -8629,7 +9006,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public android.view.View createView(android.content.Context r27) {
+    public android.view.View createView(android.content.Context r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -8896,6 +9273,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 slideViewArr[i4].onResume();
             }
         }
+    }
+
+    public void open(TLRPC.auth_SentCode auth_sentcode) {
+        lambda$fillNextCodeParams$27(new Bundle(), auth_sentcode, true);
     }
 
     @Override

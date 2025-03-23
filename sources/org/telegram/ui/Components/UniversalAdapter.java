@@ -726,13 +726,18 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 textCheckCell2.id = item.id;
                 textCheckCell2.setIcon(item.locked ? R.drawable.permission_locked : 0);
                 if (itemViewType == 40) {
-                    textCheckCell2.setCollapseArrow(item.animatedText.toString(), item.collapsed, new Runnable() {
-                        @Override
-                        public final void run() {
-                            UniversalAdapter.lambda$onBindViewHolder$3(UItem.this, textCheckCell2);
-                        }
-                    });
-                    return;
+                    if (TextUtils.isEmpty(item.animatedText)) {
+                        textCheckCell2.hideCollapseArrow();
+                        return;
+                    } else {
+                        textCheckCell2.setCollapseArrow(item.animatedText.toString(), item.collapsed, new Runnable() {
+                            @Override
+                            public final void run() {
+                                UniversalAdapter.lambda$onBindViewHolder$3(UItem.this, textCheckCell2);
+                            }
+                        });
+                        return;
+                    }
                 }
                 return;
             case 42:

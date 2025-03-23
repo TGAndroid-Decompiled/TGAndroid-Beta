@@ -9,6 +9,8 @@ import androidx.core.graphics.PathParser;
 
 public class CubicBezierInterpolator implements Interpolator {
     public static final Interpolator Emphasized;
+    public static final Interpolator EmphasizedAccelerate;
+    public static final Interpolator EmphasizedDecelerate;
     protected PointF a;
     protected PointF b;
     protected PointF c;
@@ -22,7 +24,10 @@ public class CubicBezierInterpolator implements Interpolator {
     public static final CubicBezierInterpolator EASE_OUT_BACK = new CubicBezierInterpolator(0.34d, 1.56d, 0.64d, 1.0d);
 
     static {
-        Emphasized = Build.VERSION.SDK_INT >= 21 ? new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1")) : new LinearInterpolator();
+        int i = Build.VERSION.SDK_INT;
+        Emphasized = i >= 21 ? new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1")) : new LinearInterpolator();
+        EmphasizedDecelerate = i >= 21 ? new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f) : new LinearInterpolator();
+        EmphasizedAccelerate = i >= 21 ? new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f) : new LinearInterpolator();
     }
 
     public CubicBezierInterpolator(double d, double d2, double d3, double d4) {

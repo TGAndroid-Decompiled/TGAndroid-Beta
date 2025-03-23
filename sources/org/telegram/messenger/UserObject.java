@@ -85,6 +85,15 @@ public class UserObject {
         return true;
     }
 
+    public static boolean areGiftsDisabled(long j) {
+        return areGiftsDisabled(MessagesController.getInstance(UserConfig.selectedAccount).getUserFull(j));
+    }
+
+    public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        return userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+    }
+
     public static boolean eq(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
         if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
             requirementToContact = null;

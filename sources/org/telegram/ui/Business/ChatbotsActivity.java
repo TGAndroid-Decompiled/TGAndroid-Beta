@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
@@ -34,7 +35,8 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Business.ChatbotsActivity;
-import org.telegram.ui.Cells.TextCheckCell;
+import org.telegram.ui.Cells.CheckBoxCell;
+import org.telegram.ui.Cells.TextCheckCell2;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.ColoredImageSpan;
@@ -47,6 +49,27 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 
 public class ChatbotsActivity extends BaseFragment {
+    private static final int BUTTON_DELETE = -3;
+    private static final int PERMISSION_GIFTS = -15;
+    private static final int PERMISSION_GIFTS_SELL = -17;
+    private static final int PERMISSION_GIFTS_SETTINGS = -18;
+    private static final int PERMISSION_GIFTS_TRANSFER = -19;
+    private static final int PERMISSION_GIFTS_TRANSFER_STARS = -20;
+    private static final int PERMISSION_GIFTS_VIEW = -16;
+    private static final int PERMISSION_MESSAGES = -4;
+    private static final int PERMISSION_MESSAGES_DELETE_RECEIVED = -9;
+    private static final int PERMISSION_MESSAGES_DELETE_SENT = -8;
+    private static final int PERMISSION_MESSAGES_MARK_AS_READ = -7;
+    private static final int PERMISSION_MESSAGES_READ = -5;
+    private static final int PERMISSION_MESSAGES_REPLY = -6;
+    private static final int PERMISSION_PROFILE = -10;
+    private static final int PERMISSION_PROFILE_BIO = -12;
+    private static final int PERMISSION_PROFILE_NAME = -11;
+    private static final int PERMISSION_PROFILE_PICTURE = -13;
+    private static final int PERMISSION_PROFILE_USERNAME = -14;
+    private static final int PERMISSION_STORIES = -21;
+    private static final int RADIO_EXCLUDE = -1;
+    private static final int RADIO_INCLUDE = -2;
     public TL_account.TL_connectedBot currentBot;
     public TL_account.connectedBots currentValue;
     private ActionBarMenuItem doneButton;
@@ -74,9 +97,13 @@ public class ChatbotsActivity extends BaseFragment {
             ChatbotsActivity.this.lambda$new$3();
         }
     };
-    public boolean allowReply = true;
+    public TL_account.TL_businessBotRights rights = TL_account.TL_businessBotRights.all();
     private TLRPC.User selectedBot = null;
     private LongSparseArray foundBots = new LongSparseArray();
+    private int shakeDp = -4;
+    private boolean expandedMessagesSection = true;
+    private boolean expandedProfileSection = false;
+    private boolean expandedGiftsSection = false;
 
     public class AnonymousClass5 implements SearchAdapterHelper.SearchAdapterHelperDelegate {
         AnonymousClass5() {
@@ -142,6 +169,7 @@ public class ChatbotsActivity extends BaseFragment {
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         arrayList.add(UItem.asTopView(this.introText, "RestrictedEmoji", "🤖"));
         TLRPC.User user = this.selectedBot;
+        boolean z = false;
         if (user != null) {
             arrayList.add(UItem.asAddChat(Long.valueOf(user.id)).setChecked(true).setCloseIcon(new View.OnClickListener() {
                 @Override
@@ -153,7 +181,7 @@ public class ChatbotsActivity extends BaseFragment {
             universalAdapter.whiteSectionStart();
             arrayList.add(UItem.asCustom(this.editTextContainer));
             this.foundBots.clear();
-            boolean z = false;
+            boolean z2 = false;
             for (int i = 0; i < this.searchHelper.getLocalServerSearch().size(); i++) {
                 TLObject tLObject = (TLObject) this.searchHelper.getLocalServerSearch().get(i);
                 if (tLObject instanceof TLRPC.User) {
@@ -161,7 +189,7 @@ public class ChatbotsActivity extends BaseFragment {
                     if (user2.bot) {
                         arrayList.add(UItem.asAddChat(Long.valueOf(user2.id)));
                         this.foundBots.put(user2.id, user2);
-                        z = true;
+                        z2 = true;
                     }
                 }
             }
@@ -172,28 +200,102 @@ public class ChatbotsActivity extends BaseFragment {
                     if (user3.bot) {
                         arrayList.add(UItem.asAddChat(Long.valueOf(user3.id)));
                         this.foundBots.put(user3.id, user3);
-                        z = true;
+                        z2 = true;
                     }
                 }
             }
             if (this.foundBots.size() <= 0 && (!TextUtils.isEmpty(this.editText.getText().toString()) || this.searchHelper.isSearchInProgress() || this.scheduledLoading)) {
                 arrayList.add(UItem.asCustom(this.emptyView));
-                z = true;
+                z2 = true;
             }
-            this.editTextDivider.setVisibility(z ? 0 : 8);
+            this.editTextDivider.setVisibility(z2 ? 0 : 8);
             universalAdapter.whiteSectionEnd();
         }
         arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessBotLinkInfo)));
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessBotChats)));
-        arrayList.add(UItem.asRadio(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept)).setChecked(this.exclude));
-        arrayList.add(UItem.asRadio(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected)).setChecked(!this.exclude));
-        arrayList.add(UItem.asShadow(null));
-        this.recipientsHelper.fillItems(arrayList);
-        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessBotChatsInfo)));
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessBotPermissions)));
-        arrayList.add(UItem.asCheck(-5, LocaleController.getString(R.string.BusinessBotPermissionsReply)).setChecked(this.allowReply));
-        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessBotPermissionsInfo)));
-        arrayList.add(UItem.asShadow(null));
+        if (this.selectedBot != null) {
+            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessBotChats)));
+            arrayList.add(UItem.asRadio(RADIO_EXCLUDE, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept)).setChecked(this.exclude));
+            arrayList.add(UItem.asRadio(RADIO_INCLUDE, LocaleController.getString(R.string.BusinessChatsOnlySelected)).setChecked(!this.exclude));
+            arrayList.add(UItem.asShadow(null));
+            this.recipientsHelper.fillItems(arrayList);
+            arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessBotChatsInfo)));
+            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessBotPermissions)));
+            int i3 = PERMISSION_MESSAGES;
+            String string = LocaleController.getString(R.string.BusinessBotPermissionsMessagesSection);
+            StringBuilder sb = new StringBuilder();
+            TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
+            sb.append((tL_businessBotRights.reply ? 1 : 0) + 1 + (tL_businessBotRights.read_messages ? 1 : 0) + (tL_businessBotRights.delete_sent_messages ? 1 : 0) + (tL_businessBotRights.delete_received_messages ? 1 : 0));
+            sb.append("/5");
+            UItem asExpandableSwitch = UItem.asExpandableSwitch(i3, string, sb.toString());
+            TL_account.TL_businessBotRights tL_businessBotRights2 = this.rights;
+            arrayList.add(asExpandableSwitch.setChecked(tL_businessBotRights2.reply && tL_businessBotRights2.read_messages && tL_businessBotRights2.delete_received_messages && tL_businessBotRights2.delete_sent_messages).setCollapsed(!this.expandedMessagesSection).setClickCallback(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChatbotsActivity.this.lambda$fillItems$4(view);
+                }
+            }));
+            if (this.expandedMessagesSection) {
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_READ, LocaleController.getString(R.string.BusinessBotPermissionsMessagesRead)).setChecked(true).setEnabled(false).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_REPLY, LocaleController.getString(R.string.BusinessBotPermissionsMessagesReply)).setChecked(this.rights.reply).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_MARK_AS_READ, LocaleController.getString(R.string.BusinessBotPermissionsMessagesMarkAsRead)).setChecked(this.rights.read_messages).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_DELETE_SENT, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteSent)).setChecked(this.rights.delete_sent_messages).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_DELETE_RECEIVED, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteReceived)).setChecked(this.rights.delete_received_messages).setPad(1));
+            }
+            int i4 = PERMISSION_PROFILE;
+            String string2 = LocaleController.getString(R.string.BusinessBotPermissionsProfileSection);
+            StringBuilder sb2 = new StringBuilder();
+            TL_account.TL_businessBotRights tL_businessBotRights3 = this.rights;
+            sb2.append((tL_businessBotRights3.edit_name ? 1 : 0) + (tL_businessBotRights3.edit_bio ? 1 : 0) + (tL_businessBotRights3.edit_profile_photo ? 1 : 0) + (tL_businessBotRights3.edit_username ? 1 : 0));
+            sb2.append("/4");
+            UItem asExpandableSwitch2 = UItem.asExpandableSwitch(i4, string2, sb2.toString());
+            TL_account.TL_businessBotRights tL_businessBotRights4 = this.rights;
+            arrayList.add(asExpandableSwitch2.setChecked(tL_businessBotRights4.edit_name && tL_businessBotRights4.edit_bio && tL_businessBotRights4.edit_profile_photo && tL_businessBotRights4.edit_username).setCollapsed(!this.expandedProfileSection).setClickCallback(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChatbotsActivity.this.lambda$fillItems$5(view);
+                }
+            }));
+            if (this.expandedProfileSection) {
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_NAME, LocaleController.getString(R.string.BusinessBotPermissionsProfileName)).setChecked(this.rights.edit_name).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_BIO, LocaleController.getString(R.string.BusinessBotPermissionsProfileBio)).setChecked(this.rights.edit_bio).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_PICTURE, LocaleController.getString(R.string.BusinessBotPermissionsProfilePicture)).setChecked(this.rights.edit_profile_photo).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_USERNAME, LocaleController.getString(R.string.BusinessBotPermissionsProfileUsername)).setChecked(this.rights.edit_username).setPad(1));
+            }
+            int i5 = PERMISSION_GIFTS;
+            String string3 = LocaleController.getString(R.string.BusinessBotPermissionsGiftsSection);
+            StringBuilder sb3 = new StringBuilder();
+            TL_account.TL_businessBotRights tL_businessBotRights5 = this.rights;
+            sb3.append((tL_businessBotRights5.view_gifts ? 1 : 0) + (tL_businessBotRights5.sell_gifts ? 1 : 0) + (tL_businessBotRights5.change_gift_settings ? 1 : 0) + (tL_businessBotRights5.transfer_and_upgrade_gifts ? 1 : 0) + (tL_businessBotRights5.transfer_stars ? 1 : 0));
+            sb3.append("/5");
+            UItem asExpandableSwitch3 = UItem.asExpandableSwitch(i5, string3, sb3.toString());
+            TL_account.TL_businessBotRights tL_businessBotRights6 = this.rights;
+            if (tL_businessBotRights6.view_gifts && tL_businessBotRights6.sell_gifts && tL_businessBotRights6.change_gift_settings && tL_businessBotRights6.transfer_and_upgrade_gifts && tL_businessBotRights6.transfer_stars) {
+                z = true;
+            }
+            arrayList.add(asExpandableSwitch3.setChecked(z).setCollapsed(!this.expandedGiftsSection).setClickCallback(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChatbotsActivity.this.lambda$fillItems$6(view);
+                }
+            }));
+            if (this.expandedGiftsSection) {
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_VIEW, LocaleController.getString(R.string.BusinessBotPermissionsGiftsView)).setChecked(this.rights.view_gifts).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_SELL, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSell)).setChecked(this.rights.sell_gifts).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_SETTINGS, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSettings)).setChecked(this.rights.change_gift_settings).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_TRANSFER, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransfer)).setChecked(this.rights.transfer_and_upgrade_gifts).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_TRANSFER_STARS, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransferStars)).setChecked(this.rights.transfer_stars).setPad(1));
+            }
+            arrayList.add(UItem.asExpandableSwitch(PERMISSION_STORIES, LocaleController.getString(R.string.BusinessBotPermissionsStories), "").setChecked(this.rights.manage_stories).setClickCallback(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChatbotsActivity.this.lambda$fillItems$7(view);
+                }
+            }));
+            arrayList.add(UItem.asShadow(-4, null));
+            arrayList.add(UItem.asShadow(-5, null));
+            arrayList.add(UItem.asShadow(-6, null));
+            arrayList.add(UItem.asShadow(-7, null));
+        }
     }
 
     public boolean lambda$createView$0(TextView textView, int i, KeyEvent keyEvent) {
@@ -222,6 +324,65 @@ public class ChatbotsActivity extends BaseFragment {
         checkDone(true);
     }
 
+    public void lambda$fillItems$4(View view) {
+        TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
+        if (tL_businessBotRights.reply && tL_businessBotRights.read_messages && tL_businessBotRights.delete_received_messages && tL_businessBotRights.delete_sent_messages) {
+            tL_businessBotRights.delete_sent_messages = false;
+            tL_businessBotRights.delete_received_messages = false;
+            tL_businessBotRights.read_messages = false;
+            tL_businessBotRights.reply = false;
+        } else {
+            tL_businessBotRights.delete_sent_messages = true;
+            tL_businessBotRights.delete_received_messages = true;
+            tL_businessBotRights.read_messages = true;
+            tL_businessBotRights.reply = true;
+        }
+        this.listView.adapter.update(true);
+        checkDone(true);
+    }
+
+    public void lambda$fillItems$5(View view) {
+        TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
+        if (tL_businessBotRights.edit_name && tL_businessBotRights.edit_bio && tL_businessBotRights.edit_profile_photo && tL_businessBotRights.edit_username) {
+            tL_businessBotRights.edit_username = false;
+            tL_businessBotRights.edit_profile_photo = false;
+            tL_businessBotRights.edit_bio = false;
+            tL_businessBotRights.edit_name = false;
+        } else {
+            tL_businessBotRights.edit_username = true;
+            tL_businessBotRights.edit_profile_photo = true;
+            tL_businessBotRights.edit_bio = true;
+            tL_businessBotRights.edit_name = true;
+        }
+        this.listView.adapter.update(true);
+        checkDone(true);
+    }
+
+    public void lambda$fillItems$6(View view) {
+        TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
+        if (tL_businessBotRights.view_gifts && tL_businessBotRights.sell_gifts && tL_businessBotRights.change_gift_settings && tL_businessBotRights.transfer_and_upgrade_gifts && tL_businessBotRights.transfer_stars) {
+            tL_businessBotRights.transfer_stars = false;
+            tL_businessBotRights.transfer_and_upgrade_gifts = false;
+            tL_businessBotRights.change_gift_settings = false;
+            tL_businessBotRights.sell_gifts = false;
+            tL_businessBotRights.view_gifts = false;
+        } else {
+            tL_businessBotRights.transfer_stars = true;
+            tL_businessBotRights.transfer_and_upgrade_gifts = true;
+            tL_businessBotRights.change_gift_settings = true;
+            tL_businessBotRights.sell_gifts = true;
+            tL_businessBotRights.view_gifts = true;
+        }
+        this.listView.adapter.update(true);
+        checkDone(true);
+    }
+
+    public void lambda$fillItems$7(View view) {
+        this.rights.manage_stories = !r3.manage_stories;
+        this.listView.adapter.update(true);
+        checkDone(true);
+    }
+
     public void lambda$new$3() {
         String obj = this.editText.getText().toString();
         String str = this.lastQuery;
@@ -241,15 +402,28 @@ public class ChatbotsActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onBackPressed$7(AlertDialog alertDialog, int i) {
+    public void lambda$onBackPressed$12(AlertDialog alertDialog, int i) {
         processDone();
     }
 
-    public void lambda$onBackPressed$8(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$335();
+    public void lambda$onBackPressed$13(AlertDialog alertDialog, int i) {
+        lambda$onBackPressed$336();
     }
 
-    public void lambda$processDone$4(TLRPC.TL_error tL_error, TLObject tLObject, int[] iArr, ArrayList arrayList) {
+    public void lambda$processDone$10(final int[] iArr, final ArrayList arrayList, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatbotsActivity.this.lambda$processDone$9(tL_error, tLObject, iArr, arrayList);
+            }
+        });
+    }
+
+    public void lambda$processDone$8(TLObject tLObject) {
+        MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
+    }
+
+    public void lambda$processDone$9(TLRPC.TL_error tL_error, final TLObject tLObject, int[] iArr, ArrayList arrayList) {
         if (tL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
@@ -260,36 +434,36 @@ public class ChatbotsActivity extends BaseFragment {
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
             return;
         }
+        if (tLObject instanceof TLRPC.Updates) {
+            Utilities.stageQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatbotsActivity.this.lambda$processDone$8(tLObject);
+                }
+            });
+        }
         int i = iArr[0] + 1;
         iArr[0] = i;
         if (i == arrayList.size()) {
             BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
             getMessagesController().clearFullUsers();
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
         }
     }
 
-    public void lambda$processDone$5(final int[] iArr, final ArrayList arrayList, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatbotsActivity.this.lambda$processDone$4(tL_error, tLObject, iArr, arrayList);
-            }
-        });
-    }
-
-    public void lambda$setValue$6(TL_account.connectedBots connectedbots) {
+    public void lambda$setValue$11(TL_account.connectedBots connectedbots) {
         UniversalAdapter universalAdapter;
         this.currentValue = connectedbots;
         TL_account.TL_connectedBot tL_connectedBot = (connectedbots == null || connectedbots.connected_bots.isEmpty()) ? null : this.currentValue.connected_bots.get(0);
         this.currentBot = tL_connectedBot;
         this.selectedBot = tL_connectedBot == null ? null : getMessagesController().getUser(Long.valueOf(this.currentBot.bot_id));
         TL_account.TL_connectedBot tL_connectedBot2 = this.currentBot;
-        this.allowReply = tL_connectedBot2 != null ? tL_connectedBot2.can_reply : true;
-        this.exclude = tL_connectedBot2 != null ? tL_connectedBot2.recipients.exclude_selected : true;
+        this.rights = tL_connectedBot2 != null ? TL_account.TL_businessBotRights.clone(tL_connectedBot2.rights) : TL_account.TL_businessBotRights.all();
+        TL_account.TL_connectedBot tL_connectedBot3 = this.currentBot;
+        this.exclude = tL_connectedBot3 != null ? tL_connectedBot3.recipients.exclude_selected : true;
         BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
         if (businessRecipientsHelper != null) {
-            businessRecipientsHelper.setValue(tL_connectedBot2 != null ? tL_connectedBot2.recipients : null);
+            businessRecipientsHelper.setValue(tL_connectedBot3 != null ? tL_connectedBot3.recipients : null);
         }
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
@@ -300,39 +474,132 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        TLRPC.User user;
+        CheckBoxCell checkBoxCell;
+        boolean z;
+        TextCheckCell2 textCheckCell2;
+        boolean z2;
         if (this.recipientsHelper.onClick(uItem)) {
             return;
         }
         int i2 = uItem.id;
-        if (i2 == -1) {
+        if (i2 == RADIO_EXCLUDE) {
             BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
             this.exclude = true;
             businessRecipientsHelper.setExclude(true);
-        } else if (i2 == -2) {
+        } else if (i2 == RADIO_INCLUDE) {
             BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
             this.exclude = false;
             businessRecipientsHelper2.setExclude(false);
+        } else if (i2 == BUTTON_DELETE) {
+            this.selectedBot = null;
         } else {
-            if (i2 == -5) {
-                boolean z = !this.allowReply;
-                this.allowReply = z;
-                ((TextCheckCell) view).setChecked(z);
-                checkDone(true);
-            }
-            if (i2 == -6) {
-                this.selectedBot = null;
-            } else {
-                if (uItem.viewType != 13 || (user = (TLRPC.User) this.foundBots.get(uItem.dialogId)) == null) {
-                    return;
-                }
-                if (!user.bot_business) {
-                    showDialog(new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.BusinessBotNotSupportedTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
-                    return;
+            if (uItem.viewType != 13) {
+                if (i2 == PERMISSION_MESSAGES) {
+                    textCheckCell2 = (TextCheckCell2) view;
+                    z2 = !this.expandedMessagesSection;
+                    this.expandedMessagesSection = z2;
                 } else {
-                    this.selectedBot = user;
-                    AndroidUtilities.hideKeyboard(this.editText);
+                    if (i2 == PERMISSION_MESSAGES_READ) {
+                        int i3 = -this.shakeDp;
+                        this.shakeDp = i3;
+                        AndroidUtilities.shakeViewSpring(view, i3);
+                        return;
+                    }
+                    if (i2 == PERMISSION_MESSAGES_REPLY) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
+                        z = !tL_businessBotRights.reply;
+                        tL_businessBotRights.reply = z;
+                    } else if (i2 == PERMISSION_MESSAGES_MARK_AS_READ) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights2 = this.rights;
+                        z = !tL_businessBotRights2.read_messages;
+                        tL_businessBotRights2.read_messages = z;
+                    } else if (i2 == PERMISSION_MESSAGES_DELETE_SENT) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights3 = this.rights;
+                        z = !tL_businessBotRights3.delete_sent_messages;
+                        tL_businessBotRights3.delete_sent_messages = z;
+                    } else if (i2 == PERMISSION_MESSAGES_DELETE_RECEIVED) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights4 = this.rights;
+                        z = !tL_businessBotRights4.delete_received_messages;
+                        tL_businessBotRights4.delete_received_messages = z;
+                    } else if (i2 == PERMISSION_PROFILE) {
+                        textCheckCell2 = (TextCheckCell2) view;
+                        z2 = !this.expandedProfileSection;
+                        this.expandedProfileSection = z2;
+                    } else if (i2 == PERMISSION_PROFILE_NAME) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights5 = this.rights;
+                        z = !tL_businessBotRights5.edit_name;
+                        tL_businessBotRights5.edit_name = z;
+                    } else if (i2 == PERMISSION_PROFILE_BIO) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights6 = this.rights;
+                        z = !tL_businessBotRights6.edit_bio;
+                        tL_businessBotRights6.edit_bio = z;
+                    } else if (i2 == PERMISSION_PROFILE_PICTURE) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights7 = this.rights;
+                        z = !tL_businessBotRights7.edit_profile_photo;
+                        tL_businessBotRights7.edit_profile_photo = z;
+                    } else if (i2 == PERMISSION_PROFILE_USERNAME) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights8 = this.rights;
+                        z = !tL_businessBotRights8.edit_username;
+                        tL_businessBotRights8.edit_username = z;
+                    } else if (i2 == PERMISSION_GIFTS) {
+                        textCheckCell2 = (TextCheckCell2) view;
+                        z2 = !this.expandedGiftsSection;
+                        this.expandedGiftsSection = z2;
+                    } else if (i2 == PERMISSION_GIFTS_VIEW) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights9 = this.rights;
+                        z = !tL_businessBotRights9.view_gifts;
+                        tL_businessBotRights9.view_gifts = z;
+                    } else if (i2 == PERMISSION_GIFTS_SELL) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights10 = this.rights;
+                        z = !tL_businessBotRights10.sell_gifts;
+                        tL_businessBotRights10.sell_gifts = z;
+                    } else if (i2 == PERMISSION_GIFTS_SETTINGS) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights11 = this.rights;
+                        z = !tL_businessBotRights11.change_gift_settings;
+                        tL_businessBotRights11.change_gift_settings = z;
+                    } else if (i2 == PERMISSION_GIFTS_TRANSFER) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights12 = this.rights;
+                        z = !tL_businessBotRights12.transfer_and_upgrade_gifts;
+                        tL_businessBotRights12.transfer_and_upgrade_gifts = z;
+                    } else if (i2 == PERMISSION_GIFTS_TRANSFER_STARS) {
+                        checkBoxCell = (CheckBoxCell) view;
+                        TL_account.TL_businessBotRights tL_businessBotRights13 = this.rights;
+                        z = !tL_businessBotRights13.transfer_stars;
+                        tL_businessBotRights13.transfer_stars = z;
+                    } else {
+                        if (i2 != PERMISSION_STORIES) {
+                            return;
+                        }
+                        this.rights.manage_stories = !r3.manage_stories;
+                    }
+                    checkBoxCell.setChecked(z, true);
                 }
+                textCheckCell2.setChecked(z2);
+                this.listView.adapter.update(true);
+                return;
+            }
+            TLRPC.User user = (TLRPC.User) this.foundBots.get(uItem.dialogId);
+            if (user == null) {
+                return;
+            }
+            if (!user.bot_business) {
+                showDialog(new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.BusinessBotNotSupportedTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
+                return;
+            } else {
+                this.selectedBot = user;
+                AndroidUtilities.hideKeyboard(this.editText);
             }
         }
         this.listView.adapter.update(true);
@@ -345,7 +612,7 @@ public class ChatbotsActivity extends BaseFragment {
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
             return;
         }
         if (this.recipientsHelper.validate(this.listView)) {
@@ -361,7 +628,7 @@ public class ChatbotsActivity extends BaseFragment {
             if (this.selectedBot != null) {
                 TL_account.updateConnectedBot updateconnectedbot2 = new TL_account.updateConnectedBot();
                 updateconnectedbot2.deleted = false;
-                updateconnectedbot2.can_reply = this.allowReply;
+                updateconnectedbot2.rights = this.rights;
                 updateconnectedbot2.bot = getMessagesController().getInputUser(this.selectedBot);
                 updateconnectedbot2.recipients = this.recipientsHelper.getBotInputValue();
                 arrayList.add(updateconnectedbot2);
@@ -369,11 +636,11 @@ public class ChatbotsActivity extends BaseFragment {
                 if (tL_connectedBot2 != null) {
                     tL_connectedBot2.bot_id = this.selectedBot.id;
                     tL_connectedBot2.recipients = this.recipientsHelper.getBotValue();
-                    this.currentBot.can_reply = this.allowReply;
+                    this.currentBot.rights = this.rights;
                 }
             }
             if (arrayList.isEmpty()) {
-                lambda$onBackPressed$335();
+                lambda$onBackPressed$336();
                 return;
             }
             final int[] iArr = {0};
@@ -381,7 +648,7 @@ public class ChatbotsActivity extends BaseFragment {
                 getConnectionsManager().sendRequest((TLObject) arrayList.get(i), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ChatbotsActivity.this.lambda$processDone$5(iArr, arrayList, tLObject, tL_error);
+                        ChatbotsActivity.this.lambda$processDone$10(iArr, arrayList, tLObject, tL_error);
                     }
                 });
             }
@@ -410,7 +677,7 @@ public class ChatbotsActivity extends BaseFragment {
         BusinessChatbotController.getInstance(this.currentAccount).load(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatbotsActivity.this.lambda$setValue$6((TL_account.connectedBots) obj);
+                ChatbotsActivity.this.lambda$setValue$11((TL_account.connectedBots) obj);
             }
         });
     }
@@ -439,7 +706,7 @@ public class ChatbotsActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (ChatbotsActivity.this.onBackPressed()) {
-                        ChatbotsActivity.this.lambda$onBackPressed$335();
+                        ChatbotsActivity.this.lambda$onBackPressed$336();
                     }
                 } else if (i == 1) {
                     ChatbotsActivity.this.processDone();
@@ -599,7 +866,7 @@ public class ChatbotsActivity extends BaseFragment {
             return true;
         }
         if (user != null) {
-            if (this.allowReply != tL_connectedBot.can_reply) {
+            if (!this.rights.equals(tL_connectedBot.rights)) {
                 return true;
             }
             BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
@@ -621,13 +888,13 @@ public class ChatbotsActivity extends BaseFragment {
         builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ChatbotsActivity.this.lambda$onBackPressed$7(alertDialog, i);
+                ChatbotsActivity.this.lambda$onBackPressed$12(alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ChatbotsActivity.this.lambda$onBackPressed$8(alertDialog, i);
+                ChatbotsActivity.this.lambda$onBackPressed$13(alertDialog, i);
             }
         });
         showDialog(builder.create());

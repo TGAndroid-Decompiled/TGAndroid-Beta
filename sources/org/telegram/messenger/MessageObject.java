@@ -3963,7 +3963,7 @@ public class MessageObject {
         return true;
     }
 
-    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r31, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r32, androidx.collection.LongSparseArray r33, androidx.collection.LongSparseArray r34) {
+    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r32, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r33, androidx.collection.LongSparseArray r34, androidx.collection.LongSparseArray r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateMessageText(java.util.AbstractMap, java.util.AbstractMap, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 

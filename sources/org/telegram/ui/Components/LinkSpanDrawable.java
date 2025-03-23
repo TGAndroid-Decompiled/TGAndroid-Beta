@@ -552,6 +552,11 @@ public class LinkSpanDrawable {
             return 0;
         }
 
+        public int getTextPaddingTop() {
+            int paddingTop = getPaddingTop();
+            return (getGravity() != 17 || getLayout() == null) ? paddingTop : paddingTop + Math.max(0, (((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2);
+        }
+
         public boolean hasLinks() {
             Layout layout = getLayout();
             if (layout == null) {
@@ -572,12 +577,12 @@ public class LinkSpanDrawable {
                 return null;
             }
             int paddingLeft = i - getPaddingLeft();
-            int paddingTop = i2 - getPaddingTop();
-            int lineForVertical = layout.getLineForVertical(paddingTop);
+            int textPaddingTop = i2 - getTextPaddingTop();
+            int lineForVertical = layout.getLineForVertical(textPaddingTop);
             float f = paddingLeft;
             int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f);
             float lineLeft = layout.getLineLeft(lineForVertical);
-            if (lineLeft <= f && lineLeft + layout.getLineWidth(lineForVertical) >= f && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
+            if (lineLeft <= f && lineLeft + layout.getLineWidth(lineForVertical) >= f && textPaddingTop >= 0 && textPaddingTop <= layout.getHeight()) {
                 ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
                 if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                     return clickableSpanArr[0];

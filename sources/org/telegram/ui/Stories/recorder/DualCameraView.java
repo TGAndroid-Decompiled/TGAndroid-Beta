@@ -325,6 +325,13 @@ public abstract class DualCameraView extends CameraView {
         updateDualPosition();
     }
 
+    private void setupToScreenMatrix() {
+        this.toScreen.reset();
+        this.toScreen.postTranslate(1.0f, -1.0f);
+        this.toScreen.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
+        this.toScreen.invert(this.toGL);
+    }
+
     private boolean touchEvent(android.view.MotionEvent r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.DualCameraView.touchEvent(android.view.MotionEvent):boolean");
     }
@@ -476,12 +483,14 @@ public abstract class DualCameraView extends CameraView {
     }
 
     @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return (motionEvent.getAction() == 0 && isAtDual(motionEvent.getX(), motionEvent.getY())) ? touchEvent(motionEvent) : super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        this.toScreen.reset();
-        this.toScreen.postTranslate(1.0f, -1.0f);
-        this.toScreen.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
-        this.toScreen.invert(this.toGL);
+        setupToScreenMatrix();
     }
 
     protected abstract void onSavedDualCameraSuccess();

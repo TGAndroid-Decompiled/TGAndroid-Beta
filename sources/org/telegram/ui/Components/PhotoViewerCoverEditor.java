@@ -207,7 +207,7 @@ public class PhotoViewerCoverEditor extends FrameLayout {
 
     public void lambda$new$1(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
         if (this.gallerySheet == null) {
-            GallerySheet gallerySheet = new GallerySheet(context, resourcesProvider, this.aspectRatio);
+            GallerySheet gallerySheet = new GallerySheet(context, resourcesProvider, LocaleController.getString(R.string.VideoChooseCover), true, this.aspectRatio);
             this.gallerySheet = gallerySheet;
             gallerySheet.setOnDismissListener(new Runnable() {
                 @Override

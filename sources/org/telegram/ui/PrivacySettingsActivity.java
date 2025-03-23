@@ -622,15 +622,18 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
     }
 
     public static String formatRulesString(AccountInstance accountInstance, int i) {
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
         Boolean bool;
         ArrayList<TLRPC.PrivacyRule> privacyRules = accountInstance.getContactsController().getPrivacyRules(i);
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = accountInstance.getContactsController().getGlobalPrivacySettings();
         if (privacyRules == null || privacyRules.size() == 0) {
             return i == 3 ? LocaleController.getString(R.string.P2PNobody) : LocaleController.getString(R.string.LastSeenNobody);
         }
         Boolean bool2 = null;
-        char c = 65535;
         int i2 = 0;
         int i3 = 0;
+        char c = 65535;
         boolean z = false;
         for (int i4 = 0; i4 < privacyRules.size(); i4++) {
             TLRPC.PrivacyRule privacyRule = privacyRules.get(i4);
@@ -640,7 +643,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 for (int i5 = 0; i5 < size; i5++) {
                     TLRPC.Chat chat = accountInstance.getMessagesController().getChat(tL_privacyValueAllowChatParticipants.chats.get(i5));
                     if (chat != null) {
-                        i3 += chat.participants_count;
+                        i2 += chat.participants_count;
                     }
                 }
             } else if (privacyRule instanceof TLRPC.TL_privacyValueDisallowChatParticipants) {
@@ -649,13 +652,13 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 for (int i6 = 0; i6 < size2; i6++) {
                     TLRPC.Chat chat2 = accountInstance.getMessagesController().getChat(tL_privacyValueDisallowChatParticipants.chats.get(i6));
                     if (chat2 != null) {
-                        i2 += chat2.participants_count;
+                        i3 += chat2.participants_count;
                     }
                 }
             } else if (privacyRule instanceof TLRPC.TL_privacyValueAllowUsers) {
-                i3 += ((TLRPC.TL_privacyValueAllowUsers) privacyRule).users.size();
+                i2 += ((TLRPC.TL_privacyValueAllowUsers) privacyRule).users.size();
             } else if (privacyRule instanceof TLRPC.TL_privacyValueDisallowUsers) {
-                i2 += ((TLRPC.TL_privacyValueDisallowUsers) privacyRule).users.size();
+                i3 += ((TLRPC.TL_privacyValueDisallowUsers) privacyRule).users.size();
             } else if (privacyRule instanceof TLRPC.TL_privacyValueAllowPremium) {
                 z = true;
             } else {
@@ -669,40 +672,49 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 bool2 = bool;
             }
         }
-        if (c == 0 || (c == 65535 && i2 > 0)) {
+        if (i == 12 && globalPrivacySettings != null && (disallowedGiftsSettings2 = globalPrivacySettings.disallowed_stargifts) != null && disallowedGiftsSettings2.disallow_unique_stargifts && disallowedGiftsSettings2.disallow_unlimited_stargifts && disallowedGiftsSettings2.disallow_limited_stargifts && !disallowedGiftsSettings2.disallow_premium_gifts) {
+            return LocaleController.getString(R.string.PrivacyValueGiftsOnlyPremium);
+        }
+        if (i == 12 && globalPrivacySettings != null && (disallowedGiftsSettings = globalPrivacySettings.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_premium_gifts) {
+            return LocaleController.getString(R.string.PrivacyValueGiftsNone);
+        }
+        if (c == 0 || (c == 65535 && i3 > 0)) {
             if (i == 3) {
-                return i2 == 0 ? LocaleController.getString(R.string.P2PEverybody) : LocaleController.formatString(R.string.P2PEverybodyMinus, Integer.valueOf(i2));
+                return i3 == 0 ? LocaleController.getString(R.string.P2PEverybody) : LocaleController.formatString(R.string.P2PEverybodyMinus, Integer.valueOf(i3));
             }
-            if (i2 == 0) {
+            if (i != 12) {
+                return i3 == 0 ? LocaleController.getString(R.string.LastSeenEverybody) : LocaleController.formatString(R.string.LastSeenEverybodyMinus, Integer.valueOf(i3));
+            }
+            if (i3 == 0) {
                 return LocaleController.getString((bool2 == null || bool2.booleanValue()) ? R.string.LastSeenEverybody : R.string.PrivacyValueEveryoneExceptBots);
             }
-            return LocaleController.formatString((bool2 == null || bool2.booleanValue()) ? R.string.LastSeenEverybodyMinus : R.string.PrivacyValueEveryoneExceptBotsMinus, Integer.valueOf(i2));
+            return LocaleController.formatString((bool2 == null || bool2.booleanValue()) ? R.string.LastSeenEverybodyMinus : R.string.PrivacyValueEveryoneExceptBotsMinus, Integer.valueOf(i3));
         }
-        if (c != 2 && (c != 65535 || i2 <= 0 || i3 <= 0)) {
-            if (c != 1 && i3 <= 0) {
+        if (c != 2 && (c != 65535 || i3 <= 0 || i2 <= 0)) {
+            if (c != 1 && i2 <= 0) {
                 return (bool2 == null || !bool2.booleanValue()) ? "unknown" : LocaleController.getString(R.string.PrivacyValueOnlyBots);
             }
             if (i == 3) {
-                return i3 == 0 ? LocaleController.getString(R.string.P2PNobody) : LocaleController.formatString(R.string.P2PNobodyPlus, Integer.valueOf(i3));
+                return i2 == 0 ? LocaleController.getString(R.string.P2PNobody) : LocaleController.formatString(R.string.P2PNobodyPlus, Integer.valueOf(i2));
             }
-            if (i3 == 0) {
+            if (i2 == 0) {
                 return z ? LocaleController.getString(R.string.LastSeenNobodyPremium) : (bool2 == null || !bool2.booleanValue()) ? LocaleController.getString(R.string.LastSeenNobody) : LocaleController.getString(R.string.PrivacyValueOnlyBots);
             }
-            return LocaleController.formatString(z ? R.string.LastSeenNobodyPremiumPlus : R.string.LastSeenNobodyPlus, Integer.valueOf(i3));
+            return LocaleController.formatString(z ? R.string.LastSeenNobodyPremiumPlus : R.string.LastSeenNobodyPlus, Integer.valueOf(i2));
         }
         if (i == 3) {
-            return (i3 == 0 && i2 == 0) ? LocaleController.getString("P2PContacts", R.string.P2PContacts) : (i3 == 0 || i2 == 0) ? i2 != 0 ? LocaleController.formatString(R.string.P2PContactsMinus, Integer.valueOf(i2)) : LocaleController.formatString(R.string.P2PContactsPlus, Integer.valueOf(i3)) : LocaleController.formatString(R.string.P2PContactsMinusPlus, Integer.valueOf(i2), Integer.valueOf(i3));
+            return (i2 == 0 && i3 == 0) ? LocaleController.getString("P2PContacts", R.string.P2PContacts) : (i2 == 0 || i3 == 0) ? i3 != 0 ? LocaleController.formatString(R.string.P2PContactsMinus, Integer.valueOf(i3)) : LocaleController.formatString(R.string.P2PContactsPlus, Integer.valueOf(i2)) : LocaleController.formatString(R.string.P2PContactsMinusPlus, Integer.valueOf(i3), Integer.valueOf(i2));
         }
-        if (i3 == 0 && i2 == 0) {
+        if (i2 == 0 && i3 == 0) {
             return z ? LocaleController.getString(R.string.LastSeenContactsPremium) : (bool2 == null || !bool2.booleanValue()) ? LocaleController.getString(R.string.LastSeenContacts) : LocaleController.getString(R.string.PrivacyContactsAndBotUsers);
         }
-        if (i3 != 0 && i2 != 0) {
-            return LocaleController.formatString((bool2 == null || !bool2.booleanValue()) ? z ? R.string.LastSeenContactsPremiumMinusPlus : R.string.LastSeenContactsMinusPlus : R.string.PrivacyContactsAndBotUsersMinusPlus, Integer.valueOf(i2), Integer.valueOf(i3));
+        if (i2 != 0 && i3 != 0) {
+            return LocaleController.formatString((bool2 == null || !bool2.booleanValue()) ? z ? R.string.LastSeenContactsPremiumMinusPlus : R.string.LastSeenContactsMinusPlus : R.string.PrivacyContactsAndBotUsersMinusPlus, Integer.valueOf(i3), Integer.valueOf(i2));
         }
-        if (i2 != 0) {
-            return LocaleController.formatString((bool2 == null || !bool2.booleanValue()) ? z ? R.string.LastSeenContactsPremiumMinus : R.string.LastSeenContactsMinus : R.string.PrivacyContactsAndBotUsersMinus, Integer.valueOf(i2));
+        if (i3 != 0) {
+            return LocaleController.formatString((bool2 == null || !bool2.booleanValue()) ? z ? R.string.LastSeenContactsPremiumMinus : R.string.LastSeenContactsMinus : R.string.PrivacyContactsAndBotUsersMinus, Integer.valueOf(i3));
         }
-        return LocaleController.formatString((bool2 == null || !bool2.booleanValue()) ? z ? R.string.LastSeenContactsPremiumPlus : R.string.LastSeenContactsPlus : R.string.PrivacyContactsAndBotUsersPlus, Integer.valueOf(i3));
+        return LocaleController.formatString((bool2 == null || !bool2.booleanValue()) ? z ? R.string.LastSeenContactsPremiumPlus : R.string.LastSeenContactsPlus : R.string.PrivacyContactsAndBotUsersPlus, Integer.valueOf(i2));
     }
 
     private void initPassword() {
@@ -1395,7 +1407,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    PrivacySettingsActivity.this.lambda$onBackPressed$335();
+                    PrivacySettingsActivity.this.lambda$onBackPressed$336();
                 }
             }
         });
@@ -1439,7 +1451,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         int i3;
         ListAdapter listAdapter2;
         if (i == NotificationCenter.privacyRulesUpdated) {
-            TLRPC.TL_globalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
+            TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
             if (globalPrivacySettings != null) {
                 this.archiveChats = globalPrivacySettings.archive_and_mute_new_noncontact_peers;
                 this.noncontactsValue = globalPrivacySettings.new_noncontact_peers_require_premium;
@@ -1513,7 +1525,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         boolean z2 = getUserConfig().suggestContacts;
         this.newSuggest = z2;
         this.currentSuggest = z2;
-        TLRPC.TL_globalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
         if (globalPrivacySettings != null) {
             this.archiveChats = globalPrivacySettings.archive_and_mute_new_noncontact_peers;
             this.noncontactsValue = globalPrivacySettings.new_noncontact_peers_require_premium;

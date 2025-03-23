@@ -269,6 +269,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return Consumer.CC.$default$andThen(this, consumer);
         }
     };
+    private boolean firstAppUpdateCheck = true;
 
     class AnonymousClass1 implements Consumer {
         AnonymousClass1() {
@@ -1205,6 +1206,26 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.findContacts(java.lang.String, java.lang.String, boolean):java.util.List");
     }
 
+    public static BaseFragment findFragment(Class cls) {
+        INavigationLayout actionBarLayout;
+        INavigationLayout iNavigationLayout;
+        BubbleActivity bubbleActivity = BubbleActivity.instance;
+        if (bubbleActivity != null && (iNavigationLayout = bubbleActivity.actionBarLayout) != null) {
+            return iNavigationLayout.findFragment(cls);
+        }
+        LaunchActivity launchActivity = instance;
+        if (launchActivity == null || launchActivity.sheetFragmentsStack.isEmpty()) {
+            LaunchActivity launchActivity2 = instance;
+            if (launchActivity2 == null || launchActivity2.getActionBarLayout() == null) {
+                return null;
+            }
+            actionBarLayout = instance.getActionBarLayout();
+        } else {
+            actionBarLayout = (INavigationLayout) instance.sheetFragmentsStack.get(r0.size() - 1);
+        }
+        return actionBarLayout.findFragment(cls);
+    }
+
     private BaseFragment getClientNotActivatedFragment() {
         return LoginActivity.loadCurrentState(false, this.currentAccount).getInt("currentViewNum", 0) != 0 ? new LoginActivity() : new IntroActivity();
     }
@@ -1389,7 +1410,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setNavigationBarColor(((Integer) valueAnimator.getAnimatedValue()).intValue(), false);
     }
 
-    public void lambda$checkAppUpdate$128(Browser.Progress progress) {
+    public void lambda$checkAppUpdate$128(Browser.Progress progress, boolean z, BetaUpdate betaUpdate) {
         BaseFragment lastFragment;
         BetaUpdate update = ApplicationLoader.applicationLoaderInstance.getUpdate();
         if (progress != null) {
@@ -1398,7 +1419,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 BulletinFactory.of(lastFragment).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.YourVersionIsLatest)).show();
             }
         }
-        if (update != null) {
+        if (update == null || ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
+            return;
+        }
+        if (z || betaUpdate == null || update.higherThan(betaUpdate)) {
             ApplicationLoader.applicationLoaderInstance.showCustomUpdateAppPopup(this, update, this.currentAccount);
         }
     }
@@ -2001,6 +2025,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                 mediaActivity = new MediaActivity(bundle6, null);
                             }
                             lambda$runLinkRequest$93(mediaActivity);
+                            return;
+                        }
+                        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                            AccountFrozenAlert.show(this.currentAccount);
                             return;
                         }
                         i2 = R.string.TelegramFeaturesUrl;
@@ -5149,10 +5177,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (ApplicationLoader.isStandaloneBuild() || ApplicationLoader.isBetaBuild()) {
             if (z || BuildVars.CHECK_UPDATES) {
                 if (ApplicationLoader.applicationLoaderInstance.isCustomUpdate()) {
+                    final BetaUpdate update = ApplicationLoader.applicationLoaderInstance.getUpdate();
+                    final boolean z2 = this.firstAppUpdateCheck;
+                    this.firstAppUpdateCheck = false;
                     ApplicationLoader.applicationLoaderInstance.checkUpdate(z, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.this.lambda$checkAppUpdate$128(progress);
+                            LaunchActivity.this.lambda$checkAppUpdate$128(progress, z2, update);
                         }
                     });
                     return;
@@ -5515,7 +5546,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 } else if (this.rightActionBarLayout.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$335();
+                        baseFragment.lambda$onBackPressed$336();
                         return;
                     }
                     return;

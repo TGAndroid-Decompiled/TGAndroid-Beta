@@ -79,6 +79,13 @@ public class TextCheckCell2 extends FrameLayout {
         return this.checkBox.hasIcon();
     }
 
+    public void hideCollapseArrow() {
+        LinearLayout linearLayout = this.collapseViewContainer;
+        if (linearLayout != null) {
+            linearLayout.setVisibility(8);
+        }
+    }
+
     public boolean isChecked() {
         return this.checkBox.isChecked();
     }
@@ -103,7 +110,7 @@ public class TextCheckCell2 extends FrameLayout {
         super.onLayout(z, i, i2, i3, i4);
         LinearLayout linearLayout = this.collapseViewContainer;
         if (linearLayout != null) {
-            linearLayout.setTranslationX(LocaleController.isRTL ? (this.textView.getLeft() - this.collapseViewContainer.getMeasuredWidth()) - AndroidUtilities.dp(4.0f) : this.textView.getRight() + AndroidUtilities.dp(4.0f));
+            linearLayout.setTranslationX(LocaleController.isRTL ? (this.textView.getLeft() - this.collapseViewContainer.getMeasuredWidth()) - AndroidUtilities.dp(8.0f) : this.textView.getRight() + AndroidUtilities.dp(8.0f));
         }
     }
 

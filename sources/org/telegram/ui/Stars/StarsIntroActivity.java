@@ -76,6 +76,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -2426,7 +2427,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public void lambda$createView$2(Context context, View view) {
-        new StarsOptionsSheet(context, this.resourceProvider).show();
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
+        } else {
+            new StarsOptionsSheet(context, this.resourceProvider).show();
+        }
     }
 
     public void lambda$createView$3(Context context, View view) {
@@ -3478,7 +3483,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             return null;
         }
         SpannableStringBuilder spannableStringBuilder = !(charSequence instanceof SpannableStringBuilder) ? new SpannableStringBuilder(charSequence) : (SpannableStringBuilder) charSequence;
-        SpannableString spannableString = new SpannableString("⭐ ");
+        SpannableString spannableString = new SpannableString("⭐ ");
         if (coloredImageSpanArr == null || (coloredImageSpan = coloredImageSpanArr[0]) == null) {
             coloredImageSpan = new ColoredImageSpan(R.drawable.msg_premium_liststar);
             if (coloredImageSpanArr != null) {
@@ -4328,8 +4333,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
             if (i2 != -3) {
                 if (i2 == -4) {
-                    presentFragment(new ChannelAffiliateProgramsFragment(getUserConfig().getClientUserId()));
-                    return;
+                    if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                        AccountFrozenAlert.show(this.currentAccount);
+                        return;
+                    } else {
+                        presentFragment(new ChannelAffiliateProgramsFragment(getUserConfig().getClientUserId()));
+                        return;
+                    }
                 }
                 if (uItem.instanceOf(StarTierView.Factory.class)) {
                     if (uItem.object instanceof TL_stars.TL_starsTopupOption) {

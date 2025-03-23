@@ -57,10 +57,13 @@ import org.telegram.ui.Cells.SharedLinkCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
+import org.telegram.ui.Components.SearchViewPager;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.FilteredSearchView;
+import org.telegram.ui.ReportBottomSheet;
+import org.telegram.ui.SearchAdsInfoBottomSheet;
 import org.telegram.ui.TopicsFragment;
 
 public abstract class SearchViewPager extends ViewPagerFixed implements FilteredSearchView.UiCallback, NotificationCenter.NotificationCenterDelegate {
@@ -115,6 +118,151 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     private ActionBarMenuItem speedItem;
     protected final ViewPagerAdapter viewPagerAdapter;
 
+    public class AnonymousClass1 extends DialogsSearchAdapter {
+        final Context val$context;
+        final DialogsActivity val$fragment;
+
+        AnonymousClass1(Context context, DialogsActivity dialogsActivity, int i, int i2, DefaultItemAnimator defaultItemAnimator, boolean z, Theme.ResourcesProvider resourcesProvider, DialogsActivity dialogsActivity2, Context context2) {
+            super(context, dialogsActivity, i, i2, defaultItemAnimator, z, resourcesProvider);
+            this.val$fragment = dialogsActivity2;
+            this.val$context = context2;
+        }
+
+        public void lambda$openSponsoredOptions$2(DialogsActivity dialogsActivity) {
+            removeAllAds();
+            BulletinFactory.of(dialogsActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        }
+
+        public void lambda$openSponsoredOptions$3(final DialogsActivity dialogsActivity, Context context, ItemOptions itemOptions) {
+            dialogsActivity.showDialog(new SearchAdsInfoBottomSheet(context, dialogsActivity.getResourceProvider(), new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$2(dialogsActivity);
+                }
+            }));
+            itemOptions.dismiss();
+        }
+
+        public void lambda$openSponsoredOptions$4(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
+            removeAd(tL_sponsoredPeer);
+        }
+
+        public void lambda$openSponsoredOptions$5(DialogsActivity dialogsActivity, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer, ItemOptions itemOptions) {
+            ReportBottomSheet.openSponsoredPeer(dialogsActivity, tL_sponsoredPeer.random_id, dialogsActivity.getResourceProvider(), new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$4(tL_sponsoredPeer);
+                }
+            });
+            itemOptions.dismiss();
+        }
+
+        public void lambda$openSponsoredOptions$6(DialogsActivity dialogsActivity, ItemOptions itemOptions) {
+            if (UserConfig.getInstance(SearchViewPager.this.currentAccount).isPremium()) {
+                dialogsActivity.getMessagesController().disableAds(true);
+                removeAllAds();
+                BulletinFactory.of(dialogsActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+            } else {
+                new PremiumFeatureBottomSheet(dialogsActivity, 3, true).show();
+            }
+            itemOptions.dismiss();
+        }
+
+        @Override
+        public void notifyDataSetChanged() {
+            RecyclerListView recyclerListView;
+            int currentItemCount = getCurrentItemCount();
+            super.notifyDataSetChanged();
+            if (!SearchViewPager.this.lastSearchScrolledToTop && (recyclerListView = SearchViewPager.this.searchListView) != null) {
+                recyclerListView.scrollToPosition(0);
+                SearchViewPager.this.lastSearchScrolledToTop = true;
+            }
+            if (getItemCount() != 0 || currentItemCount == 0 || isSearching()) {
+                return;
+            }
+            SearchViewPager.this.emptyView.showProgress(false, false);
+        }
+
+        @Override
+        protected void openBotApp(TLRPC.User user) {
+            if (user == null) {
+                return;
+            }
+            BaseFragment baseFragment = SearchViewPager.this.parent;
+            if (baseFragment instanceof DialogsActivity) {
+                ((DialogsActivity) baseFragment).closeSearching();
+            }
+            MessagesController.getInstance(SearchViewPager.this.currentAccount).openApp(user, 0);
+            putRecentSearch(user.id, user);
+        }
+
+        @Override
+        protected void openPublicPosts() {
+            SearchViewPager searchViewPager = SearchViewPager.this;
+            HashtagsSearchAdapter hashtagsSearchAdapter = searchViewPager.hashtagSearchAdapter;
+            DialogsSearchAdapter dialogsSearchAdapter = searchViewPager.dialogsSearchAdapter;
+            hashtagsSearchAdapter.setInitialData(dialogsSearchAdapter.publicPostsHashtag, dialogsSearchAdapter.publicPosts, dialogsSearchAdapter.publicPostsLastRate, dialogsSearchAdapter.publicPostsTotalCount);
+            SearchViewPager searchViewPager2 = SearchViewPager.this;
+            searchViewPager2.expandedPublicPosts = true;
+            searchViewPager2.hashtagSearchLayoutManager.scrollToPositionWithOffset(0, 0);
+            SearchViewPager.this.updateTabs();
+            ViewPagerFixed.TabsView tabsView = SearchViewPager.this.tabsView;
+            if (tabsView != null && tabsView.getCurrentTabId() != 1) {
+                SearchViewPager.this.tabsView.scrollToTab(1, 1);
+            }
+            SearchViewPager searchViewPager3 = SearchViewPager.this;
+            searchViewPager3.hashtagSearchAdapter.search(searchViewPager3.lastSearchString);
+        }
+
+        @Override
+        protected void openSponsoredOptions(ProfileSearchCell profileSearchCell, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
+            AndroidUtilities.hideKeyboard(this.val$fragment.getParentActivity().getCurrentFocus());
+            final ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this.val$fragment, (View) profileSearchCell, true);
+            if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
+                final ItemOptions addText = makeOptions.makeSwipeback().add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ItemOptions.this.closeSwipeback();
+                    }
+                }).addGap().addText(tL_sponsoredPeer.sponsor_info, 13);
+                makeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ItemOptions.this.openSwipeback(addText);
+                    }
+                });
+            }
+            int i = R.drawable.msg_info;
+            String string = LocaleController.getString(R.string.AboutRevenueSharingAds);
+            final DialogsActivity dialogsActivity = this.val$fragment;
+            final Context context = this.val$context;
+            ItemOptions add = makeOptions.add(i, string, new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$3(dialogsActivity, context, makeOptions);
+                }
+            });
+            int i2 = R.drawable.msg_block2;
+            String string2 = LocaleController.getString(R.string.ReportAd);
+            final DialogsActivity dialogsActivity2 = this.val$fragment;
+            ItemOptions addGap = add.add(i2, string2, new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$5(dialogsActivity2, tL_sponsoredPeer, makeOptions);
+                }
+            }).addGap();
+            int i3 = R.drawable.msg_cancel;
+            String string3 = LocaleController.getString(R.string.RemoveAds);
+            final DialogsActivity dialogsActivity3 = this.val$fragment;
+            addGap.add(i3, string3, new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$6(dialogsActivity3, makeOptions);
+                }
+            }).setGravity(LocaleController.isRTL ? 3 : 5).setOnTopOfScrim().setDrawScrim(false).show();
+        }
+    }
+
     public interface ChatPreviewDelegate {
         void finish();
 
@@ -132,6 +280,10 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
 
             private Item(int i) {
                 this.type = i;
+            }
+
+            Item(ViewPagerAdapter viewPagerAdapter, int i, AnonymousClass1 anonymousClass1) {
+                this(i);
             }
         }
 
@@ -218,33 +370,34 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
 
         public void updateItems() {
             this.items.clear();
-            this.items.add(new Item(0));
+            AnonymousClass1 anonymousClass1 = null;
+            this.items.add(new Item(this, 0, anonymousClass1));
             if (SearchViewPager.this.expandedPublicPosts) {
-                this.items.add(new Item(5));
+                this.items.add(new Item(this, 5, anonymousClass1));
             }
-            this.items.add(new Item(1));
-            this.items.add(new Item(4));
+            this.items.add(new Item(this, 1, anonymousClass1));
+            this.items.add(new Item(this, 4, anonymousClass1));
             if (SearchViewPager.this.showOnlyDialogsAdapter) {
                 return;
             }
             int i = 3;
-            Item item = new Item(i);
+            Item item = new Item(this, i, anonymousClass1);
             item.filterIndex = 0;
             this.items.add(item);
             int i2 = 2;
             if (SearchViewPager.this.includeDownloads()) {
-                this.items.add(new Item(i2));
+                this.items.add(new Item(this, i2, anonymousClass1));
             }
-            Item item2 = new Item(i);
+            Item item2 = new Item(this, i, anonymousClass1);
             item2.filterIndex = 1;
             this.items.add(item2);
-            Item item3 = new Item(i);
+            Item item3 = new Item(this, i, anonymousClass1);
             item3.filterIndex = 2;
             this.items.add(item3);
-            Item item4 = new Item(i);
+            Item item4 = new Item(this, i, anonymousClass1);
             item4.filterIndex = 3;
             this.items.add(item4);
-            Item item5 = new Item(i);
+            Item item5 = new Item(this, i, anonymousClass1);
             item5.filterIndex = 4;
             this.items.add(item5);
         }
@@ -268,53 +421,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         this.itemAnimator.setRemoveDuration(0L);
         this.itemAnimator.setMoveInterpolator(new OvershootInterpolator(1.1f));
         this.itemAnimator.setTranslationInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.dialogsSearchAdapter = new DialogsSearchAdapter(context, dialogsActivity, i, i2, this.itemAnimator, dialogsActivity.getAllowGlobalSearch(), null) {
-            @Override
-            public void notifyDataSetChanged() {
-                RecyclerListView recyclerListView;
-                int currentItemCount = getCurrentItemCount();
-                super.notifyDataSetChanged();
-                if (!SearchViewPager.this.lastSearchScrolledToTop && (recyclerListView = SearchViewPager.this.searchListView) != null) {
-                    recyclerListView.scrollToPosition(0);
-                    SearchViewPager.this.lastSearchScrolledToTop = true;
-                }
-                if (getItemCount() != 0 || currentItemCount == 0 || isSearching()) {
-                    return;
-                }
-                SearchViewPager.this.emptyView.showProgress(false, false);
-            }
-
-            @Override
-            protected void openBotApp(TLRPC.User user) {
-                if (user == null) {
-                    return;
-                }
-                BaseFragment baseFragment = SearchViewPager.this.parent;
-                if (baseFragment instanceof DialogsActivity) {
-                    ((DialogsActivity) baseFragment).closeSearching();
-                }
-                MessagesController.getInstance(SearchViewPager.this.currentAccount).openApp(user, 0);
-                putRecentSearch(user.id, user);
-            }
-
-            @Override
-            protected void openPublicPosts() {
-                SearchViewPager searchViewPager = SearchViewPager.this;
-                HashtagsSearchAdapter hashtagsSearchAdapter = searchViewPager.hashtagSearchAdapter;
-                DialogsSearchAdapter dialogsSearchAdapter = searchViewPager.dialogsSearchAdapter;
-                hashtagsSearchAdapter.setInitialData(dialogsSearchAdapter.publicPostsHashtag, dialogsSearchAdapter.publicPosts, dialogsSearchAdapter.publicPostsLastRate, dialogsSearchAdapter.publicPostsTotalCount);
-                SearchViewPager searchViewPager2 = SearchViewPager.this;
-                searchViewPager2.expandedPublicPosts = true;
-                searchViewPager2.hashtagSearchLayoutManager.scrollToPositionWithOffset(0, 0);
-                SearchViewPager.this.updateTabs();
-                ViewPagerFixed.TabsView tabsView = SearchViewPager.this.tabsView;
-                if (tabsView != null && tabsView.getCurrentTabId() != 1) {
-                    SearchViewPager.this.tabsView.scrollToTab(1, 1);
-                }
-                SearchViewPager searchViewPager3 = SearchViewPager.this;
-                searchViewPager3.hashtagSearchAdapter.search(searchViewPager3.lastSearchString);
-            }
-        };
+        this.dialogsSearchAdapter = new AnonymousClass1(context, dialogsActivity, i, i2, this.itemAnimator, dialogsActivity.getAllowGlobalSearch(), null, dialogsActivity, context);
         int i4 = 1;
         if (i2 == 15) {
             ArrayList dialogsArray = dialogsActivity.getDialogsArray(this.currentAccount, i2, i3, true);
@@ -721,7 +828,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 }
                 AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0, 0L);
             }
-            dialogsActivity.lambda$onBackPressed$335();
+            dialogsActivity.lambda$onBackPressed$336();
         } else {
             long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();

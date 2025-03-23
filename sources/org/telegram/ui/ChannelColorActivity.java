@@ -311,7 +311,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 } else if (i == 8) {
                     frameLayout = new HeaderCell(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 } else if (i == 9) {
-                    frameLayout2 = new PeerColorActivity.GiftCell(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
+                    frameLayout2 = new PeerColorActivity.GiftCell(ChannelColorActivity.this.getContext(), false, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 } else if (i == 10) {
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                     flickerLoadingView.setIsSingleCell(true);
@@ -1494,7 +1494,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             });
         }
         if (iArr[r2] == 0) {
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
             this.button.setLoading(r2);
             return;
         }
@@ -1570,7 +1570,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         int i2 = i + 1;
         iArr[0] = i2;
         if (i2 == iArr2[0]) {
-            lambda$onBackPressed$335();
+            lambda$onBackPressed$336();
             showBulletin();
             this.button.setLoading(false);
         }
@@ -1770,7 +1770,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$showUnsavedAlert$14(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
     }
 
     public void lambda$showUnsavedAlert$15(AlertDialog alertDialog, int i) {
@@ -1913,7 +1913,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 } else {
                     ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
                     if (channelColorActivity.currentLevel < channelColorActivity.minLevelRequired() || !ChannelColorActivity.this.hasUnsavedChanged()) {
-                        ChannelColorActivity.this.lambda$onBackPressed$335();
+                        ChannelColorActivity.this.lambda$onBackPressed$336();
                     } else {
                         ChannelColorActivity.this.showUnsavedAlert();
                     }
@@ -2048,7 +2048,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 if (iNavigationLayout == null || iNavigationLayout.getLastFragment() != this) {
                     removeSelfFromStack();
                 } else {
-                    lambda$onBackPressed$335();
+                    lambda$onBackPressed$336();
                 }
             }
         }

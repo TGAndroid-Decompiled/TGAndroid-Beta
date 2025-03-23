@@ -75,6 +75,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
     private final Runnable closeParentSheet;
     private final int currentAccount;
     private final long dialogId;
+    private final boolean forceNotUpgrade;
+    private final boolean forceUpgrade;
     private final TextView leftTextView;
     private final TextView leftTextView2;
     private final FrameLayout limitContainer;
@@ -85,6 +87,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
     private final GiftPremiumBottomSheet$GiftTier premiumTier;
     private final boolean self;
     private final long send_paid_messages_stars;
+    private int shakeDp;
     private final TextView soldTextView;
     private final TextView soldTextView2;
     private final TL_stars.StarGift starGift;
@@ -92,25 +95,27 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
     public boolean useStars;
     private final FrameLayout valueContainerView;
 
-    public SendGiftSheet(Context context, int i, TL_stars.StarGift starGift, long j, Runnable runnable) {
-        this(context, i, starGift, null, j, runnable);
+    public SendGiftSheet(Context context, int i, TL_stars.StarGift starGift, long j, Runnable runnable, boolean z, boolean z2) {
+        this(context, i, starGift, null, j, runnable, z, z2);
     }
 
-    private SendGiftSheet(Context context, final int i, final TL_stars.StarGift starGift, final GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, long j, Runnable runnable) {
+    private SendGiftSheet(Context context, final int i, final TL_stars.StarGift starGift, final GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, long j, Runnable runnable, final boolean z, final boolean z2) {
         super(context, null, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
-        String str;
+        ChatActionCell chatActionCell;
+        SizeNotifierFrameLayout sizeNotifierFrameLayout;
         LinearLayout linearLayout;
         this.upgrade = false;
         this.useStars = false;
+        this.shakeDp = -2;
         this.animationsLock = new AnimationNotificationsLocker();
         this.cachedStarSpan = new ColoredImageSpan[1];
-        boolean z = j == UserConfig.getInstance(i).getClientUserId();
-        this.self = z;
+        boolean z3 = j == UserConfig.getInstance(i).getClientUserId();
+        this.self = z3;
         setImageReceiverNumLevel(0, 4);
         fixNavigationBar();
         this.headerPaddingTop = AndroidUtilities.dp(4.0f);
         this.headerPaddingBottom = AndroidUtilities.dp(-10.0f);
-        if (z) {
+        if (z3) {
             this.anonymous = true;
         }
         this.currentAccount = i;
@@ -118,60 +123,66 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.starGift = starGift;
         this.premiumTier = giftPremiumBottomSheet$GiftTier;
         this.closeParentSheet = runnable;
+        this.forceUpgrade = z;
+        this.forceNotUpgrade = z2;
+        if (z) {
+            this.upgrade = true;
+        } else if (z2) {
+            this.upgrade = false;
+        }
         this.topPadding = 0.2f;
         if (j >= 0) {
-            str = UserObject.getForcedFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+            this.name = UserObject.getForcedFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
         } else {
             TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
-            str = chat == null ? "" : chat.title;
+            this.name = chat == null ? "" : chat.title;
         }
-        this.name = str;
-        ChatActionCell chatActionCell = new ChatActionCell(context, false, this.resourcesProvider);
-        this.actionCell = chatActionCell;
-        chatActionCell.setDelegate(new ChatActionCell.ChatActionCellDelegate() {
+        ChatActionCell chatActionCell2 = new ChatActionCell(context, false, this.resourcesProvider);
+        this.actionCell = chatActionCell2;
+        chatActionCell2.setDelegate(new ChatActionCell.ChatActionCellDelegate() {
             @Override
             public boolean canDrawOutboundsContent() {
                 return ChatActionCell.ChatActionCellDelegate.CC.$default$canDrawOutboundsContent(this);
             }
 
             @Override
-            public void didClickButton(ChatActionCell chatActionCell2) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$didClickButton(this, chatActionCell2);
+            public void didClickButton(ChatActionCell chatActionCell3) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didClickButton(this, chatActionCell3);
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell2) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$didClickImage(this, chatActionCell2);
+            public void didClickImage(ChatActionCell chatActionCell3) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didClickImage(this, chatActionCell3);
             }
 
             @Override
-            public boolean didLongPress(ChatActionCell chatActionCell2, float f, float f2) {
-                return ChatActionCell.ChatActionCellDelegate.CC.$default$didLongPress(this, chatActionCell2, f, f2);
+            public boolean didLongPress(ChatActionCell chatActionCell3, float f, float f2) {
+                return ChatActionCell.ChatActionCellDelegate.CC.$default$didLongPress(this, chatActionCell3, f, f2);
             }
 
             @Override
-            public void didOpenPremiumGift(ChatActionCell chatActionCell2, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str2, boolean z2) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGift(this, chatActionCell2, tL_premiumGiftOption, str2, z2);
+            public void didOpenPremiumGift(ChatActionCell chatActionCell3, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str, boolean z4) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGift(this, chatActionCell3, tL_premiumGiftOption, str, z4);
             }
 
             @Override
-            public void didOpenPremiumGiftChannel(ChatActionCell chatActionCell2, String str2, boolean z2) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGiftChannel(this, chatActionCell2, str2, z2);
+            public void didOpenPremiumGiftChannel(ChatActionCell chatActionCell3, String str, boolean z4) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGiftChannel(this, chatActionCell3, str, z4);
             }
 
             @Override
-            public void didPressReaction(ChatActionCell chatActionCell2, TLRPC.ReactionCount reactionCount, boolean z2, float f, float f2) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$didPressReaction(this, chatActionCell2, reactionCount, z2, f, f2);
+            public void didPressReaction(ChatActionCell chatActionCell3, TLRPC.ReactionCount reactionCount, boolean z4, float f, float f2) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didPressReaction(this, chatActionCell3, reactionCount, z4, f, f2);
             }
 
             @Override
-            public void didPressReplyMessage(ChatActionCell chatActionCell2, int i2) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$didPressReplyMessage(this, chatActionCell2, i2);
+            public void didPressReplyMessage(ChatActionCell chatActionCell3, int i2) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didPressReplyMessage(this, chatActionCell3, i2);
             }
 
             @Override
-            public void forceUpdate(ChatActionCell chatActionCell2, boolean z2) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$forceUpdate(this, chatActionCell2, z2);
+            public void forceUpdate(ChatActionCell chatActionCell3, boolean z4) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$forceUpdate(this, chatActionCell3, z4);
             }
 
             @Override
@@ -200,11 +211,11 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
 
             @Override
-            public void needShowEffectOverlay(ChatActionCell chatActionCell2, TLRPC.Document document, TLRPC.VideoSize videoSize) {
-                ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell2, document, videoSize);
+            public void needShowEffectOverlay(ChatActionCell chatActionCell3, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell3, document, videoSize);
             }
         });
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout2 = new SizeNotifierFrameLayout(context) {
             int maxHeight = -1;
 
             @Override
@@ -218,8 +229,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
 
             @Override
-            public void onLayout(boolean z2, int i2, int i3, int i4, int i5) {
-                super.onLayout(z2, i2, i3, i4, i5);
+            public void onLayout(boolean z4, int i2, int i3, int i4, int i5) {
+                super.onLayout(z4, i2, i3, i4, i5);
                 SendGiftSheet.this.chatLinearLayout.setTranslationY(((i5 - i3) - SendGiftSheet.this.chatLinearLayout.getMeasuredHeight()) / 2.0f);
                 SendGiftSheet.this.actionCell.setVisiblePart(SendGiftSheet.this.chatLinearLayout.getY() + SendGiftSheet.this.actionCell.getY(), getBackgroundSizeY());
             }
@@ -246,8 +257,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                 return false;
             }
         };
-        this.chatView = sizeNotifierFrameLayout;
-        sizeNotifierFrameLayout.setBackgroundImage(PreviewView.getBackgroundDrawable((Drawable) null, i, j, Theme.isCurrentThemeDark()), false);
+        this.chatView = sizeNotifierFrameLayout2;
+        sizeNotifierFrameLayout2.setBackgroundImage(PreviewView.getBackgroundDrawable((Drawable) null, i, j, Theme.isCurrentThemeDark()), false);
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.chatLinearLayout = linearLayout2;
         linearLayout2.setOrientation(1);
@@ -259,8 +270,12 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             tL_messageActionStarGift.convert_stars = starGift.convert_stars;
             tL_messageActionStarGift.forceIn = true;
             this.action = tL_messageActionStarGift;
+            chatActionCell = chatActionCell2;
+            sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
             linearLayout = linearLayout2;
         } else if (giftPremiumBottomSheet$GiftTier == null || giftPremiumBottomSheet$GiftTier.giftCodeOption == null) {
+            chatActionCell = chatActionCell2;
+            sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
             linearLayout = linearLayout2;
             if (giftPremiumBottomSheet$GiftTier == null || giftPremiumBottomSheet$GiftTier.giftOption == null) {
                 throw new RuntimeException("SendGiftSheet with no star gift and no premium tier");
@@ -290,11 +305,15 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             tL_messageActionGiftCode.amount = price2;
             if (giftPremiumBottomSheet$GiftTier.googlePlayProductDetails != null) {
                 double d2 = price2;
+                sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
                 linearLayout = linearLayout2;
+                chatActionCell = chatActionCell2;
                 double pow2 = Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_messageActionGiftCode.currency) - 6);
                 Double.isNaN(d2);
                 tL_messageActionGiftCode.amount = (long) (d2 * pow2);
             } else {
+                chatActionCell = chatActionCell2;
+                sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
                 linearLayout = linearLayout2;
             }
             tL_messageActionGiftCode.flags |= 16;
@@ -304,10 +323,10 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         TLRPC.MessageAction messageAction = this.action;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             TLRPC.TL_messageActionStarGift tL_messageActionStarGift2 = (TLRPC.TL_messageActionStarGift) messageAction;
-            boolean z2 = this.upgrade;
-            tL_messageActionStarGift2.can_upgrade = z2 || (z && starGift != null && starGift.can_upgrade);
-            tL_messageActionStarGift2.upgrade_stars = (!z && z2) ? starGift.upgrade_stars : 0L;
-            tL_messageActionStarGift2.convert_stars = z2 ? 0L : starGift.convert_stars;
+            boolean z4 = this.upgrade;
+            tL_messageActionStarGift2.can_upgrade = z4 || (z3 && starGift != null && starGift.can_upgrade);
+            tL_messageActionStarGift2.upgrade_stars = (!z3 && z4) ? starGift.upgrade_stars : 0L;
+            tL_messageActionStarGift2.convert_stars = z4 ? 0L : starGift.convert_stars;
         }
         TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
         tL_messageService.id = 1;
@@ -319,14 +338,14 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.send_paid_messages_stars = sendPaidMessagesStars;
         MessageObject messageObject = new MessageObject(i, tL_messageService, false, false);
         this.messageObject = messageObject;
-        chatActionCell.setMessageObject(messageObject, true);
-        int i2 = sendPaidMessagesStars > 0 ? 0 : 8;
+        ChatActionCell chatActionCell3 = chatActionCell;
+        chatActionCell3.setMessageObject(messageObject, true);
         LinearLayout linearLayout3 = linearLayout;
-        linearLayout3.addView(chatActionCell, LayoutHelper.createLinear(-1, -1, 119, 0, i2, 0, 8));
+        linearLayout3.addView(chatActionCell3, LayoutHelper.createLinear(-1, -1, 119, 0, sendPaidMessagesStars > 0 ? 0 : 8, 0, 8));
         sizeNotifierFrameLayout.addView(linearLayout3, LayoutHelper.createFrame(-1, -1, 119));
         EditEmojiTextCell editEmojiTextCell = new EditEmojiTextCell(context, (SizeNotifierFrameLayout) this.containerView, LocaleController.getString(starGift != null ? R.string.Gift2Message : R.string.Gift2MessageOptional), true, MessagesController.getInstance(i).stargiftsMessageLengthMax, 4, this.resourcesProvider) {
             @Override
-            protected void onFocusChanged(boolean z3) {
+            protected void onFocusChanged(boolean z5) {
             }
 
             @Override
@@ -366,13 +385,13 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         setEditTextEmoji(this.messageEdit.editTextEmoji);
         this.messageEdit.setShowLimitOnFocus(true);
         EditEmojiTextCell editEmojiTextCell2 = this.messageEdit;
-        int i3 = Theme.key_dialogBackground;
-        editEmojiTextCell2.setBackgroundColor(Theme.getColor(i3, this.resourcesProvider));
+        int i2 = Theme.key_dialogBackground;
+        editEmojiTextCell2.setBackgroundColor(Theme.getColor(i2, this.resourcesProvider));
         this.messageEdit.setDivider(false);
         this.messageEdit.hideKeyboardOnEnter();
         EditEmojiTextCell editEmojiTextCell3 = this.messageEdit;
-        int i4 = this.backgroundPaddingLeft;
-        editEmojiTextCell3.setPadding(i4, 0, i4, 0);
+        int i3 = this.backgroundPaddingLeft;
+        editEmojiTextCell3.setPadding(i3, 0, i3, 0);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
             protected float animateByScale(View view) {
@@ -386,15 +405,15 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         defaultItemAnimator.setDelayIncrement(40L);
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i5 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i5, 0, i5, AndroidUtilities.dp(68 + ((starGift == null || !starGift.limited) ? 0 : 40)));
+        int i4 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i4, 0, i4, AndroidUtilities.dp(68 + ((starGift == null || !starGift.limited) ? 0 : 40)));
         this.adapter.update(false);
         LinearLayout linearLayout4 = new LinearLayout(context);
         this.buttonContainer = linearLayout4;
         linearLayout4.setOrientation(1);
-        linearLayout4.setBackgroundColor(Theme.getColor(i3, this.resourcesProvider));
-        int i6 = this.backgroundPaddingLeft;
-        linearLayout4.setPadding(i6, 0, i6, 0);
+        linearLayout4.setBackgroundColor(Theme.getColor(i2, this.resourcesProvider));
+        int i5 = this.backgroundPaddingLeft;
+        linearLayout4.setPadding(i5, 0, i5, 0);
         this.containerView.addView(linearLayout4, LayoutHelper.createFrame(-1, -2, 87));
         View view = new View(context);
         view.setBackgroundColor(Theme.getColor(Theme.key_dialogGrayLine, this.resourcesProvider));
@@ -410,8 +429,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         textView.setTextSize(1, 13.0f);
         textView.setGravity(19);
         textView.setTypeface(AndroidUtilities.bold());
-        int i7 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i7, this.resourcesProvider));
+        int i6 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i6, this.resourcesProvider));
         if (starGift != null) {
             textView.setText(LocaleController.formatPluralStringComma("Gift2AvailabilityLeft", starGift.availability_remains));
         }
@@ -421,18 +440,18 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         textView2.setTextSize(1, 13.0f);
         textView2.setGravity(21);
         textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setTextColor(Theme.getColor(i7, this.resourcesProvider));
+        textView2.setTextColor(Theme.getColor(i6, this.resourcesProvider));
         if (starGift != null) {
             textView2.setText(LocaleController.formatPluralStringComma("Gift2AvailabilitySold", starGift.availability_total - starGift.availability_remains));
         }
         frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -1.0f, 5, 11.0f, 0.0f, 11.0f, 0.0f));
         View view2 = new View(context) {
             @Override
-            protected void onMeasure(int i8, int i9) {
+            protected void onMeasure(int i7, int i8) {
                 if (starGift == null) {
-                    super.onMeasure(i8, i9);
+                    super.onMeasure(i7, i8);
                 } else {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i8) * clamp), 1073741824), i9);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i7) * clamp), 1073741824), i8);
                 }
             }
         };
@@ -488,15 +507,15 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.layoutManager.scrollToPositionWithOffset(this.adapter.getItemCount(), AndroidUtilities.dp(200.0f));
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view3, int i8) {
-                SendGiftSheet.this.lambda$new$1(starGift, giftPremiumBottomSheet$GiftTier, view3, i8);
+            public final void onItemClick(View view3, int i7) {
+                SendGiftSheet.this.lambda$new$1(z, z2, starGift, giftPremiumBottomSheet$GiftTier, view3, i7);
             }
         });
         this.actionBar.setTitle(getTitle());
     }
 
     public SendGiftSheet(Context context, int i, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, long j, Runnable runnable) {
-        this(context, i, null, giftPremiumBottomSheet$GiftTier, j, runnable);
+        this(context, i, null, giftPremiumBottomSheet$GiftTier, j, runnable, false, false);
     }
 
     private void buyPremiumTier() {
@@ -548,19 +567,19 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$buyPremiumTier$13(TLObject tLObject, TLRPC.TL_inputStorePaymentGiftPremium tL_inputStorePaymentGiftPremium, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchasePremium tL_payments_canPurchasePremium) {
+    public void lambda$buyPremiumTier$13(TLObject tLObject, TLRPC.TL_inputStorePaymentGiftPremium tL_inputStorePaymentGiftPremium, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             BillingController.getInstance().launchBillingFlow(getBaseFragment().getParentActivity(), AccountInstance.getInstance(this.currentAccount), tL_inputStorePaymentGiftPremium, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(this.premiumTier.googlePlayProductDetails).build()));
         } else if (tL_error != null) {
-            AlertsCreator.processError(this.currentAccount, tL_error, getBaseFragment(), tL_payments_canPurchasePremium, new Object[0]);
+            AlertsCreator.processError(this.currentAccount, tL_error, getBaseFragment(), tL_payments_canPurchaseStore, new Object[0]);
         }
     }
 
-    public void lambda$buyPremiumTier$14(final TLRPC.TL_inputStorePaymentGiftPremium tL_inputStorePaymentGiftPremium, final TLRPC.TL_payments_canPurchasePremium tL_payments_canPurchasePremium, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$buyPremiumTier$14(final TLRPC.TL_inputStorePaymentGiftPremium tL_inputStorePaymentGiftPremium, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SendGiftSheet.this.lambda$buyPremiumTier$13(tLObject, tL_inputStorePaymentGiftPremium, tL_error, tL_payments_canPurchasePremium);
+                SendGiftSheet.this.lambda$buyPremiumTier$13(tLObject, tL_inputStorePaymentGiftPremium, tL_error, tL_payments_canPurchaseStore);
             }
         });
     }
@@ -679,8 +698,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$new$1(org.telegram.tgnet.tl.TL_stars.StarGift r5, org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier r6, android.view.View r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.SendGiftSheet.lambda$new$1(org.telegram.tgnet.tl.TL_stars$StarGift, org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier, android.view.View, int):void");
+    public void lambda$new$1(boolean r4, boolean r5, org.telegram.tgnet.tl.TL_stars.StarGift r6, org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier r7, android.view.View r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.SendGiftSheet.lambda$new$1(boolean, boolean, org.telegram.tgnet.tl.TL_stars$StarGift, org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier, android.view.View, int):void");
     }
 
     private void onGiftSuccess(boolean z) {
@@ -704,7 +723,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.lambda$onBackPressed$335();
+                        baseFragment.lambda$onBackPressed$336();
                     }
                     baseFragment.removeSelfFromStack();
                 }

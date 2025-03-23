@@ -5,7 +5,7 @@ import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import androidx.recyclerview.widget.RecyclerView$ItemAnimator$$ExternalSyntheticThrowCCEIfNotNull0;
+import com.google.android.exoplayer2.ExoPlayerImpl$$ExternalSyntheticThrowCCEIfNotNull0;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.messenger.BuildVars;
@@ -82,7 +82,7 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
             }
             Iterator<Listener> it = this.listeners.iterator();
             while (it.hasNext()) {
-                RecyclerView$ItemAnimator$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
+                ExoPlayerImpl$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
                 try {
                     throw null;
                     break;
@@ -105,7 +105,7 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
             }
             Iterator<Listener> it = this.listeners.iterator();
             while (it.hasNext()) {
-                RecyclerView$ItemAnimator$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
+                ExoPlayerImpl$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
                 try {
                     throw null;
                     break;

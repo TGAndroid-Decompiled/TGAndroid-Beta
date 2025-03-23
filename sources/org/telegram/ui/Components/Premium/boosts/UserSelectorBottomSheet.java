@@ -473,6 +473,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public void lambda$new$6(int i, View view, int i2, float f, float f2) {
+        boolean z = false;
         if (view instanceof TextCell) {
             openBirthdaySetup();
             return;
@@ -514,9 +515,16 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 return;
             }
             if (i == 0 || i == 2) {
+                if (UserObject.areGiftsDisabled(j)) {
+                    BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(j)))).show();
+                    return;
+                }
                 GiftSheet giftSheet = new GiftSheet(getContext(), this.currentAccount, j, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, 1)), new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
                 BirthdayController.BirthdayState birthdayState = this.birthdays;
-                giftSheet.setBirthday(birthdayState != null && birthdayState.contains(j)).show();
+                if (birthdayState != null && birthdayState.contains(j)) {
+                    z = true;
+                }
+                giftSheet.setBirthday(z).show();
                 return;
             }
             if (this.selectedIds.contains(Long.valueOf(j))) {
@@ -723,6 +731,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
 
     private void next() {
         int i;
+        boolean z = false;
         if (this.selectedIds.size() != 0) {
             if (!this.paymentOptions.isEmpty() || (i = this.type) == 0 || i == 2 || i == 4) {
                 ArrayList arrayList = new ArrayList();
@@ -748,9 +757,16 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 List filterGiftOptionsByBilling = BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, arrayList.size()));
                 if (arrayList.size() == 1) {
                     long j = ((TLRPC.User) arrayList.get(0)).id;
+                    if (UserObject.areGiftsDisabled(j)) {
+                        BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(j)))).show();
+                        return;
+                    }
                     GiftSheet giftSheet = new GiftSheet(getContext(), this.currentAccount, j, filterGiftOptionsByBilling, new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
                     BirthdayController.BirthdayState birthdayState = this.birthdays;
-                    giftSheet.setBirthday(birthdayState != null && birthdayState.contains(j)).show();
+                    if (birthdayState != null && birthdayState.contains(j)) {
+                        z = true;
+                    }
+                    giftSheet.setBirthday(z).show();
                 }
             }
         }

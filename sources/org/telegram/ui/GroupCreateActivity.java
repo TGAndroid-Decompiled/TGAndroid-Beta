@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
@@ -89,6 +90,9 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private boolean ignoreScrollEvent;
     private LongSparseArray ignoreUsers;
     private TLRPC.ChatFull info;
+    private final HashSet initialIds;
+    private boolean initialMiniapps;
+    private boolean initialPremium;
     private boolean isAlwaysShare;
     private boolean isNeverShare;
     private GroupCreateDividerItemDecoration itemDecoration;
@@ -104,6 +108,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private GroupCreateSpan selectedPremium;
     private PermanentLinkBottomSheet sharedLinkBottomSheet;
     private int shiftDp;
+    private boolean showDiscardConfirm;
     private SpansContainer spansContainer;
     private ArrayList toSelectIds;
     private boolean toSelectMiniapps;
@@ -634,6 +639,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.chatType = 0;
         this.selectedContacts = new LongSparseArray();
         this.allSpans = new ArrayList();
+        this.initialIds = new HashSet();
         this.shiftDp = -4;
         this.chatType = bundle.getInt("chatType", 0);
         this.forImport = bundle.getBoolean("forImport", false);
@@ -652,6 +658,10 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         }
     }
 
+    public boolean checkDiscard() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateActivity.checkDiscard():boolean");
+    }
+
     public void checkVisibleRows() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateActivity.checkVisibleRows():void");
     }
@@ -665,6 +675,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.listView.setFastScrollVisible(true);
         this.listView.setVerticalScrollBarEnabled(false);
         showItemsAnimated(0);
+    }
+
+    public void lambda$checkDiscard$7(AlertDialog alertDialog, int i) {
+        onDonePressed(true);
+    }
+
+    public void lambda$checkDiscard$8(AlertDialog alertDialog, int i) {
+        lambda$onBackPressed$336();
     }
 
     public void lambda$checkVisibleRows$6(View view) {
@@ -819,7 +837,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         onDonePressed(true);
     }
 
-    public void lambda$getThemeDescriptions$9() {
+    public void lambda$getThemeDescriptions$11() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
@@ -832,17 +850,17 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void lambda$onDonePressed$7(CheckBoxCell[] checkBoxCellArr, View view) {
-        checkBoxCellArr[0].setChecked(!r1.isChecked(), true);
-    }
-
-    public void lambda$onDonePressed$8(CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) {
+    public void lambda$onDonePressed$10(CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) {
         int i2 = 0;
         CheckBoxCell checkBoxCell = checkBoxCellArr[0];
         if (checkBoxCell != null && checkBoxCell.isChecked()) {
             i2 = 100;
         }
         onAddToGroupDone(i2);
+    }
+
+    public static void lambda$onDonePressed$9(CheckBoxCell[] checkBoxCellArr, View view) {
+        checkBoxCellArr[0].setChecked(!r1.isChecked(), true);
     }
 
     public void lambda$showPremiumBlockedToast$5() {
@@ -858,7 +876,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         if (contactsAddActivityDelegate != null) {
             contactsAddActivityDelegate.didSelectUsers(arrayList, i);
         }
-        lambda$onBackPressed$335();
+        lambda$onBackPressed$336();
     }
 
     public boolean onDonePressed(boolean z) {
@@ -919,7 +937,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        GroupCreateActivity.lambda$onDonePressed$7(checkBoxCellArr, view);
+                        GroupCreateActivity.lambda$onDonePressed$9(checkBoxCellArr, view);
                     }
                 });
                 builder.setView(linearLayout);
@@ -927,7 +945,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             builder.setPositiveButton(LocaleController.getString(R.string.Add), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    GroupCreateActivity.this.lambda$onDonePressed$8(checkBoxCellArr, alertDialog, i2);
+                    GroupCreateActivity.this.lambda$onDonePressed$10(checkBoxCellArr, alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -962,7 +980,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     if (groupCreateActivityDelegate != null) {
                         groupCreateActivityDelegate.didSelectUsers(this.selectedPremium != null, this.selectedMiniapps != null, arrayList2);
                     }
-                    lambda$onBackPressed$335();
+                    lambda$onBackPressed$336();
                 } else {
                     Bundle bundle2 = new Bundle();
                     int size = arrayList2.size();
@@ -1096,6 +1114,11 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
+    public boolean canBeginSlide() {
+        return checkDiscard();
+    }
+
+    @Override
     public android.view.View createView(final android.content.Context r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateActivity.createView(android.content.Context):android.view.View");
     }
@@ -1135,7 +1158,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                GroupCreateActivity.this.lambda$getThemeDescriptions$9();
+                GroupCreateActivity.this.lambda$getThemeDescriptions$11();
             }
 
             @Override
@@ -1203,6 +1226,11 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
+    public boolean onBackPressed() {
+        return checkDiscard();
+    }
+
+    @Override
     public void onClick(View view) {
         GroupCreateSpan groupCreateSpan = (GroupCreateSpan) view;
         if (groupCreateSpan.isDeleting()) {
@@ -1246,6 +1274,10 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     public void select(ArrayList arrayList, boolean z, boolean z2) {
         GroupCreateSpan groupCreateSpan;
         GroupCreateSpan groupCreateSpan2;
+        this.initialIds.clear();
+        this.initialIds.addAll(arrayList);
+        this.initialPremium = z;
+        this.initialMiniapps = z2;
         SpansContainer spansContainer = this.spansContainer;
         if (spansContainer == null) {
             this.toSelectIds = arrayList;
@@ -1300,6 +1332,10 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
     public void setInfo(TLRPC.ChatFull chatFull) {
         this.info = chatFull;
+    }
+
+    public void setShowDiscardConfirm(boolean z) {
+        this.showDiscardConfirm = z;
     }
 
     public void setTitle(String str) {

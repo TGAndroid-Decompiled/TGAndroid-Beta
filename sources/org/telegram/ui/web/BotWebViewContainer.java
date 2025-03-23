@@ -114,6 +114,7 @@ import org.telegram.ui.bots.BotBiometry;
 import org.telegram.ui.bots.BotDownloads;
 import org.telegram.ui.bots.BotLocation;
 import org.telegram.ui.bots.BotSensors;
+import org.telegram.ui.bots.BotStorage;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
 import org.telegram.ui.bots.WebViewRequestProps;
@@ -183,8 +184,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private boolean preserving;
     private Theme.ResourcesProvider resourcesProvider;
     private String secondaryButtonData;
+    private BotStorage secureStorage;
     private BotSensors sensors;
     private int shownDialogsCount;
+    private BotStorage storage;
     private final int tag;
     private float viewPortHeightOffset;
     private boolean wasFocusable;
@@ -2548,6 +2551,27 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return true;
     }
 
+    private void clearStorageKey(BotStorage botStorage, String str, String str2, String str3) {
+        if (botStorage == null || this.botUser == null) {
+            return;
+        }
+        try {
+            String string = new JSONObject(str).getString("req_id");
+            try {
+                botStorage.clear();
+                notifyEvent(str2, obj("req_id", string));
+            } catch (RuntimeException e) {
+                notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+            if (TextUtils.isEmpty("")) {
+                return;
+            }
+            notifyEvent(str3, obj("req_id", "", "error", "UNKNOWN_ERROR"));
+        }
+    }
+
     private void createBiometry() {
         if (this.botUser == null) {
             return;
@@ -2575,6 +2599,31 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public static Drawable getMainButtonRippleDrawable(int i) {
         return Theme.createSelectorWithBackgroundDrawable(i, getMainButtonRippleColor(i));
+    }
+
+    private void getStorageKey(BotStorage botStorage, String str, String str2, String str3) {
+        if (botStorage == null || this.botUser == null) {
+            return;
+        }
+        try {
+            JSONObject jSONObject = new JSONObject(str);
+            String string = jSONObject.getString("req_id");
+            try {
+                try {
+                    notifyEvent(str2, obj("req_id", string, "value", botStorage.getKey(jSONObject.optString("key"))));
+                } catch (RuntimeException e) {
+                    notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
+                }
+            } catch (Exception unused) {
+                notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+            if (TextUtils.isEmpty("")) {
+                return;
+            }
+            notifyEvent(str3, obj("req_id", "", "error", "UNKNOWN_ERROR"));
+        }
     }
 
     private boolean ignoreDialog(int i) {
@@ -3238,6 +3287,17 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
+    private static JSONObject obj(String str, Object obj, String str2, Object obj2) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put(str, obj);
+            jSONObject.put(str2, obj2);
+            return jSONObject;
+        } catch (Exception unused) {
+            return null;
+        }
+    }
+
     private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) {
         try {
             JSONObject jSONObject = new JSONObject();
@@ -3251,7 +3311,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r44, java.lang.String r45, java.lang.String r46) {
+    public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r46, java.lang.String r47, java.lang.String r48) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onEventReceived(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, java.lang.String, java.lang.String):void");
     }
 
@@ -3483,6 +3543,36 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         Activity activity = this.parentActivity;
         if (activity != null) {
             activity.requestPermissions(strArr, 4000);
+        }
+    }
+
+    private void setStorageKey(BotStorage botStorage, String str, String str2, String str3) {
+        if (botStorage == null || this.botUser == null) {
+            return;
+        }
+        try {
+            JSONObject jSONObject = new JSONObject(str);
+            String string = jSONObject.getString("req_id");
+            try {
+                try {
+                    try {
+                        botStorage.setKey(jSONObject.optString("key"), jSONObject.optString("value"));
+                        notifyEvent(str2, obj("req_id", string));
+                    } catch (RuntimeException e) {
+                        notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
+                    }
+                } catch (Exception unused) {
+                    notifyEvent(str3, obj("req_id", string, "error", "VALUE_INVALID"));
+                }
+            } catch (Exception unused2) {
+                notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+            if (TextUtils.isEmpty("")) {
+                return;
+            }
+            notifyEvent(str3, obj("req_id", "", "error", "UNKNOWN_ERROR"));
         }
     }
 
@@ -3731,6 +3821,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             updateKeyboardFocusable();
             if (this.biometry != null) {
                 this.biometry = null;
+            }
+            if (this.storage != null) {
+                this.storage = null;
+            }
+            if (this.secureStorage != null) {
+                this.secureStorage = null;
             }
             BotLocation botLocation = this.location;
             if (botLocation != null) {

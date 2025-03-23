@@ -37,6 +37,7 @@ import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -52,6 +53,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 
@@ -369,6 +371,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
         public Builder(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
             this.red = new boolean[3];
+            if (context == null && (context = AndroidUtilities.findActivity(LaunchActivity.instance)) == null) {
+                context = ApplicationLoader.applicationContext;
+            }
             this.alertDialog = createAlertDialog(context, i, resourcesProvider);
         }
 

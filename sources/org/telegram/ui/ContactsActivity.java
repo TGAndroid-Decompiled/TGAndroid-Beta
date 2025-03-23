@@ -333,7 +333,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
             }
             if (this.needFinishFragment) {
-                lambda$onBackPressed$335();
+                lambda$onBackPressed$336();
                 return;
             }
             return;
@@ -535,6 +535,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 if (str.equals("section")) {
                     return;
                 }
+                if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                    AccountFrozenAlert.show(this.currentAccount);
+                    return;
+                }
                 NewContactBottomSheet newContactBottomSheet = new NewContactBottomSheet(this, getContext());
                 newContactBottomSheet.setInitialPhoneNumber(str, true);
                 newContactBottomSheet.show();
@@ -561,6 +565,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
                 this.creatingChat = true;
                 SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), user);
+                return;
             }
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", user.id);
@@ -592,20 +597,78 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         if (z && sectionForPosition > 1) {
             sectionForPosition--;
         }
-        if (!(this.onlyUsers && i == 0) && sectionForPosition == 0) {
-            if (this.needPhonebook) {
-                if (positionInSectionForPosition != 0) {
+        if ((this.onlyUsers && i == 0) || sectionForPosition != 0) {
+            Object item2 = this.listViewAdapter.getItem(contactsAdapter.getSectionForPosition(i2), this.listViewAdapter.getPositionInSectionForPosition(i2));
+            if (!(item2 instanceof TLRPC.User)) {
+                if (item2 instanceof ContactsController.Contact) {
+                    ContactsController.Contact contact2 = (ContactsController.Contact) item2;
+                    final String str2 = !contact2.phones.isEmpty() ? contact2.phones.get(0) : null;
+                    if (str2 == null || getParentActivity() == null) {
+                        return;
+                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+                    builder.setMessage(LocaleController.getString(R.string.InviteUser));
+                    builder.setTitle(LocaleController.getString(R.string.AppName));
+                    builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
+                        @Override
+                        public final void onClick(AlertDialog alertDialog, int i3) {
+                            ContactsActivity.this.lambda$createView$1(str2, alertDialog, i3);
+                        }
+                    });
+                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+                    showDialog(builder.create());
                     return;
-                } else {
-                    groupInviteActivity = new InviteContactsActivity();
                 }
-            } else {
-                if (i == 0) {
-                    if (positionInSectionForPosition == 0) {
+                return;
+            }
+            user = (TLRPC.User) item2;
+            if (this.returnAsResult) {
+                LongSparseArray longSparseArray2 = this.ignoreUsers;
+                if (longSparseArray2 != null && longSparseArray2.indexOfKey(user.id) >= 0) {
+                    return;
+                }
+                didSelectResult(user, true, null);
+                return;
+            }
+            if (!this.createSecretChat) {
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", user.id);
+                if (getMessagesController().checkCanOpenChat(bundle2, this)) {
+                    chatActivity = new ChatActivity(bundle2);
+                    presentFragment(chatActivity, this.needFinishFragment);
+                    return;
+                }
+                return;
+            }
+            this.creatingChat = true;
+            SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), user);
+            return;
+        }
+        if (this.needPhonebook) {
+            if (positionInSectionForPosition != 0) {
+                return;
+            }
+            if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                AccountFrozenAlert.show(this.currentAccount);
+                return;
+            }
+            groupInviteActivity = new InviteContactsActivity();
+        } else {
+            if (i == 0) {
+                if (positionInSectionForPosition == 0) {
+                    if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                        AccountFrozenAlert.show(this.currentAccount);
+                        return;
+                    } else {
                         presentFragment(new GroupCreateActivity(new Bundle()), false);
                         return;
                     }
-                    if (positionInSectionForPosition == 1) {
+                }
+                if (positionInSectionForPosition == 1) {
+                    if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                        AccountFrozenAlert.show(this.currentAccount);
+                        return;
+                    } else {
                         AndroidUtilities.requestAdjustNothing(getParentActivity(), getClassGuid());
                         new NewContactBottomSheet(this, getContext()) {
                             @Override
@@ -616,88 +679,55 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         }.show();
                         return;
                     }
-                    if (positionInSectionForPosition == 2) {
-                        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                        if (BuildVars.DEBUG_VERSION || !globalMainSettings.getBoolean("channel_intro", false)) {
-                            presentFragment(new ActionIntroActivity(0));
-                            globalMainSettings.edit().putBoolean("channel_intro", true).commit();
-                            return;
-                        } else {
-                            Bundle bundle2 = new Bundle();
-                            bundle2.putInt("step", 0);
-                            presentFragment(new ChannelCreateActivity(bundle2));
-                            return;
-                        }
+                }
+                if (positionInSectionForPosition == 2) {
+                    if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                        AccountFrozenAlert.show(this.currentAccount);
+                        return;
                     }
-                    return;
-                }
-                if (positionInSectionForPosition != 0) {
-                    return;
-                }
-                long j = this.chatId;
-                if (j == 0) {
-                    j = this.channelId;
-                }
-                groupInviteActivity = new GroupInviteActivity(j);
-            }
-            presentFragment(groupInviteActivity);
-            return;
-        }
-        Object item2 = this.listViewAdapter.getItem(contactsAdapter.getSectionForPosition(i2), this.listViewAdapter.getPositionInSectionForPosition(i2));
-        if (!(item2 instanceof TLRPC.User)) {
-            if (item2 instanceof ContactsController.Contact) {
-                ContactsController.Contact contact2 = (ContactsController.Contact) item2;
-                final String str2 = !contact2.phones.isEmpty() ? contact2.phones.get(0) : null;
-                if (str2 == null || getParentActivity() == null) {
-                    return;
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setMessage(LocaleController.getString(R.string.InviteUser));
-                builder.setTitle(LocaleController.getString(R.string.AppName));
-                builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) {
-                        ContactsActivity.this.lambda$createView$1(str2, alertDialog, i3);
+                    SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                    if (BuildVars.DEBUG_VERSION || !globalMainSettings.getBoolean("channel_intro", false)) {
+                        presentFragment(new ActionIntroActivity(0));
+                        globalMainSettings.edit().putBoolean("channel_intro", true).commit();
+                        return;
+                    } else {
+                        Bundle bundle3 = new Bundle();
+                        bundle3.putInt("step", 0);
+                        presentFragment(new ChannelCreateActivity(bundle3));
+                        return;
                     }
-                });
-                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                showDialog(builder.create());
+                }
                 return;
             }
-            return;
-        }
-        user = (TLRPC.User) item2;
-        if (this.returnAsResult) {
-            LongSparseArray longSparseArray2 = this.ignoreUsers;
-            if (longSparseArray2 != null && longSparseArray2.indexOfKey(user.id) >= 0) {
+            if (positionInSectionForPosition != 0) {
                 return;
             }
-            didSelectResult(user, true, null);
-            return;
-        }
-        if (!this.createSecretChat) {
-            Bundle bundle3 = new Bundle();
-            bundle3.putLong("user_id", user.id);
-            if (getMessagesController().checkCanOpenChat(bundle3, this)) {
-                chatActivity = new ChatActivity(bundle3);
-                presentFragment(chatActivity, this.needFinishFragment);
+            if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+                AccountFrozenAlert.show(this.currentAccount);
                 return;
             }
-            return;
+            long j = this.chatId;
+            if (j == 0) {
+                j = this.channelId;
+            }
+            groupInviteActivity = new GroupInviteActivity(j);
         }
-        this.creatingChat = true;
-        SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), user);
+        presentFragment(groupInviteActivity);
     }
 
     public void lambda$createView$3(View view) {
         AndroidUtilities.requestAdjustNothing(getParentActivity(), getClassGuid());
-        new NewContactBottomSheet(this, getContext()) {
-            @Override
-            public void dismissInternal() {
-                super.dismissInternal();
-                AndroidUtilities.requestAdjustResize(ContactsActivity.this.getParentActivity(), this.classGuid);
-            }
-        }.show();
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
+        } else {
+            new NewContactBottomSheet(this, getContext()) {
+                @Override
+                public void dismissInternal() {
+                    super.dismissInternal();
+                    AndroidUtilities.requestAdjustResize(ContactsActivity.this.getParentActivity(), this.classGuid);
+                }
+            }.show();
+        }
     }
 
     public void lambda$didSelectResult$6(TLRPC.User user, String str, AlertDialog alertDialog, int i) {
@@ -1120,7 +1150,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         ContactsActivity.this.hideActionMode();
                         return;
                     } else {
-                        ContactsActivity.this.lambda$onBackPressed$335();
+                        ContactsActivity.this.lambda$onBackPressed$336();
                         return;
                     }
                 }
