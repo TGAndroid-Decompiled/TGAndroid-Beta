@@ -5,5 +5,5 @@ import kotlin.coroutines.Continuation;
 public interface ReceiveChannel {
     Object receive(Continuation continuation);
 
-    Object mo247tryReceivePtdJZtk();
+    Object mo248tryReceivePtdJZtk();
 }

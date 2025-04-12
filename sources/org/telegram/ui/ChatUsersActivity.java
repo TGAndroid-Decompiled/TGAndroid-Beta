@@ -72,7 +72,6 @@ import org.telegram.ui.Components.SlideChooseView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.GroupCreateActivity;
-import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class ChatUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int addNew2Row;
@@ -502,7 +501,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         public static CharSequence lambda$onBindViewHolder$3(Integer num, Integer num2) {
             if (num.intValue() == 0) {
-                return StarsIntroActivity.replaceStars(LocaleController.formatPluralStringComma("Stars", num2.intValue()));
+                return LocaleController.formatPluralStringComma("Stars", num2.intValue());
             }
             return "" + num2;
         }

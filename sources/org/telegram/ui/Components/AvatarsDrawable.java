@@ -65,7 +65,7 @@ public class AvatarsDrawable {
         private long lastUpdateTime;
         private int moveFromIndex;
         private TLObject object;
-        TLRPC.TL_groupCallParticipant participant;
+        TLRPC.GroupCallParticipant participant;
         private GroupCallUserCell.AvatarWavesDrawable wavesDrawable;
     }
 
@@ -252,6 +252,10 @@ public class AvatarsDrawable {
         return AndroidUtilities.dp((i2 == 4 || i2 == 10) ? 32.0f : 24.0f);
     }
 
+    public float getUsedWidth() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.getUsedWidth():float");
+    }
+
     public void onAttachedToWindow() {
         if (this.attached) {
             return;
@@ -277,7 +281,7 @@ public class AvatarsDrawable {
         }
     }
 
-    public void onDraw(android.graphics.Canvas r38) {
+    public void onDraw(android.graphics.Canvas r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.onDraw(android.graphics.Canvas):void");
     }
 
@@ -340,10 +344,10 @@ public class AvatarsDrawable {
         } else {
             drawingState2.lastSpeakTime = -1L;
             this.animatingStates[i].object = tLObject;
-            if (tLObject instanceof TLRPC.TL_groupCallParticipant) {
-                TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) tLObject;
-                this.animatingStates[i].participant = tL_groupCallParticipant;
-                long peerId = MessageObject.getPeerId(tL_groupCallParticipant.peer);
+            if (tLObject instanceof TLRPC.GroupCallParticipant) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) tLObject;
+                this.animatingStates[i].participant = groupCallParticipant;
+                long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
                 if (DialogObject.isUserDialog(peerId)) {
                     user = MessagesController.getInstance(i2).getUser(Long.valueOf(peerId));
                     this.animatingStates[i].avatarDrawable.setInfo(i2, user);
@@ -361,13 +365,13 @@ public class AvatarsDrawable {
                     this.animatingStates[i].id = peerId;
                 } else if (this.isInCall) {
                     drawingState = this.animatingStates[i];
-                    j = tL_groupCallParticipant.lastActiveDate;
+                    j = groupCallParticipant.lastActiveDate;
                     drawingState.lastSpeakTime = j;
                     this.animatingStates[i].id = peerId;
                 } else {
                     drawingState = this.animatingStates[i];
                 }
-                j = tL_groupCallParticipant.active_date;
+                j = groupCallParticipant.active_date;
                 drawingState.lastSpeakTime = j;
                 this.animatingStates[i].id = peerId;
             } else if (tLObject instanceof TLRPC.User) {

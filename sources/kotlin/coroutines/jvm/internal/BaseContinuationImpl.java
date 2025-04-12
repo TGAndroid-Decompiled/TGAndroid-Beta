@@ -61,12 +61,12 @@ public abstract class BaseContinuationImpl implements Continuation, CoroutineSta
                 coroutine_suspended = IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED();
             } catch (Throwable th) {
                 Result.Companion companion = Result.Companion;
-                obj = Result.m209constructorimpl(ResultKt.createFailure(th));
+                obj = Result.m210constructorimpl(ResultKt.createFailure(th));
             }
             if (invokeSuspend == coroutine_suspended) {
                 return;
             }
-            obj = Result.m209constructorimpl(invokeSuspend);
+            obj = Result.m210constructorimpl(invokeSuspend);
             baseContinuationImpl.releaseIntercepted();
             if (!(continuation2 instanceof BaseContinuationImpl)) {
                 continuation2.resumeWith(obj);

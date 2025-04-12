@@ -141,6 +141,10 @@ public class CheckBoxBase {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
     }
 
+    public boolean getDrawUnchecked() {
+        return this.drawUnchecked;
+    }
+
     public float getProgress() {
         return this.progress;
     }

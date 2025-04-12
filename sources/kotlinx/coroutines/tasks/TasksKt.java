@@ -43,7 +43,7 @@ public abstract class TasksKt {
                 if (exception2 != null) {
                     CancellableContinuation cancellableContinuation = CancellableContinuation.this;
                     Result.Companion companion = Result.Companion;
-                    cancellableContinuation.resumeWith(Result.m209constructorimpl(ResultKt.createFailure(exception2)));
+                    cancellableContinuation.resumeWith(Result.m210constructorimpl(ResultKt.createFailure(exception2)));
                 } else {
                     if (task2.isCanceled()) {
                         CancellableContinuation.DefaultImpls.cancel$default(CancellableContinuation.this, null, 1, null);
@@ -51,7 +51,7 @@ public abstract class TasksKt {
                     }
                     CancellableContinuation cancellableContinuation2 = CancellableContinuation.this;
                     Result.Companion companion2 = Result.Companion;
-                    cancellableContinuation2.resumeWith(Result.m209constructorimpl(task2.getResult()));
+                    cancellableContinuation2.resumeWith(Result.m210constructorimpl(task2.getResult()));
                 }
             }
         });

@@ -201,6 +201,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private LongSparseArray clearingHistoryDialogs;
     public boolean collectDeviceStats;
     public final android.util.LongSparseArray<CommonChatsList> commonChats;
+    public int conferenceCallSizeLimit;
     private TL_account.contentSettings contentSettings;
     private ArrayList<Utilities.Callback<TL_account.contentSettings>> contentSettingsCallbacks;
     private long contentSettingsLoadedTime;
@@ -2632,6 +2633,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.starsPaidMessagesAvailable = this.mainPreferences.getBoolean("starsPaidMessagesAvailable", true);
         this.freezeSinceDate = this.mainPreferences.getLong("freezeSinceDate", 0L);
         this.freezeUntilDate = this.mainPreferences.getLong("freezeUntilDate", 0L);
+        this.conferenceCallSizeLimit = this.mainPreferences.getInt("conferenceCallSizeLimit", z ? 5 : 100);
         this.freezeAppealUrl = this.mainPreferences.getString("freezeAppealUrl", "t.me/spambot");
         this.enableGiftsInProfile = this.mainPreferences.getBoolean("enableGiftsInProfile", true);
         this.storiesPosting = this.mainPreferences.getString("storiesPosting", "enabled");
@@ -3247,6 +3249,48 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_messages_peerDialogs.dialogs.remove(tL_dialogFolder);
             }
         }
+    }
+
+    public static <T extends TLRPC.Update> ArrayList<T> findUpdates(TLRPC.Updates updates, Class<T> cls) {
+        ArrayList<T> arrayList = new ArrayList<>();
+        if (updates == null) {
+            return arrayList;
+        }
+        if (cls.isInstance(updates.update)) {
+            arrayList.add(cls.cast(updates.update));
+        }
+        if (updates.updates != null) {
+            for (int i = 0; i < updates.updates.size(); i++) {
+                TLRPC.Update update = updates.updates.get(i);
+                if (cls.isInstance(update)) {
+                    arrayList.add(cls.cast(update));
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    public static <T extends TLRPC.Update> ArrayList<T> findUpdatesAndRemove(TLRPC.Updates updates, Class<T> cls) {
+        ArrayList<T> arrayList = new ArrayList<>();
+        if (updates == null) {
+            return arrayList;
+        }
+        if (cls.isInstance(updates.update)) {
+            TLRPC.Update update = updates.update;
+            updates.update = null;
+            arrayList.add(cls.cast(update));
+        }
+        if (updates.updates != null) {
+            int i = 0;
+            while (i < updates.updates.size()) {
+                if (cls.isInstance(updates.updates.get(i))) {
+                    arrayList.add(cls.cast(updates.updates.remove(i)));
+                    i--;
+                }
+                i++;
+            }
+        }
+        return arrayList;
     }
 
     private void getChannelDifference(long j) {
@@ -9608,7 +9652,7 @@ public class MessagesController extends BaseController implements NotificationCe
             LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(lastFragment, lastFragment.getParentActivity(), 11, this.currentAccount, null);
             ArrayList arrayList = new ArrayList();
             arrayList.add(user);
-            limitReachedBottomSheet.setRestrictedUsers(chat, arrayList, null, null);
+            limitReachedBottomSheet.setRestrictedUsers(chat, arrayList, null, null, null);
             limitReachedBottomSheet.show();
         }
         errorDelegate.run(tL_error);
@@ -13469,12 +13513,12 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public ChatObject.Call getGroupCall(final long j, boolean z, final Runnable runnable) {
-        TLRPC.TL_inputGroupCall tL_inputGroupCall;
+        TLRPC.InputGroupCall inputGroupCall;
         TLRPC.ChatFull chatFull = getChatFull(j);
-        if (chatFull == null || (tL_inputGroupCall = chatFull.call) == null) {
+        if (chatFull == null || (inputGroupCall = chatFull.call) == null) {
             return null;
         }
-        ChatObject.Call call = (ChatObject.Call) this.groupCalls.get(tL_inputGroupCall.id);
+        ChatObject.Call call = (ChatObject.Call) this.groupCalls.get(inputGroupCall.id);
         if (call == null && z && !this.loadingGroupCalls.contains(Long.valueOf(j))) {
             this.loadingGroupCalls.add(Long.valueOf(j));
             if (chatFull.call != null) {

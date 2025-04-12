@@ -6,15 +6,15 @@ import kotlin.ranges.RangesKt___RangesKt;
 
 public abstract class DurationKt {
     public static final long durationOf(long j, int i) {
-        return Duration.m221constructorimpl((j << 1) + i);
+        return Duration.m222constructorimpl((j << 1) + i);
     }
 
     public static final long durationOfMillis(long j) {
-        return Duration.m221constructorimpl((j << 1) + 1);
+        return Duration.m222constructorimpl((j << 1) + 1);
     }
 
     private static final long durationOfNanos(long j) {
-        return Duration.m221constructorimpl(j << 1);
+        return Duration.m222constructorimpl(j << 1);
     }
 
     public static final long millisToNanos(long j) {

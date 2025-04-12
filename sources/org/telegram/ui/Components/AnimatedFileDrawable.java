@@ -28,11 +28,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 
 public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
-    private static int A;
     private final int MAX_TRIES;
     private boolean PRERENDER_FRAME;
     private final boolean USE_BITMAP_SHADER;
-    private int a;
     private RectF actualDrawRect;
     private boolean applyTransformation;
     private Bitmap backgroundBitmap;

@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Build;
 import android.view.TextureView;
 import android.view.View;
@@ -144,6 +145,28 @@ public class VoIPTextureView extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
+        if (AndroidUtilities.makingGlobalBlurBitmap) {
+            if (this.blurRenderer != null) {
+                canvas.save();
+                canvas.translate(this.blurRenderer.getX(), this.blurRenderer.getY());
+                Bitmap bitmap = this.blurRenderer.getBitmap();
+                if (bitmap != null) {
+                    canvas.scale(this.blurRenderer.getWidth() / bitmap.getWidth(), this.blurRenderer.getHeight() / bitmap.getHeight());
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+                }
+                canvas.restore();
+            }
+            if (this.renderer != null) {
+                canvas.save();
+                canvas.translate(this.renderer.getX(), this.renderer.getY());
+                Bitmap bitmap2 = this.renderer.getBitmap();
+                if (bitmap2 != null) {
+                    canvas.scale(this.renderer.getWidth() / bitmap2.getWidth(), this.renderer.getHeight() / bitmap2.getHeight());
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, (Paint) null);
+                }
+                canvas.restore();
+            }
+        }
         if (this.imageView.getVisibility() == 0 && this.renderer.isFirstFrameRendered()) {
             float f = this.stubVisibleProgress - 0.10666667f;
             this.stubVisibleProgress = f;
@@ -155,6 +178,14 @@ public class VoIPTextureView extends FrameLayout {
                 this.imageView.setAlpha(this.stubVisibleProgress);
             }
         }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j) {
+        if (AndroidUtilities.makingGlobalBlurBitmap && (view == this.renderer || view == this.blurRenderer)) {
+            return false;
+        }
+        return super.drawChild(canvas, view, j);
     }
 
     public boolean isInAnimation() {

@@ -99,7 +99,6 @@ import org.telegram.ui.Stories.recorder.FlashViews;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class InstantCameraView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    private static int A;
     private static final int[] ALLOW_BIG_CAMERA_WHITELIST = {285904780, -1394191079};
     public boolean WRITE_TO_FILE_IN_BACKGROUND;
     private boolean allowSendingWhileRecording;
@@ -1226,6 +1225,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         private long lastCommitedFrameTime;
         private long lastTimestamp;
         private MP4Builder mediaMuxer;
+        private InstantCameraVideoEncoderOverlayHelper overlayHelper;
         private volatile boolean pauseRecorder;
         private int positionHandle;
         private int prependHeaderSize;
@@ -1607,6 +1607,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.eglContext = EGL14.EGL_NO_CONTEXT;
             this.eglConfig = null;
             this.handler.exit();
+            InstantCameraVideoEncoderOverlayHelper instantCameraVideoEncoderOverlayHelper = this.overlayHelper;
+            if (instantCameraVideoEncoderOverlayHelper != null) {
+                instantCameraVideoEncoderOverlayHelper.destroy();
+                this.overlayHelper = null;
+            }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1853,8 +1858,6 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void prepareEncoder(final boolean z) {
-            String createFragmentShader;
-            String str;
             setBluetoothScoOn(true);
             try {
                 int minBufferSize = AudioRecord.getMinBufferSize(48000, 16, 2);
@@ -1986,16 +1989,14 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     throw new RuntimeException("eglMakeCurrent failed");
                 }
                 GLES20.glBlendFunc(770, 771);
-                if (InstantCameraView.this.useCamera2) {
-                    str = AndroidUtilities.readRes(R.raw.instant_lanczos_vert);
-                    createFragmentShader = AndroidUtilities.readRes(R.raw.instant_lanczos_frag_oes);
-                } else {
-                    InstantCameraView instantCameraView = InstantCameraView.this;
-                    createFragmentShader = instantCameraView.createFragmentShader(instantCameraView.previewSize[0]);
-                    str = "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n   gl_Position = uMVPMatrix * aPosition;\n   vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n";
+                InstantCameraVideoEncoderOverlayHelper instantCameraVideoEncoderOverlayHelper = this.overlayHelper;
+                if (instantCameraVideoEncoderOverlayHelper != null) {
+                    instantCameraVideoEncoderOverlayHelper.destroy();
+                    this.overlayHelper = null;
                 }
-                int loadShader = InstantCameraView.this.loadShader(35633, str);
-                int loadShader2 = InstantCameraView.this.loadShader(35632, createFragmentShader);
+                this.overlayHelper = new InstantCameraVideoEncoderOverlayHelper(this.videoWidth, this.videoHeight);
+                int loadShader = InstantCameraView.this.loadShader(35633, "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n   gl_Position = uMVPMatrix * aPosition;\n   vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n");
+                int loadShader2 = InstantCameraView.this.loadShader(35632, "#extension GL_OES_EGL_image_external : require\nprecision lowp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n");
                 if (loadShader == 0 || loadShader2 == 0) {
                     return;
                 }
@@ -2165,6 +2166,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 dispatchQueue.recycle();
                 this.fileWriteQueue = null;
             }
+            InstantCameraVideoEncoderOverlayHelper instantCameraVideoEncoderOverlayHelper = this.overlayHelper;
+            if (instantCameraVideoEncoderOverlayHelper != null) {
+                instantCameraVideoEncoderOverlayHelper.destroy();
+                this.overlayHelper = null;
+            }
             try {
                 android.opengl.EGLDisplay eGLDisplay = this.eglDisplay;
                 if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
@@ -2232,7 +2238,6 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void startRecording(File file, android.opengl.EGLContext eGLContext) {
-            InstantCameraView.access$5608();
             if (this.started && this.handler != null && this.handler.getLooper() != null && this.handler.getLooper().getThread() != null && this.handler.getLooper().getThread().isAlive()) {
                 this.sharedEglContext = eGLContext;
                 this.handler.sendMessage(this.handler.obtainMessage(0, 1, 0));
@@ -2491,12 +2496,6 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         return f2;
     }
 
-    static int access$5608() {
-        int i = A;
-        A = i + 1;
-        return i;
-    }
-
     private boolean allowBigSizeCamera() {
         if (SharedConfig.bigCameraForRound || SharedConfig.deviceIsAboveAverage() || Math.max(SharedConfig.getDevicePerformanceClass(), SharedConfig.getLegacyDevicePerformanceClass()) == 2) {
             return true;
@@ -2575,10 +2574,6 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 InstantCameraView.this.lambda$createCamera$7(i, surfaceTexture);
             }
         });
-    }
-
-    public String createFragmentShader(org.telegram.messenger.camera.Size size) {
-        return (SharedConfig.deviceIsLow() || !allowBigSizeCamera()) ? "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   vec3 color = mix(textColor.rgb, vec3(1, 1, 1), t);\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n" : (size == null || ((float) Math.max(size.getHeight(), size.getWidth())) * 0.7f >= ((float) MessagesController.getInstance(this.currentAccount).roundVideoSize)) ? "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform vec2 resolution;\nuniform vec2 preview;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   if (t == 0.0) {\n       vec2 c_textureSize = preview;\n       vec2 c_onePixel = (1.0 / c_textureSize);\n       vec2 uv = vTextureCoord;\n       vec2 pixel = uv * c_textureSize + 0.5;\n       vec2 frac = fract(pixel);\n       pixel = (floor(pixel) / c_textureSize) - vec2(c_onePixel);\n       vec4 tl = texture2D(sTexture, pixel + vec2(0.0         , 0.0));\n       vec4 tr = texture2D(sTexture, pixel + vec2(c_onePixel.x, 0.0));\n       vec4 bl = texture2D(sTexture, pixel + vec2(0.0         , c_onePixel.y));\n       vec4 br = texture2D(sTexture, pixel + vec2(c_onePixel.x, c_onePixel.y));\n       vec4 x1 = mix(tl, tr, frac.x);\n       vec4 x2 = mix(bl, br, frac.x);\n       gl_FragColor = mix(x1, x2, frac.y) * alpha;   } else {\n       gl_FragColor = vec4(1, 1, 1, alpha);\n   }\n}\n" : "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   vec3 color = mix(textColor.rgb, vec3(1, 1, 1), t);\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n";
     }
 
     private boolean initCamera() {

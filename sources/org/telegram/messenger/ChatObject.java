@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.SparseArray;
@@ -72,6 +73,7 @@ public class ChatObject {
         public long chatId;
         private Runnable checkQueueRunnable;
         public AccountInstance currentAccount;
+        public boolean isConference;
         private long lastGroupCallReloadTime;
         private int lastLoadGuid;
         public boolean loadedRtmpStreamParticipant;
@@ -79,6 +81,7 @@ public class ChatObject {
         public boolean loadingMembers;
         public boolean membersLoadEndReached;
         private String nextLoadOffset;
+        public long participantsReceivedTime;
         public boolean recording;
         public boolean reloadingMembers;
         public VideoParticipant rtmpStreamParticipant;
@@ -88,16 +91,20 @@ public class ChatObject {
         private long updatesStartWaitTime;
         public VideoParticipant videoNotAvailableParticipant;
         public LongSparseArray participants = new LongSparseArray();
-        public final ArrayList<TLRPC.TL_groupCallParticipant> sortedParticipants = new ArrayList<>();
+        public final ArrayList<TLRPC.GroupCallParticipant> sortedParticipants = new ArrayList<>();
         public final ArrayList<VideoParticipant> visibleVideoParticipants = new ArrayList<>();
-        public final ArrayList<TLRPC.TL_groupCallParticipant> visibleParticipants = new ArrayList<>();
+        public final ArrayList<TLRPC.GroupCallParticipant> visibleParticipants = new ArrayList<>();
         public final HashMap<String, Bitmap> thumbs = new HashMap<>();
         private final HashMap<String, VideoParticipant> videoParticipantsCache = new HashMap<>();
         public ArrayList<Long> invitedUsers = new ArrayList<>();
+        public HashMap<Long, InvitedUser> invitedUsersMessageIds = new HashMap<>();
+        public ArrayList<Long> shadyLeftParticipants = new ArrayList<>();
+        public ArrayList<Long> shadyJoinParticipants = new ArrayList<>();
         public HashSet<Long> invitedUsersMap = new HashSet<>();
-        public SparseArray<TLRPC.TL_groupCallParticipant> participantsBySources = new SparseArray<>();
-        public SparseArray<TLRPC.TL_groupCallParticipant> participantsByVideoSources = new SparseArray<>();
-        public SparseArray<TLRPC.TL_groupCallParticipant> participantsByPresentationSources = new SparseArray<>();
+        public ArrayList<Long> kickedUsers = new ArrayList<>();
+        public SparseArray<TLRPC.GroupCallParticipant> participantsBySources = new SparseArray<>();
+        public SparseArray<TLRPC.GroupCallParticipant> participantsByVideoSources = new SparseArray<>();
+        public SparseArray<TLRPC.GroupCallParticipant> participantsByPresentationSources = new SparseArray<>();
         private Runnable typingUpdateRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -122,7 +129,7 @@ public class ChatObject {
                 boolean z = false;
                 while (i < Call.this.currentSpeakingPeers.size()) {
                     long keyAt = Call.this.currentSpeakingPeers.keyAt(i);
-                    if (uptimeMillis - ((TLRPC.TL_groupCallParticipant) Call.this.currentSpeakingPeers.get(keyAt)).lastSpeakTime >= 500) {
+                    if (uptimeMillis - ((TLRPC.GroupCallParticipant) Call.this.currentSpeakingPeers.get(keyAt)).lastSpeakTime >= 500) {
                         Call.this.currentSpeakingPeers.remove(keyAt);
                         MessagesController messagesController = MessagesController.getInstance(Call.this.currentAccount.getCurrentAccount());
                         if (keyAt > 0) {
@@ -187,7 +194,7 @@ public class ChatObject {
                 boolean z = false;
                 while (i < Call.this.currentSpeakingPeers.size()) {
                     long keyAt = Call.this.currentSpeakingPeers.keyAt(i);
-                    if (uptimeMillis - ((TLRPC.TL_groupCallParticipant) Call.this.currentSpeakingPeers.get(keyAt)).lastSpeakTime >= 500) {
+                    if (uptimeMillis - ((TLRPC.GroupCallParticipant) Call.this.currentSpeakingPeers.get(keyAt)).lastSpeakTime >= 500) {
                         Call.this.currentSpeakingPeers.remove(keyAt);
                         MessagesController messagesController = MessagesController.getInstance(Call.this.currentAccount.getCurrentAccount());
                         if (keyAt > 0) {
@@ -239,6 +246,24 @@ public class ChatObject {
             }
         }
 
+        public static class InvitedUser {
+            public boolean calling;
+            public int msg_id;
+            public long startTime;
+
+            public static InvitedUser make(int i) {
+                InvitedUser invitedUser = new InvitedUser();
+                invitedUser.msg_id = i;
+                invitedUser.calling = true;
+                invitedUser.startTime = System.currentTimeMillis();
+                return invitedUser;
+            }
+
+            public boolean isCalling() {
+                return this.calling && (System.currentTimeMillis() - this.startTime) / 1000 <= ((long) MessagesController.getInstance(UserConfig.selectedAccount).callRingTimeout);
+            }
+        }
+
         public interface OnParticipantsLoad {
             void onLoad(ArrayList<Long> arrayList);
         }
@@ -257,13 +282,13 @@ public class ChatObject {
             int size = this.sortedParticipants.size();
             int i = Integer.MAX_VALUE;
             for (int i2 = 0; i2 < size; i2++) {
-                TLRPC.TL_groupCallParticipant tL_groupCallParticipant = this.sortedParticipants.get(i2);
-                int i3 = currentTime - tL_groupCallParticipant.active_date;
+                TLRPC.GroupCallParticipant groupCallParticipant = this.sortedParticipants.get(i2);
+                int i3 = currentTime - groupCallParticipant.active_date;
                 if (i3 < 5) {
                     this.speakingMembersCount++;
                     i = Math.min(i3, i);
                 }
-                if (Math.max(tL_groupCallParticipant.date, tL_groupCallParticipant.active_date) <= currentTime - 5) {
+                if (Math.max(groupCallParticipant.date, groupCallParticipant.active_date) <= currentTime - 5) {
                     break;
                 }
             }
@@ -393,16 +418,16 @@ public class ChatObject {
                     this.currentAccount.getMessagesController().putChats(groupparticipants.chats, false);
                     int size = groupparticipants.participants.size();
                     for (int i2 = 0; i2 < size; i2++) {
-                        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = groupparticipants.participants.get(i2);
-                        long peerId = MessageObject.getPeerId(tL_groupCallParticipant.peer);
-                        TLRPC.TL_groupCallParticipant tL_groupCallParticipant2 = (TLRPC.TL_groupCallParticipant) this.participants.get(peerId);
-                        if (tL_groupCallParticipant2 != null) {
-                            this.sortedParticipants.remove(tL_groupCallParticipant2);
-                            processAllSources(tL_groupCallParticipant2, false);
+                        TLRPC.GroupCallParticipant groupCallParticipant = groupparticipants.participants.get(i2);
+                        long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
+                        TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) this.participants.get(peerId);
+                        if (groupCallParticipant2 != null) {
+                            this.sortedParticipants.remove(groupCallParticipant2);
+                            processAllSources(groupCallParticipant2, false);
                         }
-                        this.participants.put(peerId, tL_groupCallParticipant);
-                        this.sortedParticipants.add(tL_groupCallParticipant);
-                        processAllSources(tL_groupCallParticipant, true);
+                        this.participants.put(peerId, groupCallParticipant);
+                        this.sortedParticipants.add(groupCallParticipant);
+                        processAllSources(groupCallParticipant, true);
                         if (this.invitedUsersMap.contains(Long.valueOf(peerId))) {
                             Long valueOf = Long.valueOf(peerId);
                             this.invitedUsersMap.remove(valueOf);
@@ -449,7 +474,7 @@ public class ChatObject {
                 this.call = groupcall.call;
                 this.currentAccount.getMessagesController().putUsers(groupcall.users, false);
                 this.currentAccount.getMessagesController().putChats(groupcall.chats, false);
-                ArrayList<TLRPC.TL_groupCallParticipant> arrayList = groupcall.participants;
+                ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
                 String str = groupcall.participants_next_offset;
                 TLRPC.GroupCall groupCall = groupcall.call;
                 onParticipantsLoad(arrayList, true, "", str, groupCall.version, groupCall.participants_count);
@@ -471,13 +496,13 @@ public class ChatObject {
             }
         }
 
-        public int lambda$sortParticipants$12(long j, boolean z, TLRPC.TL_groupCallParticipant tL_groupCallParticipant, TLRPC.TL_groupCallParticipant tL_groupCallParticipant2) {
+        public int lambda$sortParticipants$12(long j, boolean z, TLRPC.GroupCallParticipant groupCallParticipant, TLRPC.GroupCallParticipant groupCallParticipant2) {
             int i;
             int i2;
             int i3;
-            int i4 = tL_groupCallParticipant.videoIndex;
+            int i4 = groupCallParticipant.videoIndex;
             boolean z2 = i4 > 0;
-            int i5 = tL_groupCallParticipant2.videoIndex;
+            int i5 = groupCallParticipant2.videoIndex;
             boolean z3 = i5 > 0;
             if (z2 && z3) {
                 return i5 - i4;
@@ -488,26 +513,26 @@ public class ChatObject {
             if (z3) {
                 return 1;
             }
-            int i6 = tL_groupCallParticipant.active_date;
-            if (i6 != 0 && (i3 = tL_groupCallParticipant2.active_date) != 0) {
+            int i6 = groupCallParticipant.active_date;
+            if (i6 != 0 && (i3 = groupCallParticipant2.active_date) != 0) {
                 return Integer.compare(i3, i6);
             }
             if (i6 != 0) {
                 return -1;
             }
-            if (tL_groupCallParticipant2.active_date != 0) {
+            if (groupCallParticipant2.active_date != 0) {
                 return 1;
             }
-            if (MessageObject.getPeerId(tL_groupCallParticipant.peer) == j) {
+            if (MessageObject.getPeerId(groupCallParticipant.peer) == j) {
                 return -1;
             }
-            if (MessageObject.getPeerId(tL_groupCallParticipant2.peer) == j) {
+            if (MessageObject.getPeerId(groupCallParticipant2.peer) == j) {
                 return 1;
             }
             if (z) {
-                long j2 = tL_groupCallParticipant.raise_hand_rating;
+                long j2 = groupCallParticipant.raise_hand_rating;
                 if (j2 != 0) {
-                    long j3 = tL_groupCallParticipant2.raise_hand_rating;
+                    long j3 = groupCallParticipant2.raise_hand_rating;
                     if (j3 != 0) {
                         return Long.compare(j3, j2);
                     }
@@ -515,16 +540,16 @@ public class ChatObject {
                 if (j2 != 0) {
                     return -1;
                 }
-                if (tL_groupCallParticipant2.raise_hand_rating != 0) {
+                if (groupCallParticipant2.raise_hand_rating != 0) {
                     return 1;
                 }
             }
             if (this.call.join_date_asc) {
-                i = tL_groupCallParticipant.date;
-                i2 = tL_groupCallParticipant2.date;
+                i = groupCallParticipant.date;
+                i2 = groupCallParticipant2.date;
             } else {
-                i = tL_groupCallParticipant2.date;
-                i2 = tL_groupCallParticipant.date;
+                i = groupCallParticipant2.date;
+                i2 = groupCallParticipant.date;
             }
             return Integer.compare(i, i2);
         }
@@ -607,12 +632,12 @@ public class ChatObject {
             });
         }
 
-        private void onParticipantsLoad(java.util.ArrayList<org.telegram.tgnet.TLRPC.TL_groupCallParticipant> r17, boolean r18, java.lang.String r19, java.lang.String r20, int r21, int r22) {
+        private void onParticipantsLoad(java.util.ArrayList<org.telegram.tgnet.TLRPC.GroupCallParticipant> r17, boolean r18, java.lang.String r19, java.lang.String r20, int r21, int r22) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatObject.Call.onParticipantsLoad(java.util.ArrayList, boolean, java.lang.String, java.lang.String, int, int):void");
         }
 
-        private void processAllSources(org.telegram.tgnet.TLRPC.TL_groupCallParticipant r11, boolean r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatObject.Call.processAllSources(org.telegram.tgnet.TLRPC$TL_groupCallParticipant, boolean):void");
+        private void processAllSources(org.telegram.tgnet.TLRPC.GroupCallParticipant r11, boolean r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatObject.Call.processAllSources(org.telegram.tgnet.TLRPC$GroupCallParticipant, boolean):void");
         }
 
         private void processUpdatesQueue() {
@@ -674,20 +699,20 @@ public class ChatObject {
             sharedInstance.setParticipantsVolume();
         }
 
-        public static boolean videoIsActive(TLRPC.TL_groupCallParticipant tL_groupCallParticipant, boolean z, Call call) {
+        public static boolean videoIsActive(TLRPC.GroupCallParticipant groupCallParticipant, boolean z, Call call) {
             VoIPService sharedInstance;
             VideoParticipant videoParticipant;
-            if (tL_groupCallParticipant == null || (sharedInstance = VoIPService.getSharedInstance()) == null) {
+            if (groupCallParticipant == null || (sharedInstance = VoIPService.getSharedInstance()) == null) {
                 return false;
             }
-            if (tL_groupCallParticipant.self) {
+            if (groupCallParticipant.self) {
                 return sharedInstance.getVideoState(z) == 2;
             }
             VideoParticipant videoParticipant2 = call.rtmpStreamParticipant;
-            if ((videoParticipant2 == null || videoParticipant2.participant != tL_groupCallParticipant) && (((videoParticipant = call.videoNotAvailableParticipant) == null || videoParticipant.participant != tL_groupCallParticipant) && call.participants.get(MessageObject.getPeerId(tL_groupCallParticipant.peer)) == null)) {
+            if ((videoParticipant2 == null || videoParticipant2.participant != groupCallParticipant) && (((videoParticipant = call.videoNotAvailableParticipant) == null || videoParticipant.participant != groupCallParticipant) && call.participants.get(MessageObject.getPeerId(groupCallParticipant.peer)) == null)) {
                 return false;
             }
-            return z ? tL_groupCallParticipant.presentation != null : tL_groupCallParticipant.video != null;
+            return z ? groupCallParticipant.presentation != null : groupCallParticipant.video != null;
         }
 
         public void addInvitedUser(long j) {
@@ -696,6 +721,18 @@ public class ChatObject {
             }
             this.invitedUsersMap.add(Long.valueOf(j));
             this.invitedUsers.add(Long.valueOf(j));
+            this.kickedUsers.remove(Long.valueOf(j));
+            sortParticipants();
+            this.currentAccount.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.id), Boolean.FALSE);
+        }
+
+        public void addKickedUser(long j) {
+            if (this.kickedUsers.contains(Long.valueOf(j))) {
+                return;
+            }
+            this.kickedUsers.add(Long.valueOf(j));
+            sortParticipants();
+            this.currentAccount.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.id), Boolean.FALSE);
         }
 
         public void addSelfDummyParticipant(boolean r9) {
@@ -738,7 +775,7 @@ public class ChatObject {
         public void createRtmpStreamParticipant(List<TL_phone.TL_groupCallStreamChannel> list) {
             if (!this.loadedRtmpStreamParticipant || this.rtmpStreamParticipant == null) {
                 VideoParticipant videoParticipant = this.rtmpStreamParticipant;
-                TLRPC.TL_groupCallParticipant tL_groupCallParticipant = videoParticipant != null ? videoParticipant.participant : new TLRPC.TL_groupCallParticipant();
+                TLRPC.GroupCallParticipant tL_groupCallParticipant = videoParticipant != null ? videoParticipant.participant : new TLRPC.TL_groupCallParticipant();
                 TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
                 tL_groupCallParticipant.peer = tL_peerChat;
                 tL_peerChat.channel_id = this.chatId;
@@ -763,12 +800,28 @@ public class ChatObject {
             }
         }
 
-        public TLRPC.TL_inputGroupCall getInputGroupCall() {
-            TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
+        public TLRPC.InputGroupCall getInputGroupCall() {
+            return getInputGroupCall(this.isConference);
+        }
+
+        public TLRPC.InputGroupCall getInputGroupCall(boolean z) {
             TLRPC.GroupCall groupCall = this.call;
-            tL_inputGroupCall.id = groupCall.id;
-            tL_inputGroupCall.access_hash = groupCall.access_hash;
-            return tL_inputGroupCall;
+            if (groupCall == null) {
+                return null;
+            }
+            if (!z) {
+                TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
+                TLRPC.GroupCall groupCall2 = this.call;
+                tL_inputGroupCall.id = groupCall2.id;
+                tL_inputGroupCall.access_hash = groupCall2.access_hash;
+                return tL_inputGroupCall;
+            }
+            if (groupCall.invite_link == null) {
+                return null;
+            }
+            TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
+            tL_inputGroupCallSlug.slug = Uri.parse(this.call.invite_link).getPathSegments().get(r0.size() - 1);
+            return tL_inputGroupCallSlug;
         }
 
         public boolean isScheduled() {
@@ -797,7 +850,7 @@ public class ChatObject {
                 str = "";
             }
             getgroupparticipants.offset = str;
-            getgroupparticipants.limit = 20;
+            getgroupparticipants.limit = this.isConference ? this.currentAccount.getMessagesController().conferenceCallSizeLimit : 20;
             this.currentAccount.getConnectionsManager().sendRequest(getgroupparticipants, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -836,17 +889,17 @@ public class ChatObject {
             boolean z = false;
             for (int i2 = 0; i2 < size; i2++) {
                 Long l = arrayList.get(i2);
-                TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) this.participants.get(l.longValue());
-                if (tL_groupCallParticipant == null) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.participants.get(l.longValue());
+                if (groupCallParticipant == null) {
                     if (arrayList2 == null) {
                         arrayList2 = new ArrayList<>();
                     }
                     arrayList2.add(l);
-                } else if (i - tL_groupCallParticipant.lastTypingDate > 10) {
-                    if (tL_groupCallParticipant.lastVisibleDate != i) {
-                        tL_groupCallParticipant.active_date = i;
+                } else if (i - groupCallParticipant.lastTypingDate > 10) {
+                    if (groupCallParticipant.lastVisibleDate != i) {
+                        groupCallParticipant.active_date = i;
                     }
-                    tL_groupCallParticipant.lastTypingDate = i;
+                    groupCallParticipant.lastTypingDate = i;
                     z = true;
                 }
             }
@@ -892,10 +945,30 @@ public class ChatObject {
             });
         }
 
+        public void removeInvitedUser(long j) {
+            this.invitedUsersMap.remove(Long.valueOf(j));
+            this.invitedUsers.remove(Long.valueOf(j));
+            sortParticipants();
+            this.currentAccount.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.id), Boolean.FALSE);
+        }
+
         public void saveActiveDates() {
             int size = this.sortedParticipants.size();
             for (int i = 0; i < size; i++) {
                 this.sortedParticipants.get(i).lastActiveDate = r2.active_date;
+            }
+        }
+
+        public void setCall(AccountInstance accountInstance, long j, TLRPC.GroupCall groupCall) {
+            this.chatId = j;
+            this.currentAccount = accountInstance;
+            this.call = groupCall;
+            this.recording = groupCall.record_start_date != 0;
+            sortParticipants();
+            loadMembers(true);
+            createNoVideoParticipant();
+            if (groupCall.rtmp_stream) {
+                createRtmpStreamParticipant(Collections.emptyList());
             }
         }
 
@@ -908,11 +981,11 @@ public class ChatObject {
             int size = groupcall.participants.size();
             int i = Integer.MAX_VALUE;
             for (int i2 = 0; i2 < size; i2++) {
-                TLRPC.TL_groupCallParticipant tL_groupCallParticipant = groupcall.participants.get(i2);
-                this.participants.put(MessageObject.getPeerId(tL_groupCallParticipant.peer), tL_groupCallParticipant);
-                this.sortedParticipants.add(tL_groupCallParticipant);
-                processAllSources(tL_groupCallParticipant, true);
-                i = Math.min(i, tL_groupCallParticipant.date);
+                TLRPC.GroupCallParticipant groupCallParticipant = groupcall.participants.get(i2);
+                this.participants.put(MessageObject.getPeerId(groupCallParticipant.peer), groupCallParticipant);
+                this.sortedParticipants.add(groupCallParticipant);
+                processAllSources(groupCallParticipant, true);
+                i = Math.min(i, groupCallParticipant.date);
             }
             sortParticipants();
             this.nextLoadOffset = groupcall.participants_next_offset;
@@ -961,7 +1034,7 @@ public class ChatObject {
         }
 
         public void sortParticipants() {
-            TLRPC.TL_groupCallParticipant tL_groupCallParticipant;
+            TLRPC.GroupCallParticipant groupCallParticipant;
             int i;
             VideoParticipant videoParticipant;
             int i2;
@@ -977,73 +1050,77 @@ public class ChatObject {
             VoIPService.getSharedInstance();
             this.canStreamVideo = true;
             this.activeVideos = 0;
-            int size = this.sortedParticipants.size();
+            int i3 = 0;
             boolean z = false;
-            for (int i3 = 0; i3 < size; i3++) {
-                TLRPC.TL_groupCallParticipant tL_groupCallParticipant2 = this.sortedParticipants.get(i3);
-                boolean videoIsActive = videoIsActive(tL_groupCallParticipant2, false, this);
-                boolean videoIsActive2 = videoIsActive(tL_groupCallParticipant2, true, this);
-                boolean z2 = tL_groupCallParticipant2.self;
-                if (!z2 && (videoIsActive || videoIsActive2)) {
+            while (i3 < this.sortedParticipants.size()) {
+                TLRPC.GroupCallParticipant groupCallParticipant2 = this.sortedParticipants.get(i3);
+                boolean videoIsActive = videoIsActive(groupCallParticipant2, false, this);
+                boolean videoIsActive2 = videoIsActive(groupCallParticipant2, true, this);
+                if (!groupCallParticipant2.self && (videoIsActive || videoIsActive2)) {
                     this.activeVideos++;
                 }
+                if (this.kickedUsers.contains(Long.valueOf(DialogObject.getPeerDialogId(groupCallParticipant2.peer)))) {
+                    this.sortedParticipants.remove(i3);
+                    i3--;
+                }
                 if (!videoIsActive && !videoIsActive2) {
-                    if (!z2) {
+                    if (!groupCallParticipant2.self) {
                         if (this.canStreamVideo) {
-                            if (tL_groupCallParticipant2.video == null) {
-                                if (tL_groupCallParticipant2.presentation != null) {
+                            if (groupCallParticipant2.video == null) {
+                                if (groupCallParticipant2.presentation != null) {
                                 }
                             }
                         }
                     }
-                    tL_groupCallParticipant2.videoIndex = 0;
+                    groupCallParticipant2.videoIndex = 0;
                 } else if (this.canStreamVideo) {
-                    if (tL_groupCallParticipant2.videoIndex == 0) {
-                        if (z2) {
+                    if (groupCallParticipant2.videoIndex == 0) {
+                        if (groupCallParticipant2.self) {
                             i2 = Integer.MAX_VALUE;
                         } else {
                             i2 = videoPointer + 1;
                             videoPointer = i2;
                         }
-                        tL_groupCallParticipant2.videoIndex = i2;
+                        groupCallParticipant2.videoIndex = i2;
                     }
                     z = true;
                 } else {
                     z = true;
-                    tL_groupCallParticipant2.videoIndex = 0;
+                    groupCallParticipant2.videoIndex = 0;
                 }
+                i3++;
             }
             try {
                 Collections.sort(this.sortedParticipants, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
                         int lambda$sortParticipants$12;
-                        lambda$sortParticipants$12 = ChatObject.Call.this.lambda$sortParticipants$12(selfId, canManageCalls, (TLRPC.TL_groupCallParticipant) obj, (TLRPC.TL_groupCallParticipant) obj2);
+                        lambda$sortParticipants$12 = ChatObject.Call.this.lambda$sortParticipants$12(selfId, canManageCalls, (TLRPC.GroupCallParticipant) obj, (TLRPC.GroupCallParticipant) obj2);
                         return lambda$sortParticipants$12;
                     }
                 });
             } catch (Exception unused) {
             }
             if (this.sortedParticipants.isEmpty()) {
-                tL_groupCallParticipant = null;
+                groupCallParticipant = null;
             } else {
-                ArrayList<TLRPC.TL_groupCallParticipant> arrayList = this.sortedParticipants;
-                tL_groupCallParticipant = arrayList.get(arrayList.size() - 1);
+                ArrayList<TLRPC.GroupCallParticipant> arrayList = this.sortedParticipants;
+                groupCallParticipant = arrayList.get(arrayList.size() - 1);
             }
-            if ((videoIsActive(tL_groupCallParticipant, false, this) || videoIsActive(tL_groupCallParticipant, true, this)) && (i = this.call.unmuted_video_count) > this.activeVideos) {
+            if ((videoIsActive(groupCallParticipant, false, this) || videoIsActive(groupCallParticipant, true, this)) && (i = this.call.unmuted_video_count) > this.activeVideos) {
                 this.activeVideos = i;
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
                 if (sharedInstance != null && sharedInstance.groupCall == this && (sharedInstance.getVideoState(false) == 2 || sharedInstance.getVideoState(true) == 2)) {
                     this.activeVideos--;
                 }
             }
-            if (this.sortedParticipants.size() > 5000 && (!ChatObject.canManageCalls(chat) || tL_groupCallParticipant.raise_hand_rating == 0)) {
-                int size2 = this.sortedParticipants.size();
-                for (int i4 = 5000; i4 < size2; i4++) {
-                    TLRPC.TL_groupCallParticipant tL_groupCallParticipant3 = this.sortedParticipants.get(5000);
-                    if (tL_groupCallParticipant3.raise_hand_rating == 0) {
-                        processAllSources(tL_groupCallParticipant3, false);
-                        this.participants.remove(MessageObject.getPeerId(tL_groupCallParticipant3.peer));
+            if (this.sortedParticipants.size() > 5000 && (!ChatObject.canManageCalls(chat) || groupCallParticipant.raise_hand_rating == 0)) {
+                int size = this.sortedParticipants.size();
+                for (int i4 = 5000; i4 < size; i4++) {
+                    TLRPC.GroupCallParticipant groupCallParticipant3 = this.sortedParticipants.get(5000);
+                    if (groupCallParticipant3.raise_hand_rating == 0) {
+                        processAllSources(groupCallParticipant3, false);
+                        this.participants.remove(MessageObject.getPeerId(groupCallParticipant3.peer));
                         this.sortedParticipants.remove(5000);
                     }
                 }
@@ -1054,24 +1131,24 @@ public class ChatObject {
             }
             int i5 = 0;
             for (int i6 = 0; i6 < this.sortedParticipants.size(); i6++) {
-                TLRPC.TL_groupCallParticipant tL_groupCallParticipant4 = this.sortedParticipants.get(i6);
-                if (!this.canStreamVideo || tL_groupCallParticipant4.videoIndex == 0) {
-                    this.visibleParticipants.add(tL_groupCallParticipant4);
-                } else if (!tL_groupCallParticipant4.self && videoIsActive(tL_groupCallParticipant4, true, this) && videoIsActive(tL_groupCallParticipant4, false, this)) {
-                    VideoParticipant videoParticipant3 = this.videoParticipantsCache.get(tL_groupCallParticipant4.videoEndpoint);
+                TLRPC.GroupCallParticipant groupCallParticipant4 = this.sortedParticipants.get(i6);
+                if (!this.canStreamVideo || groupCallParticipant4.videoIndex == 0) {
+                    this.visibleParticipants.add(groupCallParticipant4);
+                } else if (!groupCallParticipant4.self && videoIsActive(groupCallParticipant4, true, this) && videoIsActive(groupCallParticipant4, false, this)) {
+                    VideoParticipant videoParticipant3 = this.videoParticipantsCache.get(groupCallParticipant4.videoEndpoint);
                     if (videoParticipant3 == null) {
-                        videoParticipant3 = new VideoParticipant(tL_groupCallParticipant4, false, true);
-                        this.videoParticipantsCache.put(tL_groupCallParticipant4.videoEndpoint, videoParticipant3);
+                        videoParticipant3 = new VideoParticipant(groupCallParticipant4, false, true);
+                        this.videoParticipantsCache.put(groupCallParticipant4.videoEndpoint, videoParticipant3);
                     } else {
-                        videoParticipant3.participant = tL_groupCallParticipant4;
+                        videoParticipant3.participant = groupCallParticipant4;
                         videoParticipant3.presentation = false;
                         videoParticipant3.hasSame = true;
                     }
-                    VideoParticipant videoParticipant4 = this.videoParticipantsCache.get(tL_groupCallParticipant4.presentationEndpoint);
+                    VideoParticipant videoParticipant4 = this.videoParticipantsCache.get(groupCallParticipant4.presentationEndpoint);
                     if (videoParticipant4 == null) {
-                        videoParticipant4 = new VideoParticipant(tL_groupCallParticipant4, true, true);
+                        videoParticipant4 = new VideoParticipant(groupCallParticipant4, true, true);
                     } else {
-                        videoParticipant4.participant = tL_groupCallParticipant4;
+                        videoParticipant4.participant = groupCallParticipant4;
                         videoParticipant4.presentation = true;
                         videoParticipant4.hasSame = true;
                     }
@@ -1083,21 +1160,21 @@ public class ChatObject {
                     if (videoParticipant4.aspectRatio <= 1.0f) {
                     }
                     i5 = this.visibleVideoParticipants.size() - 1;
-                } else if (tL_groupCallParticipant4.self) {
-                    if (videoIsActive(tL_groupCallParticipant4, true, this)) {
-                        this.visibleVideoParticipants.add(new VideoParticipant(tL_groupCallParticipant4, true, false));
+                } else if (groupCallParticipant4.self) {
+                    if (videoIsActive(groupCallParticipant4, true, this)) {
+                        this.visibleVideoParticipants.add(new VideoParticipant(groupCallParticipant4, true, false));
                     }
-                    if (videoIsActive(tL_groupCallParticipant4, false, this)) {
-                        this.visibleVideoParticipants.add(new VideoParticipant(tL_groupCallParticipant4, false, false));
+                    if (videoIsActive(groupCallParticipant4, false, this)) {
+                        this.visibleVideoParticipants.add(new VideoParticipant(groupCallParticipant4, false, false));
                     }
                 } else {
-                    boolean videoIsActive3 = videoIsActive(tL_groupCallParticipant4, true, this);
-                    VideoParticipant videoParticipant5 = this.videoParticipantsCache.get(videoIsActive3 ? tL_groupCallParticipant4.presentationEndpoint : tL_groupCallParticipant4.videoEndpoint);
+                    boolean videoIsActive3 = videoIsActive(groupCallParticipant4, true, this);
+                    VideoParticipant videoParticipant5 = this.videoParticipantsCache.get(videoIsActive3 ? groupCallParticipant4.presentationEndpoint : groupCallParticipant4.videoEndpoint);
                     if (videoParticipant5 == null) {
-                        videoParticipant5 = new VideoParticipant(tL_groupCallParticipant4, videoIsActive3, false);
-                        this.videoParticipantsCache.put(videoIsActive3 ? tL_groupCallParticipant4.presentationEndpoint : tL_groupCallParticipant4.videoEndpoint, videoParticipant5);
+                        videoParticipant5 = new VideoParticipant(groupCallParticipant4, videoIsActive3, false);
+                        this.videoParticipantsCache.put(videoIsActive3 ? groupCallParticipant4.presentationEndpoint : groupCallParticipant4.videoEndpoint, videoParticipant5);
                     } else {
-                        videoParticipant5.participant = tL_groupCallParticipant4;
+                        videoParticipant5.participant = groupCallParticipant4;
                         videoParticipant5.presentation = videoIsActive3;
                         videoParticipant5.hasSame = false;
                     }
@@ -1105,6 +1182,29 @@ public class ChatObject {
                     if (videoParticipant5.aspectRatio <= 1.0f) {
                     }
                     i5 = this.visibleVideoParticipants.size() - 1;
+                }
+            }
+            Iterator<TLRPC.GroupCallParticipant> it = this.sortedParticipants.iterator();
+            while (it.hasNext()) {
+                this.kickedUsers.remove(Long.valueOf(DialogObject.getPeerDialogId(it.next().peer)));
+            }
+            VoIPService sharedInstance2 = VoIPService.getSharedInstance();
+            if (this.call != null && sharedInstance2 != null && sharedInstance2.isConference() && sharedInstance2.groupCall == this) {
+                Iterator<TLRPC.GroupCallParticipant> it2 = this.sortedParticipants.iterator();
+                while (it2.hasNext()) {
+                    sharedInstance2.conference.joiningBlockchainParticipants.remove(Long.valueOf(DialogObject.getPeerDialogId(it2.next().peer)));
+                }
+                this.shadyLeftParticipants.clear();
+                this.shadyLeftParticipants.addAll(sharedInstance2.conference.getShadyLeftParticipants(this.sortedParticipants));
+                this.shadyJoinParticipants.clear();
+                this.shadyJoinParticipants.addAll(sharedInstance2.conference.getShadyJoiningParticipants(this.sortedParticipants));
+                Iterator<TLRPC.GroupCallParticipant> it3 = this.sortedParticipants.iterator();
+                while (it3.hasNext()) {
+                    long peerDialogId = DialogObject.getPeerDialogId(it3.next().peer);
+                    if (this.invitedUsersMap.contains(Long.valueOf(peerDialogId))) {
+                        this.invitedUsersMap.remove(Long.valueOf(peerDialogId));
+                        this.invitedUsers.remove(Long.valueOf(peerDialogId));
+                    }
                 }
             }
             if (GroupCallActivity.isLandscapeMode || this.visibleVideoParticipants.size() % 2 != 1) {
@@ -1147,11 +1247,11 @@ public class ChatObject {
         public int aspectRatioFromHeight;
         public int aspectRatioFromWidth;
         public boolean hasSame;
-        public TLRPC.TL_groupCallParticipant participant;
+        public TLRPC.GroupCallParticipant participant;
         public boolean presentation;
 
-        public VideoParticipant(TLRPC.TL_groupCallParticipant tL_groupCallParticipant, boolean z, boolean z2) {
-            this.participant = tL_groupCallParticipant;
+        public VideoParticipant(TLRPC.GroupCallParticipant groupCallParticipant, boolean z, boolean z2) {
+            this.participant = groupCallParticipant;
             this.presentation = z;
             this.hasSame = z2;
         }
@@ -1609,9 +1709,9 @@ public class ChatObject {
         return tL_peerColor.background_emoji_id;
     }
 
-    public static int getParticipantVolume(TLRPC.TL_groupCallParticipant tL_groupCallParticipant) {
-        if ((tL_groupCallParticipant.flags & 128) != 0) {
-            return tL_groupCallParticipant.volume;
+    public static int getParticipantVolume(TLRPC.GroupCallParticipant groupCallParticipant) {
+        if ((groupCallParticipant.flags & 128) != 0) {
+            return groupCallParticipant.volume;
         }
         return 10000;
     }

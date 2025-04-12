@@ -55,8 +55,8 @@ public abstract class GroupCallGridCell extends FrameLayout {
             dp = this.gridAdapter.getItemHeight(this.position);
         } else {
             float f = GroupCallActivity.isLandscapeMode ? 3.0f : 2.0f;
-            float measuredWidth = getParent() != null ? ((View) getParent()).getMeasuredWidth() : View.MeasureSpec.getSize(i);
-            dp = (int) ((GroupCallActivity.isTabletMode ? measuredWidth / 2.0f : measuredWidth / f) + AndroidUtilities.dp(4.0f));
+            float dp2 = (AndroidUtilities.displaySize.x - (AndroidUtilities.dp(14.0f) * 2)) + (GroupCallActivity.isLandscapeMode ? -AndroidUtilities.dp(90.0f) : 0);
+            dp = (int) ((GroupCallActivity.isTabletMode ? dp2 / 2.0f : dp2 / f) + AndroidUtilities.dp(4.0f));
         }
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
     }

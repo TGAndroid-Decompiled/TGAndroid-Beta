@@ -26,6 +26,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
@@ -2433,7 +2434,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.notifyLocationChecked = new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$new$47();
+                BotWebViewContainer.this.lambda$new$48();
             }
         };
         this.lastDialogType = -1;
@@ -2602,6 +2603,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     private void getStorageKey(BotStorage botStorage, String str, String str2, String str3) {
+        Object obj;
         if (botStorage == null || this.botUser == null) {
             return;
         }
@@ -2609,14 +2611,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             JSONObject jSONObject = new JSONObject(str);
             String string = jSONObject.getString("req_id");
             try {
-                try {
-                    notifyEvent(str2, obj("req_id", string, "value", botStorage.getKey(jSONObject.optString("key"))));
-                } catch (RuntimeException e) {
-                    notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
+                String optString = jSONObject.optString("key");
+                if (optString != null) {
+                    try {
+                        Pair key = botStorage.getKey(optString);
+                        notifyEvent(str2, (botStorage.secured && (obj = key.first) == null) ? obj("req_id", string, "value", obj, "can_restore", key.second) : obj("req_id", string, "value", key.first));
+                        return;
+                    } catch (RuntimeException e) {
+                        notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
+                        return;
+                    }
                 }
             } catch (Exception unused) {
-                notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
             }
+            notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
         } catch (Exception e2) {
             FileLog.e(e2);
             if (TextUtils.isEmpty("")) {
@@ -2681,7 +2689,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         updateKeyboardFocusable();
     }
 
-    public void lambda$new$47() {
+    public void lambda$new$48() {
         notifyEvent("location_checked", this.location.checkObject());
     }
 
@@ -3217,11 +3225,24 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
+    public void lambda$restoreStorageKey$47(String str, String str2, BotStorage botStorage, String str3, String str4, String str5) {
+        if (str5 == null) {
+            notifyEvent(str, obj("req_id", str2, "error", "RESTORE_CANCELLED"));
+            return;
+        }
+        try {
+            botStorage.restoreFrom(str5);
+            notifyEvent(str4, obj("req_id", str2, "value", (String) botStorage.getKey(str3).first));
+        } catch (Exception e) {
+            notifyEvent(str, obj("req_id", str2, "error", e.getMessage()));
+        }
+    }
+
     public void lambda$runWithPermissions$0(Consumer consumer, String[] strArr) {
         consumer.accept(Boolean.valueOf(checkPermissions(strArr)));
     }
 
-    public void lambda$showDialog$48(Runnable runnable, DialogInterface dialogInterface) {
+    public void lambda$showDialog$49(Runnable runnable, DialogInterface dialogInterface) {
         if (runnable != null) {
             runnable.run();
         }
@@ -3292,6 +3313,18 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
             jSONObject.put(str2, obj2);
+            return jSONObject;
+        } catch (Exception unused) {
+            return null;
+        }
+    }
+
+    private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put(str, obj);
+            jSONObject.put(str2, obj2);
+            jSONObject.put(str3, obj3);
             return jSONObject;
         } catch (Exception unused) {
             return null;
@@ -3510,6 +3543,46 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
+    private void restoreStorageKey(final BotStorage botStorage, String str, final String str2, final String str3) {
+        if (botStorage == null || this.botUser == null) {
+            return;
+        }
+        try {
+            JSONObject jSONObject = new JSONObject(str);
+            final String string = jSONObject.getString("req_id");
+            try {
+                final String optString = jSONObject.optString("key");
+                if (optString == null) {
+                    notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
+                    return;
+                }
+                try {
+                    List storagesWithKey = botStorage.getStoragesWithKey(optString);
+                    if (storagesWithKey.isEmpty()) {
+                        notifyEvent(str3, obj("req_id", string, "error", "RESTORE_UNAVAILABLE"));
+                    } else {
+                        botStorage.showChooseStorage(getContext(), storagesWithKey, new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj) {
+                                BotWebViewContainer.this.lambda$restoreStorageKey$47(str3, string, botStorage, optString, str2, (String) obj);
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
+                }
+            } catch (Exception unused) {
+                notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+            if (TextUtils.isEmpty("")) {
+                return;
+            }
+            notifyEvent(str3, obj("req_id", "", "error", "UNKNOWN_ERROR"));
+        }
+    }
+
     public static String rotateTONHost(String str) {
         try {
             str = IDN.toASCII(str, 1);
@@ -3554,9 +3627,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             JSONObject jSONObject = new JSONObject(str);
             String string = jSONObject.getString("req_id");
             try {
+                String optString = jSONObject.optString("key");
+                if (optString == null) {
+                    notifyEvent(str3, obj("req_id", string, "error", "KEY_INVALID"));
+                    return;
+                }
                 try {
                     try {
-                        botStorage.setKey(jSONObject.optString("key"), jSONObject.optString("value"));
+                        botStorage.setKey(optString, jSONObject.optString("value"));
                         notifyEvent(str2, obj("req_id", string));
                     } catch (RuntimeException e) {
                         notifyEvent(str3, obj("req_id", string, "error", e.getMessage()));
@@ -3722,7 +3800,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BotWebViewContainer.this.lambda$showDialog$48(runnable, dialogInterface);
+                BotWebViewContainer.this.lambda$showDialog$49(runnable, dialogInterface);
             }
         });
         this.currentDialog = alertDialog;

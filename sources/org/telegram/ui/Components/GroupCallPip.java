@@ -119,8 +119,8 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
                     if (sharedInstance == null || !sharedInstance.isMicMute()) {
                         return;
                     }
-                    TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId());
-                    if (tL_groupCallParticipant == null || tL_groupCallParticipant.can_self_unmute || !tL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
+                    TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId());
+                    if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
                         AndroidUtilities.runOnUIThread(AnonymousClass3.this.micRunnable, 90L);
                         try {
                             AnonymousClass3.this.performHapticFeedback(3, 2);
@@ -743,9 +743,9 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             int i2 = 0;
             while (i < 2) {
                 if (i2 < size) {
-                    TLRPC.TL_groupCallParticipant tL_groupCallParticipant = call.sortedParticipants.get(i2);
-                    if (MessageObject.getPeerId(tL_groupCallParticipant.peer) != selfId && SystemClock.uptimeMillis() - tL_groupCallParticipant.lastSpeakTime <= 500) {
-                        this.avatarsImageView.setObject(i, this.currentAccount, tL_groupCallParticipant);
+                    TLRPC.GroupCallParticipant groupCallParticipant = call.sortedParticipants.get(i2);
+                    if (MessageObject.getPeerId(groupCallParticipant.peer) != selfId && SystemClock.uptimeMillis() - groupCallParticipant.lastSpeakTime <= 500) {
+                        this.avatarsImageView.setObject(i, this.currentAccount, groupCallParticipant);
                     }
                     i2++;
                 } else {

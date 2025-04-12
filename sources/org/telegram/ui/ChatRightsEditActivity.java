@@ -1504,7 +1504,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 11, this.currentAccount, getResourceProvider());
         ArrayList arrayList = new ArrayList();
         arrayList.add(this.currentUser);
-        limitReachedBottomSheet.setRestrictedUsers(this.currentChat, arrayList, null, null);
+        limitReachedBottomSheet.setRestrictedUsers(this.currentChat, arrayList, null, null, null);
         limitReachedBottomSheet.show();
         return false;
     }

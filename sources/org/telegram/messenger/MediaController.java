@@ -191,6 +191,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private int recordingCurrentAccount;
     private boolean resumeAudioOnFocusGain;
     public long samplesCount;
+    private SavedMusicPlaylistState savedMusicPlaylistState;
     private float seekToProgressPending;
     private int sendAfterDone;
     private boolean sendAfterDoneNotify;
@@ -1739,6 +1740,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
+    public static class SavedMusicPlaylistState {
+        public final MessageObject playingMessage;
+        public final float progress;
+        public final int progressMs;
+        public final int progressSec;
+
+        public SavedMusicPlaylistState(MessageObject messageObject) {
+            this.playingMessage = messageObject;
+            this.progress = messageObject.audioProgress;
+            this.progressMs = messageObject.audioProgressMs;
+            this.progressSec = messageObject.audioProgressSec;
+        }
+    }
+
     public static class SearchImage extends MediaEditState {
         public CharSequence caption;
         public int date;
@@ -2135,6 +2150,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
+    private void clearMusicPlaylistState() {
+        this.savedMusicPlaylistState = null;
+    }
+
     private void clearPlaylist() {
         this.playlist.clear();
         this.playlistMap.clear();
@@ -2149,6 +2168,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         iArr[0] = Integer.MAX_VALUE;
         this.loadingPlaylist = false;
         this.playlistGlobalSearchParams = null;
+        this.savedMusicPlaylistState = null;
     }
 
     public boolean convertVideo(final org.telegram.messenger.MediaController.VideoConvertMessage r39) {
@@ -3379,6 +3399,28 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         startRecording(currentAccount, dialogId, null, threadMessage, null, classGuid, false, chatActivity != null ? chatActivity.quickReplyShortcut : null, chatActivity != null ? chatActivity.getQuickReplyId() : 0);
     }
 
+    public boolean restoreMusicPlaylistState() {
+        MessageObject messageObject;
+        SavedMusicPlaylistState savedMusicPlaylistState = this.savedMusicPlaylistState;
+        if (savedMusicPlaylistState == null) {
+            return false;
+        }
+        this.savedMusicPlaylistState = null;
+        ArrayList<MessageObject> arrayList = SharedConfig.shuffleMusic ? this.shuffledPlaylist : this.playlist;
+        if (arrayList == null || (messageObject = arrayList.get(this.currentPlaylistNum)) == null || messageObject.getDialogId() != savedMusicPlaylistState.playingMessage.getDialogId() || messageObject.getId() != savedMusicPlaylistState.playingMessage.getId()) {
+            return false;
+        }
+        this.playMusicAgain = false;
+        float f = savedMusicPlaylistState.progress;
+        messageObject.forceSeekTo = f;
+        messageObject.audioProgress = f;
+        messageObject.audioProgressMs = savedMusicPlaylistState.progressMs;
+        messageObject.audioProgressSec = savedMusicPlaylistState.progressSec;
+        playMessage(messageObject);
+        pauseMessage(messageObject, false);
+        return true;
+    }
+
     private boolean resumeAudio(org.telegram.messenger.MessageObject r6) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.resumeAudio(org.telegram.messenger.MessageObject):boolean");
     }
@@ -3460,6 +3502,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return;
         }
         new MediaLoader(context, accountInstance, arrayList, intCallback).start();
+    }
+
+    private boolean saveMusicPlaylistStateIfNeeded() {
+        MessageObject messageObject = this.playingMessageObject;
+        if (messageObject == null || !messageObject.isMusic() || this.playlist.isEmpty()) {
+            return this.savedMusicPlaylistState != null;
+        }
+        this.savedMusicPlaylistState = new SavedMusicPlaylistState(this.playingMessageObject);
+        return true;
     }
 
     public static MediaCodecInfo selectCodec(String str) {
@@ -3817,12 +3868,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (this.videoPlayer.isPlaying() && i == 4) {
             MessageObject messageObject4 = this.playingMessageObject;
             if (messageObject4 == null || !messageObject4.isVideo() || z || (iArr != null && iArr[0] >= 4)) {
+                if (restoreMusicPlaylistState()) {
+                    return;
+                }
                 cleanupPlayer(true, hasNoNextVoiceOrRoundVideoMessage(), true, false);
-                return;
-            }
-            this.videoPlayer.seekTo(0L);
-            if (iArr != null) {
-                iArr[0] = iArr[0] + 1;
+            } else {
+                this.videoPlayer.seekTo(0L);
+                if (iArr != null) {
+                    iArr[0] = iArr[0] + 1;
+                }
             }
         }
     }
@@ -3905,6 +3959,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
         this.videoConvertQueue.clear();
         this.generatingWaveform.clear();
+        this.savedMusicPlaylistState = null;
         this.voiceMessagesPlaylist = null;
         this.voiceMessagesPlaylistMap = null;
         clearPlaylist();
@@ -4309,8 +4364,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public boolean lambda$startAudioAgain$7(org.telegram.messenger.MessageObject r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$startAudioAgain$7(org.telegram.messenger.MessageObject):boolean");
+    public boolean lambda$startAudioAgain$7(MessageObject messageObject) {
+        return pauseMessage(messageObject, true);
+    }
+
+    public boolean pauseMessage(org.telegram.messenger.MessageObject r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.pauseMessage(org.telegram.messenger.MessageObject, boolean):boolean");
     }
 
     public void playEmojiSound(final AccountInstance accountInstance, String str, final MessagesController.EmojiSound emojiSound, final boolean z) {

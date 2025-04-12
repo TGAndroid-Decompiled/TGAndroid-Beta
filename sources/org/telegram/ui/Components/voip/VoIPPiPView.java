@@ -29,6 +29,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.pip.PictureInPictureContentViewProvider;
+import org.telegram.messenger.pip.PipNativeApiController;
+import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -38,7 +41,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPFragment;
 import org.webrtc.EglBase;
 
-public class VoIPPiPView implements VoIPService.StateListener, NotificationCenter.NotificationCenterDelegate {
+public class VoIPPiPView implements VoIPService.StateListener, PictureInPictureContentViewProvider, NotificationCenter.NotificationCenterDelegate {
     public static int bottomInset = 0;
     private static VoIPPiPView expandedInstance = null;
     private static VoIPPiPView instance = null;
@@ -60,6 +63,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
     boolean moving;
     public final int parentHeight;
     public final int parentWidth;
+    private PipSource pipSource;
     float progressToCameraMini;
     long startTime;
     float startX;
@@ -516,6 +520,11 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                 FileLog.e(th);
             }
         }
+        PipSource pipSource = this.pipSource;
+        if (pipSource != null) {
+            pipSource.destroy();
+            this.pipSource = null;
+        }
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didEndCall);
     }
 
@@ -600,27 +609,27 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
         windowManager.addView(instance.windowView, createWindowLayoutParams);
         instance.currentUserTextureView.renderer.init(VideoCapturerDevice.eglBase.getEglBaseContext(), null);
         instance.callingUserTextureView.renderer.init(VideoCapturerDevice.eglBase.getEglBaseContext(), null);
-        if (i4 != 0) {
-            if (i4 == 1) {
-                instance.windowView.setAlpha(0.0f);
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService sharedInstance = VoIPService.getSharedInstance();
-                    VoIPPiPView voIPPiPView2 = instance;
-                    sharedInstance.setBackgroundSinks(voIPPiPView2.currentUserTextureView.renderer, voIPPiPView2.callingUserTextureView.renderer);
-                    return;
-                }
-                return;
+        if (i4 == 0) {
+            instance.windowView.setScaleX(0.5f);
+            instance.windowView.setScaleY(0.5f);
+            instance.windowView.setAlpha(0.0f);
+            instance.windowView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).start();
+            if (VoIPService.getSharedInstance() != null) {
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                VoIPPiPView voIPPiPView2 = instance;
+                sharedInstance.setSinks(voIPPiPView2.currentUserTextureView.renderer, voIPPiPView2.callingUserTextureView.renderer);
             }
-            return;
+        } else if (i4 == 1) {
+            instance.windowView.setAlpha(0.0f);
+            if (VoIPService.getSharedInstance() != null) {
+                VoIPService sharedInstance2 = VoIPService.getSharedInstance();
+                VoIPPiPView voIPPiPView3 = instance;
+                sharedInstance2.setBackgroundSinks(voIPPiPView3.currentUserTextureView.renderer, voIPPiPView3.callingUserTextureView.renderer);
+            }
         }
-        instance.windowView.setScaleX(0.5f);
-        instance.windowView.setScaleY(0.5f);
-        instance.windowView.setAlpha(0.0f);
-        instance.windowView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).start();
-        if (VoIPService.getSharedInstance() != null) {
-            VoIPService sharedInstance2 = VoIPService.getSharedInstance();
-            VoIPPiPView voIPPiPView3 = instance;
-            sharedInstance2.setSinks(voIPPiPView3.currentUserTextureView.renderer, voIPPiPView3.callingUserTextureView.renderer);
+        if (PipNativeApiController.checkPermissions(activity) == 1) {
+            VoIPPiPView voIPPiPView4 = instance;
+            voIPPiPView4.pipSource = new PipSource.Builder(activity, voIPPiPView4).setTagPrefix("voip-pip").setPriority(1).setContentView(instance.windowView).build();
         }
     }
 
@@ -653,10 +662,29 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
     }
 
     @Override
+    public void attachContentToWindow() {
+        this.windowView.setVisibility(0);
+        this.floatingView.addView(this.callingUserTextureView, 0);
+        VoIPService.getSharedInstance().setSinks(this.currentUserTextureView.renderer, this.callingUserTextureView.renderer);
+    }
+
+    @Override
+    public View detachContentFromWindow() {
+        this.windowView.setVisibility(8);
+        this.floatingView.removeView(this.callingUserTextureView);
+        return this.callingUserTextureView;
+    }
+
+    @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.didEndCall) {
             finish();
         }
+    }
+
+    @Override
+    public void onAttachContentToPip() {
+        VoIPService.getSharedInstance().setSinks(this.currentUserTextureView.renderer, this.callingUserTextureView.renderer);
     }
 
     @Override
@@ -740,5 +768,9 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
 
     @Override
     public void onVideoAvailableChange(boolean z) {
+    }
+
+    @Override
+    public void prepareDetachContentFromPip() {
     }
 }

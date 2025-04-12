@@ -130,6 +130,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     int emptyViewDividerRow;
     RecyclerItemsEnterAnimator enterAnimator;
     FireworksOverlay fireworksOverlay;
+    private String forceLink;
     private TLRPC.Chat fromChat;
     int headerRow;
     private HeaderView headerView;
@@ -222,20 +223,21 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 return 9;
             }
             int i3 = LimitReachedBottomSheet.this.type;
-            return (i3 == 5 || i3 == 11) ? 4 : 1;
+            return (i3 == 5 || i3 == 11 || i3 == 34) ? 4 : 1;
         }
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             LimitReachedBottomSheet limitReachedBottomSheet = LimitReachedBottomSheet.this;
-            if (limitReachedBottomSheet.type != 11 || limitReachedBottomSheet.canSendLink) {
-                return viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 4;
+            int i = limitReachedBottomSheet.type;
+            if ((i == 11 || i == 34) && !limitReachedBottomSheet.canSendLink) {
+                return false;
             }
-            return false;
+            return viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 4;
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r8, int r9) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r9, int r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.LimitReachedBottomSheet.AnonymousClass5.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -266,7 +268,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     view = headerCell;
                     break;
                 case 4:
-                    View groupCreateUserCell = new GroupCreateUserCell(context, 1, 0, false);
+                    View groupCreateUserCell = new GroupCreateUserCell(context, 1, 0, false, false, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider);
                     groupCreateUserCell.setPadding(((BottomSheet) LimitReachedBottomSheet.this).backgroundPaddingLeft, 0, ((BottomSheet) LimitReachedBottomSheet.this).backgroundPaddingLeft, 0);
                     view = groupCreateUserCell;
                     break;
@@ -638,7 +640,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         TextView title;
         LinearLayout titleLinearLayout;
 
-        public HeaderView(android.content.Context r40) {
+        public HeaderView(android.content.Context r47) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.LimitReachedBottomSheet.HeaderView.<init>(org.telegram.ui.Components.Premium.LimitReachedBottomSheet, android.content.Context):void");
         }
 
@@ -1370,7 +1372,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
 
     public void lambda$onViewCreated$12(Context context, View view) {
         int i = this.type;
-        if (i == 11) {
+        if (i == 11 || i == 34) {
             return;
         }
         if (i != 19 && i != 32 && !isMiniBoostBtnForAdminAvailable()) {
@@ -1554,7 +1556,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             bottomSheetParams.allowNestedScroll = false;
             this.parentFragment.showAsSheet(new PremiumPreviewFragment("invite_privacy"), bottomSheetParams);
         }
-        if (this.type == 11) {
+        int i2 = this.type;
+        if (i2 == 11 || i2 == 34) {
             if (this.selectedChats.isEmpty()) {
                 lambda$new$0();
                 return;
@@ -1566,10 +1569,10 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         if (this.selectedChats.isEmpty()) {
             return;
         }
-        int i2 = this.type;
-        if (i2 == 2) {
+        int i3 = this.type;
+        if (i3 == 2) {
             revokeSelectedLinks();
-        } else if (i2 == 5) {
+        } else if (i3 == 5) {
             leaveFromSelectedGroups();
         }
     }
@@ -1579,6 +1582,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public void lambda$onViewCreated$5(View view, int i) {
+        int i2;
         if (view instanceof AdminedChannelCell) {
             AdminedChannelCell adminedChannelCell = (AdminedChannelCell) view;
             TLRPC.Chat currentChannel = adminedChannelCell.getCurrentChannel();
@@ -1592,7 +1596,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             if (!(view instanceof GroupCreateUserCell)) {
                 return;
             }
-            if (!this.canSendLink && this.type == 11) {
+            if (!this.canSendLink && ((i2 = this.type) == 11 || i2 == 34)) {
                 return;
             }
             GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) view;
@@ -1906,20 +1910,24 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
 
     public void sendInviteMessages(HashMap hashMap) {
         String str;
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.fromChat.id);
-        if (chatFull == null) {
-            lambda$new$0();
-            return;
-        }
-        if (this.fromChat.username != null) {
-            str = "@" + this.fromChat.username;
-        } else {
-            TLRPC.TL_chatInviteExported tL_chatInviteExported = chatFull.exported_invite;
-            if (tL_chatInviteExported == null) {
+        if (TextUtils.isEmpty(this.forceLink)) {
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.fromChat.id);
+            if (chatFull == null) {
                 lambda$new$0();
                 return;
             }
-            str = tL_chatInviteExported.link;
+            if (this.fromChat.username != null) {
+                str = "@" + this.fromChat.username;
+            } else {
+                TLRPC.TL_chatInviteExported tL_chatInviteExported = chatFull.exported_invite;
+                if (tL_chatInviteExported == null) {
+                    lambda$new$0();
+                    return;
+                }
+                str = tL_chatInviteExported.link;
+            }
+        } else {
+            str = this.forceLink;
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
@@ -2066,13 +2074,13 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             this.chatEndRow = size;
         } else if (!hasFixedSize(i)) {
             int i8 = this.type;
-            if (i8 != 11) {
+            if (i8 == 11 || i8 == 34) {
+                this.topPadding = 0.24f;
+            } else {
                 int i9 = this.rowCount;
                 this.dividerRow = i9;
                 this.rowCount = i9 + 2;
                 this.chatsTitleRow = i9 + 1;
-            } else {
-                this.topPadding = 0.24f;
             }
             if (this.loading) {
                 int i10 = this.rowCount;
@@ -2083,7 +2091,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     int i11 = this.rowCount;
                     this.chatStartRow = i11;
                     int i12 = this.type;
-                    this.rowCount = i11 + (i12 == 11 ? this.restrictedUsers : i12 == 5 ? this.inactiveChats : this.chats).size();
+                    this.rowCount = i11 + ((i12 == 11 || i12 == 34) ? this.restrictedUsers : i12 == 5 ? this.inactiveChats : this.chats).size();
                     this.chatEndRow = this.rowCount;
                 }
                 if (this.chatEndRow - this.chatStartRow > 1) {
@@ -2226,7 +2234,9 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     public CharSequence getTitle() {
         int i;
         int i2 = this.type;
-        if (i2 != 11) {
+        if (i2 == 11) {
+            i = R.string.ChannelInviteViaLink2;
+        } else if (i2 != 34) {
             switch (i2) {
                 case 18:
                 case 20:
@@ -2255,7 +2265,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     break;
             }
         } else {
-            i = R.string.ChannelInviteViaLink2;
+            i = R.string.CallInviteViaLink;
         }
         return LocaleController.getString(i);
     }
@@ -2385,9 +2395,10 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         this.requiredLvl = i;
     }
 
-    public void setRestrictedUsers(TLRPC.Chat chat, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
+    public void setRestrictedUsers(TLRPC.Chat chat, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str) {
         this.fromChat = chat;
-        this.canSendLink = ChatObject.canUserDoAdminAction(chat, 3);
+        this.forceLink = str;
+        this.canSendLink = !TextUtils.isEmpty(str) || ChatObject.canUserDoAdminAction(chat, 3);
         this.restrictedUsers = new ArrayList(arrayList);
         this.premiumMessagingBlockedUsers = arrayList2;
         this.premiumInviteBlockedUsers = arrayList3;
@@ -2403,26 +2414,26 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
         updateRows();
         updateButton();
-        if (this.type != 11 || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
-            return;
-        }
-        if (((arrayList3 == null || arrayList3.isEmpty()) && (arrayList2 == null || arrayList2.size() < this.restrictedUsers.size())) || arrayList3 == null || arrayList2 == null) {
-            return;
-        }
-        if (!(arrayList3.size() == 1 && arrayList2.size() == 1) && arrayList2.size() < arrayList3.size()) {
-            return;
-        }
-        PremiumButtonView premiumButtonView = this.premiumButtonView;
-        if (premiumButtonView != null && premiumButtonView.getParent() != null) {
-            ((ViewGroup) this.premiumButtonView.getParent()).removeView(this.premiumButtonView);
-        }
-        View view = this.divider;
-        if (view != null && view.getParent() != null) {
-            ((ViewGroup) this.divider.getParent()).removeView(this.divider);
-        }
-        RecyclerListView recyclerListView = this.recyclerListView;
-        if (recyclerListView != null) {
-            recyclerListView.setPadding(0, 0, 0, 0);
+        int i = this.type;
+        if ((i == 11 || i == 34) && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
+            if (((arrayList3 == null || arrayList3.isEmpty()) && (arrayList2 == null || arrayList2.size() < this.restrictedUsers.size())) || arrayList3 == null || arrayList2 == null) {
+                return;
+            }
+            if (!(arrayList3.size() == 1 && arrayList2.size() == 1) && arrayList2.size() < arrayList3.size()) {
+                return;
+            }
+            PremiumButtonView premiumButtonView = this.premiumButtonView;
+            if (premiumButtonView != null && premiumButtonView.getParent() != null) {
+                ((ViewGroup) this.premiumButtonView.getParent()).removeView(this.premiumButtonView);
+            }
+            View view = this.divider;
+            if (view != null && view.getParent() != null) {
+                ((ViewGroup) this.divider.getParent()).removeView(this.divider);
+            }
+            RecyclerListView recyclerListView = this.recyclerListView;
+            if (recyclerListView != null) {
+                recyclerListView.setPadding(0, 0, 0, 0);
+            }
         }
     }
 

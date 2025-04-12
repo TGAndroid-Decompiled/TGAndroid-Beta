@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Vibrator;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
@@ -76,6 +77,16 @@ public class VoIPPreNotificationService {
         }
 
         @Override
+        public TLRPC.GroupCall getGroupCall() {
+            return null;
+        }
+
+        @Override
+        public ArrayList<TLRPC.GroupCallParticipant> getGroupParticipants() {
+            return null;
+        }
+
+        @Override
         public TL_phone.PhoneCall getPrivateCall() {
             return this.call;
         }
@@ -83,6 +94,20 @@ public class VoIPPreNotificationService {
         @Override
         public TLRPC.User getUser() {
             return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.userId));
+        }
+
+        @Override
+        public boolean isCallingVideo() {
+            TL_phone.PhoneCall phoneCall = this.call;
+            if (phoneCall != null) {
+                return phoneCall.video;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean isConference() {
+            return false;
         }
 
         @Override
@@ -337,7 +362,7 @@ public class VoIPPreNotificationService {
         }
     }
 
-    private static void startRinging(android.content.Context r11, int r12, long r13) {
+    public static void startRinging(android.content.Context r11, int r12, long r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.startRinging(android.content.Context, int, long):void");
     }
 

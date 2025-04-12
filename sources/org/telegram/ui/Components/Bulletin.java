@@ -1283,8 +1283,10 @@ public class Bulletin {
         }
 
         public void setTop(boolean z) {
-            this.top = z;
-            updateSize();
+            if (this.top != z) {
+                this.top = z;
+                updateSize();
+            }
         }
 
         public void updatePosition() {
@@ -2745,6 +2747,11 @@ public class Bulletin {
             return;
         }
         layout.updatePosition();
+    }
+
+    public Bulletin allowBlur() {
+        this.allowBlurAnimation = true;
+        return this;
     }
 
     public Layout getLayout() {

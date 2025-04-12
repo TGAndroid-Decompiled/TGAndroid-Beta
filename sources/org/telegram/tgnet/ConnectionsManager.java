@@ -864,8 +864,8 @@ public class ConnectionsManager extends BaseController {
                 sb.append(" messageId = 0x");
                 sb.append(Long.toHexString(j4));
                 FileLog.d(sb.toString());
+                FileLog.dumpResponseAndRequest(this.currentAccount, tLObject, tLObject2, tL_error, j4, j, i4);
             }
-            FileLog.dumpResponseAndRequest(this.currentAccount, tLObject, tLObject2, tL_error, j4, j, i4);
             final TLObject tLObject3 = tLObject2;
             final TLRPC.TL_error tL_error3 = tL_error;
             Utilities.stageQueue.postRunnable(new Runnable() {

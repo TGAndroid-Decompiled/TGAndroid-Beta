@@ -36,8 +36,12 @@ public class QRCodeBottomSheet extends BottomSheet {
     int imageSize;
     Bitmap qrCode;
 
-    public QRCodeBottomSheet(final Context context, String str, final String str2, String str3, boolean z) {
-        super(context, false);
+    public QRCodeBottomSheet(Context context, String str, String str2, String str3, boolean z) {
+        this(context, str, str2, str3, z, null);
+    }
+
+    public QRCodeBottomSheet(final Context context, String str, final String str2, String str3, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        super(context, false, resourcesProvider);
         fixNavigationBar();
         setTitle(str, true);
         final ImageView imageView = new ImageView(context) {
@@ -177,23 +181,23 @@ public class QRCodeBottomSheet extends BottomSheet {
     }
 
     public void updateColors() {
-        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        this.buttonTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         TextView textView = this.buttonTextView;
         int dp = AndroidUtilities.dp(6.0f);
         int i = Theme.key_featuredStickers_addButton;
-        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i), Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
         TextView textView2 = this.button2TextView;
         if (textView2 != null) {
-            textView2.setTextColor(Theme.getColor(i));
-            this.button2TextView.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(i), Math.min(255, Color.alpha(Theme.getColor(Theme.key_listSelector)) * 2)), 7));
+            textView2.setTextColor(getThemedColor(i));
+            this.button2TextView.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(getThemedColor(i), Math.min(255, Color.alpha(getThemedColor(Theme.key_listSelector)) * 2)), 7));
         }
         TextView textView3 = this.help;
         int i2 = Theme.key_windowBackgroundWhiteGrayText;
-        textView3.setTextColor(Theme.getColor(i2));
-        this.help.setTextColor(Theme.getColor(i2));
+        textView3.setTextColor(getThemedColor(i2));
+        this.help.setTextColor(getThemedColor(i2));
         if (getTitleView() != null) {
-            getTitleView().setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            getTitleView().setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         }
-        setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
+        setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
     }
 }

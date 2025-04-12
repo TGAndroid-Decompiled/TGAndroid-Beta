@@ -866,8 +866,8 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         HashMap<String, Bitmap> hashMap = this.call.thumbs;
         ChatObject.VideoParticipant videoParticipant = this.participant;
         boolean z = videoParticipant.presentation;
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = videoParticipant.participant;
-        hashMap.put(z ? tL_groupCallParticipant.presentationEndpoint : tL_groupCallParticipant.videoEndpoint, bitmap);
+        TLRPC.GroupCallParticipant groupCallParticipant = videoParticipant.participant;
+        hashMap.put(z ? groupCallParticipant.presentationEndpoint : groupCallParticipant.videoEndpoint, bitmap);
     }
 
     public void lambda$saveThumb$5(final Bitmap bitmap, int i) {
@@ -934,8 +934,8 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         HashMap<String, Bitmap> hashMap = this.call.thumbs;
         ChatObject.VideoParticipant videoParticipant = this.participant;
         boolean z = videoParticipant.presentation;
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = videoParticipant.participant;
-        Bitmap bitmap = hashMap.get(z ? tL_groupCallParticipant.presentationEndpoint : tL_groupCallParticipant.videoEndpoint);
+        TLRPC.GroupCallParticipant groupCallParticipant = videoParticipant.participant;
+        Bitmap bitmap = hashMap.get(z ? groupCallParticipant.presentationEndpoint : groupCallParticipant.videoEndpoint);
         this.thumb = bitmap;
         this.textureView.setThumb(bitmap);
         if (this.thumb == null) {

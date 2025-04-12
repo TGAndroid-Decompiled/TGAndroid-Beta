@@ -32,6 +32,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.pip.PipNativeApiController;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
@@ -458,21 +459,21 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
     }
 
     public void lambda$new$2(GroupCallActivity groupCallActivity, View view) {
-        if (isRtmpStream()) {
+        if (!isRtmpStream()) {
             if (!AndroidUtilities.checkInlinePermissions(groupCallActivity.getParentActivity())) {
-                AlertsCreator.createDrawOverlayPermissionDialog(groupCallActivity.getParentActivity(), null).show();
+                AlertsCreator.createDrawOverlayGroupCallPermissionDialog(getContext()).show();
                 return;
             } else {
-                RTMPStreamPipOverlay.show();
+                GroupCallPip.clearForce();
                 groupCallActivity.lambda$new$0();
                 return;
             }
         }
-        if (!AndroidUtilities.checkInlinePermissions(groupCallActivity.getParentActivity())) {
-            AlertsCreator.createDrawOverlayGroupCallPermissionDialog(getContext()).show();
-        } else {
-            GroupCallPip.clearForce();
+        if (PipNativeApiController.checkAnyPipPermissions(groupCallActivity.getParentActivity())) {
+            RTMPStreamPipOverlay.show(groupCallActivity.getParentActivity());
             groupCallActivity.lambda$new$0();
+        } else if (Build.VERSION.SDK_INT >= 21) {
+            AlertsCreator.createDrawOverlayPermissionDialog(groupCallActivity.getParentActivity(), null).show();
         }
     }
 
@@ -648,8 +649,8 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         return this.uiVisible;
     }
 
-    public boolean isVisible(TLRPC.TL_groupCallParticipant tL_groupCallParticipant) {
-        return this.attachedPeerIds.get(MessageObject.getPeerId(tL_groupCallParticipant.peer)) > 0;
+    public boolean isVisible(TLRPC.GroupCallParticipant groupCallParticipant) {
+        return this.attachedPeerIds.get(MessageObject.getPeerId(groupCallParticipant.peer)) > 0;
     }
 
     protected abstract void onBackPressed();
@@ -1056,9 +1057,9 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         }
     }
 
-    public void setAmplitude(TLRPC.TL_groupCallParticipant tL_groupCallParticipant, float f) {
+    public void setAmplitude(TLRPC.GroupCallParticipant groupCallParticipant, float f) {
         for (int i = 0; i < this.attachedRenderers.size(); i++) {
-            if (MessageObject.getPeerId(((GroupCallMiniTextureView) this.attachedRenderers.get(i)).participant.participant.peer) == MessageObject.getPeerId(tL_groupCallParticipant.peer)) {
+            if (MessageObject.getPeerId(((GroupCallMiniTextureView) this.attachedRenderers.get(i)).participant.participant.peer) == MessageObject.getPeerId(groupCallParticipant.peer)) {
                 ((GroupCallMiniTextureView) this.attachedRenderers.get(i)).setAmplitude(f);
             }
         }
@@ -1130,26 +1131,26 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         SpannableStringBuilder spannableStringBuilder = null;
         int i4 = 0;
         while (i3 < this.call.currentSpeakingPeers.size()) {
-            TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) this.call.currentSpeakingPeers.get(this.call.currentSpeakingPeers.keyAt(i3));
-            if (tL_groupCallParticipant.self || tL_groupCallParticipant.muted_by_you || MessageObject.getPeerId(this.fullscreenParticipant.participant.peer) == MessageObject.getPeerId(tL_groupCallParticipant.peer)) {
+            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.call.currentSpeakingPeers.get(this.call.currentSpeakingPeers.keyAt(i3));
+            if (groupCallParticipant.self || groupCallParticipant.muted_by_you || MessageObject.getPeerId(this.fullscreenParticipant.participant.peer) == MessageObject.getPeerId(groupCallParticipant.peer)) {
                 i = i3;
             } else {
-                long peerId = MessageObject.getPeerId(tL_groupCallParticipant.peer);
+                long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
                 i = i3;
-                if (SystemClock.uptimeMillis() - tL_groupCallParticipant.lastSpeakTime >= 500) {
+                if (SystemClock.uptimeMillis() - groupCallParticipant.lastSpeakTime >= 500) {
                     continue;
                 } else {
                     if (spannableStringBuilder == null) {
                         spannableStringBuilder = new SpannableStringBuilder();
                     }
                     if (i4 == 0) {
-                        this.speakingToastPeerId = MessageObject.getPeerId(tL_groupCallParticipant.peer);
+                        this.speakingToastPeerId = MessageObject.getPeerId(groupCallParticipant.peer);
                     }
                     if (i4 < 3) {
                         TLRPC.User user = peerId > 0 ? MessagesController.getInstance(currentAccount).getUser(Long.valueOf(peerId)) : null;
                         TLRPC.Chat chat = peerId <= 0 ? MessagesController.getInstance(currentAccount).getChat(Long.valueOf(peerId)) : null;
                         if (user != null || chat != null) {
-                            this.speakingMembersAvatars.setObject(i4, currentAccount, tL_groupCallParticipant);
+                            this.speakingMembersAvatars.setObject(i4, currentAccount, groupCallParticipant);
                             if (i4 != 0) {
                                 spannableStringBuilder.append((CharSequence) ", ");
                             }

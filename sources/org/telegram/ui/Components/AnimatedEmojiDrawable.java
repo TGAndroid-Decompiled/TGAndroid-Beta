@@ -899,6 +899,13 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
     }
 
+    public AnimatedEmojiDrawable(int i, int i2) {
+        this.cacheType = i;
+        this.currentAccount = i2;
+        updateSize();
+        updateLiteModeValues();
+    }
+
     public AnimatedEmojiDrawable(int i, int i2, long j) {
         this.currentAccount = i2;
         this.cacheType = i;
@@ -943,7 +950,8 @@ public class AnimatedEmojiDrawable extends Drawable {
         if (this.imageReceiver == null) {
             AnonymousClass1 anonymousClass1 = new AnonymousClass1();
             this.imageReceiver = anonymousClass1;
-            anonymousClass1.setAllowLoadingOnAttachedOnly(true);
+            anonymousClass1.setCurrentAccount(this.currentAccount);
+            this.imageReceiver.setAllowLoadingOnAttachedOnly(true);
             if (this.cacheType == 12) {
                 this.imageReceiver.ignoreNotifications = true;
             }
@@ -1200,7 +1208,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                     this.sizedp = 14;
                     return;
                 }
-                abs = 34;
+                abs = i == 21 ? 90 : 34;
             }
             abs = (int) (((abs2 + Math.abs(textPaint.descent())) * 1.15f) / AndroidUtilities.density);
         }
@@ -1377,6 +1385,11 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
             imageReceiver.setCurrentTime(j);
         }
+    }
+
+    public void setupDocument(TLRPC.Document document) {
+        this.document = document;
+        initDocument(false);
     }
 
     public void setupEmojiThumb(String str) {

@@ -6,7 +6,7 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.Job;
 
 abstract class FlowKt__ErrorsKt {
-    public static final Flow m261catch(Flow flow, Function3 function3) {
+    public static final Flow m262catch(Flow flow, Function3 function3) {
         return new FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1(flow, function3);
     }
 

@@ -104,13 +104,27 @@ public abstract class GroupCallInvitedCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
     }
 
-    public void setData(int i, Long l) {
+    public void setData(int i, Long l, boolean z, boolean z2, boolean z3) {
         TLRPC.User user = MessagesController.getInstance(i).getUser(l);
         this.currentUser = user;
-        this.avatarDrawable.setInfo(user);
+        if (user == null) {
+            this.avatarDrawable.setAvatarType(21);
+        } else {
+            this.avatarDrawable.setInfo(user);
+        }
         this.nameTextView.setText(UserObject.getUserName(this.currentUser));
         this.avatarImageView.getImageReceiver().setCurrentAccount(i);
         this.avatarImageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
+        this.statusTextView.setText(LocaleController.getString(z3 ? R.string.ShadyLeaving : z2 ? R.string.ShadyJoining : z ? R.string.ConferenceCalling : R.string.Invited));
+        float f = 0.5f;
+        this.avatarImageView.setAlpha((z2 || z3) ? 0.5f : 1.0f);
+        this.nameTextView.setAlpha((z2 || z3) ? 0.5f : 1.0f);
+        SimpleTextView simpleTextView = this.statusTextView;
+        if (!z2 && !z3) {
+            f = 1.0f;
+        }
+        simpleTextView.setAlpha(f);
+        this.muteButton.setAlpha((z2 || z3) ? 0.0f : 1.0f);
     }
 
     public void setDrawDivider(boolean z) {

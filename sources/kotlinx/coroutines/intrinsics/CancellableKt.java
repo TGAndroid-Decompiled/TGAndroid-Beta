@@ -12,7 +12,7 @@ import kotlinx.coroutines.internal.DispatchedContinuationKt;
 public abstract class CancellableKt {
     private static final void dispatcherFailure(Continuation continuation, Throwable th) {
         Result.Companion companion = Result.Companion;
-        continuation.resumeWith(Result.m209constructorimpl(ResultKt.createFailure(th)));
+        continuation.resumeWith(Result.m210constructorimpl(ResultKt.createFailure(th)));
         throw th;
     }
 
@@ -21,7 +21,7 @@ public abstract class CancellableKt {
         try {
             intercepted = IntrinsicsKt__IntrinsicsJvmKt.intercepted(continuation);
             Result.Companion companion = Result.Companion;
-            DispatchedContinuationKt.resumeCancellableWith$default(intercepted, Result.m209constructorimpl(Unit.INSTANCE), null, 2, null);
+            DispatchedContinuationKt.resumeCancellableWith$default(intercepted, Result.m210constructorimpl(Unit.INSTANCE), null, 2, null);
         } catch (Throwable th) {
             dispatcherFailure(continuation2, th);
         }
@@ -34,7 +34,7 @@ public abstract class CancellableKt {
             createCoroutineUnintercepted = IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted(function2, obj, continuation);
             intercepted = IntrinsicsKt__IntrinsicsJvmKt.intercepted(createCoroutineUnintercepted);
             Result.Companion companion = Result.Companion;
-            DispatchedContinuationKt.resumeCancellableWith(intercepted, Result.m209constructorimpl(Unit.INSTANCE), function1);
+            DispatchedContinuationKt.resumeCancellableWith(intercepted, Result.m210constructorimpl(Unit.INSTANCE), function1);
         } catch (Throwable th) {
             dispatcherFailure(continuation, th);
         }

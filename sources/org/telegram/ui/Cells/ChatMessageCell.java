@@ -105,6 +105,7 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedNumberLayout;
 import org.telegram.ui.Components.AudioVisualizerDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.AvatarsDrawable;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -417,6 +418,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public final GiveawayResultsMessageCell giveawayResultsMessageCell;
     private Drawable gradientDrawable;
     private LinearGradient gradientShader;
+    private Drawable groupCallDrawable;
+    private int groupCallDrawableColor;
+    private AvatarsDrawable groupCallParticipantsAvatars;
+    private Text groupCallParticipantsText;
     public GroupMedia groupMedia;
     private boolean groupPhotoInvisible;
     private MessageObject.GroupedMessages groupedMessagesToSet;
@@ -1082,6 +1087,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             public static void $default$didQuickShareMove(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, float f, float f2) {
             }
 
+            public static void $default$didQuickShareStart(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, float f, float f2) {
+            }
+
             public static void $default$didStartVideoStream(ChatMessageCellDelegate chatMessageCellDelegate, MessageObject messageObject) {
             }
 
@@ -1271,6 +1279,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         void didQuickShareEnd(ChatMessageCell chatMessageCell, float f, float f2);
 
         void didQuickShareMove(ChatMessageCell chatMessageCell, float f, float f2);
+
+        void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2);
 
         void didStartVideoStream(MessageObject messageObject);
 
@@ -3835,8 +3845,24 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                                 i2 = R.string.OpenLink;
                             } else if (i3 == 17) {
                                 i2 = R.string.ViewStory;
+                            } else if (i3 == 18 || i3 == 22) {
+                                i = R.string.BoostLinkButton;
+                            } else if (i3 == 19) {
+                                i = R.string.BoostingHowItWork;
+                            } else if (i3 == 20) {
+                                i = R.string.OpenGift;
+                            } else if (i3 == 21) {
+                                i = R.string.AppUpdate;
+                            } else if (i3 == 23) {
+                                i = R.string.OpenStickerSet;
+                            } else if (i3 == 24) {
+                                i = R.string.OpenEmojiSet;
+                            } else if (i3 == 26) {
+                                i = R.string.OpenUniqueGift;
+                            } else if (i3 == 27) {
+                                i2 = R.string.JoinCall;
                             } else {
-                                i = (i3 == 18 || i3 == 22) ? R.string.BoostLinkButton : i3 == 19 ? R.string.BoostingHowItWork : i3 == 20 ? R.string.OpenGift : i3 == 21 ? R.string.AppUpdate : i3 == 23 ? R.string.OpenStickerSet : i3 == 24 ? R.string.OpenEmojiSet : i3 == 26 ? R.string.OpenUniqueGift : R.string.InstantView;
+                                i = R.string.InstantView;
                             }
                         }
                         i = R.string.VoipGroupJoinAsLinstener;
@@ -6428,7 +6454,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOutboundsContent(android.graphics.Canvas):void");
     }
 
-    public void drawOverlays(android.graphics.Canvas r56) {
+    public void drawOverlays(android.graphics.Canvas r57) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 
@@ -6529,10 +6555,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f) {
             applyServiceShaderMatrix();
         }
-        if (getAlpha() != 1.0f) {
+        if (getAlpha() * f != 1.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.saveLayerAlpha(rectF, (int) (getAlpha() * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (f * 255.0f * getAlpha()), 31);
         } else {
             z = false;
         }
@@ -6579,10 +6605,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f) {
             applyServiceShaderMatrix();
         }
-        if (getAlpha() != 1.0f) {
+        if (getAlpha() * f != 1.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.saveLayerAlpha(rectF, (int) (getAlpha() * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (f * 255.0f * getAlpha()), 31);
         } else {
             z = false;
         }
@@ -7841,6 +7867,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject != null) {
             messageObject.animateComments = false;
         }
+        AvatarsDrawable avatarsDrawable = this.groupCallParticipantsAvatars;
+        if (avatarsDrawable != null) {
+            avatarsDrawable.onAttachedToWindow();
+        }
         MessageObject messageObject2 = this.messageObjectToSet;
         if (messageObject2 != null) {
             messageObject2.animateComments = false;
@@ -7957,6 +7987,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         CheckBoxBase checkBoxBase = this.checkBox;
         if (checkBoxBase != null) {
             checkBoxBase.onDetachedFromWindow();
+        }
+        AvatarsDrawable avatarsDrawable = this.groupCallParticipantsAvatars;
+        if (avatarsDrawable != null) {
+            avatarsDrawable.onDetachedFromWindow();
         }
         CheckBoxBase checkBoxBase2 = this.mediaCheckBox;
         if (checkBoxBase2 != null) {

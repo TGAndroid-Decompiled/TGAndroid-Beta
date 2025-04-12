@@ -17,7 +17,7 @@ public class GroupCallStatusIcon {
     boolean lastRaisedHand;
     RLottieDrawable micDrawable;
     private boolean mutedByMe;
-    TLRPC.TL_groupCallParticipant participant;
+    TLRPC.GroupCallParticipant participant;
     RLottieDrawable shakeHandDrawable;
     boolean updateRunnableScheduled;
     private Runnable shakeHandCallback = new Runnable() {
@@ -113,8 +113,8 @@ public class GroupCallStatusIcon {
     }
 
     public boolean isMutedByAdmin() {
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = this.participant;
-        return (tL_groupCallParticipant == null || !tL_groupCallParticipant.muted || tL_groupCallParticipant.can_self_unmute) ? false : true;
+        TLRPC.GroupCallParticipant groupCallParticipant = this.participant;
+        return (groupCallParticipant == null || !groupCallParticipant.muted || groupCallParticipant.can_self_unmute) ? false : true;
     }
 
     public boolean isMutedByMe() {
@@ -158,8 +158,8 @@ public class GroupCallStatusIcon {
         updateIcon(false);
     }
 
-    public void setParticipant(TLRPC.TL_groupCallParticipant tL_groupCallParticipant, boolean z) {
-        this.participant = tL_groupCallParticipant;
+    public void setParticipant(TLRPC.GroupCallParticipant groupCallParticipant, boolean z) {
+        this.participant = groupCallParticipant;
         updateIcon(z);
     }
 

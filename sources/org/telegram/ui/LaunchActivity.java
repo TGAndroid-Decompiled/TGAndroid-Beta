@@ -84,6 +84,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.pip.PictureInPictureActivityHandler;
+import org.telegram.messenger.pip.PipNativeApiController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
@@ -130,6 +132,7 @@ import org.telegram.ui.Components.MediaActivity;
 import org.telegram.ui.Components.PasscodeView;
 import org.telegram.ui.Components.PasscodeViewDialog;
 import org.telegram.ui.Components.PipRoundVideoView;
+import org.telegram.ui.Components.PipVideoOverlay;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.BoostPagerBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -143,6 +146,7 @@ import org.telegram.ui.Components.TermsOfServiceView;
 import org.telegram.ui.Components.ThemeEditorView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
+import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
@@ -163,7 +167,7 @@ import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
 
-public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
+public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, PictureInPictureActivityHandler {
     public static LaunchActivity instance;
     public static boolean isActive;
     public static boolean isResumed;
@@ -199,6 +203,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private ArrayList importingStickers;
     private ArrayList importingStickersEmoji;
     private String importingStickersSoftware;
+    private boolean isStarted;
     private SideMenultItemAnimator itemAnimator;
     private RelativeLayout launchLayout;
     private ActionBarLayout layersActionBarLayout;
@@ -221,6 +226,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private boolean passcodeSaveIntentIsNew;
     private boolean passcodeSaveIntentIsRestore;
     private ArrayList photoPathsArray;
+    private FrameLayout pipNativeWrapper;
     private Dialog proxyErrorDialog;
     private ActionBarLayout rightActionBarLayout;
     private View rippleAbove;
@@ -1119,9 +1125,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } else {
             j = UserConfig.getInstance(this.currentAccount).clientUserId;
         }
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) call.participants.get(j);
-        boolean z4 = (tL_groupCallParticipant == null || tL_groupCallParticipant.can_self_unmute || !tL_groupCallParticipant.muted) ? false : true;
-        if (z4 && tL_groupCallParticipant.raise_hand_rating != 0) {
+        TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) call.participants.get(j);
+        boolean z4 = (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted) ? false : true;
+        if (z4 && groupCallParticipant.raise_hand_rating != 0) {
             z2 = true;
         }
         this.wasMutedByAdminRaisedHand = z2;
@@ -1321,7 +1327,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return handleIntent(intent, z, z2, z3, null, true, false);
     }
 
-    private boolean handleIntent(android.content.Intent r111, boolean r112, boolean r113, boolean r114, org.telegram.messenger.browser.Browser.Progress r115, boolean r116, boolean r117) {
+    private boolean handleIntent(android.content.Intent r112, boolean r113, boolean r114, boolean r115, org.telegram.messenger.browser.Browser.Progress r116, boolean r117, boolean r118) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean, boolean):boolean");
     }
 
@@ -2665,7 +2671,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     public final void accept(Object obj) {
                         runnable2.run();
                     }
-                }, null, progress != null ? new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda4(progress) : null);
+                }, null, progress != null ? new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6(progress) : null);
                 return;
             } else if (tL_messages_botApp.request_write_access || z4) {
                 AlertsCreator.createBotLaunchAlert(baseFragment3, atomicBoolean, user, runnable2);
@@ -3255,7 +3261,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public void lambda$runLinkRequest$66(TLRPC.TL_error tL_error, final int i, final String str, final String str2, final String str3, final String str4, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final boolean z, final Integer num, final Long l, final Long l2, final Integer num2, final String str13, final HashMap hashMap, final String str14, final String str15, final String str16, final String str17, final TLRPC.TL_wallPaper tL_wallPaper, final String str18, final String str19, final String str20, final String str21, final boolean z2, final String str22, final int i2, final int i3, final String str23, final String str24, final String str25, final Browser.Progress progress, final boolean z3, final int i4, final boolean z4, final String str26, final boolean z5, final boolean z6, final boolean z7, final boolean z8, final boolean z9, final String str27, TLObject tLObject, final Long l3, final String str28, final String str29, final TLRPC.User user, final Runnable runnable) {
         LaunchActivity launchActivity;
-        ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda4 chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda4;
+        ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6 chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6;
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -3290,13 +3296,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
             };
             if (progress != null) {
-                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda4 = new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda4(progress);
+                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6 = new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6(progress);
                 launchActivity = this;
             } else {
                 launchActivity = this;
-                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda4 = null;
+                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6 = null;
             }
-            WebAppDisclaimerAlert.show(launchActivity, consumer, null, chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda4);
+            WebAppDisclaimerAlert.show(launchActivity, consumer, null, chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6);
         }
     }
 
@@ -5117,6 +5123,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } : null);
     }
 
+    @Override
+    public void addActivityPipView(View view) {
+        this.frameLayout.setVisibility(8);
+        this.pipNativeWrapper.addView(view, LayoutHelper.createFrame(-1, -1.0f));
+    }
+
     public void addOnUserLeaveHintListener(Runnable runnable) {
         this.onUserLeaveHintListeners.add(runnable);
     }
@@ -5776,6 +5788,28 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
+    public void onPictureInPictureModeChanged(boolean z, Configuration configuration) {
+        PipNativeApiController.onPictureInPictureModeChanged(this, z);
+        super.onPictureInPictureModeChanged(z, configuration);
+        if (z || this.isStarted) {
+            return;
+        }
+        if (RTMPStreamPipOverlay.isVisible()) {
+            RTMPStreamPipOverlay.dismiss();
+        }
+        if (PipVideoOverlay.isVisible()) {
+            PipVideoOverlay.dismiss();
+        }
+        GroupCallActivity.onLeaveClick(this, null, false, true);
+        if (PhotoViewer.getPipInstance() != null) {
+            PhotoViewer.getPipInstance().destroyPhotoViewer();
+        }
+        if (PhotoViewer.hasInstance()) {
+            PhotoViewer.getInstance().closePhoto(false, false);
+        }
+    }
+
+    @Override
     public boolean onPreIme() {
         if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
             SecretMediaViewer.getInstance().closePhoto(true, false);
@@ -6011,6 +6045,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public void onStart() {
         super.onStart();
+        this.isStarted = true;
         Browser.bindCustomTabsService(this);
         ApplicationLoader.mainInterfaceStopped = false;
         GroupCallPip.updateVisibility(this);
@@ -6023,6 +6058,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public void onStop() {
         super.onStop();
+        this.isStarted = false;
         Browser.unbindCustomTabsService(this);
         ApplicationLoader.mainInterfaceStopped = true;
         GroupCallPip.updateVisibility(this);
@@ -6053,6 +6089,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (actionBarLayout != null) {
             actionBarLayout.onUserLeaveHint();
         }
+        PipNativeApiController.onUserLeaveHint(this);
     }
 
     public void openMessage(final long j, final int i, final String str, final Browser.Progress progress, int i2, final int i3) {
@@ -6122,6 +6159,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             actionBarLayout = this.actionBarLayout;
         }
         actionBarLayout.rebuildAllFragmentViews(z, z);
+    }
+
+    @Override
+    public void removeActivityPipView(View view) {
+        this.pipNativeWrapper.removeView(view);
+        this.frameLayout.setVisibility(this.pipNativeWrapper.getChildCount() > 1 ? 8 : 0);
     }
 
     public void removeOnUserLeaveHintListener(Runnable runnable) {

@@ -33,13 +33,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.pip.PictureInPictureContentViewProvider;
+import org.telegram.messenger.pip.PipNativeApiController;
+import org.telegram.messenger.pip.PipSource;
 import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
 import org.telegram.ui.Components.PipVideoOverlay;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 
-public class PipVideoOverlay {
+public class PipVideoOverlay implements PictureInPictureContentViewProvider {
     private static final FloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new SimpleFloatPropertyCompat.Getter() {
         @Override
         public final float get(Object obj) {
@@ -92,6 +95,7 @@ public class PipVideoOverlay {
     private PhotoViewerWebView photoViewerWebView;
     private PipConfig pipConfig;
     private int pipHeight;
+    private PipSource pipSource;
     private int pipWidth;
     private float pipX;
     private SpringAnimation pipXSpring;
@@ -444,15 +448,6 @@ public class PipVideoOverlay {
         this.photoViewer.getVideoPlayerRewinder().cancelRewind();
     }
 
-    private WindowManager.LayoutParams createWindowLayoutParams(boolean z) {
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.gravity = 51;
-        layoutParams.format = -3;
-        layoutParams.type = (z || !AndroidUtilities.checkInlinePermissions(ApplicationLoader.applicationContext)) ? 99 : Build.VERSION.SDK_INT >= 26 ? 2038 : 2003;
-        layoutParams.flags = 520;
-        return layoutParams;
-    }
-
     public static void dismiss() {
         dismiss(false);
     }
@@ -762,6 +757,11 @@ public class PipVideoOverlay {
         this.videoProgressView = null;
         this.innerView = null;
         this.photoViewer = null;
+        PipSource pipSource = this.pipSource;
+        if (pipSource != null) {
+            pipSource.destroy();
+            this.pipSource = null;
+        }
         this.photoViewerWebView = null;
         this.parentSheet = null;
         this.consumingChild = null;
@@ -867,9 +867,20 @@ public class PipVideoOverlay {
     }
 
     public static void setPhotoViewer(PhotoViewer photoViewer) {
-        PipVideoOverlay pipVideoOverlay = instance;
-        pipVideoOverlay.photoViewer = photoViewer;
-        pipVideoOverlay.updatePlayButtonInternal();
+        instance.photoViewer = photoViewer;
+        VideoPlayer videoPlayer = photoViewer.getVideoPlayer();
+        PipSource pipSource = instance.pipSource;
+        if (pipSource != null) {
+            pipSource.destroy();
+            instance.pipSource = null;
+        }
+        if (videoPlayer != null && PipNativeApiController.checkPermissions(photoViewer.getParentActivity()) == 1) {
+            PipVideoOverlay pipVideoOverlay = instance;
+            PipSource.Builder contentView = new PipSource.Builder(photoViewer.getParentActivity(), instance).setTagPrefix("photo-viewer-pip-" + videoPlayer.playerId).setPriority(1).setContentView(instance.contentView);
+            PipVideoOverlay pipVideoOverlay2 = instance;
+            pipVideoOverlay.pipSource = contentView.setContentRatio(pipVideoOverlay2.mVideoWidth, pipVideoOverlay2.mVideoHeight).setPlayer(videoPlayer.player).setNeedMediaSession(true).build();
+        }
+        instance.updatePlayButtonInternal();
     }
 
     public static boolean show(boolean z, Activity activity, View view, int i, int i2) {
@@ -884,7 +895,7 @@ public class PipVideoOverlay {
         return instance.showInternal(z, activity, view, photoViewerWebView, i, i2, z2);
     }
 
-    private boolean showInternal(final boolean r24, android.app.Activity r25, android.view.View r26, org.telegram.ui.Components.PhotoViewerWebView r27, int r28, int r29, boolean r30) {
+    private boolean showInternal(boolean r24, android.app.Activity r25, android.view.View r26, org.telegram.ui.Components.PhotoViewerWebView r27, int r28, int r29, boolean r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PipVideoOverlay.showInternal(boolean, android.app.Activity, android.view.View, org.telegram.ui.Components.PhotoViewerWebView, int, int, boolean):boolean");
     }
 
@@ -946,6 +957,34 @@ public class PipVideoOverlay {
         imageView.setImageResource(i);
     }
 
+    @Override
+    public void attachContentToWindow() {
+        this.contentFrameLayout.addView(this.innerView, 0, LayoutHelper.createFrame(-1, -1.0f));
+        this.contentView.setVisibility(0);
+        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
+        videoPlayer.setSurfaceView(null);
+        videoPlayer.setTextureView(null);
+        videoPlayer.setTextureView(this.photoViewer.changedTextureView);
+    }
+
+    @Override
+    public View detachContentFromWindow() {
+        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
+        videoPlayer.setSurfaceView(null);
+        videoPlayer.setTextureView(null);
+        this.contentView.setVisibility(8);
+        this.contentFrameLayout.removeView(this.innerView);
+        return this.innerView;
+    }
+
+    @Override
+    public void onAttachContentToPip() {
+        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
+        videoPlayer.setSurfaceView(null);
+        videoPlayer.setTextureView(null);
+        videoPlayer.setTextureView(this.photoViewer.changedTextureView);
+    }
+
     public void onLongClick() {
         PhotoViewer photoViewer = this.photoViewer;
         if (photoViewer != null) {
@@ -975,5 +1014,12 @@ public class PipVideoOverlay {
             AndroidUtilities.runOnUIThread(this.dismissControlsCallback, 1500L);
             this.postedDismissControls = true;
         }
+    }
+
+    @Override
+    public void prepareDetachContentFromPip() {
+        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
+        videoPlayer.setSurfaceView(null);
+        videoPlayer.setTextureView(null);
     }
 }

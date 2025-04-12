@@ -8,6 +8,7 @@ import android.os.Build;
 import java.util.concurrent.ScheduledExecutorService;
 import org.webrtc.JniCommon;
 import org.webrtc.Logging;
+import org.webrtc.audio.AudioDeviceModule;
 
 public class JavaAudioDeviceModule implements AudioDeviceModule {
     private static final String TAG = "JavaAudioDeviceModule";
@@ -100,6 +101,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         private AudioTrackErrorCallback audioTrackErrorCallback;
         private AudioTrackStateCallback audioTrackStateCallback;
         private final Context context;
+        private boolean enableVolumeLogger;
         private int inputSampleRate;
         private int outputSampleRate;
         private SamplesReadyCallback samplesReadyCallback;
@@ -121,6 +123,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             this.inputSampleRate = WebRtcAudioManager.getSampleRate(audioManager);
             this.outputSampleRate = WebRtcAudioManager.getSampleRate(audioManager);
             this.useLowLatency = false;
+            this.enableVolumeLogger = true;
         }
 
         public JavaAudioDeviceModule createAudioDeviceModule() {
@@ -152,7 +155,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             if (scheduledExecutorService == null) {
                 scheduledExecutorService = WebRtcAudioRecord.newDefaultScheduler();
             }
-            return new JavaAudioDeviceModule(this.context, this.audioManager, new WebRtcAudioRecord(this.context, scheduledExecutorService, this.audioManager, this.audioSource, this.audioFormat, this.audioRecordErrorCallback, this.audioRecordStateCallback, this.samplesReadyCallback, this.useHardwareAcousticEchoCanceler, this.useHardwareNoiseSuppressor), new WebRtcAudioTrack(this.context, this.audioManager, this.audioAttributes, this.audioTrackErrorCallback, this.audioTrackStateCallback, this.useLowLatency), this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
+            return new JavaAudioDeviceModule(this.context, this.audioManager, new WebRtcAudioRecord(this.context, scheduledExecutorService, this.audioManager, this.audioSource, this.audioFormat, this.audioRecordErrorCallback, this.audioRecordStateCallback, this.samplesReadyCallback, this.useHardwareAcousticEchoCanceler, this.useHardwareNoiseSuppressor), new WebRtcAudioTrack(this.context, this.audioManager, this.audioAttributes, this.audioTrackErrorCallback, this.audioTrackStateCallback, this.useLowLatency, this.enableVolumeLogger), this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
         }
 
         public Builder setAudioAttributes(AudioAttributes audioAttributes) {
@@ -187,6 +190,11 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
 
         public Builder setAudioTrackStateCallback(AudioTrackStateCallback audioTrackStateCallback) {
             this.audioTrackStateCallback = audioTrackStateCallback;
+            return this;
+        }
+
+        public Builder setEnableVolumeLogger(boolean z) {
+            this.enableVolumeLogger = z;
             return this;
         }
 
@@ -320,9 +328,20 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         this.audioInput.setMicrophoneMute(z);
     }
 
+    @Override
+    public boolean setNoiseSuppressorEnabled(boolean z) {
+        Logging.d("JavaAudioDeviceModule", "setNoiseSuppressorEnabled: " + z);
+        return this.audioInput.setNoiseSuppressorEnabled(z);
+    }
+
     public void setPreferredInputDevice(AudioDeviceInfo audioDeviceInfo) {
         Logging.d("JavaAudioDeviceModule", "setPreferredInputDevice: " + audioDeviceInfo);
         this.audioInput.setPreferredDevice(audioDeviceInfo);
+    }
+
+    @Override
+    public boolean setPreferredMicrophoneFieldDimension(float f) {
+        return AudioDeviceModule.CC.$default$setPreferredMicrophoneFieldDimension(this, f);
     }
 
     @Override

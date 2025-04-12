@@ -22,8 +22,8 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         }
 
         @Override
-        public boolean test(android.media.MediaCodecInfo r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.AnonymousClass1.test(android.media.MediaCodecInfo):boolean");
+        public boolean test(MediaCodecInfo mediaCodecInfo) {
+            return MediaCodecUtils.isHardwareAccelerated(mediaCodecInfo);
         }
     };
 

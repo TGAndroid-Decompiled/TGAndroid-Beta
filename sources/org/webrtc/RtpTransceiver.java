@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.webrtc.MediaStreamTrack;
+import org.webrtc.RtpCapabilities;
 import org.webrtc.RtpParameters;
 
 public class RtpTransceiver {
@@ -15,7 +16,8 @@ public class RtpTransceiver {
         SEND_RECV(0),
         SEND_ONLY(1),
         RECV_ONLY(2),
-        INACTIVE(3);
+        INACTIVE(3),
+        STOPPED(4);
 
         private final int nativeIndex;
 
@@ -97,6 +99,8 @@ public class RtpTransceiver {
 
     private static native RtpSender nativeGetSender(long j);
 
+    private static native void nativeSetCodecPreferences(long j, List<RtpCapabilities.CodecCapability> list);
+
     private static native boolean nativeSetDirection(long j, RtpTransceiverDirection rtpTransceiverDirection);
 
     private static native void nativeStopInternal(long j);
@@ -144,6 +148,11 @@ public class RtpTransceiver {
     public boolean isStopped() {
         checkRtpTransceiverExists();
         return nativeStopped(this.nativeRtpTransceiver);
+    }
+
+    public void setCodecPreferences(List<RtpCapabilities.CodecCapability> list) {
+        checkRtpTransceiverExists();
+        nativeSetCodecPreferences(this.nativeRtpTransceiver, list);
     }
 
     public boolean setDirection(RtpTransceiverDirection rtpTransceiverDirection) {

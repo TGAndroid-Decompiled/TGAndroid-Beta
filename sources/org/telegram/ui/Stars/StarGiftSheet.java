@@ -223,41 +223,6 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public class AnonymousClass10 extends BaseFragment {
-        final UserSelectorBottomSheet[] val$sheet;
-
-        AnonymousClass10(UserSelectorBottomSheet[] userSelectorBottomSheetArr) {
-            r2 = userSelectorBottomSheetArr;
-        }
-
-        @Override
-        public Context getContext() {
-            return StarGiftSheet.this.getContext();
-        }
-
-        @Override
-        public Activity getParentActivity() {
-            LaunchActivity launchActivity = LaunchActivity.instance;
-            return launchActivity == null ? AndroidUtilities.findActivity(StarGiftSheet.this.getContext()) : launchActivity;
-        }
-
-        @Override
-        public Theme.ResourcesProvider getResourceProvider() {
-            return ((BottomSheet) StarGiftSheet.this).resourcesProvider;
-        }
-
-        @Override
-        public boolean presentFragment(BaseFragment baseFragment) {
-            r2[0].lambda$new$0();
-            StarGiftSheet.this.lambda$new$0();
-            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-            if (safeLastFragment != null) {
-                return safeLastFragment.presentFragment(safeLastFragment);
-            }
-            return false;
-        }
-    }
-
     public class AnonymousClass2 extends ViewPagerFixed.Adapter {
         final Context val$context;
 

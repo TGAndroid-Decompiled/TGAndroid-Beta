@@ -55,6 +55,9 @@ public class WebRtcAudioTrack {
 
         private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i) {
             int write;
+            if (audioTrack == null) {
+                return 0;
+            }
             if (Build.VERSION.SDK_INT < 21) {
                 return audioTrack.write(byteBuffer.array(), byteBuffer.arrayOffset(), i);
             }
@@ -73,7 +76,7 @@ public class WebRtcAudioTrack {
             int sampleRate = WebRtcAudioTrack.this.audioTrack.getSampleRate();
             loop0: while (true) {
                 this.targetTimeNs = System.nanoTime();
-                while (this.keepAlive) {
+                while (this.keepAlive && WebRtcAudioTrack.this.audioTrack != null) {
                     try {
                         WebRtcAudioTrack webRtcAudioTrack = WebRtcAudioTrack.this;
                         webRtcAudioTrack.nativeGetPlayoutData(capacity, webRtcAudioTrack.nativeAudioTrack);
@@ -93,7 +96,7 @@ public class WebRtcAudioTrack {
                         }
                         WebRtcAudioTrack.this.byteBuffer.rewind();
                         this.writtenFrames += writeBytes / channelCount;
-                        long playbackHeadPosition = ((this.writtenFrames - WebRtcAudioTrack.this.audioTrack.getPlaybackHeadPosition()) * 1000) / sampleRate;
+                        long playbackHeadPosition = ((this.writtenFrames - (WebRtcAudioTrack.this.audioTrack == null ? 0L : WebRtcAudioTrack.this.audioTrack.getPlaybackHeadPosition())) * 1000) / sampleRate;
                         WebRtcAudioTrack.this.byteBuffer.rewind();
                         this.targetTimeNs += 10000000;
                         nanoTime = this.targetTimeNs - System.nanoTime();
@@ -328,15 +331,15 @@ public class WebRtcAudioTrack {
     public native void nativeGetPlayoutData(int i, long j);
 
     private void releaseAudioResources() {
-        Logging.d("WebRtcAudioTrack", "releaseAudioResources");
+        Logging.e("WebRtcAudioTrack", "releaseAudioResources", new Exception());
         AudioTrack audioTrack = this.audioTrack;
         if (audioTrack != null) {
+            this.audioTrack = null;
             try {
                 audioTrack.release();
             } catch (Throwable th) {
                 FileLog.e(th);
             }
-            this.audioTrack = null;
         }
     }
 

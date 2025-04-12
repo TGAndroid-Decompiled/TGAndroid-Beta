@@ -135,6 +135,16 @@ public class Vector<T extends TLObject> extends TLObject {
         return arrayList;
     }
 
+    public static ArrayList<byte[]> deserializeByteArray(final InputSerializedData inputSerializedData, boolean z) {
+        Objects.requireNonNull(inputSerializedData);
+        return deserialize(inputSerializedData, new Utilities.CallbackReturn() {
+            @Override
+            public final Object run(Object obj) {
+                return InputSerializedData.this.readByteArray(((Boolean) obj).booleanValue());
+            }
+        }, z);
+    }
+
     public static ArrayList<Integer> deserializeInt(final InputSerializedData inputSerializedData, boolean z) {
         Objects.requireNonNull(inputSerializedData);
         return deserialize(inputSerializedData, new Utilities.CallbackReturn() {

@@ -133,7 +133,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     private boolean mixedPlayWhenReady;
     private Runnable onQualityChangeListener;
     public ExoPlayer player;
-    private int playerId;
+    public final int playerId;
     ProgressiveMediaSource.Factory progressiveMediaSourceFactory;
     private int repeatCount;
     private final ArrayList seekFinishedListeners;
@@ -285,6 +285,11 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         @Override
         public void onSeekProcessed() {
             Player.Listener.CC.$default$onSeekProcessed(this);
+        }
+
+        @Override
+        public void onShuffleModeEnabledChanged(boolean z) {
+            Player.Listener.CC.$default$onShuffleModeEnabledChanged(this, z);
         }
 
         @Override
@@ -1052,6 +1057,11 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 @Override
                 public void onSeekProcessed() {
                     Player.Listener.CC.$default$onSeekProcessed(this);
+                }
+
+                @Override
+                public void onShuffleModeEnabledChanged(boolean z) {
+                    Player.Listener.CC.$default$onShuffleModeEnabledChanged(this, z);
                 }
 
                 @Override
@@ -2476,6 +2486,16 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         if (videoPlayerDelegate != null) {
             videoPlayerDelegate.onSeekStarted(eventTime);
         }
+    }
+
+    @Override
+    public void onShuffleModeChanged(AnalyticsListener.EventTime eventTime, boolean z) {
+        AnalyticsListener.CC.$default$onShuffleModeChanged(this, eventTime, z);
+    }
+
+    @Override
+    public void onShuffleModeEnabledChanged(boolean z) {
+        Player.Listener.CC.$default$onShuffleModeEnabledChanged(this, z);
     }
 
     @Override

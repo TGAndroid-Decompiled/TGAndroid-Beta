@@ -6,6 +6,7 @@ import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioRecordingConfiguration;
+import android.media.AudioTimestamp;
 import android.os.Build;
 import android.os.Process;
 import java.nio.ByteBuffer;
@@ -67,11 +68,14 @@ public class WebRtcAudioRecord {
 
         @Override
         public void run() {
+            long j;
+            int timestamp;
             Process.setThreadPriority(-19);
             Logging.d("WebRtcAudioRecordExternal", "AudioRecordThread" + WebRtcAudioUtils.getThreadInfo());
             WebRtcAudioRecord.assertTrue(WebRtcAudioRecord.this.audioRecord.getRecordingState() == 3);
             WebRtcAudioRecord.this.doAudioRecordStateCallback(0);
             System.nanoTime();
+            AudioTimestamp audioTimestamp = Build.VERSION.SDK_INT >= 24 ? new AudioTimestamp() : null;
             while (this.keepAlive) {
                 int read = WebRtcAudioRecord.this.audioRecord.read(WebRtcAudioRecord.this.byteBuffer, WebRtcAudioRecord.this.byteBuffer.capacity());
                 if (read == WebRtcAudioRecord.this.byteBuffer.capacity()) {
@@ -80,8 +84,19 @@ public class WebRtcAudioRecord {
                         WebRtcAudioRecord.this.byteBuffer.put(WebRtcAudioRecord.this.emptyBytes);
                     }
                     if (this.keepAlive) {
-                        WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.this;
-                        webRtcAudioRecord.nativeDataIsRecorded(webRtcAudioRecord.nativeAudioRecord, read);
+                        if (Build.VERSION.SDK_INT >= 24) {
+                            timestamp = WebRtcAudioRecord.this.audioRecord.getTimestamp(audioTimestamp, 0);
+                            if (timestamp == 0) {
+                                j = audioTimestamp.nanoTime;
+                                long j2 = j;
+                                WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.this;
+                                webRtcAudioRecord.nativeDataIsRecorded(webRtcAudioRecord.nativeAudioRecord, read, j2);
+                            }
+                        }
+                        j = 0;
+                        long j22 = j;
+                        WebRtcAudioRecord webRtcAudioRecord2 = WebRtcAudioRecord.this;
+                        webRtcAudioRecord2.nativeDataIsRecorded(webRtcAudioRecord2.nativeAudioRecord, read, j22);
                     }
                     if (WebRtcAudioRecord.this.audioSamplesReadyCallback != null) {
                         WebRtcAudioRecord.this.audioSamplesReadyCallback.onWebRtcAudioRecordSamplesReady(new JavaAudioDeviceModule.AudioSamples(WebRtcAudioRecord.this.audioRecord.getAudioFormat(), WebRtcAudioRecord.this.audioRecord.getChannelCount(), WebRtcAudioRecord.this.audioRecord.getSampleRate(), Arrays.copyOfRange(WebRtcAudioRecord.this.byteBuffer.array(), WebRtcAudioRecord.this.byteBuffer.arrayOffset(), WebRtcAudioRecord.this.byteBuffer.capacity() + WebRtcAudioRecord.this.byteBuffer.arrayOffset())));
@@ -440,7 +455,7 @@ public class WebRtcAudioRecord {
 
     private native void nativeCacheDirectBufferAddress(long j, ByteBuffer byteBuffer);
 
-    public native void nativeDataIsRecorded(long j, int i);
+    public native void nativeDataIsRecorded(long j, int i, long j2);
 
     public static ScheduledExecutorService newDefaultScheduler() {
         final AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -682,6 +697,15 @@ public class WebRtcAudioRecord {
 
     public void setNativeAudioRecord(long j) {
         this.nativeAudioRecord = j;
+    }
+
+    public boolean setNoiseSuppressorEnabled(boolean z) {
+        if (!WebRtcAudioEffects.isNoiseSuppressorSupported()) {
+            Logging.e("WebRtcAudioRecordExternal", "Noise suppressor is not supported.");
+            return false;
+        }
+        Logging.w("WebRtcAudioRecordExternal", "SetNoiseSuppressorEnabled(" + z + ")");
+        return this.effects.toggleNS(z);
     }
 
     public void setPreferredDevice(AudioDeviceInfo audioDeviceInfo) {

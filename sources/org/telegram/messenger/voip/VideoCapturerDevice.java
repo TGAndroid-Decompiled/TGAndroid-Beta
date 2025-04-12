@@ -257,14 +257,15 @@ public class VideoCapturerDevice {
         }
     }
 
-    public void lambda$init$2(Point point) {
+    public void lambda$init$2(long j, Point point) {
         if (this.videoCapturerSurfaceTextureHelper != null) {
-            long j = this.nativePtr;
-            if (j == 0) {
+            long j2 = this.nativePtr;
+            if (j2 == 0) {
                 return;
             }
-            this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j);
+            this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j2);
             this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
+            FileLog.d("VideoCapturerDevice init(" + j + "): videoCapturer.startCapture SCREEN");
             this.videoCapturer.startCapture(point.x, point.y, 30);
             WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.Instance;
             if (webRtcAudioRecord != null) {
@@ -273,12 +274,13 @@ public class VideoCapturerDevice {
         }
     }
 
-    public void lambda$init$3() {
+    public void lambda$init$3(long j) {
         if (this.videoCapturerSurfaceTextureHelper == null) {
             return;
         }
         this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(this.nativePtr);
         this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
+        FileLog.d("VideoCapturerDevice init(" + j + "): videoCapturer.startCapture CAMERA");
         this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
     }
 
@@ -286,7 +288,7 @@ public class VideoCapturerDevice {
         ((CameraVideoCapturer) this.videoCapturer).switchCamera(new AnonymousClass3(), str);
     }
 
-    public void lambda$init$5(long j, String str) {
+    public void lambda$init$5(final long j, String str) {
         if (eglBase == null) {
             return;
         }
@@ -301,7 +303,7 @@ public class VideoCapturerDevice {
                 this.handler.post(new Runnable() {
                     @Override
                     public final void run() {
-                        VideoCapturerDevice.this.lambda$init$2(screenCaptureSize);
+                        VideoCapturerDevice.this.lambda$init$2(j, screenCaptureSize);
                     }
                 });
                 return;
@@ -325,23 +327,24 @@ public class VideoCapturerDevice {
             return;
         }
         final String str2 = deviceNames[i];
-        if (this.videoCapturer != null) {
+        if (this.videoCapturer == null) {
+            this.videoCapturer = camera2Enumerator.createCapturer(str2, new AnonymousClass2());
+            this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
+            this.handler.post(new Runnable() {
+                @Override
+                public final void run() {
+                    VideoCapturerDevice.this.lambda$init$3(j);
+                }
+            });
+        } else {
+            FileLog.d("VideoCapturerDevice init(" + j + "): videoCapturer.switchCamera CAMERA");
             this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
                     VideoCapturerDevice.this.lambda$init$4(str2);
                 }
             });
-            return;
         }
-        this.videoCapturer = camera2Enumerator.createCapturer(str2, new AnonymousClass2());
-        this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-        this.handler.post(new Runnable() {
-            @Override
-            public final void run() {
-                VideoCapturerDevice.this.lambda$init$3();
-            }
-        });
     }
 
     public void lambda$new$0(boolean z) {
@@ -360,10 +363,10 @@ public class VideoCapturerDevice {
         if ((this.videoCapturer instanceof ScreenCapturerAndroid) && (webRtcAudioRecord = WebRtcAudioRecord.Instance) != null) {
             webRtcAudioRecord.stopDeviceAudioRecord();
         }
-        VideoCapturer videoCapturer = this.videoCapturer;
-        if (videoCapturer != null) {
+        if (this.videoCapturer != null) {
+            FileLog.d("VideoCapturerDevice onDestroy: videoCapturer.stopCapture");
             try {
-                videoCapturer.stopCapture();
+                this.videoCapturer.stopCapture();
                 this.videoCapturer.dispose();
                 this.videoCapturer = null;
             } catch (InterruptedException e) {
@@ -403,30 +406,31 @@ public class VideoCapturerDevice {
         }
     }
 
-    public void lambda$onStateChanged$6(int i) {
-        VideoCapturer videoCapturer = this.videoCapturer;
-        if (videoCapturer == null) {
+    public void lambda$onStateChanged$6(int i, long j) {
+        if (this.videoCapturer == null) {
             return;
         }
         if (i == 2) {
-            videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
+            FileLog.d("VideoCapturerDevice onStateChanged(" + j + ", " + i + "): videoCapturer.startCapture");
+            this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
             return;
         }
         try {
-            videoCapturer.stopCapture();
+            FileLog.d("VideoCapturerDevice onStateChanged(" + j + ", " + i + "): videoCapturer.stopCapture");
+            this.videoCapturer.stopCapture();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void lambda$onStateChanged$7(long j, final int i) {
+    public void lambda$onStateChanged$7(final long j, final int i) {
         if (this.nativePtr != j) {
             return;
         }
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.this.lambda$onStateChanged$6(i);
+                VideoCapturerDevice.this.lambda$onStateChanged$6(i, j);
             }
         });
     }
@@ -437,6 +441,7 @@ public class VideoCapturerDevice {
     }
 
     private void onDestroy() {
+        FileLog.d("VideoCapturerDevice onDestroy ptr=" + this.nativePtr);
         this.nativePtr = 0L;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -447,6 +452,7 @@ public class VideoCapturerDevice {
     }
 
     private void onStateChanged(final long j, final int i) {
+        FileLog.d("VideoCapturerDevice onStateChanged(" + j + ", " + i + ")");
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

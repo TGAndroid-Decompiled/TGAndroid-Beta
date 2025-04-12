@@ -40,16 +40,16 @@ public abstract class ChannelResult {
             this();
         }
 
-        public final Object m254closedJP2dKIU(Throwable th) {
-            return ChannelResult.m249constructorimpl(new Closed(th));
+        public final Object m255closedJP2dKIU(Throwable th) {
+            return ChannelResult.m250constructorimpl(new Closed(th));
         }
 
-        public final Object m255failurePtdJZtk() {
-            return ChannelResult.m249constructorimpl(ChannelResult.failed);
+        public final Object m256failurePtdJZtk() {
+            return ChannelResult.m250constructorimpl(ChannelResult.failed);
         }
 
-        public final Object m256successJP2dKIU(Object obj) {
-            return ChannelResult.m249constructorimpl(obj);
+        public final Object m257successJP2dKIU(Object obj) {
+            return ChannelResult.m250constructorimpl(obj);
         }
     }
 
@@ -59,11 +59,11 @@ public abstract class ChannelResult {
         }
     }
 
-    public static Object m249constructorimpl(Object obj) {
+    public static Object m250constructorimpl(Object obj) {
         return obj;
     }
 
-    public static final Throwable m250exceptionOrNullimpl(Object obj) {
+    public static final Throwable m251exceptionOrNullimpl(Object obj) {
         Closed closed = obj instanceof Closed ? (Closed) obj : null;
         if (closed != null) {
             return closed.cause;
@@ -71,18 +71,18 @@ public abstract class ChannelResult {
         return null;
     }
 
-    public static final Object m251getOrNullimpl(Object obj) {
+    public static final Object m252getOrNullimpl(Object obj) {
         if (obj instanceof Failed) {
             return null;
         }
         return obj;
     }
 
-    public static final boolean m252isClosedimpl(Object obj) {
+    public static final boolean m253isClosedimpl(Object obj) {
         return obj instanceof Closed;
     }
 
-    public static final boolean m253isSuccessimpl(Object obj) {
+    public static final boolean m254isSuccessimpl(Object obj) {
         return !(obj instanceof Failed);
     }
 }

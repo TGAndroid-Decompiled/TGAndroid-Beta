@@ -56,7 +56,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         RLottieImageView muteButton;
         String name;
         int nameWidth;
-        TLRPC.TL_groupCallParticipant participant;
+        TLRPC.GroupCallParticipant participant;
         long peerId;
         float progress;
         GroupCallMiniTextureView renderer;
@@ -193,7 +193,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             return this.avatarImageView;
         }
 
-        public TLRPC.TL_groupCallParticipant getParticipant() {
+        public TLRPC.GroupCallParticipant getParticipant() {
             return this.participant;
         }
 
@@ -295,8 +295,8 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             this.avatarWavesDrawable.setAmplitude(d);
         }
 
-        public void setParticipant(org.telegram.messenger.ChatObject.VideoParticipant r12, org.telegram.tgnet.TLRPC.TL_groupCallParticipant r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.setParticipant(org.telegram.messenger.ChatObject$VideoParticipant, org.telegram.tgnet.TLRPC$TL_groupCallParticipant):void");
+        public void setParticipant(org.telegram.messenger.ChatObject.VideoParticipant r12, org.telegram.tgnet.TLRPC.GroupCallParticipant r13) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.setParticipant(org.telegram.messenger.ChatObject$VideoParticipant, org.telegram.tgnet.TLRPC$GroupCallParticipant):void");
         }
 
         public void setProgressToFullscreen(float f) {
@@ -357,21 +357,21 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant;
+        TLRPC.GroupCallParticipant groupCallParticipant;
         ChatObject.VideoParticipant videoParticipant;
         GroupCallUserCell groupCallUserCell = (GroupCallUserCell) viewHolder.itemView;
         ChatObject.VideoParticipant videoParticipant2 = groupCallUserCell.videoParticipant;
         if (i < this.videoParticipants.size()) {
             videoParticipant = (ChatObject.VideoParticipant) this.videoParticipants.get(i);
-            tL_groupCallParticipant = ((ChatObject.VideoParticipant) this.videoParticipants.get(i)).participant;
+            groupCallParticipant = ((ChatObject.VideoParticipant) this.videoParticipants.get(i)).participant;
         } else {
             if (i - this.videoParticipants.size() >= this.participants.size()) {
                 return;
             }
-            tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) this.participants.get(i - this.videoParticipants.size());
+            groupCallParticipant = (TLRPC.GroupCallParticipant) this.participants.get(i - this.videoParticipants.size());
             videoParticipant = null;
         }
-        groupCallUserCell.setParticipant(videoParticipant, tL_groupCallParticipant);
+        groupCallUserCell.setParticipant(videoParticipant, groupCallParticipant);
         boolean z = false;
         if (videoParticipant2 != null && !videoParticipant2.equals(videoParticipant) && groupCallUserCell.attached && groupCallUserCell.getRenderer() != null) {
             groupCallUserCell.attachRenderer(false);
@@ -477,9 +477,9 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 int size = i - arrayList2.size();
                 int size2 = i2 - GroupCallFullscreenAdapter.this.videoParticipants.size();
                 if (size2 < 0 || size2 >= GroupCallFullscreenAdapter.this.participants.size() || size < 0 || size >= arrayList.size()) {
-                    return MessageObject.getPeerId((i < arrayList2.size() ? ((ChatObject.VideoParticipant) arrayList2.get(i)).participant : (TLRPC.TL_groupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId((i2 < GroupCallFullscreenAdapter.this.videoParticipants.size() ? ((ChatObject.VideoParticipant) GroupCallFullscreenAdapter.this.videoParticipants.get(i2)).participant : (TLRPC.TL_groupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
+                    return MessageObject.getPeerId((i < arrayList2.size() ? ((ChatObject.VideoParticipant) arrayList2.get(i)).participant : (TLRPC.GroupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId((i2 < GroupCallFullscreenAdapter.this.videoParticipants.size() ? ((ChatObject.VideoParticipant) GroupCallFullscreenAdapter.this.videoParticipants.get(i2)).participant : (TLRPC.GroupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
                 }
-                return MessageObject.getPeerId(((TLRPC.TL_groupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId(((TLRPC.TL_groupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
+                return MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId(((TLRPC.GroupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
             }
 
             @Override

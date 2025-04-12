@@ -51,11 +51,11 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
     private boolean needScreencast;
     private float outProgress;
     private float pageOffset;
-    private TextView positiveButton;
-    private VoIPTextureView textureView;
-    private TextView[] titles;
-    private LinearLayout titlesLayout;
-    private ViewPager viewPager;
+    private final TextView positiveButton;
+    private final VoIPTextureView textureView;
+    private final TextView[] titles;
+    private final LinearLayout titlesLayout;
+    private final ViewPager viewPager;
     private int visibleCameraPage;
 
     private class Adapter extends PagerAdapter {
@@ -155,11 +155,11 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         ViewPager viewPager = new ViewPager(context);
         this.viewPager = viewPager;
         AndroidUtilities.setViewPagerEdgeEffectColor(viewPager, 2130706432);
-        this.viewPager.setAdapter(new Adapter());
-        this.viewPager.setPageMargin(0);
-        this.viewPager.setOffscreenPageLimit(1);
-        addView(this.viewPager, LayoutHelper.createFrame(-1, -1.0f));
-        this.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPager.setAdapter(new Adapter());
+        viewPager.setPageMargin(0);
+        viewPager.setOffscreenPageLimit(1);
+        addView(viewPager, LayoutHelper.createFrame(-1, -1.0f));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             private int scrollState = 0;
             private int willSetPage;
 
@@ -200,13 +200,12 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         VoIPTextureView voIPTextureView = new VoIPTextureView(context, false, false);
         this.textureView = voIPTextureView;
         voIPTextureView.renderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
-        VoIPTextureView voIPTextureView2 = this.textureView;
-        voIPTextureView2.scaleType = VoIPTextureView.SCALE_TYPE_FIT;
-        voIPTextureView2.clipToTexture = true;
-        voIPTextureView2.renderer.setAlpha(0.0f);
-        this.textureView.renderer.setRotateTextureWithScreen(true);
-        this.textureView.renderer.setUseCameraRotation(true);
-        addView(this.textureView, LayoutHelper.createFrame(-1, -1.0f));
+        voIPTextureView.scaleType = VoIPTextureView.SCALE_TYPE_FIT;
+        voIPTextureView.clipToTexture = true;
+        voIPTextureView.renderer.setAlpha(0.0f);
+        voIPTextureView.renderer.setRotateTextureWithScreen(true);
+        voIPTextureView.renderer.setUseCameraRotation(true);
+        addView(voIPTextureView, LayoutHelper.createFrame(-1, -1.0f));
         ActionBar actionBar = new ActionBar(context);
         actionBar.setBackButtonDrawable(new BackDrawable(false));
         actionBar.setBackgroundColor(0);
@@ -261,25 +260,24 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         };
         this.positiveButton = textView2;
         textView2.setMinWidth(AndroidUtilities.dp(64.0f));
-        this.positiveButton.setTag(-1);
-        this.positiveButton.setTextSize(1, 14.0f);
-        TextView textView3 = this.positiveButton;
+        textView2.setTag(-1);
+        textView2.setTextSize(1, 14.0f);
         int i2 = Theme.key_voipgroup_nameText;
-        textView3.setTextColor(Theme.getColor(i2));
-        this.positiveButton.setGravity(17);
-        this.positiveButton.setTypeface(AndroidUtilities.bold());
-        this.positiveButton.setText(LocaleController.getString(R.string.VoipShareVideo));
+        textView2.setTextColor(Theme.getColor(i2));
+        textView2.setGravity(17);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setText(LocaleController.getString(R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
-            this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i2), 76)));
+            textView2.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i2), 76)));
         }
-        this.positiveButton.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
-        this.positiveButton.setOnClickListener(new View.OnClickListener() {
+        textView2.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
+        textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 PrivateVideoPreviewDialog.this.lambda$new$0(view);
             }
         });
-        addView(this.positiveButton, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
+        addView(textView2, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.titlesLayout = linearLayout;
         addView(linearLayout, LayoutHelper.createFrame(-2, 64, 80));

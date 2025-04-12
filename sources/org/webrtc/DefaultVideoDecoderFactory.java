@@ -3,7 +3,6 @@ package org.webrtc;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import org.webrtc.EglBase;
-import org.webrtc.VideoDecoderFactory;
 
 public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
     private final VideoDecoderFactory hardwareVideoDecoderFactory;
@@ -20,11 +19,6 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
         this.softwareVideoDecoderFactory = new SoftwareVideoDecoderFactory();
         this.hardwareVideoDecoderFactory = videoDecoderFactory;
         this.platformSoftwareVideoDecoderFactory = null;
-    }
-
-    @Override
-    public VideoDecoder createDecoder(String str) {
-        return VideoDecoderFactory.CC.$default$createDecoder(this, str);
     }
 
     @Override

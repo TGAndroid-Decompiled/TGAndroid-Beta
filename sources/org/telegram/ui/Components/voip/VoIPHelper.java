@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import org.telegram.messenger.AccountInstance;
@@ -39,6 +40,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
@@ -227,7 +229,12 @@ public abstract class VoIPHelper {
         return new File(getLogsDir(), j + ".log");
     }
 
-    public static String getLogFilePath(long j, boolean z) {
+    public static String getLogFilePath(String str) {
+        Calendar calendar = Calendar.getInstance();
+        return new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), String.format(Locale.US, "logs/%02d_%02d_%04d_%02d_%02d_%02d_%s.txt", Integer.valueOf(calendar.get(5)), Integer.valueOf(calendar.get(2) + 1), Integer.valueOf(calendar.get(1)), Integer.valueOf(calendar.get(11)), Integer.valueOf(calendar.get(12)), Integer.valueOf(calendar.get(13)), str)).getAbsolutePath();
+    }
+
+    public static String getLogFilePath(String str, boolean z) {
         File file;
         File[] listFiles;
         File logsDir = getLogsDir();
@@ -247,16 +254,11 @@ public abstract class VoIPHelper {
             }
         }
         if (z) {
-            file = new File(logsDir, j + "_stats.log");
+            file = new File(logsDir, str + "_stats.log");
         } else {
-            file = new File(logsDir, j + ".log");
+            file = new File(logsDir, str + ".log");
         }
         return file.getAbsolutePath();
-    }
-
-    public static String getLogFilePath(String str) {
-        Calendar calendar = Calendar.getInstance();
-        return new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), String.format(Locale.US, "logs/%02d_%02d_%04d_%02d_%02d_%02d_%s.txt", Integer.valueOf(calendar.get(5)), Integer.valueOf(calendar.get(2) + 1), Integer.valueOf(calendar.get(1)), Integer.valueOf(calendar.get(11)), Integer.valueOf(calendar.get(12)), Integer.valueOf(calendar.get(13)), str)).getAbsolutePath();
     }
 
     public static File getLogsDir() {
@@ -309,6 +311,52 @@ public abstract class VoIPHelper {
                     VoIPHelper.lambda$initiateCall$3(TLRPC.User.this, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i2);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
+        }
+    }
+
+    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall) {
+        joinConference(activity, i, inputGroupCall, z, groupCall, null);
+    }
+
+    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
+        if (activity == null) {
+            return;
+        }
+        lastCallTime = SystemClock.elapsedRealtime();
+        Intent intent = new Intent(activity, (Class<?>) VoIPService.class);
+        intent.putExtra("chat_id", 0L);
+        int i2 = 0;
+        intent.putExtra("createGroupCall", false);
+        intent.putExtra("hasFewPeers", false);
+        intent.putExtra("isRtmpStream", false);
+        intent.putExtra("hash", (String) null);
+        intent.putExtra("is_outgoing", true);
+        intent.putExtra("start_incall_activity", true);
+        intent.putExtra("video_call", false);
+        SerializedData serializedData = new SerializedData(inputGroupCall.getObjectSize());
+        inputGroupCall.serializeToStream(serializedData);
+        intent.putExtra("joinConference", serializedData.toByteArray());
+        if (groupCall != null) {
+            SerializedData serializedData2 = new SerializedData(groupCall.getObjectSize());
+            groupCall.serializeToStream(serializedData2);
+            intent.putExtra("joinConferenceCall", serializedData2.toByteArray());
+        }
+        if (hashSet != null) {
+            long[] jArr = new long[hashSet.size()];
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                jArr[i2] = ((Long) it.next()).longValue();
+                i2++;
+            }
+            intent.putExtra("inviteUsers", jArr);
+        }
+        intent.putExtra("account", i);
+        intent.putExtra("video_call", z);
+        intent.putExtra("can_video_call", true);
+        try {
+            activity.startService(intent);
+        } catch (Throwable th) {
+            FileLog.e(th);
         }
     }
 

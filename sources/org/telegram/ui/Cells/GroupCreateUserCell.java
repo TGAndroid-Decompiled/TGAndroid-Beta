@@ -127,7 +127,7 @@ public class GroupCreateUserCell extends FrameLayout {
         int i8 = this.padding;
         addView(simpleTextView4, LayoutHelper.createFrame(-1, 20.0f, i6, i7 + i8, 32.0f, (z5 ? 72 : 28) + i8, 0.0f));
         if (i == 1) {
-            CheckBox2 checkBox2 = new CheckBox2(context, 21);
+            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
             checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
@@ -266,7 +266,7 @@ public class GroupCreateUserCell extends FrameLayout {
         float measuredHeight;
         float f2;
         float measuredHeight2;
-        Paint paint;
+        Paint themePaint;
         super.onDraw(canvas);
         if (this.premiumBlockedT.set(this.premiumBlocked) <= 0.0f && this.checkBoxType == 2 && (this.isChecked || this.checkProgress > 0.0f)) {
             this.paint.setColor(Theme.getColor(Theme.key_checkboxSquareBackground, this.resourcesProvider));
@@ -281,15 +281,15 @@ public class GroupCreateUserCell extends FrameLayout {
                 measuredHeight = getMeasuredHeight() - 1;
                 f2 = measuredWidth;
                 measuredHeight2 = getMeasuredHeight();
-                paint = Theme.dividerExtraPaint;
+                themePaint = Theme.dividerExtraPaint;
             } else {
                 f = dp;
                 measuredHeight = getMeasuredHeight() - 1;
                 f2 = measuredWidth;
                 measuredHeight2 = getMeasuredHeight();
-                paint = Theme.dividerPaint;
+                themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
             }
-            canvas.drawRect(f, measuredHeight, f2, measuredHeight2, paint);
+            canvas.drawRect(f, measuredHeight, f2, measuredHeight2, themePaint);
         }
     }
 

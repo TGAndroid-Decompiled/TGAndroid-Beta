@@ -39,7 +39,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -161,6 +160,9 @@ import org.telegram.messenger.camera.Size;
 import org.telegram.messenger.chromecast.ChromecastController;
 import org.telegram.messenger.chromecast.ChromecastMedia;
 import org.telegram.messenger.chromecast.ChromecastMediaVariations;
+import org.telegram.messenger.pip.PictureInPictureContentViewProvider;
+import org.telegram.messenger.pip.PipNativeApiController;
+import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.video.OldVideoPlayerRewinder;
 import org.telegram.messenger.video.VideoFramesRewinder;
 import org.telegram.messenger.video.VideoPlayerRewinder;
@@ -275,7 +277,7 @@ import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
-public class PhotoViewer implements NotificationCenter.NotificationCenterDelegate, GestureDetector2.OnGestureListener, GestureDetector2.OnDoubleTapListener {
+public class PhotoViewer implements NotificationCenter.NotificationCenterDelegate, GestureDetector2.OnGestureListener, GestureDetector2.OnDoubleTapListener, PictureInPictureContentViewProvider {
     private static volatile PhotoViewer Instance;
     private static volatile PhotoViewer Instance2;
     private static volatile PhotoViewer PipInstance;
@@ -355,7 +357,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private Matrix centerImageTransform;
     private boolean centerImageTransformLocked;
     private AnimatorSet changeModeAnimation;
-    private TextureView changedTextureView;
+    public TextureView changedTextureView;
     private boolean changingPage;
     private boolean changingTextureView;
     private CheckBox checkImageView;
@@ -595,6 +597,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean pipAvailable;
     private ActionBarMenuSubItem pipItem;
     private int[] pipPosition;
+    private PipSource pipSource;
     private boolean pipVideoOverlayAnimateFlag;
     private PhotoViewerProvider placeProvider;
     private View playButtonAccessibilityOverlay;
@@ -3278,7 +3281,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (PhotoViewer.this.isInline) {
                     PhotoViewer.this.waitingForFirstTextureUpload = 1;
                     PhotoViewer.this.changedTextureView.setSurfaceTexture(surfaceTexture);
-                    PhotoViewer.this.changedTextureView.setSurfaceTextureListener(PhotoViewer.this.surfaceTextureListener);
+                    PhotoViewer photoViewer = PhotoViewer.this;
+                    photoViewer.changedTextureView.setSurfaceTextureListener(photoViewer.surfaceTextureListener);
                     PhotoViewer.this.changedTextureView.setVisibility(0);
                     return true;
                 }
@@ -3300,19 +3304,22 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         @Override
         public void onVideoSizeChanged(int i, int i2, int i3, float f) {
             if (PhotoViewer.this.aspectRatioFrameLayout != null) {
-                if (i3 != 90 && i3 != 270) {
+                if (i3 == 90 || i3 == 270) {
                     i2 = i;
                     i = i2;
                 }
-                float f2 = i2 * f;
+                float f2 = i * f;
                 int i4 = (int) f2;
                 PhotoViewer.this.videoWidth = i4;
-                float f3 = i;
+                float f3 = i2;
                 PhotoViewer.this.videoHeight = (int) (f * f3);
-                PhotoViewer.this.aspectRatioFrameLayout.setAspectRatio(i == 0 ? 1.0f : f2 / f3, i3);
+                if (PhotoViewer.this.pipSource != null) {
+                    PhotoViewer.this.pipSource.setContentRatio(PhotoViewer.this.videoWidth, PhotoViewer.this.videoHeight);
+                }
+                PhotoViewer.this.aspectRatioFrameLayout.setAspectRatio(i2 == 0 ? 1.0f : f2 / f3, i3);
                 if (PhotoViewer.this.videoTextureView instanceof VideoEditTextureView) {
                     ((VideoEditTextureView) PhotoViewer.this.videoTextureView).setHDRInfo(PhotoViewer.this.videoPlayer.getHDRStaticInfo(null));
-                    ((VideoEditTextureView) PhotoViewer.this.videoTextureView).setVideoSize(i4, i);
+                    ((VideoEditTextureView) PhotoViewer.this.videoTextureView).setVideoSize(i4, i2);
                     if (PhotoViewer.this.sendPhotoType == 1) {
                         PhotoViewer.this.setCropBitmap();
                     }
@@ -8335,8 +8342,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return Build.VERSION.SDK_INT >= 31 && SharedConfig.useNewBlur && SharedConfig.getDevicePerformanceClass() >= 2 && !AndroidUtilities.makingGlobalBlurBitmap;
     }
 
-    public static void access$17700(PhotoViewer photoViewer) {
+    public static void access$17600(PhotoViewer photoViewer) {
         photoViewer.updateCaptionTranslated();
+    }
+
+    private boolean allowLoopingOnPause() {
+        return AndroidUtilities.isInPictureInPictureMode(this.parentActivity);
     }
 
     private void animateTo(float f, float f2, float f3, boolean z) {
@@ -8911,16 +8922,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     private boolean checkInlinePermissions() {
-        boolean canDrawOverlays;
         Activity activity = this.parentActivity;
         if (activity == null) {
             return false;
         }
-        if (Build.VERSION.SDK_INT < 23) {
-            return true;
-        }
-        canDrawOverlays = Settings.canDrawOverlays(activity);
-        if (canDrawOverlays) {
+        if (Build.VERSION.SDK_INT < 23 || PipNativeApiController.checkAnyPipPermissions(activity)) {
             return true;
         }
         AlertsCreator.createDrawOverlayPermissionDialog(this.parentActivity, null).show();
@@ -9659,6 +9665,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             view2.setBackgroundColor(-1);
             this.flashView.setAlpha(0.0f);
             this.aspectRatioFrameLayout.addView(this.flashView, LayoutHelper.createFrame(-1, -1, 17));
+        }
+        PipSource pipSource = this.pipSource;
+        if (pipSource != null) {
+            pipSource.setContentView(this.aspectRatioFrameLayout);
         }
     }
 
@@ -13556,6 +13566,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.captureFrameAtTime = -1L;
         this.needCaptureFrameReadyAtTime = -1L;
         this.firstFrameRendered = false;
+        PipSource pipSource = this.pipSource;
+        if (pipSource != null) {
+            pipSource.destroy();
+            this.pipSource = null;
+        }
         if (this.videoPlayer == null) {
             VideoPlayer videoPlayer = this.injectingVideoPlayer;
             if (videoPlayer != null) {
@@ -13641,6 +13656,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         PhotoViewer.this.updateQualityItems();
                     }
                 });
+                if (PipNativeApiController.checkPermissions(this.parentActivity) == 1) {
+                    this.pipSource = new PipSource.Builder(this.parentActivity, this).setTagPrefix("photo-viewer-" + this.videoPlayer.playerId).setNeedMediaSession(true).build();
+                }
                 z3 = true;
             }
             TextureView textureView = this.videoTextureView;
@@ -13721,6 +13739,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             updateQualityItems();
             this.videoPlayer.setPlayWhenReady(z);
+            PipSource pipSource2 = this.pipSource;
+            if (pipSource2 != null) {
+                pipSource2.setPlayer(this.videoPlayer.player);
+            }
         }
         Boolean looping = VideoPlayer.getLooping(this.currentMessageObject);
         if (looping != null) {
@@ -13834,6 +13856,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.videoPlayer = null;
         } else {
             this.playerWasPlaying = false;
+        }
+        PipSource pipSource = this.pipSource;
+        if (pipSource != null) {
+            pipSource.destroy();
+            this.pipSource = null;
         }
         if (this.photoViewerWebView != null) {
             AndroidUtilities.cancelRunOnUIThread(this.hideActionBarRunnable);
@@ -16407,6 +16434,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
+    public void attachContentToWindow() {
+        this.containerView.addView(this.aspectRatioFrameLayout, 0, LayoutHelper.createFrame(-1, -1, 17));
+        this.windowView.setVisibility(0);
+        TextureView textureView = this.videoTextureView;
+        if (textureView != null) {
+            this.videoPlayer.setTextureView(textureView);
+            return;
+        }
+        SurfaceView surfaceView = this.videoSurfaceView;
+        if (surfaceView != null) {
+            this.videoPlayer.setSurfaceView(surfaceView);
+        }
+    }
+
+    @Override
     public boolean canDoubleTap(MotionEvent motionEvent) {
         MessageObject messageObject;
         PhotoViewerWebView photoViewerWebView;
@@ -16560,6 +16602,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             Instance = null;
         }
         onHideView();
+    }
+
+    @Override
+    public View detachContentFromWindow() {
+        this.videoPlayer.setTextureView(null);
+        this.videoPlayer.setSurfaceView(null);
+        this.containerView.removeView(this.aspectRatioFrameLayout);
+        this.windowView.setVisibility(8);
+        return this.aspectRatioFrameLayout;
     }
 
     @Override
@@ -16752,6 +16803,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.imagesArrLocals;
     }
 
+    public Activity getParentActivity() {
+        return this.parentActivity;
+    }
+
     public int getSelectionLength() {
         if (getCaptionView().editText != null) {
             return getCaptionView().getSelectionLength();
@@ -16807,6 +16862,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public boolean isVisibleOrAnimating() {
         return this.isVisibleOrAnimating;
+    }
+
+    @Override
+    public void onAttachContentToPip() {
+        TextureView textureView = this.videoTextureView;
+        if (textureView != null) {
+            this.videoPlayer.setTextureView(textureView);
+            return;
+        }
+        SurfaceView surfaceView = this.videoSurfaceView;
+        if (surfaceView != null) {
+            this.videoPlayer.setSurfaceView(surfaceView);
+        }
     }
 
     public void onConfigurationChanged(Configuration configuration) {
@@ -16894,7 +16962,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (videoPlayer == null || !this.playerLooping) {
             return;
         }
-        videoPlayer.setLooping(false);
+        videoPlayer.setLooping(allowLoopingOnPause());
     }
 
     public void onResume() {
@@ -17068,6 +17136,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public boolean openPhotoWithVideo(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider) {
         return openPhoto(null, fileLocation, null, imageLocation, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
+    }
+
+    @Override
+    public void prepareDetachContentFromPip() {
+        this.videoPlayer.setTextureView(null);
+        this.videoPlayer.setSurfaceView(null);
     }
 
     public void prepareSegmentImage() {

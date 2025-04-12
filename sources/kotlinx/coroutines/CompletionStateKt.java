@@ -11,17 +11,17 @@ public abstract class CompletionStateKt {
             Result.Companion companion = Result.Companion;
             obj = ResultKt.createFailure(((CompletedExceptionally) obj).cause);
         }
-        return Result.m209constructorimpl(obj);
+        return Result.m210constructorimpl(obj);
     }
 
     public static final Object toState(Object obj, Function1 function1) {
-        Throwable m211exceptionOrNullimpl = Result.m211exceptionOrNullimpl(obj);
-        return m211exceptionOrNullimpl == null ? function1 != null ? new CompletedWithCancellation(obj, function1) : obj : new CompletedExceptionally(m211exceptionOrNullimpl, false, 2, null);
+        Throwable m212exceptionOrNullimpl = Result.m212exceptionOrNullimpl(obj);
+        return m212exceptionOrNullimpl == null ? function1 != null ? new CompletedWithCancellation(obj, function1) : obj : new CompletedExceptionally(m212exceptionOrNullimpl, false, 2, null);
     }
 
     public static final Object toState(Object obj, CancellableContinuation cancellableContinuation) {
-        Throwable m211exceptionOrNullimpl = Result.m211exceptionOrNullimpl(obj);
-        return m211exceptionOrNullimpl == null ? obj : new CompletedExceptionally(m211exceptionOrNullimpl, false, 2, null);
+        Throwable m212exceptionOrNullimpl = Result.m212exceptionOrNullimpl(obj);
+        return m212exceptionOrNullimpl == null ? obj : new CompletedExceptionally(m212exceptionOrNullimpl, false, 2, null);
     }
 
     public static Object toState$default(Object obj, Function1 function1, int i, Object obj2) {

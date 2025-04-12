@@ -1,10 +1,9 @@
 package org.telegram.ui.Components.Premium.boosts.cells.selector;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
@@ -19,44 +18,55 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
 import org.telegram.ui.Components.StatusBadgeComponent;
+import org.telegram.ui.Components.UItem;
 
 public class SelectorUserCell extends BaseCell {
+    private final ImageView audioView;
     private TL_stories.TL_myBoost boost;
     private TLRPC.Chat chat;
     private final CheckBox2 checkBox;
+    private boolean hasAudioView;
+    private boolean hasVideoView;
     private final boolean[] isOnline;
     private final ImageView optionsView;
+    private boolean showCallButtons;
     StatusBadgeComponent statusBadgeComponent;
     private TLRPC.User user;
+    private final ImageView videoView;
+
+    public static class Factory extends UItem.UItemFactory {
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        public static UItem make(TLRPC.User user) {
+            UItem ofFactory = UItem.ofFactory(Factory.class);
+            ofFactory.object = user;
+            return ofFactory;
+        }
+
+        @Override
+        public void bindView(View view, UItem uItem, boolean z) {
+            SelectorUserCell selectorUserCell = (SelectorUserCell) view;
+            selectorUserCell.setUser((TLRPC.User) uItem.object);
+            selectorUserCell.setChecked(uItem.checked, false);
+            selectorUserCell.setDivider(z);
+        }
+
+        @Override
+        public SelectorUserCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return new SelectorUserCell(context, true, false, resourcesProvider, false);
+        }
+    }
 
     public SelectorUserCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2) {
-        super(context, resourcesProvider);
-        this.isOnline = new boolean[1];
-        this.statusBadgeComponent = new StatusBadgeComponent(this);
-        this.titleTextView.setTypeface(AndroidUtilities.bold());
-        this.radioButton.setVisibility(8);
-        if (z) {
-            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
-            this.checkBox = checkBox2;
-            checkBox2.setColor(z2 ? Theme.key_checkbox : Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
-            checkBox2.setDrawUnchecked(true);
-            checkBox2.setDrawBackgroundAsArc(10);
-            addView(checkBox2);
-            checkBox2.setChecked(false, false);
-            checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
-            updateLayouts();
-        } else {
-            this.checkBox = null;
-        }
-        ImageView imageView = new ImageView(context);
-        this.optionsView = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.ic_ab_other);
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_inMenu, resourcesProvider), PorterDuff.Mode.SRC_IN));
-        addView(imageView, LayoutHelper.createFrame(32, 32.0f, (LocaleController.isRTL ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        this(context, z, false, resourcesProvider, z2);
+    }
+
+    public SelectorUserCell(android.content.Context r20, boolean r21, boolean r22, org.telegram.ui.ActionBar.Theme.ResourcesProvider r23, boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell.<init>(android.content.Context, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider, boolean):void");
     }
 
     public static String buildCountDownTime(long j) {
@@ -75,6 +85,14 @@ public class SelectorUserCell extends BaseCell {
         return sb.toString();
     }
 
+    public void lambda$setCallButtonsVisible$0() {
+        this.audioView.setVisibility(8);
+    }
+
+    public void lambda$setCallButtonsVisible$1() {
+        this.videoView.setVisibility(8);
+    }
+
     public TL_stories.TL_myBoost getBoost() {
         return this.boost;
     }
@@ -89,7 +107,8 @@ public class SelectorUserCell extends BaseCell {
 
     @Override
     protected boolean needCheck() {
-        return this.checkBox != null;
+        CheckBox2 checkBox2 = this.checkBox;
+        return checkBox2 != null && checkBox2.getDrawUnchecked();
     }
 
     @Override
@@ -114,18 +133,68 @@ public class SelectorUserCell extends BaseCell {
         this.imageView.setForUserOrChat(this.chat, this.avatarDrawable);
         this.titleTextView.setText(this.chat.title);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_myBoost.expires * 1000))));
+        setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_myBoost.expires * 1000))));
         int i = tL_myBoost.cooldown_until_date;
         if (i <= 0) {
             this.titleTextView.setAlpha(1.0f);
             this.subtitleTextView.setAlpha(1.0f);
             setCheckboxAlpha(1.0f, false);
         } else {
-            setSubtitle(LocaleController.formatString("BoostingAvailableIn", R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
+            setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
             this.titleTextView.setAlpha(0.65f);
             this.subtitleTextView.setAlpha(0.65f);
             setCheckboxAlpha(0.3f, false);
         }
+    }
+
+    public void setCallButtons(View.OnClickListener onClickListener, View.OnClickListener onClickListener2) {
+        boolean z = onClickListener != null;
+        this.hasAudioView = z;
+        this.audioView.setVisibility((z && this.showCallButtons) ? 0 : 8);
+        this.audioView.setOnClickListener(onClickListener);
+        boolean z2 = onClickListener2 != null;
+        this.hasVideoView = z2;
+        this.videoView.setVisibility((z2 && this.showCallButtons) ? 0 : 8);
+        this.videoView.setOnClickListener(onClickListener2);
+    }
+
+    public void setCallButtonsVisible(boolean z, boolean z2) {
+        if (this.showCallButtons == z) {
+            return;
+        }
+        this.showCallButtons = z;
+        float f = 0.0f;
+        if (z2) {
+            this.audioView.setVisibility(0);
+            this.audioView.animate().alpha((z && this.hasAudioView) ? 1.0f : 0.0f).withEndAction((z && this.hasAudioView) ? null : new Runnable() {
+                @Override
+                public final void run() {
+                    SelectorUserCell.this.lambda$setCallButtonsVisible$0();
+                }
+            }).start();
+            this.videoView.setVisibility(0);
+            ViewPropertyAnimator animate = this.videoView.animate();
+            if (z && this.hasVideoView) {
+                f = 1.0f;
+            }
+            animate.alpha(f).withEndAction((z && this.hasVideoView) ? null : new Runnable() {
+                @Override
+                public final void run() {
+                    SelectorUserCell.this.lambda$setCallButtonsVisible$1();
+                }
+            }).start();
+            return;
+        }
+        this.audioView.animate().cancel();
+        this.audioView.setAlpha((z && this.hasAudioView) ? 1.0f : 0.0f);
+        this.audioView.setVisibility((z && this.hasAudioView) ? 0 : 8);
+        this.videoView.animate().cancel();
+        ImageView imageView = this.videoView;
+        if (z && this.hasVideoView) {
+            f = 1.0f;
+        }
+        imageView.setAlpha(f);
+        this.videoView.setVisibility((z && this.hasVideoView) ? 0 : 8);
     }
 
     public void setChat(TLRPC.Chat chat, int i) {
@@ -228,13 +297,13 @@ public class SelectorUserCell extends BaseCell {
     public void updateTimer() {
         int i = this.boost.cooldown_until_date;
         if (i > 0) {
-            setSubtitle(LocaleController.formatString("BoostingAvailableIn", R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
+            setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
             this.titleTextView.setAlpha(0.65f);
             this.subtitleTextView.setAlpha(0.65f);
             setCheckboxAlpha(0.3f, false);
             return;
         }
-        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(this.boost.expires * 1000))));
+        setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(this.boost.expires * 1000))));
         if (this.titleTextView.getAlpha() < 1.0f) {
             this.titleTextView.animate().alpha(1.0f).start();
             this.subtitleTextView.animate().alpha(1.0f).start();

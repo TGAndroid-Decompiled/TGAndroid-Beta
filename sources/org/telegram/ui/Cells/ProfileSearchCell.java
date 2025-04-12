@@ -1,7 +1,10 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
@@ -56,6 +59,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     private final RectF adBounds;
     private Text adText;
     private boolean allowBotOpenButton;
+    private boolean allowEmojiStatus;
     private AvatarDrawable avatarDrawable;
     public ImageReceiver avatarImage;
     public StoriesUtilities.AvatarStoryParams avatarStoryParams;
@@ -71,6 +75,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     private CharSequence currentName;
     private boolean customPaints;
     private long dialog_id;
+    public boolean dontDrawAvatar;
     private boolean drawCheck;
     private boolean drawCount;
     private boolean drawNameLock;
@@ -131,6 +136,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         this.adBounds = new RectF();
         this.adBounce = new ButtonBounce(this);
         this.rect = new RectF();
+        this.allowEmojiStatus = true;
         this.openButtonBounce = new ButtonBounce(this);
         this.openButtonBackgroundPaint = new Paint(1);
         this.openButtonRect = new RectF();
@@ -625,8 +631,187 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ProfileSearchCell.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        long j;
+        int i;
+        int lineRight;
+        float dp;
+        float measuredHeight;
+        float measuredWidth;
+        float measuredHeight2;
+        Theme.ResourcesProvider resourcesProvider;
+        if (this.user == null && this.chat == null && this.encryptedChat == null && this.contact == null) {
+            return;
+        }
+        if (this.useSeparator) {
+            Paint paint = (!this.customPaints || (resourcesProvider = this.resourcesProvider) == null) ? null : resourcesProvider.getPaint("paintDivider");
+            if (paint == null) {
+                paint = Theme.dividerPaint;
+            }
+            Paint paint2 = paint;
+            if (LocaleController.isRTL) {
+                measuredHeight = getMeasuredHeight() - 1;
+                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+                measuredHeight2 = getMeasuredHeight() - 1;
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+                measuredHeight = getMeasuredHeight() - 1;
+                measuredWidth = getMeasuredWidth();
+                measuredHeight2 = getMeasuredHeight() - 1;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth, measuredHeight2, paint2);
+        }
+        if (this.drawNameLock) {
+            BaseCell.setDrawableBounds(Theme.dialogs_lockDrawable, this.nameLockLeft, this.nameLockTop);
+            Theme.dialogs_lockDrawable.draw(canvas);
+        }
+        StaticLayout staticLayout = this.nameLayout;
+        if (staticLayout != null) {
+            if (LocaleController.isRTL) {
+                i = (int) (this.nameLeft + staticLayout.getLineRight(0) + AndroidUtilities.dp(6.0f));
+            } else if (staticLayout.getLineLeft(0) == 0.0f) {
+                i = (this.nameLeft - AndroidUtilities.dp(3.0f)) - this.botVerificationDrawable.getIntrinsicWidth();
+            } else {
+                float lineWidth = this.nameLayout.getLineWidth(0);
+                double d = this.nameLeft + this.nameWidth;
+                double ceil = Math.ceil(lineWidth);
+                Double.isNaN(d);
+                double d2 = d - ceil;
+                double dp2 = AndroidUtilities.dp(3.0f);
+                Double.isNaN(dp2);
+                double d3 = d2 - dp2;
+                double intrinsicWidth = this.botVerificationDrawable.getIntrinsicWidth();
+                Double.isNaN(intrinsicWidth);
+                i = (int) (d3 - intrinsicWidth);
+            }
+            BaseCell.setDrawableBounds(this.botVerificationDrawable, i, this.nameTop + ((this.nameLayout.getHeight() - this.botVerificationDrawable.getIntrinsicHeight()) / 2.0f));
+            this.botVerificationDrawable.draw(canvas);
+            canvas.save();
+            canvas.translate(this.nameLeft, this.nameTop);
+            this.nameLayout.draw(canvas);
+            canvas.restore();
+            if (!LocaleController.isRTL) {
+                lineRight = (int) (this.nameLeft + this.nameLayout.getLineRight(0) + AndroidUtilities.dp(6.0f));
+            } else if (this.nameLayout.getLineLeft(0) == 0.0f) {
+                lineRight = (this.nameLeft - AndroidUtilities.dp(3.0f)) - this.statusDrawable.getIntrinsicWidth();
+            } else {
+                float lineWidth2 = this.nameLayout.getLineWidth(0);
+                double d4 = this.nameLeft + this.nameWidth;
+                double ceil2 = Math.ceil(lineWidth2);
+                Double.isNaN(d4);
+                double dp3 = AndroidUtilities.dp(3.0f);
+                Double.isNaN(dp3);
+                double d5 = (d4 - ceil2) - dp3;
+                double intrinsicWidth2 = this.statusDrawable.getIntrinsicWidth();
+                Double.isNaN(intrinsicWidth2);
+                lineRight = (int) (d5 - intrinsicWidth2);
+            }
+            BaseCell.setDrawableBounds(this.statusDrawable, lineRight, this.nameTop + ((this.nameLayout.getHeight() - this.statusDrawable.getIntrinsicHeight()) / 2.0f));
+            this.statusDrawable.draw(canvas);
+        }
+        if (this.ad != null && this.adText != null && this.adBackgroundPaint != null) {
+            int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
+            this.adBackgroundPaint.setColor(Theme.multAlpha(color, 0.1f));
+            int width = ((int) this.adText.getWidth()) + AndroidUtilities.dp(12.66f);
+            int dp4 = AndroidUtilities.dp(17.33f);
+            int dp5 = LocaleController.isRTL ? AndroidUtilities.dp(12.0f) : (getWidth() - AndroidUtilities.dp(12.0f)) - width;
+            float f = dp5;
+            this.adBounds.set(f, this.nameTop, dp5 + width, r13 + dp4);
+            this.adBounds.inset(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f));
+            canvas.save();
+            float scale = this.adBounce.getScale(0.1f);
+            canvas.scale(scale, scale, this.adBounds.centerX(), this.adBounds.centerY());
+            canvas.translate(f, this.nameTop);
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f2 = dp4;
+            rectF.set(0.0f, 0.0f, width, f2);
+            float f3 = f2 / 2.0f;
+            canvas.drawRoundRect(rectF, f3, f3, this.adBackgroundPaint);
+            this.adText.draw(canvas, AndroidUtilities.dp(6.33f), f3, color, 1.0f);
+            canvas.restore();
+        }
+        if (this.statusLayout != null) {
+            canvas.save();
+            canvas.translate(this.statusLeft + this.sublabelOffsetX, AndroidUtilities.dp(33.0f) + this.sublabelOffsetY);
+            this.statusLayout.draw(canvas);
+            canvas.restore();
+        }
+        if (this.countLayout != null) {
+            this.rect.set(this.countLeft - AndroidUtilities.dp(5.5f), this.countTop, r1 + this.countWidth + AndroidUtilities.dp(11.0f), this.countTop + AndroidUtilities.dp(23.0f));
+            RectF rectF2 = this.rect;
+            float f4 = AndroidUtilities.density * 11.5f;
+            canvas.drawRoundRect(rectF2, f4, f4, MessagesController.getInstance(this.currentAccount).isDialogMuted(this.dialog_id, 0L) ? Theme.dialogs_countGrayPaint : Theme.dialogs_countPaint);
+            canvas.save();
+            canvas.translate(this.countLeft, this.countTop + AndroidUtilities.dp(4.0f));
+            this.countLayout.draw(canvas);
+            canvas.restore();
+        }
+        if (this.actionLayout != null) {
+            this.actionButton.setColor(Theme.getColor(Theme.key_chats_unreadCounter), Theme.getColor(Theme.key_chats_unreadCounterText));
+            RectF rectF3 = AndroidUtilities.rectTmp;
+            rectF3.set(this.actionLeft, this.countTop, r5 + this.actionLayout.getWidth(), this.countTop + AndroidUtilities.dp(23.0f));
+            rectF3.inset(-AndroidUtilities.dp(16.0f), -AndroidUtilities.dp(4.0f));
+            this.actionButton.setRect(rectF3);
+            this.actionButton.setRounded(true);
+            this.actionButton.draw(canvas);
+            canvas.save();
+            canvas.translate(this.actionLeft, this.countTop + AndroidUtilities.dp(4.0f));
+            this.actionLayout.draw(canvas);
+            canvas.restore();
+        }
+        if (!this.dontDrawAvatar) {
+            TLRPC.User user = this.user;
+            if (user != null) {
+                j = user.id;
+            } else {
+                TLRPC.Chat chat = this.chat;
+                if (chat != null) {
+                    j = -chat.id;
+                } else {
+                    this.avatarImage.setImageCoords(this.avatarStoryParams.originalAvatarRect);
+                    this.avatarImage.draw(canvas);
+                }
+            }
+            StoriesUtilities.drawAvatarWithStory(j, canvas, this.avatarImage, this.avatarStoryParams);
+        }
+        float f5 = this.premiumBlockedT.set(this.premiumBlocked);
+        if (f5 > 0.0f) {
+            float centerY = this.avatarImage.getCenterY() + AndroidUtilities.dp(14.0f);
+            float centerX = this.avatarImage.getCenterX() + AndroidUtilities.dp(16.0f);
+            canvas.save();
+            Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+            canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(11.33f) * f5, Theme.dialogs_onlineCirclePaint);
+            if (this.premiumGradient == null) {
+                this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, this.resourcesProvider);
+            }
+            this.premiumGradient.gradientMatrix((int) (centerX - AndroidUtilities.dp(10.0f)), (int) (centerY - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + centerX), (int) (AndroidUtilities.dp(10.0f) + centerY), 0.0f, 0.0f);
+            canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f) * f5, this.premiumGradient.paint);
+            if (this.lockDrawable == null) {
+                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
+                this.lockDrawable = mutate;
+                mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            }
+            this.lockDrawable.setBounds((int) (centerX - (((r4.getIntrinsicWidth() / 2.0f) * 0.875f) * f5)), (int) (centerY - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f5)), (int) (centerX + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f5)), (int) (centerY + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f5)));
+            this.lockDrawable.setAlpha((int) (f5 * 255.0f));
+            this.lockDrawable.draw(canvas);
+            canvas.restore();
+        }
+        if (!this.openBot || this.openButtonText == null) {
+            return;
+        }
+        float dp6 = AndroidUtilities.dp(28.0f) + this.openButtonText.getCurrentWidth();
+        float dp7 = LocaleController.isRTL ? AndroidUtilities.dp(15.0f) : (getWidth() - dp6) - AndroidUtilities.dp(15.0f);
+        float dp8 = AndroidUtilities.dp(28.0f);
+        this.openButtonBackgroundPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
+        this.openButtonRect.set(dp7, (getHeight() - dp8) / 2.0f, dp6 + dp7, (getHeight() + dp8) / 2.0f);
+        canvas.save();
+        float scale2 = this.openButtonBounce.getScale(0.06f);
+        canvas.scale(scale2, scale2, this.openButtonRect.centerX(), this.openButtonRect.centerY());
+        RectF rectF4 = this.openButtonRect;
+        canvas.drawRoundRect(rectF4, rectF4.height() / 2.0f, this.openButtonRect.height() / 2.0f, this.openButtonBackgroundPaint);
+        this.openButtonText.draw(canvas, dp7 + AndroidUtilities.dp(14.0f), getHeight() / 2.0f, -1, 1.0f);
+        canvas.restore();
     }
 
     @Override
@@ -693,6 +878,10 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
 
     public void setAd(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
         this.ad = tL_sponsoredPeer;
+    }
+
+    public void setAllowEmojiStatus(boolean z) {
+        this.allowEmojiStatus = z;
     }
 
     public void setChecked(boolean z, boolean z2) {
@@ -923,15 +1112,16 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         TLRPC.EmojiStatus emojiStatus;
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.statusDrawable;
         swapAnimatedEmojiDrawable2.center = LocaleController.isRTL;
-        if (z) {
+        boolean z3 = this.allowEmojiStatus;
+        if (z3 && z) {
             swapAnimatedEmojiDrawable2.set(new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable, 0, 0), z2);
             this.statusDrawable.setColor(null);
         } else {
-            if (user != null && !this.savedMessages && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
+            if (z3 && user != null && !this.savedMessages && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
                 swapAnimatedEmojiDrawable = this.statusDrawable;
                 emojiStatus = user.emoji_status;
-            } else if (chat == null || this.savedMessages || DialogObject.getEmojiStatusDocumentId(chat.emoji_status) == 0) {
-                if (user == null || this.savedMessages || !MessagesController.getInstance(this.currentAccount).isPremiumUser(user)) {
+            } else if (!this.allowEmojiStatus || chat == null || this.savedMessages || DialogObject.getEmojiStatusDocumentId(chat.emoji_status) == 0) {
+                if (!this.allowEmojiStatus || user == null || this.savedMessages || !MessagesController.getInstance(this.currentAccount).isPremiumUser(user)) {
                     this.statusDrawable.set((Drawable) null, z2);
                 } else {
                     this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z2);

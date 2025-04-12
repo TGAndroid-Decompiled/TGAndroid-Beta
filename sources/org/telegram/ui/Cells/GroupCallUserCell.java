@@ -60,7 +60,7 @@ public class GroupCallUserCell extends FrameLayout {
     private RLottieDrawable muteDrawable;
     private SimpleTextView nameTextView;
     private boolean needDivider;
-    private TLRPC.TL_groupCallParticipant participant;
+    private TLRPC.GroupCallParticipant participant;
     private Drawable premiumDrawable;
     private float progressToAvatarPreview;
     private Runnable raiseHandCallback;
@@ -403,16 +403,16 @@ public class GroupCallUserCell extends FrameLayout {
         return this.nameTextView.getText();
     }
 
-    public TLRPC.TL_groupCallParticipant getParticipant() {
+    public TLRPC.GroupCallParticipant getParticipant() {
         return this.participant;
     }
 
     public long getPeerId() {
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = this.participant;
-        if (tL_groupCallParticipant == null) {
+        TLRPC.GroupCallParticipant groupCallParticipant = this.participant;
+        if (groupCallParticipant == null) {
             return 0L;
         }
-        return MessageObject.getPeerId(tL_groupCallParticipant.peer);
+        return MessageObject.getPeerId(groupCallParticipant.peer);
     }
 
     public boolean hasAvatarSet() {
@@ -483,8 +483,8 @@ public class GroupCallUserCell extends FrameLayout {
         if (!accessibilityNodeInfo.isEnabled() || Build.VERSION.SDK_INT < 21) {
             return;
         }
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant = this.participant;
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString((!tL_groupCallParticipant.muted || tL_groupCallParticipant.can_self_unmute) ? R.string.VoipMute : R.string.VoipUnmute)));
+        TLRPC.GroupCallParticipant groupCallParticipant = this.participant;
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString((!groupCallParticipant.muted || groupCallParticipant.can_self_unmute) ? R.string.VoipMute : R.string.VoipUnmute)));
     }
 
     @Override
@@ -530,8 +530,8 @@ public class GroupCallUserCell extends FrameLayout {
         this.updateRunnableScheduled = true;
     }
 
-    public void setData(org.telegram.messenger.AccountInstance r9, org.telegram.tgnet.TLRPC.TL_groupCallParticipant r10, org.telegram.messenger.ChatObject.Call r11, long r12, org.telegram.tgnet.TLRPC.FileLocation r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCallUserCell.setData(org.telegram.messenger.AccountInstance, org.telegram.tgnet.TLRPC$TL_groupCallParticipant, org.telegram.messenger.ChatObject$Call, long, org.telegram.tgnet.TLRPC$FileLocation, boolean):void");
+    public void setData(org.telegram.messenger.AccountInstance r9, org.telegram.tgnet.TLRPC.GroupCallParticipant r10, org.telegram.messenger.ChatObject.Call r11, long r12, org.telegram.tgnet.TLRPC.FileLocation r14, boolean r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCallUserCell.setData(org.telegram.messenger.AccountInstance, org.telegram.tgnet.TLRPC$GroupCallParticipant, org.telegram.messenger.ChatObject$Call, long, org.telegram.tgnet.TLRPC$FileLocation, boolean):void");
     }
 
     public void setDrawAvatar(boolean z) {

@@ -4,7 +4,7 @@ import org.webrtc.VideoDecoder;
 
 public abstract class WrappedNativeVideoDecoder implements VideoDecoder {
     @Override
-    public abstract long createNativeVideoDecoder();
+    public abstract long createNative(long j);
 
     @Override
     public final VideoCodecStatus decode(EncodedImage encodedImage, VideoDecoder.DecodeInfo decodeInfo) {
@@ -13,11 +13,6 @@ public abstract class WrappedNativeVideoDecoder implements VideoDecoder {
 
     @Override
     public final String getImplementationName() {
-        throw new UnsupportedOperationException("Not implemented.");
-    }
-
-    @Override
-    public final boolean getPrefersLateDecoding() {
         throw new UnsupportedOperationException("Not implemented.");
     }
 

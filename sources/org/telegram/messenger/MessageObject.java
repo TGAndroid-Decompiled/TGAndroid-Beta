@@ -137,10 +137,12 @@ public class MessageObject {
     public StringBuilder botButtonsLayout;
     public float bufferedProgress;
     public boolean business;
+    private Integer cachedApproximateHeight;
     public Boolean cachedIsSupergroup;
     public VideoPlayer.VideoUri cachedQuality;
     public Float cachedSavedTimestamp;
     private Integer cachedStartsTimestamp;
+    private Integer cachedTextHeight;
     public boolean cancelEditing;
     public CharSequence caption;
     private boolean captionTranslated;
@@ -1022,6 +1024,10 @@ public class MessageObject {
 
         public int height(ChatMessageCell.TransitionParams transitionParams) {
             return !this.quoteCollapse ? this.height : AndroidUtilities.lerp(this.height, this.collapsedHeight, collapsed(transitionParams));
+        }
+
+        public int heightCollapsed() {
+            return this.quoteCollapse ? this.collapsedHeight : this.height;
         }
 
         public boolean isRtl() {
@@ -3963,7 +3969,7 @@ public class MessageObject {
         return true;
     }
 
-    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r32, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r33, androidx.collection.LongSparseArray r34, androidx.collection.LongSparseArray r35) {
+    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r30, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r31, androidx.collection.LongSparseArray r32, androidx.collection.LongSparseArray r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateMessageText(java.util.AbstractMap, java.util.AbstractMap, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 
@@ -4816,11 +4822,11 @@ public class MessageObject {
         int i2 = this.type;
         int i3 = 0;
         if (i2 == 0) {
-            int textHeight = textHeight();
+            int textHeightCached = z ? textHeightCached() : textHeight();
             if ((getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaWebPage) && (getMedia(this.messageOwner).webpage instanceof TLRPC.TL_webPage)) {
                 i3 = AndroidUtilities.dp(100.0f);
             }
-            int i4 = textHeight + i3;
+            int i4 = textHeightCached + i3;
             return isReply() ? i4 + AndroidUtilities.dp(42.0f) : i4;
         }
         if (i2 == 20) {
@@ -4851,7 +4857,7 @@ public class MessageObject {
             return AndroidUtilities.roundMessageSize;
         }
         if (i2 == 19) {
-            return textHeight() + AndroidUtilities.dp(30.0f);
+            return (z ? textHeightCached() : textHeight()) + AndroidUtilities.dp(30.0f);
         }
         if (i2 == 13 || i2 == 15) {
             float f = AndroidUtilities.displaySize.y * 0.4f;
@@ -4923,6 +4929,16 @@ public class MessageObject {
             }
         }
         return i + AndroidUtilities.dp(14.0f);
+    }
+
+    public int getApproximateHeightCached() {
+        Integer num = this.cachedApproximateHeight;
+        if (num != null) {
+            return num.intValue();
+        }
+        int approximateHeight = getApproximateHeight(true);
+        this.cachedApproximateHeight = Integer.valueOf(approximateHeight);
+        return approximateHeight;
     }
 
     public String getArtworkUrl(boolean z) {
@@ -6051,6 +6067,10 @@ public class MessageObject {
         return messageReplies != null && messageReplies.comments;
     }
 
+    public boolean isConferenceCall() {
+        return this.messageOwner.action instanceof TLRPC.TL_messageActionConferenceCall;
+    }
+
     public boolean isContentUnread() {
         return this.messageOwner.media_unread;
     }
@@ -6369,6 +6389,10 @@ public class MessageObject {
         return ChatObject.isMegagroup(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(this.messageOwner.fwd_from.saved_from_peer.channel_id)));
     }
 
+    public boolean isSecret() {
+        return this.messageOwner instanceof TLRPC.TL_message_secret;
+    }
+
     public boolean isSecretMedia() {
         int i;
         TLRPC.Message message = this.messageOwner;
@@ -6510,7 +6534,7 @@ public class MessageObject {
 
     public boolean isVideoCall() {
         TLRPC.MessageAction messageAction = this.messageOwner.action;
-        return (messageAction instanceof TLRPC.TL_messageActionPhoneCall) && messageAction.video;
+        return ((messageAction instanceof TLRPC.TL_messageActionPhoneCall) && messageAction.video) || ((messageAction instanceof TLRPC.TL_messageActionConferenceCall) && messageAction.video);
     }
 
     public boolean isVideoSticker() {
@@ -7224,6 +7248,23 @@ public class MessageObject {
         for (int i2 = 0; i2 < this.textLayoutBlocks.size(); i2++) {
             i += this.textLayoutBlocks.get(i2).padTop + this.textLayoutBlocks.get(i2).height(transitionParams) + this.textLayoutBlocks.get(i2).padBottom;
         }
+        return i;
+    }
+
+    public int textHeightCached() {
+        Integer num = this.cachedTextHeight;
+        if (num != null) {
+            return num.intValue();
+        }
+        if (this.textLayoutBlocks == null) {
+            this.cachedTextHeight = 0;
+            return 0;
+        }
+        int i = 0;
+        for (int i2 = 0; i2 < this.textLayoutBlocks.size(); i2++) {
+            i += this.textLayoutBlocks.get(i2).padTop + this.textLayoutBlocks.get(i2).heightCollapsed() + this.textLayoutBlocks.get(i2).padBottom;
+        }
+        this.cachedTextHeight = Integer.valueOf(i);
         return i;
     }
 

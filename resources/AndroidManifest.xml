@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="58379"
-    android:versionName="11.9.0"
+    android:versionCode="58839"
+    android:versionName="11.9.1"
     android:installLocation="auto"
     android:compileSdkVersion="34"
     android:compileSdkVersionCodename="14"
@@ -232,9 +232,10 @@
             android:name="org.telegram.ui.LaunchActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
+            android:configChanges="smallestScreenSize|screenSize|uiMode|screenLayout|orientation|keyboardHidden|keyboard"
             android:windowSoftInputMode="adjustResize"
-            android:hardwareAccelerated="@bool/useHardwareAcceleration">
+            android:hardwareAccelerated="@bool/useHardwareAcceleration"
+            android:supportsPictureInPicture="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>

@@ -15,7 +15,7 @@ public abstract class CompletableDeferredKt {
     }
 
     public static final boolean completeWith(CompletableDeferred completableDeferred, Object obj) {
-        Throwable m211exceptionOrNullimpl = Result.m211exceptionOrNullimpl(obj);
-        return m211exceptionOrNullimpl == null ? completableDeferred.complete(obj) : completableDeferred.completeExceptionally(m211exceptionOrNullimpl);
+        Throwable m212exceptionOrNullimpl = Result.m212exceptionOrNullimpl(obj);
+        return m212exceptionOrNullimpl == null ? completableDeferred.complete(obj) : completableDeferred.completeExceptionally(m212exceptionOrNullimpl);
     }
 }

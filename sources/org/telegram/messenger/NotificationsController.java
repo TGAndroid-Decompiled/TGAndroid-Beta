@@ -53,6 +53,7 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -2488,8 +2489,26 @@ public class NotificationsController extends BaseController {
     }
 
     public void processEditedMessages(final LongSparseArray longSparseArray) {
-        if (longSparseArray.size() == 0) {
+        TLRPC.Message message;
+        if (longSparseArray == null || longSparseArray.size() == 0) {
             return;
+        }
+        for (int i = 0; i < longSparseArray.size(); i++) {
+            ArrayList arrayList = (ArrayList) longSparseArray.valueAt(i);
+            if (arrayList != null) {
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    MessageObject messageObject = (MessageObject) arrayList.get(i2);
+                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
+                        TLRPC.MessageAction messageAction = message.action;
+                        if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
+                            TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
+                            if (tL_messageActionConferenceCall.active || tL_messageActionConferenceCall.missed) {
+                                VoIPGroupNotification.hide(ApplicationLoader.applicationContext, this.currentAccount, messageObject.getId());
+                            }
+                        }
+                    }
+                }
+            }
         }
         new ArrayList(0);
         notificationsQueue.postRunnable(new Runnable() {
@@ -2549,6 +2568,41 @@ public class NotificationsController extends BaseController {
         sb.append(z2);
         sb.append(")");
         FileLog.d(sb.toString());
+        if (arrayList != null) {
+            int i = 0;
+            while (i < arrayList.size()) {
+                MessageObject messageObject = arrayList.get(i);
+                if (messageObject != null && messageObject.messageOwner != null && !messageObject.isOutOwner()) {
+                    TLRPC.MessageAction messageAction = messageObject.messageOwner.action;
+                    if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
+                        TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
+                        if (tL_messageActionConferenceCall.active || tL_messageActionConferenceCall.missed || getConnectionsManager().getCurrentTime() - messageObject.messageOwner.date >= getMessagesController().callRingTimeout / 1000) {
+                            VoIPGroupNotification.hide(ApplicationLoader.applicationContext, this.currentAccount, messageObject.getId());
+                        } else {
+                            HashSet hashSet = new HashSet();
+                            hashSet.add(Long.valueOf(messageObject.getDialogId()));
+                            Iterator<TLRPC.Peer> it = tL_messageActionConferenceCall.other_participants.iterator();
+                            while (it.hasNext()) {
+                                hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(it.next())));
+                            }
+                            StringBuilder sb2 = new StringBuilder();
+                            Iterator it2 = hashSet.iterator();
+                            while (it2.hasNext()) {
+                                long longValue = ((Long) it2.next()).longValue();
+                                if (sb2.length() > 0) {
+                                    sb2.append(", ");
+                                }
+                                sb2.append(DialogObject.getShortName(this.currentAccount, longValue));
+                            }
+                            VoIPGroupNotification.request(ApplicationLoader.applicationContext, this.currentAccount, messageObject.getDialogId(), sb2.toString(), tL_messageActionConferenceCall.call_id, messageObject.getId(), tL_messageActionConferenceCall.video);
+                            arrayList.remove(i);
+                            i--;
+                        }
+                    }
+                }
+                i++;
+            }
+        }
         if (!arrayList.isEmpty()) {
             final ArrayList arrayList2 = new ArrayList(0);
             notificationsQueue.postRunnable(new Runnable() {

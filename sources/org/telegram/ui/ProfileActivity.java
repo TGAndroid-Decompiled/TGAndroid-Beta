@@ -13182,7 +13182,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
         TLRPC.ChatFull chatFull3;
-        TLRPC.TL_inputGroupCall tL_inputGroupCall;
+        TLRPC.InputGroupCall inputGroupCall;
         TLRPC.Chat chat;
         RecyclerListView recyclerListView;
         RecyclerListView recyclerListView2;
@@ -13279,7 +13279,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                     sharedMediaLayout.setChatInfo(this.chatInfo);
                                 }
                                 TLRPC.ChatFull chatFull6 = this.chatInfo;
-                                if (chatFull6 != null && (((tL_inputGroupCall = chatFull6.call) == null && !this.hasVoiceChatItem) || (tL_inputGroupCall != null && this.hasVoiceChatItem))) {
+                                if (chatFull6 != null && (((inputGroupCall = chatFull6.call) == null && !this.hasVoiceChatItem) || (inputGroupCall != null && this.hasVoiceChatItem))) {
                                     createActionBarMenu(false);
                                 }
                                 ProfileStoriesView profileStoriesView = this.storyView;

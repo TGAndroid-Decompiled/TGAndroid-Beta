@@ -36,7 +36,7 @@ public final class StateFlowSlot extends AbstractSharedFlowSlot {
         cancellableContinuationImpl.initCancellability();
         if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, StateFlowKt.access$getNONE$p(), cancellableContinuationImpl)) {
             Result.Companion companion = Result.Companion;
-            cancellableContinuationImpl.resumeWith(Result.m209constructorimpl(Unit.INSTANCE));
+            cancellableContinuationImpl.resumeWith(Result.m210constructorimpl(Unit.INSTANCE));
         }
         Object result = cancellableContinuationImpl.getResult();
         coroutine_suspended = IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED();
@@ -66,7 +66,7 @@ public final class StateFlowSlot extends AbstractSharedFlowSlot {
                 }
             } else if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, obj, StateFlowKt.access$getNONE$p())) {
                 Result.Companion companion = Result.Companion;
-                ((CancellableContinuationImpl) obj).resumeWith(Result.m209constructorimpl(Unit.INSTANCE));
+                ((CancellableContinuationImpl) obj).resumeWith(Result.m210constructorimpl(Unit.INSTANCE));
                 return;
             }
         }

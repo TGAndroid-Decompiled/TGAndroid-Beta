@@ -35,7 +35,7 @@ public abstract class UndispatchedKt {
             Result.Companion companion = Result.Companion;
             createFailure = ResultKt.createFailure(th);
         }
-        probeCoroutineCreated.resumeWith(Result.m209constructorimpl(createFailure));
+        probeCoroutineCreated.resumeWith(Result.m210constructorimpl(createFailure));
     }
 
     public static final Object startUndispatchedOrReturn(ScopeCoroutine scopeCoroutine, Object obj, Function2 function2) {

@@ -7,6 +7,7 @@ import android.util.Base64;
 import android.util.LongSparseArray;
 import java.util.Arrays;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
@@ -146,6 +147,18 @@ public class UserConfig extends BaseController {
 
     public static int getMaxAccountCount() {
         return hasPremiumOnAccounts() ? 5 : 3;
+    }
+
+    public static int getProductionAccount() {
+        int i = -1;
+        while (i < 4) {
+            int i2 = i < 0 ? selectedAccount : i;
+            if (getInstance(i2).isClientActivated() && !ConnectionsManager.getInstance(i2).isTestBackend()) {
+                return i2;
+            }
+            i++;
+        }
+        return selectedAccount;
     }
 
     public static boolean hasPremiumOnAccounts() {

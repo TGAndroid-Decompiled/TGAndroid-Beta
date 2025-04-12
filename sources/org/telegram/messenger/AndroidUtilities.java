@@ -4,8 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.AppOpsManager;
 import android.app.Dialog;
 import android.app.KeyguardManager;
+import android.app.PictureInPictureParams;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -16,6 +18,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
@@ -33,6 +36,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.os.Process;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.provider.CallLog;
@@ -107,6 +111,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -1006,6 +1011,10 @@ public class AndroidUtilities {
         return true;
     }
 
+    public static boolean checkPipPermissions(Context context) {
+        return context.getPackageManager().hasSystemFeature("android.software.picture_in_picture") && ((AppOpsManager) context.getSystemService("appops")).checkOpNoThrow("android:picture_in_picture", Process.myUid(), context.getPackageName()) == 0;
+    }
+
     protected static float cleanValue(float f, float f2) {
         return Math.min(f2, Math.max(-f2, f));
     }
@@ -1883,6 +1892,37 @@ public class AndroidUtilities {
 
     public static int getAverageColor(int i, int i2) {
         return Color.argb(255, (Color.red(i) / 2) + (Color.red(i2) / 2), (Color.green(i) / 2) + (Color.green(i2) / 2), (Color.blue(i) / 2) + (Color.blue(i2) / 2));
+    }
+
+    public static Bitmap getBitmapFromRaw(int i) {
+        InputStream inputStream;
+        Bitmap bitmap = null;
+        try {
+            inputStream = ApplicationLoader.applicationContext.getResources().openRawResource(i);
+            try {
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (Throwable th) {
+                th = th;
+                try {
+                    FileLog.e(th);
+                    inputStream.close();
+                } catch (Throwable th2) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException unused) {
+                    }
+                    throw th2;
+                }
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            inputStream = null;
+        }
+        try {
+            inputStream.close();
+        } catch (IOException unused2) {
+            return bitmap;
+        }
     }
 
     public static void getBitmapFromSurface(Surface surface, Bitmap bitmap) {
@@ -2880,6 +2920,17 @@ public class AndroidUtilities {
         return isHonor.booleanValue();
     }
 
+    public static boolean isInPictureInPictureMode(Activity activity) {
+        boolean isInPictureInPictureMode;
+        if (Build.VERSION.SDK_INT >= 24) {
+            isInPictureInPictureMode = activity.isInPictureInPictureMode();
+            if (isInPictureInPictureMode) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isInternalUri(int i) {
         return isInternalUri(null, i);
     }
@@ -3393,6 +3444,17 @@ public class AndroidUtilities {
 
     public static float lerpAngle(float f, float f2, float f3) {
         return ((f + ((((((f2 - f) + 360.0f) + 180.0f) % 360.0f) - 180.0f) * f3)) + 360.0f) % 360.0f;
+    }
+
+    public static void lerpCentered(Rect rect, Rect rect2, float f, Rect rect3) {
+        if (rect3 == null) {
+            return;
+        }
+        float lerp = lerp(rect.centerX(), rect2.centerX(), f);
+        float lerp2 = lerp(rect.centerY(), rect2.centerY(), f);
+        float lerp3 = lerp(rect.width(), rect2.width(), Math.min(1.0f, f)) / 2.0f;
+        float lerp4 = lerp(rect.height(), rect2.height(), Math.min(1.0f, f)) / 2.0f;
+        rect3.set((int) (lerp - lerp3), (int) (lerp2 - lerp4), (int) (lerp + lerp3), (int) (lerp2 + lerp4));
     }
 
     public static void lerpCentered(RectF rectF, RectF rectF2, float f, RectF rectF3) {
@@ -4565,6 +4627,22 @@ public class AndroidUtilities {
         }
         activity.getWindow().setFlags(131072, 131072);
         altFocusableClassGuid = i;
+    }
+
+    public static void resetPictureInPictureParams(Activity activity) {
+        PictureInPictureParams build;
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 26) {
+            PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
+            builder.setSourceRectHint(null);
+            builder.setAspectRatio(null);
+            if (i >= 31) {
+                builder.setSeamlessResizeEnabled(false);
+                builder.setAutoEnterEnabled(false);
+            }
+            build = builder.build();
+            activity.setPictureInPictureParams(build);
+        }
     }
 
     public static void resetTabletFlag() {

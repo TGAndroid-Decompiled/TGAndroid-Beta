@@ -967,8 +967,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             AccountInstance.getInstance(sharedInstance.getAccount());
             ChatObject.Call call = sharedInstance.groupCall;
             TLRPC.Chat chat = sharedInstance.getChat();
-            TLRPC.TL_groupCallParticipant tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) call.participants.get(sharedInstance.getSelfId());
-            if (tL_groupCallParticipant != null && !tL_groupCallParticipant.can_self_unmute && tL_groupCallParticipant.muted && !ChatObject.canManageCalls(chat)) {
+            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) call.participants.get(sharedInstance.getSelfId());
+            if (groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !ChatObject.canManageCalls(chat)) {
                 return;
             }
         }
@@ -1351,52 +1351,76 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         String str;
         AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher2;
         int i;
+        ChatObject.Call call;
+        String sb;
         checkCreateView();
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             int i2 = this.currentStyle;
             if (i2 == 1 || i2 == 3) {
                 int callState = sharedInstance.getCallState();
-                if (sharedInstance.isSwitchingStream() || !(callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
-                    if (sharedInstance.getChat() == null) {
-                        if (sharedInstance.getUser() != null) {
-                            TLRPC.User user = sharedInstance.getUser();
-                            ChatActivityInterface chatActivityInterface = this.chatActivity;
-                            if (chatActivityInterface == null || chatActivityInterface.getCurrentUser() == null || this.chatActivity.getCurrentUser().id != user.id) {
-                                this.titleTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
-                                return;
-                            } else {
-                                this.titleTextView.setText(LocaleController.getString(R.string.ReturnToCall));
-                                return;
+                if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
+                    clippingTextViewSwitcher2 = this.titleTextView;
+                    i = R.string.VoipGroupConnecting;
+                } else {
+                    if (!sharedInstance.isConference() || (call = sharedInstance.groupCall) == null) {
+                        if (sharedInstance.getChat() == null) {
+                            if (sharedInstance.getUser() != null) {
+                                TLRPC.User user = sharedInstance.getUser();
+                                ChatActivityInterface chatActivityInterface = this.chatActivity;
+                                if (chatActivityInterface == null || chatActivityInterface.getCurrentUser() == null || this.chatActivity.getCurrentUser().id != user.id) {
+                                    this.titleTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
+                                    return;
+                                } else {
+                                    this.titleTextView.setText(LocaleController.getString(R.string.ReturnToCall));
+                                    return;
+                                }
                             }
+                            return;
                         }
+                        if (TextUtils.isEmpty(sharedInstance.groupCall.call.title)) {
+                            ChatActivityInterface chatActivityInterface2 = this.chatActivity;
+                            if (chatActivityInterface2 == null || chatActivityInterface2.getCurrentChat() == null || this.chatActivity.getCurrentChat().id != sharedInstance.getChat().id) {
+                                clippingTextViewSwitcher = this.titleTextView;
+                                str = sharedInstance.getChat().title;
+                            } else {
+                                TLRPC.Chat currentChat = this.chatActivity.getCurrentChat();
+                                if (VoIPService.hasRtmpStream() || ChatObject.isChannelOrGiga(currentChat)) {
+                                    clippingTextViewSwitcher2 = this.titleTextView;
+                                    i = R.string.VoipChannelViewVoiceChat;
+                                } else {
+                                    clippingTextViewSwitcher2 = this.titleTextView;
+                                    i = R.string.VoipGroupViewVoiceChat;
+                                }
+                            }
+                        } else {
+                            clippingTextViewSwitcher = this.titleTextView;
+                            str = sharedInstance.groupCall.call.title;
+                        }
+                        clippingTextViewSwitcher.setText(str, false);
                         return;
                     }
-                    if (TextUtils.isEmpty(sharedInstance.groupCall.call.title)) {
-                        ChatActivityInterface chatActivityInterface2 = this.chatActivity;
-                        if (chatActivityInterface2 == null || chatActivityInterface2.getCurrentChat() == null || this.chatActivity.getCurrentChat().id != sharedInstance.getChat().id) {
-                            clippingTextViewSwitcher = this.titleTextView;
-                            str = sharedInstance.getChat().title;
-                        } else {
-                            TLRPC.Chat currentChat = this.chatActivity.getCurrentChat();
-                            if (VoIPService.hasRtmpStream() || ChatObject.isChannelOrGiga(currentChat)) {
-                                clippingTextViewSwitcher2 = this.titleTextView;
-                                i = R.string.VoipChannelViewVoiceChat;
-                            } else {
-                                clippingTextViewSwitcher2 = this.titleTextView;
-                                i = R.string.VoipGroupViewVoiceChat;
+                    if (call.sortedParticipants.size() > 1) {
+                        StringBuilder sb2 = new StringBuilder();
+                        for (int i3 = 0; i3 < Math.min(3, sharedInstance.groupCall.sortedParticipants.size()); i3++) {
+                            if (i3 > 0) {
+                                sb2.append(", ");
                             }
+                            sb2.append(DialogObject.getShortName(sharedInstance.getAccount(), DialogObject.getPeerDialogId(sharedInstance.groupCall.sortedParticipants.get(i3).peer)));
                         }
-                    } else {
-                        clippingTextViewSwitcher = this.titleTextView;
-                        str = sharedInstance.groupCall.call.title;
+                        if (sharedInstance.groupCall.sortedParticipants.size() > 3) {
+                            sb2.append(" ");
+                            sb2.append(LocaleController.formatPluralString("AndOther", sharedInstance.groupCall.sortedParticipants.size() - 3, new Object[0]));
+                        }
+                        clippingTextViewSwitcher2 = this.titleTextView;
+                        sb = sb2.toString();
+                        clippingTextViewSwitcher2.setText(sb, false);
                     }
-                    clippingTextViewSwitcher.setText(str, false);
-                    return;
+                    clippingTextViewSwitcher2 = this.titleTextView;
+                    i = R.string.ConferenceChat;
                 }
-                clippingTextViewSwitcher2 = this.titleTextView;
-                i = R.string.VoipGroupConnecting;
-                clippingTextViewSwitcher2.setText(LocaleController.getString(i), false);
+                sb = LocaleController.getString(i);
+                clippingTextViewSwitcher2.setText(sb, false);
             }
         }
     }
@@ -1640,7 +1664,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             this.subtitleTextView.setVisibility(8);
             this.joinButton.setVisibility(8);
             this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 2.0f));
-            this.titleTextView.setPadding(AndroidUtilities.dp(112.0f), 0, AndroidUtilities.dp(112.0f) + this.joinButtonWidth, 0);
+            this.titleTextView.setPadding(AndroidUtilities.dp(88.0f), 0, AndroidUtilities.dp(88.0f) + this.joinButtonWidth, 0);
             actionBarMenuItem = this.playbackSpeedButton;
             if (actionBarMenuItem == null) {
                 return;
@@ -1803,7 +1827,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         VoIPService sharedInstance;
-        TLRPC.TL_groupCallParticipant tL_groupCallParticipant;
+        TLRPC.GroupCallParticipant groupCallParticipant;
         AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher;
         String string;
         if (i == NotificationCenter.liveLocationsChanged) {
@@ -1838,7 +1862,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 sharedInstance.registerStateListener(this);
             }
             int callState = sharedInstance.getCallState();
-            if (callState == 1 || callState == 2 || callState == 6 || callState == 5 || this.muteButton == null || (tL_groupCallParticipant = (TLRPC.TL_groupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId())) == null || tL_groupCallParticipant.can_self_unmute || !tL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
+            if (callState == 1 || callState == 2 || callState == 6 || callState == 5 || this.muteButton == null || (groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.get(sharedInstance.getSelfId())) == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
                 return;
             }
             sharedInstance.setMicMute(true, false, false);

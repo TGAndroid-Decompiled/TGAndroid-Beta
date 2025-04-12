@@ -31,28 +31,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.voip.ImageWithWavesView;
 
 public class AcceptDeclineView extends View {
-    private Paint acceptCirclePaint;
-    private FabBackgroundDrawable acceptDrawable;
-    private StaticLayout acceptLayout;
+    private final ButtonBounce acceptBounce;
+    private final Paint acceptCirclePaint;
+    private final FabBackgroundDrawable acceptDrawable;
+    private final StaticLayout acceptLayout;
     Rect acceptRect;
+    private Drawable acceptVideoDrawable;
+    private RLottieDrawable acceptVoiceDrawable;
     private AcceptDeclineAccessibilityNodeProvider accessibilityNodeProvider;
     private final ImageWithWavesView.AvatarWavesDrawable avatarWavesDrawable;
     float bigRadius;
     private int buttonWidth;
-    private RLottieDrawable callAcceptDrawable;
     private ValueAnimator callAnimator;
-    private Drawable callDrawable;
-    private Drawable cancelDrawable;
+    private final Drawable callDrawable;
+    private final Drawable cancelDrawable;
     boolean captured;
-    private FabBackgroundDrawable declineDrawable;
-    private StaticLayout declineLayout;
+    private final ButtonBounce declineBounce;
+    private final FabBackgroundDrawable declineDrawable;
+    private final StaticLayout declineLayout;
     Rect declineRect;
     boolean expandBigRadius;
     boolean expandSmallRadius;
+    private boolean isVideo;
     Animator leftAnimator;
     boolean leftDrag;
     float leftOffsetX;
@@ -60,7 +65,7 @@ public class AcceptDeclineView extends View {
     Listener listener;
     private final Paint maskPaint;
     float maxOffset;
-    private StaticLayout retryLayout;
+    private final StaticLayout retryLayout;
     boolean retryMod;
     Animator rightAnimator;
     float rigthOffsetX;
@@ -181,22 +186,25 @@ public class AcceptDeclineView extends View {
 
     public AcceptDeclineView(Context context) {
         super(context);
-        this.acceptCirclePaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.acceptCirclePaint = paint;
+        this.acceptBounce = new ButtonBounce(this);
+        this.declineBounce = new ButtonBounce(this);
         this.expandSmallRadius = true;
         this.expandBigRadius = true;
         this.acceptRect = new Rect();
         this.declineRect = new Rect();
         this.linePaint = new Paint(1);
-        Paint paint = new Paint(1);
-        this.maskPaint = paint;
+        Paint paint2 = new Paint(1);
+        this.maskPaint = paint2;
         ImageWithWavesView.AvatarWavesDrawable avatarWavesDrawable = new ImageWithWavesView.AvatarWavesDrawable(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(8.0f), 4);
         this.avatarWavesDrawable = avatarWavesDrawable;
         avatarWavesDrawable.muteToStatic = true;
         avatarWavesDrawable.muteToStaticProgress = 0.0f;
         avatarWavesDrawable.wavesEnter = 0.0f;
         avatarWavesDrawable.setAmplitude(0.0d);
-        paint.setColor(-16777216);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint2.setColor(-16777216);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         this.buttonWidth = AndroidUtilities.dp(60.0f);
         FabBackgroundDrawable fabBackgroundDrawable = new FabBackgroundDrawable();
@@ -205,12 +213,10 @@ public class AcceptDeclineView extends View {
         FabBackgroundDrawable fabBackgroundDrawable2 = new FabBackgroundDrawable();
         this.declineDrawable = fabBackgroundDrawable2;
         fabBackgroundDrawable2.setColor(-1041108);
-        FabBackgroundDrawable fabBackgroundDrawable3 = this.declineDrawable;
         int i = this.buttonWidth;
-        fabBackgroundDrawable3.setBounds(0, 0, i, i);
-        FabBackgroundDrawable fabBackgroundDrawable4 = this.acceptDrawable;
+        fabBackgroundDrawable2.setBounds(0, 0, i, i);
         int i2 = this.buttonWidth;
-        fabBackgroundDrawable4.setBounds(0, 0, i2, i2);
+        fabBackgroundDrawable.setBounds(0, 0, i2, i2);
         TextPaint textPaint = new TextPaint(1);
         textPaint.setTextSize(AndroidUtilities.dp(11.0f));
         textPaint.setColor(-1);
@@ -228,12 +234,13 @@ public class AcceptDeclineView extends View {
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         int i3 = R.raw.call_accept;
         RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
-        this.callAcceptDrawable = rLottieDrawable;
+        this.acceptVoiceDrawable = rLottieDrawable;
         rLottieDrawable.setAutoRepeat(1);
-        this.callAcceptDrawable.setCustomEndFrame(90);
-        this.callAcceptDrawable.setMasterParent(this);
-        this.acceptCirclePaint.setColor(-1);
-        this.acceptCirclePaint.setAlpha(20);
+        this.acceptVoiceDrawable.setCustomEndFrame(90);
+        this.acceptVoiceDrawable.setMasterParent(this);
+        this.acceptVideoDrawable = ContextCompat.getDrawable(context, R.drawable.calls_video).mutate();
+        paint.setColor(-1);
+        paint.setAlpha(20);
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(52.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
         this.rippleDrawable = createSimpleSelectorCircleDrawable;
         createSimpleSelectorCircleDrawable.setCallback(this);
@@ -383,9 +390,12 @@ public class AcceptDeclineView extends View {
             invalidate();
         }
         this.bigRadius += AndroidUtilities.dp(8.0f) * 0.005f;
+        this.declineRect.set((getMeasuredWidth() - AndroidUtilities.dp(46.0f)) - this.buttonWidth, AndroidUtilities.dp(40.0f), getMeasuredWidth() - AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f) + this.buttonWidth);
         canvas.save();
         canvas.translate(0.0f, AndroidUtilities.dp(40.0f));
         canvas.save();
+        float scale = this.declineBounce.getScale(0.1f);
+        canvas.scale(scale, scale, this.declineRect.centerX(), this.declineRect.top + (this.buttonWidth / 2.0f));
         canvas.translate(((this.rigthOffsetX + getMeasuredWidth()) - AndroidUtilities.dp(46.0f)) - this.buttonWidth, 0.0f);
         if (this.retryMod) {
             canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.linePaint, 31);
@@ -405,14 +415,16 @@ public class AcceptDeclineView extends View {
         canvas.save();
         canvas.translate((this.buttonWidth / 2.0f) - (this.declineLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.dp(4.0f));
         this.declineLayout.draw(canvas);
-        this.declineRect.set((getMeasuredWidth() - AndroidUtilities.dp(46.0f)) - this.buttonWidth, AndroidUtilities.dp(40.0f), getMeasuredWidth() - AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f) + this.buttonWidth);
         canvas.restore();
         if (this.leftDrag) {
             this.rippleDrawable.setBounds(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.buttonWidth - AndroidUtilities.dp(4.0f), this.buttonWidth - AndroidUtilities.dp(4.0f));
             this.rippleDrawable.draw(canvas);
         }
         canvas.restore();
+        this.acceptRect.set(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(46.0f) + this.buttonWidth, AndroidUtilities.dp(40.0f) + this.buttonWidth);
         canvas.save();
+        float scale2 = this.acceptBounce.getScale(0.1f);
+        canvas.scale(scale2, scale2, this.acceptRect.centerX(), this.acceptRect.top + (this.buttonWidth / 2.0f));
         canvas.translate(this.leftOffsetX + AndroidUtilities.dp(46.0f), 0.0f);
         if (!this.retryMod) {
             this.avatarWavesDrawable.update();
@@ -420,7 +432,6 @@ public class AcceptDeclineView extends View {
             this.avatarWavesDrawable.draw(canvas, f, f, this);
         }
         this.acceptDrawable.draw(canvas);
-        this.acceptRect.set(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(46.0f) + this.buttonWidth, AndroidUtilities.dp(40.0f) + this.buttonWidth);
         boolean z = this.retryMod;
         canvas.save();
         if (z) {
@@ -434,7 +445,14 @@ public class AcceptDeclineView extends View {
         canvas.restore();
         canvas.save();
         canvas.translate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-        this.callAcceptDrawable.draw(canvas);
+        if (this.isVideo) {
+            int dp5 = AndroidUtilities.dp(28.0f);
+            canvas.translate((AndroidUtilities.dp(48.0f) - dp5) / 2.0f, (AndroidUtilities.dp(48.0f) - dp5) / 2.0f);
+            this.acceptVideoDrawable.setBounds(0, 0, dp5, dp5);
+            this.acceptVideoDrawable.draw(canvas);
+        } else {
+            this.acceptVoiceDrawable.draw(canvas);
+        }
         canvas.restore();
         if (!this.leftDrag) {
             this.rippleDrawable.setBounds(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.buttonWidth - AndroidUtilities.dp(4.0f), this.buttonWidth - AndroidUtilities.dp(4.0f));
@@ -482,7 +500,7 @@ public class AcceptDeclineView extends View {
             this.declineDrawable.setColor(-1);
             return;
         }
-        this.callAcceptDrawable.start();
+        this.acceptVoiceDrawable.start();
         this.avatarWavesDrawable.setShowWaves(true, this);
         this.declineDrawable.setColor(-1041108);
         ValueAnimator ofInt = ValueAnimator.ofInt(0, 60, 0, 0, 60, 0, 0, 0, 0);
@@ -504,7 +522,7 @@ public class AcceptDeclineView extends View {
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.callAnimator = null;
-            this.callAcceptDrawable.stop();
+            this.acceptVoiceDrawable.stop();
         }
     }
 
