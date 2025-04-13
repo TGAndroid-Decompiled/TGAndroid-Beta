@@ -261,7 +261,7 @@ public class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListene
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.alphaFactor, z ? 1.0f : 0.0f);
         this.alphaAnimator = ofFloat;
-        ofFloat.setDuration(200L);
+        ofFloat.setDuration(180L);
         this.alphaAnimator.addUpdateListener(this);
         this.alphaAnimator.setInterpolator(QuickShareSelectorDrawable.Interpolators.DECELERATE_INTERPOLATOR);
         this.alphaAnimator.start();
@@ -283,7 +283,7 @@ public class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListene
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.selectedFactor, z ? 1.0f : 0.0f);
         this.selectedAnimator = ofFloat;
-        ofFloat.setDuration(200L);
+        ofFloat.setDuration(180L);
         this.selectedAnimator.addUpdateListener(this);
         this.selectedAnimator.setInterpolator(QuickShareSelectorDrawable.Interpolators.DECELERATE_INTERPOLATOR);
         this.selectedAnimator.start();

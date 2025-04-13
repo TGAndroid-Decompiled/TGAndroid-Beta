@@ -1278,7 +1278,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 public final void onClick(AlertDialog alertDialog, int i) {
                     VoIPFragment.this.lambda$requestInlinePermissions$44(alertDialog, i);
                 }
-            }).show();
+            }, true).show();
         }
     }
 
@@ -1564,7 +1564,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         int i2 = Build.VERSION.SDK_INT;
         boolean isInteractive = i2 >= 20 ? powerManager.isInteractive() : powerManager.isScreenOn();
         VoIPFragment voIPFragment4 = instance;
-        voIPFragment4.screenWasWakeup = true ^ isInteractive;
+        voIPFragment4.screenWasWakeup = !isInteractive;
         voIPWindowView2.setLockOnScreen(voIPFragment4.deviceIsLocked);
         voIPFragment3.windowView = voIPWindowView2;
         if (i2 >= 20) {
@@ -1585,6 +1585,10 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         } else {
             voIPFragment3.enterTransitionProgress = 1.0f;
             voIPFragment3.updateSystemBarColors();
+        }
+        if (PipNativeApiController.checkPermissions(activity) == 1) {
+            VoIPFragment voIPFragment5 = instance;
+            voIPFragment5.pipSource = new PipSource.Builder(activity, voIPFragment5).setTagPrefix("voip-fragment-pip").setContentView(instance.callingUserTextureView.renderer).build();
         }
     }
 

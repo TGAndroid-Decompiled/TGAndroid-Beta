@@ -3548,11 +3548,13 @@
     <string name="FwdMessageToManyChats_other">Message forwarded to **%1$d chats**.</string>
     <string name="FwdMessageToSavedMessages">Message forwarded to **Saved Messages**.</string>
     <string name="FwdMessageToUser">Message forwarded to **%1$s**.</string>
+    <string name="FwdMessageToUserShort">Forwarded to **%1$s**.</string>
     <string name="FwdMessagesToGroup">Messages forwarded to **%1$s**.</string>
     <string name="FwdMessagesToManyChats_one">Messages forwarded to **a chat**.</string>
     <string name="FwdMessagesToManyChats_other">Messages forwarded to **%1$d chats**.</string>
     <string name="FwdMessagesToSavedMessages">Messages forwarded to **Saved Messages**.</string>
     <string name="FwdMessagesToUser">Messages forwarded to **%1$s**.</string>
+    <string name="FwdMessagesToUserShort">Forwarded to **%1$s**.</string>
     <string name="FwdMyStory">Repost\nStory</string>
     <string name="GIFs_one">%1$d GIF</string>
     <string name="GIFs_other">%1$d GIFs</string>
@@ -9126,7 +9128,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f23bc_com_google_firebase_crashlytics_mapping_file_id">398745007a184282ab401775af4e231a</string>
+    <string name="res_0x7f0f23be_com_google_firebase_crashlytics_mapping_file_id">22c88e7ade6e4bfea7939f474161994e</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

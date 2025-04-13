@@ -2,6 +2,7 @@ package org.telegram.messenger.pip;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Build;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.text.TextUtils;
@@ -21,13 +22,7 @@ public abstract class PipNativeApiController {
     }
 
     public static int checkPermissions(Context context) {
-        if (AndroidUtilities.checkInlinePermissions(context)) {
-            return 2;
-        }
-        if (Build.VERSION.SDK_INT >= 26) {
-            return AndroidUtilities.checkPipPermissions(context) ? 1 : -2;
-        }
-        return -1;
+        return AndroidUtilities.checkInlinePermissions(context) ? 2 : -1;
     }
 
     public static WindowManager.LayoutParams createWindowLayoutParams(Context context, boolean z) {
@@ -84,6 +79,10 @@ public abstract class PipNativeApiController {
         if (pipSource2 == null) {
             if (pipSource != null) {
                 AndroidUtilities.resetPictureInPictureParams(pipSource.activity);
+                if (AndroidUtilities.isInPictureInPictureMode(pipSource.activity)) {
+                    pipSource.activity.moveTaskToBack(false);
+                    return;
+                }
                 return;
             }
             return;
@@ -109,20 +108,34 @@ public abstract class PipNativeApiController {
         }
     }
 
-    private static void onUpdateSourcesMap() {
-        PipSource pipSource = maxPrioritySource;
-        String str = pipSource != null ? pipSource.tag : null;
+    public static void onUpdateSourcesMap() {
+        PipSource pipSource;
+        PipSource pipSource2 = maxPrioritySource;
+        String str = pipSource2 != null ? pipSource2.tag : null;
         maxPrioritySource = null;
-        for (PipSource pipSource2 : sources.values()) {
-            PipSource pipSource3 = maxPrioritySource;
-            if (pipSource3 == null || pipSource2.priority >= pipSource3.priority) {
-                maxPrioritySource = pipSource2;
+        for (PipSource pipSource3 : sources.values()) {
+            if (pipSource3.isEnabled()) {
+                if (pipSource3.player != null) {
+                    Point point = pipSource3.ratio;
+                    if (point.x != 0 && point.y != 0) {
+                    }
+                }
+                pipSource = maxPrioritySource;
+                if (pipSource != null || pipSource3.priority >= pipSource.priority) {
+                    maxPrioritySource = pipSource3;
+                }
+            }
+            if (pipSource3.isAttachedToPictureInPicture()) {
+                pipSource = maxPrioritySource;
+                if (pipSource != null) {
+                }
+                maxPrioritySource = pipSource3;
             }
         }
         if (TextUtils.equals(str, getMaxPrioritySourceTag())) {
             return;
         }
-        onMaxPrioritySourceChanged(pipSource, maxPrioritySource);
+        onMaxPrioritySourceChanged(pipSource2, maxPrioritySource);
     }
 
     public static void onUserLeaveHint(Activity activity) {

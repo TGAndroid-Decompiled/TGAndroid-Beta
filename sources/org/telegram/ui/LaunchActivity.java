@@ -682,6 +682,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             super.dispatchDraw(canvas);
             LaunchActivity.this.drawRippleAbove(canvas, this);
         }
+
+        @Override
+        public void setVisibility(int i) {
+            super.setVisibility(i);
+        }
     }
 
     class AnonymousClass20 extends ClickableSpan {
@@ -2671,7 +2676,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     public final void accept(Object obj) {
                         runnable2.run();
                     }
-                }, null, progress != null ? new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6(progress) : null);
+                }, null, progress != null ? new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7(progress) : null);
                 return;
             } else if (tL_messages_botApp.request_write_access || z4) {
                 AlertsCreator.createBotLaunchAlert(baseFragment3, atomicBoolean, user, runnable2);
@@ -3261,7 +3266,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public void lambda$runLinkRequest$66(TLRPC.TL_error tL_error, final int i, final String str, final String str2, final String str3, final String str4, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final boolean z, final Integer num, final Long l, final Long l2, final Integer num2, final String str13, final HashMap hashMap, final String str14, final String str15, final String str16, final String str17, final TLRPC.TL_wallPaper tL_wallPaper, final String str18, final String str19, final String str20, final String str21, final boolean z2, final String str22, final int i2, final int i3, final String str23, final String str24, final String str25, final Browser.Progress progress, final boolean z3, final int i4, final boolean z4, final String str26, final boolean z5, final boolean z6, final boolean z7, final boolean z8, final boolean z9, final String str27, TLObject tLObject, final Long l3, final String str28, final String str29, final TLRPC.User user, final Runnable runnable) {
         LaunchActivity launchActivity;
-        ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6 chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6;
+        ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7 chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7;
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -3296,13 +3301,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
             };
             if (progress != null) {
-                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6 = new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6(progress);
+                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7 = new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7(progress);
                 launchActivity = this;
             } else {
                 launchActivity = this;
-                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6 = null;
+                chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7 = null;
             }
-            WebAppDisclaimerAlert.show(launchActivity, consumer, null, chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6);
+            WebAppDisclaimerAlert.show(launchActivity, consumer, null, chatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7);
         }
     }
 

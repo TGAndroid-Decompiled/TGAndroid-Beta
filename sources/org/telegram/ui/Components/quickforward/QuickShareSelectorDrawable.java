@@ -80,8 +80,8 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
     private boolean closeAnimationStarted = false;
     private boolean ballsAllowed = true;
     private int selectedIndex = -1;
-    private final ObjectAnimator openAnimation = ObjectAnimator.ofFloat(this, (Property<QuickShareSelectorDrawable, Float>) OPEN_FACTOR, 1.0f).setDuration(650L);
-    private final ObjectAnimator closeAnimation = ObjectAnimator.ofFloat(this, (Property<QuickShareSelectorDrawable, Float>) CLOSE_FACTOR, 1.0f).setDuration(280L);
+    private final ObjectAnimator openAnimation = ObjectAnimator.ofFloat(this, (Property<QuickShareSelectorDrawable, Float>) OPEN_FACTOR, 1.0f).setDuration(560L);
+    private final ObjectAnimator closeAnimation = ObjectAnimator.ofFloat(this, (Property<QuickShareSelectorDrawable, Float>) CLOSE_FACTOR, 1.0f).setDuration(240L);
 
     public static class Interpolators {
         public static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
@@ -108,24 +108,25 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         static {
             LinearInterpolator linearInterpolator = new LinearInterpolator();
             LINEAR_INTERPOLATOR = linearInterpolator;
-            closeAlpha = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 0, 280, 280);
-            closeAvatarPosition = QuickShareSelectorDrawable.interpolator(linearInterpolator, 0, 280, 280);
-            closeAvatarAlpha = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 256, 280, 280);
-            buttonRotationUp = QuickShareSelectorDrawable.interpolator(new CubicBezierInterpolator(0.7f, -0.6f, 0.4f, 1.0f), 0, 200, 650);
-            buttonRotationDown = QuickShareSelectorDrawable.interpolator(new CubicBezierInterpolator(0.7f, -0.6f, 0.4f, 1.0f), 200, 400, 650, true);
-            buttonJumpUp = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 0, 150, 650);
-            buttonJumpDown = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 210, 425, 650);
-            bgOpacity = QuickShareSelectorDrawable.interpolator(new LinearInterpolator(), 0, 100, 650);
-            bgScale = QuickShareSelectorDrawable.interpolator(new LinearInterpolator(), 80, 200, 650);
-            heightExpansion = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 0, 250, 650);
-            widthExpansion = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 120, 425, 650);
-            bubbleY = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 0, 325, 650);
-            ballsRadius = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 150, 250, 650);
-            overshootCancel = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 350, 550, 650);
-            avatar1 = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 150, 550, 650);
-            avatar2 = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 200, 550, 650);
-            avatar3 = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 280, 550, 650);
-            avatarOvershootCancel = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 500, 650, 650);
+            closeAlpha = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 0, 240, 240);
+            closeAvatarPosition = QuickShareSelectorDrawable.interpolator(linearInterpolator, 0, 240, 240);
+            closeAvatarAlpha = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 220, 240, 240);
+            buttonRotationUp = QuickShareSelectorDrawable.interpolator(new CubicBezierInterpolator(0.7f, -0.6f, 0.4f, 1.0f), 0, 200, 560);
+            buttonRotationDown = QuickShareSelectorDrawable.interpolator(new CubicBezierInterpolator(0.7f, -0.6f, 0.4f, 1.0f), 200, 400, 560, true);
+            buttonJumpUp = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 0, 150, 560);
+            buttonJumpDown = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 210, 425, 560);
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            bgOpacity = QuickShareSelectorDrawable.interpolator(cubicBezierInterpolator, 0, 320, 560);
+            bgScale = QuickShareSelectorDrawable.interpolator(cubicBezierInterpolator, 40, 320, 560);
+            heightExpansion = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 0, 250, 560);
+            widthExpansion = QuickShareSelectorDrawable.interpolator(cubicBezierInterpolator, 0, 460, 560);
+            bubbleY = QuickShareSelectorDrawable.interpolator(cubicBezierInterpolator, 0, 325, 560);
+            ballsRadius = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 150, 250, 560);
+            overshootCancel = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 200, 480, 560);
+            avatar1 = QuickShareSelectorDrawable.interpolator(cubicBezierInterpolator, 60, 320, 560);
+            avatar2 = QuickShareSelectorDrawable.interpolator(cubicBezierInterpolator, 90, 380, 560);
+            avatar3 = QuickShareSelectorDrawable.interpolator(cubicBezierInterpolator, 110, 440, 560);
+            avatarOvershootCancel = QuickShareSelectorDrawable.interpolator(new DecelerateInterpolator(), 200, 460, 560);
         }
     }
 
@@ -487,8 +488,8 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         this.globalBlurBitmapPaint = paint;
         paint.setShader(this.bitmapShader);
         ColorMatrix colorMatrix = new ColorMatrix();
-        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.08f : 0.25f);
-        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.07f);
+        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.08f : 1.25f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.02f : -0.15f);
         this.globalBlurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         this.bitmapMatrix.reset();
         this.bitmapMatrix.setScale(15.0f, 15.0f);
@@ -760,7 +761,10 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
 
     public void onTouchMoveEvent(float f, float f2) {
         if (this.openAnimationCompleted) {
-            setIndex((f2 - this.bubbleCurrent.top) + ((float) this.offsetY) < this.bubbleCurrent.height() ? MathUtils.clamp((int) Math.floor((((f - r0.left) + this.offsetX) - (AndroidUtilities.dp(Sizes.PADDING_H) - (AndroidUtilities.dp(Sizes.GAP) / 2.0f))) / AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP)), 0, this.avatarCells.length - 1) : -1);
+            RectF rectF = this.bubbleCurrent;
+            float f3 = (f - rectF.left) + this.offsetX;
+            float f4 = (f2 - rectF.top) + this.offsetY;
+            setIndex((((float) (-AndroidUtilities.dp((float) (Sizes.TEXT_PADDING_EXTERNAL + 21)))) >= f4 || f4 >= this.bubbleCurrent.height()) ? -1 : MathUtils.clamp((int) Math.floor((f3 - (AndroidUtilities.dp(Sizes.PADDING_H) - (AndroidUtilities.dp(Sizes.GAP) / 2.0f))) / AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP)), 0, this.avatarCells.length - 1));
         }
     }
 

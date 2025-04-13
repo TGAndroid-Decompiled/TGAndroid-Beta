@@ -3799,7 +3799,7 @@ public class TL_account {
             outputSerializedData.writeInt32(1721797758);
             int i = this.deleted ? this.flags | 2 : this.flags & (-3);
             this.flags = i;
-            int i2 = this.rights != null ? i | 1 : i & (-3);
+            int i2 = this.rights != null ? i | 1 : i & (-2);
             this.flags = i2;
             outputSerializedData.writeInt32(i2);
             if ((this.flags & 1) != 0) {

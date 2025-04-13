@@ -11828,7 +11828,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this();
         }
 
-        public void lambda$didLongPressChannelAvatar$15(TLRPC.Chat chat) {
+        public void lambda$didLongPressChannelAvatar$16(TLRPC.Chat chat) {
             SpannableStringBuilder spannableStringBuilder;
             ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
             if (chatActivityEnterView != null) {
@@ -11851,14 +11851,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivity.ChatMessageCellDelegate.this.lambda$appendMention$10();
+                            ChatActivity.ChatMessageCellDelegate.this.lambda$appendMention$11();
                         }
                     }, 200L);
                 }
             }
         }
 
-        public void lambda$didLongPressUserAvatar$8(TLRPC.User user) {
+        public void lambda$didLongPressUserAvatar$9(TLRPC.User user) {
             SpannableStringBuilder spannableStringBuilder;
             ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
             if (chatActivityEnterView != null) {
@@ -11886,7 +11886,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.ChatMessageCellDelegate.this.lambda$appendMention$11();
+                        ChatActivity.ChatMessageCellDelegate.this.lambda$appendMention$12();
                     }
                 }, 200L);
             }
@@ -11897,22 +11897,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return UserObject.isUserSelf(ChatActivity.this.currentUser) || ((chat = ChatActivity.this.currentChat) != null && (!ChatObject.isChannel(chat) || ChatActivity.this.currentChat.megagroup));
         }
 
-        public void lambda$appendMention$10() {
-            ChatActivity.this.chatActivityEnterView.openKeyboard();
-        }
-
         public void lambda$appendMention$11() {
             ChatActivity.this.chatActivityEnterView.openKeyboard();
         }
 
-        public void lambda$didLongPressChannelAvatar$12(TLRPC.Chat chat, ChatMessageCell chatMessageCell, AvatarPreviewer.MenuItem menuItem) {
+        public void lambda$appendMention$12() {
+            ChatActivity.this.chatActivityEnterView.openKeyboard();
+        }
+
+        public void lambda$didLongPressChannelAvatar$13(TLRPC.Chat chat, ChatMessageCell chatMessageCell, AvatarPreviewer.MenuItem menuItem) {
             int i = AnonymousClass160.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
             if (i == 1) {
-                lambda$didLongPressChannelAvatar$13(chat);
+                lambda$didLongPressChannelAvatar$14(chat);
                 return;
             }
             if (i == 2) {
-                lambda$didLongPressChannelAvatar$15(chat);
+                lambda$didLongPressChannelAvatar$16(chat);
                 return;
             }
             if (i == 3) {
@@ -11922,47 +11922,47 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didLongPressChannelAvatar$14(ChatMessageCell chatMessageCell, TLRPC.Chat chat) {
+        public void lambda$didLongPressChannelAvatar$15(ChatMessageCell chatMessageCell, TLRPC.Chat chat) {
             openChat(chatMessageCell, chat, 0, false);
         }
 
-        public void lambda$didLongPressChannelAvatar$16(TLRPC.Chat chat) {
+        public void lambda$didLongPressChannelAvatar$17(TLRPC.Chat chat) {
             ChatActivity.this.lambda$openSearchWithChat$342(chat);
         }
 
-        public void lambda$didLongPressUserAvatar$5(ChatMessageCell chatMessageCell, TLRPC.User user, AvatarPreviewer.MenuItem menuItem) {
+        public void lambda$didLongPressUserAvatar$10(TLRPC.User user) {
+            ChatActivity.this.lambda$openSearchWithUser$341(user);
+        }
+
+        public void lambda$didLongPressUserAvatar$6(ChatMessageCell chatMessageCell, TLRPC.User user, AvatarPreviewer.MenuItem menuItem) {
             int i = AnonymousClass160.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
             if (i == 1) {
-                lambda$didLongPressUserAvatar$6(user);
+                lambda$didLongPressUserAvatar$7(user);
                 return;
             }
             if (i == 2) {
-                lambda$didLongPressUserAvatar$8(user);
+                lambda$didLongPressUserAvatar$9(user);
             } else if (i == 3) {
                 ChatActivity.this.lambda$openSearchWithUser$341(user);
             } else {
                 if (i != 6) {
                     return;
                 }
-                lambda$didLongPressUserAvatar$7(chatMessageCell, user);
+                lambda$didLongPressUserAvatar$8(chatMessageCell, user);
             }
         }
 
-        public void lambda$didLongPressUserAvatar$9(TLRPC.User user) {
-            ChatActivity.this.lambda$openSearchWithUser$341(user);
-        }
-
-        public void lambda$didPressChannelRecommendation$22(View view) {
+        public void lambda$didPressChannelRecommendation$23(View view) {
             if (((BaseFragment) ChatActivity.this).parentLayout != null) {
                 ((BaseFragment) ChatActivity.this).parentLayout.expandPreviewFragment();
             }
         }
 
-        public void lambda$didPressChannelRecommendation$23(TLRPC.Chat chat) {
+        public void lambda$didPressChannelRecommendation$24(TLRPC.Chat chat) {
             BulletinFactory.of(ChatActivity.this).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.YouJoinedChannel, chat == null ? "" : chat.title)).show(true);
         }
 
-        public void lambda$didPressChannelRecommendation$24(final TLRPC.Chat chat, ChatMessageCell chatMessageCell, View view) {
+        public void lambda$didPressChannelRecommendation$25(final TLRPC.Chat chat, ChatMessageCell chatMessageCell, View view) {
             ChatActivity.this.finishPreviewFragment();
             chat.left = false;
             if (chatMessageCell != null && chatMessageCell.channelRecommendationsCell != null) {
@@ -11971,7 +11971,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.getMessagesController().addUserToChat(chat.id, ChatActivity.this.getUserConfig().getCurrentUser(), 0, null, ChatActivity.this, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$23(chat);
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$24(chat);
                 }
             });
         }
@@ -11993,7 +11993,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.factCheckHint.show();
         }
 
-        public void lambda$didPressImage$27(MessageObject messageObject) {
+        public void lambda$didPressImage$28(MessageObject messageObject) {
             if (ChatActivity.this.checkSlowModeAlert()) {
                 SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(messageObject.getDiceEmoji(), ChatActivity.this.dialog_id, ChatActivity.this.replyingMessageObject, ChatActivity.this.getThreadMessage(), null, false, null, null, null, true, 0, null, false);
                 of.quick_reply_shortcut_id = ChatActivity.this.getQuickReplyId();
@@ -12003,7 +12003,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didPressInstantButton$28(TLObject tLObject, boolean z) {
+        public void lambda$didPressInstantButton$29(TLObject tLObject, boolean z) {
             ChatActivity.this.progressDialogCurrent.end();
             if (!(tLObject instanceof TLRPC.TL_messages_stickerSet)) {
                 BulletinFactory.of(ChatActivity.this).createSimpleBulletin(R.raw.error, LocaleController.getString(z ? R.string.AddEmojiNotFound : R.string.AddStickersNotFound)).show(true);
@@ -12031,24 +12031,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.showDialog(emojiPacksAlert);
         }
 
-        public void lambda$didPressInstantButton$29(final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$didPressInstantButton$30(final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$28(tLObject, z);
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$29(tLObject, z);
                 }
             });
         }
 
-        public void lambda$didPressInstantButton$30(int i) {
+        public void lambda$didPressInstantButton$31(int i) {
             ConnectionsManager.getInstance(((BaseFragment) ChatActivity.this).currentAccount).cancelRequest(i, true);
         }
 
-        public void lambda$didPressMoreChannelRecommendations$21() {
+        public void lambda$didPressMoreChannelRecommendations$22() {
             ChatActivity.this.presentFragment(new PremiumPreviewFragment("similar_channels"));
         }
 
-        public void lambda$didPressOther$2(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
+        public void lambda$didPressOther$3(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
             ChatActivity chatActivity;
             CreateGroupCallSheet createGroupCallSheet;
             alertDialog.dismiss();
@@ -12077,44 +12077,44 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             chatActivity.showDialog(createGroupCallSheet);
         }
 
-        public void lambda$didPressOther$3(final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final MessageObject messageObject, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public void lambda$didPressOther$4(final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final MessageObject messageObject, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressOther$2(alertDialog, tLObject, hashSet, tL_inputGroupCallInviteMessage, messageObject, tL_error);
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressOther$3(alertDialog, tLObject, hashSet, tL_inputGroupCallInviteMessage, messageObject, tL_error);
                 }
             });
         }
 
-        public void lambda$didPressOther$4(int i, DialogInterface dialogInterface) {
+        public void lambda$didPressOther$5(int i, DialogInterface dialogInterface) {
             ChatActivity.this.getConnectionsManager().cancelRequest(i, true);
         }
 
-        public void lambda$didPressReplyMessage$25(MessageObject messageObject) {
+        public void lambda$didPressReplyMessage$26(MessageObject messageObject) {
             ChatActivity.this.progressDialogAtMessageId = messageObject.getId();
             ChatActivity.this.progressDialogAtMessageType = 0;
         }
 
-        public void lambda$didPressReplyMessage$26(int i, final MessageObject messageObject) {
+        public void lambda$didPressReplyMessage$27(int i, final MessageObject messageObject) {
             ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressReplyMessage$25(messageObject);
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressReplyMessage$26(messageObject);
                 }
             });
         }
 
-        public static void lambda$didPressRevealSensitiveContent$31(boolean[] zArr, View view) {
+        public static void lambda$didPressRevealSensitiveContent$32(boolean[] zArr, View view) {
             boolean z = !zArr[0];
             zArr[0] = z;
             ((CheckBoxCell) view).setChecked(z, true);
         }
 
-        public void lambda$didPressRevealSensitiveContent$32() {
+        public void lambda$didPressRevealSensitiveContent$33() {
             ChatActivity.this.presentFragment(new ThemeActivity(0).highlightSensitiveRow());
         }
 
-        public void lambda$didPressRevealSensitiveContent$33(boolean[] zArr, TL_account.contentSettings contentsettings, ChatMessageCell chatMessageCell, AlertDialog alertDialog, int i) {
+        public void lambda$didPressRevealSensitiveContent$34(boolean[] zArr, TL_account.contentSettings contentsettings, ChatMessageCell chatMessageCell, AlertDialog alertDialog, int i) {
             if (!zArr[0]) {
                 if (chatMessageCell.getMessageObject() != null) {
                     chatMessageCell.getMessageObject().isSensitiveCached = Boolean.FALSE;
@@ -12127,7 +12127,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 BulletinFactory.of(ChatActivity.this).createSimpleBulletinDetail(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressRevealSensitiveContent$32();
+                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressRevealSensitiveContent$33();
                     }
                 }), true)).show(true);
             }
@@ -12142,7 +12142,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didPressRevealSensitiveContent$34(AlertDialog alertDialog, final ChatMessageCell chatMessageCell, final TL_account.contentSettings contentsettings) {
+        public void lambda$didPressRevealSensitiveContent$35(AlertDialog alertDialog, final ChatMessageCell chatMessageCell, final TL_account.contentSettings contentsettings) {
             alertDialog.dismissUnless(200L);
             final boolean[] zArr = new boolean[1];
             FrameLayout frameLayout = new FrameLayout(ChatActivity.this.getContext());
@@ -12155,7 +12155,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ChatActivity.ChatMessageCellDelegate.lambda$didPressRevealSensitiveContent$31(zArr, view);
+                        ChatActivity.ChatMessageCellDelegate.lambda$didPressRevealSensitiveContent$32(zArr, view);
                     }
                 });
             }
@@ -12163,14 +12163,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             chatActivity.showDialog(new AlertDialog.Builder(chatActivity.getContext(), ChatActivity.this.getResourceProvider()).setTitle(LocaleController.getString(R.string.MessageShowSensitiveContentMediaTitle)).setMessage(LocaleController.getString(R.string.MessageShowSensitiveContentMediaText)).setView(frameLayout).setCustomViewOffset(9).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.MessageShowSensitiveContentButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
-                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressRevealSensitiveContent$33(zArr, contentsettings, chatMessageCell, alertDialog2, i);
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressRevealSensitiveContent$34(zArr, contentsettings, chatMessageCell, alertDialog2, i);
                 }
             }).create());
-        }
-
-        public void lambda$needShowPremiumBulletin$18() {
-            new PremiumFeatureBottomSheet(ChatActivity.this, 8, true).show();
-            ChatActivity.this.getMessagesController().pressTranscribeButton();
         }
 
         public void lambda$needShowPremiumBulletin$19() {
@@ -12183,7 +12178,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.getMessagesController().pressTranscribeButton();
         }
 
-        public void lambda$openChat$17(Browser.Progress progress, TLRPC.Chat chat, int i, ChatActivity chatActivity) {
+        public void lambda$needShowPremiumBulletin$21() {
+            new PremiumFeatureBottomSheet(ChatActivity.this, 8, true).show();
+            ChatActivity.this.getMessagesController().pressTranscribeButton();
+        }
+
+        public void lambda$openChat$18(Browser.Progress progress, TLRPC.Chat chat, int i, ChatActivity chatActivity) {
             progress.onCancel(ChatActivity.this.getMessagesController().ensureMessagesLoaded(-chat.id, i, new MessagesController.MessagesLoadedCallback() {
                 final ChatActivity val$chatActivity;
                 final Browser.Progress val$progress;
@@ -12205,6 +12205,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     ChatActivity.this.presentFragment(r3);
                 }
             }));
+        }
+
+        public void lambda$sendMessageFromQuickShare$2(ArrayList arrayList, long j) {
+            AlertsCreator.showSendMediaAlert(SendMessagesHelper.getInstance(((BaseFragment) ChatActivity.this).currentAccount).sendMessage(arrayList, j, false, false, true, 0, null, -1, 0L), ChatActivity.this, null);
         }
 
         private void openChat(ChatMessageCell chatMessageCell, final TLRPC.Chat chat, final int i, boolean z) {
@@ -12239,7 +12243,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivity.ChatMessageCellDelegate.this.lambda$openChat$17(progress, chat, i, chatActivity2);
+                            ChatActivity.ChatMessageCellDelegate.this.lambda$openChat$18(progress, chat, i, chatActivity2);
                         }
                     }, 5000L);
                     makeProgressForForward.init();
@@ -12247,7 +12251,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didLongPressUserAvatar$7(ChatMessageCell chatMessageCell, TLRPC.User user) {
+        public void lambda$didLongPressUserAvatar$8(ChatMessageCell chatMessageCell, TLRPC.User user) {
             if (user != null) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", user.id);
@@ -12257,7 +12261,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didLongPressChannelAvatar$13(TLRPC.Chat chat) {
+        public void lambda$didLongPressChannelAvatar$14(TLRPC.Chat chat) {
             openProfile(chat, false);
         }
 
@@ -12270,7 +12274,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didLongPressUserAvatar$6(TLRPC.User user) {
+        public void lambda$didLongPressUserAvatar$7(TLRPC.User user) {
             openProfile(user, false);
         }
 
@@ -12297,28 +12301,40 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         private Bulletin sendMessageFromQuickShare(ChatMessageCell chatMessageCell) {
+            Runnable runnable;
             MessageObject.GroupedMessages groupedMessages;
             if (ChatActivity.this.quickShareSelectorOverlay == null) {
                 return null;
             }
             MessageObject selectedMessageObject = ChatActivity.this.quickShareSelectorOverlay.getSelectedMessageObject(chatMessageCell);
-            long selectedDialogId = ChatActivity.this.quickShareSelectorOverlay.getSelectedDialogId(chatMessageCell);
-            if (selectedMessageObject == null || selectedDialogId == 0 || AlertsCreator.checkSlowMode(ChatActivity.this.getContext(), ((BaseFragment) ChatActivity.this).currentAccount, selectedDialogId, false)) {
+            final long selectedDialogId = ChatActivity.this.quickShareSelectorOverlay.getSelectedDialogId(chatMessageCell);
+            if (selectedMessageObject == null || selectedDialogId == 0) {
                 return null;
             }
-            ArrayList<MessageObject> arrayList = (selectedMessageObject.getGroupId() == 0 || (groupedMessages = (MessageObject.GroupedMessages) ChatActivity.this.groupedMessagesMap.get(selectedMessageObject.getGroupId())) == null) ? null : groupedMessages.messages;
+            if (AlertsCreator.checkSlowMode(ChatActivity.this.getContext(), ((BaseFragment) ChatActivity.this).currentAccount, selectedDialogId, false)) {
+                return null;
+            }
+            final ArrayList<MessageObject> arrayList = (selectedMessageObject.getGroupId() == 0 || (groupedMessages = (MessageObject.GroupedMessages) ChatActivity.this.groupedMessagesMap.get(selectedMessageObject.getGroupId())) == null) ? null : groupedMessages.messages;
             if (arrayList == null) {
                 arrayList = new ArrayList<>();
                 arrayList.add(selectedMessageObject);
             }
-            int sendMessage = SendMessagesHelper.getInstance(((BaseFragment) ChatActivity.this).currentAccount).sendMessage(arrayList, selectedDialogId, false, false, true, 0, null, -1, 0L);
-            AlertsCreator.showSendMediaAlert(sendMessage, ChatActivity.this, null);
-            if (sendMessage != 0) {
-                return null;
+            boolean z = selectedDialogId == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$sendMessageFromQuickShare$2(arrayList, selectedDialogId);
+                }
+            };
+            if (z) {
+                runnable2.run();
+                runnable = null;
+            } else {
+                runnable = runnable2;
             }
             Context context = ChatActivity.this.getContext();
             ChatActivity chatActivity = ChatActivity.this;
-            Bulletin createForwardedBulletin = BulletinFactory.createForwardedBulletin(context, chatActivity, null, 1, selectedDialogId, 1, chatActivity.getThemedColor(Theme.key_undo_background), ChatActivity.this.getThemedColor(Theme.key_undo_infoColor), 2750);
+            Bulletin createForwardedBulletin = BulletinFactory.createForwardedBulletin(context, chatActivity, null, 1, selectedDialogId, 1, chatActivity.getThemedColor(Theme.key_undo_background), ChatActivity.this.getThemedColor(Theme.key_undo_infoColor), 5000, null, runnable);
             return createForwardedBulletin.allowBlur().show(createForwardedBulletin.getLayout() instanceof Bulletin.LottieLayoutWithReactions);
         }
 
@@ -12482,7 +12498,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$22(view);
+                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$23(view);
                     }
                 });
                 actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -12492,7 +12508,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$24(chat, chatMessageCell, view);
+                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressChannelRecommendation$25(chat, chatMessageCell, view);
                     }
                 });
                 actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
@@ -12633,7 +12649,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 Browser.Progress makeProgressForPaidMedia = ChatActivity.this.makeProgressForPaidMedia(chatMessageCell);
                 StarsController starsController = StarsController.getInstance(((BaseFragment) ChatActivity.this).currentAccount);
                 Objects.requireNonNull(makeProgressForPaidMedia);
-                Runnable pay = starsController.pay(messageObject, new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda6(makeProgressForPaidMedia));
+                Runnable pay = starsController.pay(messageObject, new ChatActivity$ChatMessageCellDelegate$$ExternalSyntheticLambda7(makeProgressForPaidMedia));
                 if (pay != null) {
                     makeProgressForPaidMedia.onCancel(pay);
                     makeProgressForPaidMedia.init();
@@ -12963,13 +12979,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         final int sendRequest = ConnectionsManager.getInstance(((BaseFragment) ChatActivity.this).currentAccount).sendRequest(tL_messages_getStickerSet, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$29(z, tLObject, tL_error);
+                                ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$30(z, tLObject, tL_error);
                             }
                         });
                         ChatActivity.this.progressDialogCurrent.onCancel(new Runnable() {
                             @Override
                             public final void run() {
-                                ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$30(sendRequest);
+                                ChatActivity.ChatMessageCellDelegate.this.lambda$didPressInstantButton$31(sendRequest);
                             }
                         });
                         return;
@@ -13023,7 +13039,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 BulletinFactory.of(ChatActivity.this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralStringComma("UnlockSimilarChannelsPremium", ChatActivity.this.getMessagesController().recommendedChannelsLimitPremium), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressMoreChannelRecommendations$21();
+                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressMoreChannelRecommendations$22();
                     }
                 })).show();
                 return;
@@ -13069,13 +13085,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final int sendRequest = ChatActivity.this.getConnectionsManager().sendRequest(getgroupcall, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressOther$3(alertDialog, hashSet, tL_inputGroupCallInviteMessage, messageObject, tLObject, tL_error);
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressOther$4(alertDialog, hashSet, tL_inputGroupCallInviteMessage, messageObject, tLObject, tL_error);
                 }
             });
             alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressOther$4(sendRequest, dialogInterface);
+                    ChatActivity.ChatMessageCellDelegate.this.lambda$didPressOther$5(sendRequest, dialogInterface);
                 }
             });
             alertDialog.showDelayed(600L);
@@ -13099,7 +13115,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.getMessagesController().getContentSettings(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressRevealSensitiveContent$34(alertDialog, chatMessageCell, (TL_account.contentSettings) obj);
+                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressRevealSensitiveContent$35(alertDialog, chatMessageCell, (TL_account.contentSettings) obj);
                     }
                 });
             } else {
@@ -13602,7 +13618,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     ChatActivity.this.topUndoView.showWithAction(0L, 84, null, new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivity.ChatMessageCellDelegate.this.lambda$needShowPremiumBulletin$18();
+                            ChatActivity.ChatMessageCellDelegate.this.lambda$needShowPremiumBulletin$19();
                         }
                     });
                     view = ChatActivity.this.topUndoView;
@@ -13618,7 +13634,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 runnable = new Runnable() {
                                     @Override
                                     public final void run() {
-                                        ChatActivity.ChatMessageCellDelegate.this.lambda$needShowPremiumBulletin$19();
+                                        ChatActivity.ChatMessageCellDelegate.this.lambda$needShowPremiumBulletin$20();
                                     }
                                 };
                             } else {
@@ -13632,7 +13648,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 runnable = new Runnable() {
                                     @Override
                                     public final void run() {
-                                        ChatActivity.ChatMessageCellDelegate.this.lambda$needShowPremiumBulletin$20();
+                                        ChatActivity.ChatMessageCellDelegate.this.lambda$needShowPremiumBulletin$21();
                                     }
                                 };
                             }

@@ -76,6 +76,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.pip.PipNativeApiController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
@@ -1533,7 +1534,11 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static AlertDialog.Builder createDrawOverlayPermissionDialog(final Activity activity, AlertDialog.OnButtonClickListener onButtonClickListener) {
+    public static AlertDialog.Builder createDrawOverlayPermissionDialog(Activity activity, AlertDialog.OnButtonClickListener onButtonClickListener) {
+        return createDrawOverlayPermissionDialog(activity, onButtonClickListener, false);
+    }
+
+    public static AlertDialog.Builder createDrawOverlayPermissionDialog(final Activity activity, AlertDialog.OnButtonClickListener onButtonClickListener, final boolean z) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         String readRes = AndroidUtilities.readRes(R.raw.pip_video_request);
         FrameLayout frameLayout = new FrameLayout(activity);
@@ -1554,7 +1559,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.lambda$createDrawOverlayPermissionDialog$154(activity, alertDialog, i);
+                AlertsCreator.lambda$createDrawOverlayPermissionDialog$154(activity, z, alertDialog, i);
             }
         });
         builder.notDrawBackgroundOnTopView(true);
@@ -4142,14 +4147,22 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$createDrawOverlayPermissionDialog$154(Activity activity, AlertDialog alertDialog, int i) {
+    public static void lambda$createDrawOverlayPermissionDialog$154(Activity activity, boolean z, AlertDialog alertDialog, int i) {
         if (activity == null || Build.VERSION.SDK_INT < 23) {
             return;
         }
+        if (z && PipNativeApiController.checkPermissions(activity) == -2) {
+            try {
+                activity.startActivity(new Intent("android.settings.PICTURE_IN_PICTURE_SETTINGS", Uri.parse("package:" + activity.getPackageName())));
+                return;
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
         try {
             activity.startActivity(new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + activity.getPackageName())));
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e2) {
+            FileLog.e(e2);
         }
     }
 

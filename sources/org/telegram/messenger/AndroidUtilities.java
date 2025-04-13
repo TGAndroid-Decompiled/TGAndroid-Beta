@@ -4631,21 +4631,22 @@ public class AndroidUtilities {
 
     public static void resetPictureInPictureParams(Activity activity) {
         PictureInPictureParams build;
+        int i = Build.VERSION.SDK_INT;
+        if (i < 26 || activity == null || activity.isDestroyed()) {
+            return;
+        }
+        PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
+        builder.setSourceRectHint(null);
+        builder.setAspectRatio(null);
+        if (i >= 31) {
+            builder.setSeamlessResizeEnabled(false);
+            builder.setAutoEnterEnabled(false);
+        }
         try {
-            int i = Build.VERSION.SDK_INT;
-            if (i >= 26) {
-                PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
-                builder.setSourceRectHint(null);
-                builder.setAspectRatio(null);
-                if (i >= 31) {
-                    builder.setSeamlessResizeEnabled(false);
-                    builder.setAutoEnterEnabled(false);
-                }
-                build = builder.build();
-                activity.setPictureInPictureParams(build);
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
+            build = builder.build();
+            activity.setPictureInPictureParams(build);
+        } catch (Throwable th) {
+            FileLog.e(th);
         }
     }
 

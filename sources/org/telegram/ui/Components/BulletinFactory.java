@@ -197,19 +197,48 @@ public final class BulletinFactory {
         return of(baseFragment).createCopyLinkBulletin();
     }
 
-    public static Bulletin createForwardedBulletin(Context context, final BaseFragment baseFragment, FrameLayout frameLayout, int i, final long j, int i2, int i3, int i4, int i5) {
+    public static Bulletin createForwardedBulletin(Context context, BaseFragment baseFragment, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4, int i5) {
+        return createForwardedBulletin(context, baseFragment, frameLayout, i, j, i2, i3, i4, i5, null, null);
+    }
+
+    public static Bulletin createForwardedBulletin(Context context, final BaseFragment baseFragment, FrameLayout frameLayout, int i, final long j, int i2, int i3, int i4, int i5, Runnable runnable, final Runnable runnable2) {
         final Bulletin.LottieLayout lottieLayout;
+        Context context2;
+        int i6;
+        int i7;
+        Theme.ResourcesProvider resourcesProvider;
         SpannableStringBuilder replaceTags;
         Bulletin make;
+        int i8;
         String formatString;
         String formatString2;
+        String formatString3;
         String string;
         BulletinFactory$$ExternalSyntheticLambda0 bulletinFactory$$ExternalSyntheticLambda0;
         if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || baseFragment == null || i > 1 || j != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
-            lottieLayout = new Bulletin.LottieLayout(context, baseFragment != null ? baseFragment.getResourceProvider() : null, i3, i4);
+            if (baseFragment != null) {
+                resourcesProvider = baseFragment.getResourceProvider();
+                context2 = context;
+                i6 = i3;
+                i7 = i4;
+            } else {
+                context2 = context;
+                i6 = i3;
+                i7 = i4;
+                resourcesProvider = null;
+            }
+            lottieLayout = new Bulletin.LottieLayout(context2, resourcesProvider, i6, i7);
         } else {
             lottieLayout = new Bulletin.LottieLayoutWithReactions(baseFragment, i2);
         }
+        boolean z = (runnable2 == null && runnable == null) ? false : true;
+        final boolean[] zArr = {false};
+        final Runnable runnable3 = runnable2 != null ? new Runnable() {
+            @Override
+            public final void run() {
+                BulletinFactory.lambda$createForwardedBulletin$6(zArr, runnable2);
+            }
+        } : null;
         if (i > 1) {
             Object[] objArr = new Object[0];
             replaceTags = AndroidUtilities.replaceTags(i2 <= 1 ? LocaleController.formatPluralString("FwdMessageToManyChats", i, objArr) : LocaleController.formatPluralString("FwdMessagesToManyChats", i, objArr));
@@ -225,50 +254,63 @@ public final class BulletinFactory {
             replaceTags = AndroidUtilities.replaceSingleTag(string, -1, 2, bulletinFactory$$ExternalSyntheticLambda0);
             lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
         } else {
-            Runnable runnable = new Runnable() {
+            Runnable runnable4 = new Runnable() {
                 @Override
                 public final void run() {
-                    BulletinFactory.lambda$createForwardedBulletin$6(BaseFragment.this, j);
+                    BulletinFactory.lambda$createForwardedBulletin$7(runnable3, baseFragment, j);
                 }
             };
             if (DialogObject.isChatDialog(j)) {
                 TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
-                if (i2 <= 1) {
+                if (i2 > 1) {
+                    i8 = 0;
                     if (baseFragment != null) {
-                        formatString2 = LocaleController.formatString(R.string.FwdMessageToGroup, chat.title);
-                        replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
+                        formatString2 = LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title);
                     } else {
-                        formatString = LocaleController.formatString(R.string.FwdMessageToGroup, chat.title);
-                        replaceTags = AndroidUtilities.replaceTags(formatString);
+                        formatString3 = LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title);
+                        replaceTags = AndroidUtilities.replaceTags(formatString3);
+                        i8 = 0;
                     }
                 } else if (baseFragment != null) {
-                    formatString2 = LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title);
-                    replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
+                    i8 = 0;
+                    formatString2 = LocaleController.formatString(R.string.FwdMessageToGroup, chat.title);
                 } else {
-                    formatString = LocaleController.formatString(R.string.FwdMessagesToGroup, chat.title);
+                    i8 = 0;
+                    formatString = LocaleController.formatString(R.string.FwdMessageToGroup, chat.title);
                     replaceTags = AndroidUtilities.replaceTags(formatString);
                 }
+                replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable4);
             } else {
                 TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
                 if (i2 <= 1) {
+                    int i9 = z ? R.string.FwdMessageToUserShort : R.string.FwdMessageToUser;
                     if (baseFragment != null) {
-                        formatString2 = LocaleController.formatString(R.string.FwdMessageToUser, UserObject.getFirstName(user));
-                        replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
+                        i8 = 0;
+                        formatString2 = LocaleController.formatString(i9, UserObject.getFirstName(user));
                     } else {
-                        formatString = LocaleController.formatString(R.string.FwdMessageToUser, UserObject.getFirstName(user));
+                        formatString3 = LocaleController.formatString(i9, UserObject.getFirstName(user));
+                        replaceTags = AndroidUtilities.replaceTags(formatString3);
+                        i8 = 0;
+                    }
+                } else {
+                    int i10 = z ? R.string.FwdMessagesToUserShort : R.string.FwdMessagesToUser;
+                    if (baseFragment != null) {
+                        i8 = 0;
+                        formatString2 = LocaleController.formatString(i10, UserObject.getFirstName(user));
+                    } else {
+                        i8 = 0;
+                        formatString = LocaleController.formatString(i10, UserObject.getFirstName(user));
                         replaceTags = AndroidUtilities.replaceTags(formatString);
                     }
-                } else if (baseFragment != null) {
-                    formatString2 = LocaleController.formatString(R.string.FwdMessagesToUser, UserObject.getFirstName(user));
-                    replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable);
-                } else {
-                    formatString = LocaleController.formatString(R.string.FwdMessagesToUser, UserObject.getFirstName(user));
-                    replaceTags = AndroidUtilities.replaceTags(formatString);
                 }
+                replaceTags = AndroidUtilities.replaceSingleTag(formatString2, -1, 2, runnable4);
             }
-            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[i8]);
         }
         lottieLayout.textView.setText(replaceTags);
+        if (z) {
+            lottieLayout.setButton(new Bulletin.UndoButton(lottieLayout.getContext(), true, true, baseFragment != null ? baseFragment.getResourceProvider() : null).setUndoAction(runnable).setDelayedAction(runnable3));
+        }
         lottieLayout.postDelayed(new Runnable() {
             @Override
             public final void run() {
@@ -499,7 +541,18 @@ public final class BulletinFactory {
         LaunchActivity.instance.startActivity(intent);
     }
 
-    public static void lambda$createForwardedBulletin$6(BaseFragment baseFragment, long j) {
+    public static void lambda$createForwardedBulletin$6(boolean[] zArr, Runnable runnable) {
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        runnable.run();
+    }
+
+    public static void lambda$createForwardedBulletin$7(Runnable runnable, BaseFragment baseFragment, long j) {
+        if (runnable != null) {
+            runnable.run();
+        }
         if (baseFragment != null) {
             baseFragment.presentFragment(ChatActivity.of(j));
         }

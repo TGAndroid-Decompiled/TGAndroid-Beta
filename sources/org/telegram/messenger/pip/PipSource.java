@@ -17,13 +17,14 @@ public class PipSource {
     Activity activity;
     private View attachedToPictureInPictureView;
     private View contentView;
+    private boolean isEnabled;
     private final PictureInPictureContentViewProvider listener;
     public final boolean needMediaSession;
     private final View.OnLayoutChangeListener onLayoutChangeListener;
     Player player;
     private final Rect position;
     public final int priority;
-    private final Point ratio;
+    final Point ratio;
     public final int sourceId;
     public final String tag;
 
@@ -92,6 +93,7 @@ public class PipSource {
         this.position = new Rect();
         Point point = new Point();
         this.ratio = point;
+        this.isEnabled = true;
         StringBuilder sb = new StringBuilder();
         sb.append(builder.tagPrefix != null ? builder.tagPrefix : "pip-source");
         sb.append("-");
@@ -134,6 +136,9 @@ public class PipSource {
             Point point = this.ratio;
             z |= (point.x == i3 && point.y == i4) ? false : true;
             point.set(i3, i4);
+            if (this.player != null && z) {
+                PipNativeApiController.onUpdateSourcesMap();
+            }
         }
         if (PipNativeApiController.isMaxPrioritySource(this.tag) && z) {
             applyPictureInPictureParams();
@@ -211,10 +216,21 @@ public class PipSource {
         }
     }
 
+    public boolean isAttachedToPictureInPicture() {
+        return this.attachedToPictureInPictureView != null;
+    }
+
+    public boolean isEnabled() {
+        return this.isEnabled;
+    }
+
     public void setContentRatio(int i, int i2) {
         Point point = this.ratio;
         boolean z = (point.x == i && point.y == i2) ? false : true;
         point.set(i, i2);
+        if (this.player != null && z) {
+            PipNativeApiController.onUpdateSourcesMap();
+        }
         if (PipNativeApiController.isMaxPrioritySource(this.tag) && z) {
             applyPictureInPictureParams();
         }
@@ -232,9 +248,15 @@ public class PipSource {
         }
     }
 
+    public void setEnabled(boolean z) {
+        this.isEnabled = z;
+        PipNativeApiController.onUpdateSourcesMap();
+    }
+
     public void setPlayer(Player player) {
         MediaSessionConnector mediaSessionConnector;
         this.player = player;
+        PipNativeApiController.onUpdateSourcesMap();
         if (!PipNativeApiController.isMaxPrioritySource(this.tag) || (mediaSessionConnector = PipNativeApiController.mediaSessionConnector) == null) {
             return;
         }

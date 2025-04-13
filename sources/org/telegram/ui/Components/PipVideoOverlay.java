@@ -961,6 +961,10 @@ public class PipVideoOverlay implements PictureInPictureContentViewProvider {
     public void attachContentToWindow() {
         this.contentFrameLayout.addView(this.innerView, 0, LayoutHelper.createFrame(-1, -1.0f));
         this.contentView.setVisibility(0);
+        PhotoViewer photoViewer = this.photoViewer;
+        if (photoViewer == null || photoViewer.getVideoPlayer() == null) {
+            return;
+        }
         VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
         videoPlayer.setSurfaceView(null);
         videoPlayer.setTextureView(null);
@@ -969,9 +973,12 @@ public class PipVideoOverlay implements PictureInPictureContentViewProvider {
 
     @Override
     public View detachContentFromWindow() {
-        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
-        videoPlayer.setSurfaceView(null);
-        videoPlayer.setTextureView(null);
+        PhotoViewer photoViewer = this.photoViewer;
+        if (photoViewer != null && photoViewer.getVideoPlayer() != null) {
+            VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
+            videoPlayer.setSurfaceView(null);
+            videoPlayer.setTextureView(null);
+        }
         this.contentView.setVisibility(8);
         this.contentFrameLayout.removeView(this.innerView);
         return this.innerView;
@@ -979,6 +986,10 @@ public class PipVideoOverlay implements PictureInPictureContentViewProvider {
 
     @Override
     public void onAttachContentToPip() {
+        PhotoViewer photoViewer = this.photoViewer;
+        if (photoViewer == null || photoViewer.getVideoPlayer() == null) {
+            return;
+        }
         VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
         videoPlayer.setSurfaceView(null);
         videoPlayer.setTextureView(null);
@@ -1018,6 +1029,10 @@ public class PipVideoOverlay implements PictureInPictureContentViewProvider {
 
     @Override
     public void prepareDetachContentFromPip() {
+        PhotoViewer photoViewer = this.photoViewer;
+        if (photoViewer == null || photoViewer.getVideoPlayer() == null) {
+            return;
+        }
         VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
         videoPlayer.setSurfaceView(null);
         videoPlayer.setTextureView(null);
