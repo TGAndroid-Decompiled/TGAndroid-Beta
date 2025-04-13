@@ -8839,6 +8839,8 @@
     <string name="VoipOngoingChatAlert">Leave voice chat in **%1$s** and start a new one with **%2$s**?</string>
     <string name="VoipOngoingChatAlert2">Leave voice chat in **%1$s** and call **%2$s**?</string>
     <string name="VoipOngoingChatAlertTitle">Another voice chat in progress</string>
+    <string name="VoipOngoingConferenceChatAlert">Leave group call with **%1$s** and start a new one with **%2$s**?</string>
+    <string name="VoipOngoingConferenceChatAlert2">Leave group call with **%1$s** and call **%2$s**?</string>
     <string name="VoipOutgoingCall">Ongoing Telegram call</string>
     <string name="VoipOutputDevices">Output Devices</string>
     <string name="VoipPeerIncompatible">**%1$s**\'s app is using an incompatible protocol. They need to update their app before you can call them.</string>
@@ -9124,7 +9126,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f23ba_com_google_firebase_crashlytics_mapping_file_id">cf4470a20eef4b4dabd24929941f0c25</string>
+    <string name="res_0x7f0f23bc_com_google_firebase_crashlytics_mapping_file_id">398745007a184282ab401775af4e231a</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

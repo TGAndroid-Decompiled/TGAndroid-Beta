@@ -123,6 +123,12 @@ public class PremiumFeatureCell extends FrameLayout {
     }
 
     public void setEmoji(long j, boolean z) {
+        if (this.imageDrawable == null) {
+            this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, false, AndroidUtilities.dp(24.0f), 13);
+            if (isAttachedToWindow()) {
+                this.imageDrawable.attach();
+            }
+        }
         if (j != 0) {
             this.imageDrawable.set(j, z);
             return;

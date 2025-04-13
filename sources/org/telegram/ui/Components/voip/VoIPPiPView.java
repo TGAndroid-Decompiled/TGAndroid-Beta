@@ -665,7 +665,10 @@ public class VoIPPiPView implements VoIPService.StateListener, PictureInPictureC
     public void attachContentToWindow() {
         this.windowView.setVisibility(0);
         this.floatingView.addView(this.callingUserTextureView, 0);
-        VoIPService.getSharedInstance().setSinks(this.currentUserTextureView.renderer, this.callingUserTextureView.renderer);
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null) {
+            sharedInstance.setSinks(this.currentUserTextureView.renderer, this.callingUserTextureView.renderer);
+        }
     }
 
     @Override

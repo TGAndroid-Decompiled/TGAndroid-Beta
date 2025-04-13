@@ -17140,7 +17140,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     @Override
     public void prepareDetachContentFromPip() {
-        this.videoPlayer.setTextureView(null);
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer == null) {
+            return;
+        }
+        videoPlayer.setTextureView(null);
         this.videoPlayer.setSurfaceView(null);
     }
 

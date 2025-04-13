@@ -132,6 +132,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     private AccessibilityManager accessibilityManager;
     Activity activity;
     private ImageView addIcon;
+    private UserSelectorBottomSheet addPeopleSheet;
     private ImageView backIcon;
     private VoIPToggleButton bottomEndCallBtn;
     private VoIpSwitchLayout bottomMuteBtn;
@@ -546,6 +547,11 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             pipSource.destroy();
             this.pipSource = null;
         }
+        UserSelectorBottomSheet userSelectorBottomSheet = this.addPeopleSheet;
+        if (userSelectorBottomSheet != null) {
+            userSelectorBottomSheet.dismiss();
+            this.addPeopleSheet = null;
+        }
     }
 
     public void expandEmoji(boolean z) {
@@ -731,23 +737,33 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     }
 
     public static void lambda$createView$12(Boolean bool, HashSet hashSet) {
-        VoIPService.getSharedInstance().convertToConferenceCall(bool.booleanValue(), hashSet);
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null) {
+            sharedInstance.convertToConferenceCall(bool.booleanValue(), hashSet);
+        }
     }
 
     public void lambda$createView$13(Context context, View view) {
         if (this.lockOnScreen) {
             return;
         }
-        UserSelectorBottomSheet userSelectorBottomSheet = new UserSelectorBottomSheet(context, this.currentAccount, 0L, null, 4, true, new DarkBlueThemeResourcesProvider());
+        UserSelectorBottomSheet userSelectorBottomSheet = this.addPeopleSheet;
+        if (userSelectorBottomSheet != null) {
+            userSelectorBottomSheet.dismiss();
+            this.addPeopleSheet = null;
+        }
+        UserSelectorBottomSheet userSelectorBottomSheet2 = new UserSelectorBottomSheet(context, this.currentAccount, 0L, null, 4, true, new DarkBlueThemeResourcesProvider());
         TLRPC.User user = this.currentUser;
         long j = user != null ? user.id : 0L;
         TLRPC.User user2 = this.callingUser;
-        userSelectorBottomSheet.exceptUsers(j, user2 != null ? user2.id : 0L).setOnUsersSelector(new Utilities.Callback2() {
+        UserSelectorBottomSheet onUsersSelector = userSelectorBottomSheet2.exceptUsers(j, user2 != null ? user2.id : 0L).setOnUsersSelector(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 VoIPFragment.lambda$createView$12((Boolean) obj, (HashSet) obj2);
             }
-        }).show();
+        });
+        this.addPeopleSheet = onUsersSelector;
+        onUsersSelector.show();
     }
 
     public void lambda$createView$14() {
