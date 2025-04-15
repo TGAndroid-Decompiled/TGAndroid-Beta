@@ -9,10 +9,6 @@ public abstract class CollectionsKt extends CollectionsKt___CollectionsKt {
         return CollectionsKt__IterablesKt.collectionSizeOrDefault(iterable, i);
     }
 
-    public static List emptyList() {
-        return CollectionsKt__CollectionsKt.emptyList();
-    }
-
     public static int getLastIndex(List list) {
         return CollectionsKt__CollectionsKt.getLastIndex(list);
     }
