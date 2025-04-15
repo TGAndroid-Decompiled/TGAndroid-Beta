@@ -682,11 +682,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             super.dispatchDraw(canvas);
             LaunchActivity.this.drawRippleAbove(canvas, this);
         }
-
-        @Override
-        public void setVisibility(int i) {
-            super.setVisibility(i);
-        }
     }
 
     class AnonymousClass20 extends ClickableSpan {

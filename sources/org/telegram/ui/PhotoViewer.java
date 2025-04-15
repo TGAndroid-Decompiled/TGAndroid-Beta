@@ -3344,11 +3344,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-        }
-
-        @Override
         public void onMeasure(int i, int i2) {
             float f;
             FirstFrameView firstFrameView;
@@ -3374,11 +3369,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             firstFrameView.setPivotX(f);
             PhotoViewer.this.checkFullscreenButton();
-        }
-
-        @Override
-        public void requestLayout() {
-            super.requestLayout();
         }
     }
 
@@ -9594,11 +9584,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                super.onLayout(z, i, i2, i3, i4);
-            }
-
-            @Override
             public void onMeasure(int i, int i2) {
                 float f;
                 FirstFrameView firstFrameView;
@@ -9624,11 +9609,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 firstFrameView.setPivotX(f);
                 PhotoViewer.this.checkFullscreenButton();
-            }
-
-            @Override
-            public void requestLayout() {
-                super.requestLayout();
             }
         };
         this.aspectRatioFrameLayout = anonymousClass56;
