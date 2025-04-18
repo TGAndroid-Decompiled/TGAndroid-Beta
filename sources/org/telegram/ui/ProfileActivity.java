@@ -15210,10 +15210,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void updateSelectedMediaTabText() {
         AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher;
-        CharSequence formatPluralStringComma;
+        String formatPluralStringComma;
+        CharSequence formatPluralString;
         AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher2;
         AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher3;
-        String formatPluralString;
         int i;
         int i2;
         SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
@@ -15225,128 +15225,129 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (closestTab == 0) {
             if (lastMediaCount[7] > 0 || lastMediaCount[6] > 0) {
                 if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1 || lastMediaCount[7] <= 0) {
-                    clippingTextViewSwitcher3 = this.mediaCounterTextView;
-                    formatPluralString = LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]);
+                    clippingTextViewSwitcher = this.mediaCounterTextView;
+                    formatPluralStringComma = LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]);
                 } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() != 2 && (i2 = lastMediaCount[6]) > 0) {
                     this.mediaCounterTextView.setText(String.format("%s, %s", LocaleController.formatPluralString("Photos", i2, new Object[0]), LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0])));
                     return;
                 } else {
-                    clippingTextViewSwitcher3 = this.mediaCounterTextView;
-                    formatPluralString = LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]);
+                    clippingTextViewSwitcher = this.mediaCounterTextView;
+                    formatPluralStringComma = LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]);
                 }
-                AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher4 = clippingTextViewSwitcher3;
-                formatPluralStringComma = formatPluralString;
-                clippingTextViewSwitcher = clippingTextViewSwitcher4;
+                AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher4 = clippingTextViewSwitcher;
+                formatPluralString = formatPluralStringComma;
+                clippingTextViewSwitcher2 = clippingTextViewSwitcher4;
             } else {
                 int i3 = lastMediaCount[0];
                 if (i3 <= 0) {
-                    clippingTextViewSwitcher = this.mediaCounterTextView;
-                    i = R.string.SharedMedia;
-                    formatPluralStringComma = LocaleController.getString(i);
-                } else {
                     clippingTextViewSwitcher2 = this.mediaCounterTextView;
-                    formatPluralStringComma = LocaleController.formatPluralString("Media", i3, new Object[0]);
-                    clippingTextViewSwitcher = clippingTextViewSwitcher2;
+                    i = R.string.SharedMedia;
+                    formatPluralString = LocaleController.getString(i);
+                } else {
+                    clippingTextViewSwitcher3 = this.mediaCounterTextView;
+                    formatPluralString = LocaleController.formatPluralString("Media", i3, new Object[0]);
+                    clippingTextViewSwitcher2 = clippingTextViewSwitcher3;
                 }
             }
         } else if (closestTab == 1) {
             int i4 = lastMediaCount[1];
             if (i4 <= 0) {
-                clippingTextViewSwitcher = this.mediaCounterTextView;
-                i = R.string.Files;
-                formatPluralStringComma = LocaleController.getString(i);
-            } else {
                 clippingTextViewSwitcher2 = this.mediaCounterTextView;
-                formatPluralStringComma = LocaleController.formatPluralString("Files", i4, new Object[0]);
-                clippingTextViewSwitcher = clippingTextViewSwitcher2;
+                i = R.string.Files;
+                formatPluralString = LocaleController.getString(i);
+            } else {
+                clippingTextViewSwitcher3 = this.mediaCounterTextView;
+                formatPluralString = LocaleController.formatPluralString("Files", i4, new Object[0]);
+                clippingTextViewSwitcher2 = clippingTextViewSwitcher3;
             }
         } else if (closestTab == 2) {
             int i5 = lastMediaCount[2];
             if (i5 <= 0) {
-                clippingTextViewSwitcher = this.mediaCounterTextView;
-                i = R.string.Voice;
-                formatPluralStringComma = LocaleController.getString(i);
-            } else {
                 clippingTextViewSwitcher2 = this.mediaCounterTextView;
-                formatPluralStringComma = LocaleController.formatPluralString("Voice", i5, new Object[0]);
-                clippingTextViewSwitcher = clippingTextViewSwitcher2;
+                i = R.string.Voice;
+                formatPluralString = LocaleController.getString(i);
+            } else {
+                clippingTextViewSwitcher3 = this.mediaCounterTextView;
+                formatPluralString = LocaleController.formatPluralString("Voice", i5, new Object[0]);
+                clippingTextViewSwitcher2 = clippingTextViewSwitcher3;
             }
         } else if (closestTab == 3) {
             int i6 = lastMediaCount[3];
             if (i6 <= 0) {
-                clippingTextViewSwitcher = this.mediaCounterTextView;
-                i = R.string.SharedLinks;
-                formatPluralStringComma = LocaleController.getString(i);
-            } else {
                 clippingTextViewSwitcher2 = this.mediaCounterTextView;
-                formatPluralStringComma = LocaleController.formatPluralString("Links", i6, new Object[0]);
-                clippingTextViewSwitcher = clippingTextViewSwitcher2;
+                i = R.string.SharedLinks;
+                formatPluralString = LocaleController.getString(i);
+            } else {
+                clippingTextViewSwitcher3 = this.mediaCounterTextView;
+                formatPluralString = LocaleController.formatPluralString("Links", i6, new Object[0]);
+                clippingTextViewSwitcher2 = clippingTextViewSwitcher3;
             }
         } else if (closestTab == 4) {
             int i7 = lastMediaCount[4];
             if (i7 <= 0) {
-                clippingTextViewSwitcher = this.mediaCounterTextView;
-                i = R.string.Music;
-                formatPluralStringComma = LocaleController.getString(i);
-            } else {
                 clippingTextViewSwitcher2 = this.mediaCounterTextView;
-                formatPluralStringComma = LocaleController.formatPluralString("MusicFiles", i7, new Object[0]);
-                clippingTextViewSwitcher = clippingTextViewSwitcher2;
+                i = R.string.Music;
+                formatPluralString = LocaleController.getString(i);
+            } else {
+                clippingTextViewSwitcher3 = this.mediaCounterTextView;
+                formatPluralString = LocaleController.formatPluralString("MusicFiles", i7, new Object[0]);
+                clippingTextViewSwitcher2 = clippingTextViewSwitcher3;
             }
         } else {
             if (closestTab == 5) {
                 int i8 = lastMediaCount[5];
                 if (i8 <= 0) {
-                    clippingTextViewSwitcher = this.mediaCounterTextView;
-                    i = R.string.AccDescrGIFs;
-                    formatPluralStringComma = LocaleController.getString(i);
-                } else {
                     clippingTextViewSwitcher2 = this.mediaCounterTextView;
-                    formatPluralStringComma = LocaleController.formatPluralString("GIFs", i8, new Object[0]);
+                    i = R.string.AccDescrGIFs;
+                    formatPluralString = LocaleController.getString(i);
+                } else {
+                    clippingTextViewSwitcher3 = this.mediaCounterTextView;
+                    formatPluralString = LocaleController.formatPluralString("GIFs", i8, new Object[0]);
                 }
             } else {
                 if (closestTab == 6) {
-                    clippingTextViewSwitcher3 = this.mediaCounterTextView;
-                    formatPluralString = LocaleController.formatPluralString("CommonGroups", this.userInfo.common_chats_count, new Object[0]);
-                } else if (closestTab == 7) {
                     clippingTextViewSwitcher = this.mediaCounterTextView;
-                    formatPluralStringComma = this.onlineTextView[1].getText();
+                    formatPluralStringComma = LocaleController.formatPluralString("CommonGroups", this.userInfo.common_chats_count, new Object[0]);
+                } else if (closestTab == 7) {
+                    clippingTextViewSwitcher2 = this.mediaCounterTextView;
+                    formatPluralString = this.onlineTextView[1].getText();
                 } else if (closestTab == 8) {
                     if (this.isBot) {
-                        clippingTextViewSwitcher3 = this.mediaCounterTextView;
-                        formatPluralString = this.sharedMediaLayout.getBotPreviewsSubtitle(false);
+                        clippingTextViewSwitcher = this.mediaCounterTextView;
+                        formatPluralStringComma = this.sharedMediaLayout.getBotPreviewsSubtitle(false);
                     } else {
-                        clippingTextViewSwitcher3 = this.mediaCounterTextView;
-                        formatPluralString = LocaleController.formatPluralString("ProfileStoriesCount", this.sharedMediaLayout.getStoriesCount(closestTab), new Object[0]);
+                        clippingTextViewSwitcher = this.mediaCounterTextView;
+                        formatPluralStringComma = LocaleController.formatPluralString("ProfileStoriesCount", this.sharedMediaLayout.getStoriesCount(closestTab), new Object[0]);
                     }
                 } else if (closestTab == 13) {
-                    clippingTextViewSwitcher = this.mediaCounterTextView;
-                    formatPluralStringComma = this.sharedMediaLayout.getBotPreviewsSubtitle(true);
+                    clippingTextViewSwitcher2 = this.mediaCounterTextView;
+                    formatPluralString = this.sharedMediaLayout.getBotPreviewsSubtitle(true);
                 } else if (closestTab == 9) {
-                    clippingTextViewSwitcher3 = this.mediaCounterTextView;
-                    formatPluralString = LocaleController.formatPluralString("ProfileStoriesArchiveCount", this.sharedMediaLayout.getStoriesCount(closestTab), new Object[0]);
+                    clippingTextViewSwitcher = this.mediaCounterTextView;
+                    formatPluralStringComma = LocaleController.formatPluralString("ProfileStoriesArchiveCount", this.sharedMediaLayout.getStoriesCount(closestTab), new Object[0]);
                 } else if (closestTab == 10) {
                     MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(getDialogId());
-                    clippingTextViewSwitcher2 = this.mediaCounterTextView;
-                    formatPluralStringComma = LocaleController.formatPluralString(this.isBot ? "Bots" : "Channels", channelRecommendations == null ? 0 : channelRecommendations.chats.size() + channelRecommendations.more, new Object[0]);
+                    clippingTextViewSwitcher3 = this.mediaCounterTextView;
+                    formatPluralString = LocaleController.formatPluralString(this.isBot ? "Bots" : "Channels", channelRecommendations == null ? 0 : channelRecommendations.chats.size() + channelRecommendations.more, new Object[0]);
                 } else if (closestTab == 12) {
                     int messagesCount = getMessagesController().getSavedMessagesController().getMessagesCount(getDialogId());
                     AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher5 = this.mediaCounterTextView;
-                    formatPluralStringComma = LocaleController.formatPluralString("SavedMessagesCount", Math.max(1, messagesCount), new Object[0]);
-                    clippingTextViewSwitcher = clippingTextViewSwitcher5;
+                    formatPluralString = LocaleController.formatPluralString("SavedMessagesCount", Math.max(1, messagesCount), new Object[0]);
+                    clippingTextViewSwitcher2 = clippingTextViewSwitcher5;
                 } else {
                     if (closestTab != 14) {
                         return;
                     }
                     clippingTextViewSwitcher = this.mediaCounterTextView;
-                    formatPluralStringComma = LocaleController.formatPluralStringComma("ProfileGiftsCount", this.sharedMediaLayout.giftsContainer.getGiftsCount());
+                    ProfileGiftsContainer profileGiftsContainer = this.sharedMediaLayout.giftsContainer;
+                    formatPluralStringComma = LocaleController.formatPluralStringComma("ProfileGiftsCount", profileGiftsContainer != null ? profileGiftsContainer.getGiftsCount() : 0);
                 }
-                AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher42 = clippingTextViewSwitcher3;
-                formatPluralStringComma = formatPluralString;
-                clippingTextViewSwitcher = clippingTextViewSwitcher42;
+                AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher42 = clippingTextViewSwitcher;
+                formatPluralString = formatPluralStringComma;
+                clippingTextViewSwitcher2 = clippingTextViewSwitcher42;
             }
-            clippingTextViewSwitcher = clippingTextViewSwitcher2;
+            clippingTextViewSwitcher2 = clippingTextViewSwitcher3;
         }
-        clippingTextViewSwitcher.setText(formatPluralStringComma);
+        clippingTextViewSwitcher2.setText(formatPluralString);
     }
 }

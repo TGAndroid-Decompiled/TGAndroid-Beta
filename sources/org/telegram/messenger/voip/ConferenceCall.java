@@ -235,7 +235,7 @@ public class ConferenceCall {
     }
 
     private long getPollTimeout() {
-        return getVerificationEmojis() == null ? 500L : 5000L;
+        return getVerificationEmojis() == null ? 1000L : 5000L;
     }
 
     private String[] getVerificationEmojis() {

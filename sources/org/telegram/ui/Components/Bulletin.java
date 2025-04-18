@@ -1171,6 +1171,9 @@ public class Bulletin {
             Delegate delegate;
             if (this.bulletin == null || !(((delegate = this.delegate) == null || delegate.bottomOffsetAnimated()) && this.bulletin.bottomOffsetSpring != null && this.bulletin.bottomOffsetSpring.isRunning())) {
                 Delegate delegate2 = this.delegate;
+                if (delegate2 == null) {
+                    return 0.0f;
+                }
                 Bulletin bulletin = this.bulletin;
                 bottomOffset = delegate2.getBottomOffset(bulletin != null ? bulletin.tag : 0);
             } else {

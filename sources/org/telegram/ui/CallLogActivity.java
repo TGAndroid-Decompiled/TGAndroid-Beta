@@ -1122,7 +1122,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         return user.id == j;
     }
 
-    public void lambda$getCalls$14(org.telegram.tgnet.TLRPC.TL_error r20, org.telegram.tgnet.TLObject r21) {
+    public void lambda$getCalls$14(org.telegram.tgnet.TLRPC.TL_error r21, org.telegram.tgnet.TLObject r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.CallLogActivity.lambda$getCalls$14(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject):void");
     }
 
@@ -1821,7 +1821,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     callLogRow4.calls.clear();
                     callLogRow4.calls.add(messageObject.messageOwner);
                     callLogRow4.users.clear();
-                    callLogRow4.users.add(getMessagesController().getUser(Long.valueOf(j)));
+                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(j));
+                    if (user != null) {
+                        callLogRow4.users.add(user);
+                    }
                     callLogRow4.type = i4;
                     callLogRow4.video = messageObject.isVideoCall();
                     this.calls.add(0, callLogRow4);
@@ -1881,8 +1884,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                                             break;
                                         }
                                     } else {
-                                        callLogRow.users.add(getMessagesController().getUser(l3));
-                                        break;
+                                        TLRPC.User user2 = getMessagesController().getUser(l3);
+                                        if (user2 != null) {
+                                            callLogRow.users.add(user2);
+                                        }
                                     }
                                 }
                             }
@@ -1898,7 +1903,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     callLogRow5.users.clear();
                     for (Long l4 : set) {
                         l4.longValue();
-                        callLogRow5.users.add(getMessagesController().getUser(l4));
+                        TLRPC.User user3 = getMessagesController().getUser(l4);
+                        if (user3 != null) {
+                            callLogRow5.users.add(user3);
+                        }
                     }
                     callLogRow5.type = i5;
                     callLogRow5.video = messageObject.isVideoCall();

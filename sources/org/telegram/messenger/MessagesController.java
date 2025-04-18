@@ -166,6 +166,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int callConnectTimeout;
     public int callPacketTimeout;
     public int callReceiveTimeout;
+    public boolean callRequestsDisabled;
     public int callRingTimeout;
     public boolean canEditFactcheck;
     public boolean canRevokePmInbox;
@@ -2634,6 +2635,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.freezeSinceDate = this.mainPreferences.getLong("freezeSinceDate", 0L);
         this.freezeUntilDate = this.mainPreferences.getLong("freezeUntilDate", 0L);
         this.conferenceCallSizeLimit = this.mainPreferences.getInt("conferenceCallSizeLimit", z ? 5 : 100);
+        this.callRequestsDisabled = this.mainPreferences.getBoolean("callRequestsDisabled", false);
         this.freezeAppealUrl = this.mainPreferences.getString("freezeAppealUrl", "t.me/spambot");
         this.enableGiftsInProfile = this.mainPreferences.getBoolean("enableGiftsInProfile", true);
         this.storiesPosting = this.mainPreferences.getString("storiesPosting", "enabled");

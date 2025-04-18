@@ -264,24 +264,26 @@ public class VoIPGroupNotification {
             if (VoIPService.getSharedInstance() != null) {
                 if (currentState != null) {
                     hide(context);
+                }
+            } else {
+                if (MessagesController.getInstance(i).callRequestsDisabled) {
                     return;
                 }
-                return;
-            }
-            HashSet<Integer> hashSet = ignoreCalls;
-            if (hashSet == null || !hashSet.contains(Integer.valueOf(i2))) {
-                currentCallId = j2;
-                TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
-                TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = new TLRPC.TL_inputGroupCallInviteMessage();
-                getgroupcall.call = tL_inputGroupCallInviteMessage;
-                tL_inputGroupCallInviteMessage.msg_id = i2;
-                getgroupcall.limit = 3;
-                ConnectionsManager.getInstance(i).sendRequest(getgroupcall, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        VoIPGroupNotification.lambda$request$1(i, j, j2, i2, z, context, str, tLObject, tL_error);
-                    }
-                });
+                HashSet<Integer> hashSet = ignoreCalls;
+                if (hashSet == null || !hashSet.contains(Integer.valueOf(i2))) {
+                    currentCallId = j2;
+                    TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
+                    TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = new TLRPC.TL_inputGroupCallInviteMessage();
+                    getgroupcall.call = tL_inputGroupCallInviteMessage;
+                    tL_inputGroupCallInviteMessage.msg_id = i2;
+                    getgroupcall.limit = 3;
+                    ConnectionsManager.getInstance(i).sendRequest(getgroupcall, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            VoIPGroupNotification.lambda$request$1(i, j, j2, i2, z, context, str, tLObject, tL_error);
+                        }
+                    });
+                }
             }
         }
     }
