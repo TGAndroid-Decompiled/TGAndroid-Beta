@@ -9021,6 +9021,7 @@
     <string name="WebViewRequestGeolocationPermissionWithHint">Allow **%1$s** to access to your location?\n\n**%1$s** will be able to access your location when this website is open.\n\nGo to Settings &gt; Permissions and turn **Location** on to share location data.</string>
     <string name="WebViewRequestMicrophonePermission">Allow **%1$s** to access to your microphone?\n\n**%1$s** will be able to access your microphone when this website is open.</string>
     <string name="WebViewRequestMicrophonePermissionWithHint">Allow **%1$s** to access to your microphone?\n\n**%1$s** will be able to access your microphone when this website is open.\n\nEnable microphone access in Settings &gt; Permissions &gt; Microphone.</string>
+    <string name="WebsiteSays">%s says</string>
     <string name="Weeks_one">%1$d week</string>
     <string name="Weeks_other">%1$d weeks</string>
     <string name="WhenConnectedOnWiFi">When connected on Wi-Fi</string>
@@ -9212,7 +9213,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2412_com_google_firebase_crashlytics_mapping_file_id">4d59eb157e7240e08d756e6312a1837f</string>
+    <string name="res_0x7f0f2413_com_google_firebase_crashlytics_mapping_file_id">3b089253e9934228b22ced8e38a115a1</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

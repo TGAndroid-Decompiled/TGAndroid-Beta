@@ -18,6 +18,10 @@ public abstract class SequencesKt extends SequencesKt___SequencesKt {
         return SequencesKt___SequencesKt.map(sequence, function1);
     }
 
+    public static Sequence sequence(Function2 function2) {
+        return SequencesKt__SequenceBuilderKt.sequence(function2);
+    }
+
     public static List toList(Sequence sequence) {
         return SequencesKt___SequencesKt.toList(sequence);
     }
