@@ -56,6 +56,7 @@ import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -72,6 +73,7 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -209,6 +211,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private String lastError;
     private int lastForegroundType;
     private TLRPC.GroupCall lastGroupCallUpdate;
+    private String lastLogFilePath;
     private NetworkInfo lastNetInfo;
     private SensorEvent lastSensorEvent;
     private long lastTypingTimeSend;
@@ -821,7 +824,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         PhoneAccount.Builder highlightColor;
         PhoneAccount.Builder addSupportedUriScheme;
         PhoneAccount build;
-        TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline7.m(getSystemService("telecom"));
+        TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline5.m(getSystemService("telecom"));
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(new ComponentName(this, (Class<?>) TelegramConnectionService.class), "" + currentUser.id);
         capabilities = new PhoneAccount.Builder(phoneAccountHandle, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).setCapabilities(2048);
@@ -883,13 +886,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.this.lambda$callEnded$123();
+                VoIPService.this.lambda$callEnded$126();
             }
         });
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.this.lambda$callEnded$124();
+                VoIPService.this.lambda$callEnded$127();
             }
         });
         Runnable runnable = this.connectingSoundRunnable;
@@ -904,14 +907,14 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPService.this.lambda$callEnded$125();
+                        VoIPService.this.lambda$callEnded$128();
                     }
                 });
             } else {
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPService.this.lambda$callEnded$126();
+                        VoIPService.this.lambda$callEnded$129();
                     }
                 }, 100L);
                 i = 500;
@@ -952,7 +955,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(discardcall, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    VoIPService.lambda$callFailed$114(tLObject, tL_error);
+                    VoIPService.lambda$callFailed$117(tLObject, tL_error);
                 }
             });
         }
@@ -964,7 +967,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.this.lambda$callFailed$115();
+                    VoIPService.this.lambda$callFailed$118();
                 }
             });
             if (TextUtils.equals(str, "ERROR_LOCALIZED") && this.soundPool != null) {
@@ -972,7 +975,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPService.this.lambda$callFailed$116();
+                        VoIPService.this.lambda$callFailed$119();
                     }
                 });
                 AndroidUtilities.runOnUIThread(this.afterSoundRunnable, 1000L);
@@ -1074,7 +1077,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.this.lambda$configureDeviceForCall$112(audioManager);
+                    VoIPService.this.lambda$configureDeviceForCall$115(audioManager);
                 }
             });
         }
@@ -1183,7 +1186,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.this.lambda$endConnectionServiceCall$127();
+                    VoIPService.this.lambda$endConnectionServiceCall$130();
                 }
             };
             if (j > 0) {
@@ -1441,7 +1444,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         tL_phoneCallProtocol.udp_p2p = true;
         tL_phoneCallProtocol.min_layer = 65;
         tL_phoneCallProtocol.max_layer = Instance.getConnectionMaxLayer();
-        acceptcall.protocol.library_versions.addAll(Instance.AVAILABLE_VERSIONS);
+        Collections.addAll(acceptcall.protocol.library_versions, NativeInstance.getAllVersions());
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(acceptcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
@@ -1468,7 +1471,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             ContactsController contactsController = ContactsController.getInstance(this.currentAccount);
             TLRPC.User user = this.user;
             contactsController.createOrUpdateConnectionServiceContact(user.id, user.first_name, user.last_name);
-            TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline7.m(getSystemService("telecom"));
+            TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline5.m(getSystemService("telecom"));
             Bundle bundle = new Bundle();
             bundle.putInt("call_type", 1);
             m.addNewIncomingCall(addAccountToTelecomManager(), bundle);
@@ -1487,11 +1490,11 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         });
     }
 
-    public void lambda$callEnded$123() {
+    public void lambda$callEnded$126() {
         dispatchStateChanged(11);
     }
 
-    public void lambda$callEnded$124() {
+    public void lambda$callEnded$127() {
         int i = this.spPlayId;
         if (i != 0) {
             this.soundPool.stop(i);
@@ -1499,15 +1502,15 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$callEnded$125() {
+    public void lambda$callEnded$128() {
         this.soundPool.play(this.spEndId, 1.0f, 1.0f, 0, 0, 1.0f);
     }
 
-    public void lambda$callEnded$126() {
+    public void lambda$callEnded$129() {
         this.soundPool.play(this.spVoiceChatEndId, 1.0f, 1.0f, 0, 0, 1.0f);
     }
 
-    public static void lambda$callFailed$114(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$callFailed$117(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("error on phone.discardCall: " + tL_error);
@@ -1520,22 +1523,22 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$callFailed$115() {
+    public void lambda$callFailed$118() {
         dispatchStateChanged(4);
     }
 
-    public void lambda$callFailed$116() {
+    public void lambda$callFailed$119() {
         this.soundPool.play(this.spFailedID, 1.0f, 1.0f, 0, 0, 1.0f);
     }
 
-    public static void lambda$configureDeviceForCall$110() {
+    public static void lambda$configureDeviceForCall$113() {
         if (MediaController.getInstance().isMessagePaused()) {
             return;
         }
         MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
     }
 
-    public void lambda$configureDeviceForCall$111(AudioManager audioManager) {
+    public void lambda$configureDeviceForCall$114(AudioManager audioManager) {
         this.hasAudioFocus = audioManager.requestAudioFocus(this, 0, 2) == 1;
         VoipAudioManager voipAudioManager = VoipAudioManager.get();
         if (isBluetoothHeadsetConnected() && hasEarpiece()) {
@@ -1576,7 +1579,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.audioConfigured = true;
     }
 
-    public void lambda$configureDeviceForCall$112(final AudioManager audioManager) {
+    public void lambda$configureDeviceForCall$115(final AudioManager audioManager) {
         try {
         } catch (Exception e) {
             FileLog.e(e);
@@ -1586,7 +1589,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.this.lambda$configureDeviceForCall$111(audioManager);
+                    VoIPService.this.lambda$configureDeviceForCall$114(audioManager);
                 }
             });
         } else {
@@ -1595,7 +1598,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.lambda$configureDeviceForCall$110();
+                    VoIPService.lambda$configureDeviceForCall$113();
                 }
             });
         }
@@ -1867,7 +1870,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$endConnectionServiceCall$127() {
+    public void lambda$endConnectionServiceCall$130() {
         DisconnectCause disconnectCause;
         CallConnection callConnection = this.systemCallConnection;
         if (callConnection != null) {
@@ -1936,7 +1939,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         });
     }
 
-    public void lambda$loadResources$109() {
+    public void lambda$loadResources$112() {
         SoundPool soundPool = new SoundPool(1, 0, 0);
         this.soundPool = soundPool;
         this.spConnectingId = soundPool.load(this, R.raw.voip_connecting, 1);
@@ -1968,7 +1971,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         declineIncomingCall(3, null);
     }
 
-    public void lambda$onConnectionStateChanged$117() {
+    public void lambda$onConnectionStateChanged$120() {
         int i = this.spPlayId;
         if (i != 0) {
             this.soundPool.stop(i);
@@ -1976,7 +1979,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$onConnectionStateChanged$118() {
+    public void lambda$onConnectionStateChanged$121() {
         int i = this.spPlayId;
         if (i != 0) {
             this.soundPool.stop(i);
@@ -1984,7 +1987,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.spPlayId = this.soundPool.play(this.groupCall != null ? this.spVoiceChatConnecting : this.spConnectingId, 1.0f, 1.0f, 0, -1, 1.0f);
     }
 
-    public void lambda$onConnectionStateChanged$119(int i) {
+    public void lambda$onConnectionStateChanged$122(int i) {
         if (this.convertingVoip != null) {
             return;
         }
@@ -2004,7 +2007,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.this.lambda$onConnectionStateChanged$117();
+                    VoIPService.this.lambda$onConnectionStateChanged$120();
                 }
             });
             if (this.groupCall == null && !this.wasEstablished) {
@@ -2035,7 +2038,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.this.lambda$onConnectionStateChanged$118();
+                    VoIPService.this.lambda$onConnectionStateChanged$121();
                 }
             });
         }
@@ -2073,7 +2076,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$onSignalBarCountChanged$122(int i) {
+    public void lambda$onSignalBarCountChanged$125(int i) {
         this.signalBarCount = i;
         for (int i2 = 0; i2 < this.stateListeners.size(); i2++) {
             this.stateListeners.get(i2).onSignalBarsCountChanged(i);
@@ -2095,13 +2098,53 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voipServiceCreated, new Object[0]);
     }
 
-    public static void lambda$onTgVoipStop$108(TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("Sent debug logs, response = " + tLObject);
+    public void lambda$onTgVoipStop$108(TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
+        if (inputFile == null) {
+            return;
+        }
+        TL_phone.saveCallLog savecalllog = new TL_phone.saveCallLog();
+        savecalllog.peer = savecalldebug.peer;
+        savecalllog.file = inputFile;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalllog, null);
+    }
+
+    public void lambda$onTgVoipStop$109(File file, final TL_phone.saveCallDebug savecalldebug) {
+        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                VoIPService.this.lambda$onTgVoipStop$108(savecalldebug, (TLRPC.InputFile) obj);
+            }
+        });
+    }
+
+    public void lambda$onTgVoipStop$110(String str, final File file, final TL_phone.saveCallDebug savecalldebug) {
+        if (AndroidUtilities.gzip(new File(str), file)) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    VoIPService.this.lambda$onTgVoipStop$109(file, savecalldebug);
+                }
+            });
         }
     }
 
-    public void lambda$playAllowTalkSound$121() {
+    public void lambda$onTgVoipStop$111(final String str, final TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("Sent debug logs, response = " + tLObject);
+        }
+        if (!(tLObject instanceof TLRPC.TL_boolTrue) || TextUtils.isEmpty(str)) {
+            return;
+        }
+        final File file = new File(str + ".gzip");
+        Utilities.searchQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                VoIPService.this.lambda$onTgVoipStop$110(str, file, savecalldebug);
+            }
+        });
+    }
+
+    public void lambda$playAllowTalkSound$124() {
         this.soundPool.play(this.spAllowTalkId, 0.5f, 0.5f, 0, 0, 1.0f);
     }
 
@@ -2109,7 +2152,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.soundPool.play(this.spVoiceChatStartId, 1.0f, 1.0f, 0, 0, 1.0f);
     }
 
-    public void lambda$playStartRecordSound$120() {
+    public void lambda$playStartRecordSound$123() {
         this.soundPool.play(this.spStartRecordId, 0.5f, 0.5f, 0, 0, 1.0f);
     }
 
@@ -3033,7 +3076,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         tL_phoneCallProtocol.udp_reflector = true;
         tL_phoneCallProtocol.min_layer = 65;
         tL_phoneCallProtocol.max_layer = Instance.getConnectionMaxLayer();
-        requestcall.protocol.library_versions.addAll(Instance.AVAILABLE_VERSIONS);
+        Collections.addAll(requestcall.protocol.library_versions, NativeInstance.getAllVersions());
         this.g_a = byteArray;
         requestcall.g_a_hash = Utilities.computeSHA256(byteArray, 0, byteArray.length);
         requestcall.random_id = Utilities.random.nextInt();
@@ -3301,7 +3344,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public static void lambda$updateBluetoothHeadsetState$113(AudioManager audioManager) {
+    public static void lambda$updateBluetoothHeadsetState$116(AudioManager audioManager) {
         try {
             audioManager.startBluetoothSco();
         } catch (Throwable unused) {
@@ -3348,7 +3391,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.this.lambda$loadResources$109();
+                VoIPService.this.lambda$loadResources$112();
             }
         });
     }
@@ -3370,7 +3413,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (!this.needSendDebugLog || finalState.debugLog == null) {
             return;
         }
-        TL_phone.saveCallDebug savecalldebug = new TL_phone.saveCallDebug();
+        final String str = this.lastLogFilePath;
+        this.lastLogFilePath = null;
+        final TL_phone.saveCallDebug savecalldebug = new TL_phone.saveCallDebug();
         TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
         savecalldebug.debug = tL_dataJSON;
         tL_dataJSON.data = finalState.debugLog;
@@ -3382,7 +3427,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VoIPService.lambda$onTgVoipStop$108(tLObject, tL_error);
+                VoIPService.this.lambda$onTgVoipStop$111(str, savecalldebug, tLObject, tL_error);
             }
         });
         this.needSendDebugLog = false;
@@ -3430,7 +3475,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             tL_phoneCallProtocol2.min_layer = 65;
             tL_phoneCallProtocol2.udp_reflector = true;
             tL_phoneCallProtocol2.udp_p2p = true;
-            tL_phoneCallProtocol2.library_versions.addAll(Instance.AVAILABLE_VERSIONS);
+            Collections.addAll(tL_phoneCallProtocol2.library_versions, NativeInstance.getAllVersions());
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(confirmcall, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -3462,7 +3507,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         tL_phoneCallProtocol22.min_layer = 65;
         tL_phoneCallProtocol22.udp_reflector = true;
         tL_phoneCallProtocol22.udp_p2p = true;
-        tL_phoneCallProtocol22.library_versions.addAll(Instance.AVAILABLE_VERSIONS);
+        Collections.addAll(tL_phoneCallProtocol22.library_versions, NativeInstance.getAllVersions());
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(confirmcall2, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -3901,7 +3946,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPService.lambda$updateBluetoothHeadsetState$113(audioManager);
+                        VoIPService.lambda$updateBluetoothHeadsetState$116(audioManager);
                     }
                 }, 500L);
             }
@@ -4856,7 +4901,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.this.lambda$onConnectionStateChanged$119(i);
+                VoIPService.this.lambda$onConnectionStateChanged$122(i);
             }
         });
     }
@@ -4924,7 +4969,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 NativeInstance nativeInstance = this.tgVoip[0];
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
                 Objects.requireNonNull(nativeInstance);
-                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
+                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
                 Iterator<Map.Entry<String, Integer>> it = this.currentStreamRequestTimestamp.entrySet().iterator();
                 while (it.hasNext()) {
                     AccountInstance.getInstance(this.currentAccount).getConnectionsManager().cancelRequest(it.next().getValue().intValue(), true);
@@ -4943,7 +4988,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         destroyConverting();
         NativeInstance nativeInstance2 = this.tgVoip[1];
         if (nativeInstance2 != null) {
-            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance2));
+            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance2));
             this.tgVoip[1] = null;
         }
         int i = 0;
@@ -5131,7 +5176,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.this.lambda$onSignalBarCountChanged$122(i);
+                VoIPService.this.lambda$onSignalBarCountChanged$125(i);
             }
         });
     }
@@ -5167,7 +5212,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.this.lambda$playAllowTalkSound$121();
+                VoIPService.this.lambda$playAllowTalkSound$124();
             }
         });
     }
@@ -5186,7 +5231,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.this.lambda$playStartRecordSound$120();
+                VoIPService.this.lambda$playStartRecordSound$123();
             }
         });
     }
@@ -5656,7 +5701,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         });
         NativeInstance nativeInstance = this.tgVoip[1];
         if (nativeInstance != null) {
-            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
+            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
         }
         this.mySource[1] = 0;
         this.tgVoip[1] = null;

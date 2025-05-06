@@ -75,6 +75,7 @@ public class TimelineView extends View {
     private int collageSelected;
     private final ArrayList collageTracks;
     private final ArrayList collageWaveforms;
+    private final TextPaint countTextPaint;
     private long coverEnd;
     private long coverStart;
     private TimelineDelegate delegate;
@@ -89,10 +90,13 @@ public class TimelineView extends View {
     private boolean hasAudio;
     private boolean hasRound;
     private boolean isCover;
+    private int lastHeight;
     private long lastTime;
     private float lastX;
     private final AnimatedFloat loopProgress;
     private long loopProgressFrom;
+    private int maxCount;
+    private Runnable onHeightChange;
     private final Runnable onLongPress;
     private Runnable onTimelineClick;
     public boolean open;
@@ -785,6 +789,7 @@ public class TimelineView extends View {
         this.collageFramePaint = new Paint(3);
         this.collageClipPath = new Path();
         this.selectedCollageClipPath = new Path();
+        this.maxCount = 1;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.roundT = new AnimatedFloat(this, 0L, 360L, cubicBezierInterpolator);
         this.roundSelectedT = new AnimatedFloat(this, 360L, cubicBezierInterpolator);
@@ -814,6 +819,8 @@ public class TimelineView extends View {
         this.progressShadowPaint = paint4;
         Paint paint5 = new Paint(1);
         this.progressWhitePaint = paint5;
+        TextPaint textPaint = new TextPaint(1);
+        this.countTextPaint = textPaint;
         this.audioBounds = new RectF();
         this.audioClipPath = new Path();
         Paint paint6 = new Paint(1);
@@ -821,10 +828,10 @@ public class TimelineView extends View {
         this.waveformPath = new WaveformPath();
         Paint paint7 = new Paint(1);
         this.audioDotPaint = paint7;
-        TextPaint textPaint = new TextPaint(1);
-        this.audioAuthorPaint = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.audioTitlePaint = textPaint2;
+        this.audioAuthorPaint = textPaint2;
+        TextPaint textPaint3 = new TextPaint(1);
+        this.audioTitlePaint = textPaint3;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 16.0f, 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.ellipsizeGradient = linearGradient;
         this.ellipsizeMatrix = new Matrix();
@@ -847,16 +854,20 @@ public class TimelineView extends View {
         this.previewContainer = view;
         this.resourcesProvider = resourcesProvider;
         paint7.setColor(Integer.MAX_VALUE);
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setColor(-1);
         textPaint2.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint2.setTypeface(AndroidUtilities.bold());
         textPaint2.setColor(-1);
+        textPaint3.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint3.setColor(-1);
         paint6.setColor(1090519039);
         paint8.setShader(linearGradient);
         paint8.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint.setColor(-1);
         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(1.0f), 436207616);
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setColor(-1);
+        textPaint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(2.0f), 1073741824);
+        textPaint.setTypeface(AndroidUtilities.bold());
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         paint3.setColor(-16777216);
         paint5.setColor(-1);
@@ -1137,6 +1148,10 @@ public class TimelineView extends View {
         return (int) (track2.duration - track.duration);
     }
 
+    private long maxSelectDuration() {
+        return this.maxCount * 59000;
+    }
+
     private long minAudioSelect() {
         return Math.max(1000.0f, ((float) Math.min(getBaseDuration(), 59000L)) * 0.15f);
     }
@@ -1274,7 +1289,7 @@ public class TimelineView extends View {
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r51) {
+    protected void dispatchDraw(android.graphics.Canvas r53) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.TimelineView.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -1282,8 +1297,15 @@ public class TimelineView extends View {
         return (int) (this.py + (this.videoTrack != null ? getVideoHeight() + AndroidUtilities.dp(4.0f) : 0.0f) + (this.collageTracks.isEmpty() ? 0.0f : getCollageHeight() + AndroidUtilities.dp(4.0f)) + (this.hasRound ? getRoundHeight() + AndroidUtilities.dp(4.0f) : 0.0f) + (this.hasAudio ? AndroidUtilities.dp(4.0f) + getAudioHeight() : 0.0f) + this.py);
     }
 
+    public int getMaxCount() {
+        return this.maxCount;
+    }
+
     public long getMaxScrollDuration() {
-        return this.collageTracks.isEmpty() ? 120000L : 70000L;
+        if (this.collageTracks.isEmpty()) {
+            return Math.max(120000L, ((float) maxSelectDuration()) * 1.5f);
+        }
+        return 70000L;
     }
 
     public int getTimelineHeight() {
@@ -1488,6 +1510,14 @@ public class TimelineView extends View {
 
     public void setDelegate(TimelineDelegate timelineDelegate) {
         this.delegate = timelineDelegate;
+    }
+
+    public void setMaxCount(int i) {
+        this.maxCount = i;
+    }
+
+    public void setOnHeightChange(Runnable runnable) {
+        this.onHeightChange = runnable;
     }
 
     public void setOnTimelineClick(Runnable runnable) {

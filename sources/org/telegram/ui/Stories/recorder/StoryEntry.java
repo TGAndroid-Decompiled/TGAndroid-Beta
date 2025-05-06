@@ -287,7 +287,7 @@ public class StoryEntry {
         long j = photoEntry.duration * 1000;
         storyEntry.duration = j;
         storyEntry.left = 0.0f;
-        storyEntry.right = Math.min(1.0f, 59500.0f / ((float) j));
+        storyEntry.right = Math.min(1.0f, 59000.0f / ((float) j));
         if (storyEntry.isVideo && storyEntry.thumbPath == null) {
             storyEntry.thumbPath = "vthumb://" + photoEntry.imageId;
         }
@@ -958,6 +958,10 @@ public class StoryEntry {
     }
 
     public StoryEntry copy() {
+        return copy(false);
+    }
+
+    public StoryEntry copy(boolean z) {
         StoryEntry storyEntry = new StoryEntry();
         storyEntry.draftId = this.draftId;
         storyEntry.isDraft = this.isDraft;
@@ -987,6 +991,11 @@ public class StoryEntry {
         storyEntry.isVideo = this.isVideo;
         storyEntry.file = this.file;
         storyEntry.fileDeletable = this.fileDeletable;
+        if (this.fileDeletable) {
+            File makeCacheFile = makeCacheFile(this.currentAccount, ext(this.file));
+            storyEntry.file = makeCacheFile;
+            AndroidUtilities.copyFileSafe(this.file, makeCacheFile);
+        }
         storyEntry.thumbPath = this.thumbPath;
         storyEntry.muted = this.muted;
         storyEntry.left = this.left;
@@ -1014,12 +1023,54 @@ public class StoryEntry {
         storyEntry.scheduleDate = this.scheduleDate;
         storyEntry.blurredVideoThumb = this.blurredVideoThumb;
         storyEntry.uploadThumbFile = this.uploadThumbFile;
+        File file = this.uploadThumbFile;
+        if (file != null && file.exists()) {
+            File makeCacheFile2 = makeCacheFile(this.currentAccount, ext(this.uploadThumbFile));
+            storyEntry.uploadThumbFile = makeCacheFile2;
+            AndroidUtilities.copyFileSafe(this.uploadThumbFile, makeCacheFile2);
+        }
         storyEntry.draftThumbFile = this.draftThumbFile;
+        File file2 = this.draftThumbFile;
+        if (file2 != null && file2.exists()) {
+            File makeCacheFile3 = makeCacheFile(this.currentAccount, ext(this.draftThumbFile));
+            storyEntry.draftThumbFile = makeCacheFile3;
+            AndroidUtilities.copyFileSafe(this.draftThumbFile, makeCacheFile3);
+        }
         storyEntry.paintFile = this.paintFile;
+        File file3 = this.paintFile;
+        if (file3 != null && file3.exists()) {
+            File makeCacheFile4 = makeCacheFile(this.currentAccount, ext(this.paintFile));
+            storyEntry.paintFile = makeCacheFile4;
+            AndroidUtilities.copyFileSafe(this.paintFile, makeCacheFile4);
+        }
         storyEntry.messageFile = this.messageFile;
+        File file4 = this.messageFile;
+        if (file4 != null && file4.exists()) {
+            File makeCacheFile5 = makeCacheFile(this.currentAccount, ext(this.messageFile));
+            storyEntry.messageFile = makeCacheFile5;
+            AndroidUtilities.copyFileSafe(this.messageFile, makeCacheFile5);
+        }
         storyEntry.backgroundFile = this.backgroundFile;
+        File file5 = this.backgroundFile;
+        if (file5 != null && file5.exists()) {
+            File makeCacheFile6 = makeCacheFile(this.currentAccount, ext(this.backgroundFile));
+            storyEntry.backgroundFile = makeCacheFile6;
+            AndroidUtilities.copyFileSafe(this.backgroundFile, makeCacheFile6);
+        }
         storyEntry.paintBlurFile = this.paintBlurFile;
+        File file6 = this.paintBlurFile;
+        if (file6 != null && file6.exists()) {
+            File makeCacheFile7 = makeCacheFile(this.currentAccount, ext(this.paintBlurFile));
+            storyEntry.paintBlurFile = makeCacheFile7;
+            AndroidUtilities.copyFileSafe(this.paintBlurFile, makeCacheFile7);
+        }
         storyEntry.paintEntitiesFile = this.paintEntitiesFile;
+        File file7 = this.paintEntitiesFile;
+        if (file7 != null && file7.exists()) {
+            File makeCacheFile8 = makeCacheFile(this.currentAccount, ext(this.paintEntitiesFile));
+            storyEntry.paintEntitiesFile = makeCacheFile8;
+            AndroidUtilities.copyFileSafe(this.paintEntitiesFile, makeCacheFile8);
+        }
         storyEntry.averageDuration = this.averageDuration;
         storyEntry.mediaEntities = new ArrayList();
         if (this.mediaEntities != null) {
@@ -1030,6 +1081,12 @@ public class StoryEntry {
         storyEntry.stickers = this.stickers;
         storyEntry.editStickers = this.editStickers;
         storyEntry.filterFile = this.filterFile;
+        File file8 = this.filterFile;
+        if (file8 != null && file8.exists()) {
+            File makeCacheFile9 = makeCacheFile(this.currentAccount, ext(this.filterFile));
+            storyEntry.filterFile = makeCacheFile9;
+            AndroidUtilities.copyFileSafe(this.filterFile, makeCacheFile9);
+        }
         storyEntry.filterState = this.filterState;
         storyEntry.thumbBitmap = this.thumbBitmap;
         storyEntry.fromCamera = this.fromCamera;
@@ -1051,7 +1108,40 @@ public class StoryEntry {
         storyEntry.collage = this.collage;
         storyEntry.videoLoop = this.videoLoop;
         storyEntry.videoOffset = this.videoOffset;
+        storyEntry.videoVolume = this.videoVolume;
         return storyEntry;
+    }
+
+    public ArrayList cutIntoEntries() {
+        if (this.isVideo && !isCollage() && !this.isEdit) {
+            long j = this.duration;
+            if (j > 0 && !this.isRepost) {
+                long j2 = (this.right - this.left) * ((float) j);
+                if (j2 < 68999) {
+                    return null;
+                }
+                ArrayList arrayList = new ArrayList();
+                this.right = this.left + (59000.0f / ((float) this.duration));
+                arrayList.add(this);
+                long j3 = 59000;
+                while (j3 < j2) {
+                    long min = Math.min(59000L, j2 - j3);
+                    if (min < 1000) {
+                        break;
+                    }
+                    StoryEntry copy = copy(true);
+                    float f = this.left;
+                    float f2 = (float) this.duration;
+                    copy.left = f + (((float) j3) / f2);
+                    copy.right = this.left + (((float) (min + j3)) / f2);
+                    copy.caption = "";
+                    j3 += 59000;
+                    arrayList.add(copy);
+                }
+                return arrayList;
+            }
+        }
+        return null;
     }
 
     public void decodeBounds(String str) {
@@ -1080,9 +1170,7 @@ public class StoryEntry {
     }
 
     public void destroy(boolean z) {
-        Bitmap bitmap = this.blurredVideoThumb;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            this.blurredVideoThumb.recycle();
+        if (this.blurredVideoThumb != null) {
             this.blurredVideoThumb = null;
         }
         File file = this.uploadThumbFile;
@@ -1134,11 +1222,7 @@ public class StoryEntry {
                 this.roundThumb = null;
             }
         }
-        Bitmap bitmap2 = this.thumbPathBitmap;
-        if (bitmap2 != null) {
-            bitmap2.recycle();
-            this.thumbPathBitmap = null;
-        }
+        this.thumbPathBitmap = null;
         if (this.collageContent != null) {
             for (int i = 0; i < this.collageContent.size(); i++) {
                 ((StoryEntry) this.collageContent.get(i)).destroy(z);
@@ -1173,6 +1257,19 @@ public class StoryEntry {
     public File getOriginalFile() {
         File file = this.filterFile;
         return file != null ? file : this.file;
+    }
+
+    public int getTotalCount() {
+        if (this.isVideo && !isCollage() && !this.isEdit) {
+            long j = this.duration;
+            if (j > 0 && !this.isRepost) {
+                if ((this.right - this.left) * ((float) j) < 68999) {
+                    return 1;
+                }
+                return (int) Math.ceil(((float) r2) / 59000.0f);
+            }
+        }
+        return 1;
     }
 
     public void getVideoEditedInfo(final Utilities.Callback callback) {
@@ -1327,6 +1424,19 @@ public class StoryEntry {
         }
         matrix.postScale(f2, f2);
         matrix.postTranslate((this.resultWidth - (f * f2)) / 2.0f, (this.resultHeight - (i3 * f2)) / 2.0f);
+    }
+
+    public void setupMultipleStoriesSelector() {
+        if (!this.isVideo || isCollage() || this.isEdit || this.isRepost || this.duration <= 69000 || !UserConfig.getInstance(this.currentAccount).isPremium()) {
+            return;
+        }
+        long j = this.duration - 59000;
+        long min = j > 10000 ? Math.min(59000L, j) + 59000 : 59000L;
+        long j2 = this.duration - min;
+        if (j2 > 10000) {
+            min += Math.min(59000L, j2);
+        }
+        this.right = Math.min(1.0f, ((float) min) / ((float) this.duration));
     }
 
     public void updateFilter(PhotoFilterView photoFilterView, final Runnable runnable) {

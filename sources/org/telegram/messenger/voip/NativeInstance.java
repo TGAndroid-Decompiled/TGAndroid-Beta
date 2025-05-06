@@ -60,6 +60,8 @@ public class NativeInstance {
 
     public static native void destroyVideoCapturer(long j);
 
+    public static native String[] getAllVersions();
+
     public void lambda$onAudioLevelsUpdated$1(int[] iArr, float[] fArr, boolean[] zArr) {
         this.audioLevelsCallback.run(iArr, fArr, zArr);
     }

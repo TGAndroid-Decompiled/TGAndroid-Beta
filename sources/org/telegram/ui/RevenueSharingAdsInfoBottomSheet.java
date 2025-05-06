@@ -9,6 +9,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -183,7 +184,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
     }
 
     public void lambda$new$0(Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider, ImageView imageView, View view) {
-        callback.run(ItemOptions.makeOptions(this.container, resourcesProvider, imageView, true).setGravity(5).setDrawScrim(false).translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(-32.0f)));
+        callback.run(ItemOptions.makeOptions((ViewGroup) this.container, resourcesProvider, (View) imageView, true).setGravity(5).setDrawScrim(false).translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(-32.0f)));
     }
 
     public void lambda$new$1() {

@@ -1619,17 +1619,17 @@ public class TL_stories {
     }
 
     public static class TL_stories_canSendStory extends TLObject {
-        public static final int constructor = -941629475;
+        public static final int constructor = 820732912;
         public TLRPC.InputPeer peer;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+            return canSendStoryCount.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-941629475);
+            outputSerializedData.writeInt32(820732912);
             this.peer.serializeToStream(outputSerializedData);
         }
     }
@@ -3061,6 +3061,34 @@ public class TL_stories {
             outputSerializedData.writeInt32(1974712216);
             this.peer.serializeToStream(outputSerializedData);
             this.story.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class canSendStoryCount extends TLObject {
+        public static final int constructor = -1014513586;
+        public int count_remains;
+
+        public static canSendStoryCount TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-1014513586 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in canSendStoryCount", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            canSendStoryCount cansendstorycount = new canSendStoryCount();
+            cansendstorycount.readParams(inputSerializedData, z);
+            return cansendstorycount;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.count_remains = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1014513586);
+            outputSerializedData.writeInt32(this.count_remains);
         }
     }
 

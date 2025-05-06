@@ -286,7 +286,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     }
                 });
             }
-            lambda$onBackPressed$336();
+            lambda$onBackPressed$338();
         }
     }
 
@@ -1635,7 +1635,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         CallLogActivity.this.hideActionMode(true);
                         return;
                     } else {
-                        CallLogActivity.this.lambda$onBackPressed$336();
+                        CallLogActivity.this.lambda$onBackPressed$338();
                         return;
                     }
                 }

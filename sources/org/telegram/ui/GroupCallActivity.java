@@ -94,8 +94,8 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.pip.PipNativeApiController;
 import org.telegram.messenger.pip.PipSource;
+import org.telegram.messenger.pip.utils.PipUtils;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.messenger.voip.VoIPService;
@@ -4751,7 +4751,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 return;
             }
         }
-        if (PipNativeApiController.checkAnyPipPermissions(this.parentActivity)) {
+        if (PipUtils.checkAnyPipPermissions(this.parentActivity)) {
             RTMPStreamPipOverlay.show(this.parentActivity);
             dismiss();
         } else if (Build.VERSION.SDK_INT >= 21) {

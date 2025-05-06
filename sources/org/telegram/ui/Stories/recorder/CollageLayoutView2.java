@@ -1083,8 +1083,10 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             }
             this.previewStartTime = System.currentTimeMillis() - clamp;
             this.fastSeek = z;
-            AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
-            this.syncRunnable.run();
+            if (this.preview) {
+                AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
+                this.syncRunnable.run();
+            }
         }
     }
 
@@ -1204,8 +1206,10 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         } else {
             this.fastSeek = false;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
-        this.syncRunnable.run();
+        if (this.preview) {
+            AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
+            this.syncRunnable.run();
+        }
     }
 
     public void setPreview(boolean z) {

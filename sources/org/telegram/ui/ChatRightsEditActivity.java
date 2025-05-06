@@ -759,7 +759,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$336();
+        lambda$onBackPressed$338();
     }
 
     public void lambda$createView$0(int i, TimePicker timePicker, int i2, int i3) {
@@ -954,7 +954,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     if (chatRightsEditActivityDelegate != null) {
                         chatRightsEditActivityDelegate.didSetRights(0, this.adminRights, this.bannedRights, this.currentRank);
                     }
-                    lambda$onBackPressed$336();
+                    lambda$onBackPressed$338();
                     return;
                 }
                 if (i5 == 1) {
@@ -1321,7 +1321,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 this.delegate.didChangeOwner(this.currentUser);
                 removeSelfFromStack();
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$336();
+                twoStepVerificationActivity.lambda$onBackPressed$338();
                 return;
             }
             return;
@@ -1358,7 +1358,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 if (!tL_error.text.equals("CHANNELS_TOO_MUCH")) {
                     if (twoStepVerificationActivity != null) {
                         twoStepVerificationActivity.needHideProgress();
-                        twoStepVerificationActivity.lambda$onBackPressed$336();
+                        twoStepVerificationActivity.lambda$onBackPressed$338();
                     }
                     AlertsCreator.showAddUserAlert(tL_error.text, this, this.isChannel, tL_channels_editCreator);
                     return;
@@ -1492,7 +1492,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         if (chatRightsEditActivityDelegate != null) {
             TLRPC.TL_chatAdminRights tL_chatAdminRights = this.adminRights;
             chatRightsEditActivityDelegate.didSetRights((tL_chatAdminRights.change_info || tL_chatAdminRights.post_messages || tL_chatAdminRights.edit_messages || tL_chatAdminRights.delete_messages || tL_chatAdminRights.ban_users || tL_chatAdminRights.invite_users || (this.isForum && tL_chatAdminRights.manage_topics) || tL_chatAdminRights.pin_messages || tL_chatAdminRights.add_admins || tL_chatAdminRights.anonymous || tL_chatAdminRights.manage_call || ((this.isChannel && (tL_chatAdminRights.post_stories || tL_chatAdminRights.edit_stories || tL_chatAdminRights.delete_stories)) || tL_chatAdminRights.other)) ? 1 : 0, tL_chatAdminRights, this.bannedRights, this.currentRank);
-            lambda$onBackPressed$336();
+            lambda$onBackPressed$338();
         }
     }
 
@@ -1914,7 +1914,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             public void onItemClick(int i3) {
                 if (i3 == -1) {
                     if (ChatRightsEditActivity.this.checkDiscard()) {
-                        ChatRightsEditActivity.this.lambda$onBackPressed$336();
+                        ChatRightsEditActivity.this.lambda$onBackPressed$338();
                     }
                 } else if (i3 == 1) {
                     ChatRightsEditActivity.this.onDonePressed();
@@ -2018,7 +2018,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 if (iNavigationLayout == null || iNavigationLayout.getLastFragment() != this) {
                     removeSelfFromStack();
                 } else {
-                    lambda$onBackPressed$336();
+                    lambda$onBackPressed$338();
                 }
             }
         }

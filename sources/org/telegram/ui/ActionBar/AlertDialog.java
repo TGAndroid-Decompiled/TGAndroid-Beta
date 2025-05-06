@@ -1099,8 +1099,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void setShowStarsBalance(boolean z) {
+    public AlertDialog setShowStarsBalance(boolean z) {
         this.needStarsBalance = z;
+        return this;
     }
 
     public void setTextColor(int i) {

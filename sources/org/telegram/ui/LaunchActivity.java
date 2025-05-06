@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
+import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -84,8 +85,10 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.messenger.pip.PictureInPictureActivityHandler;
-import org.telegram.messenger.pip.PipNativeApiController;
+import org.telegram.messenger.pip.PipActivityController;
+import org.telegram.messenger.pip.activity.IPipActivity;
+import org.telegram.messenger.pip.activity.IPipActivityHandler;
+import org.telegram.messenger.pip.activity.IPipActivityListener;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
@@ -167,7 +170,7 @@ import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
 
-public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, PictureInPictureActivityHandler {
+public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, IPipActivity {
     public static LaunchActivity instance;
     public static boolean isActive;
     public static boolean isResumed;
@@ -180,6 +183,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private long alreadyShownFreeDiscSpaceAlertForced;
     private SizeNotifierFrameLayout backgroundTablet;
     private BlockingUpdateView blockingUpdateView;
+    private Consumer blurListener;
     private BottomSheetTabsOverlay bottomSheetTabsOverlay;
     private boolean checkFreeDiscSpaceShown;
     private ArrayList contactsToSend;
@@ -198,11 +202,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     View feedbackView;
     private boolean finished;
     private FireworksOverlay fireworksOverlay;
+    private boolean firstAppUpdateCheck;
     private FlagSecureReason flagSecureReason;
     public FrameLayout frameLayout;
     private ArrayList importingStickers;
     private ArrayList importingStickersEmoji;
     private String importingStickersSoftware;
+    private boolean isNavigationBarColorFrozen;
     private boolean isStarted;
     private SideMenultItemAnimator itemAnimator;
     private RelativeLayout launchLayout;
@@ -221,19 +227,25 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private boolean navigateToPremiumBot;
     private Runnable navigateToPremiumGiftCallback;
     private ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
+    private List onUserLeaveHintListeners;
+    private List overlayPasscodeViews;
     private PasscodeViewDialog passcodeDialog;
     private Intent passcodeSaveIntent;
     private boolean passcodeSaveIntentIsNew;
     private boolean passcodeSaveIntentIsRestore;
     private ArrayList photoPathsArray;
-    private FrameLayout pipNativeWrapper;
+    private final PipActivityController pipActivityController;
+    private final IPipActivityHandler pipActivityHandler;
     private Dialog proxyErrorDialog;
+    private SparseIntArray requestedPermissions;
+    private int requsetPermissionsPointer;
     private ActionBarLayout rightActionBarLayout;
     private View rippleAbove;
     private SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialog;
     private String sendingText;
     private FrameLayout shadowTablet;
     private FrameLayout shadowTabletSide;
+    public ArrayList sheetFragmentsStack = new ArrayList();
     private RecyclerListView sideMenu;
     private FrameLayout sideMenuContainer;
     private boolean switchingAccount;
@@ -247,6 +259,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private IUpdateLayout updateLayout;
     private String videoPath;
     private ActionMode visibleActionMode;
+    public final ArrayList visibleDialogs;
     private String voicePath;
     private boolean wasMutedByAdminRaisedHand;
     private Utilities.Callback webviewShareAPIDoneListener;
@@ -254,28 +267,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private static final ArrayList mainFragmentsStack = new ArrayList();
     private static final ArrayList layerFragmentsStack = new ArrayList();
     private static final ArrayList rightFragmentsStack = new ArrayList();
-    public ArrayList sheetFragmentsStack = new ArrayList();
-    private List overlayPasscodeViews = new ArrayList();
-    public final ArrayList visibleDialogs = new ArrayList();
-    private boolean isNavigationBarColorFrozen = false;
-    private List onUserLeaveHintListeners = new ArrayList();
-    private SparseIntArray requestedPermissions = new SparseIntArray();
-    private int requsetPermissionsPointer = 5934;
-    private Consumer blurListener = new Consumer() {
-        AnonymousClass1() {
-        }
-
-        @Override
-        public void r(Boolean bool) {
-            LaunchActivity.systemBlurEnabled = bool.booleanValue();
-        }
-
-        @Override
-        public Consumer andThen(Consumer consumer) {
-            return Consumer.CC.$default$andThen(this, consumer);
-        }
-    };
-    private boolean firstAppUpdateCheck = true;
 
     class AnonymousClass1 implements Consumer {
         AnonymousClass1() {
@@ -292,11 +283,26 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass10 extends RelativeLayout {
+    class AnonymousClass10 implements View.OnAttachStateChangeListener {
+        AnonymousClass10() {
+        }
+
+        @Override
+        public void onViewAttachedToWindow(View view) {
+            LaunchActivity.this.getWindowManager().addCrossWindowBlurEnabledListener(Consumer.Wrapper.convert(LaunchActivity.this.blurListener));
+        }
+
+        @Override
+        public void onViewDetachedFromWindow(View view) {
+            LaunchActivity.this.getWindowManager().removeCrossWindowBlurEnabledListener(Consumer.Wrapper.convert(LaunchActivity.this.blurListener));
+        }
+    }
+
+    public class AnonymousClass11 extends RelativeLayout {
         private boolean inLayout;
         private Path path = new Path();
 
-        AnonymousClass10(Context context) {
+        AnonymousClass11(Context context) {
             super(context);
             this.path = new Path();
         }
@@ -365,8 +371,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass11 extends SizeNotifierFrameLayout {
-        AnonymousClass11(Context context) {
+    public class AnonymousClass12 extends SizeNotifierFrameLayout {
+        AnonymousClass12(Context context) {
             super(context);
         }
 
@@ -376,10 +382,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass12 extends SelectAnimatedEmojiDialog {
+    public class AnonymousClass13 extends SelectAnimatedEmojiDialog {
         final SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] val$popup;
 
-        AnonymousClass12(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
+        AnonymousClass13(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
             super(baseFragment, context, z, num, i, resourcesProvider);
             r15 = selectAnimatedEmojiDialogWindowArr;
         }
@@ -397,7 +403,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                         Context context = getContext();
                         int i = LaunchActivity.this.currentAccount;
-                        new StarGiftSheet(context, i, UserConfig.getInstance(i).getClientUserId(), null).set(findUserStarGift, (StarsController.GiftsList) null).setupWearPage().show();
+                        new StarGiftSheet(context, i, UserConfig.getInstance(i).getClientUserId(), null).set(findUserStarGift, null).setupWearPage().show();
                         if (r15[0] != null) {
                             LaunchActivity.this.selectAnimatedEmojiDialog = null;
                             r15[0].dismiss();
@@ -463,8 +469,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass13 extends SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow {
-        AnonymousClass13(View view, int i, int i2) {
+    public class AnonymousClass14 extends SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow {
+        AnonymousClass14(View view, int i, int i2) {
             super(view, i, i2);
         }
 
@@ -475,8 +481,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass14 extends BlockingUpdateView {
-        AnonymousClass14(Context context) {
+    public class AnonymousClass15 extends BlockingUpdateView {
+        AnonymousClass15(Context context) {
             super(context);
         }
 
@@ -489,8 +495,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass15 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        AnonymousClass15() {
+    public class AnonymousClass16 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        AnonymousClass16() {
         }
 
         public void lambda$onAcceptTerms$0() {
@@ -508,14 +514,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             LaunchActivity.this.termsOfServiceView.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.AnonymousClass15.this.lambda$onAcceptTerms$0();
+                    LaunchActivity.AnonymousClass16.this.lambda$onAcceptTerms$0();
                 }
             }).start();
         }
     }
 
-    public class AnonymousClass16 extends DialogsActivity {
-        AnonymousClass16(Bundle bundle) {
+    public class AnonymousClass17 extends DialogsActivity {
+        AnonymousClass17(Bundle bundle) {
             super(bundle);
         }
 
@@ -534,11 +540,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass17 implements ChatRightsEditActivity.ChatRightsEditActivityDelegate {
+    public class AnonymousClass18 implements ChatRightsEditActivity.ChatRightsEditActivityDelegate {
         final DialogsActivity val$fragment;
         final int val$intentAccount;
 
-        AnonymousClass17(DialogsActivity dialogsActivity, int i) {
+        AnonymousClass18(DialogsActivity dialogsActivity, int i) {
             r2 = dialogsActivity;
             r3 = i;
         }
@@ -554,7 +560,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass18 implements MessagesController.MessagesLoadedCallback {
+    public class AnonymousClass19 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -562,7 +568,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        AnonymousClass18(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+        AnonymousClass19(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -581,7 +587,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.AnonymousClass18.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
+                    LaunchActivity.AnonymousClass19.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
                 }
             });
         }
@@ -600,7 +606,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         accountInstance.getMessagesController().getGroupCall(j2, true, new Runnable() {
                             @Override
                             public final void run() {
-                                LaunchActivity.AnonymousClass18.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
+                                LaunchActivity.AnonymousClass19.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
                             }
                         });
                     } else if (baseFragment.getParentActivity() != null) {
@@ -624,17 +630,29 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         @Override
         public void onMessagesLoaded(boolean r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass18.onMessagesLoaded(boolean):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass19.onMessagesLoaded(boolean):void");
         }
     }
 
-    public class AnonymousClass19 implements MessagesController.MessagesLoadedCallback {
+    class AnonymousClass2 extends FrameLayout {
+        AnonymousClass2(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            super.dispatchDraw(canvas);
+            LaunchActivity.this.drawRippleAbove(canvas, this);
+        }
+    }
+
+    public class AnonymousClass20 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final boolean[] val$canceled;
         final Runnable val$dismissLoading;
         final TLRPC.ChatInvite val$invite;
 
-        AnonymousClass19(Runnable runnable, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
+        AnonymousClass20(Runnable runnable, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
             r2 = runnable;
             r3 = zArr;
             r4 = bundle;
@@ -672,20 +690,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass2 extends FrameLayout {
-        AnonymousClass2(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            super.dispatchDraw(canvas);
-            LaunchActivity.this.drawRippleAbove(canvas, this);
-        }
-    }
-
-    class AnonymousClass20 extends ClickableSpan {
-        AnonymousClass20() {
+    class AnonymousClass21 extends ClickableSpan {
+        AnonymousClass21() {
         }
 
         @Override
@@ -700,11 +706,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass21 extends AnimatorListenerAdapter {
+    class AnonymousClass22 extends AnimatorListenerAdapter {
         final RLottieImageView val$darkThemeView;
         final boolean val$toDark;
 
-        AnonymousClass21(boolean z, RLottieImageView rLottieImageView) {
+        AnonymousClass22(boolean z, RLottieImageView rLottieImageView) {
             r2 = z;
             r3 = rLottieImageView;
         }
@@ -725,8 +731,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass22 implements Runnable {
-        AnonymousClass22() {
+    public class AnonymousClass23 implements Runnable {
+        AnonymousClass23() {
         }
 
         @Override
@@ -750,10 +756,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass23 extends AnimatorListenerAdapter {
+    public class AnonymousClass24 extends AnimatorListenerAdapter {
         final int val$toColor;
 
-        AnonymousClass23(int i) {
+        AnonymousClass24(int i) {
             r2 = i;
         }
 
@@ -763,10 +769,35 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass3 extends DrawerLayoutContainer {
+    class AnonymousClass3 implements IPipActivityListener {
+        AnonymousClass3() {
+        }
+
+        @Override
+        public void onCompleteEnterToPip() {
+            LaunchActivity.this.frameLayout.setVisibility(8);
+        }
+
+        @Override
+        public void onCompleteExitFromPip(boolean z) {
+            IPipActivityListener.CC.$default$onCompleteExitFromPip(this, z);
+        }
+
+        @Override
+        public void onStartEnterToPip() {
+            IPipActivityListener.CC.$default$onStartEnterToPip(this);
+        }
+
+        @Override
+        public void onStartExitFromPip(boolean z) {
+            LaunchActivity.this.frameLayout.setVisibility(0);
+        }
+    }
+
+    public class AnonymousClass4 extends DrawerLayoutContainer {
         private boolean wasPortrait;
 
-        AnonymousClass3(Context context) {
+        AnonymousClass4(Context context) {
             super(context);
         }
 
@@ -812,7 +843,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.AnonymousClass3.this.lambda$onLayout$0();
+                        LaunchActivity.AnonymousClass4.this.lambda$onLayout$0();
                     }
                 });
                 this.wasPortrait = z2;
@@ -820,8 +851,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass4 extends View {
-        AnonymousClass4(Context context) {
+    class AnonymousClass5 extends View {
+        AnonymousClass5(Context context) {
             super(context);
         }
 
@@ -834,8 +865,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass5 extends FireworksOverlay {
-        AnonymousClass5(Context context) {
+    class AnonymousClass6 extends FireworksOverlay {
+        AnonymousClass6(Context context) {
             super(context);
             setVisibility(8);
         }
@@ -853,8 +884,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass6 extends RecyclerListView {
-        AnonymousClass6(Context context) {
+    class AnonymousClass7 extends RecyclerListView {
+        AnonymousClass7(Context context) {
             super(context);
         }
 
@@ -877,7 +908,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass7 extends ItemTouchHelper.SimpleCallback {
+    public class AnonymousClass8 extends ItemTouchHelper.SimpleCallback {
         private RecyclerView.ViewHolder selectedViewHolder;
 
         public class AnonymousClass1 extends AnimatorListenerAdapter {
@@ -893,7 +924,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         }
 
-        AnonymousClass7(int i, int i2) {
+        AnonymousClass8(int i, int i2) {
             super(i, i2);
         }
 
@@ -977,10 +1008,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass8 extends DialogsActivity {
+    public class AnonymousClass9 extends DialogsActivity {
         final int val$accountNumber;
 
-        AnonymousClass8(Bundle bundle, int i) {
+        AnonymousClass9(Bundle bundle, int i) {
             super(bundle);
             r3 = i;
         }
@@ -1005,19 +1036,31 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass9 implements View.OnAttachStateChangeListener {
-        AnonymousClass9() {
-        }
+    public LaunchActivity() {
+        PipActivityController pipActivityController = new PipActivityController(this);
+        this.pipActivityController = pipActivityController;
+        this.pipActivityHandler = pipActivityController.getHandler();
+        this.overlayPasscodeViews = new ArrayList();
+        this.visibleDialogs = new ArrayList();
+        this.isNavigationBarColorFrozen = false;
+        this.onUserLeaveHintListeners = new ArrayList();
+        this.requestedPermissions = new SparseIntArray();
+        this.requsetPermissionsPointer = 5934;
+        this.blurListener = new Consumer() {
+            AnonymousClass1() {
+            }
 
-        @Override
-        public void onViewAttachedToWindow(View view) {
-            LaunchActivity.this.getWindowManager().addCrossWindowBlurEnabledListener(Consumer.Wrapper.convert(LaunchActivity.this.blurListener));
-        }
+            @Override
+            public void r(Boolean bool) {
+                LaunchActivity.systemBlurEnabled = bool.booleanValue();
+            }
 
-        @Override
-        public void onViewDetachedFromWindow(View view) {
-            LaunchActivity.this.getWindowManager().removeCrossWindowBlurEnabledListener(Consumer.Wrapper.convert(LaunchActivity.this.blurListener));
-        }
+            @Override
+            public Consumer andThen(Consumer consumer) {
+                return Consumer.CC.$default$andThen(this, consumer);
+            }
+        };
+        this.firstAppUpdateCheck = true;
     }
 
     private void checkCurrentAccount() {
@@ -1327,7 +1370,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return handleIntent(intent, z, z2, z3, null, true, false);
     }
 
-    private boolean handleIntent(android.content.Intent r112, boolean r113, boolean r114, boolean r115, org.telegram.messenger.browser.Browser.Progress r116, boolean r117, boolean r118) {
+    private boolean handleIntent(android.content.Intent r113, boolean r114, boolean r115, boolean r116, org.telegram.messenger.browser.Browser.Progress r117, boolean r118, boolean r119) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean, boolean):boolean");
     }
 
@@ -2052,10 +2095,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (view instanceof DrawerUserCell) {
             int accountNumber = ((DrawerUserCell) view).getAccountNumber();
             if (accountNumber != this.currentAccount && !AndroidUtilities.isTablet()) {
-                AnonymousClass8 anonymousClass8 = new DialogsActivity(null) {
+                AnonymousClass9 anonymousClass9 = new DialogsActivity(null) {
                     final int val$accountNumber;
 
-                    AnonymousClass8(Bundle bundle, int accountNumber2) {
+                    AnonymousClass9(Bundle bundle, int accountNumber2) {
                         super(bundle);
                         r3 = accountNumber2;
                     }
@@ -2079,8 +2122,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         LaunchActivity.this.actionBarLayout.getView().invalidate();
                     }
                 };
-                anonymousClass8.setCurrentAccount(accountNumber2);
-                this.actionBarLayout.presentFragmentAsPreview(anonymousClass8);
+                anonymousClass9.setCurrentAccount(accountNumber2);
+                this.actionBarLayout.presentFragmentAsPreview(anonymousClass9);
                 this.drawerLayoutContainer.setDrawCurrentPreviewFragmentAbove(true);
                 return true;
             }
@@ -3048,7 +3091,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             BaseFragment safeLastFragment = getSafeLastFragment();
             TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                StarGiftSheet starGiftSheet = new StarGiftSheet(this, i, 0L, null).set(str, (TL_stars.TL_starGiftUnique) starGift);
+                StarGiftSheet starGiftSheet = new StarGiftSheet(this, i, 0L, null).set(str, (TL_stars.TL_starGiftUnique) starGift, (StarsController.IGiftsList) null);
                 if (safeLastFragment == null) {
                     starGiftSheet.show();
                 } else if (safeLastFragment.getLastStoryViewer() == null || !safeLastFragment.getLastStoryViewer().isFullyVisible()) {
@@ -3614,7 +3657,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                     return;
                                 }
                                 if (chat == null || !chat.forum) {
-                                    MessagesController.getInstance(i2).ensureMessagesLoaded(longValue, num == null ? 0 : num.intValue(), new AnonymousClass18(runnable, str3, baseFragment, longValue, num, bundle2));
+                                    MessagesController.getInstance(i2).ensureMessagesLoaded(longValue, num == null ? 0 : num.intValue(), new AnonymousClass19(runnable, str3, baseFragment, longValue, num, bundle2));
                                     return;
                                 }
                                 Long valueOf = (l2 != null || num == null) ? l2 : Long.valueOf(num.intValue());
@@ -4330,8 +4373,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (SharedConfig.passcodeHash.length() != 0) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
-            AnonymousClass22 anonymousClass22 = new Runnable() {
-                AnonymousClass22() {
+            AnonymousClass23 anonymousClass23 = new Runnable() {
+                AnonymousClass23() {
                 }
 
                 @Override
@@ -4354,9 +4397,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                 }
             };
-            this.lockRunnable = anonymousClass22;
+            this.lockRunnable = anonymousClass23;
             if (SharedConfig.appLocked) {
-                AndroidUtilities.runOnUIThread(anonymousClass22, 1000L);
+                AndroidUtilities.runOnUIThread(anonymousClass23, 1000L);
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("schedule app lock in 1000");
                 }
@@ -4737,11 +4780,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (AndroidUtilities.isTablet()) {
             getWindow().setSoftInputMode(16);
-            AnonymousClass10 anonymousClass10 = new RelativeLayout(this) {
+            AnonymousClass11 anonymousClass11 = new RelativeLayout(this) {
                 private boolean inLayout;
                 private Path path = new Path();
 
-                AnonymousClass10(Context this) {
+                AnonymousClass11(Context this) {
                     super(this);
                     this.path = new Path();
                 }
@@ -4809,14 +4852,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     super.requestLayout();
                 }
             };
-            this.launchLayout = anonymousClass10;
+            this.launchLayout = anonymousClass11;
             if (indexOfChild != -1) {
-                this.drawerLayoutContainer.addView(anonymousClass10, indexOfChild, LayoutHelper.createFrame(-1, -1.0f));
+                this.drawerLayoutContainer.addView(anonymousClass11, indexOfChild, LayoutHelper.createFrame(-1, -1.0f));
             } else {
-                this.drawerLayoutContainer.addView(anonymousClass10, LayoutHelper.createFrame(-1, -1.0f));
+                this.drawerLayoutContainer.addView(anonymousClass11, LayoutHelper.createFrame(-1, -1.0f));
             }
-            AnonymousClass11 anonymousClass11 = new SizeNotifierFrameLayout(this) {
-                AnonymousClass11(Context this) {
+            AnonymousClass12 anonymousClass12 = new SizeNotifierFrameLayout(this) {
+                AnonymousClass12(Context this) {
                     super(this);
                 }
 
@@ -4825,8 +4868,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     return false;
                 }
             };
-            this.backgroundTablet = anonymousClass11;
-            anonymousClass11.setOccupyStatusBar(false);
+            this.backgroundTablet = anonymousClass12;
+            anonymousClass12.setOccupyStatusBar(false);
             this.backgroundTablet.setBackgroundImage(Theme.getCachedWallpaper(), Theme.isWallpaperMotion());
             this.launchLayout.addView(this.backgroundTablet, LayoutHelper.createRelative(-1, -1));
             ViewGroup viewGroup = (ViewGroup) this.actionBarLayout.getView().getParent();
@@ -4995,7 +5038,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new AnonymousClass15());
+            this.termsOfServiceView.setDelegate(new AnonymousClass16());
         }
         TLRPC.TL_help_termsOfService tL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tL_help_termsOfService2 != tL_help_termsOfService && (tL_help_termsOfService2 == null || !tL_help_termsOfService2.id.data.equals(tL_help_termsOfService.id.data))) {
@@ -5009,8 +5052,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     private void showUpdateActivity(int i, TLRPC.TL_help_appUpdate tL_help_appUpdate, boolean z) {
         if (this.blockingUpdateView == null) {
-            AnonymousClass14 anonymousClass14 = new BlockingUpdateView(this) {
-                AnonymousClass14(Context this) {
+            AnonymousClass15 anonymousClass15 = new BlockingUpdateView(this) {
+                AnonymousClass15(Context this) {
                     super(this);
                 }
 
@@ -5022,8 +5065,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                 }
             };
-            this.blockingUpdateView = anonymousClass14;
-            this.drawerLayoutContainer.addView(anonymousClass14, LayoutHelper.createFrame(-1, -1.0f));
+            this.blockingUpdateView = anonymousClass15;
+            this.drawerLayoutContainer.addView(anonymousClass15, LayoutHelper.createFrame(-1, -1.0f));
         }
         this.blockingUpdateView.show(i, tL_help_appUpdate, z);
         this.drawerLayoutContainer.setAllowOpenDrawer(false, false);
@@ -5123,12 +5166,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } : null);
     }
 
-    @Override
-    public void addActivityPipView(View view) {
-        this.frameLayout.setVisibility(8);
-        this.pipNativeWrapper.addView(view, LayoutHelper.createFrame(-1, -1.0f));
-    }
-
     public void addOnUserLeaveHintListener(Runnable runnable) {
         this.onUserLeaveHintListeners.add(runnable);
     }
@@ -5171,7 +5208,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
             final int val$toColor;
 
-            AnonymousClass23(int i2) {
+            AnonymousClass24(int i2) {
                 r2 = i2;
             }
 
@@ -5348,6 +5385,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         navigationBarColor = window.getNavigationBarColor();
         return navigationBarColor;
+    }
+
+    @Override
+    public PipActivityController getPipController() {
+        return this.pipActivityController;
     }
 
     public INavigationLayout getRightActionBarLayout() {
@@ -5561,7 +5603,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (actionBarLayout3 != null && actionBarLayout3.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$336();
+                        baseFragment.lambda$onBackPressed$338();
                         return;
                     }
                     return;
@@ -5577,6 +5619,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.checkDisplaySize(this, configuration);
         AndroidUtilities.setPreferredMaxRefreshRate(getWindow());
         super.onConfigurationChanged(configuration);
+        this.pipActivityHandler.onConfigurationChanged(configuration);
         checkLayout();
         PipRoundVideoView pipRoundVideoView = PipRoundVideoView.getInstance();
         if (pipRoundVideoView != null) {
@@ -5750,6 +5793,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void onPause() {
         super.onPause();
         isResumed = false;
+        this.pipActivityHandler.onPause();
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 4096);
         ApplicationLoader.mainInterfacePaused = true;
         final int i = this.currentAccount;
@@ -5792,8 +5836,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     public void onPictureInPictureModeChanged(boolean z, Configuration configuration) {
-        PipNativeApiController.onPictureInPictureModeChanged(this, z);
         super.onPictureInPictureModeChanged(z, configuration);
+        this.pipActivityHandler.onPictureInPictureModeChanged(z, configuration);
         if (z || this.isStarted) {
             return;
         }
@@ -5810,6 +5854,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (PhotoViewer.hasInstance()) {
             PhotoViewer.getInstance().closePhoto(false, false);
         }
+    }
+
+    @Override
+    public boolean onPictureInPictureRequested() {
+        this.pipActivityHandler.onPictureInPictureRequested();
+        return super.onPictureInPictureRequested();
     }
 
     @Override
@@ -5874,6 +5924,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;
+        this.pipActivityHandler.onResume();
         Runnable runnable = onResumeStaticCallback;
         if (runnable != null) {
             runnable.run();
@@ -6049,6 +6100,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void onStart() {
         super.onStart();
         this.isStarted = true;
+        this.pipActivityHandler.onStart();
         Browser.bindCustomTabsService(this);
         ApplicationLoader.mainInterfaceStopped = false;
         GroupCallPip.updateVisibility(this);
@@ -6062,6 +6114,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void onStop() {
         super.onStop();
         this.isStarted = false;
+        this.pipActivityHandler.onStop();
         Browser.unbindCustomTabsService(this);
         ApplicationLoader.mainInterfaceStopped = true;
         GroupCallPip.updateVisibility(this);
@@ -6084,6 +6137,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     protected void onUserLeaveHint() {
+        this.pipActivityHandler.onUserLeaveHint();
         Iterator it = this.onUserLeaveHintListeners.iterator();
         while (it.hasNext()) {
             ((Runnable) it.next()).run();
@@ -6092,7 +6146,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (actionBarLayout != null) {
             actionBarLayout.onUserLeaveHint();
         }
-        PipNativeApiController.onUserLeaveHint(this);
     }
 
     public void openMessage(final long j, final int i, final String str, final Browser.Progress progress, int i2, final int i3) {
@@ -6164,12 +6217,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         actionBarLayout.rebuildAllFragmentViews(z, z);
     }
 
-    @Override
-    public void removeActivityPipView(View view) {
-        this.pipNativeWrapper.removeView(view);
-        this.frameLayout.setVisibility(this.pipNativeWrapper.getChildCount() > 1 ? 8 : 0);
-    }
-
     public void removeOnUserLeaveHintListener(Runnable runnable) {
         this.onUserLeaveHintListeners.remove(runnable);
     }
@@ -6210,6 +6257,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public void setNavigationBarColor(int r4, boolean r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.setNavigationBarColor(int, boolean):void");
+    }
+
+    @Override
+    public void setPictureInPictureParams(PictureInPictureParams pictureInPictureParams) {
+        super.setPictureInPictureParams(pictureInPictureParams);
+        this.pipActivityHandler.setPictureInPictureParams(pictureInPictureParams);
     }
 
     public Dialog showAlertDialog(AlertDialog.Builder builder) {
@@ -6343,10 +6396,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         View view2 = view;
         int i3 = i2;
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = swapAnimatedEmojiDrawable;
-        AnonymousClass12 anonymousClass12 = new SelectAnimatedEmojiDialog(lastFragment, this, true, Integer.valueOf(i), 0, null) {
+        AnonymousClass13 anonymousClass13 = new SelectAnimatedEmojiDialog(lastFragment, this, true, Integer.valueOf(i), 0, null) {
             final SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] val$popup;
 
-            AnonymousClass12(BaseFragment lastFragment2, Context this, boolean z2, Integer num, int i4, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr2) {
+            AnonymousClass13(BaseFragment lastFragment2, Context this, boolean z2, Integer num, int i4, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr2) {
                 super(lastFragment2, this, z2, num, i4, resourcesProvider);
                 r15 = selectAnimatedEmojiDialogWindowArr2;
             }
@@ -6364,7 +6417,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                             Context context = getContext();
                             int i4 = LaunchActivity.this.currentAccount;
-                            new StarGiftSheet(context, i4, UserConfig.getInstance(i4).getClientUserId(), null).set(findUserStarGift, (StarsController.GiftsList) null).setupWearPage().show();
+                            new StarGiftSheet(context, i4, UserConfig.getInstance(i4).getClientUserId(), null).set(findUserStarGift, null).setupWearPage().show();
                             if (r15[0] != null) {
                                 LaunchActivity.this.selectAnimatedEmojiDialog = null;
                                 r15[0].dismiss();
@@ -6430,14 +6483,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         };
         if (user != null) {
-            anonymousClass12.setExpireDateHint(DialogObject.getEmojiStatusUntil(user.emoji_status));
+            anonymousClass13.setExpireDateHint(DialogObject.getEmojiStatusUntil(user.emoji_status));
         }
-        anonymousClass12.setSelected((drawerProfileCell == null || drawerProfileCell.getEmojiStatusGiftId() == null) ? (swapAnimatedEmojiDrawable2 == null || !(swapAnimatedEmojiDrawable2.getDrawable() instanceof AnimatedEmojiDrawable)) ? null : Long.valueOf(((AnimatedEmojiDrawable) swapAnimatedEmojiDrawable2.getDrawable()).getDocumentId()) : drawerProfileCell.getEmojiStatusGiftId());
-        anonymousClass12.setSaveState(2);
-        anonymousClass12.setScrimDrawable(swapAnimatedEmojiDrawable2, view2);
-        AnonymousClass13 anonymousClass13 = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(anonymousClass12, -2, -2) {
-            AnonymousClass13(View anonymousClass122, int i4, int i22) {
-                super(anonymousClass122, i4, i22);
+        anonymousClass13.setSelected((drawerProfileCell == null || drawerProfileCell.getEmojiStatusGiftId() == null) ? (swapAnimatedEmojiDrawable2 == null || !(swapAnimatedEmojiDrawable2.getDrawable() instanceof AnimatedEmojiDrawable)) ? null : Long.valueOf(((AnimatedEmojiDrawable) swapAnimatedEmojiDrawable2.getDrawable()).getDocumentId()) : drawerProfileCell.getEmojiStatusGiftId());
+        anonymousClass13.setSaveState(2);
+        anonymousClass13.setScrimDrawable(swapAnimatedEmojiDrawable2, view2);
+        AnonymousClass14 anonymousClass14 = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(anonymousClass13, -2, -2) {
+            AnonymousClass14(View anonymousClass132, int i4, int i22) {
+                super(anonymousClass132, i4, i22);
             }
 
             @Override
@@ -6446,9 +6499,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 LaunchActivity.this.selectAnimatedEmojiDialog = null;
             }
         };
-        this.selectAnimatedEmojiDialog = anonymousClass13;
-        selectAnimatedEmojiDialogWindowArr2[0] = anonymousClass13;
-        anonymousClass13.showAsDropDown(this.sideMenu.getChildAt(0), 0, i3, 48);
+        this.selectAnimatedEmojiDialog = anonymousClass14;
+        selectAnimatedEmojiDialogWindowArr2[0] = anonymousClass14;
+        anonymousClass14.showAsDropDown(this.sideMenu.getChildAt(0), 0, i3, 48);
         selectAnimatedEmojiDialogWindowArr2[0].dimBehind();
     }
 

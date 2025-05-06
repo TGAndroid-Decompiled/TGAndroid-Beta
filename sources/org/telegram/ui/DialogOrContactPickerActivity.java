@@ -138,7 +138,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             i2 = R.string.UserBlocked;
         }
         AlertsCreator.showSimpleToast(this, LocaleController.getString(i2));
-        lambda$onBackPressed$336();
+        lambda$onBackPressed$338();
     }
 
     public static float lambda$static$0(float f) {
@@ -245,7 +245,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DialogOrContactPickerActivity.this.lambda$onBackPressed$336();
+                    DialogOrContactPickerActivity.this.lambda$onBackPressed$338();
                 }
             }
         });

@@ -81,7 +81,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda273;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda283;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -1852,13 +1852,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         if (itemOptions != null) {
             itemOptions.dismiss();
         }
-        final ItemOptions makeOptions = ItemOptions.makeOptions(this.windowView, this.resourcesProvider, this.fullscreen ? this.fullscreenButtons : this.optionsItem, true);
+        final ItemOptions makeOptions = ItemOptions.makeOptions((ViewGroup) this.windowView, this.resourcesProvider, this.fullscreen ? this.fullscreenButtons : this.optionsItem, true);
         this.options = makeOptions;
         BotDownloads botDownloads = BotDownloads.get(getContext(), this.currentAccount, this.botId);
         this.fileItems.clear();
         if (botDownloads.hasFiles()) {
             final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
-            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda273(makeOptions));
+            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda283(makeOptions));
             makeSwipeback.addGap();
             Iterator it2 = botDownloads.getFiles().iterator();
             while (it2.hasNext()) {
@@ -2131,7 +2131,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1164getWindowView() {
+    public WindowView mo1169getWindowView() {
         return this.windowView;
     }
 

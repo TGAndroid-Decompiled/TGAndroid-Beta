@@ -35,7 +35,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     public RLottieImageView imageView;
     private int itemHeight;
     public Runnable openSwipeBackLayout;
-    private final Theme.ResourcesProvider resourcesProvider;
+    protected final Theme.ResourcesProvider resourcesProvider;
     private ImageView rightIcon;
     private int selectorColor;
     int selectorRad;
@@ -44,8 +44,34 @@ public class ActionBarMenuSubItem extends FrameLayout {
     public AnimatedEmojiSpan.TextViewEmojis textView;
     boolean top;
 
-    public ActionBarMenuSubItem(android.content.Context r6, int r7, boolean r8, boolean r9, org.telegram.ui.ActionBar.Theme.ResourcesProvider r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarMenuSubItem.<init>(android.content.Context, int, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public ActionBarMenuSubItem(Context context, int i, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        this.selectorRad = 6;
+        this.itemHeight = 48;
+        this.resourcesProvider = resourcesProvider;
+        this.top = z;
+        this.bottom = z2;
+        this.textColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItem);
+        this.iconColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon);
+        this.selectorColor = getThemedColor(Theme.key_dialogButtonSelector);
+        updateBackground();
+        setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.imageView = rLottieImageView;
+        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+        this.imageView.setColorFilter(new PorterDuffColorFilter(this.iconColor, PorterDuff.Mode.MULTIPLY));
+        addView(this.imageView, LayoutHelper.createFrame(-2, 40, (LocaleController.isRTL ? 5 : 3) | 16));
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
+        this.textView = textViewEmojis;
+        textViewEmojis.setLines(1);
+        this.textView.setSingleLine(true);
+        this.textView.setGravity(3);
+        this.textView.setEllipsize(TextUtils.TruncateAt.END);
+        this.textView.setTextColor(this.textColor);
+        this.textView.setTextSize(1, 16.0f);
+        addView(this.textView, LayoutHelper.createFrame(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
+        this.checkViewLeft = LocaleController.isRTL;
+        makeCheckView(i);
     }
 
     public ActionBarMenuSubItem(Context context, boolean z, boolean z2) {
@@ -100,6 +126,10 @@ public class ActionBarMenuSubItem extends FrameLayout {
         return this.textView;
     }
 
+    public void makeCheckView(int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarMenuSubItem.makeCheckView(int):void");
+    }
+
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -120,7 +150,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.itemHeight), 1073741824));
         if (!this.expandIfMultiline || this.textView.getLayout().getLineCount() <= 1) {
             return;

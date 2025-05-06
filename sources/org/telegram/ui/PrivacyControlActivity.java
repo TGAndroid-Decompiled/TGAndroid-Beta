@@ -1374,7 +1374,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
             }
         }
-        lambda$onBackPressed$336();
+        lambda$onBackPressed$338();
     }
 
     private boolean hasChanges() {
@@ -1595,7 +1595,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$28(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$336();
+        lambda$onBackPressed$338();
     }
 
     public void lambda$createView$3() {
@@ -2012,7 +2012,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$finished$12(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$336();
+        lambda$onBackPressed$338();
     }
 
     public void lambda$processDone$26(SharedPreferences sharedPreferences, AlertDialog alertDialog, int i) {

@@ -28,7 +28,7 @@ public class GallerySheet extends BottomSheet {
     public GallerySheet(Context context, Theme.ResourcesProvider resourcesProvider, final String str, boolean z, float f) {
         super(context, false, resourcesProvider);
         fixNavigationBar(-14737633);
-        GalleryListView galleryListView = new GalleryListView(UserConfig.selectedAccount, context, new DarkThemeResourceProvider(), null, z, f) {
+        GalleryListView galleryListView = new GalleryListView(UserConfig.selectedAccount, context, new DarkThemeResourceProvider(), null, z, f, false) {
             @Override
             public String getTitle() {
                 return str;

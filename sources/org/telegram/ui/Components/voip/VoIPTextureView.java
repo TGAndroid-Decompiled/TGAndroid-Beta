@@ -21,6 +21,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.LayoutHelper;
 import org.webrtc.TextureViewRenderer;
 
 public class VoIPTextureView extends FrameLayout {
@@ -56,6 +57,7 @@ public class VoIPTextureView extends FrameLayout {
     boolean ignoreLayout;
     public final ImageView imageView;
     final boolean isCamera;
+    private View placeholderView;
     public final TextureViewRenderer renderer;
     float roundRadius;
     public float scaleTextureToFill;
@@ -186,6 +188,15 @@ public class VoIPTextureView extends FrameLayout {
             return false;
         }
         return super.drawChild(canvas, view, j);
+    }
+
+    public View getPlaceholderView() {
+        if (this.placeholderView == null) {
+            View view = new View(getContext());
+            this.placeholderView = view;
+            addView(view, LayoutHelper.createFrameMatchParent());
+        }
+        return this.placeholderView;
     }
 
     public boolean isInAnimation() {

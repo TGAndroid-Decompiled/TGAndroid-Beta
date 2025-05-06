@@ -333,7 +333,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
             }
             if (this.needFinishFragment) {
-                lambda$onBackPressed$336();
+                lambda$onBackPressed$338();
                 return;
             }
             return;
@@ -1150,7 +1150,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         ContactsActivity.this.hideActionMode();
                         return;
                     } else {
-                        ContactsActivity.this.lambda$onBackPressed$336();
+                        ContactsActivity.this.lambda$onBackPressed$338();
                         return;
                     }
                 }
@@ -1426,7 +1426,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
                 createSimpleSelectorCircleDrawable = combinedDrawable;
             }
-            this.floatingButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
+            this.floatingButton.setBackground(createSimpleSelectorCircleDrawable);
             this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
             boolean z2 = MessagesController.getGlobalMainSettings().getBoolean("view_animations", true);
             if (getMessagesController().storiesEnabled()) {

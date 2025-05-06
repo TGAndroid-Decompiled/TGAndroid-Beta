@@ -2,7 +2,6 @@ package org.telegram.messenger.voip;
 
 import com.google.android.exoplayer2.util.Util;
 import java.util.Arrays;
-import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.ApplicationLoader;
@@ -54,9 +53,8 @@ public final class Instance {
     public static final int VIDEO_STATE_INACTIVE = 0;
     public static final int VIDEO_STATE_PAUSED = 1;
     private static int bufferSize;
-    private static NativeInstance instance;
-    public static final List<String> AVAILABLE_VERSIONS = Arrays.asList("2.4.4", "2.7.7", "5.0.0", "6.0.0", "7.0.0", "8.0.0", "9.0.0", "10.0.0", "11.0.0");
     private static ServerConfig globalServerConfig = new ServerConfig(new JSONObject());
+    private static NativeInstance instance;
 
     public static final class Candidate {
         public final String component;
@@ -95,6 +93,7 @@ public final class Instance {
     }
 
     public static final class Config {
+        public final String customParameters;
         public final int dataSaving;
         public final boolean enableAec;
         public final boolean enableAgc;
@@ -108,7 +107,7 @@ public final class Instance {
         public final double receiveTimeout;
         public final String statsLogPath;
 
-        public Config(double d, double d2, int i, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, String str, String str2, int i2) {
+        public Config(double d, double d2, int i, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, String str, String str2, int i2, String str3) {
             this.initializationTimeout = d;
             this.receiveTimeout = d2;
             this.dataSaving = i;
@@ -121,10 +120,11 @@ public final class Instance {
             this.statsLogPath = str2;
             this.maxApiLayer = i2;
             this.enableSm = z6;
+            this.customParameters = str3;
         }
 
         public String toString() {
-            return "Config{initializationTimeout=" + this.initializationTimeout + ", receiveTimeout=" + this.receiveTimeout + ", dataSaving=" + this.dataSaving + ", enableP2p=" + this.enableP2p + ", enableAec=" + this.enableAec + ", enableNs=" + this.enableNs + ", enableAgc=" + this.enableAgc + ", enableCallUpgrade=" + this.enableCallUpgrade + ", logPath='" + this.logPath + "', statsLogPath='" + this.statsLogPath + "', maxApiLayer=" + this.maxApiLayer + ", enableSm=" + this.enableSm + '}';
+            return "Config{initializationTimeout=" + this.initializationTimeout + ", receiveTimeout=" + this.receiveTimeout + ", dataSaving=" + this.dataSaving + ", enableP2p=" + this.enableP2p + ", enableAec=" + this.enableAec + ", enableNs=" + this.enableNs + ", enableAgc=" + this.enableAgc + ", enableCallUpgrade=" + this.enableCallUpgrade + ", logPath='" + this.logPath + "', statsLogPath='" + this.statsLogPath + "', maxApiLayer=" + this.maxApiLayer + ", enableSm=" + this.enableSm + ", customParameters=" + this.customParameters + '}';
         }
     }
 

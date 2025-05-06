@@ -32,6 +32,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -68,6 +69,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
@@ -102,6 +104,8 @@ import com.google.android.exoplayer2.ExoPlayerImpl$$ExternalSyntheticThrowCCEIfN
 import com.google.android.exoplayer2.util.Consumer;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.tasks.OnSuccessListener;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -143,6 +147,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPOutputStream;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -1169,6 +1174,15 @@ public class AndroidUtilities {
         }
     }
 
+    public static boolean copyFileSafe(File file, File file2) {
+        try {
+            return copyFile(file, file2);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
     public static void createEmptyFile(File file) {
         try {
             if (file.exists()) {
@@ -1238,6 +1252,21 @@ public class AndroidUtilities {
                 }
             });
         }
+    }
+
+    public static void doOnPreDraw(View view, final Runnable runnable) {
+        final ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        final boolean[] zArr = new boolean[1];
+        ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public final boolean onPreDraw() {
+                boolean lambda$doOnPreDraw$24;
+                lambda$doOnPreDraw$24 = AndroidUtilities.lambda$doOnPreDraw$24(viewTreeObserver, r2, zArr, runnable);
+                return lambda$doOnPreDraw$24;
+            }
+        };
+        final ViewTreeObserver.OnPreDrawListener[] onPreDrawListenerArr = {onPreDrawListener};
+        viewTreeObserver.addOnPreDrawListener(onPreDrawListener);
     }
 
     public static boolean doSafe(Utilities.Callback0Return<Boolean> callback0Return) {
@@ -2706,6 +2735,44 @@ public class AndroidUtilities {
         }
     }
 
+    public static boolean gzip(File file, File file2) {
+        try {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
+            try {
+                GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(file2)));
+                try {
+                    byte[] bArr = new byte[8192];
+                    while (true) {
+                        int read = bufferedInputStream.read(bArr);
+                        if (read == -1) {
+                            gZIPOutputStream.close();
+                            bufferedInputStream.close();
+                            return true;
+                        }
+                        gZIPOutputStream.write(bArr, 0, read);
+                    }
+                } catch (Throwable th) {
+                    try {
+                        gZIPOutputStream.close();
+                    } catch (Throwable th2) {
+                        th.addSuppressed(th2);
+                    }
+                    throw th;
+                }
+            } catch (Throwable th3) {
+                try {
+                    bufferedInputStream.close();
+                } catch (Throwable th4) {
+                    th3.addSuppressed(th4);
+                }
+                throw th3;
+            }
+        } catch (FileNotFoundException | IOException e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
     public static boolean handleProxyIntent(android.app.Activity r13, android.content.Intent r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.handleProxyIntent(android.app.Activity, android.content.Intent):boolean");
     }
@@ -2920,6 +2987,14 @@ public class AndroidUtilities {
         return isHonor.booleanValue();
     }
 
+    public static boolean isInAirplaneMode(Context context) {
+        try {
+            return Settings.Global.getInt(context.getContentResolver(), "airplane_mode_on", 0) != 0;
+        } catch (Exception unused) {
+            return false;
+        }
+    }
+
     public static boolean isInPictureInPictureMode(Activity activity) {
         boolean isInPictureInPictureMode;
         if (Build.VERSION.SDK_INT >= 24) {
@@ -3131,8 +3206,31 @@ public class AndroidUtilities {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.isWebAppLink(java.lang.String):boolean");
     }
 
+    public static boolean isWifiEnabled(Context context) {
+        try {
+            WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService("wifi");
+            if (wifiManager != null) {
+                return wifiManager.isWifiEnabled();
+            }
+            return false;
+        } catch (Exception unused) {
+            return false;
+        }
+    }
+
     public static Boolean lambda$addLinksSafe$7(SpannableStringBuilder spannableStringBuilder, int i, boolean z, boolean z2) {
         return Boolean.valueOf(addLinks(spannableStringBuilder, i, z, z2));
+    }
+
+    public static boolean lambda$doOnPreDraw$24(ViewTreeObserver viewTreeObserver, ViewTreeObserver.OnPreDrawListener[] onPreDrawListenerArr, boolean[] zArr, Runnable runnable) {
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.removeOnPreDrawListener(onPreDrawListenerArr[0]);
+        }
+        if (!zArr[0]) {
+            zArr[0] = true;
+            runnable.run();
+        }
+        return true;
     }
 
     public static Boolean lambda$doSafe$8(Utilities.Callback0Return callback0Return) {
@@ -4632,21 +4730,15 @@ public class AndroidUtilities {
     public static void resetPictureInPictureParams(Activity activity) {
         PictureInPictureParams build;
         int i = Build.VERSION.SDK_INT;
-        if (i < 26 || activity == null || activity.isDestroyed()) {
-            return;
-        }
-        PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
-        builder.setSourceRectHint(null);
-        builder.setAspectRatio(null);
-        if (i >= 31) {
-            builder.setSeamlessResizeEnabled(false);
-            builder.setAutoEnterEnabled(false);
-        }
-        try {
+        if (i >= 26) {
+            PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
+            builder.setSourceRectHint(null);
+            builder.setAspectRatio(null);
+            if (i >= 31) {
+                builder.setAutoEnterEnabled(false);
+            }
             build = builder.build();
-            activity.setPictureInPictureParams(build);
-        } catch (Throwable th) {
-            FileLog.e(th);
+            setPictureInPictureParams(activity, build);
         }
     }
 
@@ -4930,6 +5022,21 @@ public class AndroidUtilities {
 
     public static int setPeerLayerVersion(int i, int i2) {
         return (i & 65535) | (i2 << 16);
+    }
+
+    public static void setPictureInPictureParams(Activity activity, PictureInPictureParams pictureInPictureParams) {
+        if (activity == null || activity.isDestroyed()) {
+            return;
+        }
+        if (pictureInPictureParams == null) {
+            resetPictureInPictureParams(activity);
+            return;
+        }
+        try {
+            activity.setPictureInPictureParams(pictureInPictureParams);
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
     }
 
     public static void setPreferredMaxRefreshRate(Window window) {
@@ -5496,6 +5603,13 @@ public class AndroidUtilities {
             }
         });
         duration.start();
+    }
+
+    public static void updateViewLayout(WindowManager windowManager, View view, ViewGroup.LayoutParams layoutParams) {
+        if (windowManager == null || view == null || view.getParent() == null) {
+            return;
+        }
+        windowManager.updateViewLayout(view, layoutParams);
     }
 
     public static void updateViewShow(View view, boolean z) {

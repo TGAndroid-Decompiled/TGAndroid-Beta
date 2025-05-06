@@ -24,6 +24,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -1084,6 +1086,25 @@ public final class BulletinFactory {
         twoLineLottieLayout.subtitleTextView.setText(charSequence2);
         twoLineLottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(str).setUndoAction(runnable));
         return create(twoLineLottieLayout, 2750);
+    }
+
+    public Bulletin createSimpleBulletin(TLRPC.Document document, CharSequence charSequence, CharSequence charSequence2) {
+        if (document == null) {
+            return new Bulletin.EmptyBulletin();
+        }
+        Bulletin.TwoLineLayout twoLineLayout = new Bulletin.TwoLineLayout(getContext(), this.resourcesProvider);
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(28.0f), true, null, false);
+        twoLineLayout.imageView.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(28.0f), true, closestPhotoSizeWithSize, true), document), "28_28", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "28_28", null, 0L, 0, null);
+        twoLineLayout.imageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(5.0f));
+        twoLineLayout.titleTextView.setText(charSequence);
+        twoLineLayout.titleTextView.setSingleLine(true);
+        twoLineLayout.titleTextView.setTextSize(1, 15.0f);
+        twoLineLayout.titleTextView.setMaxLines(1);
+        twoLineLayout.titleTextView.setTypeface(AndroidUtilities.bold());
+        twoLineLayout.subtitleTextView.setText(charSequence2);
+        twoLineLayout.subtitleTextView.setSingleLine(false);
+        twoLineLayout.subtitleTextView.setMaxLines(5);
+        return create(twoLineLayout, charSequence2.length() < 20 ? 1500 : 2750);
     }
 
     public Bulletin createSimpleBulletinDetail(int i, CharSequence charSequence) {

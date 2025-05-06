@@ -40,6 +40,7 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -1106,6 +1107,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
     public StarsReactionsSheet(final Context context, final int i, final long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList arrayList, boolean z, final Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         TLRPC.MessageReactor messageReactor;
+        boolean z2;
+        String formatString;
         int i2 = 9;
         this.starRef = new ColoredImageSpan[1];
         this.checkedVisiblity = false;
@@ -1144,7 +1147,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         } else {
             messageReactor = null;
         }
-        boolean z2 = (arrayList == null || arrayList.isEmpty()) ? false : true;
+        boolean z3 = (arrayList == null || arrayList.isEmpty()) ? false : true;
         long paidReactionsDialogId = StarsController.getInstance(i).getPaidReactionsDialogId(messageObject);
         this.peer = paidReactionsDialogId;
         this.lastSelectedPeer = paidReactionsDialogId != 2666000 ? paidReactionsDialogId : clientUserId;
@@ -1262,11 +1265,18 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         textView2.setGravity(17);
         textView2.setSingleLine(false);
         textView2.setMaxLines(3);
-        textView2.setText(AndroidUtilities.replaceTags(messageReactor != null ? LocaleController.formatPluralStringComma("StarsReactionTextSent", messageReactor.count) : LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title)));
+        if (messageReactor != null) {
+            formatString = LocaleController.formatPluralStringComma("StarsReactionTextSent", messageReactor.count);
+            z2 = false;
+        } else {
+            z2 = false;
+            formatString = LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title);
+        }
+        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(formatString), textView2.getPaint().getFontMetricsInt(), z2));
         if (z) {
             linearLayout3.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 40, 0, 40, 0));
         }
-        if (z2) {
+        if (z3) {
             View view = new View(context) {
                 private final LinearGradient gradient = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 private final Matrix gradientMatrix = new Matrix();
@@ -1343,7 +1353,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         ScaleStateListAnimator.apply(linearLayout4, 0.05f, 1.2f);
         linearLayout4.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
         if (z || messageReactor != null) {
-            this.layout.addView(linearLayout4, LayoutHelper.createLinear(-2, -2, 1, 0, z2 ? 10 : 4, 0, 10));
+            this.layout.addView(linearLayout4, LayoutHelper.createLinear(-2, -2, 1, 0, z3 ? 10 : 4, 0, 10));
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;

@@ -32,7 +32,7 @@ public class DialogsHintCell extends BlurredFrameLayout {
     private final LinearLayout contentView;
     private int height;
     public final BackupImageView imageView;
-    private final LinkSpanDrawable.LinksTextView messageView;
+    public final LinkSpanDrawable.LinksTextView messageView;
     private final LinearLayout parentView;
     public boolean titleIsError;
     public final AnimatedEmojiSpan.TextViewEmojis titleView;

@@ -93,7 +93,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.ViewPagerFixed;
-import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class StoryPrivacyBottomSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
@@ -126,6 +125,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     private int shiftDp;
     private HashMap smallChatsParticipantsCount;
     private boolean startedFromSendAsMessage;
+    private int storiesCount;
     private int storyPeriod;
     private ViewPagerFixed viewPager;
     private ArrayList warnUsers;
@@ -2141,93 +2141,8 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             return f;
         }
 
-        public void updateButton(boolean z) {
-            ButtonWithCounterView buttonWithCounterView;
-            ButtonWithCounterView buttonWithCounterView2;
-            ButtonWithCounterView buttonWithCounterView3;
-            int i;
-            int i2 = this.pageType;
-            int i3 = 8;
-            boolean z2 = true;
-            if (i2 == 0) {
-                this.button.setShowZero(false);
-                this.button.setEnabled(true);
-                this.button.setCount(0, z);
-                if (StoryPrivacyBottomSheet.this.isEdit) {
-                    buttonWithCounterView3 = this.button;
-                    i = R.string.StoryPrivacyButtonSave;
-                } else {
-                    buttonWithCounterView3 = this.button;
-                    i = R.string.StoryPrivacyButtonPost;
-                }
-                buttonWithCounterView3.setText(LocaleController.getString(i), z);
-                buttonWithCounterView2 = this.button2;
-                if (StoryPrivacyBottomSheet.this.sendAsMessageEnabled) {
-                    i3 = 0;
-                }
-            } else {
-                if (i2 == 1) {
-                    this.button.setShowZero(false);
-                    this.button.setEnabled(true);
-                    this.button.setText(LocaleController.getString(R.string.StoryPrivacyButtonSaveCloseFriends), z);
-                } else {
-                    if (i2 == 3) {
-                        StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                        int i4 = storyPrivacyBottomSheet.selectedContactsCount = storyPrivacyBottomSheet.mergeUsers(this.selectedUsers, this.selectedUsersByGroup).size();
-                        this.button.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z);
-                        this.button.setShowZero(false);
-                        this.buttonContainer.hide(i4 <= 0, z);
-                        this.button.setCount(i4, z);
-                        buttonWithCounterView = this.button;
-                        if (i4 <= 0) {
-                            z2 = false;
-                        }
-                    } else if (i2 == 2) {
-                        this.button.setShowZero(false);
-                        this.button.setEnabled(true);
-                        if (this.selectedUsers.isEmpty()) {
-                            this.button.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z);
-                            this.button.setCount(0, z);
-                            buttonWithCounterView2 = this.button2;
-                        } else {
-                            this.button.setText(LocaleController.getString(R.string.StoryPrivacyButtonExcludeContacts), z);
-                        }
-                    } else if (i2 == 5) {
-                        this.button.setShowZero(true);
-                        this.button.setEnabled(true ^ this.selectedUsers.isEmpty());
-                    } else if (i2 == 6) {
-                        this.button.setShowZero(false);
-                        this.button.setEnabled(true);
-                        this.button.setText(LocaleController.getString(R.string.StoryPrivacyButtonSaveCloseFriends), z);
-                        StoriesController storiesController = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getStoriesController();
-                        if (!storiesController.blocklistFull) {
-                            storiesController.getBlocklistCount();
-                            for (int i5 = 0; i5 < this.changelog.size(); i5++) {
-                                long keyAt = this.changelog.keyAt(i5);
-                                ((Boolean) this.changelog.valueAt(i5)).booleanValue();
-                                storiesController.blocklist.contains(Long.valueOf(keyAt));
-                            }
-                            buttonWithCounterView2 = this.button2;
-                        }
-                    } else {
-                        if (i2 != 4) {
-                            return;
-                        }
-                        StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
-                        int i6 = storyPrivacyBottomSheet2.excludedEveryoneCount = storyPrivacyBottomSheet2.mergeUsers(storyPrivacyBottomSheet2.excludedEveryone, StoryPrivacyBottomSheet.this.excludedEveryoneByGroup).size();
-                        this.button.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z);
-                        this.button.setShowZero(false);
-                        this.buttonContainer.hide(false, z);
-                        this.button.setCount(i6, z);
-                        buttonWithCounterView = this.button;
-                    }
-                    buttonWithCounterView.setEnabled(z2);
-                    buttonWithCounterView2 = this.button2;
-                }
-                this.button.setCount(this.selectedUsers.size(), z);
-                buttonWithCounterView2 = this.button2;
-            }
-            buttonWithCounterView2.setVisibility(i3);
+        public void updateButton(boolean r7) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.Page.updateButton(boolean):void");
         }
 
         public void updateCheckboxes(boolean r10) {
@@ -3434,6 +3349,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.keepOnMyPage = false;
         this.allowCover = true;
         this.canChangePeer = true;
+        this.storiesCount = 1;
         this.messageUsers = new ArrayList();
         this.activePage = 1;
         this.selectedType = 4;
@@ -3482,6 +3398,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.keepOnMyPage = false;
         this.allowCover = true;
         this.canChangePeer = true;
+        this.storiesCount = 1;
         this.messageUsers = new ArrayList();
         this.activePage = 1;
         this.selectedType = 4;
@@ -4137,6 +4054,19 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
     public StoryPrivacyBottomSheet setCanChangePeer(boolean z) {
         this.canChangePeer = z;
+        return this;
+    }
+
+    public StoryPrivacyBottomSheet setCount(int i) {
+        this.storiesCount = i;
+        ViewPagerFixed viewPagerFixed = this.viewPager;
+        if (viewPagerFixed != null) {
+            for (View view : viewPagerFixed.getViewPages()) {
+                if (view instanceof Page) {
+                    ((Page) view).updateButton(false);
+                }
+            }
+        }
         return this;
     }
 

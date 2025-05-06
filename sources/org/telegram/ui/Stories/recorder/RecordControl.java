@@ -119,7 +119,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
     public interface Delegate {
 
         public abstract class CC {
-            public static long $default$getMaxVideoDuration(Delegate delegate) {
+            public static long $default$getMaxVisibleVideoDuration(Delegate delegate) {
                 return 60000L;
             }
 
@@ -131,6 +131,8 @@ public class RecordControl extends View implements FlashViews.Invertable {
         boolean canRecordAudio();
 
         long getMaxVideoDuration();
+
+        long getMaxVisibleVideoDuration();
 
         void onCheckClick();
 
@@ -400,7 +402,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r46) {
+    protected void onDraw(android.graphics.Canvas r47) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.RecordControl.onDraw(android.graphics.Canvas):void");
     }
 

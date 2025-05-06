@@ -341,12 +341,12 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             float f;
             float f2;
             float f3;
-            float size;
-            boolean z;
             float f4;
+            boolean z;
             float f5;
             float f6;
             float f7;
+            float f8;
             long j;
             ImageReceiver imageReceiver;
             boolean hasStories;
@@ -360,8 +360,8 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                 dp3 += AndroidUtilities.dp(16.0f) * Utilities.clamp((DialogStoriesCell.this.overscrollPrgoress - 0.5f) / 0.5f, 1.0f, 0.0f);
             }
             float lerp = AndroidUtilities.lerp(dp + dp3, dp2, this.progressToCollapsed);
-            float f8 = lerp / 2.0f;
-            float measuredWidth = (getMeasuredWidth() / 2.0f) - f8;
+            float f9 = lerp / 2.0f;
+            float measuredWidth = (getMeasuredWidth() / 2.0f) - f9;
             float lerp2 = AndroidUtilities.lerp(measuredWidth, 0.0f, this.progressToCollapsed);
             float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), (ActionBar.getCurrentActionBarHeight() - dp2) / 2.0f, this.progressToCollapsed);
             float clamp = Utilities.clamp(this.progressToCollapsed / 0.5f, 1.0f, 0.0f);
@@ -370,14 +370,14 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             if (!avatarStoryParams2.forceAnimateProgressToSegments) {
                 avatarStoryParams2.progressToSegments = 1.0f - DialogStoriesCell.this.collapsedProgress2;
             }
-            float f9 = lerp3 + lerp;
-            this.params.originalAvatarRect.set(lerp2, lerp3, lerp2 + lerp, f9);
+            float f10 = lerp3 + lerp;
+            this.params.originalAvatarRect.set(lerp2, lerp3, lerp2 + lerp, f10);
             this.avatarImage.setAlpha(1.0f);
-            this.avatarImage.setRoundRadius((int) f8);
-            float f10 = lerp2 + f8;
-            this.cx = f10;
-            float f11 = lerp3 + f8;
-            this.cy = f11;
+            this.avatarImage.setRoundRadius((int) f9);
+            float f11 = lerp2 + f9;
+            this.cx = f11;
+            float f12 = lerp3 + f9;
+            this.cy = f12;
             if (DialogStoriesCell.this.type == 0) {
                 paint = DialogStoriesCell.this.backgroundPaint;
                 color = Theme.getColor(Theme.key_actionBarDefault);
@@ -387,11 +387,11 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             }
             paint.setColor(color);
             if (this.progressToCollapsed != 0.0f) {
-                canvas.drawCircle(this.cx, this.cy, AndroidUtilities.dp(3.0f) + f8, DialogStoriesCell.this.backgroundPaint);
+                canvas.drawCircle(this.cx, this.cy, AndroidUtilities.dp(3.0f) + f9, DialogStoriesCell.this.backgroundPaint);
             }
             canvas.save();
-            float f12 = this.bounceScale;
-            canvas.scale(f12, f12, this.cx, this.cy);
+            float f13 = this.bounceScale;
+            canvas.scale(f13, f13, this.cx, this.cy);
             if (this.radialProgress == null) {
                 this.radialProgress = DialogStoriesCell.this.radialProgress;
             }
@@ -400,20 +400,21 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             if (z2 || (this.progressWasDrawn && (radialProgress = this.radialProgress) != null && radialProgress.getAnimatedProgress() < 0.98f)) {
                 f = lerp3;
                 f2 = lerp2;
-                f3 = f9;
+                f3 = f10;
                 if (z2) {
-                    float f13 = 0.0f;
+                    float f14 = 0.0f;
                     for (int i = 0; i < uploadingAndEditingStories.size(); i++) {
-                        f13 += ((StoriesController.UploadingStory) uploadingAndEditingStories.get(i)).progress;
+                        f14 += ((StoriesController.UploadingStory) uploadingAndEditingStories.get(i)).progress;
                     }
+                    float size = (DialogStoriesCell.this.storiesController.uploadedStories + f14) / (r5 + uploadingAndEditingStories.size());
                     DialogStoriesCell dialogStoriesCell = DialogStoriesCell.this;
                     boolean isCloseFriends = ((StoriesController.UploadingStory) uploadingAndEditingStories.get(uploadingAndEditingStories.size() - 1)).isCloseFriends();
                     dialogStoriesCell.lastUploadingCloseFriends = isCloseFriends;
-                    size = f13 / uploadingAndEditingStories.size();
+                    f4 = size;
                     z = isCloseFriends;
                 } else {
                     z = DialogStoriesCell.this.lastUploadingCloseFriends;
-                    size = 1.0f;
+                    f4 = 1.0f;
                 }
                 invalidate();
                 if (this.radialProgress == null) {
@@ -440,7 +441,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                 closeFriendsPaint.setAlpha(255);
                 this.radialProgress.setPaint(closeFriendsPaint);
                 this.radialProgress.setProgressRect((int) (this.avatarImage.getImageX() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageX2() + AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY2() + AndroidUtilities.dp(3.0f)));
-                this.radialProgress.setProgress(Utilities.clamp(size, 1.0f, 0.0f), this.progressWasDrawn);
+                this.radialProgress.setProgress(Utilities.clamp(f4, 1.0f, 0.0f), this.progressWasDrawn);
                 if (this.avatarImage.getVisible()) {
                     this.radialProgress.draw(canvas);
                 }
@@ -448,7 +449,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                 DialogStoriesCell.this.drawCircleForce = true;
                 invalidate();
             } else {
-                float f14 = this.failT.set(this.isFail);
+                float f15 = this.failT.set(this.isFail);
                 if (this.drawAvatar) {
                     if (this.progressWasDrawn) {
                         animateBounce();
@@ -473,13 +474,13 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                         ofFloat.start();
                     }
                     StoriesUtilities.AvatarStoryParams avatarStoryParams4 = this.params;
-                    f14 *= avatarStoryParams4.progressToSegments;
+                    f15 *= avatarStoryParams4.progressToSegments;
                     avatarStoryParams4.animate = true ^ this.progressWasDrawn;
-                    avatarStoryParams4.progressToArc = getArcProgress(this.cx, f8);
+                    avatarStoryParams4.progressToArc = getArcProgress(this.cx, f9);
                     StoriesUtilities.AvatarStoryParams avatarStoryParams5 = this.params;
                     avatarStoryParams5.isLast = this.isLast;
                     avatarStoryParams5.isFirst = this.isFirst;
-                    avatarStoryParams5.alpha = 1.0f - f14;
+                    avatarStoryParams5.alpha = 1.0f - f15;
                     boolean z3 = this.isSelf;
                     if (z3 || !this.crossfadeToDialog) {
                         avatarStoryParams5.crossfadeToDialog = 0L;
@@ -488,22 +489,22 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                         avatarStoryParams5.crossfadeToDialogProgress = this.progressToCollapsed2;
                     }
                     if (z3) {
-                        f5 = f11;
+                        f6 = f12;
                         j = this.dialogId;
-                        f6 = f10;
+                        f7 = f11;
                         canvas2 = canvas;
-                        f7 = lerp3;
+                        f8 = lerp3;
                         imageReceiver = this.avatarImage;
-                        f4 = lerp2;
+                        f5 = lerp2;
                         hasStories = DialogStoriesCell.this.storiesController.hasSelfStories();
-                        f3 = f9;
+                        f3 = f10;
                         avatarStoryParams = this.params;
                     } else {
-                        f5 = f11;
-                        f6 = f10;
-                        f7 = lerp3;
-                        f4 = lerp2;
-                        f3 = f9;
+                        f6 = f12;
+                        f7 = f11;
+                        f8 = lerp3;
+                        f5 = lerp2;
+                        f3 = f10;
                         j = this.dialogId;
                         imageReceiver = this.avatarImage;
                         hasStories = DialogStoriesCell.this.storiesController.hasStories(j);
@@ -511,28 +512,28 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                         canvas2 = canvas;
                     }
                     StoriesUtilities.drawAvatarWithStory(j, canvas2, imageReceiver, hasStories, avatarStoryParams);
-                    f = f7;
-                    if (f14 > 0.0f) {
+                    f = f8;
+                    if (f15 > 0.0f) {
                         Paint errorPaint = StoriesUtilities.getErrorPaint(this.avatarImage);
                         errorPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                        errorPaint.setAlpha((int) (255.0f * f14));
-                        canvas.drawCircle(f6, f5, (f8 + AndroidUtilities.dp(4.0f)) * this.params.getScale(), errorPaint);
+                        errorPaint.setAlpha((int) (255.0f * f15));
+                        canvas.drawCircle(f7, f6, (f9 + AndroidUtilities.dp(4.0f)) * this.params.getScale(), errorPaint);
                     }
                 } else {
                     f = lerp3;
-                    f4 = lerp2;
-                    f3 = f9;
+                    f5 = lerp2;
+                    f3 = f10;
                 }
                 this.progressWasDrawn = false;
                 if (this.drawAvatar) {
                     canvas.save();
-                    float f15 = 1.0f - clamp;
-                    canvas.scale(f15, f15, this.cx + AndroidUtilities.dp(16.0f), this.cy + AndroidUtilities.dp(16.0f));
+                    float f16 = 1.0f - clamp;
+                    canvas.scale(f16, f16, this.cx + AndroidUtilities.dp(16.0f), this.cy + AndroidUtilities.dp(16.0f));
                     drawPlus(canvas, this.cx, this.cy, 1.0f);
-                    drawFail(canvas, this.cx, this.cy, f14);
+                    drawFail(canvas, this.cx, this.cy, f15);
                     canvas.restore();
                 }
-                f2 = f4;
+                f2 = f5;
             }
             canvas.restore();
             if (this.crossfadeToDialog && this.progressToCollapsed2 > 0.0f) {
@@ -547,7 +548,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                     this.textAlpha = 1.0f;
                 } else {
                     StoriesUtilities.AvatarStoryParams avatarStoryParams6 = this.params;
-                    float f16 = avatarStoryParams6.progressToSate;
+                    float f17 = avatarStoryParams6.progressToSate;
                     this.textAlpha = avatarStoryParams6.globalState == 2 ? 0.7f : 1.0f;
                 }
                 this.textViewContainer.setAlpha(this.textAlphaTransition * this.textAlpha);
@@ -1607,7 +1608,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     public void openStoryRecorder(final long j) {
         final StoryCell storyCell;
         StoriesController.StoryLimit checkStoryLimit;
-        if (j == 0 && (checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit()) != null) {
+        if (j == 0 && (checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit()) != null && checkStoryLimit.active(this.currentAccount)) {
             this.fragment.showDialog(new LimitReachedBottomSheet(this.fragment, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount, null));
             return;
         }

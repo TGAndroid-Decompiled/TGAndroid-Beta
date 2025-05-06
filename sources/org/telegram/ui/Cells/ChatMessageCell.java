@@ -3174,11 +3174,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         boolean isVideoCall = messageObject.isVideoCall();
         int i3 = this.otherX;
         if (eventX >= i3) {
-            if (eventX <= i3 + AndroidUtilities.dp((LocaleController.isRTL ? 0 : 200) + 30 + (!isVideoCall ? 2 : 0)) && eventY >= this.otherY - AndroidUtilities.dp(14.0f) && eventY <= this.otherY + AndroidUtilities.dp(50.0f)) {
+            if (eventX <= i3 + (LocaleController.isRTL ? 0 : this.backgroundWidth - AndroidUtilities.dp(70.0f)) + AndroidUtilities.dp((!isVideoCall ? 2 : 0) + 30) && eventY >= this.otherY - AndroidUtilities.dp(14.0f) && eventY <= this.otherY + AndroidUtilities.dp(50.0f)) {
                 this.otherPressed = true;
                 this.selectorDrawableMaskType[0] = 4;
                 if (Build.VERSION.SDK_INT >= 21 && this.selectorDrawable[0] != null) {
-                    int dp = this.otherX + AndroidUtilities.dp((LocaleController.isRTL ? 0 : 200) + (!isVideoCall ? 2 : 0)) + (Theme.chat_msgInCallDrawable[isVideoCall ? 1 : 0].getIntrinsicWidth() / 2);
+                    int dp = this.otherX + (LocaleController.isRTL ? 0 : this.backgroundWidth - AndroidUtilities.dp(70.0f)) + AndroidUtilities.dp(!isVideoCall ? 2 : 0) + (Theme.chat_msgInCallDrawable[isVideoCall ? 1 : 0].getIntrinsicWidth() / 2);
                     int intrinsicHeight = this.otherY + (Theme.chat_msgInCallDrawable[isVideoCall ? 1 : 0].getIntrinsicHeight() / 2);
                     this.selectorDrawable[0].setBounds(dp - AndroidUtilities.dp(20.0f), intrinsicHeight - AndroidUtilities.dp(20.0f), dp + AndroidUtilities.dp(20.0f), intrinsicHeight + AndroidUtilities.dp(20.0f));
                     this.selectorDrawable[0].setHotspot(eventX, eventY);

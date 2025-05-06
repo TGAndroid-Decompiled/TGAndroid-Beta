@@ -130,24 +130,26 @@ public class ActionBarPopupWindow extends PopupWindow {
                 this.swipeBackLayout = popupSwipeBackLayout;
                 addView(popupSwipeBackLayout, LayoutHelper.createFrame(-2, -2.0f));
             }
-            try {
-                ScrollView scrollView = new ScrollView(context);
-                this.scrollView = scrollView;
-                scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-                    @Override
-                    public void onScrollChanged() {
-                        ActionBarPopupWindowLayout.this.invalidate();
+            if ((i2 & 4) == 0) {
+                try {
+                    ScrollView scrollView = new ScrollView(context);
+                    this.scrollView = scrollView;
+                    scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                        @Override
+                        public void onScrollChanged() {
+                            ActionBarPopupWindowLayout.this.invalidate();
+                        }
+                    });
+                    this.scrollView.setVerticalScrollBarEnabled(false);
+                    PopupSwipeBackLayout popupSwipeBackLayout2 = this.swipeBackLayout;
+                    if (popupSwipeBackLayout2 != null) {
+                        popupSwipeBackLayout2.addView(this.scrollView, LayoutHelper.createFrame(-2, -2, this.shownFromBottom ? 80 : 48));
+                    } else {
+                        addView(this.scrollView, LayoutHelper.createFrame(-2, -2.0f));
                     }
-                });
-                this.scrollView.setVerticalScrollBarEnabled(false);
-                PopupSwipeBackLayout popupSwipeBackLayout2 = this.swipeBackLayout;
-                if (popupSwipeBackLayout2 != null) {
-                    popupSwipeBackLayout2.addView(this.scrollView, LayoutHelper.createFrame(-2, -2, this.shownFromBottom ? 80 : 48));
-                } else {
-                    addView(this.scrollView, LayoutHelper.createFrame(-2, -2.0f));
+                } catch (Throwable th) {
+                    FileLog.e(th);
                 }
-            } catch (Throwable th) {
-                FileLog.e(th);
             }
             LinearLayout linearLayout = new LinearLayout(context) {
                 @Override

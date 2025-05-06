@@ -659,7 +659,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$18(TLObject tLObject, Bundle bundle) {
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$336();
+                LoginActivity.this.lambda$onBackPressed$338();
                 LoginActivity.this.emailChangeFinishCallback.run();
             } else if (tLObject instanceof TL_account.TL_emailVerifiedLogin) {
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, ((TL_account.TL_emailVerifiedLogin) tLObject).sent_code);
@@ -4162,7 +4162,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             String string;
             int i;
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$336();
+                LoginActivity.this.lambda$onBackPressed$338();
                 LoginActivity.this.emailChangeFinishCallback.run();
                 return;
             }
@@ -4862,47 +4862,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$new$7(String str, AlertDialog alertDialog, int i) {
-            String str2;
-            try {
-                PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
-                String format = String.format(Locale.US, "%s (%d)", packageInfo.versionName, Integer.valueOf(packageInfo.versionCode));
-                Intent intent = new Intent("android.intent.action.SENDTO");
-                intent.setData(Uri.parse("mailto:"));
-                intent.putExtra("android.intent.extra.EMAIL", new String[]{"sms@telegram.org"});
-                intent.putExtra("android.intent.extra.SUBJECT", "Android registration/login issue " + format + " " + this.emailPhone);
-                StringBuilder sb = new StringBuilder();
-                sb.append("Phone: ");
-                sb.append(this.requestPhone);
-                sb.append("\nApp version: ");
-                sb.append(format);
-                sb.append("\nOS version: SDK ");
-                sb.append(Build.VERSION.SDK_INT);
-                sb.append("\nDevice Name: ");
-                sb.append(Build.MANUFACTURER);
-                sb.append(Build.MODEL);
-                if (str != null) {
-                    str2 = "\nOperator: " + str;
-                } else {
-                    str2 = "";
-                }
-                sb.append(str2);
-                sb.append("\nLocale: ");
-                sb.append(Locale.getDefault());
-                sb.append("\nError: ");
-                sb.append(this.lastError);
-                intent.putExtra("android.intent.extra.TEXT", sb.toString());
-                getContext().startActivity(Intent.createChooser(intent, "Send email..."));
-            } catch (Exception unused) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(R.string.AppName), LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled));
-            }
+        public void lambda$new$7(java.lang.String r9, android.content.Context r10, org.telegram.ui.ActionBar.AlertDialog r11, int r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.lambda$new$7(java.lang.String, android.content.Context, org.telegram.ui.ActionBar.AlertDialog, int):void");
         }
 
         public void lambda$new$8(AlertDialog alertDialog, int i) {
             LoginActivity.this.setPage(0, true, null, true);
         }
 
-        public void lambda$new$9(Context context, View view) {
+        public void lambda$new$9(final Context context, View view) {
             final String str;
             TLRPC.TL_auth_sentCode tL_auth_sentCode;
             Bundle bundle = this.nextCodeParams;
@@ -4941,10 +4909,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     e = e2;
                     FileLog.e(e);
                     LoginActivity.this.getConnectionsManager().sendRequest(tL_auth_reportMissingCode, null, 8);
-                    new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new AlertDialog.OnButtonClickListener() {
+                    new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i) {
-                            LoginActivity.LoginActivitySmsView.this.lambda$new$7(str, alertDialog, i);
+                            LoginActivity.LoginActivitySmsView.this.lambda$new$7(str, context, alertDialog, i);
                         }
                     }).setPositiveButton(LocaleController.getString(R.string.Close), null).setNegativeButton(LocaleController.getString(R.string.DidNotGetTheCodeEditNumberButton), new AlertDialog.OnButtonClickListener() {
                         @Override
@@ -4954,10 +4922,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }).show();
                 }
                 LoginActivity.this.getConnectionsManager().sendRequest(tL_auth_reportMissingCode, null, 8);
-                new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new AlertDialog.OnButtonClickListener() {
+                new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        LoginActivity.LoginActivitySmsView.this.lambda$new$7(str, alertDialog, i);
+                        LoginActivity.LoginActivitySmsView.this.lambda$new$7(str, context, alertDialog, i);
                     }
                 }).setPositiveButton(LocaleController.getString(R.string.Close), null).setNegativeButton(LocaleController.getString(R.string.DidNotGetTheCodeEditNumberButton), new AlertDialog.OnButtonClickListener() {
                     @Override
@@ -4977,7 +4945,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$22(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$336();
+            LoginActivity.this.lambda$onBackPressed$338();
         }
 
         public void lambda$onNextPressed$23() {
@@ -5007,7 +4975,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$26(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$336();
+            LoginActivity.this.lambda$onBackPressed$338();
         }
 
         public void lambda$onNextPressed$27(Activity activity) {
@@ -5432,7 +5400,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             NotificationCenter globalInstance;
             int i;
             if (LoginActivity.this.activityMode != 0) {
-                LoginActivity.this.lambda$onBackPressed$336();
+                LoginActivity.this.lambda$onBackPressed$338();
                 return false;
             }
             int i2 = this.prevType;
@@ -7264,7 +7232,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (UserConfig.selectedAccount != i) {
                 ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
             }
-            LoginActivity.this.lambda$onBackPressed$336();
+            LoginActivity.this.lambda$onBackPressed$338();
         }
 
         public void lambda$onNextPressed$18(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
@@ -7912,7 +7880,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
     public void lambda$createView$3(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$336();
+            lambda$onBackPressed$338();
         }
     }
 
@@ -8367,7 +8335,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 }
             });
             this.pendingSwitchingAccount = false;
-            lambda$onBackPressed$336();
+            lambda$onBackPressed$338();
             return;
         }
         if (z && z2) {

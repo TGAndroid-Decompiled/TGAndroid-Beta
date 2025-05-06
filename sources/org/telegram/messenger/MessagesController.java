@@ -173,6 +173,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int captionLengthLimitDefault;
     public int captionLengthLimitPremium;
     private LongSparseArray channelAdmins;
+    public int channelAutotranslationLevelMin;
     public int channelBgIconLevelMin;
     private ChannelBoostsController channelBoostsControler;
     public int channelCustomWallpaperLevelMin;
@@ -214,6 +215,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private LongSparseArray currentDeletingTaskMediaMids;
     private LongSparseArray currentDeletingTaskMids;
     private int currentDeletingTaskTime;
+    public TLRPC.TL_pendingSuggestion customPendingSuggestion;
     public String dcDomainName;
     public LongSparseIntArray deletedHistory;
     private LongSparseArray deletingDialogs;
@@ -499,6 +501,9 @@ public class MessagesController extends BaseController implements NotificationCe
     public long starsPaidPostAmountMax;
     public long starsPaidReactionAmountMax;
     public long starsRevenueWithdrawalMin;
+    public long starsStargiftResaleAmountMax;
+    public long starsStargiftResaleAmountMin;
+    public int starsStargiftResaleCommisionPermille;
     public long starsSubscriptionAmountMax;
     public float starsUsdSellRate1000;
     public float starsUsdWithdrawRate1000;
@@ -2572,6 +2577,9 @@ public class MessagesController extends BaseController implements NotificationCe
         this.uploadMaxFileParts = i3;
         this.uploadMaxFilePartsPremium = this.mainPreferences.getInt("uploadMaxFilePartsPremium", i3 * 2);
         this.premiumInvoiceSlug = this.mainPreferences.getString("premiumInvoiceSlug", null);
+        this.starsStargiftResaleAmountMax = this.mainPreferences.getLong("starsStargiftResaleAmountMax", 35000L);
+        this.starsStargiftResaleAmountMin = this.mainPreferences.getLong("starsStargiftResaleAmountMin", 125L);
+        this.starsStargiftResaleCommisionPermille = this.mainPreferences.getInt("starsStargiftResaleCommisionPermille", 800);
         this.premiumBotUsername = this.mainPreferences.getString("premiumBotUsername", null);
         this.premiumLocked = this.mainPreferences.getBoolean("premiumLocked", false);
         this.starsLocked = this.mainPreferences.getBoolean("starsLocked", true);
@@ -2655,6 +2663,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.recommendedChannelsLimitPremium = this.mainPreferences.getInt("recommendedChannelsLimitPremium", 100);
         this.boostsChannelLevelMax = this.mainPreferences.getInt("boostsChannelLevelMax", 100);
         this.channelRestrictSponsoredLevelMin = this.mainPreferences.getInt("channelRestrictSponsoredLevelMin", 30);
+        this.channelAutotranslationLevelMin = this.mainPreferences.getInt("channelAutotranslationLevelMin", 3);
         this.savedDialogsPinnedLimitDefault = this.mainPreferences.getInt("savedDialogsPinnedLimitDefault", 4);
         this.savedDialogsPinnedLimitPremium = this.mainPreferences.getInt("savedDialogsPinnedLimitPremium", 6);
         this.storyQualityFull = this.mainPreferences.getBoolean("storyQualityFull", true);
@@ -2901,7 +2910,7 @@ public class MessagesController extends BaseController implements NotificationCe
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.activeGroupCallsUpdated, new Object[0]);
     }
 
-    private void applyAppConfig(org.telegram.tgnet.TLRPC.TL_jsonObject r32) {
+    private void applyAppConfig(org.telegram.tgnet.TLRPC.TL_jsonObject r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.applyAppConfig(org.telegram.tgnet.TLRPC$TL_jsonObject):void");
     }
 
@@ -4508,7 +4517,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.checkingPromoInfo = false;
     }
 
-    public void lambda$checkPromoInfoInternal$158(final long r11, final org.telegram.tgnet.TLRPC.TL_help_promoData r13, final int r14) {
+    public void lambda$checkPromoInfoInternal$158(final long r12, final org.telegram.tgnet.TLRPC.TL_help_promoData r14, final int r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$checkPromoInfoInternal$158(long, org.telegram.tgnet.TLRPC$TL_help_promoData, int):void");
     }
 
@@ -8266,7 +8275,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$processDialogsUpdate$216(org.telegram.tgnet.TLRPC.messages_Dialogs r23, androidx.collection.LongSparseArray r24, androidx.collection.LongSparseArray r25, boolean r26, org.telegram.messenger.support.LongSparseIntArray r27) {
+    public void lambda$processDialogsUpdate$216(org.telegram.tgnet.TLRPC.messages_Dialogs r19, androidx.collection.LongSparseArray r20, androidx.collection.LongSparseArray r21, boolean r22, org.telegram.messenger.support.LongSparseIntArray r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processDialogsUpdate$216(org.telegram.tgnet.TLRPC$messages_Dialogs, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, boolean, org.telegram.messenger.support.LongSparseIntArray):void");
     }
 
@@ -8569,7 +8578,7 @@ public class MessagesController extends BaseController implements NotificationCe
         checkChatInviter(chat.id, true);
     }
 
-    public void lambda$processLoadedDialogs$207(org.telegram.tgnet.TLRPC.Message r28, int r29, org.telegram.tgnet.TLRPC.messages_Dialogs r30, java.util.ArrayList r31, java.util.ArrayList r32, boolean r33, int r34, androidx.collection.LongSparseArray r35, androidx.collection.LongSparseArray r36, androidx.collection.LongSparseArray r37, int r38, boolean r39, int r40, java.util.ArrayList r41) {
+    public void lambda$processLoadedDialogs$207(org.telegram.tgnet.TLRPC.Message r25, int r26, org.telegram.tgnet.TLRPC.messages_Dialogs r27, java.util.ArrayList r28, java.util.ArrayList r29, boolean r30, int r31, androidx.collection.LongSparseArray r32, androidx.collection.LongSparseArray r33, androidx.collection.LongSparseArray r34, int r35, boolean r36, int r37, java.util.ArrayList r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogs$207(org.telegram.tgnet.TLRPC$Message, int, org.telegram.tgnet.TLRPC$messages_Dialogs, java.util.ArrayList, java.util.ArrayList, boolean, int, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, int, boolean, int, java.util.ArrayList):void");
     }
 
@@ -16088,15 +16097,21 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         if (j == 0) {
-            if (!this.pendingSuggestions.remove(str) && this.dismissedSuggestions.contains(str)) {
-                return;
+            TLRPC.TL_pendingSuggestion tL_pendingSuggestion = this.customPendingSuggestion;
+            if (tL_pendingSuggestion != null && TextUtils.equals(str, tL_pendingSuggestion.suggestion)) {
+                this.customPendingSuggestion = null;
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+            } else {
+                if (!this.pendingSuggestions.remove(str) && this.dismissedSuggestions.contains(str)) {
+                    return;
+                }
+                this.dismissedSuggestions.add(str);
+                SharedPreferences.Editor edit = this.mainPreferences.edit();
+                edit.putStringSet("pendingSuggestions", this.pendingSuggestions);
+                edit.putStringSet("dismissedSuggestions", this.dismissedSuggestions);
+                edit.commit();
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
             }
-            this.dismissedSuggestions.add(str);
-            SharedPreferences.Editor edit = this.mainPreferences.edit();
-            edit.putStringSet("pendingSuggestions", this.pendingSuggestions);
-            edit.putStringSet("dismissedSuggestions", this.dismissedSuggestions);
-            edit.commit();
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
         }
         TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
         tL_help_dismissSuggestion.suggestion = str;

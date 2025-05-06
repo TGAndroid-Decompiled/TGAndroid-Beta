@@ -252,7 +252,7 @@ public class WebviewActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    WebviewActivity.this.lambda$onBackPressed$336();
+                    WebviewActivity.this.lambda$onBackPressed$338();
                     return;
                 }
                 if (i != 1) {

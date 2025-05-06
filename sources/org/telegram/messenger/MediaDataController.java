@@ -3871,7 +3871,7 @@ public class MediaDataController extends BaseController {
                 MediaDataController.this.lambda$processLoadedMedia$132(messages_messages, i, j, arrayList, i2, i3, z, i4, i5);
             }
         };
-        if (getMessagesController().getTranslateController().isFeatureAvailable()) {
+        if (getMessagesController().getTranslateController().isFeatureAvailable(j)) {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {

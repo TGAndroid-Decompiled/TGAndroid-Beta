@@ -19,6 +19,8 @@ import org.telegram.messenger.FileLoadOperation;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FilePathDatabase;
 import org.telegram.messenger.FileUploadOperation;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -1160,6 +1162,28 @@ public class FileLoader extends BaseController {
         }
     }
 
+    public void lambda$uploadFile$19(NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
+        getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploadFailed);
+    }
+
+    public static void lambda$uploadFile$20(String str, Utilities.Callback callback, Runnable runnable, int i, int i2, Object[] objArr) {
+        TLRPC.InputFile inputFile;
+        if (i == NotificationCenter.fileUploaded) {
+            if (objArr[0] != str) {
+                return;
+            } else {
+                inputFile = (TLRPC.InputFile) objArr[1];
+            }
+        } else if (i != NotificationCenter.fileUploadFailed || objArr[0] != str) {
+            return;
+        } else {
+            inputFile = null;
+        }
+        callback.run(inputFile);
+        runnable.run();
+    }
+
     public void lambda$uploadFile$5(boolean z, String str, long j, int i, boolean z2, boolean z3) {
         long j2;
         LinkedList<FileUploadOperation> linkedList;
@@ -1804,6 +1828,24 @@ public class FileLoader extends BaseController {
             i2 = fileLocation.dc_id + (fileLocation.local_id << 16);
         }
         this.filePathDatabase.putPath(j, i2, i, 1, str);
+    }
+
+    public void uploadFile(final String str, final Utilities.Callback<TLRPC.InputFile> callback) {
+        final Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                FileLoader.this.lambda$uploadFile$19(r2);
+            }
+        };
+        final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
+            @Override
+            public final void didReceivedNotification(int i, int i2, Object[] objArr) {
+                FileLoader.lambda$uploadFile$20(str, callback, runnable, i, i2, objArr);
+            }
+        }};
+        getNotificationCenter().addObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
+        getNotificationCenter().addObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploadFailed);
+        uploadFile(str, false, false, 67108864);
     }
 
     public void uploadFile(String str, boolean z, boolean z2, int i) {

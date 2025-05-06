@@ -2860,9 +2860,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public void setPlaybackSpeed(float f) {
-        ExoPlayer exoPlayer = this.player;
-        if (exoPlayer != null) {
-            exoPlayer.setPlaybackParameters(new PlaybackParameters(f, f > 1.0f ? 0.98f : 1.0f));
+        try {
+            ExoPlayer exoPlayer = this.player;
+            if (exoPlayer != null) {
+                exoPlayer.setPlaybackParameters(new PlaybackParameters(f, f > 1.0f ? 0.98f : 1.0f));
+            }
+        } catch (Exception unused) {
         }
     }
 

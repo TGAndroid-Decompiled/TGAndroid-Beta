@@ -2210,7 +2210,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         if (this.isChannel || getUserConfig().isPremium()) {
             if (this.isChannel) {
-                lambda$onBackPressed$336();
+                lambda$onBackPressed$338();
             } else {
                 TLRPC.User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser.color == null) {
@@ -2300,7 +2300,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 getMessagesController().putUser(currentUser, false);
                 getUserConfig().saveConfig(true);
-                lambda$onBackPressed$336();
+                lambda$onBackPressed$338();
                 showBulletin();
             }
             this.applying = true;
@@ -2313,13 +2313,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$336();
+            lambda$onBackPressed$338();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
         }
         apply();
-        lambda$onBackPressed$336();
+        lambda$onBackPressed$338();
         showBulletin();
     }
 
@@ -2337,7 +2337,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$336();
+            lambda$onBackPressed$338();
         }
     }
 
@@ -2346,7 +2346,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$336();
+        lambda$onBackPressed$338();
     }
 
     public void lambda$showUnsavedAlert$4(AlertDialog alertDialog, int i) {

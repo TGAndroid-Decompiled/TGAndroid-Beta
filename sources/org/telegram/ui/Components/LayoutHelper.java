@@ -38,6 +38,10 @@ public abstract class LayoutHelper {
         return layoutParams;
     }
 
+    public static FrameLayout.LayoutParams createFrameMatchParent() {
+        return createFrame(-1, -1.0f);
+    }
+
     public static FrameLayout.LayoutParams createFrameRelatively(float f, float f2, int i) {
         return new FrameLayout.LayoutParams(getSize(f), getSize(f2), getAbsoluteGravity(i));
     }
