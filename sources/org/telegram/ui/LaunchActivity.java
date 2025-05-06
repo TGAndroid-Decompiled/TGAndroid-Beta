@@ -5552,10 +5552,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 return;
             }
             if (AndroidUtilities.isTablet()) {
-                if (this.layersActionBarLayout.getView().getVisibility() == 0) {
+                ActionBarLayout actionBarLayout2 = this.layersActionBarLayout;
+                if (actionBarLayout2 != null && actionBarLayout2.getView().getVisibility() == 0) {
                     actionBarLayout = this.layersActionBarLayout;
                     actionBarLayout.onBackPressed();
-                } else if (this.rightActionBarLayout.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
+                }
+                ActionBarLayout actionBarLayout3 = this.rightActionBarLayout;
+                if (actionBarLayout3 != null && actionBarLayout3.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
                         baseFragment.lambda$onBackPressed$336();

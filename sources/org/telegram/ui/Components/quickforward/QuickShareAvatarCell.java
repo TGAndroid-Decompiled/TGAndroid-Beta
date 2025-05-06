@@ -66,7 +66,7 @@ public class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListene
     private void drawTextImpl(Canvas canvas, float f, float f2, float f3) {
         RectF rectF = AndroidUtilities.rectTmp;
         float dp = AndroidUtilities.dp(21.0f) / 2.0f;
-        rectF.set(f, f2, this.textLayout.getLineWidth(0) + f + (AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.TEXT_PADDING_INTERNAL) * 2), AndroidUtilities.dp(21.0f) + f2);
+        rectF.set(f, f2, this.textLayout.getWidth() + f + (AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.TEXT_PADDING_INTERNAL) * 2), AndroidUtilities.dp(21.0f) + f2);
         boolean hasGradientService = this.cell.hasGradientService();
         Paint paint = this.blurredTextPaint;
         if (paint != null) {
@@ -149,7 +149,7 @@ public class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListene
                 }
                 int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp((QuickShareSelectorDrawable.Sizes.TEXT_PADDING_INTERNAL * 2) + (QuickShareSelectorDrawable.Sizes.TEXT_PADDING_EXTERNAL * 2));
                 TextPaint textPaint = new TextPaint(themedPaint);
-                this.textLayout = new StaticLayout(TextUtils.ellipsize(str2, textPaint, dp, TextUtils.TruncateAt.END), textPaint, dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.textLayout = new StaticLayout(TextUtils.ellipsize(str2, textPaint, dp, TextUtils.TruncateAt.END), textPaint, (int) Math.ceil(textPaint.measureText(r6, 0, r6.length())), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 return;
             }
             str = user != null ? ContactsController.formatName(user.first_name, user.last_name) : "";
@@ -180,8 +180,8 @@ public class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListene
         canvas.save();
         canvas.scale(f10, f10, f5, f6);
         float f11 = this.selectedFactor * f8;
-        float lineWidth = this.textLayout.getLineWidth(0) + (AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.TEXT_PADDING_INTERNAL) * 2);
-        this.bgX1 = fixX(fixX(f5, lineWidth, f3, f4), lineWidth, f, f2) - (lineWidth / 2.0f);
+        float width = this.textLayout.getWidth() + (AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.TEXT_PADDING_INTERNAL) * 2);
+        this.bgX1 = fixX(fixX(f5, width, f3, f4), width, f, f2) - (width / 2.0f);
         this.bgY = f6 - AndroidUtilities.dp(58.0f);
         if (this.blurredTextDrawable == null && !this.parent.isDestroyed()) {
             this.blurredTextPaint = this.parent.getBlurBitmapPaint();
@@ -192,13 +192,13 @@ public class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListene
                 }
             });
             this.blurredTextDrawable = blurVisibilityDrawable;
-            blurVisibilityDrawable.render((int) lineWidth, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.TEXT_BLUR_RADIUS), 3.0f);
+            blurVisibilityDrawable.render((int) width, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.TEXT_BLUR_RADIUS), 3.0f);
         }
         BlurVisibilityDrawable blurVisibilityDrawable2 = this.blurredTextDrawable;
         if (blurVisibilityDrawable2 != null) {
             float f12 = this.bgX1;
             float f13 = this.bgY;
-            blurVisibilityDrawable2.setBounds((int) f12, (int) f13, (int) (f12 + lineWidth), (int) (f13 + AndroidUtilities.dp(21.0f)));
+            blurVisibilityDrawable2.setBounds((int) f12, (int) f13, (int) (f12 + width), (int) (f13 + AndroidUtilities.dp(21.0f)));
             this.blurredTextDrawable.setAlpha((int) (f11 * 255.0f));
             this.blurredTextDrawable.draw(canvas);
         }

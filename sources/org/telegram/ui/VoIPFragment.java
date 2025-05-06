@@ -203,6 +203,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     private int selectedRating;
     private boolean signalBarWasReceived;
     private ImageView speakerPhoneIcon;
+    private int speakerPhoneIconResId;
     LinearLayout statusLayout;
     private int statusLayoutAnimateToOffset;
     private VoIPStatusTextView statusTextView;
@@ -1381,6 +1382,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         int systemWindowInsetTop6;
         int systemWindowInsetTop7;
         int systemWindowInsetTop8;
+        int systemWindowInsetTop9;
         int systemWindowInsetBottom3;
         int systemWindowInsetBottom4;
         int systemWindowInsetBottom5;
@@ -1397,35 +1399,39 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.addIcon.getLayoutParams();
         systemWindowInsetTop2 = this.lastInsets.getSystemWindowInsetTop();
         layoutParams4.topMargin = systemWindowInsetTop2;
-        FrameLayout.LayoutParams layoutParams5 = (FrameLayout.LayoutParams) this.statusLayout.getLayoutParams();
-        int dp = AndroidUtilities.dp(135.0f);
+        FrameLayout.LayoutParams layoutParams5 = (FrameLayout.LayoutParams) this.speakerPhoneIcon.getLayoutParams();
+        int dp = AndroidUtilities.dp(56.0f);
         systemWindowInsetTop3 = this.lastInsets.getSystemWindowInsetTop();
         layoutParams5.topMargin = dp + systemWindowInsetTop3;
-        FrameLayout.LayoutParams layoutParams6 = (FrameLayout.LayoutParams) this.emojiLayout.getLayoutParams();
-        int dp2 = AndroidUtilities.dp(17.0f);
+        FrameLayout.LayoutParams layoutParams6 = (FrameLayout.LayoutParams) this.statusLayout.getLayoutParams();
+        int dp2 = AndroidUtilities.dp(135.0f);
         systemWindowInsetTop4 = this.lastInsets.getSystemWindowInsetTop();
         layoutParams6.topMargin = dp2 + systemWindowInsetTop4;
-        FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) this.callingUserPhotoViewMini.getLayoutParams();
-        int dp3 = AndroidUtilities.dp(93.0f);
+        FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) this.emojiLayout.getLayoutParams();
+        int dp3 = AndroidUtilities.dp(17.0f);
         systemWindowInsetTop5 = this.lastInsets.getSystemWindowInsetTop();
         layoutParams7.topMargin = dp3 + systemWindowInsetTop5;
-        FrameLayout.LayoutParams layoutParams8 = (FrameLayout.LayoutParams) this.hideEmojiLayout.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams8 = (FrameLayout.LayoutParams) this.callingUserPhotoViewMini.getLayoutParams();
+        int dp4 = AndroidUtilities.dp(93.0f);
         systemWindowInsetTop6 = this.lastInsets.getSystemWindowInsetTop();
-        layoutParams8.topMargin = systemWindowInsetTop6;
-        FrameLayout.LayoutParams layoutParams9 = (FrameLayout.LayoutParams) this.emojiRationalLayout.getLayoutParams();
-        int dp4 = AndroidUtilities.dp(118.0f);
+        layoutParams8.topMargin = dp4 + systemWindowInsetTop6;
+        FrameLayout.LayoutParams layoutParams9 = (FrameLayout.LayoutParams) this.hideEmojiLayout.getLayoutParams();
         systemWindowInsetTop7 = this.lastInsets.getSystemWindowInsetTop();
-        layoutParams9.topMargin = dp4 + systemWindowInsetTop7;
-        FrameLayout.LayoutParams layoutParams10 = (FrameLayout.LayoutParams) this.rateCallLayout.getLayoutParams();
-        int dp5 = AndroidUtilities.dp(380.0f);
+        layoutParams9.topMargin = systemWindowInsetTop7;
+        FrameLayout.LayoutParams layoutParams10 = (FrameLayout.LayoutParams) this.emojiRationalLayout.getLayoutParams();
+        int dp5 = AndroidUtilities.dp(118.0f);
         systemWindowInsetTop8 = this.lastInsets.getSystemWindowInsetTop();
         layoutParams10.topMargin = dp5 + systemWindowInsetTop8;
-        FrameLayout.LayoutParams layoutParams11 = (FrameLayout.LayoutParams) this.callingUserMiniFloatingLayout.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams11 = (FrameLayout.LayoutParams) this.rateCallLayout.getLayoutParams();
+        int dp6 = AndroidUtilities.dp(380.0f);
+        systemWindowInsetTop9 = this.lastInsets.getSystemWindowInsetTop();
+        layoutParams11.topMargin = dp6 + systemWindowInsetTop9;
+        FrameLayout.LayoutParams layoutParams12 = (FrameLayout.LayoutParams) this.callingUserMiniFloatingLayout.getLayoutParams();
         systemWindowInsetBottom3 = this.lastInsets.getSystemWindowInsetBottom();
-        layoutParams11.bottomMargin = systemWindowInsetBottom3;
-        FrameLayout.LayoutParams layoutParams12 = (FrameLayout.LayoutParams) this.notificationsLayout.getLayoutParams();
+        layoutParams12.bottomMargin = systemWindowInsetBottom3;
+        FrameLayout.LayoutParams layoutParams13 = (FrameLayout.LayoutParams) this.notificationsLayout.getLayoutParams();
         systemWindowInsetBottom4 = this.lastInsets.getSystemWindowInsetBottom();
-        layoutParams12.bottomMargin = systemWindowInsetBottom4;
+        layoutParams13.bottomMargin = systemWindowInsetBottom4;
         this.currentUserCameraFloatingLayout.setInsets(this.lastInsets);
         this.callingUserMiniFloatingLayout.setInsets(this.lastInsets);
         this.fragmentView.requestLayout();
@@ -2090,27 +2096,17 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     }
 
     private void updateSpeakerPhoneIcon() {
-        ImageView imageView;
-        int i;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance == null) {
             return;
         }
-        VoipAudioManager voipAudioManager = VoipAudioManager.get();
-        if (sharedInstance.isBluetoothOn()) {
-            imageView = this.speakerPhoneIcon;
-            i = R.drawable.calls_bluetooth;
-        } else if (voipAudioManager.isSpeakerphoneOn()) {
-            imageView = this.speakerPhoneIcon;
-            i = R.drawable.calls_speaker;
-        } else if (sharedInstance.isHeadsetPlugged()) {
-            imageView = this.speakerPhoneIcon;
-            i = R.drawable.calls_menu_headset;
+        int i = sharedInstance.isBluetoothOn() ? R.drawable.calls_bluetooth : VoipAudioManager.get().isSpeakerphoneOn() ? R.drawable.calls_speaker : sharedInstance.isHeadsetPlugged() ? R.drawable.calls_menu_headset : R.drawable.calls_menu_phone;
+        if (this.speakerPhoneIconResId != i) {
+            AndroidUtilities.updateImageViewImageAnimated(this.speakerPhoneIcon, i);
         } else {
-            imageView = this.speakerPhoneIcon;
-            i = R.drawable.calls_menu_phone;
+            this.speakerPhoneIcon.setImageResource(i);
         }
-        imageView.setImageResource(i);
+        this.speakerPhoneIconResId = i;
     }
 
     private void updateSystemBarColors() {
@@ -2466,6 +2462,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         imageView3.setContentDescription(LocaleController.getString(R.string.VoipSpeaker));
         this.speakerPhoneIcon.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(-1, 76)));
         this.speakerPhoneIcon.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        frameLayout.addView(this.speakerPhoneIcon, LayoutHelper.createFrame(56, 56.0f, 53, 0.0f, 56.0f, 0.0f, 0.0f));
         this.speakerPhoneIcon.setAlpha(0.0f);
         this.speakerPhoneIcon.setOnClickListener(new View.OnClickListener() {
             @Override

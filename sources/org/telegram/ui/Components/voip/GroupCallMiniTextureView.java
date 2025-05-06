@@ -86,6 +86,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
     LinearGradient gradientShader;
     int gridItemsCount;
     public boolean hasVideo;
+    private Runnable hideRunnable;
     ImageReceiver imageReceiver;
     boolean inPinchToZoom;
     FrameLayout infoContainer;
@@ -902,8 +903,12 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.textureView.renderer.setRotationY(f);
     }
 
-    public void lambda$updateAttachState$2(View view) {
-        this.parentContainer.removeView(view);
+    public void lambda$updateAttachState$2(boolean z, View view) {
+        if (z) {
+            this.parentContainer.removeView(view);
+        }
+        view.setVisibility(8);
+        this.hideRunnable = null;
     }
 
     public void lambda$updateAttachState$3(ValueAnimator valueAnimator) {
@@ -1013,6 +1018,10 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
     public String getName() {
         long peerId = MessageObject.getPeerId(this.participant.participant.peer);
         return DialogObject.isUserDialog(peerId) ? UserObject.getUserName(AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().getUser(Long.valueOf(peerId))) : AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().getChat(Long.valueOf(-peerId)).title;
+    }
+
+    public GroupCallGridCell getPrimaryView() {
+        return this.primaryView;
     }
 
     public void getRenderBufferBitmap(GlGenericDrawer.TextureCallback textureCallback) {
@@ -1188,6 +1197,11 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.primaryView = groupCallGridCell;
         this.secondaryView = groupCallUserCell;
         this.tabletGridView = groupCallGridCell2;
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        super.setVisibility(i);
     }
 
     public void setZoom(boolean z, float f, float f2, float f3, float f4, float f5) {

@@ -692,7 +692,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             GroupCallMiniTextureView renderer;
             final VoIPTextureView voIPTextureView;
             try {
-                if (GroupCallActivity.this.renderersContainer == null || GroupCallActivity.this.renderersContainer.inFullscreenMode || (findGroupCallGridCell = GroupCallActivity.this.findGroupCallGridCell()) == null || (renderer = findGroupCallGridCell.getRenderer()) == null || (voIPTextureView = renderer.textureView) == null) {
+                if (GroupCallActivity.this.renderersContainer == null || GroupCallActivity.this.renderersContainer.inFullscreenMode || (findGroupCallGridCell = GroupCallActivity.this.findGroupCallGridCell()) == null || !findGroupCallGridCell.isAttachedToWindow() || (renderer = findGroupCallGridCell.getRenderer()) == null || (voIPTextureView = renderer.textureView) == null) {
                     return;
                 }
                 GroupCallActivity.updateTextureLightningQueue.postRunnable(new Runnable() {
@@ -2836,7 +2836,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     textView.setTextSize(1, 13.0f);
                     textView.setGravity(1);
                     textView.setPadding(0, 0, 0, AndroidUtilities.dp(10.0f));
-                    textView.setText(ChatObject.isChannelOrGiga(GroupCallActivity.this.currentChat) ? LocaleController.formatString("VoipChannelVideoNotAvailableAdmin", R.string.VoipChannelVideoNotAvailableAdmin, LocaleController.formatPluralString("Participants", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants, new Object[0])) : LocaleController.formatString("VoipVideoNotAvailableAdmin", R.string.VoipVideoNotAvailableAdmin, LocaleController.formatPluralString("Members", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants, new Object[0])));
+                    textView.setText(ChatObject.isChannelOrGiga(GroupCallActivity.this.currentChat) ? LocaleController.formatString(R.string.VoipChannelVideoNotAvailableAdmin, LocaleController.formatPluralString("Participants", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants, new Object[0])) : LocaleController.formatString(R.string.VoipVideoNotAvailableAdmin, LocaleController.formatPluralString("Members", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants, new Object[0])));
                     groupCallGridCell = textView;
                 } else if (i != 7) {
                     view = new View(this.mContext);
@@ -3711,7 +3711,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public GroupCallGridCell findGroupCallGridCell() {
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
-            if ((childAt instanceof GroupCallGridCell) && this.listView.getChildAdapterPosition(childAt) >= 0) {
+            if (childAt.isAttachedToWindow() && (childAt instanceof GroupCallGridCell) && this.listView.getChildAdapterPosition(childAt) >= 0) {
                 return (GroupCallGridCell) childAt;
             }
         }
