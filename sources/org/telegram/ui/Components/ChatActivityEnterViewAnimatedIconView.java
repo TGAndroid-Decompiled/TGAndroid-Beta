@@ -13,7 +13,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
     private State currentState;
     private Map stateMap;
 
-    public static class AnonymousClass2 {
+    static class AnonymousClass2 {
         static final int[] $SwitchMap$org$telegram$ui$Components$ChatActivityEnterViewAnimatedIconView$State;
 
         static {

@@ -3896,7 +3896,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.galleryListView != null || getContext() == null) {
             return;
         }
-        AnonymousClass21 anonymousClass21 = new AnonymousClass21(this.currentAccount, getContext(), this.resourcesProvider, this.lastGallerySelectedAlbum, z, 1.39f, true);
+        AnonymousClass21 anonymousClass21 = new AnonymousClass21(this.currentAccount, getContext(), this.resourcesProvider, this.lastGallerySelectedAlbum, z, 1.39f, !z);
         this.galleryListView = anonymousClass21;
         anonymousClass21.allowSearch(false);
         this.galleryListView.setMultipleOnClick(this.collageLayoutView.hasLayout());

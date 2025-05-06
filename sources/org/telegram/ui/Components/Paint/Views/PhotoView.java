@@ -46,7 +46,9 @@ public class PhotoView extends EntityView {
     private int anchor;
     public Size baseSize;
     public Bitmap bitmap;
+    private final Rect bitmapDst;
     private final Paint bitmapPaint;
+    private final Rect bitmapSrc;
     public final FrameLayoutDrawer containerView;
     public MediaController.CropState crop;
     private final RectF dest;
@@ -184,6 +186,8 @@ public class PhotoView extends EntityView {
         this.dest = new RectF();
         this.segmentPaint = new Paint(3);
         this.highlightStart = -1L;
+        this.bitmapSrc = new Rect();
+        this.bitmapDst = new Rect();
         this.bitmapPaint = new Paint(3);
         setRotation(f);
         setScale(f2);
@@ -222,6 +226,8 @@ public class PhotoView extends EntityView {
         this.dest = new RectF();
         this.segmentPaint = new Paint(3);
         this.highlightStart = -1L;
+        this.bitmapSrc = new Rect();
+        this.bitmapDst = new Rect();
         this.bitmapPaint = new Paint(3);
         setRotation(f);
         setScale(f2);
@@ -577,7 +583,9 @@ public class PhotoView extends EntityView {
                     canvas.rotate(getOrientation());
                 }
                 canvas.translate((-this.bitmap.getWidth()) / 2.0f, (-this.bitmap.getHeight()) / 2.0f);
-                canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, this.bitmapPaint);
+                this.bitmapSrc.set(0, 0, this.bitmap.getWidth(), this.bitmap.getHeight());
+                this.bitmapDst.set(0, 0, this.bitmap.getWidth(), this.bitmap.getHeight());
+                canvas.drawBitmap(this.bitmap, this.bitmapSrc, this.bitmapDst, this.bitmapPaint);
             }
             canvas.restore();
             if (f2 > 0.0f) {
