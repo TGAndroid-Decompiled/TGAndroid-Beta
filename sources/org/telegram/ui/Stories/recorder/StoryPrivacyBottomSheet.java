@@ -1538,7 +1538,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             StoryPrivacyBottomSheet.this.closeKeyboard();
             if (StoryPrivacyBottomSheet.this.isEdit) {
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                storyPrivacyBottomSheet.done(new StoryPrivacy(1, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, (ArrayList) null), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1(StoryPrivacyBottomSheet.this));
+                storyPrivacyBottomSheet.done(new StoryPrivacy(1, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, (ArrayList) null), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(StoryPrivacyBottomSheet.this));
             } else {
                 StoryPrivacyBottomSheet.this.closeKeyboard();
                 StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(0);
@@ -1547,7 +1547,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void lambda$onButton2Click$13(ArrayList arrayList) {
             StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-            storyPrivacyBottomSheet.done(new StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1(StoryPrivacyBottomSheet.this));
+            storyPrivacyBottomSheet.done(new StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(StoryPrivacyBottomSheet.this));
         }
 
         public void lambda$onMeasure$17() {
@@ -1678,7 +1678,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                         if (StoryPrivacyBottomSheet.this.isEdit) {
                             StoryPrivacyBottomSheet.this.closeKeyboard();
                             StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
-                            storyPrivacyBottomSheet2.done(new StoryPrivacy(2, ((BottomSheet) storyPrivacyBottomSheet2).currentAccount, this.selectedUsers), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1(StoryPrivacyBottomSheet.this));
+                            storyPrivacyBottomSheet2.done(new StoryPrivacy(2, ((BottomSheet) storyPrivacyBottomSheet2).currentAccount, this.selectedUsers), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(StoryPrivacyBottomSheet.this));
                             return;
                         }
                     } else if (i == 3) {
@@ -1747,11 +1747,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             storyPrivacy = new StoryPrivacy(StoryPrivacyBottomSheet.this.selectedType, ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, (ArrayList) null);
                         }
                         storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                        runnable = new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1(storyPrivacyBottomSheet);
+                        runnable = new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(storyPrivacyBottomSheet);
                     }
                     hashMap.putAll(hashMap2);
                     storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                    runnable = new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1(storyPrivacyBottomSheet);
+                    runnable = new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(storyPrivacyBottomSheet);
                 }
                 storyPrivacyBottomSheet.done(storyPrivacy, runnable);
                 return;

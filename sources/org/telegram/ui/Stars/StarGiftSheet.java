@@ -127,7 +127,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     private final LinkSpanDrawable.LinksTextView beforeTableTextView;
     private final FrameLayout bottomBulletinContainer;
     private final View bottomView;
-    private Utilities.Callback boughtGift;
+    private Utilities.Callback2 boughtGift;
     private final ButtonWithCounterView button;
     private final FrameLayout buttonContainer;
     private final View buttonShadow;
@@ -3104,23 +3104,23 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.checkbox.setChecked(!r3.isChecked(), true);
     }
 
-    public void lambda$onBuyPressed$118(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, Boolean bool, String str) {
+    public void lambda$onBuyPressed$118(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, Boolean bool, String str) {
         progress.end();
         if (bool.booleanValue()) {
-            Utilities.Callback callback = this.boughtGift;
-            if (callback != null) {
-                callback.run(tL_starGiftUnique);
+            Utilities.Callback2 callback2 = this.boughtGift;
+            if (callback2 != null) {
+                callback2.run(tL_starGiftUnique, Long.valueOf(j));
             }
             lambda$new$0();
         }
     }
 
-    public void lambda$onBuyPressed$119(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final Browser.Progress progress) {
+    public void lambda$onBuyPressed$119(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, final Browser.Progress progress) {
         progress.init();
-        StarsController.getInstance(this.currentAccount).buyResellingGift(tL_starGiftUnique, this.dialogId, new Utilities.Callback2() {
+        StarsController.getInstance(this.currentAccount).buyResellingGift(tL_starGiftUnique, j, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StarGiftSheet.this.lambda$onBuyPressed$118(progress, tL_starGiftUnique, (Boolean) obj, (String) obj2);
+                StarGiftSheet.this.lambda$onBuyPressed$118(progress, tL_starGiftUnique, j, (Boolean) obj, (String) obj2);
             }
         });
     }
@@ -4657,10 +4657,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
     public void onBuyPressed() {
         final TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
-        openBuyAlert(this.dialogId, new Utilities.Callback() {
+        final long clientUserId = (this.slugStarGift == null || !this.resale) ? UserConfig.getInstance(this.currentAccount).getClientUserId() : this.dialogId;
+        openBuyAlert(clientUserId, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarGiftSheet.this.lambda$onBuyPressed$119(uniqueGift, (Browser.Progress) obj);
+                StarGiftSheet.this.lambda$onBuyPressed$119(uniqueGift, clientUserId, (Browser.Progress) obj);
             }
         });
     }
@@ -5115,8 +5116,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.actionBar.setTitle(getTitle());
     }
 
-    public StarGiftSheet setOnBoughtGift(Utilities.Callback callback) {
-        this.boughtGift = callback;
+    public StarGiftSheet setOnBoughtGift(Utilities.Callback2 callback2) {
+        this.boughtGift = callback2;
         return this;
     }
 

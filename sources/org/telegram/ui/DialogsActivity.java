@@ -448,6 +448,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private float storiesYOffset;
     private HintView2 storyHint;
     private boolean storyHintShown;
+    private HintView2 storyPremiumHint;
     private ActionBarMenuItem switchItem;
     private Animator tabsAlphaAnimator;
     private AnimatorSet tabsAnimation;
@@ -730,7 +731,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.access$24800(DialogsActivity.this);
+                    DialogsActivity.access$24900(DialogsActivity.this);
                 }
             }, 100L);
         }
@@ -1432,6 +1433,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                     if (DialogsActivity.this.storyHint != null) {
                         DialogsActivity.this.storyHint.hide();
+                    }
+                    if (DialogsActivity.this.storyPremiumHint != null) {
+                        DialogsActivity.this.storyPremiumHint.hide();
                     }
                 }
             }
@@ -3379,7 +3383,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.slideAmplitudeDp = 40;
     }
 
-    public static void access$24800(DialogsActivity dialogsActivity) {
+    public static void access$24900(DialogsActivity dialogsActivity) {
         dialogsActivity.updateSelectedCount();
     }
 
@@ -3881,7 +3885,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void hideFloatingButton(boolean z) {
-        HintView2 hintView2;
         if (this.rightSlidingDialogContainer.hasFragment()) {
             z = true;
         }
@@ -3903,10 +3906,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             animatorSet.setInterpolator(this.floatingInterpolator);
             this.floatingButtonContainer.setClickable(true ^ z);
             animatorSet.start();
-            if (!z || (hintView2 = this.storyHint) == null) {
-                return;
+            if (z) {
+                HintView2 hintView2 = this.storyHint;
+                if (hintView2 != null) {
+                    hintView2.hide();
+                }
+                HintView2 hintView22 = this.storyPremiumHint;
+                if (hintView22 != null) {
+                    hintView22.hide();
+                }
             }
-            hintView2.hide();
         }
     }
 
@@ -4813,6 +4822,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             TransitionManager.beginDelayedTransition((ViewGroup) this.dialogsHintCell.getParent(), new ChangeBounds().setDuration(200L));
             lambda$updateDialogsHint$32();
         }
+    }
+
+    public void lambda$openStoriesRecorder$148() {
+        HintView2 hintView2 = this.storyPremiumHint;
+        if (hintView2 != null) {
+            hintView2.hide();
+        }
+        presentFragment(new PremiumPreviewFragment("stories"));
     }
 
     public void lambda$performSelectedDialogsAction$100(AlertDialog alertDialog, int i) {
@@ -5888,51 +5905,68 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void openStoriesRecorder() {
-        if (!this.storiesEnabled) {
-            showDialog(new PremiumFeatureBottomSheet(this, 14, false));
-            return;
-        }
-        HintView2 hintView2 = this.storyHint;
-        if (hintView2 != null) {
-            hintView2.hide();
-        }
-        StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
-        if (checkStoryLimit == null || !checkStoryLimit.active(this.currentAccount, 1)) {
-            StoryRecorder.getInstance(getParentActivity(), this.currentAccount).closeToWhenSent(new StoryRecorder.ClosingViewProvider() {
-                @Override
-                public StoryRecorder.SourceView getView(long j) {
-                    DialogStoriesCell dialogStoriesCell = DialogsActivity.this.dialogStoriesCell;
-                    return StoryRecorder.SourceView.fromStoryCell(dialogStoriesCell != null ? dialogStoriesCell.findStoryCell(j) : null);
-                }
+        if (this.storiesEnabled) {
+            HintView2 hintView2 = this.storyHint;
+            if (hintView2 != null) {
+                hintView2.hide();
+            }
+            StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
+            if (checkStoryLimit == null || !checkStoryLimit.active(this.currentAccount, 1)) {
+                StoryRecorder.getInstance(getParentActivity(), this.currentAccount).closeToWhenSent(new StoryRecorder.ClosingViewProvider() {
+                    @Override
+                    public StoryRecorder.SourceView getView(long j) {
+                        DialogStoriesCell dialogStoriesCell = DialogsActivity.this.dialogStoriesCell;
+                        return StoryRecorder.SourceView.fromStoryCell(dialogStoriesCell != null ? dialogStoriesCell.findStoryCell(j) : null);
+                    }
 
-                @Override
-                public void preLayout(long j, final Runnable runnable) {
-                    DialogsActivity dialogsActivity = DialogsActivity.this;
-                    if (dialogsActivity.dialogStoriesCell == null) {
-                        runnable.run();
-                        return;
-                    }
-                    dialogsActivity.scrollToTop(false, true);
-                    DialogsActivity.this.invalidateScrollY = true;
-                    DialogsActivity.this.fragmentView.invalidate();
-                    if (j == 0 || j == DialogsActivity.this.getUserConfig().getClientUserId()) {
-                        DialogsActivity.this.dialogStoriesCell.scrollToFirstCell();
-                    } else {
-                        DialogsActivity.this.dialogStoriesCell.scrollTo(j);
-                    }
-                    DialogsActivity.this.viewPages[0].listView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                        @Override
-                        public boolean onPreDraw() {
-                            DialogsActivity.this.viewPages[0].listView.getViewTreeObserver().removeOnPreDrawListener(this);
-                            AndroidUtilities.runOnUIThread(runnable, 100L);
-                            return false;
+                    @Override
+                    public void preLayout(long j, final Runnable runnable) {
+                        DialogsActivity dialogsActivity = DialogsActivity.this;
+                        if (dialogsActivity.dialogStoriesCell == null) {
+                            runnable.run();
+                            return;
                         }
-                    });
-                }
-            }).open(StoryRecorder.SourceView.fromFloatingButton(this.floatingButtonContainer), true);
-        } else {
-            showDialog(new LimitReachedBottomSheet(this, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount, null));
+                        dialogsActivity.scrollToTop(false, true);
+                        DialogsActivity.this.invalidateScrollY = true;
+                        DialogsActivity.this.fragmentView.invalidate();
+                        if (j == 0 || j == DialogsActivity.this.getUserConfig().getClientUserId()) {
+                            DialogsActivity.this.dialogStoriesCell.scrollToFirstCell();
+                        } else {
+                            DialogsActivity.this.dialogStoriesCell.scrollTo(j);
+                        }
+                        DialogsActivity.this.viewPages[0].listView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                            @Override
+                            public boolean onPreDraw() {
+                                DialogsActivity.this.viewPages[0].listView.getViewTreeObserver().removeOnPreDrawListener(this);
+                                AndroidUtilities.runOnUIThread(runnable, 100L);
+                                return false;
+                            }
+                        });
+                    }
+                }).open(StoryRecorder.SourceView.fromFloatingButton(this.floatingButtonContainer), true);
+                return;
+            } else {
+                showDialog(new LimitReachedBottomSheet(this, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount, null));
+                return;
+            }
         }
+        HintView2 hintView22 = this.storyPremiumHint;
+        if (hintView22 != null) {
+            if (hintView22.shown()) {
+                return;
+            } else {
+                AndroidUtilities.removeFromParent(this.storyPremiumHint);
+            }
+        }
+        HintView2 bgColor = new HintView2(getContext(), 2).setRounding(8.0f).setDuration(8000L).setCloseButton(true).setMultilineText(true).setMaxWidthPx(AndroidUtilities.displaySize.x - AndroidUtilities.dp(148.0f)).setText(AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
+            @Override
+            public final void run() {
+                DialogsActivity.this.lambda$openStoriesRecorder$148();
+            }
+        })).setJoint(1.0f, -40.0f).setBgColor(getThemedColor(Theme.key_undo_background));
+        this.storyPremiumHint = bgColor;
+        ((ViewGroup) this.fragmentView).addView(bgColor, LayoutHelper.createFrame(-1, 240.0f, 87, 12.0f, 0.0f, 72.0f, 56.0f));
+        this.storyPremiumHint.show();
     }
 
     private void openWriteContacts() {
@@ -9354,6 +9388,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         HintView2 hintView2 = this.storyHint;
         if (hintView2 != null) {
             hintView2.hide();
+        }
+        HintView2 hintView22 = this.storyPremiumHint;
+        if (hintView22 != null) {
+            hintView22.hide();
         }
         Bulletin.hideVisible();
         return presentFragment;

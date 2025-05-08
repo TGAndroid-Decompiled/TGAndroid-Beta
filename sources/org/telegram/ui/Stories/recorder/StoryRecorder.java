@@ -5419,7 +5419,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 }
             }
             if (this.entries == null) {
-                this.outputEntry.setupMultipleStoriesSelector();
+                StoryEntry storyEntry = this.outputEntry;
+                if (storyEntry != null) {
+                    storyEntry.setupMultipleStoriesSelector();
+                }
                 this.collageListView.setVisible(false, true);
                 updateActionBarButtons(true);
                 lambda$animateGalleryListView$61(false);

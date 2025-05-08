@@ -9,6 +9,6 @@ public final class StarGiftSheet$$ExternalSyntheticLambda26 implements Runnable 
 
     @Override
     public final void run() {
-        StarGiftSheet.m3500$r8$lambda$IHzeDE46Lb2FhWfXGEib2Cyllk(this.f$0);
+        this.f$0.openUpgrade();
     }
 }

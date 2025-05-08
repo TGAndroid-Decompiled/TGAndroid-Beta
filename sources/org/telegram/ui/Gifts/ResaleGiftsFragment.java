@@ -665,6 +665,7 @@ public class ResaleGiftsFragment extends BaseFragment {
 
         public void reload() {
             cancel();
+            this.last_offset = null;
             load(true);
             Utilities.Callback callback = this.onUpdate;
             if (callback != null) {
@@ -1080,10 +1081,10 @@ public class ResaleGiftsFragment extends BaseFragment {
     }
 
     public void lambda$createView$23() {
-        if (this.list.notSelectedBackdropAttributes.isEmpty()) {
+        if (this.list.notSelectedPatternAttributes.isEmpty()) {
             return;
         }
-        this.list.notSelectedBackdropAttributes.clear();
+        this.list.notSelectedPatternAttributes.clear();
         this.list.reload();
     }
 
@@ -1160,7 +1161,7 @@ public class ResaleGiftsFragment extends BaseFragment {
                 needsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
                 needsFocus.addGap();
             }
-            if (!this.list.notSelectedBackdropAttributes.isEmpty()) {
+            if (!this.list.notSelectedPatternAttributes.isEmpty()) {
                 needsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
@@ -1254,19 +1255,20 @@ public class ResaleGiftsFragment extends BaseFragment {
         }
     }
 
-    public void lambda$onItemClick$25(final TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+    public void lambda$onItemClick$25(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final Long l) {
         String str;
         Bulletin createSimpleBulletin;
-        if (this.dialogId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+        if (l.longValue() != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
             Bundle bundle = new Bundle();
-            long j = this.dialogId;
-            if (j >= 0) {
+            long longValue = l.longValue();
+            long longValue2 = l.longValue();
+            if (longValue >= 0) {
                 str = "user_id";
             } else {
-                j = -j;
+                longValue2 = -longValue2;
                 str = "chat_id";
             }
-            bundle.putLong(str, j);
+            bundle.putLong(str, longValue2);
             presentFragment(new ChatActivity(bundle) {
                 private boolean shownToast = false;
 
@@ -1277,7 +1279,7 @@ public class ResaleGiftsFragment extends BaseFragment {
                         return;
                     }
                     this.shownToast = true;
-                    BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, ResaleGiftsFragment.this.dialogId))).hideAfterBottomSheet(false).show();
+                    BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, l.longValue()))).hideAfterBottomSheet(false).show();
                     this.fireworksOverlay.start(true);
                 }
             }, true);
@@ -1290,13 +1292,10 @@ public class ResaleGiftsFragment extends BaseFragment {
         }
         this.list.gifts.remove(tL_starGiftUnique);
         updateList(false);
-        long j2 = this.dialogId;
-        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        BulletinFactory of = BulletinFactory.of(this);
-        if (j2 == clientUserId) {
-            createSimpleBulletin = of.createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ',')));
+        if (l.longValue() == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ',')));
         } else {
-            createSimpleBulletin = of.createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.dialogId)));
+            createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, l.longValue())));
         }
         createSimpleBulletin.hideAfterBottomSheet(false).show();
         this.fireworksOverlay.start(true);
@@ -1308,10 +1307,10 @@ public class ResaleGiftsFragment extends BaseFragment {
             TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj;
             StarGiftSheet starGiftSheet = new StarGiftSheet(getContext(), this.currentAccount, this.dialogId, this.resourceProvider);
             starGiftSheet.set(tL_starGiftUnique.slug, tL_starGiftUnique, this.list);
-            starGiftSheet.setOnBoughtGift(new Utilities.Callback() {
+            starGiftSheet.setOnBoughtGift(new Utilities.Callback2() {
                 @Override
-                public final void run(Object obj2) {
-                    ResaleGiftsFragment.this.lambda$onItemClick$25((TL_stars.TL_starGiftUnique) obj2);
+                public final void run(Object obj2, Object obj3) {
+                    ResaleGiftsFragment.this.lambda$onItemClick$25((TL_stars.TL_starGiftUnique) obj2, (Long) obj3);
                 }
             });
             showDialog(starGiftSheet);
