@@ -116,12 +116,12 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             this.textPaint.setColor(-1);
             this.textPaint.setTypeface(AndroidUtilities.bold());
-            Drawable drawable = ContextCompat.getDrawable(context, R.drawable.play_mini_video);
-            this.playDrawable = drawable;
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());
-            Drawable drawable2 = ContextCompat.getDrawable(context, R.drawable.filled_views);
-            this.viewDrawable = drawable2;
-            drawable2.setBounds(0, 0, (int) (drawable2.getIntrinsicWidth() * 0.7f), (int) (this.viewDrawable.getIntrinsicHeight() * 0.7f));
+            Drawable mutate = ContextCompat.getDrawable(context, R.drawable.play_mini_video).mutate();
+            this.playDrawable = mutate;
+            mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());
+            Drawable mutate2 = ContextCompat.getDrawable(context, R.drawable.filled_views).mutate();
+            this.viewDrawable = mutate2;
+            mutate2.setBounds(0, 0, (int) (mutate2.getIntrinsicWidth() * 0.7f), (int) (this.viewDrawable.getIntrinsicHeight() * 0.7f));
             this.backgroundPaint.setColor(Theme.getColor(Theme.key_sharedMedia_photoPlaceholder, resourcesProvider));
         }
 

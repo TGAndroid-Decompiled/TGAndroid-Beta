@@ -3641,7 +3641,8 @@
     <string name="Gift2ButtonSell_one">sell for %d Star</string>
     <string name="Gift2ButtonSell_other">sell for %d Stars</string>
     <string name="Gift2ButtonSendGift">send a gift</string>
-    <string name="Gift2BuyDoPrice">Buy for ⭐️%d</string>
+    <string name="Gift2BuyDoPrice2_one">Buy for ⭐️%d</string>
+    <string name="Gift2BuyDoPrice2_other">Buy for ⭐️%d</string>
     <string name="Gift2BuyPriceSelfText_one">Do you want to buy **%2$s** for **%1$d Star**?</string>
     <string name="Gift2BuyPriceSelfText_other">Do you want to buy **%2$s** for **%1$d Stars**?</string>
     <string name="Gift2BuyPriceText_one">Do you want to buy **%2$s** for **%1$d Star** and gift it to **%3$s**?</string>
@@ -9213,7 +9214,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2413_com_google_firebase_crashlytics_mapping_file_id">b751dbb8c0b64e2090b7b653cbeeb5ae</string>
+    <string name="res_0x7f0f2414_com_google_firebase_crashlytics_mapping_file_id">f85ba011fa224e36941e6344ee013c9f</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

@@ -17275,9 +17275,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     @Override
     public void pipShowPrimaryWindowView(Runnable runnable) {
         this.pipFirstFrameCallback = runnable;
-        ((WindowManager) this.parentActivity.getSystemService("window")).addView(this.windowView, this.windowLayoutParams);
         this.windowViewSkipRender = false;
-        this.windowView.invalidate();
+        if (this.windowView != null) {
+            ((WindowManager) this.parentActivity.getSystemService("window")).addView(this.windowView, this.windowLayoutParams);
+            this.windowView.invalidate();
+        }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {
             return;

@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.pip.PipSourceContentView;
@@ -27,6 +28,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
     public View pictureInPictureView;
     private PipSourceContentView pictureInPictureWrapperView;
     private PipSourcePlaceholder pipSourcePlaceholder;
+    private boolean shouldBeAttached;
     private final PipSource source;
     private int state = 0;
     public final Rect positionSource = new Rect();
@@ -93,7 +95,8 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
 
     public void performAttach() {
         if (this.state != 1) {
-            throw new IllegalStateException("wrong pip state");
+            FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_ATTACHED: " + this.state);
+            return;
         }
         Log.i("PIP_DEBUG", "[HANDLER] attach");
         this.pipSourcePlaceholder.stopPlaceholderForSource();
@@ -104,11 +107,16 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
             }
         }, 400L));
         this.state = 2;
+        if (this.shouldBeAttached) {
+            return;
+        }
+        performPreDetach1();
     }
 
     public void performDetach() {
         if (this.state != 4) {
-            throw new IllegalStateException("wrong pip state");
+            FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_2: " + this.state);
+            return;
         }
         this.source.controller.getPipContentView().removeView(this.pictureInPictureWrapperView);
         this.pictureInPictureView = null;
@@ -127,11 +135,15 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         this.pipSourcePlaceholder.stopPlaceholderForActivity();
         this.state = 0;
         Log.i("PIP_DEBUG", "[HANDLER] detach");
+        if (this.shouldBeAttached) {
+            performPreAttach();
+        }
     }
 
     private void performPreAttach() {
         if (this.state != 0) {
-            throw new IllegalStateException("wrong pip state");
+            FileLog.e("[PIP_DEBUG] wrong pip state STATE_DETACHED: " + this.state);
+            return;
         }
         this.source.params.getPosition(this.positionSource);
         Log.i("PIP_DEBUG", "[HANDLER] pre attach start " + this.positionSource);
@@ -177,7 +189,8 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
 
     private void performPreDetach1() {
         if (this.state != 2) {
-            throw new IllegalStateException("wrong pip state");
+            FileLog.e("[PIP_DEBUG] wrong pip state STATE_ATTACHED: " + this.state);
+            return;
         }
         this.pipSourcePlaceholder.setPlaceholder(this.source.delegate.pipCreatePictureInPictureViewBitmap());
         this.state = 3;
@@ -195,7 +208,8 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
 
     public void performPreDetach2() {
         if (this.state != 3) {
-            throw new IllegalStateException("wrong pip state");
+            FileLog.e("[PIP_DEBUG] wrong pip state STATE_PRE_DETACHED_1: " + this.state);
+            return;
         }
         this.source.delegate.pipShowPrimaryWindowView(Trigger.run(new Trigger.Callback() {
             @Override
@@ -252,6 +266,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
 
     @Override
     public void onCompleteExitFromPip(boolean z) {
+        this.shouldBeAttached = false;
         performPreDetach1();
     }
 
@@ -276,9 +291,8 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
     }
 
     public void onLoseMaxPriority() {
-        if (this.state == 2) {
-            performPreDetach1();
-        }
+        this.shouldBeAttached = false;
+        performPreDetach1();
         this.source.controller.removePipListener(this);
         this.source.controller.removeAnimationListener(this);
         PipSource pipSource = this.source;
@@ -294,6 +308,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
 
     @Override
     public void onStartEnterToPip() {
+        this.shouldBeAttached = true;
         performPreAttach();
     }
 
@@ -304,13 +319,19 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
 
     @Override
     public void onTransitionAnimationFrame() {
-        this.pictureInPictureWrapperView.invalidate();
+        PipSourceContentView pipSourceContentView = this.pictureInPictureWrapperView;
+        if (pipSourceContentView != null) {
+            pipSourceContentView.invalidate();
+        }
     }
 
     @Override
     public void onTransitionAnimationProgress(float f) {
         this.lastProgress = f;
-        this.pictureInPictureWrapperView.invalidate();
+        PipSourceContentView pipSourceContentView = this.pictureInPictureWrapperView;
+        if (pipSourceContentView != null) {
+            pipSourceContentView.invalidate();
+        }
     }
 
     public void updatePositionViewRect(int i, int i2, boolean z) {

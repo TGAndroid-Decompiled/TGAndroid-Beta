@@ -43,7 +43,9 @@ public class TranslateController extends BaseController {
     private static final int GROUPING_TRANSLATIONS_TIMEOUT = 80;
     private static final int MAX_MESSAGES_PER_REQUEST = 20;
     private static final int MAX_SYMBOLS_PER_REQUEST = 25000;
+    private static final float REQUIRED_MIN_MESSAGES_TRANSLATABLE_AUTOTRANSLATE = 2.0f;
     private static final float REQUIRED_MIN_PERCENTAGE_MESSAGES_UNKNOWN = 0.65f;
+    private static final float REQUIRED_MIN_PERCENTAGE_MESSAGES_UNKNOWN_AUTOTRANSLATE = 0.8f;
     private static final float REQUIRED_PERCENTAGE_MESSAGES_TRANSLATABLE = 0.6f;
     private static final int REQUIRED_TOTAL_MESSAGES_CHECKED = 8;
     private static final int REQUIRED_TOTAL_MESSAGES_CHECKED_AUTOTRANSLATE = 2;
@@ -346,17 +348,26 @@ public class TranslateController extends BaseController {
         int size = translatableDecision.certainlyTranslatable.size();
         int size2 = translatableDecision.unknown.size();
         int size3 = size + size2 + translatableDecision.certainlyNotTranslatable.size();
-        if (size3 < (isChatAutoTranslated(dialogId) ? 2 : 8) || size / (size + r2) < 0.6f || size2 / size3 >= 0.65f) {
-            return;
-        }
-        this.translatableDialogs.add(Long.valueOf(dialogId));
-        this.translatableDialogMessages.remove(Long.valueOf(dialogId));
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TranslateController.this.lambda$checkDialogTranslatable$14(dialogId);
+        boolean isChatAutoTranslated = isChatAutoTranslated(dialogId);
+        if (size3 >= (isChatAutoTranslated ? 2 : 8)) {
+            if (isChatAutoTranslated) {
+                if (size < 2.0f) {
+                    return;
+                }
+            } else if (size / (size + r2) < 0.6f) {
+                return;
             }
-        }, 450L);
+            if (size2 / size3 < (isChatAutoTranslated ? 0.8f : 0.65f)) {
+                this.translatableDialogs.add(Long.valueOf(dialogId));
+                this.translatableDialogMessages.remove(Long.valueOf(dialogId));
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        TranslateController.this.lambda$checkDialogTranslatable$14(dialogId);
+                    }
+                }, 450L);
+            }
+        }
     }
 
     private void checkLanguage(final MessageObject messageObject) {
@@ -1700,6 +1711,11 @@ public class TranslateController extends BaseController {
             return false;
         }
         return this.translatingStories.contains(new StoryKey(storyItem));
+    }
+
+    public void reset() {
+        this.translatableDialogMessages.clear();
+        this.detectedDialogLanguage.clear();
     }
 
     public void setChatTranslateEnabled(boolean z) {
