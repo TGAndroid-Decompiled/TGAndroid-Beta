@@ -790,11 +790,14 @@ public class ConnectionsManager extends BaseController {
         AccountInstance.getInstance(i).getMessagesController().updateConfig(tL_config);
     }
 
-    public static void lambda$sendRequestInternal$3(RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
+    public void lambda$sendRequestInternal$3(RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
         if (requestDelegate != null) {
             requestDelegate.run(tLObject, tL_error);
         } else if (requestDelegateTimestamp != null) {
             requestDelegateTimestamp.run(tLObject, tL_error, j);
+        } else if (tLObject instanceof TLRPC.Updates) {
+            KeepAliveJob.finishJob();
+            AccountInstance.getInstance(this.currentAccount).getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
         if (tLObject != null) {
             tLObject.freeResources();
@@ -871,7 +874,7 @@ public class ConnectionsManager extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ConnectionsManager.lambda$sendRequestInternal$3(RequestDelegate.this, tLObject3, tL_error3, requestDelegateTimestamp, j3);
+                    ConnectionsManager.this.lambda$sendRequestInternal$3(requestDelegate, tLObject3, tL_error3, requestDelegateTimestamp, j3);
                 }
             });
         } catch (Exception e2) {

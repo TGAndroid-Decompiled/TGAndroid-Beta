@@ -1706,6 +1706,7 @@
     <string name="BusinessBotPermissionsGiftsTransfer">Transfer and Upgrade Gifts</string>
     <string name="BusinessBotPermissionsGiftsTransferStars">Transfer Stars</string>
     <string name="BusinessBotPermissionsGiftsView">View Gifts</string>
+    <string name="BusinessBotPermissionsGiftsWarningText">The bot **@%s** will be able to manage your gifts and stars, including giving them away to other users.</string>
     <string name="BusinessBotPermissionsMessagesDeleteReceived">Delete Received Messages</string>
     <string name="BusinessBotPermissionsMessagesDeleteSent">Delete Sent Messages</string>
     <string name="BusinessBotPermissionsMessagesMarkAsRead">Mark Messages As Read</string>
@@ -1718,6 +1719,8 @@
     <string name="BusinessBotPermissionsProfileSection">Manage Profile</string>
     <string name="BusinessBotPermissionsProfileUsername">Edit Username</string>
     <string name="BusinessBotPermissionsStories">Manage Stories</string>
+    <string name="BusinessBotPermissionsUsernamesWarningText">The bot **@%s** will be able to manage your usernames, including transferring them away to other users.</string>
+    <string name="BusinessBotPermissionsWarning">Warning</string>
     <string name="BusinessBotUnsavedChanges">You have changed the business bot settings. Apply changes?</string>
     <string name="BusinessBots">Chatbots</string>
     <string name="BusinessBotsInfo">Add a bot to your account to help you automatically process and respond to the messages you receive. **Learn more &gt;**</string>
@@ -3210,6 +3213,8 @@
     <string name="EventLogSubExtend">un1 renewed subscription</string>
     <string name="EventLogSwitchToForum">un1 changed group to forum</string>
     <string name="EventLogSwitchToGroup">un1 changed forum to group</string>
+    <string name="EventLogToggledAutotranslationOff">un1 disabled auto-translation</string>
+    <string name="EventLogToggledAutotranslationOn">un1 enabled auto-translation</string>
     <string name="EventLogToggledInvitesHistoryOff">un1 made group history hidden for new members</string>
     <string name="EventLogToggledInvitesHistoryOn">un1 made group history visible for new members</string>
     <string name="EventLogToggledInvitesOff">un1 disabled group invites</string>
@@ -9214,7 +9219,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2414_com_google_firebase_crashlytics_mapping_file_id">f85ba011fa224e36941e6344ee013c9f</string>
+    <string name="res_0x7f0f2419_com_google_firebase_crashlytics_mapping_file_id">b064f47548fa4016acfed843a598a225</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

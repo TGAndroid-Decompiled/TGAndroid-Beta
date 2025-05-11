@@ -10110,9 +10110,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if ((i == 0 || i == 4 || i == 5) && this.sendPhotoType != 1 && isStatusBarVisible()) {
                 measuredHeight += AndroidUtilities.statusBarHeight;
             }
-            if (i == 0 && this.sendPhotoType == 2) {
-                measuredHeight += AndroidUtilities.navigationBarHeight;
-            }
         }
         if ((i == 0 && this.sendPhotoType == 1) || i == 1) {
             f = 144.0f;

@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,16 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }
 
+        boolean areAllSelected() {
+            boolean[] zArr;
+            for (int i = 0; i < this.totalCount; i++) {
+                if (!this.checks[i] || ((zArr = this.filter) != null && !zArr[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         void collapseOrExpand() {
             this.collapsed = !this.collapsed;
             DeleteMessagesBottomSheet.this.adapter.update(true);
@@ -131,8 +142,30 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             return getCount() > 1;
         }
 
+        boolean isOneSelected() {
+            boolean[] zArr;
+            for (int i = 0; i < this.totalCount; i++) {
+                if (this.checks[i] && ((zArr = this.filter) == null || zArr[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         boolean isPresent() {
             return getCount() > 0;
+        }
+
+        void setAllChecks(boolean z) {
+            setAllChecks(z, true);
+        }
+
+        void setAllChecks(boolean z, boolean z2) {
+            Arrays.fill(this.checks, z);
+            updateCounters();
+            if (z2) {
+                DeleteMessagesBottomSheet.this.adapter.update(true);
+            }
         }
 
         void setFilter(boolean[] zArr) {
@@ -145,22 +178,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         void toggleAllChecks() {
-            boolean[] zArr;
-            boolean z = false;
-            int i = 0;
-            while (true) {
-                if (i >= this.totalCount) {
-                    z = true;
-                    break;
-                } else if (this.checks[i] && ((zArr = this.filter) == null || zArr[i])) {
-                    break;
-                } else {
-                    i++;
-                }
-            }
-            Arrays.fill(this.checks, z);
-            updateCounters();
-            DeleteMessagesBottomSheet.this.adapter.update(true);
+            setAllChecks(!isOneSelected());
         }
 
         void toggleCheck(int i) {
@@ -379,8 +397,15 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         if (tL_chatBannedRights4.send_plain) {
             tL_chatBannedRights3.send_plain = true;
         }
+        SharedPreferences mainSettings = MessagesController.getInstance(this.currentAccount).getMainSettings();
         this.report = new Action(0, arrayList2);
+        if (mainSettings.getBoolean("delete_report", false)) {
+            this.report.setAllChecks(true, false);
+        }
         this.deleteAll = new Action(1, arrayList2);
+        if (mainSettings.getBoolean("delete_deleteAll", false)) {
+            this.deleteAll.setAllChecks(true, false);
+        }
         if (ChatObject.canBlockUsers(chat)) {
             this.banFilter = new boolean[arrayList2.size()];
             int i5 = 0;
@@ -426,6 +451,9 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             action.setFilter(this.banFilter);
         } else {
             this.banOrRestrict = new Action(2, new ArrayList(0));
+        }
+        if (this.banOrRestrict != null && !this.restrict && mainSettings.getBoolean("delete_banOrRestrict", false)) {
+            this.banOrRestrict.setAllChecks(true, false);
         }
         this.adapter.update(false);
         this.actionBar.setTitle(getTitle());
@@ -1187,6 +1215,14 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         performDelete();
     }
 
+    private void savePreferences() {
+        SharedPreferences.Editor edit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
+        edit.putBoolean("delete_report", this.report.areAllSelected());
+        edit.putBoolean("delete_deleteAll", this.deleteAll.areAllSelected());
+        edit.putBoolean("delete_ban", !this.restrict && this.banOrRestrict.areAllSelected());
+        edit.apply();
+    }
+
     private void updateParticipantMessageCounts() {
         if (this.participantMessageCountsLoading) {
             return;
@@ -1228,6 +1264,12 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
         return universalAdapter;
+    }
+
+    @Override
+    public void lambda$new$0() {
+        savePreferences();
+        super.lambda$new$0();
     }
 
     @Override

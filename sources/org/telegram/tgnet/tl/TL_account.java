@@ -409,6 +409,25 @@ public class TL_account {
             return tL_businessBotRights2;
         }
 
+        public static TL_businessBotRights makeDefault() {
+            TL_businessBotRights tL_businessBotRights = new TL_businessBotRights();
+            tL_businessBotRights.reply = true;
+            tL_businessBotRights.read_messages = true;
+            tL_businessBotRights.delete_sent_messages = true;
+            tL_businessBotRights.delete_received_messages = true;
+            tL_businessBotRights.edit_name = true;
+            tL_businessBotRights.edit_bio = true;
+            tL_businessBotRights.edit_profile_photo = true;
+            tL_businessBotRights.edit_username = false;
+            tL_businessBotRights.view_gifts = false;
+            tL_businessBotRights.sell_gifts = false;
+            tL_businessBotRights.change_gift_settings = false;
+            tL_businessBotRights.transfer_and_upgrade_gifts = false;
+            tL_businessBotRights.transfer_stars = false;
+            tL_businessBotRights.manage_stories = true;
+            return tL_businessBotRights;
+        }
+
         public boolean equals(Object obj) {
             if (!(obj instanceof TL_businessBotRights)) {
                 return false;

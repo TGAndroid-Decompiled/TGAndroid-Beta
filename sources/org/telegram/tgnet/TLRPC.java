@@ -358,6 +358,9 @@ public class TLRPC {
                 case -1102180616:
                     tL_channelAdminLogEventActionStopPoll = new TL_channelAdminLogEventActionChangeAvailableReactions();
                     break;
+                case -988285058:
+                    tL_channelAdminLogEventActionStopPoll = new TL_channelAdminLogEventActionToggleAutotranslation();
+                    break;
                 case -886388890:
                     tL_channelAdminLogEventActionStopPoll = new TL_channelAdminLogEventActionToggleNoForwards();
                     break;
@@ -9490,6 +9493,22 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1693675004);
+            outputSerializedData.writeBool(this.new_value);
+        }
+    }
+
+    public static class TL_channelAdminLogEventActionToggleAutotranslation extends ChannelAdminLogEventAction {
+        public static final int constructor = -988285058;
+        public boolean new_value;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.new_value = inputSerializedData.readBool(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-988285058);
             outputSerializedData.writeBool(this.new_value);
         }
     }
