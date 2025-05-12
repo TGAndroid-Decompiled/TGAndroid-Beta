@@ -415,16 +415,16 @@ public class TL_account {
             tL_businessBotRights.read_messages = true;
             tL_businessBotRights.delete_sent_messages = true;
             tL_businessBotRights.delete_received_messages = true;
-            tL_businessBotRights.edit_name = true;
-            tL_businessBotRights.edit_bio = true;
-            tL_businessBotRights.edit_profile_photo = true;
+            tL_businessBotRights.edit_name = false;
+            tL_businessBotRights.edit_bio = false;
+            tL_businessBotRights.edit_profile_photo = false;
             tL_businessBotRights.edit_username = false;
             tL_businessBotRights.view_gifts = false;
             tL_businessBotRights.sell_gifts = false;
             tL_businessBotRights.change_gift_settings = false;
             tL_businessBotRights.transfer_and_upgrade_gifts = false;
             tL_businessBotRights.transfer_stars = false;
-            tL_businessBotRights.manage_stories = true;
+            tL_businessBotRights.manage_stories = false;
             return tL_businessBotRights;
         }
 

@@ -985,7 +985,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private void setThumb(int i, TLRPC.PhotoSize photoSize) {
-        if (photoSize != null) {
+        if (i < 3 && photoSize != null) {
             this.hasVideoThumb = false;
             int i2 = this.thumbsCount;
             if (i2 < 3) {

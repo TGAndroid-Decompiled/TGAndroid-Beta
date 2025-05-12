@@ -8782,7 +8782,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             return this.rightSlidingDialogContainer.getFragment().isLightStatusBar();
         }
         int color = Theme.getColor((this.searching && this.whiteActionBar) ? Theme.key_windowBackgroundWhite : this.folderId == 0 ? Theme.key_actionBarDefault : Theme.key_actionBarDefaultArchived);
-        if (this.actionBar.isActionModeShowed()) {
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null && actionBar.isActionModeShowed()) {
             color = Theme.getColor(Theme.key_actionBarActionModeDefault);
         }
         return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
