@@ -748,7 +748,7 @@ public class FilterShaders {
         }
         if (bitmap2 != null && !bitmap.isRecycled()) {
             GLES20.glGenTextures(1, this.bitmapTextre, 0);
-            float photoSize = AndroidUtilities.getPhotoSize();
+            float photoSize = AndroidUtilities.getPhotoSize(true);
             boolean z = this.scaleBitmap;
             if ((z && (this.renderBufferWidth > photoSize || this.renderBufferHeight > photoSize)) || i % 360 != 0) {
                 if (!z || (this.renderBufferWidth <= photoSize && this.renderBufferHeight <= photoSize)) {

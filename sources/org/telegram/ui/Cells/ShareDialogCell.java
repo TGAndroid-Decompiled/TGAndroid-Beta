@@ -22,6 +22,7 @@ import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -330,9 +331,12 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     }
 
     public void setDialog(long j, boolean z, CharSequence charSequence) {
+        TextView textView;
+        String str;
         BackupImageView backupImageView;
         int dp;
-        TextView textView;
+        TextView textView2;
+        this.avatarDrawable.setScaleSize(1.0f);
         if (j == Long.MAX_VALUE) {
             this.nameTextView.setText(repostToCustomName());
             if (this.repostStoryDrawable == null) {
@@ -355,11 +359,11 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                     this.avatarDrawable.setAvatarType(12);
                 } else if (this.currentType == 2 || !UserObject.isUserSelf(this.user)) {
                     if (charSequence != null) {
-                        textView = this.nameTextView;
+                        textView2 = this.nameTextView;
                     } else {
                         TLRPC.User user = this.user;
                         if (user != null) {
-                            textView = this.nameTextView;
+                            textView2 = this.nameTextView;
                             charSequence = ContactsController.formatName(user.first_name, user.last_name);
                         } else {
                             this.nameTextView.setText("");
@@ -367,7 +371,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                             backupImageView = this.imageView;
                         }
                     }
-                    textView.setText(charSequence);
+                    textView2.setText(charSequence);
                     this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
                     backupImageView = this.imageView;
                 } else {
@@ -385,18 +389,26 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
                 if (charSequence != null) {
                     this.nameTextView.setText(charSequence);
-                } else {
-                    TextView textView2 = this.nameTextView;
-                    if (chat != null) {
-                        textView2.setText(chat.title);
+                } else if (chat != null) {
+                    if (chat.monoforum) {
+                        textView = this.nameTextView;
+                        str = ForumUtilities.getMonoForumTitle(this.currentAccount, chat);
                     } else {
-                        textView2.setText("");
+                        textView = this.nameTextView;
+                        str = chat.title;
                     }
+                    textView.setText(str);
+                } else {
+                    this.nameTextView.setText("");
                 }
-                this.avatarDrawable.setInfo(this.currentAccount, chat);
-                this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+                if (ChatObject.isMonoForum(chat)) {
+                    ForumUtilities.setMonoForumAvatar(this.currentAccount, chat, this.avatarDrawable, this.imageView);
+                } else {
+                    this.avatarDrawable.setInfo(this.currentAccount, chat);
+                    this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+                }
                 backupImageView = this.imageView;
-                if (chat != null && chat.forum) {
+                if (chat != null && (chat.forum || chat.monoforum)) {
                     dp = AndroidUtilities.dp(16.0f);
                     backupImageView.setRoundRadius(dp);
                 }
@@ -409,50 +421,65 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     }
 
     public void setTopic(TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-        boolean z2 = this.topicWasVisible;
-        boolean z3 = tL_forumTopic != null;
-        if (z2 == z3 && z) {
+        setTopic(tL_forumTopic, false, z);
+    }
+
+    public void setTopic(TLRPC.TL_forumTopic tL_forumTopic, boolean z, boolean z2) {
+        TextView textView;
+        SimpleTextView simpleTextView;
+        CharSequence topicSpannedName;
+        boolean z3 = this.topicWasVisible;
+        boolean z4 = tL_forumTopic != null;
+        if (z3 == z4 && z2) {
             return;
         }
-        SimpleTextView simpleTextView = this.topicTextView;
+        SimpleTextView simpleTextView2 = this.topicTextView;
         int i = R.id.spring_tag;
-        SpringAnimation springAnimation = (SpringAnimation) simpleTextView.getTag(i);
+        SpringAnimation springAnimation = (SpringAnimation) simpleTextView2.getTag(i);
         if (springAnimation != null) {
             springAnimation.cancel();
         }
-        if (z3) {
-            SimpleTextView simpleTextView2 = this.topicTextView;
-            simpleTextView2.setText(ForumUtilities.getTopicSpannedName(tL_forumTopic, simpleTextView2.getTextPaint(), false));
+        if (z4) {
+            if (z) {
+                simpleTextView = this.topicTextView;
+                topicSpannedName = MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id));
+            } else {
+                simpleTextView = this.topicTextView;
+                topicSpannedName = ForumUtilities.getTopicSpannedName(tL_forumTopic, simpleTextView.getTextPaint(), false);
+            }
+            simpleTextView.setText(topicSpannedName);
             this.topicTextView.requestLayout();
         }
-        if (z) {
-            SpringAnimation springAnimation2 = (SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(z3 ? 0.0f : 1000.0f)).setSpring(new SpringForce(z3 ? 1000.0f : 0.0f).setStiffness(1500.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+        if (z2) {
+            SpringAnimation springAnimation2 = (SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(z4 ? 0.0f : 1000.0f)).setSpring(new SpringForce(z4 ? 1000.0f : 0.0f).setStiffness(1500.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
                     ShareDialogCell.this.lambda$setTopic$1(dynamicAnimation, f, f2);
                 }
             })).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
-                public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f, float f2) {
-                    ShareDialogCell.this.lambda$setTopic$2(dynamicAnimation, z4, f, f2);
+                public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z5, float f, float f2) {
+                    ShareDialogCell.this.lambda$setTopic$2(dynamicAnimation, z5, f, f2);
                 }
             });
             this.topicTextView.setTag(i, springAnimation2);
             springAnimation2.start();
         } else {
             SimpleTextView simpleTextView3 = this.topicTextView;
-            if (z3) {
+            if (z4) {
                 simpleTextView3.setAlpha(1.0f);
                 this.nameTextView.setAlpha(0.0f);
                 this.topicTextView.setTranslationX(0.0f);
-                this.nameTextView.setTranslationX(AndroidUtilities.dp(10.0f));
+                textView = this.nameTextView;
+                r8 = AndroidUtilities.dp(10.0f);
             } else {
                 simpleTextView3.setAlpha(0.0f);
                 this.nameTextView.setAlpha(1.0f);
                 this.topicTextView.setTranslationX(-AndroidUtilities.dp(10.0f));
-                this.nameTextView.setTranslationX(0.0f);
+                textView = this.nameTextView;
             }
+            textView.setTranslationX(r8);
         }
-        this.topicWasVisible = z3;
+        this.topicWasVisible = z4;
     }
 }

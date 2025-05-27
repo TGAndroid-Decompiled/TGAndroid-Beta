@@ -98,7 +98,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         @Override
-        public void bindView(View view, UItem uItem, boolean z) {
+        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
             LinkSpanDrawable.LinksTextView linksTextView = (LinkSpanDrawable.LinksTextView) view;
             linksTextView.setGravity(uItem.intValue);
             linksTextView.setTextColor((int) uItem.longValue);

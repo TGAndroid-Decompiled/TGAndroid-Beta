@@ -49,6 +49,10 @@ public class PlayPauseDrawable extends Drawable {
         this.alpha = i;
     }
 
+    public void setColor(int i) {
+        this.paint.setColor(i);
+    }
+
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
         this.paint.setColorFilter(colorFilter);

@@ -209,7 +209,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1169getWindowView();
+        View mo1172getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -319,8 +319,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = (AttachedSheet) this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1169getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1169getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1172getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1172getWindowView());
                 }
             }
         }
@@ -446,7 +446,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = (AttachedSheet) this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1169getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1172getWindowView());
                 }
             }
         }
@@ -473,7 +473,7 @@ public abstract class BaseFragment {
         return false;
     }
 
-    public void lambda$onBackPressed$338() {
+    public void lambda$onBackPressed$347() {
         PreviewDelegate previewDelegate;
         Dialog dialog = this.parentDialog;
         if (dialog != null) {

@@ -79,6 +79,7 @@ public class SharedConfig {
     public static int fontSize = 0;
     public static boolean fontSizeIsDefault = false;
     public static boolean forceDisableTabletMode = false;
+    public static boolean forceForumTabs = false;
     public static boolean forwardingOptionsHintShown = false;
     private static String goodHevcEncoder = null;
     public static boolean hasCameraCache = false;
@@ -177,6 +178,7 @@ public class SharedConfig {
     public static boolean useFingerprintLock;
     public static boolean useNewBlur;
     public static boolean useSurfaceInStories;
+    public static boolean useSystemBoldFont;
     public static boolean useSystemEmoji;
     public static boolean useThreeLinesLayout;
 
@@ -1323,6 +1325,13 @@ public class SharedConfig {
         edit.apply();
     }
 
+    public static void toggleForceForumTabs() {
+        forceForumTabs = !forceForumTabs;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("forceForumTabs", forceForumTabs);
+        edit.apply();
+    }
+
     public static void toggleInappBrowser() {
         inappBrowser = !inappBrowser;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
@@ -1484,6 +1493,14 @@ public class SharedConfig {
     public static void toggleUseNewBlur() {
         useNewBlur = !useNewBlur;
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("useNewBlur", useNewBlur).apply();
+    }
+
+    public static void toggleUseSystemBoldFont() {
+        useSystemBoldFont = !useSystemBoldFont;
+        AndroidUtilities.mediumTypeface = null;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("useSystemBoldFont", useSystemBoldFont);
+        edit.apply();
     }
 
     public static void updateChatListSwipeSetting(int i) {

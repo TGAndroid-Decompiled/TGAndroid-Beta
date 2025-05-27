@@ -683,11 +683,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
-                public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
-                }
-
-                @Override
                 public void didPressEffect(ChatMessageCell chatMessageCell2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell2);
                 }
@@ -780,11 +775,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 @Override
                 public void didPressTime(ChatMessageCell chatMessageCell2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
-                }
-
-                @Override
-                public void didPressTopicButton(ChatMessageCell chatMessageCell2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTopicButton(this, chatMessageCell2);
                 }
 
                 @Override
@@ -953,16 +943,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
-                public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
-                }
-
-                @Override
-                public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
-                }
-
-                @Override
                 public void videoTimerReached() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
                 }
@@ -970,7 +950,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             ChatMessageCell chatMessageCell2 = this.cell;
             chatMessageCell2.isChat = false;
             chatMessageCell2.setFullyDraw(true);
-            this.cell.setMessageObject(this.messageObject, null, false, false);
+            this.cell.setMessageObject(this.messageObject, null, false, false, false);
             addView(this.cell, LayoutHelper.createLinear(-1, -2));
             HintView hintView = new HintView(context, 1, true);
             this.hintView = hintView;
@@ -1374,7 +1354,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
             }
         }
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     private boolean hasChanges() {
@@ -1595,7 +1575,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$28(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     public void lambda$createView$3() {
@@ -2012,7 +1992,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$finished$12(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     public void lambda$processDone$26(SharedPreferences sharedPreferences, AlertDialog alertDialog, int i) {

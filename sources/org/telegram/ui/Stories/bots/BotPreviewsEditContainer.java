@@ -62,6 +62,7 @@ import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesController;
@@ -1285,7 +1286,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                 }
 
                 @Override
-                public void bindView(View view, UItem uItem, boolean z) {
+                public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                     ((LanguageView) view).set((TranslateController.Language) uItem.object, z);
                 }
 

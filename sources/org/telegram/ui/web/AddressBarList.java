@@ -111,7 +111,7 @@ public class AddressBarList extends FrameLayout {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 Address2View address2View = (Address2View) view;
                 if (uItem.object == null) {
                     address2View.setAsShowMore((AddressBarList) uItem.object2);
@@ -236,14 +236,14 @@ public class AddressBarList extends FrameLayout {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 BookmarkView bookmarkView = (BookmarkView) view;
                 Object obj = uItem.object2;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     boolean z2 = uItem.accent;
                     CharSequence charSequence = uItem.subtext;
-                    bookmarkView.set(messageObject, z2, charSequence != null ? charSequence.toString() : null, uItem.checked, z);
+                    bookmarkView.set(messageObject, z2, charSequence == null ? null : charSequence.toString(), uItem.checked, z);
                     return;
                 }
                 if (obj instanceof BrowserHistory.Entry) {

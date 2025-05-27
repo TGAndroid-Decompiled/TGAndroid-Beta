@@ -46,6 +46,7 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.web.BrowserHistory;
@@ -80,7 +81,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 WebsiteView websiteView = (WebsiteView) view;
                 CharSequence charSequence = uItem.text;
                 ArrayList arrayList = (ArrayList) uItem.object2;
@@ -395,11 +396,11 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     public void lambda$onClick$6(HistoryFragment[] historyFragmentArr, BrowserHistory.Entry entry) {
-        historyFragmentArr[0].lambda$onBackPressed$338();
+        historyFragmentArr[0].lambda$onBackPressed$347();
         if (this.whenHistoryClicked == null) {
             Browser.openUrl(getContext(), entry.url);
         } else {
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
             this.whenHistoryClicked.run(entry);
         }
     }

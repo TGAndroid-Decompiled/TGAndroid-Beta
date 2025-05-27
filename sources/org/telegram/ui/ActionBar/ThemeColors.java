@@ -524,6 +524,7 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_chat_recordedVoiceProgressInner, "chat_recordedVoiceProgressInner");
         sparseArray.put(Theme.key_chat_recordedVoiceDot, "chat_recordedVoiceDot");
         sparseArray.put(Theme.key_chat_recordedVoiceBackground, "chat_recordedVoiceBackground");
+        sparseArray.put(Theme.key_chat_recordedVoiceDarkerBackground, "chat_recordedVoiceDarkerBackground");
         sparseArray.put(Theme.key_chat_recordVoiceCancel, "chat_recordVoiceCancel");
         sparseArray.put(Theme.key_chat_recordTime, "chat_recordTime");
         sparseArray.put(Theme.key_chat_messagePanelCancelInlineBot, "chat_messagePanelCancelInlineBot");
@@ -1244,6 +1245,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_recordedVoicePlayPause] = -1;
         iArr[Theme.key_chat_recordedVoiceDot] = -2468275;
         iArr[Theme.key_chat_recordedVoiceBackground] = -10637848;
+        iArr[Theme.key_chat_recordedVoiceDarkerBackground] = -14710309;
         iArr[Theme.key_chat_recordedVoiceProgress] = -5120257;
         iArr[Theme.key_chat_recordedVoiceProgressInner] = -1;
         iArr[Theme.key_chat_recordVoiceCancel] = -12937772;

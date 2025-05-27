@@ -86,6 +86,8 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.PeerColorActivity;
@@ -379,7 +381,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 GiftCell giftCell = (GiftCell) view;
                 giftCell.set(-1, (TL_stars.SavedStarGift) uItem.object);
                 giftCell.setSelected(uItem.checked, false);
@@ -2210,7 +2212,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         if (this.isChannel || getUserConfig().isPremium()) {
             if (this.isChannel) {
-                lambda$onBackPressed$338();
+                lambda$onBackPressed$347();
             } else {
                 TLRPC.User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser.color == null) {
@@ -2300,7 +2302,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 getMessagesController().putUser(currentUser, false);
                 getUserConfig().saveConfig(true);
-                lambda$onBackPressed$338();
+                lambda$onBackPressed$347();
                 showBulletin();
             }
             this.applying = true;
@@ -2313,13 +2315,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
         }
         apply();
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
         showBulletin();
     }
 
@@ -2337,7 +2339,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
         }
     }
 
@@ -2346,7 +2348,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     public void lambda$showUnsavedAlert$4(AlertDialog alertDialog, int i) {

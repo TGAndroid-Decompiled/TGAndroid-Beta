@@ -424,4 +424,9 @@ public class BackupImageView extends View {
         this.height = i2;
         invalidate();
     }
+
+    @Override
+    public boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.imageReceiver.getDrawable() || drawable == this.imageReceiver.getImageDrawable() || super.verifyDrawable(drawable);
+    }
 }

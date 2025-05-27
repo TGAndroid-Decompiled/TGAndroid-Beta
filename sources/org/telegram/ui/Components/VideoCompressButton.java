@@ -95,6 +95,12 @@ public class VideoCompressButton extends View {
         canvas.restore();
     }
 
+    public void setPhotoState(boolean z) {
+        this.disabled = false;
+        this.textDrawable.setText(z ? "HD" : "SD");
+        this.sizeTextDrawable.setText("", false);
+    }
+
     public void setState(boolean z, boolean z2, int i) {
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable;
         boolean isEmpty;

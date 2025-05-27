@@ -2973,7 +2973,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
         if (tL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$338();
+            twoStepVerificationActivity.lambda$onBackPressed$347();
             if (tLObject instanceof TL_stars.starGiftWithdrawalUrl) {
                 Browser.openUrlInSystemBrowser(getContext(), ((TL_stars.starGiftWithdrawalUrl) tLObject).url);
                 return;
@@ -2992,7 +2992,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$338();
+                twoStepVerificationActivity.lambda$onBackPressed$347();
             }
             BulletinFactory.showError(tL_error);
             return;
@@ -3125,12 +3125,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         });
     }
 
-    public void lambda$onBuyPressed$120(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, final TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+    public void lambda$onBuyPressed$120(final long j, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
         this.button.setLoading(false);
         if (tL_payments_paymentFormStarGift == null) {
             return;
         }
-        openTransferAlert(true, this.dialogId, StarsController.getFormStarsPrice(tL_payments_paymentFormStarGift), new Utilities.Callback() {
+        openTransferAlert(true, j, StarsController.getFormStarsPrice(tL_payments_paymentFormStarGift), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 StarGiftSheet.this.lambda$onBuyPressed$119(tL_payments_paymentFormStarGift, tL_starGiftUnique, j, (Browser.Progress) obj);
@@ -4678,7 +4678,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         StarsController.getInstance(this.currentAccount).getResellingGiftForm(uniqueGift, clientUserId, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarGiftSheet.this.lambda$onBuyPressed$120(uniqueGift, clientUserId, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                StarGiftSheet.this.lambda$onBuyPressed$120(clientUserId, uniqueGift, (TLRPC.TL_payments_paymentFormStarGift) obj);
             }
         });
     }

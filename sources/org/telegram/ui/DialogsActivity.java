@@ -162,6 +162,7 @@ import org.telegram.ui.Components.FloatingDebug.FloatingDebugController;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugProvider;
 import org.telegram.ui.Components.FolderBottomSheet;
 import org.telegram.ui.Components.ForegroundColorSpanThemable;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.ItemOptions;
@@ -331,6 +332,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private boolean floatingProgressVisible;
     private int folderId;
     private int forumCount;
+    public long forwardOriginalChannel;
     private int fragmentContextTopPadding;
     private FragmentContextView fragmentContextView;
     private FragmentContextView fragmentLocationContextView;
@@ -1076,7 +1078,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$338();
+            baseFragment.lambda$onBackPressed$347();
             if (dialogsActivityDelegate != null) {
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(MessagesStorage.TopicKey.of(-j, 0L));
@@ -1094,7 +1096,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$338();
+            baseFragment.lambda$onBackPressed$347();
         }
 
         public void lambda$didFinishChatCreation$3(long j, final BaseFragment[] baseFragmentArr, Runnable runnable) {
@@ -1327,7 +1329,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (DialogsActivity.this.searchString == null) {
                 return true;
             }
-            DialogsActivity.this.lambda$onBackPressed$338();
+            DialogsActivity.this.lambda$onBackPressed$347();
             return false;
         }
 
@@ -1526,7 +1528,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (DialogsActivity.this.onlySelect) {
                 if (DialogsActivity.this.validateSlowModeDialog(j)) {
                     if (DialogsActivity.this.selectedDialogs.isEmpty()) {
-                        DialogsActivity.this.didSelectResult(j, 0, true, false);
+                        DialogsActivity.this.didSelectResult(j, 0L, true, false);
                         return;
                     }
                     DialogsActivity.this.findAndUpdateCheckBox(j, DialogsActivity.this.addOrRemoveSelectedDialog(j, null));
@@ -1888,8 +1890,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public class AnonymousClass6 extends FilterTabsView {
-        AnonymousClass6(Context context) {
-            super(context);
+        AnonymousClass6(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
         }
 
         public void lambda$onDefaultTabMoved$0() {
@@ -3285,8 +3287,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         public void lambda$new$1() {
             this.dialogsAdapter.updateList(this.saveScrollPositionRunnable);
             DialogsActivity.this.invalidateScrollY = true;
-            this.listView.updateDialogsOnNextDraw = true;
+            DialogsRecyclerView dialogsRecyclerView = this.listView;
+            dialogsRecyclerView.updateDialogsOnNextDraw = true;
             this.updating = false;
+            dialogsRecyclerView.invalidate();
         }
 
         public boolean isDefaultDialogType() {
@@ -4023,7 +4027,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void lambda$createGroupForThis$57(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$338();
+        baseFragment.lambda$onBackPressed$347();
     }
 
     public void lambda$createGroupForThis$58(Long l, final ChannelCreateActivity channelCreateActivity, final BaseFragment baseFragment, Runnable runnable) {
@@ -4109,7 +4113,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         DialogsActivityDelegate dialogsActivityDelegate = this.delegate;
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$338();
+        baseFragment.lambda$onBackPressed$347();
         if (dialogsActivityDelegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(-l.longValue(), 0L));
@@ -4525,17 +4529,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         });
     }
 
-    public void lambda$didSelectResult$122(long j, int i, TopicsFragment topicsFragment, AlertDialog alertDialog, int i2) {
-        didSelectResult(j, i, false, false, topicsFragment);
+    public void lambda$didSelectResult$122(long j, long j2, TopicsFragment topicsFragment, AlertDialog alertDialog, int i) {
+        didSelectResult(j, j2, false, false, topicsFragment);
     }
 
-    public void lambda$didSelectResult$123(long j, int i, boolean z, TopicsFragment topicsFragment) {
+    public void lambda$didSelectResult$123(long j, long j2, boolean z, TopicsFragment topicsFragment) {
         if (this.delegate == null) {
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
             return;
         }
         ArrayList arrayList = new ArrayList();
-        arrayList.add(MessagesStorage.TopicKey.of(j, i));
+        arrayList.add(MessagesStorage.TopicKey.of(j, j2));
         this.delegate.didSelectDialogs(this, arrayList, null, z, this.notify, this.scheduleDate, topicsFragment);
         if (this.resetDelegate) {
             this.delegate = null;
@@ -4939,7 +4943,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         this.viewPages[0].listView.setEmptyView(null);
         this.viewPages[0].progressView.setVisibility(4);
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     public void lambda$performSelectedDialogsAction$98(ArrayList arrayList, final int i, final HashSet hashSet, final boolean z) {
@@ -5627,7 +5631,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         for (int i = 0; i < arrayList.size(); i++) {
             long j = ((TLRPC.Dialog) arrayList.get(i)).id;
             TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i);
-            if (getMessagesController().isForum(j)) {
+            if (getMessagesController().isForum(j) || getMessagesController().isMonoForumWithManageRights(j)) {
                 getMessagesController().markAllTopicsAsRead(j);
             }
             getMessagesController().markMentionsAsRead(j, 0L);
@@ -5693,7 +5697,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         showDialog(builder.create());
     }
 
-    private void onItemClick(android.view.View r20, int r21, androidx.recyclerview.widget.RecyclerView.Adapter r22, float r23, float r24) {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -5721,7 +5725,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     builder.setTitle(LocaleController.getString(R.string.ClearSearchSingleAlertTitle));
                     if (item instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) item;
-                        builder.setMessage(LocaleController.formatString("ClearSearchSingleChatAlertText", R.string.ClearSearchSingleChatAlertText, chat.title));
+                        builder.setMessage(chat.monoforum ? LocaleController.formatString("ClearSearchSingleChatAlertText", R.string.ClearSearchSingleChatAlertText, ForumUtilities.getMonoForumTitle(this.currentAccount, chat)) : LocaleController.formatString("ClearSearchSingleChatAlertText", R.string.ClearSearchSingleChatAlertText, chat.title));
                         makeEncryptedDialogId = -chat.id;
                     } else if (item instanceof TLRPC.User) {
                         TLRPC.User user = (TLRPC.User) item;
@@ -7722,401 +7726,403 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.slowedReloadAfterDialogClick = false;
             return;
         }
-        if (i == NotificationCenter.dialogsUnreadCounterChanged) {
-            FilterTabsView filterTabsView2 = this.filterTabsView;
-            if (filterTabsView2 == null || filterTabsView2.getVisibility() != 0) {
+        if (i != NotificationCenter.topicsDidLoaded) {
+            if (i == NotificationCenter.dialogsUnreadCounterChanged) {
+                FilterTabsView filterTabsView2 = this.filterTabsView;
+                if (filterTabsView2 == null || filterTabsView2.getVisibility() != 0) {
+                    return;
+                }
+                FilterTabsView filterTabsView3 = this.filterTabsView;
+                filterTabsView3.notifyTabCounterChanged(filterTabsView3.getDefaultTabId());
                 return;
             }
-            FilterTabsView filterTabsView3 = this.filterTabsView;
-            filterTabsView3.notifyTabCounterChanged(filterTabsView3.getDefaultTabId());
-            return;
-        }
-        if (i != NotificationCenter.dialogsUnreadReactionsCounterChanged) {
-            if (i == NotificationCenter.emojiLoaded) {
-                if (this.viewPages != null) {
-                    int i6 = 0;
-                    while (true) {
-                        ViewPage[] viewPageArr2 = this.viewPages;
-                        if (i6 >= viewPageArr2.length) {
-                            break;
-                        }
-                        DialogsRecyclerView dialogsRecyclerView = viewPageArr2[i6].listView;
-                        if (dialogsRecyclerView != null) {
-                            for (int i7 = 0; i7 < dialogsRecyclerView.getChildCount(); i7++) {
-                                View childAt = dialogsRecyclerView.getChildAt(i7);
-                                if (childAt != null) {
-                                    childAt.invalidate();
-                                }
+            if (i != NotificationCenter.dialogsUnreadReactionsCounterChanged) {
+                if (i == NotificationCenter.emojiLoaded) {
+                    if (this.viewPages != null) {
+                        int i6 = 0;
+                        while (true) {
+                            ViewPage[] viewPageArr2 = this.viewPages;
+                            if (i6 >= viewPageArr2.length) {
+                                break;
                             }
-                        }
-                        i6++;
-                    }
-                }
-                FilterTabsView filterTabsView4 = this.filterTabsView;
-                if (filterTabsView4 != null) {
-                    filterTabsView4.getTabsContainer().invalidateViews();
-                    return;
-                }
-                return;
-            }
-            if (i == NotificationCenter.closeSearchByActiveAction) {
-                ActionBar actionBar = this.actionBar;
-                if (actionBar != null) {
-                    actionBar.closeSearchField();
-                    return;
-                }
-                return;
-            }
-            if (i == NotificationCenter.proxySettingsChanged) {
-                updateProxyButton(false, false);
-                return;
-            }
-            if (i == NotificationCenter.updateInterfaces) {
-                Integer num = (Integer) objArr[0];
-                updateVisibleRows(num.intValue());
-                FilterTabsView filterTabsView5 = this.filterTabsView;
-                if (filterTabsView5 != null && filterTabsView5.getVisibility() == 0 && (num.intValue() & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) != 0) {
-                    this.filterTabsView.checkTabsCounter();
-                }
-                if (this.viewPages != null) {
-                    while (i4 < this.viewPages.length) {
-                        if ((num.intValue() & MessagesController.UPDATE_MASK_STATUS) != 0) {
-                            this.viewPages[i4].dialogsAdapter.sortOnlineContacts(true);
-                        }
-                        i4++;
-                    }
-                }
-                user = UserConfig.getInstance(i2).getCurrentUser();
-            } else {
-                if (i == NotificationCenter.appDidLogout) {
-                    dialogsLoaded[this.currentAccount] = false;
-                    return;
-                }
-                if (i != NotificationCenter.encryptedChatUpdated) {
-                    if (i != NotificationCenter.contactsDidLoad) {
-                        if (i == NotificationCenter.openedChatChanged) {
-                            if (this.viewPages == null) {
-                                return;
-                            }
-                            int i8 = 0;
-                            while (true) {
-                                ViewPage[] viewPageArr3 = this.viewPages;
-                                if (i8 >= viewPageArr3.length) {
-                                    break;
-                                }
-                                if (viewPageArr3[i8].isDefaultDialogType() && AndroidUtilities.isTablet()) {
-                                    boolean booleanValue2 = ((Boolean) objArr[2]).booleanValue();
-                                    long longValue = ((Long) objArr[0]).longValue();
-                                    long longValue2 = ((Long) objArr[1]).longValue();
-                                    if (booleanValue2) {
-                                        MessagesStorage.TopicKey topicKey = this.openedDialogId;
-                                        if (longValue == topicKey.dialogId && longValue2 == topicKey.topicId) {
-                                            topicKey.dialogId = 0L;
-                                            topicKey.topicId = 0L;
-                                        }
-                                    } else {
-                                        MessagesStorage.TopicKey topicKey2 = this.openedDialogId;
-                                        topicKey2.dialogId = longValue;
-                                        topicKey2.topicId = longValue2;
+                            DialogsRecyclerView dialogsRecyclerView = viewPageArr2[i6].listView;
+                            if (dialogsRecyclerView != null) {
+                                for (int i7 = 0; i7 < dialogsRecyclerView.getChildCount(); i7++) {
+                                    View childAt = dialogsRecyclerView.getChildAt(i7);
+                                    if (childAt != null) {
+                                        childAt.invalidate();
                                     }
-                                    this.viewPages[i8].dialogsAdapter.setOpenedDialogId(this.openedDialogId.dialogId);
                                 }
-                                i8++;
                             }
-                            i3 = MessagesController.UPDATE_MASK_SELECT_DIALOG;
-                        } else if (i != NotificationCenter.notificationsSettingsUpdated) {
-                            if (i == NotificationCenter.messageReceivedByAck || i == NotificationCenter.messageReceivedByServer || i == NotificationCenter.messageSendError) {
-                                i3 = MessagesController.UPDATE_MASK_SEND_STATE;
-                            } else {
-                                if (i == NotificationCenter.didSetPasscode) {
-                                    updatePasscodeButton();
+                            i6++;
+                        }
+                    }
+                    FilterTabsView filterTabsView4 = this.filterTabsView;
+                    if (filterTabsView4 != null) {
+                        filterTabsView4.getTabsContainer().invalidateViews();
+                        return;
+                    }
+                    return;
+                }
+                if (i == NotificationCenter.closeSearchByActiveAction) {
+                    ActionBar actionBar = this.actionBar;
+                    if (actionBar != null) {
+                        actionBar.closeSearchField();
+                        return;
+                    }
+                    return;
+                }
+                if (i == NotificationCenter.proxySettingsChanged) {
+                    updateProxyButton(false, false);
+                    return;
+                }
+                if (i == NotificationCenter.updateInterfaces) {
+                    Integer num = (Integer) objArr[0];
+                    updateVisibleRows(num.intValue());
+                    FilterTabsView filterTabsView5 = this.filterTabsView;
+                    if (filterTabsView5 != null && filterTabsView5.getVisibility() == 0 && (num.intValue() & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) != 0) {
+                        this.filterTabsView.checkTabsCounter();
+                    }
+                    if (this.viewPages != null) {
+                        while (i4 < this.viewPages.length) {
+                            if ((num.intValue() & MessagesController.UPDATE_MASK_STATUS) != 0) {
+                                this.viewPages[i4].dialogsAdapter.sortOnlineContacts(true);
+                            }
+                            i4++;
+                        }
+                    }
+                    user = UserConfig.getInstance(i2).getCurrentUser();
+                } else {
+                    if (i == NotificationCenter.appDidLogout) {
+                        dialogsLoaded[this.currentAccount] = false;
+                        return;
+                    }
+                    if (i != NotificationCenter.encryptedChatUpdated) {
+                        if (i != NotificationCenter.contactsDidLoad) {
+                            if (i == NotificationCenter.openedChatChanged) {
+                                if (this.viewPages == null) {
                                     return;
                                 }
-                                if (i == NotificationCenter.needReloadRecentDialogsSearch) {
-                                    SearchViewPager searchViewPager = this.searchViewPager;
-                                    if (searchViewPager == null || (dialogsSearchAdapter2 = searchViewPager.dialogsSearchAdapter) == null) {
-                                        return;
+                                int i8 = 0;
+                                while (true) {
+                                    ViewPage[] viewPageArr3 = this.viewPages;
+                                    if (i8 >= viewPageArr3.length) {
+                                        break;
                                     }
-                                    dialogsSearchAdapter2.loadRecentSearch();
-                                    return;
-                                }
-                                if (i != NotificationCenter.replyMessagesDidLoad) {
-                                    if (i == NotificationCenter.reloadHints) {
-                                        SearchViewPager searchViewPager2 = this.searchViewPager;
-                                        if (searchViewPager2 == null || (dialogsSearchAdapter = searchViewPager2.dialogsSearchAdapter) == null) {
-                                            return;
-                                        }
-                                        dialogsSearchAdapter.notifyDataSetChanged();
-                                        return;
-                                    }
-                                    if (i == NotificationCenter.didUpdateConnectionState) {
-                                        int connectionState = AccountInstance.getInstance(i2).getConnectionsManager().getConnectionState();
-                                        if (this.currentConnectionState != connectionState) {
-                                            this.currentConnectionState = connectionState;
-                                            updateProxyButton(true, false);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    if (i == NotificationCenter.onDownloadingFilesChanged) {
-                                        updateProxyButton(true, false);
-                                        SearchViewPager searchViewPager3 = this.searchViewPager;
-                                        if (searchViewPager3 != null) {
-                                            updateSpeedItem(searchViewPager3.getCurrentPosition() == 2);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    if (i == NotificationCenter.needDeleteDialog) {
-                                        if (this.fragmentView == null || this.isPaused) {
-                                            return;
-                                        }
-                                        final long longValue3 = ((Long) objArr[0]).longValue();
-                                        final TLRPC.User user2 = (TLRPC.User) objArr[1];
-                                        final TLRPC.Chat chat = (TLRPC.Chat) objArr[2];
-                                        if (user2 == null || !user2.bot) {
-                                            booleanValue = ((Boolean) objArr[3]).booleanValue();
-                                            z = false;
+                                    if (viewPageArr3[i8].isDefaultDialogType() && AndroidUtilities.isTablet()) {
+                                        boolean booleanValue2 = ((Boolean) objArr[2]).booleanValue();
+                                        long longValue = ((Long) objArr[0]).longValue();
+                                        long longValue2 = ((Long) objArr[1]).longValue();
+                                        if (booleanValue2) {
+                                            MessagesStorage.TopicKey topicKey = this.openedDialogId;
+                                            if (longValue == topicKey.dialogId && longValue2 == topicKey.topicId) {
+                                                topicKey.dialogId = 0L;
+                                                topicKey.topicId = 0L;
+                                            }
                                         } else {
-                                            z = ((Boolean) objArr[3]).booleanValue();
-                                            booleanValue = false;
+                                            MessagesStorage.TopicKey topicKey2 = this.openedDialogId;
+                                            topicKey2.dialogId = longValue;
+                                            topicKey2.topicId = longValue2;
                                         }
-                                        Runnable runnable = new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                DialogsActivity.this.lambda$didReceivedNotification$111(chat, longValue3, booleanValue, user2, z);
+                                        this.viewPages[i8].dialogsAdapter.setOpenedDialogId(this.openedDialogId.dialogId);
+                                    }
+                                    i8++;
+                                }
+                                i3 = MessagesController.UPDATE_MASK_SELECT_DIALOG;
+                            } else if (i != NotificationCenter.notificationsSettingsUpdated) {
+                                if (i == NotificationCenter.messageReceivedByAck || i == NotificationCenter.messageReceivedByServer || i == NotificationCenter.messageSendError) {
+                                    i3 = MessagesController.UPDATE_MASK_SEND_STATE;
+                                } else {
+                                    if (i == NotificationCenter.didSetPasscode) {
+                                        updatePasscodeButton();
+                                        return;
+                                    }
+                                    if (i == NotificationCenter.needReloadRecentDialogsSearch) {
+                                        SearchViewPager searchViewPager = this.searchViewPager;
+                                        if (searchViewPager == null || (dialogsSearchAdapter2 = searchViewPager.dialogsSearchAdapter) == null) {
+                                            return;
+                                        }
+                                        dialogsSearchAdapter2.loadRecentSearch();
+                                        return;
+                                    }
+                                    if (i != NotificationCenter.replyMessagesDidLoad) {
+                                        if (i == NotificationCenter.reloadHints) {
+                                            SearchViewPager searchViewPager2 = this.searchViewPager;
+                                            if (searchViewPager2 == null || (dialogsSearchAdapter = searchViewPager2.dialogsSearchAdapter) == null) {
+                                                return;
                                             }
-                                        };
-                                        createUndoView();
-                                        if (this.undoView[0] == null || ChatObject.isForum(chat)) {
-                                            runnable.run();
+                                            dialogsSearchAdapter.notifyDataSetChanged();
                                             return;
                                         }
-                                        UndoView undoView = getUndoView();
-                                        if (undoView != null) {
-                                            undoView.showWithAction(longValue3, 1, runnable);
+                                        if (i == NotificationCenter.didUpdateConnectionState) {
+                                            int connectionState = AccountInstance.getInstance(i2).getConnectionsManager().getConnectionState();
+                                            if (this.currentConnectionState != connectionState) {
+                                                this.currentConnectionState = connectionState;
+                                                updateProxyButton(true, false);
+                                                return;
+                                            }
                                             return;
                                         }
-                                        return;
-                                    }
-                                    if (i == NotificationCenter.folderBecomeEmpty) {
-                                        int intValue = ((Integer) objArr[0]).intValue();
-                                        int i9 = this.folderId;
-                                        if (i9 != intValue || i9 == 0) {
+                                        if (i == NotificationCenter.onDownloadingFilesChanged) {
+                                            updateProxyButton(true, false);
+                                            SearchViewPager searchViewPager3 = this.searchViewPager;
+                                            if (searchViewPager3 != null) {
+                                                updateSpeedItem(searchViewPager3.getCurrentPosition() == 2);
+                                                return;
+                                            }
                                             return;
                                         }
-                                        lambda$onBackPressed$338();
-                                        return;
-                                    }
-                                    if (i == NotificationCenter.dialogFiltersUpdated) {
-                                        updateFilterTabs(true, true);
-                                        return;
-                                    }
-                                    if (i == NotificationCenter.filterSettingsUpdated) {
-                                        showFiltersHint();
-                                        return;
-                                    }
-                                    if (i != NotificationCenter.newSuggestionsAvailable) {
-                                        if (i == NotificationCenter.forceImportContactsStart) {
-                                            setFloatingProgressVisible(true, true);
-                                            ViewPage[] viewPageArr4 = this.viewPages;
-                                            if (viewPageArr4 != null) {
-                                                for (ViewPage viewPage2 : viewPageArr4) {
-                                                    viewPage2.dialogsAdapter.setForceShowEmptyCell(false);
-                                                    viewPage2.dialogsAdapter.setForceUpdatingContacts(true);
-                                                    viewPage2.dialogsAdapter.notifyDataSetChanged();
+                                        if (i == NotificationCenter.needDeleteDialog) {
+                                            if (this.fragmentView == null || this.isPaused) {
+                                                return;
+                                            }
+                                            final long longValue3 = ((Long) objArr[0]).longValue();
+                                            final TLRPC.User user2 = (TLRPC.User) objArr[1];
+                                            final TLRPC.Chat chat = (TLRPC.Chat) objArr[2];
+                                            if (user2 == null || !user2.bot) {
+                                                booleanValue = ((Boolean) objArr[3]).booleanValue();
+                                                z = false;
+                                            } else {
+                                                z = ((Boolean) objArr[3]).booleanValue();
+                                                booleanValue = false;
+                                            }
+                                            Runnable runnable = new Runnable() {
+                                                @Override
+                                                public final void run() {
+                                                    DialogsActivity.this.lambda$didReceivedNotification$111(chat, longValue3, booleanValue, user2, z);
                                                 }
+                                            };
+                                            createUndoView();
+                                            if (this.undoView[0] == null || ChatObject.isForum(chat)) {
+                                                runnable.run();
+                                                return;
+                                            }
+                                            UndoView undoView = getUndoView();
+                                            if (undoView != null) {
+                                                undoView.showWithAction(longValue3, 1, runnable);
                                                 return;
                                             }
                                             return;
                                         }
-                                        if (i == NotificationCenter.messagesDeleted) {
-                                            if (!this.searchIsShowed || this.searchViewPager == null) {
+                                        if (i == NotificationCenter.folderBecomeEmpty) {
+                                            int intValue = ((Integer) objArr[0]).intValue();
+                                            int i9 = this.folderId;
+                                            if (i9 != intValue || i9 == 0) {
                                                 return;
                                             }
-                                            this.searchViewPager.messagesDeleted(((Long) objArr[1]).longValue(), (ArrayList) objArr[0]);
+                                            lambda$onBackPressed$347();
                                             return;
                                         }
-                                        if (i == NotificationCenter.didClearDatabase) {
-                                            if (this.viewPages != null) {
-                                                while (true) {
-                                                    ViewPage[] viewPageArr5 = this.viewPages;
-                                                    if (i4 >= viewPageArr5.length) {
-                                                        break;
+                                        if (i == NotificationCenter.dialogFiltersUpdated) {
+                                            updateFilterTabs(true, true);
+                                            return;
+                                        }
+                                        if (i == NotificationCenter.filterSettingsUpdated) {
+                                            showFiltersHint();
+                                            return;
+                                        }
+                                        if (i != NotificationCenter.newSuggestionsAvailable) {
+                                            if (i == NotificationCenter.forceImportContactsStart) {
+                                                setFloatingProgressVisible(true, true);
+                                                ViewPage[] viewPageArr4 = this.viewPages;
+                                                if (viewPageArr4 != null) {
+                                                    for (ViewPage viewPage2 : viewPageArr4) {
+                                                        viewPage2.dialogsAdapter.setForceShowEmptyCell(false);
+                                                        viewPage2.dialogsAdapter.setForceUpdatingContacts(true);
+                                                        viewPage2.dialogsAdapter.notifyDataSetChanged();
                                                     }
-                                                    viewPageArr5[i4].dialogsAdapter.didDatabaseCleared();
-                                                    i4++;
-                                                }
-                                            }
-                                            SuggestClearDatabaseBottomSheet.dismissDialog();
-                                            return;
-                                        }
-                                        if (i != NotificationCenter.appUpdateAvailable && i != NotificationCenter.appUpdateLoading) {
-                                            if (i == NotificationCenter.fileLoaded || i == NotificationCenter.fileLoadFailed || i == NotificationCenter.fileLoadProgressChanged) {
-                                                String str = (String) objArr[0];
-                                                if (!SharedConfig.isAppUpdateAvailable() || !FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str)) {
                                                     return;
                                                 }
-                                            } else {
-                                                if (i == NotificationCenter.onDatabaseMigration) {
-                                                    boolean booleanValue3 = ((Boolean) objArr[0]).booleanValue();
-                                                    if (this.fragmentView != null) {
-                                                        if (booleanValue3) {
-                                                            if (this.databaseMigrationHint == null) {
-                                                                DatabaseMigrationHint databaseMigrationHint = new DatabaseMigrationHint(this.fragmentView.getContext(), this.currentAccount);
-                                                                this.databaseMigrationHint = databaseMigrationHint;
-                                                                databaseMigrationHint.setAlpha(0.0f);
-                                                                ((ContentView) this.fragmentView).addView(this.databaseMigrationHint);
-                                                                this.databaseMigrationHint.animate().alpha(1.0f).setDuration(300L).setStartDelay(1000L).start();
-                                                            }
-                                                            this.databaseMigrationHint.setTag(1);
-                                                            return;
+                                                return;
+                                            }
+                                            if (i == NotificationCenter.messagesDeleted) {
+                                                if (!this.searchIsShowed || this.searchViewPager == null) {
+                                                    return;
+                                                }
+                                                this.searchViewPager.messagesDeleted(((Long) objArr[1]).longValue(), (ArrayList) objArr[0]);
+                                                return;
+                                            }
+                                            if (i == NotificationCenter.didClearDatabase) {
+                                                if (this.viewPages != null) {
+                                                    while (true) {
+                                                        ViewPage[] viewPageArr5 = this.viewPages;
+                                                        if (i4 >= viewPageArr5.length) {
+                                                            break;
                                                         }
-                                                        View view = this.databaseMigrationHint;
-                                                        if (view == null || view.getTag() == null) {
-                                                            return;
-                                                        }
-                                                        final View view2 = this.databaseMigrationHint;
-                                                        view2.animate().setListener(null).cancel();
-                                                        view2.animate().setListener(new AnimatorListenerAdapter() {
-                                                            @Override
-                                                            public void onAnimationEnd(Animator animator) {
-                                                                if (view2.getParent() != null) {
-                                                                    ((ViewGroup) view2.getParent()).removeView(view2);
-                                                                }
-                                                                DialogsActivity.this.databaseMigrationHint = null;
-                                                            }
-                                                        }).alpha(0.0f).setStartDelay(0L).setDuration(150L).start();
-                                                        this.databaseMigrationHint.setTag(null);
+                                                        viewPageArr5[i4].dialogsAdapter.didDatabaseCleared();
+                                                        i4++;
+                                                    }
+                                                }
+                                                SuggestClearDatabaseBottomSheet.dismissDialog();
+                                                return;
+                                            }
+                                            if (i != NotificationCenter.appUpdateAvailable && i != NotificationCenter.appUpdateLoading) {
+                                                if (i == NotificationCenter.fileLoaded || i == NotificationCenter.fileLoadFailed || i == NotificationCenter.fileLoadProgressChanged) {
+                                                    String str = (String) objArr[0];
+                                                    if (!SharedConfig.isAppUpdateAvailable() || !FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document).equals(str)) {
                                                         return;
                                                     }
-                                                    return;
-                                                }
-                                                if (i == NotificationCenter.onDatabaseOpened) {
-                                                    checkSuggestClearDatabase();
-                                                    return;
-                                                }
-                                                if (i != NotificationCenter.userEmojiStatusUpdated) {
-                                                    if (i == NotificationCenter.currentUserPremiumStatusChanged) {
-                                                        updateStatus(UserConfig.getInstance(i2).getCurrentUser(), true);
-                                                    } else {
-                                                        if (i == NotificationCenter.onDatabaseReset) {
-                                                            dialogsLoaded[this.currentAccount] = false;
-                                                            loadDialogs(getAccountInstance());
-                                                            getMessagesController().loadPinnedDialogs(this.folderId, 0L, null);
-                                                            return;
-                                                        }
-                                                        if (i == NotificationCenter.chatlistFolderUpdate) {
-                                                            int intValue2 = ((Integer) objArr[0]).intValue();
-                                                            while (true) {
-                                                                ViewPage[] viewPageArr6 = this.viewPages;
-                                                                if (i4 >= viewPageArr6.length) {
-                                                                    return;
+                                                } else {
+                                                    if (i == NotificationCenter.onDatabaseMigration) {
+                                                        boolean booleanValue3 = ((Boolean) objArr[0]).booleanValue();
+                                                        if (this.fragmentView != null) {
+                                                            if (booleanValue3) {
+                                                                if (this.databaseMigrationHint == null) {
+                                                                    DatabaseMigrationHint databaseMigrationHint = new DatabaseMigrationHint(this.fragmentView.getContext(), this.currentAccount);
+                                                                    this.databaseMigrationHint = databaseMigrationHint;
+                                                                    databaseMigrationHint.setAlpha(0.0f);
+                                                                    ((ContentView) this.fragmentView).addView(this.databaseMigrationHint);
+                                                                    this.databaseMigrationHint.animate().alpha(1.0f).setDuration(300L).setStartDelay(1000L).start();
                                                                 }
-                                                                ViewPage viewPage3 = viewPageArr6[i4];
-                                                                if (viewPage3 != null && ((viewPage3.dialogsType == 7 || viewPage3.dialogsType == 8) && (dialogFilter = getMessagesController().selectedDialogFilter[viewPage3.dialogsType - 7]) != null && intValue2 == dialogFilter.id)) {
-                                                                    viewPage3.updateList(true);
-                                                                    return;
-                                                                }
-                                                                i4++;
-                                                            }
-                                                        } else if (i == NotificationCenter.dialogTranslate) {
-                                                            long longValue4 = ((Long) objArr[0]).longValue();
-                                                            int i10 = 0;
-                                                            while (true) {
-                                                                ViewPage[] viewPageArr7 = this.viewPages;
-                                                                if (i10 >= viewPageArr7.length) {
-                                                                    return;
-                                                                }
-                                                                ViewPage viewPage4 = viewPageArr7[i10];
-                                                                if (viewPage4.listView != null) {
-                                                                    int i11 = 0;
-                                                                    while (true) {
-                                                                        if (i11 < viewPage4.listView.getChildCount()) {
-                                                                            View childAt2 = viewPage4.listView.getChildAt(i11);
-                                                                            if (childAt2 instanceof DialogCell) {
-                                                                                DialogCell dialogCell = (DialogCell) childAt2;
-                                                                                if (longValue4 == dialogCell.getDialogId()) {
-                                                                                    dialogCell.buildLayout();
-                                                                                    break;
-                                                                                }
-                                                                            }
-                                                                            i11++;
-                                                                        }
-                                                                    }
-                                                                }
-                                                                i10++;
-                                                            }
-                                                        } else if (i == NotificationCenter.storiesUpdated) {
-                                                            updateStoriesVisibility(this.wasDrawn);
-                                                        } else if (i != NotificationCenter.storiesEnabledUpdate) {
-                                                            if (i != NotificationCenter.unconfirmedAuthUpdate && i != NotificationCenter.premiumPromoUpdated && i != NotificationCenter.starBalanceUpdated && i != NotificationCenter.starSubscriptionsLoaded && i != NotificationCenter.appConfigUpdated) {
+                                                                this.databaseMigrationHint.setTag(1);
                                                                 return;
                                                             }
+                                                            View view = this.databaseMigrationHint;
+                                                            if (view == null || view.getTag() == null) {
+                                                                return;
+                                                            }
+                                                            final View view2 = this.databaseMigrationHint;
+                                                            view2.animate().setListener(null).cancel();
+                                                            view2.animate().setListener(new AnimatorListenerAdapter() {
+                                                                @Override
+                                                                public void onAnimationEnd(Animator animator) {
+                                                                    if (view2.getParent() != null) {
+                                                                        ((ViewGroup) view2.getParent()).removeView(view2);
+                                                                    }
+                                                                    DialogsActivity.this.databaseMigrationHint = null;
+                                                                }
+                                                            }).alpha(0.0f).setStartDelay(0L).setDuration(150L).start();
+                                                            this.databaseMigrationHint.setTag(null);
+                                                            return;
                                                         }
+                                                        return;
                                                     }
-                                                    updateStoriesPosting();
-                                                    return;
+                                                    if (i == NotificationCenter.onDatabaseOpened) {
+                                                        checkSuggestClearDatabase();
+                                                        return;
+                                                    }
+                                                    if (i != NotificationCenter.userEmojiStatusUpdated) {
+                                                        if (i == NotificationCenter.currentUserPremiumStatusChanged) {
+                                                            updateStatus(UserConfig.getInstance(i2).getCurrentUser(), true);
+                                                        } else {
+                                                            if (i == NotificationCenter.onDatabaseReset) {
+                                                                dialogsLoaded[this.currentAccount] = false;
+                                                                loadDialogs(getAccountInstance());
+                                                                getMessagesController().loadPinnedDialogs(this.folderId, 0L, null);
+                                                                return;
+                                                            }
+                                                            if (i == NotificationCenter.chatlistFolderUpdate) {
+                                                                int intValue2 = ((Integer) objArr[0]).intValue();
+                                                                while (true) {
+                                                                    ViewPage[] viewPageArr6 = this.viewPages;
+                                                                    if (i4 >= viewPageArr6.length) {
+                                                                        return;
+                                                                    }
+                                                                    ViewPage viewPage3 = viewPageArr6[i4];
+                                                                    if (viewPage3 != null && ((viewPage3.dialogsType == 7 || viewPage3.dialogsType == 8) && (dialogFilter = getMessagesController().selectedDialogFilter[viewPage3.dialogsType - 7]) != null && intValue2 == dialogFilter.id)) {
+                                                                        viewPage3.updateList(true);
+                                                                        return;
+                                                                    }
+                                                                    i4++;
+                                                                }
+                                                            } else if (i == NotificationCenter.dialogTranslate) {
+                                                                long longValue4 = ((Long) objArr[0]).longValue();
+                                                                int i10 = 0;
+                                                                while (true) {
+                                                                    ViewPage[] viewPageArr7 = this.viewPages;
+                                                                    if (i10 >= viewPageArr7.length) {
+                                                                        return;
+                                                                    }
+                                                                    ViewPage viewPage4 = viewPageArr7[i10];
+                                                                    if (viewPage4.listView != null) {
+                                                                        int i11 = 0;
+                                                                        while (true) {
+                                                                            if (i11 < viewPage4.listView.getChildCount()) {
+                                                                                View childAt2 = viewPage4.listView.getChildAt(i11);
+                                                                                if (childAt2 instanceof DialogCell) {
+                                                                                    DialogCell dialogCell = (DialogCell) childAt2;
+                                                                                    if (longValue4 == dialogCell.getDialogId()) {
+                                                                                        dialogCell.buildLayout();
+                                                                                        break;
+                                                                                    }
+                                                                                }
+                                                                                i11++;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    i10++;
+                                                                }
+                                                            } else if (i == NotificationCenter.storiesUpdated) {
+                                                                updateStoriesVisibility(this.wasDrawn);
+                                                            } else if (i != NotificationCenter.storiesEnabledUpdate) {
+                                                                if (i != NotificationCenter.unconfirmedAuthUpdate && i != NotificationCenter.premiumPromoUpdated && i != NotificationCenter.starBalanceUpdated && i != NotificationCenter.starSubscriptionsLoaded && i != NotificationCenter.appConfigUpdated) {
+                                                                    return;
+                                                                }
+                                                            }
+                                                        }
+                                                        updateStoriesPosting();
+                                                        return;
+                                                    }
+                                                    user = (TLRPC.User) objArr[0];
                                                 }
-                                                user = (TLRPC.User) objArr[0];
                                             }
+                                            updateMenuButton(true);
+                                            return;
                                         }
-                                        updateMenuButton(true);
+                                        showNextSupportedSuggestion();
+                                        lambda$updateDialogsHint$32();
                                         return;
                                     }
-                                    showNextSupportedSuggestion();
-                                    lambda$updateDialogsHint$32();
-                                    return;
+                                    i3 = MessagesController.UPDATE_MASK_MESSAGE_TEXT;
                                 }
-                                i3 = MessagesController.UPDATE_MASK_MESSAGE_TEXT;
                             }
+                            updateVisibleRows(i3);
+                            return;
                         }
-                        updateVisibleRows(i3);
-                        return;
-                    }
-                    if (this.viewPages == null || this.dialogsListFrozen) {
-                        return;
-                    }
-                    boolean z3 = this.floatingProgressVisible;
-                    setFloatingProgressVisible(false, true);
-                    for (ViewPage viewPage5 : this.viewPages) {
-                        viewPage5.dialogsAdapter.setForceUpdatingContacts(false);
-                    }
-                    if (z3) {
-                        setContactsAlpha(0.0f);
-                        animateContactsAlpha(1.0f);
-                    }
-                    int i12 = 0;
-                    boolean z4 = false;
-                    while (true) {
-                        ViewPage[] viewPageArr8 = this.viewPages;
-                        if (i12 >= viewPageArr8.length) {
-                            break;
+                        if (this.viewPages == null || this.dialogsListFrozen) {
+                            return;
                         }
-                        if (!viewPageArr8[i12].isDefaultDialogType() || getMessagesController().getAllFoldersDialogsCount() > 10) {
-                            z4 = true;
-                        } else {
-                            this.viewPages[i12].dialogsAdapter.notifyDataSetChanged();
+                        boolean z3 = this.floatingProgressVisible;
+                        setFloatingProgressVisible(false, true);
+                        for (ViewPage viewPage5 : this.viewPages) {
+                            viewPage5.dialogsAdapter.setForceUpdatingContacts(false);
                         }
-                        i12++;
-                    }
-                    if (!z4) {
-                        return;
+                        if (z3) {
+                            setContactsAlpha(0.0f);
+                            animateContactsAlpha(1.0f);
+                        }
+                        int i12 = 0;
+                        boolean z4 = false;
+                        while (true) {
+                            ViewPage[] viewPageArr8 = this.viewPages;
+                            if (i12 >= viewPageArr8.length) {
+                                break;
+                            }
+                            if (!viewPageArr8[i12].isDefaultDialogType() || getMessagesController().getAllFoldersDialogsCount() > 10) {
+                                z4 = true;
+                            } else {
+                                this.viewPages[i12].dialogsAdapter.notifyDataSetChanged();
+                            }
+                            i12++;
+                        }
+                        if (!z4) {
+                            return;
+                        }
                     }
                 }
+                updateStatus(user, true);
+                return;
             }
-            updateStatus(user, true);
-            return;
         }
         updateVisibleRows(0);
     }
 
-    public void didSelectResult(long j, int i, boolean z, boolean z2) {
-        didSelectResult(j, i, z, z2, null);
+    public void didSelectResult(long j, long j2, boolean z, boolean z2) {
+        didSelectResult(j, j2, z, z2, null);
     }
 
-    public void didSelectResult(final long r16, final int r18, boolean r19, final boolean r20, final org.telegram.ui.TopicsFragment r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.didSelectResult(long, int, boolean, boolean, org.telegram.ui.TopicsFragment):void");
+    public void didSelectResult(final long r17, final long r19, boolean r21, final boolean r22, final org.telegram.ui.TopicsFragment r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.didSelectResult(long, long, boolean, boolean, org.telegram.ui.TopicsFragment):void");
     }
 
     @Override
@@ -8125,8 +8131,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void lambda$onBackPressed$338() {
-        super.lambda$onBackPressed$338();
+    public void lambda$onBackPressed$347() {
+        super.lambda$onBackPressed$347();
         ItemOptions itemOptions = this.filterOptions;
         if (itemOptions != null) {
             itemOptions.dismiss();
@@ -9019,6 +9025,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.isQuote = this.arguments.getBoolean("quote", false);
             this.isReplyTo = this.arguments.getBoolean("reply_to", false);
             this.replyMessageAuthor = this.arguments.getLong("reply_to_author", 0L);
+            this.forwardOriginalChannel = this.arguments.getLong("forward_into_channel", 0L);
             this.selectAlertString = this.arguments.getString("selectAlertString");
             this.selectAlertStringGroup = this.arguments.getString("selectAlertStringGroup");
             this.addToGroupAlertString = this.arguments.getString("addToGroupAlertString");
@@ -9077,6 +9084,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getNotificationCenter().addObserver(this, NotificationCenter.messageSendError);
             getNotificationCenter().addObserver(this, NotificationCenter.needReloadRecentDialogsSearch);
             getNotificationCenter().addObserver(this, NotificationCenter.replyMessagesDidLoad);
+            getNotificationCenter().addObserver(this, NotificationCenter.topicsDidLoaded);
             getNotificationCenter().addObserver(this, NotificationCenter.reloadHints);
             getNotificationCenter().addObserver(this, NotificationCenter.didUpdateConnectionState);
             getNotificationCenter().addObserver(this, NotificationCenter.onDownloadingFilesChanged);
@@ -9157,6 +9165,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getNotificationCenter().removeObserver(this, NotificationCenter.messageSendError);
             getNotificationCenter().removeObserver(this, NotificationCenter.needReloadRecentDialogsSearch);
             getNotificationCenter().removeObserver(this, NotificationCenter.replyMessagesDidLoad);
+            getNotificationCenter().removeObserver(this, NotificationCenter.topicsDidLoaded);
             getNotificationCenter().removeObserver(this, NotificationCenter.reloadHints);
             getNotificationCenter().removeObserver(this, NotificationCenter.didUpdateConnectionState);
             getNotificationCenter().removeObserver(this, NotificationCenter.onDownloadingFilesChanged);

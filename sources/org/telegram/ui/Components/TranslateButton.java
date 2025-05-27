@@ -309,6 +309,10 @@ public abstract class TranslateButton extends FrameLayout {
         actionBarPopupWindow.showAsDropDown(imageView, 0, (-imageView.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
     }
 
+    public void setLeftMargin(float f) {
+        this.textView.setTranslationX(f / 2.0f);
+    }
+
     public void updateColors() {
         AnimatedTextView animatedTextView = this.textView;
         int i = Theme.key_chat_addContact;

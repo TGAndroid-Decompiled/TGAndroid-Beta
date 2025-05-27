@@ -218,17 +218,26 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         protected void openSponsoredOptions(ProfileSearchCell profileSearchCell, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
             AndroidUtilities.hideKeyboard(this.val$fragment.getParentActivity().getCurrentFocus());
             final ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this.val$fragment, (View) profileSearchCell, true);
-            if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
-                final ItemOptions addText = makeOptions.makeSwipeback().add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
+            if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info) || !TextUtils.isEmpty(tL_sponsoredPeer.additional_info)) {
+                final ItemOptions addGap = makeOptions.makeSwipeback().add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
                     @Override
                     public final void run() {
                         ItemOptions.this.closeSwipeback();
                     }
-                }).addGap().addText(tL_sponsoredPeer.sponsor_info, 13);
+                }).addGap();
+                if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
+                    addGap.addText(tL_sponsoredPeer.sponsor_info, 13);
+                }
+                if (!TextUtils.isEmpty(tL_sponsoredPeer.additional_info)) {
+                    if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
+                        addGap.addGap();
+                    }
+                    addGap.addText(tL_sponsoredPeer.additional_info, 13);
+                }
                 makeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new Runnable() {
                     @Override
                     public final void run() {
-                        ItemOptions.this.openSwipeback(addText);
+                        ItemOptions.this.openSwipeback(addGap);
                     }
                 });
             }
@@ -245,7 +254,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             int i2 = R.drawable.msg_block2;
             String string2 = LocaleController.getString(R.string.ReportAd);
             final DialogsActivity dialogsActivity2 = this.val$fragment;
-            ItemOptions addGap = add.add(i2, string2, new Runnable() {
+            ItemOptions addGap2 = add.add(i2, string2, new Runnable() {
                 @Override
                 public final void run() {
                     SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$5(dialogsActivity2, tL_sponsoredPeer, makeOptions);
@@ -254,7 +263,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             int i3 = R.drawable.msg_cancel;
             String string3 = LocaleController.getString(R.string.RemoveAds);
             final DialogsActivity dialogsActivity3 = this.val$fragment;
-            addGap.add(i3, string3, new Runnable() {
+            addGap2.add(i3, string3, new Runnable() {
                 @Override
                 public final void run() {
                     SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$6(dialogsActivity3, makeOptions);
@@ -828,7 +837,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 }
                 AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0, 0L);
             }
-            dialogsActivity.lambda$onBackPressed$338();
+            dialogsActivity.lambda$onBackPressed$347();
         } else {
             long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();

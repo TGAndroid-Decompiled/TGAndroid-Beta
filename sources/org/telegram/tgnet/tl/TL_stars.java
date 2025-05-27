@@ -3691,9 +3691,11 @@ public class TL_stars {
     }
 
     public static class updatePaidMessagesPrice extends TLObject {
-        public static final int constructor = -58432193;
+        public static final int constructor = 1259483771;
         public TLRPC.InputChannel channel;
+        public int flags;
         public long send_paid_messages_stars;
+        public boolean suggestions_allowed;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
@@ -3702,7 +3704,10 @@ public class TL_stars {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-58432193);
+            outputSerializedData.writeInt32(1259483771);
+            int i = this.suggestions_allowed ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            outputSerializedData.writeInt32(i);
             this.channel.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.send_paid_messages_stars);
         }

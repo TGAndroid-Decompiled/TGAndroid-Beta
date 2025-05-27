@@ -520,6 +520,7 @@
     <string name="AlertClearHistory">Clear History</string>
     <string name="AllAccounts">All Accounts</string>
     <string name="AllChats">All Chats</string>
+    <string name="AllChatsShort">All</string>
     <string name="AllMedia">All media</string>
     <string name="AllNMedia_one">All %1$d media</string>
     <string name="AllNMedia_other">All %1$d media</string>
@@ -528,6 +529,8 @@
     <string name="AllPhotos">All photos</string>
     <string name="AllReactions">All reactions</string>
     <string name="AllSessionsTerminated">All other sessions terminated.</string>
+    <string name="AllTopicsShort">All</string>
+    <string name="AllTopicsSide">All</string>
     <string name="AllVideos">All videos</string>
     <string name="AllViewers">All viewers</string>
     <string name="AllWebSessionsTerminated">All websites disconnected.</string>
@@ -538,6 +541,8 @@
     <string name="AllowBackgroundActivityInfoOneUIBelowS">This will improve reliability for incoming notifications and Telegram calls. Tap Settings -&gt; Battery and turn **Allow background activity** on.</string>
     <string name="AllowCustomQuickReply">Allow Custom</string>
     <string name="AllowFillNumber">Please allow Telegram to receive calls so that we can automatically confirm your phone number.</string>
+    <string name="AllowPostSuggestions">Allow Channel Messages</string>
+    <string name="AllowPostSuggestionsHint">Allow users to send messages to your channel, with the option to charge a fee for each message.</string>
     <string name="AllowReadCall">Please allow Telegram to receive calls so that we can automatically enter your code for you.</string>
     <string name="AllowReadCallAndLog">Please allow Telegram to receive calls and read the call log so that we can automatically enter your code for you.</string>
     <string name="AllowReadCallLog">Please allow Telegram to read the call log so that we can automatically enter your code for you.</string>
@@ -2243,6 +2248,7 @@
     <string name="ChatListSwipeGesture">Chat list swipe gesture</string>
     <string name="ChatListSwipeGestureInfo">Set up which action you want to perform each time you swipe to left in the chat list.</string>
     <string name="ChatLocation">Location</string>
+    <string name="ChatMessageSuggestions">Channel Messages</string>
     <string name="ChatMultipleReactionsPromo">You can set multiple reactions with Telegram Premium.</string>
     <string name="ChatNoTheme">No Theme</string>
     <string name="ChatPerFolderLimitSubtitle">Add up to %d chats into each of your folders</string>
@@ -2593,6 +2599,7 @@
     <string name="DebugMenuDisableCamera">Disable in-app camera</string>
     <string name="DebugMenuDisableLogs">Disable Logs</string>
     <string name="DebugMenuDisableWebViewDebug">Disable WebView debug</string>
+    <string name="DebugMenuDontUseSystemBoldFont">Don\'t use Bold Font from System</string>
     <string name="DebugMenuDualOff">Hide Dual Camera</string>
     <string name="DebugMenuDualOffToast">Dual camera button is hidden</string>
     <string name="DebugMenuDualOn">Show Dual Camera</string>
@@ -2606,6 +2613,7 @@
     <string name="DebugMenuReloadContacts">Reload Contacts</string>
     <string name="DebugMenuResetContacts">Reset Imported Contacts</string>
     <string name="DebugMenuResetDialogs">Reset Dialogs</string>
+    <string name="DebugMenuUseSystemBoldFont">Use Bold Font from System</string>
     <string name="DebugMenuWebViewDebugDisabled">Debug disabled!</string>
     <string name="DebugMenuWebViewDebugEnabled">Debug enabled!</string>
     <string name="DebugMessageSkeletons">Message Skeletons</string>
@@ -3504,6 +3512,7 @@
     <string name="ForumReplyToMessagesInTopic">Swipe left on a message to reply</string>
     <string name="ForumToggleDescription">The group chat will be divided into topics created by admins or users.</string>
     <string name="Forward">Forward</string>
+    <string name="ForwardDialogYourChannel">Your Channel</string>
     <string name="ForwardGroupMedia">Forward media</string>
     <string name="ForwardGroupMediaMessage">Would you like to forward...</string>
     <string name="ForwardPreviewSendersNameHidden">%s won\'t see they were forwarded</string>
@@ -4464,6 +4473,7 @@
     <string name="LeaveCommunities_one">Leave community</string>
     <string name="LeaveCommunities_other">Leave %d communities</string>
     <string name="LeaveMegaMenu">Leave group</string>
+    <string name="jadx_deobf_0x00001f25">Leave conversation</string>
     <string name="LedColor">LED Color</string>
     <string name="LedDisabled">Disabled</string>
     <string name="LessMinuteAgo">just now</string>
@@ -4828,6 +4838,7 @@
     <string name="MessageShowSensitiveContentMediaText">This media may contain sensitive content suitable only for adults. Do you still want to view it?</string>
     <string name="MessageShowSensitiveContentMediaTitle">18+ Content</string>
     <string name="MessageStarsUnlock">Buy Stars</string>
+    <string name="MessageSuggestionsUnsavedChanges">You have changed the channel messages settings. Apply changes?</string>
     <string name="MessageUnpinnedHint">Message unpinned</string>
     <string name="MessagesBold_one">**%1$d** message</string>
     <string name="MessagesBold_other">**%1$d** messages</string>
@@ -4930,6 +4941,8 @@
     <string name="MonetizationTransactionsTON">TON Transactions</string>
     <string name="MonetizationWithdraw">Withdraw via Fragment</string>
     <string name="Mono">Mono</string>
+    <string name="MonoforumSpan">MESSAGES</string>
+    <string name="MonoforumTitle">%1$s Messages</string>
     <string name="MonthAgo">a month ago</string>
     <string name="MonthsAgo_one">%d months ago</string>
     <string name="MonthsAgo_other">%d months ago</string>
@@ -5066,6 +5079,7 @@
     <string name="NoMessages">No messages here yet...</string>
     <string name="NoMessagesForThisDay">No messages for this day</string>
     <string name="NoMessagesGreetingsDescription">Send a message or tap the greeting below.</string>
+    <string name="NoMonoforumTopicsCreated">no received messages</string>
     <string name="NoNetworkUsageSince">No network usage since %1$s</string>
     <string name="NoOneJoined">No one joined</string>
     <string name="NoOneJoinedYet">No one joined yet</string>
@@ -5115,6 +5129,7 @@
     <string name="NoSuchUsers">No such users</string>
     <string name="NoSuchUsersInfo">No users found that meet the requirements for this bot</string>
     <string name="NoTopics">No topics here yet</string>
+    <string name="NoTopicsCreated">no created topics</string>
     <string name="NoTopicsDescription">Tap the button below to start your first topic.</string>
     <string name="NoTopicsDescriptionUser">Older messages from this group have been move to the **’%s’** topic.</string>
     <string name="NoUsernameFound">There is no Telegram account with this username.</string>
@@ -5900,6 +5915,8 @@
     <string name="PhotoSavedHint">Photo saved to gallery</string>
     <string name="PhotoSavedToDownloadsHintLinked">Photo saved to **downloads**.</string>
     <string name="PhotoShownOnce">This photo can only be viewed once.</string>
+    <string name="PhotoWillBeSentInHD">The photo will be sent in high quality.</string>
+    <string name="PhotoWillBeSentInSD">The photo will be sent in standard quality.</string>
     <string name="PhotosSavedHint_one">Photo saved to gallery</string>
     <string name="PhotosSavedHint_other">%1$d photos saved to gallery</string>
     <string name="PhotosSelected_one">%1$d photo selected</string>
@@ -5922,6 +5939,7 @@
     <string name="PinToTop">Pin to top</string>
     <string name="Ping">Ping: %1$d ms</string>
     <string name="Pink">Pink</string>
+    <string name="PinnedCall">Pinned Call</string>
     <string name="PinnedDialogsCount_one">Dialog pinned</string>
     <string name="PinnedDialogsCount_other">%1$d Dialogs pinned</string>
     <string name="PinnedMessage">Pinned Message</string>
@@ -5979,6 +5997,22 @@
     <string name="PopupEnabled">Enabled</string>
     <string name="PopupNotification">Popup Notifications</string>
     <string name="PostStatistics">Post Statistics</string>
+    <string name="PostSuggestions">Channel Messages</string>
+    <string name="PostSuggestionsAddTime">Add Time</string>
+    <string name="PostSuggestionsAddTimeHint">Select the date and time you want your message to be published.</string>
+    <string name="PostSuggestionsAnytime">Anytime</string>
+    <string name="PostSuggestionsDisabledUpdated">un1 disabled private messaging</string>
+    <string name="PostSuggestionsEnabledUpdated">un1 enabled private messaging</string>
+    <string name="PostSuggestionsOff">Off</string>
+    <string name="PostSuggestionsOffer">Offer ⭐️%s</string>
+    <string name="PostSuggestionsOfferSubtitle">Choose how many Stars you want to offer to **%1$s** to publish this message.</string>
+    <string name="PostSuggestionsOfferTime">When should **%1$s** publish this message?</string>
+    <string name="PostSuggestionsOfferTitle">Suggest a Post</string>
+    <string name="PostSuggestionsPriceInfo">You will receive %1$s of the selected fee (~%2$s$) for each incoming message.</string>
+    <string name="PostSuggestionsPriceUpdated_one">un1 changed price to %1$d Star per message</string>
+    <string name="PostSuggestionsPriceUpdated_other">un1 changed price to %1$d Stars per message</string>
+    <string name="PostSuggestionsSendAnytime">Send Anytime</string>
+    <string name="PostSuggestionsStars">⭐️ %d</string>
     <string name="PostingMembers">Posting Members</string>
     <string name="PowerUsage">Power Usage</string>
     <string name="PremiumAvatarToast">Subscribe to **Telegram Premium** to set premium avatars.</string>
@@ -6145,6 +6179,7 @@
     <string name="PreviewWallpaperDay">Preview this background in day mode.</string>
     <string name="PreviewWallpaperNight">Preview this background in night mode.</string>
     <string name="PreviousPinnedMessage">Previous Message</string>
+    <string name="PriceForEachSuggestion">Price for each message</string>
     <string name="PricePerMonth">%1$s / month</string>
     <string name="PricePerMonthMe">%1$s/month</string>
     <string name="PricePerYear">%1$s/year</string>
@@ -6543,6 +6578,8 @@
     <string name="RecorderRepost">Repost</string>
     <string name="RecordingAudio">recording a voice message...</string>
     <string name="RecordingRound">recording a video message...</string>
+    <string name="RecordingTrimText">Audio outside that range will be discarded, and recording will start immediately.</string>
+    <string name="RecordingTrimTitle">Trim to selected range?</string>
     <string name="RecordingVideoStatus">recording a video...</string>
     <string name="RecoveryEmail">Recovery email</string>
     <string name="RecoveryEmailSubtitle">You can set a recovery email to be able to reset your password and restore access to your Telegram account.</string>
@@ -7129,6 +7166,8 @@
     <string name="SendGameToText">Do you want to share this game to **%1$s**?</string>
     <string name="SendGifPreview">Send GIF</string>
     <string name="SendGiftTo">Send Gift to %s</string>
+    <string name="SendInHighQuality">Send in high quality</string>
+    <string name="SendInStandardQuality">Send in standard quality</string>
     <string name="SendInviteLink">Send Invite Link</string>
     <string name="SendLiveLocation">Share My Live Location for...</string>
     <string name="SendLiveLocationFor15m">for 15 minutes</string>
@@ -7310,6 +7349,7 @@
     <string name="SharingYouAndOtherName">You and %1$s</string>
     <string name="Sharpen">Sharpen</string>
     <string name="Short">Short</string>
+    <string name="ShortHighQuality">HD</string>
     <string name="ShortHoursAgo_one">%dh</string>
     <string name="ShortHoursAgo_other">%dh</string>
     <string name="ShortMessageLifetimeForever">Off</string>
@@ -8020,6 +8060,7 @@
     <string name="SubscribeToPremiumPerYear">Subscribe for %s per year</string>
     <string name="Subscribers_one">%1$d subscriber</string>
     <string name="Subscribers_other">%1$d subscribers</string>
+    <string name="Suggest2ChannelSendHint">Send a message to the channel\'s admin</string>
     <string name="SuggestAnimatedEmoji">Suggest Animated Emoji</string>
     <string name="SuggestAnimatedEmojiInfo">Each time you enter an emoji you can replace it with an alternative animated emoji.</string>
     <string name="SuggestClearDatabaseMessage">Your local database size %s. It\'s may affect to speed of application work.</string>
@@ -8032,6 +8073,8 @@
     <string name="SuggestPhotoAlertMessage">Do you want to suggest **%s** to set this photo for their account?</string>
     <string name="SuggestPhotoFor">Suggest photo for %s</string>
     <string name="SuggestPhotoShort">Suggest</string>
+    <string name="SuggestPostForFree">Message</string>
+    <string name="SuggestPostForStars">Message for ⭐️%s</string>
     <string name="SuggestStickers">Suggest stickers by emoji</string>
     <string name="SuggestStickersAll">All Sets</string>
     <string name="SuggestStickersInstalled">My Sets</string>
@@ -8039,8 +8082,13 @@
     <string name="SuggestUserPhoto">Suggest Photo for %s</string>
     <string name="SuggestVideo">Suggest Video</string>
     <string name="SuggestVideoAlertMessage">Do you want to suggest **%s** to set this video for their account?</string>
+    <string name="SuggestedMessageDecline">Decline</string>
+    <string name="SuggestedMessageDeclineInfo">Do you want to decline publishing this post from **%1$s**?</string>
+    <string name="SuggestedMessageDeclineReasonHint">Add a reason (optional)</string>
     <string name="SuggestedPhoto">Suggested Photo</string>
     <string name="SuggestedVideo">Suggested Video</string>
+    <string name="SuggestionLockedStars">**%1$s** charges **⭐️ %2$s** per message to its admin.</string>
+    <string name="SuggestionUnlockedStars">Send a direct message to the administrator of **%1$s**.</string>
     <string name="Support">Support</string>
     <string name="SupportStatus">support</string>
     <string name="SwipeDeleteChat">Delete</string>
@@ -8281,6 +8329,13 @@
     <string name="Topics">Topics</string>
     <string name="TopicsDeleted_one">Topic deleted.</string>
     <string name="TopicsDeleted_other">Topics deleted</string>
+    <string name="TopicsEnable">Enable Topics</string>
+    <string name="TopicsInfo">The group chat will be divided into topics created by admins and users.</string>
+    <string name="TopicsLayout">Topics layout</string>
+    <string name="TopicsLayoutInfo">Choose how topics appear for all members.</string>
+    <string name="TopicsLayoutList">List</string>
+    <string name="TopicsLayoutTabs">Tabs</string>
+    <string name="TopicsTitle">Topics</string>
     <string name="TosAgeText">Tap Agree to confirm that you are %1$s or over.</string>
     <string name="TosAgeTitle">Age Verification</string>
     <string name="TosDecline">We\'re very sorry, but this means you can\'t sign up for Telegram.\n\nUnlike others, we don\'t use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with Telegram\'s modest requirements, it won\'t be possible for us to provide you with this service.</string>
@@ -8692,6 +8747,7 @@
     <string name="VoiceOnceHint">This voice message can only be played once.</string>
     <string name="VoiceOnceOutHint">This message will disappear once **%s** plays it once.</string>
     <string name="VoiceOnceTurnOnSound">Please, turn on the sound first.</string>
+    <string name="VoicePauseHint">Pause to trim or replay</string>
     <string name="VoiceSetOnceHint">Tap to set this message to **Play Once**.</string>
     <string name="VoiceSetOnceHintEnabled">The recipient will be able to listen to it only once.</string>
     <string name="Voice_one">%1$d voice message</string>
@@ -9219,7 +9275,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2419_com_google_firebase_crashlytics_mapping_file_id">69b25ea2194c4ae9bc6884535f734c13</string>
+    <string name="res_0x7f0f2451_com_google_firebase_crashlytics_mapping_file_id">32e84298c3e74acb839058b0dc7f9262</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

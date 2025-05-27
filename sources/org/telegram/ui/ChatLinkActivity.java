@@ -613,7 +613,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         if (this.isChannel) {
             return;
         }
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     public void lambda$createView$2(final AlertDialog[] alertDialogArr, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -800,10 +800,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             }
         }, 1000L);
         if (baseFragment == null) {
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
         } else {
             removeSelfFromStack();
-            baseFragment.lambda$onBackPressed$338();
+            baseFragment.lambda$onBackPressed$347();
         }
     }
 
@@ -842,7 +842,8 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             this.chats = arrayList;
             Iterator<TLRPC.Chat> it = arrayList.iterator();
             while (it.hasNext()) {
-                if (ChatObject.isForum(it.next())) {
+                TLRPC.Chat next = it.next();
+                if (ChatObject.isForum(next) || ChatObject.isMonoForum(next)) {
                     it.remove();
                 }
             }
@@ -1068,7 +1069,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatLinkActivity.this.lambda$onBackPressed$338();
+                    ChatLinkActivity.this.lambda$onBackPressed$347();
                 }
             }
         });
@@ -1188,7 +1189,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                         removeSelfFromStack();
                         return;
                     } else {
-                        lambda$onBackPressed$338();
+                        lambda$onBackPressed$347();
                         return;
                     }
                 }

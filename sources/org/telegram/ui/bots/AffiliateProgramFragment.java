@@ -44,6 +44,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TableView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.GradientHeaderActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
@@ -108,7 +109,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((ColorfulTextCell) view).set(uItem.intValue, uItem.iconResId, uItem.text, uItem.subtext);
             }
 
@@ -228,7 +229,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((FeatureCell) view).set(uItem.iconResId, uItem.text, uItem.subtext);
             }
 

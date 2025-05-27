@@ -21,8 +21,9 @@ public class UniversalRecyclerView extends RecyclerListView {
     private ItemTouchHelper itemTouchHelper;
     public LinearLayoutManager layoutManager;
     private boolean reorderingAllowed;
+    private boolean reorderingOnOtherAxis;
 
-    private class TouchHelperCallback extends ItemTouchHelper.Callback {
+    public class TouchHelperCallback extends ItemTouchHelper.Callback {
         private TouchHelperCallback() {
         }
 
@@ -34,10 +35,22 @@ public class UniversalRecyclerView extends RecyclerListView {
 
         @Override
         public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            if (UniversalRecyclerView.this.reorderingAllowed && UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition())) {
-                return ItemTouchHelper.Callback.makeMovementFlags(UniversalRecyclerView.this.layoutManager.getOrientation() == 0 ? 15 : 3, 0);
+            int i;
+            if (!UniversalRecyclerView.this.reorderingAllowed || !UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition())) {
+                return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
             }
-            return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
+            if (UniversalRecyclerView.this.layoutManager.getOrientation() == 0) {
+                if (!UniversalRecyclerView.this.reorderingOnOtherAxis) {
+                    i = 12;
+                }
+                i = 15;
+            } else {
+                if (!UniversalRecyclerView.this.reorderingOnOtherAxis) {
+                    i = 3;
+                }
+                i = 15;
+            }
+            return ItemTouchHelper.Callback.makeMovementFlags(i, 0);
         }
 
         @Override
@@ -259,11 +272,31 @@ public class UniversalRecyclerView extends RecyclerListView {
         return null;
     }
 
+    public boolean isReorderAllowed() {
+        return this.reorderingAllowed;
+    }
+
     public void listenReorder(Utilities.Callback2 callback2) {
+        listenReorder(callback2, false);
+    }
+
+    public void listenReorder(Utilities.Callback2 callback2, boolean z) {
+        this.reorderingOnOtherAxis = z;
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
         this.itemTouchHelper = itemTouchHelper;
         itemTouchHelper.attachToRecyclerView(this);
         this.adapter.listenReorder(callback2);
+    }
+
+    public void makeHorizontal() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), 0, 0 == true ? 1 : 0) {
+            @Override
+            public int getExtraLayoutSpace(RecyclerView.State state) {
+                return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
+            }
+        };
+        this.layoutManager = linearLayoutManager;
+        setLayoutManager(linearLayoutManager);
     }
 
     public void setSpanCount(int i) {

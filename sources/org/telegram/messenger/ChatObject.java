@@ -1284,6 +1284,10 @@ public class ChatObject {
         }
     }
 
+    public static boolean areTabsEnabled(TLRPC.Chat chat) {
+        return SharedConfig.forceForumTabs || (chat != null && chat.forum_tabs);
+    }
+
     public static boolean canAddAdmins(TLRPC.Chat chat) {
         return canUserDoAction(chat, 4);
     }
@@ -1340,6 +1344,17 @@ public class ChatObject {
 
     public static boolean canManageCalls(TLRPC.Chat chat) {
         return canUserDoAction(chat, 14);
+    }
+
+    public static boolean canManageMonoForum(int i, long j) {
+        return canManageMonoForum(i, MessagesController.getInstance(i).getChat(Long.valueOf(-j)));
+    }
+
+    public static boolean canManageMonoForum(int i, TLRPC.Chat chat) {
+        if (chat == null || chat.linked_monoforum_id == 0) {
+            return false;
+        }
+        return chat.monoforum ? canUserDoAdminAction(MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id)), 5) : canUserDoAdminAction(chat, 5);
     }
 
     public static boolean canManageTopic(int i, TLRPC.Chat chat, long j) {
@@ -1417,6 +1432,9 @@ public class ChatObject {
     }
 
     public static boolean canSendPolls(TLRPC.Chat chat) {
+        if (isMonoForum(chat)) {
+            return false;
+        }
         if (isIgnoredChatRestrictionsForBoosters(chat)) {
             return true;
         }
@@ -1904,7 +1922,7 @@ public class ChatObject {
     }
 
     public static boolean isBoostSupported(TLRPC.Chat chat) {
-        return isChannelAndNotMegaGroup(chat) || isMegagroup(chat);
+        return (isChannelAndNotMegaGroup(chat) || isMegagroup(chat)) && !isMonoForum(chat);
     }
 
     public static boolean isBoosted(TLRPC.ChatFull chatFull) {
@@ -1990,6 +2008,18 @@ public class ChatObject {
 
     public static boolean isMegagroup(TLRPC.Chat chat) {
         return ((chat instanceof TLRPC.TL_channel) || (chat instanceof TLRPC.TL_channelForbidden)) && chat.megagroup;
+    }
+
+    public static boolean isMonoForum(int i, long j) {
+        TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+        if (chat != null) {
+            return chat.monoforum;
+        }
+        return false;
+    }
+
+    public static boolean isMonoForum(TLRPC.Chat chat) {
+        return chat != null && chat.monoforum;
     }
 
     public static boolean isMyTopic(int i, long j, long j2) {

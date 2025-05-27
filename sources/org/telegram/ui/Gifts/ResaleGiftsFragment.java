@@ -108,7 +108,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((BackdropItem) view).set((TL_stars.starGiftAttributeBackdrop) uItem.object, uItem.intValue, (String) uItem.text, uItem.checked);
             }
 
@@ -172,7 +172,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((EmptyView) view).set(uItem.text);
             }
 
@@ -311,7 +311,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((ModelItem) view).set((TL_stars.starGiftAttributeModel) uItem.object, uItem.intValue, (String) uItem.text, uItem.checked);
             }
 
@@ -416,7 +416,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((PatternItem) view).set((TL_stars.starGiftAttributePattern) uItem.object, uItem.intValue, (String) uItem.text, uItem.checked);
             }
 
@@ -1436,7 +1436,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ResaleGiftsFragment.this.lambda$onBackPressed$338();
+                    ResaleGiftsFragment.this.lambda$onBackPressed$347();
                 }
             }
         });

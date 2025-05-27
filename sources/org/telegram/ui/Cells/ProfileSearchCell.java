@@ -22,7 +22,6 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -44,6 +43,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.Text;
@@ -263,7 +263,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (charSequence2 == null) {
             TLRPC.Chat chat2 = this.chat;
             if (chat2 != null) {
-                userName = chat2.title;
+                userName = chat2.monoforum ? ForumUtilities.getMonoForumTitle(this.currentAccount, chat2) : chat2.title;
             } else {
                 TLRPC.User user2 = this.user;
                 if (user2 != null) {
@@ -976,127 +976,8 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         return this;
     }
 
-    public void update(int i) {
-        Drawable drawable;
-        float f;
-        String str;
-        TLRPC.Dialog dialog;
-        String str2;
-        TLRPC.User user;
-        TLRPC.User user2;
-        TLRPC.FileLocation fileLocation;
-        Drawable drawable2;
-        TLRPC.User user3 = this.user;
-        TLRPC.FileLocation fileLocation2 = null;
-        if (user3 != null) {
-            this.avatarDrawable.setInfo(this.currentAccount, user3);
-            if (UserObject.isReplyUser(this.user)) {
-                this.avatarDrawable.setAvatarType(12);
-            } else if (this.savedMessages) {
-                this.avatarDrawable.setAvatarType(1);
-            } else {
-                Drawable drawable3 = this.avatarDrawable;
-                TLRPC.User user4 = this.user;
-                TLRPC.UserProfilePhoto userProfilePhoto = user4.photo;
-                if (userProfilePhoto != null) {
-                    fileLocation2 = userProfilePhoto.photo_small;
-                    Drawable drawable4 = userProfilePhoto.strippedBitmap;
-                    if (drawable4 != null) {
-                        drawable2 = drawable4;
-                        this.avatarImage.setImage(ImageLocation.getForUserOrChat(user4, 1), "50_50", ImageLocation.getForUserOrChat(this.user, 2), "50_50", drawable2, this.user, 0);
-                    }
-                }
-                drawable2 = drawable3;
-                this.avatarImage.setImage(ImageLocation.getForUserOrChat(user4, 1), "50_50", ImageLocation.getForUserOrChat(this.user, 2), "50_50", drawable2, this.user, 0);
-            }
-            this.avatarImage.setImage(null, null, this.avatarDrawable, null, null, 0);
-        } else {
-            TLRPC.Chat chat = this.chat;
-            if (chat != null) {
-                AvatarDrawable avatarDrawable = this.avatarDrawable;
-                TLRPC.ChatPhoto chatPhoto = chat.photo;
-                if (chatPhoto != null) {
-                    fileLocation2 = chatPhoto.photo_small;
-                    Drawable drawable5 = chatPhoto.strippedBitmap;
-                    if (drawable5 != null) {
-                        drawable = drawable5;
-                        avatarDrawable.setInfo(this.currentAccount, chat);
-                        this.avatarImage.setImage(ImageLocation.getForUserOrChat(this.chat, 1), "50_50", ImageLocation.getForUserOrChat(this.chat, 2), "50_50", drawable, this.chat, 0);
-                    }
-                }
-                drawable = avatarDrawable;
-                avatarDrawable.setInfo(this.currentAccount, chat);
-                this.avatarImage.setImage(ImageLocation.getForUserOrChat(this.chat, 1), "50_50", ImageLocation.getForUserOrChat(this.chat, 2), "50_50", drawable, this.chat, 0);
-            } else {
-                ContactsController.Contact contact = this.contact;
-                if (contact != null) {
-                    this.avatarDrawable.setInfo(0L, contact.first_name, contact.last_name);
-                } else {
-                    this.avatarDrawable.setInfo(0L, null, null);
-                }
-                this.avatarImage.setImage(null, null, this.avatarDrawable, null, null, 0);
-            }
-        }
-        ImageReceiver imageReceiver = this.avatarImage;
-        if (this.rectangularAvatar) {
-            f = 10.0f;
-        } else {
-            TLRPC.Chat chat2 = this.chat;
-            f = (chat2 == null || !chat2.forum) ? 23.0f : 16.0f;
-        }
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(f));
-        if (i != 0) {
-            boolean z = !(((MessagesController.UPDATE_MASK_AVATAR & i) == 0 || this.user == null) && ((MessagesController.UPDATE_MASK_CHAT_AVATAR & i) == 0 || this.chat == null)) && (((fileLocation = this.lastAvatar) != null && fileLocation2 == null) || ((fileLocation == null && fileLocation2 != null) || !(fileLocation == null || (fileLocation.volume_id == fileLocation2.volume_id && fileLocation.local_id == fileLocation2.local_id))));
-            if (!z && (MessagesController.UPDATE_MASK_STATUS & i) != 0 && (user2 = this.user) != null) {
-                TLRPC.UserStatus userStatus = user2.status;
-                if ((userStatus != null ? userStatus.expires : 0) != this.lastStatus) {
-                    z = true;
-                }
-            }
-            if (!z && (MessagesController.UPDATE_MASK_EMOJI_STATUS & i) != 0 && ((user = this.user) != null || this.chat != null)) {
-                updateStatus(user != null ? user.verified : this.chat.verified, user, this.chat, true);
-            }
-            if ((!z && (MessagesController.UPDATE_MASK_NAME & i) != 0 && this.user != null) || ((MessagesController.UPDATE_MASK_CHAT_NAME & i) != 0 && this.chat != null)) {
-                if (this.user != null) {
-                    str2 = this.user.first_name + this.user.last_name;
-                } else {
-                    str2 = this.chat.title;
-                }
-                if (!str2.equals(this.lastName)) {
-                    z = true;
-                }
-            }
-            if (!((z || !this.drawCount || (i & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) == 0 || (dialog = (TLRPC.Dialog) MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.dialog_id)) == null || MessagesController.getInstance(this.currentAccount).getDialogUnreadCount(dialog) == this.lastUnreadCount) ? z : true)) {
-                return;
-            }
-        }
-        TLRPC.User user5 = this.user;
-        if (user5 == null) {
-            TLRPC.Chat chat3 = this.chat;
-            if (chat3 != null) {
-                str = chat3.title;
-            }
-            this.lastAvatar = fileLocation2;
-            if (getMeasuredWidth() == 0 || getMeasuredHeight() != 0) {
-                buildLayout();
-            } else {
-                requestLayout();
-            }
-            postInvalidate();
-        }
-        TLRPC.UserStatus userStatus2 = user5.status;
-        if (userStatus2 != null) {
-            this.lastStatus = userStatus2.expires;
-        } else {
-            this.lastStatus = 0;
-        }
-        str = this.user.first_name + this.user.last_name;
-        this.lastName = str;
-        this.lastAvatar = fileLocation2;
-        if (getMeasuredWidth() == 0) {
-        }
-        buildLayout();
-        postInvalidate();
+    public void update(int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ProfileSearchCell.update(int):void");
     }
 
     @Override

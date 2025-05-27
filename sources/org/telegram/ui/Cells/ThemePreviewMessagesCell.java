@@ -44,7 +44,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         this(context, iNavigationLayout, i, j, null);
     }
 
-    public ThemePreviewMessagesCell(android.content.Context r20, org.telegram.ui.ActionBar.INavigationLayout r21, int r22, long r23, org.telegram.ui.ActionBar.Theme.ResourcesProvider r25) {
+    public ThemePreviewMessagesCell(android.content.Context r22, org.telegram.ui.ActionBar.INavigationLayout r23, int r24, long r25, org.telegram.ui.ActionBar.Theme.ResourcesProvider r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ThemePreviewMessagesCell.<init>(android.content.Context, org.telegram.ui.ActionBar.INavigationLayout, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

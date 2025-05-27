@@ -97,6 +97,7 @@ import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.NumberPicker;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
@@ -4598,7 +4599,7 @@ public abstract class AlertsCreator {
         }
         if (baseFragment instanceof ThemePreviewActivity) {
             Theme.applyPreviousTheme();
-            baseFragment.lambda$onBackPressed$338();
+            baseFragment.lambda$onBackPressed$347();
         }
         if (themeAccent == null) {
             processCreate(editTextBoldCursor, alertDialog, baseFragment);
@@ -5587,8 +5588,46 @@ public abstract class AlertsCreator {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.showOpenUrlAlert(org.telegram.ui.ActionBar.BaseFragment, java.lang.String, boolean, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
-    public static void showPayForMessageAlert(final int r14, final long r15, final long r17, int r19, final java.lang.Runnable r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.showPayForMessageAlert(int, long, long, int, java.lang.Runnable):void");
+    public static void showPayForMessageAlert(final int i, final long j, final long j2, int i2, final Runnable runnable) {
+        TLRPC.Chat chat;
+        String formatPluralStringComma;
+        if (runnable == null) {
+            return;
+        }
+        if (j2 <= MessagesController.getInstance(i).getMainSettings().getLong("ask_paid_message_" + j + "_price", 0L)) {
+            runnable.run();
+            return;
+        }
+        Activity activity = AndroidUtilities.getActivity();
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        Theme.ResourcesProvider darkThemeResourceProvider = (PhotoViewer.getInstance().isVisible() || (safeLastFragment != null && safeLastFragment.hasShownSheet())) ? new DarkThemeResourceProvider() : safeLastFragment != null ? safeLastFragment.getResourceProvider() : null;
+        String shortName = DialogObject.getShortName(i, j);
+        if (ChatObject.isMonoForum(i, j)) {
+            shortName = ForumUtilities.getMonoForumTitle(i, j, true);
+        } else if (safeLastFragment instanceof ChatActivity) {
+            ChatActivity chatActivity = (ChatActivity) safeLastFragment;
+            if (chatActivity.isComments && chatActivity.getDialogId() == j && (chat = chatActivity.replyOriginalChat) != null) {
+                shortName = DialogObject.getShortName(i, -chat.id);
+            }
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        int i3 = (int) j2;
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("MessageLockedStarsConfirmMessage1", i3, shortName)));
+        spannableStringBuilder.append((CharSequence) " ");
+        if (i2 == 1) {
+            formatPluralStringComma = LocaleController.formatPluralStringComma("MessageLockedStarsConfirmMessage2One", i3);
+        } else {
+            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("MessageLockedStarsConfirmMessage2Many1", (int) (i2 * j2))));
+            spannableStringBuilder.append((CharSequence) " ");
+            formatPluralStringComma = LocaleController.formatPluralStringComma("MessageLockedStarsConfirmMessage2Many2", i2);
+        }
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(formatPluralStringComma));
+        showAlertWithCheckbox(activity, LocaleController.getString(R.string.MessageLockedStarsConfirmTitle), spannableStringBuilder, LocaleController.getString(R.string.MessageLockedStarsConfirmMessageDontAsk), LocaleController.formatPluralStringComma("MessageLockedStarsConfirmMessagePay", i2), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                AlertsCreator.lambda$showPayForMessageAlert$42(i, j, j2, runnable, (Boolean) obj);
+            }
+        }, darkThemeResourceProvider);
     }
 
     public static ActionBarPopupWindow showPopupMenu(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, View view, int i, int i2) {

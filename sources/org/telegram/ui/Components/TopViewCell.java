@@ -71,6 +71,15 @@ public class TopViewCell extends LinearLayout {
         MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.imageView, str, str2, "90_90");
     }
 
+    public void setEmojiStatic(int i) {
+        if (this.lastIconResId != i) {
+            this.imageView.clearImage();
+            BackupImageView backupImageView = this.imageView;
+            this.lastIconResId = i;
+            backupImageView.setImageResource(i);
+        }
+    }
+
     public void setText(CharSequence charSequence) {
         this.textView.setText(charSequence);
         this.maxWidth = HintView2.cutInFancyHalf(charSequence, this.textView.getPaint());

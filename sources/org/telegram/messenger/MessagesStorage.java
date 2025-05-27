@@ -46,7 +46,15 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 
 public class MessagesStorage extends BaseController {
     public static final String[] DATABASE_TABLES;
-    public static final int LAST_DB_VERSION = 162;
+    public static final int LAST_DB_VERSION = 164;
+    public static final int SENT_FILE_TYPE_AUDIO = 1;
+    public static final int SENT_FILE_TYPE_AUDIO_ENCRYPTED = 4;
+    public static final int SENT_FILE_TYPE_PHOTO = 0;
+    public static final int SENT_FILE_TYPE_PHOTO_ENCRYPTED = 3;
+    public static final int SENT_FILE_TYPE_PHOTO_HIGH_QUALITY = 6;
+    public static final int SENT_FILE_TYPE_PHOTO_HIGH_QUALITY_ENCRYPTED = 7;
+    public static final int SENT_FILE_TYPE_VIDEO = 2;
+    public static final int SENT_FILE_TYPE_VIDEO_ENCRYPTED = 5;
     private int archiveUnreadCount;
     private int[][] bots;
     private File cacheFile;
@@ -58,6 +66,8 @@ public class MessagesStorage extends BaseController {
     private final ArrayList<MessagesController.DialogFilter> dialogFilters;
     private final SparseArray<MessagesController.DialogFilter> dialogFiltersMap;
     private final LongSparseIntArray dialogIsForum;
+    private final LongSparseIntArray dialogIsForumOrMonoForumWithTabs;
+    private final LongSparseIntArray dialogIsMonoForum;
     private LongSparseArray dialogsWithMentions;
     private LongSparseArray dialogsWithUnread;
     private int[][] groups;
@@ -202,6 +212,8 @@ public class MessagesStorage extends BaseController {
         this.unknownDialogsIds = new LongSparseArray();
         this.openSync = new CountDownLatch(1);
         this.dialogIsForum = new LongSparseIntArray();
+        this.dialogIsMonoForum = new LongSparseIntArray();
+        this.dialogIsForumOrMonoForumWithTabs = new LongSparseIntArray();
         this.contacts = new int[][]{new int[2], new int[2]};
         this.nonContacts = new int[][]{new int[2], new int[2]};
         this.bots = new int[][]{new int[2], new int[2]};
@@ -853,11 +865,12 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reply_to_idx_messages_v2 ON messages_v2(mid, reply_to_message_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_messages_v2 ON messages_v2(reply_to_message_id, mid);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS uid_mid_groupid_messages_v2 ON messages_v2(uid, mid, group_id);").stepThis().dispose();
-        sQLiteDatabase.executeFast("CREATE TABLE saved_dialogs(did INTEGER PRIMARY KEY, date INTEGER, last_mid INTEGER, pinned INTEGER, flags INTEGER, folder_id INTEGER, last_mid_group INTEGER, count INTEGER)").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE saved_dialogs(did INTEGER, date INTEGER, last_mid INTEGER, pinned INTEGER, flags INTEGER, folder_id INTEGER, last_mid_group INTEGER, count INTEGER, forumChatId INTEGER, unread_count INTEGER, max_read_id INTEGER, read_outbox INTEGER, PRIMARY KEY (did, forumChatId))").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS date_idx_dialogs ON saved_dialogs(date);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_dialogs ON saved_dialogs(last_mid);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_dialogs ON saved_dialogs(folder_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_dialogs ON saved_dialogs(flags);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS forum_idx_dialogs ON saved_dialogs(forumChatId);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE download_queue(uid INTEGER, type INTEGER, date INTEGER, data BLOB, parent TEXT, PRIMARY KEY (uid, type));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS type_date_idx_download_queue ON download_queue(type, date);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE user_contacts_v7(key TEXT PRIMARY KEY, uid INTEGER, fname TEXT, sname TEXT, imported INTEGER)").stepThis().dispose();
@@ -996,7 +1009,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT, pos INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE star_gifts2(id INTEGER PRIMARY KEY, data BLOB, hash INTEGER, time INTEGER, pos INTEGER);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 162").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 164").stepThis().dispose();
     }
 
     private void createTaskForSecretMedia(long r17, android.util.SparseArray<java.util.ArrayList<java.lang.Integer>> r19) {
@@ -1089,12 +1102,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(203);
+                messageMedia.bytes = Utilities.intToBytes(204);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(203);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(204);
             message.flags |= 512;
         }
     }
@@ -1200,6 +1213,20 @@ public class MessagesStorage extends BaseController {
             TLRPC.Chat chat = getChat(-j);
             i = (chat == null || !chat.forum) ? 0 : 1;
             this.dialogIsForum.put(j, i);
+        }
+        return i == 1;
+    }
+
+    private boolean isForumOrMonoForum(long j) {
+        return isForum(j) || isMonoForum(j);
+    }
+
+    private boolean isMonoForumOrForumWithTabs(long j) {
+        int i = this.dialogIsForumOrMonoForumWithTabs.get(j, -1);
+        if (i == -1) {
+            TLRPC.Chat chat = getChat(-j);
+            i = (chat == null || !(chat.monoforum || (chat.forum && chat.forum_tabs))) ? 0 : 1;
+            this.dialogIsForumOrMonoForumWithTabs.put(j, i);
         }
         return i == 1;
     }
@@ -2567,74 +2594,8 @@ public class MessagesStorage extends BaseController {
         return i > i2 ? -1 : 0;
     }
 
-    public void lambda$markMentionMessageAsRead$106(int i, long j, long j2) {
-        SQLiteCursor sQLiteCursor = null;
-        try {
-            try {
-                SQLiteDatabase sQLiteDatabase = this.database;
-                Locale locale = Locale.US;
-                sQLiteDatabase.executeFast(String.format(locale, "UPDATE messages_v2 SET read_state = read_state | 2 WHERE mid = %d AND uid = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
-                SQLiteCursor queryFinalized = this.database.queryFinalized("SELECT unread_count_i FROM dialogs WHERE did = " + j2, new Object[0]);
-                try {
-                    int max = queryFinalized.next() ? Math.max(0, queryFinalized.intValue(0) - 1) : 0;
-                    queryFinalized.dispose();
-                    this.database.executeFast(String.format(locale, "UPDATE dialogs SET unread_count_i = %d WHERE did = %d", Integer.valueOf(max), Long.valueOf(j2))).stepThis().dispose();
-                    LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
-                    longSparseIntArray.put(j2, max);
-                    if (max == 0) {
-                        updateFiltersReadCounter(null, longSparseIntArray, true);
-                    }
-                    getMessagesController().processDialogsUpdateRead(null, longSparseIntArray);
-                    this.database.executeFast(String.format(locale, "UPDATE messages_topics SET read_state = read_state | 2 WHERE mid = %d AND uid = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
-                    queryFinalized = this.database.queryFinalized(String.format(locale, "SELECT data FROM messages_topics WHERE mid = %d AND uid = %d", Integer.valueOf(i), Long.valueOf(j)), new Object[0]);
-                    long j3 = 0;
-                    while (queryFinalized.next()) {
-                        NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
-                        if (byteBufferValue != null) {
-                            TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                            byteBufferValue.reuse();
-                            j3 = MessageObject.getTopicId(this.currentAccount, TLdeserialize, isForum(j));
-                        }
-                    }
-                    queryFinalized.dispose();
-                    if (j3 != 0) {
-                        SQLiteDatabase sQLiteDatabase2 = this.database;
-                        Locale locale2 = Locale.US;
-                        SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized(String.format(locale2, "SELECT unread_mentions FROM topics WHERE did = %d AND topic_id = %d", Long.valueOf(j2), Long.valueOf(j3)), new Object[0]);
-                        try {
-                            int max2 = queryFinalized2.next() ? Math.max(0, queryFinalized2.intValue(0) - 1) : 0;
-                            queryFinalized2.dispose();
-                            this.database.executeFast(String.format(locale2, "UPDATE topics SET unread_mentions = %d WHERE did = %d AND topic_id = %d", Integer.valueOf(max2), Long.valueOf(j), Long.valueOf(j3))).stepThis().dispose();
-                            getMessagesController().getTopicsController().updateMentionsUnread(j, j3, max2);
-                        } catch (Exception e) {
-                            e = e;
-                            sQLiteCursor = queryFinalized2;
-                            checkSQLException(e);
-                            if (sQLiteCursor != null) {
-                                sQLiteCursor.dispose();
-                            }
-                        } catch (Throwable th) {
-                            th = th;
-                            sQLiteCursor = queryFinalized2;
-                            if (sQLiteCursor != null) {
-                                sQLiteCursor.dispose();
-                            }
-                            throw th;
-                        }
-                    }
-                } catch (Exception e2) {
-                    e = e2;
-                    sQLiteCursor = queryFinalized;
-                } catch (Throwable th2) {
-                    th = th2;
-                    sQLiteCursor = queryFinalized;
-                }
-            } catch (Exception e3) {
-                e = e3;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-        }
+    public void lambda$markMentionMessageAsRead$106(int r17, long r18, long r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMentionMessageAsRead$106(int, long, long):void");
     }
 
     public void lambda$markMessageAsMention$107(int i, long j) {
@@ -2960,7 +2921,7 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    public void lambda$processPendingRead$139(long r17, int r19, int r20, int r21, int r22) {
+    public void lambda$processPendingRead$139(long r19, int r21, int r22, int r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$processPendingRead$139(long, int, int, int, int):void");
     }
 
@@ -3201,7 +3162,7 @@ public class MessagesStorage extends BaseController {
         for (int i = 0; i < longSparseArray.size(); i++) {
             long keyAt = longSparseArray.keyAt(i);
             ReadDialog readDialog = (ReadDialog) longSparseArray.valueAt(i);
-            if (getMessagesController().isForum(keyAt)) {
+            if (getMessagesController().isForum(keyAt) || getMessagesController().isMonoForumWithManageRights(keyAt)) {
                 getMessagesController().markAllTopicsAsRead(keyAt);
             }
             MessagesController messagesController = getMessagesController();
@@ -3356,12 +3317,13 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$removeTopic$54(long j, int i) {
+    public void lambda$removeTopic$54(long j, long j2) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             Locale locale = Locale.US;
-            sQLiteDatabase.executeFast(String.format(locale, "DELETE FROM topics WHERE did = %d AND topic_id = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
-            this.database.executeFast(String.format(locale, "DELETE FROM messages_topics WHERE uid = %d AND topic_id = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
+            sQLiteDatabase.executeFast(String.format(locale, "DELETE FROM topics WHERE did = %d AND topic_id = %d", Long.valueOf(j), Long.valueOf(j2))).stepThis().dispose();
+            this.database.executeFast(String.format(locale, "DELETE FROM messages_v2 WHERE uid = %d AND mid IN (SELECT mid FROM messages_topics WHERE uid = %d AND topic_id = %d)", Long.valueOf(j), Long.valueOf(j), Long.valueOf(j2))).stepThis().dispose();
+            this.database.executeFast(String.format(locale, "DELETE FROM messages_topics WHERE uid = %d AND topic_id = %d", Long.valueOf(j), Long.valueOf(j2))).stepThis().dispose();
         } catch (SQLiteException e) {
             e.printStackTrace();
         }
@@ -3373,9 +3335,14 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             Locale locale = Locale.US;
             sQLiteDatabase.executeFast(String.format(locale, "DELETE FROM topics WHERE did = %d AND topic_id IN (%s)", Long.valueOf(j), join)).stepThis().dispose();
-            this.database.executeFast(String.format(locale, "DELETE FROM messages_topics WHERE uid = %d AND topic_id IN (%s)", Long.valueOf(j), join)).stepThis().dispose();
-        } catch (SQLiteException e) {
-            e.printStackTrace();
+            try {
+                this.database.executeFast(String.format(locale, "DELETE FROM messages_v2 WHERE uid = %d AND mid IN (SELECT mid FROM messages_topics WHERE uid = %d AND topic_id IN (%s))", Long.valueOf(j), Long.valueOf(j), join)).stepThis().dispose();
+            } catch (SQLiteException e) {
+                e.printStackTrace();
+            }
+            this.database.executeFast(String.format(Locale.US, "DELETE FROM messages_topics WHERE uid = %d AND topic_id IN (%s)", Long.valueOf(j), join)).stepThis().dispose();
+        } catch (SQLiteException e2) {
+            e2.printStackTrace();
         }
     }
 
@@ -3389,7 +3356,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$replaceMessageIfExists$216(org.telegram.tgnet.TLRPC.Message r25, boolean r26, java.util.ArrayList r27, java.util.ArrayList r28) {
+    public void lambda$replaceMessageIfExists$216(org.telegram.tgnet.TLRPC.Message r26, boolean r27, java.util.ArrayList r28, java.util.ArrayList r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$replaceMessageIfExists$216(org.telegram.tgnet.TLRPC$Message, boolean, java.util.ArrayList, java.util.ArrayList):void");
     }
 
@@ -4588,8 +4555,8 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesCount$187(int, long, int, java.util.ArrayList, int):void");
     }
 
-    public void lambda$updateRepliesMaxReadIdInternal$185(long j, int i, int i2, int i3, int i4) {
-        getMessagesController().getTopicsController().updateMaxReadId(j, i, i2, i3, i4);
+    public void lambda$updateRepliesMaxReadIdInternal$185(long j, long j2, int i, int i2, int i3) {
+        getMessagesController().getTopicsController().updateMaxReadId(j, j2, i, i2, i3);
     }
 
     public void lambda$updateTopicData$46(long j, TLRPC.TL_forumTopic tL_forumTopic, int i) {
@@ -4890,6 +4857,12 @@ public class MessagesStorage extends BaseController {
                                 TLdeserialize.megagroup = chat.megagroup;
                                 TLdeserialize.call_not_empty = chat.call_not_empty;
                                 TLdeserialize.call_active = chat.call_active;
+                                TLdeserialize.monoforum = chat.monoforum;
+                                TLdeserialize.broadcast_messages_allowed = chat.broadcast_messages_allowed;
+                                if ((chat.flags2 & 262144) != 0) {
+                                    TLdeserialize.linked_monoforum_id = chat.linked_monoforum_id;
+                                    TLdeserialize.flags2 |= 262144;
+                                }
                                 TLRPC.TL_chatBannedRights tL_chatBannedRights = chat.default_banned_rights;
                                 if (tL_chatBannedRights != null) {
                                     TLdeserialize.default_banned_rights = tL_chatBannedRights;
@@ -4938,11 +4911,12 @@ public class MessagesStorage extends BaseController {
             executeFast.step();
             nativeByteBuffer.reuse();
             this.dialogIsForum.put(-chat.id, chat.forum ? 1 : 0);
+            this.dialogIsMonoForum.put(-chat.id, chat.monoforum ? 1 : 0);
         }
         executeFast.dispose();
     }
 
-    private void putDialogsInternal(org.telegram.tgnet.TLRPC.messages_Dialogs r36, int r37) {
+    private void putDialogsInternal(org.telegram.tgnet.TLRPC.messages_Dialogs r37, int r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.putDialogsInternal(org.telegram.tgnet.TLRPC$messages_Dialogs, int):void");
     }
 
@@ -5154,7 +5128,7 @@ public class MessagesStorage extends BaseController {
             executeFast.bindInteger(4, dialogFilter.flags);
             executeFast.bindString(5, dialogFilter.id == 0 ? "ALL_CHATS" : dialogFilter.name);
             executeFast.bindInteger(6, dialogFilter.color);
-            Vector vector = new Vector(new MessagesStorage$$ExternalSyntheticLambda43());
+            Vector vector = new Vector(new MessagesStorage$$ExternalSyntheticLambda41());
             vector.objects.addAll(dialogFilter.entities);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(vector.getObjectSize());
             vector.serializeToStream(nativeByteBuffer);
@@ -5250,7 +5224,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private void saveTopicsInternal(long r21, java.util.List<org.telegram.tgnet.TLRPC.TL_forumTopic> r23, boolean r24, boolean r25, int r26) {
+    private void saveTopicsInternal(long r22, java.util.List<org.telegram.tgnet.TLRPC.TL_forumTopic> r24, boolean r25, boolean r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.saveTopicsInternal(long, java.util.List, boolean, boolean, int):void");
     }
 
@@ -5284,7 +5258,7 @@ public class MessagesStorage extends BaseController {
                 MessagesStorage.this.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to 162");
+        FileLog.d("MessagesStorage start db migration from " + i + " to 164");
         int migrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -5302,7 +5276,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogsWithDeletedMessages$210(long, long, java.util.ArrayList, java.util.ArrayList):void");
     }
 
-    private void updateDialogsWithReadMessagesInternal(java.util.ArrayList<java.lang.Integer> r20, org.telegram.messenger.support.LongSparseIntArray r21, org.telegram.messenger.support.LongSparseIntArray r22, androidx.collection.LongSparseArray r23, org.telegram.messenger.support.LongSparseIntArray r24) {
+    private void updateDialogsWithReadMessagesInternal(java.util.ArrayList<java.lang.Integer> r25, org.telegram.messenger.support.LongSparseIntArray r26, org.telegram.messenger.support.LongSparseIntArray r27, androidx.collection.LongSparseArray r28, org.telegram.messenger.support.LongSparseIntArray r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.updateDialogsWithReadMessagesInternal(java.util.ArrayList, org.telegram.messenger.support.LongSparseIntArray, org.telegram.messenger.support.LongSparseIntArray, androidx.collection.LongSparseArray, org.telegram.messenger.support.LongSparseIntArray):void");
     }
 
@@ -5314,8 +5288,31 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageStateAndId$198(long, long, java.lang.Integer, int, int, int, int):long[]");
     }
 
-    public void lambda$updateRepliesMaxReadId$186(final long r22, final int r24, final int r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesMaxReadId$186(long, int, int, int):void");
+    public void lambda$updateRepliesMaxReadId$186(final long r21, final long r23, final int r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesMaxReadId$186(long, long, int, int):void");
+    }
+
+    private void updateTopicsWithReadFromAllInternal(long j, long j2, long j3) {
+        SQLiteCursor sQLiteCursor = null;
+        try {
+            try {
+                sQLiteCursor = this.database.queryFinalized(String.format(Locale.US, "SELECT topic_id FROM topics WHERE did = %d AND max_read_id < %d AND top_message > %d", Long.valueOf(j), Long.valueOf(j3), Long.valueOf(j2)), new Object[0]);
+                while (sQLiteCursor.next()) {
+                    lambda$updateRepliesMaxReadId$186(-j, sQLiteCursor.longValue(0), (int) j3, -1);
+                }
+            } catch (Exception e) {
+                checkSQLException(e);
+                if (sQLiteCursor == null) {
+                    return;
+                }
+            }
+            sQLiteCursor.dispose();
+        } catch (Throwable th) {
+            if (sQLiteCursor != null) {
+                sQLiteCursor.dispose();
+            }
+            throw th;
+        }
     }
 
     public void lambda$updateUsers$199(java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r9, boolean r10, boolean r11) {
@@ -6527,6 +6524,16 @@ public class MessagesStorage extends BaseController {
         return zArr[0];
     }
 
+    public boolean isMonoForum(long j) {
+        int i = this.dialogIsMonoForum.get(j, -1);
+        if (i == -1) {
+            TLRPC.Chat chat = getChat(-j);
+            i = (chat == null || !chat.monoforum) ? 0 : 1;
+            this.dialogIsMonoForum.put(j, i);
+        }
+        return i == 1;
+    }
+
     public void loadChannelAdmins(final long j) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
@@ -6715,7 +6722,7 @@ public class MessagesStorage extends BaseController {
         return arrayList;
     }
 
-    public void localSearch(int r30, java.lang.String r31, java.util.ArrayList<java.lang.Object> r32, java.util.ArrayList<java.lang.CharSequence> r33, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r34, java.util.ArrayList<java.lang.Long> r35, int r36) {
+    public void localSearch(int r29, java.lang.String r30, java.util.ArrayList<java.lang.Object> r31, java.util.ArrayList<java.lang.CharSequence> r32, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r33, java.util.ArrayList<java.lang.Long> r34, int r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.localSearch(int, java.lang.String, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
@@ -7081,16 +7088,16 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void removeTopic(final long j, final int i) {
+    public void removeTopic(final long j, final long j2) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$removeTopic$54(j, i);
+                MessagesStorage.this.lambda$removeTopic$54(j, j2);
             }
         });
     }
 
-    public void removeTopics(final long j, final ArrayList<Integer> arrayList) {
+    public void removeTopics(final long j, final ArrayList<Long> arrayList) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -7666,16 +7673,16 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void updateRepliesMaxReadId(final long j, final int i, final int i2, final int i3, boolean z) {
+    public void updateRepliesMaxReadId(final long j, final long j2, final int i, final int i2, boolean z) {
         if (z) {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$updateRepliesMaxReadId$186(j, i, i2, i3);
+                    MessagesStorage.this.lambda$updateRepliesMaxReadId$186(j, j2, i, i2);
                 }
             });
         } else {
-            lambda$updateRepliesMaxReadId$186(j, i, i2, i3);
+            lambda$updateRepliesMaxReadId$186(j, j2, i, i2);
         }
     }
 

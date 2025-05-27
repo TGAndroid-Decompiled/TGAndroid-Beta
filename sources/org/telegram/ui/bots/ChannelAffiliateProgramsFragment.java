@@ -61,6 +61,7 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.GradientHeaderActivity;
 import org.telegram.ui.LaunchActivity;
@@ -168,7 +169,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 Object obj = uItem.object;
                 if (obj instanceof TL_payments.connectedBotStarRef) {
                     ((BotCell) view).set((TL_payments.connectedBotStarRef) obj, uItem.red, z);
@@ -319,7 +320,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((HeaderSortCell) view).set(uItem.text, uItem.subtext);
             }
 

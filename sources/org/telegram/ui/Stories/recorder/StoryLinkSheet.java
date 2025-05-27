@@ -48,6 +48,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 
 public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private UniversalAdapter adapter;
@@ -93,7 +94,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 WebpagePreviewView webpagePreviewView = (WebpagePreviewView) view;
                 Object obj = uItem.object;
                 webpagePreviewView.set(obj instanceof TLRPC.WebPage ? (TLRPC.WebPage) obj : null, uItem.clickCallback, false);

@@ -476,11 +476,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressDialogButton(ChatMessageCell chatMessageCell) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell);
-            }
-
-            @Override
             public void didPressEffect(ChatMessageCell chatMessageCell) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell);
             }
@@ -627,18 +622,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void didPressTime(ChatMessageCell chatMessageCell) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell);
-            }
-
-            @Override
-            public void didPressTopicButton(ChatMessageCell chatMessageCell) {
-                MessageObject messageObject = chatMessageCell.getMessageObject();
-                if (messageObject != null) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", -messageObject.getDialogId());
-                    ChatActivity chatActivity = new ChatActivity(bundle);
-                    ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(messageObject.getDialogId(), MessageObject.getTopicId(((BaseFragment) ChannelAdminLogActivity.this).currentAccount, messageObject.messageOwner, true)));
-                    ChannelAdminLogActivity.this.presentFragment(chatActivity);
-                }
             }
 
             @Override
@@ -906,25 +889,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public boolean shouldRepeatSticker(MessageObject messageObject) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
-            }
-
-            @Override
-            public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell) {
-                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell);
-            }
-
-            @Override
-            public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell) {
-                TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent;
-                MessageObject messageObject = chatMessageCell.getMessageObject();
-                if (messageObject == null || (tL_channelAdminLogEvent = messageObject.currentEvent) == null) {
-                    return false;
-                }
-                TLRPC.ChannelAdminLogEventAction channelAdminLogEventAction = tL_channelAdminLogEvent.action;
-                if ((channelAdminLogEventAction instanceof TLRPC.TL_channelAdminLogEventActionEditMessage) || (channelAdminLogEventAction instanceof TLRPC.TL_channelAdminLogEventActionDeleteMessage)) {
-                    return ChatObject.isForum(ChannelAdminLogActivity.this.currentChat);
-                }
-                return false;
             }
 
             @Override
@@ -2880,7 +2844,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$338();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$347();
                 }
             }
         });

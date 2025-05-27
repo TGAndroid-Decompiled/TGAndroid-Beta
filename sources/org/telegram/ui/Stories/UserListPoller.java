@@ -106,16 +106,40 @@ public class UserListPoller {
     }
 
     public void checkList(RecyclerListView recyclerListView) {
-        TLRPC.User user;
-        TLRPC.UserStatus userStatus;
         long currentTimeMillis = System.currentTimeMillis();
         this.dialogIds.clear();
         for (int i = 0; i < recyclerListView.getChildCount(); i++) {
             View childAt = recyclerListView.getChildAt(i);
             long dialogId = childAt instanceof DialogCell ? ((DialogCell) childAt).getDialogId() : childAt instanceof UserCell ? ((UserCell) childAt).getDialogId() : 0L;
-            if (dialogId <= 0 ? !(!ChatObject.isChannel(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId))) || currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000) : !((user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId))) == null || user.bot || user.self || user.contact || (userStatus = user.status) == null || (userStatus instanceof TLRPC.TL_userStatusEmpty) || currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000)) {
-                this.userPollLastTime.put(dialogId, currentTimeMillis);
-                this.dialogIds.add(Long.valueOf(dialogId));
+            if (dialogId > 0) {
+                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId));
+                if (user != null) {
+                    if (!user.bot) {
+                        if (!user.self) {
+                            if (!user.contact) {
+                                TLRPC.UserStatus userStatus = user.status;
+                                if (userStatus != null) {
+                                    if (!(userStatus instanceof TLRPC.TL_userStatusEmpty)) {
+                                        if (currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000) {
+                                        }
+                                        this.userPollLastTime.put(dialogId, currentTimeMillis);
+                                        this.dialogIds.add(Long.valueOf(dialogId));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId));
+                if (ChatObject.isChannel(chat)) {
+                    if (!ChatObject.isMonoForum(chat)) {
+                        if (currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000) {
+                        }
+                        this.userPollLastTime.put(dialogId, currentTimeMillis);
+                        this.dialogIds.add(Long.valueOf(dialogId));
+                    }
+                }
             }
         }
         if (this.dialogIds.isEmpty()) {

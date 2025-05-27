@@ -94,6 +94,7 @@ import org.telegram.ui.Cells.ShareDialogCell;
 import org.telegram.ui.Cells.ShareTopicCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.LaunchActivity;
@@ -619,6 +620,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         @Override
         public void didReceivedNotification(int i, int i2, Object... objArr) {
+            ActionBar actionBar;
+            int i3;
             if (((Long) objArr[0]).longValue() == (-this.val$dialog.id)) {
                 boolean z = (ShareAlert.this.shareTopicsAdapter.topics == null && MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getTopicsController().getTopics(-this.val$dialog.id) != null) || this.val$timeoutRef.get() == null;
                 ShareAlert.this.shareTopicsAdapter.topics = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getTopicsController().getTopics(-this.val$dialog.id);
@@ -633,11 +636,20 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     ShareAlert.this.topicsGridView.setAlpha(0.0f);
                     ShareAlert.this.topicsBackActionBar.setVisibility(0);
                     ShareAlert.this.topicsBackActionBar.setAlpha(0.0f);
-                    ShareAlert shareAlert = ShareAlert.this;
-                    shareAlert.topicsBackActionBar.setTitle(MessagesController.getInstance(((BottomSheet) shareAlert).currentAccount).getChat(Long.valueOf(-this.val$dialog.id)).title);
-                    ShareAlert.this.topicsBackActionBar.setSubtitle(LocaleController.getString(R.string.SelectTopic));
-                    ShareAlert shareAlert2 = ShareAlert.this;
-                    shareAlert2.searchWasVisibleBeforeTopics = shareAlert2.searchIsVisible;
+                    if (ChatObject.isMonoForum(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id)) {
+                        ShareAlert shareAlert = ShareAlert.this;
+                        shareAlert.topicsBackActionBar.setTitle(ForumUtilities.getMonoForumTitle(((BottomSheet) shareAlert).currentAccount, MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getChat(Long.valueOf(-this.val$dialog.id))));
+                        actionBar = ShareAlert.this.topicsBackActionBar;
+                        i3 = R.string.SelectChat;
+                    } else {
+                        ShareAlert shareAlert2 = ShareAlert.this;
+                        shareAlert2.topicsBackActionBar.setTitle(MessagesController.getInstance(((BottomSheet) shareAlert2).currentAccount).getChat(Long.valueOf(-this.val$dialog.id)).title);
+                        actionBar = ShareAlert.this.topicsBackActionBar;
+                        i3 = R.string.SelectTopic;
+                    }
+                    actionBar.setSubtitle(LocaleController.getString(i3));
+                    ShareAlert shareAlert3 = ShareAlert.this;
+                    shareAlert3.searchWasVisibleBeforeTopics = shareAlert3.searchIsVisible;
                     if (ShareAlert.this.topicsAnimation != null) {
                         ShareAlert.this.topicsAnimation.cancel();
                     }
@@ -1647,7 +1659,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 if (item == null) {
                     return;
                 }
-                shareDialogCell.setTopic((TLRPC.TL_forumTopic) ShareAlert.this.selectedDialogTopics.get(item), false);
+                shareDialogCell.setTopic((TLRPC.TL_forumTopic) ShareAlert.this.selectedDialogTopics.get(item), MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).isMonoForum(item.id), false);
                 long j = item.id;
                 shareDialogCell.setDialog(j, ShareAlert.this.selectedDialogs.indexOfKey(j) >= 0, null);
             }
@@ -2434,22 +2446,22 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             this.context = context;
         }
 
-        public TLRPC.TL_forumTopic getItem(int i) {
+        @Override
+        public int getItemCount() {
+            List list = this.topics;
+            if (list != null) {
+                return list.size() + 1;
+            }
+            return 0;
+        }
+
+        public TLRPC.TL_forumTopic getItemTopic(int i) {
             int i2 = i - 1;
             List list = this.topics;
             if (list == null || i2 < 0 || i2 >= list.size()) {
                 return null;
             }
             return (TLRPC.TL_forumTopic) this.topics.get(i2);
-        }
-
-        @Override
-        public int getItemCount() {
-            List list = this.topics;
-            if (list == null) {
-                return 0;
-            }
-            return list.size() + 1;
         }
 
         @Override
@@ -2466,8 +2478,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder.getItemViewType() == 0) {
                 ShareTopicCell shareTopicCell = (ShareTopicCell) viewHolder.itemView;
-                TLRPC.TL_forumTopic item = getItem(i);
-                shareTopicCell.setTopic(ShareAlert.this.selectedTopicDialog, item, ShareAlert.this.selectedDialogs.indexOfKey((long) item.id) >= 0, null);
+                if (this.topics != null) {
+                    TLRPC.TL_forumTopic itemTopic = getItemTopic(i);
+                    shareTopicCell.setTopic(ShareAlert.this.selectedTopicDialog, itemTopic, itemTopic != null && ShareAlert.this.selectedDialogs.indexOfKey((long) itemTopic.id) >= 0, null);
+                }
             }
         }
 
@@ -3005,35 +3019,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void lambda$new$3(View view, int i) {
-        TLRPC.Dialog dialog;
-        TLRPC.TL_forumTopic item = this.shareTopicsAdapter.getItem(i);
-        if (item == null || (dialog = this.selectedTopicDialog) == null) {
-            return;
+        TLRPC.TL_forumTopic itemTopic = this.shareTopicsAdapter.getItemTopic(i);
+        if (itemTopic != null) {
+            onTopicCellClick(itemTopic);
         }
-        this.selectedDialogs.put(dialog.id, dialog);
-        this.selectedDialogTopics.put(dialog, item);
-        updateSelectedCount(2);
-        if (this.searchIsVisible || this.searchWasVisibleBeforeTopics) {
-            if (((TLRPC.Dialog) this.listAdapter.dialogsMap.get(dialog.id)) == null) {
-                this.listAdapter.dialogsMap.put(dialog.id, dialog);
-                this.listAdapter.dialogs.add(!this.listAdapter.dialogs.isEmpty() ? 1 : 0, dialog);
-            }
-            this.listAdapter.notifyDataSetChanged();
-            this.updateSearchAdapter = false;
-            this.searchView.searchEditText.setText("");
-            checkCurrentList(false);
-        }
-        for (int i2 = 0; i2 < getMainGridView().getChildCount(); i2++) {
-            View childAt = getMainGridView().getChildAt(i2);
-            if (childAt instanceof ShareDialogCell) {
-                ShareDialogCell shareDialogCell = (ShareDialogCell) childAt;
-                if (shareDialogCell.getCurrentDialog() == this.selectedTopicDialog.id) {
-                    shareDialogCell.setTopic(item, true);
-                    shareDialogCell.setChecked(true, true);
-                }
-            }
-        }
-        collapseTopics();
     }
 
     public static Integer lambda$new$4(Integer num) {
@@ -3137,50 +3126,62 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public void lambda$sendInternal$28(CharSequence[] charSequenceArr, ArrayList arrayList, boolean z, int i, HashMap hashMap) {
         boolean z2;
         long j;
+        char c;
+        MessageObject messageObject;
+        boolean z3;
+        Long l;
         long j2;
         long j3;
+        long j4;
         SendMessagesHelper.SendMessageParams of;
         MessageObject.SendAnimationData sendAnimationData;
-        boolean z3;
+        boolean z4;
         int i2;
-        long j4;
+        long j5;
         ?? r13;
         ?? r14;
         TLRPC.WebPage webPage;
-        boolean z4;
+        boolean z5;
         ArrayList arrayList2;
         TLRPC.ReplyMarkup replyMarkup;
         HashMap hashMap2;
         ?? r10;
-        long j5;
-        long j6 = 0;
+        long j6;
+        long j7 = 0;
+        Long l2 = 0L;
+        ?? r8 = 0;
         if (this.sendingMessageObjects != null) {
             ArrayList arrayList3 = new ArrayList();
             int i3 = 0;
-            boolean z5 = false;
+            boolean z6 = false;
             while (i3 < this.selectedDialogs.size()) {
                 long keyAt = this.selectedDialogs.keyAt(i3);
-                Long l = hashMap == null ? 0L : (Long) hashMap.get(Long.valueOf(keyAt));
-                if (l != null && l.longValue() > j6) {
-                    z5 = true;
+                boolean isMonoForum = MessagesController.getInstance(this.currentAccount).isMonoForum(keyAt);
+                Long l3 = hashMap == null ? l2 : (Long) hashMap.get(Long.valueOf(keyAt));
+                if (l3 != null && l3.longValue() > j7) {
+                    z6 = true;
                 }
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt));
-                MessageObject messageObject = tL_forumTopic != null ? new MessageObject(this.currentAccount, tL_forumTopic.topicStartMessage, false, false) : null;
-                if (messageObject != null) {
-                    messageObject.isTopicMainMessage = true;
+                if (tL_forumTopic != null && isMonoForum) {
+                    j7 = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
+                }
+                MessageObject messageObject2 = (tL_forumTopic == null || isMonoForum) ? null : new MessageObject(this.currentAccount, tL_forumTopic.topicStartMessage, false, false);
+                if (messageObject2 != null) {
+                    messageObject2.isTopicMainMessage = true;
                 }
                 if (this.frameLayout2.getTag() == null || this.commentTextView.length() <= 0) {
-                    j5 = keyAt;
+                    j6 = keyAt;
                 } else {
                     CharSequence charSequence = charSequenceArr[0];
-                    j5 = keyAt;
-                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(charSequence == null ? null : charSequence.toString(), keyAt, messageObject, messageObject, null, true, arrayList, null, null, z, 0, null, false);
-                    of2.payStars = l == null ? 0L : l.longValue();
+                    j6 = keyAt;
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(charSequence == null ? null : charSequence.toString(), keyAt, messageObject2, messageObject2, null, true, arrayList, null, null, z, 0, null, false);
+                    of2.payStars = l3 == null ? 0L : l3.longValue();
+                    of2.monoForumPeer = j7;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
                 }
-                int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j5, !this.showSendersName, false, z, 0, messageObject, i, l == null ? 0L : l.longValue());
+                int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j6, !this.showSendersName, false, z, 0, messageObject2, i, l3 == null ? 0L : l3.longValue(), j7);
                 if (sendMessage != 0) {
-                    arrayList3.add(Long.valueOf(j5));
+                    arrayList3.add(Long.valueOf(j6));
                 }
                 if (this.selectedDialogs.size() == 1) {
                     AlertsCreator.showSendMediaAlert(sendMessage, this.parentFragment, null);
@@ -3189,7 +3190,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     }
                 }
                 i3++;
-                j6 = 0;
+                j7 = 0;
             }
             Iterator it = arrayList3.iterator();
             while (it.hasNext()) {
@@ -3201,7 +3202,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 }
             }
             if (!this.selectedDialogs.isEmpty()) {
-                onSend(this.selectedDialogs, this.sendingMessageObjects.size(), this.selectedDialogs.size() == 1 ? (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.valueAt(0)) : null, !z5);
+                onSend(this.selectedDialogs, this.sendingMessageObjects.size(), this.selectedDialogs.size() == 1 ? (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.valueAt(0)) : null, true ^ z6);
             }
         } else {
             SwitchView switchView = this.switchView;
@@ -3211,84 +3212,110 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 z2 = false;
                 while (i5 < this.selectedDialogs.size()) {
                     long keyAt2 = this.selectedDialogs.keyAt(i5);
-                    Long l2 = hashMap == null ? 0L : (Long) hashMap.get(Long.valueOf(keyAt2));
-                    if (l2 != null && l2.longValue() > 0) {
+                    boolean isMonoForum2 = MessagesController.getInstance(this.currentAccount).isMonoForum(keyAt2);
+                    Long l4 = hashMap == null ? l2 : (Long) hashMap.get(Long.valueOf(keyAt2));
+                    if (l4 != null && l4.longValue() > 0) {
                         z2 = true;
                     }
                     TLRPC.TL_forumTopic tL_forumTopic2 = (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt2));
-                    Object messageObject2 = tL_forumTopic2 != null ? new MessageObject(this.currentAccount, tL_forumTopic2.topicStartMessage, false, false) : r3;
+                    long peerDialogId = (tL_forumTopic2 == null || !isMonoForum2) ? 0L : DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
+                    Object messageObject3 = (tL_forumTopic2 == null || isMonoForum2) ? r3 : new MessageObject(this.currentAccount, tL_forumTopic2.topicStartMessage, r8, r8);
                     if (this.storyItem == null) {
                         if (this.frameLayout2.getTag() == null || this.commentTextView.length() <= 0) {
+                            j3 = peerDialogId;
                             sendAnimationData = null;
-                            z3 = false;
+                            z4 = false;
                             i2 = 0;
-                            j4 = keyAt2;
-                            r13 = messageObject2;
-                            r14 = messageObject2;
+                            j5 = keyAt2;
+                            r13 = messageObject3;
+                            r14 = messageObject3;
                             webPage = null;
-                            z4 = true;
+                            z5 = true;
                             arrayList2 = null;
                             replyMarkup = null;
                             hashMap2 = null;
                             r10 = this.sendingText[i4];
                         } else {
-                            CharSequence charSequence2 = charSequenceArr[0];
+                            CharSequence charSequence2 = charSequenceArr[r8];
+                            Object charSequence3 = charSequence2 == null ? r3 : charSequence2.toString();
                             sendAnimationData = null;
-                            z3 = false;
+                            z4 = false;
                             replyMarkup = null;
                             hashMap2 = null;
                             i2 = 0;
-                            j4 = keyAt2;
-                            r13 = messageObject2;
-                            r14 = messageObject2;
+                            j3 = peerDialogId;
+                            j5 = keyAt2;
+                            r13 = messageObject3;
+                            r14 = messageObject3;
                             webPage = null;
-                            z4 = true;
+                            z5 = true;
                             arrayList2 = arrayList;
-                            r10 = charSequence2 == null ? r3 : charSequence2.toString();
+                            r10 = charSequence3;
                         }
-                        of = SendMessagesHelper.SendMessageParams.of(r10, j4, r13, r14, webPage, z4, arrayList2, replyMarkup, hashMap2, z, i2, sendAnimationData, z3);
+                        of = SendMessagesHelper.SendMessageParams.of(r10, j5, r13, r14, webPage, z5, arrayList2, replyMarkup, hashMap2, z, i2, sendAnimationData, z4);
                     } else {
-                        if (this.frameLayout2.getTag() == null || this.commentTextView.length() <= 0 || charSequenceArr[0] == null) {
-                            j3 = keyAt2;
+                        j3 = peerDialogId;
+                        if (this.frameLayout2.getTag() == null || this.commentTextView.length() <= 0 || charSequenceArr[r8] == null) {
+                            j4 = keyAt2;
                         } else {
-                            j3 = keyAt2;
-                            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequenceArr[0].toString(), keyAt2, null, messageObject2, null, true, null, null, null, z, 0, null, false));
+                            j4 = keyAt2;
+                            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequenceArr[r8].toString(), keyAt2, null, messageObject3, null, true, null, null, null, z, 0, null, false));
                         }
-                        of = SendMessagesHelper.SendMessageParams.of(null, j3, messageObject2, messageObject2, null, true, null, null, null, z, 0, null, false);
+                        of = SendMessagesHelper.SendMessageParams.of(null, j4, messageObject3, messageObject3, null, true, null, null, null, z, 0, null, false);
                         of.sendingStory = this.storyItem;
                     }
-                    of.payStars = l2 == null ? 0L : l2.longValue();
+                    of.payStars = l4 == null ? 0L : l4.longValue();
+                    of.monoForumPeer = j3;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
                     i5++;
                     r3 = null;
+                    r8 = 0;
                 }
             } else if (this.sendingText[i4] != null) {
+                int i6 = 0;
                 z2 = false;
-                for (int i6 = 0; i6 < this.selectedDialogs.size(); i6++) {
+                while (i6 < this.selectedDialogs.size()) {
                     long keyAt3 = this.selectedDialogs.keyAt(i6);
-                    Long l3 = hashMap == null ? 0L : (Long) hashMap.get(Long.valueOf(keyAt3));
-                    if (l3 != null) {
+                    boolean isMonoForum3 = MessagesController.getInstance(this.currentAccount).isMonoForum(keyAt3);
+                    Long l5 = hashMap == null ? l2 : (Long) hashMap.get(Long.valueOf(keyAt3));
+                    if (l5 != null) {
                         j = 0;
-                        if (l3.longValue() > 0) {
+                        if (l5.longValue() > 0) {
                             z2 = true;
                         }
                     } else {
                         j = 0;
                     }
                     TLRPC.TL_forumTopic tL_forumTopic3 = (TLRPC.TL_forumTopic) this.selectedDialogTopics.get(this.selectedDialogs.get(keyAt3));
-                    MessageObject messageObject3 = tL_forumTopic3 != null ? new MessageObject(this.currentAccount, tL_forumTopic3.topicStartMessage, false, false) : null;
-                    if (this.frameLayout2.getTag() == null || this.commentTextView.length() <= 0) {
-                        j2 = keyAt3;
+                    long peerDialogId2 = (tL_forumTopic3 == null || !isMonoForum3) ? j : DialogObject.getPeerDialogId(tL_forumTopic3.from_id);
+                    if (tL_forumTopic3 == null || isMonoForum3) {
+                        c = 0;
+                        messageObject = null;
                     } else {
-                        CharSequence charSequence3 = charSequenceArr[0];
-                        j2 = keyAt3;
-                        SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(charSequence3 == null ? null : charSequence3.toString(), keyAt3, messageObject3, messageObject3, null, true, arrayList, null, null, z, 0, null, false);
-                        of3.payStars = l3 == null ? j : l3.longValue();
+                        c = 0;
+                        messageObject = new MessageObject(this.currentAccount, tL_forumTopic3.topicStartMessage, false, false);
+                    }
+                    if (this.frameLayout2.getTag() == null || this.commentTextView.length() <= 0) {
+                        z3 = z2;
+                        l = l2;
+                        j2 = peerDialogId2;
+                    } else {
+                        CharSequence charSequence4 = charSequenceArr[c];
+                        z3 = z2;
+                        l = l2;
+                        j2 = peerDialogId2;
+                        SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(charSequence4 == null ? null : charSequence4.toString(), keyAt3, messageObject, messageObject, null, true, arrayList, null, null, z, 0, null, false);
+                        of3.payStars = l5 == null ? j : l5.longValue();
+                        of3.monoForumPeer = j2;
                         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of3);
                     }
-                    SendMessagesHelper.SendMessageParams of4 = SendMessagesHelper.SendMessageParams.of(this.sendingText[i4], j2, messageObject3, messageObject3, null, true, null, null, null, z, 0, null, false);
-                    of4.payStars = l3 == null ? j : l3.longValue();
+                    SendMessagesHelper.SendMessageParams of4 = SendMessagesHelper.SendMessageParams.of(this.sendingText[i4], keyAt3, messageObject, messageObject, null, true, null, null, null, z, 0, null, false);
+                    of4.payStars = l5 == null ? j : l5.longValue();
+                    of4.monoForumPeer = j2;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of4);
+                    i6++;
+                    z2 = z3;
+                    l2 = l;
                 }
             } else {
                 z2 = false;
@@ -3484,6 +3511,40 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         return true;
     }
 
+    private void onTopicCellClick(TLRPC.TL_forumTopic tL_forumTopic) {
+        TLRPC.Dialog dialog;
+        if (tL_forumTopic == null || (dialog = this.selectedTopicDialog) == null) {
+            return;
+        }
+        long j = dialog.id;
+        boolean isMonoForum = MessagesController.getInstance(this.currentAccount).isMonoForum(j);
+        TLRPC.Dialog dialog2 = this.selectedTopicDialog;
+        this.selectedDialogs.put(j, dialog2);
+        this.selectedDialogTopics.put(dialog2, tL_forumTopic);
+        updateSelectedCount(2);
+        if (this.searchIsVisible || this.searchWasVisibleBeforeTopics) {
+            if (((TLRPC.Dialog) this.listAdapter.dialogsMap.get(dialog2.id)) == null) {
+                this.listAdapter.dialogsMap.put(dialog2.id, dialog2);
+                this.listAdapter.dialogs.add(!this.listAdapter.dialogs.isEmpty() ? 1 : 0, dialog2);
+            }
+            this.listAdapter.notifyDataSetChanged();
+            this.updateSearchAdapter = false;
+            this.searchView.searchEditText.setText("");
+            checkCurrentList(false);
+        }
+        for (int i = 0; i < getMainGridView().getChildCount(); i++) {
+            View childAt = getMainGridView().getChildAt(i);
+            if (childAt instanceof ShareDialogCell) {
+                ShareDialogCell shareDialogCell = (ShareDialogCell) childAt;
+                if (shareDialogCell.getCurrentDialog() == this.selectedTopicDialog.id) {
+                    shareDialogCell.setTopic(tL_forumTopic, isMonoForum, true);
+                    shareDialogCell.setChecked(true, true);
+                }
+            }
+        }
+        collapseTopics();
+    }
+
     private void runShadowAnimation(int i, boolean z) {
         if ((!z || this.shadow[i].getTag() == null) && (z || this.shadow[i].getTag() != null)) {
             return;
@@ -3571,7 +3632,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
             updateSelectedCount(1);
         } else {
-            if (DialogObject.isChatDialog(dialog.id) && MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id)) != null && MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id)).forum) {
+            TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
+            if (DialogObject.isChatDialog(dialog.id) && (ChatObject.isForum(chat2) || (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(this.currentAccount, chat2)))) {
                 this.selectedTopicDialog = dialog;
                 this.topicsLayoutManager.scrollToPositionWithOffset(0, this.scrollOffsetY - this.topicsGridView.getPaddingTop());
                 final AtomicReference atomicReference = new AtomicReference();

@@ -351,27 +351,41 @@ public class MediaDataController extends BaseController {
         public long recordTimeCount;
         public long samplesCount;
         public int writedFrame;
+        public float left = 0.0f;
+        public float right = 1.0f;
 
         public static DraftVoice fromString(String str) {
             if (str == null) {
                 return null;
             }
             try {
-                String[] split = str.split("\n");
+                if (!str.startsWith("@")) {
+                    return null;
+                }
+                boolean z = true;
+                String[] split = str.substring(1).split("\n");
                 if (split.length < 6) {
                     return null;
                 }
                 DraftVoice draftVoice = new DraftVoice();
                 int i = 0;
                 draftVoice.path = split[0];
-                boolean z = true;
                 draftVoice.samplesCount = Long.parseLong(split[1]);
                 draftVoice.writedFrame = Integer.parseInt(split[2]);
                 draftVoice.recordTimeCount = Long.parseLong(split[3]);
-                if (Integer.parseInt(split[4]) == 0) {
-                    z = false;
+                if (split[4].contains(";")) {
+                    String[] split2 = split[4].split(";");
+                    draftVoice.once = Integer.parseInt(split2[0]) != 0;
+                    draftVoice.left = Float.parseFloat(split2[1]);
+                    draftVoice.right = Float.parseFloat(split2[2]);
+                } else {
+                    if (Integer.parseInt(split[4]) == 0) {
+                        z = false;
+                    }
+                    draftVoice.once = z;
+                    draftVoice.left = 0.0f;
+                    draftVoice.right = 1.0f;
                 }
-                draftVoice.once = z;
                 int length = split.length - 5;
                 String[] strArr = new String[length];
                 for (int i2 = 0; i2 < length; i2++) {
@@ -393,18 +407,20 @@ public class MediaDataController extends BaseController {
             }
         }
 
-        public static DraftVoice of(MediaController mediaController, String str, boolean z) {
+        public static DraftVoice of(MediaController mediaController, String str, boolean z, float f, float f2) {
             if (mediaController.recordingAudio == null) {
                 return null;
             }
             DraftVoice draftVoice = new DraftVoice();
             draftVoice.path = str;
             draftVoice.samplesCount = mediaController.samplesCount;
-            draftVoice.writedFrame = mediaController.writedFrame;
+            draftVoice.writedFrame = mediaController.writtenFrame;
             draftVoice.recordTimeCount = mediaController.recordTimeCount;
             draftVoice.id = mediaController.recordingAudio.id;
             draftVoice.recordSamples = mediaController.recordSamples;
             draftVoice.once = z;
+            draftVoice.left = f;
+            draftVoice.right = f2;
             return draftVoice;
         }
 
@@ -414,7 +430,7 @@ public class MediaDataController extends BaseController {
             while (true) {
                 short[] sArr = this.recordSamples;
                 if (i >= sArr.length) {
-                    return this.path + "\n" + this.samplesCount + "\n" + this.writedFrame + "\n" + this.recordTimeCount + "\n" + (this.once ? 1 : 0) + "\n" + new String(cArr);
+                    return "@" + this.path + "\n" + this.samplesCount + "\n" + this.writedFrame + "\n" + this.recordTimeCount + "\n" + (this.once ? 1 : 0) + ";" + this.left + ";" + this.right + "\n" + new String(cArr);
                 }
                 cArr[i] = (char) sArr[i];
                 i++;
@@ -614,7 +630,7 @@ public class MediaDataController extends BaseController {
                             longSparseArray = new LongSparseArray();
                             this.drafts.put(longValue, longSparseArray);
                         }
-                        longSparseArray.put(key.startsWith("t_") ? Utilities.parseInt((CharSequence) key.substring(key.lastIndexOf(95) + 1)).intValue() : 0L, TLdeserialize);
+                        longSparseArray.put(key.startsWith("t_") ? Utilities.parseLong(key.substring(key.lastIndexOf(95) + 1)).longValue() : 0L, TLdeserialize);
                     }
                     serializedData.cleanup();
                 }
@@ -9043,6 +9059,19 @@ public class MediaDataController extends BaseController {
             tL_draftMessageEmpty.entities = arrayList;
             tL_draftMessageEmpty.flags |= 8;
         }
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+        if (ChatObject.isMonoForum(chat) && ChatObject.hasAdminRights(chat)) {
+            tL_draftMessageEmpty.flags |= 16;
+            TLRPC.InputReplyTo inputReplyTo5 = tL_draftMessageEmpty.reply_to;
+            if (inputReplyTo5 == null) {
+                TLRPC.TL_inputReplyToMonoForum tL_inputReplyToMonoForum = new TLRPC.TL_inputReplyToMonoForum();
+                tL_draftMessageEmpty.reply_to = tL_inputReplyToMonoForum;
+                tL_inputReplyToMonoForum.monoforum_peer_id = getMessagesController().getInputPeer(j2);
+            } else {
+                inputReplyTo5.monoforum_peer_id = getMessagesController().getInputPeer(j2);
+                tL_draftMessageEmpty.reply_to.flags |= 32;
+            }
+        }
         LongSparseArray longSparseArray = (LongSparseArray) this.drafts.get(j);
         TLRPC.DraftMessage draftMessage = longSparseArray == null ? null : (TLRPC.DraftMessage) longSparseArray.get(j2);
         if (!z2) {
@@ -9055,7 +9084,7 @@ public class MediaDataController extends BaseController {
             }
         }
         saveDraft(j, j2, tL_draftMessageEmpty, message2, false);
-        if (j2 == 0 || ChatObject.isForum(this.currentAccount, j)) {
+        if (j2 == 0 || ChatObject.isForum(chat) || ChatObject.isMonoForum(chat)) {
             if (!DialogObject.isEncryptedDialog(j)) {
                 TLRPC.TL_messages_saveDraft tL_messages_saveDraft = new TLRPC.TL_messages_saveDraft();
                 TLRPC.InputPeer inputPeer = getMessagesController().getInputPeer(j);
@@ -9065,9 +9094,9 @@ public class MediaDataController extends BaseController {
                 }
                 tL_messages_saveDraft.message = tL_draftMessageEmpty.message;
                 tL_messages_saveDraft.no_webpage = tL_draftMessageEmpty.no_webpage;
-                TLRPC.InputReplyTo inputReplyTo5 = tL_draftMessageEmpty.reply_to;
-                tL_messages_saveDraft.reply_to = inputReplyTo5;
-                if (inputReplyTo5 != null) {
+                TLRPC.InputReplyTo inputReplyTo6 = tL_draftMessageEmpty.reply_to;
+                tL_messages_saveDraft.reply_to = inputReplyTo6;
+                if (inputReplyTo6 != null) {
                     tL_messages_saveDraft.flags |= 16;
                 }
                 int i = tL_draftMessageEmpty.flags;
@@ -9298,7 +9327,7 @@ public class MediaDataController extends BaseController {
         searchMessagesInChat(str, j, j2, i, i2, j3, false, user, chat, true, visibleReaction);
     }
 
-    public void searchMessagesInChat(java.lang.String r39, final long r40, final long r42, final int r44, final int r45, final long r46, boolean r48, final org.telegram.tgnet.TLRPC.User r49, final org.telegram.tgnet.TLRPC.Chat r50, final boolean r51, final org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r52) {
+    public void searchMessagesInChat(java.lang.String r40, final long r41, final long r43, final int r45, final int r46, final long r47, boolean r49, final org.telegram.tgnet.TLRPC.User r50, final org.telegram.tgnet.TLRPC.Chat r51, final boolean r52, final org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r53) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.searchMessagesInChat(java.lang.String, long, long, int, int, long, boolean, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction):void");
     }
 
@@ -9333,6 +9362,17 @@ public class MediaDataController extends BaseController {
 
     public void setDraftFolderId(long j, int i) {
         this.draftsFolderIds.put(j, Integer.valueOf(i));
+    }
+
+    public void setDraftVoiceRegion(long j, long j2, float f, float f2) {
+        DraftVoice draftVoice = getDraftVoice(j, j2);
+        if (draftVoice != null) {
+            if (Math.abs(draftVoice.left - f) >= 0.001f || Math.abs(draftVoice.right - f2) >= 0.001f) {
+                draftVoice.left = f;
+                draftVoice.right = f2;
+                ApplicationLoader.applicationContext.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0).edit().putString(Objects.hash(Long.valueOf(j), Long.valueOf(j2)) + "", draftVoice.toString()).apply();
+            }
+        }
     }
 
     public void setPlaceholderImage(final BackupImageView backupImageView, String str, final String str2, final String str3) {

@@ -54,6 +54,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private Float crossfadeDuration;
     private PhotoAttachPhotoCellDelegate delegate;
     private boolean hasSpoiler;
+    private boolean highQuality;
     private BackupImageView imageView;
     private float imageViewCrossfadeProgress;
     private Bitmap imageViewCrossfadeSnapshot;
@@ -77,6 +78,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private long stars;
     private boolean starsSelectedMultiple;
     private FrameLayout videoInfoContainer;
+    private ImageView videoPlayImageView;
     private TextView videoTextView;
     private boolean zoomOnSelect;
 
@@ -88,7 +90,6 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         super(context);
         this.zoomOnSelect = true;
         this.backgroundPaint = new Paint();
-        this.spoilerEffect = new SpoilerEffect();
         this.path = new Path();
         this.imageViewCrossfadeProgress = 1.0f;
         this.resourcesProvider = resourcesProvider;
@@ -120,7 +121,6 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         };
         this.container = frameLayout;
         addView(frameLayout, LayoutHelper.createFrame(80, 80.0f));
-        this.spoilerEffect.setColor(ColorUtils.setAlphaComponent(-1, (int) (Color.alpha(-1) * 0.325f)));
         BackupImageView backupImageView = new BackupImageView(context) {
             private Paint crossfadePaint = new Paint(1);
             private long lastUpdate;
@@ -138,11 +138,11 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 } else {
                     float width = (getWidth() - this.width) / 2;
                     int height = getHeight();
-                    imageReceiver.setImageCoords(width, (height - r4) / 2, this.width, this.height);
+                    imageReceiver.setImageCoords(width, (height - r5) / 2, this.width, this.height);
                     ImageReceiver imageReceiver2 = this.blurImageReceiver;
                     float width2 = (getWidth() - this.width) / 2;
                     int height2 = getHeight();
-                    imageReceiver2.setImageCoords(width2, (height2 - r5) / 2, this.width, this.height);
+                    imageReceiver2.setImageCoords(width2, (height2 - r6) / 2, this.width, this.height);
                 }
                 imageReceiver.draw(canvas);
                 if (PhotoAttachPhotoCell.this.hasSpoiler && PhotoAttachPhotoCell.this.spoilerRevealProgress != 1.0f && (PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isAttachSpoilerRevealed)) {
@@ -154,6 +154,10 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                     }
                     this.blurImageReceiver.draw(canvas);
                     if (PhotoAttachPhotoCell.this.spoilerEffect2 == null) {
+                        if (PhotoAttachPhotoCell.this.spoilerEffect == null) {
+                            PhotoAttachPhotoCell.this.spoilerEffect = new SpoilerEffect();
+                            PhotoAttachPhotoCell.this.spoilerEffect.setColor(ColorUtils.setAlphaComponent(-1, (int) (Color.alpha(-1) * 0.325f)));
+                        }
                         PhotoAttachPhotoCell.this.spoilerEffect.setBounds(0, 0, getWidth(), getHeight());
                         PhotoAttachPhotoCell.this.spoilerEffect.draw(canvas);
                     }
@@ -209,8 +213,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.videoInfoContainer.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
         this.container.addView(this.videoInfoContainer, LayoutHelper.createFrame(-2, 17.0f, 83, 4.0f, 0.0f, 0.0f, 4.0f));
         ImageView imageView = new ImageView(context);
+        this.videoPlayImageView = imageView;
         imageView.setImageResource(R.drawable.play_mini_video);
-        this.videoInfoContainer.addView(imageView, LayoutHelper.createFrame(-2, -2, 19));
+        this.videoInfoContainer.addView(this.videoPlayImageView, LayoutHelper.createFrame(-2, -2, 19));
         TextView textView = new TextView(context);
         this.videoTextView = textView;
         textView.setTextColor(-1);
@@ -472,6 +477,37 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         }
     }
 
+    public void setHighQuality(boolean z) {
+        TextView textView;
+        String string;
+        if (this.highQuality != z) {
+            this.highQuality = z;
+            MediaController.PhotoEntry photoEntry = this.photoEntry;
+            if (photoEntry != null) {
+                if (photoEntry.isVideo) {
+                    this.imageView.setOrientation(0, true);
+                    this.videoInfoContainer.setVisibility(0);
+                    this.videoPlayImageView.setVisibility(0);
+                    ((FrameLayout.LayoutParams) this.videoTextView.getLayoutParams()).leftMargin = AndroidUtilities.dp(13.0f);
+                    textView = this.videoTextView;
+                    string = AndroidUtilities.formatShortDuration(this.photoEntry.duration);
+                } else {
+                    if (!photoEntry.highQuality) {
+                        this.videoPlayImageView.setVisibility(8);
+                        this.videoInfoContainer.setVisibility(4);
+                        return;
+                    }
+                    this.videoInfoContainer.setVisibility(0);
+                    this.videoPlayImageView.setVisibility(8);
+                    ((FrameLayout.LayoutParams) this.videoTextView.getLayoutParams()).leftMargin = AndroidUtilities.dp(0.0f);
+                    textView = this.videoTextView;
+                    string = LocaleController.getString(R.string.ShortHighQuality);
+                }
+                textView.setText(string);
+            }
+        }
+    }
+
     public void setIsVertical(boolean z) {
         this.isVertical = z;
     }
@@ -503,7 +539,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.checkFrame.setOnClickListener(onClickListener);
     }
 
-    public void setPhotoEntry(org.telegram.messenger.MediaController.PhotoEntry r7, boolean r8, boolean r9, boolean r10) {
+    public void setPhotoEntry(org.telegram.messenger.MediaController.PhotoEntry r8, boolean r9, boolean r10, boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.PhotoAttachPhotoCell.setPhotoEntry(org.telegram.messenger.MediaController$PhotoEntry, boolean, boolean, boolean):void");
     }
 

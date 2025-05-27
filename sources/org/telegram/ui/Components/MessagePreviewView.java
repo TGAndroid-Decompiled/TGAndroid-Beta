@@ -390,7 +390,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                 }
                 MessageObject messageObject = Page.this.messages.previewMessages.get(i);
                 MessagePreviewParams.Messages messages2 = Page.this.messages;
-                chatMessageCell.setMessageObject(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true);
+                chatMessageCell.setMessageObject(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true, false);
                 if (Page.this.currentTab == 1) {
                     chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                         @Override
@@ -478,11 +478,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                         @Override
                         public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell2);
-                        }
-
-                        @Override
-                        public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
                         }
 
                         @Override
@@ -578,11 +573,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                         @Override
                         public void didPressTime(ChatMessageCell chatMessageCell2) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
-                        }
-
-                        @Override
-                        public void didPressTopicButton(ChatMessageCell chatMessageCell2) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTopicButton(this, chatMessageCell2);
                         }
 
                         @Override
@@ -751,16 +741,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
-                        }
-
-                        @Override
-                        public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
-                        }
-
-                        @Override
                         public void videoTimerReached() {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
                         }
@@ -800,8 +780,8 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2) {
-                        super.setMessageObject(messageObject, groupedMessages, z, z2);
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3) {
+                        super.setMessageObject(messageObject, groupedMessages, z, z2, z3);
                         Page.this.updateLinkHighlight(this);
                     }
                 };
@@ -903,11 +883,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
-                    }
-
-                    @Override
                     public void didPressEffect(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell2);
                     }
@@ -1000,11 +975,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                     @Override
                     public void didPressTime(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
-                    }
-
-                    @Override
-                    public void didPressTopicButton(ChatMessageCell chatMessageCell2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTopicButton(this, chatMessageCell2);
                     }
 
                     @Override
@@ -1200,16 +1170,6 @@ public abstract class MessagePreviewView extends FrameLayout {
                     @Override
                     public boolean shouldRepeatSticker(MessageObject messageObject) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
-                    }
-
-                    @Override
-                    public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
-                    }
-
-                    @Override
-                    public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
                     }
 
                     @Override

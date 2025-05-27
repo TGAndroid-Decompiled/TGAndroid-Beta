@@ -80,7 +80,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
         public void attachedView(View view, UItem uItem) {
         }
 
-        public abstract void bindView(View view, UItem uItem, boolean z);
+        public abstract void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView);
 
         public boolean contentsEquals(UItem uItem, UItem uItem2) {
             return uItem.itemContentEquals(uItem2);

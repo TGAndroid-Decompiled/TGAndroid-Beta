@@ -18,6 +18,7 @@ public class AvatarSpan extends ReplacementSpan {
     private final AvatarDrawable avatarDrawable;
     private final int currentAccount;
     private final ImageReceiver imageReceiver;
+    public boolean needDrawShadow;
     private View parent;
     private final View.OnAttachStateChangeListener parentAttachListener;
     private final Paint shadowPaint;
@@ -25,12 +26,14 @@ public class AvatarSpan extends ReplacementSpan {
     private float sz;
     private float translateX;
     private float translateY;
+    public boolean usePaintAlpha;
 
     public AvatarSpan(View view, int i) {
         this(view, i, 18.0f);
     }
 
     public AvatarSpan(View view, int i, float f) {
+        this.needDrawShadow = true;
         this.parentAttachListener = new View.OnAttachStateChangeListener() {
             @Override
             public void onViewAttachedToWindow(View view2) {
@@ -43,6 +46,7 @@ public class AvatarSpan extends ReplacementSpan {
             }
         };
         this.shadowPaintAlpha = 255;
+        this.usePaintAlpha = true;
         this.currentAccount = i;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.imageReceiver = imageReceiver;
@@ -66,17 +70,18 @@ public class AvatarSpan extends ReplacementSpan {
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        if (this.shadowPaintAlpha != paint.getAlpha()) {
-            Paint paint2 = this.shadowPaint;
-            int alpha = paint.getAlpha();
-            this.shadowPaintAlpha = alpha;
-            paint2.setAlpha(alpha);
-            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
+        if (this.needDrawShadow) {
+            if (this.shadowPaintAlpha != paint.getAlpha()) {
+                Paint paint2 = this.shadowPaint;
+                int alpha = paint.getAlpha();
+                this.shadowPaintAlpha = alpha;
+                paint2.setAlpha(alpha);
+                this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
+            }
+            canvas.drawCircle(this.translateX + f + (AndroidUtilities.dp(this.sz) / 2.0f), this.translateY + ((i3 + i5) / 2.0f), AndroidUtilities.dp(this.sz) / 2.0f, this.shadowPaint);
         }
-        float f2 = (i3 + i5) / 2.0f;
-        canvas.drawCircle(this.translateX + f + (AndroidUtilities.dp(this.sz) / 2.0f), this.translateY + f2, AndroidUtilities.dp(this.sz) / 2.0f, this.shadowPaint);
-        this.imageReceiver.setImageCoords(this.translateX + f, (this.translateY + f2) - (AndroidUtilities.dp(this.sz) / 2.0f), AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
-        this.imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
+        this.imageReceiver.setImageCoords(this.translateX + f, (this.translateY + ((i3 + i5) / 2.0f)) - (AndroidUtilities.dp(this.sz) / 2.0f), AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
+        this.imageReceiver.setAlpha(this.usePaintAlpha ? paint.getAlpha() / 255.0f : 1.0f);
         this.imageReceiver.draw(canvas);
     }
 

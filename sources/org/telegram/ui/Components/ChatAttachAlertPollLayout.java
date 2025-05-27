@@ -102,6 +102,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     private FillLastLinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
+    private final int maxAnswersCount;
     private boolean multipleChoise;
     private int multipleRow;
     private final Runnable openKeyboardRunnable;
@@ -334,7 +335,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             RecyclerView.ViewHolder findContainingViewHolder = ChatAttachAlertPollLayout.this.listView.findContainingViewHolder(pollEditTextCell);
             if (findContainingViewHolder != null && (adapterPosition = findContainingViewHolder.getAdapterPosition()) != -1) {
                 int i2 = adapterPosition - ChatAttachAlertPollLayout.this.answerStartRow;
-                if (i2 == ChatAttachAlertPollLayout.this.answersCount - 1 && ChatAttachAlertPollLayout.this.answersCount < 10) {
+                if (i2 == ChatAttachAlertPollLayout.this.answersCount - 1 && ChatAttachAlertPollLayout.this.answersCount < ChatAttachAlertPollLayout.this.maxAnswersCount) {
                     ChatAttachAlertPollLayout.this.addNewField();
                 } else if (i2 == ChatAttachAlertPollLayout.this.answersCount - 1) {
                     AndroidUtilities.hideKeyboard(pollEditTextCell.getTextView());
@@ -412,23 +413,26 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             View view;
             switch (i) {
                 case 0:
-                    view = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false);
+                    view = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false, ChatAttachAlertPollLayout.this.resourcesProvider);
                     break;
                 case 1:
-                    View shadowSectionCell = new ShadowSectionCell(this.mContext);
+                    View shadowSectionCell = new ShadowSectionCell(this.mContext, ChatAttachAlertPollLayout.this.resourcesProvider);
                     CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(ChatAttachAlertPollLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     combinedDrawable.setFullsize(true);
                     shadowSectionCell.setBackgroundDrawable(combinedDrawable);
                     view = shadowSectionCell;
                     break;
                 case 2:
-                    view = new TextInfoPrivacyCell(this.mContext);
+                    view = new TextInfoPrivacyCell(this.mContext, ChatAttachAlertPollLayout.this.resourcesProvider);
                     break;
                 case 3:
-                    view = new TextCell(this.mContext);
+                    view = new TextCell(this.mContext, ChatAttachAlertPollLayout.this.resourcesProvider);
                     break;
                 case 4:
-                    final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(this.mContext, false, ChatAttachAlertPollLayout.this.isPremium ? 1 : 0, null) {
+                    Context context = this.mContext;
+                    boolean z = ChatAttachAlertPollLayout.this.isPremium;
+                    Theme.ResourcesProvider resourcesProvider = ChatAttachAlertPollLayout.this.resourcesProvider;
+                    final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(context, false, z ? 1 : 0, null, resourcesProvider) {
                         @Override
                         protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
                             if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
@@ -441,8 +445,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        protected void onEditTextFocusChanged(boolean z) {
-                            ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z);
+                        protected void onEditTextFocusChanged(boolean z2) {
+                            ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z2);
                         }
 
                         @Override
@@ -495,9 +499,9 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     break;
                 case 5:
                 default:
-                    Context context = this.mContext;
-                    boolean z = ChatAttachAlertPollLayout.this.isPremium;
-                    final PollEditTextCell pollEditTextCell3 = new PollEditTextCell(context, false, z ? 1 : 0, new View.OnClickListener() {
+                    Context context2 = this.mContext;
+                    boolean z2 = ChatAttachAlertPollLayout.this.isPremium;
+                    final PollEditTextCell pollEditTextCell3 = new PollEditTextCell(context2, false, z2 ? 1 : 0, new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
                             ChatAttachAlertPollLayout.ListAdapter.this.lambda$onCreateViewHolder$0(view2);
@@ -508,7 +512,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                             RecyclerView.ViewHolder findContainingViewHolder = ChatAttachAlertPollLayout.this.listView.findContainingViewHolder(this);
                             if (findContainingViewHolder != null) {
                                 int adapterPosition = findContainingViewHolder.getAdapterPosition();
-                                if (ChatAttachAlertPollLayout.this.answersCount == 10 && adapterPosition == (ChatAttachAlertPollLayout.this.answerStartRow + ChatAttachAlertPollLayout.this.answersCount) - 1) {
+                                if (ChatAttachAlertPollLayout.this.answersCount == ChatAttachAlertPollLayout.this.maxAnswersCount && adapterPosition == (ChatAttachAlertPollLayout.this.answerStartRow + ChatAttachAlertPollLayout.this.answersCount) - 1) {
                                     return false;
                                 }
                             }
@@ -526,9 +530,9 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        public void onCheckBoxClick(PollEditTextCell pollEditTextCell4, boolean z2) {
+                        public void onCheckBoxClick(PollEditTextCell pollEditTextCell4, boolean z3) {
                             int adapterPosition;
-                            if (z2 && ChatAttachAlertPollLayout.this.quizPoll) {
+                            if (z3 && ChatAttachAlertPollLayout.this.quizPoll) {
                                 Arrays.fill(ChatAttachAlertPollLayout.this.answersChecks, false);
                                 ChatAttachAlertPollLayout.this.listView.getChildCount();
                                 for (int i2 = ChatAttachAlertPollLayout.this.answerStartRow; i2 < ChatAttachAlertPollLayout.this.answerStartRow + ChatAttachAlertPollLayout.this.answersCount; i2++) {
@@ -541,17 +545,17 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                     }
                                 }
                             }
-                            super.onCheckBoxClick(pollEditTextCell4, z2);
+                            super.onCheckBoxClick(pollEditTextCell4, z3);
                             RecyclerView.ViewHolder findContainingViewHolder = ChatAttachAlertPollLayout.this.listView.findContainingViewHolder(pollEditTextCell4);
                             if (findContainingViewHolder != null && (adapterPosition = findContainingViewHolder.getAdapterPosition()) != -1) {
-                                ChatAttachAlertPollLayout.this.answersChecks[adapterPosition - ChatAttachAlertPollLayout.this.answerStartRow] = z2;
+                                ChatAttachAlertPollLayout.this.answersChecks[adapterPosition - ChatAttachAlertPollLayout.this.answerStartRow] = z3;
                             }
                             ChatAttachAlertPollLayout.this.checkDoneButton();
                         }
 
                         @Override
-                        protected void onEditTextFocusChanged(boolean z2) {
-                            ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z2);
+                        protected void onEditTextFocusChanged(boolean z3) {
+                            ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z3);
                         }
 
                         @Override
@@ -629,7 +633,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     view = pollEditTextCell3;
                     break;
                 case 6:
-                    view = new TextCheckCell(this.mContext);
+                    view = new TextCheckCell(this.mContext, ChatAttachAlertPollLayout.this.resourcesProvider);
                     break;
                 case 7:
                     final PollEditTextCell pollEditTextCell4 = new PollEditTextCell(this.mContext, false, ChatAttachAlertPollLayout.this.isPremium ? 1 : 0, null) {
@@ -645,8 +649,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        protected void onEditTextFocusChanged(boolean z2) {
-                            ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z2);
+                        protected void onEditTextFocusChanged(boolean z3) {
+                            ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z3);
                         }
 
                         @Override
@@ -846,8 +850,10 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
     public ChatAttachAlertPollLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
-        this.answers = new CharSequence[10];
-        this.answersChecks = new boolean[10];
+        int answersMaxCount = getAnswersMaxCount();
+        this.maxAnswersCount = answersMaxCount;
+        this.answers = new CharSequence[answersMaxCount];
+        this.answersChecks = new boolean[answersMaxCount];
         this.answersCount = 1;
         this.anonymousPoll = true;
         this.requestFieldFocusAtPosition = -1;
@@ -989,7 +995,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         checkDoneButton();
     }
 
-    static int access$2010(ChatAttachAlertPollLayout chatAttachAlertPollLayout) {
+    static int access$2110(ChatAttachAlertPollLayout chatAttachAlertPollLayout) {
         int i = chatAttachAlertPollLayout.answersCount;
         chatAttachAlertPollLayout.answersCount = i - 1;
         return i;
@@ -1133,6 +1139,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
         this.emojiView.setDelegate(new AnonymousClass9());
         this.parentAlert.sizeNotifierFrameLayout.addView(this.emojiView);
+    }
+
+    private int getAnswersMaxCount() {
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        return MessagesController.getInstance(chatAttachAlert != null ? chatAttachAlert.currentAccount : UserConfig.selectedAccount).pollAnswersMax;
     }
 
     public static CharSequence getFixedString(CharSequence charSequence) {
@@ -1766,7 +1777,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             tL_poll.question = new TLRPC.TL_textWithEntities();
             tL_messageMediaPoll.poll.question.text = charSequence.toString();
             tL_messageMediaPoll.poll.question.entities = entities;
-            SerializedData serializedData = new SerializedData(10);
+            SerializedData serializedData = new SerializedData(this.maxAnswersCount);
             int i5 = 0;
             while (true) {
                 CharSequence[] charSequenceArr2 = this.answers;

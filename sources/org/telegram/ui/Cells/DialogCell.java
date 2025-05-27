@@ -29,9 +29,12 @@ import j$.util.Comparator$CC;
 import j$.util.function.ToIntFunction;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -56,6 +59,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
+import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -66,6 +70,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.DialogCellTags;
 import org.telegram.ui.Components.Forum.ForumBubbleDrawable;
+import org.telegram.ui.Components.PhotoBubbleClip;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.PullForegroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -101,6 +106,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public int avatarStart;
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable botVerification;
     private int bottomClip;
+    private PhotoBubbleClip bubbleClip;
     private Paint buttonBackgroundPaint;
     private boolean buttonCreated;
     private StaticLayout buttonLayout;
@@ -164,6 +170,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean drawForwardIcon;
     private boolean drawGiftIcon;
     private boolean drawMention;
+    public boolean drawMonoforumAvatar;
     private boolean drawNameLock;
     private boolean drawPin;
     private boolean drawPinBackground;
@@ -187,6 +194,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int folderId;
     protected boolean forbidDraft;
     protected boolean forbidVerified;
+    private ForumFormattedNames forumFormattedNames;
     public TLRPC.TL_forumTopic forumTopic;
     public boolean fullSeparator;
     public boolean fullSeparator2;
@@ -203,6 +211,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private BounceInterpolator interpolator;
     public boolean isDialogCell;
     private boolean isForum;
+    public boolean isMonoForumTopicDialog;
     public boolean isSavedDialog;
     public boolean isSavedDialogCell;
     private boolean isSelected;
@@ -469,27 +478,37 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
     }
 
-    private static class ForumFormattedNames {
+    public static class ForumFormattedNames {
+        HashMap avatarSpans;
         CharSequence formattedNames;
         boolean isLoadingState;
         int lastMessageId;
         boolean lastTopicMessageUnread;
+        private final DialogCell parent;
         int topMessageTopicEndIndex;
         int topMessageTopicStartIndex;
 
-        private ForumFormattedNames() {
+        ForumFormattedNames(DialogCell dialogCell) {
+            this.parent = dialogCell;
         }
 
-        public void formatTopicsNames(int r12, org.telegram.messenger.MessageObject r13, org.telegram.tgnet.TLRPC.Chat r14) {
+        public void formatTopicsNames(int r17, org.telegram.messenger.MessageObject r18, org.telegram.tgnet.TLRPC.Chat r19) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.ForumFormattedNames.formatTopicsNames(int, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$Chat):void");
+        }
+
+        public void invalidateSpans() {
+            HashMap hashMap = this.avatarSpans;
+            if (hashMap == null || hashMap.isEmpty()) {
+                return;
+            }
+            for (Map.Entry entry : this.avatarSpans.entrySet()) {
+                ((AvatarSpan) entry.getValue()).setDialogId(((Long) entry.getKey()).longValue());
+            }
         }
 
         public static int lambda$formatTopicsNames$0(TLRPC.TL_forumTopic tL_forumTopic) {
             return -tL_forumTopic.top_message;
         }
-    }
-
-    public static class SharedResources {
     }
 
     public DialogCell(DialogsActivity dialogsActivity, Context context, boolean z, boolean z2) {
@@ -500,6 +519,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         super(context);
         this.drawArchive = true;
         this.drawAvatar = true;
+        int i2 = 0;
+        this.drawMonoforumAvatar = false;
         this.avatarStart = 10;
         this.messagePaddingStart = 72;
         this.heightDefault = 72;
@@ -507,7 +528,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.addHeightForTags = 3;
         this.addForumHeightForTags = 11;
         this.chekBoxPaddingTop = 42.0f;
-        int i2 = 0;
         StoriesUtilities.AvatarStoryParams avatarStoryParams = new StoriesUtilities.AvatarStoryParams(0 == true ? 1 : 0) {
             @Override
             public void onLongPress() {
@@ -569,6 +589,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.resourcesProvider = resourcesProvider;
         this.parentFragment = dialogsActivity;
         Theme.createDialogsResources(context);
+        this.drawMonoforumAvatar = false;
         this.avatarImage.setRoundRadius(AndroidUtilities.dp(28.0f));
         while (true) {
             ImageReceiver[] imageReceiverArr = this.thumbImage;
@@ -814,8 +835,11 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private CharSequence formatTopicsNames() {
-        ForumFormattedNames forumFormattedNames = new ForumFormattedNames();
-        forumFormattedNames.formatTopicsNames(this.currentAccount, this.message, this.chat);
+        if (this.forumFormattedNames == null) {
+            this.forumFormattedNames = new ForumFormattedNames(this);
+        }
+        this.forumFormattedNames.formatTopicsNames(this.currentAccount, this.message, this.chat);
+        ForumFormattedNames forumFormattedNames = this.forumFormattedNames;
         this.topMessageTopicStartIndex = forumFormattedNames.topMessageTopicStartIndex;
         this.topMessageTopicEndIndex = forumFormattedNames.topMessageTopicEndIndex;
         this.lastTopicMessageUnread = forumFormattedNames.lastTopicMessageUnread;
@@ -1283,7 +1307,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     public boolean isForumCell() {
         TLRPC.Chat chat;
-        return (isDialogFolder() || (chat = this.chat) == null || !chat.forum || this.isTopic) ? false : true;
+        return (isDialogFolder() || (chat = this.chat) == null || (!chat.forum && (!ChatObject.isMonoForum(chat) || !ChatObject.canManageMonoForum(this.currentAccount, this.chat))) || this.isTopic) ? false : true;
     }
 
     public boolean isMoving() {
@@ -1641,21 +1665,25 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (this.currentDialogId != j) {
             this.lastStatusDrawableParams = -1;
         }
-        Drawable drawable = messageObject.topicIconDrawable[0];
-        if (drawable instanceof ForumBubbleDrawable) {
-            ((ForumBubbleDrawable) drawable).setColor(tL_forumTopic.icon_color);
+        if (messageObject != null) {
+            Drawable drawable = messageObject.topicIconDrawable[0];
+            if (drawable instanceof ForumBubbleDrawable) {
+                ((ForumBubbleDrawable) drawable).setColor(tL_forumTopic.icon_color);
+            }
         }
         this.currentDialogId = j;
         this.lastDialogChangedTime = System.currentTimeMillis();
         this.message = messageObject;
         this.isDialogCell = false;
         this.showTopicIconInName = z;
-        TLRPC.Message message = messageObject.messageOwner;
-        this.lastMessageDate = message.date;
-        this.currentEditDate = message.edit_date;
-        this.markUnread = false;
-        this.messageId = messageObject.getId();
-        this.lastUnreadState = messageObject.isUnread();
+        if (messageObject != null) {
+            TLRPC.Message message = messageObject.messageOwner;
+            this.lastMessageDate = message.date;
+            this.currentEditDate = message.edit_date;
+            this.markUnread = false;
+            this.messageId = messageObject.getId();
+            this.lastUnreadState = messageObject.isUnread();
+        }
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null) {
             this.lastSendState = messageObject2.messageOwner.send_state;
@@ -1709,9 +1737,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             this.rightFragmentOpenedProgress = f;
             invalidate();
         }
-    }
-
-    public void setSharedResources(SharedResources sharedResources) {
     }
 
     public void setSliding(boolean z) {

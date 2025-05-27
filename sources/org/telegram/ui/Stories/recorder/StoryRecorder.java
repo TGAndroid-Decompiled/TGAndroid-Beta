@@ -1150,8 +1150,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public class AnonymousClass21 extends GalleryListView {
-        AnonymousClass21(int i, Context context, Theme.ResourcesProvider resourcesProvider, MediaController.AlbumEntry albumEntry, boolean z, float f, boolean z2) {
-            super(i, context, resourcesProvider, albumEntry, z, f, z2);
+        AnonymousClass21(int i, Context context, Theme.ResourcesProvider resourcesProvider, MediaController.AlbumEntry albumEntry, boolean z, float f, boolean z2, boolean z3) {
+            super(i, context, resourcesProvider, albumEntry, z, f, z2, z3);
         }
 
         public void lambda$onFullScreen$0() {
@@ -3893,10 +3893,25 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void createGalleryListView(final boolean z) {
-        if (this.galleryListView != null || getContext() == null) {
+        if (this.galleryListView != null) {
+            CollageLayoutView2 collageLayoutView2 = this.collageLayoutView;
+            if ((collageLayoutView2 != null && collageLayoutView2.hasLayout()) == this.galleryListView.onlyCollaging) {
+                return;
+            }
+        }
+        if (getContext() == null) {
             return;
         }
-        AnonymousClass21 anonymousClass21 = new AnonymousClass21(this.currentAccount, getContext(), this.resourcesProvider, this.lastGallerySelectedAlbum, z, 1.39f, !z);
+        if (this.galleryListView != null) {
+            destroyGalleryListView();
+        }
+        int i = this.currentAccount;
+        Context context = getContext();
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        MediaController.AlbumEntry albumEntry = this.lastGallerySelectedAlbum;
+        boolean z2 = !z;
+        CollageLayoutView2 collageLayoutView22 = this.collageLayoutView;
+        AnonymousClass21 anonymousClass21 = new AnonymousClass21(i, context, resourcesProvider, albumEntry, z, 1.39f, z2, collageLayoutView22 != null && collageLayoutView22.hasLayout());
         this.galleryListView = anonymousClass21;
         anonymousClass21.allowSearch(false);
         this.galleryListView.setMultipleOnClick(this.collageLayoutView.hasLayout());

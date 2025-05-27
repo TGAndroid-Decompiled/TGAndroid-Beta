@@ -6,11 +6,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Forum.ForumBubbleDrawable;
@@ -18,6 +22,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LetterDrawable;
 
 public class ShareTopicCell extends FrameLayout {
+    private final AvatarDrawable avatarDrawable;
     private int currentAccount;
     private long currentDialog;
     private long currentTopic;
@@ -43,6 +48,13 @@ public class ShareTopicCell extends FrameLayout {
         this.nameTextView.setLines(2);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         addView(this.nameTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
+        this.avatarDrawable = new AvatarDrawable(resourcesProvider) {
+            @Override
+            public void invalidateSelf() {
+                super.invalidateSelf();
+                ShareTopicCell.this.imageView.invalidate();
+            }
+        };
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
@@ -64,21 +76,52 @@ public class ShareTopicCell extends FrameLayout {
     }
 
     public void setTopic(TLRPC.Dialog dialog, TLRPC.TL_forumTopic tL_forumTopic, boolean z, CharSequence charSequence) {
+        TextView textView;
+        String str;
         if (dialog == null) {
             return;
         }
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
         if (charSequence != null) {
             this.nameTextView.setText(charSequence);
-        } else {
-            TextView textView = this.nameTextView;
-            if (chat != null) {
-                textView.setText(tL_forumTopic.title);
+        } else if (chat != null) {
+            if (chat.monoforum) {
+                textView = this.nameTextView;
+                str = MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id));
             } else {
-                textView.setText("");
+                textView = this.nameTextView;
+                str = tL_forumTopic.title;
             }
+            textView.setText(str);
+        } else {
+            this.nameTextView.setText("");
         }
-        if (tL_forumTopic.icon_emoji_id != 0) {
+        if (ChatObject.isMonoForum(chat)) {
+            this.imageView.setAnimatedEmojiDrawable(null);
+            this.imageView.setImageDrawable(null);
+            long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
+            if (DialogObject.isUserDialog(peerDialogId)) {
+                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+                this.nameTextView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
+                this.avatarDrawable.setInfo(this.currentAccount, user);
+                if (charSequence != null) {
+                    this.nameTextView.setText(charSequence);
+                } else {
+                    this.nameTextView.setText(user != null ? ContactsController.formatName(user.first_name, user.last_name) : "");
+                }
+                this.imageView.setForUserOrChat(user, this.avatarDrawable);
+                this.imageView.setRoundRadius(AndroidUtilities.dp(28.0f));
+            } else {
+                TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(peerDialogId));
+                if (charSequence != null) {
+                    this.nameTextView.setText(charSequence);
+                } else {
+                    this.nameTextView.setText(chat2 != null ? chat2.title : "");
+                }
+                this.avatarDrawable.setInfo(this.currentAccount, chat2);
+                this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+            }
+        } else if (tL_forumTopic.icon_emoji_id != 0) {
             this.imageView.setImageDrawable(null);
             this.imageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(13, UserConfig.selectedAccount, tL_forumTopic.icon_emoji_id));
         } else {
@@ -92,7 +135,7 @@ public class ShareTopicCell extends FrameLayout {
             combinedDrawable.setFullsize(true);
             this.imageView.setImageDrawable(combinedDrawable);
         }
-        this.imageView.setRoundRadius(AndroidUtilities.dp((chat == null || !chat.forum || z) ? 28.0f : 16.0f));
+        this.imageView.setRoundRadius((chat == null || !chat.forum || z) ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(16.0f));
         this.currentDialog = dialog.id;
         this.currentTopic = tL_forumTopic.id;
     }

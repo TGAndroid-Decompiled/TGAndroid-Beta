@@ -618,10 +618,6 @@ public class SeekBarWaveform {
         this.toHeights = calculateHeights((int) (this.toWidth / AndroidUtilities.dpf2(3.0f)));
     }
 
-    public void setWaveScaling(float f) {
-        this.waveScaling = f;
-    }
-
     public void setWaveform(byte[] bArr) {
         this.waveformBytes = bArr;
         this.heights = calculateHeights((int) (this.width / AndroidUtilities.dpf2(3.0f)));

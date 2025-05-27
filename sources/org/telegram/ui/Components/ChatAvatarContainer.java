@@ -47,6 +47,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AutoDeletePopupWrapper;
 import org.telegram.ui.Components.ChatAvatarContainer;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
@@ -415,8 +416,12 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         if (z) {
             try {
                 int intValue = MessagesController.getInstance(this.currentAccount).getPrintingStringType(this.parentFragment.getDialogId(), this.parentFragment.getThreadId()).intValue();
+                StatusDrawable statusDrawable2 = this.statusDrawables[intValue];
+                if (statusDrawable2 == null) {
+                    return;
+                }
                 if (intValue == 5) {
-                    this.subtitleTextView.replaceTextWithDrawable(this.statusDrawables[intValue], "**oo**");
+                    this.subtitleTextView.replaceTextWithDrawable(statusDrawable2, "**oo**");
                     this.statusDrawables[intValue].setColor(getThemedColor(Theme.key_chat_status));
                     simpleTextView = this.subtitleTextView;
                 } else {
@@ -432,10 +437,13 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     if (i >= statusDrawableArr.length) {
                         return;
                     }
-                    if (i == intValue) {
-                        statusDrawableArr[i].start();
-                    } else {
-                        statusDrawableArr[i].stop();
+                    StatusDrawable statusDrawable3 = statusDrawableArr[i];
+                    if (statusDrawable3 != null) {
+                        if (i == intValue) {
+                            statusDrawable3.start();
+                        } else {
+                            statusDrawable3.stop();
+                        }
                     }
                     i++;
                 }
@@ -451,7 +459,10 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 if (i >= statusDrawableArr2.length) {
                     return;
                 }
-                statusDrawableArr2[i].stop();
+                StatusDrawable statusDrawable4 = statusDrawableArr2[i];
+                if (statusDrawable4 != null) {
+                    statusDrawable4.stop();
+                }
                 i++;
             }
         }
@@ -468,6 +479,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     public void checkAndUpdateAvatar() {
         TLRPC.User user;
         BackupImageView backupImageView;
+        int dp;
+        TLRPC.Chat chat;
+        BackupImageView backupImageView2;
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity == null) {
             return;
@@ -487,57 +501,85 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             user = currentUser;
         }
         if (user == null) {
-            if (currentChat != null) {
-                this.avatarDrawable.setInfo(this.currentAccount, currentChat);
-                BackupImageView backupImageView2 = this.avatarImageView;
-                if (backupImageView2 != null) {
-                    backupImageView2.setForUserOrChat(currentChat, this.avatarDrawable);
+            if (ChatObject.isMonoForum(currentChat)) {
+                long topicId = this.parentFragment.getTopicId();
+                if (!ChatObject.canManageMonoForum(this.currentAccount, currentChat) || topicId == 0) {
+                    ForumUtilities.setMonoForumAvatar(this.currentAccount, currentChat, this.avatarDrawable, this.avatarImageView);
+                } else {
+                    if (topicId > 0) {
+                        TLRPC.User user2 = this.parentFragment.getMessagesController().getUser(Long.valueOf(topicId));
+                        this.avatarDrawable.setInfo(user2);
+                        chat = user2;
+                    } else {
+                        TLRPC.Chat chat2 = this.parentFragment.getMessagesController().getChat(Long.valueOf(-topicId));
+                        this.avatarDrawable.setInfo(chat2);
+                        chat = chat2;
+                    }
+                    this.avatarImageView.setForUserOrChat(chat, this.avatarDrawable);
                 }
-                this.avatarImageView.setRoundRadius(AndroidUtilities.dp(currentChat.forum ? ChatObject.hasStories(currentChat) ? 11.0f : 16.0f : 21.0f));
-                return;
+                backupImageView = this.avatarImageView;
+            } else {
+                if (currentChat == null) {
+                    return;
+                }
+                this.avatarDrawable.setScaleSize(1.0f);
+                this.avatarDrawable.setInfo(this.currentAccount, currentChat);
+                BackupImageView backupImageView3 = this.avatarImageView;
+                if (backupImageView3 == null) {
+                    return;
+                }
+                backupImageView3.setForUserOrChat(currentChat, this.avatarDrawable);
+                backupImageView = this.avatarImageView;
+                if (currentChat.forum) {
+                    dp = AndroidUtilities.dp(ChatObject.hasStories(currentChat) ? 11.0f : 16.0f);
+                    backupImageView.setRoundRadius(dp);
+                    return;
+                }
             }
+            dp = AndroidUtilities.dp(21.0f);
+            backupImageView.setRoundRadius(dp);
             return;
         }
         this.avatarDrawable.setInfo(this.currentAccount, user);
         if (UserObject.isReplyUser(user)) {
             this.avatarDrawable.setScaleSize(0.8f);
             this.avatarDrawable.setAvatarType(12);
-            backupImageView = this.avatarImageView;
-            if (backupImageView == null) {
+            backupImageView2 = this.avatarImageView;
+            if (backupImageView2 == null) {
                 return;
             }
         } else if (UserObject.isAnonymous(user)) {
             this.avatarDrawable.setScaleSize(0.8f);
             this.avatarDrawable.setAvatarType(21);
-            backupImageView = this.avatarImageView;
-            if (backupImageView == null) {
+            backupImageView2 = this.avatarImageView;
+            if (backupImageView2 == null) {
                 return;
             }
         } else if (UserObject.isUserSelf(user) && this.parentFragment.getChatMode() == 3) {
             this.avatarDrawable.setScaleSize(0.8f);
             this.avatarDrawable.setAvatarType(22);
-            backupImageView = this.avatarImageView;
-            if (backupImageView == null) {
+            backupImageView2 = this.avatarImageView;
+            if (backupImageView2 == null) {
                 return;
             }
         } else {
             if (!UserObject.isUserSelf(user)) {
                 this.avatarDrawable.setScaleSize(1.0f);
-                BackupImageView backupImageView3 = this.avatarImageView;
-                if (backupImageView3 != null) {
-                    backupImageView3.imageReceiver.setForUserOrChat(user, this.avatarDrawable, null, true, 3, false);
+                BackupImageView backupImageView4 = this.avatarImageView;
+                if (backupImageView4 != null) {
+                    backupImageView4.imageReceiver.setForUserOrChat(user, this.avatarDrawable, null, true, 3, false);
                     return;
                 }
                 return;
             }
             this.avatarDrawable.setScaleSize(0.8f);
             this.avatarDrawable.setAvatarType(1);
-            backupImageView = this.avatarImageView;
-            if (backupImageView == null) {
+            backupImageView2 = this.avatarImageView;
+            if (backupImageView2 == null) {
                 return;
             }
         }
-        backupImageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, user);
+        backupImageView2.setImage((ImageLocation) null, (String) null, this.avatarDrawable, user);
     }
 
     @Override
@@ -1133,14 +1175,14 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             return;
         }
         TLRPC.User currentUser = this.parentFragment.getCurrentUser();
-        if ((UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || ((currentUser != null && currentUser.id == 489000) || this.parentFragment.getChatMode() != 0)) && this.parentFragment.getChatMode() != 3) {
+        TLRPC.Chat currentChat = this.parentFragment.getCurrentChat();
+        if ((UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || ((currentUser != null && currentUser.id == 489000) || !(this.parentFragment.getChatMode() == 0 || this.parentFragment.getChatMode() == 8))) && this.parentFragment.getChatMode() != 3) {
             if (getSubtitleTextView().getVisibility() != 8) {
                 getSubtitleTextView().setVisibility(8);
                 return;
             }
             return;
         }
-        TLRPC.Chat currentChat = this.parentFragment.getCurrentChat();
         CharSequence printingString = MessagesController.getInstance(this.currentAccount).getPrintingString(this.parentFragment.getDialogId(), this.parentFragment.getThreadId(), false);
         CharSequence charSequence = "";
         if (printingString != null) {
@@ -1215,16 +1257,29 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 }
             }
             setTypingAnimation(false);
-            if (this.parentFragment.getChatMode() == 3) {
+            if (this.parentFragment.getChatMode() == 8) {
+                ChatActivity chatActivity2 = this.parentFragment;
+                if (chatActivity2.isSubscriberSuggestions) {
+                    i = R.string.ChatMessageSuggestions;
+                    charSequence = LocaleController.getString(i);
+                } else if (chatActivity2.getTopicId() == 0) {
+                    int topicsCount = this.parentFragment.getMessagesController().getTopicsController().getTopicsCount(-this.parentFragment.getDialogId());
+                    charSequence = topicsCount > 0 ? LocaleController.formatPluralStringComma("Chats", topicsCount) : LocaleController.getString(R.string.ChatMessageSuggestions);
+                } else {
+                    TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(currentChat.id, this.parentFragment.getTopicId());
+                    int i3 = findTopic != null ? findTopic.totalMessagesCount : 0;
+                    charSequence = i3 > 0 ? LocaleController.formatPluralString("messages", i3, Integer.valueOf(i3)) : LocaleController.formatString(R.string.TopicProfileStatus, ForumUtilities.getMonoForumTitle(this.currentAccount, currentChat));
+                }
+            } else if (this.parentFragment.getChatMode() == 3) {
                 charSequence = LocaleController.formatPluralString("SavedMessagesCount", Math.max(1, this.parentFragment.getMessagesController().getSavedMessagesController().getMessagesCount(this.parentFragment.getSavedDialogId())), new Object[0]);
             } else {
-                ChatActivity chatActivity2 = this.parentFragment;
-                if (chatActivity2.isTopic && currentChat != null) {
-                    TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(currentChat.id, this.parentFragment.getTopicId());
-                    int i3 = findTopic != null ? findTopic.totalMessagesCount - 1 : 0;
-                    charSequence = i3 > 0 ? LocaleController.formatPluralString("messages", i3, Integer.valueOf(i3)) : LocaleController.formatString(R.string.TopicProfileStatus, currentChat.title);
+                ChatActivity chatActivity3 = this.parentFragment;
+                if (chatActivity3.isTopic && currentChat != null) {
+                    TLRPC.TL_forumTopic findTopic2 = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(currentChat.id, this.parentFragment.getTopicId());
+                    int i4 = findTopic2 != null ? findTopic2.totalMessagesCount - 1 : 0;
+                    charSequence = i4 > 0 ? LocaleController.formatPluralString("messages", i4, Integer.valueOf(i4)) : LocaleController.formatString(R.string.TopicProfileStatus, currentChat.title);
                 } else if (currentChat != null) {
-                    charSequence = getChatSubtitle(currentChat, chatActivity2.getCurrentChatInfo(), this.onlineCount);
+                    charSequence = getChatSubtitle(currentChat, chatActivity3.getCurrentChatInfo(), this.onlineCount);
                 } else if (currentUser != null) {
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(currentUser.id));
                     if (user != null) {

@@ -64,6 +64,7 @@ public class TopicCreateFragment extends BaseFragment {
     ForumBubbleDrawable forumBubbleDrawable;
     int iconColor;
     AnimationNotificationsLocker notificationsLocker;
+    private ChatActivity openInChatActivity;
     ReplaceableIconDrawable replaceableIconDrawable;
     SelectAnimatedEmojiDialog selectAnimatedEmojiDialog;
     long selectedEmojiDocumentId;
@@ -80,12 +81,6 @@ public class TopicCreateFragment extends BaseFragment {
                 for (int i = 0; i < updates.updates.size(); i++) {
                     if (updates.updates.get(i) instanceof TLRPC.TL_updateMessageID) {
                         TLRPC.TL_updateMessageID tL_updateMessageID = (TLRPC.TL_updateMessageID) updates.updates.get(i);
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("chat_id", TopicCreateFragment.this.chatId);
-                        bundle.putInt("message_id", 1);
-                        bundle.putInt("unread_count", 0);
-                        bundle.putBoolean("historyPreloaded", false);
-                        ChatActivity chatActivity = new ChatActivity(bundle);
                         TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = new TLRPC.TL_messageActionTopicCreate();
                         tL_messageActionTopicCreate.title = str;
                         TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
@@ -113,11 +108,38 @@ public class TopicCreateFragment extends BaseFragment {
                         tL_forumTopic.topMessage = tL_messageService;
                         tL_forumTopic.from_id = topicCreateFragment.getMessagesController().getPeer(TopicCreateFragment.this.getUserConfig().clientUserId);
                         tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
-                        tL_forumTopic.icon_color = TopicCreateFragment.this.iconColor;
-                        chatActivity.setThreadMessages(arrayList, chat, tL_messageService.id, 1, 1, tL_forumTopic);
-                        chatActivity.justCreatedTopic = true;
-                        TopicCreateFragment.this.getMessagesController().getTopicsController().onTopicCreated(-TopicCreateFragment.this.chatId, tL_forumTopic, true);
-                        TopicCreateFragment.this.presentFragment(chatActivity);
+                        TopicCreateFragment topicCreateFragment2 = TopicCreateFragment.this;
+                        tL_forumTopic.icon_color = topicCreateFragment2.iconColor;
+                        if (topicCreateFragment2.openInChatActivity != null) {
+                            ChatActivity chatActivity = TopicCreateFragment.this.openInChatActivity;
+                            chatActivity.resetForReload();
+                            chatActivity.saveDraft();
+                            chatActivity.setThreadMessages(arrayList, chat, tL_messageService.id, 1, 1, tL_forumTopic);
+                            chatActivity.justCreatedTopic = true;
+                            chatActivity.firstLoadMessages();
+                            chatActivity.updateTitle(true);
+                            chatActivity.avatarContainer.updateSubtitle(true);
+                            chatActivity.updateTopicTitleIcon();
+                            chatActivity.topicsTabs.setCurrentTopic(chatActivity.getTopicId());
+                            chatActivity.updateTopPanel(true);
+                            chatActivity.updateBottomOverlay(true);
+                            chatActivity.hideFieldPanel(true);
+                            chatActivity.applyDraftMaybe(true, true);
+                            chatActivity.reloadPinnedMessages();
+                            TopicCreateFragment.this.getMessagesController().getTopicsController().onTopicCreated(-TopicCreateFragment.this.chatId, tL_forumTopic, true);
+                            TopicCreateFragment.this.lambda$onBackPressed$347();
+                        } else {
+                            Bundle bundle = new Bundle();
+                            bundle.putLong("chat_id", TopicCreateFragment.this.chatId);
+                            bundle.putInt("message_id", 1);
+                            bundle.putInt("unread_count", 0);
+                            bundle.putBoolean("historyPreloaded", false);
+                            ChatActivity chatActivity2 = new ChatActivity(bundle);
+                            chatActivity2.setThreadMessages(arrayList, chat, tL_messageService.id, 1, 1, tL_forumTopic);
+                            chatActivity2.justCreatedTopic = true;
+                            TopicCreateFragment.this.getMessagesController().getTopicsController().onTopicCreated(-TopicCreateFragment.this.chatId, tL_forumTopic, true);
+                            TopicCreateFragment.this.presentFragment(chatActivity2);
+                        }
                     }
                 }
             }
@@ -523,6 +545,11 @@ public class TopicCreateFragment extends BaseFragment {
         if (z) {
             this.notificationsLocker.lock();
         }
+    }
+
+    public TopicCreateFragment setOpenInChatActivity(ChatActivity chatActivity) {
+        this.openInChatActivity = chatActivity;
+        return this;
     }
 
     public void showKeyboard() {

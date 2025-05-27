@@ -51,6 +51,7 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
@@ -126,6 +127,7 @@ import org.telegram.ui.GradientHeaderActivity;
 import org.telegram.ui.ImageReceiverSpan;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PostSuggestionsEditActivity;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -244,7 +246,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((ExpandView) view).set(uItem, z);
             }
 
@@ -773,7 +775,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((StarTierView) view).set(uItem.intValue, uItem.text, uItem.subtext, z);
             }
 
@@ -1550,7 +1552,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((StarsSubscriptionView) view).set((TL_stars.StarsSubscription) uItem.object, z);
             }
 
@@ -1765,7 +1767,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((StarsTransactionView) view).set((TL_stars.StarsTransaction) uItem.object, uItem.accent, z);
             }
 
@@ -3145,8 +3147,12 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 safeLastFragment.presentFragment(new PrivacyControlActivity(10));
                 return;
             }
-            Bundle bundle = new Bundle();
             long j2 = -j;
+            if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i).getChat(Long.valueOf(j2)))) {
+                safeLastFragment.presentFragment(new PostSuggestionsEditActivity(j2));
+                return;
+            }
+            Bundle bundle = new Bundle();
             bundle.putLong("chat_id", j2);
             bundle.putInt("type", 3);
             ChatUsersActivity chatUsersActivity = new ChatUsersActivity(bundle);

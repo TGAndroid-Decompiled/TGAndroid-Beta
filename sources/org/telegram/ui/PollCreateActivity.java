@@ -74,10 +74,14 @@ import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
 public class PollCreateActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate {
     private int addAnswerRow;
+    private boolean anonymousPoll;
     private int anonymousRow;
     private int answerHeaderRow;
     private int answerSectionRow;
     private int answerStartRow;
+    private CharSequence[] answers;
+    private boolean[] answersChecks;
+    private int answersCount;
     private PollEditTextCell currentCell;
     private PollCreateActivityDelegate delegate;
     private boolean destroyed;
@@ -90,6 +94,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     private HintView hintView;
     private boolean isAnimatePopupClosing;
     boolean isEmojiSearchOpened;
+    private boolean isPremium;
     private int keyboardHeight;
     private int keyboardHeightLand;
     private KeyboardNotifier keyboardNotifier;
@@ -99,8 +104,10 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
+    private final int maxAnswersCount;
     private boolean multipleChoise;
     private int multipleRow;
+    private Runnable openKeyboardRunnable;
     private ChatActivity parentFragment;
     private int questionHeaderRow;
     private int questionRow;
@@ -109,6 +116,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     private int quizOnly;
     private boolean quizPoll;
     private int quizRow;
+    private int requestFieldFocusAtPosition;
     private int rowCount;
     private int settingsHeaderRow;
     private int settingsSectionRow;
@@ -119,27 +127,6 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     private SuggestEmojiView suggestEmojiPanel;
     private boolean waitingForKeyboardOpen;
     boolean wasEmojiSearchOpened;
-    private CharSequence[] answers = new CharSequence[10];
-    private boolean[] answersChecks = new boolean[10];
-    private int answersCount = 1;
-    private boolean anonymousPoll = true;
-    private int requestFieldFocusAtPosition = -1;
-    private Runnable openKeyboardRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (PollCreateActivity.this.currentCell != null) {
-                EditTextBoldCursor editField = PollCreateActivity.this.currentCell.getEditField();
-                if (PollCreateActivity.this.destroyed || editField == null || !PollCreateActivity.this.waitingForKeyboardOpen || PollCreateActivity.this.keyboardVisible || AndroidUtilities.usingHardwareInput || AndroidUtilities.isInMultiwindow || !AndroidUtilities.isTablet()) {
-                    return;
-                }
-                editField.requestFocus();
-                AndroidUtilities.showKeyboard(editField);
-                AndroidUtilities.cancelRunOnUIThread(PollCreateActivity.this.openKeyboardRunnable);
-                AndroidUtilities.runOnUIThread(PollCreateActivity.this.openKeyboardRunnable, 100L);
-            }
-        }
-    };
-    private boolean isPremium = AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium();
 
     public class AnonymousClass2 extends ActionBar.ActionBarMenuOnItemClick {
         AnonymousClass2() {
@@ -147,7 +134,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
 
         public void lambda$onItemClick$0(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaPoll, hashMap, z, i);
-            PollCreateActivity.this.lambda$onBackPressed$338();
+            PollCreateActivity.this.lambda$onBackPressed$347();
         }
 
         @Override
@@ -188,7 +175,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 tL_messageMediaPoll.poll.question = new TLRPC.TL_textWithEntities();
                 tL_messageMediaPoll.poll.question.text = charSequence.toString();
                 tL_messageMediaPoll.poll.question.entities = entities;
-                SerializedData serializedData = new SerializedData(10);
+                SerializedData serializedData = new SerializedData(PollCreateActivity.this.maxAnswersCount);
                 for (int i5 = 0; i5 < PollCreateActivity.this.answers.length; i5++) {
                     if (!TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(PollCreateActivity.this.answers[i5]))) {
                         CharSequence[] charSequenceArr2 = {ChatAttachAlertPollLayout.getFixedString(PollCreateActivity.this.answers[i5])};
@@ -241,7 +228,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             } else if (!PollCreateActivity.this.checkDiscard()) {
                 return;
             }
-            PollCreateActivity.this.lambda$onBackPressed$338();
+            PollCreateActivity.this.lambda$onBackPressed$347();
         }
     }
 
@@ -448,7 +435,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             RecyclerView.ViewHolder findContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell);
             if (findContainingViewHolder != null && (adapterPosition = findContainingViewHolder.getAdapterPosition()) != -1) {
                 int i2 = adapterPosition - PollCreateActivity.this.answerStartRow;
-                if (i2 == PollCreateActivity.this.answersCount - 1 && PollCreateActivity.this.answersCount < 10) {
+                if (i2 == PollCreateActivity.this.answersCount - 1 && PollCreateActivity.this.answersCount < PollCreateActivity.this.maxAnswersCount) {
                     PollCreateActivity.this.addNewField();
                 } else if (i2 == PollCreateActivity.this.answersCount - 1) {
                     AndroidUtilities.hideKeyboard(pollEditTextCell.getTextView());
@@ -600,7 +587,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                                 RecyclerView.ViewHolder findContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(this);
                                 if (findContainingViewHolder != null) {
                                     int adapterPosition = findContainingViewHolder.getAdapterPosition();
-                                    if (PollCreateActivity.this.answersCount == 10 && adapterPosition == (PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount) - 1) {
+                                    if (PollCreateActivity.this.answersCount == PollCreateActivity.this.maxAnswersCount && adapterPosition == (PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount) - 1) {
                                         return false;
                                     }
                                 }
@@ -916,7 +903,30 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public PollCreateActivity(ChatActivity chatActivity, Boolean bool) {
+        int i = getMessagesController().pollAnswersMax;
+        this.maxAnswersCount = i;
+        this.answers = new CharSequence[i];
+        this.answersChecks = new boolean[i];
+        this.answersCount = 1;
+        this.anonymousPoll = true;
+        this.requestFieldFocusAtPosition = -1;
+        this.openKeyboardRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (PollCreateActivity.this.currentCell != null) {
+                    EditTextBoldCursor editField = PollCreateActivity.this.currentCell.getEditField();
+                    if (PollCreateActivity.this.destroyed || editField == null || !PollCreateActivity.this.waitingForKeyboardOpen || PollCreateActivity.this.keyboardVisible || AndroidUtilities.usingHardwareInput || AndroidUtilities.isInMultiwindow || !AndroidUtilities.isTablet()) {
+                        return;
+                    }
+                    editField.requestFocus();
+                    AndroidUtilities.showKeyboard(editField);
+                    AndroidUtilities.cancelRunOnUIThread(PollCreateActivity.this.openKeyboardRunnable);
+                    AndroidUtilities.runOnUIThread(PollCreateActivity.this.openKeyboardRunnable, 100L);
+                }
+            }
+        };
         this.parentFragment = chatActivity;
+        this.isPremium = AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium();
         if (bool != null) {
             boolean booleanValue = bool.booleanValue();
             this.quizPoll = booleanValue;
@@ -924,7 +934,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    static int access$3710(PollCreateActivity pollCreateActivity) {
+    static int access$3810(PollCreateActivity pollCreateActivity) {
         int i = pollCreateActivity.answersCount;
         pollCreateActivity.answersCount = i - 1;
         return i;
@@ -1070,7 +1080,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void lambda$checkDiscard$1(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     public void lambda$createView$0(View view, int i) {

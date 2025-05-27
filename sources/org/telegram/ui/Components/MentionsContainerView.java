@@ -166,7 +166,7 @@ public abstract class MentionsContainerView extends BlurredFrameLayout implement
                     }
                 } else {
                     TLRPC.Photo photo = botInlineResult.photo;
-                    if (photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.photoSize.intValue())) != null) {
+                    if (photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize())) != null) {
                         Size size6 = this.size;
                         size6.width = closestPhotoSizeWithSize.w;
                         size6.height = closestPhotoSizeWithSize.h;
@@ -596,7 +596,7 @@ public abstract class MentionsContainerView extends BlurredFrameLayout implement
                         }
                     } else {
                         TLRPC.Photo photo = botInlineResult.photo;
-                        if (photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.photoSize.intValue())) != null) {
+                        if (photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize())) != null) {
                             Size size6 = this.size;
                             size6.width = closestPhotoSizeWithSize.w;
                             size6.height = closestPhotoSizeWithSize.h;

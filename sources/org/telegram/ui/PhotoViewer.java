@@ -205,6 +205,7 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.Components.ClippingImageView;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.Crop.CropTransform;
@@ -287,7 +288,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private static DecelerateInterpolator decelerateInterpolator;
     private static Drawable[] progressDrawables;
     private static Paint progressPaint;
-    private static final HashMap savedVideoPositions = new HashMap();
     private boolean ALLOW_USE_SURFACE;
     public final Property FLASH_VIEW_VALUE;
     private int aboutToSwitchTo;
@@ -323,7 +323,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private final ArrayList avatarsArr;
     private long avatarsDialogId;
     private BackgroundDrawable backgroundDrawable;
-    private Paint bitmapPaint;
     private volatile int bitrate;
     private Paint blackPaint;
     private final AnimatedFloat blurAlpha;
@@ -371,6 +370,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public boolean closePhotoAfterSelect;
     public boolean closePhotoAfterSelectWithAnimation;
     private VideoCompressButton compressItem;
+    private HintView2 compressPhotoHint;
     private volatile int compressionsCount;
     private FrameLayoutDrawer containerView;
     private PhotoCountView countView;
@@ -775,6 +775,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean windowViewSkipRender;
     private boolean zoomAnimation;
     private boolean zooming;
+    public static Paint bitmapPaint = new Paint(2);
+    private static final HashMap savedVideoPositions = new HashMap();
 
     public class AnonymousClass1 implements Runnable {
         AnonymousClass1() {
@@ -1165,7 +1167,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     SendMessagesHelper.getInstance(PhotoViewer.this.currentAccount).sendMessage(arrayList, j, false, false, true, 0, 0L);
                 }
-                dialogsActivity.lambda$onBackPressed$338();
+                dialogsActivity.lambda$onBackPressed$347();
                 if (chatActivity != null && (undoView = chatActivity.getUndoView()) != null) {
                     if (arrayList2.size() == 1) {
                         undoView.showWithAction(((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId, 53, Integer.valueOf(arrayList.size()));
@@ -1196,7 +1198,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (((LaunchActivity) PhotoViewer.this.parentActivity).presentFragment(chatActivity2, true, false)) {
                     chatActivity2.showFieldPanelForForward(true, arrayList);
                 } else {
-                    dialogsActivity.lambda$onBackPressed$338();
+                    dialogsActivity.lambda$onBackPressed$347();
                 }
             }
             return true;
@@ -3489,13 +3491,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         final int val$mode;
 
         class AnonymousClass1 extends AnimatorListenerAdapter {
-            AnonymousClass1() {
+            final int val$fromEditMode;
+
+            AnonymousClass1(int i) {
+                r2 = i;
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (PhotoViewer.this.videoConvertSupported && PhotoViewer.this.isCurrentVideo) {
                     PhotoViewer.this.updateVideoInfo();
+                }
+                if (r2 == 3) {
+                    PhotoViewer photoViewer = PhotoViewer.this;
+                    photoViewer.setIsAboutToSwitchToIndex(photoViewer.currentIndex, false, true, true);
                 }
             }
 
@@ -3529,7 +3538,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void onAnimationEnd(android.animation.Animator r11) {
+        public void onAnimationEnd(android.animation.Animator r12) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.AnonymousClass59.onAnimationEnd(android.animation.Animator):void");
         }
     }
@@ -4368,7 +4377,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     MessageObject threadMessage = PhotoViewer.this.parentChatActivity.getThreadMessage();
                     ChatActivity.ReplyQuote replyQuote = PhotoViewer.this.parentChatActivity.getReplyQuote();
                     MediaController.PhotoEntry photoEntry4 = r4;
-                    SendMessagesHelper.prepareSendingPhoto(accountInstance, str3, str4, null, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry4.entities, photoEntry4.stickers, null, photoEntry4.ttl, messageObject, videoEditedInfo, z, i, 0, z3, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L);
+                    SendMessagesHelper.prepareSendingPhoto(accountInstance, str3, str4, null, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry4.entities, photoEntry4.stickers, null, photoEntry4.ttl, messageObject, videoEditedInfo, z, i, 0, z3, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId());
                     return;
                 }
                 AccountInstance accountInstance2 = PhotoViewer.this.parentChatActivity.getAccountInstance();
@@ -4384,6 +4393,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 CharSequence charSequence = photoEntry5.caption;
                 String str6 = PhotoViewer.this.parentChatActivity.quickReplyShortcut;
                 int quickReplyId = PhotoViewer.this.parentChatActivity.getQuickReplyId();
+                long sendMonoForumPeerId = PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId();
                 if (videoEditedInfo != null) {
                     str2 = null;
                     photo = null;
@@ -4395,7 +4405,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     photo = null;
                     storyItem = null;
                 }
-                SendMessagesHelper.prepareSendingVideo(accountInstance2, str5, videoEditedInfo2, str2, photo, dialogId2, replyMessage2, threadMessage2, storyItem, replyQuote2, arrayList, i2, messageObject, z, i, z3, z4, charSequence, str6, quickReplyId, 0L, 0L);
+                SendMessagesHelper.prepareSendingVideo(accountInstance2, str5, videoEditedInfo2, str2, photo, dialogId2, replyMessage2, threadMessage2, storyItem, replyQuote2, arrayList, i2, messageObject, z, i, z3, z4, charSequence, str6, quickReplyId, 0L, 0L, sendMonoForumPeerId);
             }
         }
 
@@ -4964,7 +4974,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 }
                 if (chatActivity != null) {
-                    chatActivity.lambda$openDiscussionMessageChat$356(PhotoViewer.this.animationEndRunnable);
+                    chatActivity.lambda$openDiscussionMessageChat$365(PhotoViewer.this.animationEndRunnable);
                 } else {
                     PhotoViewer.this.animationEndRunnable.run();
                     PhotoViewer.this.animationEndRunnable = null;
@@ -8142,7 +8152,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.leftCropTransform = new CropTransform();
         this.rightCropTransform = new CropTransform();
         this.shiftDp = -8.0f;
-        this.bitmapPaint = new Paint(2);
         this.insets = new Rect();
         this.setLoadingRunnable = new Runnable() {
             AnonymousClass1() {
@@ -9288,7 +9297,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.photoCropView.setDelegate(new AnonymousClass58());
     }
 
-    private android.graphics.Bitmap createCroppedBitmap(android.graphics.Bitmap r17, org.telegram.messenger.MediaController.CropState r18, int[] r19, boolean r20) {
+    public static android.graphics.Bitmap createCroppedBitmap(android.graphics.Bitmap r16, org.telegram.messenger.MediaController.CropState r17, int[] r18, boolean r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.createCroppedBitmap(android.graphics.Bitmap, org.telegram.messenger.MediaController$CropState, int[], boolean):android.graphics.Bitmap");
     }
 
@@ -10488,7 +10497,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 }
             } else if (((MessageObject.getMedia(message) instanceof TLRPC.TL_messageMediaPhoto) && MessageObject.getMedia(messageObject.messageOwner).photo != null) || ((MessageObject.getMedia(messageObject.messageOwner) instanceof TLRPC.TL_messageMediaWebPage) && MessageObject.getMedia(messageObject.messageOwner).webpage != null)) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(), false, null, true);
+                TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(true), false, null, true);
                 if (closestPhotoSizeWithSize4 != null) {
                     if (jArr != null) {
                         long j4 = closestPhotoSizeWithSize4.size;
@@ -10679,7 +10688,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (messageObject.isGif()) {
                     return ImageLocation.getForDocument(messageObject.getDocument());
                 }
-                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(), false, null, true);
+                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(true), false, null, true);
                 if (closestPhotoSizeWithSize3 != null) {
                     if (jArr != null) {
                         long j3 = closestPhotoSizeWithSize3.size;
@@ -11621,7 +11630,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         MessageObject threadMessage = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         ChatActivity.ReplyQuote replyQuote = PhotoViewer.this.parentChatActivity.getReplyQuote();
                         MediaController.PhotoEntry photoEntry4 = r4;
-                        SendMessagesHelper.prepareSendingPhoto(accountInstance, str3, str4, null, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry4.entities, photoEntry4.stickers, null, photoEntry4.ttl, messageObject2, videoEditedInfo, z4, i2, 0, z32, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L);
+                        SendMessagesHelper.prepareSendingPhoto(accountInstance, str3, str4, null, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry4.entities, photoEntry4.stickers, null, photoEntry4.ttl, messageObject2, videoEditedInfo, z4, i2, 0, z32, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId());
                         return;
                     }
                     AccountInstance accountInstance2 = PhotoViewer.this.parentChatActivity.getAccountInstance();
@@ -11637,6 +11646,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     CharSequence charSequence = photoEntry5.caption;
                     String str6 = PhotoViewer.this.parentChatActivity.quickReplyShortcut;
                     int quickReplyId = PhotoViewer.this.parentChatActivity.getQuickReplyId();
+                    long sendMonoForumPeerId = PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId();
                     if (videoEditedInfo != null) {
                         str2 = null;
                         photo = null;
@@ -11648,7 +11658,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         photo = null;
                         storyItem = null;
                     }
-                    SendMessagesHelper.prepareSendingVideo(accountInstance2, str5, videoEditedInfo2, str2, photo, dialogId2, replyMessage2, threadMessage2, storyItem, replyQuote2, arrayList, i22, messageObject2, z4, i2, z32, z42, charSequence, str6, quickReplyId, 0L, 0L);
+                    SendMessagesHelper.prepareSendingVideo(accountInstance2, str5, videoEditedInfo2, str2, photo, dialogId2, replyMessage2, threadMessage2, storyItem, replyQuote2, arrayList, i22, messageObject2, z4, i2, z32, z42, charSequence, str6, quickReplyId, 0L, 0L, sendMonoForumPeerId);
                 }
             }
 
@@ -12703,6 +12713,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (isCaptionOpen() || this.muteVideo) {
             return;
         }
+        int i = this.currentIndex;
+        if (i >= 0 && i < this.imagesArrLocals.size()) {
+            Object obj = this.imagesArrLocals.get(this.currentIndex);
+            if (obj instanceof MediaController.PhotoEntry) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                if (!photoEntry.isVideo) {
+                    boolean z = !photoEntry.highQuality;
+                    photoEntry.highQuality = z;
+                    this.compressItem.setPhotoState(z);
+                    showPhotoQualityHint(photoEntry.highQuality);
+                    return;
+                }
+            }
+        }
         if (this.compressItem.getTag() != null) {
             showQualityView(true);
             requestVideoPreview(1);
@@ -13126,7 +13150,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.containerView.setFocusable(true);
     }
 
-    private void mergeImages(String str, String str2, Bitmap bitmap, Bitmap bitmap2, float f, boolean z) {
+    public static void mergeImages(String str, String str2, Bitmap bitmap, Bitmap bitmap2, Bitmap.CompressFormat compressFormat, float f, boolean z) {
         boolean z2;
         if (bitmap == null) {
             try {
@@ -13151,14 +13175,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         Canvas canvas = new Canvas(createBitmap);
         Rect rect = new Rect(0, 0, width, height);
         if (z) {
-            canvas.drawBitmap(bitmap2, (Rect) null, rect, this.bitmapPaint);
-            canvas.drawBitmap(bitmap, (Rect) null, rect, this.bitmapPaint);
+            canvas.drawBitmap(bitmap2, (Rect) null, rect, bitmapPaint);
+            canvas.drawBitmap(bitmap, (Rect) null, rect, bitmapPaint);
         } else {
-            canvas.drawBitmap(bitmap, (Rect) null, rect, this.bitmapPaint);
-            canvas.drawBitmap(bitmap2, (Rect) null, rect, this.bitmapPaint);
+            canvas.drawBitmap(bitmap, (Rect) null, rect, bitmapPaint);
+            canvas.drawBitmap(bitmap2, (Rect) null, rect, bitmapPaint);
         }
         FileOutputStream fileOutputStream = new FileOutputStream(new File(str));
-        createBitmap.compress(getCompressFormat(), f == 512.0f ? 83 : 87, fileOutputStream);
+        createBitmap.compress(compressFormat, f == 512.0f ? 83 : 87, fileOutputStream);
         try {
             fileOutputStream.close();
         } catch (Exception e) {
@@ -15053,8 +15077,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         paintingOverlay.setData(str, arrayList, z, false, this.sendPhotoType != 11);
     }
 
-    private void setIsAboutToSwitchToIndex(final int r40, boolean r41, boolean r42) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean):void");
+    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) {
+        setIsAboutToSwitchToIndex(i, z, z2, false);
+    }
+
+    public void setIsAboutToSwitchToIndex(final int r39, boolean r40, boolean r41, boolean r42) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean, boolean):void");
     }
 
     private void setItemVisible(View view, boolean z, boolean z2) {
@@ -15342,6 +15370,33 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             listener2.setInterpolator(cubicBezierInterpolator).setDuration(400L).start();
         }
         this.eraseBtn.setTag(z ? 1 : null);
+    }
+
+    private void showPhotoQualityHint(boolean z) {
+        HintView2 hintView2 = this.compressPhotoHint;
+        if (hintView2 != null) {
+            hintView2.hide();
+            this.compressPhotoHint = null;
+        }
+        if (this.activityContext == null) {
+            return;
+        }
+        this.compressPhotoHint = new HintView2(this.activityContext, 3);
+        SpannableStringBuilder append = new SpannableStringBuilder("x ").append((CharSequence) LocaleController.getString(z ? R.string.PhotoWillBeSentInHD : R.string.PhotoWillBeSentInSD));
+        append.setSpan(new ColoredImageSpan(z ? R.drawable.menu_quality_hd_filled : R.drawable.menu_quality_sd_filled), 0, 1, 33);
+        this.compressPhotoHint.setText(append);
+        this.containerView.addView(this.compressPhotoHint, LayoutHelper.createFrame(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 48.0f));
+        this.compressPhotoHint.setTranslationY(this.pickerView.getTranslationY());
+        this.compressPhotoHint.setJointPx(0.0f, this.itemsLayout.getX() + this.compressItem.getX() + (this.compressItem.getWidth() / 2.0f));
+        final HintView2 hintView22 = this.compressPhotoHint;
+        hintView22.setOnHiddenListener(new Runnable() {
+            @Override
+            public final void run() {
+                AndroidUtilities.removeFromParent(hintView22);
+            }
+        });
+        this.compressPhotoHint.setDuration(3500L);
+        this.compressPhotoHint.show();
     }
 
     private void showQualityView(boolean z) {
@@ -16935,6 +16990,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public boolean isVisibleOrAnimating() {
         return this.isVisibleOrAnimating;
+    }
+
+    public void mergeImages(String str, String str2, Bitmap bitmap, Bitmap bitmap2, float f, boolean z) {
+        mergeImages(str, str2, bitmap, bitmap2, getCompressFormat(), f, z);
     }
 
     public void onConfigurationChanged(Configuration configuration) {
@@ -18796,7 +18855,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         VideoCompressButton videoCompressButton = new VideoCompressButton(this.parentActivity);
         this.compressItem = videoCompressButton;
         videoCompressButton.setTag(1);
-        this.compressItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
+        this.compressItem.setBackground(Theme.createSelectorDrawable(1090519039));
         this.selectedCompression = selectCompression();
         this.compressItem.setState(this.videoConvertSupported && this.compressionsCount > 1, this.muteVideo, Math.min(this.resultWidth, this.resultHeight));
         this.compressItem.setContentDescription(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));

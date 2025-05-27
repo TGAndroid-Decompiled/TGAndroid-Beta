@@ -343,7 +343,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$checkChangesBeforeExit$15(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     public void lambda$closeKeyboard$17(ValueAnimator valueAnimator) {
@@ -392,7 +392,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
         this.actionButton.setLoading(false);
         if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -433,7 +433,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$338();
+                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$347();
             }
         });
     }
@@ -655,7 +655,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             if (iNavigationLayout == null || iNavigationLayout.getLastFragment() != this) {
                 removeSelfFromStack();
             } else {
-                lambda$onBackPressed$338();
+                lambda$onBackPressed$347();
             }
         }
     }

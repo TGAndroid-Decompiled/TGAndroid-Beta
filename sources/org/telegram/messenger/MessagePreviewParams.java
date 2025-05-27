@@ -28,6 +28,7 @@ public class MessagePreviewParams {
     public boolean isVideo;
     public TLRPC.WebPage linkMedia;
     public Messages linkMessage;
+    public boolean monoforum;
     public boolean multipleUsers;
     public boolean noforwards;
     private MessagePreviewView previewView;
@@ -194,9 +195,10 @@ public class MessagePreviewParams {
         public int totalVotersCached;
     }
 
-    public MessagePreviewParams(boolean z, boolean z2) {
+    public MessagePreviewParams(boolean z, boolean z2, boolean z3) {
         this.isSecret = z;
         this.noforwards = z || z2;
+        this.monoforum = z3;
     }
 
     public static boolean areUrlsEqual(String str, String str2) {

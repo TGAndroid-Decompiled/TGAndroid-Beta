@@ -55,6 +55,7 @@ import org.telegram.ui.Cells.TopicSearchCell;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -193,7 +194,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
                 chat = messagesController.getChat(Long.valueOf(j));
             }
             hintDialogCell.setTag(Long.valueOf(j2));
-            hintDialogCell.setDialog(j2, true, user != null ? UserObject.getFirstName(user) : chat != null ? chat.title : "");
+            hintDialogCell.setDialog(j2, true, user != null ? UserObject.getFirstName(user) : chat != null ? chat.monoforum ? ForumUtilities.getMonoForumTitle(this.currentAccount, chat) : chat.title : "");
         }
 
         @Override
@@ -1495,19 +1496,19 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
                 TLObject tLObject = recentSearchObject.object;
                 if (tLObject instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                    str3 = chat.title;
-                    str2 = chat.username;
+                    str2 = chat.monoforum ? ForumUtilities.getMonoForumTitle(this.currentAccount, chat) : chat.title;
+                    str3 = ((TLRPC.Chat) recentSearchObject.object).username;
                 } else if (tLObject instanceof TLRPC.User) {
-                    str3 = UserObject.getUserName((TLRPC.User) tLObject);
-                    str2 = ((TLRPC.User) recentSearchObject.object).username;
+                    str2 = UserObject.getUserName((TLRPC.User) tLObject);
+                    str3 = ((TLRPC.User) recentSearchObject.object).username;
                 } else if (tLObject instanceof TLRPC.ChatInvite) {
-                    str3 = ((TLRPC.ChatInvite) tLObject).title;
-                    str2 = null;
+                    str2 = ((TLRPC.ChatInvite) tLObject).title;
+                    str3 = null;
                 } else {
                     str2 = null;
                     str3 = null;
                 }
-                if ((str3 != null && wordStartsWith(str3.toLowerCase(), lowerCase)) || (str2 != null && wordStartsWith(str2.toLowerCase(), lowerCase))) {
+                if ((str2 != null && wordStartsWith(str2.toLowerCase(), lowerCase)) || (str3 != null && wordStartsWith(str3.toLowerCase(), lowerCase))) {
                     this.filtered2RecentSearchObjects.add(recentSearchObject);
                 }
                 if (this.filtered2RecentSearchObjects.size() >= 5) {

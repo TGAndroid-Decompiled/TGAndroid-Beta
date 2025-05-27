@@ -99,6 +99,7 @@ public abstract class FilterTabsView extends FrameLayout {
     private int prevLayoutWidth;
     private int previousId;
     private int previousPosition;
+    private final Theme.ResourcesProvider resourcesProvider;
     private int scrollingToChild;
     private int selectedTabId;
     private int selectorColorKey;
@@ -106,7 +107,7 @@ public abstract class FilterTabsView extends FrameLayout {
     private int tabLineColorKey;
     private ArrayList tabs;
     private final TextPaint textCounterPaint;
-    private final TextPaint textPaint;
+    public final TextPaint textPaint;
     private int unactiveTextColorKey;
 
     public class AnonymousClass4 extends DefaultItemAnimator {
@@ -345,13 +346,9 @@ public abstract class FilterTabsView extends FrameLayout {
         public CharSequence title;
         public int titleWidth;
 
-        public Tab(int i, String str, ArrayList arrayList, boolean z) {
+        public Tab(int i, CharSequence charSequence, boolean z) {
             this.id = i;
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-            this.title = spannableStringBuilder;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, FilterTabsView.this.textPaint.getFontMetricsInt(), false);
-            this.title = replaceEmoji;
-            this.title = MessageObject.replaceAnimatedEmoji(replaceEmoji, arrayList, FilterTabsView.this.textPaint.getFontMetricsInt());
+            this.title = charSequence;
             this.noanimate = z;
         }
 
@@ -779,7 +776,7 @@ public abstract class FilterTabsView extends FrameLayout {
             if (i != 0) {
                 FilterTabsView.this.listView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);
-                viewHolder.itemView.setBackgroundColor(Theme.getColor(FilterTabsView.this.backgroundColorKey));
+                viewHolder.itemView.setBackgroundColor(Theme.getColor(FilterTabsView.this.backgroundColorKey, FilterTabsView.this.resourcesProvider));
             } else {
                 AndroidUtilities.cancelRunOnUIThread(this.resetDefaultPosition);
                 AndroidUtilities.runOnUIThread(this.resetDefaultPosition, 320L);
@@ -792,7 +789,7 @@ public abstract class FilterTabsView extends FrameLayout {
         }
     }
 
-    public FilterTabsView(Context context) {
+    public FilterTabsView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
@@ -857,12 +854,13 @@ public abstract class FilterTabsView extends FrameLayout {
             @Override
             public void setValue(FilterTabsView filterTabsView, float f) {
                 FilterTabsView.this.animationValue = f;
-                FilterTabsView.this.selectorDrawable.setColor(ColorUtils.blendARGB(Theme.getColor(FilterTabsView.this.tabLineColorKey), Theme.getColor(FilterTabsView.this.aTabLineColorKey), f));
+                FilterTabsView.this.selectorDrawable.setColor(ColorUtils.blendARGB(Theme.getColor(FilterTabsView.this.tabLineColorKey, FilterTabsView.this.resourcesProvider), Theme.getColor(FilterTabsView.this.aTabLineColorKey, FilterTabsView.this.resourcesProvider), f));
                 FilterTabsView.this.listView.invalidateViews();
                 FilterTabsView.this.listView.invalidate();
                 filterTabsView.invalidate();
             }
         };
+        this.resourcesProvider = resourcesProvider;
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         textPaint2.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
@@ -873,7 +871,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.selectorDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
         float dpf2 = AndroidUtilities.dpf2(3.0f);
         this.selectorDrawable.setCornerRadii(new float[]{dpf2, dpf2, dpf2, dpf2, 0.0f, 0.0f, 0.0f, 0.0f});
-        this.selectorDrawable.setColor(Theme.getColor(this.tabLineColorKey));
+        this.selectorDrawable.setColor(Theme.getColor(this.tabLineColorKey, resourcesProvider));
         setHorizontalScrollBarEnabled(false);
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
@@ -1072,7 +1070,7 @@ public abstract class FilterTabsView extends FrameLayout {
         if (i3 != -1 && i3 == i) {
             this.currentPosition = size;
         }
-        Tab tab = new Tab(i, str, arrayList, z);
+        Tab tab = new Tab(i, text(str, arrayList), z);
         tab.isDefault = z2;
         tab.isLocked = z3;
         this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(32.0f);
@@ -1464,5 +1462,9 @@ public abstract class FilterTabsView extends FrameLayout {
 
     public void stopAnimatingIndicator() {
         this.animatingIndicator = false;
+    }
+
+    public CharSequence text(String str, ArrayList arrayList) {
+        return MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(new SpannableStringBuilder(str), this.textPaint.getFontMetricsInt(), false), arrayList, this.textPaint.getFontMetricsInt());
     }
 }

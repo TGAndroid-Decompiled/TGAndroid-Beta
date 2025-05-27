@@ -70,6 +70,7 @@ import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.TopicSeparator;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
@@ -111,6 +112,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private ChatActionCellDelegate delegate;
     private float dimAmount;
     private final Paint dimPaint;
+    public boolean firstInChat;
     private boolean forceWasUnread;
     private boolean giftButtonPressed;
     private RectF giftButtonRect;
@@ -149,6 +151,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private boolean invalidatePath;
     private View invalidateWithParent;
     private boolean invalidatesParent;
+    public boolean isAllChats;
+    public boolean isForum;
+    public boolean isMonoForum;
+    public boolean isSideMenuEnabled;
+    public boolean isSideMenued;
     private boolean isSpoilerRevealing;
     private float lastTouchX;
     private float lastTouchY;
@@ -172,6 +179,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     TextPaint settingWallpaperPaint;
     private float settingWallpaperProgress;
     private StaticLayout settingWallpaperProgressTextLayout;
+    public boolean showTopicSeparator;
+    public float sideMenuAlpha;
+    public int sideMenuWidth;
     private SpoilerEffect spoilerPressed;
     public List spoilers;
     private Stack spoilersPool;
@@ -191,6 +201,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private int textXLeft;
     private int textY;
     private Theme.ResourcesProvider themeDelegate;
+    public TopicSeparator topicSeparator;
+    private int topicSeparatorTopPadding;
     public final TransitionParams transitionParams;
     private float viewTop;
     private float viewTranslationX;
@@ -394,6 +406,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.bounce = new ButtonBounce(this);
         this.currentAccount = UserConfig.selectedAccount;
         this.avatarStoryParams = new StoriesUtilities.AvatarStoryParams(false);
+        this.showTopicSeparator = true;
         this.giftButtonRect = new RectF();
         this.spoilers = new ArrayList();
         this.spoilersPool = new Stack();
@@ -1019,6 +1032,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private void createLayout(CharSequence charSequence, int i) {
         ChatActionCellDelegate chatActionCellDelegate;
         int dp = i - AndroidUtilities.dp(30.0f);
+        if (this.isSideMenued) {
+            dp -= AndroidUtilities.dp(64.0f);
+        }
         if (dp < 0) {
             return;
         }
@@ -1394,6 +1410,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     public void drawOutboundsContent(Canvas canvas) {
         canvas.save();
+        canvas.translate(this.sideMenuWidth / 2.0f, getPaddingTop());
+        canvas.save();
         canvas.translate(this.textXLeft, this.textY);
         StaticLayout staticLayout = this.textLayout;
         AnimatedEmojiSpan.drawAnimatedEmojis(canvas, staticLayout, this.animatedEmojiStack, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, staticLayout != null ? getAdaptiveEmojiColorFilter(staticLayout.getPaint().getColor()) : null);
@@ -1403,6 +1421,17 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             canvas.translate((getWidth() - this.starGiftLayout.getWidth()) / 2.0f, this.starGiftLayout.repost ? AndroidUtilities.dp(4.0f) : this.textY + this.textHeight + AndroidUtilities.dp(16.0f));
             this.starGiftLayout.drawOutbounds(canvas);
             canvas.restore();
+        }
+        canvas.restore();
+        if (this.topicSeparator != null) {
+            float alpha = getAlpha();
+            Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
+            if (resourcesProvider != null) {
+                resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + 0.0f);
+            } else {
+                Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + 0.0f);
+            }
+            this.topicSeparator.draw(canvas, getWidth(), this.sideMenuWidth, 0.0f, 1.0f, alpha, this.showTopicSeparator);
         }
     }
 
@@ -1675,6 +1704,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
         this.starGiftLayout.attach();
         this.reactionsLayoutInBubble.onAttachToWindow();
+        TopicSeparator topicSeparator = this.topicSeparator;
+        if (topicSeparator != null) {
+            topicSeparator.attach();
+        }
     }
 
     @Override
@@ -1697,10 +1730,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.transitionParams.onDetach();
         this.starGiftLayout.detach();
         this.reactionsLayoutInBubble.onDetachFromWindow();
+        TopicSeparator topicSeparator = this.topicSeparator;
+        if (topicSeparator != null) {
+            topicSeparator.detach();
+        }
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r43) {
+    public void onDraw(android.graphics.Canvas r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1870,6 +1907,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     public void setScrimReaction(Integer num) {
         this.reactionsLayoutInBubble.setScrimReaction(num);
+    }
+
+    public void setShowTopic(boolean z) {
+        if (this.showTopicSeparator != z) {
+            this.showTopicSeparator = z;
+            invalidateOutbounds();
+            invalidate();
+        }
     }
 
     public void setSpoilersSuppressed(boolean z) {

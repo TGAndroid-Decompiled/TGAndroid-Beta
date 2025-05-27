@@ -231,12 +231,13 @@ public class AndroidUtilities {
     private static Field mAttachInfoField;
     private static Field mStableInsetsField;
     public static boolean makingGlobalBlurBitmap;
-    private static Typeface mediumTypeface;
+    public static Typeface mediumTypeface;
     private static HashMap<Window, ValueAnimator> navigationBarColorAnimators;
     public static final String[] numbersSignatureArray;
     public static int roundMessageInset;
     public static int roundMessageSize;
     public static int roundPlayingMessageSize;
+    public static int roundSidePlayingMessageSize;
     public static final Linkify.MatchFilter sUrlMatchFilter;
     private static final float[] tempFloats;
     private static final float[] tempFloats2;
@@ -261,6 +262,7 @@ public class AndroidUtilities {
     public static float screenMaxRefreshRate = 60.0f;
     public static float screenRefreshTime = 16.666666f;
     public static Integer photoSize = null;
+    public static Integer highQualityPhotoSize = null;
     public static DisplayMetrics displayMetrics = new DisplayMetrics();
     public static DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
     public static AccelerateInterpolator accelerateInterpolator = new AccelerateInterpolator();
@@ -831,9 +833,8 @@ public class AndroidUtilities {
     }
 
     public static Typeface bold() {
-        Typeface typeface = mediumTypeface;
-        if (typeface == null && typeface == null) {
-            mediumTypeface = getTypeface("fonts/rmedium.ttf");
+        if (mediumTypeface == null) {
+            mediumTypeface = SharedConfig.useSystemBoldFont ? Typeface.create(null, 700, false) : getTypeface("fonts/rmedium.ttf");
         }
         return mediumTypeface;
     }
@@ -2415,10 +2416,23 @@ public class AndroidUtilities {
     }
 
     public static int getPhotoSize() {
-        if (photoSize == null) {
-            photoSize = 1280;
+        return getPhotoSize(false);
+    }
+
+    public static int getPhotoSize(boolean z) {
+        Integer num;
+        if (z) {
+            if (highQualityPhotoSize == null) {
+                highQualityPhotoSize = 2048;
+            }
+            num = highQualityPhotoSize;
+        } else {
+            if (photoSize == null) {
+                photoSize = 1280;
+            }
+            num = photoSize;
         }
-        return photoSize.intValue();
+        return num.intValue();
     }
 
     public static float getPixelsInCM(float f, boolean z) {
@@ -2891,6 +2905,14 @@ public class AndroidUtilities {
             }
         }
         return new int[]{(int) (d8 * 255.0d), (int) (d6 * 255.0d), (int) (d3 * 255.0d)};
+    }
+
+    public static float ilerp(float f, float f2, float f3) {
+        return (f - f2) / (f3 - f2);
+    }
+
+    public static float ilerp(int i, int i2, int i3) {
+        return (i - i2) / (i3 - i2);
     }
 
     public static int indexOfIgnoreCase(String str, String str2) {
@@ -4832,6 +4854,10 @@ public class AndroidUtilities {
             i++;
         }
         return iArr;
+    }
+
+    public static int roundPlayingMessageSize(boolean z) {
+        return z ? roundSidePlayingMessageSize : roundPlayingMessageSize;
     }
 
     public static void runOnUIThread(Runnable runnable) {

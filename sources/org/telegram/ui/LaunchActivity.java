@@ -26,7 +26,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.util.Base64;
-import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.ActionMode;
 import android.view.KeyEvent;
@@ -40,6 +39,7 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.common.primitives.Longs;
@@ -1084,7 +1084,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersImportComplete);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.newSuggestionsAvailable);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatSwithcedToForum);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatSwitchedForum);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesEnabledUpdate);
         }
         int i2 = UserConfig.selectedAccount;
@@ -1108,7 +1108,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.newSuggestionsAvailable);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserShowLimitReachedDialog);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatSwithcedToForum);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatSwitchedForum);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesEnabledUpdate);
     }
 
@@ -2384,13 +2384,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, int i4, ArrayList arrayList, int i5) {
         if (tL_error == null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
-            SparseArray<TLRPC.Message> sparseArray = new SparseArray<>();
+            LongSparseArray longSparseArray = new LongSparseArray();
             for (int i6 = 0; i6 < tL_messages_forumTopics.messages.size(); i6++) {
-                sparseArray.put(tL_messages_forumTopics.messages.get(i6).id, tL_messages_forumTopics.messages.get(i6));
+                longSparseArray.put(tL_messages_forumTopics.messages.get(i6).id, tL_messages_forumTopics.messages.get(i6));
             }
             MessagesController.getInstance(i).putUsers(tL_messages_forumTopics.users, false);
             MessagesController.getInstance(i).putChats(tL_messages_forumTopics.chats, false);
-            MessagesController.getInstance(i).getTopicsController().processTopics(chat.id, tL_messages_forumTopics.topics, sparseArray, false, 2, -1);
+            MessagesController.getInstance(i).getTopicsController().processTopics(chat.id, tL_messages_forumTopics.topics, longSparseArray, false, 2, -1);
             openTopicRequest(i, i2, chat, i3, MessagesController.getInstance(i).getTopicsController().findTopic(chat.id, i2), runnable, str, i4, arrayList, i5);
         }
     }
@@ -5542,7 +5542,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (themeEditorView != null) {
             themeEditorView.onActivityResult(i, i2, intent);
         }
-        if (this.actionBarLayout.getFragmentStack().size() != 0) {
+        ActionBarLayout actionBarLayout = this.actionBarLayout;
+        if (actionBarLayout != null && actionBarLayout.getFragmentStack().size() != 0) {
             BaseFragment baseFragment = this.actionBarLayout.getFragmentStack().get(this.actionBarLayout.getFragmentStack().size() - 1);
             baseFragment.onActivityResultFragment(i, i2, intent);
             if (baseFragment.getLastStoryViewer() != null) {
@@ -5550,10 +5551,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         }
         if (AndroidUtilities.isTablet()) {
-            if (this.rightActionBarLayout.getFragmentStack().size() != 0) {
+            ActionBarLayout actionBarLayout2 = this.rightActionBarLayout;
+            if (actionBarLayout2 != null && actionBarLayout2.getFragmentStack().size() != 0) {
                 this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1).onActivityResultFragment(i, i2, intent);
             }
-            if (this.layersActionBarLayout.getFragmentStack().size() != 0) {
+            ActionBarLayout actionBarLayout3 = this.layersActionBarLayout;
+            if (actionBarLayout3 != null && actionBarLayout3.getFragmentStack().size() != 0) {
                 this.layersActionBarLayout.getFragmentStack().get(this.layersActionBarLayout.getFragmentStack().size() - 1).onActivityResultFragment(i, i2, intent);
             }
         }
@@ -5603,7 +5606,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (actionBarLayout3 != null && actionBarLayout3.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$338();
+                        baseFragment.lambda$onBackPressed$347();
                         return;
                     }
                     return;

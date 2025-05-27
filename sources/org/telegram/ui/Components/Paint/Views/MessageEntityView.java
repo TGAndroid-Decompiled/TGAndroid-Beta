@@ -560,7 +560,7 @@ public abstract class MessageEntityView extends EntityView {
                             ChatActionCell chatActionCell = (ChatActionCell) childAt;
                             if (chatActionCell.hasGradientService()) {
                                 canvas.save();
-                                canvas.translate(chatActionCell.getX(), chatActionCell.getY());
+                                canvas.translate(chatActionCell.getX(), chatActionCell.getY() + chatActionCell.getPaddingTop());
                                 canvas.scale(chatActionCell.getScaleX(), chatActionCell.getScaleY(), chatActionCell.getMeasuredWidth() / 2.0f, chatActionCell.getMeasuredHeight() / 2.0f);
                                 chatActionCell.drawBackground(canvas, true);
                                 chatActionCell.drawReactions(canvas, true, null);
@@ -826,7 +826,7 @@ public abstract class MessageEntityView extends EntityView {
                 MessageObject messageObject3 = (MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
                 View view = viewHolder.itemView;
                 if (view instanceof ChatMessageCell) {
-                    ((ChatMessageCell) view).setMessageObject(messageObject3, MessageEntityView.this.groupedMessages, MessageEntityView.this.groupedMessages != null, (MessageEntityView.this.groupedMessages == null || (position = MessageEntityView.this.groupedMessages.getPosition(messageObject3)) == null || position.minY == 0) ? false : true);
+                    ((ChatMessageCell) view).setMessageObject(messageObject3, MessageEntityView.this.groupedMessages, MessageEntityView.this.groupedMessages != null, (MessageEntityView.this.groupedMessages == null || (position = MessageEntityView.this.groupedMessages.getPosition(messageObject3)) == null || position.minY == 0) ? false : true, false);
                 } else if (view instanceof ChatActionCell) {
                     ((ChatActionCell) view).setMessageObject(messageObject3);
                 }

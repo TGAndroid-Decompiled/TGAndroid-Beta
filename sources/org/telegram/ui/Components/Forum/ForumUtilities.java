@@ -13,11 +13,15 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.util.SparseArray;
+import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -31,6 +35,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -104,6 +109,7 @@ public abstract class ForumUtilities {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new MessageObject(chatActivity.getCurrentAccount(), findTopic.topicStartMessage, false, false));
         chatActivity.setThreadMessages(arrayList, chat, findTopic.id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+        chatActivity.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
     }
 
     public static void applyTopicToMessage(MessageObject messageObject) {
@@ -175,16 +181,6 @@ public abstract class ForumUtilities {
             return null;
         }
         return new GeneralTopicDrawable(context, f, i, z, z2);
-    }
-
-    public static Drawable createSmallTopicDrawable(String str, int i) {
-        ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(i);
-        LetterDrawable letterDrawable = new LetterDrawable(null, 2);
-        String upperCase = str.trim().toUpperCase();
-        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
-        CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
-        combinedDrawable.setFullsize(true);
-        return combinedDrawable;
     }
 
     public static Drawable createTopicDrawable(String str, int i, boolean z) {
@@ -265,6 +261,25 @@ public abstract class ForumUtilities {
         return chatActivity;
     }
 
+    public static String getMonoForumTitle(int i, long j, boolean z) {
+        return getMonoForumTitle(i, MessagesController.getInstance(i).getChat(Long.valueOf(-j)), z);
+    }
+
+    public static String getMonoForumTitle(int i, TLRPC.Chat chat) {
+        return getMonoForumTitle(i, chat, false);
+    }
+
+    public static String getMonoForumTitle(int i, TLRPC.Chat chat, boolean z) {
+        TLRPC.Chat chat2;
+        if (ChatObject.isMonoForum(chat) && (chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id))) != null) {
+            return z ? chat2.title : LocaleController.formatString(R.string.MonoforumTitle, chat2.title);
+        }
+        if (chat != null) {
+            return chat.title;
+        }
+        return null;
+    }
+
     public static CharSequence getTopicSpannedName(TLRPC.ForumTopic forumTopic, Paint paint, boolean z) {
         return getTopicSpannedName(forumTopic, paint, null, z);
     }
@@ -338,11 +353,61 @@ public abstract class ForumUtilities {
         }
     }
 
+    public static int monoForumTopicIdToTopicId(long j) {
+        return SessionDetails$$ExternalSyntheticBackport0.m(j);
+    }
+
+    public static ArrayList monoForumTopicToTopic(ArrayList arrayList) {
+        ArrayList arrayList2 = new ArrayList(arrayList.size());
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            TLRPC.savedDialog saveddialog = (TLRPC.savedDialog) it.next();
+            if (saveddialog instanceof TLRPC.TL_monoForumDialog) {
+                arrayList2.add(monoForumTopicToTopic((TLRPC.TL_monoForumDialog) saveddialog));
+            }
+        }
+        return arrayList2;
+    }
+
+    public static TLRPC.TL_forumTopic monoForumTopicToTopic(TLRPC.TL_monoForumDialog tL_monoForumDialog) {
+        long peerDialogId = DialogObject.getPeerDialogId(tL_monoForumDialog.peer);
+        TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
+        tL_forumTopic.id = monoForumTopicIdToTopicId(peerDialogId);
+        tL_forumTopic.title = Long.toString(peerDialogId);
+        tL_forumTopic.top_message = tL_monoForumDialog.top_message;
+        tL_forumTopic.read_inbox_max_id = tL_monoForumDialog.read_inbox_max_id;
+        tL_forumTopic.read_outbox_max_id = tL_monoForumDialog.read_outbox_max_id;
+        tL_forumTopic.unread_reactions_count = tL_monoForumDialog.unread_reactions_count;
+        tL_forumTopic.unread_count = tL_monoForumDialog.unread_count;
+        tL_forumTopic.draft = tL_monoForumDialog.draft;
+        tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
+        tL_forumTopic.from_id = tL_monoForumDialog.peer;
+        return tL_forumTopic;
+    }
+
     public static void openTopic(BaseFragment baseFragment, long j, TLRPC.TL_forumTopic tL_forumTopic, int i) {
         ChatActivity chatActivityForTopic = getChatActivityForTopic(baseFragment, j, tL_forumTopic, i, new Bundle());
         if (chatActivityForTopic != null) {
             baseFragment.presentFragment(chatActivityForTopic);
         }
+    }
+
+    public static void setMonoForumAvatar(int i, TLRPC.Chat chat, AvatarDrawable avatarDrawable, ImageReceiver imageReceiver) {
+        TLRPC.Chat chat2 = ChatObject.isMonoForum(chat) ? MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id)) : null;
+        if (chat2 != null) {
+            chat = chat2;
+        }
+        avatarDrawable.setInfo(i, chat);
+        imageReceiver.setForUserOrChat(chat2, avatarDrawable);
+    }
+
+    public static void setMonoForumAvatar(int i, TLRPC.Chat chat, AvatarDrawable avatarDrawable, BackupImageView backupImageView) {
+        TLRPC.Chat chat2 = ChatObject.isMonoForum(chat) ? MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id)) : null;
+        if (chat2 != null) {
+            chat = chat2;
+        }
+        avatarDrawable.setInfo(i, chat);
+        backupImageView.setForUserOrChat(chat2, avatarDrawable);
     }
 
     public static void setTopicIcon(BackupImageView backupImageView, TLRPC.TL_forumTopic tL_forumTopic) {

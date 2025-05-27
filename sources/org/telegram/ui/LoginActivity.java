@@ -659,7 +659,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$18(TLObject tLObject, Bundle bundle) {
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$338();
+                LoginActivity.this.lambda$onBackPressed$347();
                 LoginActivity.this.emailChangeFinishCallback.run();
             } else if (tLObject instanceof TL_account.TL_emailVerifiedLogin) {
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, ((TL_account.TL_emailVerifiedLogin) tLObject).sent_code);
@@ -4162,7 +4162,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             String string;
             int i;
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$338();
+                LoginActivity.this.lambda$onBackPressed$347();
                 LoginActivity.this.emailChangeFinishCallback.run();
                 return;
             }
@@ -4945,7 +4945,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$22(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$338();
+            LoginActivity.this.lambda$onBackPressed$347();
         }
 
         public void lambda$onNextPressed$23() {
@@ -4975,7 +4975,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$26(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$338();
+            LoginActivity.this.lambda$onBackPressed$347();
         }
 
         public void lambda$onNextPressed$27(Activity activity) {
@@ -5400,7 +5400,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             NotificationCenter globalInstance;
             int i;
             if (LoginActivity.this.activityMode != 0) {
-                LoginActivity.this.lambda$onBackPressed$338();
+                LoginActivity.this.lambda$onBackPressed$347();
                 return false;
             }
             int i2 = this.prevType;
@@ -6870,15 +6870,23 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     String[] split = readLine.split(";");
                     CountrySelectActivity.Country country = new CountrySelectActivity.Country();
                     country.name = split[2];
-                    country.code = split[0];
+                    String str = split[0];
+                    country.code = str;
                     country.shortname = split[1];
+                    if (!TextUtils.equals(str, "FT")) {
+                        String countryName = LocaleController.getCountryName(country.shortname);
+                        if (!TextUtils.isEmpty(countryName) && !TextUtils.equals(country.shortname, countryName)) {
+                            country.defaultName = country.name;
+                            country.name = countryName;
+                        }
+                    }
                     this.countriesArray.add(0, country);
                     List list = (List) this.codesMap.get(split[0]);
                     if (list == null) {
                         HashMap hashMap2 = this.codesMap;
-                        String str = split[0];
+                        String str2 = split[0];
                         ArrayList arrayList = new ArrayList();
-                        hashMap2.put(str, arrayList);
+                        hashMap2.put(str2, arrayList);
                         list = arrayList;
                     }
                     list.add(country);
@@ -6899,9 +6907,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
                 @Override
                 public final Object apply(Object obj) {
-                    String str2;
-                    str2 = ((CountrySelectActivity.Country) obj).name;
-                    return str2;
+                    String str3;
+                    str3 = ((CountrySelectActivity.Country) obj).name;
+                    return str3;
                 }
 
                 @Override
@@ -7232,7 +7240,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (UserConfig.selectedAccount != i) {
                 ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
             }
-            LoginActivity.this.lambda$onBackPressed$338();
+            LoginActivity.this.lambda$onBackPressed$347();
         }
 
         public void lambda$onNextPressed$18(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
@@ -7880,7 +7888,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
     public void lambda$createView$3(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
         }
     }
 
@@ -8335,7 +8343,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 }
             });
             this.pendingSwitchingAccount = false;
-            lambda$onBackPressed$338();
+            lambda$onBackPressed$347();
             return;
         }
         if (z && z2) {

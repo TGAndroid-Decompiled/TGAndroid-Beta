@@ -323,7 +323,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (i == 0) {
                 TopicsFragment.this.updateChatInfo();
             } else {
-                TopicsFragment.this.lambda$onBackPressed$338();
+                TopicsFragment.this.lambda$onBackPressed$347();
             }
         }
 
@@ -394,7 +394,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int i = NotificationCenter.closeChats;
             notificationCenter.removeObserver(topicsFragment, i);
             TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-            TopicsFragment.this.lambda$onBackPressed$338();
+            TopicsFragment.this.lambda$onBackPressed$347();
             TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-chat.id), null, chat, Boolean.valueOf(z));
         }
 
@@ -413,7 +413,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     TopicsFragment.this.clearSelectedTopics();
                     return;
                 } else {
-                    TopicsFragment.this.lambda$onBackPressed$338();
+                    TopicsFragment.this.lambda$onBackPressed$347();
                     return;
                 }
             }
@@ -814,32 +814,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (viewHolder.getItemViewType() == 0) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((Item) getArray().get(i)).topic;
-                int i2 = i + 1;
-                TLRPC.TL_forumTopic tL_forumTopic2 = i2 < getArray().size() ? ((Item) getArray().get(i2)).topic : null;
-                TopicDialogCell topicDialogCell = (TopicDialogCell) viewHolder.itemView;
-                TLRPC.Message message = tL_forumTopic.topMessage;
-                TLRPC.TL_forumTopic tL_forumTopic3 = topicDialogCell.forumTopic;
-                int i3 = tL_forumTopic3 == null ? 0 : tL_forumTopic3.id;
-                int i4 = tL_forumTopic.id;
-                boolean z = i3 == i4 && topicDialogCell.position == i && TopicsFragment.this.animatedUpdateEnabled;
-                if (message != null) {
-                    MessageObject messageObject = new MessageObject(((BaseFragment) TopicsFragment.this).currentAccount, message, false, false);
-                    TopicsFragment topicsFragment = TopicsFragment.this;
-                    topicDialogCell.setForumTopic(tL_forumTopic, -topicsFragment.chatId, messageObject, topicsFragment.isInPreviewMode(), z);
-                    topicDialogCell.drawDivider = i != TopicsFragment.this.forumTopics.size() - 1 || TopicsFragment.this.recyclerListView.emptyViewIsVisible();
-                    boolean z2 = tL_forumTopic.pinned;
-                    topicDialogCell.fullSeparator = z2 && (tL_forumTopic2 == null || !tL_forumTopic2.pinned);
-                    topicDialogCell.setPinForced(z2 && !tL_forumTopic.hidden);
-                    topicDialogCell.position = i;
-                }
-                topicDialogCell.setTopicIcon(tL_forumTopic);
-                topicDialogCell.setChecked(TopicsFragment.this.selectedTopics.contains(Integer.valueOf(i4)), z);
-                topicDialogCell.setDialogSelected(TopicsFragment.this.selectedTopicForTablet == ((long) i4));
-                topicDialogCell.onReorderStateChanged(TopicsFragment.this.reordering, true);
-            }
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r19, int r20) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.Adapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
         @Override
@@ -1625,6 +1601,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             float measuredHeight;
             float measuredWidth;
             CheckBox2 checkBox2;
+            if (TopicsFragment.this.getMessagesController().isMonoForum(-TopicsFragment.this.chatId)) {
+                super.onDraw(canvas);
+                return;
+            }
             this.xOffset = (!this.inPreviewMode || (checkBox2 = this.checkBox) == null) ? 0.0f : checkBox2.getProgress() * AndroidUtilities.dp(30.0f);
             canvas.save();
             float f2 = this.xOffset;
@@ -2304,7 +2284,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         builder.setTitle(LocaleController.getPluralString("DeleteTopics", hashSet.size()));
         final ArrayList arrayList = new ArrayList(hashSet);
         if (hashSet.size() == 1) {
-            string = LocaleController.formatString("DeleteSelectedTopic", R.string.DeleteSelectedTopic, this.topicsController.findTopic(this.chatId, ((Integer) arrayList.get(0)).intValue()).title);
+            string = LocaleController.formatString(R.string.DeleteSelectedTopic, this.topicsController.findTopic(this.chatId, ((Integer) arrayList.get(0)).intValue()).title);
         } else {
             string = LocaleController.getString(R.string.DeleteSelectedTopics);
         }
@@ -2418,13 +2398,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     public void lambda$createView$2(View view, int i) {
-        if (getParentLayout() == null || getParentLayout().isInPreviewMode()) {
+        if (getParentLayout() == null || getParentLayout().isInPreviewMode() || !(view instanceof TopicDialogCell)) {
             return;
         }
-        TLRPC.TL_forumTopic tL_forumTopic = view instanceof TopicDialogCell ? ((TopicDialogCell) view).forumTopic : null;
-        if (tL_forumTopic == null) {
-            return;
-        }
+        TLRPC.TL_forumTopic tL_forumTopic = ((TopicDialogCell) view).forumTopic;
+        long peerDialogId = getMessagesController().isMonoForum(-this.chatId) ? DialogObject.getPeerDialogId(tL_forumTopic.from_id) : tL_forumTopic.id;
         if (this.openedForSelect) {
             OnTopicSelectedListener onTopicSelectedListener = this.onTopicSelectedListener;
             if (onTopicSelectedListener != null) {
@@ -2432,7 +2410,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             DialogsActivity dialogsActivity = this.dialogsActivity;
             if (dialogsActivity != null) {
-                dialogsActivity.didSelectResult(-this.chatId, tL_forumTopic.id, true, false, this);
+                dialogsActivity.didSelectResult(-this.chatId, peerDialogId, true, false, this);
                 return;
             }
             return;
@@ -2447,7 +2425,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     DialogsActivity dialogsActivity2 = (DialogsActivity) baseFragment;
                     if (dialogsActivity2.isMainDialogList()) {
                         MessagesStorage.TopicKey openedDialogId = dialogsActivity2.getOpenedDialogId();
-                        if (openedDialogId.dialogId == (-this.chatId) && openedDialogId.topicId == tL_forumTopic.id) {
+                        if (openedDialogId.dialogId == (-this.chatId) && openedDialogId.topicId == peerDialogId) {
                             return;
                         }
                     } else {
@@ -2455,7 +2433,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     }
                 }
             }
-            this.selectedTopicForTablet = tL_forumTopic.id;
+            this.selectedTopicForTablet = peerDialogId;
             updateTopicsList(false, false);
         }
         ForumUtilities.openTopic(this, this.chatId, tL_forumTopic, 0);
@@ -2837,11 +2815,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem4);
         }
+        boolean isMonoForum = getMessagesController().isMonoForum(-this.chatId);
         prepareBlurBitmap();
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", this.chatId);
         ChatActivity chatActivity = new ChatActivity(bundle);
-        ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(-this.chatId, dialogCell.forumTopic.id));
+        ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(-this.chatId, isMonoForum ? DialogObject.getPeerDialogId(dialogCell.forumTopic.from_id) : r14.id));
         presentFragmentAsPreviewWithMenu(chatActivity, actionBarPopupWindowLayoutArr[0]);
         return false;
     }
@@ -3769,7 +3748,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         } else if (i == NotificationCenter.notificationsSettingsUpdated) {
             updateTopicsList(false, false);
             updateChatInfo(true);
-        } else if (i != NotificationCenter.chatSwithcedToForum && i == NotificationCenter.closeChats) {
+        } else if (i != NotificationCenter.chatSwitchedForum && i == NotificationCenter.closeChats) {
             removeSelfFromStack(true);
         }
         if (i == NotificationCenter.openedChatChanged && getParentActivity() != null && this.inPreviewMode && AndroidUtilities.isTablet()) {
@@ -3912,7 +3891,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogsNeedReload);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.groupCallUpdated);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.notificationsSettingsUpdated);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatSwithcedToForum);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatSwitchedForum);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.closeChats);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.openedChatChanged);
         updateTopicsList(false, false);
@@ -3944,7 +3923,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.groupCallUpdated);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.notificationsSettingsUpdated);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatSwithcedToForum);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatSwitchedForum);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.closeChats);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.openedChatChanged);
         TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
@@ -4022,7 +4001,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (!this.inPreviewMode || getMessagesController().isForum(-this.chatId)) {
             return;
         }
-        lambda$onBackPressed$338();
+        lambda$onBackPressed$347();
     }
 
     @Override

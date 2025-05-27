@@ -21,6 +21,8 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
 import org.telegram.ui.Components.StatusBadgeComponent;
 import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 
 public class SelectorUserCell extends BaseCell {
     private final ImageView audioView;
@@ -48,7 +50,7 @@ public class SelectorUserCell extends BaseCell {
         }
 
         @Override
-        public void bindView(View view, UItem uItem, boolean z) {
+        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             selectorUserCell.setUser((TLRPC.User) uItem.object);
             selectorUserCell.setChecked(uItem.checked, false);

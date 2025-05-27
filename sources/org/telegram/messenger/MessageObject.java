@@ -286,8 +286,10 @@ public class MessageObject {
     public TLRPC.Peer sendAsPeer;
     public boolean sendPreview;
     public MediaController.PhotoEntry sendPreviewEntry;
+    public boolean sentHighQuality;
     public boolean settingAvatar;
     public boolean shouldRemoveVideoEditedInfo;
+    public boolean sideMenuEnabled;
     private boolean spoiledLoginCode;
     public String sponsoredAdditionalInfo;
     public String sponsoredButtonText;
@@ -2353,6 +2355,19 @@ public class MessageObject {
         return getMediaSize(getMedia(message));
     }
 
+    public static long getMonoForumTopicId(TLRPC.Message message) {
+        TLRPC.Peer peer;
+        if (message == null || (peer = message.saved_peer_id) == null) {
+            return 0L;
+        }
+        long j = peer.chat_id;
+        if (j != 0) {
+            return -j;
+        }
+        long j2 = peer.channel_id;
+        return j2 != 0 ? -j2 : peer.user_id;
+    }
+
     public static Long getMyPaidReactionPeer(TLRPC.MessageReactions messageReactions) {
         ArrayList<TLRPC.MessageReactor> arrayList;
         long j;
@@ -2619,8 +2634,15 @@ public class MessageObject {
     }
 
     public static long getTopicId(int i, TLRPC.Message message, boolean z) {
+        return getTopicId(i, message, z, false);
+    }
+
+    public static long getTopicId(int i, TLRPC.Message message, boolean z, boolean z2) {
         int i2;
         long clientUserId = UserConfig.getInstance(i).getClientUserId();
+        if (z2) {
+            return getMonoForumTopicId(message);
+        }
         if ((message.flags & 1073741824) != 0 && DialogObject.getPeerDialogId(message.peer_id) == clientUserId) {
             i2 = message.quick_reply_shortcut_id;
         } else {
@@ -4495,7 +4517,7 @@ public class MessageObject {
                     this.mediaExists = exists;
                 }
             }
-        } else if (i2 == 1 && FileLoader.getClosestPhotoSizeWithSize(this.photoThumbs, AndroidUtilities.getPhotoSize()) != null) {
+        } else if (i2 == 1 && FileLoader.getClosestPhotoSizeWithSize(this.photoThumbs, AndroidUtilities.getPhotoSize(true)) != null) {
             File pathToMessage = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner, z);
             if (needDrawBluredPreview()) {
                 this.mediaExists = new File(pathToMessage.getAbsolutePath() + ".enc").exists();
@@ -5240,57 +5262,7 @@ public class MessageObject {
     }
 
     public int getMaxMessageTextWidth() {
-        int dp;
-        Uri parse;
-        String lastPathSegment;
-        this.generatedWithMinSize = (!AndroidUtilities.isTablet() || this.eventId == 0) ? AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : getParentWidth() : AndroidUtilities.dp(530.0f);
-        this.generatedWithDensity = AndroidUtilities.density;
-        if (this.hasCode && !this.isSaved) {
-            dp = this.generatedWithMinSize - AndroidUtilities.dp(60.0f);
-            if (needDrawAvatarInternal() && !isOutOwner() && !this.messageOwner.isThreadMessage) {
-                dp -= AndroidUtilities.dp(52.0f);
-            }
-        } else if ((getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaWebPage) && getMedia(this.messageOwner).webpage != null && "telegram_background".equals(getMedia(this.messageOwner).webpage.type)) {
-            try {
-                parse = Uri.parse(getMedia(this.messageOwner).webpage.url);
-                lastPathSegment = parse.getLastPathSegment();
-            } catch (Exception unused) {
-            }
-            if (parse.getQueryParameter("bg_color") != null) {
-                dp = AndroidUtilities.dp(220.0f);
-            } else {
-                if (lastPathSegment.length() == 6 || (lastPathSegment.length() == 13 && lastPathSegment.charAt(6) == '-')) {
-                    dp = AndroidUtilities.dp(200.0f);
-                }
-                dp = 0;
-            }
-        } else {
-            if (isAndroidTheme()) {
-                dp = AndroidUtilities.dp(200.0f);
-            }
-            dp = 0;
-        }
-        if (dp == 0) {
-            dp = this.generatedWithMinSize - AndroidUtilities.dp(80.0f);
-            if (needDrawAvatarInternal() && !isOutOwner() && !this.messageOwner.isThreadMessage) {
-                dp -= AndroidUtilities.dp(52.0f);
-            }
-            if (needDrawShareButton() && (this.isSaved || !isOutOwner())) {
-                dp -= AndroidUtilities.dp((this.isSaved && isOutOwner()) ? 40.0f : 14.0f);
-            }
-            if (getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaGame) {
-                dp -= AndroidUtilities.dp(10.0f);
-            }
-        }
-        int i = this.emojiOnlyCount;
-        if (i < 1) {
-            return dp;
-        }
-        int i2 = this.totalAnimatedEmojiCount;
-        if (i2 <= 100) {
-            return i - i2 < (SharedConfig.getDevicePerformanceClass() < 2 ? 50 : 100) ? (hasValidReplyMessageObject() || isForwarded()) ? Math.min(dp, (int) (this.generatedWithMinSize * 0.65f)) : dp : dp;
-        }
-        return dp;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.getMaxMessageTextWidth():int");
     }
 
     public int getMediaExistanceFlags() {
@@ -5325,6 +5297,10 @@ public class MessageObject {
         }
         TLRPC.WebDocument webDocument = ((TLRPC.TL_messageMediaInvoice) getMedia(this.messageOwner)).webPhoto;
         return webDocument != null ? webDocument.mime_type : "";
+    }
+
+    public long getMonoForumTopicId() {
+        return getMonoForumTopicId(this.messageOwner);
     }
 
     public String getMusicAuthor() {
@@ -5697,6 +5673,11 @@ public class MessageObject {
             default:
                 return Theme.chat_msgTextPaintEmoji[5];
         }
+    }
+
+    public long getTopicId() {
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()));
+        return getTopicId(this.currentAccount, this.messageOwner, ChatObject.isForum(chat), ChatObject.isMonoForum(chat));
     }
 
     public TLRPC.Photo getVideoCover() {
@@ -6773,7 +6754,7 @@ public class MessageObject {
         int i;
         TLRPC.Message message;
         TLRPC.MessageFwdHeader messageFwdHeader;
-        if (this.isRepostPreview || getDialogId() == 489000) {
+        if (this.isRepostPreview || this.sideMenuEnabled || getDialogId() == 489000) {
             return false;
         }
         if (this.isSaved) {
@@ -7293,6 +7274,15 @@ public class MessageObject {
         this.highestQuality = VideoPlayer.getQualityForPlayer(this.videoQualities);
         this.thumbQuality = VideoPlayer.getQualityForThumb(this.videoQualities);
         this.cachedQuality = VideoPlayer.getCachedQuality(this.videoQualities);
+    }
+
+    public boolean updateSideMenuEnabled(boolean z) {
+        if (this.sideMenuEnabled == z) {
+            return false;
+        }
+        this.sideMenuEnabled = z;
+        generateLayout(null);
+        return true;
     }
 
     public boolean updateTranslation() {

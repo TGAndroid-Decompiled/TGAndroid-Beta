@@ -78,6 +78,7 @@ public class ItemOptions {
     private float offsetX;
     private float offsetY;
     public boolean onTopOfScrim;
+    private boolean overridenSwipebackGravity;
     private final float[] point;
     private ViewGroup pointContainer;
     private ViewTreeObserver.OnPreDrawListener preDrawListener;
@@ -976,6 +977,10 @@ public class ItemOptions {
         return this;
     }
 
+    public Context getContext() {
+        return this.context;
+    }
+
     public View getItemAt(int i) {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
         if (actionBarPopupWindowLayout == null && this.layout == null) {
@@ -1282,6 +1287,7 @@ public class ItemOptions {
     }
 
     public ItemOptions setSwipebackGravity(boolean z, boolean z2) {
+        this.overridenSwipebackGravity = true;
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
         actionBarPopupWindowLayout.swipeBackGravityRight = z;
         actionBarPopupWindowLayout.swipeBackGravityBottom = z2;

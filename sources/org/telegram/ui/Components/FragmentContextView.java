@@ -107,6 +107,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     private boolean isLocation;
     private boolean isMusic;
     private boolean isMuted;
+    private final boolean isSideMenued;
     private TextView joinButton;
     private CellFlickerDrawable joinButtonFlicker;
     private int joinButtonWidth;
@@ -114,6 +115,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     private MessageObject lastMessageObject;
     private long lastPlaybackClick;
     private String lastString;
+    private float leftMargin;
     private LinearGradient linearGradient;
     private Matrix matrix;
     float micAmplitude;
@@ -123,7 +125,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     private AnimationNotificationsLocker notificationsLocker2;
     private ButtonBounce notifyButtonBounce;
     private boolean notifyButtonEnabled;
-    private AnimatedTextView.AnimatedTextDrawable notifyText;
+    private final AnimatedTextView.AnimatedTextDrawable notifyText;
     private ImageView playButton;
     private PlayPauseDrawable playPauseDrawable;
     private ActionBarMenuItem playbackSpeedButton;
@@ -267,6 +269,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     }
 
     public FragmentContextView(Context context, BaseFragment baseFragment, View view, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, baseFragment, view, z, resourcesProvider, false);
+    }
+
+    public FragmentContextView(Context context, BaseFragment baseFragment, View view, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2) {
         super(context);
         this.speedItems = new ActionBarMenuItem.Item[6];
         this.currentProgress = -1;
@@ -310,6 +316,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.notificationsLocker2 = new AnimationNotificationsLocker(new int[]{NotificationCenter.messagesDidLoad});
         this.toggleGroupCallStartSubscriptionReqId = 0;
         this.resourcesProvider = resourcesProvider;
+        this.isSideMenued = z2;
         this.fragment = baseFragment;
         if (baseFragment instanceof ChatActivityInterface) {
             this.chatActivity = (ChatActivityInterface) baseFragment;
@@ -483,7 +490,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             }
         };
         this.titleTextView = clippingTextViewSwitcher;
-        addView(clippingTextViewSwitcher, LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, 36.0f, 0.0f));
+        addView(clippingTextViewSwitcher, LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
         AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher2 = new AudioPlayerAlert.ClippingTextViewSwitcher(context) {
             @Override
             protected TextView createTextView() {
@@ -499,7 +506,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             }
         };
         this.subtitleTextView = clippingTextViewSwitcher2;
-        addView(clippingTextViewSwitcher2, LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 10.0f, 36.0f, 0.0f));
+        addView(clippingTextViewSwitcher2, LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 10.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
         this.joinButtonFlicker = cellFlickerDrawable;
         cellFlickerDrawable.setProgress(1.0f);
@@ -634,6 +641,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 FragmentContextView.this.lambda$checkCreateView$8(view3);
             }
         });
+        setLeftMargin(this.leftMargin);
     }
 
     private void checkLiveLocation(boolean z) {
@@ -1240,7 +1248,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         };
         this.speedHintView = hintView;
         hintView.setExtraTranslationY(AndroidUtilities.dp(-12.0f));
-        this.speedHintView.setText(LocaleController.getString("SpeedHint"));
+        this.speedHintView.setText(LocaleController.getString(R.string.SpeedHint));
         ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(-2, -2);
         marginLayoutParams.rightMargin = AndroidUtilities.dp(3.0f);
         ((ViewGroup) getParent()).addView(this.speedHintView, marginLayoutParams);
@@ -1327,7 +1335,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         if (z) {
             int i7 = ((FrameLayout.LayoutParams) this.titleTextView.getLayoutParams()).leftMargin;
             if (AndroidUtilities.dp(i6) != i7) {
-                float translationX = (this.titleTextView.getTranslationX() + i7) - AndroidUtilities.dp(r3);
+                float translationX = (this.titleTextView.getTranslationX() + i7) - AndroidUtilities.dp(r5);
                 this.titleTextView.setTranslationX(translationX);
                 this.subtitleTextView.setTranslationX(translationX);
                 ViewPropertyAnimator duration = this.titleTextView.animate().translationX(0.0f).setDuration(220L);
@@ -1342,8 +1350,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             this.subtitleTextView.setTranslationX(0.0f);
         }
         float f = i6;
-        this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, 51, f, 5.0f, call.isScheduled() ? 90.0f : 36.0f, 0.0f));
-        this.subtitleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, 51, f, 25.0f, call.isScheduled() ? 90.0f : 36.0f, 0.0f));
+        this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, 51, f, 5.0f, (this.isSideMenued ? 64 : 0) + (call.isScheduled() ? 90 : 36), 0.0f));
+        this.subtitleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, 51, f, 25.0f, (this.isSideMenued ? 64 : 0) + (call.isScheduled() ? 90 : 36), 0.0f));
     }
 
     private void updateCallTitle() {
@@ -1528,7 +1536,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 actionBarMenuItem2.setVisibility(8);
                 this.playbackSpeedButton.setTag(null);
             }
-            this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, 36.0f, 0.0f));
+            this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
             return;
         }
         if (i == 0 || i == 2) {
@@ -1560,7 +1568,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             this.titleTextView.setTag(Integer.valueOf(Theme.key_inappPlayerTitle));
             if (i == 0) {
                 this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, 36.0f, 0.0f));
+                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 35.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
                 createPlaybackSpeedButton();
                 ActionBarMenuItem actionBarMenuItem3 = this.playbackSpeedButton;
                 if (actionBarMenuItem3 != null) {
@@ -1571,7 +1579,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 i2 = R.string.AccDescrClosePlayer;
             } else {
                 this.playButton.setLayoutParams(LayoutHelper.createFrame(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
-                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 51.0f, 0.0f, 36.0f, 0.0f));
+                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 36.0f, 51, 51.0f, 0.0f, (this.isSideMenued ? 64 : 0) + 36, 0.0f));
                 imageView = this.closeButton;
                 i2 = R.string.AccDescrStopLiveLocation;
             }
@@ -1663,7 +1671,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             this.playButton.setVisibility(8);
             this.subtitleTextView.setVisibility(8);
             this.joinButton.setVisibility(8);
-            this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 2.0f));
+            this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, this.isSideMenued ? 64 : 0, 2.0f));
             this.titleTextView.setPadding(AndroidUtilities.dp(88.0f), 0, AndroidUtilities.dp(88.0f) + this.joinButtonWidth, 0);
             actionBarMenuItem = this.playbackSpeedButton;
             if (actionBarMenuItem == null) {
@@ -2196,6 +2204,33 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
 
     public void setDrawOverlay(boolean z) {
         this.drawOverlay = z;
+    }
+
+    public void setLeftMargin(float f) {
+        if (this.frameLayout == null) {
+            this.leftMargin = f;
+            return;
+        }
+        ImageView imageView = this.playButton;
+        if (imageView != null) {
+            imageView.setTranslationX(f);
+        }
+        RLottieImageView rLottieImageView = this.importingImageView;
+        if (rLottieImageView != null) {
+            rLottieImageView.setTranslationX(f);
+        }
+        AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = this.titleTextView;
+        if (clippingTextViewSwitcher != null) {
+            clippingTextViewSwitcher.setTranslationX(f);
+        }
+        AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher2 = this.subtitleTextView;
+        if (clippingTextViewSwitcher2 != null) {
+            clippingTextViewSwitcher2.setTranslationX(f);
+        }
+        AvatarsImageView avatarsImageView = this.avatars;
+        if (avatarsImageView != null) {
+            avatarsImageView.setTranslationX(f);
+        }
     }
 
     public void setSupportsCalls(boolean z) {

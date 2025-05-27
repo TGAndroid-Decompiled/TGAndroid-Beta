@@ -25,6 +25,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StarAppsSheet;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
@@ -53,7 +54,7 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 ((FeatureCell) view).set(uItem.intValue, uItem.text, uItem.subtext);
             }
 

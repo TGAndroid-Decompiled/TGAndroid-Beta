@@ -251,7 +251,7 @@ public class LogoutActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LogoutActivity.this.lambda$onBackPressed$338();
+                    LogoutActivity.this.lambda$onBackPressed$347();
                 }
             }
         });

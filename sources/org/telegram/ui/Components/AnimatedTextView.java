@@ -36,6 +36,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 
 public class AnimatedTextView extends View {
     public boolean adaptWidth;
+    private Drawable backgroundDrawable;
     private final AnimatedTextDrawable drawable;
     private boolean first;
     private int lastMaxWidth;
@@ -1050,6 +1051,11 @@ public class AnimatedTextView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+        Drawable drawable = this.backgroundDrawable;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, (int) (getPaddingLeft() + this.drawable.getCurrentWidth() + getPaddingRight()), getHeight());
+            this.backgroundDrawable.draw(canvas);
+        }
         this.drawable.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         this.drawable.draw(canvas);
     }
@@ -1129,6 +1135,11 @@ public class AnimatedTextView extends View {
 
     public void setScaleProperty(float f) {
         this.drawable.setScaleProperty(f);
+    }
+
+    public void setSizeableBackground(Drawable drawable) {
+        this.backgroundDrawable = drawable;
+        invalidate();
     }
 
     public void setText(CharSequence charSequence) {

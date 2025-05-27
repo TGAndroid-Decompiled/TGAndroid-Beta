@@ -91,7 +91,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda75;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda70;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -716,6 +716,7 @@ public abstract class Theme {
     public static final int key_chat_recordTime;
     public static final int key_chat_recordVoiceCancel;
     public static final int key_chat_recordedVoiceBackground;
+    public static final int key_chat_recordedVoiceDarkerBackground;
     public static final int key_chat_recordedVoiceDot;
     public static final int key_chat_recordedVoicePlayPause;
     public static final int key_chat_recordedVoiceProgress;
@@ -1238,7 +1239,7 @@ public abstract class Theme {
     private static boolean[] loadingRemoteThemes = new boolean[4];
     private static int[] lastLoadingThemesTime = new int[4];
     private static long[] remoteThemesHash = new long[4];
-    public static Drawable[] avatarDrawables = new Drawable[24];
+    public static Drawable[] avatarDrawables = new Drawable[25];
     private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
     public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
     public static Drawable[] chat_msgInCallSelectedDrawable = new Drawable[2];
@@ -5828,6 +5829,7 @@ public abstract class Theme {
             avatarDrawables[21] = resources.getDrawable(R.drawable.filled_folder_existing);
             avatarDrawables[22] = resources.getDrawable(R.drawable.filled_giveaway_premium);
             avatarDrawables[23] = resources.getDrawable(R.drawable.filled_giveaway_stars);
+            avatarDrawables[24] = resources.getDrawable(R.drawable.filled_suggest_chat_avatar);
             RLottieDrawable rLottieDrawable = dialogs_archiveAvatarDrawable;
             if (rLottieDrawable != null) {
                 rLottieDrawable.setCallback(null);
@@ -6158,6 +6160,16 @@ public abstract class Theme {
         float f2 = i2;
         ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f, f, f2, f2, f2, f2}, null, null));
         shapeDrawable.getPaint().setColor(i3);
+        return shapeDrawable;
+    }
+
+    public static ShapeDrawable createRoundRectDrawable(int i, int i2, int i3, int i4, int i5) {
+        float f = i;
+        float f2 = i2;
+        float f3 = i3;
+        float f4 = i4;
+        ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f2, f2, f3, f3, f4, f4}, null, null));
+        shapeDrawable.getPaint().setColor(i5);
         return shapeDrawable;
     }
 
@@ -7155,7 +7167,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda75(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda70(), 2100L);
                 }
             }
             currentTheme = themeInfo;

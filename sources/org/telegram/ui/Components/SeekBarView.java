@@ -18,6 +18,7 @@ import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +29,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AudioPlayerAlert;
 
 public class SeekBarView extends FrameLayout {
     private static Path tmpPath;
@@ -44,6 +46,7 @@ public class SeekBarView extends FrameLayout {
     private CharSequence lastCaption;
     private long lastDuration;
     private int lastTimestamp;
+    private int lastTimestampLabelWidth;
     private long lastTimestampUpdate;
     private long lastTimestampsAppearingUpdate;
     private long lastUpdateTime;
@@ -64,11 +67,13 @@ public class SeekBarView extends FrameLayout {
     private int separatorsCount;
     float sx;
     float sy;
+    private final AudioPlayerAlert.ClippingTextViewSwitcher textViewSwitcher;
     private int thumbDX;
     private int thumbSize;
     private int thumbX;
     private int timestampChangeDirection;
     private float timestampChangeT;
+    private int timestampIndex;
     private StaticLayout[] timestampLabel;
     private TextPaint timestampLabelPaint;
     private ArrayList timestamps;
@@ -77,8 +82,28 @@ public class SeekBarView extends FrameLayout {
     private int transitionThumbX;
     private boolean twoSided;
 
-    public class AnonymousClass1 extends FloatSeekBarAccessibilityDelegate {
-        AnonymousClass1(boolean z) {
+    public class AnonymousClass1 extends AudioPlayerAlert.ClippingTextViewSwitcher {
+        final Context val$context;
+
+        AnonymousClass1(Context context, Context context2) {
+            super(context);
+            r3 = context2;
+        }
+
+        @Override
+        protected TextView createTextView() {
+            MarqueeTextView marqueeTextView = new MarqueeTextView(r3);
+            marqueeTextView.setTextColor(SeekBarView.this.getThemedColor(Theme.key_player_time));
+            marqueeTextView.setTextSize(1, 12.0f);
+            marqueeTextView.setEllipsize(TextUtils.TruncateAt.END);
+            marqueeTextView.setSingleLine(true);
+            marqueeTextView.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
+            return marqueeTextView;
+        }
+    }
+
+    public class AnonymousClass2 extends FloatSeekBarAccessibilityDelegate {
+        AnonymousClass2(boolean z) {
             super(z);
         }
 
@@ -164,6 +189,7 @@ public class SeekBarView extends FrameLayout {
         this.timestampChangeT = 1.0f;
         this.lastWidth = -1.0f;
         this.rect = new RectF();
+        this.timestampIndex = -1;
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
         this.innerPaint1 = new Paint(1);
@@ -180,9 +206,31 @@ public class SeekBarView extends FrameLayout {
             createSelectorDrawable.setCallback(this);
             this.hoverDrawable.setVisible(true, false);
         }
+        AnonymousClass1 anonymousClass1 = new AudioPlayerAlert.ClippingTextViewSwitcher(context) {
+            final Context val$context;
+
+            AnonymousClass1(Context context2, Context context22) {
+                super(context22);
+                r3 = context22;
+            }
+
+            @Override
+            protected TextView createTextView() {
+                MarqueeTextView marqueeTextView = new MarqueeTextView(r3);
+                marqueeTextView.setTextColor(SeekBarView.this.getThemedColor(Theme.key_player_time));
+                marqueeTextView.setTextSize(1, 12.0f);
+                marqueeTextView.setEllipsize(TextUtils.TruncateAt.END);
+                marqueeTextView.setSingleLine(true);
+                marqueeTextView.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
+                return marqueeTextView;
+            }
+        };
+        this.textViewSwitcher = anonymousClass1;
+        anonymousClass1.setIsCenter();
+        addView(anonymousClass1, LayoutHelper.createFrame(-1, -2.0f));
         setImportantForAccessibility(1);
-        AnonymousClass1 anonymousClass1 = new FloatSeekBarAccessibilityDelegate(z) {
-            AnonymousClass1(boolean z2) {
+        AnonymousClass2 anonymousClass2 = new FloatSeekBarAccessibilityDelegate(z) {
+            AnonymousClass2(boolean z2) {
                 super(z2);
             }
 
@@ -214,8 +262,8 @@ public class SeekBarView extends FrameLayout {
                 SeekBarView.this.pressed = false;
             }
         };
-        this.seekBarAccessibilityDelegate = anonymousClass1;
-        setAccessibilityDelegate(anonymousClass1);
+        this.seekBarAccessibilityDelegate = anonymousClass2;
+        setAccessibilityDelegate(anonymousClass2);
     }
 
     private void drawProgressBar(Canvas canvas, RectF rectF, Paint paint) {
@@ -343,8 +391,12 @@ public class SeekBarView extends FrameLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SeekBarView.drawTimestampLabel(android.graphics.Canvas):void");
     }
 
-    private int getThemedColor(int i) {
+    public int getThemedColor(int i) {
         return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    private int getTimestampLabelWidth() {
+        return (int) (Math.abs(((this.selectorWidth / 2.0f) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0)) - ((getMeasuredWidth() - (this.selectorWidth / 2.0f)) - (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0))) - AndroidUtilities.dp(66.0f));
     }
 
     public void lambda$onTouch$0() {
@@ -402,6 +454,16 @@ public class SeekBarView extends FrameLayout {
         }
     }
 
+    private void setTimestampIndex(int i) {
+        if (this.timestampIndex != i) {
+            this.timestampIndex = i;
+            if (i < 0 || i >= this.timestamps.size()) {
+                return;
+            }
+            this.textViewSwitcher.setText((CharSequence) ((Pair) this.timestamps.get(this.timestampIndex)).second);
+        }
+    }
+
     public void clearTimestamps() {
         this.timestamps = null;
         this.currentTimestamp = -1;
@@ -442,8 +504,20 @@ public class SeekBarView extends FrameLayout {
     }
 
     @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(14.0f) + (this.textViewSwitcher.getMeasuredHeight() / 2);
+        int dp = (this.selectorWidth / 2) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0) + AndroidUtilities.dp(25.0f) + AndroidUtilities.dp(8.0f);
+        AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = this.textViewSwitcher;
+        clippingTextViewSwitcher.layout(dp, measuredHeight - clippingTextViewSwitcher.getMeasuredHeight(), this.textViewSwitcher.getMeasuredWidth() + dp, measuredHeight);
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
+        int timestampLabelWidth = getTimestampLabelWidth();
+        this.lastTimestampLabelWidth = timestampLabelWidth;
+        this.textViewSwitcher.measure(View.MeasureSpec.makeMeasureSpec(timestampLabelWidth, 1073741824), 0);
         if (this.progressToSet == -100.0f || getMeasuredWidth() <= 0) {
             return;
         }
@@ -570,59 +644,64 @@ public class SeekBarView extends FrameLayout {
             }
             charSequence = messageObject.youtubeDescription;
         }
-        if (charSequence == this.lastCaption && this.lastDuration == l.longValue()) {
-            return;
-        }
-        this.lastCaption = charSequence;
-        this.lastDuration = l.longValue() * 10;
-        if (!(charSequence instanceof Spanned)) {
-            this.timestamps = null;
-            this.currentTimestamp = -1;
-            this.timestampsAppearing = 0.0f;
-            StaticLayout[] staticLayoutArr = this.timestampLabel;
-            if (staticLayoutArr != null) {
-                staticLayoutArr[1] = null;
-                staticLayoutArr[0] = null;
+        boolean z = charSequence != this.lastCaption;
+        if (z || this.lastDuration != l.longValue()) {
+            this.lastCaption = charSequence;
+            this.lastDuration = l.longValue() * 10;
+            if (getTimestampLabelWidth() != this.lastTimestampLabelWidth) {
+                requestLayout();
+            }
+            if (!(charSequence instanceof Spanned)) {
+                this.timestamps = null;
+                this.currentTimestamp = -1;
+                this.timestampsAppearing = 0.0f;
+                StaticLayout[] staticLayoutArr = this.timestampLabel;
+                if (staticLayoutArr != null) {
+                    staticLayoutArr[1] = null;
+                    staticLayoutArr[0] = null;
+                    return;
+                }
                 return;
             }
-            return;
-        }
-        Spanned spanned = (Spanned) charSequence;
-        try {
-            URLSpanNoUnderline[] uRLSpanNoUnderlineArr = (URLSpanNoUnderline[]) spanned.getSpans(0, spanned.length(), URLSpanNoUnderline.class);
-            this.timestamps = new ArrayList();
-            this.timestampsAppearing = 0.0f;
-            if (this.timestampLabelPaint == null) {
-                TextPaint textPaint = new TextPaint(1);
-                this.timestampLabelPaint = textPaint;
-                textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-                this.timestampLabelPaint.setColor(-1);
-            }
-            for (URLSpanNoUnderline uRLSpanNoUnderline : uRLSpanNoUnderlineArr) {
-                if (uRLSpanNoUnderline != null && uRLSpanNoUnderline.getURL() != null && uRLSpanNoUnderline.label != null && uRLSpanNoUnderline.getURL().startsWith("audio?") && (parseInt = Utilities.parseInt((CharSequence) uRLSpanNoUnderline.getURL().substring(6))) != null && parseInt.intValue() >= 0) {
-                    float intValue = ((float) (parseInt.intValue() * 1000)) / ((float) l.longValue());
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(uRLSpanNoUnderline.label);
-                    Emoji.replaceEmoji(spannableStringBuilder, this.timestampLabelPaint.getFontMetricsInt(), false);
-                    this.timestamps.add(new Pair(Float.valueOf(intValue), spannableStringBuilder));
+            Spanned spanned = (Spanned) charSequence;
+            try {
+                URLSpanNoUnderline[] uRLSpanNoUnderlineArr = (URLSpanNoUnderline[]) spanned.getSpans(0, spanned.length(), URLSpanNoUnderline.class);
+                this.timestamps = new ArrayList();
+                if (z) {
+                    this.timestampsAppearing = 0.0f;
                 }
-            }
-            Collections.sort(this.timestamps, new Comparator() {
-                @Override
-                public final int compare(Object obj, Object obj2) {
-                    int lambda$updateTimestamps$1;
-                    lambda$updateTimestamps$1 = SeekBarView.lambda$updateTimestamps$1((Pair) obj, (Pair) obj2);
-                    return lambda$updateTimestamps$1;
+                if (this.timestampLabelPaint == null) {
+                    TextPaint textPaint = new TextPaint(1);
+                    this.timestampLabelPaint = textPaint;
+                    textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+                    this.timestampLabelPaint.setColor(-1);
                 }
-            });
-        } catch (Exception e) {
-            FileLog.e(e);
-            this.timestamps = null;
-            this.currentTimestamp = -1;
-            this.timestampsAppearing = 0.0f;
-            StaticLayout[] staticLayoutArr2 = this.timestampLabel;
-            if (staticLayoutArr2 != null) {
-                staticLayoutArr2[1] = null;
-                staticLayoutArr2[0] = null;
+                for (URLSpanNoUnderline uRLSpanNoUnderline : uRLSpanNoUnderlineArr) {
+                    if (uRLSpanNoUnderline != null && uRLSpanNoUnderline.getURL() != null && uRLSpanNoUnderline.label != null && uRLSpanNoUnderline.getURL().startsWith("audio?") && (parseInt = Utilities.parseInt((CharSequence) uRLSpanNoUnderline.getURL().substring(6))) != null && parseInt.intValue() >= 0) {
+                        float intValue = ((float) (parseInt.intValue() * 1000)) / ((float) l.longValue());
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(uRLSpanNoUnderline.label);
+                        Emoji.replaceEmoji(spannableStringBuilder, this.timestampLabelPaint.getFontMetricsInt(), false);
+                        this.timestamps.add(new Pair(Float.valueOf(intValue), spannableStringBuilder));
+                    }
+                }
+                Collections.sort(this.timestamps, new Comparator() {
+                    @Override
+                    public final int compare(Object obj, Object obj2) {
+                        int lambda$updateTimestamps$1;
+                        lambda$updateTimestamps$1 = SeekBarView.lambda$updateTimestamps$1((Pair) obj, (Pair) obj2);
+                        return lambda$updateTimestamps$1;
+                    }
+                });
+            } catch (Exception e) {
+                FileLog.e(e);
+                this.timestamps = null;
+                this.currentTimestamp = -1;
+                this.timestampsAppearing = 0.0f;
+                StaticLayout[] staticLayoutArr2 = this.timestampLabel;
+                if (staticLayoutArr2 != null) {
+                    staticLayoutArr2[1] = null;
+                    staticLayoutArr2[0] = null;
+                }
             }
         }
     }

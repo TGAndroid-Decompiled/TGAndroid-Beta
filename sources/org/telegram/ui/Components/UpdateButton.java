@@ -59,7 +59,7 @@ public class UpdateButton extends IUpdateButton {
         this.textView = textView;
         textView.setTextSize(1, 15.0f);
         this.textView.setTypeface(AndroidUtilities.bold());
-        this.textView.setText(LocaleController.getString(2131690061).toUpperCase());
+        this.textView.setText(LocaleController.getString(2131690066).toUpperCase());
         this.textView.setTextColor(-1);
         this.textView.setPadding(AndroidUtilities.dp(30.0f), 0, 0, 0);
         addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 0.0f));

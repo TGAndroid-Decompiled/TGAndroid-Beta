@@ -131,7 +131,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 EntryView entryView = (EntryView) view;
                 entryView.set(uItem.id, uItem.intValue, (StoryEntry) uItem.object);
                 entryView.setSelected(uItem.checked, false);
@@ -433,7 +433,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             public final void run(Object obj, Object obj2) {
                 MultipleStoriesSelector.this.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
             }
-        });
+        }, true);
         showList(false, false);
         setWillNotDraw(false);
         paint.setStyle(Paint.Style.STROKE);

@@ -17,7 +17,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.style.CharacterStyle;
@@ -42,7 +41,6 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatMessageSharedResources;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -64,7 +62,6 @@ import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
-import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextCaption;
@@ -178,112 +175,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        public void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
-            boolean z3;
-            boolean z4;
-            if (visibleReaction == null || MessageSendPreview.this.effectSelector == null) {
-                return;
-            }
-            boolean z5 = !UserConfig.getInstance(MessageSendPreview.this.currentAccount).isPremium() && visibleReaction.premium;
-            if (MessageSendPreview.this.mainMessageCell != null) {
-                MessageObject messageObject = MessageSendPreview.this.mainMessageCell.getMessageObject();
-                if (messageObject == null) {
-                    return;
-                }
-                TLRPC.Message message = messageObject.messageOwner;
-                long j = message.effect;
-                long j2 = visibleReaction.effectId;
-                if (j2 == j) {
-                    message.flags2 &= -5;
-                    message.effect = 0L;
-                    z4 = true;
-                } else {
-                    message.flags2 |= 4;
-                    message.effect = j2;
-                    z4 = false;
-                }
-                if (!z5) {
-                    MessageSendPreview.this.mainMessageCell.setMessageObject(messageObject, MessageSendPreview.this.getValidGroupedMessage(messageObject), MessageSendPreview.this.messageObjects.size() > 1, false);
-                    MessageSendPreview.this.effectSelector.setSelectedReactionAnimated(z4 ? null : visibleReaction);
-                    if (MessageSendPreview.this.effectSelector.getReactionsWindow() != null && MessageSendPreview.this.effectSelector.getReactionsWindow().getSelectAnimatedEmojiDialog() != null) {
-                        SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = MessageSendPreview.this.effectSelector.getReactionsWindow().getSelectAnimatedEmojiDialog();
-                        if (z4) {
-                            visibleReaction = null;
-                        }
-                        selectAnimatedEmojiDialog.setSelectedReaction(visibleReaction);
-                        MessageSendPreview.this.effectSelector.getReactionsWindow().containerView.invalidate();
-                    }
-                }
-                MessageSendPreview.this.effectOverlay.clear();
-                if (!z4) {
-                    MessageSendPreview.this.effectOverlay.showAnimationForCell(MessageSendPreview.this.mainMessageCell, 0, false, false);
-                }
-                if (z5) {
-                    TLRPC.Message message2 = messageObject.messageOwner;
-                    message2.effect = j;
-                    if (j == 0) {
-                        message2.flags2 &= -5;
-                    }
-                }
-                if (MessageSendPreview.this.sendButton != null) {
-                    MessageSendPreview.this.sendButton.setEffect(messageObject.messageOwner.effect);
-                }
-                MessageSendPreview.this.onEffectChange(messageObject.messageOwner.effect);
-            } else if (MessageSendPreview.this.cameraRect != null) {
-                if (visibleReaction.effectId == MessageSendPreview.this.effectId) {
-                    MessageSendPreview.this.effectId = 0L;
-                    z3 = true;
-                } else {
-                    MessageSendPreview.this.effectId = visibleReaction.effectId;
-                    z3 = false;
-                }
-                if (MessageSendPreview.this.sendButton != null) {
-                    MessageSendPreview.this.sendButton.setEffect(MessageSendPreview.this.effectId);
-                }
-                MessageSendPreview messageSendPreview = MessageSendPreview.this;
-                messageSendPreview.onEffectChange(messageSendPreview.effectId);
-                if (!z5) {
-                    TLRPC.TL_availableEffect effect = MessageSendPreview.this.effectId == 0 ? null : MessagesController.getInstance(MessageSendPreview.this.currentAccount).getEffect(MessageSendPreview.this.effectId);
-                    if (MessageSendPreview.this.effectDrawable != null) {
-                        if (MessageSendPreview.this.effectId == 0 || effect == null) {
-                            MessageSendPreview.this.effectDrawable.set((Drawable) null, true);
-                        } else {
-                            MessageSendPreview.this.effectDrawable.set((Drawable) Emoji.getEmojiDrawable(effect.emoticon), true);
-                        }
-                    }
-                    MessageSendPreview.this.effectSelector.setSelectedReactionAnimated(z3 ? null : visibleReaction);
-                    if (MessageSendPreview.this.effectSelector.getReactionsWindow() != null && MessageSendPreview.this.effectSelector.getReactionsWindow().getSelectAnimatedEmojiDialog() != null) {
-                        SelectAnimatedEmojiDialog selectAnimatedEmojiDialog2 = MessageSendPreview.this.effectSelector.getReactionsWindow().getSelectAnimatedEmojiDialog();
-                        if (z3) {
-                            visibleReaction = null;
-                        }
-                        selectAnimatedEmojiDialog2.setSelectedReaction(visibleReaction);
-                        MessageSendPreview.this.effectSelector.getReactionsWindow().containerView.invalidate();
-                    }
-                }
-                MessageSendPreview.this.effectOverlay.clear();
-                if (!z3) {
-                    TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                    tL_message.effect = MessageSendPreview.this.effectId;
-                    if (MessageSendPreview.this.effectId != 0) {
-                        tL_message.flags2 |= 4;
-                    }
-                    MessageSendPreview.this.effectOverlay.createDrawingObject(null, 0, null, new MessageObject(MessageSendPreview.this.currentAccount, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
-                }
-            }
-            if (z5 && this.val$fragment != null) {
-                BulletinFactory of = BulletinFactory.of(MessageSendPreview.this.containerView, MessageSendPreview.this.resourcesProvider);
-                int i = R.raw.star_premium_2;
-                String string = LocaleController.getString(R.string.AnimatedEffectPremium);
-                final BaseFragment baseFragment = this.val$fragment;
-                of.createSimpleBulletin(i, AndroidUtilities.premiumText(string, new Runnable() {
-                    @Override
-                    public final void run() {
-                        MessageSendPreview.AnonymousClass16.lambda$onReactionClicked$0(BaseFragment.this);
-                    }
-                })).show();
-            }
-            MessageSendPreview.this.effectsView.invalidate();
+        public void onReactionClicked(android.view.View r18, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r19, boolean r20, boolean r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass16.onReactionClicked(android.view.View, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean):void");
         }
     }
 
@@ -1094,7 +987,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 ChatMessageCell chatMessageCell = (ChatMessageCell) viewHolder.itemView;
                 MessageObject.GroupedMessages validGroupedMessage = MessageSendPreview.this.getValidGroupedMessage(messageObject);
                 chatMessageCell.setInvalidatesParent(validGroupedMessage != null);
-                chatMessageCell.setMessageObject(messageObject, validGroupedMessage, false, false);
+                chatMessageCell.setMessageObject(messageObject, validGroupedMessage, false, false, false);
                 if (i2 != MessageSendPreview.this.getMainMessageCellPosition() || messageObject.needDrawForwarded()) {
                     return;
                 }
@@ -1195,11 +1088,6 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
-                    public void didPressDialogButton(ChatMessageCell chatMessageCell) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell);
-                    }
-
-                    @Override
                     public void didPressEffect(ChatMessageCell chatMessageCell) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell);
                     }
@@ -1292,11 +1180,6 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public void didPressTime(ChatMessageCell chatMessageCell) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell);
-                    }
-
-                    @Override
-                    public void didPressTopicButton(ChatMessageCell chatMessageCell) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTopicButton(this, chatMessageCell);
                     }
 
                     @Override
@@ -1462,16 +1345,6 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public boolean shouldRepeatSticker(MessageObject messageObject) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
-                    }
-
-                    @Override
-                    public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell);
-                    }
-
-                    @Override
-                    public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell);
                     }
 
                     @Override
@@ -1909,15 +1782,16 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
             i++;
         }
+        ChatMessageCell chatMessageCell2 = chatMessageCell;
         int i2 = -1;
         for (int i3 = 0; i3 < this.messageObjects.size(); i3++) {
             if (this.messageObjects.get(i3) == messageObject) {
                 i2 = (this.messageObjects.size() - 1) - i3;
             }
         }
-        if (chatMessageCell != null) {
+        if (chatMessageCell2 != null) {
             messageObject.forceUpdate = true;
-            chatMessageCell.setMessageObject(messageObject, chatMessageCell.getCurrentMessagesGroup(), chatMessageCell.isPinnedBottom(), chatMessageCell.isPinnedTop());
+            chatMessageCell2.setMessageObject(messageObject, chatMessageCell2.getCurrentMessagesGroup(), chatMessageCell2.isPinnedBottom(), chatMessageCell2.isPinnedTop(), chatMessageCell2.isFirstInChat());
         }
         this.chatListView.getAdapter().notifyItemChanged(i2);
     }
@@ -1985,7 +1859,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             chatMessageCell2.isBot = chatMessageCell3.isBot;
             chatMessageCell2.isForum = chatMessageCell3.isForum;
             chatMessageCell2.isForumGeneral = chatMessageCell3.isForumGeneral;
-            chatMessageCell2.setMessageObject(chatMessageCell.getMessageObject(), null, chatMessageCell.isPinnedBottom(), chatMessageCell.isPinnedTop());
+            chatMessageCell2.setMessageObject(chatMessageCell.getMessageObject(), null, chatMessageCell.isPinnedBottom(), chatMessageCell.isPinnedTop(), chatMessageCell.isFirstInChat());
             ChatMessageCell.TransitionParams transitionParams = this.mainMessageCell.getTransitionParams();
             transitionParams.animateChange = this.mainMessageCell.getTransitionParams().animateChange();
             transitionParams.animateChangeProgress = 0.0f;

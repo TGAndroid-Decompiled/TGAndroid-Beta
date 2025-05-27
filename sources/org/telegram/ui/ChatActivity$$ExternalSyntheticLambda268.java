@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.ui.Components.ItemOptions;
 
-public final class ChatActivity$$ExternalSyntheticLambda283 implements Runnable {
+public final class ChatActivity$$ExternalSyntheticLambda268 implements Runnable {
     public final ItemOptions f$0;
 
-    public ChatActivity$$ExternalSyntheticLambda283(ItemOptions itemOptions) {
+    public ChatActivity$$ExternalSyntheticLambda268(ItemOptions itemOptions) {
         this.f$0 = itemOptions;
     }
 

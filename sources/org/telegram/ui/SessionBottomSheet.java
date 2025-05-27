@@ -287,24 +287,26 @@ public class SessionBottomSheet extends BottomSheet {
             linearLayout.addView(itemView4);
             itemView = itemView4;
         }
-        final ItemView itemView5 = new ItemView(parentActivity, true);
-        itemView5.valueText.setText(LocaleController.getString(R.string.AcceptCalls));
-        Drawable mutate5 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_calls).mutate();
-        mutate5.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-        itemView5.iconView.setImageDrawable(mutate5);
-        itemView5.switchView.setChecked(!tL_authorization.call_requests_disabled, false);
-        itemView5.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
-        itemView5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemView5.switchView.setChecked(!r3.isChecked(), true);
-                tL_authorization.call_requests_disabled = !itemView5.switchView.isChecked();
-                SessionBottomSheet.this.uploadSessionSettings();
-            }
-        });
-        itemView.needDivider = true;
-        itemView5.descriptionText.setText(LocaleController.getString(R.string.AcceptCallsChatsDescription));
-        linearLayout.addView(itemView5);
+        if (acceptCallsEnabled(tL_authorization)) {
+            final ItemView itemView5 = new ItemView(parentActivity, true);
+            itemView5.valueText.setText(LocaleController.getString(R.string.AcceptCalls));
+            Drawable mutate5 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_calls).mutate();
+            mutate5.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+            itemView5.iconView.setImageDrawable(mutate5);
+            itemView5.switchView.setChecked(!tL_authorization.call_requests_disabled, false);
+            itemView5.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
+            itemView5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemView5.switchView.setChecked(!r3.isChecked(), true);
+                    tL_authorization.call_requests_disabled = !itemView5.switchView.isChecked();
+                    SessionBottomSheet.this.uploadSessionSettings();
+                }
+            });
+            itemView.needDivider = true;
+            itemView5.descriptionText.setText(LocaleController.getString(R.string.AcceptCallsChatsDescription));
+            linearLayout.addView(itemView5);
+        }
         if (!z) {
             TextView textView3 = new TextView(parentActivity);
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
@@ -320,6 +322,10 @@ public class SessionBottomSheet extends BottomSheet {
         ScrollView scrollView = new ScrollView(parentActivity);
         scrollView.addView(linearLayout);
         setCustomView(scrollView);
+    }
+
+    private boolean acceptCallsEnabled(TLRPC.TL_authorization tL_authorization) {
+        return tL_authorization.api_id != 22;
     }
 
     public void copyText(final String str) {

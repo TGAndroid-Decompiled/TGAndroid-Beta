@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
+import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.SavedMessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
@@ -20,53 +21,56 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.LaunchActivity;
 
 public class SavedMessagesController {
+    public ArrayList<SavedDialog> allDialogs;
+    private ArrayList<SavedDialog> cachedDialogs;
+    private final LongSparseArray checkMessagesCallbacks;
     private final int currentAccount;
     private int dialogsCount;
     private int dialogsCountHidden;
     public boolean dialogsEndReached;
     private boolean dialogsLoaded;
     private boolean dialogsLoading;
+    private final long forumDialogId;
     private boolean loadedCache;
+    private ArrayList<SavedDialog> loadedDialogs;
     private boolean loadingCache;
     private boolean loadingCacheOnly;
+    private final Runnable saveCacheRunnable;
     private boolean saving;
     public boolean unsupported;
-    private ArrayList<SavedDialog> cachedDialogs = new ArrayList<>();
-    private ArrayList<SavedDialog> loadedDialogs = new ArrayList<>();
-    public ArrayList<SavedDialog> allDialogs = new ArrayList<>();
-    private final Runnable saveCacheRunnable = new Runnable() {
-        @Override
-        public final void run() {
-            SavedMessagesController.this.saveCache();
-        }
-    };
-    private final LongSparseArray checkMessagesCallbacks = new LongSparseArray();
 
     public static class SavedDialog {
         public long dialogId;
+        private int lastDate;
         private int localDate;
         public MessageObject message;
         public int messagesCount;
         public boolean messagesCountLoaded;
         public boolean pinned;
         private int pinnedOrder;
+        public long readInboxMaxId;
+        public long readOutboxMaxId;
         public int top_message_id;
+        public long unreadCount;
 
-        public static SavedDialog fromMessage(int i, TLRPC.Message message) {
+        public static SavedDialog fromMessage(int i, TLRPC.Message message, boolean z) {
             SavedDialog savedDialog = new SavedDialog();
             savedDialog.dialogId = MessageObject.getSavedDialogId(UserConfig.getInstance(i).getClientUserId(), message);
             savedDialog.pinned = false;
             savedDialog.top_message_id = message.id;
-            savedDialog.message = new MessageObject(i, message, null, null, null, null, null, false, false, 0L, false, false, true);
+            savedDialog.message = new MessageObject(i, message, null, null, null, null, null, false, false, 0L, false, false, z);
             return savedDialog;
         }
 
-        public static SavedDialog fromTL(int i, TLRPC.TL_savedDialog tL_savedDialog, ArrayList<TLRPC.Message> arrayList) {
+        public static SavedDialog fromTL(int i, TLRPC.savedDialog saveddialog, ArrayList<TLRPC.Message> arrayList, boolean z) {
             TLRPC.Message message;
             SavedDialog savedDialog = new SavedDialog();
-            savedDialog.dialogId = DialogObject.getPeerDialogId(tL_savedDialog.peer);
-            savedDialog.pinned = tL_savedDialog.pinned;
-            savedDialog.top_message_id = tL_savedDialog.top_message;
+            savedDialog.dialogId = DialogObject.getPeerDialogId(saveddialog.peer);
+            savedDialog.pinned = saveddialog.pinned;
+            savedDialog.top_message_id = saveddialog.top_message;
+            savedDialog.unreadCount = saveddialog.unread_count;
+            savedDialog.readInboxMaxId = saveddialog.read_inbox_max_id;
+            savedDialog.readOutboxMaxId = saveddialog.read_outbox_max_id;
             int i2 = 0;
             while (true) {
                 if (i2 >= arrayList.size()) {
@@ -81,15 +85,21 @@ public class SavedMessagesController {
             }
             TLRPC.Message message2 = message;
             if (message2 != null) {
-                savedDialog.message = new MessageObject(i, message2, null, null, null, null, null, false, false, 0L, false, false, true);
+                savedDialog.message = new MessageObject(i, message2, null, null, null, null, null, false, false, 0L, false, false, z);
             }
             return savedDialog;
         }
 
-        public int getDate() {
+        private int getDateInternal() {
             TLRPC.Message message;
             MessageObject messageObject = this.message;
             return (messageObject == null || (message = messageObject.messageOwner) == null) ? this.localDate : ((message.flags & 32768) == 0 || message.edit_hide) ? message.date : message.edit_date;
+        }
+
+        public int getDate() {
+            int dateInternal = getDateInternal();
+            this.lastDate = dateInternal;
+            return dateInternal;
         }
 
         public boolean isHidden() {
@@ -100,7 +110,22 @@ public class SavedMessagesController {
     }
 
     public SavedMessagesController(int i) {
+        this(i, 0L);
+    }
+
+    public SavedMessagesController(int i, long j) {
+        this.cachedDialogs = new ArrayList<>();
+        this.loadedDialogs = new ArrayList<>();
+        this.allDialogs = new ArrayList<>();
+        this.saveCacheRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                SavedMessagesController.this.saveCache();
+            }
+        };
+        this.checkMessagesCallbacks = new LongSparseArray();
         this.currentAccount = i;
+        this.forumDialogId = j;
         this.unsupported = MessagesController.getMainSettings(i).getBoolean("savedMessagesUnsupported", true);
     }
 
@@ -153,6 +178,9 @@ public class SavedMessagesController {
                 this.cachedDialogs.add(savedDialog2);
             }
         }
+        if (this.forumDialogId != 0) {
+            UserConfig.getInstance(this.currentAccount).getPreferences().edit().remove("topics_end_reached_" + (-this.forumDialogId)).apply();
+        }
         this.loadedDialogs.clear();
         this.dialogsLoaded = false;
         this.dialogsCount = 0;
@@ -168,7 +196,11 @@ public class SavedMessagesController {
 
     public void lambda$deleteCache$13(MessagesStorage messagesStorage) {
         try {
-            messagesStorage.getDatabase().executeFast("DELETE FROM saved_dialogs").stepThis().dispose();
+            SQLitePreparedStatement executeFast = messagesStorage.getDatabase().executeFast("DELETE FROM saved_dialogs WHERE forumChatId = ?");
+            executeFast.requery();
+            executeFast.bindLong(1, this.forumDialogId);
+            executeFast.step();
+            executeFast.dispose();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -186,15 +218,17 @@ public class SavedMessagesController {
             int size = messages_messages.messages.size();
             if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
                 size = ((TLRPC.TL_messages_messagesSlice) messages_messages).count;
+            } else if (this.forumDialogId != 0 && (messages_messages instanceof TLRPC.TL_messages_channelMessages)) {
+                size = messages_messages.count;
             }
             MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
             MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
             boolean z = size > 0;
             if (size > 0) {
-                if (!updatedDialogCount(j, size)) {
+                if (!updatedDialogCount(j, size, true)) {
                     if (!messages_messages.messages.isEmpty()) {
-                        SavedDialog fromMessage = SavedDialog.fromMessage(this.currentAccount, messages_messages.messages.get(0));
+                        SavedDialog fromMessage = SavedDialog.fromMessage(this.currentAccount, messages_messages.messages.get(0), this.forumDialogId == 0);
                         fromMessage.messagesCount = size;
                         fromMessage.messagesCountLoaded = true;
                         this.cachedDialogs.add(fromMessage);
@@ -236,7 +270,7 @@ public class SavedMessagesController {
         runnable.run();
     }
 
-    public void lambda$loadCache$7(org.telegram.messenger.MessagesStorage r36, long r37, final java.lang.Runnable r39) {
+    public void lambda$loadCache$7(org.telegram.messenger.MessagesStorage r38, long r39, final java.lang.Runnable r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SavedMessagesController.lambda$loadCache$7(org.telegram.messenger.MessagesStorage, long, java.lang.Runnable):void");
     }
 
@@ -244,7 +278,7 @@ public class SavedMessagesController {
         loadDialogs(false);
     }
 
-    public void lambda$loadDialogs$2(org.telegram.tgnet.TLObject r19, java.util.ArrayList r20, org.telegram.tgnet.TLRPC.TL_error r21) {
+    public void lambda$loadDialogs$2(org.telegram.tgnet.TLObject r21, java.util.ArrayList r22, org.telegram.tgnet.TLRPC.TL_error r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SavedMessagesController.lambda$loadDialogs$2(org.telegram.tgnet.TLObject, java.util.ArrayList, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 
@@ -261,7 +295,7 @@ public class SavedMessagesController {
         this.saving = false;
     }
 
-    public void lambda$saveCache$11(org.telegram.messenger.MessagesStorage r7, java.util.ArrayList r8) {
+    public void lambda$saveCache$11(org.telegram.messenger.MessagesStorage r8, java.util.ArrayList r9) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SavedMessagesController.lambda$saveCache$11(org.telegram.messenger.MessagesStorage, java.util.ArrayList):void");
     }
 
@@ -278,7 +312,7 @@ public class SavedMessagesController {
         }
         for (int i2 = 0; i2 < longSparseArray.size(); i2++) {
             long keyAt = longSparseArray.keyAt(i2);
-            MessageObject messageObject = new MessageObject(this.currentAccount, (TLRPC.Message) longSparseArray.valueAt(i2), null, null, null, null, null, false, false, 0L, false, false, true);
+            MessageObject messageObject = new MessageObject(this.currentAccount, (TLRPC.Message) longSparseArray.valueAt(i2), null, null, null, null, null, false, false, 0L, false, false, this.forumDialogId == 0);
             for (int i3 = 0; i3 < this.loadedDialogs.size(); i3++) {
                 SavedDialog savedDialog = this.loadedDialogs.get(i3);
                 if (savedDialog.dialogId == keyAt) {
@@ -297,7 +331,7 @@ public class SavedMessagesController {
         update();
     }
 
-    public void lambda$updateDialogsLastMessage$9(org.telegram.messenger.MessagesStorage r19, java.util.ArrayList r20, long r21) {
+    public void lambda$updateDialogsLastMessage$9(org.telegram.messenger.MessagesStorage r22, java.util.ArrayList r23, long r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SavedMessagesController.lambda$updateDialogsLastMessage$9(org.telegram.messenger.MessagesStorage, java.util.ArrayList, long):void");
     }
 
@@ -389,6 +423,9 @@ public class SavedMessagesController {
             }
             i++;
         }
+        if (this.forumDialogId != 0) {
+            MessagesStorage.getInstance(this.currentAccount).removeTopic(this.forumDialogId, j);
+        }
         return Math.max(i3, i5);
     }
 
@@ -468,7 +505,7 @@ public class SavedMessagesController {
         });
         this.allDialogs.addAll(arrayList);
         if (z) {
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedMessagesDialogsUpdate, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedMessagesDialogsUpdate, Long.valueOf(this.forumDialogId));
             if (hasDialogs() || !MessagesController.getInstance(this.currentAccount).savedViewAsChats) {
                 return;
             }
@@ -681,6 +718,9 @@ public class SavedMessagesController {
         this.checkMessagesCallbacks.put(j, arrayList2);
         TLRPC.TL_messages_getSavedHistory tL_messages_getSavedHistory = new TLRPC.TL_messages_getSavedHistory();
         tL_messages_getSavedHistory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        if (this.forumDialogId != 0) {
+            tL_messages_getSavedHistory.parent_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.forumDialogId);
+        }
         tL_messages_getSavedHistory.limit = 1;
         tL_messages_getSavedHistory.hash = 0L;
         tL_messages_getSavedHistory.offset_id = Integer.MAX_VALUE;
@@ -692,6 +732,10 @@ public class SavedMessagesController {
                 SavedMessagesController.this.lambda$hasSavedMessages$15(j, tLObject, tL_error);
             }
         });
+    }
+
+    public boolean isLoading() {
+        return this.dialogsLoading;
     }
 
     public void loadDialogs(boolean z) {
@@ -732,6 +776,10 @@ public class SavedMessagesController {
         }
         tL_messages_getSavedDialogs.offset_peer = tL_inputPeerEmpty;
         tL_messages_getSavedDialogs.limit = 20;
+        if (this.forumDialogId != 0) {
+            tL_messages_getSavedDialogs.flags |= 2;
+            tL_messages_getSavedDialogs.parent_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.forumDialogId);
+        }
         final ArrayList arrayList2 = new ArrayList();
         arrayList2.addAll(this.allDialogs.subList(Math.min(this.loadedDialogs.size(), this.allDialogs.size()), Math.min(this.loadedDialogs.size() + tL_messages_getSavedDialogs.limit, this.allDialogs.size())));
         for (int i = 0; i < arrayList2.size(); i++) {
@@ -948,87 +996,95 @@ public class SavedMessagesController {
             long keyAt = longSparseArray.keyAt(i2);
             TLRPC.Message message3 = (TLRPC.Message) longSparseArray.valueAt(i2);
             Integer num2 = (Integer) longSparseArray2.get(keyAt);
-            int i3 = 0;
-            while (true) {
-                if (i3 >= this.cachedDialogs.size()) {
-                    z = false;
-                    break;
-                }
-                SavedDialog savedDialog = this.cachedDialogs.get(i3);
-                if (savedDialog.dialogId == keyAt) {
-                    int i4 = savedDialog.top_message_id;
-                    int i5 = message3.id;
-                    if (i4 < i5 || (i5 < 0 && message3.date > savedDialog.getDate())) {
-                        if (savedDialog.top_message_id < message3.id) {
-                            int i6 = 0;
-                            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                                if (arrayList.get(i7).id > savedDialog.top_message_id) {
-                                    i6++;
-                                }
-                            }
-                            savedDialog.messagesCount += i6;
-                        }
-                        MessageObject messageObject = new MessageObject(this.currentAccount, message3, false, false);
-                        savedDialog.message = messageObject;
-                        savedDialog.top_message_id = messageObject.getId();
-                        z3 = true;
+            if (this.forumDialogId == 0 || MessageObject.getMonoForumTopicId(message3) != 0) {
+                int i3 = 0;
+                while (true) {
+                    if (i3 >= this.cachedDialogs.size()) {
+                        z = false;
+                        break;
                     }
-                    z = true;
-                } else {
-                    i3++;
-                }
-            }
-            if (!z) {
-                SavedDialog fromMessage = SavedDialog.fromMessage(this.currentAccount, message3);
-                if (num2 != null) {
-                    fromMessage.messagesCount = num2.intValue();
-                }
-                this.cachedDialogs.add(fromMessage);
-                z3 = true;
-            }
-            int i8 = 0;
-            while (true) {
-                if (i8 >= this.loadedDialogs.size()) {
-                    z2 = false;
-                    break;
-                }
-                SavedDialog savedDialog2 = this.loadedDialogs.get(i8);
-                if (savedDialog2.dialogId == keyAt) {
-                    int i9 = savedDialog2.top_message_id;
-                    int i10 = message3.id;
-                    if (i9 < i10 || (i10 < 0 && message3.date > savedDialog2.getDate())) {
-                        if (savedDialog2.top_message_id < message3.id) {
-                            int i11 = 0;
-                            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                                if (arrayList.get(i12).id > savedDialog2.top_message_id) {
-                                    i11++;
+                    SavedDialog savedDialog = this.cachedDialogs.get(i3);
+                    if (savedDialog.dialogId == keyAt) {
+                        int i4 = savedDialog.top_message_id;
+                        int i5 = message3.id;
+                        if (i4 < i5 || (i5 < 0 && message3.date > savedDialog.getDate())) {
+                            if (savedDialog.top_message_id < message3.id) {
+                                int i6 = 0;
+                                for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                                    if (arrayList.get(i7).id > savedDialog.top_message_id) {
+                                        i6++;
+                                    }
                                 }
+                                savedDialog.messagesCount += i6;
                             }
-                            savedDialog2.messagesCount += i11;
+                            MessageObject messageObject = new MessageObject(this.currentAccount, message3, false, false);
+                            savedDialog.message = messageObject;
+                            savedDialog.top_message_id = messageObject.getId();
+                            z3 = true;
                         }
-                        MessageObject messageObject2 = new MessageObject(this.currentAccount, message3, false, false);
-                        savedDialog2.message = messageObject2;
-                        savedDialog2.top_message_id = messageObject2.getId();
-                        z3 = true;
+                        num2 = Integer.valueOf(num2 != null ? Math.max(num2.intValue(), savedDialog.messagesCount) : savedDialog.messagesCount);
+                        z = true;
+                    } else {
+                        i3++;
                     }
-                    z2 = true;
-                } else {
-                    i8++;
                 }
-            }
-            if (!z2) {
-                SavedDialog fromMessage2 = SavedDialog.fromMessage(this.currentAccount, message3);
-                if (num2 != null) {
-                    fromMessage2.messagesCount = num2.intValue();
+                if (!z) {
+                    SavedDialog fromMessage = SavedDialog.fromMessage(this.currentAccount, message3, this.forumDialogId == 0);
+                    if (num2 != null) {
+                        fromMessage.messagesCount = num2.intValue();
+                    }
+                    this.cachedDialogs.add(fromMessage);
+                    z3 = true;
                 }
-                this.loadedDialogs.add(fromMessage2);
-                z3 = true;
+                int i8 = 0;
+                while (true) {
+                    if (i8 >= this.loadedDialogs.size()) {
+                        z2 = false;
+                        break;
+                    }
+                    SavedDialog savedDialog2 = this.loadedDialogs.get(i8);
+                    if (savedDialog2.dialogId == keyAt) {
+                        int i9 = savedDialog2.top_message_id;
+                        int i10 = message3.id;
+                        if (i9 < i10 || (i10 < 0 && message3.date > savedDialog2.getDate())) {
+                            if (savedDialog2.top_message_id < message3.id) {
+                                int i11 = 0;
+                                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                                    if (arrayList.get(i12).id > savedDialog2.top_message_id) {
+                                        i11++;
+                                    }
+                                }
+                                savedDialog2.messagesCount += i11;
+                            }
+                            MessageObject messageObject2 = new MessageObject(this.currentAccount, message3, false, false);
+                            savedDialog2.message = messageObject2;
+                            savedDialog2.top_message_id = messageObject2.getId();
+                            z3 = true;
+                        }
+                        num2 = Integer.valueOf(num2 != null ? Math.max(num2.intValue(), savedDialog2.messagesCount) : savedDialog2.messagesCount);
+                        z2 = true;
+                    } else {
+                        i8++;
+                    }
+                }
+                if (!z2) {
+                    SavedDialog fromMessage2 = SavedDialog.fromMessage(this.currentAccount, message3, this.forumDialogId == 0);
+                    if (num2 != null) {
+                        fromMessage2.messagesCount = num2.intValue();
+                    }
+                    this.loadedDialogs.add(fromMessage2);
+                    z3 = true;
+                }
             }
         }
         return z3;
     }
 
     public boolean updatedDialogCount(long j, int i) {
+        return updatedDialogCount(j, i, false);
+    }
+
+    public boolean updatedDialogCount(long j, int i, boolean z) {
         int i2 = 0;
         while (true) {
             if (i2 >= this.allDialogs.size()) {
@@ -1037,7 +1093,7 @@ public class SavedMessagesController {
             SavedDialog savedDialog = this.allDialogs.get(i2);
             if (savedDialog.dialogId != j) {
                 i2++;
-            } else if (savedDialog.messagesCount != i) {
+            } else if (savedDialog.messagesCount != i || (!savedDialog.messagesCountLoaded && z)) {
                 savedDialog.messagesCount = i;
                 savedDialog.messagesCountLoaded = true;
                 return true;
