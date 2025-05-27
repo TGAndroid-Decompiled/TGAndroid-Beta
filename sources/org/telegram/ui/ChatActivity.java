@@ -497,6 +497,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private ChecksHintView checksHintView;
     private ActionBarMenuItem.Item clearHistoryItem;
     private boolean clearOnLoad;
+    private int clearOnLoadAndScrollMessageId;
+    private int clearOnLoadAndScrollOffset;
     private LongSparseIntArray clearingHistoryArr;
     private Dialog closeChatDialog;
     private Runnable closeInstantCameraAnimation;
@@ -4921,7 +4923,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean drawChild(android.graphics.Canvas r22, android.view.View r23, long r24) {
+        public boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass17.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
         }
 
@@ -15592,6 +15594,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.skeletonMatrix = new Matrix();
         this.skeletonOutlinePaint = new Paint(1);
         this.skeletonOutlineMatrix = new Matrix();
+        this.clearOnLoadAndScrollMessageId = -1;
         this.skeletonOutlinePaint.setStyle(Paint.Style.STROKE);
         this.skeletonOutlinePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.startLoadFromMessageOffset = Integer.MAX_VALUE;
@@ -20203,120 +20206,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         presentFragment(TopicCreateFragment.create(-this.dialog_id, 0L).setOpenInChatActivity(this));
     }
 
-    public void lambda$createTopicsTabs$88(Integer num) {
-        TLRPC.TL_forumTopic findTopic;
-        if (num.intValue() == getTopicId()) {
-            return;
-        }
-        TLRPC.TL_forumTopic topic = this.topicsTabs.getTopic(num.intValue());
-        TLRPC.Message message = topic == null ? null : topic.topicStartMessage;
-        if (message == null && topic != null && (findTopic = getMessagesController().getTopicsController().findTopic(-getDialogId(), topic.id)) != null) {
-            message = findTopic.topicStartMessage;
-            topic = findTopic;
-        }
-        if (message != null || num.intValue() == 0) {
-            getConnectionsManager().cancelRequestsForGuid(this.classGuid);
-            getMessagesStorage().cancelTasksForGuid(this.classGuid);
-            this.classGuid = ConnectionsManager.generateClassGuid();
-            saveDraft();
-            this.firstMessagesLoaded = false;
-            this.clearOnLoad = true;
-            this.waitingForLoad.clear();
-            this.justCreatedTopic = false;
-            if (message == null || num.intValue() == 0) {
-                this.forumTopic = null;
-                this.threadMessageObjects = null;
-                this.threadMessageObject = null;
-                this.replyingMessageObject = null;
-                this.threadMaxInboxReadId = 0;
-                this.threadMaxOutboxReadId = 0;
-                this.replyMaxReadId = 0;
-                this.threadMessageId = 0L;
-                this.replyOriginalMessageId = 0;
-                this.replyOriginalChat = null;
-                this.isTopic = false;
-                this.isComments = false;
-            } else {
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(new MessageObject(getCurrentAccount(), message, false, false));
-                setThreadMessages(arrayList, this.currentChat, topic.id, topic.read_inbox_max_id, topic.read_outbox_max_id, topic);
-            }
-            firstLoadMessages();
-            updateTitle(true);
-            this.avatarContainer.updateSubtitle(true);
-            if (topic != null) {
-                updateTopicTitleIcon();
-            } else {
-                this.avatarContainer.checkAndUpdateAvatar();
-            }
-            this.topicsTabs.setCurrentTopic(getTopicId());
-            updateTopPanel(true);
-            updateBottomOverlay(true);
-            getMessagesController().setForumLastTopicId(-getDialogId(), getTopicId());
-            reloadPinnedMessages();
-            hideFloatingDateView(true);
-            hideFieldPanel(true);
-            applyDraftMaybe(true, true);
-            if (topic != null) {
-                getMessagesController().getTopicsController().getTopicRepliesCount(this.dialog_id, topic.id);
-            }
-            this.reactionsMentionCount = topic != null ? topic.unread_reactions_count : 0;
-            updateReactionsMentionButton(false);
-            if (this.searchItemListener == null || !this.actionBar.isSearchFieldVisible()) {
-                return;
-            }
-            this.searchItemListener.onSearchPressed(null);
-        }
+    public void lambda$createTopicsTabs$88(java.lang.Integer r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$createTopicsTabs$88(java.lang.Integer):void");
     }
 
-    public void lambda$createTopicsTabs$89(Long l) {
-        if (l.longValue() == getTopicId()) {
-            return;
-        }
-        getConnectionsManager().cancelRequestsForGuid(this.classGuid);
-        getMessagesStorage().cancelTasksForGuid(this.classGuid);
-        this.classGuid = ConnectionsManager.generateClassGuid();
-        saveDraft();
-        this.firstMessagesLoaded = false;
-        this.clearOnLoad = true;
-        this.waitingForLoad.clear();
-        setSavedDialog(l.longValue());
-        TLRPC.TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(-getDialogId(), l.longValue());
-        if (l.longValue() == 0 || findTopic == null) {
-            this.forumTopic = null;
-            this.threadMessageObjects = null;
-            this.threadMessageObject = null;
-            this.replyingMessageObject = null;
-            this.threadMaxInboxReadId = 0;
-            this.threadMaxOutboxReadId = 0;
-            this.replyMaxReadId = 0;
-            this.threadMessageId = 0L;
-            this.replyOriginalMessageId = 0;
-            this.replyOriginalChat = null;
-            this.isTopic = false;
-            this.isComments = false;
-        } else {
-            int i = findTopic.read_inbox_max_id;
-            this.threadMaxInboxReadId = i;
-            this.threadMaxOutboxReadId = findTopic.read_outbox_max_id;
-            this.replyMaxReadId = Math.max(1, i);
-            getMessagesController().getTopicsController().getTopicRepliesCount(this.dialog_id, DialogObject.getPeerDialogId(findTopic.from_id));
-        }
-        firstLoadMessages();
-        updateTitle(true);
-        this.avatarContainer.updateSubtitle(true);
-        this.avatarContainer.checkAndUpdateAvatar();
-        this.topicsTabs.setCurrentTopic(l.longValue());
-        updateBottomOverlay(true);
-        hideFloatingTopicView(true);
-        hideFieldPanel(true);
-        applyDraftMaybe(true, true);
-        this.reactionsMentionCount = findTopic != null ? findTopic.unread_reactions_count : 0;
-        updateReactionsMentionButton(false);
-        if (this.searchItemListener == null || !this.actionBar.isSearchFieldVisible()) {
-            return;
-        }
-        this.searchItemListener.onSearchPressed(null);
+    public void lambda$createTopicsTabs$89(java.lang.Long r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$createTopicsTabs$89(java.lang.Long):void");
     }
 
     public boolean lambda$createView$18(View view, MotionEvent motionEvent) {
@@ -29771,7 +29666,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void didReceivedNotification(int r71, int r72, java.lang.Object... r73) {
+    public void didReceivedNotification(int r70, int r71, java.lang.Object... r72) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
@@ -33211,6 +33106,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().cancelRequestsForGuid(this.classGuid);
         getMessagesStorage().cancelTasksForGuid(this.classGuid);
         this.classGuid = ConnectionsManager.generateClassGuid();
+        this.startLoadFromMessageId = 0;
         this.firstMessagesLoaded = false;
         this.clearOnLoad = true;
         this.waitingForLoad.clear();
@@ -33290,6 +33186,33 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         this.fixedKeyboardHeight = (chatActivityEnterView == null || this.contentView == null || chatActivityEnterView.getAdjustPanLayoutHelper() == null || this.chatActivityEnterView.getAdjustPanLayoutHelper().animationInProgress()) ? -1 : this.contentView.getKeyboardHeight();
+    }
+
+    public void savePositionForTopicChange(long j) {
+        GridLayoutManagerFixed gridLayoutManagerFixed;
+        MessageObject messageObject;
+        int i = -1;
+        if (this.chatListView == null || (gridLayoutManagerFixed = this.chatLayoutManager) == null || gridLayoutManagerFixed.hasPendingScrollPosition()) {
+            this.clearOnLoadAndScrollMessageId = -1;
+            return;
+        }
+        int height = ((this.chatListView.getHeight() / 2) - this.chatListView.getPaddingBottom()) - this.chatListView.getPaddingTop();
+        int i2 = 0;
+        int i3 = Integer.MAX_VALUE;
+        for (int childCount = this.chatListView.getChildCount() - 1; childCount >= 0; childCount--) {
+            View childAt = this.chatListView.getChildAt(childCount);
+            if (this.chatListView.getChildAdapterPosition(childAt) >= 0 && (childAt instanceof ChatMessageCell) && (messageObject = ((ChatMessageCell) childAt).getMessageObject()) != null && messageObject.getTopicId() == j) {
+                int scrollingOffsetForView = getScrollingOffsetForView(childAt);
+                int abs = Math.abs(scrollingOffsetForView + height);
+                if (abs < i3) {
+                    i = messageObject.getId();
+                    i2 = scrollingOffsetForView;
+                    i3 = abs;
+                }
+            }
+        }
+        this.clearOnLoadAndScrollMessageId = i;
+        this.clearOnLoadAndScrollOffset = i2;
     }
 
     @Override

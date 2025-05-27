@@ -1873,6 +1873,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         public StaticLayout lastViewsLayout;
         public boolean messageEntering;
         private boolean moveCaption;
+        public boolean needsStopClipping;
         public float photoImageFromCenterX;
         public float photoImageFromCenterY;
         public float photoImageFromHeight;
@@ -2079,6 +2080,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.animateSign = false;
             this.animateSmallImage = false;
             this.animateMonoforumPadding = false;
+            this.needsStopClipping = false;
             this.animateLinkAbove = false;
             this.animateMediaAbove = false;
             this.animateRecommendationsExpanded = false;
@@ -2215,6 +2217,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (chatMessageSharedResources == null) {
             this.sharedResources = new ChatMessageSharedResources(context);
         }
+        setClipChildren(false);
+        setClipToPadding(false);
         this.backgroundDrawable = new MessageBackgroundDrawable(this);
         ImageReceiver imageReceiver = new ImageReceiver();
         this.avatarImage = imageReceiver;
@@ -7612,6 +7616,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     @Override
     public int getObserverTag() {
         return this.TAG;
+    }
+
+    public float getPaddingTopAnimated() {
+        return getTopicSeparatorTopPadding() + this.starsPriceTopPadding;
     }
 
     public int getParentWidth() {

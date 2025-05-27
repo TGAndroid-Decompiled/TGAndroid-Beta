@@ -201,7 +201,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1172getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1170getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {

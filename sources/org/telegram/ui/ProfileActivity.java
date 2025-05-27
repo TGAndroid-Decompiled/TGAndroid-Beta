@@ -1452,6 +1452,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             int i4;
             String str2;
             String str3;
+            String str4;
             if (i != ProfileActivity.this.versionRow) {
                 if (i >= ProfileActivity.this.membersStartRow && i < ProfileActivity.this.membersEndRow) {
                     if (ProfileActivity.this.sortedUsers.isEmpty()) {
@@ -1490,10 +1491,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i5 < 2 && !BuildVars.DEBUG_PRIVATE_VERSION) {
                 try {
                     Toast.makeText(ProfileActivity.this.getParentActivity(), LocaleController.getString("DebugMenuLongPress", R.string.DebugMenuLongPress), 0).show();
+                    return true;
                 } catch (Exception e2) {
                     FileLog.e(e2);
+                    return true;
                 }
-                return true;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
             builder.setTitle(LocaleController.getString(R.string.DebugMenu));
@@ -1525,22 +1527,42 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             String string8 = LocaleController.getString(R.string.DebugMenuCallSettings);
             String string9 = (BuildVars.DEBUG_PRIVATE_VERSION || ApplicationLoader.isStandaloneBuild() || ApplicationLoader.isBetaBuild()) ? LocaleController.getString("DebugMenuCheckAppUpdate", R.string.DebugMenuCheckAppUpdate) : null;
             String string10 = LocaleController.getString("DebugMenuReadAllDialogs", R.string.DebugMenuReadAllDialogs);
-            String str4 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects" : null;
+            String str5 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects" : null;
             boolean z = BuildVars.DEBUG_PRIVATE_VERSION;
-            String str5 = z ? "Clean app update" : null;
-            String str6 = z ? "Reset suggestions" : null;
+            String str6 = z ? "Clean app update" : null;
+            String str7 = z ? "Reset suggestions" : null;
             String string11 = z ? LocaleController.getString(R.string.DebugMenuClearWebViewCache) : null;
             String string12 = LocaleController.getString(R.string.DebugMenuClearWebViewCookies);
             int i6 = Build.VERSION.SDK_INT;
             String string13 = LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug);
-            String str7 = (AndroidUtilities.isTabletInternal() && BuildVars.DEBUG_PRIVATE_VERSION) ? SharedConfig.forceDisableTabletMode ? "Enable tablet mode" : "Disable tablet mode" : null;
+            String str8 = (AndroidUtilities.isTabletInternal() && BuildVars.DEBUG_PRIVATE_VERSION) ? SharedConfig.forceDisableTabletMode ? "Enable tablet mode" : "Disable tablet mode" : null;
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
                 str3 = LocaleController.getString(SharedConfig.isFloatingDebugActive ? R.string.FloatingDebugDisable : R.string.FloatingDebugEnable);
             } else {
                 str3 = null;
             }
             boolean z2 = BuildVars.DEBUG_PRIVATE_VERSION;
-            CharSequence[] charSequenceArr = {string2, string3, string4, string5, string, string6, string7, string8, null, string9, string10, str4, str5, str6, string11, string12, string13, str7, str3, z2 ? "Force remove premium suggestions" : null, z2 ? "Share device info" : null, z2 ? "Force performance class" : null, (!z2 || InstantCameraView.allowBigSizeCameraDebug()) ? null : !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round", LocaleController.getString(DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext()) ? "DebugMenuDualOff" : "DebugMenuDualOn"), BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null, !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment", BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null, i6 >= 21 ? !SharedConfig.isUsingCamera2(((BaseFragment) ProfileActivity.this).currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API" : null, BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null, BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null, (!SharedConfig.canBlurChat() || i6 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur", SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors", SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug", LocaleController.getString(SharedConfig.useSystemBoldFont ? R.string.DebugMenuDontUseSystemBoldFont : R.string.DebugMenuUseSystemBoldFont), "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs"};
+            String str9 = z2 ? "Force remove premium suggestions" : null;
+            String str10 = z2 ? "Share device info" : null;
+            String str11 = z2 ? "Force performance class" : null;
+            String str12 = (!z2 || InstantCameraView.allowBigSizeCameraDebug()) ? null : !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round";
+            String string14 = LocaleController.getString(DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext()) ? "DebugMenuDualOff" : "DebugMenuDualOn");
+            String str13 = BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null;
+            String str14 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null;
+            String str15 = !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment";
+            String str16 = BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null;
+            String str17 = i6 >= 21 ? !SharedConfig.isUsingCamera2(((BaseFragment) ProfileActivity.this).currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API" : null;
+            String str18 = BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null;
+            String str19 = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
+            String str20 = (!SharedConfig.canBlurChat() || i6 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
+            String str21 = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
+            String str22 = SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug";
+            if (i6 >= 28) {
+                str4 = LocaleController.getString(SharedConfig.useSystemBoldFont ? R.string.DebugMenuDontUseSystemBoldFont : R.string.DebugMenuUseSystemBoldFont);
+            } else {
+                str4 = null;
+            }
+            CharSequence[] charSequenceArr = {string2, string3, string4, string5, string, string6, string7, string8, null, string9, string10, str5, str6, str7, string11, string12, string13, str8, str3, str9, str10, str11, str12, string14, str13, str14, str15, str16, str17, str18, str19, str20, str21, str22, str4, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs"};
             final Context context = this.val$context;
             builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                 @Override

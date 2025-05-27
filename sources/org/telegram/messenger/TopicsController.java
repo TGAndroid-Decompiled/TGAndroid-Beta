@@ -605,15 +605,15 @@ public class TopicsController extends BaseController {
         }
     }
 
-    public void lambda$updateTopicsWithDeletedMessages$10(long r17, java.util.ArrayList r19, final long r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.lambda$updateTopicsWithDeletedMessages$10(long, java.util.ArrayList, long):void");
+    public void lambda$updateTopicsWithDeletedMessages$10(long r17, java.util.ArrayList r19, boolean r20, final long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.lambda$updateTopicsWithDeletedMessages$10(long, java.util.ArrayList, boolean, long):void");
     }
 
-    public void lambda$updateTopicsWithDeletedMessages$11(final long j, final ArrayList arrayList, final long j2) {
+    public void lambda$updateTopicsWithDeletedMessages$11(final long j, final ArrayList arrayList, final boolean z, final long j2) {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                TopicsController.this.lambda$updateTopicsWithDeletedMessages$10(j, arrayList, j2);
+                TopicsController.this.lambda$updateTopicsWithDeletedMessages$10(j, arrayList, z, j2);
             }
         });
     }
@@ -1323,10 +1323,11 @@ public class TopicsController extends BaseController {
             return;
         }
         final long j2 = -j;
+        final boolean isMonoForum = ChatObject.isMonoForum(getMessagesController().getChat(Long.valueOf(j2)));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TopicsController.this.lambda$updateTopicsWithDeletedMessages$11(j, arrayList, j2);
+                TopicsController.this.lambda$updateTopicsWithDeletedMessages$11(j, arrayList, isMonoForum, j2);
             }
         });
     }
