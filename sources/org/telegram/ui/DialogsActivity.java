@@ -1078,7 +1078,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$347();
+            baseFragment.lambda$onBackPressed$348();
             if (dialogsActivityDelegate != null) {
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(MessagesStorage.TopicKey.of(-j, 0L));
@@ -1096,7 +1096,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$347();
+            baseFragment.lambda$onBackPressed$348();
         }
 
         public void lambda$didFinishChatCreation$3(long j, final BaseFragment[] baseFragmentArr, Runnable runnable) {
@@ -1329,7 +1329,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (DialogsActivity.this.searchString == null) {
                 return true;
             }
-            DialogsActivity.this.lambda$onBackPressed$347();
+            DialogsActivity.this.lambda$onBackPressed$348();
             return false;
         }
 
@@ -4027,7 +4027,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void lambda$createGroupForThis$57(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$347();
+        baseFragment.lambda$onBackPressed$348();
     }
 
     public void lambda$createGroupForThis$58(Long l, final ChannelCreateActivity channelCreateActivity, final BaseFragment baseFragment, Runnable runnable) {
@@ -4113,7 +4113,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         DialogsActivityDelegate dialogsActivityDelegate = this.delegate;
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$347();
+        baseFragment.lambda$onBackPressed$348();
         if (dialogsActivityDelegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(-l.longValue(), 0L));
@@ -4535,7 +4535,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public void lambda$didSelectResult$123(long j, long j2, boolean z, TopicsFragment topicsFragment) {
         if (this.delegate == null) {
-            lambda$onBackPressed$347();
+            lambda$onBackPressed$348();
             return;
         }
         ArrayList arrayList = new ArrayList();
@@ -4943,7 +4943,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         this.viewPages[0].listView.setEmptyView(null);
         this.viewPages[0].progressView.setVisibility(4);
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void lambda$performSelectedDialogsAction$98(ArrayList arrayList, final int i, final HashSet hashSet, final boolean z) {
@@ -7910,7 +7910,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                             if (i9 != intValue || i9 == 0) {
                                                 return;
                                             }
-                                            lambda$onBackPressed$347();
+                                            lambda$onBackPressed$348();
                                             return;
                                         }
                                         if (i == NotificationCenter.dialogFiltersUpdated) {
@@ -8131,8 +8131,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void lambda$onBackPressed$347() {
-        super.lambda$onBackPressed$347();
+    public void lambda$onBackPressed$348() {
+        super.lambda$onBackPressed$348();
         ItemOptions itemOptions = this.filterOptions;
         if (itemOptions != null) {
             itemOptions.dismiss();

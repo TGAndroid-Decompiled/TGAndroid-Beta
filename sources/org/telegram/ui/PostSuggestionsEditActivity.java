@@ -254,7 +254,7 @@ public class PostSuggestionsEditActivity extends BaseFragment {
     }
 
     public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void lambda$processDone$1(TLRPC.TL_error tL_error, TLObject tLObject, TL_stars.updatePaidMessagesPrice updatepaidmessagesprice) {
@@ -273,7 +273,7 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         if (longCallback != null) {
             longCallback.run(updatepaidmessagesprice.suggestions_allowed ? updatepaidmessagesprice.send_paid_messages_stars : -1L);
         }
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void lambda$processDone$2(final TL_stars.updatePaidMessagesPrice updatepaidmessagesprice, final TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -290,7 +290,7 @@ public class PostSuggestionsEditActivity extends BaseFragment {
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$347();
+            lambda$onBackPressed$348();
             return;
         }
         this.doneButtonDrawable.animateToProgress(1.0f);
@@ -361,7 +361,7 @@ public class PostSuggestionsEditActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (PostSuggestionsEditActivity.this.onBackPressed()) {
-                        PostSuggestionsEditActivity.this.lambda$onBackPressed$347();
+                        PostSuggestionsEditActivity.this.lambda$onBackPressed$348();
                     }
                 } else if (i == 1) {
                     PostSuggestionsEditActivity.this.processDone();

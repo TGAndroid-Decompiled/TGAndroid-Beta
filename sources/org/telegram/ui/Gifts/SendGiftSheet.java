@@ -214,6 +214,11 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             public void needShowEffectOverlay(ChatActionCell chatActionCell3, TLRPC.Document document, TLRPC.VideoSize videoSize) {
                 ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell3, document, videoSize);
             }
+
+            @Override
+            public void onTopicClick(ChatActionCell chatActionCell3) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$onTopicClick(this, chatActionCell3);
+            }
         });
         SizeNotifierFrameLayout sizeNotifierFrameLayout2 = new SizeNotifierFrameLayout(context) {
             int maxHeight = -1;
@@ -723,7 +728,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.lambda$onBackPressed$347();
+                        baseFragment.lambda$onBackPressed$348();
                     }
                     baseFragment.removeSelfFromStack();
                 }

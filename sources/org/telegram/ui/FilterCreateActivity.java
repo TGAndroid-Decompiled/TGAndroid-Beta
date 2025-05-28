@@ -141,7 +141,7 @@ public class FilterCreateActivity extends BaseFragment {
         public void onItemClick(int i) {
             if (i == -1) {
                 if (FilterCreateActivity.this.checkDiscard()) {
-                    FilterCreateActivity.this.lambda$onBackPressed$347();
+                    FilterCreateActivity.this.lambda$onBackPressed$348();
                 }
             } else if (i == 1) {
                 FilterCreateActivity.this.processDone();
@@ -1933,9 +1933,7 @@ public class FilterCreateActivity extends BaseFragment {
             TextPaint textPaint;
             float dp;
             makeLayout();
-            if (this.usePaintAlpha) {
-                paint.getAlpha();
-            }
+            float alpha = this.usePaintAlpha ? paint.getAlpha() / 255.0f : 1.0f;
             int i6 = this.color;
             if (i6 == 0) {
                 i6 = paint.getColor();
@@ -1948,6 +1946,8 @@ public class FilterCreateActivity extends BaseFragment {
                 i6 = AndroidUtilities.computePerceivedBrightness(i6) > 0.721f ? -16777216 : -1;
             }
             textPaint.setColor(i6);
+            this.bgPaint.setAlpha((int) (r4.getAlpha() * alpha));
+            this.textPaint.setAlpha((int) (r4.getAlpha() * alpha));
             float dp2 = f + AndroidUtilities.dp(2.0f);
             float dp3 = (i4 - this.height) + AndroidUtilities.dp(1.0f);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -2304,7 +2304,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$21(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void lambda$createView$7(ItemInner itemInner) {
@@ -2360,7 +2360,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$deleteFolder$14(Boolean bool) {
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void lambda$deleteFolder$15(AlertDialog alertDialog) {
@@ -2373,7 +2373,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         getMessagesController().removeFilter(this.filter);
         getMessagesStorage().deleteDialogFilter(this.filter);
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void lambda$deleteFolder$16(final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -2510,7 +2510,7 @@ public class FilterCreateActivity extends BaseFragment {
 
     public void lambda$processDone$23() {
         if (!this.doNotCloseWhenSave) {
-            lambda$onBackPressed$347();
+            lambda$onBackPressed$348();
             return;
         }
         this.doNotCloseWhenSave = false;
@@ -3290,7 +3290,7 @@ public class FilterCreateActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (FilterCreateActivity.this.checkDiscard()) {
-                        FilterCreateActivity.this.lambda$onBackPressed$347();
+                        FilterCreateActivity.this.lambda$onBackPressed$348();
                     }
                 } else if (i == 1) {
                     FilterCreateActivity.this.processDone();

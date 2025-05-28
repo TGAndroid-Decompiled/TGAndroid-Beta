@@ -1158,7 +1158,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 return true;
             }
         }
-        dialogsActivity.lambda$onBackPressed$347();
+        dialogsActivity.lambda$onBackPressed$348();
         return true;
     }
 

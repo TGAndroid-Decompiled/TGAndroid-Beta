@@ -720,7 +720,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     }
 
     public void lambda$checkDiscard$11(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void lambda$checkVisibleRows$9(View view) {
@@ -756,7 +756,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             CallLogActivity.createCallLink(context, this.currentAccount, this.resourceProvider, new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCreateActivity.this.lambda$onBackPressed$347();
+                    GroupCreateActivity.this.lambda$onBackPressed$348();
                 }
             });
             return;
@@ -939,7 +939,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         if (contactsAddActivityDelegate != null) {
             contactsAddActivityDelegate.didSelectUsers(arrayList, i);
         }
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public boolean onDonePressed(boolean z) {
@@ -1043,7 +1043,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     if (groupCreateActivityDelegate != null) {
                         groupCreateActivityDelegate.didSelectUsers(this.selectedPremium != null, this.selectedMiniapps != null, arrayList2);
                     }
-                    lambda$onBackPressed$347();
+                    lambda$onBackPressed$348();
                 } else {
                     Bundle bundle2 = new Bundle();
                     int size = arrayList2.size();

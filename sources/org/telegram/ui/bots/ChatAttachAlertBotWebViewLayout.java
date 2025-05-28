@@ -27,7 +27,6 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import java.util.Iterator;
-import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline2;
 import org.telegram.messenger.ContactsController;
@@ -76,6 +75,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     private boolean isBotButtonAvailable;
     private long lastSwipeTime;
     private int measureOffsetY;
+    private long monoforumTopicId;
     private boolean needCloseConfirmation;
     private boolean needReload;
     private ActionBarMenuItem otherItem;
@@ -758,11 +758,31 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         tL_messages_prolongWebView.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.peerId);
         tL_messages_prolongWebView.query_id = this.queryId;
         tL_messages_prolongWebView.silent = this.silent;
-        if (this.replyToMsgId != 0) {
-            tL_messages_prolongWebView.reply_to = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
-            tL_messages_prolongWebView.flags |= 1;
+        if (this.replyToMsgId == 0) {
+            if (this.monoforumTopicId != 0) {
+                TLRPC.TL_inputReplyToMonoForum tL_inputReplyToMonoForum = new TLRPC.TL_inputReplyToMonoForum();
+                tL_messages_prolongWebView.reply_to = tL_inputReplyToMonoForum;
+                tL_inputReplyToMonoForum.monoforum_peer_id = MessagesController.getInstance(this.currentAccount).getInputPeer(this.monoforumTopicId);
+            }
+            if (this.peerId < 0 && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.peerId)) != null && (peer = chatFull.default_send_as) != null) {
+                tL_messages_prolongWebView.send_as = MessagesController.getInstance(this.currentAccount).getInputPeer(peer);
+                tL_messages_prolongWebView.flags |= 8192;
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_prolongWebView, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChatAttachAlertBotWebViewLayout.this.lambda$new$1(tLObject, tL_error);
+                }
+            });
         }
-        if (this.peerId < 0 && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.peerId)) != null && (peer = chatFull.default_send_as) != null) {
+        TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
+        tL_messages_prolongWebView.reply_to = createReplyInput;
+        if (this.monoforumTopicId != 0) {
+            createReplyInput.monoforum_peer_id = MessagesController.getInstance(this.currentAccount).getInputPeer(this.monoforumTopicId);
+            tL_messages_prolongWebView.reply_to.flags |= 32;
+        }
+        tL_messages_prolongWebView.flags |= 1;
+        if (this.peerId < 0) {
             tL_messages_prolongWebView.send_as = MessagesController.getInstance(this.currentAccount).getInputPeer(peer);
             tL_messages_prolongWebView.flags |= 8192;
         }
@@ -1198,55 +1218,8 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         super.requestLayout();
     }
 
-    public void requestWebView(final int i, long j, long j2, boolean z, int i2, String str) {
-        TLRPC.ChatFull chatFull;
-        TLRPC.Peer peer;
-        this.currentAccount = i;
-        this.peerId = j;
-        this.botId = j2;
-        this.silent = z;
-        this.replyToMsgId = i2;
-        this.startCommand = str;
-        if (this.addToHomeScreenItem != null) {
-            if (MediaDataController.getInstance(i).canCreateAttachedMenuBotShortcut(j2)) {
-                this.addToHomeScreenItem.setVisibility(0);
-            } else {
-                this.addToHomeScreenItem.setVisibility(8);
-            }
-        }
-        this.webViewContainer.setBotUser(MessagesController.getInstance(i).getUser(Long.valueOf(j2)));
-        this.webViewContainer.loadFlickerAndSettingsItem(i, j2, this.settingsItem);
-        TLRPC.TL_messages_requestWebView tL_messages_requestWebView = new TLRPC.TL_messages_requestWebView();
-        tL_messages_requestWebView.peer = MessagesController.getInstance(i).getInputPeer(j);
-        tL_messages_requestWebView.bot = MessagesController.getInstance(i).getInputUser(j2);
-        tL_messages_requestWebView.silent = z;
-        tL_messages_requestWebView.platform = "android";
-        if (j < 0 && (chatFull = MessagesController.getInstance(i).getChatFull(-j)) != null && (peer = chatFull.default_send_as) != null) {
-            tL_messages_requestWebView.send_as = MessagesController.getInstance(i).getInputPeer(peer);
-            tL_messages_requestWebView.flags |= 8192;
-        }
-        if (str != null) {
-            tL_messages_requestWebView.start_param = str;
-            tL_messages_requestWebView.flags |= 8;
-        }
-        if (i2 != 0) {
-            tL_messages_requestWebView.reply_to = SendMessagesHelper.getInstance(i).createReplyInput(i2);
-            tL_messages_requestWebView.flags |= 1;
-        }
-        JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(this.resourcesProvider);
-        if (makeThemeParams != null) {
-            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
-            tL_messages_requestWebView.theme_params = tL_dataJSON;
-            tL_dataJSON.data = makeThemeParams.toString();
-            tL_messages_requestWebView.flags |= 4;
-        }
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_requestWebView, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatAttachAlertBotWebViewLayout.this.lambda$requestWebView$13(i, tLObject, tL_error);
-            }
-        });
-        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.webViewResultSent);
+    public void requestWebView(final int r5, long r6, long r8, boolean r10, int r11, java.lang.String r12, long r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout.requestWebView(int, long, long, boolean, int, java.lang.String, long):void");
     }
 
     @Override

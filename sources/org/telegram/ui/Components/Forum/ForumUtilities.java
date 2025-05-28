@@ -102,13 +102,17 @@ public abstract class ForumUtilities {
 
     public static void applyTopic(ChatActivity chatActivity, MessagesStorage.TopicKey topicKey) {
         TLRPC.TL_forumTopic findTopic;
-        if (topicKey.topicId == 0 || (findTopic = chatActivity.getMessagesController().getTopicsController().findTopic(-topicKey.dialogId, topicKey.topicId)) == null) {
+        TLRPC.Chat chat;
+        if (topicKey.topicId == 0 || (findTopic = chatActivity.getMessagesController().getTopicsController().findTopic(-topicKey.dialogId, topicKey.topicId)) == null || (chat = chatActivity.getMessagesController().getChat(Long.valueOf(-topicKey.dialogId))) == null) {
             return;
         }
-        TLRPC.Chat chat = chatActivity.getMessagesController().getChat(Long.valueOf(-topicKey.dialogId));
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new MessageObject(chatActivity.getCurrentAccount(), findTopic.topicStartMessage, false, false));
-        chatActivity.setThreadMessages(arrayList, chat, findTopic.id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+        if (!ChatObject.isMonoForum(chat)) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(new MessageObject(chatActivity.getCurrentAccount(), findTopic.topicStartMessage, false, false));
+            chatActivity.setThreadMessages(arrayList, chat, findTopic.id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+        } else if (ChatObject.canManageMonoForum(UserConfig.selectedAccount, chat)) {
+            chatActivity.setMonoForumThreadMessages(findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+        }
         chatActivity.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
     }
 

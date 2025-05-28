@@ -6553,7 +6553,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void showBotLayout(long r17, java.lang.String r19, boolean r20, boolean r21) {
+    public void showBotLayout(long r19, java.lang.String r21, boolean r22, boolean r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.showBotLayout(long, java.lang.String, boolean, boolean):void");
     }
 

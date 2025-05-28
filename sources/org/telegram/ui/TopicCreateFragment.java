@@ -127,7 +127,7 @@ public class TopicCreateFragment extends BaseFragment {
                             chatActivity.applyDraftMaybe(true, true);
                             chatActivity.reloadPinnedMessages();
                             TopicCreateFragment.this.getMessagesController().getTopicsController().onTopicCreated(-TopicCreateFragment.this.chatId, tL_forumTopic, true);
-                            TopicCreateFragment.this.lambda$onBackPressed$347();
+                            TopicCreateFragment.this.lambda$onBackPressed$348();
                         } else {
                             Bundle bundle = new Bundle();
                             bundle.putLong("chat_id", TopicCreateFragment.this.chatId);

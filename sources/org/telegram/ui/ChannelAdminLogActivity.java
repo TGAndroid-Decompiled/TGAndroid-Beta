@@ -1076,6 +1076,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             public void needShowEffectOverlay(ChatActionCell chatActionCell, TLRPC.Document document, TLRPC.VideoSize videoSize) {
                 ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell, document, videoSize);
             }
+
+            @Override
+            public void onTopicClick(ChatActionCell chatActionCell) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$onTopicClick(this, chatActionCell);
+            }
         }
 
         public ChatActivityAdapter(Context context) {
@@ -2844,7 +2849,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$347();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$348();
                 }
             }
         });

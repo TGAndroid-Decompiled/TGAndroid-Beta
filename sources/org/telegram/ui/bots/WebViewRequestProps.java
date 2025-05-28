@@ -17,6 +17,7 @@ public class WebViewRequestProps {
     public int currentAccount;
     public int flags;
     public boolean fullscreen;
+    public long monoforumTopicId;
     public long peerId;
     public int replyToMsgId;
     public TLObject response;
@@ -25,7 +26,7 @@ public class WebViewRequestProps {
     public String startParam;
     public int type;
 
-    public static WebViewRequestProps of(int i, long j, long j2, String str, String str2, int i2, int i3, boolean z, TLRPC.BotApp botApp, boolean z2, String str3, TLRPC.User user, int i4, boolean z3, boolean z4) {
+    public static WebViewRequestProps of(int i, long j, long j2, String str, String str2, int i2, int i3, long j3, boolean z, TLRPC.BotApp botApp, boolean z2, String str3, TLRPC.User user, int i4, boolean z3, boolean z4) {
         WebViewRequestProps webViewRequestProps = new WebViewRequestProps();
         webViewRequestProps.currentAccount = i;
         webViewRequestProps.peerId = j;
@@ -34,6 +35,7 @@ public class WebViewRequestProps {
         webViewRequestProps.buttonUrl = str2;
         webViewRequestProps.type = i2;
         webViewRequestProps.replyToMsgId = i3;
+        webViewRequestProps.monoforumTopicId = j3;
         webViewRequestProps.silent = z;
         webViewRequestProps.app = botApp;
         webViewRequestProps.allowWrite = z2;

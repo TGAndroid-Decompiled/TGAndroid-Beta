@@ -496,7 +496,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             saveGalleryExceptions.put(dialogException.dialogId, dialogException);
             getUserConfig().updateSaveGalleryExceptions(this.type, saveGalleryExceptions);
         }
-        lambda$onBackPressed$347();
+        lambda$onBackPressed$348();
     }
 
     public void onSettingsUpdated() {
@@ -528,7 +528,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    SaveToGallerySettingsActivity.this.lambda$onBackPressed$347();
+                    SaveToGallerySettingsActivity.this.lambda$onBackPressed$348();
                 }
             }
         });

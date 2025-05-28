@@ -277,6 +277,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
             public static void $default$needShowEffectOverlay(ChatActionCellDelegate chatActionCellDelegate, ChatActionCell chatActionCell, TLRPC.Document document, TLRPC.VideoSize videoSize) {
             }
+
+            public static void $default$onTopicClick(ChatActionCellDelegate chatActionCellDelegate, ChatActionCell chatActionCell) {
+            }
         }
 
         boolean canDrawOutboundsContent();
@@ -308,6 +311,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         void needOpenUserProfile(long j);
 
         void needShowEffectOverlay(ChatActionCell chatActionCell, TLRPC.Document document, TLRPC.VideoSize videoSize);
+
+        void onTopicClick(ChatActionCell chatActionCell);
     }
 
     public class TextLayout {
@@ -1167,7 +1172,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
         messageObject.playedGiftAnimation = true;
         lottieAnimation.setCurrentFrame(0, false);
-        AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda7(lottieAnimation));
+        AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda8(lottieAnimation));
         if (messageObject.wasUnread || this.forceWasUnread) {
             messageObject.wasUnread = false;
             this.forceWasUnread = false;
@@ -1186,7 +1191,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
     }
 
-    public void lambda$onTouchEvent$1() {
+    public void lambda$onTouchEvent$2() {
         this.isSpoilerRevealing = false;
         getMessageObject().isSpoilersRevealed = true;
         List list = this.giftPremiumText.spoilers;
@@ -1196,21 +1201,28 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         invalidate();
     }
 
-    public void lambda$onTouchEvent$2() {
+    public void lambda$onTouchEvent$3() {
         post(new Runnable() {
             @Override
             public final void run() {
-                ChatActionCell.this.lambda$onTouchEvent$1();
+                ChatActionCell.this.lambda$onTouchEvent$2();
             }
         });
     }
 
-    public void lambda$openPremiumGiftChannel$3(TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode) {
+    public void lambda$openPremiumGiftChannel$4(TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode) {
         this.delegate.didOpenPremiumGiftChannel(this, tL_messageActionGiftCode.slug, false);
     }
 
-    public void lambda$openPremiumGiftPreview$4(TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    public void lambda$openPremiumGiftPreview$5(TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
         this.delegate.didOpenPremiumGift(this, tL_premiumGiftOption, str, false);
+    }
+
+    public void lambda$setMessageObject$1() {
+        ChatActionCellDelegate chatActionCellDelegate = this.delegate;
+        if (chatActionCellDelegate != null) {
+            chatActionCellDelegate.onTopicClick(this);
+        }
     }
 
     private float measureLayoutWidth(Layout layout) {
@@ -1266,7 +1278,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActionCell.this.lambda$openPremiumGiftChannel$3(tL_messageActionGiftCode);
+                    ChatActionCell.this.lambda$openPremiumGiftChannel$4(tL_messageActionGiftCode);
                 }
             });
         }
@@ -1283,7 +1295,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActionCell.this.lambda$openPremiumGiftPreview$4(tL_premiumGiftOption, str);
+                    ChatActionCell.this.lambda$openPremiumGiftPreview$5(tL_premiumGiftOption, str);
                 }
             });
         }

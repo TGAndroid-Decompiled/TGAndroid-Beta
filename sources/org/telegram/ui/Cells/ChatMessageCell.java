@@ -863,6 +863,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private long voteLastUpdateTime;
     private float voteRadOffset;
     private boolean voteRisingCircleLength;
+    private boolean wasAllChats;
     private boolean wasLayout;
     private boolean wasPinned;
     private boolean wasSending;
@@ -6696,7 +6697,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         drawMessageText(f6, f2, canvas, arrayList, messageObject == null ? 0.0f : messageObject.textXOffset, z, f, false, z2, false);
     }
 
-    public void drawNamesLayout(android.graphics.Canvas r43, float r44) {
+    public void drawNamesLayout(android.graphics.Canvas r46, float r47) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawNamesLayout(android.graphics.Canvas, float):void");
     }
 
@@ -6704,7 +6705,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOutboundsContent(android.graphics.Canvas):void");
     }
 
-    public void drawOverlays(android.graphics.Canvas r57) {
+    public void drawOverlays(android.graphics.Canvas r58) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 

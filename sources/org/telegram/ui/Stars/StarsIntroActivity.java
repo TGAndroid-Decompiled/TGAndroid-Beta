@@ -85,7 +85,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda11;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda7;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda8;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.SessionCell;
 import org.telegram.ui.ChatActivity;
@@ -2619,7 +2619,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     return;
                 }
                 lottieAnimation.setCurrentFrame(0, false);
-                AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda7(lottieAnimation));
+                AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda8(lottieAnimation));
                 zArr[0] = true;
             }
 

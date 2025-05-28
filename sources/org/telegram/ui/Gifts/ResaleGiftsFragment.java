@@ -1436,7 +1436,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ResaleGiftsFragment.this.lambda$onBackPressed$347();
+                    ResaleGiftsFragment.this.lambda$onBackPressed$348();
                 }
             }
         });

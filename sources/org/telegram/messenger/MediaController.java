@@ -5029,7 +5029,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return;
         }
         if (z2) {
-            stopRecording(z ? 2 : 0, false, 0, false, 0L);
+            if (this.recordingAudio == null || isRecordingPaused()) {
+                stopRecording(z ? 2 : 0, false, 0, false, 0L);
+            } else {
+                toggleRecordingPause(false);
+            }
         }
         if (!this.sensorsStarted || this.ignoreOnPause) {
             return;

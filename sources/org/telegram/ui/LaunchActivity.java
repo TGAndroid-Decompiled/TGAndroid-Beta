@@ -2675,7 +2675,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         long j = user.id;
-        WebViewRequestProps of = WebViewRequestProps.of(i, j, j, null, null, 3, 0, false, tL_messages_botApp.app, atomicBoolean.get(), str, user, 0, z, z2);
+        WebViewRequestProps of = WebViewRequestProps.of(i, j, j, null, null, 3, 0, 0L, false, tL_messages_botApp.app, atomicBoolean.get(), str, user, 0, z, z2);
         if (getBottomSheetTabs() == null || getBottomSheetTabs().tryReopenTab(of) == null) {
             SharedPrefsHelper.setWebViewConfirmShown(this.currentAccount, user.id, true);
             BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, baseFragment.getResourceProvider());
@@ -4941,7 +4941,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         int i = this.currentAccount;
         long j = tL_attachMenuBot.bot_id;
-        WebViewRequestProps of = WebViewRequestProps.of(i, j, j, tL_attachMenuBot.short_name, null, 1, 0, false, null, false, str, null, 2, false, false);
+        WebViewRequestProps of = WebViewRequestProps.of(i, j, j, tL_attachMenuBot.short_name, null, 1, 0, 0L, false, null, false, str, null, 2, false, false);
         if (getBottomSheetTabs() == null || getBottomSheetTabs().tryReopenTab(of) == null) {
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_attachMenuBot.bot_id));
             String restrictionReason = user == null ? null : MessagesController.getInstance(this.currentAccount).getRestrictionReason(user.restriction_reason);
@@ -5606,7 +5606,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (actionBarLayout3 != null && actionBarLayout3.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$347();
+                        baseFragment.lambda$onBackPressed$348();
                         return;
                     }
                     return;

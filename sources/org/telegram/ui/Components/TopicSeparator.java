@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -15,14 +16,19 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Forum.ForumUtilities;
+import org.telegram.ui.Components.TopicSeparator;
 
 public class TopicSeparator {
+    private final Paint arrowPaint;
+    private final Path arrowPath;
     private final ButtonBounce bounce;
     private final View cell;
+    private final RectF clickBounds;
     private final int currentAccount;
     public AnimatedEmojiDrawable emojiImage;
     public final ImageReceiver image;
@@ -33,17 +39,32 @@ public class TopicSeparator {
     private boolean pathWithDots;
     private final Theme.ResourcesProvider resourcesProvider;
     public Text text;
+    public long topicId;
     private final boolean withDots;
     public final AvatarDrawable avatarDrawable = new AvatarDrawable();
     private final Path path = new Path();
-    private final RectF clickBounds = new RectF();
 
     public static class Cell extends View {
-        private final TopicSeparator separator;
+        private Utilities.Callback onClickListener;
+        public final TopicSeparator separator;
 
         public Cell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.separator = new TopicSeparator(i, this, resourcesProvider, false);
+            TopicSeparator topicSeparator = new TopicSeparator(i, this, resourcesProvider, false);
+            this.separator = topicSeparator;
+            topicSeparator.setOnClickListener(new Runnable() {
+                @Override
+                public final void run() {
+                    TopicSeparator.Cell.this.lambda$new$0();
+                }
+            });
+        }
+
+        public void lambda$new$0() {
+            Utilities.Callback callback = this.onClickListener;
+            if (callback != null) {
+                callback.run(Long.valueOf(this.separator.topicId));
+            }
         }
 
         @Override
@@ -69,21 +90,42 @@ public class TopicSeparator {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
         }
 
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            return this.separator.onTouchEvent(motionEvent, false) || super.onTouchEvent(motionEvent);
+        }
+
         public void set(MessageObject messageObject) {
             this.separator.update(messageObject);
             if (isAttachedToWindow()) {
                 this.separator.attach();
             }
         }
+
+        public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
+            this.onClickListener = callback;
+        }
     }
 
     public TopicSeparator(int i, View view, Theme.ResourcesProvider resourcesProvider, boolean z) {
+        Paint paint = new Paint(1);
+        this.arrowPaint = paint;
+        Path path = new Path();
+        this.arrowPath = path;
+        this.clickBounds = new RectF();
         this.currentAccount = i;
         this.cell = view;
         this.resourcesProvider = resourcesProvider;
         this.withDots = z;
         this.bounce = new ButtonBounce(view);
         this.image = new ImageReceiver(view);
+        path.rewind();
+        path.moveTo(-AndroidUtilities.dp(1.75f), -AndroidUtilities.dp(4.0f));
+        path.lineTo(AndroidUtilities.dp(1.75f), 0.0f);
+        path.lineTo(-AndroidUtilities.dp(1.75f), AndroidUtilities.dp(4.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public void attach() {
@@ -107,7 +149,7 @@ public class TopicSeparator {
         if (this.text == null) {
             return;
         }
-        float dp = AndroidUtilities.dp(37.0f) + this.text.getWidth();
+        float dp = AndroidUtilities.dp(48.66f) + this.text.getWidth();
         float f6 = i;
         float f7 = (f6 - dp) / 2.0f;
         int i2 = (int) dp;
@@ -161,25 +203,33 @@ public class TopicSeparator {
             themePaint2.setAlpha(alpha2);
         }
         canvas.restore();
-        this.clickBounds.set(f7 - AndroidUtilities.dp(4.0f), f2 - AndroidUtilities.dp(4.0f), f7 + f5 + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(32.0f) + f2);
+        float f10 = f9 + f7;
+        float f11 = f10 + f5;
+        this.clickBounds.set(f10 - AndroidUtilities.dp(4.0f), f2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + f11, AndroidUtilities.dp(32.0f) + f2);
         if (z) {
             AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiImage;
             if (animatedEmojiDrawable != null) {
-                float f10 = f9 + f7;
-                animatedEmojiDrawable.setBounds((int) (AndroidUtilities.dp(2.66f) + f10), (int) (AndroidUtilities.dp(6.5f) + f2), (int) (f10 + AndroidUtilities.dp(22.66f)), (int) (AndroidUtilities.dp(26.5f) + f2));
+                animatedEmojiDrawable.setBounds((int) (AndroidUtilities.dp(2.66f) + f10), (int) (AndroidUtilities.dp(6.5f) + f2), (int) (AndroidUtilities.dp(22.66f) + f10), (int) (AndroidUtilities.dp(26.5f) + f2));
                 this.emojiImage.setAlpha((int) (255.0f * f4));
                 this.emojiImage.draw(canvas);
             } else {
-                this.image.setImageCoords(f9 + f7 + AndroidUtilities.dp(2.66f), AndroidUtilities.dp(6.5f) + f2, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
+                this.image.setImageCoords(AndroidUtilities.dp(2.66f) + f10, AndroidUtilities.dp(6.5f) + f2, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
                 this.image.setAlpha(f4);
                 this.image.draw(canvas);
             }
-            this.text.draw(canvas, AndroidUtilities.dp(27.66f) + f9 + f7, f2 + AndroidUtilities.dp(16.5f), Theme.getColor(Theme.key_chat_serviceText, this.resourcesProvider), f4);
+            int color = Theme.getColor(Theme.key_chat_serviceText, this.resourcesProvider);
+            this.text.draw(canvas, AndroidUtilities.dp(27.66f) + f10, f2 + AndroidUtilities.dp(16.5f), color, f4);
+            canvas.save();
+            canvas.translate(f11 - AndroidUtilities.dp(11.25f), AndroidUtilities.dp(16.5f) + f2);
+            this.arrowPaint.setColor(Theme.multAlpha(color, 0.75f * f4));
+            this.arrowPaint.setStrokeWidth(AndroidUtilities.dp(1.66f));
+            canvas.drawPath(this.arrowPath, this.arrowPaint);
+            canvas.restore();
         }
     }
 
-    public boolean onTouchEvent(android.view.MotionEvent r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TopicSeparator.onTouchEvent(android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(android.view.MotionEvent r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TopicSeparator.onTouchEvent(android.view.MotionEvent, boolean):boolean");
     }
 
     public void setOnClickListener(Runnable runnable) {
@@ -189,17 +239,23 @@ public class TopicSeparator {
     public boolean update(MessageObject messageObject) {
         ImageReceiver imageReceiver;
         Drawable createTopicDrawable;
+        Text text;
         AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiImage;
-        Text text = null;
         if (animatedEmojiDrawable != null) {
             animatedEmojiDrawable.removeView(this.cell);
             this.emojiImage = null;
         }
         this.pathWidth = 0;
-        if (messageObject != null) {
+        this.topicId = 0L;
+        if (messageObject == null) {
+            this.text = null;
+            this.topicId = 0L;
+        } else {
             if (ChatObject.isMonoForum(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-messageObject.getDialogId())))) {
                 this.image.setRoundRadius(AndroidUtilities.dp(10.0f));
-                TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(messageObject.getMonoForumTopicId());
+                long monoForumTopicId = messageObject.getMonoForumTopicId();
+                TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(monoForumTopicId);
+                this.topicId = monoForumTopicId;
                 if (userOrChat == null) {
                     this.text = null;
                     return false;
@@ -210,6 +266,7 @@ public class TopicSeparator {
             } else {
                 this.image.setRoundRadius(0);
                 long topicId = messageObject.getTopicId();
+                this.topicId = topicId;
                 TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), topicId);
                 if (findTopic == null) {
                     this.text = null;
@@ -230,8 +287,8 @@ public class TopicSeparator {
                 imageReceiver.setImageBitmap(createTopicDrawable);
                 text = new Text(findTopic.title, 14.0f, AndroidUtilities.bold());
             }
+            this.text = text;
         }
-        this.text = text;
         return this.text != null;
     }
 }
