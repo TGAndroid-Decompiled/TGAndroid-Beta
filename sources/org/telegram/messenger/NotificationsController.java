@@ -2567,15 +2567,17 @@ public class NotificationsController extends BaseController {
     }
 
     public void processNewMessages(final ArrayList<MessageObject> arrayList, final boolean z, final boolean z2, final CountDownLatch countDownLatch) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("NotificationsController: processNewMessages msgs.size()=");
-        sb.append(arrayList == null ? "null" : Integer.valueOf(arrayList.size()));
-        sb.append(" isLast=");
-        sb.append(z);
-        sb.append(" isFcm=");
-        sb.append(z2);
-        sb.append(")");
-        FileLog.d(sb.toString());
+        if (BuildVars.LOGS_ENABLED) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("NotificationsController: processNewMessages msgs.size()=");
+            sb.append(arrayList == null ? "null" : Integer.valueOf(arrayList.size()));
+            sb.append(" isLast=");
+            sb.append(z);
+            sb.append(" isFcm=");
+            sb.append(z2);
+            sb.append(")");
+            FileLog.d(sb.toString());
+        }
         if (arrayList != null) {
             int i = 0;
             while (i < arrayList.size()) {

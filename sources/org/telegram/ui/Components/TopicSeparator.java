@@ -146,9 +146,11 @@ public class TopicSeparator {
 
     public void draw(Canvas canvas, int i, float f, float f2, float f3, float f4, boolean z) {
         float f5;
-        if (this.text == null) {
+        Text text = this.text;
+        if (text == null) {
             return;
         }
+        text.ellipsize(i - AndroidUtilities.dp(144.66f));
         float dp = AndroidUtilities.dp(48.66f) + this.text.getWidth();
         float f6 = i;
         float f7 = (f6 - dp) / 2.0f;

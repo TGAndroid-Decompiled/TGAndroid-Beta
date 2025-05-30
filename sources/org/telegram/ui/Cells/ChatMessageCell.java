@@ -5484,7 +5484,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     private void setMessageContent(
 
-    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r61) {
+    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r55) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageObjectInternal(org.telegram.messenger.MessageObject):void");
     }
 

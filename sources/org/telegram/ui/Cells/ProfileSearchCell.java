@@ -190,10 +190,11 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         int i3;
         int i4;
         int i5;
+        int i6;
         String str;
         int dialogUnreadCount;
         TextPaint textPaint3;
-        int i6;
+        int i7;
         String str2;
         String userName;
         String str3;
@@ -271,9 +272,9 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.escape(chat3.title));
                         spannableStringBuilder.append((CharSequence) " ");
                         int length = spannableStringBuilder.length();
-                        int i7 = R.string.MonoforumSpan;
-                        spannableStringBuilder.append((CharSequence) LocaleController.getString(i7));
-                        spannableStringBuilder.setSpan(new FilterCreateActivity.TextSpan(LocaleController.getString(i7), 9.33f, Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), length, spannableStringBuilder.length(), 33);
+                        int i8 = R.string.MonoforumSpan;
+                        spannableStringBuilder.append((CharSequence) LocaleController.getString(i8));
+                        spannableStringBuilder.setSpan(new FilterCreateActivity.TextSpan(LocaleController.getString(i8), 9.33f, Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), length, spannableStringBuilder.length(), 33);
                         str3 = spannableStringBuilder;
                         charSequence2 = AndroidUtilities.replaceNewLines(str3);
                     } else {
@@ -312,12 +313,12 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             this.namePaint.setTextSize(AndroidUtilities.dp(16.0f));
             if (this.encryptedChat != null) {
                 textPaint3 = this.namePaint;
-                i6 = Theme.key_chats_secretName;
+                i7 = Theme.key_chats_secretName;
             } else {
                 textPaint3 = this.namePaint;
-                i6 = Theme.key_chats_name;
+                i7 = Theme.key_chats_name;
             }
-            textPaint3.setColor(Theme.getColor(i6, this.resourcesProvider));
+            textPaint3.setColor(Theme.getColor(i7, this.resourcesProvider));
             textPaint = this.namePaint;
         } else {
             textPaint = this.encryptedChat != null ? Theme.dialogs_searchNameEncryptedPaint : Theme.dialogs_searchNamePaint;
@@ -344,9 +345,9 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         }
         if (this.contact != null) {
             TextPaint textPaint6 = Theme.dialogs_countTextPaint;
-            int i8 = R.string.Invite;
-            int measureText = (int) (textPaint6.measureText(LocaleController.getString(i8)) + 1.0f);
-            this.actionLayout = new StaticLayout(LocaleController.getString(i8), Theme.dialogs_countTextPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            int i9 = R.string.Invite;
+            int measureText = (int) (textPaint6.measureText(LocaleController.getString(i9)) + 1.0f);
+            this.actionLayout = new StaticLayout(LocaleController.getString(i9), Theme.dialogs_countTextPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             if (LocaleController.isRTL) {
                 this.actionLeft = AndroidUtilities.dp(19.0f) + AndroidUtilities.dp(16.0f);
                 this.nameLeft += measureText;
@@ -400,9 +401,9 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (ellipsize != null) {
             ellipsize = Emoji.replaceEmoji(ellipsize, textPaint5.getFontMetricsInt(), false);
         }
-        int i9 = this.nameWidth;
+        int i10 = this.nameWidth;
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.nameLayout = new StaticLayout(ellipsize, textPaint5, i9, alignment, 1.0f, 0.0f, false);
+        this.nameLayout = new StaticLayout(ellipsize, textPaint5, i10, alignment, 1.0f, 0.0f, false);
         TextPaint textPaint7 = Theme.dialogs_offlinePaint;
         TLRPC.Chat chat4 = this.chat;
         if (chat4 == null || this.subLabel != null) {
@@ -474,12 +475,17 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 str = "Members";
                 charSequence = LocaleController.formatPluralStringComma(str, i4);
                 this.nameTop = AndroidUtilities.dp(19.0f);
-            } else if (chat6.has_geo) {
-                charSequence = LocaleController.getString(R.string.MegaLocation);
-                this.nameTop = AndroidUtilities.dp(19.0f);
             } else {
-                i5 = !ChatObject.isPublic(chat6) ? R.string.MegaPrivate : R.string.MegaPublic;
-                charSequence = LocaleController.getString(i5).toLowerCase();
+                if (chat6.has_geo) {
+                    i6 = R.string.MegaLocation;
+                } else if (ChatObject.isMonoForum(chat6)) {
+                    i6 = R.string.MonoforumMessages;
+                } else {
+                    i5 = !ChatObject.isPublic(this.chat) ? R.string.MegaPrivate : R.string.MegaPublic;
+                    charSequence = LocaleController.getString(i5).toLowerCase();
+                    this.nameTop = AndroidUtilities.dp(19.0f);
+                }
+                charSequence = LocaleController.getString(i6);
                 this.nameTop = AndroidUtilities.dp(19.0f);
             }
         }

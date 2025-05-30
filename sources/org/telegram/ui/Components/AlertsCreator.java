@@ -5323,6 +5323,10 @@ public abstract class AlertsCreator {
     }
 
     public static void showAlertWithCheckbox(Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+        if (context == null) {
+            callback.run(Boolean.FALSE);
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
         final CheckBoxCell[] checkBoxCellArr = new CheckBoxCell[1];
         final boolean[] zArr = new boolean[1];

@@ -1047,6 +1047,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private View topViewSeparator2;
     private View topViewSeparator3;
     private int topViewWasVisible;
+    private boolean topicChangedFromMessage;
     private MessageObject topicStarterMessageObject;
     public TopicsTabsView topicsTabs;
     private int totalPinnedMessagesCount;
@@ -9219,7 +9220,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (chatActionCell == null || (messageObject = chatActionCell.getMessageObject()) == null || (topicsTabsView = ChatActivity.this.topicsTabs) == null) {
                     return;
                 }
-                topicsTabsView.selectTopic(messageObject.getMonoForumTopicId());
+                topicsTabsView.selectTopic(messageObject.getMonoForumTopicId(), true);
             }
         }
 
@@ -13394,7 +13395,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             ChatActivity chatActivity = ChatActivity.this;
             if (chatActivity.topicsTabs != null && chatActivity.threadMessageId == 0 && (chatMessageCell.isForum || chatMessageCell.isMonoForum)) {
-                ChatActivity.this.topicsTabs.selectTopic(chatMessageCell.getMessageObject().getTopicId());
+                ChatActivity.this.topicsTabs.selectTopic(chatMessageCell.getMessageObject().getTopicId(), true);
                 return;
             }
             if (ChatActivity.this.getMessagesController().isFrozen()) {
@@ -17947,16 +17948,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.lambda$createTopicsTabs$88();
             }
         });
-        this.topicsTabs.setOnTopicSelected(new Utilities.Callback() {
+        this.topicsTabs.setOnTopicSelected(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj) {
-                ChatActivity.this.lambda$createTopicsTabs$89((Integer) obj);
+            public final void run(Object obj, Object obj2) {
+                ChatActivity.this.lambda$createTopicsTabs$89((Integer) obj, (Boolean) obj2);
             }
         });
-        this.topicsTabs.setOnDialogSelected(new Utilities.Callback() {
+        this.topicsTabs.setOnDialogSelected(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj) {
-                ChatActivity.this.lambda$createTopicsTabs$90((Long) obj);
+            public final void run(Object obj, Object obj2) {
+                ChatActivity.this.lambda$createTopicsTabs$90((Long) obj, (Boolean) obj2);
             }
         });
         this.contentView.addView(this.topicsTabs, i, LayoutHelper.createFrame(-1, -1, 51));
@@ -20255,12 +20256,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         presentFragment(TopicCreateFragment.create(-this.dialog_id, 0L).setOpenInChatActivity(this));
     }
 
-    public void lambda$createTopicsTabs$89(java.lang.Integer r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$createTopicsTabs$89(java.lang.Integer):void");
+    public void lambda$createTopicsTabs$89(java.lang.Integer r13, java.lang.Boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$createTopicsTabs$89(java.lang.Integer, java.lang.Boolean):void");
     }
 
-    public void lambda$createTopicsTabs$90(java.lang.Long r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$createTopicsTabs$90(java.lang.Long):void");
+    public void lambda$createTopicsTabs$90(java.lang.Long r10, java.lang.Boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$createTopicsTabs$90(java.lang.Long, java.lang.Boolean):void");
     }
 
     public boolean lambda$createView$18(View view, MotionEvent motionEvent) {
@@ -20354,7 +20355,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void lambda$createView$26(Long l) {
         TopicsTabsView topicsTabsView = this.topicsTabs;
         if (topicsTabsView != null) {
-            topicsTabsView.selectTopic(l.longValue());
+            topicsTabsView.selectTopic(l.longValue(), true);
         }
     }
 
@@ -31611,6 +31612,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return false;
         }
         if (this.chatMode == 6 && BusinessLinksActivity.closeRenameAlert()) {
+            return false;
+        }
+        if (ChatObject.isMonoForum(this.currentChat) && !this.isSubscriberSuggestions && this.topicsTabs != null && getTopicId() != 0) {
+            this.topicsTabs.selectTopic(0L, this.topicChangedFromMessage);
             return false;
         }
         ChatActivity chatActivity = this.backToPreviousFragment;

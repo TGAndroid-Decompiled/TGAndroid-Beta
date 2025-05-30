@@ -828,7 +828,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         openProfile(z, true, false);
     }
 
-    public void openProfile(boolean r12, boolean r13, boolean r14) {
+    public void openProfile(boolean r18, boolean r19, boolean r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAvatarContainer.openProfile(boolean, boolean, boolean):void");
     }
 

@@ -4942,7 +4942,9 @@
     <string name="MonetizationTransactionsTON">TON Transactions</string>
     <string name="MonetizationWithdraw">Withdraw via Fragment</string>
     <string name="Mono">Mono</string>
-    <string name="MonoforumSpan">MESSAGES</string>
+    <string name="MonoforumDeletedUndo">Removed from your chat list.</string>
+    <string name="MonoforumMessages">direct messages</string>
+    <string name="MonoforumSpan">DIRECT</string>
     <string name="MonoforumTitle">%1$s Messages</string>
     <string name="MonthAgo">a month ago</string>
     <string name="MonthsAgo_one">%d months ago</string>
@@ -9276,7 +9278,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2452_com_google_firebase_crashlytics_mapping_file_id">11ddfe5117534fd9b7f81090d03ad211</string>
+    <string name="res_0x7f0f2454_com_google_firebase_crashlytics_mapping_file_id">1bf95e625e204d708536c41a63c522ad</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

@@ -55,6 +55,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     private long mergeDialogId;
     private ArrayList messages;
     private int mode;
+    private boolean monoforum;
     private Runnable onDelete;
     private int[] participantMessageCounts;
     private boolean participantMessageCountsLoaded;
@@ -400,6 +401,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         MessagesController.getInstance(this.currentAccount).getMainSettings();
         this.report = new Action(0, arrayList2);
         this.deleteAll = new Action(1, arrayList2);
+        this.monoforum = ChatObject.isMonoForum(chat);
         if (ChatObject.canBlockUsers(chat)) {
             this.banFilter = new boolean[arrayList2.size()];
             int i5 = 0;
@@ -534,53 +536,54 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         fillAction(arrayList, this.report);
         fillAction(arrayList, this.deleteAll);
         fillAction(arrayList, this.banOrRestrict);
-        if (this.banOrRestrict.isPresent()) {
-            if (this.restrict) {
-                arrayList.add(UItem.asShadow(null));
-                arrayList.add(UItem.asAnimatedHeader(0, this.banOrRestrict.isExpandable() ? LocaleController.formatPluralString("UserRestrictionsCanDoUsers", this.banOrRestrict.selectedCount, new Object[0]) : LocaleController.getString(R.string.UserRestrictionsCanDo)));
-                arrayList.add(UItem.asSwitch(0, LocaleController.getString(R.string.UserRestrictionsSend)).setChecked((this.bannedRights.send_plain || this.defaultBannedRights.send_plain) ? false : true).setLocked(this.defaultBannedRights.send_plain));
-                final int sendMediaSelectedCount = getSendMediaSelectedCount();
-                arrayList.add(UItem.asExpandableSwitch(1, LocaleController.getString(R.string.UserRestrictionsSendMedia), String.format(Locale.US, "%d/9", Integer.valueOf(sendMediaSelectedCount))).setChecked(sendMediaSelectedCount > 0).setLocked(allDefaultMediaBanned()).setCollapsed(this.sendMediaCollapsed).setClickCallback(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        DeleteMessagesBottomSheet.this.lambda$fillItems$9(sendMediaSelectedCount, universalAdapter, view);
-                    }
-                }));
-                if (!this.sendMediaCollapsed) {
-                    arrayList.add(UItem.asRoundCheckbox(6, LocaleController.getString(R.string.SendMediaPermissionPhotos)).setChecked((this.bannedRights.send_photos || this.defaultBannedRights.send_photos) ? false : true).setLocked(this.defaultBannedRights.send_photos).setPad(1));
-                    arrayList.add(UItem.asRoundCheckbox(7, LocaleController.getString(R.string.SendMediaPermissionVideos)).setChecked((this.bannedRights.send_videos || this.defaultBannedRights.send_videos) ? false : true).setLocked(this.defaultBannedRights.send_videos).setPad(1));
-                    arrayList.add(UItem.asRoundCheckbox(8, LocaleController.getString(R.string.SendMediaPermissionFiles)).setChecked((this.bannedRights.send_docs || this.defaultBannedRights.send_docs) ? false : true).setLocked(this.defaultBannedRights.send_docs).setPad(1));
-                    arrayList.add(UItem.asRoundCheckbox(9, LocaleController.getString(R.string.SendMediaPermissionMusic)).setChecked((this.bannedRights.send_audios || this.defaultBannedRights.send_audios) ? false : true).setLocked(this.defaultBannedRights.send_audios).setPad(1));
-                    arrayList.add(UItem.asRoundCheckbox(10, LocaleController.getString(R.string.SendMediaPermissionVoice)).setChecked((this.bannedRights.send_voices || this.defaultBannedRights.send_voices) ? false : true).setLocked(this.defaultBannedRights.send_voices).setPad(1));
-                    arrayList.add(UItem.asRoundCheckbox(11, LocaleController.getString(R.string.SendMediaPermissionRound)).setChecked((this.bannedRights.send_roundvideos || this.defaultBannedRights.send_roundvideos) ? false : true).setLocked(this.defaultBannedRights.send_roundvideos).setPad(1));
-                    arrayList.add(UItem.asRoundCheckbox(12, LocaleController.getString(R.string.SendMediaPermissionStickersGifs)).setChecked((this.bannedRights.send_stickers || this.defaultBannedRights.send_stickers) ? false : true).setLocked(this.defaultBannedRights.send_stickers).setPad(1));
-                    arrayList.add(UItem.asRoundCheckbox(13, LocaleController.getString(R.string.SendMediaPolls)).setChecked((this.bannedRights.send_polls || this.defaultBannedRights.send_polls) ? false : true).setLocked(this.defaultBannedRights.send_polls).setPad(1));
-                    UItem asRoundCheckbox = UItem.asRoundCheckbox(14, LocaleController.getString(R.string.UserRestrictionsEmbedLinks));
-                    TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
-                    if (!tL_chatBannedRights.embed_links) {
-                        TLRPC.TL_chatBannedRights tL_chatBannedRights2 = this.defaultBannedRights;
-                        if (!tL_chatBannedRights2.embed_links && !tL_chatBannedRights.send_plain && !tL_chatBannedRights2.send_plain) {
-                            z = true;
-                            arrayList.add(asRoundCheckbox.setChecked(z).setLocked(this.defaultBannedRights.embed_links).setPad(1));
-                        }
-                    }
-                    z = false;
-                    arrayList.add(asRoundCheckbox.setChecked(z).setLocked(this.defaultBannedRights.embed_links).setPad(1));
+        if (this.monoforum || !this.banOrRestrict.isPresent()) {
+            return;
+        }
+        if (this.restrict) {
+            arrayList.add(UItem.asShadow(null));
+            arrayList.add(UItem.asAnimatedHeader(0, this.banOrRestrict.isExpandable() ? LocaleController.formatPluralString("UserRestrictionsCanDoUsers", this.banOrRestrict.selectedCount, new Object[0]) : LocaleController.getString(R.string.UserRestrictionsCanDo)));
+            arrayList.add(UItem.asSwitch(0, LocaleController.getString(R.string.UserRestrictionsSend)).setChecked((this.bannedRights.send_plain || this.defaultBannedRights.send_plain) ? false : true).setLocked(this.defaultBannedRights.send_plain));
+            final int sendMediaSelectedCount = getSendMediaSelectedCount();
+            arrayList.add(UItem.asExpandableSwitch(1, LocaleController.getString(R.string.UserRestrictionsSendMedia), String.format(Locale.US, "%d/9", Integer.valueOf(sendMediaSelectedCount))).setChecked(sendMediaSelectedCount > 0).setLocked(allDefaultMediaBanned()).setCollapsed(this.sendMediaCollapsed).setClickCallback(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    DeleteMessagesBottomSheet.this.lambda$fillItems$9(sendMediaSelectedCount, universalAdapter, view);
                 }
-                arrayList.add(UItem.asSwitch(2, LocaleController.getString(R.string.UserRestrictionsInviteUsers)).setChecked((this.bannedRights.invite_users || this.defaultBannedRights.invite_users) ? false : true).setLocked(this.defaultBannedRights.invite_users));
-                arrayList.add(UItem.asSwitch(3, LocaleController.getString(R.string.UserRestrictionsPinMessages)).setChecked((this.bannedRights.pin_messages || this.defaultBannedRights.pin_messages) ? false : true).setLocked(this.defaultBannedRights.pin_messages));
-                arrayList.add(UItem.asSwitch(4, LocaleController.getString(R.string.UserRestrictionsChangeInfo)).setChecked((this.bannedRights.change_info || this.defaultBannedRights.change_info) ? false : true).setLocked(this.defaultBannedRights.change_info));
-                if (this.isForum) {
-                    UItem asSwitch = UItem.asSwitch(5, LocaleController.getString(R.string.CreateTopicsPermission));
-                    if (!this.bannedRights.manage_topics && !this.defaultBannedRights.manage_topics) {
-                        z2 = true;
+            }));
+            if (!this.sendMediaCollapsed) {
+                arrayList.add(UItem.asRoundCheckbox(6, LocaleController.getString(R.string.SendMediaPermissionPhotos)).setChecked((this.bannedRights.send_photos || this.defaultBannedRights.send_photos) ? false : true).setLocked(this.defaultBannedRights.send_photos).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(7, LocaleController.getString(R.string.SendMediaPermissionVideos)).setChecked((this.bannedRights.send_videos || this.defaultBannedRights.send_videos) ? false : true).setLocked(this.defaultBannedRights.send_videos).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(8, LocaleController.getString(R.string.SendMediaPermissionFiles)).setChecked((this.bannedRights.send_docs || this.defaultBannedRights.send_docs) ? false : true).setLocked(this.defaultBannedRights.send_docs).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(9, LocaleController.getString(R.string.SendMediaPermissionMusic)).setChecked((this.bannedRights.send_audios || this.defaultBannedRights.send_audios) ? false : true).setLocked(this.defaultBannedRights.send_audios).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(10, LocaleController.getString(R.string.SendMediaPermissionVoice)).setChecked((this.bannedRights.send_voices || this.defaultBannedRights.send_voices) ? false : true).setLocked(this.defaultBannedRights.send_voices).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(11, LocaleController.getString(R.string.SendMediaPermissionRound)).setChecked((this.bannedRights.send_roundvideos || this.defaultBannedRights.send_roundvideos) ? false : true).setLocked(this.defaultBannedRights.send_roundvideos).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(12, LocaleController.getString(R.string.SendMediaPermissionStickersGifs)).setChecked((this.bannedRights.send_stickers || this.defaultBannedRights.send_stickers) ? false : true).setLocked(this.defaultBannedRights.send_stickers).setPad(1));
+                arrayList.add(UItem.asRoundCheckbox(13, LocaleController.getString(R.string.SendMediaPolls)).setChecked((this.bannedRights.send_polls || this.defaultBannedRights.send_polls) ? false : true).setLocked(this.defaultBannedRights.send_polls).setPad(1));
+                UItem asRoundCheckbox = UItem.asRoundCheckbox(14, LocaleController.getString(R.string.UserRestrictionsEmbedLinks));
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
+                if (!tL_chatBannedRights.embed_links) {
+                    TLRPC.TL_chatBannedRights tL_chatBannedRights2 = this.defaultBannedRights;
+                    if (!tL_chatBannedRights2.embed_links && !tL_chatBannedRights.send_plain && !tL_chatBannedRights2.send_plain) {
+                        z = true;
+                        arrayList.add(asRoundCheckbox.setChecked(z).setLocked(this.defaultBannedRights.embed_links).setPad(1));
                     }
-                    arrayList.add(asSwitch.setChecked(z2).setLocked(this.defaultBannedRights.manage_topics));
                 }
+                z = false;
+                arrayList.add(asRoundCheckbox.setChecked(z).setLocked(this.defaultBannedRights.embed_links).setPad(1));
             }
-            if (this.canRestrict) {
-                arrayList.add(UItem.asShadowCollapseButton(1, LocaleController.getString(getRestrictToggleTextKey())).setCollapsed(!this.restrict).accent());
+            arrayList.add(UItem.asSwitch(2, LocaleController.getString(R.string.UserRestrictionsInviteUsers)).setChecked((this.bannedRights.invite_users || this.defaultBannedRights.invite_users) ? false : true).setLocked(this.defaultBannedRights.invite_users));
+            arrayList.add(UItem.asSwitch(3, LocaleController.getString(R.string.UserRestrictionsPinMessages)).setChecked((this.bannedRights.pin_messages || this.defaultBannedRights.pin_messages) ? false : true).setLocked(this.defaultBannedRights.pin_messages));
+            arrayList.add(UItem.asSwitch(4, LocaleController.getString(R.string.UserRestrictionsChangeInfo)).setChecked((this.bannedRights.change_info || this.defaultBannedRights.change_info) ? false : true).setLocked(this.defaultBannedRights.change_info));
+            if (this.isForum) {
+                UItem asSwitch = UItem.asSwitch(5, LocaleController.getString(R.string.CreateTopicsPermission));
+                if (!this.bannedRights.manage_topics && !this.defaultBannedRights.manage_topics) {
+                    z2 = true;
+                }
+                arrayList.add(asSwitch.setChecked(z2).setLocked(this.defaultBannedRights.manage_topics));
             }
+        }
+        if (this.canRestrict) {
+            arrayList.add(UItem.asShadowCollapseButton(1, LocaleController.getString(getRestrictToggleTextKey())).setCollapsed(!this.restrict).accent());
         }
     }
 
@@ -702,58 +705,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         return false;
     }
 
-    public void lambda$performDelete$12(TLObject tLObject, int i) {
-        MessagesController messagesController;
-        long j;
-        TLRPC.Chat chat;
-        boolean z;
-        boolean z2;
-        TLRPC.User user;
-        MessagesController messagesController2;
-        long j2;
-        TLRPC.Chat chat2;
-        BaseFragment baseFragment;
-        TLRPC.User user2;
-        if (this.restrict) {
-            TLRPC.TL_chatBannedRights bannedRightsOr = bannedRightsOr(this.bannedRights, (TLRPC.TL_chatBannedRights) this.participantsBannedRights.get(i));
-            if (tLObject instanceof TLRPC.User) {
-                messagesController2 = MessagesController.getInstance(this.currentAccount);
-                j2 = this.inChat.id;
-                user2 = (TLRPC.User) tLObject;
-                baseFragment = getBaseFragment();
-                chat2 = null;
-            } else {
-                if (!(tLObject instanceof TLRPC.Chat)) {
-                    return;
-                }
-                messagesController2 = MessagesController.getInstance(this.currentAccount);
-                j2 = this.inChat.id;
-                chat2 = (TLRPC.Chat) tLObject;
-                baseFragment = getBaseFragment();
-                user2 = null;
-            }
-            messagesController2.setParticipantBannedRole(j2, user2, chat2, bannedRightsOr, false, baseFragment);
-            return;
-        }
-        if (tLObject instanceof TLRPC.User) {
-            messagesController = MessagesController.getInstance(this.currentAccount);
-            j = this.inChat.id;
-            user = (TLRPC.User) tLObject;
-            z = false;
-            z2 = false;
-            chat = null;
-        } else {
-            if (!(tLObject instanceof TLRPC.Chat)) {
-                return;
-            }
-            messagesController = MessagesController.getInstance(this.currentAccount);
-            j = this.inChat.id;
-            chat = (TLRPC.Chat) tLObject;
-            z = false;
-            z2 = false;
-            user = null;
-        }
-        messagesController.deleteParticipantFromChat(j, user, chat, z, z2);
+    public void lambda$performDelete$12(org.telegram.tgnet.TLObject r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DeleteMessagesBottomSheet.lambda$performDelete$12(org.telegram.tgnet.TLObject, int):void");
     }
 
     public boolean lambda$performDelete$13(MessageObject messageObject) {

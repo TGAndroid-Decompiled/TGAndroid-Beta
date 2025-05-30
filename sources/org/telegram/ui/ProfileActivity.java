@@ -3506,8 +3506,25 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public static class AvatarImageView extends BackupImageView {
+        public static Property CROSSFADE_PROGRESS = new AnimationProperties.FloatProperty("crossfadeProgress") {
+            AnonymousClass1(String str) {
+                super(str);
+            }
+
+            @Override
+            public Float get(AvatarImageView avatarImageView) {
+                return Float.valueOf(avatarImageView.crossfadeProgress);
+            }
+
+            @Override
+            public void setValue(AvatarImageView avatarImageView, float f) {
+                avatarImageView.setCrossfadeProgress(f);
+            }
+        };
+        private ImageReceiver animateFromImageReceiver;
         ProfileGalleryView avatarsViewPager;
         public float bounceScale;
+        private float crossfadeProgress;
         public boolean drawAvatar;
         boolean drawForeground;
         private ImageReceiver.BitmapHolder drawableHolder;
@@ -3518,6 +3535,22 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         float progressToExpand;
         private float progressToInsets;
         private final RectF rect;
+
+        class AnonymousClass1 extends AnimationProperties.FloatProperty {
+            AnonymousClass1(String str) {
+                super(str);
+            }
+
+            @Override
+            public Float get(AvatarImageView avatarImageView) {
+                return Float.valueOf(avatarImageView.crossfadeProgress);
+            }
+
+            @Override
+            public void setValue(AvatarImageView avatarImageView, float f) {
+                avatarImageView.setCrossfadeProgress(f);
+            }
+        }
 
         public AvatarImageView(Context context) {
             super(context);
@@ -3587,31 +3620,52 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public void onDraw(Canvas canvas) {
+            float f;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
             ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
             canvas.save();
-            float f = this.bounceScale;
-            canvas.scale(f, f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            float dpf2 = (this.hasStories ? (int) AndroidUtilities.dpf2(3.5f) : 0.0f) * (1.0f - this.progressToExpand);
-            float f2 = this.progressToInsets;
-            float f3 = this.foregroundAlpha;
-            float f4 = dpf2 * f2 * (1.0f - f3);
-            if (imageReceiver != null && (f3 < 1.0f || !this.drawForeground)) {
-                float f5 = f4 * 2.0f;
-                imageReceiver.setImageCoords(f4, f4, getMeasuredWidth() - f5, getMeasuredHeight() - f5);
+            float f2 = this.bounceScale;
+            canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+            float dpf2 = (this.hasStories ? (int) AndroidUtilities.dpf2(3.5f) : 0.0f) * (1.0f - this.progressToExpand) * this.progressToInsets * (1.0f - this.foregroundAlpha);
+            ImageReceiver imageReceiver2 = this.animateFromImageReceiver;
+            if (imageReceiver2 != null) {
+                float f3 = this.crossfadeProgress;
+                f = (1.0f - f3) * 1.0f;
+                if (f3 > 0.0f) {
+                    float imageX = imageReceiver2.getImageX();
+                    float imageY = this.animateFromImageReceiver.getImageY();
+                    float imageWidth = this.animateFromImageReceiver.getImageWidth();
+                    float imageHeight = this.animateFromImageReceiver.getImageHeight();
+                    float alpha = this.animateFromImageReceiver.getAlpha();
+                    float f4 = dpf2 * 2.0f;
+                    this.animateFromImageReceiver.setImageCoords(dpf2, dpf2, getMeasuredWidth() - f4, getMeasuredHeight() - f4);
+                    this.animateFromImageReceiver.setAlpha(f3);
+                    this.animateFromImageReceiver.draw(canvas);
+                    this.animateFromImageReceiver.setImageCoords(imageX, imageY, imageWidth, imageHeight);
+                    this.animateFromImageReceiver.setAlpha(alpha);
+                }
+            } else {
+                f = 1.0f;
+            }
+            if (imageReceiver != null && f > 0.0f && (this.foregroundAlpha < 1.0f || !this.drawForeground)) {
+                float f5 = dpf2 * 2.0f;
+                imageReceiver.setImageCoords(dpf2, dpf2, getMeasuredWidth() - f5, getMeasuredHeight() - f5);
+                float alpha2 = imageReceiver.getAlpha();
+                imageReceiver.setAlpha(alpha2 * f);
                 if (this.drawAvatar) {
                     imageReceiver.draw(canvas);
                 }
+                imageReceiver.setAlpha(alpha2);
             }
-            if (this.foregroundAlpha > 0.0f && this.drawForeground) {
+            if (this.foregroundAlpha > 0.0f && this.drawForeground && f > 0.0f) {
                 if (this.foregroundImageReceiver.getDrawable() != null) {
-                    float f6 = 2.0f * f4;
-                    this.foregroundImageReceiver.setImageCoords(f4, f4, getMeasuredWidth() - f6, getMeasuredHeight() - f6);
-                    this.foregroundImageReceiver.setAlpha(this.foregroundAlpha);
+                    float f6 = 2.0f * dpf2;
+                    this.foregroundImageReceiver.setImageCoords(dpf2, dpf2, getMeasuredWidth() - f6, getMeasuredHeight() - f6);
+                    this.foregroundImageReceiver.setAlpha(f * this.foregroundAlpha);
                     this.foregroundImageReceiver.draw(canvas);
                 } else {
                     this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    this.placeholderPaint.setAlpha((int) (this.foregroundAlpha * 255.0f));
+                    this.placeholderPaint.setAlpha((int) (f * this.foregroundAlpha * 255.0f));
                     float f7 = this.foregroundImageReceiver.getRoundRadius()[0];
                     canvas.drawRoundRect(this.rect, f7, f7, this.placeholderPaint);
                 }
@@ -3619,8 +3673,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             canvas.restore();
         }
 
+        public void setAnimateFromImageReceiver(ImageReceiver imageReceiver) {
+            this.animateFromImageReceiver = imageReceiver;
+        }
+
         public void setAvatarsViewPager(ProfileGalleryView profileGalleryView) {
             this.avatarsViewPager = profileGalleryView;
+        }
+
+        public void setCrossfadeProgress(float f) {
+            this.crossfadeProgress = f;
+            invalidate();
         }
 
         public void setForegroundAlpha(float f) {
@@ -6290,7 +6353,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             SearchResult searchResult5 = new SearchResult(this, 504, string, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.access$7500(ProfileActivity.this);
+                    ProfileActivity.access$7600(ProfileActivity.this);
                 }
             });
             int i = R.string.NotificationsAndSounds;
@@ -7921,17 +7984,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.sharedMediaPreloader = sharedMediaPreloader;
     }
 
-    static int access$10212(ProfileActivity profileActivity, int i) {
+    static int access$10312(ProfileActivity profileActivity, int i) {
         int i2 = profileActivity.listContentHeight + i;
         profileActivity.listContentHeight = i2;
         return i2;
     }
 
-    public static void access$36700(ProfileActivity profileActivity, View view) {
+    public static void access$36800(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
-    public static void access$7500(ProfileActivity profileActivity) {
+    public static void access$7600(ProfileActivity profileActivity) {
         profileActivity.onWriteButtonClick();
     }
 
@@ -12908,7 +12971,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void updateProfileData(boolean r33) {
+    public void updateProfileData(boolean r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.updateProfileData(boolean):void");
     }
 
@@ -14126,7 +14189,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.animation.AnimatorSet onCustomTransitionAnimation(boolean r17, java.lang.Runnable r18) {
+    public android.animation.AnimatorSet onCustomTransitionAnimation(boolean r18, java.lang.Runnable r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.onCustomTransitionAnimation(boolean, java.lang.Runnable):android.animation.AnimatorSet");
     }
 

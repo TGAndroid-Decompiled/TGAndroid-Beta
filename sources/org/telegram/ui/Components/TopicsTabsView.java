@@ -69,9 +69,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
     private int lastTabId;
     private final boolean mono;
     private boolean notificationsAttached;
-    private Utilities.Callback onDialogSelected;
+    private Utilities.Callback2 onDialogSelected;
     private Runnable onTopicCreated;
-    private Utilities.Callback onTopicSelected;
+    private Utilities.Callback2 onTopicSelected;
     private Boolean pendingSidemenu;
     private final Theme.ResourcesProvider resourcesProvider;
     private final UniversalRecyclerView sideTabs;
@@ -493,7 +493,8 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 spannableStringBuilder.setSpan(this.avatarSpan, 0, 1, 33);
             }
             spannableStringBuilder.append((CharSequence) DialogObject.getName(peerDialogId));
-            this.textView.setText(spannableStringBuilder);
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            linksTextView.setText(TextUtils.ellipsize(spannableStringBuilder, linksTextView.getPaint(), AndroidUtilities.dp(150.0f), TextUtils.TruncateAt.END));
             setSelected(z);
             setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, peerDialogId), tL_forumTopic.unread_count, false, false, z2);
             setPinned(false, z2);
@@ -1713,11 +1714,11 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
     }
 
     public void onTabClick(UItem uItem, View view, int i, float f, float f2) {
-        Utilities.Callback callback;
+        Utilities.Callback2 callback2;
         Object valueOf;
         if (this.mono) {
-            callback = this.onDialogSelected;
-            if (callback == null) {
+            callback2 = this.onDialogSelected;
+            if (callback2 == null) {
                 return;
             } else {
                 valueOf = Long.valueOf(uItem.longValue);
@@ -1731,14 +1732,14 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 }
                 return;
             }
-            callback = this.onTopicSelected;
-            if (callback == null) {
+            callback2 = this.onTopicSelected;
+            if (callback2 == null) {
                 return;
             } else {
                 valueOf = Integer.valueOf(uItem.id);
             }
         }
-        callback.run(valueOf);
+        callback2.run(valueOf, Boolean.FALSE);
     }
 
     public boolean onTabLongClick(UItem uItem, View view, int i, float f, float f2) {
@@ -1921,25 +1922,25 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         setAttached(false);
     }
 
-    public void selectTopic(long j) {
-        Utilities.Callback callback;
+    public void selectTopic(long j, boolean z) {
+        Utilities.Callback2 callback2;
         Object valueOf;
         if (this.mono) {
-            callback = this.onDialogSelected;
-            if (callback == null) {
+            callback2 = this.onDialogSelected;
+            if (callback2 == null) {
                 return;
             } else {
                 valueOf = Long.valueOf(j);
             }
         } else {
-            callback = this.onTopicSelected;
-            if (callback == null) {
+            callback2 = this.onTopicSelected;
+            if (callback2 == null) {
                 return;
             } else {
                 valueOf = Integer.valueOf((int) j);
             }
         }
-        callback.run(valueOf);
+        callback2.run(valueOf, Boolean.valueOf(z));
     }
 
     public void setBottomMargin(int i) {
@@ -1953,16 +1954,16 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         this.sideTabs.adapter.update(true);
     }
 
-    public void setOnDialogSelected(Utilities.Callback<Long> callback) {
-        this.onDialogSelected = callback;
+    public void setOnDialogSelected(Utilities.Callback2<Long, Boolean> callback2) {
+        this.onDialogSelected = callback2;
     }
 
     public void setOnNewTopicSelected(Runnable runnable) {
         this.onTopicCreated = runnable;
     }
 
-    public void setOnTopicSelected(Utilities.Callback<Integer> callback) {
-        this.onTopicSelected = callback;
+    public void setOnTopicSelected(Utilities.Callback2<Integer, Boolean> callback2) {
+        this.onTopicSelected = callback2;
     }
 
     public void updateSidemenuPosition() {

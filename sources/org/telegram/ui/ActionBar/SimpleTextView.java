@@ -1131,10 +1131,10 @@ public class SimpleTextView extends View implements Drawable.Callback {
         setRightDrawable(i == 0 ? null : getContext().getResources().getDrawable(i));
     }
 
-    public void setRightDrawable(Drawable drawable) {
+    public boolean setRightDrawable(Drawable drawable) {
         Drawable drawable2 = this.rightDrawable;
         if (drawable2 == drawable) {
-            return;
+            return false;
         }
         if (drawable2 != null) {
             drawable2.setCallback(null);
@@ -1144,15 +1144,16 @@ public class SimpleTextView extends View implements Drawable.Callback {
             drawable.setCallback(this);
         }
         if (recreateLayoutMaybe()) {
-            return;
+            return true;
         }
         invalidate();
+        return true;
     }
 
-    public void setRightDrawable2(Drawable drawable) {
+    public boolean setRightDrawable2(Drawable drawable) {
         Drawable drawable2 = this.rightDrawable2;
         if (drawable2 == drawable) {
-            return;
+            return false;
         }
         if (drawable2 != null) {
             drawable2.setCallback(null);
@@ -1162,9 +1163,10 @@ public class SimpleTextView extends View implements Drawable.Callback {
             drawable.setCallback(this);
         }
         if (recreateLayoutMaybe()) {
-            return;
+            return true;
         }
         invalidate();
+        return true;
     }
 
     public void setRightDrawableInside(boolean z) {
