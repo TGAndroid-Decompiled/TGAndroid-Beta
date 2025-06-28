@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 public abstract class ChatActivityEnterTopView extends FrameLayout {
@@ -42,6 +43,7 @@ public abstract class ChatActivityEnterTopView extends FrameLayout {
     public static abstract class EditViewButton extends LinearLayout {
         private boolean editButton;
         private ImageView imageView;
+        private Space space;
         private TextView textView;
 
         public EditViewButton(Context context) {
@@ -52,6 +54,13 @@ public abstract class ChatActivityEnterTopView extends FrameLayout {
             if (this.imageView == null) {
                 this.imageView = imageView;
                 addView(imageView, layoutParams);
+            }
+        }
+
+        public void addSpaceView(Space space, LinearLayout.LayoutParams layoutParams) {
+            if (this.space == null) {
+                this.space = space;
+                addView(space, layoutParams);
             }
         }
 
@@ -76,6 +85,17 @@ public abstract class ChatActivityEnterTopView extends FrameLayout {
 
         public void setEditButton(boolean z) {
             this.editButton = z;
+        }
+
+        public void setOnlyIconMode(boolean z) {
+            TextView textView = this.textView;
+            if (textView != null) {
+                textView.setVisibility(z ? 8 : 0);
+            }
+            Space space = this.space;
+            if (space != null) {
+                space.setVisibility(z ? 8 : 0);
+            }
         }
 
         public abstract void updateColors();
@@ -104,15 +124,26 @@ public abstract class ChatActivityEnterTopView extends FrameLayout {
         return this.editView;
     }
 
+    public View getReplyView() {
+        return this.replyView;
+    }
+
     public boolean isEditMode() {
         return this.editMode;
     }
 
     public void setEditMode(boolean z) {
-        if (z != this.editMode) {
-            this.editMode = z;
-            this.replyView.setVisibility(z ? 8 : 0);
-            this.editView.setVisibility(z ? 0 : 8);
+        this.editMode = z;
+        this.replyView.setVisibility(z ? 8 : 0);
+        this.editView.setVisibility(z ? 0 : 8);
+    }
+
+    public void setEditSuggestionMode(boolean z) {
+        setEditMode(z);
+        if (z) {
+            this.replyView.setVisibility(0);
         }
+        this.editView.buttons[0].setOnlyIconMode(z);
+        this.editView.buttons[1].setOnlyIconMode(z);
     }
 }

@@ -12,7 +12,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesController;
@@ -458,12 +457,6 @@ public class UItem extends AdapterWithDiffUtils.Item {
         uItem.text = charSequence;
         uItem.subtext = str;
         uItem.textValue = str2;
-        return uItem;
-    }
-
-    public static UItem asTransaction(TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction) {
-        UItem uItem = new UItem(25, false);
-        uItem.object = broadcastRevenueTransaction;
         return uItem;
     }
 

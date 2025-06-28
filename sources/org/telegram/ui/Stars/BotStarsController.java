@@ -18,7 +18,6 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelMonetizationLayout;
@@ -410,8 +409,8 @@ public class BotStarsController {
     }
 
     public void lambda$getTONRevenueStats$2(TLObject tLObject, long j) {
-        if (tLObject instanceof TL_stats.TL_broadcastRevenueStats) {
-            this.tonStats.put(Long.valueOf(j), (TL_stats.TL_broadcastRevenueStats) tLObject);
+        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
+            this.tonStats.put(Long.valueOf(j), (TLRPC.TL_payments_starsRevenueStats) tLObject);
         } else {
             this.tonStats.put(Long.valueOf(j), null);
         }
@@ -499,12 +498,12 @@ public class BotStarsController {
     }
 
     public boolean botHasTON(long j) {
-        TL_stats.TL_broadcastRevenueStats tONRevenueStats = getTONRevenueStats(j, false);
-        if (tONRevenueStats == null) {
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
+        TLRPC.TL_payments_starsRevenueStats tONRevenueStats = getTONRevenueStats(j, false);
+        if (tONRevenueStats == null || (tL_starsRevenueStatus = tONRevenueStats.status) == null) {
             return false;
         }
-        TLRPC.BroadcastRevenueBalances broadcastRevenueBalances = tONRevenueStats.balances;
-        return broadcastRevenueBalances.current_balance > 0 || broadcastRevenueBalances.available_balance > 0 || broadcastRevenueBalances.overall_revenue > 0;
+        return tL_starsRevenueStatus.current_balance.amount > 0 || tL_starsRevenueStatus.available_balance.amount > 0 || tL_starsRevenueStatus.overall_revenue.amount > 0;
     }
 
     public boolean didFullyLoadTransactions(long j, int i) {
@@ -546,7 +545,7 @@ public class BotStarsController {
 
     public TL_stars.StarsAmount getBotStarsBalance(long j) {
         TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(j);
-        return starsRevenueStats == null ? new TL_stars.StarsAmount(0L) : starsRevenueStats.status.current_balance;
+        return starsRevenueStats == null ? TL_stars.StarsAmount.ofStars(0L) : starsRevenueStats.status.current_balance;
     }
 
     public ChannelConnectedBots getChannelConnectedBots(long j) {
@@ -628,30 +627,32 @@ public class BotStarsController {
     }
 
     public long getTONBalance(long j) {
-        TLRPC.BroadcastRevenueBalances broadcastRevenueBalances;
-        TL_stats.TL_broadcastRevenueStats tONRevenueStats = getTONRevenueStats(j, false);
-        if (tONRevenueStats == null || (broadcastRevenueBalances = tONRevenueStats.balances) == null) {
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
+        TL_stars.StarsAmount starsAmount;
+        TLRPC.TL_payments_starsRevenueStats tONRevenueStats = getTONRevenueStats(j, false);
+        if (tONRevenueStats == null || (tL_starsRevenueStatus = tONRevenueStats.status) == null || (starsAmount = tL_starsRevenueStatus.current_balance) == null) {
             return 0L;
         }
-        return broadcastRevenueBalances.current_balance;
+        return starsAmount.amount;
     }
 
-    public TL_stats.TL_broadcastRevenueStats getTONRevenueStats(final long j, boolean z) {
+    public TLRPC.TL_payments_starsRevenueStats getTONRevenueStats(final long j, boolean z) {
         Long l = (Long) this.lastLoadedTonStats.get(Long.valueOf(j));
-        TL_stats.TL_broadcastRevenueStats tL_broadcastRevenueStats = (TL_stats.TL_broadcastRevenueStats) this.tonStats.get(Long.valueOf(j));
+        TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) this.tonStats.get(Long.valueOf(j));
         if (l == null || System.currentTimeMillis() - l.longValue() > 300000 || z) {
-            TL_stats.TL_getBroadcastRevenueStats tL_getBroadcastRevenueStats = new TL_stats.TL_getBroadcastRevenueStats();
-            tL_getBroadcastRevenueStats.dark = Theme.isCurrentThemeDark();
-            tL_getBroadcastRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+            TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
+            tL_payments_getStarsRevenueStats.ton = true;
+            tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
+            tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
             TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-j);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getBroadcastRevenueStats, new RequestDelegate() {
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     BotStarsController.this.lambda$getTONRevenueStats$3(j, tLObject, tL_error);
                 }
             }, null, null, 0, chatFull != null ? chatFull.stats_dc : Integer.MAX_VALUE, 1, true);
         }
-        return tL_broadcastRevenueStats;
+        return tL_payments_starsRevenueStats;
     }
 
     public ArrayList getTransactions(long j, int i) {
@@ -760,7 +761,9 @@ public class BotStarsController {
         if (channelMonetizationLayout == null || channelMonetizationLayout.dialogId != DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
             return;
         }
-        ChannelMonetizationLayout.instance.setupBalances(tL_updateStarsRevenueStatus.status);
+        ChannelMonetizationLayout channelMonetizationLayout2 = ChannelMonetizationLayout.instance;
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
+        channelMonetizationLayout2.setupBalances(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
         ChannelMonetizationLayout.instance.reloadTransactions();
     }
 

@@ -548,6 +548,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
+        public void didPressSuggestionButton() {
+            ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$didPressSuggestionButton(this);
+        }
+
+        @Override
         public int getContentViewHeight() {
             return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getContentViewHeight(this);
         }
@@ -784,7 +789,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         public void lambda$onStickerSelected$0(TLRPC.TL_document tL_document, String str, Object obj, Long l) {
-            SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj, null, 0, l.longValue(), PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId());
+            SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, false, obj, null, 0, l.longValue(), PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId(), PeerStoriesView.this.chatActivityEnterView.getSendMessageSuggestionParams());
             PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tL_document);
             PeerStoriesView.this.chatActivityEnterView.setFieldText("");
             PeerStoriesView.this.afterMessageSend(l.longValue() <= 0);
@@ -3716,7 +3721,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                                     photoEntry.reset();
                                 }
                             }
-                            SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, storyItem, null, i == i3 || z5, z2, null, z3, i2, 0, i5 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i4)).updateStickersOrder : false, null, null, 0, 0L, false, 0L, PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId());
+                            SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, storyItem, null, i == i3 || z5, z2, null, z3, i2, 0, i5 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i4)).updateStickersOrder : false, null, null, 0, 0L, false, 0L, PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId(), PeerStoriesView.this.chatActivityEnterView.getSendMessageSuggestionParams());
                             i5++;
                             selectedPhotos = selectedPhotos;
                             selectedPhotosOrder = selectedPhotosOrder;
@@ -5846,7 +5851,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     if (i != NotificationCenter.stealthModeChanged) {
                         if (i == NotificationCenter.storiesLimitUpdate) {
                             StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
-                            if (checkStoryLimit == null || this.delegate == null) {
+                            if (checkStoryLimit == null || !checkStoryLimit.active(this.currentAccount) || this.delegate == null) {
                                 return;
                             }
                             this.delegate.showDialog(new LimitReachedBottomSheet(fragmentForLimit(), findActivity(), checkStoryLimit.getLimitReachedType(), this.currentAccount, null));

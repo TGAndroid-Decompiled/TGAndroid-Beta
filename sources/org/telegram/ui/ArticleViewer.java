@@ -7336,7 +7336,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo1176getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1170getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 
@@ -7414,7 +7414,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1176getWindowView() {
+        public WindowView mo1170getWindowView() {
             return this.windowView;
         }
 
@@ -11214,7 +11214,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 public final void run(Object obj) {
                     ArticleViewer.this.lambda$setParentActivity$18((String) obj);
                 }
-            }, new ArticleViewer$$ExternalSyntheticLambda34(this), new View.OnClickListener() {
+            }, new ArticleViewer$$ExternalSyntheticLambda31(this), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
                     ArticleViewer.this.lambda$setParentActivity$19(magic2tonsite, pageLayout, view2);
@@ -11610,7 +11610,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         public final void run() {
                             ArticleViewer.this.lambda$setParentActivity$31();
                         }
-                    } : null, new ArticleViewer$$ExternalSyntheticLambda34(this));
+                    } : null, new ArticleViewer$$ExternalSyntheticLambda31(this));
                 }
             } else if (num.intValue() == 8) {
                 bottomSheetParams = new BaseFragment.BottomSheetParams();
@@ -11624,7 +11624,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         public final void run() {
                             ArticleViewer.this.lambda$setParentActivity$32();
                         }
-                    } : null, new ArticleViewer$$ExternalSyntheticLambda46(this));
+                    } : null, new ArticleViewer$$ExternalSyntheticLambda45(this));
                 }
             } else {
                 if (num.intValue() == 9) {
@@ -12842,7 +12842,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 webActionBar3.setIsTonsite(pageLayout4 != null && pageLayout4.isTonsite());
                 AnimatorSet animatorSet = this.pageSwitchAnimation;
                 Objects.requireNonNull(animatorSet);
-                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda9(animatorSet));
+                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda24(animatorSet));
             }
             if (!z) {
                 this.textSelectionHelper.clear(true);
@@ -13541,7 +13541,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (safeLastFragment != null) {
             BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
             bottomSheetParams.transitionFromLeft = true;
-            safeLastFragment.showAsSheet(new WebBrowserSettings(new ArticleViewer$$ExternalSyntheticLambda46(this)), bottomSheetParams);
+            safeLastFragment.showAsSheet(new WebBrowserSettings(new ArticleViewer$$ExternalSyntheticLambda45(this)), bottomSheetParams);
         }
     }
 

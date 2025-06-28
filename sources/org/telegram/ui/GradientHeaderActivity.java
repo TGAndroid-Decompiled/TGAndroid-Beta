@@ -40,6 +40,7 @@ import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SimpleThemeDescription;
+import org.telegram.ui.Stories.recorder.HintView2;
 
 public abstract class GradientHeaderActivity extends BaseFragment {
     public BackgroundView backgroundView;
@@ -95,7 +96,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             linksTextView.setTextSize(1, 14.0f);
             linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             linksTextView.setGravity(1);
-            addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 24, 7, 24, 0));
+            addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 1, 24, 7, 24, 0));
             FrameLayout frameLayout2 = new FrameLayout(context);
             this.belowSubTitleLayout = frameLayout2;
             addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 1));
@@ -105,6 +106,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         public void setData(CharSequence charSequence, CharSequence charSequence2, View view, View view2) {
             this.titleView.setText(charSequence);
             this.subtitleView.setText(charSequence2);
+            LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView;
+            linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), this.subtitleView.getPaint()));
             if (view != null) {
                 this.aboveTitleLayout.removeAllViews();
                 this.aboveTitleLayout.addView(view, LayoutHelper.createFrame(-1, -2, 1));
@@ -546,7 +549,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GradientHeaderActivity.this.lambda$onBackPressed$348();
+                    GradientHeaderActivity.this.lambda$onBackPressed$354();
                 }
             }
         });
@@ -594,6 +597,11 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         }, Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4, Theme.key_premiumGradientBackground1, Theme.key_premiumGradientBackground2, Theme.key_premiumGradientBackground3, Theme.key_premiumGradientBackground4, Theme.key_premiumGradientBackgroundOverlay, Theme.key_premiumStarGradient1, Theme.key_premiumStarGradient2, Theme.key_premiumStartSmallStarsColor, Theme.key_premiumStartSmallStarsColor2);
+    }
+
+    @Override
+    public boolean isActionBarCrossfadeEnabled() {
+        return false;
     }
 
     @Override

@@ -444,6 +444,8 @@ public interface INavigationLayout {
 
     boolean isInBubbleMode();
 
+    boolean isInPassivePreviewMode();
+
     boolean isInPreviewMode();
 
     boolean isPreviewOpenAnimationInProgress();

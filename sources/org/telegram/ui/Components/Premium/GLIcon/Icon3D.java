@@ -18,6 +18,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
@@ -26,6 +29,7 @@ public class Icon3D {
     public final int N;
     private int alphaHandle;
     Bitmap backgroundBitmap;
+    int behindHandle;
     private int[] buffers;
     int diffuseHandle;
     private int goldenHandle;
@@ -48,6 +52,7 @@ public class Icon3D {
     private FloatBuffer[] mVertices;
     private int mVerticesHandle;
     private int mWorldMatrixHandle;
+    int modelIndex2Handle;
     int modelIndexHandle;
     public boolean night;
     int nightHandle;
@@ -66,6 +71,7 @@ public class Icon3D {
     float xOffset;
     private int xOffsetHandle;
     private static final String[] starModel = {"models/star.binobj"};
+    private static final String[] diamondModel = {"models/diamond_outer_2.binobj", "models/diamond_outer.binobj", "models/diamond.binobj"};
     private static final String[] coinModel = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
     private static final String[] dealModel = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
     float enterAlpha = 0.0f;
@@ -78,8 +84,21 @@ public class Icon3D {
     private float time = 0.0f;
 
     public Icon3D(Context context, int i) {
+        String[] strArr;
+        float f = 1.0f;
         this.type = i;
-        String[] strArr = i == 1 ? coinModel : i == 3 ? dealModel : (i == 0 || i == 2) ? starModel : new String[0];
+        if (i == 1) {
+            strArr = coinModel;
+        } else if (i == 3) {
+            strArr = dealModel;
+        } else if (i == 0 || i == 2) {
+            strArr = starModel;
+        } else if (i == 4) {
+            strArr = diamondModel;
+            f = 8.0f;
+        } else {
+            strArr = new String[0];
+        }
         int length = strArr.length;
         this.N = length;
         this.mVertices = new FloatBuffer[length];
@@ -87,7 +106,7 @@ public class Icon3D {
         this.mNormals = new FloatBuffer[length];
         this.trianglesCount = new int[length];
         for (int i2 = 0; i2 < this.N; i2++) {
-            ObjLoader objLoader = new ObjLoader(context, strArr[i2]);
+            ObjLoader objLoader = new ObjLoader(context, strArr[i2], f);
             this.mVertices[i2] = ByteBuffer.allocateDirect(objLoader.positions.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
             this.mVertices[i2].put(objLoader.positions).position(0);
             this.mTextures[i2] = ByteBuffer.allocateDirect(objLoader.textureCoordinates.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -98,8 +117,9 @@ public class Icon3D {
         }
         generateTexture();
         int[] iArr = new int[1];
-        int loadShader = GLIconRenderer.loadShader(35633, loadFromAsset(context, "shaders/vertex2.glsl"));
-        int loadShader2 = GLIconRenderer.loadShader(35632, loadFromAsset(context, (i == 0 || i == 2) ? "shaders/fragment4.glsl" : "shaders/fragment3.glsl"));
+        String str = (i == 0 || i == 2) ? "shaders/fragment4.glsl" : i == 4 ? "shaders/fragment5.glsl" : "shaders/fragment3.glsl";
+        int loadShader = GLIconRenderer.loadShader(35633, preprocessShader(loadFromAsset(context, "shaders/vertex2.glsl")));
+        int loadShader2 = GLIconRenderer.loadShader(35632, preprocessShader(loadFromAsset(context, str)));
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, loadShader);
         GLES20.glAttachShader(glCreateProgram, loadShader2);
@@ -107,6 +127,21 @@ public class Icon3D {
         GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
         this.mProgramObject = glCreateProgram;
         init(context);
+    }
+
+    private void drawModel(int i, boolean z) {
+        int i2 = i * 3;
+        GLES20.glBindBuffer(34962, this.buffers[i2]);
+        GLES20.glVertexAttribPointer(this.mTextureCoordinateHandle, 2, 5126, false, 0, 0);
+        GLES20.glBindBuffer(34962, this.buffers[i2 + 1]);
+        GLES20.glVertexAttribPointer(this.mNormalCoordinateHandle, 3, 5126, false, 0, 0);
+        GLES20.glBindBuffer(34962, this.buffers[i2 + 2]);
+        GLES20.glVertexAttribPointer(this.mVerticesHandle, 3, 5126, false, 0, 0);
+        GLES20.glUniform1i(this.modelIndexHandle, i);
+        GLES20.glUniform1i(this.modelIndex2Handle, i);
+        GLES20.glUniform1i(this.behindHandle, z ? 1 : 0);
+        GLES20.glUniform1i(this.typeHandle, this.type);
+        GLES20.glDrawArrays(4, 0, this.trianglesCount[i] / 3);
     }
 
     private void generateTexture() {
@@ -159,6 +194,8 @@ public class Icon3D {
         this.resolutionHandle = GLES20.glGetUniformLocation(this.mProgramObject, "resolution");
         this.gradientPositionHandle = GLES20.glGetUniformLocation(this.mProgramObject, "gradientPosition");
         this.modelIndexHandle = GLES20.glGetUniformLocation(this.mProgramObject, "modelIndex");
+        this.modelIndex2Handle = GLES20.glGetUniformLocation(this.mProgramObject, "modelIndex2");
+        this.behindHandle = GLES20.glGetUniformLocation(this.mProgramObject, "behind");
         this.typeHandle = GLES20.glGetUniformLocation(this.mProgramObject, "type");
         this.nightHandle = GLES20.glGetUniformLocation(this.mProgramObject, "night");
         this.timeHandle = GLES20.glGetUniformLocation(this.mProgramObject, "time");
@@ -240,6 +277,34 @@ public class Icon3D {
         GLES20.glActiveTexture(33986);
         GLES20.glBindTexture(3553, iArr4[0]);
         GLES20.glUniform1i(this.mBackgroundTextureUniformHandle, 2);
+        if (this.type == 4) {
+            GLES20.glEnable(2884);
+            GLES20.glEnable(3042);
+            GLES20.glBlendFunc(770, 771);
+        }
+    }
+
+    private String preprocessShader(String str) {
+        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher.find()) {
+            String group = matcher.group(1);
+            int parseInt = Integer.parseInt(group.substring(0, 2), 16);
+            int parseInt2 = Integer.parseInt(group.substring(2, 4), 16);
+            int parseInt3 = Integer.parseInt(group.substring(4, 6), 16);
+            Locale locale = Locale.US;
+            double d = parseInt;
+            Double.isNaN(d);
+            Double valueOf = Double.valueOf(d / 255.0d);
+            double d2 = parseInt2;
+            Double.isNaN(d2);
+            Double valueOf2 = Double.valueOf(d2 / 255.0d);
+            double d3 = parseInt3;
+            Double.isNaN(d3);
+            matcher.appendReplacement(stringBuffer, String.format(locale, "vec3(%.3f, %.3f, %.3f)", valueOf, valueOf2, Double.valueOf(d3 / 255.0d)));
+        }
+        matcher.appendTail(stringBuffer);
+        return stringBuffer.toString();
     }
 
     public void destroy() {
@@ -273,17 +338,18 @@ public class Icon3D {
         float f8 = this.time + f7;
         this.time = f8;
         GLES20.glUniform1f(this.timeHandle, f8);
-        for (int i3 = 0; i3 < this.N; i3++) {
-            int i4 = i3 * 3;
-            GLES20.glBindBuffer(34962, this.buffers[i4]);
-            GLES20.glVertexAttribPointer(this.mTextureCoordinateHandle, 2, 5126, false, 0, 0);
-            GLES20.glBindBuffer(34962, this.buffers[i4 + 1]);
-            GLES20.glVertexAttribPointer(this.mNormalCoordinateHandle, 3, 5126, false, 0, 0);
-            GLES20.glBindBuffer(34962, this.buffers[i4 + 2]);
-            GLES20.glVertexAttribPointer(this.mVerticesHandle, 3, 5126, false, 0, 0);
-            GLES20.glUniform1i(this.modelIndexHandle, i3);
-            GLES20.glUniform1i(this.typeHandle, this.type);
-            GLES20.glDrawArrays(4, 0, this.trianglesCount[i3] / 3);
+        if (this.type == 4) {
+            drawModel(0, true);
+            GLES20.glClear(256);
+            drawModel(1, true);
+            GLES20.glClear(256);
+            drawModel(2, false);
+            drawModel(1, false);
+            drawModel(0, false);
+        } else {
+            for (int i3 = 0; i3 < this.N; i3++) {
+                drawModel(i3, false);
+            }
         }
         float f9 = this.enterAlpha;
         if (f9 < 1.0f) {

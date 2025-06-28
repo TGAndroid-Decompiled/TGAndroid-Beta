@@ -191,12 +191,13 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             this.rect.set(bounds);
             this.rect.inset(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
             if (this.backdrop != null) {
-                int lerp = AndroidUtilities.lerp(Math.min(bounds.width(), bounds.height()), Math.max(bounds.width(), bounds.height()), 0.35f);
+                int lerp = AndroidUtilities.lerp(Math.min(bounds.width(), bounds.height()), Math.max(bounds.width(), bounds.height()), 0.35f) / 2;
                 if (this.gradient == null || this.gradientRadius != lerp) {
                     this.gradientRadius = lerp;
                     float f3 = lerp;
                     TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.backdrop;
-                    this.gradient = new RadialGradient(0.0f, 0.0f, f3, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    int i = stargiftattributebackdrop.center_color | (-16777216);
+                    this.gradient = new RadialGradient(0.0f, 0.0f, f3, new int[]{i, i, stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 }
                 this.gradientMatrix.reset();
                 this.gradientMatrix.postTranslate(bounds.centerX(), Math.min(AndroidUtilities.dp(50.0f), bounds.centerY()));

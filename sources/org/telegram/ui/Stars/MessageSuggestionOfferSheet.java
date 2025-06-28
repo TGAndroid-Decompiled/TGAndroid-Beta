@@ -1,0 +1,587 @@
+package org.telegram.ui.Stars;
+
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Property;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.ui.AccountFrozenAlert;
+import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.Forum.ForumUtilities;
+import org.telegram.ui.Components.HorizontalRoundTabsLayout;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.OutlineTextContainerView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.TON.TONIntroActivity;
+
+public class MessageSuggestionOfferSheet extends BottomSheet {
+    private final BalanceCloud balanceCloud;
+    private final ButtonWithCounterView buttonView;
+    private final HorizontalRoundTabsLayout currencyTabsView;
+    private final AnimatedTextView dollarsEqView;
+    private final ImageView iconStars;
+    private final ImageView iconTon;
+    private AmountUtils$Amount inputAmount;
+    private int inputAmountError;
+    private final AmountUtils$Amount inputAmountMaxStars;
+    private final AmountUtils$Amount inputAmountMaxTON;
+    private final AmountUtils$Amount inputAmountMinStars;
+    private final AmountUtils$Amount inputAmountMinTON;
+    private final boolean isMonoForumAdmin;
+    private final int mode;
+    private final EditTextBoldCursor publishingTimeField;
+    private long selectedTime;
+    private final ColoredImageSpan[] spanRefStars;
+    private final ColoredImageSpan[] spanRefTon;
+    private final EditTextBoldCursor starsCountEditField;
+    private final TextView starsCountEditHint;
+    private final OutlineTextContainerView starsCountEditOutline;
+    private final LinkSpanDrawable.LinksTextView termsView;
+
+    public MessageSuggestionOfferSheet(final Context context, final int i, final long j, MessageSuggestionParams messageSuggestionParams, final ChatActivity chatActivity, final Theme.ResourcesProvider resourcesProvider, int i2, final Utilities.Callback callback) {
+        super(context, true, resourcesProvider);
+        boolean z;
+        this.selectedTime = -1L;
+        this.spanRefStars = new ColoredImageSpan[1];
+        this.spanRefTon = new ColoredImageSpan[1];
+        this.mode = i2;
+        this.waitingKeyboard = true;
+        this.smoothKeyboardAnimationEnabled = true;
+        boolean canManageMonoForum = ChatObject.canManageMonoForum(i, j);
+        this.isMonoForumAdmin = canManageMonoForum;
+        boolean z2 = canManageMonoForum || StarsController.getTonInstance(i).canUseTon();
+        long j2 = MessagesController.getInstance(i).config.tonSuggestedPostAmountMin.get();
+        AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.TON;
+        this.inputAmountMinTON = AmountUtils$Amount.fromNano(j2, amountUtils$Currency);
+        this.inputAmountMaxTON = AmountUtils$Amount.fromNano(MessagesController.getInstance(i).config.tonSuggestedPostAmountMax.get(), amountUtils$Currency);
+        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
+        this.inputAmountMinStars = AmountUtils$Amount.fromDecimal(0L, amountUtils$Currency2);
+        this.inputAmountMaxStars = AmountUtils$Amount.fromDecimal(MessagesController.getInstance(i).config.starsSuggestedPostAmountMax.get(), amountUtils$Currency2);
+        if (canManageMonoForum) {
+            this.balanceCloud = null;
+        } else {
+            BalanceCloud balanceCloud = new BalanceCloud(context, i, resourcesProvider);
+            this.balanceCloud = balanceCloud;
+            balanceCloud.setScaleX(0.6f);
+            balanceCloud.setScaleY(0.6f);
+            balanceCloud.setAlpha(0.0f);
+            this.container.addView(balanceCloud, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
+            ScaleStateListAnimator.apply(balanceCloud);
+            balanceCloud.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    MessageSuggestionOfferSheet.this.lambda$new$0(context, resourcesProvider, view);
+                }
+            });
+        }
+        fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, 56, 55, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        int i3 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i3));
+        textView.setTextSize(1, 20.0f);
+        textView.setGravity(8388627);
+        textView.setText(LocaleController.getString(i2 == 0 ? R.string.PostSuggestionsOfferTitle : R.string.PostSuggestionsOfferChangeTitle));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -1, 1.0f, 119, 22, 0, 22, 0));
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.ic_close_white);
+        int i4 = Theme.key_dialogEmptyImage;
+        int color = Theme.getColor(i4, resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+        ScaleStateListAnimator.apply(imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                MessageSuggestionOfferSheet.this.lambda$new$1(view);
+            }
+        });
+        linearLayout2.addView(imageView, LayoutHelper.createLinear(48, 48, 0.0f, 21, 0, 0, 6, 0));
+        if (z2) {
+            HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context);
+            this.currencyTabsView = horizontalRoundTabsLayout;
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(LocaleController.getString(R.string.SuggestedOfferStars));
+            arrayList.add(LocaleController.getString(R.string.SuggestedOfferTON));
+            horizontalRoundTabsLayout.setTabs(arrayList, new MessagesStorage.IntCallback() {
+                @Override
+                public final void run(int i5) {
+                    MessageSuggestionOfferSheet.this.lambda$new$2(i5);
+                }
+            });
+            linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 12.0f));
+        } else {
+            this.currencyTabsView = null;
+        }
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        linearLayout3.setOrientation(1);
+        linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 1.0f));
+        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
+        this.starsCountEditOutline = outlineTextContainerView;
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        this.starsCountEditField = editTextBoldCursor;
+        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
+        editTextBoldCursor.setCursorWidth(1.5f);
+        editTextBoldCursor.setImeOptions(268435462);
+        editTextBoldCursor.setTextSize(1, 17.0f);
+        editTextBoldCursor.setMaxLines(1);
+        editTextBoldCursor.setBackground(null);
+        editTextBoldCursor.setPadding(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        editTextBoldCursor.setTextColor(Theme.getColor(i3));
+        editTextBoldCursor.requestFocus();
+        outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(28.0f));
+        outlineTextContainerView.attachEditText(editTextBoldCursor);
+        AmountUtils$Amount amountUtils$Amount = messageSuggestionParams.amount;
+        outlineTextContainerView.animateSelection(true, (amountUtils$Amount == null || amountUtils$Amount.isZero()) ? false : true, false);
+        outlineTextContainerView.setForceUseCenter2(true);
+        editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public final void onFocusChange(View view, boolean z3) {
+                MessageSuggestionOfferSheet.this.lambda$new$3(view, z3);
+            }
+        });
+        outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
+        linearLayout3.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, 58, 18.0f, 0.0f, 18.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.iconStars = imageView2;
+        imageView2.setImageResource(R.drawable.star_small_inner);
+        outlineTextContainerView.addView(imageView2, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        ImageView imageView3 = new ImageView(context);
+        this.iconTon = imageView3;
+        imageView3.setImageResource(R.drawable.ton);
+        imageView3.setColorFilter(-13397548);
+        outlineTextContainerView.addView(imageView3, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
+        this.dollarsEqView = animatedTextView;
+        int i5 = Theme.key_windowBackgroundWhiteGrayText;
+        animatedTextView.setTextColor(Theme.getColor(i5));
+        animatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
+        animatedTextView.setGravity(5);
+        outlineTextContainerView.addView(animatedTextView, LayoutHelper.createFrame(-2, -1.0f, 21, 0.0f, 0.0f, 16.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.starsCountEditHint = textView2;
+        textView2.setTextColor(Theme.getColor(i5));
+        textView2.setTextSize(1, 13.0f);
+        linearLayout3.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 33, 4, 33, 0));
+        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context) {
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                return false;
+            }
+        };
+        this.publishingTimeField = editTextBoldCursor2;
+        editTextBoldCursor2.setCursorSize(AndroidUtilities.dp(20.0f));
+        editTextBoldCursor2.setCursorWidth(1.5f);
+        editTextBoldCursor2.setTextSize(1, 17.0f);
+        editTextBoldCursor2.setMaxLines(1);
+        editTextBoldCursor2.setBackground(null);
+        editTextBoldCursor2.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        editTextBoldCursor2.setTextColor(Theme.getColor(i3));
+        editTextBoldCursor2.setFocusable(false);
+        editTextBoldCursor2.setClickable(false);
+        editTextBoldCursor2.setEnabled(false);
+        OutlineTextContainerView outlineTextContainerView2 = new OutlineTextContainerView(context);
+        outlineTextContainerView2.setText(LocaleController.getString(R.string.PostSuggestionsOfferTitleTime));
+        outlineTextContainerView2.attachEditText(editTextBoldCursor2);
+        outlineTextContainerView2.addView(editTextBoldCursor2, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
+        ScaleStateListAnimator.apply(outlineTextContainerView2, 0.02f, 1.2f);
+        outlineTextContainerView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                MessageSuggestionOfferSheet.this.lambda$new$5(context, resourcesProvider, view);
+            }
+        });
+        linearLayout3.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 24.0f, 18.0f, 0.0f));
+        ImageView imageView4 = new ImageView(context);
+        imageView4.setImageResource(R.drawable.arrow_more);
+        imageView4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), mode));
+        outlineTextContainerView2.addView(imageView4, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
+        TextView textView3 = new TextView(context);
+        textView3.setTextColor(Theme.getColor(i5));
+        textView3.setTextSize(1, 13.0f);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.PostSuggestionsAddTimeHint)));
+        spannableStringBuilder.append(' ');
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PostSuggestionsAddTimeHint2, Long.valueOf(MessagesController.getInstance(i).config.starsSuggestedPostAgeMin.get(TimeUnit.HOURS)))));
+        textView3.setText(spannableStringBuilder);
+        linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2, 55, 33, 4, 33, 24));
+        LinearLayout linearLayout4 = new LinearLayout(context);
+        linearLayout4.setOrientation(1);
+        linearLayout.addView(linearLayout4, LayoutHelper.createLinear(-1, -2, 80));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        this.buttonView = buttonWithCounterView;
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                MessageSuggestionOfferSheet.this.lambda$new$6(chatActivity, i, context, resourcesProvider, j, callback, view);
+            }
+        });
+        if (i2 == 1) {
+            buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), false);
+        }
+        linearLayout4.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 18.0f, 0.0f, 18.0f, 8.0f));
+        this.termsView = null;
+        AmountUtils$Amount amountUtils$Amount2 = messageSuggestionParams.amount;
+        if (amountUtils$Amount2 != null) {
+            z = false;
+            setAmount(AmountUtils$Amount.fromNano(amountUtils$Amount2.asNano(), messageSuggestionParams.amount.currency), !messageSuggestionParams.amount.isZero(), true, false);
+        } else {
+            z = false;
+            setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency2), false, true, false);
+        }
+        setSelectedTime(messageSuggestionParams.time, z);
+        setCustomView(linearLayout);
+        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String obj;
+                int indexOf;
+                boolean z3 = editable == null || editable.toString().isEmpty() || ".".equals(editable.toString());
+                if (!z3 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
+                    editable.delete(indexOf + 3, obj.length());
+                }
+                MessageSuggestionOfferSheet.this.setAmount(!z3 ? AmountUtils$Amount.fromDecimal(editable.toString(), MessageSuggestionOfferSheet.this.inputAmount.currency) : AmountUtils$Amount.fromNano(0L, MessageSuggestionOfferSheet.this.inputAmount.currency), false, false, true);
+                MessageSuggestionOfferSheet.this.starsCountEditOutline.animateSelection(MessageSuggestionOfferSheet.this.starsCountEditField.isFocused(), true ^ TextUtils.isEmpty(MessageSuggestionOfferSheet.this.starsCountEditField.getText()));
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
+            }
+        });
+    }
+
+    private void checkAmountInputText(boolean z) {
+        OutlineTextContainerView outlineTextContainerView;
+        String formatString;
+        int i = this.inputAmountError;
+        if ((i & 4) != 0) {
+            outlineTextContainerView = this.starsCountEditOutline;
+            formatString = LocaleController.formatString(R.string.SuggestAPostTooMuch, getInputAmountMax().formatAsDecimalSpaced());
+        } else if ((i & 2) == 0) {
+            this.starsCountEditOutline.setText(LocaleController.getString(this.inputAmount.currency == AmountUtils$Currency.STARS ? R.string.PostSuggestionsOfferTitlePriceStars : R.string.PostSuggestionsOfferTitlePriceTON));
+            return;
+        } else {
+            outlineTextContainerView = this.starsCountEditOutline;
+            formatString = LocaleController.formatString(R.string.SuggestAPostTooSmall, getInputAmountMin().asDecimalString());
+        }
+        outlineTextContainerView.setText(formatString);
+    }
+
+    private void checkButtonEnabled(boolean z) {
+        boolean z2 = this.inputAmountError == 0 && (this.inputAmount.asNano() >= 0 || this.selectedTime > 0);
+        if (this.buttonView.isEnabled() != z2) {
+            this.buttonView.setEnabled(z2);
+            this.buttonView.setClickable(z2);
+            if (z) {
+                this.buttonView.animate().alpha(z2 ? 1.0f : 0.6f).setDuration(180L).start();
+            } else {
+                this.buttonView.setAlpha(z2 ? 1.0f : 0.6f);
+            }
+        }
+    }
+
+    private void checkButtonOfferText(boolean z) {
+        ButtonWithCounterView buttonWithCounterView;
+        int i;
+        if (this.mode != 0) {
+            buttonWithCounterView = this.buttonView;
+            i = R.string.PostSuggestionsOfferChangeUpdateTerms;
+        } else {
+            if (!this.inputAmount.isZero()) {
+                AmountUtils$Amount amountUtils$Amount = this.inputAmount;
+                boolean z2 = amountUtils$Amount.currency == AmountUtils$Currency.TON;
+                this.buttonView.setText(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(R.string.PostSuggestionsOfferStars, z2 ? amountUtils$Amount.asDecimalString() : LocaleController.formatNumber(amountUtils$Amount.asDecimal(), ',')), z2 ? this.spanRefTon : this.spanRefStars), z);
+                return;
+            }
+            buttonWithCounterView = this.buttonView;
+            i = R.string.PostSuggestionsOfferForFree;
+        }
+        buttonWithCounterView.setText(LocaleController.getString(i), z);
+    }
+
+    private void checkRateText(boolean z) {
+        double d;
+        StringBuilder sb = new StringBuilder(10);
+        sb.append('~');
+        if (this.inputAmount.currency == AmountUtils$Currency.TON) {
+            d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
+        } else {
+            double d2 = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000;
+            Double.isNaN(d2);
+            d = d2 * 1.0E-5d;
+        }
+        sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * d * 100.0d), "USD", 2));
+        this.dollarsEqView.setText(sb, z);
+    }
+
+    public static String formatDateTime(long j) {
+        if (j <= 0) {
+            return LocaleController.getString(R.string.PostSuggestionsAnytime);
+        }
+        String formatDateTime = LocaleController.formatDateTime(j, true);
+        if (formatDateTime.isEmpty()) {
+            return formatDateTime;
+        }
+        return Character.toUpperCase(formatDateTime.charAt(0)) + formatDateTime.substring(1);
+    }
+
+    private AmountUtils$Amount getInputAmountMax() {
+        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMaxTON : this.inputAmountMaxStars;
+    }
+
+    private AmountUtils$Amount getInputAmountMin() {
+        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMinTON : this.inputAmountMinStars;
+    }
+
+    public void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+        if (this.inputAmount.currency == AmountUtils$Currency.STARS) {
+            new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
+        }
+    }
+
+    public void lambda$new$1(View view) {
+        lambda$new$0();
+    }
+
+    public void lambda$new$2(int i) {
+        setAmount(AmountUtils$Amount.fromDecimal(this.inputAmount.asDecimal(), i == 0 ? AmountUtils$Currency.STARS : AmountUtils$Currency.TON), true, false, true);
+    }
+
+    public void lambda$new$3(View view, boolean z) {
+        this.starsCountEditOutline.animateSelection(z, !TextUtils.isEmpty(this.starsCountEditField.getText()));
+    }
+
+    public void lambda$new$4(boolean z, int i) {
+        if (z) {
+            setSelectedTime(i, true);
+        }
+    }
+
+    public void lambda$new$5(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+        AlertsCreator.createSuggestedMessageDatePickerDialog(context, this.selectedTime, new AlertsCreator.ScheduleDatePickerDelegate() {
+            @Override
+            public final void didSelectDate(boolean z, int i) {
+                MessageSuggestionOfferSheet.this.lambda$new$4(z, i);
+            }
+        }, resourcesProvider, 0).show();
+    }
+
+    public void lambda$new$6(ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, long j, Utilities.Callback callback, View view) {
+        if (chatActivity == null || !this.buttonView.isEnabled()) {
+            return;
+        }
+        if (MessagesController.getInstance(i).isFrozen()) {
+            AccountFrozenAlert.show(i);
+            return;
+        }
+        StarsController starsController = StarsController.getInstance(i, this.inputAmount.currency);
+        AmountUtils$Amount of = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
+        if (this.isMonoForumAdmin || (of != null && of.asNano() >= this.inputAmount.asNano())) {
+            callback.run(MessageSuggestionParams.of(this.inputAmount, this.selectedTime));
+            lambda$new$0();
+            return;
+        }
+        AmountUtils$Amount amountUtils$Amount = this.inputAmount;
+        AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
+        if (amountUtils$Currency == AmountUtils$Currency.STARS) {
+            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(i, j, true), null).show();
+        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
+            new TONIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount, true, null).show();
+        }
+    }
+
+    public void lambda$onCurrencyChanged$7() {
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.StarsSuggestionTermsLink));
+    }
+
+    public void lambda$onCurrencyChanged$8() {
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.TonSuggestionTermsLink));
+    }
+
+    public void lambda$show$9() {
+        AndroidUtilities.showKeyboard(this.starsCountEditField);
+    }
+
+    private void onCurrencyChanged(boolean z) {
+        LinkSpanDrawable.LinksTextView linksTextView;
+        String string;
+        Runnable runnable;
+        HorizontalRoundTabsLayout horizontalRoundTabsLayout = this.currencyTabsView;
+        if (horizontalRoundTabsLayout != null) {
+            horizontalRoundTabsLayout.setSelectedIndex(this.inputAmount.currency == AmountUtils$Currency.STARS ? 0 : 1, z);
+        }
+        AmountUtils$Currency amountUtils$Currency = this.inputAmount.currency;
+        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
+        if (amountUtils$Currency == amountUtils$Currency2) {
+            this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleStars));
+            this.starsCountEditField.setInputType(2);
+            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length())});
+            linksTextView = this.termsView;
+            if (linksTextView != null) {
+                string = LocaleController.getString(R.string.StarsSuggestionTerms);
+                runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        MessageSuggestionOfferSheet.this.lambda$onCurrencyChanged$7();
+                    }
+                };
+                linksTextView.setText(AndroidUtilities.replaceSingleTag(string, runnable));
+            }
+        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
+            this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleTON));
+            this.starsCountEditField.setInputType(8194);
+            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length() + 3)});
+            linksTextView = this.termsView;
+            if (linksTextView != null) {
+                string = LocaleController.getString(R.string.TonSuggestionTerms);
+                runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        MessageSuggestionOfferSheet.this.lambda$onCurrencyChanged$8();
+                    }
+                };
+                linksTextView.setText(AndroidUtilities.replaceSingleTag(string, runnable));
+            }
+        }
+        ImageView imageView = this.iconStars;
+        if (z) {
+            imageView.animate().alpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).setDuration(180L).start();
+            ViewPropertyAnimator animate = this.iconTon.animate();
+            AmountUtils$Currency amountUtils$Currency3 = this.inputAmount.currency;
+            AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.TON;
+            animate.alpha(amountUtils$Currency3 == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
+        } else {
+            imageView.setAlpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f);
+            this.iconTon.setAlpha(this.inputAmount.currency == AmountUtils$Currency.TON ? 1.0f : 0.0f);
+        }
+        BalanceCloud balanceCloud = this.balanceCloud;
+        if (balanceCloud != null) {
+            balanceCloud.setCurrency(this.inputAmount.currency, z);
+        }
+    }
+
+    public void setAmount(AmountUtils$Amount amountUtils$Amount, boolean z, boolean z2, boolean z3) {
+        AmountUtils$Amount amountUtils$Amount2 = this.inputAmount;
+        int i = this.inputAmountError;
+        this.inputAmountError = 0;
+        if (amountUtils$Amount != null) {
+            this.inputAmount = amountUtils$Amount;
+        } else {
+            this.inputAmount = AmountUtils$Amount.fromNano(0L, amountUtils$Amount2.currency);
+            this.inputAmountError |= 1;
+        }
+        if (getInputAmountMax().asNano() < this.inputAmount.asNano()) {
+            this.inputAmountError |= 4;
+        }
+        if (!this.inputAmount.isZero() && getInputAmountMin().asNano() > this.inputAmount.asNano()) {
+            this.inputAmountError |= 2;
+        }
+        boolean z4 = z2 || amountUtils$Amount2.currency != this.inputAmount.currency;
+        boolean z5 = z2 || amountUtils$Amount2.asNano() != this.inputAmount.asNano();
+        boolean z6 = z2 || i != this.inputAmountError;
+        if (z6) {
+            this.starsCountEditOutline.animateError((this.inputAmountError & (-9)) == 0 ? 0.0f : 1.0f);
+        }
+        if (z4) {
+            onCurrencyChanged(z3);
+        }
+        if (z4 || z6) {
+            checkAmountInputText(z3);
+        }
+        if (z4 || z5 || z6) {
+            checkButtonOfferText(z3);
+            checkButtonEnabled(z3);
+        }
+        if (z4 || z5) {
+            checkRateText(z3);
+        }
+        if (z && z5) {
+            String asDecimalString = this.inputAmount.asDecimalString();
+            this.starsCountEditField.setText(asDecimalString);
+            this.starsCountEditField.setSelection(asDecimalString.length());
+        }
+    }
+
+    private void setSelectedTime(long j, boolean z) {
+        if (this.selectedTime != j) {
+            this.selectedTime = j;
+            this.publishingTimeField.setText(formatDateTime(j));
+        }
+        checkButtonEnabled(z);
+    }
+
+    @Override
+    protected void appendOpenAnimator(boolean z, ArrayList arrayList) {
+        BalanceCloud balanceCloud = this.balanceCloud;
+        if (balanceCloud != null) {
+            arrayList.add(ObjectAnimator.ofFloat(balanceCloud, (Property<BalanceCloud, Float>) View.ALPHA, z ? 1.0f : 0.0f));
+            arrayList.add(ObjectAnimator.ofFloat(this.balanceCloud, (Property<BalanceCloud, Float>) View.SCALE_X, z ? 1.0f : 0.6f));
+            arrayList.add(ObjectAnimator.ofFloat(this.balanceCloud, (Property<BalanceCloud, Float>) View.SCALE_Y, z ? 1.0f : 0.6f));
+        }
+    }
+
+    @Override
+    public boolean isTouchOutside(float f, float f2) {
+        BalanceCloud balanceCloud = this.balanceCloud;
+        if (balanceCloud == null || f < balanceCloud.getX() || f > this.balanceCloud.getX() + this.balanceCloud.getWidth() || f2 < this.balanceCloud.getY() || f2 > this.balanceCloud.getY() + this.balanceCloud.getHeight()) {
+            return super.isTouchOutside(f, f2);
+        }
+        return false;
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MessageSuggestionOfferSheet.this.lambda$show$9();
+            }
+        }, 50L);
+    }
+}

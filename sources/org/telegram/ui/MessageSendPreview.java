@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.FileLog;
@@ -1033,6 +1034,16 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressCustomBotButton(this, chatMessageCell, buttonCustom);
+                    }
+
+                    @Override
+                    public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell, todoItem);
+                    }
+
+                    @Override
                     public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell, user, f, f2);
                     }
@@ -1085,6 +1096,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public void didPressCommentButton(ChatMessageCell chatMessageCell) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell);
+                    }
+
+                    @Override
+                    public void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCustomBotButton(this, chatMessageCell, buttonCustom);
                     }
 
                     @Override
@@ -1180,6 +1196,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public void didPressTime(ChatMessageCell chatMessageCell) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell);
+                    }
+
+                    @Override
+                    public boolean didPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell, todoItem, z);
                     }
 
                     @Override

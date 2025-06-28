@@ -9,7 +9,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
@@ -127,42 +126,8 @@ public class FireworksOverlay extends View {
         return i;
     }
 
-    private Particle createParticle(boolean z) {
-        SecureRandom secureRandom;
-        int length;
-        Particle particle = new Particle();
-        byte nextInt = (byte) Utilities.random.nextInt(2);
-        particle.type = nextInt;
-        if (this.isFebruary14 && nextInt == 0) {
-            particle.type = (byte) 2;
-            secureRandom = Utilities.random;
-            length = heartColors.length;
-        } else if (this.withStars && Utilities.random.nextBoolean()) {
-            particle.type = (byte) 2;
-            secureRandom = Utilities.random;
-            length = starsColors.length;
-        } else {
-            secureRandom = Utilities.random;
-            length = colors.length;
-        }
-        particle.colorType = (byte) secureRandom.nextInt(length);
-        particle.side = (byte) Utilities.random.nextInt(2);
-        particle.finishedStart = (byte) (Utilities.random.nextInt(2) + 1);
-        byte b = particle.type;
-        particle.typeSize = (byte) (((b == 0 || b == 2) ? Utilities.random.nextFloat() * 2.0f : Utilities.random.nextFloat() * 4.0f) + 4.0f);
-        if (z) {
-            particle.y = (-Utilities.random.nextFloat()) * getHeightForAnimation() * 1.2f;
-            particle.x = AndroidUtilities.dp(5.0f) + Utilities.random.nextInt(getWidthForAnimation() - AndroidUtilities.dp(10.0f));
-            particle.xFinished = particle.finishedStart;
-        } else {
-            int dp = AndroidUtilities.dp(Utilities.random.nextInt(10) + 4);
-            int heightForAnimation = getHeightForAnimation() / 4;
-            particle.x = particle.side == 0 ? -dp : getWidthForAnimation() + dp;
-            particle.moveX = (particle.side != 0 ? -1 : 1) * (AndroidUtilities.dp(1.2f) + (Utilities.random.nextFloat() * AndroidUtilities.dp(4.0f)));
-            particle.moveY = -(AndroidUtilities.dp(4.0f) + (Utilities.random.nextFloat() * AndroidUtilities.dp(4.0f)));
-            particle.y = (heightForAnimation / 2) + Utilities.random.nextInt(heightForAnimation * 2);
-        }
-        return particle;
+    private org.telegram.ui.Components.FireworksOverlay.Particle createParticle(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FireworksOverlay.createParticle(boolean):org.telegram.ui.Components.FireworksOverlay$Particle");
     }
 
     public int getHeightForAnimation() {

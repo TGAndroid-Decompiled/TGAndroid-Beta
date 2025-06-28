@@ -117,6 +117,7 @@ public class PasscodeViewDialog extends Dialog {
         attributes.softInputMode = 16;
         if (!BuildVars.DEBUG_PRIVATE_VERSION) {
             attributes.flags = i | 8192;
+            AndroidUtilities.logFlagSecure();
         }
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 21) {

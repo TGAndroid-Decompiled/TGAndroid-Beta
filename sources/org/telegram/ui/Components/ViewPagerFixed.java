@@ -1057,6 +1057,12 @@ public class ViewPagerFixed extends FrameLayout {
         return null;
     }
 
+    public void lambda$cancelTouches$4(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.backProgress = floatValue;
+        onBackProgress(floatValue);
+    }
+
     public void lambda$onTouchEventInternal$2(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.backProgress = floatValue;
@@ -1170,6 +1176,10 @@ public class ViewPagerFixed extends FrameLayout {
             }
         }
         return true;
+    }
+
+    public void cancelTouches() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ViewPagerFixed.cancelTouches():void");
     }
 
     public boolean checkTabsAnimationInProgress() {

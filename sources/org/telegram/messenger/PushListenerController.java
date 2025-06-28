@@ -201,147 +201,159 @@ public class PushListenerController {
                     break;
                 }
                 break;
+            case 52378406:
+                if (str.equals("REACT_TODO")) {
+                    c = '\r';
+                    break;
+                }
+                break;
             case 147425325:
                 if (str.equals("REACT_INVOICE")) {
-                    c = '\r';
+                    c = 14;
                     break;
                 }
                 break;
             case 192842257:
                 if (str.equals("CHAT_REACT_DOC")) {
-                    c = 14;
+                    c = 15;
                     break;
                 }
                 break;
             case 192844842:
                 if (str.equals("CHAT_REACT_GEO")) {
-                    c = 15;
+                    c = 16;
                     break;
                 }
                 break;
             case 192844957:
                 if (str.equals("CHAT_REACT_GIF")) {
-                    c = 16;
+                    c = 17;
                     break;
                 }
                 break;
             case 591941181:
                 if (str.equals("REACT_STICKER")) {
-                    c = 17;
+                    c = 18;
                     break;
                 }
                 break;
             case 635226735:
                 if (str.equals("CHAT_REACT_AUDIO")) {
-                    c = 18;
+                    c = 19;
                     break;
                 }
                 break;
             case 648703179:
                 if (str.equals("CHAT_REACT_PHOTO")) {
-                    c = 19;
+                    c = 20;
                     break;
                 }
                 break;
             case 650764327:
                 if (str.equals("CHAT_REACT_ROUND")) {
-                    c = 20;
+                    c = 21;
                     break;
                 }
                 break;
             case 654263060:
                 if (str.equals("CHAT_REACT_VIDEO")) {
-                    c = 21;
+                    c = 22;
                     break;
                 }
                 break;
             case 731873318:
                 if (str.equals("CHAT_REACT_GIVEAWAY")) {
-                    c = 22;
+                    c = 23;
                     break;
                 }
                 break;
             case 932558943:
                 if (str.equals("REACT_GIVEAWAY")) {
-                    c = 23;
+                    c = 24;
                     break;
                 }
                 break;
             case 1149769750:
                 if (str.equals("CHAT_REACT_GEOLIVE")) {
-                    c = 24;
+                    c = 25;
                     break;
                 }
                 break;
             case 1606362326:
                 if (str.equals("REACT_AUDIO")) {
-                    c = 25;
+                    c = 26;
                     break;
                 }
                 break;
             case 1619838770:
                 if (str.equals("REACT_PHOTO")) {
-                    c = 26;
+                    c = 27;
                     break;
                 }
                 break;
             case 1621899918:
                 if (str.equals("REACT_ROUND")) {
-                    c = 27;
+                    c = 28;
                     break;
                 }
                 break;
             case 1622966773:
                 if (str.equals("REACT_STORY")) {
-                    c = 28;
+                    c = 29;
                     break;
                 }
                 break;
             case 1625398651:
                 if (str.equals("REACT_VIDEO")) {
-                    c = 29;
+                    c = 30;
                     break;
                 }
                 break;
             case 1664242232:
                 if (str.equals("REACT_DOC")) {
-                    c = 30;
+                    c = 31;
                     break;
                 }
                 break;
             case 1664244817:
                 if (str.equals("REACT_GEO")) {
-                    c = 31;
+                    c = ' ';
                     break;
                 }
                 break;
             case 1664244932:
                 if (str.equals("REACT_GIF")) {
-                    c = ' ';
+                    c = '!';
                     break;
                 }
                 break;
             case 1683218969:
                 if (str.equals("CHAT_REACT_GAME")) {
-                    c = '!';
+                    c = '\"';
                     break;
                 }
                 break;
             case 1683500518:
                 if (str.equals("CHAT_REACT_POLL")) {
-                    c = '\"';
+                    c = '#';
                     break;
                 }
                 break;
             case 1683535996:
                 if (str.equals("CHAT_REACT_QUIZ")) {
-                    c = '#';
+                    c = '$';
                     break;
                 }
                 break;
             case 1683610452:
                 if (str.equals("CHAT_REACT_TEXT")) {
-                    c = '$';
+                    c = '%';
+                    break;
+                }
+                break;
+            case 1683619437:
+                if (str.equals("CHAT_REACT_TODO")) {
+                    c = '&';
                     break;
                 }
                 break;
@@ -387,76 +399,82 @@ public class PushListenerController {
                 i = R.string.PushReactText;
                 return LocaleController.formatString(i, objArr);
             case '\r':
-                i = R.string.PushReactInvoice;
+                i = R.string.PushReactTodo;
                 return LocaleController.formatString(i, objArr);
             case 14:
-                i = R.string.PushChatReactDoc;
+                i = R.string.PushReactInvoice;
                 return LocaleController.formatString(i, objArr);
             case 15:
-                i = R.string.PushChatReactGeo;
+                i = R.string.PushChatReactDoc;
                 return LocaleController.formatString(i, objArr);
             case 16:
-                i = R.string.PushChatReactGif;
+                i = R.string.PushChatReactGeo;
                 return LocaleController.formatString(i, objArr);
             case 17:
-                i = R.string.PushReactSticker;
+                i = R.string.PushChatReactGif;
                 return LocaleController.formatString(i, objArr);
             case 18:
-                i = R.string.PushChatReactAudio;
+                i = R.string.PushReactSticker;
                 return LocaleController.formatString(i, objArr);
             case 19:
-                i = R.string.PushChatReactPhoto;
+                i = R.string.PushChatReactAudio;
                 return LocaleController.formatString(i, objArr);
             case 20:
-                i = R.string.PushChatReactRound;
+                i = R.string.PushChatReactPhoto;
                 return LocaleController.formatString(i, objArr);
             case 21:
-                i = R.string.PushChatReactVideo;
+                i = R.string.PushChatReactRound;
                 return LocaleController.formatString(i, objArr);
             case 22:
-                i = R.string.NotificationChatReactGiveaway;
+                i = R.string.PushChatReactVideo;
                 return LocaleController.formatString(i, objArr);
             case 23:
-                i = R.string.NotificationReactGiveaway;
+                i = R.string.NotificationChatReactGiveaway;
                 return LocaleController.formatString(i, objArr);
             case 24:
-                i = R.string.PushChatReactGeoLive;
+                i = R.string.NotificationReactGiveaway;
                 return LocaleController.formatString(i, objArr);
             case 25:
-                i = R.string.PushReactAudio;
+                i = R.string.PushChatReactGeoLive;
                 return LocaleController.formatString(i, objArr);
             case 26:
-                i = R.string.PushReactPhoto;
+                i = R.string.PushReactAudio;
                 return LocaleController.formatString(i, objArr);
             case 27:
-                i = R.string.PushReactRound;
+                i = R.string.PushReactPhoto;
                 return LocaleController.formatString(i, objArr);
             case 28:
-                i = R.string.PushReactStory;
+                i = R.string.PushReactRound;
                 return LocaleController.formatString(i, objArr);
             case 29:
-                i = R.string.PushReactVideo;
+                i = R.string.PushReactStory;
                 return LocaleController.formatString(i, objArr);
             case 30:
-                i = R.string.PushReactDoc;
+                i = R.string.PushReactVideo;
                 return LocaleController.formatString(i, objArr);
             case 31:
-                i = R.string.PushReactGeo;
+                i = R.string.PushReactDoc;
                 return LocaleController.formatString(i, objArr);
             case ' ':
-                i = R.string.PushReactGif;
+                i = R.string.PushReactGeo;
                 return LocaleController.formatString(i, objArr);
             case '!':
-                i = R.string.PushChatReactGame;
+                i = R.string.PushReactGif;
                 return LocaleController.formatString(i, objArr);
             case '\"':
-                i = R.string.PushChatReactPoll;
+                i = R.string.PushChatReactGame;
                 return LocaleController.formatString(i, objArr);
             case '#':
-                i = R.string.PushChatReactQuiz;
+                i = R.string.PushChatReactPoll;
                 return LocaleController.formatString(i, objArr);
             case '$':
+                i = R.string.PushChatReactQuiz;
+                return LocaleController.formatString(i, objArr);
+            case '%':
                 i = R.string.PushChatReactText;
+                return LocaleController.formatString(i, objArr);
+            case '&':
+                i = R.string.PushChatReactTodo;
                 return LocaleController.formatString(i, objArr);
             default:
                 return null;

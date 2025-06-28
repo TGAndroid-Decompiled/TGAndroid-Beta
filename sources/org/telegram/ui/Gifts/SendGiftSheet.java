@@ -181,6 +181,11 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
 
             @Override
+            public void didPressTaskLink(ChatActionCell chatActionCell3, int i2, int i3) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didPressTaskLink(this, chatActionCell3, i2, i3);
+            }
+
+            @Override
             public void forceUpdate(ChatActionCell chatActionCell3, boolean z4) {
                 ChatActionCell.ChatActionCellDelegate.CC.$default$forceUpdate(this, chatActionCell3, z4);
             }
@@ -728,7 +733,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.lambda$onBackPressed$348();
+                        baseFragment.lambda$onBackPressed$354();
                     }
                     baseFragment.removeSelfFromStack();
                 }

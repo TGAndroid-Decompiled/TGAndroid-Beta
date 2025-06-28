@@ -18,7 +18,15 @@ public class EllipsizeSpanAnimator {
     public ArrayList ellipsizedViews;
 
     public static class TextAlphaSpan extends CharacterStyle {
-        private int alpha = 0;
+        private int alpha;
+
+        public TextAlphaSpan() {
+            this.alpha = 0;
+        }
+
+        public TextAlphaSpan(int i) {
+            this.alpha = i;
+        }
 
         public void setAlpha(int i) {
             this.alpha = i;

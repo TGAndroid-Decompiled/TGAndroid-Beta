@@ -12,6 +12,7 @@ public class DarkBlueThemeResourcesProvider extends DarkThemeResourceProvider {
         this.sparseIntArray.put(Theme.key_graySectionText, -8090220);
         this.sparseIntArray.put(Theme.key_groupcreate_spanBackground, -14142917);
         this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuBackground, -13616313);
+        this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuSeparator, -14733761);
         this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuItemIcon, -1);
         this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuItem, -1);
         this.sparseIntArray.put(Theme.key_undo_background, -231982259);

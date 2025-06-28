@@ -128,6 +128,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
     private LinearLayoutManager linearLayoutManager;
     private RecyclerListView listView;
     private ListAdapter listViewAdapter;
+    private int manageDirectRow;
     private int manageRow;
     private int manageTopicsRow;
     private TLRPC.TL_chatAdminRights myAdminRights;
@@ -358,7 +359,10 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             if (i == ChatRightsEditActivity.this.channelEditStoriesRow) {
                 return 42L;
             }
-            return i == ChatRightsEditActivity.this.channelDeleteStoriesRow ? 43L : 0L;
+            if (i == ChatRightsEditActivity.this.channelDeleteStoriesRow) {
+                return 43L;
+            }
+            return i == ChatRightsEditActivity.this.manageDirectRow ? 44L : 0L;
         }
 
         @Override
@@ -378,7 +382,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             if (i == 2 || i == ChatRightsEditActivity.this.rankHeaderRow) {
                 return 3;
             }
-            if (i == ChatRightsEditActivity.this.changeInfoRow || i == ChatRightsEditActivity.this.postMessagesRow || i == ChatRightsEditActivity.this.editMesagesRow || i == ChatRightsEditActivity.this.deleteMessagesRow || i == ChatRightsEditActivity.this.addAdminsRow || i == ChatRightsEditActivity.this.banUsersRow || i == ChatRightsEditActivity.this.addUsersRow || i == ChatRightsEditActivity.this.pinMessagesRow || i == ChatRightsEditActivity.this.sendMessagesRow || i == ChatRightsEditActivity.this.anonymousRow || i == ChatRightsEditActivity.this.startVoiceChatRow || i == ChatRightsEditActivity.this.manageRow || i == ChatRightsEditActivity.this.manageTopicsRow) {
+            if (i == ChatRightsEditActivity.this.changeInfoRow || i == ChatRightsEditActivity.this.postMessagesRow || i == ChatRightsEditActivity.this.manageDirectRow || i == ChatRightsEditActivity.this.editMesagesRow || i == ChatRightsEditActivity.this.deleteMessagesRow || i == ChatRightsEditActivity.this.addAdminsRow || i == ChatRightsEditActivity.this.banUsersRow || i == ChatRightsEditActivity.this.addUsersRow || i == ChatRightsEditActivity.this.pinMessagesRow || i == ChatRightsEditActivity.this.sendMessagesRow || i == ChatRightsEditActivity.this.anonymousRow || i == ChatRightsEditActivity.this.startVoiceChatRow || i == ChatRightsEditActivity.this.manageRow || i == ChatRightsEditActivity.this.manageTopicsRow) {
                 return 4;
             }
             if (i == ChatRightsEditActivity.this.cantEditInfoRow || i == ChatRightsEditActivity.this.rankInfoRow) {
@@ -418,6 +422,9 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 }
                 if (adapterPosition == ChatRightsEditActivity.this.postMessagesRow) {
                     return ChatRightsEditActivity.this.myAdminRights.post_messages;
+                }
+                if (adapterPosition == ChatRightsEditActivity.this.manageDirectRow) {
+                    return ChatRightsEditActivity.this.myAdminRights.manage_direct_messages;
                 }
                 if (adapterPosition == ChatRightsEditActivity.this.editMesagesRow) {
                     return ChatRightsEditActivity.this.myAdminRights.edit_messages;
@@ -633,6 +640,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
 
     public static TLRPC.TL_chatAdminRights emptyAdminRights(boolean z) {
         TLRPC.TL_chatAdminRights tL_chatAdminRights = new TLRPC.TL_chatAdminRights();
+        tL_chatAdminRights.manage_direct_messages = z;
         tL_chatAdminRights.delete_stories = z;
         tL_chatAdminRights.edit_stories = z;
         tL_chatAdminRights.post_stories = z;
@@ -702,7 +710,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
     private boolean hasAllAdminRights() {
         if (this.isChannel) {
             TLRPC.TL_chatAdminRights tL_chatAdminRights = this.adminRights;
-            return tL_chatAdminRights.change_info && tL_chatAdminRights.post_messages && tL_chatAdminRights.edit_messages && tL_chatAdminRights.delete_messages && tL_chatAdminRights.invite_users && tL_chatAdminRights.add_admins && tL_chatAdminRights.manage_call && tL_chatAdminRights.post_stories && tL_chatAdminRights.edit_stories && tL_chatAdminRights.delete_stories;
+            return tL_chatAdminRights.change_info && tL_chatAdminRights.post_messages && tL_chatAdminRights.edit_messages && tL_chatAdminRights.delete_messages && tL_chatAdminRights.invite_users && tL_chatAdminRights.add_admins && tL_chatAdminRights.manage_call && tL_chatAdminRights.post_stories && tL_chatAdminRights.edit_stories && tL_chatAdminRights.delete_stories && tL_chatAdminRights.manage_direct_messages;
         }
         TLRPC.TL_chatAdminRights tL_chatAdminRights2 = this.adminRights;
         if (tL_chatAdminRights2.change_info && tL_chatAdminRights2.delete_messages && tL_chatAdminRights2.ban_users && tL_chatAdminRights2.invite_users && tL_chatAdminRights2.pin_messages && tL_chatAdminRights2.add_admins && tL_chatAdminRights2.manage_call) {
@@ -759,7 +767,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$createView$0(int i, TimePicker timePicker, int i2, int i3) {
@@ -954,7 +962,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     if (chatRightsEditActivityDelegate != null) {
                         chatRightsEditActivityDelegate.didSetRights(0, this.adminRights, this.bannedRights, this.currentRank);
                     }
-                    lambda$onBackPressed$348();
+                    lambda$onBackPressed$354();
                     return;
                 }
                 if (i5 == 1) {
@@ -1188,36 +1196,40 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     TLRPC.TL_chatAdminRights tL_chatAdminRights8 = this.adminRights;
                     isChecked = !tL_chatAdminRights8.post_messages;
                     tL_chatAdminRights8.post_messages = isChecked;
-                } else if (i == this.editMesagesRow) {
+                } else if (i == this.manageDirectRow) {
                     TLRPC.TL_chatAdminRights tL_chatAdminRights9 = this.adminRights;
-                    isChecked = !tL_chatAdminRights9.edit_messages;
-                    tL_chatAdminRights9.edit_messages = isChecked;
-                } else if (i == this.deleteMessagesRow) {
+                    isChecked = !tL_chatAdminRights9.manage_direct_messages;
+                    tL_chatAdminRights9.manage_direct_messages = isChecked;
+                } else if (i == this.editMesagesRow) {
                     TLRPC.TL_chatAdminRights tL_chatAdminRights10 = this.adminRights;
-                    isChecked = !tL_chatAdminRights10.delete_messages;
-                    tL_chatAdminRights10.delete_messages = isChecked;
-                } else if (i == this.addAdminsRow) {
+                    isChecked = !tL_chatAdminRights10.edit_messages;
+                    tL_chatAdminRights10.edit_messages = isChecked;
+                } else if (i == this.deleteMessagesRow) {
                     TLRPC.TL_chatAdminRights tL_chatAdminRights11 = this.adminRights;
-                    isChecked = !tL_chatAdminRights11.add_admins;
-                    tL_chatAdminRights11.add_admins = isChecked;
-                } else if (i == this.anonymousRow) {
+                    isChecked = !tL_chatAdminRights11.delete_messages;
+                    tL_chatAdminRights11.delete_messages = isChecked;
+                } else if (i == this.addAdminsRow) {
                     TLRPC.TL_chatAdminRights tL_chatAdminRights12 = this.adminRights;
-                    isChecked = !tL_chatAdminRights12.anonymous;
-                    tL_chatAdminRights12.anonymous = isChecked;
-                } else if (i == this.banUsersRow) {
+                    isChecked = !tL_chatAdminRights12.add_admins;
+                    tL_chatAdminRights12.add_admins = isChecked;
+                } else if (i == this.anonymousRow) {
                     TLRPC.TL_chatAdminRights tL_chatAdminRights13 = this.adminRights;
-                    isChecked = !tL_chatAdminRights13.ban_users;
-                    tL_chatAdminRights13.ban_users = isChecked;
-                } else if (i == this.startVoiceChatRow) {
+                    isChecked = !tL_chatAdminRights13.anonymous;
+                    tL_chatAdminRights13.anonymous = isChecked;
+                } else if (i == this.banUsersRow) {
                     TLRPC.TL_chatAdminRights tL_chatAdminRights14 = this.adminRights;
-                    isChecked = !tL_chatAdminRights14.manage_call;
-                    tL_chatAdminRights14.manage_call = isChecked;
+                    isChecked = !tL_chatAdminRights14.ban_users;
+                    tL_chatAdminRights14.ban_users = isChecked;
+                } else if (i == this.startVoiceChatRow) {
+                    TLRPC.TL_chatAdminRights tL_chatAdminRights15 = this.adminRights;
+                    isChecked = !tL_chatAdminRights15.manage_call;
+                    tL_chatAdminRights15.manage_call = isChecked;
                 } else if (i == this.manageTopicsRow) {
                     int i12 = this.currentType;
                     if (i12 == 0 || i12 == 2) {
-                        TLRPC.TL_chatAdminRights tL_chatAdminRights15 = this.adminRights;
-                        isChecked = !tL_chatAdminRights15.manage_topics;
-                        tL_chatAdminRights15.manage_topics = isChecked;
+                        TLRPC.TL_chatAdminRights tL_chatAdminRights16 = this.adminRights;
+                        isChecked = !tL_chatAdminRights16.manage_topics;
+                        tL_chatAdminRights16.manage_topics = isChecked;
                     } else {
                         TLRPC.TL_chatBannedRights tL_chatBannedRights14 = this.bannedRights;
                         isChecked = !tL_chatBannedRights14.manage_topics;
@@ -1226,9 +1238,9 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 } else if (i == this.addUsersRow) {
                     int i13 = this.currentType;
                     if (i13 == 0 || i13 == 2) {
-                        TLRPC.TL_chatAdminRights tL_chatAdminRights16 = this.adminRights;
-                        isChecked = !tL_chatAdminRights16.invite_users;
-                        tL_chatAdminRights16.invite_users = isChecked;
+                        TLRPC.TL_chatAdminRights tL_chatAdminRights17 = this.adminRights;
+                        isChecked = !tL_chatAdminRights17.invite_users;
+                        tL_chatAdminRights17.invite_users = isChecked;
                     } else {
                         TLRPC.TL_chatBannedRights tL_chatBannedRights15 = this.bannedRights;
                         isChecked = !tL_chatBannedRights15.invite_users;
@@ -1237,9 +1249,9 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 } else if (i == this.pinMessagesRow) {
                     int i14 = this.currentType;
                     if (i14 == 0 || i14 == 2) {
-                        TLRPC.TL_chatAdminRights tL_chatAdminRights17 = this.adminRights;
-                        isChecked = !tL_chatAdminRights17.pin_messages;
-                        tL_chatAdminRights17.pin_messages = isChecked;
+                        TLRPC.TL_chatAdminRights tL_chatAdminRights18 = this.adminRights;
+                        isChecked = !tL_chatAdminRights18.pin_messages;
+                        tL_chatAdminRights18.pin_messages = isChecked;
                     } else {
                         TLRPC.TL_chatBannedRights tL_chatBannedRights16 = this.bannedRights;
                         isChecked = !tL_chatBannedRights16.pin_messages;
@@ -1321,7 +1333,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 this.delegate.didChangeOwner(this.currentUser);
                 removeSelfFromStack();
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$348();
+                twoStepVerificationActivity.lambda$onBackPressed$354();
                 return;
             }
             return;
@@ -1358,7 +1370,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 if (!tL_error.text.equals("CHANNELS_TOO_MUCH")) {
                     if (twoStepVerificationActivity != null) {
                         twoStepVerificationActivity.needHideProgress();
-                        twoStepVerificationActivity.lambda$onBackPressed$348();
+                        twoStepVerificationActivity.lambda$onBackPressed$354();
                     }
                     AlertsCreator.showAddUserAlert(tL_error.text, this, this.isChannel, tL_channels_editCreator);
                     return;
@@ -1491,8 +1503,8 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         ChatRightsEditActivityDelegate chatRightsEditActivityDelegate = this.delegate;
         if (chatRightsEditActivityDelegate != null) {
             TLRPC.TL_chatAdminRights tL_chatAdminRights = this.adminRights;
-            chatRightsEditActivityDelegate.didSetRights((tL_chatAdminRights.change_info || tL_chatAdminRights.post_messages || tL_chatAdminRights.edit_messages || tL_chatAdminRights.delete_messages || tL_chatAdminRights.ban_users || tL_chatAdminRights.invite_users || (this.isForum && tL_chatAdminRights.manage_topics) || tL_chatAdminRights.pin_messages || tL_chatAdminRights.add_admins || tL_chatAdminRights.anonymous || tL_chatAdminRights.manage_call || ((this.isChannel && (tL_chatAdminRights.post_stories || tL_chatAdminRights.edit_stories || tL_chatAdminRights.delete_stories)) || tL_chatAdminRights.other)) ? 1 : 0, tL_chatAdminRights, this.bannedRights, this.currentRank);
-            lambda$onBackPressed$348();
+            chatRightsEditActivityDelegate.didSetRights((tL_chatAdminRights.change_info || tL_chatAdminRights.post_messages || tL_chatAdminRights.manage_direct_messages || tL_chatAdminRights.edit_messages || tL_chatAdminRights.delete_messages || tL_chatAdminRights.ban_users || tL_chatAdminRights.invite_users || (this.isForum && tL_chatAdminRights.manage_topics) || tL_chatAdminRights.pin_messages || tL_chatAdminRights.add_admins || tL_chatAdminRights.anonymous || tL_chatAdminRights.manage_call || ((this.isChannel && (tL_chatAdminRights.post_stories || tL_chatAdminRights.edit_stories || tL_chatAdminRights.delete_stories)) || tL_chatAdminRights.other)) ? 1 : 0, tL_chatAdminRights, this.bannedRights, this.currentRank);
+            lambda$onBackPressed$354();
         }
     }
 
@@ -1609,10 +1621,11 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         tL_chatAdminRights3.manage_topics = tL_chatAdminRights.manage_topics || tL_chatAdminRights2.manage_topics;
         tL_chatAdminRights3.post_stories = tL_chatAdminRights.post_stories || tL_chatAdminRights2.post_stories;
         tL_chatAdminRights3.edit_stories = tL_chatAdminRights.edit_stories || tL_chatAdminRights2.edit_stories;
-        if (!tL_chatAdminRights.delete_stories && !tL_chatAdminRights2.delete_stories) {
+        tL_chatAdminRights3.delete_stories = tL_chatAdminRights.delete_stories || tL_chatAdminRights2.delete_stories;
+        if (!tL_chatAdminRights.manage_direct_messages && !tL_chatAdminRights2.manage_direct_messages) {
             z = false;
         }
-        tL_chatAdminRights3.delete_stories = z;
+        tL_chatAdminRights3.manage_direct_messages = z;
         return tL_chatAdminRights3;
     }
 
@@ -1681,6 +1694,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         this.manageRow = -1;
         this.changeInfoRow = -1;
         this.postMessagesRow = -1;
+        this.manageDirectRow = -1;
         this.editMesagesRow = -1;
         this.deleteMessagesRow = -1;
         this.addAdminsRow = -1;
@@ -1746,10 +1760,11 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     this.channelDeleteStoriesRow = i4 + 3;
                 }
                 int i6 = this.rowCount;
-                this.addUsersRow = i6;
-                this.startVoiceChatRow = i6 + 1;
-                this.rowCount = i6 + 3;
-                this.addAdminsRow = i6 + 2;
+                this.manageDirectRow = i6;
+                this.addUsersRow = i6 + 1;
+                this.startVoiceChatRow = i6 + 2;
+                this.rowCount = i6 + 4;
+                this.addAdminsRow = i6 + 3;
             } else {
                 if (i3 == 2) {
                     this.rowCount = 4;
@@ -1914,7 +1929,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             public void onItemClick(int i3) {
                 if (i3 == -1) {
                     if (ChatRightsEditActivity.this.checkDiscard()) {
-                        ChatRightsEditActivity.this.lambda$onBackPressed$348();
+                        ChatRightsEditActivity.this.lambda$onBackPressed$354();
                     }
                 } else if (i3 == 1) {
                     ChatRightsEditActivity.this.onDonePressed();
@@ -2018,7 +2033,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 if (iNavigationLayout == null || iNavigationLayout.getLastFragment() != this) {
                     removeSelfFromStack();
                 } else {
-                    lambda$onBackPressed$348();
+                    lambda$onBackPressed$354();
                 }
             }
         }

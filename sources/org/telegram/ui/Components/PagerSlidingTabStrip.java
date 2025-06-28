@@ -19,7 +19,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline2;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline0;
 
 public class PagerSlidingTabStrip extends HorizontalScrollView {
     private int currentPosition;
@@ -185,7 +185,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         };
         imageView.setFocusable(true);
         if (Build.VERSION.SDK_INT >= 21) {
-            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline2.m(Theme.createSelectorDrawable(getThemedColor(Theme.key_chat_emojiBottomPanelIcon), 1, AndroidUtilities.dp(18.0f)));
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(Theme.createSelectorDrawable(getThemedColor(Theme.key_chat_emojiBottomPanelIcon), 1, AndroidUtilities.dp(18.0f)));
             Theme.setRippleDrawableForceSoftware(m);
             imageView.setBackground(m);
         }

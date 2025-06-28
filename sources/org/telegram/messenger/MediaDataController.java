@@ -45,6 +45,7 @@ import org.telegram.messenger.Timer;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.messenger.ringtone.RingtoneUploader;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -1377,6 +1378,8 @@ public class MediaDataController extends BaseController {
                         messageObject2.generatePaymentSentMessageText(null, false);
                     } else if (messageAction instanceof TLRPC.TL_messageActionPaymentSentMe) {
                         messageObject2.generatePaymentSentMessageText(null, true);
+                    } else if (messageAction instanceof TLRPC.TL_messageActionSuggestedPostApproval) {
+                        messageObject2.generateSuggestionApprovalMessageText();
                     }
                 }
                 z2 = true;
@@ -5886,6 +5889,13 @@ public class MediaDataController extends BaseController {
         return entitiesEqual(getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true), getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true));
     }
 
+    private static boolean suggestedPostEquals(TLRPC.SuggestedPost suggestedPost, TLRPC.SuggestedPost suggestedPost2) {
+        if (suggestedPost == suggestedPost2) {
+            return true;
+        }
+        return (suggestedPost == null) == (suggestedPost2 == null) && !AmountUtils$Amount.equals(suggestedPost.price, suggestedPost2.price) && suggestedPost.schedule_date == suggestedPost2.schedule_date && suggestedPost.accepted == suggestedPost2.accepted && suggestedPost.rejected == suggestedPost2.rejected;
+    }
+
     private static TLRPC.InputReplyTo toInputReplyTo(int i, TLRPC.MessageReplyHeader messageReplyHeader) {
         if (messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) {
             TLRPC.TL_inputReplyToStory tL_inputReplyToStory = new TLRPC.TL_inputReplyToStory();
@@ -6487,7 +6497,7 @@ public class MediaDataController extends BaseController {
                     inputReplyTo.reply_to_msg_id = 0;
                 }
                 draftMessage.flags &= -2;
-                saveDraft(j, j2, draftMessage.message, draftMessage.entities, null, null, 0L, draftMessage.no_webpage, true);
+                saveDraft(j, j2, draftMessage.message, draftMessage.entities, null, null, null, 0L, draftMessage.no_webpage, true);
                 return;
             }
             return;
@@ -9007,10 +9017,10 @@ public class MediaDataController extends BaseController {
     }
 
     public void saveDraft(long j, int i, CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, TLRPC.Message message, boolean z, long j2) {
-        saveDraft(j, i, charSequence, arrayList, message, null, j2, z, false);
+        saveDraft(j, i, charSequence, arrayList, message, null, null, j2, z, false);
     }
 
-    public void saveDraft(long j, long j2, CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, TLRPC.Message message, ChatActivity.ReplyQuote replyQuote, long j3, boolean z, boolean z2) {
+    public void saveDraft(long j, long j2, CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, TLRPC.Message message, ChatActivity.ReplyQuote replyQuote, TLRPC.SuggestedPost suggestedPost, long j3, boolean z, boolean z2) {
         TLRPC.InputReplyTo inputReplyTo;
         TLRPC.Message message2 = (getMessagesController().isForum(j) && j2 == 0) ? null : message;
         TLRPC.DraftMessage tL_draftMessageEmpty = (TextUtils.isEmpty(charSequence) && message2 == null) ? new TLRPC.TL_draftMessageEmpty() : new TLRPC.TL_draftMessage();
@@ -9060,7 +9070,7 @@ public class MediaDataController extends BaseController {
             tL_draftMessageEmpty.flags |= 8;
         }
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-        if (ChatObject.isMonoForum(chat) && ChatObject.hasAdminRights(chat)) {
+        if (ChatObject.isMonoForum(chat) && ChatObject.canManageMonoForum(this.currentAccount, chat)) {
             tL_draftMessageEmpty.flags |= 16;
             TLRPC.InputReplyTo inputReplyTo5 = tL_draftMessageEmpty.reply_to;
             if (inputReplyTo5 == null) {
@@ -9072,14 +9082,17 @@ public class MediaDataController extends BaseController {
                 tL_draftMessageEmpty.reply_to.flags |= 32;
             }
         }
+        if (suggestedPost != null) {
+            tL_draftMessageEmpty.suggested_post = suggestedPost;
+        }
         LongSparseArray longSparseArray = (LongSparseArray) this.drafts.get(j);
         TLRPC.DraftMessage draftMessage = longSparseArray == null ? null : (TLRPC.DraftMessage) longSparseArray.get(j2);
         if (!z2) {
             if (draftMessage != null) {
-                if (draftMessage.message.equals(tL_draftMessageEmpty.message) && replyToEquals(draftMessage.reply_to, tL_draftMessageEmpty.reply_to) && draftMessage.no_webpage == tL_draftMessageEmpty.no_webpage && draftMessage.effect == tL_draftMessageEmpty.effect) {
+                if (draftMessage.message.equals(tL_draftMessageEmpty.message) && replyToEquals(draftMessage.reply_to, tL_draftMessageEmpty.reply_to) && suggestedPostEquals(draftMessage.suggested_post, tL_draftMessageEmpty.suggested_post) && draftMessage.no_webpage == tL_draftMessageEmpty.no_webpage && draftMessage.effect == tL_draftMessageEmpty.effect) {
                     return;
                 }
-            } else if (TextUtils.isEmpty(tL_draftMessageEmpty.message) && (((inputReplyTo = tL_draftMessageEmpty.reply_to) == null || inputReplyTo.reply_to_msg_id == 0) && tL_draftMessageEmpty.effect == 0)) {
+            } else if (TextUtils.isEmpty(tL_draftMessageEmpty.message) && (((inputReplyTo = tL_draftMessageEmpty.reply_to) == null || inputReplyTo.reply_to_msg_id == 0) && tL_draftMessageEmpty.effect == 0 && tL_draftMessageEmpty.suggested_post == null)) {
                 return;
             }
         }
@@ -9094,17 +9107,10 @@ public class MediaDataController extends BaseController {
                 }
                 tL_messages_saveDraft.message = tL_draftMessageEmpty.message;
                 tL_messages_saveDraft.no_webpage = tL_draftMessageEmpty.no_webpage;
-                TLRPC.InputReplyTo inputReplyTo6 = tL_draftMessageEmpty.reply_to;
-                tL_messages_saveDraft.reply_to = inputReplyTo6;
-                if (inputReplyTo6 != null) {
-                    tL_messages_saveDraft.flags |= 16;
-                }
-                int i = tL_draftMessageEmpty.flags;
-                if ((i & 8) != 0) {
-                    tL_messages_saveDraft.entities = tL_draftMessageEmpty.entities;
-                    tL_messages_saveDraft.flags |= 8;
-                }
-                if ((i & 128) != 0) {
+                tL_messages_saveDraft.reply_to = tL_draftMessageEmpty.reply_to;
+                tL_messages_saveDraft.suggested_post = tL_draftMessageEmpty.suggested_post;
+                tL_messages_saveDraft.entities = tL_draftMessageEmpty.entities;
+                if ((tL_draftMessageEmpty.flags & 128) != 0) {
                     tL_messages_saveDraft.effect = tL_draftMessageEmpty.effect;
                     tL_messages_saveDraft.flags |= 128;
                 }

@@ -1045,6 +1045,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_attachLocationText] = -12801233;
         iArr[Theme.key_chat_attachPollBackground] = -868277;
         iArr[Theme.key_chat_attachPollText] = -2121728;
+        iArr[Theme.key_chat_attachTodoBackground] = -488118;
+        iArr[Theme.key_chat_attachTodoText] = -2003419;
         iArr[Theme.key_chat_inPollCorrectAnswer] = -10436011;
         iArr[Theme.key_chat_outPollCorrectAnswer] = -10436011;
         iArr[Theme.key_chat_inPollWrongAnswer] = -1351584;

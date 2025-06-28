@@ -6012,12 +6012,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$openEdit$0(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda6(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda5(this));
         this.previewButtons.appear(true, true);
     }
 
     public void lambda$openForward$1(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda6(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda5(this));
     }
 
     public void lambda$openPremium$99(DialogInterface dialogInterface) {
@@ -8608,7 +8608,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.containerView.setScaleY(1.0f);
         this.dismissProgress = 0.0f;
         AndroidUtilities.lockOrientation(this.activity, 1);
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda6(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda5(this));
         addNotificationObservers();
         this.botId = 0L;
         this.botLang = "";
@@ -8677,7 +8677,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         switchToEditMode(-1, false);
         this.previewButtons.appear(false, false);
         this.previewButtons.appear(true, true);
-        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda6(this));
+        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda5(this));
         addNotificationObservers();
     }
 
@@ -8858,7 +8858,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.previewButtons.appear(true, false);
         navigateTo(1, false);
         switchToEditMode(-1, false);
-        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda6(this));
+        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda5(this));
         addNotificationObservers();
         this.botId = 0L;
         this.botLang = "";

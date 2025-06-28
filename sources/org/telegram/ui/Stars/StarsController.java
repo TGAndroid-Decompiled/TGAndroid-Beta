@@ -16,6 +16,7 @@ import j$.util.Comparator$CC;
 import j$.util.Comparator$EL;
 import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.function.ToIntFunction;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -46,9 +47,12 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.TopicsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -71,11 +75,12 @@ import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.TON.TONIntroActivity;
 import org.telegram.ui.bots.BotWebViewSheet;
 
 public class StarsController {
-    private static volatile StarsController[] Instance = new StarsController[4];
-    private static final Object[] lockObjects = new Object[4];
+    private static volatile StarsController[][] Instance = (StarsController[][]) Array.newInstance((Class<?>) StarsController.class, 2, 4);
+    private static final Object[][] lockObjects = (Object[][]) Array.newInstance((Class<?>) Object.class, 2, 4);
     private boolean balanceLoaded;
     private boolean balanceLoading;
     public final int currentAccount;
@@ -102,7 +107,8 @@ public class StarsController {
     public boolean subscriptionsEndReached;
     public boolean subscriptionsLoading;
     public String subscriptionsOffset;
-    public TL_stars.StarsAmount balance = new TL_stars.StarsAmount(0);
+    public final boolean ton;
+    public TL_stars.StarsAmount balance = TL_stars.StarsAmount.ofStars(0);
     public final ArrayList[] transactions = {new ArrayList(), new ArrayList(), new ArrayList()};
     public final boolean[] transactionsExist = new boolean[3];
     private final String[] offset = new String[3];
@@ -982,13 +988,16 @@ public class StarsController {
     }
 
     static {
-        for (int i = 0; i < 4; i++) {
-            lockObjects[i] = new Object();
+        for (int i = 0; i < 2; i++) {
+            for (int i2 = 0; i2 < 4; i2++) {
+                lockObjects[i][i2] = new Object();
+            }
         }
     }
 
-    private StarsController(int i) {
+    private StarsController(int i, boolean z) {
         this.currentAccount = i;
+        this.ton = z;
     }
 
     private void bulletinError(String str) {
@@ -1060,14 +1069,22 @@ public class StarsController {
     }
 
     public static StarsController getInstance(int i) {
-        StarsController starsController = Instance[i];
+        return getInstance(i, false);
+    }
+
+    public static StarsController getInstance(int i, AmountUtils$Currency amountUtils$Currency) {
+        return getInstance(i, amountUtils$Currency == AmountUtils$Currency.TON);
+    }
+
+    public static StarsController getInstance(int i, boolean z) {
+        StarsController starsController = Instance[z ? 1 : 0][i];
         if (starsController == null) {
-            synchronized (lockObjects[i]) {
+            synchronized (lockObjects[z ? 1 : 0][i]) {
                 try {
-                    starsController = Instance[i];
+                    starsController = Instance[z ? 1 : 0][i];
                     if (starsController == null) {
-                        StarsController[] starsControllerArr = Instance;
-                        StarsController starsController2 = new StarsController(i);
+                        StarsController[] starsControllerArr = Instance[z ? 1 : 0];
+                        StarsController starsController2 = new StarsController(i, z);
                         starsControllerArr[i] = starsController2;
                         starsController = starsController2;
                     }
@@ -1123,6 +1140,10 @@ public class StarsController {
                 StarsController.lambda$getStarGiftsRemote$112(Utilities.Callback.this, tLObject, tL_error);
             }
         });
+    }
+
+    public static StarsController getTonInstance(int i) {
+        return getInstance(i, true);
     }
 
     public void lambda$beforeSendingFinalRequest$153(HashSet hashSet, Runnable runnable) {
@@ -2144,7 +2165,7 @@ public class StarsController {
                 while (it.hasNext()) {
                     TL_stars.StarsTransaction next = it.next();
                     this.transactions[0].add(next);
-                    this.transactions[next.stars.amount > 0 ? (char) 1 : (char) 2].add(next);
+                    this.transactions[next.amount.amount > 0 ? (char) 1 : (char) 2].add(next);
                 }
                 for (int i = 0; i < 3; i++) {
                     this.transactionsExist[i] = !this.transactions[i].isEmpty() || this.transactionsExist[i];
@@ -3316,13 +3337,20 @@ public class StarsController {
     public static void lambda$showStarsTopupInternal$25() {
     }
 
-    public void lambda$stopPaidMessages$149(TLObject tLObject, long j) {
+    public void lambda$stopPaidMessages$149(TLObject tLObject, long j, long j2, boolean z) {
+        TopicsController topicsController;
+        long j3;
+        TLRPC.TL_forumTopic findTopic;
         TLRPC.PeerSettings peerSettings;
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
             if (userFull != null && (peerSettings = userFull.settings) != null) {
                 peerSettings.flags &= -16385;
                 peerSettings.charge_paid_message_stars = 0L;
+            }
+            if (j2 != 0 && (findTopic = (topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController()).findTopic((j3 = -j2), j)) != null) {
+                findTopic.nopaid_messages_exception = z;
+                topicsController.saveTopics(j3);
             }
             MessagesController.getNotificationsSettings(this.currentAccount).edit().putLong("dialog_bar_paying_" + j, 0L).apply();
             MessagesController.getInstance(this.currentAccount).loadPeerSettings(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)), true);
@@ -3331,11 +3359,11 @@ public class StarsController {
         }
     }
 
-    public void lambda$stopPaidMessages$150(final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$stopPaidMessages$150(final long j, final long j2, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsController.this.lambda$stopPaidMessages$149(tLObject, j);
+                StarsController.this.lambda$stopPaidMessages$149(tLObject, j, j2, z);
             }
         });
     }
@@ -4029,6 +4057,17 @@ public class StarsController {
         });
     }
 
+    public boolean canUseTon() {
+        if (!this.ton) {
+            return false;
+        }
+        if (TONIntroActivity.allowTopUp()) {
+            return true;
+        }
+        TL_stars.StarsAmount balance = getBalance();
+        return (balance.nanos == 0 && balance.amount == 0) ? false : true;
+    }
+
     public void commitPaidReaction() {
         PendingPaidReactions pendingPaidReactions = this.currentPendingReactions;
         if (pendingPaidReactions != null) {
@@ -4074,6 +4113,7 @@ public class StarsController {
         if (((!this.balanceLoaded || System.currentTimeMillis() - this.lastBalanceLoaded > 60000) && !this.balanceLoading) || z2) {
             this.balanceLoading = true;
             TL_stars.TL_payments_getStarsStatus tL_payments_getStarsStatus = new TL_stars.TL_payments_getStarsStatus();
+            tL_payments_getStarsStatus.ton = this.ton;
             tL_payments_getStarsStatus.peer = new TLRPC.TL_inputPeerSelf();
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsStatus, new RequestDelegate() {
                 @Override
@@ -4085,10 +4125,16 @@ public class StarsController {
         if (!z || this.minus <= 0) {
             return this.balance;
         }
-        TL_stars.StarsAmount starsAmount = new TL_stars.StarsAmount();
-        starsAmount.amount = Math.max(0L, this.balance.amount - this.minus);
-        starsAmount.nanos = this.balance.nanos;
-        return starsAmount;
+        AmountUtils$Amount ofSafe = AmountUtils$Amount.ofSafe(this.balance);
+        return AmountUtils$Amount.fromDecimal(Math.max(0L, ofSafe.asDecimal() - this.minus), ofSafe.currency).toTl();
+    }
+
+    public AmountUtils$Amount getBalanceAmount() {
+        AmountUtils$Amount of = AmountUtils$Amount.of(getBalance());
+        if (of == null) {
+            return AmountUtils$Amount.fromNano(0L, this.ton ? AmountUtils$Currency.TON : AmountUtils$Currency.STARS);
+        }
+        return of;
     }
 
     public Context getContext(BaseFragment baseFragment) {
@@ -4181,9 +4227,12 @@ public class StarsController {
         return 0L;
     }
 
-    public void getPaidRevenue(long j, final Utilities.Callback callback) {
+    public void getPaidRevenue(long j, long j2, final Utilities.Callback callback) {
         TL_account.getPaidMessagesRevenue getpaidmessagesrevenue = new TL_account.getPaidMessagesRevenue();
         getpaidmessagesrevenue.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(j);
+        if (j2 != 0) {
+            getpaidmessagesrevenue.parent_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j2);
+        }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getpaidmessagesrevenue, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -4484,7 +4533,7 @@ public class StarsController {
     }
 
     public void loadSubscriptions() {
-        if (this.subscriptionsLoading || this.subscriptionsEndReached) {
+        if (this.ton || this.subscriptionsLoading || this.subscriptionsEndReached) {
             return;
         }
         this.subscriptionsLoading = true;
@@ -4510,6 +4559,7 @@ public class StarsController {
         }
         zArr[i] = true;
         TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
+        tL_payments_getStarsTransactions.ton = this.ton;
         tL_payments_getStarsTransactions.peer = new TLRPC.TL_inputPeerSelf();
         tL_payments_getStarsTransactions.inbound = i == 1;
         tL_payments_getStarsTransactions.outbound = i == 2;
@@ -4818,14 +4868,18 @@ public class StarsController {
         }
     }
 
-    public void stopPaidMessages(final long j, boolean z) {
-        TL_account.addNoPaidMessagesException addnopaidmessagesexception = new TL_account.addNoPaidMessagesException();
-        addnopaidmessagesexception.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(j);
-        addnopaidmessagesexception.refund_charged = z;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(addnopaidmessagesexception, new RequestDelegate() {
+    public void stopPaidMessages(final long j, final long j2, boolean z, final boolean z2) {
+        TL_account.toggleNoPaidMessagesException togglenopaidmessagesexception = new TL_account.toggleNoPaidMessagesException();
+        togglenopaidmessagesexception.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(j);
+        if (j2 != 0) {
+            togglenopaidmessagesexception.parent_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j2);
+        }
+        togglenopaidmessagesexception.refund_charged = z;
+        togglenopaidmessagesexception.require_payment = !z2;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(togglenopaidmessagesexception, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarsController.this.lambda$stopPaidMessages$150(j, tLObject, tL_error);
+                StarsController.this.lambda$stopPaidMessages$150(j, j2, z2, tLObject, tL_error);
             }
         });
     }

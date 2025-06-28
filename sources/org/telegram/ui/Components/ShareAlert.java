@@ -3179,7 +3179,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     of2.monoForumPeer = j7;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
                 }
-                int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j6, !this.showSendersName, false, z, 0, messageObject2, i, l3 == null ? 0L : l3.longValue(), j7);
+                int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j6, !this.showSendersName, false, z, 0, messageObject2, i, l3 == null ? 0L : l3.longValue(), j7, null);
                 if (sendMessage != 0) {
                     arrayList3.add(Long.valueOf(j6));
                 }
@@ -3593,6 +3593,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
     public void selectDialog(View view, final TLRPC.Dialog dialog) {
         DialogsSearchAdapter.CategoryAdapterRecycler categoryAdapterRecycler;
+        int i;
         if (dialog instanceof ShareDialogsAdapter.MyStoryDialog) {
             onShareStory(view);
             return;
@@ -3606,10 +3607,11 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
         if (DialogObject.isChatDialog(dialog.id)) {
             TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
-            if (ChatObject.isChannel(chat) && !chat.megagroup && (!ChatObject.isCanWriteToChannel(-dialog.id, this.currentAccount) || this.hasPoll == 2)) {
+            if (ChatObject.isChannel(chat) && !chat.megagroup && (!ChatObject.isCanWriteToChannel(-dialog.id, this.currentAccount) || (i = this.hasPoll) == 2 || i == 3)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this.parentActivity);
                 builder.setTitle(LocaleController.getString(R.string.SendMessageTitle));
-                builder.setMessage(LocaleController.getString(this.hasPoll == 2 ? this.isChannel ? R.string.PublicPollCantForward : ChatObject.isActionBannedByDefault(chat, 10) ? R.string.ErrorSendRestrictedPollsAll : R.string.ErrorSendRestrictedPolls : R.string.ChannelCantSendMessage));
+                int i2 = this.hasPoll;
+                builder.setMessage(LocaleController.getString(i2 == 3 ? ChatObject.isActionBannedByDefault(chat, 10) ? R.string.ErrorSendRestrictedTodoAll : R.string.ErrorSendRestrictedTodo : i2 == 2 ? this.isChannel ? R.string.PublicPollCantForward : ChatObject.isActionBannedByDefault(chat, 10) ? R.string.ErrorSendRestrictedPollsAll : R.string.ErrorSendRestrictedPolls : R.string.ChannelCantSendMessage));
                 builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
                 builder.show();
                 return;
@@ -3617,7 +3619,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         } else if (DialogObject.isEncryptedDialog(dialog.id) && this.hasPoll != 0) {
             AlertDialog.Builder builder2 = new AlertDialog.Builder(this.parentActivity);
             builder2.setTitle(LocaleController.getString(R.string.SendMessageTitle));
-            builder2.setMessage(LocaleController.getString(this.hasPoll != 0 ? R.string.PollCantForwardSecretChat : R.string.InvoiceCantForwardSecretChat));
+            int i3 = this.hasPoll;
+            builder2.setMessage(LocaleController.getString(i3 == 3 ? R.string.TodoCantForwardSecretChat : i3 != 0 ? R.string.PollCantForwardSecretChat : R.string.InvoiceCantForwardSecretChat));
             builder2.setNegativeButton(LocaleController.getString(R.string.OK), null);
             builder2.show();
             return;
@@ -3645,10 +3648,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     }
                 });
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
-                int i = NotificationCenter.topicsDidLoaded;
-                notificationCenter.addObserver(anonymousClass23, i);
+                int i4 = NotificationCenter.topicsDidLoaded;
+                notificationCenter.addObserver(anonymousClass23, i4);
                 if (MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-dialog.id) != null) {
-                    anonymousClass23.didReceivedNotification(i, this.currentAccount, Long.valueOf(-dialog.id));
+                    anonymousClass23.didReceivedNotification(i4, this.currentAccount, Long.valueOf(-dialog.id));
                     return;
                 } else {
                     MessagesController.getInstance(this.currentAccount).getTopicsController().loadTopics(-dialog.id);

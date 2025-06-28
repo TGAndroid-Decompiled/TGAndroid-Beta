@@ -2212,7 +2212,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         if (this.isChannel || getUserConfig().isPremium()) {
             if (this.isChannel) {
-                lambda$onBackPressed$348();
+                lambda$onBackPressed$354();
             } else {
                 TLRPC.User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser.color == null) {
@@ -2302,7 +2302,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 getMessagesController().putUser(currentUser, false);
                 getUserConfig().saveConfig(true);
-                lambda$onBackPressed$348();
+                lambda$onBackPressed$354();
                 showBulletin();
             }
             this.applying = true;
@@ -2315,13 +2315,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$348();
+            lambda$onBackPressed$354();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
         }
         apply();
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
         showBulletin();
     }
 
@@ -2339,7 +2339,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$348();
+            lambda$onBackPressed$354();
         }
     }
 
@@ -2348,7 +2348,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$showUnsavedAlert$4(AlertDialog alertDialog, int i) {
@@ -2498,7 +2498,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         frameLayout2.addView(this.colorBar, LayoutHelper.createFrame(-1, -2, 55));
         ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context) {
             @Override
-            protected void onTabAnimationUpdate(boolean z) {
+            public void onTabAnimationUpdate(boolean z) {
                 PeerColorActivity.this.tabsView.setSelected(PeerColorActivity.this.viewPager.getPositionAnimated());
                 PeerColorActivity.this.colorBar.setProgressToGradient(PeerColorActivity.this.viewPager.getPositionAnimated());
             }

@@ -35,6 +35,7 @@ public class ChatObject {
     public static final int ACTION_EMBED_LINKS = 9;
     public static final int ACTION_INVITE = 3;
     public static final int ACTION_MANAGE_CALLS = 14;
+    public static final int ACTION_MANAGE_DIRECT = 24;
     public static final int ACTION_MANAGE_TOPICS = 15;
     public static final int ACTION_PIN = 0;
     public static final int ACTION_POST = 5;
@@ -1347,14 +1348,11 @@ public class ChatObject {
     }
 
     public static boolean canManageMonoForum(int i, long j) {
-        return canManageMonoForum(i, MessagesController.getInstance(i).getChat(Long.valueOf(-j)));
+        return canUserDoChannelDirectAdminAction(i, j, 24);
     }
 
     public static boolean canManageMonoForum(int i, TLRPC.Chat chat) {
-        if (chat == null || chat.linked_monoforum_id == 0) {
-            return false;
-        }
-        return chat.monoforum ? canUserDoAdminAction(MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id)), 5) : canUserDoAdminAction(chat, 5);
+        return canUserDoChannelDirectAdminAction(i, chat, 24);
     }
 
     public static boolean canManageTopic(int i, TLRPC.Chat chat, long j) {
@@ -1523,7 +1521,9 @@ public class ChatObject {
         }
         TLRPC.TL_chatAdminRights tL_chatAdminRights = chat.admin_rights;
         if (tL_chatAdminRights != null) {
-            if (i == 0) {
+            if (i == 24) {
+                z = tL_chatAdminRights.manage_direct_messages;
+            } else if (i == 0) {
                 z = tL_chatAdminRights.pin_messages;
             } else if (i == 1) {
                 z = tL_chatAdminRights.change_info;
@@ -1600,6 +1600,14 @@ public class ChatObject {
             }
         }
         return false;
+    }
+
+    public static boolean canUserDoChannelDirectAdminAction(int i, long j, int i2) {
+        return canUserDoAdminAction(getChannelDirectChatInternal(i, j), i2);
+    }
+
+    public static boolean canUserDoChannelDirectAdminAction(int i, TLRPC.Chat chat, int i2) {
+        return canUserDoAdminAction(getChannelDirectChatInternal(i, chat), i2);
     }
 
     public static boolean canWriteToChat(TLRPC.Chat chat) {
@@ -1709,6 +1717,17 @@ public class ChatObject {
 
     public static String getBannedRightsString(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
         return (((((((((((((((((((("" + (tL_chatBannedRights.view_messages ? 1 : 0)) + (tL_chatBannedRights.send_messages ? 1 : 0)) + (tL_chatBannedRights.send_media ? 1 : 0)) + (tL_chatBannedRights.send_stickers ? 1 : 0)) + (tL_chatBannedRights.send_gifs ? 1 : 0)) + (tL_chatBannedRights.send_games ? 1 : 0)) + (tL_chatBannedRights.send_inline ? 1 : 0)) + (tL_chatBannedRights.embed_links ? 1 : 0)) + (tL_chatBannedRights.send_polls ? 1 : 0)) + (tL_chatBannedRights.invite_users ? 1 : 0)) + (tL_chatBannedRights.change_info ? 1 : 0)) + (tL_chatBannedRights.pin_messages ? 1 : 0)) + (tL_chatBannedRights.manage_topics ? 1 : 0)) + (tL_chatBannedRights.send_photos ? 1 : 0)) + (tL_chatBannedRights.send_videos ? 1 : 0)) + (tL_chatBannedRights.send_roundvideos ? 1 : 0)) + (tL_chatBannedRights.send_voices ? 1 : 0)) + (tL_chatBannedRights.send_audios ? 1 : 0)) + (tL_chatBannedRights.send_docs ? 1 : 0)) + (tL_chatBannedRights.send_plain ? 1 : 0)) + tL_chatBannedRights.until_date;
+    }
+
+    private static TLRPC.Chat getChannelDirectChatInternal(int i, long j) {
+        return getChannelDirectChatInternal(i, MessagesController.getInstance(i).getChat(Long.valueOf(-j)));
+    }
+
+    private static TLRPC.Chat getChannelDirectChatInternal(int i, TLRPC.Chat chat) {
+        if (chat == null || chat.linked_monoforum_id == 0) {
+            return null;
+        }
+        return chat.monoforum ? MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id)) : chat;
     }
 
     public static int getColorId(TLRPC.Chat chat) {

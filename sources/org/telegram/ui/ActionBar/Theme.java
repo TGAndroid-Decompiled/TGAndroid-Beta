@@ -91,7 +91,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda70;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda71;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -164,6 +164,7 @@ public abstract class Theme {
     public static Paint chat_actionBackgroundSelectedPaint;
     public static TextPaint chat_actionTextPaint;
     public static TextPaint chat_actionTextPaint2;
+    public static TextPaint chat_actionTextPaint3;
     public static TextPaint chat_adminPaint;
     public static PorterDuffColorFilter chat_animatedEmojiTextColorFilter;
     public static Drawable chat_attachEmptyDrawable;
@@ -175,6 +176,7 @@ public abstract class Theme {
     public static Drawable chat_botInlineDrawable;
     public static Drawable chat_botInviteDrawable;
     public static Drawable chat_botLinkDrawable;
+    public static Drawable chat_botLockDrawable;
     public static Drawable chat_botWebViewDrawable;
     public static Drawable chat_closeIconDrawable;
     public static Drawable chat_commentArrowDrawable;
@@ -489,6 +491,8 @@ public abstract class Theme {
     public static final int key_chat_attachPhotoBackground;
     public static final int key_chat_attachPollBackground;
     public static final int key_chat_attachPollText;
+    public static final int key_chat_attachTodoBackground;
+    public static final int key_chat_attachTodoText;
     public static final int key_chat_attachUnactiveTab;
     public static final int key_chat_botButtonText;
     public static final int key_chat_botKeyboardButtonBackground;
@@ -1249,7 +1253,7 @@ public abstract class Theme {
     public static Drawable[] chat_pollCrossDrawable = new Drawable[2];
     public static Drawable[] chat_pollHintDrawable = new Drawable[2];
     public static Drawable[] chat_psaHelpDrawable = new Drawable[2];
-    public static RLottieDrawable[] chat_attachButtonDrawables = new RLottieDrawable[6];
+    public static RLottieDrawable[] chat_attachButtonDrawables = new RLottieDrawable[7];
     public static Drawable[] chat_locationDrawable = new Drawable[2];
     public static Drawable[] chat_contactDrawable = new Drawable[2];
     public static Drawable[][] chat_fileStatesDrawable = (Drawable[][]) Array.newInstance((Class<?>) Drawable.class, 5, 2);
@@ -1708,6 +1712,10 @@ public abstract class Theme {
                 }
             }
             return createRect(colorDrawable, i2, fArr);
+        }
+
+        public static Drawable createRect(int i, float... fArr) {
+            return createRect(0, i, fArr);
         }
 
         private static Drawable createRect(Drawable drawable, int i, float... fArr) {
@@ -4331,6 +4339,7 @@ public abstract class Theme {
             setDrawableColor(chat_msgStickerRepliesDrawable, -1);
             chat_actionTextPaint.setColor(-1);
             chat_actionTextPaint2.setColor(-1);
+            chat_actionTextPaint3.setColor(-1);
             chat_actionTextPaint.linkColor = -1;
             chat_unlockExtendedMediaTextPaint.setColor(-1);
             chat_botButtonPaint.setColor(-1);
@@ -4340,6 +4349,7 @@ public abstract class Theme {
             setDrawableColor(chat_goIconDrawable, -1);
             setDrawableColor(chat_botInlineDrawable, -1);
             setDrawableColor(chat_botWebViewDrawable, -1);
+            setDrawableColor(chat_botLockDrawable, -1);
             setDrawableColor(chat_botInviteDrawable, -1);
             setDrawableColor(chat_botLinkDrawable, -1);
         } else {
@@ -4364,6 +4374,7 @@ public abstract class Theme {
             setDrawableColorByKey(chat_goIconDrawable, i2);
             setDrawableColorByKey(chat_botInlineDrawable, i2);
             setDrawableColorByKey(chat_botWebViewDrawable, i2);
+            setDrawableColorByKey(chat_botLockDrawable, i2);
             setDrawableColorByKey(chat_botInviteDrawable, i2);
             setDrawableColorByKey(chat_botLinkDrawable, i2);
             chat_botButtonPaint.setColor(getColor(key_chat_botButtonText));
@@ -4434,6 +4445,7 @@ public abstract class Theme {
         int i2 = key_chat_serviceText;
         textPaint.setColor(getColor(i2));
         chat_actionTextPaint2.setColor(getColor(i2));
+        chat_actionTextPaint3.setColor(getColor(i2));
         chat_actionTextPaint.linkColor = getColor(key_chat_serviceLink);
         chat_unlockExtendedMediaTextPaint.setColor(getColor(i2));
         chat_contextResult_titleTextPaint.setColor(getColor(key_windowBackgroundWhiteBlackText));
@@ -4474,89 +4486,92 @@ public abstract class Theme {
         setDrawableColorByKey(chat_goIconDrawable, i8);
         setDrawableColorByKey(chat_botInlineDrawable, i8);
         setDrawableColorByKey(chat_botWebViewDrawable, i8);
+        Drawable drawable5 = chat_botLockDrawable;
+        int i9 = key_chat_lockIcon;
+        setDrawableColorByKey(drawable5, i9);
         setDrawableColorByKey(chat_botInviteDrawable, i8);
         setDrawableColorByKey(chat_botLinkDrawable, i8);
-        Drawable drawable5 = chat_msgInViewsDrawable;
-        int i9 = key_chat_inViews;
-        setDrawableColorByKey(drawable5, i9);
-        Drawable drawable6 = chat_msgInViewsSelectedDrawable;
-        int i10 = key_chat_inViewsSelected;
+        Drawable drawable6 = chat_msgInViewsDrawable;
+        int i10 = key_chat_inViews;
         setDrawableColorByKey(drawable6, i10);
-        Drawable drawable7 = chat_msgOutViewsDrawable;
-        int i11 = key_chat_outViews;
+        Drawable drawable7 = chat_msgInViewsSelectedDrawable;
+        int i11 = key_chat_inViewsSelected;
         setDrawableColorByKey(drawable7, i11);
-        Drawable drawable8 = chat_msgOutViewsSelectedDrawable;
-        int i12 = key_chat_outViewsSelected;
+        Drawable drawable8 = chat_msgOutViewsDrawable;
+        int i12 = key_chat_outViews;
         setDrawableColorByKey(drawable8, i12);
-        setDrawableColorByKey(chat_msgInRepliesDrawable, i9);
-        setDrawableColorByKey(chat_msgInRepliesSelectedDrawable, i10);
-        setDrawableColorByKey(chat_msgOutRepliesDrawable, i11);
-        setDrawableColorByKey(chat_msgOutRepliesSelectedDrawable, i12);
-        setDrawableColorByKey(chat_msgInPinnedDrawable, i9);
-        setDrawableColorByKey(chat_msgInPinnedSelectedDrawable, i10);
-        setDrawableColorByKey(chat_msgOutPinnedDrawable, i11);
-        setDrawableColorByKey(chat_msgOutPinnedSelectedDrawable, i12);
-        Drawable drawable9 = chat_msgMediaPinnedDrawable;
-        int i13 = key_chat_mediaViews;
+        Drawable drawable9 = chat_msgOutViewsSelectedDrawable;
+        int i13 = key_chat_outViewsSelected;
         setDrawableColorByKey(drawable9, i13);
+        setDrawableColorByKey(chat_msgInRepliesDrawable, i10);
+        setDrawableColorByKey(chat_msgInRepliesSelectedDrawable, i11);
+        setDrawableColorByKey(chat_msgOutRepliesDrawable, i12);
+        setDrawableColorByKey(chat_msgOutRepliesSelectedDrawable, i13);
+        setDrawableColorByKey(chat_msgInPinnedDrawable, i10);
+        setDrawableColorByKey(chat_msgInPinnedSelectedDrawable, i11);
+        setDrawableColorByKey(chat_msgOutPinnedDrawable, i12);
+        setDrawableColorByKey(chat_msgOutPinnedSelectedDrawable, i13);
+        Drawable drawable10 = chat_msgMediaPinnedDrawable;
+        int i14 = key_chat_mediaViews;
+        setDrawableColorByKey(drawable10, i14);
         setDrawableColorByKey(chat_msgStickerPinnedDrawable, i2);
-        setDrawableColorByKey(chat_msgMediaViewsDrawable, i13);
-        setDrawableColorByKey(chat_msgMediaRepliesDrawable, i13);
+        setDrawableColorByKey(chat_msgMediaViewsDrawable, i14);
+        setDrawableColorByKey(chat_msgMediaRepliesDrawable, i14);
         setDrawableColorByKey(chat_msgInMenuDrawable, key_chat_inMenu);
         setDrawableColorByKey(chat_msgInMenuSelectedDrawable, key_chat_inMenuSelected);
         setDrawableColorByKey(chat_msgOutMenuDrawable, key_chat_outMenu);
         setDrawableColorByKey(chat_msgOutMenuSelectedDrawable, key_chat_outMenuSelected);
         setDrawableColorByKey(chat_msgMediaMenuDrawable, key_chat_mediaMenu);
         setDrawableColorByKey(chat_msgOutInstantDrawable, key_chat_outInstant);
-        Drawable drawable10 = chat_msgInInstantDrawable;
-        int i14 = key_chat_inInstant;
-        setDrawableColorByKey(drawable10, i14);
+        Drawable drawable11 = chat_msgInInstantDrawable;
+        int i15 = key_chat_inInstant;
+        setDrawableColorByKey(drawable11, i15);
         setDrawableColorByKey(chat_msgErrorDrawable, key_chat_sentErrorIcon);
         setDrawableColorByKey(chat_muteIconDrawable, key_chat_muteIcon);
-        setDrawableColorByKey(chat_lockIconDrawable, key_chat_lockIcon);
-        Drawable drawable11 = chat_inlineResultFile;
-        int i15 = key_chat_inlineResultIcon;
-        setDrawableColorByKey(drawable11, i15);
-        setDrawableColorByKey(chat_inlineResultAudio, i15);
-        setDrawableColorByKey(chat_inlineResultLocation, i15);
-        setDrawableColorByKey(chat_commentDrawable, i14);
-        setDrawableColorByKey(chat_commentStickerDrawable, i8);
-        setDrawableColorByKey(chat_commentArrowDrawable, i14);
-        Drawable drawable12 = chat_gradientLeftDrawable;
-        int i16 = key_chat_stickersHintPanel;
+        setDrawableColorByKey(chat_lockIconDrawable, i9);
+        Drawable drawable12 = chat_inlineResultFile;
+        int i16 = key_chat_inlineResultIcon;
         setDrawableColorByKey(drawable12, i16);
-        setDrawableColorByKey(chat_gradientRightDrawable, i16);
-        for (int i17 = 0; i17 < 2; i17++) {
-            setDrawableColorByKey(chat_msgInCallDrawable[i17], key_chat_inInstant);
-            setDrawableColorByKey(chat_msgInCallSelectedDrawable[i17], key_chat_inInstantSelected);
-            setDrawableColorByKey(chat_msgOutCallDrawable[i17], key_chat_outInstant);
-            setDrawableColorByKey(chat_msgOutCallSelectedDrawable[i17], key_chat_outInstantSelected);
+        setDrawableColorByKey(chat_inlineResultAudio, i16);
+        setDrawableColorByKey(chat_inlineResultLocation, i16);
+        setDrawableColorByKey(chat_commentDrawable, i15);
+        setDrawableColorByKey(chat_commentStickerDrawable, i8);
+        setDrawableColorByKey(chat_commentArrowDrawable, i15);
+        Drawable drawable13 = chat_gradientLeftDrawable;
+        int i17 = key_chat_stickersHintPanel;
+        setDrawableColorByKey(drawable13, i17);
+        setDrawableColorByKey(chat_gradientRightDrawable, i17);
+        for (int i18 = 0; i18 < 2; i18++) {
+            setDrawableColorByKey(chat_msgInCallDrawable[i18], key_chat_inInstant);
+            setDrawableColorByKey(chat_msgInCallSelectedDrawable[i18], key_chat_inInstantSelected);
+            setDrawableColorByKey(chat_msgOutCallDrawable[i18], key_chat_outInstant);
+            setDrawableColorByKey(chat_msgOutCallSelectedDrawable[i18], key_chat_outInstantSelected);
         }
         setDrawableColorByKey(chat_msgCallUpGreenDrawable, key_chat_outGreenCall);
-        Drawable drawable13 = chat_msgCallDownRedDrawable;
-        int i18 = key_fill_RedNormal;
-        setDrawableColorByKey(drawable13, i18);
-        setDrawableColorByKey(chat_msgCallDownGreenDrawable, key_chat_inGreenCall);
-        setDrawableColorByKey(calllog_msgCallUpRedDrawable, i18);
-        Drawable drawable14 = calllog_msgCallUpGreenDrawable;
-        int i19 = key_calls_callReceivedGreenIcon;
+        Drawable drawable14 = chat_msgCallDownRedDrawable;
+        int i19 = key_fill_RedNormal;
         setDrawableColorByKey(drawable14, i19);
-        setDrawableColorByKey(calllog_msgCallDownRedDrawable, i18);
-        setDrawableColorByKey(calllog_msgCallDownGreenDrawable, i19);
-        int i20 = 0;
+        setDrawableColorByKey(chat_msgCallDownGreenDrawable, key_chat_inGreenCall);
+        setDrawableColorByKey(calllog_msgCallUpRedDrawable, i19);
+        Drawable drawable15 = calllog_msgCallUpGreenDrawable;
+        int i20 = key_calls_callReceivedGreenIcon;
+        setDrawableColorByKey(drawable15, i20);
+        setDrawableColorByKey(calllog_msgCallDownRedDrawable, i19);
+        setDrawableColorByKey(calllog_msgCallDownGreenDrawable, i20);
+        int i21 = 0;
         while (true) {
             StatusDrawable[] statusDrawableArr = chat_status_drawables;
-            if (i20 >= statusDrawableArr.length) {
+            if (i21 >= statusDrawableArr.length) {
                 break;
             }
-            setDrawableColorByKey(statusDrawableArr[i20], key_chats_actionMessage);
-            i20++;
+            setDrawableColorByKey(statusDrawableArr[i21], key_chats_actionMessage);
+            i21++;
         }
-        for (int i21 = 0; i21 < 5; i21++) {
-            setCombinedDrawableColor(chat_fileStatesDrawable[i21][0], getColor(key_chat_inLoader), false);
-            setCombinedDrawableColor(chat_fileStatesDrawable[i21][0], getColor(key_chat_inMediaIcon), true);
-            setCombinedDrawableColor(chat_fileStatesDrawable[i21][1], getColor(key_chat_inLoaderSelected), false);
-            setCombinedDrawableColor(chat_fileStatesDrawable[i21][1], getColor(key_chat_inMediaIconSelected), true);
+        for (int i22 = 0; i22 < 5; i22++) {
+            setCombinedDrawableColor(chat_fileStatesDrawable[i22][0], getColor(key_chat_inLoader), false);
+            setCombinedDrawableColor(chat_fileStatesDrawable[i22][0], getColor(key_chat_inMediaIcon), true);
+            setCombinedDrawableColor(chat_fileStatesDrawable[i22][1], getColor(key_chat_inLoaderSelected), false);
+            setCombinedDrawableColor(chat_fileStatesDrawable[i22][1], getColor(key_chat_inMediaIconSelected), true);
         }
         setCombinedDrawableColor(chat_contactDrawable[0], getColor(key_chat_inContactBackground), false);
         setCombinedDrawableColor(chat_contactDrawable[0], getColor(key_chat_inContactIcon), true);
@@ -5283,6 +5298,7 @@ public abstract class Theme {
             chat_botCardDrawable = resources.getDrawable(R.drawable.bot_card);
             chat_botWebViewDrawable = resources.getDrawable(R.drawable.bot_webview);
             chat_botInviteDrawable = resources.getDrawable(R.drawable.bot_invite);
+            chat_botLockDrawable = resources.getDrawable(R.drawable.permission_locked);
             chat_commentDrawable = resources.getDrawable(R.drawable.msg_msgbubble);
             chat_commentStickerDrawable = resources.getDrawable(R.drawable.msg_msgbubble2);
             chat_commentArrowDrawable = resources.getDrawable(R.drawable.msg_arrowright);
@@ -5295,6 +5311,7 @@ public abstract class Theme {
             chat_attachButtonDrawables[3] = new RLottieDrawable(R.raw.attach_contact, "attach_contact", AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
             chat_attachButtonDrawables[4] = new RLottieDrawable(R.raw.attach_location, "attach_location", AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
             chat_attachButtonDrawables[5] = new RLottieDrawable(R.raw.attach_poll, "attach_poll", AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
+            chat_attachButtonDrawables[6] = new RLottieDrawable(R.raw.todo_attach, "todo_attach", AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
             chat_attachEmptyDrawable = resources.getDrawable(R.drawable.nophotos3);
             chat_shareIconDrawable = resources.getDrawable(R.drawable.filled_button_share).mutate();
             chat_replyIconDrawable = resources.getDrawable(R.drawable.filled_button_reply);
@@ -5368,6 +5385,7 @@ public abstract class Theme {
             int i24 = key_chat_serviceIcon;
             addChatDrawable("drawableBotInline", drawable, i24);
             addChatDrawable("drawableBotWebView", chat_botWebViewDrawable, i24);
+            addChatDrawable("drawableBotLock", chat_botLockDrawable, i24);
             addChatDrawable("drawableBotLink", chat_botLinkDrawable, i24);
             addChatDrawable("drawable_botInvite", chat_botInviteDrawable, i24);
             addChatDrawable("drawableGoIcon", chat_goIconDrawable, i24);
@@ -5462,6 +5480,7 @@ public abstract class Theme {
         chat_pollTimerPaint.setStrokeWidth(AndroidUtilities.dp(1.1f));
         chat_actionTextPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         chat_actionTextPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+        chat_actionTextPaint3.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 3));
         chat_unlockExtendedMediaTextPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize)));
         chat_contextResult_titleTextPaint.setTextSize(AndroidUtilities.dp(15.0f));
         chat_contextResult_descriptionTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -5657,6 +5676,7 @@ public abstract class Theme {
             chat_statusRecordPaint.setStrokeCap(cap);
             chat_actionTextPaint = new TextPaint(1);
             chat_actionTextPaint2 = new TextPaint(1);
+            chat_actionTextPaint3 = new TextPaint(1);
             chat_actionTextPaint.setTypeface(AndroidUtilities.bold());
             TextPaint textPaint14 = new TextPaint(1);
             chat_unlockExtendedMediaTextPaint = textPaint14;
@@ -5686,6 +5706,7 @@ public abstract class Theme {
             int i2 = key_chat_serviceText;
             addChatPaint("paintChatActionText", textPaint16, i2);
             addChatPaint("paintChatActionText2", chat_actionTextPaint2, i2);
+            addChatPaint("paintChatActionText3", chat_actionTextPaint3, i2);
             addChatPaint("paintChatBotButton", chat_botButtonPaint, key_chat_botButtonText);
             addChatPaint("paintChatComposeBackground", chat_composeBackgroundPaint, key_chat_messagePanelBackground);
             addChatPaint("paintChatTimeBackground", chat_timeBackgroundPaint, key_chat_mediaTimeBackground);
@@ -7167,7 +7188,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda70(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda71(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -7882,7 +7903,7 @@ public abstract class Theme {
         int numberOfLayers;
         Drawable drawable2;
         if (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
-            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline2.m(drawable);
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(drawable);
             numberOfLayers = m.getNumberOfLayers();
             for (int i = 0; i < numberOfLayers; i++) {
                 drawable2 = m.getDrawable(i);
@@ -7898,7 +7919,7 @@ public abstract class Theme {
         int numberOfLayers;
         Drawable drawable2;
         if (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
-            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline2.m(drawable);
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(drawable);
             numberOfLayers = m.getNumberOfLayers();
             for (int i3 = 0; i3 < numberOfLayers; i3++) {
                 drawable2 = m.getDrawable(i3);
@@ -7951,7 +7972,7 @@ public abstract class Theme {
         if (Build.VERSION.SDK_INT < 21 || !AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
             return;
         }
-        RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline2.m(drawable);
+        RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(drawable);
         if (z) {
             m.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}));
             return;

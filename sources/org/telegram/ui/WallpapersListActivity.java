@@ -264,7 +264,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                         SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(sb.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
                     }
                 }
-                dialogsActivity.lambda$onBackPressed$348();
+                dialogsActivity.lambda$onBackPressed$354();
             } else {
                 long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle bundle = new Bundle();
@@ -292,7 +292,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         public void onItemClick(int i) {
             if (i == -1) {
                 if (!((BaseFragment) WallpapersListActivity.this).actionBar.isActionModeShowed()) {
-                    WallpapersListActivity.this.lambda$onBackPressed$348();
+                    WallpapersListActivity.this.lambda$onBackPressed$354();
                     return;
                 }
                 WallpapersListActivity.this.selectedWallPapers.clear();
@@ -1565,6 +1565,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         fixLayout();
     }
 
+    @Override
     public void restoreSelfArgs(Bundle bundle) {
         this.updater.setCurrentPicturePath(bundle.getString("path"));
     }

@@ -174,12 +174,78 @@ public class ReportBottomSheet extends BottomSheet {
     }
 
     public class AnonymousClass5 implements Listener {
+        final BulletinFactory val$bulletinFactory;
+        final Context val$context;
+        final Runnable val$done;
+        final Theme.ResourcesProvider val$resourceProvider;
+        final Runnable val$showPremium;
+
+        AnonymousClass5(Runnable runnable, BulletinFactory bulletinFactory, Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable2) {
+            this.val$done = runnable;
+            this.val$bulletinFactory = bulletinFactory;
+            this.val$context = context;
+            this.val$resourceProvider = resourcesProvider;
+            this.val$showPremium = runnable2;
+        }
+
+        public static void lambda$onHidden$2(Runnable runnable, BulletinFactory bulletinFactory) {
+            if (runnable != null) {
+                runnable.run();
+            }
+            bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        }
+
+        public static void lambda$onReported$1(Runnable runnable, BulletinFactory bulletinFactory, final Context context, Theme.ResourcesProvider resourcesProvider) {
+            if (runnable != null) {
+                runnable.run();
+            }
+            bulletinFactory.createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
+                @Override
+                public final void run() {
+                    Browser.openUrl(context, "https://promote.telegram.org/guidelines");
+                }
+            }, resourcesProvider)).show();
+        }
+
+        @Override
+        public void onHidden() {
+            final Runnable runnable = this.val$done;
+            final BulletinFactory bulletinFactory = this.val$bulletinFactory;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ReportBottomSheet.AnonymousClass5.lambda$onHidden$2(runnable, bulletinFactory);
+                }
+            }, 200L);
+        }
+
+        @Override
+        public void onPremiumRequired() {
+            this.val$showPremium.run();
+        }
+
+        @Override
+        public void onReported() {
+            final Runnable runnable = this.val$done;
+            final BulletinFactory bulletinFactory = this.val$bulletinFactory;
+            final Context context = this.val$context;
+            final Theme.ResourcesProvider resourcesProvider = this.val$resourceProvider;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ReportBottomSheet.AnonymousClass5.lambda$onReported$1(runnable, bulletinFactory, context, resourcesProvider);
+                }
+            }, 200L);
+        }
+    }
+
+    public class AnonymousClass6 implements Listener {
         final Context val$context;
         final BaseFragment val$fragment;
         final Runnable val$remove;
         final Theme.ResourcesProvider val$resourceProvider;
 
-        AnonymousClass5(BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+        AnonymousClass6(BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
             this.val$fragment = baseFragment;
             this.val$context = context;
             this.val$resourceProvider = resourcesProvider;
@@ -208,7 +274,7 @@ public class ReportBottomSheet extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.AnonymousClass5.lambda$onHidden$2(BaseFragment.this, runnable);
+                    ReportBottomSheet.AnonymousClass6.lambda$onHidden$2(BaseFragment.this, runnable);
                 }
             }, 200L);
         }
@@ -227,7 +293,7 @@ public class ReportBottomSheet extends BottomSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.AnonymousClass5.lambda$onReported$1(BaseFragment.this, context, resourcesProvider, runnable);
+                    ReportBottomSheet.AnonymousClass6.lambda$onReported$1(BaseFragment.this, context, resourcesProvider, runnable);
                 }
             }, 200L);
         }
@@ -938,11 +1004,88 @@ public class ReportBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(runnable, 200L);
     }
 
-    public static void lambda$openSponsoredPeer$17(TLObject tLObject, Context context, Theme.ResourcesProvider resourcesProvider, byte[] bArr, BaseFragment baseFragment, Runnable runnable) {
-        new ReportBottomSheet(context, resourcesProvider, 0L, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass5(baseFragment, context, resourcesProvider, runnable)).show();
+    public static void lambda$openSponsored$17(TLObject tLObject, Context context, Theme.ResourcesProvider resourcesProvider, long j, byte[] bArr, Runnable runnable, BulletinFactory bulletinFactory, Runnable runnable2) {
+        new ReportBottomSheet(context, resourcesProvider, j, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass5(runnable, bulletinFactory, context, resourcesProvider, runnable2)).show();
     }
 
-    public static void lambda$openSponsoredPeer$19(BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+    public static void lambda$openSponsored$19(Runnable runnable, BulletinFactory bulletinFactory, final Context context, Theme.ResourcesProvider resourcesProvider) {
+        if (runnable != null) {
+            runnable.run();
+        }
+        bulletinFactory.createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
+            @Override
+            public final void run() {
+                Browser.openUrl(context, "https://promote.telegram.org/guidelines");
+            }
+        }, resourcesProvider)).show();
+    }
+
+    public static void lambda$openSponsored$20(Runnable runnable, BulletinFactory bulletinFactory, int i) {
+        if (runnable != null) {
+            runnable.run();
+        }
+        bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        MessagesController.getInstance(i).disableAds(false);
+    }
+
+    public static void lambda$openSponsored$22(Runnable runnable, BulletinFactory bulletinFactory, final Context context, Theme.ResourcesProvider resourcesProvider) {
+        if (runnable != null) {
+            runnable.run();
+        }
+        bulletinFactory.createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
+            @Override
+            public final void run() {
+                Browser.openUrl(context, "https://promote.telegram.org/guidelines");
+            }
+        }, resourcesProvider)).show();
+    }
+
+    public static void lambda$openSponsored$23(final Context context, final Theme.ResourcesProvider resourcesProvider, final long j, final byte[] bArr, final Runnable runnable, final BulletinFactory bulletinFactory, final Runnable runnable2, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        Runnable runnable3;
+        if (tLObject != null) {
+            if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ReportBottomSheet.lambda$openSponsored$17(TLObject.this, context, resourcesProvider, j, bArr, runnable, bulletinFactory, runnable2);
+                    }
+                });
+                return;
+            } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
+                runnable3 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        ReportBottomSheet.lambda$openSponsored$19(runnable, bulletinFactory, context, resourcesProvider);
+                    }
+                };
+            } else if (!(tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden)) {
+                return;
+            } else {
+                runnable3 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        ReportBottomSheet.lambda$openSponsored$20(runnable, bulletinFactory, i);
+                    }
+                };
+            }
+        } else if (tL_error == null || !"AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+            return;
+        } else {
+            runnable3 = new Runnable() {
+                @Override
+                public final void run() {
+                    ReportBottomSheet.lambda$openSponsored$22(runnable, bulletinFactory, context, resourcesProvider);
+                }
+            };
+        }
+        AndroidUtilities.runOnUIThread(runnable3, 200L);
+    }
+
+    public static void lambda$openSponsoredPeer$24(TLObject tLObject, Context context, Theme.ResourcesProvider resourcesProvider, byte[] bArr, BaseFragment baseFragment, Runnable runnable) {
+        new ReportBottomSheet(context, resourcesProvider, 0L, bArr).setReportChooseOption((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass6(baseFragment, context, resourcesProvider, runnable)).show();
+    }
+
+    public static void lambda$openSponsoredPeer$26(BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
         BulletinFactory.of(baseFragment).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
@@ -952,13 +1095,13 @@ public class ReportBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static void lambda$openSponsoredPeer$20(BaseFragment baseFragment, int i, Runnable runnable) {
+    public static void lambda$openSponsoredPeer$27(BaseFragment baseFragment, int i, Runnable runnable) {
         BulletinFactory.of(baseFragment).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
         MessagesController.getInstance(i).disableAds(false);
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static void lambda$openSponsoredPeer$22(BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+    public static void lambda$openSponsoredPeer$29(BaseFragment baseFragment, final Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
         BulletinFactory.of(baseFragment).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
@@ -968,14 +1111,14 @@ public class ReportBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static void lambda$openSponsoredPeer$23(final Context context, final Theme.ResourcesProvider resourcesProvider, final byte[] bArr, final BaseFragment baseFragment, final Runnable runnable, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$openSponsoredPeer$30(final Context context, final Theme.ResourcesProvider resourcesProvider, final byte[] bArr, final BaseFragment baseFragment, final Runnable runnable, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         Runnable runnable2;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsoredPeer$17(TLObject.this, context, resourcesProvider, bArr, baseFragment, runnable);
+                        ReportBottomSheet.lambda$openSponsoredPeer$24(TLObject.this, context, resourcesProvider, bArr, baseFragment, runnable);
                     }
                 });
                 return;
@@ -983,7 +1126,7 @@ public class ReportBottomSheet extends BottomSheet {
                 runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsoredPeer$19(BaseFragment.this, context, resourcesProvider, runnable);
+                        ReportBottomSheet.lambda$openSponsoredPeer$26(BaseFragment.this, context, resourcesProvider, runnable);
                     }
                 };
             } else if (!(tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden)) {
@@ -992,7 +1135,7 @@ public class ReportBottomSheet extends BottomSheet {
                 runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$openSponsoredPeer$20(BaseFragment.this, i, runnable);
+                        ReportBottomSheet.lambda$openSponsoredPeer$27(BaseFragment.this, i, runnable);
                     }
                 };
             }
@@ -1002,7 +1145,7 @@ public class ReportBottomSheet extends BottomSheet {
             runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ReportBottomSheet.lambda$openSponsoredPeer$22(BaseFragment.this, context, resourcesProvider, runnable);
+                    ReportBottomSheet.lambda$openSponsoredPeer$29(BaseFragment.this, context, resourcesProvider, runnable);
                 }
             };
         }
@@ -1100,6 +1243,22 @@ public class ReportBottomSheet extends BottomSheet {
         open(currentAccount, context, messageObject.getDialogId(), false, new ArrayList(Collections.singleton(Integer.valueOf(messageObject.getId()))), BulletinFactory.of(baseFragment), baseFragment.getResourceProvider(), new byte[0], null, null);
     }
 
+    public static void openSponsored(final int i, final Context context, final long j, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, final BulletinFactory bulletinFactory, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Runnable runnable2) {
+        if (context == null) {
+            return;
+        }
+        TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
+        final byte[] bArr = tL_sponsoredMessage.random_id;
+        tL_messages_reportSponsoredMessage.random_id = bArr;
+        tL_messages_reportSponsoredMessage.option = new byte[0];
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_reportSponsoredMessage, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ReportBottomSheet.lambda$openSponsored$23(context, resourcesProvider, j, bArr, runnable2, bulletinFactory, runnable, i, tLObject, tL_error);
+            }
+        });
+    }
+
     public static void openSponsored(final ChatActivity chatActivity, final MessageObject messageObject, final Theme.ResourcesProvider resourcesProvider) {
         if (chatActivity == null) {
             return;
@@ -1137,7 +1296,7 @@ public class ReportBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(currentAccount).sendRequest(tL_messages_reportSponsoredMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReportBottomSheet.lambda$openSponsoredPeer$23(context, resourcesProvider, bArr, baseFragment, runnable, currentAccount, tLObject, tL_error);
+                ReportBottomSheet.lambda$openSponsoredPeer$30(context, resourcesProvider, bArr, baseFragment, runnable, currentAccount, tLObject, tL_error);
             }
         });
     }

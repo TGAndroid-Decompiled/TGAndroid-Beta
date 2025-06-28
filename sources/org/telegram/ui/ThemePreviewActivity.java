@@ -59,6 +59,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
@@ -299,7 +300,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             Theme.applyPreviousTheme();
             Theme.refreshThemeColors();
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ThemePreviewActivity.this.applyingTheme, Boolean.valueOf(ThemePreviewActivity.this.nightTheme), null, -1);
-            ThemePreviewActivity.this.lambda$onBackPressed$348();
+            ThemePreviewActivity.this.lambda$onBackPressed$354();
         }
 
         @Override
@@ -341,7 +342,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 return;
             }
             if (ThemePreviewActivity.this.accent.info == null) {
-                ThemePreviewActivity.this.lambda$onBackPressed$348();
+                ThemePreviewActivity.this.lambda$onBackPressed$354();
                 MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).saveThemeToServer(ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
                 return;
@@ -419,7 +420,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 Theme.saveThemeAccents(ThemePreviewActivity.this.applyingTheme, true, false, false, true);
                 Theme.applyPreviousTheme();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ThemePreviewActivity.this.applyingTheme, Boolean.valueOf(ThemePreviewActivity.this.nightTheme), null, -1);
-                ThemePreviewActivity.this.lambda$onBackPressed$348();
+                ThemePreviewActivity.this.lambda$onBackPressed$354();
                 return;
             }
             if (i == 5) {
@@ -1607,6 +1608,16 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressCustomBotButton(this, chatMessageCell2, buttonCustom);
+                    }
+
+                    @Override
+                    public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell2, todoItem);
+                    }
+
+                    @Override
                     public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell2, user, f, f2);
                     }
@@ -1659,6 +1670,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCustomBotButton(this, chatMessageCell2, buttonCustom);
                     }
 
                     @Override
@@ -1754,6 +1770,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didPressTime(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell2, todoItem, z);
                     }
 
                     @Override
@@ -1968,6 +1989,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didPressReplyMessage(ChatActionCell chatActionCell2, int i2) {
                         ChatActionCell.ChatActionCellDelegate.CC.$default$didPressReplyMessage(this, chatActionCell2, i2);
+                    }
+
+                    @Override
+                    public void didPressTaskLink(ChatActionCell chatActionCell2, int i2, int i3) {
+                        ChatActionCell.ChatActionCellDelegate.CC.$default$didPressTaskLink(this, chatActionCell2, i2, i3);
                     }
 
                     @Override
@@ -2736,7 +2762,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             if (z) {
                 return;
             }
-            lambda$onBackPressed$348();
+            lambda$onBackPressed$354();
             return;
         }
         Theme.applyPreviousTheme();
@@ -2775,7 +2801,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         if (z) {
             return;
         }
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     private BitmapDrawable checkBlur(Drawable drawable) {
@@ -3216,7 +3242,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             edit.commit();
         }
         BaseFragment baseFragment = (BaseFragment) getParentLayout().getFragmentStack().get(Math.max(0, getParentLayout().getFragmentStack().size() - 2));
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
         if (this.screenType == 0) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didApplyNewTheme, previousTheme, accent, Boolean.valueOf(this.deleteOnCancel));
         }
@@ -4473,7 +4499,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             if (i != NotificationCenter.wallpaperSettedToUser || this.dialogId == 0) {
                 return;
             }
-            lambda$onBackPressed$348();
+            lambda$onBackPressed$354();
             return;
         }
         ArrayList arrayList = (ArrayList) objArr[0];

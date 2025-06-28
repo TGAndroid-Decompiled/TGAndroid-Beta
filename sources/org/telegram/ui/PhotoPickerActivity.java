@@ -162,7 +162,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$348();
+            PhotoPickerActivity.this.lambda$onBackPressed$354();
             return true;
         }
 
@@ -400,7 +400,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$348();
+            PhotoPickerActivity.this.lambda$onBackPressed$354();
             return true;
         }
 
@@ -792,7 +792,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     PhotoPickerActivity.this.delegate.onOpenInPressed();
                 }
             }
-            PhotoPickerActivity.this.lambda$onBackPressed$348();
+            PhotoPickerActivity.this.lambda$onBackPressed$354();
         }
     }
 
@@ -829,7 +829,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean canCollapseSearch() {
-            PhotoPickerActivity.this.lambda$onBackPressed$348();
+            PhotoPickerActivity.this.lambda$onBackPressed$354();
             return false;
         }
 
@@ -1792,7 +1792,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         if (this.selectPhotoType != PhotoAlbumPickerActivity.SELECT_TYPE_WALLPAPER) {
             PhotoPickerActivityDelegate photoPickerActivityDelegate = this.delegate;
             if (photoPickerActivityDelegate == null || photoPickerActivityDelegate.canFinishFragment()) {
-                lambda$onBackPressed$348();
+                lambda$onBackPressed$354();
             }
         }
     }
@@ -2003,7 +2003,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                         PhotoPickerActivity.this.delegate.onOpenInPressed();
                     }
                 }
-                PhotoPickerActivity.this.lambda$onBackPressed$348();
+                PhotoPickerActivity.this.lambda$onBackPressed$354();
             }
         });
         if (this.isDocumentsPicker) {
@@ -2425,6 +2425,19 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             editTextEmoji.onDestroy();
         }
         super.onFragmentDestroy();
+    }
+
+    @Override
+    protected void onPanTranslationUpdate(float f) {
+        if (this.listView == null) {
+            return;
+        }
+        if (!this.commentTextView.isPopupShowing()) {
+            this.listView.setTranslationY(f);
+        } else {
+            this.fragmentView.setTranslationY(f);
+            this.listView.setTranslationY(0.0f);
+        }
     }
 
     @Override

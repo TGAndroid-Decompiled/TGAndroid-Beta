@@ -350,65 +350,6 @@ public class TL_stats {
         }
     }
 
-    public static class TL_getBroadcastRevenueStats extends TLObject {
-        public static final int constructor = -142021095;
-        public boolean dark;
-        public int flags;
-        public TLRPC.InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_broadcastRevenueStats.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-142021095);
-            int i = this.dark ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            this.peer.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_getBroadcastRevenueTransactions extends TLObject {
-        public static final int constructor = 1889078125;
-        public int limit;
-        public int offset;
-        public TLRPC.InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_broadcastRevenueTransactions.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1889078125);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.offset);
-            outputSerializedData.writeInt32(this.limit);
-        }
-    }
-
-    public static class TL_getBroadcastRevenueWithdrawalUrl extends TLObject {
-        public static final int constructor = -1644889427;
-        public TLRPC.InputCheckPasswordSRP password;
-        public TLRPC.InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_broadcastRevenueWithdrawalUrl.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1644889427);
-            this.peer.serializeToStream(outputSerializedData);
-            this.password.serializeToStream(outputSerializedData);
-        }
-    }
-
     public static class TL_getBroadcastStats extends TLObject {
         public static final int constructor = -1421720550;
         public TLRPC.InputChannel channel;

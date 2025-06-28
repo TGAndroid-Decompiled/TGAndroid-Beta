@@ -1159,7 +1159,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         for (int i4 = 0; i4 < arrayList2.size(); i4++) {
             try {
                 TLRPC.Document document3 = (TLRPC.Document) arrayList2.get(i4);
-                if (!"application/x-mpegurl".equalsIgnoreCase(document3.mime_type)) {
+                if (!"application/x-mpegurl".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboard".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboardmap".equalsIgnoreCase(document3.mime_type)) {
                     VideoUri of = VideoUri.of(i, document3, (TLRPC.Document) longSparseArray.get(document3.id), i2, z2);
                     if (of.width > 0 && of.height > 0) {
                         if (document3 == document) {

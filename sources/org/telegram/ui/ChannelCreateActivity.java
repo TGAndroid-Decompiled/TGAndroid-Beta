@@ -170,7 +170,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     ChannelCreateActivity.this.showDoneCancelDialog();
                     return;
                 } else {
-                    ChannelCreateActivity.this.lambda$onBackPressed$348();
+                    ChannelCreateActivity.this.lambda$onBackPressed$354();
                     return;
                 }
             }
@@ -1641,6 +1641,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         radialProgressView.setProgress(f);
     }
 
+    @Override
     public void restoreSelfArgs(Bundle bundle) {
         if (this.currentStep == 0) {
             ImageUpdater imageUpdater = this.imageUpdater;

@@ -573,7 +573,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupCreateFinalActivity.this.lambda$onBackPressed$348();
+                    GroupCreateFinalActivity.this.lambda$onBackPressed$354();
                 }
             }
         });
@@ -1143,6 +1143,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         radialProgressView.setProgress(f);
     }
 
+    @Override
     public void restoreSelfArgs(Bundle bundle) {
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {

@@ -600,6 +600,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
+        public void didPressSuggestionButton() {
+            ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$didPressSuggestionButton(this);
+        }
+
+        @Override
         public int getContentViewHeight() {
             return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getContentViewHeight(this);
         }
@@ -1078,7 +1083,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$348();
+            baseFragment.lambda$onBackPressed$354();
             if (dialogsActivityDelegate != null) {
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(MessagesStorage.TopicKey.of(-j, 0L));
@@ -1096,7 +1101,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$348();
+            baseFragment.lambda$onBackPressed$354();
         }
 
         public void lambda$didFinishChatCreation$3(long j, final BaseFragment[] baseFragmentArr, Runnable runnable) {
@@ -1329,7 +1334,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (DialogsActivity.this.searchString == null) {
                 return true;
             }
-            DialogsActivity.this.lambda$onBackPressed$348();
+            DialogsActivity.this.lambda$onBackPressed$354();
             return false;
         }
 
@@ -3456,15 +3461,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private boolean checkCanWrite(long j) {
         AlertDialog.Builder builder;
         int i;
-        int i2 = this.initialDialogsType;
-        if (i2 != 15 && i2 != 16 && this.addToGroupAlertString == null && this.checkCanWrite) {
+        int i2;
+        int i3 = this.initialDialogsType;
+        if (i3 != 15 && i3 != 16 && this.addToGroupAlertString == null && this.checkCanWrite) {
             if (DialogObject.isChatDialog(j)) {
                 long j2 = -j;
                 TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(j2));
-                if (ChatObject.isChannel(chat) && !chat.megagroup && (this.cantSendToChannels || !ChatObject.isCanWriteToChannel(j2, this.currentAccount) || this.hasPoll == 2)) {
+                if (ChatObject.isChannel(chat) && !chat.megagroup && (this.cantSendToChannels || !ChatObject.isCanWriteToChannel(j2, this.currentAccount) || (i2 = this.hasPoll) == 2 || i2 == 3)) {
                     builder = new AlertDialog.Builder(getParentActivity());
                     builder.setTitle(LocaleController.getString(R.string.SendMessageTitle));
-                    i = this.hasPoll == 2 ? R.string.PublicPollCantForward : R.string.ChannelCantSendMessage;
+                    int i4 = this.hasPoll;
+                    i = i4 == 3 ? R.string.TodoCantForward : i4 == 2 ? R.string.PublicPollCantForward : R.string.ChannelCantSendMessage;
                     builder.setMessage(LocaleController.getString(i));
                     builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
                     showDialog(builder.create());
@@ -3473,7 +3480,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else if (DialogObject.isEncryptedDialog(j) && (this.hasPoll != 0 || this.hasInvoice)) {
                 builder = new AlertDialog.Builder(getParentActivity());
                 builder.setTitle(LocaleController.getString(R.string.SendMessageTitle));
-                i = this.hasPoll != 0 ? R.string.PollCantForwardSecretChat : R.string.InvoiceCantForwardSecretChat;
+                int i5 = this.hasPoll;
+                i = i5 == 3 ? R.string.TodoCantForwardSecretChat : i5 != 0 ? R.string.PollCantForwardSecretChat : R.string.InvoiceCantForwardSecretChat;
                 builder.setMessage(LocaleController.getString(i));
                 builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
                 showDialog(builder.create());
@@ -4027,7 +4035,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void lambda$createGroupForThis$57(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$348();
+        baseFragment.lambda$onBackPressed$354();
     }
 
     public void lambda$createGroupForThis$58(Long l, final ChannelCreateActivity channelCreateActivity, final BaseFragment baseFragment, Runnable runnable) {
@@ -4113,7 +4121,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         DialogsActivityDelegate dialogsActivityDelegate = this.delegate;
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$348();
+        baseFragment.lambda$onBackPressed$354();
         if (dialogsActivityDelegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(-l.longValue(), 0L));
@@ -4535,7 +4543,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public void lambda$didSelectResult$123(long j, long j2, boolean z, TopicsFragment topicsFragment) {
         if (this.delegate == null) {
-            lambda$onBackPressed$348();
+            lambda$onBackPressed$354();
             return;
         }
         ArrayList arrayList = new ArrayList();
@@ -4943,7 +4951,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         this.viewPages[0].listView.setEmptyView(null);
         this.viewPages[0].progressView.setVisibility(4);
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$performSelectedDialogsAction$98(ArrayList arrayList, final int i, final HashSet hashSet, final boolean z) {
@@ -7910,7 +7918,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                             if (i9 != intValue || i9 == 0) {
                                                 return;
                                             }
-                                            lambda$onBackPressed$348();
+                                            lambda$onBackPressed$354();
                                             return;
                                         }
                                         if (i == NotificationCenter.dialogFiltersUpdated) {
@@ -8131,8 +8139,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void lambda$onBackPressed$348() {
-        super.lambda$onBackPressed$348();
+    public void lambda$onBackPressed$354() {
+        super.lambda$onBackPressed$354();
         ItemOptions itemOptions = this.filterOptions;
         if (itemOptions != null) {
             itemOptions.dismiss();
@@ -8141,6 +8149,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public boolean getAllowGlobalSearch() {
         return this.allowGlobalSearch;
+    }
+
+    @Override
+    public INavigationLayout.BackButtonState getBackButtonState() {
+        return (isArchive() || this.rightSlidingDialogContainer.isOpenned) ? INavigationLayout.BackButtonState.BACK : INavigationLayout.BackButtonState.MENU;
     }
 
     @Override
@@ -9225,6 +9238,65 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 DialogsActivity.this.lambda$onGetDebugItems$138();
             }
         }));
+    }
+
+    @Override
+    protected void onPanTranslationUpdate(float f) {
+        SearchViewPager searchViewPager;
+        float f2;
+        if (this.viewPages == null) {
+            return;
+        }
+        this.panTranslationY = f;
+        ChatActivityEnterView chatActivityEnterView = this.commentView;
+        int i = 0;
+        if (chatActivityEnterView == null || !chatActivityEnterView.isPopupShowing()) {
+            while (true) {
+                ViewPage[] viewPageArr = this.viewPages;
+                if (i >= viewPageArr.length) {
+                    break;
+                }
+                viewPageArr[i].setTranslationY(f);
+                i++;
+            }
+            if (!this.onlySelect) {
+                this.actionBar.setTranslationY(f);
+                Bulletin bulletin = this.topBulletin;
+                if (bulletin != null) {
+                    bulletin.updatePosition();
+                }
+            }
+            searchViewPager = this.searchViewPager;
+            if (searchViewPager == null) {
+                return;
+            } else {
+                f2 = this.panTranslationY + this.searchViewPagerTranslationY;
+            }
+        } else {
+            this.fragmentView.setTranslationY(f);
+            while (true) {
+                ViewPage[] viewPageArr2 = this.viewPages;
+                if (i >= viewPageArr2.length) {
+                    break;
+                }
+                viewPageArr2[i].setTranslationY(0.0f);
+                i++;
+            }
+            if (!this.onlySelect) {
+                this.actionBar.setTranslationY(0.0f);
+                Bulletin bulletin2 = this.topBulletin;
+                if (bulletin2 != null) {
+                    bulletin2.updatePosition();
+                }
+            }
+            searchViewPager = this.searchViewPager;
+            if (searchViewPager == null) {
+                return;
+            } else {
+                f2 = this.searchViewPagerTranslationY;
+            }
+        }
+        searchViewPager.setTranslationY(f2);
     }
 
     @Override

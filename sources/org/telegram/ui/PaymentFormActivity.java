@@ -801,7 +801,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivityDelegate paymentFormActivityDelegate = this.delegate;
             if (paymentFormActivityDelegate != null) {
                 paymentFormActivityDelegate.didSelectNewAddress(this.validateRequest);
-                lambda$onBackPressed$348();
+                lambda$onBackPressed$354();
                 return;
             }
             if (this.paymentForm.invoice.flexible) {
@@ -902,7 +902,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     paymentFormActivity = new PaymentFormActivity(this.invoiceInput, paymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment);
                 }
             }
-            lambda$onBackPressed$348();
+            lambda$onBackPressed$354();
             return;
         }
         if (this.paymentJson == null && this.cardName == null) {
@@ -1537,7 +1537,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         } else if (this.invoiceStatus != InvoiceStatus.PAID || isFinishing()) {
             return;
         }
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$initGooglePay$37(Task task) {
@@ -2250,7 +2250,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             password.has_password = false;
             password.current_algo = null;
             this.delegate.currentPasswordUpdated(password);
-            lambda$onBackPressed$348();
+            lambda$onBackPressed$354();
             return;
         }
         if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
@@ -3410,9 +3410,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 int i = this.currentStep;
                 if ((i == 2 || i == 6) && !this.paymentForm.invoice.test) {
                     getParentActivity().getWindow().setFlags(8192, 8192);
-                } else if (SharedConfig.passcodeHash.length() == 0 || SharedConfig.allowScreenCapture) {
+                } else if (SharedConfig.passcodeHash.length() != 0 && !SharedConfig.allowScreenCapture) {
+                    return;
+                } else {
                     getParentActivity().getWindow().clearFlags(8192);
                 }
+                AndroidUtilities.logFlagSecure();
             } catch (Throwable th) {
                 FileLog.e(th);
             }

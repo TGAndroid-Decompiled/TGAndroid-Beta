@@ -323,7 +323,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (i == 0) {
                 TopicsFragment.this.updateChatInfo();
             } else {
-                TopicsFragment.this.lambda$onBackPressed$348();
+                TopicsFragment.this.lambda$onBackPressed$354();
             }
         }
 
@@ -394,7 +394,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int i = NotificationCenter.closeChats;
             notificationCenter.removeObserver(topicsFragment, i);
             TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-            TopicsFragment.this.lambda$onBackPressed$348();
+            TopicsFragment.this.lambda$onBackPressed$354();
             TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-chat.id), null, chat, Boolean.valueOf(z));
         }
 
@@ -413,7 +413,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     TopicsFragment.this.clearSelectedTopics();
                     return;
                 } else {
-                    TopicsFragment.this.lambda$onBackPressed$348();
+                    TopicsFragment.this.lambda$onBackPressed$354();
                     return;
                 }
             }
@@ -3771,6 +3771,23 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
+    public void drawOverlay(Canvas canvas, View view) {
+        canvas.save();
+        canvas.translate(this.contentView.getX(), this.contentView.getY());
+        FragmentContextView fragmentContextView = this.fragmentContextView;
+        if (fragmentContextView != null && fragmentContextView.isCallStyle()) {
+            canvas.save();
+            canvas.translate(this.fragmentContextView.getX(), this.topView.getY() + this.fragmentContextView.getY());
+            this.fragmentContextView.setDrawOverlay(true);
+            this.fragmentContextView.draw(canvas);
+            this.fragmentContextView.setDrawOverlay(false);
+            canvas.restore();
+            view.invalidate();
+        }
+        canvas.restore();
+    }
+
+    @Override
     public ChatAvatarContainer getAvatarContainer() {
         return this.avatarContainer;
     }
@@ -4001,7 +4018,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (!this.inPreviewMode || getMessagesController().isForum(-this.chatId)) {
             return;
         }
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     @Override

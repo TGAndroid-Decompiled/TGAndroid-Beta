@@ -488,26 +488,6 @@ public final class BulletinFactory {
         return createPinMessageBulletin(baseFragment, false, runnable, runnable2, resourcesProvider);
     }
 
-    private Context getContext() {
-        FrameLayout frameLayout;
-        Context context;
-        BaseFragment baseFragment = this.fragment;
-        if (baseFragment != null) {
-            context = baseFragment.getParentActivity();
-            if (context == null && this.fragment.getLayoutContainer() != null) {
-                frameLayout = this.fragment.getLayoutContainer();
-                context = frameLayout.getContext();
-            }
-        } else {
-            frameLayout = this.containerLayout;
-            if (frameLayout == null) {
-                context = null;
-            }
-            context = frameLayout.getContext();
-        }
-        return context == null ? ApplicationLoader.applicationContext : context;
-    }
-
     public static BulletinFactory global() {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
@@ -588,7 +568,7 @@ public final class BulletinFactory {
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(3);
         lottieLayout.textView.setText(charSequence);
-        return Bulletin.make(this.fragment, lottieLayout, 2750);
+        return create(lottieLayout, 2750);
     }
 
     public Bulletin createBanBulletin(boolean z) {
@@ -1088,6 +1068,14 @@ public final class BulletinFactory {
         return create(twoLineLottieLayout, 2750);
     }
 
+    public Bulletin createSimpleBulletin(CharSequence charSequence, CharSequence charSequence2) {
+        Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
+        twoLineLottieLayout.hideImage();
+        twoLineLottieLayout.titleTextView.setText(charSequence);
+        twoLineLottieLayout.subtitleTextView.setText(charSequence2);
+        return create(twoLineLottieLayout, 5000);
+    }
+
     public Bulletin createSimpleBulletin(TLRPC.Document document, CharSequence charSequence, CharSequence charSequence2) {
         if (document == null) {
             return new Bulletin.EmptyBulletin();
@@ -1301,6 +1289,30 @@ public final class BulletinFactory {
 
     public Bulletin createUsersBulletin(TLObject tLObject, CharSequence charSequence, CharSequence charSequence2) {
         return createUsersBulletin(Arrays.asList(tLObject), charSequence, charSequence2, null);
+    }
+
+    public Context getContext() {
+        FrameLayout frameLayout;
+        Context context;
+        BaseFragment baseFragment = this.fragment;
+        if (baseFragment != null) {
+            context = baseFragment.getParentActivity();
+            if (context == null && this.fragment.getLayoutContainer() != null) {
+                frameLayout = this.fragment.getLayoutContainer();
+                context = frameLayout.getContext();
+            }
+        } else {
+            frameLayout = this.containerLayout;
+            if (frameLayout == null) {
+                context = null;
+            }
+            context = frameLayout.getContext();
+        }
+        return context == null ? ApplicationLoader.applicationContext : context;
+    }
+
+    public Theme.ResourcesProvider getResourcesProvider() {
+        return this.resourcesProvider;
     }
 
     public Bulletin makeForError(TLRPC.TL_error tL_error) {

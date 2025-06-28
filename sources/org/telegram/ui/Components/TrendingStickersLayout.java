@@ -771,7 +771,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             }
 
             @Override
-            public void lambda$onStickerSelected$70(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i) {
+            public void lambda$onStickerSelected$74(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i) {
                 TrendingStickersLayout.this.delegate.onStickerSelected(document, obj, z, z2, i);
             }
         } : null, this.resourcesProvider, false);

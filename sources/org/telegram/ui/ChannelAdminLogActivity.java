@@ -59,6 +59,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -388,6 +389,16 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressCustomBotButton(this, chatMessageCell, buttonCustom);
+            }
+
+            @Override
+            public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell, todoItem);
+            }
+
+            @Override
             public boolean didLongPressUserAvatar(final ChatMessageCell chatMessageCell, final TLRPC.User user, float f, float f2) {
                 if (user != null && user.id != UserConfig.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getClientUserId()) {
                     AvatarPreviewer.MenuItem[] menuItemArr = {AvatarPreviewer.MenuItem.OPEN_PROFILE, AvatarPreviewer.MenuItem.SEND_MESSAGE};
@@ -473,6 +484,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void didPressCommentButton(ChatMessageCell chatMessageCell) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell);
+            }
+
+            @Override
+            public void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCustomBotButton(this, chatMessageCell, buttonCustom);
             }
 
             @Override
@@ -622,6 +638,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void didPressTime(ChatMessageCell chatMessageCell) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell);
+            }
+
+            @Override
+            public boolean didPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem, boolean z) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell, todoItem, z);
             }
 
             @Override
@@ -992,6 +1013,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressReplyMessage(ChatActionCell chatActionCell, int i) {
+            }
+
+            @Override
+            public void didPressTaskLink(ChatActionCell chatActionCell, int i, int i2) {
+                ChatActionCell.ChatActionCellDelegate.CC.$default$didPressTaskLink(this, chatActionCell, i, i2);
             }
 
             @Override
@@ -2849,7 +2875,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$348();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$354();
                 }
             }
         });

@@ -79,7 +79,13 @@ public abstract class BillingUtilities {
     }
 
     public static Pair createDeveloperPayload(TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose, AccountInstance accountInstance) {
-        return Pair.create(Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(Charsets.UTF_8), 0), savePurpose(inputStorePaymentPurpose));
+        String encodeToString;
+        if (accountInstance.getUserConfig().isClientActivated()) {
+            encodeToString = Base64.encodeToString(String.valueOf(accountInstance.getUserConfig().getClientUserId()).getBytes(Charsets.UTF_8), 0);
+        } else {
+            encodeToString = Base64.encodeToString(("account-" + accountInstance.getCurrentAccount()).getBytes(Charsets.UTF_8), 0);
+        }
+        return Pair.create(encodeToString, savePurpose(inputStorePaymentPurpose));
     }
 
     public static void extractCurrencyExp(Map map) {
@@ -101,6 +107,7 @@ public abstract class BillingUtilities {
 
     public static Pair extractDeveloperPayload(Purchase purchase) {
         TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose;
+        AccountInstance accountInstance;
         AccountIdentifiers accountIdentifiers = purchase.getAccountIdentifiers();
         if (accountIdentifiers == null) {
             FileLog.d("Billing: Extract payload. No AccountIdentifiers");
@@ -108,30 +115,35 @@ public abstract class BillingUtilities {
         }
         String obfuscatedAccountId = accountIdentifiers.getObfuscatedAccountId();
         String obfuscatedProfileId = accountIdentifiers.getObfuscatedProfileId();
-        if (obfuscatedAccountId != null && !obfuscatedAccountId.isEmpty() && obfuscatedProfileId != null) {
+        if (obfuscatedAccountId == null || obfuscatedAccountId.isEmpty() || obfuscatedProfileId == null || obfuscatedProfileId.isEmpty()) {
+            FileLog.d("Billing: Extract payload. Empty AccountIdentifiers");
+            return null;
+        }
+        try {
             try {
-                if (!obfuscatedProfileId.isEmpty()) {
-                    try {
-                        inputStorePaymentPurpose = getPurpose(obfuscatedProfileId);
-                    } catch (Exception e) {
-                        FileLog.e("Billing: Extract payload, failed to get purpose", e);
-                        inputStorePaymentPurpose = null;
-                    }
-                    long parseLong = Long.parseLong(new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8));
-                    AccountInstance findAccountById = findAccountById(parseLong);
-                    if (findAccountById != null) {
-                        return Pair.create(findAccountById, inputStorePaymentPurpose);
-                    }
+                inputStorePaymentPurpose = getPurpose(obfuscatedProfileId);
+            } catch (Exception e) {
+                FileLog.e("Billing: Extract payload, failed to get purpose", e);
+                inputStorePaymentPurpose = null;
+            }
+            String str = new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8);
+            FileLog.d("Billing: Extract payload. obfuscatedAccountIdString=" + str);
+            if (str.startsWith("account-")) {
+                accountInstance = AccountInstance.getInstance(Integer.parseInt(str.substring(8)));
+            } else {
+                long parseLong = Long.parseLong(str);
+                AccountInstance findAccountById = findAccountById(parseLong);
+                if (findAccountById == null) {
                     FileLog.d("Billing: Extract payload. AccountInstance not found, accountId=" + parseLong);
                     return null;
                 }
-            } catch (Exception e2) {
-                FileLog.e("Billing: Extract Payload", e2);
-                return null;
+                accountInstance = findAccountById;
             }
+            return Pair.create(accountInstance, inputStorePaymentPurpose);
+        } catch (Exception e2) {
+            FileLog.e("Billing: Extract Payload", e2);
+            return null;
         }
-        FileLog.d("Billing: Extract payload. Empty AccountIdentifiers");
-        return null;
     }
 
     private static AccountInstance findAccountById(long j) {

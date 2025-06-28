@@ -3529,6 +3529,18 @@ public class AndroidUtilities {
         }
     }
 
+    public static void lerp(Rect rect, RectF rectF, float f, RectF rectF2) {
+        if (rectF2 != null) {
+            rectF2.set(lerp(rect.left, rectF.left, f), lerp(rect.top, rectF.top, f), lerp(rect.right, rectF.right, f), lerp(rect.bottom, rectF.bottom, f));
+        }
+    }
+
+    public static void lerp(RectF rectF, Rect rect, float f, RectF rectF2) {
+        if (rectF2 != null) {
+            rectF2.set(lerp(rectF.left, rect.left, f), lerp(rectF.top, rect.top, f), lerp(rectF.right, rect.right, f), lerp(rectF.bottom, rect.bottom, f));
+        }
+    }
+
     public static void lerp(RectF rectF, RectF rectF2, float f, RectF rectF3) {
         if (rectF3 != null) {
             rectF3.set(lerp(rectF.left, rectF2.left, f), lerp(rectF.top, rectF2.top, f), lerp(rectF.right, rectF2.right, f), lerp(rectF.bottom, rectF2.bottom, f));
@@ -3815,6 +3827,11 @@ public class AndroidUtilities {
         } catch (Exception e) {
             FileLog.e(e);
         }
+    }
+
+    public static void logFlagSecure() {
+        FileLog.d("[FLAG_SECURE]");
+        printStackTrace("FLAG_SECURE");
     }
 
     public static void makeAccessibilityAnnouncement(CharSequence charSequence) {
@@ -4104,6 +4121,12 @@ public class AndroidUtilities {
 
     public static SpannableStringBuilder premiumText(String str, Runnable runnable) {
         return replaceSingleTag(str, -1, 2, runnable);
+    }
+
+    private static void printStackTrace(String str) {
+        for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace()) {
+            FileLog.d("[" + str + "] " + stackTraceElement);
+        }
     }
 
     private static void pruneOverlaps(ArrayList<LinkSpec> arrayList) {

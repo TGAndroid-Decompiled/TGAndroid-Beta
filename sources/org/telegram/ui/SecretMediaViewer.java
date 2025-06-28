@@ -2150,6 +2150,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         layoutParams2.type = 99;
         layoutParams2.flags = i2 >= 21 ? -2147417848 : 8;
         layoutParams2.flags |= 8192;
+        AndroidUtilities.logFlagSecure();
         this.centerImage.setParentView(this.containerView);
         this.centerImage.setForceCrossfade(true);
         TextSelectionHelper.TextSelectionOverlay overlayView = this.textSelectionHelper.getOverlayView(this.windowView.getContext());

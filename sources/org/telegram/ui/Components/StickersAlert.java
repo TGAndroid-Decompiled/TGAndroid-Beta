@@ -471,7 +471,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (StickersAlert.this.delegate == null) {
                 return;
             }
-            StickersAlert.this.delegate.lambda$onStickerSelected$70(document, str, obj, null, StickersAlert.this.clearsInputField, z, i);
+            StickersAlert.this.delegate.lambda$onStickerSelected$74(document, str, obj, null, StickersAlert.this.clearsInputField, z, i);
             StickersAlert.this.lambda$new$0();
         }
 
@@ -804,7 +804,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         boolean isInScheduleMode();
 
-        void lambda$onStickerSelected$70(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i);
+        void lambda$onStickerSelected$74(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i);
     }
 
     public interface StickersAlertInstallDelegate {
@@ -1784,7 +1784,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
     public void lambda$init$13(View view) {
         if (this.importingStickersPaths == null) {
-            this.delegate.lambda$onStickerSelected$70(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0);
+            this.delegate.lambda$onStickerSelected$74(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0);
             lambda$new$0();
         } else {
             removeSticker(this.selectedStickerPath);

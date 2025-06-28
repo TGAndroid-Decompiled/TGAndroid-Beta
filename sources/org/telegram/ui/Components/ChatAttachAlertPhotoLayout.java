@@ -296,6 +296,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
+        public boolean isEditingMessageResend() {
+            MessageObject messageObject;
+            ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
+            return (chatAttachAlert == null || (messageObject = chatAttachAlert.editingMessageObject) == null || !messageObject.needResendWhenEdit()) ? false : true;
+        }
+
+        @Override
         public void moveCaptionAbove(boolean z) {
             ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
             if (chatAttachAlert == null || chatAttachAlert.captionAbove == z) {

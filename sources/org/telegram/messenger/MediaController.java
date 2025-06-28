@@ -179,6 +179,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private int raisedToTopSign;
     private long recordDialogId;
     private long recordMonoForumPeerId;
+    private MessageSuggestionParams recordMonoForumSuggestionParams;
     private DispatchQueue recordQueue;
     private String recordQuickReplyShortcut;
     private int recordQuickReplyShortcutId;
@@ -2789,7 +2790,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(this.recordingGuid), tL_document, file.getAbsolutePath(), Boolean.TRUE, Float.valueOf(draftVoice.left), Float.valueOf(draftVoice.right));
     }
 
-    public void lambda$prepareResumedRecording$25(int i, final MediaDataController.DraftVoice draftVoice, final int i2, final long j, long j2, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, String str, int i3) {
+    public void lambda$prepareResumedRecording$25(int i, final MediaDataController.DraftVoice draftVoice, final int i2, final long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, String str, int i3) {
         setBluetoothScoOn(true);
         this.sendAfterDone = 0;
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
@@ -2821,6 +2822,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.recordSamples = draftVoice.recordSamples;
             this.recordDialogId = j;
             this.recordMonoForumPeerId = j2;
+            this.recordMonoForumSuggestionParams = messageSuggestionParams;
             this.recordTopicId = messageObject == null ? 0L : MessageObject.getTopicId(this.recordingCurrentAccount, messageObject.messageOwner, false);
             this.recordingCurrentAccount = i2;
             this.recordReplyingMsg = messageObject2;
@@ -2980,7 +2982,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(i2), Boolean.TRUE);
     }
 
-    public void lambda$startRecording$37(final int i, final int i2, long j, long j2, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, String str, int i3) {
+    public void lambda$startRecording$37(final int i, final int i2, long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, String str, int i3) {
         Runnable runnable;
         if (this.audioRecorder != null) {
             runnable = new Runnable() {
@@ -3040,6 +3042,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 this.samplesCount = 0L;
                 this.recordDialogId = j;
                 this.recordMonoForumPeerId = j2;
+                this.recordMonoForumSuggestionParams = messageSuggestionParams;
                 if (messageObject != null) {
                     j3 = MessageObject.getTopicId(this.recordingCurrentAccount, messageObject.messageOwner, false);
                 }
@@ -3194,6 +3197,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 c = 1;
                 SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(tL_document, null, file.getAbsolutePath(), this.recordDialogId, this.recordReplyingMsg, this.recordReplyingTopMsg, null, null, null, null, z, i2, z2 ? Integer.MAX_VALUE : 0, null, null, false);
                 of.monoForumPeer = this.recordMonoForumPeerId;
+                of.suggestionParams = this.recordMonoForumSuggestionParams;
                 of.replyToStoryItem = this.recordReplyingStory;
                 of.quick_reply_shortcut = this.recordQuickReplyShortcut;
                 of.quick_reply_shortcut_id = this.recordQuickReplyShortcutId;
@@ -3479,7 +3483,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         String str = chatActivity != null ? chatActivity.quickReplyShortcut : null;
         int quickReplyId = chatActivity != null ? chatActivity.getQuickReplyId() : 0;
         ChatActivity chatActivity2 = this.raiseChat;
-        startRecording(currentAccount, dialogId, null, threadMessage, null, classGuid, false, str, quickReplyId, chatActivity2 != null ? chatActivity2.getSendMonoForumPeerId() : 0L);
+        long sendMonoForumPeerId = chatActivity2 != null ? chatActivity2.getSendMonoForumPeerId() : 0L;
+        ChatActivity chatActivity3 = this.raiseChat;
+        startRecording(currentAccount, dialogId, null, threadMessage, null, classGuid, false, str, quickReplyId, sendMonoForumPeerId, chatActivity3 != null ? chatActivity3.getSendMessageSuggestionParams() : null);
     }
 
     public boolean restoreMusicPlaylistState() {
@@ -4517,14 +4523,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         playMessage(arrayList.get(this.currentPlaylistNum));
     }
 
-    public void prepareResumedRecording(final int i, final MediaDataController.DraftVoice draftVoice, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final int i2, final String str, final int i3, final long j2) {
+    public void prepareResumedRecording(final int i, final MediaDataController.DraftVoice draftVoice, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final int i2, final String str, final int i3, final long j2, final MessageSuggestionParams messageSuggestionParams) {
         this.manualRecording = false;
         requestRecordAudioFocus(true);
         this.recordQueue.cancelRunnable(this.recordStartRunnable);
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.this.lambda$prepareResumedRecording$25(i2, draftVoice, i, j, j2, messageObject2, messageObject, storyItem, str, i3);
+                MediaController.this.lambda$prepareResumedRecording$25(i2, draftVoice, i, j, j2, messageSuggestionParams, messageObject2, messageObject, storyItem, str, i3);
             }
         });
     }
@@ -4971,7 +4977,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void startRecording(final int i, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final int i2, boolean z, final String str, final int i3, final long j2) {
+    public void startRecording(final int i, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final int i2, boolean z, final String str, final int i3, final long j2, final MessageSuggestionParams messageSuggestionParams) {
         boolean z2;
         boolean z3;
         MessageObject messageObject3 = this.playingMessageObject;
@@ -4989,14 +4995,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         } catch (Exception unused) {
         }
         DispatchQueue dispatchQueue = this.recordQueue;
+        boolean z4 = z3;
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                MediaController.this.lambda$startRecording$37(i, i2, j, j2, messageObject2, messageObject, storyItem, str, i3);
+                MediaController.this.lambda$startRecording$37(i, i2, j, j2, messageSuggestionParams, messageObject2, messageObject, storyItem, str, i3);
             }
         };
         this.recordStartRunnable = runnable;
-        dispatchQueue.postRunnable(runnable, z3 ? 500L : 50L);
+        dispatchQueue.postRunnable(runnable, z4 ? 500L : 50L);
     }
 
     public void startRecordingIfFromSpeaker() {
@@ -5010,7 +5017,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             String str = chatActivity != null ? chatActivity.quickReplyShortcut : null;
             int quickReplyId = chatActivity != null ? chatActivity.getQuickReplyId() : 0;
             ChatActivity chatActivity2 = this.raiseChat;
-            startRecording(currentAccount, dialogId, null, threadMessage, null, classGuid, false, str, quickReplyId, chatActivity2 != null ? chatActivity2.getSendMonoForumPeerId() : 0L);
+            long sendMonoForumPeerId = chatActivity2 != null ? chatActivity2.getSendMonoForumPeerId() : 0L;
+            ChatActivity chatActivity3 = this.raiseChat;
+            startRecording(currentAccount, dialogId, null, threadMessage, null, classGuid, false, str, quickReplyId, sendMonoForumPeerId, chatActivity3 != null ? chatActivity3.getSendMessageSuggestionParams() : null);
             this.ignoreOnPause = true;
         }
     }

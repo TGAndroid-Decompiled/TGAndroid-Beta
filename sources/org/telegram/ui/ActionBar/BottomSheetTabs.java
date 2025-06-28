@@ -38,6 +38,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedColor;
@@ -541,10 +542,11 @@ public class BottomSheetTabs extends FrameLayout {
         if (safeLastFragment != null) {
             int i = 0;
             while (true) {
-                ArrayList arrayList = safeLastFragment.sheetsStack;
+                ArrayList<BaseFragment.AttachedSheet> arrayList = safeLastFragment.sheetsStack;
                 if (arrayList == null || i >= arrayList.size()) {
                     break;
                 }
+                safeLastFragment.sheetsStack.get(i);
                 i++;
             }
         }

@@ -221,7 +221,7 @@ public class ThanosEffect extends TextureView {
                 this.bitmap = bitmap;
             }
 
-            public Animation(android.view.View r8, float r9, java.lang.Runnable r10) {
+            public Animation(android.view.View r9, float r10, java.lang.Runnable r11) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, android.view.View, float, java.lang.Runnable):void");
             }
 

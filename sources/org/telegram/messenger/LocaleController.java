@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.telephony.TelephonyManager;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -34,6 +35,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
+import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -216,6 +218,10 @@ public class LocaleController {
     }
 
     public static abstract class PluralRules {
+        int quantityForDecimal(double d) {
+            return quantityForNumber((0.0d >= d || d >= 2.0d) ? Math.round((float) d) : 1);
+        }
+
         abstract int quantityForNumber(int i);
     }
 
@@ -783,6 +789,16 @@ public class LocaleController {
         return connectionsManager.sendRequest(tL_langpack_getLangPack, requestDelegate, 8);
     }
 
+    public static CharSequence bold(CharSequence charSequence) {
+        if (charSequence instanceof Spannable) {
+            ((Spannable) charSequence).setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, charSequence.length(), 33);
+            return charSequence;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, charSequence.length(), 33);
+        return spannableStringBuilder;
+    }
+
     private FastDateFormat createFormatter(Locale locale, String str, String str2) {
         if (str == null || str.length() == 0) {
             str = str2;
@@ -1204,6 +1220,14 @@ public class LocaleController {
         return formatPluralStringComma(str, i, ' ', objArr);
     }
 
+    public static String formatPluralStringWithSelector(String str, double d, Object... objArr) {
+        if (str == null || str.length() == 0 || getInstance().currentPluralRules == null) {
+            return "LOC_ERR:" + str;
+        }
+        String str2 = str + "_" + getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForDecimal(d));
+        return formatString(str2, str + "_other", ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()), ApplicationLoader.applicationContext.getResources().getIdentifier(str + "_other", "string", ApplicationLoader.applicationContext.getPackageName()), objArr);
+    }
+
     public static String formatPmEditedDate(long j) {
         long j2 = j * 1000;
         try {
@@ -1382,6 +1406,8 @@ public class LocaleController {
 
     public static CharSequence formatSpannable(String str, String str2, int i, int i2, Object... objArr) {
         String str3;
+        StringBuilder sb;
+        Object obj;
         int length;
         String string;
         try {
@@ -1412,25 +1438,35 @@ public class LocaleController {
             int i3 = 0;
             while (i3 < objArr.length) {
                 String str5 = "s";
-                Object obj = objArr[i3];
-                if (obj instanceof CharSequence) {
-                    str3 = (CharSequence) obj;
-                } else if (obj instanceof Integer) {
-                    str5 = "d";
-                    str3 = "" + ((Integer) objArr[i3]);
+                Object obj2 = objArr[i3];
+                if (obj2 instanceof CharSequence) {
+                    str3 = (CharSequence) obj2;
                 } else {
-                    str3 = obj == null ? "null" : "";
+                    if (obj2 instanceof Integer) {
+                        sb = new StringBuilder();
+                        sb.append("");
+                        obj = (Integer) objArr[i3];
+                    } else if (obj2 instanceof Long) {
+                        sb = new StringBuilder();
+                        sb.append("");
+                        obj = (Long) objArr[i3];
+                    } else {
+                        str3 = obj2 == null ? "null" : "";
+                    }
+                    sb.append(obj);
+                    str3 = sb.toString();
+                    str5 = "d";
                 }
-                StringBuilder sb = new StringBuilder();
-                sb.append("%");
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("%");
                 i3++;
-                sb.append(i3);
-                sb.append("$");
-                sb.append(str5);
-                String sb2 = sb.toString();
-                int indexOf = spannableStringBuilder.toString().indexOf(sb2);
+                sb2.append(i3);
+                sb2.append("$");
+                sb2.append(str5);
+                String sb3 = sb2.toString();
+                int indexOf = spannableStringBuilder.toString().indexOf(sb3);
                 if (indexOf != -1) {
-                    length = sb2.length();
+                    length = sb3.length();
                 } else {
                     String str6 = "%" + str5;
                     indexOf = spannableStringBuilder.toString().indexOf(str6);
@@ -1586,6 +1622,22 @@ public class LocaleController {
         }
         int i2 = ((i / 60) / 60) / 24;
         return i % 7 == 0 ? formatPluralString("Weeks", i2 / 7, new Object[0]) : String.format("%s %s", formatPluralString("Weeks", i2 / 7, new Object[0]), formatPluralString("Days", i2 % 7, new Object[0]));
+    }
+
+    public static String formatTodoCompletedDate(long j) {
+        long j2 = j * 1000;
+        try {
+            Calendar calendar = Calendar.getInstance();
+            int i = calendar.get(6);
+            int i2 = calendar.get(1);
+            calendar.setTimeInMillis(j2);
+            int i3 = calendar.get(6);
+            int i4 = calendar.get(1);
+            return (i3 == i && i2 == i4) ? formatString(R.string.TodoCompletedTodayAt, getInstance().getFormatterDay().format(new Date(j2))) : (i3 + 1 == i && i2 == i4) ? formatString(R.string.TodoCompletedYesterdayAt, getInstance().getFormatterDay().format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString(R.string.TodoCompletedDateTimeAt, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))) : formatString(R.string.TodoCompletedDateTimeAt, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
+        } catch (Exception e) {
+            FileLog.e(e);
+            return "LOC_ERR";
+        }
     }
 
     public static String formatUserStatus(int i, TLRPC.User user) {

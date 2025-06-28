@@ -2013,6 +2013,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
                 if (!BuildVars.DEBUG_PRIVATE_VERSION) {
                     attributes.flags |= 8192;
+                    AndroidUtilities.logFlagSecure();
                 }
                 attributes.flags |= 1152;
                 if (i2 >= 28) {

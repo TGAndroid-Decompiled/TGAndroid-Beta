@@ -26,6 +26,7 @@ public class FilePathDatabase {
     boolean databaseCreated;
     private DispatchQueue dispatchQueue;
     private File shmCacheFile;
+    private final String NULL_PATH = "~null~";
     private final ConcurrentHashMap<String, String> cache = new ConcurrentHashMap<>();
     private final FileMeta metaTmp = new FileMeta();
 
@@ -475,7 +476,7 @@ public class FilePathDatabase {
         }
     }
 
-    public java.lang.String getPath(final long r19, final int r21, final int r22, boolean r23) {
+    public java.lang.String getPath(final long r20, final int r22, final int r23, boolean r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilePathDatabase.getPath(long, int, int, boolean):java.lang.String");
     }
 

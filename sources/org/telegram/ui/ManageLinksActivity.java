@@ -1437,7 +1437,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ManageLinksActivity.this.lambda$onBackPressed$348();
+                    ManageLinksActivity.this.lambda$onBackPressed$354();
                 }
             }
         });
@@ -1535,7 +1535,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             if (iNavigationLayout == null || iNavigationLayout.getLastFragment() != this) {
                 removeSelfFromStack();
             } else {
-                lambda$onBackPressed$348();
+                lambda$onBackPressed$354();
             }
         }
     }

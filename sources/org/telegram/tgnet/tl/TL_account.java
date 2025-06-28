@@ -1,7 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda41;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda40;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
@@ -518,7 +518,7 @@ public class TL_account {
             this.link = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda41(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
             }
             if ((this.flags & 2) != 0) {
                 this.title = inputSerializedData.readString(z);
@@ -999,7 +999,7 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda41(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
             }
             if ((this.flags & 2) != 0) {
                 this.title = inputSerializedData.readString(z);
@@ -1523,27 +1523,6 @@ public class TL_account {
             outputSerializedData.writeString(this.public_key);
             Vector.serialize(outputSerializedData, this.value_hashes);
             this.credentials.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class addNoPaidMessagesException extends TLObject {
-        public static final int constructor = 1869122215;
-        public int flags;
-        public boolean refund_charged;
-        public TLRPC.InputUser user_id;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1869122215);
-            int i = this.refund_charged ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            this.user_id.serializeToStream(outputSerializedData);
         }
     }
 
@@ -2414,7 +2393,9 @@ public class TL_account {
     }
 
     public static class getPaidMessagesRevenue extends TLObject {
-        public static final int constructor = -249139400;
+        public static final int constructor = 431639143;
+        public int flags;
+        public TLRPC.InputPeer parent_peer;
         public TLRPC.InputUser user_id;
 
         @Override
@@ -2424,7 +2405,13 @@ public class TL_account {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-249139400);
+            outputSerializedData.writeInt32(431639143);
+            int i = this.parent_peer != null ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            outputSerializedData.writeInt32(i);
+            if ((this.flags & 1) != 0) {
+                this.parent_peer.serializeToStream(outputSerializedData);
+            }
             this.user_id.serializeToStream(outputSerializedData);
         }
     }
@@ -3208,7 +3195,7 @@ public class TL_account {
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda41(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
@@ -3592,6 +3579,36 @@ public class TL_account {
             outputSerializedData.writeInt32(1684934807);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeBool(this.paused);
+        }
+    }
+
+    public static class toggleNoPaidMessagesException extends TLObject {
+        public static final int constructor = -30483850;
+        public int flags;
+        public TLRPC.InputPeer parent_peer;
+        public boolean refund_charged;
+        public boolean require_payment;
+        public TLRPC.InputUser user_id;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-30483850);
+            int i = this.refund_charged ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.parent_peer != null ? i | 2 : i & (-3);
+            this.flags = i2;
+            int i3 = this.require_payment ? i2 | 4 : i2 & (-5);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
+            if ((this.flags & 2) != 0) {
+                this.parent_peer.serializeToStream(outputSerializedData);
+            }
+            this.user_id.serializeToStream(outputSerializedData);
         }
     }
 

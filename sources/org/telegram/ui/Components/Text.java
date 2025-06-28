@@ -128,6 +128,10 @@ public class Text {
     }
 
     public void draw(Canvas canvas, float f, float f2) {
+        draw(canvas, f, f2, 1.0f);
+    }
+
+    public void draw(Canvas canvas, float f, float f2, float f3) {
         if (this.layout == null) {
             return;
         }
@@ -135,7 +139,10 @@ public class Text {
             canvas.save();
         }
         canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
+        int alpha = this.paint.getAlpha();
+        this.paint.setAlpha((int) (alpha * f3));
         draw(canvas);
+        this.paint.setAlpha(alpha);
         if (this.doNotSave) {
             return;
         }

@@ -47,6 +47,7 @@ public class FlagSecureReason {
         } else {
             window.clearFlags(8192);
         }
+        AndroidUtilities.logFlagSecure();
     }
 
     public void attach() {

@@ -2973,7 +2973,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
         if (tL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$348();
+            twoStepVerificationActivity.lambda$onBackPressed$354();
             if (tLObject instanceof TL_stars.starGiftWithdrawalUrl) {
                 Browser.openUrlInSystemBrowser(getContext(), ((TL_stars.starGiftWithdrawalUrl) tLObject).url);
                 return;
@@ -2992,7 +2992,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$348();
+                twoStepVerificationActivity.lambda$onBackPressed$354();
             }
             BulletinFactory.showError(tL_error);
             return;
@@ -3758,7 +3758,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$set$41(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda58(this)).show();
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda51(this)).show();
     }
 
     public void lambda$set$42(View view) {
@@ -3778,11 +3778,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$set$47(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda58(this)).show();
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda51(this)).show();
     }
 
     public void lambda$set$49(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda58(this)).show();
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda51(this)).show();
     }
 
     public void lambda$set$50(View view) {

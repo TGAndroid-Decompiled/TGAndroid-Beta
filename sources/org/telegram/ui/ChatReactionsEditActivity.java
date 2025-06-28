@@ -202,7 +202,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatReactionsEditActivity.this.lambda$onBackPressed$348();
+                    ChatReactionsEditActivity.this.lambda$onBackPressed$354();
                 }
             }
         });
@@ -397,7 +397,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             if (iNavigationLayout == null || iNavigationLayout.getLastFragment() != this) {
                 removeSelfFromStack();
             } else {
-                lambda$onBackPressed$348();
+                lambda$onBackPressed$354();
             }
         }
     }

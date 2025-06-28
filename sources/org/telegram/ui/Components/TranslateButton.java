@@ -261,8 +261,8 @@ public abstract class TranslateButton extends FrameLayout {
             TranslateController.Language next2 = it2.next();
             final String str2 = next2.code;
             if (!TextUtils.equals(str2, dialogDetectedLanguage)) {
-                ActionBarMenuSubItem actionBarMenuSubItem5 = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
                 boolean z2 = dialogTranslateTo != null && dialogTranslateTo.equals(str2);
+                ActionBarMenuSubItem actionBarMenuSubItem5 = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
                 actionBarMenuSubItem5.setChecked(z2);
                 actionBarMenuSubItem5.setText(next2.displayName);
                 if (!z2) {

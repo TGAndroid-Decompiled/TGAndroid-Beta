@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.FileLog;
@@ -426,6 +427,16 @@ public abstract class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
+                        public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressCustomBotButton(this, chatMessageCell2, buttonCustom);
+                        }
+
+                        @Override
+                        public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell2, todoItem);
+                        }
+
+                        @Override
                         public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2) {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell2, user, f, f2);
                         }
@@ -478,6 +489,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                         @Override
                         public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCustomBotButton(this, chatMessageCell2, buttonCustom);
                         }
 
                         @Override
@@ -573,6 +589,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                         @Override
                         public void didPressTime(ChatMessageCell chatMessageCell2) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell2, todoItem, z);
                         }
 
                         @Override
@@ -828,6 +849,16 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressCustomBotButton(this, chatMessageCell2, buttonCustom);
+                    }
+
+                    @Override
+                    public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell2, todoItem);
+                    }
+
+                    @Override
                     public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell2, user, f, f2);
                     }
@@ -880,6 +911,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                     @Override
                     public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCustomBotButton(this, chatMessageCell2, buttonCustom);
                     }
 
                     @Override
@@ -975,6 +1011,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                     @Override
                     public void didPressTime(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell2, todoItem, z);
                     }
 
                     @Override
@@ -2085,6 +2126,10 @@ public abstract class MessagePreviewView extends FrameLayout {
             return false;
         }
 
+        public int getColor() {
+            return this.color;
+        }
+
         @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
@@ -2111,7 +2156,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
         }
 
-        public void setOnTabClick(Utilities.Callback callback) {
+        public void setOnTabClick(Utilities.Callback<Integer> callback) {
             this.onTabClick = callback;
         }
 
@@ -2232,7 +2277,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            protected void onTabAnimationUpdate(boolean z2) {
+            public void onTabAnimationUpdate(boolean z2) {
                 MessagePreviewView messagePreviewView = MessagePreviewView.this;
                 messagePreviewView.tabsView.setSelectedTab(messagePreviewView.viewPager.getPositionAnimated());
                 View view = this.viewPages[0];

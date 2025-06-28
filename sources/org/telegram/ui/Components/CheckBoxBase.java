@@ -114,14 +114,6 @@ public class CheckBoxBase {
         this.checkAnimator.start();
     }
 
-    private void cancelCheckAnimator() {
-        ObjectAnimator objectAnimator = this.checkAnimator;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-            this.checkAnimator = null;
-        }
-    }
-
     private int getThemedColor(int i) {
         return Theme.getColor(i, this.resourcesProvider);
     }
@@ -135,6 +127,14 @@ public class CheckBoxBase {
 
     public static Paint lambda$new$0(Void r0) {
         return paint;
+    }
+
+    public void cancelCheckAnimator() {
+        ObjectAnimator objectAnimator = this.checkAnimator;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.checkAnimator = null;
+        }
     }
 
     public void draw(android.graphics.Canvas r27) {

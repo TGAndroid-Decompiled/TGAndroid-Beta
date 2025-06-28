@@ -56,8 +56,16 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     private ArrayList unofficialLanguages;
 
     public class ListAdapter extends RecyclerListView.SelectionAdapter {
+        private int infoPosition1;
+        private int infoPosition2;
+        private int languagesStartsPosition;
         private Context mContext;
         private boolean search;
+        private int settingsFromPosition = -1;
+        private int settingsToPosition = -1;
+        private int manualTranslationPosition = -1;
+        private int autoTranslationPosition = -1;
+        private int doNotTranslatePosition = -1;
 
         public ListAdapter(Context context, boolean z) {
             this.mContext = context;
@@ -84,54 +92,84 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         @Override
         public int getItemViewType(int i) {
+            int i2;
             if (this.search) {
                 return 0;
             }
-            int i2 = i - 1;
-            if (i == 0) {
-                return 3;
+            if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() || LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled()) {
+                this.settingsFromPosition = i - i;
+                int i3 = i - 1;
+                if (i == 0) {
+                    return 3;
+                }
+                if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled()) {
+                    int i4 = i - 2;
+                    if (i3 == 0) {
+                        this.manualTranslationPosition = i;
+                        return 2;
+                    }
+                    i3 = i4;
+                } else {
+                    this.manualTranslationPosition = -1;
+                }
+                if (!LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled() || LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
+                    this.autoTranslationPosition = -1;
+                } else {
+                    int i5 = i3 - 1;
+                    if (i3 == 0) {
+                        this.autoTranslationPosition = i;
+                        return 2;
+                    }
+                    i3 = i5;
+                }
+                if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
+                    this.doNotTranslatePosition = i;
+                    int i6 = i3 - 1;
+                    if (i3 == 0) {
+                        return 4;
+                    }
+                    i3 = i6;
+                }
+                this.settingsToPosition = (i - i3) - 1;
+                i2 = i3 - 1;
+                if (i3 == 0) {
+                    this.infoPosition1 = i;
+                    return 6;
+                }
+                if ("system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) && "system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
+                    this.infoPosition2 = -1;
+                } else {
+                    int i7 = i3 - 2;
+                    if (i2 == 0) {
+                        this.infoPosition2 = i;
+                        return 6;
+                    }
+                    i2 = i7;
+                }
+            } else {
+                this.settingsFromPosition = -1;
+                this.settingsToPosition = -1;
+                i2 = i;
             }
-            int i3 = i - 2;
+            int i8 = i2 - 1;
             if (i2 == 0) {
-                return 2;
-            }
-            if (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
-                int i4 = i - 3;
-                if (i3 == 0) {
-                    return 2;
-                }
-                i3 = i4;
-            }
-            if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
-                int i5 = i3 - 1;
-                if (i3 == 0) {
-                    return 4;
-                }
-                i3 = i5;
-            }
-            int i6 = i3 - 1;
-            if (i3 == 0) {
-                return 5;
-            }
-            int i7 = i3 - 2;
-            if (i6 == 0) {
-                return 5;
-            }
-            int i8 = i3 - 3;
-            if (i7 == 0) {
                 return 3;
             }
-            return ((LanguageSelectActivity.this.unofficialLanguages.isEmpty() || !(i8 == LanguageSelectActivity.this.unofficialLanguages.size() || i8 == (LanguageSelectActivity.this.unofficialLanguages.size() + LanguageSelectActivity.this.sortedLanguages.size()) + 1)) && !(LanguageSelectActivity.this.unofficialLanguages.isEmpty() && i8 == LanguageSelectActivity.this.sortedLanguages.size())) ? 0 : 1;
+            if ((!LanguageSelectActivity.this.unofficialLanguages.isEmpty() && (i8 == LanguageSelectActivity.this.unofficialLanguages.size() || i8 == LanguageSelectActivity.this.unofficialLanguages.size() + LanguageSelectActivity.this.sortedLanguages.size() + 1)) || (LanguageSelectActivity.this.unofficialLanguages.isEmpty() && i8 == LanguageSelectActivity.this.sortedLanguages.size())) {
+                return 1;
+            }
+            this.languagesStartsPosition = i - i8;
+            return 0;
         }
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             int itemViewType = viewHolder.getItemViewType();
-            return itemViewType == 0 || itemViewType == 4 || itemViewType == 2;
+            return itemViewType == 0 || itemViewType == 4 || itemViewType == 5 || itemViewType == 2;
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r12, int r13) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LanguageSelectActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -144,10 +182,10 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                     textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 } else if (i == 3) {
                     textRadioCell = new HeaderCell(this.mContext);
-                } else if (i != 4) {
-                    textRadioCell = i != 5 ? new ShadowSectionCell(this.mContext) : new TextInfoPrivacyCell(this.mContext);
-                } else {
+                } else if (i == 4 || i == 5) {
                     textRadioCell = new TextSettingsCell(this.mContext);
+                } else {
+                    textRadioCell = i != 6 ? new ShadowSectionCell(this.mContext) : new TextInfoPrivacyCell(this.mContext);
                 }
                 return new RecyclerListView.Holder(textRadioCell);
             }
@@ -252,7 +290,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         if (getParentActivity() != null && this.parentLayout != null && (view instanceof TextRadioCell)) {
             boolean z = this.listView.getAdapter() == this.searchListViewAdapter;
             if (!z) {
-                i -= (7 - ((getChatValue() || getContextValue()) ? 0 : 1)) - (getMessagesController().premiumFeaturesBlocked() ? 1 : 0);
+                i -= this.listAdapter.languagesStartsPosition;
             }
             if (z) {
                 arrayList = this.searchResult;
@@ -388,7 +426,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LanguageSelectActivity.this.lambda$onBackPressed$348();
+                    LanguageSelectActivity.this.lambda$onBackPressed$354();
                 }
             }
         });
@@ -455,7 +493,9 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 if (getAdapter() == LanguageSelectActivity.this.listAdapter && getItemAnimator() != null && getItemAnimator().isRunning()) {
                     int color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
                     drawItemBackground(canvas, 0, LanguageSelectActivity.this.translateSettingsBackgroundHeight, color);
-                    drawSectionBackground(canvas, 1, 2, color);
+                    if (LanguageSelectActivity.this.listAdapter.settingsFromPosition != -1 && LanguageSelectActivity.this.listAdapter.settingsToPosition != -1) {
+                        drawSectionBackground(canvas, LanguageSelectActivity.this.listAdapter.settingsFromPosition, LanguageSelectActivity.this.listAdapter.settingsToPosition, color);
+                    }
                 }
                 super.dispatchDraw(canvas);
             }

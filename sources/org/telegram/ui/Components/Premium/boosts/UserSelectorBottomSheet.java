@@ -834,23 +834,49 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public void lambda$openOptions$20(TLRPC.User user) {
-        BaseFragment baseFragment = getBaseFragment();
-        if (user == null || baseFragment == null) {
+        if (user == null) {
             return;
         }
-        Bundle bundle = new Bundle();
-        bundle.putLong("user_id", user.id);
-        baseFragment.presentFragment(new ChatActivity(bundle));
+        BaseFragment baseFragment = getBaseFragment();
+        if (baseFragment != null) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", user.id);
+            baseFragment.presentFragment(new ChatActivity(bundle));
+            return;
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        if (safeLastFragment == null) {
+            return;
+        }
+        Bundle bundle2 = new Bundle();
+        bundle2.putLong("user_id", user.id);
+        safeLastFragment.showAsSheet(new ChatActivity(bundle2), bottomSheetParams);
     }
 
     public void lambda$openOptions$21(TLRPC.User user) {
-        BaseFragment baseFragment = getBaseFragment();
-        if (user == null || baseFragment == null) {
+        if (user == null) {
             return;
         }
-        Bundle bundle = new Bundle();
-        bundle.putLong("user_id", user.id);
-        baseFragment.presentFragment(new ProfileActivity(bundle));
+        BaseFragment baseFragment = getBaseFragment();
+        if (baseFragment != null) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", user.id);
+            baseFragment.presentFragment(new ProfileActivity(bundle));
+            return;
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            return;
+        }
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        Bundle bundle2 = new Bundle();
+        bundle2.putLong("user_id", user.id);
+        safeLastFragment.showAsSheet(new ProfileActivity(bundle2), bottomSheetParams);
     }
 
     public void lambda$openOptions$22(final TLRPC.User user, View view) {

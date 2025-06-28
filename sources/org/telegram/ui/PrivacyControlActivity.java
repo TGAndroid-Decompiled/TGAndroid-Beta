@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLoader;
@@ -628,6 +629,16 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
+                public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressCustomBotButton(this, chatMessageCell2, buttonCustom);
+                }
+
+                @Override
+                public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell2, todoItem);
+                }
+
+                @Override
                 public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user2, float f, float f2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell2, user2, f, f2);
                 }
@@ -680,6 +691,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 @Override
                 public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell2);
+                }
+
+                @Override
+                public void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCustomBotButton(this, chatMessageCell2, buttonCustom);
                 }
 
                 @Override
@@ -775,6 +791,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 @Override
                 public void didPressTime(ChatMessageCell chatMessageCell2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
+                }
+
+                @Override
+                public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell2, todoItem, z);
                 }
 
                 @Override
@@ -1354,7 +1375,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
             }
         }
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     private boolean hasChanges() {
@@ -1575,7 +1596,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$28(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$createView$3() {
@@ -1992,7 +2013,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$finished$12(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$processDone$26(SharedPreferences sharedPreferences, AlertDialog alertDialog, int i) {

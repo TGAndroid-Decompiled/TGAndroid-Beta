@@ -299,7 +299,9 @@ public class NotificationCenter {
     public static final int threadMessagesRead = 8;
     public static final int timezonesUpdated = 206;
     public static final int topicsDidLoaded = 298;
-    private static int totalEvents = 314;
+    private static int totalEvents = 316;
+    public static final int translationModelDownloaded = 315;
+    public static final int translationModelDownloading = 314;
     public static final int twoStepPasswordChanged = 50;
     public static final int unconfirmedAuthUpdate = 192;
     public static final int updateAllMessages = 221;

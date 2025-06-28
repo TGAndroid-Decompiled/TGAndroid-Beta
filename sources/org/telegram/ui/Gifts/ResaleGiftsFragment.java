@@ -1281,7 +1281,10 @@ public class ResaleGiftsFragment extends BaseFragment {
                     }
                     this.shownToast = true;
                     BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, l.longValue()))).hideAfterBottomSheet(false).show();
-                    this.fireworksOverlay.start(true);
+                    FireworksOverlay fireworksOverlay = this.fireworksOverlay;
+                    if (fireworksOverlay != null) {
+                        fireworksOverlay.start(true);
+                    }
                 }
             }, true);
             Runnable runnable = this.closeParentSheet;
@@ -1436,7 +1439,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ResaleGiftsFragment.this.lambda$onBackPressed$348();
+                    ResaleGiftsFragment.this.lambda$onBackPressed$354();
                 }
             }
         });

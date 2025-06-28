@@ -254,7 +254,6 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         this.paused = true;
         this.rendererChanged = false;
         this.dialogIsVisible = false;
-        this.idleDelay = 2000L;
         this.animationIndexes = new ArrayList();
         this.animatorSet = new AnimatorSet();
         this.idleAnimation = new Runnable() {
@@ -289,7 +288,8 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             }
         };
         this.type = i2;
-        this.animationsCount = (i2 == 1 || i2 == 3) ? 1 : 5;
+        this.animationsCount = (i2 == 1 || i2 == 4 || i2 == 3) ? 1 : 5;
+        this.idleDelay = i2 == 4 ? 0L : 2000L;
         setOpaque(false);
         setRenderer(new GLIconRenderer(context, i, i2));
         initialize(context);
@@ -453,38 +453,44 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
     }
 
     private void pullAnimation() {
-        int i;
         int abs = Math.abs(Utilities.random.nextInt() % 4);
         this.animatorSet = new AnimatorSet();
-        if (abs != 0 || (i = this.type) == 1 || i == 3) {
-            int i2 = this.type;
-            int i3 = (i2 == 1 || i2 == 3) ? 360 : 485;
-            if (abs == 2) {
-                i3 = -i3;
-            }
-            float f = i3;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mRenderer.angleY, f);
+        int i = this.type;
+        if (i == 4) {
+            float f = this.mRenderer.angleX;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 360.0f + f);
             ofFloat.addUpdateListener(this.xUpdater);
-            ofFloat.setDuration(3000L);
-            ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f, 0.0f);
+            ofFloat.setDuration(12000L);
+            ofFloat.setInterpolator(new LinearInterpolator());
+            this.animatorSet.playTogether(ofFloat);
+        } else if (abs != 0 || i == 1 || i == 3) {
+            int i2 = (i == 1 || i == 3) ? 360 : 485;
+            if (abs == 2) {
+                i2 = -i2;
+            }
+            float f2 = i2;
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.mRenderer.angleY, f2);
             ofFloat2.addUpdateListener(this.xUpdater);
-            ofFloat2.setDuration(1000L);
-            ofFloat2.setStartDelay(3000L);
-            ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
-            this.animatorSet.playTogether(ofFloat, ofFloat2);
+            ofFloat2.setDuration(3000L);
+            ofFloat2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f2, 0.0f);
+            ofFloat3.addUpdateListener(this.xUpdater);
+            ofFloat3.setDuration(1000L);
+            ofFloat3.setStartDelay(3000L);
+            ofFloat3.setInterpolator(AndroidUtilities.overshootInterpolator);
+            this.animatorSet.playTogether(ofFloat2, ofFloat3);
         } else {
-            float f2 = 48;
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(this.mRenderer.angleY, f2);
-            ofFloat3.addUpdateListener(this.yUpdater);
-            ofFloat3.setDuration(2300L);
-            ofFloat3.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f2, 0.0f);
+            float f3 = 48;
+            ValueAnimator ofFloat4 = ValueAnimator.ofFloat(this.mRenderer.angleY, f3);
             ofFloat4.addUpdateListener(this.yUpdater);
-            ofFloat4.setDuration(500L);
-            ofFloat4.setStartDelay(2300L);
-            ofFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
-            this.animatorSet.playTogether(ofFloat3, ofFloat4);
+            ofFloat4.setDuration(2300L);
+            ofFloat4.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            ValueAnimator ofFloat5 = ValueAnimator.ofFloat(f3, 0.0f);
+            ofFloat5.addUpdateListener(this.yUpdater);
+            ofFloat5.setDuration(500L);
+            ofFloat5.setStartDelay(2300L);
+            ofFloat5.setInterpolator(AndroidUtilities.overshootInterpolator);
+            this.animatorSet.playTogether(ofFloat4, ofFloat5);
         }
         this.animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override

@@ -261,6 +261,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
+                AndroidUtilities.logFlagSecure();
             } catch (Exception e) {
                 FileLog.e(e);
             }

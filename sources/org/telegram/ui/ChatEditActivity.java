@@ -363,7 +363,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$55(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$checkDiscard$56(AlertDialog alertDialog, int i) {
@@ -371,7 +371,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$57(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$createView$10(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
@@ -879,7 +879,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -1084,7 +1084,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$processDone$58() {
         this.progressDialog.dismiss();
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     public void lambda$processDone$59(TL_bots.setBotInfo setbotinfo, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1265,7 +1265,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 updatePastFragmentsOnTabs();
             }
         }
-        lambda$onBackPressed$348();
+        lambda$onBackPressed$354();
     }
 
     private void setAvatar() {
@@ -1770,6 +1770,14 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             return;
         }
         radialProgressView.setProgress(f);
+    }
+
+    @Override
+    public void restoreSelfArgs(Bundle bundle) {
+        ImageUpdater imageUpdater = this.imageUpdater;
+        if (imageUpdater != null) {
+            imageUpdater.currentPicturePath = bundle.getString("path");
+        }
     }
 
     @Override

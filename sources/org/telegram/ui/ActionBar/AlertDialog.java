@@ -54,8 +54,8 @@ import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stars.BalanceCloud;
 import org.telegram.ui.Stars.StarsIntroActivity;
-import org.telegram.ui.Stars.StarsReactionsSheet;
 
 public class AlertDialog extends Dialog implements Drawable.Callback, NotificationCenter.NotificationCenterDelegate {
     private View aboveMessageView;
@@ -132,7 +132,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private boolean[] shadowVisibility;
     private Runnable showRunnable;
     private long shownAt;
-    private StarsReactionsSheet.BalanceCloud starsBalanceCloud;
+    private BalanceCloud starsBalanceCloud;
     private CharSequence subtitle;
     private TextView subtitleTextView;
     private CharSequence title;

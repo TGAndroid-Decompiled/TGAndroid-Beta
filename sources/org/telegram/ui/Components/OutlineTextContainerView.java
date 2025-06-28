@@ -22,6 +22,7 @@ public class OutlineTextContainerView extends FrameLayout {
     private final SpringAnimation errorSpring;
     private boolean forceForceUseCenter;
     private boolean forceUseCenter;
+    private boolean forceUseCenter2;
     private float leftPadding;
     private String mText;
     private final Paint outlinePaint;
@@ -168,6 +169,10 @@ public class OutlineTextContainerView extends FrameLayout {
         animateSelection(z ? 1.0f : 0.0f, z2 ? 1.0f : 0.0f, true);
     }
 
+    public void animateSelection(boolean z, boolean z2, boolean z3) {
+        animateSelection(z ? 1.0f : 0.0f, z2 ? 1.0f : 0.0f, z3);
+    }
+
     public void attachEditText(EditText editText) {
         this.attachedEditText = editText;
         invalidate();
@@ -183,7 +188,7 @@ public class OutlineTextContainerView extends FrameLayout {
         float paddingTop = getPaddingTop() + ((this.textPaint.getTextSize() / 2.0f) - AndroidUtilities.dp(1.75f));
         float height = (getHeight() / 2.0f) + (this.textPaint.getTextSize() / 2.0f);
         EditText editText = this.attachedEditText;
-        boolean z = (editText != null && editText.length() == 0 && TextUtils.isEmpty(this.attachedEditText.getHint())) || this.forceUseCenter;
+        boolean z = (editText != null && editText.length() == 0 && TextUtils.isEmpty(this.attachedEditText.getHint())) || this.forceUseCenter || this.forceUseCenter2;
         if (z) {
             paddingTop += (height - paddingTop) * (1.0f - this.titleProgress);
         }
@@ -219,6 +224,10 @@ public class OutlineTextContainerView extends FrameLayout {
     public void setForceUseCenter(boolean z) {
         this.forceUseCenter = z;
         invalidate();
+    }
+
+    public void setForceUseCenter2(boolean z) {
+        this.forceUseCenter2 = z;
     }
 
     public void setLeftPadding(float f) {

@@ -134,10 +134,10 @@ public abstract class BotVerifySheet {
         String str;
         TLRPC.Chat chat;
         if (topicsFragment != null) {
-            topicsFragment.lambda$onBackPressed$348();
+            topicsFragment.lambda$onBackPressed$354();
             dialogsActivity.removeSelfFromStack();
         } else {
-            dialogsActivity.lambda$onBackPressed$348();
+            dialogsActivity.lambda$onBackPressed$354();
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {

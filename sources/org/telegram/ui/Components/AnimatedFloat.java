@@ -105,6 +105,14 @@ public class AnimatedFloat {
         this.firstSet = true;
     }
 
+    public AnimatedFloat(Runnable runnable) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.invalidate = runnable;
+        this.firstSet = true;
+    }
+
     public AnimatedFloat(Runnable runnable, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
@@ -154,26 +162,7 @@ public class AnimatedFloat {
         return timeInterpolator != null ? timeInterpolator.getInterpolation(getTransitionProgress()) : getTransitionProgress();
     }
 
-    public boolean isInProgress() {
-        return this.transition;
-    }
-
-    public float set(float f) {
-        return set(f, false);
-    }
-
-    public float set(float f, boolean z) {
-        if (z || this.transitionDuration <= 0 || this.firstSet) {
-            this.targetValue = f;
-            this.value = f;
-            this.transition = false;
-            this.firstSet = false;
-        } else if (Math.abs(this.targetValue - f) > 1.0E-4f) {
-            this.transition = true;
-            this.targetValue = f;
-            this.startValue = this.value;
-            this.transitionStart = SystemClock.elapsedRealtime();
-        }
+    public float getValue() {
         if (this.transition) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             float clamp = MathUtils.clamp(((float) ((elapsedRealtime - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
@@ -195,6 +184,29 @@ public class AnimatedFloat {
             }
         }
         return this.value;
+    }
+
+    public boolean isInProgress() {
+        return this.transition;
+    }
+
+    public float set(float f) {
+        return set(f, false);
+    }
+
+    public float set(float f, boolean z) {
+        if (z || this.transitionDuration <= 0 || this.firstSet) {
+            this.targetValue = f;
+            this.value = f;
+            this.transition = false;
+            this.firstSet = false;
+        } else if (Math.abs(this.targetValue - f) > 1.0E-4f) {
+            this.transition = true;
+            this.targetValue = f;
+            this.startValue = this.value;
+            this.transitionStart = SystemClock.elapsedRealtime();
+        }
+        return getValue();
     }
 
     public float set(boolean z) {

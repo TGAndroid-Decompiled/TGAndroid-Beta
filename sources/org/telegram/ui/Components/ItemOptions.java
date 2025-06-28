@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -83,12 +84,14 @@ public class ItemOptions {
     private ViewGroup pointContainer;
     private ViewTreeObserver.OnPreDrawListener preDrawListener;
     private Theme.ResourcesProvider resourcesProvider;
+    private boolean scaleOut;
     private View scrimView;
     private Drawable scrimViewBackground;
     private int scrimViewPadding;
     private int scrimViewRoundRadius;
     private Integer selectorColor;
     private int shiftDp;
+    public boolean shownFromBottom;
     public boolean swipeback;
     private Integer textColor;
     private float translateX;
@@ -334,7 +337,7 @@ public class ItemOptions {
         void getBounds(RectF rectF);
     }
 
-    private ItemOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z) {
+    private ItemOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z, boolean z2) {
         this.gravity = 5;
         this.point = new float[2];
         this.drawScrim = true;
@@ -350,6 +353,7 @@ public class ItemOptions {
         this.scrimView = view;
         this.dimAlpha = ((double) AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider))) > 0.705d ? 102 : 51;
         this.swipeback = z;
+        this.shownFromBottom = z2;
         init();
     }
 
@@ -367,7 +371,7 @@ public class ItemOptions {
         this.resourcesProvider = resourcesProvider;
     }
 
-    private ItemOptions(BaseFragment baseFragment, View view, boolean z, boolean z2) {
+    private ItemOptions(BaseFragment baseFragment, View view, boolean z, boolean z2, boolean z3) {
         this.gravity = 5;
         this.point = new float[2];
         this.drawScrim = true;
@@ -384,6 +388,7 @@ public class ItemOptions {
         this.dimAlpha = ((double) AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider))) > 0.705d ? 102 : 51;
         this.swipeback = z;
         this.useScrollView = z2;
+        this.shownFromBottom = z3;
         init();
     }
 
@@ -455,7 +460,7 @@ public class ItemOptions {
     }
 
     private void init() {
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, R.drawable.popup_fixed_alert2, this.resourcesProvider, (this.swipeback ? 1 : 0) | (!this.useScrollView ? 4 : 0)) {
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, R.drawable.popup_fixed_alert2, this.resourcesProvider, (this.useScrollView ? 0 : 4) | (this.swipeback ? 1 : 0) | (this.shownFromBottom ? 2 : 0)) {
             @Override
             public void onMeasure(int i, int i2) {
                 if (this == ItemOptions.this.layout && ItemOptions.this.maxHeight > 0) {
@@ -573,23 +578,27 @@ public class ItemOptions {
     }
 
     public static ItemOptions makeOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view) {
-        return new ItemOptions(viewGroup, resourcesProvider, view, false);
+        return new ItemOptions(viewGroup, resourcesProvider, view, false, false);
     }
 
     public static ItemOptions makeOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z) {
-        return new ItemOptions(viewGroup, resourcesProvider, view, z);
+        return new ItemOptions(viewGroup, resourcesProvider, view, z, false);
+    }
+
+    public static ItemOptions makeOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z, boolean z2) {
+        return new ItemOptions(viewGroup, resourcesProvider, view, z, z2);
     }
 
     public static ItemOptions makeOptions(BaseFragment baseFragment, View view) {
-        return new ItemOptions(baseFragment, view, false, true);
+        return new ItemOptions(baseFragment, view, false, true, false);
     }
 
     public static ItemOptions makeOptions(BaseFragment baseFragment, View view, boolean z) {
-        return new ItemOptions(baseFragment, view, z, true);
+        return new ItemOptions(baseFragment, view, z, true, false);
     }
 
     public static ItemOptions makeOptions(BaseFragment baseFragment, View view, boolean z, boolean z2) {
-        return new ItemOptions(baseFragment, view, z, !z2);
+        return new ItemOptions(baseFragment, view, z, !z2, false);
     }
 
     public ActionBarMenuSubItem add() {
@@ -874,6 +883,10 @@ public class ItemOptions {
     }
 
     public ItemOptions addText(CharSequence charSequence, int i, int i2) {
+        return addText(charSequence, i, null, i2);
+    }
+
+    public ItemOptions addText(CharSequence charSequence, int i, Typeface typeface, int i2) {
         TextView textView = new TextView(this.context) {
             @Override
             protected void onMeasure(int i3, int i4) {
@@ -885,6 +898,7 @@ public class ItemOptions {
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), false));
         textView.setTag(R.id.fit_width_tag, 1);
+        textView.setTypeface(typeface);
         NotificationCenter.listenEmojiLoading(textView);
         if (i2 > 0) {
             textView.setMaxWidth(i2);
@@ -1148,12 +1162,12 @@ public class ItemOptions {
         Drawable mutate = this.context.getResources().getDrawable(R.drawable.popup_fixed_alert2).mutate();
         ViewGroup viewGroup = this.layout;
         if (viewGroup instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
-            viewGroup.setBackgroundDrawable(new BlurringShader.StoryBlurDrawer(blurManager, viewGroup, 5).makeDrawable(this.offsetX + f + this.layout.getX(), this.offsetY + f2 + this.layout.getY(), mutate, AndroidUtilities.dp(6.0f)));
+            viewGroup.setBackground(new BlurringShader.StoryBlurDrawer(blurManager, viewGroup, 5).makeDrawable(this.offsetX + f + this.layout.getX(), this.offsetY + f2 + this.layout.getY(), mutate, AndroidUtilities.dp(6.0f)));
         } else {
             for (int i = 0; i < this.layout.getChildCount(); i++) {
                 View childAt = this.layout.getChildAt(i);
                 if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
-                    childAt.setBackgroundDrawable(new BlurringShader.StoryBlurDrawer(blurManager, childAt, 5).makeDrawable(this.offsetX + f + this.layout.getX() + childAt.getX(), this.offsetY + f2 + this.layout.getY() + childAt.getY(), mutate, AndroidUtilities.dp(6.0f)));
+                    childAt.setBackground(new BlurringShader.StoryBlurDrawer(blurManager, childAt, 5).makeDrawable(this.offsetX + f + this.layout.getX() + childAt.getX(), this.offsetY + f2 + this.layout.getY() + childAt.getY(), mutate, AndroidUtilities.dp(6.0f)));
                 }
             }
         }
@@ -1260,6 +1274,11 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions setScaleOut(boolean z) {
+        this.scaleOut = z;
+        return this;
+    }
+
     public ItemOptions setScrimViewBackground(Drawable drawable) {
         this.scrimViewBackground = drawable;
         return this;
@@ -1292,6 +1311,13 @@ public class ItemOptions {
         actionBarPopupWindowLayout.swipeBackGravityRight = z;
         actionBarPopupWindowLayout.swipeBackGravityBottom = z2;
         return this;
+    }
+
+    public void setTranslationY(float f) {
+        ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
+        if (actionBarPopupWindow != null) {
+            actionBarPopupWindow.update((int) this.offsetX, (int) (this.offsetY + f), -1, -1);
+        }
     }
 
     public ItemOptions setViewAdditionalOffsets(int i, int i2, int i3, int i4) {

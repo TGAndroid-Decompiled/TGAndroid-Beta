@@ -655,6 +655,7 @@ public class SecretVoicePlayer extends Dialog {
         }
         if (!BuildVars.DEBUG_PRIVATE_VERSION) {
             attributes.flags |= 8192;
+            AndroidUtilities.logFlagSecure();
         }
         attributes.flags |= 1152;
         if (i2 >= 28) {

@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
@@ -21,6 +23,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -38,13 +41,13 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
     private boolean alwaysShowText2;
     private CheckBox2 checkBox;
     private AnimatorSet checkBoxAnimation;
-    private ImageView deleteImageView;
+    public ImageView deleteImageView;
     private ChatActivityEnterViewAnimatedIconView emojiButton;
-    private ImageView moveImageView;
+    public ImageView moveImageView;
     private boolean needDivider;
     private final Theme.ResourcesProvider resourcesProvider;
     private boolean showNextButton;
-    private EditTextBoldCursor textView;
+    public EditTextBoldCursor textView;
     private SimpleTextView textView2;
     private ValueAnimator valueAnimator;
 
@@ -87,6 +90,32 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             }
 
             @Override
+            public boolean onTextContextMenuItem(int i2) {
+                ClipData primaryClip;
+                if (i2 == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && AndroidUtilities.charSequenceIndexOf(primaryClip.getItemAt(0).getText(), "\n") > 0) {
+                    CharSequence text = primaryClip.getItemAt(0).getText();
+                    ArrayList arrayList = new ArrayList();
+                    StringBuilder sb = new StringBuilder();
+                    for (int i3 = 0; i3 < text.length(); i3++) {
+                        char charAt = text.charAt(i3);
+                        if (charAt == '\n') {
+                            arrayList.add(sb.toString());
+                            sb.setLength(0);
+                        } else {
+                            sb.append(charAt);
+                        }
+                    }
+                    if (!TextUtils.isEmpty(sb)) {
+                        arrayList.add(sb);
+                    }
+                    if (PollEditTextCell.this.onPastedMultipleLines(arrayList)) {
+                        return true;
+                    }
+                }
+                return super.onTextContextMenuItem(i2);
+            }
+
+            @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (!isEnabled()) {
                     return false;
@@ -117,7 +146,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         this.textView.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setMaxLines(i == 1 ? 4 : Integer.MAX_VALUE);
-        this.textView.setBackgroundDrawable(null);
+        this.textView.setBackground(null);
         EditTextBoldCursor editTextBoldCursor = this.textView;
         editTextBoldCursor.setImeOptions(editTextBoldCursor.getImeOptions() | 268435456);
         EditTextBoldCursor editTextBoldCursor2 = this.textView;
@@ -384,6 +413,10 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             return;
         }
         simpleTextView2.setAlpha(measuredHeight >= AndroidUtilities.dp(52.0f) ? 1.0f : 0.0f);
+    }
+
+    public boolean onPastedMultipleLines(ArrayList arrayList) {
+        return false;
     }
 
     public void setChecked(boolean z, boolean z2) {

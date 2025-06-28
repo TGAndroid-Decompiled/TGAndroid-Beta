@@ -81,7 +81,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda265;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda313;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -1875,7 +1875,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.fileItems.clear();
         if (botDownloads.hasFiles()) {
             final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
-            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda265(makeOptions));
+            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda313(makeOptions));
             makeSwipeback.addGap();
             Iterator it2 = botDownloads.getFiles().iterator();
             while (it2.hasNext()) {
@@ -2148,7 +2148,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1176getWindowView() {
+    public WindowView mo1170getWindowView() {
         return this.windowView;
     }
 

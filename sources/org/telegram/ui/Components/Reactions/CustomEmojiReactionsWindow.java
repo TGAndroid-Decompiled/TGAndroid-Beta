@@ -577,7 +577,7 @@ public class CustomEmojiReactionsWindow {
         }
     }
 
-    public CustomEmojiReactionsWindow(int i, BaseFragment baseFragment, List list, HashSet hashSet, final ReactionsContainerLayout reactionsContainerLayout, Theme.ResourcesProvider resourcesProvider) {
+    public CustomEmojiReactionsWindow(int i, BaseFragment baseFragment, List list, HashSet hashSet, final ReactionsContainerLayout reactionsContainerLayout, Theme.ResourcesProvider resourcesProvider, boolean z) {
         int i2;
         this.type = i;
         this.reactions = list;
@@ -640,7 +640,7 @@ public class CustomEmojiReactionsWindow {
             }
 
             @Override
-            protected void dispatchSetPressed(boolean z) {
+            protected void dispatchSetPressed(boolean z2) {
             }
 
             @Override
@@ -678,7 +678,7 @@ public class CustomEmojiReactionsWindow {
                 CustomEmojiReactionsWindow.this.lambda$new$0(view);
             }
         });
-        this.attachToParent = i == 2 || i == 4 || i == 5;
+        this.attachToParent = i == 2 || i == 4 || i == 5 || z;
         this.containerView = new ContainerView(context);
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(baseFragment, context, false, null, reactionsContainerLayout.getWindowType(), i != 1, resourcesProvider, 16, reactionsContainerLayout, baseFragment);
         this.selectAnimatedEmojiDialog = anonymousClass2;

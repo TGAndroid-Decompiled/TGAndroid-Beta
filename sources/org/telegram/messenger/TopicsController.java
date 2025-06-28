@@ -942,7 +942,7 @@ public class TopicsController extends BaseController {
             tL_messages_getSavedDialogs.parent_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j3);
             tL_messages_getSavedDialogs.flags |= 2;
             TopicsLoadOffset loadOffset = getLoadOffset(j);
-            if (i == 0 || i == 3 || loadOffset.lastTopicId == 0) {
+            if (i == 0 || i == 3 || (i != 1 && loadOffset.lastTopicId == 0)) {
                 ArrayList<TLRPC.TL_forumTopic> topics = getTopics(j);
                 tL_messages_getSavedDialogs.limit = 20;
                 tL_messages_getSavedDialogs.offset_id = Integer.MAX_VALUE;
@@ -1190,6 +1190,12 @@ public class TopicsController extends BaseController {
         topicsLoadOffset.lastMessageDate = i2;
         topicsLoadOffset.lastTopicId = j2;
         this.offsets.put(j, topicsLoadOffset);
+    }
+
+    public void saveTopics(long j) {
+        if (((ArrayList) this.topicsByChatId.get(j)) != null) {
+            getMessagesStorage().saveTopics(-j, (List) this.topicsByChatId.get(j), true, true, getConnectionsManager().getCurrentTime());
+        }
     }
 
     public void sortTopics(long j, boolean z) {

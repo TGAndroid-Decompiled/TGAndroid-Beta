@@ -31,6 +31,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.util.StateSet;
 import android.view.MotionEvent;
@@ -53,7 +54,7 @@ import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda58;
+import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda51;
 
 public class HintView2 extends View {
     private float arrowHalfWidth;
@@ -173,7 +174,7 @@ public class HintView2 extends View {
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.show = new AnimatedFloat(this, 350L, cubicBezierInterpolator);
         this.iconMargin = AndroidUtilities.dp(2.0f);
-        this.hideRunnable = new ProfileActivity$$ExternalSyntheticLambda58(this);
+        this.hideRunnable = new ProfileActivity$$ExternalSyntheticLambda51(this);
         this.bounceT = 1.0f;
         this.bounce = new ButtonBounce(this, 2.0f, 5.0f);
         this.boundsWithArrow = new Rect();
@@ -310,6 +311,9 @@ public class HintView2 extends View {
     }
 
     public static int cutInFancyHalf(CharSequence charSequence, TextPaint textPaint) {
+        if (TextUtils.indexOf(charSequence, '\n') >= 0) {
+            return Integer.MAX_VALUE;
+        }
         int length = charSequence.length() / 2;
         float f = 0.0f;
         float f2 = 0.0f;

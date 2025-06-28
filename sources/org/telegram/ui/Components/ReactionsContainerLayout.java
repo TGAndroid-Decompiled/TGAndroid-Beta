@@ -108,6 +108,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private ReactionsContainerDelegate delegate;
     public final float durationScale;
     private float flipVerticalProgress;
+    public boolean forceAttachToParent;
     BaseFragment fragment;
     public boolean hasHint;
     private boolean hasStar;
@@ -1387,6 +1388,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
     public ReactionsContainerLayout(final int i, BaseFragment baseFragment, Context context, int i2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.forceAttachToParent = false;
         this.items = new ArrayList();
         this.oldItems = new ArrayList();
         Paint paint = new Paint(1);
@@ -2154,7 +2156,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         if (this.reactionsWindow != null) {
             return;
         }
-        this.reactionsWindow = new CustomEmojiReactionsWindow(this.type, this.fragment, this.allReactionsList, this.selectedReactions, this, this.resourcesProvider);
+        this.reactionsWindow = new CustomEmojiReactionsWindow(this.type, this.fragment, this.allReactionsList, this.selectedReactions, this, this.resourcesProvider, this.forceAttachToParent);
         invalidateLoopViews();
         this.reactionsWindow.onDismissListener(new Runnable() {
             @Override
@@ -2311,6 +2313,14 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             return 14;
         }
         return this.showExpandableReactions ? 8 : 1;
+    }
+
+    public View getWindowView() {
+        CustomEmojiReactionsWindow customEmojiReactionsWindow = this.reactionsWindow;
+        if (customEmojiReactionsWindow == null) {
+            return null;
+        }
+        return customEmojiReactionsWindow.windowView;
     }
 
     public void invalidateLoopViews() {

@@ -196,6 +196,7 @@ public class ActionBarMenuItem extends FrameLayout {
         private View.OnClickListener overrideClickListener;
         public CharSequence text;
         private Integer textColor;
+        public int textSizeDp;
         private View view;
         public View viewToSwipeBack;
         public int viewType;
@@ -235,6 +236,13 @@ public class ActionBarMenuItem extends FrameLayout {
             item.iconDrawable = drawable;
             item.text = str;
             item.viewToSwipeBack = view;
+            return item;
+        }
+
+        public static Item asText(CharSequence charSequence, int i) {
+            Item item = new Item(3);
+            item.text = charSequence;
+            item.textSizeDp = i;
             return item;
         }
 
@@ -311,6 +319,8 @@ public class ActionBarMenuItem extends FrameLayout {
             View view = this.view;
             if (view instanceof ActionBarMenuSubItem) {
                 ((ActionBarMenuSubItem) view).setText(charSequence);
+            } else if (view instanceof TextView) {
+                ((TextView) view).setText(charSequence);
             }
         }
 
@@ -1989,6 +1999,10 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public Item lazilyAddSwipeBackItem(int i, Drawable drawable, String str, View view) {
         return putLazyItem(Item.asSwipeBackItem(i, drawable, str, view));
+    }
+
+    public Item lazilyAddText(CharSequence charSequence, int i) {
+        return putLazyItem(Item.asText(charSequence, i));
     }
 
     protected void onDismiss() {

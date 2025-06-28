@@ -412,7 +412,7 @@ public class ApplicationLoader extends Application {
             ContactsController.getInstance(i2).checkAppAccount();
             DownloadController.getInstance(i2);
         }
-        BillingController.getInstance().lambda$onBillingServiceDisconnected$11();
+        BillingController.getInstance().lambda$onBillingServiceDisconnected$12();
     }
 
     public static void startAppCenter(Activity activity) {

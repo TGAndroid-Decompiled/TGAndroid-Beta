@@ -226,7 +226,7 @@ public class TL_payments {
         public static final int constructor = -586389774;
         public long bot_id;
         public int commission_permille;
-        public TL_stars.StarsAmount daily_revenue_per_user = new TL_stars.StarsAmount(0);
+        public TL_stars.StarsAmount daily_revenue_per_user = TL_stars.StarsAmount.ofStars(0);
         public int duration_months;
         public int end_date;
         public int flags;

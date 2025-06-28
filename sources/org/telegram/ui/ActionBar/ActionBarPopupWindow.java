@@ -11,9 +11,11 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.Property;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -154,10 +156,10 @@ public class ActionBarPopupWindow extends PopupWindow {
             LinearLayout linearLayout = new LinearLayout(context) {
                 @Override
                 protected boolean drawChild(Canvas canvas, View view, long j) {
-                    if (view instanceof GapView) {
-                        return false;
+                    if (!(view instanceof GapView) || ActionBarPopupWindowLayout.this.backgroundDrawable == null) {
+                        return super.drawChild(canvas, view, j);
                     }
-                    return super.drawChild(canvas, view, j);
+                    return false;
                 }
 
                 @Override
@@ -610,17 +612,16 @@ public class ActionBarPopupWindow extends PopupWindow {
     }
 
     private void init() {
-        View contentView = getContentView();
-        if (contentView instanceof ActionBarPopupWindowLayout) {
-            ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindowLayout) contentView;
-            if (actionBarPopupWindowLayout.getSwipeBack() != null) {
-                actionBarPopupWindowLayout.getSwipeBack().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        ActionBarPopupWindow.this.lambda$init$1(view);
-                    }
-                });
-            }
+        final View contentView = getContentView();
+        if ((contentView instanceof ActionBarPopupWindowLayout) && ((ActionBarPopupWindowLayout) contentView).getSwipeBack() != null) {
+            setTouchInterceptor(new View.OnTouchListener() {
+                @Override
+                public final boolean onTouch(View view, MotionEvent motionEvent) {
+                    boolean lambda$init$1;
+                    lambda$init$1 = ActionBarPopupWindow.this.lambda$init$1(contentView, view, motionEvent);
+                    return lambda$init$1;
+                }
+            });
         }
         Field field = superListenerField;
         if (field != null) {
@@ -633,8 +634,19 @@ public class ActionBarPopupWindow extends PopupWindow {
         }
     }
 
-    public void lambda$init$1(View view) {
+    public boolean lambda$init$1(View view, View view2, MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0) {
+            return false;
+        }
+        Drawable backgroundDrawable = ((ActionBarPopupWindowLayout) view).getBackgroundDrawable();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(backgroundDrawable.getBounds());
+        rectF.offset(view.getX(), view.getY());
+        if (rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            return false;
+        }
         dismiss();
+        return true;
     }
 
     public static void lambda$startAnimation$2(ActionBarPopupWindowLayout actionBarPopupWindowLayout, ValueAnimator valueAnimator) {

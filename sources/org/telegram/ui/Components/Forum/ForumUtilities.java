@@ -274,9 +274,13 @@ public abstract class ForumUtilities {
     }
 
     public static String getMonoForumTitle(int i, TLRPC.Chat chat, boolean z) {
-        TLRPC.Chat chat2;
-        if (ChatObject.isMonoForum(chat) && (chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id))) != null) {
-            return z ? chat2.title : LocaleController.formatString(R.string.MonoforumTitle, chat2.title);
+        if (ChatObject.isMonoForum(chat)) {
+            TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id));
+            if (chat2 != null) {
+                return z ? chat2.title : LocaleController.formatString(R.string.MonoforumTitle, chat2.title);
+            }
+        } else if (chat != null && chat.linked_monoforum_id != 0) {
+            return z ? chat.title : LocaleController.formatString(R.string.MonoforumTitle, chat.title);
         }
         if (chat != null) {
             return chat.title;
@@ -386,6 +390,7 @@ public abstract class ForumUtilities {
         tL_forumTopic.draft = tL_monoForumDialog.draft;
         tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
         tL_forumTopic.from_id = tL_monoForumDialog.peer;
+        tL_forumTopic.nopaid_messages_exception = tL_monoForumDialog.nopaid_messages_exception;
         return tL_forumTopic;
     }
 

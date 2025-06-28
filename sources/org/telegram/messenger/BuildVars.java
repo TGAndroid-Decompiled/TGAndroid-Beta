@@ -28,7 +28,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION_STRING = "11.12.0";
+        BUILD_VERSION_STRING = "11.13.0";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -97,6 +97,12 @@ public class BuildVars {
     }
 
     public static boolean useInvoiceBilling() {
-        return BillingController.billingClientEmpty || DEBUG_VERSION || ApplicationLoader.isStandaloneBuild() || isBetaApp() || isHuaweiStoreApp() || hasDirectCurrency();
+        if (!BillingController.billingClientEmpty && !ApplicationLoader.isStandaloneBuild()) {
+            isBetaApp();
+            if (!isHuaweiStoreApp() && !hasDirectCurrency()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -1484,11 +1484,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 if (this.fragment.getParentActivity() != null) {
                     if (z2) {
                         this.fragment.getParentActivity().getWindow().clearFlags(8192);
-                        return;
                     } else {
                         this.fragment.getParentActivity().getWindow().addFlags(8192);
-                        return;
                     }
+                    AndroidUtilities.logFlagSecure();
+                    return;
                 }
                 return;
             }
@@ -1500,6 +1500,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 i = layoutParams.flags | 8192;
             }
             layoutParams.flags = i;
+            AndroidUtilities.logFlagSecure();
             try {
                 this.windowManager.updateViewLayout(this.windowView, this.windowLayoutParams);
             } catch (Exception e) {
@@ -1834,7 +1835,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public View mo1176getWindowView() {
+    public View mo1170getWindowView() {
         return this.windowView;
     }
 

@@ -372,6 +372,12 @@ public class Utilities {
 
     public static native int convertVideoFrame(ByteBuffer byteBuffer, ByteBuffer byteBuffer2, int i, int i2, int i3, int i4, int i5);
 
+    public static float dist(float f, float f2, float f3, float f4) {
+        float f5 = f - f3;
+        float f6 = f2 - f4;
+        return (float) Math.sqrt((f5 * f5) + (f6 * f6));
+    }
+
     private static void doCallbacks(final int i, final Callback<Runnable>... callbackArr) {
         if (callbackArr == null || callbackArr.length <= i) {
             return;

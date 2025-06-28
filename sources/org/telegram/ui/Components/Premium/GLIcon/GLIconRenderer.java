@@ -73,7 +73,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 gl10) {
         GLES20.glClear(16640);
         GLES20.glEnable(2929);
-        Matrix.setLookAtM(this.mViewMatrix, 0, 0.0f, 0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+        Matrix.setLookAtM(this.mViewMatrix, 0, 0.0f, this.type == 4 ? 40.0f : 0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         Matrix.setIdentityM(this.mRotationMatrix, 0);
         Matrix.translateM(this.mRotationMatrix, 0, 0.0f, this.angleX2, 0.0f);
         Matrix.rotateM(this.mRotationMatrix, 0, -this.angleY, 1.0f, 0.0f, 0.0f);
@@ -95,7 +95,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
         this.mWidth = i;
         this.mHeight = i2;
         GLES20.glViewport(0, 0, i, i2);
-        Matrix.perspectiveM(this.mProjectionMatrix, 0, 53.13f, i / i2, 1.0f, 200.0f);
+        Matrix.perspectiveM(this.mProjectionMatrix, 0, this.type == 4 ? 12.0f : 53.13f, i / i2, 1.0f, 200.0f);
     }
 
     @Override
