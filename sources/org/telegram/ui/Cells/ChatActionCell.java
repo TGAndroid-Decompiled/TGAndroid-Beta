@@ -592,12 +592,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 i9 = 0;
             }
             if (i9 != 0) {
-                if (!(charSequence instanceof SpannableStringBuilder)) {
-                    charSequence = new SpannableStringBuilder(charSequence);
-                }
-                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) charSequence;
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
                 spannableStringBuilder.insert(0, (CharSequence) "i ");
                 spannableStringBuilder.setSpan(new ColoredImageSpan(i9), 0, 1, 33);
+                charSequence = spannableStringBuilder;
             }
         }
         createLayout(charSequence, this.previousWidth);

@@ -13763,7 +13763,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             BulletinFactory of;
             int i;
             String formatString;
-            if (!chatMessageCell.getMessageObject().isForwarded()) {
+            if (chatMessageCell.getMessageObject().isForwarded()) {
                 long peerDialogId = DialogObject.getPeerDialogId(chatMessageCell.getMessageObject().getFromPeer());
                 of = BulletinFactory.of(ChatActivity.this);
                 i = R.raw.passcode_lock_close;
