@@ -529,14 +529,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         String str5;
         String str6;
         String shortName;
-        long j;
         int i5;
         String str7;
         int i6;
         String formatString;
         int i7;
-        CharSequence replaceTags2;
+        CharSequence formatPluralStringComma;
         TL_stars.StarGift starGift;
+        String str8;
         char c;
         Object valueOf;
         int i8;
@@ -545,9 +545,12 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         CharSequence charSequence5;
         CharSequence charSequence6;
         boolean z8;
-        String str8;
-        TLRPC.MessageMedia messageMedia;
+        String str9;
+        TLRPC.Message message;
+        TLRPC.MessageAction messageAction;
         int i9;
+        TLRPC.MessageMedia messageMedia;
+        int i10;
         this.giftRectEmpty = false;
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null) {
@@ -558,17 +561,17 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 charSequence = (chatActionCellDelegate != null && chatActionCellDelegate.getTopicId() == 0 && MessageObject.isTopicActionMessage(messageObject)) ? ForumUtilities.createActionTextWithTopic(MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(this.currentAccount, messageObject.messageOwner, true)), messageObject) : null;
             }
             if (charSequence == null) {
-                TLRPC.Message message = messageObject.messageOwner;
-                if (message != null && (messageMedia = message.media) != null && messageMedia.ttl_seconds != 0) {
+                TLRPC.Message message2 = messageObject.messageOwner;
+                if (message2 != null && (messageMedia = message2.media) != null && messageMedia.ttl_seconds != 0) {
                     if (messageMedia.photo != null) {
-                        i9 = R.string.AttachPhotoExpired;
+                        i10 = R.string.AttachPhotoExpired;
                     } else {
                         TLRPC.Document document = messageMedia.document;
                         if ((document instanceof TLRPC.TL_documentEmpty) || ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && document == null)) {
-                            i9 = messageMedia.voice ? R.string.AttachVoiceExpired : messageMedia.round ? R.string.AttachRoundExpired : R.string.AttachVideoExpired;
+                            i10 = messageMedia.voice ? R.string.AttachVoiceExpired : messageMedia.round ? R.string.AttachRoundExpired : R.string.AttachVideoExpired;
                         }
                     }
-                    charSequence = LocaleController.getString(i9);
+                    charSequence = LocaleController.getString(i10);
                 }
                 charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
             }
@@ -579,20 +582,38 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (messageObject2 != null && messageObject2.isRepostPreview) {
             charSequence = "";
         }
+        if (messageObject2 != null && (message = messageObject2.messageOwner) != null && (messageAction = message.action) != null) {
+            if (messageAction instanceof TLRPC.TL_messageActionTodoAppendTasks) {
+                i9 = R.drawable.mini_checklist_add;
+            } else if (messageAction instanceof TLRPC.TL_messageActionTodoCompletions) {
+                TLRPC.TL_messageActionTodoCompletions tL_messageActionTodoCompletions = (TLRPC.TL_messageActionTodoCompletions) messageAction;
+                i9 = tL_messageActionTodoCompletions.incompleted.size() > tL_messageActionTodoCompletions.completed.size() ? R.drawable.mini_checklist_undone : R.drawable.mini_checklist_done;
+            } else {
+                i9 = 0;
+            }
+            if (i9 != 0) {
+                if (!(charSequence instanceof SpannableStringBuilder)) {
+                    charSequence = new SpannableStringBuilder(charSequence);
+                }
+                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) charSequence;
+                spannableStringBuilder.insert(0, (CharSequence) "i ");
+                spannableStringBuilder.setSpan(new ColoredImageSpan(i9), 0, 1, 33);
+            }
+        }
         createLayout(charSequence, this.previousWidth);
         if (messageObject != null) {
-            TLRPC.Message message2 = messageObject.messageOwner;
-            if (message2 != null) {
-                TLRPC.MessageAction messageAction = message2.action;
-                if ((messageAction instanceof TLRPC.TL_messageActionSuggestedPostApproval) && ((TLRPC.TL_messageActionSuggestedPostApproval) messageAction).balance_too_low) {
-                    str8 = !ChatObject.canManageMonoForum(this.currentAccount, messageObject.getDialogId()) ? LocaleController.getString(R.string.StarsBuy) : null;
+            TLRPC.Message message3 = messageObject.messageOwner;
+            if (message3 != null) {
+                TLRPC.MessageAction messageAction2 = message3.action;
+                if ((messageAction2 instanceof TLRPC.TL_messageActionSuggestedPostApproval) && ((TLRPC.TL_messageActionSuggestedPostApproval) messageAction2).balance_too_low) {
+                    str9 = !ChatObject.canManageMonoForum(this.currentAccount, messageObject.getDialogId()) ? LocaleController.getString(R.string.StarsBuy) : null;
                     i8 = this.giftRectSize;
                     z6 = false;
                     z7 = true;
                     charSequence5 = null;
                     charSequence6 = null;
                     z8 = false;
-                    createGiftPremiumLayouts(charSequence5, charSequence6, charSequence, z8, str8, 11, null, i8, z6, z7);
+                    createGiftPremiumLayouts(charSequence5, charSequence6, charSequence, z8, str9, 11, null, i8, z6, z7);
                     this.textLayout = null;
                     this.textHeight = 0;
                     this.titleLayout = null;
@@ -601,17 +622,17 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     this.giftRectEmpty = true;
                 }
             }
-            if (message2 != null) {
-                TLRPC.MessageAction messageAction2 = message2.action;
-                if ((messageAction2 instanceof TLRPC.TL_messageActionSuggestedPostApproval) && ((TLRPC.TL_messageActionSuggestedPostApproval) messageAction2).rejected) {
+            if (message3 != null) {
+                TLRPC.MessageAction messageAction3 = message3.action;
+                if ((messageAction3 instanceof TLRPC.TL_messageActionSuggestedPostApproval) && ((TLRPC.TL_messageActionSuggestedPostApproval) messageAction3).rejected) {
                     i8 = this.giftRectSize;
                     z6 = false;
                     z7 = true;
                     charSequence5 = null;
                     charSequence6 = null;
                     z8 = false;
-                    str8 = null;
-                    createGiftPremiumLayouts(charSequence5, charSequence6, charSequence, z8, str8, 11, null, i8, z6, z7);
+                    str9 = null;
+                    createGiftPremiumLayouts(charSequence5, charSequence6, charSequence, z8, str9, 11, null, i8, z6, z7);
                     this.textLayout = null;
                     this.textHeight = 0;
                     this.titleLayout = null;
@@ -620,19 +641,19 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     this.giftRectEmpty = true;
                 }
             }
-            int i10 = messageObject.type;
-            if (i10 == 11) {
+            int i11 = messageObject.type;
+            if (i11 == 11) {
                 float dp = this.textHeight + AndroidUtilities.dp(19.0f);
                 float f = AndroidUtilities.roundMessageSize;
                 this.imageReceiver.setImageCoords((this.previousWidth - AndroidUtilities.roundMessageSize) / 2.0f, dp, f, f);
-            } else if (i10 == 25) {
+            } else if (i11 == 25) {
                 createGiftPremiumChannelLayouts();
             } else {
-                if (i10 == 30) {
+                if (i11 == 30) {
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentMessageObject.getDialogId()));
-                    TLRPC.MessageAction messageAction3 = messageObject.messageOwner.action;
-                    if (messageAction3 instanceof TLRPC.TL_messageActionGiftStars) {
-                        String formatPluralStringComma = LocaleController.formatPluralStringComma("ActionGiftStarsTitle", (int) ((TLRPC.TL_messageActionGiftStars) messageAction3).stars);
+                    TLRPC.MessageAction messageAction4 = messageObject.messageOwner.action;
+                    if (messageAction4 instanceof TLRPC.TL_messageActionGiftStars) {
+                        String formatPluralStringComma2 = LocaleController.formatPluralStringComma("ActionGiftStarsTitle", (int) ((TLRPC.TL_messageActionGiftStars) messageAction4).stars);
                         string = AndroidUtilities.replaceTags(this.currentMessageObject.isOutOwner() ? LocaleController.formatString(R.string.ActionGiftStarsSubtitle, UserObject.getForcedFirstName(user)) : LocaleController.getString(R.string.ActionGiftStarsSubtitleYou));
                         string2 = LocaleController.getString(R.string.ActionGiftStarsView);
                         i3 = this.giftRectSize;
@@ -640,27 +661,27 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                         z4 = false;
                         charSequence4 = null;
                         z5 = false;
-                        str6 = formatPluralStringComma;
+                        str6 = formatPluralStringComma2;
                         i4 = 11;
                         str3 = null;
                         str5 = str6;
                         chatActionCell = this;
                         str4 = str5;
-                    } else if ((messageAction3 instanceof TLRPC.TL_messageActionStarGiftUnique) && ((TLRPC.TL_messageActionStarGiftUnique) messageAction3).refunded) {
+                    } else if ((messageAction4 instanceof TLRPC.TL_messageActionStarGiftUnique) && ((TLRPC.TL_messageActionStarGiftUnique) messageAction4).refunded) {
                         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
                         if (messageObject.isOutOwner() != (!((TLRPC.TL_messageActionStarGiftUnique) messageObject.messageOwner.action).upgrade)) {
                             clientUserId = messageObject.getDialogId();
                         }
                         TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(clientUserId));
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActionTitle)).append((CharSequence) " ");
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+                        spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.Gift2ActionTitle)).append((CharSequence) " ");
                         if (user2 != null && user2.photo != null) {
-                            spannableStringBuilder.append((CharSequence) "a ");
+                            spannableStringBuilder2.append((CharSequence) "a ");
                             AvatarSpan avatarSpan = new AvatarSpan(this, this.currentAccount, 18.0f);
                             avatarSpan.setUser(user2);
-                            spannableStringBuilder.setSpan(avatarSpan, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 33);
+                            spannableStringBuilder2.setSpan(avatarSpan, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 33);
                         }
-                        spannableStringBuilder.append((CharSequence) UserObject.getForcedFirstName(user2));
+                        spannableStringBuilder2.append((CharSequence) UserObject.getForcedFirstName(user2));
                         string = LocaleController.getString(R.string.Gift2ActionUpgradeRefundedText);
                         string2 = LocaleController.getString(R.string.ActionGiftStarsView);
                         str3 = LocaleController.getString(R.string.Gift2UniqueRibbon);
@@ -670,12 +691,12 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                         charSequence4 = null;
                         z5 = false;
                         i4 = 12;
-                        str5 = spannableStringBuilder;
+                        str5 = spannableStringBuilder2;
                         chatActionCell = this;
                         str4 = str5;
-                    } else if (messageAction3 instanceof TLRPC.TL_messageActionStarGift) {
-                        TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction3;
-                        long j2 = tL_messageActionStarGift.convert_stars;
+                    } else if (messageAction4 instanceof TLRPC.TL_messageActionStarGift) {
+                        TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction4;
+                        long j = tL_messageActionStarGift.convert_stars;
                         long clientUserId2 = UserConfig.getInstance(this.currentAccount).getClientUserId();
                         boolean z9 = tL_messageActionStarGift.peer != null;
                         boolean z10 = messageObject.getDialogId() == clientUserId2 && !z9;
@@ -684,107 +705,107 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                         if (peer != null) {
                             fromChatId = DialogObject.getPeerDialogId(peer);
                         }
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+                        boolean z11 = z9;
+                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
                         TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(fromChatId);
-                        boolean z11 = tL_messageActionStarGift.can_upgrade && !tL_messageActionStarGift.converted && tL_messageActionStarGift.upgrade_stars > 0 && !tL_messageActionStarGift.upgraded;
+                        boolean z12 = tL_messageActionStarGift.can_upgrade && !tL_messageActionStarGift.converted && tL_messageActionStarGift.upgrade_stars > 0 && !tL_messageActionStarGift.upgraded;
                         if (z10) {
                             shortName = LocaleController.getString(R.string.Gift2ActionSelfTitle);
                         } else {
-                            spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.Gift2ActionTitle)).append((CharSequence) " ");
+                            spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.Gift2ActionTitle)).append((CharSequence) " ");
                             if (DialogObject.hasPhoto(userOrChat)) {
-                                spannableStringBuilder2.append((CharSequence) "a ");
+                                spannableStringBuilder3.append((CharSequence) "a ");
                                 AvatarSpan avatarSpan2 = new AvatarSpan(this, this.currentAccount, 18.0f);
                                 avatarSpan2.setObject(userOrChat);
-                                spannableStringBuilder2.setSpan(avatarSpan2, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 33);
+                                spannableStringBuilder3.setSpan(avatarSpan2, spannableStringBuilder3.length() - 2, spannableStringBuilder3.length() - 1, 33);
                             }
                             shortName = DialogObject.getShortName(userOrChat);
                         }
-                        spannableStringBuilder2.append((CharSequence) shortName);
-                        boolean z12 = ((messageObject.isOutOwner() && !z10) || !tL_messageActionStarGift.converted) && tL_messageActionStarGift.convert_stars > 0 && MessagesController.getInstance(this.currentAccount).stargiftsConvertPeriodMax - (ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - messageObject.messageOwner.date) > 0 && !tL_messageActionStarGift.refunded;
+                        spannableStringBuilder3.append((CharSequence) shortName);
+                        boolean z13 = ((messageObject.isOutOwner() && !z10) || !tL_messageActionStarGift.converted) && tL_messageActionStarGift.convert_stars > 0 && MessagesController.getInstance(this.currentAccount).stargiftsConvertPeriodMax - (ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - messageObject.messageOwner.date) > 0 && !tL_messageActionStarGift.refunded;
                         if (tL_messageActionStarGift.refunded) {
                             i6 = R.string.Gift2ActionConvertRefundedText;
                         } else {
                             TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGift.message;
                             if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
-                                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(tL_messageActionStarGift.message.text);
+                                SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(tL_messageActionStarGift.message.text);
                                 this.giftTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
-                                MessageObject.addEntitiesToText(spannableStringBuilder3, tL_messageActionStarGift.message.entities, false, false, true, true);
-                                replaceTags2 = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) spannableStringBuilder3, this.giftTextPaint.getFontMetricsInt(), false, (int[]) null), tL_messageActionStarGift.message.entities, this.giftTextPaint.getFontMetricsInt());
-                            } else if (!z9) {
-                                j = j2;
-                                if (z10) {
-                                    if (!tL_messageActionStarGift.converted || j <= 0) {
-                                        i7 = tL_messageActionStarGift.can_upgrade ? R.string.Gift2ActionSelfInfoUpgrade : R.string.Gift2ActionSelfInfoNoConvert;
+                                MessageObject.addEntitiesToText(spannableStringBuilder4, tL_messageActionStarGift.message.entities, false, false, true, true);
+                                formatPluralStringComma = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) spannableStringBuilder4, this.giftTextPaint.getFontMetricsInt(), false, (int[]) null), tL_messageActionStarGift.message.entities, this.giftTextPaint.getFontMetricsInt());
+                            } else if (z11) {
+                                if (!tL_messageActionStarGift.converted) {
+                                    if (!z13 || j <= 0) {
+                                        i7 = R.string.Gift2ActionInfoChannelNoConvert;
                                         formatString = LocaleController.getString(i7);
-                                        replaceTags2 = AndroidUtilities.replaceTags(formatString);
-                                    }
-                                    replaceTags2 = LocaleController.formatPluralStringComma("Gift2ActionConvertedInfo", (int) j);
-                                } else {
-                                    if (z11) {
-                                        if (messageObject.isOutOwner()) {
-                                            formatString = LocaleController.formatString(R.string.Gift2ActionUpgradeOut, UserObject.getForcedFirstName(user));
-                                        } else {
-                                            i7 = R.string.Gift2ActionUpgrade;
-                                            formatString = LocaleController.getString(i7);
-                                        }
-                                    } else if (messageObject.isOutOwner()) {
-                                        formatString = (!z12 || j <= 0) ? tL_messageActionStarGift.can_upgrade ? LocaleController.formatString(R.string.Gift2ActionOutInfoUpgrade, UserObject.getForcedFirstName(user)) : LocaleController.formatString(R.string.Gift2ActionOutInfoNoConvert, UserObject.getForcedFirstName(user)) : LocaleController.formatPluralStringComma("Gift2ActionOutInfo", (int) j, UserObject.getForcedFirstName(user));
+                                        formatPluralStringComma = AndroidUtilities.replaceTags(formatString);
                                     } else {
-                                        if (!tL_messageActionStarGift.converted) {
-                                            if (tL_messageActionStarGift.saved) {
-                                                i6 = !z12 ? R.string.Gift2ActionBotSavedInfo : R.string.Gift2ActionSavedInfo;
-                                            } else if (z12) {
-                                                i5 = (int) j;
-                                                str7 = "Gift2ActionInfo";
-                                                formatString = LocaleController.formatPluralStringComma(str7, i5);
-                                            } else {
-                                                i6 = R.string.Gift2ActionBotInfo;
-                                            }
-                                        }
-                                        replaceTags2 = LocaleController.formatPluralStringComma("Gift2ActionConvertedInfo", (int) j);
+                                        i5 = (int) j;
+                                        str7 = "Gift2ActionInfoChannel";
+                                        formatString = LocaleController.formatPluralStringComma(str7, i5);
+                                        formatPluralStringComma = AndroidUtilities.replaceTags(formatString);
                                     }
-                                    replaceTags2 = AndroidUtilities.replaceTags(formatString);
                                 }
-                            } else if (tL_messageActionStarGift.converted) {
-                                j = j2;
-                                replaceTags2 = LocaleController.formatPluralStringComma("Gift2ActionConvertedInfo", (int) j);
-                            } else if (!z12 || j2 <= 0) {
-                                i7 = R.string.Gift2ActionInfoChannelNoConvert;
-                                formatString = LocaleController.getString(i7);
-                                replaceTags2 = AndroidUtilities.replaceTags(formatString);
+                                formatPluralStringComma = LocaleController.formatPluralStringComma("Gift2ActionConvertedInfo", (int) j);
+                            } else if (z10) {
+                                if (!tL_messageActionStarGift.converted || j <= 0) {
+                                    i7 = tL_messageActionStarGift.can_upgrade ? R.string.Gift2ActionSelfInfoUpgrade : R.string.Gift2ActionSelfInfoNoConvert;
+                                    formatString = LocaleController.getString(i7);
+                                    formatPluralStringComma = AndroidUtilities.replaceTags(formatString);
+                                }
+                                formatPluralStringComma = LocaleController.formatPluralStringComma("Gift2ActionConvertedInfo", (int) j);
                             } else {
-                                i5 = (int) j2;
-                                str7 = "Gift2ActionInfoChannel";
-                                formatString = LocaleController.formatPluralStringComma(str7, i5);
-                                replaceTags2 = AndroidUtilities.replaceTags(formatString);
+                                if (z12) {
+                                    if (messageObject.isOutOwner()) {
+                                        formatString = LocaleController.formatString(R.string.Gift2ActionUpgradeOut, UserObject.getForcedFirstName(user));
+                                    } else {
+                                        i7 = R.string.Gift2ActionUpgrade;
+                                        formatString = LocaleController.getString(i7);
+                                    }
+                                } else if (messageObject.isOutOwner()) {
+                                    formatString = (!z13 || j <= 0) ? tL_messageActionStarGift.can_upgrade ? LocaleController.formatString(R.string.Gift2ActionOutInfoUpgrade, UserObject.getForcedFirstName(user)) : LocaleController.formatString(R.string.Gift2ActionOutInfoNoConvert, UserObject.getForcedFirstName(user)) : LocaleController.formatPluralStringComma("Gift2ActionOutInfo", (int) j, UserObject.getForcedFirstName(user));
+                                } else {
+                                    if (!tL_messageActionStarGift.converted) {
+                                        if (tL_messageActionStarGift.saved) {
+                                            i6 = !z13 ? R.string.Gift2ActionBotSavedInfo : R.string.Gift2ActionSavedInfo;
+                                        } else if (z13) {
+                                            i5 = (int) j;
+                                            str7 = "Gift2ActionInfo";
+                                            formatString = LocaleController.formatPluralStringComma(str7, i5);
+                                        } else {
+                                            i6 = R.string.Gift2ActionBotInfo;
+                                        }
+                                    }
+                                    formatPluralStringComma = LocaleController.formatPluralStringComma("Gift2ActionConvertedInfo", (int) j);
+                                }
+                                formatPluralStringComma = AndroidUtilities.replaceTags(formatString);
                             }
-                            string = replaceTags2;
+                            string = formatPluralStringComma;
                             starGift = tL_messageActionStarGift.gift;
                             if (starGift == null && starGift.limited) {
-                                int i11 = R.string.Gift2Limited1OfRibbon;
-                                int i12 = starGift.availability_total;
-                                if (i12 > 1500) {
+                                int i12 = R.string.Gift2Limited1OfRibbon;
+                                int i13 = starGift.availability_total;
+                                if (i13 > 1500) {
                                     c = 0;
-                                    valueOf = AndroidUtilities.formatWholeNumber(i12, 0);
+                                    valueOf = AndroidUtilities.formatWholeNumber(i13, 0);
                                 } else {
                                     c = 0;
-                                    valueOf = Integer.valueOf(i12);
+                                    valueOf = Integer.valueOf(i13);
                                 }
                                 Object[] objArr = new Object[1];
                                 objArr[c] = valueOf;
-                                str3 = LocaleController.formatString(i11, objArr);
+                                str8 = LocaleController.formatString(i12, objArr);
                             } else {
-                                str3 = null;
+                                str8 = null;
                             }
                             String string3 = LocaleController.getString(R.string.ActionGiftStarsView);
-                            if ((messageObject.isOutOwner() || tL_messageActionStarGift.forceIn || z11) && !messageObject.isOutOwner() && z11) {
-                                SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
-                                spannableStringBuilder4.append((CharSequence) "^  ");
+                            if ((messageObject.isOutOwner() || tL_messageActionStarGift.forceIn || z12) && !messageObject.isOutOwner() && z12) {
+                                SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder();
+                                spannableStringBuilder5.append((CharSequence) "^  ");
                                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.gift_unpack);
                                 coloredImageSpan.setScale(0.8f, 0.8f);
-                                spannableStringBuilder4.setSpan(coloredImageSpan, 0, 1, 33);
-                                spannableStringBuilder4.append((CharSequence) LocaleController.getString(R.string.Gift2Unpack));
-                                string2 = spannableStringBuilder4;
+                                spannableStringBuilder5.setSpan(coloredImageSpan, 0, 1, 33);
+                                spannableStringBuilder5.append((CharSequence) LocaleController.getString(R.string.Gift2Unpack));
+                                string2 = spannableStringBuilder5;
                             } else {
                                 string2 = string3;
                             }
@@ -795,24 +816,25 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                             z5 = false;
                             i4 = 11;
                             chatActionCell = this;
-                            str4 = spannableStringBuilder2;
+                            str4 = spannableStringBuilder3;
+                            str3 = str8;
                         }
-                        replaceTags2 = LocaleController.getString(i6);
-                        string = replaceTags2;
+                        formatPluralStringComma = LocaleController.getString(i6);
+                        string = formatPluralStringComma;
                         starGift = tL_messageActionStarGift.gift;
                         if (starGift == null) {
                         }
-                        str3 = null;
+                        str8 = null;
                         String string32 = LocaleController.getString(R.string.ActionGiftStarsView);
                         if (messageObject.isOutOwner()) {
                         }
-                        SpannableStringBuilder spannableStringBuilder42 = new SpannableStringBuilder();
-                        spannableStringBuilder42.append((CharSequence) "^  ");
+                        SpannableStringBuilder spannableStringBuilder52 = new SpannableStringBuilder();
+                        spannableStringBuilder52.append((CharSequence) "^  ");
                         ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.gift_unpack);
                         coloredImageSpan2.setScale(0.8f, 0.8f);
-                        spannableStringBuilder42.setSpan(coloredImageSpan2, 0, 1, 33);
-                        spannableStringBuilder42.append((CharSequence) LocaleController.getString(R.string.Gift2Unpack));
-                        string2 = spannableStringBuilder42;
+                        spannableStringBuilder52.setSpan(coloredImageSpan2, 0, 1, 33);
+                        spannableStringBuilder52.append((CharSequence) LocaleController.getString(R.string.Gift2Unpack));
+                        string2 = spannableStringBuilder52;
                         i3 = this.giftRectSize;
                         z3 = true;
                         z4 = false;
@@ -820,9 +842,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                         z5 = false;
                         i4 = 11;
                         chatActionCell = this;
-                        str4 = spannableStringBuilder2;
+                        str4 = spannableStringBuilder3;
+                        str3 = str8;
                     } else {
-                        String string4 = LocaleController.getString(messageAction3 instanceof TLRPC.TL_messageActionGiftTon ? R.string.ActionGiftTonTitle : R.string.ActionStarGiveawayPrizeTitle);
+                        String string4 = LocaleController.getString(messageAction4 instanceof TLRPC.TL_messageActionGiftTon ? R.string.ActionGiftTonTitle : R.string.ActionStarGiveawayPrizeTitle);
                         CharSequence charSequence7 = this.currentMessageObject.messageText;
                         str = LocaleController.getString(R.string.ActionGiftStarsView);
                         i2 = this.giftRectSize;
@@ -836,44 +859,44 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                         this.titleHeight = 0;
                         this.textY = 0;
                     }
-                } else if (i10 == 18) {
-                    TLRPC.MessageAction messageAction4 = message2.action;
-                    TLRPC.TL_textWithEntities tL_textWithEntities2 = messageAction4 instanceof TLRPC.TL_messageActionGiftPremium ? ((TLRPC.TL_messageActionGiftPremium) messageAction4).message : messageAction4 instanceof TLRPC.TL_messageActionGiftCode ? ((TLRPC.TL_messageActionGiftCode) messageAction4).message : null;
+                } else if (i11 == 18) {
+                    TLRPC.MessageAction messageAction5 = message3.action;
+                    TLRPC.TL_textWithEntities tL_textWithEntities2 = messageAction5 instanceof TLRPC.TL_messageActionGiftPremium ? ((TLRPC.TL_messageActionGiftPremium) messageAction5).message : messageAction5 instanceof TLRPC.TL_messageActionGiftCode ? ((TLRPC.TL_messageActionGiftCode) messageAction5).message : null;
                     if (tL_textWithEntities2 == null || TextUtils.isEmpty(tL_textWithEntities2.text)) {
                         spannable = null;
                     } else {
-                        SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(tL_textWithEntities2.text);
+                        SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(tL_textWithEntities2.text);
                         this.giftTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
-                        MessageObject.addEntitiesToText(spannableStringBuilder5, tL_textWithEntities2.entities, false, false, true, true);
-                        spannable = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) spannableStringBuilder5, this.giftTextPaint.getFontMetricsInt(), false, (int[]) null), tL_textWithEntities2.entities, this.giftTextPaint.getFontMetricsInt());
+                        MessageObject.addEntitiesToText(spannableStringBuilder6, tL_textWithEntities2.entities, false, false, true, true);
+                        spannable = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji((CharSequence) spannableStringBuilder6, this.giftTextPaint.getFontMetricsInt(), false, (int[]) null), tL_textWithEntities2.entities, this.giftTextPaint.getFontMetricsInt());
                     }
                     string = spannable == null ? LocaleController.getString(R.string.ActionGiftPremiumText) : spannable;
                     string2 = LocaleController.getString((!isGiftCode() || isSelfGiftCode()) ? R.string.ActionGiftPremiumView : R.string.GiftPremiumUseGiftBtn);
-                    String formatPluralStringComma2 = LocaleController.formatPluralStringComma("ActionGiftPremiumTitle2", messageObject.messageOwner.action.months);
+                    String formatPluralStringComma3 = LocaleController.formatPluralStringComma("ActionGiftPremiumTitle2", messageObject.messageOwner.action.months);
                     i3 = this.giftRectSize;
                     z3 = false;
                     z4 = false;
                     charSequence4 = null;
                     z5 = true;
-                    str6 = formatPluralStringComma2;
+                    str6 = formatPluralStringComma3;
                     i4 = 11;
                     str3 = null;
                     str5 = str6;
                     chatActionCell = this;
                     str4 = str5;
                 } else {
-                    if (i10 == 21) {
-                        TLRPC.TL_messageActionSuggestProfilePhoto tL_messageActionSuggestProfilePhoto = (TLRPC.TL_messageActionSuggestProfilePhoto) message2.action;
+                    if (i11 == 21) {
+                        TLRPC.TL_messageActionSuggestProfilePhoto tL_messageActionSuggestProfilePhoto = (TLRPC.TL_messageActionSuggestProfilePhoto) message3.action;
                         TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
-                        boolean z13 = tL_messageActionSuggestProfilePhoto.video || !((photo = tL_messageActionSuggestProfilePhoto.photo) == null || (arrayList2 = photo.video_sizes) == null || arrayList2.isEmpty());
+                        boolean z14 = tL_messageActionSuggestProfilePhoto.video || !((photo = tL_messageActionSuggestProfilePhoto.photo) == null || (arrayList2 = photo.video_sizes) == null || arrayList2.isEmpty());
                         if (user3.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
                             TLRPC.User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId()));
-                            replaceTags = z13 ? LocaleController.formatString(R.string.ActionSuggestVideoFromYouDescription, user4.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoFromYouDescription, user4.first_name);
+                            replaceTags = z14 ? LocaleController.formatString(R.string.ActionSuggestVideoFromYouDescription, user4.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoFromYouDescription, user4.first_name);
                         } else {
-                            replaceTags = z13 ? LocaleController.formatString(R.string.ActionSuggestVideoToYouDescription, user3.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoToYouDescription, user3.first_name);
+                            replaceTags = z14 ? LocaleController.formatString(R.string.ActionSuggestVideoToYouDescription, user3.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoToYouDescription, user3.first_name);
                         }
                         i = (tL_messageActionSuggestProfilePhoto.video || !((arrayList = tL_messageActionSuggestProfilePhoto.photo.video_sizes) == null || arrayList.isEmpty())) ? R.string.ViewVideoAction : R.string.ViewPhotoAction;
-                    } else if (i10 == 22) {
+                    } else if (i11 == 22) {
                         TLRPC.User user5 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
                         if (messageObject.getDialogId() >= 0) {
                             if (!messageObject.isOutOwner() && messageObject.isWallpaperForBoth() && messageObject.isCurrentWallpaper()) {

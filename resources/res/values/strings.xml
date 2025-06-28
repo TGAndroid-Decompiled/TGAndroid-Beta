@@ -2756,12 +2756,7 @@
     <string name="DeleteTones_other">Delete %d tones</string>
     <string name="DeleteTopics_one">Delete topic</string>
     <string name="DeleteTopics_other">Delete topics</string>
-    <string name="DeleteTranslationModelsText_one">Are you sure you want to delete %1$d models? (%2$s)</string>
-    <string name="DeleteTranslationModelsText_other">Are you sure you want to delete %1$d models? (%2$s)</string>
-    <string name="DeleteTranslationModelsTitle">Delete Translation Models</string>
     <string name="DeletedFromYourContacts">%s deleted from your contacts</string>
-    <string name="DeletedTranslationModelsTitle_one">Deleted %d model</string>
-    <string name="DeletedTranslationModelsTitle_other">Deleted %d models</string>
     <string name="Deletions_one">%1$d deletion</string>
     <string name="Deletions_other">%1$d deletions</string>
     <string name="DescriptionInfo">You can provide an optional description for your channel.</string>
@@ -2860,10 +2855,6 @@
     <string name="DownloadedFiles">Downloaded files</string>
     <string name="DownloadedFilesMessage">Telegram lets you store all documents you send and receive in the cloud and save storage space on your device.</string>
     <string name="Downloading">Downloading</string>
-    <string name="DownloadingTranslationModelsTextAnd">%1$s and %2$s</string>
-    <string name="DownloadingTranslationModelsText_one">%2$s language model is needed for local translation</string>
-    <string name="DownloadingTranslationModelsText_other">%2$s language models are needed for local translation</string>
-    <string name="DownloadingTranslationModelsTitle">Downloading Models...</string>
     <string name="DownloadsTabs">Downloads</string>
     <string name="Draft">Draft</string>
     <string name="DualErrorMessage">Unfortunately, the Dual camera mode is not supported on your device.</string>
@@ -8425,10 +8416,10 @@
     <string name="TodoAddTaskInfoMax">You have added the maximum number of tasks.</string>
     <string name="TodoAddTasksButton">ADD</string>
     <string name="TodoAddTasksTitle">New Tasks</string>
-    <string name="TodoAddedMoreTasksOut_one">You added “%2$s”, “%3$s” and %1$d more task to To-Do list.</string>
-    <string name="TodoAddedMoreTasksOut_other">You added “%2$s”, “%3$s” and %1$d more tasks to To-Do list.</string>
-    <string name="TodoAddedMoreTasks_one">un1 added “%2$s”, “%3$s” and %1$d more task to To-Do list.</string>
-    <string name="TodoAddedMoreTasks_other">un1 added “%2$s”, “%3$s” and %1$d more tasks to To-Do list.</string>
+    <string name="TodoAddedMoreTasksOut_one">You added “%2$s”, “%3$s”, “%4$s” and %1$d more task to To-Do list.</string>
+    <string name="TodoAddedMoreTasksOut_other">You added “%2$s”, “%3$s”, “%4$s” and %1$d more tasks to To-Do list.</string>
+    <string name="TodoAddedMoreTasks_one">un1 added “%2$s”, “%3$s”, “%4$s” and %1$d more task to To-Do list.</string>
+    <string name="TodoAddedMoreTasks_other">un1 added “%2$s”, “%3$s”, “%4$s” and %1$d more tasks to To-Do list.</string>
     <string name="TodoAddedOneTask">un1 added “%1$s” to To-Do list.</string>
     <string name="TodoAddedOneTaskOut">You added “%1$s” to To-Do list.</string>
     <string name="TodoAddedThreeTask">un1 added “%1$s”, “%2$s” and “%3$s” to To-Do list.</string>
@@ -8441,6 +8432,7 @@
     <string name="TodoCantForwardSecretChat">Sorry, to-do lists can’t be forwarded to secret chats.</string>
     <string name="TodoCheck">Check</string>
     <string name="TodoCompleteForbidden">**%s** has restricted others from editing this to-do list.</string>
+    <string name="TodoCompleteForbiddenForward">You can\'t change forwarded to-do.</string>
     <string name="TodoCompletedBy_one">%2$d of %1$d completed by %3$s</string>
     <string name="TodoCompletedBy_other">%2$d of %1$d completed by %3$s</string>
     <string name="TodoCompletedDateTimeAt">Completed %1$s at %2$s</string>
@@ -9479,7 +9471,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f251d_com_google_firebase_crashlytics_mapping_file_id">bef783cad4b24e578a8968a1b80be3e4</string>
+    <string name="res_0x7f0f2515_com_google_firebase_crashlytics_mapping_file_id">69bf7a30ec4941cc9d63afe14221663b</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

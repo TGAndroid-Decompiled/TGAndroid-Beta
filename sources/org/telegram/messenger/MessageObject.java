@@ -4367,7 +4367,7 @@ public class MessageObject {
 
     public boolean canAppendToTodo() {
         TLRPC.MessageMedia media = getMedia(this.messageOwner);
-        if (!(media instanceof TLRPC.TL_messageMediaToDo)) {
+        if (!(media instanceof TLRPC.TL_messageMediaToDo) || isForwarded()) {
             return false;
         }
         TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) media;
@@ -4390,7 +4390,7 @@ public class MessageObject {
 
     public boolean canCompleteTodo() {
         TLRPC.MessageMedia media = getMedia(this.messageOwner);
-        if (media instanceof TLRPC.TL_messageMediaToDo) {
+        if ((media instanceof TLRPC.TL_messageMediaToDo) && !isForwarded()) {
             return isOutOwner() || ((TLRPC.TL_messageMediaToDo) media).todo.others_can_complete;
         }
         return false;

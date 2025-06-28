@@ -13760,20 +13760,35 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public boolean didPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem, boolean z) {
             Bulletin createSimpleBulletin;
-            if (!chatMessageCell.getMessageObject().canCompleteTodo()) {
-                createSimpleBulletin = BulletinFactory.of(ChatActivity.this).createSimpleBulletin(R.raw.passcode_lock_close, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.TodoCompleteForbidden, DialogObject.getName(((BaseFragment) ChatActivity.this).currentAccount, DialogObject.getPeerDialogId(chatMessageCell.getMessageObject().getFromPeer())))));
+            BulletinFactory of;
+            int i;
+            String formatString;
+            if (!chatMessageCell.getMessageObject().isForwarded()) {
+                long peerDialogId = DialogObject.getPeerDialogId(chatMessageCell.getMessageObject().getFromPeer());
+                of = BulletinFactory.of(ChatActivity.this);
+                i = R.raw.passcode_lock_close;
+                formatString = LocaleController.formatString(R.string.TodoCompleteForbiddenForward, DialogObject.getName(((BaseFragment) ChatActivity.this).currentAccount, peerDialogId));
             } else {
-                if (ChatActivity.this.getUserConfig().isPremium()) {
-                    ChatActivity.this.getSendMessagesHelper().toggleTodo(chatMessageCell.getMessageObject(), todoItem, z, null);
-                    return true;
-                }
-                createSimpleBulletin = BulletinFactory.of(ChatActivity.this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.TodoPremiumRequired), new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatActivity.ChatMessageCellDelegate.this.lambda$didPressToDoButton$34();
+                if (chatMessageCell.getMessageObject().canCompleteTodo()) {
+                    if (ChatActivity.this.getUserConfig().isPremium()) {
+                        ChatActivity.this.getSendMessagesHelper().toggleTodo(chatMessageCell.getMessageObject(), todoItem, z, null);
+                        return true;
                     }
-                }));
+                    createSimpleBulletin = BulletinFactory.of(ChatActivity.this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.TodoPremiumRequired), new Runnable() {
+                        @Override
+                        public final void run() {
+                            ChatActivity.ChatMessageCellDelegate.this.lambda$didPressToDoButton$34();
+                        }
+                    }));
+                    createSimpleBulletin.show(true);
+                    return false;
+                }
+                long peerDialogId2 = DialogObject.getPeerDialogId(chatMessageCell.getMessageObject().getFromPeer());
+                of = BulletinFactory.of(ChatActivity.this);
+                i = R.raw.passcode_lock_close;
+                formatString = LocaleController.formatString(R.string.TodoCompleteForbidden, DialogObject.getName(((BaseFragment) ChatActivity.this).currentAccount, peerDialogId2));
             }
+            createSimpleBulletin = of.createSimpleBulletin(i, AndroidUtilities.replaceTags(formatString));
             createSimpleBulletin.show(true);
             return false;
         }
