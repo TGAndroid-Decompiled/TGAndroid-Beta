@@ -298,8 +298,6 @@ public abstract class AlertsCreator {
         int i5;
         NumberPicker numberPicker4;
         int i6;
-        NumberPicker numberPicker5;
-        int i7;
         char c;
         String formatPluralString;
         String formatString;
@@ -309,32 +307,31 @@ public abstract class AlertsCreator {
         Calendar calendar = Calendar.getInstance();
         long currentTimeMillis = System.currentTimeMillis();
         calendar.setTimeInMillis(currentTimeMillis);
-        int i8 = calendar.get(1);
+        int i7 = calendar.get(1);
         calendar.get(6);
         if (j2 > 0) {
+            i2 = i7;
             long j4 = j2 * 1000;
-            i2 = i8;
             calendar.setTimeInMillis(currentTimeMillis + j4);
             calendar.set(11, 23);
             calendar.set(12, 59);
             calendar.set(13, 59);
-            i3 = (int) TimeUnit.MILLISECONDS.toDays(j4);
+            i4 = (int) TimeUnit.MILLISECONDS.toDays(j4);
             j3 = calendar.getTimeInMillis();
-            i4 = 23;
+            i3 = 23;
             i5 = 59;
         } else {
-            i2 = i8;
+            i2 = i7;
             j3 = j2;
             i3 = 0;
             i4 = 0;
             i5 = 0;
         }
         long millis = j > 0 ? TimeUnit.SECONDS.toMillis(j) : 60000L;
-        int i9 = i3;
         long j5 = currentTimeMillis + millis;
         calendar.setTimeInMillis(j5);
-        int i10 = calendar.get(11);
-        int i11 = calendar.get(12);
+        int i8 = calendar.get(11);
+        int i9 = calendar.get(12);
         calendar.setTimeInMillis(System.currentTimeMillis() + (value * 86400000));
         calendar.set(11, value2);
         calendar.set(12, value3);
@@ -342,32 +339,25 @@ public abstract class AlertsCreator {
         calendar.setTimeInMillis(timeInMillis);
         numberPicker.setMinValue(0);
         if (j3 > 0) {
-            numberPicker.setMaxValue(i9);
+            numberPicker.setMaxValue(i4);
         }
         int value4 = numberPicker.getValue();
-        if (value4 == 0) {
-            i6 = i10;
-            numberPicker4 = numberPicker2;
-        } else {
-            numberPicker4 = numberPicker2;
-            i6 = 0;
-        }
         long j6 = millis;
-        numberPicker4.setMinValue(i6);
+        numberPicker2.setMinValue(value4 == 0 ? i8 : 0);
         if (j3 > 0) {
-            numberPicker4.setMaxValue(value4 == i9 ? i4 : 23);
+            numberPicker2.setMaxValue(value4 == i4 ? i3 : 23);
         }
         int value5 = numberPicker2.getValue();
-        if (value4 == 0 && value5 == i10) {
-            numberPicker5 = numberPicker3;
-            i7 = i11;
+        if (value4 == 0 && value5 == i8) {
+            numberPicker4 = numberPicker3;
+            i6 = i9;
         } else {
-            numberPicker5 = numberPicker3;
-            i7 = 0;
+            numberPicker4 = numberPicker3;
+            i6 = 0;
         }
-        numberPicker5.setMinValue(i7);
+        numberPicker4.setMinValue(i6);
         if (j3 > 0) {
-            numberPicker5.setMaxValue((value4 == i9 && value5 == i4) ? i5 : 59);
+            numberPicker4.setMaxValue((value4 == i4 && value5 == i3) ? i5 : 59);
         }
         int value6 = numberPicker3.getValue();
         if (timeInMillis <= j5) {
@@ -375,41 +365,33 @@ public abstract class AlertsCreator {
         } else if (j3 > 0 && timeInMillis > j3) {
             calendar.setTimeInMillis(j3);
         }
-        int i12 = calendar.get(1);
+        int i10 = calendar.get(1);
         calendar.setTimeInMillis(System.currentTimeMillis() + (value4 * 86400000));
         calendar.set(11, value5);
         calendar.set(12, value6);
         long timeInMillis2 = calendar.getTimeInMillis();
         if (textView != null) {
-            int i13 = value4 == 0 ? 0 : i2 == i12 ? 1 : 2;
-            if (i == 1) {
-                i13 += 3;
-            } else if (i == 2) {
-                i13 += 6;
-            } else if (i == 3) {
-                i13 += 9;
-            }
-            textView.setText(LocaleController.getInstance().getFormatterScheduleSend(i13).format(timeInMillis2));
+            textView.setText(LocaleController.getInstance().getFormatterScheduleSend((value4 == 0 ? 0 : i2 == i10 ? 1 : 2) + (i * 3)).format(timeInMillis2));
         }
         if (textView2 != null) {
-            int i14 = (int) ((timeInMillis2 - currentTimeMillis) / 1000);
-            if (i14 > 86400) {
+            int i11 = (int) ((timeInMillis2 - currentTimeMillis) / 1000);
+            if (i11 > 86400) {
                 c = 0;
-                formatPluralString = LocaleController.formatPluralString("DaysSchedule", Math.round(i14 / 86400.0f), new Object[0]);
+                formatPluralString = LocaleController.formatPluralString("DaysSchedule", Math.round(i11 / 86400.0f), new Object[0]);
             } else {
                 c = 0;
-                formatPluralString = i14 >= 3600 ? LocaleController.formatPluralString("HoursSchedule", Math.round(i14 / 3600.0f), new Object[0]) : i14 >= 60 ? LocaleController.formatPluralString("MinutesSchedule", Math.round(i14 / 60.0f), new Object[0]) : LocaleController.formatPluralString("SecondsSchedule", i14, new Object[0]);
+                formatPluralString = i11 >= 3600 ? LocaleController.formatPluralString("HoursSchedule", Math.round(i11 / 3600.0f), new Object[0]) : i11 >= 60 ? LocaleController.formatPluralString("MinutesSchedule", Math.round(i11 / 60.0f), new Object[0]) : LocaleController.formatPluralString("SecondsSchedule", i11, new Object[0]);
             }
             if (textView2.getTag() != null) {
-                int i15 = R.string.VoipChannelScheduleInfo;
+                int i12 = R.string.VoipChannelScheduleInfo;
                 Object[] objArr = new Object[1];
                 objArr[c] = formatPluralString;
-                formatString = LocaleController.formatString("VoipChannelScheduleInfo", i15, objArr);
+                formatString = LocaleController.formatString("VoipChannelScheduleInfo", i12, objArr);
             } else {
-                int i16 = R.string.VoipGroupScheduleInfo;
+                int i13 = R.string.VoipGroupScheduleInfo;
                 Object[] objArr2 = new Object[1];
                 objArr2[c] = formatPluralString;
-                formatString = LocaleController.formatString("VoipGroupScheduleInfo", i16, objArr2);
+                formatString = LocaleController.formatString("VoipGroupScheduleInfo", i13, objArr2);
             }
             textView2.setText(formatString);
         }
@@ -2786,7 +2768,7 @@ public abstract class AlertsCreator {
         linearLayout2.setOrientation(1);
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 22, 4));
         TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(i == 1 ? R.string.PostSuggestionsInlineAccept : R.string.PostSuggestionsAddTime));
+        textView.setText(LocaleController.getString(i == 1 ? R.string.SuggestedPostAcceptTitle : R.string.PostSuggestionsAddTime));
         textView.setTextColor(scheduleDatePickerColors.textColor);
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -2842,7 +2824,7 @@ public abstract class AlertsCreator {
                 return lambda$createSuggestedMessageDatePickerDialog$191;
             }
         });
-        int i3 = i == 1 ? 0 : 3;
+        int i3 = i == 1 ? 5 : 3;
         final int i4 = i3;
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
             @Override
@@ -2916,7 +2898,7 @@ public abstract class AlertsCreator {
         };
         textView4.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         textView4.setGravity(17);
-        textView4.setText(LocaleController.getString(i == 1 ? R.string.MessageScheduleSend : R.string.PostSuggestionsAnytime));
+        textView4.setText(LocaleController.getString(i == 1 ? R.string.MessageSuggestionPublishNow : R.string.PostSuggestionsAnytime));
         textView4.setTextColor(scheduleDatePickerColors.buttonBackgroundColor);
         textView4.setTextSize(1, 14.0f);
         textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_listSelector)));
@@ -5244,54 +5226,60 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$showCallsForbidden$199(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) {
-        if (tLObject instanceof TLRPC.Updates) {
-            final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            MessagesController.getInstance(i).putUsers(updates.users, false);
-            MessagesController.getInstance(i).putChats(updates.chats, false);
-            Iterator it = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCall.class).iterator();
-            TLRPC.GroupCall groupCall = null;
-            while (it.hasNext()) {
-                groupCall = ((TLRPC.TL_updateGroupCall) it.next()).call;
-            }
-            Utilities.stageQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    AlertsCreator.lambda$showCallsForbidden$198(i, updates);
+        if (!(tLObject instanceof TLRPC.Updates)) {
+            if (!(tLObject instanceof TL_phone.groupCall)) {
+                if (tL_error != null) {
+                    BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).showForError(tL_error);
+                    return;
                 }
-            });
-            if (groupCall == null || LaunchActivity.instance == null) {
+                return;
+            }
+            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
+            MessagesController.getInstance(i).putUsers(groupcall.users, false);
+            MessagesController.getInstance(i).putChats(groupcall.chats, false);
+            if (LaunchActivity.instance == null) {
                 buttonWithCounterView.setLoading(false);
                 return;
             }
             TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
+            TLRPC.GroupCall groupCall = groupcall.call;
             tL_inputGroupCall.id = groupCall.id;
             tL_inputGroupCall.access_hash = groupCall.access_hash;
             bottomSheet.dismiss();
-            VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCall, false, groupCall, null);
-            SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(groupCall.invite_link, j));
+            VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCall, false, groupcall.call, null);
+            SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(groupcall.call.invite_link, j));
             return;
         }
-        if (!(tLObject instanceof TL_phone.groupCall)) {
-            if (tL_error != null) {
-                BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).showForError(tL_error);
-                return;
+        final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+        MessagesController.getInstance(i).putUsers(updates.users, false);
+        MessagesController.getInstance(i).putChats(updates.chats, false);
+        Iterator it = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCall.class).iterator();
+        TLRPC.GroupCall groupCall2 = null;
+        while (it.hasNext()) {
+            groupCall2 = ((TLRPC.TL_updateGroupCall) it.next()).call;
+        }
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                AlertsCreator.lambda$showCallsForbidden$198(i, updates);
             }
-            return;
-        }
-        TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-        MessagesController.getInstance(i).putUsers(groupcall.users, false);
-        MessagesController.getInstance(i).putChats(groupcall.chats, false);
-        if (LaunchActivity.instance == null) {
+        });
+        if (groupCall2 == null || LaunchActivity.instance == null) {
             buttonWithCounterView.setLoading(false);
             return;
         }
-        TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
-        TLRPC.GroupCall groupCall2 = groupcall.call;
-        tL_inputGroupCall2.id = groupCall2.id;
-        tL_inputGroupCall2.access_hash = groupCall2.access_hash;
         bottomSheet.dismiss();
-        VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCall2, false, groupcall.call, null);
-        SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(groupcall.call.invite_link, j));
+        SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(groupCall2.invite_link, j));
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            if (safeLastFragment instanceof ChatActivity) {
+                ChatActivity chatActivity = (ChatActivity) safeLastFragment;
+                if (chatActivity.getDialogId() == j && chatActivity.getChatMode() == 0) {
+                    return;
+                }
+            }
+            safeLastFragment.presentFragment(ChatActivity.of(j));
+        }
     }
 
     public static void lambda$showCallsForbidden$200(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC.TL_error tL_error) {

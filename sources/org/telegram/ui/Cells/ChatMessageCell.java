@@ -1270,63 +1270,63 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return buttonCustom;
         }
 
-        static Drawable access$4300(BotButton botButton) {
+        static Drawable access$4200(BotButton botButton) {
             return botButton.iconDrawable;
         }
 
-        static Drawable access$4302(BotButton botButton, Drawable drawable) {
+        static Drawable access$4202(BotButton botButton, Drawable drawable) {
             botButton.iconDrawable = drawable;
             return drawable;
         }
 
-        static float access$4400(BotButton botButton) {
+        static float access$4300(BotButton botButton) {
             return botButton.progressAlpha;
         }
 
-        static float access$4402(BotButton botButton, float f) {
+        static float access$4302(BotButton botButton, float f) {
             botButton.progressAlpha = f;
             return f;
         }
 
-        static int access$4500(BotButton botButton) {
+        static int access$4400(BotButton botButton) {
             return botButton.angle;
         }
 
-        static int access$4502(BotButton botButton, int i) {
+        static int access$4402(BotButton botButton, int i) {
             botButton.angle = i;
             return i;
         }
 
-        static long access$4600(BotButton botButton) {
+        static long access$4500(BotButton botButton) {
             return botButton.lastUpdateTime;
         }
 
-        static long access$4602(BotButton botButton, long j) {
+        static long access$4502(BotButton botButton, long j) {
             botButton.lastUpdateTime = j;
             return j;
         }
 
-        static int access$4776(BotButton botButton, int i) {
+        static int access$4676(BotButton botButton, int i) {
             int i2 = i | botButton.positionFlags;
             botButton.positionFlags = i2;
             return i2;
         }
 
-        static Text access$4800(BotButton botButton) {
+        static Text access$4700(BotButton botButton) {
             return botButton.title;
         }
 
-        static Text access$4802(BotButton botButton, Text text) {
+        static Text access$4702(BotButton botButton, Text text) {
             botButton.title = text;
             return text;
         }
 
-        static boolean access$4902(BotButton botButton, boolean z) {
+        static boolean access$4802(BotButton botButton, boolean z) {
             botButton.isInviteButton = z;
             return z;
         }
 
-        static boolean access$5002(BotButton botButton, boolean z) {
+        static boolean access$4902(BotButton botButton, boolean z) {
             botButton.isSeparator = z;
             return z;
         }
@@ -1801,7 +1801,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this();
         }
 
-        static float access$6124(InstantViewButton instantViewButton, float f) {
+        static float access$6024(InstantViewButton instantViewButton, float f) {
             float f2 = instantViewButton.textX - f;
             instantViewButton.textX = f2;
             return f2;
@@ -1967,7 +1967,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         public Drawable selectorDrawable;
         public int selectorDrawableColor;
         private TLRPC.TodoItem task;
-        private StaticLayout title;
+        public StaticLayout title;
+        public float titleX;
+        public float titleY;
         private boolean translated;
         public int x;
         public int y;
@@ -2076,63 +2078,54 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return f;
         }
 
-        static StaticLayout access$3500(PollButton pollButton) {
-            return pollButton.title;
-        }
-
-        static StaticLayout access$3502(PollButton pollButton, StaticLayout staticLayout) {
-            pollButton.title = staticLayout;
-            return staticLayout;
-        }
-
-        static boolean access$3600(PollButton pollButton) {
+        static boolean access$3500(PollButton pollButton) {
             return pollButton.translated;
         }
 
-        static boolean access$3602(PollButton pollButton, boolean z) {
+        static boolean access$3502(PollButton pollButton, boolean z) {
             pollButton.translated = z;
             return z;
         }
 
-        static StaticLayout access$3700(PollButton pollButton) {
+        static StaticLayout access$3600(PollButton pollButton) {
             return pollButton.animateTitle;
         }
 
-        static StaticLayout access$3702(PollButton pollButton, StaticLayout staticLayout) {
+        static StaticLayout access$3602(PollButton pollButton, StaticLayout staticLayout) {
             pollButton.animateTitle = staticLayout;
             return staticLayout;
         }
 
-        static AnimatedEmojiSpan.EmojiGroupedSpans access$3800(PollButton pollButton) {
+        static AnimatedEmojiSpan.EmojiGroupedSpans access$3700(PollButton pollButton) {
             return pollButton.animateTitleEmoji;
         }
 
-        static AnimatedEmojiSpan.EmojiGroupedSpans access$3802(PollButton pollButton, AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans) {
+        static AnimatedEmojiSpan.EmojiGroupedSpans access$3702(PollButton pollButton, AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans) {
             pollButton.animateTitleEmoji = emojiGroupedSpans;
             return emojiGroupedSpans;
         }
 
-        static boolean access$3902(PollButton pollButton, boolean z) {
+        static boolean access$3802(PollButton pollButton, boolean z) {
             pollButton.correct = z;
             return z;
         }
 
-        static float access$4000(PollButton pollButton) {
+        static float access$3900(PollButton pollButton) {
             return pollButton.decimal;
         }
 
-        static float access$4002(PollButton pollButton, float f) {
+        static float access$3902(PollButton pollButton, float f) {
             pollButton.decimal = f;
             return f;
         }
 
-        static float access$4024(PollButton pollButton, float f) {
+        static float access$3924(PollButton pollButton, float f) {
             float f2 = pollButton.decimal - f;
             pollButton.decimal = f2;
             return f2;
         }
 
-        static boolean access$4102(PollButton pollButton, boolean z) {
+        static boolean access$4002(PollButton pollButton, boolean z) {
             pollButton.prevChosen = z;
             return z;
         }
@@ -3914,12 +3907,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean checkPollButtonMotionEvent(MotionEvent motionEvent) {
         Drawable drawable;
         ArrayList arrayList;
+        ChatMessageCellDelegate chatMessageCellDelegate;
         int i;
         int dp;
         int i2;
-        ChatMessageCellDelegate chatMessageCellDelegate;
         int i3;
         int i4;
+        int i5;
         Drawable drawable2;
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject.eventId != 0) {
@@ -3934,133 +3928,204 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         int eventX = (int) getEventX(motionEvent);
         int eventY = (int) getEventY(motionEvent);
-        if (motionEvent.getAction() == 0) {
-            Runnable runnable = this.todoLongPressRunnable;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.todoLongPressRunnable = null;
-            }
-            this.pressedVoteButton = -1;
-            this.pollHintPressed = false;
-            if (!this.hintButtonVisible || (i3 = this.pollHintX) == -1 || eventX < i3 || eventX > i3 + AndroidUtilities.dp(40.0f) || eventY < (i4 = this.pollHintY) || eventY > i4 + AndroidUtilities.dp(40.0f)) {
-                for (int i5 = 0; i5 < this.pollButtons.size(); i5++) {
-                    ((PollButton) this.pollButtons.get(i5)).selectorDrawable.setState(StateSet.NOTHING);
+        if (motionEvent.getAction() != 0) {
+            if (motionEvent.getAction() != 1) {
+                if (motionEvent.getAction() == 2) {
+                    if ((this.pressedVoteButton == -1 && !this.pollHintPressed) || Build.VERSION.SDK_INT < 21 || (drawable = this.selectorDrawable[0]) == null) {
+                        return false;
+                    }
+                    drawable.setHotspot(eventX, eventY);
+                    return false;
+                }
+                if (motionEvent.getAction() != 3) {
+                    return false;
                 }
                 for (int i6 = 0; i6 < this.pollButtons.size(); i6++) {
-                    PollButton pollButton = (PollButton) this.pollButtons.get(i6);
-                    int dp2 = (pollButton.y + this.namesOffset) - AndroidUtilities.dp(13.0f);
-                    int i7 = pollButton.x;
-                    if (eventX >= i7 && eventX <= (i7 + this.backgroundWidth) - AndroidUtilities.dp(31.0f) && eventY >= dp2 && eventY <= dp2 + pollButton.height + AndroidUtilities.dp(26.0f)) {
-                        this.pressedVoteButton = i6;
-                        if (!this.pollVoted && !this.pollClosed) {
-                            this.selectorDrawableMaskType[0] = 1;
-                            if (Build.VERSION.SDK_INT >= 21) {
-                                pollButton.selectorDrawable.setHotspot(eventX, eventY);
-                            }
-                            pollButton.selectorDrawable.setState(this.pressedState);
-                        }
-                        return true;
-                    }
+                    ((PollButton) this.pollButtons.get(i6)).selectorDrawable.setState(StateSet.NOTHING);
                 }
                 return false;
             }
-            this.pollHintPressed = true;
-            this.selectorDrawableMaskType[0] = 3;
-            if (Build.VERSION.SDK_INT >= 21 && (drawable2 = this.selectorDrawable[0]) != null) {
-                drawable2.setBounds(this.pollHintX - AndroidUtilities.dp(8.0f), this.pollHintY - AndroidUtilities.dp(8.0f), this.pollHintX + AndroidUtilities.dp(32.0f), this.pollHintY + AndroidUtilities.dp(32.0f));
-                this.selectorDrawable[0].setHotspot(eventX, eventY);
-                this.selectorDrawable[0].setState(this.pressedState);
+            if (this.pollHintPressed) {
+                playSoundEffect(0);
+                this.delegate.didPressHint(this, 0);
+                this.pollHintPressed = false;
+                for (int i7 = 0; i7 < this.pollButtons.size(); i7++) {
+                    ((PollButton) this.pollButtons.get(i7)).selectorDrawable.setState(StateSet.NOTHING);
+                }
+                return false;
             }
+            LinkSpanDrawable linkSpanDrawable = this.pressedLink;
+            if (linkSpanDrawable != null) {
+                if (linkSpanDrawable.getSpan() instanceof URLSpan) {
+                    this.delegate.didPressUrl(this, this.pressedLink.getSpan(), false);
+                } else if (this.pressedLink.getSpan() instanceof ClickableSpan) {
+                    ((ClickableSpan) this.pressedLink.getSpan()).onClick(this);
+                }
+                resetPressedLink(4);
+                return false;
+            }
+            if (this.pressedVoteButton == -1) {
+                return false;
+            }
+            playSoundEffect(0);
             for (int i8 = 0; i8 < this.pollButtons.size(); i8++) {
                 ((PollButton) this.pollButtons.get(i8)).selectorDrawable.setState(StateSet.NOTHING);
             }
-            invalidate();
-            return true;
-        }
-        if (motionEvent.getAction() != 1) {
-            if (motionEvent.getAction() == 2) {
-                if ((this.pressedVoteButton == -1 && !this.pollHintPressed) || Build.VERSION.SDK_INT < 21 || (drawable = this.selectorDrawable[0]) == null) {
-                    return false;
+            if (this.currentMessageObject.scheduled) {
+                Toast.makeText(getContext(), LocaleController.getString(this.currentMessageObject.isTodo() ? R.string.MessageScheduledTodo : R.string.MessageScheduledVote), 1).show();
+            } else {
+                PollButton pollButton = (PollButton) this.pollButtons.get(this.pressedVoteButton);
+                TLRPC.PollAnswer pollAnswer = pollButton.answer;
+                if (this.pollVoted || this.pollClosed) {
+                    arrayList = new ArrayList();
+                    arrayList.add(pollAnswer);
+                    chatMessageCellDelegate = this.delegate;
+                    i = pollButton.count;
+                    dp = AndroidUtilities.dp(50.0f) + pollButton.x;
+                    i2 = pollButton.y + this.namesOffset;
+                } else {
+                    TLRPC.Poll poll = this.lastPoll;
+                    if (poll == null || !poll.multiple_choice) {
+                        this.pollVoteInProgressNum = this.pressedVoteButton;
+                        this.pollVoteInProgress = true;
+                        this.voteCurrentProgressTime = 0.0f;
+                        this.firstCircleLength = true;
+                        this.voteCurrentCircleLength = 360.0f;
+                        this.voteRisingCircleLength = false;
+                        if (pollButton.task != null) {
+                            toggleTodoCheck(this.pressedVoteButton, true);
+                        } else {
+                            this.vibrateOnPollVote = true;
+                            arrayList = new ArrayList();
+                            arrayList.add(pollAnswer);
+                            chatMessageCellDelegate = this.delegate;
+                            dp = 0;
+                            i2 = 0;
+                            i = -1;
+                        }
+                    } else if (this.currentMessageObject.checkedVotes.contains(pollAnswer)) {
+                        this.currentMessageObject.checkedVotes.remove(pollAnswer);
+                        this.pollCheckBox[this.pressedVoteButton].setChecked(false, true);
+                    } else {
+                        this.currentMessageObject.checkedVotes.add(pollAnswer);
+                        this.pollCheckBox[this.pressedVoteButton].setChecked(true, true);
+                    }
                 }
-                drawable.setHotspot(eventX, eventY);
+                chatMessageCellDelegate.didPressVoteButtons(this, arrayList, i, dp, i2);
+            }
+            this.pressedVoteButton = -1;
+            invalidate();
+            Runnable runnable = this.todoLongPressRunnable;
+            if (runnable == null) {
                 return false;
             }
-            if (motionEvent.getAction() != 3) {
-                return false;
-            }
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.todoLongPressRunnable = null;
+            return false;
+        }
+        Runnable runnable2 = this.todoLongPressRunnable;
+        if (runnable2 != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable2);
+            this.todoLongPressRunnable = null;
+        }
+        this.pressedVoteButton = -1;
+        this.pollHintPressed = false;
+        resetPressedLink(4);
+        if (!this.hintButtonVisible || (i4 = this.pollHintX) == -1 || eventX < i4 || eventX > i4 + AndroidUtilities.dp(40.0f) || eventY < (i5 = this.pollHintY) || eventY > i5 + AndroidUtilities.dp(40.0f)) {
             for (int i9 = 0; i9 < this.pollButtons.size(); i9++) {
                 ((PollButton) this.pollButtons.get(i9)).selectorDrawable.setState(StateSet.NOTHING);
             }
-            return false;
-        }
-        if (this.pollHintPressed) {
-            playSoundEffect(0);
-            this.delegate.didPressHint(this, 0);
-            this.pollHintPressed = false;
+            boolean z = false;
             for (int i10 = 0; i10 < this.pollButtons.size(); i10++) {
-                ((PollButton) this.pollButtons.get(i10)).selectorDrawable.setState(StateSet.NOTHING);
-            }
-            return false;
-        }
-        if (this.pressedVoteButton == -1) {
-            return false;
-        }
-        playSoundEffect(0);
-        for (int i11 = 0; i11 < this.pollButtons.size(); i11++) {
-            ((PollButton) this.pollButtons.get(i11)).selectorDrawable.setState(StateSet.NOTHING);
-        }
-        if (this.currentMessageObject.scheduled) {
-            Toast.makeText(getContext(), LocaleController.getString(this.currentMessageObject.isTodo() ? R.string.MessageScheduledTodo : R.string.MessageScheduledVote), 1).show();
-        } else {
-            PollButton pollButton2 = (PollButton) this.pollButtons.get(this.pressedVoteButton);
-            TLRPC.PollAnswer pollAnswer = pollButton2.answer;
-            if (this.pollVoted || this.pollClosed) {
-                arrayList = new ArrayList();
-                arrayList.add(pollAnswer);
-                ChatMessageCellDelegate chatMessageCellDelegate2 = this.delegate;
-                i = pollButton2.count;
-                dp = pollButton2.x + AndroidUtilities.dp(50.0f);
-                i2 = this.namesOffset + pollButton2.y;
-                chatMessageCellDelegate = chatMessageCellDelegate2;
-            } else {
-                TLRPC.Poll poll = this.lastPoll;
-                if (poll == null || !poll.multiple_choice) {
-                    this.pollVoteInProgressNum = this.pressedVoteButton;
-                    this.pollVoteInProgress = true;
-                    this.voteCurrentProgressTime = 0.0f;
-                    this.firstCircleLength = true;
-                    this.voteCurrentCircleLength = 360.0f;
-                    this.voteRisingCircleLength = false;
-                    if (pollButton2.task != null) {
-                        toggleTodoCheck(this.pressedVoteButton, true);
-                    } else {
-                        this.vibrateOnPollVote = true;
-                        arrayList = new ArrayList();
-                        arrayList.add(pollAnswer);
-                        chatMessageCellDelegate = this.delegate;
-                        dp = 0;
-                        i2 = 0;
-                        i = -1;
+                PollButton pollButton2 = (PollButton) this.pollButtons.get(i10);
+                int dp2 = (pollButton2.y + this.namesOffset) - AndroidUtilities.dp(13.0f);
+                StaticLayout staticLayout = pollButton2.title;
+                if (staticLayout != null && (staticLayout.getText() instanceof Spannable)) {
+                    float f = eventX;
+                    float f2 = pollButton2.titleX;
+                    if (f >= f2) {
+                        float f3 = eventY;
+                        float f4 = pollButton2.titleY;
+                        if (f3 >= f4 && !this.currentMessageObject.preview) {
+                            int i11 = eventX - ((int) f2);
+                            int i12 = eventY - ((int) f4);
+                            try {
+                            } catch (Exception e) {
+                                e = e;
+                            }
+                            if (i12 <= pollButton2.title.getHeight()) {
+                                int lineForVertical = pollButton2.title.getLineForVertical(i12);
+                                float f5 = i11;
+                                int offsetForHorizontal = pollButton2.title.getOffsetForHorizontal(lineForVertical, f5);
+                                float lineLeft = pollButton2.title.getLineLeft(lineForVertical);
+                                if (lineLeft <= f5 && lineLeft + pollButton2.title.getLineWidth(lineForVertical) >= f5) {
+                                    Spannable spannable = (Spannable) pollButton2.title.getText();
+                                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+                                    if (clickableSpanArr.length != 0 && ((!(clickableSpanArr[0] instanceof URLSpanBotCommand) || URLSpanBotCommand.enabled) && !AndroidUtilities.isAccessibilityScreenReaderEnabled())) {
+                                        LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
+                                        if (linkSpanDrawable2 == null || linkSpanDrawable2.getSpan() != clickableSpanArr[0]) {
+                                            this.links.removeLink(this.pressedLink);
+                                            ClickableSpan clickableSpan = clickableSpanArr[0];
+                                            LinkSpanDrawable linkSpanDrawable3 = new LinkSpanDrawable(clickableSpan, this.resourcesProvider, f, f3, spanSupportsLongPress(clickableSpan));
+                                            this.pressedLink = linkSpanDrawable3;
+                                            linkSpanDrawable3.setColor(getThemedColor(this.currentMessageObject.isOutOwner() ? Theme.key_chat_outLinkSelectBackground : Theme.key_chat_linkSelectBackground));
+                                            this.linkBlockNum = i10;
+                                            this.pressedLinkType = 4;
+                                            startCheckLongPress();
+                                            try {
+                                                LinkPath obtainNewPath = this.pressedLink.obtainNewPath();
+                                                int[] realSpanStartAndEnd = getRealSpanStartAndEnd(spannable, this.pressedLink.getSpan());
+                                                obtainNewPath.setCurrentLayout(pollButton2.title, realSpanStartAndEnd[0], 0.0f);
+                                                pollButton2.title.getSelectionPath(realSpanStartAndEnd[0], realSpanStartAndEnd[1], obtainNewPath);
+                                            } catch (Exception e2) {
+                                                FileLog.e(e2);
+                                            }
+                                            this.links.addLink(this.pressedLink, 4);
+                                        }
+                                        try {
+                                            invalidate();
+                                        } catch (Exception e3) {
+                                            e = e3;
+                                            z = true;
+                                            FileLog.e(e);
+                                            i3 = pollButton2.x;
+                                            if (eventX < i3) {
+                                            }
+                                        }
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
                     }
-                } else if (this.currentMessageObject.checkedVotes.contains(pollAnswer)) {
-                    this.currentMessageObject.checkedVotes.remove(pollAnswer);
-                    this.pollCheckBox[this.pressedVoteButton].setChecked(false, true);
-                } else {
-                    this.currentMessageObject.checkedVotes.add(pollAnswer);
-                    this.pollCheckBox[this.pressedVoteButton].setChecked(true, true);
+                }
+                i3 = pollButton2.x;
+                if (eventX < i3 && eventX <= (i3 + this.backgroundWidth) - AndroidUtilities.dp(31.0f) && eventY >= dp2 && eventY <= dp2 + pollButton2.height + AndroidUtilities.dp(26.0f)) {
+                    this.pressedVoteButton = i10;
+                    if (!this.pollVoted && !this.pollClosed) {
+                        this.selectorDrawableMaskType[0] = 1;
+                        if (Build.VERSION.SDK_INT >= 21) {
+                            pollButton2.selectorDrawable.setHotspot(eventX, eventY);
+                        }
+                        pollButton2.selectorDrawable.setState(this.pressedState);
+                    }
+                    return true;
                 }
             }
-            chatMessageCellDelegate.didPressVoteButtons(this, arrayList, i, dp, i2);
+            return z;
         }
-        this.pressedVoteButton = -1;
+        this.pollHintPressed = true;
+        this.selectorDrawableMaskType[0] = 3;
+        if (Build.VERSION.SDK_INT >= 21 && (drawable2 = this.selectorDrawable[0]) != null) {
+            drawable2.setBounds(this.pollHintX - AndroidUtilities.dp(8.0f), this.pollHintY - AndroidUtilities.dp(8.0f), this.pollHintX + AndroidUtilities.dp(32.0f), this.pollHintY + AndroidUtilities.dp(32.0f));
+            this.selectorDrawable[0].setHotspot(eventX, eventY);
+            this.selectorDrawable[0].setState(this.pressedState);
+        }
+        for (int i13 = 0; i13 < this.pollButtons.size(); i13++) {
+            ((PollButton) this.pollButtons.get(i13)).selectorDrawable.setState(StateSet.NOTHING);
+        }
         invalidate();
-        Runnable runnable2 = this.todoLongPressRunnable;
-        if (runnable2 == null) {
-            return false;
-        }
-        AndroidUtilities.cancelRunOnUIThread(runnable2);
-        this.todoLongPressRunnable = null;
-        return false;
+        return true;
     }
 
     private boolean checkQuickShareMotionEvent(MotionEvent motionEvent) {
@@ -4522,7 +4587,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             double ceil = Math.ceil(instantViewButton.layout.getLineWidth(0));
             Double.isNaN(d);
             instantViewButton.textX = ((float) (d - ceil)) / 2.0f;
-            InstantViewButton.access$6124(instantViewButton, (int) instantViewButton.layout.getLineLeft(0));
+            InstantViewButton.access$6024(instantViewButton, (int) instantViewButton.layout.getLineLeft(0));
         }
         return instantViewButton;
     }
@@ -7148,7 +7213,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOutboundsContent(android.graphics.Canvas):void");
     }
 
-    public void drawOverlays(android.graphics.Canvas r65) {
+    public void drawOverlays(android.graphics.Canvas r66) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 

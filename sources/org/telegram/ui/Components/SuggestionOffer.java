@@ -16,7 +16,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -146,20 +145,16 @@ public class SuggestionOffer {
         }
         int dp = (int) (f2 + f + AndroidUtilities.dp(11.0f));
         int max = Math.max(dp, AndroidUtilities.dp(160.0f));
-        String formatString2 = messageObject.isOutOwner() ? LocaleController.formatString(R.string.ChatYourSelfName, new Object[0]) : DialogObject.getName(messageObject.getFromChatId());
-        long savedDialogId = messageObject.getSavedDialogId();
-        if (savedDialogId == UserConfig.getInstance(messageObject.currentAccount).getClientUserId()) {
-            LocaleController.formatString(R.string.ChatYourSelfName, new Object[0]);
-        } else {
-            DialogObject.getName(savedDialogId);
-        }
+        String name = DialogObject.getName(messageObject.getFromChatId());
         int editedSuggestionFlags = messageObject.getEditedSuggestionFlags();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (editedSuggestionFlags == 0) {
-            formatString = LocaleController.formatString(R.string.SuggestionOfferInfoTitle, formatString2);
+            formatString = messageObject.isOutOwner() ? LocaleController.getString(R.string.SuggestionOfferInfoTitleYou) : LocaleController.formatString(R.string.SuggestionOfferInfoTitle, name);
         } else {
             MessageObject messageObject2 = messageObject.replyMessageObject;
-            String formatString3 = messageObject2 != null ? messageObject2.isOutOwner() ? LocaleController.formatString(R.string.ChatYourSelfName, new Object[0]) : DialogObject.getName(messageObject.replyMessageObject.getFromChatId()) : "";
+            if (messageObject2 != null) {
+                DialogObject.getName(messageObject2.getFromChatId());
+            }
             StringBuilder sb = new StringBuilder();
             int i2 = editedSuggestionFlags & 4;
             int i3 = editedSuggestionFlags & 2;
@@ -183,7 +178,7 @@ public class SuggestionOffer {
             if (i4 != 0) {
                 updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedMedia, i6 == i + 1);
             }
-            formatString = LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedX, formatString2, formatString3, sb);
+            formatString = messageObject.isOutOwner() ? LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromYou, sb) : LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromX, name, sb);
         }
         spannableStringBuilder.append((CharSequence) formatString);
         this.title = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);

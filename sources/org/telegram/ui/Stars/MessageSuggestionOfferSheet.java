@@ -1,6 +1,5 @@
 package org.telegram.ui.Stars;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -9,7 +8,6 @@ import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -19,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
@@ -27,7 +26,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.ui.AccountFrozenAlert;
@@ -41,7 +39,6 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.HorizontalRoundTabsLayout;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -50,6 +47,7 @@ import org.telegram.ui.TON.TONIntroActivity;
 
 public class MessageSuggestionOfferSheet extends BottomSheet {
     private final BalanceCloud balanceCloud;
+    private boolean balanceCloudVisible;
     private final ButtonWithCounterView buttonView;
     private final HorizontalRoundTabsLayout currencyTabsView;
     private final AnimatedTextView dollarsEqView;
@@ -61,6 +59,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     private final AmountUtils$Amount inputAmountMaxTON;
     private final AmountUtils$Amount inputAmountMinStars;
     private final AmountUtils$Amount inputAmountMinTON;
+    private boolean isFullyVisible;
     private final boolean isMonoForumAdmin;
     private final int mode;
     private final EditTextBoldCursor publishingTimeField;
@@ -70,7 +69,6 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     private final EditTextBoldCursor starsCountEditField;
     private final TextView starsCountEditHint;
     private final OutlineTextContainerView starsCountEditOutline;
-    private final LinkSpanDrawable.LinksTextView termsView;
 
     public MessageSuggestionOfferSheet(final Context context, final int i, final long j, MessageSuggestionParams messageSuggestionParams, final ChatActivity chatActivity, final Theme.ResourcesProvider resourcesProvider, int i2, final Utilities.Callback callback) {
         super(context, true, resourcesProvider);
@@ -84,13 +82,15 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         boolean canManageMonoForum = ChatObject.canManageMonoForum(i, j);
         this.isMonoForumAdmin = canManageMonoForum;
         boolean z2 = canManageMonoForum || StarsController.getTonInstance(i).canUseTon();
-        long j2 = MessagesController.getInstance(i).config.tonSuggestedPostAmountMin.get();
+        AppGlobalConfig appGlobalConfig = MessagesController.getInstance(i).config;
+        long j2 = appGlobalConfig.tonSuggestedPostAmountMin.get();
         AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.TON;
         this.inputAmountMinTON = AmountUtils$Amount.fromNano(j2, amountUtils$Currency);
-        this.inputAmountMaxTON = AmountUtils$Amount.fromNano(MessagesController.getInstance(i).config.tonSuggestedPostAmountMax.get(), amountUtils$Currency);
+        this.inputAmountMaxTON = AmountUtils$Amount.fromNano(appGlobalConfig.tonSuggestedPostAmountMax.get(), amountUtils$Currency);
+        long j3 = appGlobalConfig.starsSuggestedPostAmountMin.get();
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
-        this.inputAmountMinStars = AmountUtils$Amount.fromDecimal(0L, amountUtils$Currency2);
-        this.inputAmountMaxStars = AmountUtils$Amount.fromDecimal(MessagesController.getInstance(i).config.starsSuggestedPostAmountMax.get(), amountUtils$Currency2);
+        this.inputAmountMinStars = AmountUtils$Amount.fromDecimal(j3, amountUtils$Currency2);
+        this.inputAmountMaxStars = AmountUtils$Amount.fromDecimal(appGlobalConfig.starsSuggestedPostAmountMax.get(), amountUtils$Currency2);
         if (canManageMonoForum) {
             this.balanceCloud = null;
         } else {
@@ -261,7 +261,6 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), false);
         }
         linearLayout4.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 18.0f, 0.0f, 18.0f, 8.0f));
-        this.termsView = null;
         AmountUtils$Amount amountUtils$Amount2 = messageSuggestionParams.amount;
         if (amountUtils$Amount2 != null) {
             z = false;
@@ -307,9 +306,22 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             return;
         } else {
             outlineTextContainerView = this.starsCountEditOutline;
-            formatString = LocaleController.formatString(R.string.SuggestAPostTooSmall, getInputAmountMin().asDecimalString());
+            formatString = LocaleController.formatString(R.string.SuggestAPostTooSmall, getInputAmountMin().formatAsDecimalSpaced());
         }
         outlineTextContainerView.setText(formatString);
+    }
+
+    private void checkBalanceCloudVisibility() {
+        boolean z = (this.isFullyVisible && !isDismissed() && this.balanceCloud != null && this.containerView.getY() > ((float) AndroidUtilities.dp(32.0f))) || this.currencyTabsView == null;
+        if (this.balanceCloudVisible != z) {
+            this.balanceCloudVisible = z;
+            BalanceCloud balanceCloud = this.balanceCloud;
+            if (balanceCloud != null) {
+                balanceCloud.setEnabled(z);
+                this.balanceCloud.setClickable(z);
+                this.balanceCloud.animate().scaleX(z ? 1.0f : 0.6f).scaleY(z ? 1.0f : 0.6f).alpha(z ? 1.0f : 0.0f).setDuration(180L).start();
+            }
+        }
     }
 
     private void checkButtonEnabled(boolean z) {
@@ -435,22 +447,11 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         }
     }
 
-    public void lambda$onCurrencyChanged$7() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.StarsSuggestionTermsLink));
-    }
-
-    public void lambda$onCurrencyChanged$8() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.TonSuggestionTermsLink));
-    }
-
-    public void lambda$show$9() {
+    public void lambda$show$7() {
         AndroidUtilities.showKeyboard(this.starsCountEditField);
     }
 
     private void onCurrencyChanged(boolean z) {
-        LinkSpanDrawable.LinksTextView linksTextView;
-        String string;
-        Runnable runnable;
         HorizontalRoundTabsLayout horizontalRoundTabsLayout = this.currencyTabsView;
         if (horizontalRoundTabsLayout != null) {
             horizontalRoundTabsLayout.setSelectedIndex(this.inputAmount.currency == AmountUtils$Currency.STARS ? 0 : 1, z);
@@ -461,32 +462,10 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleStars));
             this.starsCountEditField.setInputType(2);
             this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length())});
-            linksTextView = this.termsView;
-            if (linksTextView != null) {
-                string = LocaleController.getString(R.string.StarsSuggestionTerms);
-                runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        MessageSuggestionOfferSheet.this.lambda$onCurrencyChanged$7();
-                    }
-                };
-                linksTextView.setText(AndroidUtilities.replaceSingleTag(string, runnable));
-            }
         } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
             this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleTON));
             this.starsCountEditField.setInputType(8194);
             this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length() + 3)});
-            linksTextView = this.termsView;
-            if (linksTextView != null) {
-                string = LocaleController.getString(R.string.TonSuggestionTerms);
-                runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        MessageSuggestionOfferSheet.this.lambda$onCurrencyChanged$8();
-                    }
-                };
-                linksTextView.setText(AndroidUtilities.replaceSingleTag(string, runnable));
-            }
         }
         ImageView imageView = this.iconStars;
         if (z) {
@@ -556,22 +535,25 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     }
 
     @Override
-    protected void appendOpenAnimator(boolean z, ArrayList arrayList) {
-        BalanceCloud balanceCloud = this.balanceCloud;
-        if (balanceCloud != null) {
-            arrayList.add(ObjectAnimator.ofFloat(balanceCloud, (Property<BalanceCloud, Float>) View.ALPHA, z ? 1.0f : 0.0f));
-            arrayList.add(ObjectAnimator.ofFloat(this.balanceCloud, (Property<BalanceCloud, Float>) View.SCALE_X, z ? 1.0f : 0.6f));
-            arrayList.add(ObjectAnimator.ofFloat(this.balanceCloud, (Property<BalanceCloud, Float>) View.SCALE_Y, z ? 1.0f : 0.6f));
-        }
-    }
-
-    @Override
     public boolean isTouchOutside(float f, float f2) {
-        BalanceCloud balanceCloud = this.balanceCloud;
-        if (balanceCloud == null || f < balanceCloud.getX() || f > this.balanceCloud.getX() + this.balanceCloud.getWidth() || f2 < this.balanceCloud.getY() || f2 > this.balanceCloud.getY() + this.balanceCloud.getHeight()) {
+        BalanceCloud balanceCloud;
+        if (!this.balanceCloudVisible || (balanceCloud = this.balanceCloud) == null || f < balanceCloud.getX() || f > this.balanceCloud.getX() + this.balanceCloud.getWidth() || f2 < this.balanceCloud.getY() || f2 > this.balanceCloud.getY() + this.balanceCloud.getHeight()) {
             return super.isTouchOutside(f, f2);
         }
         return false;
+    }
+
+    @Override
+    public void onContainerTranslationYChanged(float f) {
+        super.onContainerTranslationYChanged(f);
+        checkBalanceCloudVisibility();
+    }
+
+    @Override
+    public void onOpenAnimationEnd() {
+        super.onOpenAnimationEnd();
+        this.isFullyVisible = true;
+        checkBalanceCloudVisibility();
     }
 
     @Override
@@ -580,7 +562,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSuggestionOfferSheet.this.lambda$show$9();
+                MessageSuggestionOfferSheet.this.lambda$show$7();
             }
         }, 50L);
     }

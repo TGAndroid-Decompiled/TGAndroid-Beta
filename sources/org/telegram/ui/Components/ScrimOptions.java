@@ -380,7 +380,7 @@ public class ScrimOptions extends Dialog {
         this.containerView.addView(this.optionsContainer, LayoutHelper.createFrame(-2, -2.0f));
     }
 
-    public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r29, android.text.style.CharacterStyle r30, java.lang.CharSequence r31) {
+    public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r31, android.text.style.CharacterStyle r32, java.lang.CharSequence r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrimOptions.setScrim(org.telegram.ui.Cells.ChatMessageCell, android.text.style.CharacterStyle, java.lang.CharSequence):void");
     }
 

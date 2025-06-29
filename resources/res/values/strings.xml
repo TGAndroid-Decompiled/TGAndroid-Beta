@@ -1938,8 +1938,8 @@
     <string name="CancelReset">Cancel reset</string>
     <string name="CancelRound">Cancel</string>
     <string name="CancelSending">Cancel sending</string>
-    <string name="CancelTodoAlertText">Are you sure you want to discard this To-Do List?</string>
-    <string name="CancelTodoAlertTitle">Discard To-Do List</string>
+    <string name="CancelTodoAlertText">Are you sure you want to discard this Checklist?</string>
+    <string name="CancelTodoAlertTitle">Discard Checklist</string>
     <string name="CantAddBotAsAdmin">Sorry, bots can only be added to channels as administrators.</string>
     <string name="CantBoostTooOften">Can’t boost too often!</string>
     <string name="CantBoostTooOftenDescription">You can change the channel you boost only once a day. Next time you can boost is in **%s.**</string>
@@ -2131,7 +2131,7 @@
     <string name="ChannelMessageRound">%1$s posted a video message</string>
     <string name="ChannelMessageSticker">%1$s posted a sticker</string>
     <string name="ChannelMessageStickerEmoji">%1$s posted a %2$s sticker</string>
-    <string name="ChannelMessageTodo2">%1$s posted a to-do list %2$s</string>
+    <string name="ChannelMessageTodo2">%1$s posted a checklist %2$s</string>
     <string name="ChannelMessageTodoAppend2">%1$s added %2$s tasks</string>
     <string name="ChannelMessageTodoDone2">%1$s toggled %2$s tasks</string>
     <string name="ChannelMessageVideo">%1$s posted a video</string>
@@ -2926,6 +2926,7 @@
     <string name="EditNumber">Edit number</string>
     <string name="EditNumberInfo">Do you want to edit your number?\n\n**%1$s**\n\nIf the number above is correct, please wait for the verification code.</string>
     <string name="EditOfferAdd">Add Offer</string>
+    <string name="EditOfferMessage">Edit Message</string>
     <string name="EditOfferPrice">Edit Price</string>
     <string name="EditOfferTime">Edit Time</string>
     <string name="EditPack">edit</string>
@@ -3079,8 +3080,8 @@
     <string name="ErrorSendRestrictedRoundAll">Sorry, sending video messages is not allowed in this group.</string>
     <string name="ErrorSendRestrictedStickers">Sorry, the admins of this group have restricted you from sending stickers.</string>
     <string name="ErrorSendRestrictedStickersAll">Sorry, sending stickers is not allowed in this group.</string>
-    <string name="ErrorSendRestrictedTodo">Sorry, the admins of this group have restricted you from sending to-do lists.</string>
-    <string name="ErrorSendRestrictedTodoAll">Sorry, sending to-do lists is not allowed in this group.</string>
+    <string name="ErrorSendRestrictedTodo">Sorry, the admins of this group have restricted you from sending checklists.</string>
+    <string name="ErrorSendRestrictedTodoAll">Sorry, sending checklists is not allowed in this group.</string>
     <string name="ErrorSendRestrictedVideo">Sorry, the admins of this group have restricted you from sending video.</string>
     <string name="ErrorSendRestrictedVideoAll">Sorry, sending video is not allowed in this group.</string>
     <string name="ErrorSendRestrictedVoice">Sorry, the admins of this group have restricted you from sending voice messages.</string>
@@ -4798,7 +4799,7 @@
     <string name="MessageContainsReactionsPack">This reactions contains emoji from %s pack.</string>
     <string name="MessageContainsReactionsPacks_other">This reactions contains emoji from **%d Packs**.</string>
     <string name="MessageCopied">Message copied to clipboard.</string>
-    <string name="MessageGroupTodoList">Group To-Do List</string>
+    <string name="MessageGroupTodoList">Group Checklist</string>
     <string name="MessageLifetime">Self-Destruct Timer</string>
     <string name="MessageLifetimeChanged">%1$s set the self-destruct timer to %2$s</string>
     <string name="MessageLifetimeChangedOutgoing">You set the self-destruct timer to %1$s</string>
@@ -4851,7 +4852,7 @@
     <string name="MessageScheduledLimitReached">Sorry, you can not schedule more than 100 messages.</string>
     <string name="MessageScheduledOn">Scheduled for %1$s</string>
     <string name="MessageScheduledReminderNotification">�� Reminder</string>
-    <string name="MessageScheduledTodo">To-Do will become available after the message is published.</string>
+    <string name="MessageScheduledTodo">Checklist will become available after the message is published.</string>
     <string name="MessageScheduledUntilOnline">Scheduled until online</string>
     <string name="MessageScheduledVote">Voting will become available after the message is published.</string>
     <string name="MessageScheduledVoteResults">Poll results will become available after the message is published.</string>
@@ -4868,9 +4869,11 @@
     <string name="MessageShowSensitiveContentMediaText">This media may contain sensitive content suitable only for adults. Do you still want to view it?</string>
     <string name="MessageShowSensitiveContentMediaTitle">18+ Content</string>
     <string name="MessageStarsUnlock">Buy Stars</string>
+    <string name="MessageSuggestionPublishNow">Publish Now</string>
     <string name="MessageSuggestionsUnsavedChanges">You have changed the direct messages settings. Apply changes?</string>
-    <string name="MessageTodo">To-Do</string>
-    <string name="MessageTodoList">To-Do List</string>
+    <string name="MessageTodo">Checklist</string>
+    <string name="MessageTodoList">Checklist</string>
+    <string name="MessageTodoName">%s</string>
     <string name="MessageUnpinnedHint">Message unpinned</string>
     <string name="MessagesBold_one">**%1$d** message</string>
     <string name="MessagesBold_other">**%1$d** messages</string>
@@ -5236,9 +5239,9 @@
     <string name="NotificationActionPinnedText">%1$s pinned \"%2$s\" in the group %3$s</string>
     <string name="NotificationActionPinnedTextChannel">%1$s pinned \"%2$s\"</string>
     <string name="NotificationActionPinnedTextUser">%1$s pinned \"%2$s\"</string>
-    <string name="NotificationActionPinnedTodo2">%1$s pinned a to-do list %3$s in the group %2$s</string>
-    <string name="NotificationActionPinnedTodoChannel2">%1$s pinned a to-do list %2$s</string>
-    <string name="NotificationActionPinnedTodoUser">%1$s pinned a to-do list %2$s</string>
+    <string name="NotificationActionPinnedTodo2">%1$s pinned a checklist %3$s in the group %2$s</string>
+    <string name="NotificationActionPinnedTodoChannel2">%1$s pinned a checklist %2$s</string>
+    <string name="NotificationActionPinnedTodoUser">%1$s pinned a checklist %2$s</string>
     <string name="NotificationActionPinnedVideo">%1$s pinned a video in the group %2$s</string>
     <string name="NotificationActionPinnedVideoChannel">%1$s pinned a video</string>
     <string name="NotificationActionPinnedVideoUser">%1$s pinned a video</string>
@@ -5312,7 +5315,7 @@
     <string name="NotificationMessageGroupSticker">%1$s sent a sticker to the group %2$s</string>
     <string name="NotificationMessageGroupStickerEmoji">%1$s sent a %3$s sticker to the group %2$s</string>
     <string name="NotificationMessageGroupText">%1$s @ %2$s: %3$s</string>
-    <string name="NotificationMessageGroupTodo2">%1$s sent a to-do list %3$s to the group %2$s</string>
+    <string name="NotificationMessageGroupTodo2">%1$s sent a checklist %3$s to the group %2$s</string>
     <string name="NotificationMessageGroupTodoAppend2">%1$s added %3$s tasks in the group %2$s</string>
     <string name="NotificationMessageGroupTodoDone2">%1$s toggled %3$s tasks in the group %2$s</string>
     <string name="NotificationMessageGroupVideo">%1$s sent a video to the group %2$s</string>
@@ -5338,7 +5341,7 @@
     <string name="NotificationMessageSticker">%1$s sent you a sticker</string>
     <string name="NotificationMessageStickerEmoji">%1$s sent you a %2$s sticker</string>
     <string name="NotificationMessageText">%1$s: %2$s</string>
-    <string name="NotificationMessageTodo2">%1$s sent you a to-do list %2$s</string>
+    <string name="NotificationMessageTodo2">%1$s sent you a checklist %2$s</string>
     <string name="NotificationMessageUniqueStarGift">%1$s transferred you a Gift!</string>
     <string name="NotificationMessageUniqueStarGiftUpgrade">%1$s upgraded your Gift</string>
     <string name="NotificationMessageVideo">%1$s sent you a video</string>
@@ -6160,7 +6163,7 @@
     <string name="PremiumPreviewTags2">Tags in Saved Messages</string>
     <string name="PremiumPreviewTagsDescription">Organize your Saved Messages with tags\nfor quicker access.</string>
     <string name="PremiumPreviewTagsDescription2">Organize your Saved Messages with tags for quicker access.</string>
-    <string name="PremiumPreviewTodo">To-Do Lists</string>
+    <string name="PremiumPreviewTodo">Checklists</string>
     <string name="PremiumPreviewTodoDescription">Plan, assign, and complete tasks –\nseamlessly and efficiently.</string>
     <string name="PremiumPreviewTranslations">Real-Time Translation</string>
     <string name="PremiumPreviewTranslationsDescription">Real-time translation of channels and chats into other languages.</string>
@@ -6228,8 +6231,8 @@
     <string name="PreviewForwardRound_other">Forward %1$d video messages</string>
     <string name="PreviewForwardSticker_one">Forward sticker</string>
     <string name="PreviewForwardSticker_other">Forward %1$d stickers</string>
-    <string name="PreviewForwardTodo_one">Forward To-Do</string>
-    <string name="PreviewForwardTodo_other">Forward %1$d To-Do lists</string>
+    <string name="PreviewForwardTodo_one">Forward Checklist</string>
+    <string name="PreviewForwardTodo_other">Forward %1$d Checklists</string>
     <string name="PreviewForwardVideo_one">Forward video</string>
     <string name="PreviewForwardVideo_other">Forward %1$d videos</string>
     <string name="PreviewQuoteUpdate">Update Quote</string>
@@ -6480,6 +6483,9 @@
     <string name="PublicShares">Public Shares</string>
     <string name="PublicSharesCount_one">%1$s public share</string>
     <string name="PublicSharesCount_other">%1$s public shares</string>
+    <string name="PublishDayAt">\'Publish on\' MMM d \'at\' HH:mm</string>
+    <string name="PublishDayYearAt">\'Publish on\' MMM d yyyy \'at\' HH:mm</string>
+    <string name="PublishTodayAt">\'Publish today at\' HH:mm</string>
     <string name="Purple">Purple</string>
     <string name="PushChatReactAudio">%3$s to your voice message in %2$s</string>
     <string name="PushChatReactContact">%3$s to your contact %4$s in %2$s</string>
@@ -6496,7 +6502,7 @@
     <string name="PushChatReactRound">%3$s to your video message in %2$s</string>
     <string name="PushChatReactSticker">%3$s to your %4$s sticker in %2$s</string>
     <string name="PushChatReactText">%3$s in %2$s to your %4$s</string>
-    <string name="PushChatReactTodo">%3$s to your to-do list %4$s in %2$s</string>
+    <string name="PushChatReactTodo">%3$s to your checklist %4$s in %2$s</string>
     <string name="PushChatReactVideo">%3$s to your video in %2$s</string>
     <string name="PushReactAudio">%2$s to your voice message</string>
     <string name="PushReactContect">%2$s to your contact %3$s</string>
@@ -6517,7 +6523,7 @@
     <string name="PushReactStoryHidden">New reaction to your story</string>
     <string name="PushReactStoryHiddenSender">Story Reaction</string>
     <string name="PushReactText">%2$s to your %3$s</string>
-    <string name="PushReactTodo">%2$s to your to-do list %3$s</string>
+    <string name="PushReactTodo">%2$s to your checklist %3$s</string>
     <string name="PushReactVideo">%2$s to your video</string>
     <string name="QRCodeLinkGroupCall">Everyone on Telegram can scan this code to join your group call.</string>
     <string name="QRCodeLinkHelpChannel">Everyone on Telegram can scan this code to join your channel.</string>
@@ -7710,10 +7716,6 @@
     <string name="StarsSubscriptionUntilExpired">Expired</string>
     <string name="StarsSubscriptionUntilExpires">Expires</string>
     <string name="StarsSubscriptionUntilRenews">Renews</string>
-    <string name="StarsSuggestionOfferAcceptTerms">By publishing suggested post for Stars you agree to the **Terms of Service**.</string>
-    <string name="StarsSuggestionOfferAcceptTermsLink">https://telegram.org/tos/stars</string>
-    <string name="StarsSuggestionTerms">By sending Stars you agree to the **Terms of Service**.</string>
-    <string name="StarsSuggestionTermsLink">https://telegram.org/tos/stars</string>
     <string name="StarsTOS">By proceeding and purchasing Stars, you agree with the **Terms and Conditions**.</string>
     <string name="StarsTOSLink">https://telegram.org/tos</string>
     <string name="StarsTopUp">Top Up</string>
@@ -8168,19 +8170,17 @@
     <string name="SuggestedMessageDecline">Decline</string>
     <string name="SuggestedMessageDeclineInfo">Do you want to decline publishing this post from **%1$s**?</string>
     <string name="SuggestedMessageDeclineReasonHint">Add a reason (optional)</string>
+    <string name="SuggestedOfferCompleteAmount">%1$s has received ⭐️ %2$s for publishing post</string>
     <string name="SuggestedOfferCompleteAmountUnknown">%1$s has received funds for publishing post</string>
-    <string name="SuggestedOfferCompleteAmount_one">%1$s has received %2$s for publishing post</string>
-    <string name="SuggestedOfferCompleteAmount_other">%1$s has received %2$s for publishing post</string>
     <string name="SuggestedOfferPaidUntil">Paid until %1$s</string>
-    <string name="SuggestedOfferRefundByAdminAmountUnknown">The funds have been returned to %1$s because %2$s deleted the post prematurely</string>
-    <string name="SuggestedOfferRefundByAdminAmount_one">%3$s has been returned to %1$s because %2$s deleted the post prematurely</string>
-    <string name="SuggestedOfferRefundByAdminAmount_other">%3$s have been returned to %1$s because %2$s deleted the post prematurely</string>
-    <string name="SuggestedOfferRefundByUserAmountUnknown">%2$s will not receive funds because %1$s requested a refund through the payment system</string>
-    <string name="SuggestedOfferRefundByUserAmount_one">%2$s will not receive %3$s because %1$s requested a refund through the payment system</string>
-    <string name="SuggestedOfferRefundByUserAmount_other">%2$s will not receive %3$s because %1$s requested a refund through the payment system</string>
+    <string name="SuggestedOfferRefundByAdminAmount">⭐️ %3$s was returned to %1$s because %2$s deleted the message</string>
+    <string name="SuggestedOfferRefundByAdminAmountUnknown">The funds was returned to %1$s because %2$s deleted the message</string>
+    <string name="SuggestedOfferRefundByUserAmount">%2$s will not receive ⭐️ %3$s because %1$s requested a refund</string>
+    <string name="SuggestedOfferRefundByUserAmountUnknown">%2$s will not receive funds because %1$s requested a refund</string>
     <string name="SuggestedOfferStars">Offer Stars</string>
     <string name="SuggestedOfferTON">Offer TON</string>
     <string name="SuggestedPhoto">Suggested Photo</string>
+    <string name="SuggestedPostAcceptTitle">Accept Terms</string>
     <string name="SuggestedPostPublish">Publish</string>
     <string name="SuggestedVideo">Suggested Video</string>
     <string name="SuggestionAgreementDeclinedThis">❌ **%s** rejected this message.</string>
@@ -8192,13 +8192,13 @@
     <string name="SuggestionAgreementReachedAdmin1" formatted="false">�� This post will be automatically published **%s** **%s**</string>
     <string name="SuggestionAgreementReachedAdmin1PastSimple" formatted="false">�� This post was automatically published on **%s** **%s**</string>
     <string name="SuggestionAgreementReachedAdmin1PresentPerfect">�� This post has been published on **%s**</string>
-    <string name="SuggestionAgreementReachedAdmin2" formatted="false">�� **%s** has been charged **%s**.</string>
+    <string name="SuggestionAgreementReachedAdmin2" formatted="false">�� **%s** has been charged ⭐️ **%s**.</string>
     <string name="SuggestionAgreementReachedAdmin3" formatted="false">⏳ **%s** will receive the Stars once the post has been live for **%d** hours.</string>
     <string name="SuggestionAgreementReachedAdmin4" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, Stars will be refunded to user.</string>
     <string name="SuggestionAgreementReachedUser1" formatted="false">�� Your post will be automatically published on **%s** **%s**</string>
     <string name="SuggestionAgreementReachedUser1PastSimple" formatted="false">�� Your post was automatically published on **%s** **%s**</string>
     <string name="SuggestionAgreementReachedUser1PresentPerfect">�� Your post has been published on **%s**</string>
-    <string name="SuggestionAgreementReachedUser2">�� You have been charged **%s**.</string>
+    <string name="SuggestionAgreementReachedUser2">�� You have been charged ⭐️ **%s**.</string>
     <string name="SuggestionAgreementReachedUser3" formatted="false">⏳ **%s** will receive your Stars once the post has been live for **%d** hours.</string>
     <string name="SuggestionAgreementReachedUser4" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, your Stars will be refunded.</string>
     <string name="SuggestionLockedStars">**%1$s** charges **⭐️ %2$s** per message to its admin.</string>
@@ -8206,11 +8206,13 @@
     <string name="SuggestionOfferInfoTime">Time</string>
     <string name="SuggestionOfferInfoTitle">**%s** suggest to post this message.</string>
     <string name="SuggestionOfferInfoTitleEditedAnd">and</string>
+    <string name="SuggestionOfferInfoTitleEditedFromX">**%1$s** suggest a new %2$s for this message.</string>
+    <string name="SuggestionOfferInfoTitleEditedFromYou">**You** suggest a new %1$s for this message.</string>
     <string name="SuggestionOfferInfoTitleEditedMedia">media</string>
     <string name="SuggestionOfferInfoTitleEditedPrice">price</string>
     <string name="SuggestionOfferInfoTitleEditedText">text</string>
     <string name="SuggestionOfferInfoTitleEditedTime">time</string>
-    <string name="SuggestionOfferInfoTitleEditedX">**%1$s** suggest a new %3$s for **%2$s** message.</string>
+    <string name="SuggestionOfferInfoTitleYou">**You** suggest to post this message.</string>
     <string name="SuggestionStarsWillBeLost">Stars will be lost</string>
     <string name="SuggestionStarsWillBeLostDelete">Delete Anyway</string>
     <string name="SuggestionStarsWillBeLostInfo">You won’t receive Stars for this post if you delete it now. The post must remain visible for at least** %d hours** after it was published.</string>
@@ -8412,27 +8414,27 @@
     <string name="TodayAt">at</string>
     <string name="TodayAtFormatted">at %1$s</string>
     <string name="TodayAtFormattedWithToday">today at %1$s</string>
-    <string name="Todo">To-Do List</string>
+    <string name="Todo">Checklist</string>
     <string name="TodoAddTaskInfoMax">You have added the maximum number of tasks.</string>
     <string name="TodoAddTasksButton">ADD</string>
     <string name="TodoAddTasksTitle">New Tasks</string>
-    <string name="TodoAddedMoreTasksOut_one">You added “%2$s”, “%3$s”, “%4$s” and %1$d more task to To-Do list.</string>
-    <string name="TodoAddedMoreTasksOut_other">You added “%2$s”, “%3$s”, “%4$s” and %1$d more tasks to To-Do list.</string>
-    <string name="TodoAddedMoreTasks_one">un1 added “%2$s”, “%3$s”, “%4$s” and %1$d more task to To-Do list.</string>
-    <string name="TodoAddedMoreTasks_other">un1 added “%2$s”, “%3$s”, “%4$s” and %1$d more tasks to To-Do list.</string>
-    <string name="TodoAddedOneTask">un1 added “%1$s” to To-Do list.</string>
-    <string name="TodoAddedOneTaskOut">You added “%1$s” to To-Do list.</string>
-    <string name="TodoAddedThreeTask">un1 added “%1$s”, “%2$s” and “%3$s” to To-Do list.</string>
-    <string name="TodoAddedThreeTaskOut">You added “%1$s”, “%2$s” and “%3$s” to To-Do list.</string>
-    <string name="TodoAddedTwoTask">un1 added “%1$s” and “%2$s” to To-Do list.</string>
-    <string name="TodoAddedTwoTaskOut">You added “%1$s” and “%2$s” to To-Do list.</string>
+    <string name="TodoAddedMoreTasksOut_one">You added “%2$s”, “%3$s”, “%4$s” and %1$d more task to checklist.</string>
+    <string name="TodoAddedMoreTasksOut_other">You added “%2$s”, “%3$s”, “%4$s” and %1$d more tasks to checklist.</string>
+    <string name="TodoAddedMoreTasks_one">un1 added “%2$s”, “%3$s”, “%4$s” and %1$d more task to checklist.</string>
+    <string name="TodoAddedMoreTasks_other">un1 added “%2$s”, “%3$s”, “%4$s” and %1$d more tasks to checklist.</string>
+    <string name="TodoAddedOneTask">un1 added “%1$s” to checklist.</string>
+    <string name="TodoAddedOneTaskOut">You added “%1$s” to checklist.</string>
+    <string name="TodoAddedThreeTask">un1 added “%1$s”, “%2$s” and “%3$s” to checklist.</string>
+    <string name="TodoAddedThreeTaskOut">You added “%1$s”, “%2$s” and “%3$s” to checklist.</string>
+    <string name="TodoAddedTwoTask">un1 added “%1$s” and “%2$s” to checklist.</string>
+    <string name="TodoAddedTwoTaskOut">You added “%1$s” and “%2$s” to checklist.</string>
     <string name="TodoAllowAddingTasks">Allow Others to Add Tasks</string>
     <string name="TodoAllowMarkingDone">Allow Others to Mark As Done</string>
-    <string name="TodoCantForward">Sorry, to-do lists can’t be forwarded to channels.</string>
-    <string name="TodoCantForwardSecretChat">Sorry, to-do lists can’t be forwarded to secret chats.</string>
+    <string name="TodoCantForward">Sorry, checklists can’t be forwarded to channels.</string>
+    <string name="TodoCantForwardSecretChat">Sorry, checklists can’t be forwarded to secret chats.</string>
     <string name="TodoCheck">Check</string>
-    <string name="TodoCompleteForbidden">**%s** has restricted others from editing this to-do list.</string>
-    <string name="TodoCompleteForbiddenForward">You can\'t change forwarded to-do.</string>
+    <string name="TodoCompleteForbidden">**%s** has restricted others from editing this checklist.</string>
+    <string name="TodoCompleteForbiddenForward">You can\'t change forwarded checklist.</string>
     <string name="TodoCompletedBy_one">%2$d of %1$d completed by %3$s</string>
     <string name="TodoCompletedBy_other">%2$d of %1$d completed by %3$s</string>
     <string name="TodoCompletedDateTimeAt">Completed %1$s at %2$s</string>
@@ -8440,11 +8442,11 @@
     <string name="TodoCompletedYesterdayAt">Completed yesterday at %s</string>
     <string name="TodoCompleted_one">%2$d of %1$d completed</string>
     <string name="TodoCompleted_other">%2$d of %1$d completed</string>
-    <string name="TodoDeleteItem">Edit Item</string>
+    <string name="TodoDeleteItem">Delete Item</string>
     <string name="TodoEditItem">Edit Item</string>
     <string name="TodoEditTasksButton">SAVE</string>
-    <string name="TodoEditTitle">Edit To-Do List</string>
-    <string name="TodoItemsTitle">To-Do List</string>
+    <string name="TodoEditTitle">Edit Checklist</string>
+    <string name="TodoItemsTitle">Checklist</string>
     <string name="TodoMenuHint">You are viewing actions for one task.\nYou can switch to actions for the list.</string>
     <string name="TodoMenuTabList">List</string>
     <string name="TodoMenuTabTask">Task</string>
@@ -8461,7 +8463,7 @@
     <string name="TodoTaskNotCompletedOutUnknown">You marked task as not done</string>
     <string name="TodoTaskNotCompletedUnknown">un1 marked task as not done</string>
     <string name="TodoTaskPlaceholder">Task</string>
-    <string name="TodoTitle">New To-Do List</string>
+    <string name="TodoTitle">New Checklist</string>
     <string name="TodoTitlePlaceholder">Title</string>
     <string name="TodoUncheck">Uncheck</string>
     <string name="TonCountX">%s TON</string>
@@ -8469,10 +8471,6 @@
     <string name="TonCount_other">%d TON</string>
     <string name="TonNeededTextSuggestMessage">Buy **TON** to suggest message to **%s** and others.</string>
     <string name="TonNeededTitle">%s TON Needed</string>
-    <string name="TonSuggestionOfferAcceptTerms">By publishing suggested post for TON you agree to the **Terms of Service**.</string>
-    <string name="TonSuggestionOfferAcceptTermsLink">https://telegram.org/tos/ton</string>
-    <string name="TonSuggestionTerms">By sending TON you agree to the **Terms of Service**.</string>
-    <string name="TonSuggestionTermsLink">https://telegram.org/tos/ton</string>
     <string name="TooLargeError">Too large</string>
     <string name="TooLongError">Too long</string>
     <string name="TooManyCommunities">Too Many Communities</string>
@@ -9471,7 +9469,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2515_com_google_firebase_crashlytics_mapping_file_id">a2d650be27b041cbb78b8f0413ddaa52</string>
+    <string name="res_0x7f0f2513_com_google_firebase_crashlytics_mapping_file_id">f086efc2ac5f4aae84bacc2ecd6069c2</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

@@ -50,6 +50,7 @@ public class UserConfig extends BaseController {
     public long lastUpdatedDefaultTopicIcons;
     public long lastUpdatedGenericAnimations;
     public long lastUpdatedPremiumGiftsStickerPack;
+    public long lastUpdatedTonGiftsStickerPack;
     public int loginTime;
     public long migrateOffsetAccess;
     public long migrateOffsetChannelId;
@@ -60,6 +61,7 @@ public class UserConfig extends BaseController {
     public boolean notificationsSettingsLoaded;
     public boolean notificationsSignUpSettingsLoaded;
     public String premiumGiftsStickerPack;
+    public String premiumTonStickerPack;
     public int ratingLoadTime;
     public boolean registeredForPush;
     public volatile byte[] savedPasswordHash;

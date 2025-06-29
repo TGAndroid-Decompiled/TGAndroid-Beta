@@ -4620,6 +4620,21 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void lambda$new$20(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
+        MessageObject messageObject = this.editingMessageObject;
+        if (messageObject != null && messageObject.needResendWhenEdit()) {
+            BaseFragment baseFragment2 = this.baseFragment;
+            if (baseFragment2 instanceof ChatActivity) {
+                ChatActivity chatActivity = (ChatActivity) baseFragment2;
+                MessageSuggestionParams messageSuggestionParams = chatActivity.messageSuggestionParams;
+                if (messageSuggestionParams == null) {
+                    messageSuggestionParams = MessageSuggestionParams.of(this.editingMessageObject.messageOwner.suggested_post);
+                }
+                if (!StarsController.isEnoughAmount(this.currentAccount, messageSuggestionParams.amount)) {
+                    chatActivity.showSuggestionOfferForEditMessage(messageSuggestionParams);
+                    return;
+                }
+            }
+        }
         if (this.currentLimit - this.codepointCount < 0) {
             AndroidUtilities.shakeView(this.captionLimitView);
             AndroidUtilities.shakeView(this.topCaptionLimitView);
@@ -4634,8 +4649,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             return;
         }
         if (this.editingMessageObject == null) {
-            BaseFragment baseFragment2 = this.baseFragment;
-            if ((baseFragment2 instanceof ChatActivity) && ((ChatActivity) baseFragment2).isInScheduleMode()) {
+            BaseFragment baseFragment3 = this.baseFragment;
+            if ((baseFragment3 instanceof ChatActivity) && ((ChatActivity) baseFragment3).isInScheduleMode()) {
                 AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.baseFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i) {

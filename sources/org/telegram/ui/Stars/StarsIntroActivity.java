@@ -2431,6 +2431,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return i != 3 ? i != 6 ? i != 12 ? i != 24 ? "1⃣" : "5⃣" : "4⃣" : "3⃣" : "2⃣";
     }
 
+    public static String getTonGiftEmoji(long j) {
+        return j <= 10000000000L ? "2⃣" : j <= 50000000000L ? "1⃣" : "3⃣";
+    }
+
     public static java.lang.CharSequence getTransactionTitle(int r5, boolean r6, org.telegram.tgnet.tl.TL_stars.StarsTransaction r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.getTransactionTitle(int, boolean, org.telegram.tgnet.tl.TL_stars$StarsTransaction):java.lang.CharSequence");
     }
@@ -2617,12 +2621,22 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void lambda$setGiftImage$21(int i, String str, ImageReceiver imageReceiver, final boolean[] zArr) {
+    public static void lambda$setGiftImage$21(boolean z, int i, String str, ImageReceiver imageReceiver, final boolean[] zArr) {
+        String str2;
         TLRPC.Document document;
-        String str2 = UserConfig.getInstance(i).premiumGiftsStickerPack;
-        if (str2 == null) {
-            MediaDataController.getInstance(i).checkPremiumGiftStickers();
-            return;
+        UserConfig userConfig = UserConfig.getInstance(i);
+        if (z) {
+            str2 = userConfig.premiumTonStickerPack;
+            if (str2 == null) {
+                MediaDataController.getInstance(i).checkTonGiftStickers();
+                return;
+            }
+        } else {
+            str2 = userConfig.premiumGiftsStickerPack;
+            if (str2 == null) {
+                MediaDataController.getInstance(i).checkPremiumGiftStickers();
+                return;
+            }
         }
         TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i).getStickerSetByName(str2);
         if (stickerSetByName == null) {
@@ -2662,9 +2676,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         imageReceiver.setAllowStartLottieAnimation(true);
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
-            public void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
+            public void didSetImage(ImageReceiver imageReceiver2, boolean z2, boolean z3, boolean z4) {
                 RLottieDrawable lottieAnimation;
-                if (!z || (lottieAnimation = imageReceiver2.getLottieAnimation()) == null || zArr[0]) {
+                if (!z2 || (lottieAnimation = imageReceiver2.getLottieAnimation()) == null || zArr[0]) {
                     return;
                 }
                 lottieAnimation.setCurrentFrame(0, false);
@@ -2747,7 +2761,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         bottomSheetArr[0].lambda$new$0();
     }
 
-    public static boolean lambda$showGiftResellPriceSheet$96(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, EditTextBoldCursor editTextBoldCursor, long j, OutlineTextContainerView outlineTextContainerView, final BottomSheet[] bottomSheetArr, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean lambda$showGiftResellPriceSheet$96(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, EditTextBoldCursor editTextBoldCursor, OutlineTextContainerView outlineTextContainerView, long j, final BottomSheet[] bottomSheetArr, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             return false;
         }
@@ -2757,17 +2771,23 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         if (callback2 != null) {
             zArr[0] = true;
             buttonWithCounterView.setLoading(true);
-            long parseLong = Long.parseLong(editTextBoldCursor.getText().toString());
-            if (parseLong < j) {
+            try {
+                long parseLong = Long.parseLong(editTextBoldCursor.getText().toString());
+                if (parseLong < j) {
+                    AndroidUtilities.shakeViewSpring(outlineTextContainerView);
+                    return true;
+                }
+                callback2.run(Long.valueOf(parseLong), new Runnable() {
+                    @Override
+                    public final void run() {
+                        StarsIntroActivity.lambda$showGiftResellPriceSheet$95(bottomSheetArr);
+                    }
+                });
+            } catch (Exception e) {
+                FileLog.e(e);
                 AndroidUtilities.shakeViewSpring(outlineTextContainerView);
                 return true;
             }
-            callback2.run(Long.valueOf(parseLong), new Runnable() {
-                @Override
-                public final void run() {
-                    StarsIntroActivity.lambda$showGiftResellPriceSheet$95(bottomSheetArr);
-                }
-            });
         } else {
             bottomSheetArr[0].lambda$new$0();
         }
@@ -2778,7 +2798,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         bottomSheetArr[0].lambda$new$0();
     }
 
-    public static void lambda$showGiftResellPriceSheet$98(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, EditTextBoldCursor editTextBoldCursor, long j, OutlineTextContainerView outlineTextContainerView, final BottomSheet[] bottomSheetArr, View view) {
+    public static void lambda$showGiftResellPriceSheet$98(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, EditTextBoldCursor editTextBoldCursor, OutlineTextContainerView outlineTextContainerView, long j, final BottomSheet[] bottomSheetArr, View view) {
         if (zArr[0]) {
             return;
         }
@@ -2788,16 +2808,21 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
         zArr[0] = true;
         buttonWithCounterView.setLoading(true);
-        long parseLong = Long.parseLong(editTextBoldCursor.getText().toString());
-        if (parseLong < j) {
+        try {
+            long parseLong = Long.parseLong(editTextBoldCursor.getText().toString());
+            if (parseLong < j) {
+                AndroidUtilities.shakeViewSpring(outlineTextContainerView);
+            } else {
+                callback2.run(Long.valueOf(parseLong), new Runnable() {
+                    @Override
+                    public final void run() {
+                        StarsIntroActivity.lambda$showGiftResellPriceSheet$97(bottomSheetArr);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
             AndroidUtilities.shakeViewSpring(outlineTextContainerView);
-        } else {
-            callback2.run(Long.valueOf(parseLong), new Runnable() {
-                @Override
-                public final void run() {
-                    StarsIntroActivity.lambda$showGiftResellPriceSheet$97(bottomSheetArr);
-                }
-            });
         }
     }
 
@@ -3630,6 +3655,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return replaceStars(starsAmount instanceof TL_stars.TL_starsTonAmount, charSequence, f, null);
     }
 
+    public static SpannableStringBuilder replaceStars(boolean z, CharSequence charSequence) {
+        return replaceStars(z, charSequence, 1.13f);
+    }
+
+    public static SpannableStringBuilder replaceStars(boolean z, CharSequence charSequence, float f) {
+        return replaceStars(z, charSequence, f, null);
+    }
+
     public static SpannableStringBuilder replaceStars(boolean z, CharSequence charSequence, float f, ColoredImageSpan[] coloredImageSpanArr) {
         return replaceStars(z, charSequence, f, coloredImageSpanArr, 0.0f, 0.0f, 1.0f);
     }
@@ -3649,6 +3682,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
         coloredImageSpan.translate(f2, f3);
         coloredImageSpan.spaceScaleX = f4;
+        if (z) {
+            f *= 0.2f;
+        }
         coloredImageSpan.setScale(f, f);
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length() - 1, 33);
         AndroidUtilities.replaceMultipleCharSequence("⭐️", spannableStringBuilder, "⭐");
@@ -3730,17 +3766,21 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return setGiftImage(view, imageReceiver, getGiftStarsEmoji(j));
     }
 
-    public static Runnable setGiftImage(View view, final ImageReceiver imageReceiver, final String str) {
+    public static Runnable setGiftImage(View view, ImageReceiver imageReceiver, String str) {
+        return setGiftImage(view, imageReceiver, str, false);
+    }
+
+    public static Runnable setGiftImage(View view, final ImageReceiver imageReceiver, final String str, final boolean z) {
         final boolean[] zArr = new boolean[1];
         final int currentAccount = imageReceiver.getCurrentAccount();
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StarsIntroActivity.lambda$setGiftImage$21(currentAccount, str, imageReceiver, zArr);
+                StarsIntroActivity.lambda$setGiftImage$21(z, currentAccount, str, imageReceiver, zArr);
             }
         };
         runnable.run();
-        final Runnable listen = NotificationCenter.getInstance(currentAccount).listen(view, NotificationCenter.didUpdatePremiumGiftStickers, new Utilities.Callback() {
+        final Runnable listen = NotificationCenter.getInstance(currentAccount).listen(view, z ? NotificationCenter.didUpdateTonGiftStickers : NotificationCenter.didUpdatePremiumGiftStickers, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 runnable.run();
@@ -3776,6 +3816,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
     public static Runnable setPremiumGiftImage(View view, ImageReceiver imageReceiver, int i) {
         return setGiftImage(view, imageReceiver, getPremiumGiftMonthsEmoji(i));
+    }
+
+    public static Runnable setTonGiftImage(View view, ImageReceiver imageReceiver, long j) {
+        return setGiftImage(view, imageReceiver, getTonGiftEmoji(j), true);
     }
 
     public static BottomSheet showBoostsSheet(final Context context, int i, final long j, final TL_stories.Boost boost, Theme.ResourcesProvider resourcesProvider) {
@@ -4063,14 +4107,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             @Override
             public final boolean onEditorAction(TextView textView2, int i6, KeyEvent keyEvent) {
                 boolean lambda$showGiftResellPriceSheet$96;
-                lambda$showGiftResellPriceSheet$96 = StarsIntroActivity.lambda$showGiftResellPriceSheet$96(zArr, callback2, buttonWithCounterView, editTextBoldCursor, j2, outlineTextContainerView, bottomSheetArr, textView2, i6, keyEvent);
+                lambda$showGiftResellPriceSheet$96 = StarsIntroActivity.lambda$showGiftResellPriceSheet$96(zArr, callback2, buttonWithCounterView, editTextBoldCursor, outlineTextContainerView, j2, bottomSheetArr, textView2, i6, keyEvent);
                 return lambda$showGiftResellPriceSheet$96;
             }
         });
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.lambda$showGiftResellPriceSheet$98(zArr, callback2, buttonWithCounterView, editTextBoldCursor, j2, outlineTextContainerView, bottomSheetArr, view);
+                StarsIntroActivity.lambda$showGiftResellPriceSheet$98(zArr, callback2, buttonWithCounterView, editTextBoldCursor, outlineTextContainerView, j2, bottomSheetArr, view);
             }
         });
         bottomSheetArr[0].fixNavigationBar();

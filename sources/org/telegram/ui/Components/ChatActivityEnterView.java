@@ -165,6 +165,7 @@ import org.telegram.ui.MultiContactsSelectorBottomSheet;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.StickersActivity;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
@@ -10744,8 +10745,24 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         MessagePreviewParams messagePreviewParams;
         MessageSuggestionParams of;
         int i;
-        if (this.editingMessageObject == null) {
+        MessageSuggestionParams of2;
+        MessageObject messageObject = this.editingMessageObject;
+        if (messageObject == null) {
             return;
+        }
+        if (messageObject.needResendWhenEdit()) {
+            ChatActivity chatActivity = this.parentFragment;
+            if (chatActivity == null || (of2 = chatActivity.messageSuggestionParams) == null) {
+                of2 = MessageSuggestionParams.of(this.editingMessageObject.messageOwner.suggested_post);
+            }
+            if (!StarsController.isEnoughAmount(this.currentAccount, of2.amount)) {
+                ChatActivity chatActivity2 = this.parentFragment;
+                if (chatActivity2 != null) {
+                    chatActivity2.showSuggestionOfferForEditMessage(of2);
+                    return;
+                }
+                return;
+            }
         }
         if (this.currentLimit - this.codePointCount < 0) {
             NumberTextView numberTextView = this.captionLimitView;
@@ -10778,8 +10795,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         EditTextCaption editTextCaption = this.messageEditText;
         CharSequence textToUse = editTextCaption == null ? "" : editTextCaption.getTextToUse();
-        MessageObject messageObject = this.editingMessageObject;
-        if (messageObject == null || messageObject.type != 19) {
+        MessageObject messageObject2 = this.editingMessageObject;
+        if (messageObject2 == null || messageObject2.type != 19) {
             textToUse = AndroidUtilities.getTrimmedString(textToUse);
         }
         CharSequence[] charSequenceArr = {textToUse};
@@ -10793,44 +10810,44 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, supportsSendingNewEntities());
         if (!TextUtils.equals(charSequenceArr[0], this.editingMessageObject.messageText) || ((entities != null && !entities.isEmpty()) || !this.editingMessageObject.messageOwner.entities.isEmpty() || (this.editingMessageObject.messageOwner.media instanceof TLRPC.TL_messageMediaWebPage))) {
-            MessageObject messageObject2 = this.editingMessageObject;
-            messageObject2.editingMessage = charSequenceArr[0];
-            messageObject2.editingMessageEntities = entities;
-            messageObject2.editingMessageSearchWebPage = this.messageWebPageSearch;
-            ChatActivity chatActivity = this.parentFragment;
-            if (chatActivity == null || chatActivity.getCurrentChat() == null || (!((i = this.editingMessageObject.type) == 0 || i == 19) || ChatObject.canSendEmbed(this.parentFragment.getCurrentChat()))) {
-                ChatActivity chatActivity2 = this.parentFragment;
-                if (chatActivity2 == null || (messagePreviewParams = chatActivity2.messagePreviewParams) == null) {
-                    MessageObject messageObject3 = this.editingMessageObject;
-                    messageObject3.editingMessageSearchWebPage = false;
-                    int i2 = messageObject3.type;
+            MessageObject messageObject3 = this.editingMessageObject;
+            messageObject3.editingMessage = charSequenceArr[0];
+            messageObject3.editingMessageEntities = entities;
+            messageObject3.editingMessageSearchWebPage = this.messageWebPageSearch;
+            ChatActivity chatActivity3 = this.parentFragment;
+            if (chatActivity3 == null || chatActivity3.getCurrentChat() == null || (!((i = this.editingMessageObject.type) == 0 || i == 19) || ChatObject.canSendEmbed(this.parentFragment.getCurrentChat()))) {
+                ChatActivity chatActivity4 = this.parentFragment;
+                if (chatActivity4 == null || (messagePreviewParams = chatActivity4.messagePreviewParams) == null) {
+                    MessageObject messageObject4 = this.editingMessageObject;
+                    messageObject4.editingMessageSearchWebPage = false;
+                    int i2 = messageObject4.type;
                     if (i2 == 0 || i2 == 19) {
-                        TLRPC.Message message = messageObject3.messageOwner;
+                        TLRPC.Message message = messageObject4.messageOwner;
                         message.flags |= 512;
                         message.media = new TLRPC.TL_messageMediaEmpty();
                     }
                 } else {
-                    if (chatActivity2.foundWebPage instanceof TLRPC.TL_webPagePending) {
-                        MessageObject messageObject4 = this.editingMessageObject;
-                        messageObject4.editingMessageSearchWebPage = false;
-                        int i3 = messageObject4.type;
+                    if (chatActivity4.foundWebPage instanceof TLRPC.TL_webPagePending) {
+                        MessageObject messageObject5 = this.editingMessageObject;
+                        messageObject5.editingMessageSearchWebPage = false;
+                        int i3 = messageObject5.type;
                         if (i3 == 0 || i3 == 19) {
-                            messageObject4.messageOwner.media = new TLRPC.TL_messageMediaEmpty();
+                            messageObject5.messageOwner.media = new TLRPC.TL_messageMediaEmpty();
                             this.editingMessageObject.messageOwner.flags |= 512;
                         }
                     } else if (messagePreviewParams.webpage != null) {
-                        MessageObject messageObject5 = this.editingMessageObject;
-                        messageObject5.editingMessageSearchWebPage = false;
-                        TLRPC.Message message2 = messageObject5.messageOwner;
+                        MessageObject messageObject6 = this.editingMessageObject;
+                        messageObject6.editingMessageSearchWebPage = false;
+                        TLRPC.Message message2 = messageObject6.messageOwner;
                         message2.flags |= 512;
                         message2.media = new TLRPC.TL_messageMediaWebPage();
                         this.editingMessageObject.messageOwner.media.webpage = this.parentFragment.messagePreviewParams.webpage;
                     } else {
-                        MessageObject messageObject6 = this.editingMessageObject;
-                        messageObject6.editingMessageSearchWebPage = false;
-                        int i4 = messageObject6.type;
+                        MessageObject messageObject7 = this.editingMessageObject;
+                        messageObject7.editingMessageSearchWebPage = false;
+                        int i4 = messageObject7.type;
                         if (i4 == 0 || i4 == 19) {
-                            TLRPC.Message message3 = messageObject6.messageOwner;
+                            TLRPC.Message message3 = messageObject7.messageOwner;
                             message3.flags |= 512;
                             message3.media = new TLRPC.TL_messageMediaEmpty();
                         }
@@ -10848,45 +10865,45 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     }
                 }
             } else {
-                MessageObject messageObject7 = this.editingMessageObject;
-                messageObject7.editingMessageSearchWebPage = false;
-                TLRPC.Message message5 = messageObject7.messageOwner;
+                MessageObject messageObject8 = this.editingMessageObject;
+                messageObject8.editingMessageSearchWebPage = false;
+                TLRPC.Message message5 = messageObject8.messageOwner;
                 message5.flags &= -513;
                 message5.media = null;
             }
             if (this.editingMessageObject.needResendWhenEdit()) {
-                SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.editingMessageObject.editingMessage.toString(), this.editingMessageObject.getDialogId());
-                ChatActivity chatActivity3 = this.parentFragment;
-                if (chatActivity3 == null || (of = chatActivity3.messageSuggestionParams) == null) {
+                SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(this.editingMessageObject.editingMessage.toString(), this.editingMessageObject.getDialogId());
+                ChatActivity chatActivity5 = this.parentFragment;
+                if (chatActivity5 == null || (of = chatActivity5.messageSuggestionParams) == null) {
                     of = MessageSuggestionParams.of(this.editingMessageObject.messageOwner.suggested_post);
                 }
-                of2.suggestionParams = of;
-                of2.monoForumPeer = DialogObject.getPeerDialogId(this.editingMessageObject.messageOwner.saved_peer_id);
-                of2.hasMediaSpoilers = this.editingMessageObject.hasMediaSpoilers();
-                MessageObject messageObject8 = this.editingMessageObject;
-                of2.replyToMsg = messageObject8;
-                of2.parentObject = messageObject8;
-                if (messageObject8.getDocument() instanceof TLRPC.TL_document) {
-                    of2.document = (TLRPC.TL_document) this.editingMessageObject.getDocument();
+                of3.suggestionParams = of;
+                of3.monoForumPeer = DialogObject.getPeerDialogId(this.editingMessageObject.messageOwner.saved_peer_id);
+                of3.hasMediaSpoilers = this.editingMessageObject.hasMediaSpoilers();
+                MessageObject messageObject9 = this.editingMessageObject;
+                of3.replyToMsg = messageObject9;
+                of3.parentObject = messageObject9;
+                if (messageObject9.getDocument() instanceof TLRPC.TL_document) {
+                    of3.document = (TLRPC.TL_document) this.editingMessageObject.getDocument();
                 } else {
                     TLRPC.MessageMedia messageMedia3 = this.editingMessageObject.messageOwner.media;
                     if (messageMedia3 != null && !(messageMedia3 instanceof TLRPC.TL_messageMediaEmpty)) {
                         TLRPC.Photo photo = messageMedia3.photo;
                         if (photo instanceof TLRPC.TL_photo) {
-                            of2.photo = (TLRPC.TL_photo) photo;
+                            of3.photo = (TLRPC.TL_photo) photo;
                         } else {
-                            of2.location = messageMedia3;
+                            of3.location = messageMedia3;
                         }
                     }
-                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
+                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of3);
                 }
-                of2.caption = of2.message;
-                of2.message = null;
-                SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
+                of3.caption = of3.message;
+                of3.message = null;
+                SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of3);
             } else {
                 SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(this.currentAccount);
-                MessageObject messageObject9 = this.editingMessageObject;
-                sendMessagesHelper.editMessage(messageObject9, null, null, null, null, null, null, false, messageObject9.hasMediaSpoilers(), null);
+                MessageObject messageObject10 = this.editingMessageObject;
+                sendMessagesHelper.editMessage(messageObject10, null, null, null, null, null, null, false, messageObject10.hasMediaSpoilers(), null);
             }
         }
         setEditingMessageObject(null, null, false);

@@ -1146,6 +1146,10 @@ public class StarsController {
         return getInstance(i, true);
     }
 
+    public static boolean isEnoughAmount(int i, AmountUtils$Amount amountUtils$Amount) {
+        return amountUtils$Amount == null || getInstance(i, amountUtils$Amount.currency).getBalanceAmount().asNano() >= amountUtils$Amount.asNano();
+    }
+
     public void lambda$beforeSendingFinalRequest$153(HashSet hashSet, Runnable runnable) {
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
@@ -3338,24 +3342,21 @@ public class StarsController {
     }
 
     public void lambda$stopPaidMessages$149(TLObject tLObject, long j, long j2, boolean z) {
-        TopicsController topicsController;
-        long j3;
-        TLRPC.TL_forumTopic findTopic;
         TLRPC.PeerSettings peerSettings;
         if (tLObject instanceof TLRPC.TL_boolTrue) {
-            TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
+            if (j != 0) {
+                processUpdateMonoForumNoPaidException(-j, j2, z);
+                return;
+            }
+            TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j2);
             if (userFull != null && (peerSettings = userFull.settings) != null) {
                 peerSettings.flags &= -16385;
                 peerSettings.charge_paid_message_stars = 0L;
             }
-            if (j2 != 0 && (findTopic = (topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController()).findTopic((j3 = -j2), j)) != null) {
-                findTopic.nopaid_messages_exception = z;
-                topicsController.saveTopics(j3);
-            }
-            MessagesController.getNotificationsSettings(this.currentAccount).edit().putLong("dialog_bar_paying_" + j, 0L).apply();
-            MessagesController.getInstance(this.currentAccount).loadPeerSettings(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)), true);
+            MessagesController.getNotificationsSettings(this.currentAccount).edit().putLong("dialog_bar_paying_" + j2, 0L).apply();
+            MessagesController.getInstance(this.currentAccount).loadPeerSettings(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2)), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j2)), true);
             ContactsController.getInstance(this.currentAccount).loadPrivacySettings(true);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesFeeUpdated, Long.valueOf(j));
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesFeeUpdated, Long.valueOf(j2));
         }
     }
 
@@ -4741,6 +4742,16 @@ public class StarsController {
         });
     }
 
+    public void processUpdateMonoForumNoPaidException(long j, long j2, boolean z) {
+        TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
+        TLRPC.TL_forumTopic findTopic = topicsController.findTopic(j, j2);
+        if (findTopic != null) {
+            findTopic.nopaid_messages_exception = z;
+            topicsController.saveTopics(j);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesFeeUpdated, Long.valueOf(j2));
+        }
+    }
+
     public PendingPaidReactions sendPaidReaction(final MessageObject messageObject, final ChatActivity chatActivity, final long j, boolean z, boolean z2, final Long l) {
         Context context;
         boolean z3;
@@ -4879,7 +4890,7 @@ public class StarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(togglenopaidmessagesexception, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarsController.this.lambda$stopPaidMessages$150(j, j2, z2, tLObject, tL_error);
+                StarsController.this.lambda$stopPaidMessages$150(j2, j, z2, tLObject, tL_error);
             }
         });
     }

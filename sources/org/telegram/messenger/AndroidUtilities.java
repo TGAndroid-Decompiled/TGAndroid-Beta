@@ -4453,6 +4453,9 @@ public class AndroidUtilities {
             return spannableStringBuilder;
         }
         if (!(charSequence instanceof SpannableString)) {
+            if (charSequence == null) {
+                return null;
+            }
             return charSequence.toString().replace('\n', ' ');
         }
         if (TextUtils.indexOf(charSequence, '\n') < 0) {

@@ -85,7 +85,7 @@ public class LocaleController {
     private static volatile LocaleController Instance = null;
     private static char[] defaultNumbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     private static char[][] otherNumbers = {new char[]{1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641}, new char[]{1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785}, new char[]{2406, 2407, 2408, 2409, 2410, 2411, 2412, 2413, 2414, 2415}, new char[]{2790, 2791, 2792, 2793, 2794, 2795, 2796, 2797, 2798, 2799}, new char[]{2662, 2663, 2664, 2665, 2666, 2667, 2668, 2669, 2670, 2671}, new char[]{2534, 2535, 2536, 2537, 2538, 2539, 2540, 2541, 2542, 2543}, new char[]{3302, 3303, 3304, 3305, 3306, 3307, 3308, 3309, 3310, 3311}, new char[]{2918, 2919, 2920, 2921, 2922, 2923, 2924, 2925, 2926, 2927}, new char[]{3430, 3431, 3432, 3433, 3434, 3435, 3436, 3437, 3438, 3439}, new char[]{3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055}, new char[]{3174, 3175, 3176, 3177, 3178, 3179, 3180, 3181, 3182, 3183}, new char[]{4160, 4161, 4162, 4163, 4164, 4165, 4166, 4167, 4168, 4169}, new char[]{3872, 3873, 3874, 3875, 3876, 3877, 3878, 3879, 3880, 3881}, new char[]{6160, 6161, 6162, 6163, 6164, 6165, 6166, 6167, 6168, 6169}, new char[]{6112, 6113, 6114, 6115, 6116, 6117, 6118, 6119, 6120, 6121}, new char[]{3664, 3665, 3666, 3667, 3668, 3669, 3670, 3671, 3672, 3673}, new char[]{3792, 3793, 3794, 3795, 3796, 3797, 3798, 3799, 3800, 3801}, new char[]{43472, 43473, 43474, 43475, 43476, 43477, 43478, 43479, 43480, 43481}};
-    private final FastDateFormat[] formatterScheduleSend = new FastDateFormat[15];
+    private final FastDateFormat[] formatterScheduleSend = new FastDateFormat[18];
     private HashMap<String, PluralRules> allRules = new HashMap<>();
     private HashMap<String, String> localeValues = new HashMap<>();
     private boolean changingConfiguration = false;
@@ -218,10 +218,6 @@ public class LocaleController {
     }
 
     public static abstract class PluralRules {
-        int quantityForDecimal(double d) {
-            return quantityForNumber((0.0d >= d || d >= 2.0d) ? Math.round((float) d) : 1);
-        }
-
         abstract int quantityForNumber(int i);
     }
 
@@ -1218,14 +1214,6 @@ public class LocaleController {
 
     public static String formatPluralStringSpaced(String str, int i, Object... objArr) {
         return formatPluralStringComma(str, i, ' ', objArr);
-    }
-
-    public static String formatPluralStringWithSelector(String str, double d, Object... objArr) {
-        if (str == null || str.length() == 0 || getInstance().currentPluralRules == null) {
-            return "LOC_ERR:" + str;
-        }
-        String str2 = str + "_" + getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForDecimal(d));
-        return formatString(str2, str + "_other", ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()), ApplicationLoader.applicationContext.getResources().getIdentifier(str + "_other", "string", ApplicationLoader.applicationContext.getPackageName()), objArr);
     }
 
     public static String formatPmEditedDate(long j) {
@@ -3819,6 +3807,15 @@ public class LocaleController {
                     break;
                 case 14:
                     this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartsDayYearAt", R.string.StartsDayYearAt), "'Starts on' MMM d yyyy 'at' HH:mm");
+                    break;
+                case 15:
+                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("PublishTodayAt", R.string.PublishTodayAt), "'Publish today at' HH:mm");
+                    break;
+                case 16:
+                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("PublishDayAt", R.string.PublishDayAt), "'Publish on' MMM d 'at' HH:mm");
+                    break;
+                case 17:
+                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("PublishDayYearAt", R.string.PublishDayYearAt), "'Publish on' MMM d yyyy 'at' HH:mm");
                     break;
             }
         }

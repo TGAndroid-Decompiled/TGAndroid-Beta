@@ -11,6 +11,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
@@ -637,13 +638,6 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                         final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(this.mContext, false, PollCreateActivity.this.isPremium ? 1 : 0, null) {
                             @Override
                             protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
-                                if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
-                                    Menu menu = actionMode.getMenu();
-                                    if (menu.findItem(16908321) == null) {
-                                        return;
-                                    }
-                                    ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false);
-                                }
                             }
 
                             @Override
@@ -668,7 +662,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                                         PollCreateActivity.this.answers[length] = PollCreateActivity.this.answers[length - 1];
                                     }
                                     PollCreateActivity.this.answers[i2] = (CharSequence) arrayList.remove(0);
-                                    PollCreateActivity.access$4808(PollCreateActivity.this);
+                                    PollCreateActivity.access$4908(PollCreateActivity.this);
                                     i2++;
                                 }
                                 PollCreateActivity.this.updateRows();
@@ -748,6 +742,17 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                             }
 
                             @Override
+                            protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
+                                if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
+                                    Menu menu = actionMode.getMenu();
+                                    if (menu.findItem(16908321) == null) {
+                                        return;
+                                    }
+                                    ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false);
+                                }
+                            }
+
+                            @Override
                             public void onCheckBoxClick(PollEditTextCell pollEditTextCell4, boolean z2) {
                                 int adapterPosition;
                                 if (z2 && PollCreateActivity.this.quizPoll) {
@@ -794,7 +799,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                                         PollCreateActivity.this.answers[length] = PollCreateActivity.this.answers[length - 1];
                                     }
                                     PollCreateActivity.this.answers[i2] = (CharSequence) arrayList.remove(0);
-                                    PollCreateActivity.access$4808(PollCreateActivity.this);
+                                    PollCreateActivity.access$4908(PollCreateActivity.this);
                                     i2++;
                                 }
                                 PollCreateActivity.this.updateRows();
@@ -1103,13 +1108,13 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    static int access$4808(PollCreateActivity pollCreateActivity) {
+    static int access$4908(PollCreateActivity pollCreateActivity) {
         int i = pollCreateActivity.answersCount;
         pollCreateActivity.answersCount = i + 1;
         return i;
     }
 
-    static int access$4810(PollCreateActivity pollCreateActivity) {
+    static int access$4910(PollCreateActivity pollCreateActivity) {
         int i = pollCreateActivity.answersCount;
         pollCreateActivity.answersCount = i - 1;
         return i;
@@ -2163,7 +2168,9 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             this.questionString = spannableStringBuilder;
             CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false);
             this.questionString = replaceEmoji;
-            this.questionString = MessageObject.replaceAnimatedEmoji(replaceEmoji, tL_messageMediaToDo.todo.title.entities, textPaint.getFontMetricsInt());
+            Spannable replaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(replaceEmoji, tL_messageMediaToDo.todo.title.entities, textPaint.getFontMetricsInt());
+            this.questionString = replaceAnimatedEmoji;
+            MessageObject.addEntitiesToText(replaceAnimatedEmoji, tL_messageMediaToDo.todo.title.entities, false, false, false, false);
             int size = tL_messageMediaToDo.todo.list.size();
             this.answersCount = size;
             this.oldAnswersCount = size;
@@ -2180,6 +2187,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 charSequenceArr[i3] = Emoji.replaceEmoji(charSequenceArr[i3], textPaint.getFontMetricsInt(), false);
                 CharSequence[] charSequenceArr2 = this.answers;
                 charSequenceArr2[i3] = MessageObject.replaceAnimatedEmoji(charSequenceArr2[i3], tL_textWithEntities.entities, textPaint.getFontMetricsInt());
+                MessageObject.addEntitiesToText(this.answers[i3], tL_textWithEntities.entities, false, false, false, false);
                 this.answerIds[i3] = tL_messageMediaToDo.todo.list.get(i3).id;
                 i3++;
             }

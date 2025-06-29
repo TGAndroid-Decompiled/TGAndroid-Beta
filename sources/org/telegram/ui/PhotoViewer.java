@@ -277,6 +277,7 @@ import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.SpeedButtonsLayout;
+import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -12549,9 +12550,25 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$setParentActivity$52(View view) {
+        MessageObject messageObject;
+        MessageSuggestionParams of;
+        ChatActivity chatActivity = this.parentChatActivity;
+        if (chatActivity != null && (messageObject = chatActivity.editingMessageObject) != null && messageObject.needResendWhenEdit()) {
+            if (this.parentFragment == null || (of = this.parentChatActivity.messageSuggestionParams) == null) {
+                of = MessageSuggestionParams.of(this.parentChatActivity.editingMessageObject.messageOwner.suggested_post);
+            }
+            if (!StarsController.isEnoughAmount(this.currentAccount, of.amount)) {
+                ChatActivity chatActivity2 = this.parentChatActivity;
+                if (chatActivity2 != null) {
+                    chatActivity2.showSuggestionOfferForEditMessage(of);
+                    return;
+                }
+                return;
+            }
+        }
         if (!this.captionEdit.isCaptionOverLimit()) {
-            ChatActivity chatActivity = this.parentChatActivity;
-            if (chatActivity == null || !chatActivity.isInScheduleMode() || this.parentChatActivity.isEditingMessageMedia()) {
+            ChatActivity chatActivity3 = this.parentChatActivity;
+            if (chatActivity3 == null || !chatActivity3.isInScheduleMode() || this.parentChatActivity.isEditingMessageMedia()) {
                 sendPressed(true, 0);
                 return;
             } else {

@@ -1575,7 +1575,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             setSpoilersSuppressed(true);
             return;
         }
-        if (i == NotificationCenter.didUpdatePremiumGiftStickers || i == NotificationCenter.starGiftsLoaded) {
+        if (i == NotificationCenter.didUpdatePremiumGiftStickers || i == NotificationCenter.starGiftsLoaded || i == NotificationCenter.didUpdateTonGiftStickers) {
             messageObject = this.currentMessageObject;
             if (messageObject == null) {
                 return;
@@ -1897,6 +1897,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             textLayout.attach();
         }
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didUpdatePremiumGiftStickers);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didUpdateTonGiftStickers);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starGiftsLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.diceStickersDidLoad);
         MessageObject messageObject = this.currentMessageObject;
@@ -1925,6 +1926,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             textLayout.detach();
         }
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didUpdatePremiumGiftStickers);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didUpdateTonGiftStickers);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starGiftsLoaded);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
         this.avatarStoryParams.onDetachFromWindow();

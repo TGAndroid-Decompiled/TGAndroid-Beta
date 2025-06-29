@@ -3215,6 +3215,9 @@ public class TLRPC {
                 case 80008398:
                     tL_inputStickerSetShortName = new TL_inputStickerSetEmojiGenericAnimations();
                     break;
+                case 485912992:
+                    tL_inputStickerSetShortName = new TL_inputStickerSetTonGifts();
+                    break;
                 case 701560302:
                     tL_inputStickerSetShortName = new TL_inputStickerSetEmojiDefaultStatuses();
                     break;
@@ -34334,6 +34337,15 @@ public class TLRPC {
         }
     }
 
+    public static class TL_inputStickerSetTonGifts extends InputStickerSet {
+        public static final int constructor = 485912992;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(485912992);
+        }
+    }
+
     public static class TL_inputStickeredMediaDocument extends InputStickeredMedia {
         public static final int constructor = 70813275;
         public InputDocument id;
@@ -64848,6 +64860,33 @@ public class TLRPC {
         }
     }
 
+    public static class TL_updateMonoForumNoPaidException extends Update {
+        public static final int constructor = -1618924792;
+        public long channel_id;
+        public boolean exception;
+        public int flags;
+        public Peer saved_peer_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.exception = TLRPC.hasFlag(readInt32, 1);
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.saved_peer_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1618924792);
+            int flag = TLRPC.setFlag(this.flags, 1, this.exception);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.channel_id);
+            this.saved_peer_id.serializeToStream(outputSerializedData);
+        }
+    }
+
     public static class TL_updateMoveStickerSetToTop extends Update {
         public static final int constructor = -2030252155;
         public boolean emojis;
@@ -75920,6 +75959,9 @@ public class TLRPC {
                     break;
                 case -1667805217:
                     tL_updateTheme = new TL_updateReadHistoryInbox();
+                    break;
+                case -1618924792:
+                    tL_updateTheme = new TL_updateMonoForumNoPaidException();
                     break;
                 case -1576161051:
                     tL_updateTheme = new TL_updateDeleteMessages();
