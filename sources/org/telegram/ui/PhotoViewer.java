@@ -12553,7 +12553,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         MessageObject messageObject;
         MessageSuggestionParams of;
         ChatActivity chatActivity = this.parentChatActivity;
-        if (chatActivity != null && (messageObject = chatActivity.editingMessageObject) != null && messageObject.needResendWhenEdit()) {
+        if (chatActivity != null && (messageObject = chatActivity.editingMessageObject) != null && messageObject.needResendWhenEdit() && !ChatObject.canManageMonoForum(this.currentAccount, this.parentChatActivity.editingMessageObject.getDialogId())) {
             if (this.parentFragment == null || (of = this.parentChatActivity.messageSuggestionParams) == null) {
                 of = MessageSuggestionParams.of(this.parentChatActivity.editingMessageObject.messageOwner.suggested_post);
             }

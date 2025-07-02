@@ -2270,9 +2270,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
     }
 
-    public void lambda$openMessage$42(final Bundle bundle, final int i, final String str, final int i2, final long j, final Browser.Progress progress, final BaseFragment baseFragment) {
+    public void lambda$openMessage$42(final Bundle bundle, Integer num, final int i, final String str, final int i2, final long j, final Browser.Progress progress, final BaseFragment baseFragment) {
         final ChatActivity chatActivity = new ChatActivity(bundle);
-        chatActivity.setHighlightQuote(i, str, i2);
+        if (num != null) {
+            chatActivity.highlightTaskId = num;
+        } else {
+            chatActivity.setHighlightQuote(i, str, i2);
+        }
         if ((AndroidUtilities.isTablet() ? this.rightActionBarLayout : getActionBarLayout()).presentFragment(chatActivity) || j >= 0) {
             if (progress != null) {
                 progress.end();
@@ -6162,7 +6166,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void openMessage(final long j, final int i, final String str, final Browser.Progress progress, int i2, final int i3) {
+    public void openMessage(final long j, final int i, final String str, final Browser.Progress progress, int i2, final int i3, final Integer num) {
         Integer valueOf;
         Runnable runnable;
         TLRPC.Chat chat;
@@ -6195,7 +6199,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.this.lambda$openMessage$42(bundle, i, str, i3, j, progress, baseFragment);
+                        LaunchActivity.this.lambda$openMessage$42(bundle, num, i, str, i3, j, progress, baseFragment);
                     }
                 });
                 return;
@@ -6212,7 +6216,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 LaunchActivity.lambda$openMessage$37(Browser.Progress.this);
             }
         };
-        openForumFromLink(j, valueOf, str, null, runnable, i2, i3);
+        openForumFromLink(j, valueOf, str, num, runnable, i2, i3);
     }
 
     public void lambda$runLinkRequest$93(BaseFragment baseFragment) {

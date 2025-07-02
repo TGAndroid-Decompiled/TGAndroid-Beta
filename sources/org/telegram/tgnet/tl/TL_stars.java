@@ -106,6 +106,7 @@ public class TL_stars {
         public String owner_address;
         public TLRPC.Peer owner_id;
         public String owner_name;
+        public TLRPC.Peer released_by;
         public long resell_min_stars;
         public long resell_stars;
         public String slug;
@@ -122,10 +123,13 @@ public class TL_stars {
                     tL_starGift_layer190 = new TL_starGift_layer190();
                     break;
                 case -970274264:
-                    tL_starGift_layer190 = new TL_starGift();
+                    tL_starGift_layer190 = new TL_starGift_layer206();
                     break;
                 case -218202550:
                     tL_starGift_layer190 = new TL_starGiftUnique_layer198();
+                    break;
+                case -164136786:
+                    tL_starGift_layer190 = new TL_starGiftUnique();
                     break;
                 case 46953416:
                     tL_starGift_layer190 = new TL_starGift_layer202();
@@ -140,10 +144,13 @@ public class TL_stars {
                     tL_starGift_layer190 = new TL_starGiftUnique_layer202();
                     break;
                 case 1678891913:
-                    tL_starGift_layer190 = new TL_starGiftUnique();
+                    tL_starGift_layer190 = new TL_starGiftUnique_layer206();
                     break;
                 case 1779697613:
                     tL_starGift_layer190 = new TL_starGiftUnique_layer196();
+                    break;
+                case 2139438098:
+                    tL_starGift_layer190 = new TL_starGift();
                     break;
                 default:
                     tL_starGift_layer190 = null;
@@ -1095,7 +1102,7 @@ public class TL_stars {
     }
 
     public static class TL_starGift extends StarGift {
-        public static final int constructor = -970274264;
+        public static final int constructor = 2139438098;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -1129,11 +1136,14 @@ public class TL_stars {
             if ((this.flags & 32) != 0) {
                 this.title = inputSerializedData.readString(z);
             }
+            if ((this.flags & 64) != 0) {
+                this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-970274264);
+            outputSerializedData.writeInt32(2139438098);
             int i = this.limited ? this.flags | 1 : this.flags & (-2);
             this.flags = i;
             int i2 = this.sold_out ? i | 2 : i & (-3);
@@ -1167,11 +1177,14 @@ public class TL_stars {
             if ((this.flags & 32) != 0) {
                 outputSerializedData.writeString(this.title);
             }
+            if ((this.flags & 64) != 0) {
+                this.released_by.serializeToStream(outputSerializedData);
+            }
         }
     }
 
     public static class TL_starGiftUnique extends StarGift {
-        public static final int constructor = 1678891913;
+        public static final int constructor = -164136786;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -1198,11 +1211,14 @@ public class TL_stars {
             if ((this.flags & 16) != 0) {
                 this.resell_stars = inputSerializedData.readInt64(z);
             }
+            if ((this.flags & 32) != 0) {
+                this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1678891913);
+            outputSerializedData.writeInt32(-164136786);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt64(this.id);
             outputSerializedData.writeString(this.title);
@@ -1225,6 +1241,9 @@ public class TL_stars {
             }
             if ((this.flags & 16) != 0) {
                 outputSerializedData.writeInt64(this.resell_stars);
+            }
+            if ((this.flags & 32) != 0) {
+                this.released_by.serializeToStream(outputSerializedData);
             }
         }
     }
@@ -1401,6 +1420,65 @@ public class TL_stars {
         }
     }
 
+    public static class TL_starGiftUnique_layer206 extends TL_starGiftUnique {
+        public static final int constructor = 1678891913;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.id = inputSerializedData.readInt64(z);
+            this.title = inputSerializedData.readString(z);
+            this.slug = inputSerializedData.readString(z);
+            this.num = inputSerializedData.readInt32(z);
+            if ((this.flags & 1) != 0) {
+                this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 2) != 0) {
+                this.owner_name = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.owner_address = inputSerializedData.readString(z);
+            }
+            this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
+            this.availability_issued = inputSerializedData.readInt32(z);
+            this.availability_total = inputSerializedData.readInt32(z);
+            if ((this.flags & 8) != 0) {
+                this.gift_address = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.resell_stars = inputSerializedData.readInt64(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1678891913);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt64(this.id);
+            outputSerializedData.writeString(this.title);
+            outputSerializedData.writeString(this.slug);
+            outputSerializedData.writeInt32(this.num);
+            if ((this.flags & 1) != 0) {
+                this.owner_id.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeString(this.owner_name);
+            }
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeString(this.owner_address);
+            }
+            Vector.serialize(outputSerializedData, this.attributes);
+            outputSerializedData.writeInt32(this.availability_issued);
+            outputSerializedData.writeInt32(this.availability_total);
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeString(this.gift_address);
+            }
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt64(this.resell_stars);
+            }
+        }
+    }
+
     public static class TL_starGift_layer190 extends TL_starGift {
         public static final int constructor = -1365150482;
 
@@ -1544,15 +1622,95 @@ public class TL_stars {
         }
     }
 
+    public static class TL_starGift_layer206 extends TL_starGift {
+        public static final int constructor = -970274264;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.limited = (readInt32 & 1) != 0;
+            this.sold_out = (readInt32 & 2) != 0;
+            this.birthday = (readInt32 & 4) != 0;
+            this.can_upgrade = (readInt32 & 8) != 0;
+            this.id = inputSerializedData.readInt64(z);
+            this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.stars = inputSerializedData.readInt64(z);
+            if ((this.flags & 1) != 0) {
+                this.availability_remains = inputSerializedData.readInt32(z);
+                this.availability_total = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.availability_resale = inputSerializedData.readInt64(z);
+            }
+            this.convert_stars = inputSerializedData.readInt64(z);
+            if ((this.flags & 2) != 0) {
+                this.first_sale_date = inputSerializedData.readInt32(z);
+                this.last_sale_date = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 8) != 0) {
+                this.upgrade_stars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.resell_min_stars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 32) != 0) {
+                this.title = inputSerializedData.readString(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-970274264);
+            int i = this.limited ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.sold_out ? i | 2 : i & (-3);
+            this.flags = i2;
+            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
+            this.flags = i3;
+            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
+            this.flags = i4;
+            outputSerializedData.writeInt32(i4);
+            outputSerializedData.writeInt64(this.id);
+            this.sticker.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt64(this.stars);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeInt32(this.availability_remains);
+                outputSerializedData.writeInt32(this.availability_total);
+            }
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt64(this.availability_resale);
+            }
+            outputSerializedData.writeInt64(this.convert_stars);
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeInt32(this.first_sale_date);
+                outputSerializedData.writeInt32(this.last_sale_date);
+            }
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt64(this.upgrade_stars);
+            }
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt64(this.resell_min_stars);
+            }
+            if ((this.flags & 32) != 0) {
+                outputSerializedData.writeString(this.title);
+            }
+        }
+    }
+
     public static class TL_starGifts extends StarGifts {
         public static final int constructor = -1877571094;
-        public ArrayList<StarGift> gifts = new ArrayList<>();
         public int hash;
+        public ArrayList<StarGift> gifts = new ArrayList<>();
+        public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
+        public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.hash = inputSerializedData.readInt32(z);
             this.gifts = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGifts$$ExternalSyntheticLambda0(), z);
+            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
+            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
         }
 
         @Override
@@ -1560,6 +1718,8 @@ public class TL_stars {
             outputSerializedData.writeInt32(-1877571094);
             outputSerializedData.writeInt32(this.hash);
             Vector.serialize(outputSerializedData, this.gifts);
+            Vector.serialize(outputSerializedData, this.chats);
+            Vector.serialize(outputSerializedData, this.users);
         }
     }
 

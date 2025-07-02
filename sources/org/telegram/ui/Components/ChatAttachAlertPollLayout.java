@@ -44,7 +44,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -85,6 +84,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     private PollEditTextCell currentCell;
     private PollCreateActivityDelegate delegate;
     private boolean destroyed;
+    private boolean doneItemEnabled;
     private int emojiPadding;
     public EmojiView emojiView;
     public boolean emojiViewVisible;
@@ -1166,8 +1166,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             this.allowNesterScroll = false;
         }
         this.parentAlert.setAllowNestedScroll(this.allowNesterScroll);
-        this.parentAlert.doneItem.setEnabled((this.quizPoll && i == 0) || z);
-        this.parentAlert.doneItem.setAlpha(z ? 1.0f : 0.5f);
+        this.doneItemEnabled = (this.quizPoll && i == 0) || z;
+        this.parentAlert.updateDoneItemEnabled();
     }
 
     private void collapseSearchEmojiView() {
@@ -1815,6 +1815,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return arrayList;
     }
 
+    @Override
+    public boolean hasDoneItem() {
+        return true;
+    }
+
     public void hideEmojiView() {
         EmojiView emojiView;
         ChatActivityEnterViewAnimatedIconView emojiButton;
@@ -1834,6 +1839,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
     public boolean isAnimatePopupClosing() {
         return this.isAnimatePopupClosing;
+    }
+
+    @Override
+    public boolean isDoneItemEnabled() {
+        return this.doneItemEnabled;
     }
 
     public boolean isPopupShowing() {
@@ -1889,13 +1899,12 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     public void onHidden() {
-        this.parentAlert.doneItem.setVisibility(4);
+        this.parentAlert.updateDoneItemEnabled();
     }
 
     @Override
     public void onHideShowProgress(float f) {
-        ActionBarMenuItem actionBarMenuItem = this.parentAlert.doneItem;
-        actionBarMenuItem.setAlpha((actionBarMenuItem.isEnabled() ? 1.0f : 0.5f) * f);
+        this.parentAlert.updateDoneItemEnabled();
     }
 
     @Override
@@ -1904,7 +1913,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             return;
         }
         if (!this.todo) {
-            if (this.quizPoll && this.parentAlert.doneItem.getAlpha() != 1.0f) {
+            if (this.quizPoll && !this.doneItemEnabled) {
                 int i2 = 0;
                 for (int i3 = 0; i3 < this.answersChecks.length; i3++) {
                     if (!TextUtils.isEmpty(getFixedString(this.answers[i3])) && this.answersChecks[i3]) {
@@ -2094,7 +2103,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             i = R.string.NewPoll;
         }
         actionBar.setTitle(LocaleController.getString(i));
-        this.parentAlert.doneItem.setVisibility(0);
+        this.parentAlert.updateDoneItemEnabled();
         this.layoutManager.scrollToPositionWithOffset(0, 0);
     }
 

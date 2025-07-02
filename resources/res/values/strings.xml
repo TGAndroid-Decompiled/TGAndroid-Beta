@@ -3638,6 +3638,7 @@
     <string name="Gift2ActionOutInfoUpgrade">**%s** can display this gift on their page or convert it to unique collectible.</string>
     <string name="Gift2ActionOutInfo_one">**%2$s** can display this gift on their page or convert it to %1$d Star.</string>
     <string name="Gift2ActionOutInfo_other">**%2$s** can display this gift on their page or convert it to %1$d Stars.</string>
+    <string name="Gift2ActionReleasedBy">Released by **%s**</string>
     <string name="Gift2ActionResell">Resell</string>
     <string name="Gift2ActionSavedInfo">You kept this gift on your page.</string>
     <string name="Gift2ActionSelfInfoNoConvert">Display this gift on your page.</string>
@@ -3703,6 +3704,8 @@
     <string name="Gift2ChannelProfileVisible3">This gift is visible in your channel\'s Gifts. **Hide &gt;**</string>
     <string name="Gift2ChannelSend">Send Gift</string>
     <string name="Gift2ChannelSendHint">Tap here to send gift</string>
+    <string name="Gift2CollectionNumberBy_one">Collectible #%1$d by **%2$s**</string>
+    <string name="Gift2CollectionNumberBy_other">Collectible #%1$d by **%2$s**</string>
     <string name="Gift2CollectionNumber_one">Collectible #%d</string>
     <string name="Gift2CollectionNumber_other">Collectible #%d</string>
     <string name="Gift2ConvertButton">Convert</string>
@@ -3824,6 +3827,7 @@
     <string name="Gift2QuantityIssuedNone_other">None of %d left</string>
     <string name="Gift2RarityHint">Only %s of such collectibles have this attribute</string>
     <string name="Gift2Refunded">This gift was downgraded because a request to refund the payment related to this gift was made, and the money was returned.</string>
+    <string name="Gift2ReleasedBy">released by **%s**</string>
     <string name="Gift2Reorder">Reorder</string>
     <string name="Gift2ReplacedPinSubtitle">replacing %s</string>
     <string name="Gift2ReplacedPinTitle">%s pinned</string>
@@ -6726,6 +6730,8 @@
     <string name="ReplyToGroup">Reply to %1$s</string>
     <string name="ReplyToGroupStory">Comment story...</string>
     <string name="ReplyToQuote">Reply to quote by %s</string>
+    <string name="ReplyToTask">Reply to checklist task</string>
+    <string name="ReplyToTaskIn">Reply to task in %s</string>
     <string name="ReplyToUser">Reply to %1$s</string>
     <string name="Report2">Report</string>
     <string name="Report2Comment">Add Comment</string>
@@ -8170,12 +8176,12 @@
     <string name="SuggestedMessageDecline">Decline</string>
     <string name="SuggestedMessageDeclineInfo">Do you want to decline publishing this post from **%1$s**?</string>
     <string name="SuggestedMessageDeclineReasonHint">Add a reason (optional)</string>
-    <string name="SuggestedOfferCompleteAmount">%1$s has received ⭐️ %2$s for publishing post</string>
+    <string name="SuggestedOfferCompleteAmountF">%1$s has received ⭐️ %2$s for publishing post</string>
     <string name="SuggestedOfferCompleteAmountUnknown">%1$s has received funds for publishing post</string>
     <string name="SuggestedOfferPaidUntil">Paid until %1$s</string>
-    <string name="SuggestedOfferRefundByAdminAmount">⭐️ %3$s was returned to %1$s because %2$s deleted the message</string>
+    <string name="SuggestedOfferRefundByAdminAmountF">⭐️ %3$s was returned to %1$s because %2$s deleted the message</string>
     <string name="SuggestedOfferRefundByAdminAmountUnknown">The funds was returned to %1$s because %2$s deleted the message</string>
-    <string name="SuggestedOfferRefundByUserAmount">%2$s will not receive ⭐️ %3$s because %1$s requested a refund</string>
+    <string name="SuggestedOfferRefundByUserAmountF">%2$s will not receive ⭐️ %3$s because %1$s requested a refund</string>
     <string name="SuggestedOfferRefundByUserAmountUnknown">%2$s will not receive funds because %1$s requested a refund</string>
     <string name="SuggestedOfferStars">Offer Stars</string>
     <string name="SuggestedOfferTON">Offer TON</string>
@@ -8193,14 +8199,18 @@
     <string name="SuggestionAgreementReachedAdmin1PastSimple" formatted="false">�� This post was automatically published on **%s** **%s**</string>
     <string name="SuggestionAgreementReachedAdmin1PresentPerfect">�� This post has been published on **%s**</string>
     <string name="SuggestionAgreementReachedAdmin2" formatted="false">�� **%s** has been charged ⭐️ **%s**.</string>
-    <string name="SuggestionAgreementReachedAdmin3" formatted="false">⏳ **%s** will receive the Stars once the post has been live for **%d** hours.</string>
-    <string name="SuggestionAgreementReachedAdmin4" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, Stars will be refunded to user.</string>
+    <string name="SuggestionAgreementReachedAdmin3Stars" formatted="false">⏳ **%s** will receive the **Stars** once the post has been live for **%d** hours.</string>
+    <string name="SuggestionAgreementReachedAdmin3TON" formatted="false">⏳ **%s** will receive the **TON** once the post has been live for **%d** hours.</string>
+    <string name="SuggestionAgreementReachedAdmin4Stars" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, **Stars** will be refunded to user.</string>
+    <string name="SuggestionAgreementReachedAdmin4TON" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, **TON** will be refunded to user.</string>
     <string name="SuggestionAgreementReachedUser1" formatted="false">�� Your post will be automatically published on **%s** **%s**</string>
     <string name="SuggestionAgreementReachedUser1PastSimple" formatted="false">�� Your post was automatically published on **%s** **%s**</string>
     <string name="SuggestionAgreementReachedUser1PresentPerfect">�� Your post has been published on **%s**</string>
     <string name="SuggestionAgreementReachedUser2">�� You have been charged ⭐️ **%s**.</string>
-    <string name="SuggestionAgreementReachedUser3" formatted="false">⏳ **%s** will receive your Stars once the post has been live for **%d** hours.</string>
-    <string name="SuggestionAgreementReachedUser4" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, your Stars will be refunded.</string>
+    <string name="SuggestionAgreementReachedUser3Stars" formatted="false">⏳ **%s** will receive your **Stars** once the post has been live for **%d** hours.</string>
+    <string name="SuggestionAgreementReachedUser3TON" formatted="false">⏳ **%s** will receive your **TON** once the post has been live for **%d** hours.</string>
+    <string name="SuggestionAgreementReachedUser4Stars" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, your **Stars** will be refunded.</string>
+    <string name="SuggestionAgreementReachedUser4TON" formatted="false">�� If **%s** removes the post before it has been live for **%d** hours, your **TON** will be refunded.</string>
     <string name="SuggestionLockedStars">**%1$s** charges **⭐️ %2$s** per message to its admin.</string>
     <string name="SuggestionOfferInfoPrice">Price</string>
     <string name="SuggestionOfferInfoTime">Time</string>
@@ -9469,7 +9479,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2513_com_google_firebase_crashlytics_mapping_file_id">f086efc2ac5f4aae84bacc2ecd6069c2</string>
+    <string name="res_0x7f0f251d_com_google_firebase_crashlytics_mapping_file_id">b0a4f292cdaa48bba17afc42b50b3c35</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

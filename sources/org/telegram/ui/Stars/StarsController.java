@@ -2785,6 +2785,8 @@ public class StarsController {
         this.giftsLoaded = true;
         if (starGifts instanceof TL_stars.TL_starGifts) {
             TL_stars.TL_starGifts tL_starGifts = (TL_stars.TL_starGifts) starGifts;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_starGifts.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_starGifts.chats, false);
             this.gifts.clear();
             this.gifts.addAll(tL_starGifts.gifts);
             this.birthdaySortedGifts.clear();
@@ -3322,12 +3324,6 @@ public class StarsController {
 
     public void lambda$sendPaidReaction$99(MessageObject messageObject, ChatActivity chatActivity, long j, Long l) {
         sendPaidReaction(messageObject, chatActivity, j, true, true, l);
-    }
-
-    public void lambda$showPriceChangedToast$154(TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tLObject instanceof TLRPC.messages_Chats) {
-            MessagesController.getInstance(this.currentAccount).putChats(((TLRPC.messages_Chats) tLObject).chats, false);
-        }
     }
 
     public static void lambda$showStarsTopupInternal$24() {
@@ -4851,19 +4847,13 @@ public class StarsController {
         }
         MessageObject messageObject = (MessageObject) list.get(0);
         long dialogId = messageObject.getDialogId();
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         if (dialogId >= 0) {
-            MessagesController.getInstance(this.currentAccount).loadFullUser(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId)), 0, true);
+            messagesController.loadFullUser(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId)), 0, true);
         } else {
-            TLRPC.TL_messages_getChats tL_messages_getChats = new TLRPC.TL_messages_getChats();
-            tL_messages_getChats.id.add(Long.valueOf(dialogId));
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getChats, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarsController.this.lambda$showPriceChangedToast$154(tLObject, tL_error);
-                }
-            });
+            messagesController.loadFullChat(-dialogId, 0, true);
         }
-        BulletinFactory.of(LaunchActivity.getSafeLastFragment()).createSimpleBulletin(R.raw.error, TextUtils.concat(StarsIntroActivity.replaceStars(LocaleController.formatPluralString("PaidMessagesSendErrorToast1", (int) messageObject.messageOwner.errorAllowedPriceStars, new Object[0])), " ", StarsIntroActivity.replaceStars(LocaleController.formatPluralString("PaidMessagesSendErrorToast2", (int) messageObject.messageOwner.errorNewPriceStars, new Object[0])))).show();
+        BulletinFactory.of(LaunchActivity.getSafeLastFragment()).createSimpleBulletin(R.raw.error, StarsIntroActivity.replaceStars(TextUtils.concat(LocaleController.formatPluralString("PaidMessagesSendErrorToast1", (int) messageObject.messageOwner.errorAllowedPriceStars, new Object[0]), " ", LocaleController.formatPluralString("PaidMessagesSendErrorToast2", (int) messageObject.messageOwner.errorNewPriceStars, new Object[0])))).show();
     }
 
     public void showStarsTopup(final Activity activity, final long j, final String str) {

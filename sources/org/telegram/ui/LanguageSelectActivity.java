@@ -74,20 +74,30 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         @Override
         public int getItemCount() {
+            int i;
             if (this.search) {
                 if (LanguageSelectActivity.this.searchResult == null) {
                     return 0;
                 }
                 return LanguageSelectActivity.this.searchResult.size();
             }
-            int size = LanguageSelectActivity.this.sortedLanguages.size();
-            if (size != 0) {
-                size++;
+            if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() || LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled()) {
+                int i2 = LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() ? 3 : 2;
+                if (LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled() && !LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
+                    i2++;
+                }
+                if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
+                    i2++;
+                }
+                i = i2 + 1;
+                if (!"system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) || !"system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
+                    i = i2 + 2;
+                }
+            } else {
+                i = 1;
             }
-            if (!LanguageSelectActivity.this.unofficialLanguages.isEmpty()) {
-                size += LanguageSelectActivity.this.unofficialLanguages.size() + 1;
-            }
-            return (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked() ? 1 : 0) + 4 + ((LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) ? 1 : 0) + 1 + size;
+            int size = i + 1 + LanguageSelectActivity.this.sortedLanguages.size();
+            return !LanguageSelectActivity.this.unofficialLanguages.isEmpty() ? size + LanguageSelectActivity.this.unofficialLanguages.size() + 1 : size;
         }
 
         @Override

@@ -143,6 +143,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         this.textView = editTextCaption;
         editTextCaption.setAllowTextEntitiesIntersection(true);
         this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        this.textView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
         this.textView.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setMaxLines(i == 1 ? 4 : Integer.MAX_VALUE);

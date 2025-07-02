@@ -2094,6 +2094,21 @@ public class MessageObject {
         return null;
     }
 
+    public static TLRPC.TodoItem findTodoItem(MessageObject messageObject, int i) {
+        TLRPC.TL_messageMediaToDo tL_messageMediaToDo;
+        TLRPC.TodoList todoList;
+        TLRPC.MessageMedia media = getMedia(messageObject);
+        if ((media instanceof TLRPC.TL_messageMediaToDo) && (todoList = (tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) media).todo) != null && todoList.list != null) {
+            for (int i2 = 0; i2 < tL_messageMediaToDo.todo.list.size(); i2++) {
+                TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i2);
+                if (todoItem.id == i) {
+                    return todoItem;
+                }
+            }
+        }
+        return null;
+    }
+
     public static void fixMessagePeer(ArrayList<TLRPC.Message> arrayList, long j) {
         if (arrayList == null || arrayList.isEmpty() || j == 0) {
             return;
@@ -2118,10 +2133,14 @@ public class MessageObject {
     }
 
     public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z) {
+        Theme.createCommonChatResources();
+        return formatTextWithEntities(tL_textWithEntities, z, Theme.chat_actionTextPaint);
+    }
+
+    public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, TextPaint textPaint) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
         addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, z, false, false, false);
-        Theme.createCommonChatResources();
-        return replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, Theme.chat_actionTextPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, Theme.chat_actionTextPaint.getFontMetricsInt());
+        return replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
     }
 
     private java.lang.CharSequence getActionSuggestionApprovalText(java.lang.String r17, java.lang.String r18) {

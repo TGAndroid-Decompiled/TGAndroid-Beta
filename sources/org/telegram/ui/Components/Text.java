@@ -37,7 +37,7 @@ public class Text {
     private float lineSpacingAdd;
     private int maxLines;
     private float maxWidth;
-    private final TextPaint paint;
+    public final TextPaint paint;
     private View parentView;
     private int vertPad;
     private float width;

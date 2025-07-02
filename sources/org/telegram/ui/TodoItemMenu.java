@@ -20,6 +20,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -38,9 +39,11 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -51,6 +54,7 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
@@ -331,7 +335,7 @@ public class TodoItemMenu extends Dialog {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                TodoItemMenu.this.lambda$animateOpenTo$14(valueAnimator3);
+                TodoItemMenu.this.lambda$animateOpenTo$16(valueAnimator3);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -358,7 +362,7 @@ public class TodoItemMenu extends Dialog {
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                TodoItemMenu.this.lambda$animateOpenTo$15(valueAnimator4);
+                TodoItemMenu.this.lambda$animateOpenTo$17(valueAnimator4);
             }
         });
         this.open2Animator.addListener(new AnimatorListenerAdapter() {
@@ -372,26 +376,26 @@ public class TodoItemMenu extends Dialog {
         this.open2Animator.start();
     }
 
-    public void lambda$animateOpenTo$14(ValueAnimator valueAnimator) {
+    public void lambda$animateOpenTo$16(ValueAnimator valueAnimator) {
         this.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.windowView.invalidate();
         this.containerView.invalidate();
         updateTranslation();
     }
 
-    public void lambda$animateOpenTo$15(ValueAnimator valueAnimator) {
+    public void lambda$animateOpenTo$17(ValueAnimator valueAnimator) {
         this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
     }
 
-    public void lambda$dismiss$12() {
+    public void lambda$dismiss$14() {
         super.dismiss();
     }
 
-    public void lambda$dismiss$13(boolean z) {
+    public void lambda$dismiss$15(boolean z) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TodoItemMenu.this.lambda$dismiss$12();
+                TodoItemMenu.this.lambda$dismiss$14();
             }
         });
         ChatMessageCell chatMessageCell = this.cell;
@@ -416,7 +420,7 @@ public class TodoItemMenu extends Dialog {
         dismiss();
     }
 
-    public void lambda$prepareBlur$11(View view, Bitmap bitmap) {
+    public void lambda$prepareBlur$13(View view, Bitmap bitmap) {
         if (view != null) {
             view.setVisibility(0);
         }
@@ -455,12 +459,23 @@ public class TodoItemMenu extends Dialog {
         dismiss(true);
     }
 
-    public void lambda$setCell$3(TLRPC.TodoItem todoItem) {
+    public void lambda$setCell$3(ChatActivity chatActivity, TLRPC.TodoItem todoItem) {
+        MessageObject messageObject = this.messageObject;
+        chatActivity.showFieldPanelForReplyQuote(messageObject, ChatActivity.ReplyQuote.from(messageObject, todoItem.id));
+        dismiss(false);
+    }
+
+    public void lambda$setCell$4(String str) {
+        AndroidUtilities.addToClipboard(str);
+        dismiss(true);
+    }
+
+    public void lambda$setCell$5(TLRPC.TodoItem todoItem) {
         AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(todoItem.title, false));
         dismiss(true);
     }
 
-    public void lambda$setCell$4(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i) {
+    public void lambda$setCell$6(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i) {
         if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
             TLRPC.MessageMedia messageMedia2 = this.messageObject.messageOwner.media;
             if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
@@ -471,20 +486,20 @@ public class TodoItemMenu extends Dialog {
         chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
     }
 
-    public void lambda$setCell$5(final ChatActivity chatActivity, int i) {
+    public void lambda$setCell$7(final ChatActivity chatActivity, int i) {
         PollCreateActivity pollCreateActivity = new PollCreateActivity(chatActivity, true, Boolean.FALSE);
         pollCreateActivity.setEditing(MessageObject.getMedia(this.messageObject), false, i);
         pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
             @Override
             public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i2) {
-                TodoItemMenu.this.lambda$setCell$4(chatActivity, messageMedia, hashMap, z, i2);
+                TodoItemMenu.this.lambda$setCell$6(chatActivity, messageMedia, hashMap, z, i2);
             }
         });
         chatActivity.presentFragment(pollCreateActivity);
         dismiss(false);
     }
 
-    public void lambda$setCell$6(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) {
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) {
         int i2 = 0;
         while (i2 < tL_messageMediaToDo.todo.list.size()) {
             if (tL_messageMediaToDo.todo.list.get(i2).id == i) {
@@ -507,7 +522,20 @@ public class TodoItemMenu extends Dialog {
         dismiss(false);
     }
 
-    public boolean lambda$setupMessageOptions$10(View view, MotionEvent motionEvent) {
+    public void lambda$setupMessageOptions$10() {
+        dismiss(false);
+    }
+
+    public void lambda$setupMessageOptions$11(Utilities.Callback callback, int i) {
+        callback.run(Integer.valueOf(i));
+        boolean z = true;
+        if (i != 1 && i != 13) {
+            z = false;
+        }
+        dismiss(z);
+    }
+
+    public boolean lambda$setupMessageOptions$12(View view, MotionEvent motionEvent) {
         if (this.messageOptionsView == null || motionEvent.getAction() != 0) {
             return false;
         }
@@ -522,21 +550,8 @@ public class TodoItemMenu extends Dialog {
         return true;
     }
 
-    public void lambda$setupMessageOptions$7() {
+    public void lambda$setupMessageOptions$9() {
         dismiss(false);
-    }
-
-    public void lambda$setupMessageOptions$8() {
-        dismiss(false);
-    }
-
-    public void lambda$setupMessageOptions$9(Utilities.Callback callback, int i) {
-        callback.run(Integer.valueOf(i));
-        boolean z = true;
-        if (i != 1 && i != 13) {
-            z = false;
-        }
-        dismiss(z);
     }
 
     private void prepareBlur(final View view) {
@@ -546,7 +561,7 @@ public class TodoItemMenu extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                TodoItemMenu.this.lambda$prepareBlur$11(view, (Bitmap) obj);
+                TodoItemMenu.this.lambda$prepareBlur$13(view, (Bitmap) obj);
             }
         }, 14.0f);
     }
@@ -725,7 +740,7 @@ public class TodoItemMenu extends Dialog {
             animateOpenTo(false, new Runnable() {
                 @Override
                 public final void run() {
-                    TodoItemMenu.this.lambda$dismiss$13(z2);
+                    TodoItemMenu.this.lambda$dismiss$15(z2);
                 }
             });
             this.windowView.invalidate();
@@ -742,7 +757,7 @@ public class TodoItemMenu extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                TodoItemMenu.this.lambda$dismiss$13(z2);
+                TodoItemMenu.this.lambda$dismiss$15(z2);
             }
         });
         this.windowView.invalidate();
@@ -1672,10 +1687,41 @@ public class TodoItemMenu extends Dialog {
             makeOptions.add(i3, string, runnable);
         }
         if (todoItem != null) {
+            if (chatActivity != null) {
+                makeOptions.add(R.drawable.menu_reply, LocaleController.getString(R.string.Quote), new Runnable() {
+                    @Override
+                    public final void run() {
+                        TodoItemMenu.this.lambda$setCell$3(chatActivity, todoItem);
+                    }
+                });
+            }
+            if (this.messageObject.getDialogId() < 0) {
+                MessagesController messagesController = MessagesController.getInstance(this.messageObject.currentAccount);
+                String publicUsername = DialogObject.getPublicUsername(messagesController.getUserOrChat(this.messageObject.getDialogId()));
+                StringBuilder sb = new StringBuilder();
+                sb.append("https://");
+                sb.append(messagesController.linkPrefix);
+                sb.append("/");
+                if (TextUtils.isEmpty(publicUsername)) {
+                    publicUsername = "c/" + (-this.messageObject.getDialogId());
+                }
+                sb.append(publicUsername);
+                sb.append("/");
+                sb.append(this.messageObject.getId());
+                sb.append("?task=");
+                sb.append(todoItem.id);
+                final String sb2 = sb.toString();
+                makeOptions.add(R.drawable.msg_link, LocaleController.getString(R.string.CopyLink), new Runnable() {
+                    @Override
+                    public final void run() {
+                        TodoItemMenu.this.lambda$setCell$4(sb2);
+                    }
+                });
+            }
             makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
                 @Override
                 public final void run() {
-                    TodoItemMenu.this.lambda$setCell$3(todoItem);
+                    TodoItemMenu.this.lambda$setCell$5(todoItem);
                 }
             });
         }
@@ -1683,14 +1729,14 @@ public class TodoItemMenu extends Dialog {
             makeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.TodoEditItem), new Runnable() {
                 @Override
                 public final void run() {
-                    TodoItemMenu.this.lambda$setCell$5(chatActivity, i5);
+                    TodoItemMenu.this.lambda$setCell$7(chatActivity, i5);
                 }
             });
             if (tL_messageMediaToDo.todo.list.size() > 1) {
                 makeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
                     public final void run() {
-                        TodoItemMenu.this.lambda$setCell$6(tL_messageMediaToDo, i, chatActivity);
+                        TodoItemMenu.this.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
             }

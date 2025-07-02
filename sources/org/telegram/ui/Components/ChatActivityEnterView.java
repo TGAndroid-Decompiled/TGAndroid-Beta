@@ -10750,7 +10750,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (messageObject == null) {
             return;
         }
-        if (messageObject.needResendWhenEdit()) {
+        if (messageObject.needResendWhenEdit() && !ChatObject.canManageMonoForum(this.currentAccount, this.editingMessageObject.getDialogId())) {
             ChatActivity chatActivity = this.parentFragment;
             if (chatActivity == null || (of2 = chatActivity.messageSuggestionParams) == null) {
                 of2 = MessageSuggestionParams.of(this.editingMessageObject.messageOwner.suggested_post);

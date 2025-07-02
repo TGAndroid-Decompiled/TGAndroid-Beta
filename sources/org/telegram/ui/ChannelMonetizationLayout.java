@@ -369,8 +369,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 MessagesController.getInstance(this.currentAccount).putChats(starsStatus.chats, false);
                 this.tonTransactions.addAll(starsStatus.history);
                 this.tonTransactionsLastOffset = starsStatus.next_offset;
-                updateLists(true, true);
                 this.loadingTransactions[i] = false;
+                updateLists(true, true);
             } else if (tL_error != null) {
                 BulletinFactory.showError(tL_error);
             }
@@ -399,8 +399,8 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 MessagesController.getInstance(this.currentAccount).putChats(starsStatus.chats, false);
                 this.starsTransactions.addAll(starsStatus.history);
                 this.starsLastOffset = starsStatus.next_offset;
-                updateLists(true, true);
                 this.loadingTransactions[i] = false;
+                updateLists(true, true);
             } else if (tL_error != null) {
                 BulletinFactory.showError(tL_error);
             }

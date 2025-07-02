@@ -64,7 +64,7 @@ public class TLRPC {
     public static final int FLAG_7 = 128;
     public static final int FLAG_8 = 256;
     public static final int FLAG_9 = 512;
-    public static final int LAYER = 206;
+    public static final int LAYER = 208;
     public static final int MESSAGE_FLAG_EDITED = 32768;
     public static final int MESSAGE_FLAG_FWD = 4;
     public static final int MESSAGE_FLAG_HAS_BOT_ID = 2048;
@@ -3159,10 +3159,11 @@ public class TLRPC {
         public int reply_to_msg_id;
         public InputPeer reply_to_peer_id;
         public int story_id;
+        public int todo_item_id;
         public int top_msg_id;
 
         public static InputReplyTo TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            InputReplyTo tL_inputReplyToMonoForum = i != -1334822736 ? i != 121554949 ? i != 1484862010 ? i != 1775660101 ? null : new TL_inputReplyToMonoForum() : new TL_inputReplyToStory() : new TL_inputReplyToMessage_layer166() : new TL_inputReplyToMessage();
+            InputReplyTo tL_inputReplyToMonoForum = i != -2036351472 ? i != 1484862010 ? i != 1775660101 ? null : new TL_inputReplyToMonoForum() : new TL_inputReplyToStory() : new TL_inputReplyToMessage();
             if (tL_inputReplyToMonoForum == null && z) {
                 throw new RuntimeException(String.format("can't parse magic %x in InputReplyTo", Integer.valueOf(i)));
             }
@@ -3767,8 +3768,8 @@ public class TLRPC {
                 if (this.params == null) {
                     this.params = new HashMap<>();
                 }
-                this.layer = 206;
-                this.params.put("legacy_layer", "206");
+                this.layer = 208;
+                this.params.put("legacy_layer", "208");
             }
             if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
                 for (Map.Entry<String, String> entry2 : this.params.entrySet()) {
@@ -4451,6 +4452,7 @@ public class TLRPC {
         public boolean reply_to_scheduled;
         public int reply_to_top_id;
         public int story_id;
+        public int todo_item_id;
 
         public static MessageReplyHeader TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
             MessageReplyHeader tL_messageReplyStoryHeader_layer174;
@@ -4462,13 +4464,16 @@ public class TLRPC {
                     tL_messageReplyStoryHeader_layer174 = new TL_messageReplyHeader_layer165();
                     break;
                 case -1346631205:
-                    tL_messageReplyStoryHeader_layer174 = new TL_messageReplyHeader();
+                    tL_messageReplyStoryHeader_layer174 = new TL_messageReplyHeader_layer207();
                     break;
                 case 240843065:
                     tL_messageReplyStoryHeader_layer174 = new TL_messageReplyStoryHeader();
                     break;
                 case 1029445267:
                     tL_messageReplyStoryHeader_layer174 = new TL_messageReplyHeader_layer165_2();
+                    break;
+                case 1763137035:
+                    tL_messageReplyStoryHeader_layer174 = new TL_messageReplyHeader();
                     break;
                 case 1860946621:
                     tL_messageReplyStoryHeader_layer174 = new TL_messageReplyHeader_layer166();
@@ -33751,7 +33756,7 @@ public class TLRPC {
     }
 
     public static class TL_inputReplyToMessage extends InputReplyTo {
-        public static final int constructor = -1334822736;
+        public static final int constructor = -2036351472;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -33775,11 +33780,14 @@ public class TLRPC {
             if ((this.flags & 32) != 0) {
                 this.monoforum_peer_id = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
+            if ((this.flags & 64) != 0) {
+                this.todo_item_id = inputSerializedData.readInt32(z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1334822736);
+            outputSerializedData.writeInt32(-2036351472);
             int flag = TLRPC.setFlag(this.flags, 32, this.monoforum_peer_id != null);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
@@ -33802,46 +33810,8 @@ public class TLRPC {
             if (TLRPC.hasFlag(this.flags, 32)) {
                 this.monoforum_peer_id.serializeToStream(outputSerializedData);
             }
-        }
-    }
-
-    public static class TL_inputReplyToMessage_layer166 extends TL_inputReplyToMessage {
-        public static final int constructor = 121554949;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.reply_to_msg_id = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
-                this.top_msg_id = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags & 2) != 0) {
-                this.reply_to_peer_id = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 4) != 0) {
-                this.quote_text = inputSerializedData.readString(z);
-            }
-            if ((this.flags & 8) != 0) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(121554949);
-            outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt32(this.reply_to_msg_id);
-            if ((this.flags & 1) != 0) {
-                outputSerializedData.writeInt32(this.top_msg_id);
-            }
-            if ((this.flags & 2) != 0) {
-                this.reply_to_peer_id.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 4) != 0) {
-                outputSerializedData.writeString(this.quote_text);
-            }
-            if ((this.flags & 8) != 0) {
-                Vector.serialize(outputSerializedData, this.quote_entities);
+            if ((this.flags & 64) != 0) {
+                outputSerializedData.writeInt32(this.todo_item_id);
             }
         }
     }
@@ -41319,7 +41289,7 @@ public class TLRPC {
     }
 
     public static class TL_messageReplyHeader extends MessageReplyHeader {
-        public static final int constructor = -1346631205;
+        public static final int constructor = 1763137035;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -41352,11 +41322,14 @@ public class TLRPC {
             if ((this.flags & 1024) != 0) {
                 this.quote_offset = inputSerializedData.readInt32(z);
             }
+            if ((this.flags & 2048) != 0) {
+                this.todo_item_id = inputSerializedData.readInt32(z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1346631205);
+            outputSerializedData.writeInt32(1763137035);
             int i = this.reply_to_scheduled ? this.flags | 4 : this.flags & (-5);
             this.flags = i;
             int i2 = this.forum_topic ? i | 8 : i & (-9);
@@ -41387,6 +41360,9 @@ public class TLRPC {
             }
             if ((this.flags & 1024) != 0) {
                 outputSerializedData.writeInt32(this.quote_offset);
+            }
+            if ((this.flags & 2048) != 0) {
+                outputSerializedData.writeInt32(this.todo_item_id);
             }
         }
     }
@@ -41548,6 +41524,79 @@ public class TLRPC {
             }
             if ((this.flags & 128) != 0) {
                 Vector.serialize(outputSerializedData, this.quote_entities);
+            }
+        }
+    }
+
+    public static class TL_messageReplyHeader_layer207 extends TL_messageReplyHeader {
+        public static final int constructor = -1346631205;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.reply_to_scheduled = (readInt32 & 4) != 0;
+            this.forum_topic = (readInt32 & 8) != 0;
+            this.quote = (readInt32 & 512) != 0;
+            if ((readInt32 & 16) != 0) {
+                this.reply_to_msg_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 1) != 0) {
+                this.reply_to_peer_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 32) != 0) {
+                this.reply_from = MessageFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 256) != 0) {
+                this.reply_media = MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 2) != 0) {
+                this.reply_to_top_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 64) != 0) {
+                this.quote_text = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 128) != 0) {
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+            }
+            if ((this.flags & 1024) != 0) {
+                this.quote_offset = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1346631205);
+            int i = this.reply_to_scheduled ? this.flags | 4 : this.flags & (-5);
+            this.flags = i;
+            int i2 = this.forum_topic ? i | 8 : i & (-9);
+            this.flags = i2;
+            int i3 = this.quote ? i2 | 512 : i2 & (-513);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt32(this.reply_to_msg_id);
+            }
+            if ((this.flags & 1) != 0) {
+                this.reply_to_peer_id.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 32) != 0) {
+                this.reply_from.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 256) != 0) {
+                this.reply_media.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeInt32(this.reply_to_top_id);
+            }
+            if ((this.flags & 64) != 0) {
+                outputSerializedData.writeString(this.quote_text);
+            }
+            if ((this.flags & 128) != 0) {
+                Vector.serialize(outputSerializedData, this.quote_entities);
+            }
+            if ((this.flags & 1024) != 0) {
+                outputSerializedData.writeInt32(this.quote_offset);
             }
         }
     }

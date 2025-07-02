@@ -13653,7 +13653,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r20, final int r21, float r22, float r23, boolean r24) {
+        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r21, final int r22, float r23, float r24, boolean r25) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell, int, float, float, boolean):void");
         }
 
@@ -14532,13 +14532,28 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         public boolean outdated;
         public final long peerId;
         public int start;
+        public TLRPC.TodoItem task;
+        public int task_id;
         public String text;
+        public boolean todo;
+
+        private ReplyQuote(long j, MessageObject messageObject, int i) {
+            this.peerId = j;
+            this.message = messageObject;
+            this.start = -1;
+            this.end = -1;
+            this.todo = true;
+            this.task_id = i;
+            update();
+        }
 
         private ReplyQuote(long j, MessageObject messageObject, int i, int i2) {
             this.peerId = j;
             this.message = messageObject;
             this.start = i;
             this.end = i2;
+            this.todo = false;
+            this.task_id = -1;
             update();
         }
 
@@ -14548,6 +14563,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return null;
             }
             return from(messageObject, 0, Math.min(MessagesController.getInstance(messageObject.currentAccount).quoteLengthMax, messageObject.messageOwner.message.length()));
+        }
+
+        public static ReplyQuote from(MessageObject messageObject, int i) {
+            TLRPC.Message message;
+            if (messageObject == null || (message = messageObject.messageOwner) == null || !(message.media instanceof TLRPC.TL_messageMediaToDo)) {
+                return null;
+            }
+            return new ReplyQuote(messageObject.getDialogId(), messageObject, i);
         }
 
         public static ReplyQuote from(MessageObject messageObject, int i, int i2) {
@@ -14576,6 +14599,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             MessageObject messageObject = this.message;
             if (messageObject == null || (message = messageObject.messageOwner) == null || (str2 = message.message) == null) {
                 str = "ReplyQuote: message is null";
+            } else if (this.todo) {
+                TLRPC.TodoItem findTodoItem = MessageObject.findTodoItem(messageObject, this.task_id);
+                if (findTodoItem != null) {
+                    this.task = findTodoItem;
+                    return true;
+                }
+                str = "ReplyQuote: todo task is not found";
             } else {
                 int i2 = this.end;
                 if (i2 < this.start || i2 > str2.length() || this.start > this.message.messageOwner.message.length() || (i = this.start) < 0 || this.end < 0) {
@@ -14687,6 +14717,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         public String getText() {
             return this.text;
+        }
+
+        public boolean isValid() {
+            return this.todo ? this.task != null : !TextUtils.isEmpty(this.text);
         }
     }
 
@@ -34326,7 +34360,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return;
         }
         MessageObject messageObject = this.editingMessageObject;
-        if (messageObject != null && messageObject.needResendWhenEdit()) {
+        if (messageObject != null && messageObject.needResendWhenEdit() && !ChatObject.canManageMonoForum(this.currentAccount, this.editingMessageObject.getDialogId())) {
             MessageSuggestionParams messageSuggestionParams = this.messageSuggestionParams;
             if (messageSuggestionParams == null) {
                 messageSuggestionParams = MessageSuggestionParams.of(this.editingMessageObject.messageOwner.suggested_post);

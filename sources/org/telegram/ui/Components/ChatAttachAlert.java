@@ -2625,6 +2625,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             return false;
         }
 
+        public boolean hasDoneItem() {
+            return false;
+        }
+
+        public boolean isDoneItemEnabled() {
+            return false;
+        }
+
         public int needsActionBar() {
             return 0;
         }
@@ -4621,7 +4629,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void lambda$new$20(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
         MessageObject messageObject = this.editingMessageObject;
-        if (messageObject != null && messageObject.needResendWhenEdit()) {
+        if (messageObject != null && messageObject.needResendWhenEdit() && !ChatObject.canManageMonoForum(this.currentAccount, this.editingMessageObject.getDialogId())) {
             BaseFragment baseFragment2 = this.baseFragment;
             if (baseFragment2 instanceof ChatActivity) {
                 ChatActivity chatActivity = (ChatActivity) baseFragment2;
@@ -5166,6 +5174,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         int[] iArr = this.scrollOffsetY;
         iArr[0] = iArr[1];
         setCaptionAbove(this.captionAbove, false);
+        updateDoneItemEnabled();
     }
 
     public void lambda$showLayout$38(float f, float f2, boolean z, DynamicAnimation dynamicAnimation, float f3, float f4) {
@@ -6683,6 +6692,22 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void updateCountButton(int r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.updateCountButton(int):void");
+    }
+
+    public void updateDoneItemEnabled() {
+        AttachAlertLayout attachAlertLayout;
+        this.doneItem.setEnabled(this.currentAttachLayout.isDoneItemEnabled());
+        AttachAlertLayout attachAlertLayout2 = this.currentAttachLayout;
+        float f = 0.0f;
+        if (attachAlertLayout2 != null) {
+            f = 0.0f + ((attachAlertLayout2.isDoneItemEnabled() ? 1.0f : 0.5f) * (this.nextAttachLayout == null ? 1.0f : this.translationProgress));
+        }
+        AttachAlertLayout attachAlertLayout3 = this.nextAttachLayout;
+        if (attachAlertLayout3 != null) {
+            f += (attachAlertLayout3.isDoneItemEnabled() ? 1.0f : 0.5f) * (1.0f - this.translationProgress);
+        }
+        this.doneItem.setAlpha(f);
+        this.doneItem.setVisibility((this.currentAttachLayout.hasDoneItem() || ((attachAlertLayout = this.nextAttachLayout) != null && attachAlertLayout.hasDoneItem())) ? 0 : 4);
     }
 
     public void updateLayout(AttachAlertLayout attachAlertLayout, boolean z, int i) {

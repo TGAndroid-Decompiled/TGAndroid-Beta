@@ -99,6 +99,8 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             balanceCloud.setScaleX(0.6f);
             balanceCloud.setScaleY(0.6f);
             balanceCloud.setAlpha(0.0f);
+            balanceCloud.setEnabled(false);
+            balanceCloud.setClickable(false);
             this.container.addView(balanceCloud, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
             ScaleStateListAnimator.apply(balanceCloud);
             balanceCloud.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +140,8 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             }
         });
         linearLayout2.addView(imageView, LayoutHelper.createLinear(48, 48, 0.0f, 21, 0, 0, 6, 0));
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        this.starsCountEditField = editTextBoldCursor;
         if (z2) {
             HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context);
             this.currencyTabsView = horizontalRoundTabsLayout;
@@ -159,8 +163,6 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 1.0f));
         OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
         this.starsCountEditOutline = outlineTextContainerView;
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.starsCountEditField = editTextBoldCursor;
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.setImeOptions(268435462);
@@ -401,7 +403,8 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     }
 
     public void lambda$new$2(int i) {
-        setAmount(AmountUtils$Amount.fromDecimal(this.inputAmount.asDecimal(), i == 0 ? AmountUtils$Currency.STARS : AmountUtils$Currency.TON), true, false, true);
+        setAmount(AmountUtils$Amount.fromNano(0L, i == 0 ? AmountUtils$Currency.STARS : AmountUtils$Currency.TON), true, false, true);
+        this.starsCountEditField.setText("");
     }
 
     public void lambda$new$3(View view, boolean z) {
