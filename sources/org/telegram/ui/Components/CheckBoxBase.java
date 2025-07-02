@@ -44,6 +44,7 @@ public class CheckBoxBase {
     private boolean useDefaultCheck;
     public android.graphics.Rect bounds = new android.graphics.Rect();
     private RectF rect = new RectF();
+    public float checkScale = 1.0f;
     private float alpha = 1.0f;
     private Path path = new Path();
     private boolean enabled = true;

@@ -3070,6 +3070,25 @@ public class MessageObject {
         return false;
     }
 
+    public static boolean isCompleted(MessageObject messageObject, int i) {
+        TLRPC.TL_messageMediaToDo tL_messageMediaToDo;
+        TLRPC.TodoList todoList;
+        TLRPC.MessageMedia media = getMedia(messageObject);
+        if (!(media instanceof TLRPC.TL_messageMediaToDo) || (todoList = (tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) media).todo) == null || todoList.list == null) {
+            return false;
+        }
+        return isCompleted(tL_messageMediaToDo, i);
+    }
+
+    public static boolean isCompleted(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i) {
+        for (int i2 = 0; i2 < tL_messageMediaToDo.completions.size(); i2++) {
+            if (tL_messageMediaToDo.completions.get(i2).id == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isContentUnread(TLRPC.Message message) {
         return message.media_unread;
     }

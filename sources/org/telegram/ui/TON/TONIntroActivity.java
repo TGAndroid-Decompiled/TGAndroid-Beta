@@ -305,7 +305,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 gLIconTextureView.setStarParticlesView(makeParticlesView);
                 frameLayout.addView(gLIconTextureView, LayoutHelper.createFrame(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
                 gLIconTextureView.setPaused(false);
-                addView(frameLayout, LayoutHelper.createFrame(-1, 150.0f));
+                addView(frameLayout, LayoutHelper.createFrame(-1, 180.0f));
                 TextView textView = new TextView(context);
                 this.titleView = textView;
                 textView.setTextSize(1, 20.0f);
@@ -357,7 +357,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.footerView = frameLayout;
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), getResourcesProvider());
             this.topUpButton = buttonWithCounterView;
-            frameLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 17, 20, 20, 20, 20));
+            frameLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 17, 20, 10, 20, 20));
             if (z || TONIntroActivity.allowTopUp()) {
                 buttonWithCounterView.setText(LocaleController.getString(R.string.TopUpViaFragment), false);
                 onClickListener = new View.OnClickListener() {

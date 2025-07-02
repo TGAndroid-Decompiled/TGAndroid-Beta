@@ -38,7 +38,6 @@ import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -781,10 +780,6 @@ public class TodoItemMenu extends Dialog {
         int i3 = Build.VERSION.SDK_INT;
         if (i3 >= 21) {
             attributes.flags = i2 | (-2013200128);
-        }
-        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags |= 8192;
-            AndroidUtilities.logFlagSecure();
         }
         attributes.flags |= 1152;
         if (i3 >= 28) {

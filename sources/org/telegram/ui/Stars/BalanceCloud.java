@@ -1,6 +1,7 @@
 package org.telegram.ui.Stars;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
@@ -105,6 +106,11 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
         if (i == NotificationCenter.starBalanceUpdated) {
             updateBalance(true);
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return isEnabled() && super.dispatchTouchEvent(motionEvent);
     }
 
     @Override

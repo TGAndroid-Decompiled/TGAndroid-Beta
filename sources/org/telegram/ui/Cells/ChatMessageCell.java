@@ -512,6 +512,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean isPressed;
     public boolean isRepliesChat;
     public boolean isReplyQuote;
+    public boolean isReplyTask;
     public boolean isReportChat;
     private boolean isRoundVideo;
     public boolean isSavedChat;
@@ -716,6 +717,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private final Stack replySpoilersPool;
     public int replyStartX;
     public int replyStartY;
+    public CheckBoxBase replyTaskCheckbox;
     private int replyTextHeight;
     public StaticLayout replyTextLayout;
     public int replyTextOffset;
@@ -5959,7 +5961,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     private void setMessageContent(
 
-    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r55) {
+    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r58) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageObjectInternal(org.telegram.messenger.MessageObject):void");
     }
 
@@ -7205,7 +7207,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         drawMessageText(f6, f2, canvas, arrayList, messageObject == null ? 0.0f : messageObject.textXOffset, z, f, false, z2, false);
     }
 
-    public void drawNamesLayout(android.graphics.Canvas r46, float r47) {
+    public void drawNamesLayout(android.graphics.Canvas r45, float r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawNamesLayout(android.graphics.Canvas, float):void");
     }
 
@@ -8756,6 +8758,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (topicSeparator != null) {
             topicSeparator.attach();
         }
+        CheckBoxBase checkBoxBase3 = this.replyTaskCheckbox;
+        if (checkBoxBase3 != null) {
+            checkBoxBase3.onAttachedToWindow();
+        }
         if (this.pollCheckBox != null) {
             int i = 0;
             while (true) {
@@ -8880,6 +8886,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 checkBoxBaseArr[i].onDetachedFromWindow();
                 i++;
             }
+        }
+        CheckBoxBase checkBoxBase3 = this.replyTaskCheckbox;
+        if (checkBoxBase3 != null) {
+            checkBoxBase3.onDetachedFromWindow();
         }
         this.attachedToWindow = false;
         GroupMedia groupMedia = this.groupMedia;
