@@ -2233,7 +2233,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$openMessage$39(Browser.Progress progress, TLObject tLObject, long j, int i, BaseFragment baseFragment, Bundle bundle, ChatActivity chatActivity, String str, int i2) {
+    public void lambda$openMessage$39(Browser.Progress progress, TLObject tLObject, long j, int i, Integer num, BaseFragment baseFragment, Bundle bundle, ChatActivity chatActivity, String str, int i2) {
         if (progress != null) {
             progress.end();
         }
@@ -2243,7 +2243,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 MessagesController.getInstance(this.currentAccount).putChats(tL_messages_chats.chats, false);
                 TLRPC.Chat chat = tL_messages_chats.chats.get(0);
                 if (chat != null && chat.forum) {
-                    openForumFromLink(-j, Integer.valueOf(i), null);
+                    openForumFromLink(-j, Integer.valueOf(i), null, num, null, 0, -1);
                 }
                 if (baseFragment == null || MessagesController.getInstance(this.currentAccount).checkCanOpenChat(bundle, baseFragment)) {
                     ChatActivity chatActivity2 = new ChatActivity(bundle);
@@ -2257,11 +2257,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         showAlertDialog(AlertsCreator.createNoAccessAlert(this, LocaleController.getString(R.string.DialogNotAvailable), LocaleController.getString(R.string.LinkNotFound), null));
     }
 
-    public void lambda$openMessage$40(final Browser.Progress progress, final long j, final int i, final BaseFragment baseFragment, final Bundle bundle, final ChatActivity chatActivity, final String str, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openMessage$40(final Browser.Progress progress, final long j, final int i, final Integer num, final BaseFragment baseFragment, final Bundle bundle, final ChatActivity chatActivity, final String str, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$openMessage$39(progress, tLObject, j, i, baseFragment, bundle, chatActivity, str, i2);
+                LaunchActivity.this.lambda$openMessage$39(progress, tLObject, j, i, num, baseFragment, bundle, chatActivity, str, i2);
             }
         });
     }
@@ -2270,7 +2270,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
     }
 
-    public void lambda$openMessage$42(final Bundle bundle, Integer num, final int i, final String str, final int i2, final long j, final Browser.Progress progress, final BaseFragment baseFragment) {
+    public void lambda$openMessage$42(final Bundle bundle, final Integer num, final int i, final String str, final int i2, final long j, final Browser.Progress progress, final BaseFragment baseFragment) {
         final ChatActivity chatActivity = new ChatActivity(bundle);
         if (num != null) {
             chatActivity.highlightTaskId = num;
@@ -2291,7 +2291,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getChannels, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LaunchActivity.this.lambda$openMessage$40(progress, j, i, baseFragment, bundle, chatActivity, str, i2, tLObject, tL_error);
+                LaunchActivity.this.lambda$openMessage$40(progress, j, i, num, baseFragment, bundle, chatActivity, str, i2, tLObject, tL_error);
             }
         });
         if (progress != null) {
@@ -3623,6 +3623,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         }
                         if (num != null) {
                             bundle2.putInt("message_id", num.intValue());
+                            if (num3 != null) {
+                                bundle2.putInt("task_id", num3.intValue());
+                            }
                         }
                         if (str2 != null) {
                             bundle2.putString("voicechat", str2);
@@ -3677,12 +3680,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                 }
                                 Long valueOf = (l2 != null || num == null) ? l2 : Long.valueOf(num.intValue());
                                 if (valueOf != null && valueOf.longValue() != 0) {
-                                    openForumFromLink(longValue, num, new Runnable() {
+                                    openForumFromLink(longValue, num, null, num3, new Runnable() {
                                         @Override
                                         public final void run() {
                                             LaunchActivity.lambda$runLinkRequest$74(runnable);
                                         }
-                                    });
+                                    }, 0, -1);
                                     return;
                                 }
                                 Bundle bundle4 = new Bundle();
@@ -4482,10 +4485,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     private void openDialogsToSend(boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openDialogsToSend(boolean):void");
-    }
-
-    private void openForumFromLink(long j, Integer num, Runnable runnable) {
-        openForumFromLink(j, num, null, null, runnable, 0, -1);
     }
 
     private void openForumFromLink(final long j, final Integer num, final String str, final Integer num2, final Runnable runnable, final int i, final int i2) {

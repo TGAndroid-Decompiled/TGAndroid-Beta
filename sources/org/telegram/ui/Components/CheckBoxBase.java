@@ -29,6 +29,7 @@ public class CheckBoxBase {
     private Paint checkPaint;
     private String checkedText;
     private GenericProvider circlePaintProvider;
+    private boolean cutCheck;
     private boolean drawUnchecked;
     private boolean forbidden;
     private boolean isChecked;
@@ -138,7 +139,7 @@ public class CheckBoxBase {
         }
     }
 
-    public void draw(android.graphics.Canvas r27) {
+    public void draw(android.graphics.Canvas r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
     }
 
@@ -248,6 +249,14 @@ public class CheckBoxBase {
         this.background2ColorKey = i2;
         this.checkColorKey = i3;
         invalidate();
+    }
+
+    public void setCuttingCheck(boolean z) {
+        if (this.cutCheck == z) {
+            return;
+        }
+        this.cutCheck = z;
+        this.checkPaint.setXfermode(z ? new PorterDuffXfermode(PorterDuff.Mode.CLEAR) : null);
     }
 
     public void setDrawUnchecked(boolean z) {

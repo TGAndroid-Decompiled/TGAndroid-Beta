@@ -9073,8 +9073,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             public void lambda$didPressTaskLink$2(ChatActionCell chatActionCell, int i, int i2) {
                 MessageObject messageObject = chatActionCell.getMessageObject();
-                ChatActivity.this.highlightTaskId = Integer.valueOf(i);
-                ChatActivity.this.scrollToMessageId(i2, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0);
+                ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, Integer.valueOf(i2), null);
             }
 
             @Override
@@ -9255,7 +9254,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.ChatActivityAdapter.AnonymousClass2.this.lambda$didPressTaskLink$2(chatActionCell, i2, i);
+                        ChatActivity.ChatActivityAdapter.AnonymousClass2.this.lambda$didPressTaskLink$2(chatActionCell, i, i2);
                     }
                 };
                 if (!ChatActivity.this.chatAdapter.isFiltered) {
@@ -12561,8 +12560,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.progressDialogAtMessageType = 0;
         }
 
-        public void lambda$didPressReplyMessage$40(int i, final MessageObject messageObject) {
-            ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, new Runnable() {
+        public void lambda$didPressReplyMessage$40(int i, final MessageObject messageObject, Integer num) {
+            ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, num, new Runnable() {
                 @Override
                 public final void run() {
                     ChatActivity.ChatMessageCellDelegate.this.lambda$didPressReplyMessage$39(messageObject);
@@ -21244,7 +21243,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$createView$52(MessageObject messageObject) {
-        scrollToMessageId(messageObject.getId(), 0, true, 0, true, 0, new Runnable() {
+        scrollToMessageId(messageObject.getId(), 0, true, 0, true, 0, null, new Runnable() {
             @Override
             public final void run() {
                 ChatActivity.this.lambda$createView$51();
@@ -25729,7 +25728,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         String group;
         int i3;
         if (this.currentChat != null && str != null && this.chatMode == 0) {
-            Integer num = null;
             Runnable runnable = (chatMessageCell == null || (characterStyle == null && i2 == 1)) ? null : new Runnable() {
                 @Override
                 public final void run() {
@@ -25745,15 +25743,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (longValue == j && intValue != 0) {
                     if (intValue2 != 0) {
                         openDiscussionMessageChat(j, null, intValue2, 0L, -1, 0, null);
-                    } else {
-                        this.showScrollToMessageError = true;
-                        if (this.chatMode == 2) {
-                            this.chatActivityDelegate.openReplyMessage(intValue);
-                            lambda$onBackPressed$354();
-                        } else {
-                            scrollToMessageId(intValue, i, true, 0, false, 0, runnable);
-                        }
+                        return true;
                     }
+                    this.showScrollToMessageError = true;
+                    if (this.chatMode != 2) {
+                        scrollToMessageId(intValue, i, true, 0, false, 0, null, runnable);
+                        return true;
+                    }
+                    this.chatActivityDelegate.openReplyMessage(intValue);
+                    lambda$onBackPressed$354();
                     return true;
                 }
             } else {
@@ -25768,6 +25766,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             Uri parse2 = Uri.parse(str);
                             int intValue3 = Utilities.parseInt((CharSequence) parse2.getQueryParameter("thread")).intValue();
                             int intValue4 = Utilities.parseInt((CharSequence) parse2.getQueryParameter("comment")).intValue();
+                            Integer parseInt = parse2.getQueryParameter("task") != null ? Utilities.parseInt((CharSequence) parse2.getQueryParameter("task")) : null;
                             if (intValue3 == 0 && intValue4 == 0) {
                                 if (matcher.group(4) != null) {
                                     i3 = Integer.parseInt(matcher.group(3));
@@ -25776,21 +25775,21 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                     group = matcher.group(3);
                                     i3 = 0;
                                 }
-                                int parseInt = Integer.parseInt(group);
+                                int parseInt2 = Integer.parseInt(group);
                                 if (ChatObject.isForum(this.currentChat) && i3 != getTopicId()) {
                                     return false;
                                 }
                                 this.showScrollToMessageError = true;
                                 if (this.chatMode == 2) {
-                                    this.chatActivityDelegate.openReplyMessage(parseInt);
+                                    this.chatActivityDelegate.openReplyMessage(parseInt2);
                                     lambda$onBackPressed$354();
                                 } else {
                                     int timestampFromLink = LaunchActivity.getTimestampFromLink(parse2);
                                     this.startFromVideoTimestamp = timestampFromLink;
                                     if (timestampFromLink >= 0) {
-                                        this.startFromVideoMessageId = parseInt;
+                                        this.startFromVideoMessageId = parseInt2;
                                     }
-                                    scrollToMessageId(parseInt, i, true, 0, false, 0, runnable);
+                                    scrollToMessageId(parseInt2, i, true, 0, false, 0, parseInt, runnable);
                                 }
                                 return true;
                             }
@@ -25821,7 +25820,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 this.chatActivityDelegate.openReplyMessage(intValue5);
                                 lambda$onBackPressed$354();
                             } else {
-                                scrollToMessageId(intValue5, i, true, 0, false, 0, runnable);
+                                scrollToMessageId(intValue5, i, true, 0, false, 0, null, runnable);
                             }
                             return true;
                         }
@@ -25833,29 +25832,25 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     Matcher matcher3 = privateMsgUrlPattern.matcher(str);
                     if (matcher3.find(2) && matcher3.find(3) && matcher3.group(4) == null) {
                         long parseLong = Long.parseLong(matcher3.group(2));
-                        int parseInt2 = Integer.parseInt(matcher3.group(3));
-                        if (parseLong == this.currentChat.id && parseInt2 != 0) {
+                        int parseInt3 = Integer.parseInt(matcher3.group(3));
+                        if (parseLong == this.currentChat.id && parseInt3 != 0) {
                             Uri parse4 = Uri.parse(str);
                             int intValue8 = Utilities.parseInt((CharSequence) parse4.getQueryParameter("thread")).intValue();
                             int intValue9 = Utilities.parseInt((CharSequence) parse4.getQueryParameter("topic")).intValue();
                             int intValue10 = Utilities.parseInt((CharSequence) parse4.getQueryParameter("comment")).intValue();
-                            Integer parseInt3 = Utilities.parseInt((CharSequence) parse4.getQueryParameter("task"));
-                            int intValue11 = parseInt3.intValue();
+                            Integer parseInt4 = Utilities.parseInt((CharSequence) parse4.getQueryParameter("task"));
+                            parseInt4.intValue();
                             if (intValue8 == 0 && intValue9 == 0 && intValue10 == 0) {
-                                if (ChatObject.isForum(this.currentChat) && (findTopic = getMessagesController().getTopicsController().findTopic(parseLong, parseInt2)) != null) {
+                                if (ChatObject.isForum(this.currentChat) && (findTopic = getMessagesController().getTopicsController().findTopic(parseLong, parseInt3)) != null) {
                                     TLRPC.TL_forumTopic tL_forumTopic = this.forumTopic;
                                     return tL_forumTopic != null && tL_forumTopic.id == findTopic.id;
                                 }
                                 this.showScrollToMessageError = true;
                                 if (this.chatMode == 2) {
-                                    this.chatActivityDelegate.openReplyMessage(parseInt2);
+                                    this.chatActivityDelegate.openReplyMessage(parseInt3);
                                     lambda$onBackPressed$354();
                                 } else {
-                                    if (intValue11 != 0) {
-                                        num = parseInt3;
-                                    }
-                                    this.highlightTaskId = num;
-                                    scrollToMessageId(parseInt2, i, true, 0, false, 0, runnable);
+                                    scrollToMessageId(parseInt3, i, true, 0, false, 0, parseInt4, runnable);
                                 }
                                 return true;
                             }
@@ -32886,10 +32881,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void onPageDownClicked() {
         int i;
-        boolean z;
         int i2;
+        Integer num;
         int i3;
-        boolean z2;
+        boolean z;
         this.wasManualScroll = true;
         this.textSelectionHelper.cancelTextSelectionRunnable();
         Runnable runnable = new Runnable() {
@@ -32901,10 +32896,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         int i4 = this.createUnreadMessageAfterId;
         if (i4 != 0) {
             i = this.returnToLoadIndex;
-            z = true;
             i2 = 0;
+            num = null;
             i3 = 0;
-            z2 = false;
+            z = false;
         } else {
             i4 = this.returnToMessageId;
             if (i4 <= 0) {
@@ -32917,12 +32912,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             i = this.returnToLoadIndex;
-            z = true;
             i2 = 0;
+            num = null;
             i3 = 0;
-            z2 = true;
+            z = true;
         }
-        scrollToMessageId(i4, i3, z2, i, z, i2, runnable);
+        scrollToMessageId(i4, i3, z, i, true, i2, num, runnable);
     }
 
     @Override
@@ -34263,11 +34258,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     @Override
     public void scrollToMessageId(int i, int i2, boolean z, int i3, boolean z2, int i4) {
-        scrollToMessageId(i, i2, z, i3, z2, i4, null);
+        scrollToMessageId(i, i2, z, i3, z2, i4, null, null);
     }
 
-    public void scrollToMessageId(int r27, int r28, boolean r29, int r30, boolean r31, int r32, java.lang.Runnable r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.scrollToMessageId(int, int, boolean, int, boolean, int, java.lang.Runnable):void");
+    public void scrollToMessageId(int r27, int r28, boolean r29, int r30, boolean r31, int r32, java.lang.Integer r33, java.lang.Runnable r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.scrollToMessageId(int, int, boolean, int, boolean, int, java.lang.Integer, java.lang.Runnable):void");
     }
 
     public void searchLinks(final java.lang.CharSequence r18, final boolean r19) {
