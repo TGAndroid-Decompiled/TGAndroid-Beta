@@ -1929,11 +1929,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             CharSequence[] charSequenceArr = {getFixedString(this.questionString)};
             ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr, true);
             CharSequence charSequence = charSequenceArr[0];
-            int size = entities.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                TLRPC.MessageEntity messageEntity = entities.get(i4);
-                if (messageEntity.offset + messageEntity.length > charSequence.length()) {
-                    messageEntity.length = charSequence.length() - messageEntity.offset;
+            if (entities != null) {
+                int size = entities.size();
+                for (int i4 = 0; i4 < size; i4++) {
+                    TLRPC.MessageEntity messageEntity = entities.get(i4);
+                    if (messageEntity.offset + messageEntity.length > charSequence.length()) {
+                        messageEntity.length = charSequence.length() - messageEntity.offset;
+                    }
                 }
             }
             final TLRPC.TL_messageMediaPoll tL_messageMediaPoll = new TLRPC.TL_messageMediaPoll();
@@ -1956,11 +1958,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     CharSequence[] charSequenceArr3 = {getFixedString(this.answers[i5])};
                     ArrayList<TLRPC.MessageEntity> entities2 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr3, true);
                     CharSequence charSequence2 = charSequenceArr3[0];
-                    int size2 = entities2.size();
-                    for (int i6 = 0; i6 < size2; i6++) {
-                        TLRPC.MessageEntity messageEntity2 = entities2.get(i6);
-                        if (messageEntity2.offset + messageEntity2.length > charSequence2.length()) {
-                            messageEntity2.length = charSequence2.length() - messageEntity2.offset;
+                    if (entities2 != null) {
+                        int size2 = entities2.size();
+                        for (int i6 = 0; i6 < size2; i6++) {
+                            TLRPC.MessageEntity messageEntity2 = entities2.get(i6);
+                            if (messageEntity2.offset + messageEntity2.length > charSequence2.length()) {
+                                messageEntity2.length = charSequence2.length() - messageEntity2.offset;
+                            }
                         }
                     }
                     TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
@@ -2004,11 +2008,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         CharSequence[] charSequenceArr4 = {getFixedString(this.questionString)};
         ArrayList<TLRPC.MessageEntity> entities4 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr4, true);
         CharSequence charSequence3 = charSequenceArr4[0];
-        int size3 = entities4.size();
-        for (int i7 = 0; i7 < size3; i7++) {
-            TLRPC.MessageEntity messageEntity3 = entities4.get(i7);
-            if (messageEntity3.offset + messageEntity3.length > charSequence3.length()) {
-                messageEntity3.length = charSequence3.length() - messageEntity3.offset;
+        if (entities4 != null) {
+            int size3 = entities4.size();
+            for (int i7 = 0; i7 < size3; i7++) {
+                TLRPC.MessageEntity messageEntity3 = entities4.get(i7);
+                if (messageEntity3.offset + messageEntity3.length > charSequence3.length()) {
+                    messageEntity3.length = charSequence3.length() - messageEntity3.offset;
+                }
             }
         }
         final TLRPC.TL_messageMediaToDo tL_messageMediaToDo = new TLRPC.TL_messageMediaToDo();
@@ -2038,11 +2044,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 CharSequence[] charSequenceArr6 = {getFixedString(this.answers[i8])};
                 ArrayList<TLRPC.MessageEntity> entities5 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr6, true);
                 CharSequence charSequence4 = charSequenceArr6[0];
-                int size4 = entities5.size();
-                for (int i9 = 0; i9 < size4; i9++) {
-                    TLRPC.MessageEntity messageEntity4 = entities5.get(i9);
-                    if (messageEntity4.offset + messageEntity4.length > charSequence4.length()) {
-                        messageEntity4.length = charSequence4.length() - messageEntity4.offset;
+                if (entities5 != null) {
+                    int size4 = entities5.size();
+                    for (int i9 = 0; i9 < size4; i9++) {
+                        TLRPC.MessageEntity messageEntity4 = entities5.get(i9);
+                        if (messageEntity4.offset + messageEntity4.length > charSequence4.length()) {
+                            messageEntity4.length = charSequence4.length() - messageEntity4.offset;
+                        }
                     }
                 }
                 TLRPC.TodoItem todoItem = new TLRPC.TodoItem();

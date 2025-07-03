@@ -2009,13 +2009,17 @@ public abstract class TextSelectionHelper {
         if (this.tempPath2.rectsCount != 0 || z2) {
             return;
         }
-        int primaryHorizontal = (int) layout.getPrimaryHorizontal(i2);
-        int primaryHorizontal2 = (int) layout.getPrimaryHorizontal(i3);
-        int lineTop2 = layout.getLineTop(i);
-        int lineBottom2 = layout.getLineBottom(i);
-        CornerPath cornerPath = this.selectionPath;
-        float f4 = this.cornerRadius;
-        cornerPath.addRect(primaryHorizontal - (f4 / 2.0f), lineTop2, primaryHorizontal2 + (f4 / 4.0f), lineBottom2, Path.Direction.CW);
+        try {
+            int primaryHorizontal = (int) layout.getPrimaryHorizontal(i2);
+            int primaryHorizontal2 = (int) layout.getPrimaryHorizontal(i3);
+            int lineTop2 = layout.getLineTop(i);
+            int lineBottom2 = layout.getLineBottom(i);
+            CornerPath cornerPath = this.selectionPath;
+            float f4 = this.cornerRadius;
+            cornerPath.addRect(primaryHorizontal - (f4 / 2.0f), lineTop2, primaryHorizontal2 + (f4 / 4.0f), lineBottom2, Path.Direction.CW);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
     public int[] getCoordsInParent() {

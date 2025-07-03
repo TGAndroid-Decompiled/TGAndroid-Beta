@@ -5289,8 +5289,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             bArr = new byte[arrayList.size()];
             for (int i = 0; i < arrayList.size(); i++) {
                 TLRPC.PollAnswer pollAnswer = arrayList.get(i);
-                tL_messages_sendVote.options.add(pollAnswer.option);
-                bArr[i] = pollAnswer.option[0];
+                if (pollAnswer != null) {
+                    tL_messages_sendVote.options.add(pollAnswer.option);
+                    bArr[i] = pollAnswer.option[0];
+                }
             }
         } else {
             bArr = new byte[0];

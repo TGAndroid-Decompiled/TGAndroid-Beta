@@ -2134,7 +2134,13 @@ public class MessageObject {
 
     public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z) {
         Theme.createCommonChatResources();
-        return formatTextWithEntities(tL_textWithEntities, z, Theme.chat_actionTextPaint);
+        TextPaint textPaint = Theme.chat_actionTextPaint;
+        if (textPaint == null) {
+            textPaint = new TextPaint(1);
+            textPaint.setTypeface(AndroidUtilities.bold());
+            textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+        }
+        return formatTextWithEntities(tL_textWithEntities, z, textPaint);
     }
 
     public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, TextPaint textPaint) {
