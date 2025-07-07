@@ -1683,7 +1683,7 @@ public class TodoItemMenu extends Dialog {
         }
         if (todoItem != null) {
             if (chatActivity != null) {
-                makeOptions.add(R.drawable.menu_reply, LocaleController.getString(R.string.Quote), new Runnable() {
+                makeOptions.add(R.drawable.menu_reply, LocaleController.getString(R.string.TodoItemQuote), new Runnable() {
                     @Override
                     public final void run() {
                         TodoItemMenu.this.lambda$setCell$3(chatActivity, todoItem);

@@ -235,14 +235,14 @@ public class TL_stars {
 
     public static class StarGifts extends TLObject {
         public static StarGifts TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarGifts tL_starGiftsNotModified = i != -1877571094 ? i != -1551326360 ? null : new TL_starGiftsNotModified() : new TL_starGifts();
-            if (tL_starGiftsNotModified == null && z) {
+            StarGifts tL_starGifts = i != -1551326360 ? i != 785918357 ? null : new TL_starGifts() : new TL_starGiftsNotModified();
+            if (tL_starGifts == null && z) {
                 throw new RuntimeException(String.format("can't parse magic %x in StarGifts", Integer.valueOf(i)));
             }
-            if (tL_starGiftsNotModified != null) {
-                tL_starGiftsNotModified.readParams(inputSerializedData, z);
+            if (tL_starGifts != null) {
+                tL_starGifts.readParams(inputSerializedData, z);
             }
-            return tL_starGiftsNotModified;
+            return tL_starGifts;
         }
     }
 
@@ -1699,7 +1699,7 @@ public class TL_stars {
     }
 
     public static class TL_starGifts extends StarGifts {
-        public static final int constructor = -1877571094;
+        public static final int constructor = 785918357;
         public int hash;
         public ArrayList<StarGift> gifts = new ArrayList<>();
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
@@ -1715,7 +1715,7 @@ public class TL_stars {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1877571094);
+            outputSerializedData.writeInt32(785918357);
             outputSerializedData.writeInt32(this.hash);
             Vector.serialize(outputSerializedData, this.gifts);
             Vector.serialize(outputSerializedData, this.chats);

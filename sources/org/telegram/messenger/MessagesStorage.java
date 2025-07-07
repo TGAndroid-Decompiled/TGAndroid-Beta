@@ -39,6 +39,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
@@ -364,16 +365,19 @@ public class MessagesStorage extends BaseController {
     }
 
     public static void addUsersAndChatsFromMessage(TLRPC.Message message, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
+        TL_stars.StarGift starGift;
         TLRPC.Peer peer;
+        TLRPC.Peer peer2;
         String str;
         TLRPC.MessageFwdHeader messageFwdHeader;
-        TLRPC.Peer peer2;
         TLRPC.Peer peer3;
-        TLRPC.WebPage webPage;
         TLRPC.Peer peer4;
+        TLRPC.WebPage webPage;
+        TLRPC.Peer peer5;
         TL_stories.StoryFwdHeader storyFwdHeader;
         TL_stories.StoryItem storyItem;
-        TLRPC.Peer peer5;
+        TLRPC.Peer peer6;
+        TL_stars.StarGift starGift2;
         long j;
         long fromChatId = MessageObject.getFromChatId(message);
         if (DialogObject.isUserDialog(fromChatId)) {
@@ -438,6 +442,10 @@ public class MessagesStorage extends BaseController {
                 arrayList.add(Long.valueOf(j));
             }
         }
+        TLRPC.MessageAction messageAction4 = message.action;
+        if (!(messageAction4 instanceof TLRPC.TL_messageActionStarGift) ? !(!(messageAction4 instanceof TLRPC.TL_messageActionStarGiftUnique) || (starGift = ((TLRPC.TL_messageActionStarGiftUnique) messageAction4).gift) == null || (peer = starGift.released_by) == null) : !((starGift2 = ((TLRPC.TL_messageActionStarGift) messageAction4).gift) == null || (peer = starGift2.released_by) == null)) {
+            addLoadPeerInfo(peer, arrayList, arrayList2);
+        }
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia != null) {
             long j7 = messageMedia.user_id;
@@ -491,8 +499,8 @@ public class MessagesStorage extends BaseController {
                     }
                 }
                 TL_stories.StoryItem storyItem3 = message.media.storyItem;
-                if (storyItem3 != null && (peer5 = storyItem3.from_id) != null) {
-                    addLoadPeerInfo(peer5, arrayList, arrayList2);
+                if (storyItem3 != null && (peer6 = storyItem3.from_id) != null) {
+                    addLoadPeerInfo(peer6, arrayList, arrayList2);
                 }
             }
             TLRPC.MessageMedia messageMedia6 = message.media;
@@ -516,15 +524,15 @@ public class MessagesStorage extends BaseController {
                             }
                         }
                         TL_stories.StoryItem storyItem6 = tL_webPageAttributeStory.storyItem;
-                        if (storyItem6 != null && (peer4 = storyItem6.from_id) != null) {
-                            addLoadPeerInfo(peer4, arrayList, arrayList2);
+                        if (storyItem6 != null && (peer5 = storyItem6.from_id) != null) {
+                            addLoadPeerInfo(peer5, arrayList, arrayList2);
                         }
                     }
                 }
             }
-            TLRPC.Peer peer6 = message.media.peer;
-            if (peer6 != null) {
-                addLoadPeerInfo(peer6, arrayList, arrayList2);
+            TLRPC.Peer peer7 = message.media.peer;
+            if (peer7 != null) {
+                addLoadPeerInfo(peer7, arrayList, arrayList2);
             }
         }
         TLRPC.MessageReplies messageReplies = message.replies;
@@ -535,8 +543,8 @@ public class MessagesStorage extends BaseController {
             }
         }
         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
-        if (messageReplyHeader != null && (peer3 = messageReplyHeader.reply_to_peer_id) != null) {
-            addLoadPeerInfo(peer3, arrayList, arrayList2);
+        if (messageReplyHeader != null && (peer4 = messageReplyHeader.reply_to_peer_id) != null) {
+            addLoadPeerInfo(peer4, arrayList, arrayList2);
         }
         TLRPC.MessageFwdHeader messageFwdHeader2 = message.fwd_from;
         if (messageFwdHeader2 != null) {
@@ -544,8 +552,8 @@ public class MessagesStorage extends BaseController {
             addLoadPeerInfo(message.fwd_from.saved_from_peer, arrayList, arrayList2);
         }
         TLRPC.MessageReplyHeader messageReplyHeader2 = message.reply_to;
-        if (messageReplyHeader2 != null && (messageFwdHeader = messageReplyHeader2.reply_from) != null && (peer2 = messageFwdHeader.from_id) != null) {
-            addLoadPeerInfo(peer2, arrayList, arrayList2);
+        if (messageReplyHeader2 != null && (messageFwdHeader = messageReplyHeader2.reply_from) != null && (peer3 = messageFwdHeader.from_id) != null) {
+            addLoadPeerInfo(peer3, arrayList, arrayList2);
         }
         HashMap<String, String> hashMap = message.params;
         if (hashMap != null && (str = hashMap.get("fwd_peer")) != null) {
@@ -563,8 +571,8 @@ public class MessagesStorage extends BaseController {
         }
         for (int i8 = 0; i8 < message.reactions.top_reactors.size(); i8++) {
             TLRPC.MessageReactor messageReactor = message.reactions.top_reactors.get(i8);
-            if (messageReactor != null && (peer = messageReactor.peer_id) != null) {
-                addLoadPeerInfo(peer, arrayList, arrayList2);
+            if (messageReactor != null && (peer2 = messageReactor.peer_id) != null) {
+                addLoadPeerInfo(peer2, arrayList, arrayList2);
             }
         }
     }
@@ -1102,12 +1110,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(208);
+                messageMedia.bytes = Utilities.intToBytes(209);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(208);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(209);
             message.flags |= 512;
         }
     }

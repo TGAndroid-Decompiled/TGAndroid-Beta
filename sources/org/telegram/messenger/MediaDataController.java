@@ -6743,6 +6743,15 @@ public class MediaDataController extends BaseController {
         buildShortcuts();
     }
 
+    public boolean containsTopPeer(long j) {
+        for (int i = 0; i < this.hints.size(); i++) {
+            if (DialogObject.getPeerDialogId(this.hints.get(i).peer) == j) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void endTransaction() {
         this.inTransaction = false;
     }

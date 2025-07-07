@@ -64,7 +64,7 @@ public class TLRPC {
     public static final int FLAG_7 = 128;
     public static final int FLAG_8 = 256;
     public static final int FLAG_9 = 512;
-    public static final int LAYER = 208;
+    public static final int LAYER = 209;
     public static final int MESSAGE_FLAG_EDITED = 32768;
     public static final int MESSAGE_FLAG_FWD = 4;
     public static final int MESSAGE_FLAG_HAS_BOT_ID = 2048;
@@ -3768,8 +3768,8 @@ public class TLRPC {
                 if (this.params == null) {
                     this.params = new HashMap<>();
                 }
-                this.layer = 208;
-                this.params.put("legacy_layer", "208");
+                this.layer = 209;
+                this.params.put("legacy_layer", "209");
             }
             if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
                 for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

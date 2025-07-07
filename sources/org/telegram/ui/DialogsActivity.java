@@ -826,7 +826,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (view instanceof DialogStoriesCell.StoryCell) {
                 DialogsActivity.this.dialogStoriesCell.openStoryForCell((DialogStoriesCell.StoryCell) view);
                 if (z) {
-                    AndroidUtilities.runOnUIThread(new DialogsActivity$23$$ExternalSyntheticLambda15(), 500L);
+                    AndroidUtilities.runOnUIThread(new DialogsActivity$23$$ExternalSyntheticLambda16(), 500L);
                 }
             }
         }
@@ -848,6 +848,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public void lambda$onUserLongPressed$14(long j) {
             DialogsActivity.this.toggleArciveForStory(j);
+        }
+
+        public void lambda$onUserLongPressed$15(long j) {
+            MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).removePeer(j);
+            DialogsActivity.this.getMessagesController().getStoriesController().toggleHidden(j, true, false, true);
         }
 
         public void lambda$onUserLongPressed$2() {
@@ -873,10 +878,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.presentFragment(ChatActivity.of(j));
         }
 
-        public void lambda$onUserLongPressed$7(String str, long j) {
+        public void lambda$onUserLongPressed$7(String str, long j, TLRPC.User user) {
             MessagesController.getNotificationsSettings(((BaseFragment) DialogsActivity.this).currentAccount).edit().putBoolean("stories_" + str, false).apply();
             DialogsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
-            TLRPC.User user = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getUser(Long.valueOf(j));
             String trim = user == null ? "" : user.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
@@ -885,10 +889,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             BulletinFactory.of(DialogsActivity.this).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryMutedHint", R.string.NotificationsStoryMutedHint, trim))).show();
         }
 
-        public void lambda$onUserLongPressed$8(String str, long j) {
+        public void lambda$onUserLongPressed$8(String str, long j, TLRPC.User user) {
             MessagesController.getNotificationsSettings(((BaseFragment) DialogsActivity.this).currentAccount).edit().putBoolean("stories_" + str, true).apply();
             DialogsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
-            TLRPC.User user = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getUser(Long.valueOf(j));
             String trim = user == null ? "" : user.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
@@ -901,7 +904,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (view instanceof DialogStoriesCell.StoryCell) {
                 DialogsActivity.this.dialogStoriesCell.openStoryForCell((DialogStoriesCell.StoryCell) view);
                 if (z) {
-                    AndroidUtilities.runOnUIThread(new DialogsActivity$23$$ExternalSyntheticLambda15(), 500L);
+                    AndroidUtilities.runOnUIThread(new DialogsActivity$23$$ExternalSyntheticLambda16(), 500L);
                 }
             }
         }
@@ -920,6 +923,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         public void onUserLongPressed(final View view, final long j) {
             CombinedDrawable combinedDrawable;
             Drawable drawable;
+            final AnonymousClass23 anonymousClass23 = this;
+            MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).loadHints(true);
             DialogsActivity dialogsActivity = DialogsActivity.this;
             dialogsActivity.filterOptions = ItemOptions.makeOptions(dialogsActivity, view).setViewAdditionalOffsets(0, AndroidUtilities.dp(8.0f), 0, 0).setScrimViewBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), DialogsActivity.this.canShowFilterTabsView ? AndroidUtilities.dp(6.0f) : 0, Theme.getColor(DialogsActivity.this.isArchive() ? Theme.key_actionBarDefaultArchived : Theme.key_actionBarDefault)));
             if (UserObject.isService(j)) {
@@ -930,40 +935,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 view.performHapticFeedback(0);
             } catch (Exception unused) {
             }
-            if (j == UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getClientUserId()) {
-                DialogsActivity dialogsActivity2 = DialogsActivity.this;
-                if (!dialogsActivity2.storiesEnabled) {
-                    DialogStoriesCell dialogStoriesCell = dialogsActivity2.dialogStoriesCell;
-                    if (dialogStoriesCell != null) {
-                        dialogStoriesCell.showPremiumHint();
-                        return;
-                    }
-                    return;
-                }
-                ItemOptions itemOptions = dialogsActivity2.filterOptions;
-                int i = R.drawable.msg_stories_add;
-                String string = LocaleController.getString(R.string.AddStory);
-                int i2 = Theme.key_actionBarDefaultSubmenuItemIcon;
-                int i3 = Theme.key_actionBarDefaultSubmenuItem;
-                itemOptions.add(i, string, i2, i3, new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$0();
-                    }
-                });
-                DialogsActivity.this.filterOptions.add(R.drawable.msg_stories_archive, LocaleController.getString(R.string.ArchivedStories), i2, i3, new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$1();
-                    }
-                });
-                DialogsActivity.this.filterOptions.add(R.drawable.msg_stories_saved, LocaleController.getString(R.string.SavedStories), i2, i3, new Runnable() {
-                    @Override
-                    public final void run() {
-                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$2();
-                    }
-                });
-            } else {
+            long clientUserId = UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getClientUserId();
+            DialogsActivity dialogsActivity2 = DialogsActivity.this;
+            if (j != clientUserId) {
+                final TLRPC.User user = dialogsActivity2.getMessagesController().getUser(Long.valueOf(j));
                 TLRPC.Chat chat = DialogsActivity.this.getMessagesController().getChat(Long.valueOf(-j));
                 final String sharedPrefKey = NotificationsController.getSharedPrefKey(j, 0L);
                 boolean z = !NotificationsCustomSettingsActivity.areStoriesNotMuted(((BaseFragment) DialogsActivity.this).currentAccount, j);
@@ -989,6 +964,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         }
                     });
                 }
+                boolean z2 = (user == null || user.contact || !MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).containsTopPeer(j)) ? false : true;
                 ItemOptions makeMultiline = DialogsActivity.this.filterOptions.addIf(j > 0, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
                     @Override
                     public final void run() {
@@ -1007,38 +983,76 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }).addIf(!z && j > 0, R.drawable.msg_mute, LocaleController.getString(R.string.NotificationsStoryMute2), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$7(sharedPrefKey, j);
+                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$7(sharedPrefKey, j, user);
                     }
                 }).makeMultiline(false).addIf(z && j > 0, R.drawable.msg_unmute, LocaleController.getString(R.string.NotificationsStoryUnmute2), new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$8(sharedPrefKey, j);
+                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$8(sharedPrefKey, j, user);
                     }
                 }).makeMultiline(false);
-                boolean z2 = !premiumFeaturesBlocked && j > 0 && isPremium && hasUnreadStories;
-                int i4 = R.drawable.msg_stories_stealth2;
-                int i5 = R.string.ViewAnonymously;
-                makeMultiline.addIf(z2, i4, LocaleController.getString(i5), new Runnable() {
+                boolean z3 = !premiumFeaturesBlocked && j > 0 && isPremium && hasUnreadStories;
+                int i = R.drawable.msg_stories_stealth2;
+                int i2 = R.string.ViewAnonymously;
+                anonymousClass23 = this;
+                makeMultiline.addIf(z3, i, LocaleController.getString(i2), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$10(view);
                     }
-                }).makeMultiline(false).addIf(!premiumFeaturesBlocked && j > 0 && !isPremium && hasUnreadStories, i4, combinedDrawable2, LocaleController.getString(i5), new Runnable() {
+                }).makeMultiline(false).addIf(!premiumFeaturesBlocked && j > 0 && !isPremium && hasUnreadStories, i, combinedDrawable2, LocaleController.getString(i2), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$12(view);
                     }
-                }).makeMultiline(false).addIf(!DialogsActivity.this.isArchive(), R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), new Runnable() {
+                }).makeMultiline(false).addIf((z2 || DialogsActivity.this.isArchive()) ? false : true, R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$13(j);
                     }
-                }).makeMultiline(false).addIf(DialogsActivity.this.isArchive(), R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), new Runnable() {
+                }).makeMultiline(false).addIf(!z2 && DialogsActivity.this.isArchive(), R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$14(j);
                     }
-                }).makeMultiline(false);
+                }).makeMultiline(false).addIf(z2, R.drawable.msg_delete, LocaleController.getString(R.string.StoriesRemoveFromRecent), new Runnable() {
+                    @Override
+                    public final void run() {
+                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$15(j);
+                    }
+                });
+            } else {
+                if (!dialogsActivity2.storiesEnabled) {
+                    DialogStoriesCell dialogStoriesCell = dialogsActivity2.dialogStoriesCell;
+                    if (dialogStoriesCell != null) {
+                        dialogStoriesCell.showPremiumHint();
+                        return;
+                    }
+                    return;
+                }
+                ItemOptions itemOptions = dialogsActivity2.filterOptions;
+                int i3 = R.drawable.msg_stories_add;
+                String string = LocaleController.getString(R.string.AddStory);
+                int i4 = Theme.key_actionBarDefaultSubmenuItemIcon;
+                int i5 = Theme.key_actionBarDefaultSubmenuItem;
+                itemOptions.add(i3, string, i4, i5, new Runnable() {
+                    @Override
+                    public final void run() {
+                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$0();
+                    }
+                });
+                DialogsActivity.this.filterOptions.add(R.drawable.msg_stories_archive, LocaleController.getString(R.string.ArchivedStories), i4, i5, new Runnable() {
+                    @Override
+                    public final void run() {
+                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$1();
+                    }
+                });
+                DialogsActivity.this.filterOptions.add(R.drawable.msg_stories_saved, LocaleController.getString(R.string.SavedStories), i4, i5, new Runnable() {
+                    @Override
+                    public final void run() {
+                        DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$2();
+                    }
+                });
             }
             DialogsActivity.this.filterOptions.setGravity(3).translate(AndroidUtilities.dp(-8.0f), AndroidUtilities.dp(-10.0f)).show();
         }

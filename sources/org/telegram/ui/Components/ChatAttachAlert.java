@@ -3658,6 +3658,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 ChatAttachAlert.this.lambda$new$2(view);
             }
         });
+        updateDoneItemEnabled();
         if (baseFragment != null) {
             i = i6;
             ActionBarMenuItem actionBarMenuItem5 = new ActionBarMenuItem(context2, null, 0, getThemedColor(i5), false, resourcesProvider2);
@@ -4624,7 +4625,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void lambda$new$2(View view) {
-        this.currentAttachLayout.onMenuItemClick(40);
+        AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
+        if (attachAlertLayout != null) {
+            attachAlertLayout.onMenuItemClick(40);
+        }
     }
 
     public void lambda$new$20(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -6626,6 +6630,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (baseFragment instanceof ChatActivity) {
             this.calcMandatoryInsets = ((ChatActivity) baseFragment).isKeyboardVisible();
         }
+        updateDoneItemEnabled();
         this.openTransitionFinished = false;
         if (Build.VERSION.SDK_INT >= 30) {
             this.navBarColorKey = -1;
@@ -6696,18 +6701,26 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void updateDoneItemEnabled() {
         AttachAlertLayout attachAlertLayout;
-        this.doneItem.setEnabled(this.currentAttachLayout.isDoneItemEnabled());
+        ActionBarMenuItem actionBarMenuItem = this.doneItem;
         AttachAlertLayout attachAlertLayout2 = this.currentAttachLayout;
+        int i = 0;
+        actionBarMenuItem.setEnabled(attachAlertLayout2 == null ? false : attachAlertLayout2.isDoneItemEnabled());
+        AttachAlertLayout attachAlertLayout3 = this.currentAttachLayout;
         float f = 0.0f;
-        if (attachAlertLayout2 != null) {
-            f = 0.0f + ((attachAlertLayout2.isDoneItemEnabled() ? 1.0f : 0.5f) * (this.nextAttachLayout == null ? 1.0f : this.translationProgress));
-        }
-        AttachAlertLayout attachAlertLayout3 = this.nextAttachLayout;
         if (attachAlertLayout3 != null) {
-            f += (attachAlertLayout3.isDoneItemEnabled() ? 1.0f : 0.5f) * (1.0f - this.translationProgress);
+            f = 0.0f + ((attachAlertLayout3.isDoneItemEnabled() ? 1.0f : 0.5f) * (this.nextAttachLayout == null ? 1.0f : this.translationProgress));
+        }
+        AttachAlertLayout attachAlertLayout4 = this.nextAttachLayout;
+        if (attachAlertLayout4 != null) {
+            f += (attachAlertLayout4.isDoneItemEnabled() ? 1.0f : 0.5f) * (1.0f - this.translationProgress);
         }
         this.doneItem.setAlpha(f);
-        this.doneItem.setVisibility((this.currentAttachLayout.hasDoneItem() || ((attachAlertLayout = this.nextAttachLayout) != null && attachAlertLayout.hasDoneItem())) ? 0 : 4);
+        ActionBarMenuItem actionBarMenuItem2 = this.doneItem;
+        AttachAlertLayout attachAlertLayout5 = this.currentAttachLayout;
+        if ((attachAlertLayout5 == null || !attachAlertLayout5.hasDoneItem()) && ((attachAlertLayout = this.nextAttachLayout) == null || !attachAlertLayout.hasDoneItem())) {
+            i = 4;
+        }
+        actionBarMenuItem2.setVisibility(i);
     }
 
     public void updateLayout(AttachAlertLayout attachAlertLayout, boolean z, int i) {

@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import org.telegram.messenger.FileLog;
@@ -251,9 +252,16 @@ public class FileLog {
 
     public void dumpANR() {
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<Thread, StackTraceElement[]> entry : Thread.getAllStackTraces().entrySet()) {
-            Thread key = entry.getKey();
-            StackTraceElement[] value = entry.getValue();
+        Iterator<Map.Entry<Thread, StackTraceElement[]>> it = Thread.getAllStackTraces().entrySet().iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                e("ANR thread dump\n" + sb.toString());
+                dumpMemory(false);
+                return;
+            }
+            Map.Entry<Thread, StackTraceElement[]> next = it.next();
+            Thread key = next.getKey();
+            StackTraceElement[] value = next.getValue();
             sb.append("Thread: ");
             sb.append(key.getName());
             sb.append("\n");
@@ -263,20 +271,6 @@ public class FileLog {
                 sb.append("\n");
             }
             sb.append("\n\n");
-        }
-        e("ANR thread dump\n" + sb.toString());
-        dumpMemory();
-    }
-
-    private void dumpMemory() {
-        if (System.currentTimeMillis() - dumpedHeap < 30000) {
-            return;
-        }
-        dumpedHeap = System.currentTimeMillis();
-        try {
-            Debug.dumpHprofData(new File(AndroidUtilities.getLogsDir(), getInstance().dateFormat.format(System.currentTimeMillis()) + "_heap.hprof").getAbsolutePath());
-        } catch (Exception e) {
-            e(e);
         }
     }
 
@@ -432,7 +426,7 @@ public class FileLog {
     public static void fatal(final Throwable th, boolean z) {
         if (BuildVars.LOGS_ENABLED) {
             if (th instanceof OutOfMemoryError) {
-                getInstance().dumpMemory();
+                getInstance().dumpMemory(false);
             }
             if (z && BuildVars.DEBUG_VERSION && needSent(th)) {
                 AndroidUtilities.appCenterLog(th);
@@ -647,6 +641,17 @@ public class FileLog {
                         FileLog.lambda$w$7(str);
                     }
                 });
+            }
+        }
+    }
+
+    public void dumpMemory(boolean z) {
+        if (z || System.currentTimeMillis() - dumpedHeap >= 30000) {
+            dumpedHeap = System.currentTimeMillis();
+            try {
+                Debug.dumpHprofData(new File(AndroidUtilities.getLogsDir(), getInstance().dateFormat.format(System.currentTimeMillis()) + "_heap.hprof").getAbsolutePath());
+            } catch (Exception e) {
+                e(e);
             }
         }
     }

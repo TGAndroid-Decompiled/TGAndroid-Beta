@@ -1679,7 +1679,7 @@ public class StoriesController {
         }
 
         public void lambda$sendUploadedRequest$3(TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda28(StoriesController.this));
+            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda29(StoriesController.this));
         }
 
         public void lambda$sendUploadedRequest$4(TL_stories.TL_updateStory tL_updateStory) {
@@ -2538,12 +2538,12 @@ public class StoriesController {
     }
 
     public void lambda$deleteStories$14(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda28(this));
+        AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda29(this));
     }
 
     public void lambda$deleteStory$13(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda28(this));
+            AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda29(this));
         }
     }
 

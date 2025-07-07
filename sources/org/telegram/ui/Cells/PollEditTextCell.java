@@ -146,7 +146,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         this.textView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
         this.textView.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
-        this.textView.setMaxLines(i == 1 ? 4 : Integer.MAX_VALUE);
+        this.textView.setMaxLines(Integer.MAX_VALUE);
         this.textView.setBackground(null);
         EditTextBoldCursor editTextBoldCursor = this.textView;
         editTextBoldCursor.setImeOptions(editTextBoldCursor.getImeOptions() | 268435456);
@@ -154,7 +154,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 16384);
         this.textView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(11.0f));
         if (onClickListener != null) {
-            int i2 = i == 1 ? 102 : 58;
+            int i2 = i == 1 ? 92 : 58;
             EditTextBoldCursor editTextBoldCursor3 = this.textView;
             boolean z2 = LocaleController.isRTL;
             addView(editTextBoldCursor3, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 16, z2 ? i2 : 64.0f, 0.0f, !z2 ? i2 : 64.0f, 0.0f));
@@ -175,7 +175,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.deleteImageView = imageView4;
             imageView4.setFocusable(false);
             this.deleteImageView.setScaleType(scaleType);
-            this.deleteImageView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, resourcesProvider)));
+            this.deleteImageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, resourcesProvider)));
             this.deleteImageView.setImageResource(R.drawable.poll_remove);
             this.deleteImageView.setOnClickListener(onClickListener);
             this.deleteImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3, resourcesProvider), mode));
@@ -206,7 +206,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
                 }
             });
         } else {
-            int i4 = i == 1 ? 80 : 19;
+            int i4 = i == 1 ? 70 : 19;
             EditTextBoldCursor editTextBoldCursor4 = this.textView;
             boolean z5 = LocaleController.isRTL;
             addView(editTextBoldCursor4, LayoutHelper.createFrame(-1, -2.0f, (z5 ? 5 : 3) | 16, z5 ? i4 : 19.0f, 0.0f, z5 ? 19.0f : i4, 0.0f));
@@ -220,7 +220,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             int dp = AndroidUtilities.dp(9.5f);
             this.emojiButton.setPadding(dp, dp, dp, dp);
             this.emojiButton.setVisibility(8);
-            int i5 = this.deleteImageView == null ? 3 : 48;
+            int i5 = this.deleteImageView == null ? 3 : 38;
             ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView2 = this.emojiButton;
             boolean z6 = LocaleController.isRTL;
             addView(chatActivityEnterViewAnimatedIconView2, LayoutHelper.createFrame(48, 48.0f, z6 ? 3 : 5, z6 ? i5 : 0.0f, 0.0f, z6 ? 0.0f : i5, 0.0f));
@@ -406,7 +406,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         if (checkBox2 != null) {
             checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         }
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec(((size - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(this.textView2 == null ? 42 : this.deleteImageView == null ? 70 : this.emojiButton != null ? 174 : 122), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        this.textView.measure(View.MeasureSpec.makeMeasureSpec(((size - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(this.textView2 == null ? 42 : this.deleteImageView == null ? 70 : this.emojiButton != null ? 144 : 122), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         int measuredHeight = this.textView.getMeasuredHeight();
         setMeasuredDimension(size, Math.max(AndroidUtilities.dp(50.0f), this.textView.getMeasuredHeight()) + (this.needDivider ? 1 : 0));
         SimpleTextView simpleTextView2 = this.textView2;

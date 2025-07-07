@@ -6731,7 +6731,7 @@
     <string name="ReplyToGroupStory">Comment story...</string>
     <string name="ReplyToQuote">Reply to quote by %s</string>
     <string name="ReplyToTask">Reply to checklist task</string>
-    <string name="ReplyToTaskIn">Reply to task in %s</string>
+    <string name="ReplyToTaskIn">Reply to item in %s</string>
     <string name="ReplyToUser">Reply to %1$s</string>
     <string name="Report2">Report</string>
     <string name="Report2Comment">Add Comment</string>
@@ -7891,6 +7891,7 @@
     <string name="StoriesPinned_one">Story pinned</string>
     <string name="StoriesPinned_other">%d stories pinned</string>
     <string name="StoriesPremiumHint2">Posting stories is currently available only to subscribers of **Telegram Premium**.</string>
+    <string name="StoriesRemoveFromRecent">Remove from Recent</string>
     <string name="StoriesSelected_one">%d Selected</string>
     <string name="StoriesSelected_other">%d Selected</string>
     <string name="StoriesSoundEnabled">Stories</string>
@@ -8456,6 +8457,7 @@
     <string name="TodoEditItem">Edit Item</string>
     <string name="TodoEditTasksButton">SAVE</string>
     <string name="TodoEditTitle">Edit Checklist</string>
+    <string name="TodoItemQuote">Reply to Item</string>
     <string name="TodoItemsTitle">Checklist</string>
     <string name="TodoMenuHint">You are viewing actions for one task.\nYou can switch to actions for the list.</string>
     <string name="TodoMenuTabList">List</string>
@@ -9479,7 +9481,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f251d_com_google_firebase_crashlytics_mapping_file_id">d7b94892b4174008a71558d653e3c6c3</string>
+    <string name="res_0x7f0f251f_com_google_firebase_crashlytics_mapping_file_id">ca2f0ea948454fa1b8486e0c4db0994c</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

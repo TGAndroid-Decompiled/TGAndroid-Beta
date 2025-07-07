@@ -1114,16 +1114,18 @@ public class StarsController {
         return DialogObject.getPeerDialogId(inputPeer);
     }
 
-    private void getStarGiftsCached(final Utilities.Callback3 callback3) {
-        if (callback3 == null) {
+    private void getStarGiftsCached(final Utilities.Callback5 callback5) {
+        if (callback5 == null) {
             return;
         }
         final ArrayList arrayList = new ArrayList();
+        final ArrayList arrayList2 = new ArrayList();
+        final ArrayList arrayList3 = new ArrayList();
         final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StarsController.lambda$getStarGiftsCached$109(MessagesStorage.this, arrayList, callback3);
+                StarsController.lambda$getStarGiftsCached$109(MessagesStorage.this, arrayList3, arrayList2, arrayList, callback5);
             }
         });
     }
@@ -2646,12 +2648,12 @@ public class StarsController {
         });
     }
 
-    public static void lambda$getStarGiftsCached$108(Utilities.Callback3 callback3, ArrayList arrayList, int i, long j) {
-        callback3.run(arrayList, Integer.valueOf(i), Long.valueOf(j));
+    public static void lambda$getStarGiftsCached$108(Utilities.Callback5 callback5, ArrayList arrayList, int i, long j, ArrayList arrayList2, ArrayList arrayList3) {
+        callback5.run(arrayList, Integer.valueOf(i), Long.valueOf(j), arrayList2, arrayList3);
     }
 
-    public static void lambda$getStarGiftsCached$109(org.telegram.messenger.MessagesStorage r10, final java.util.ArrayList r11, final org.telegram.messenger.Utilities.Callback3 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsController.lambda$getStarGiftsCached$109(org.telegram.messenger.MessagesStorage, java.util.ArrayList, org.telegram.messenger.Utilities$Callback3):void");
+    public static void lambda$getStarGiftsCached$109(org.telegram.messenger.MessagesStorage r18, final java.util.ArrayList r19, final java.util.ArrayList r20, final java.util.ArrayList r21, final org.telegram.messenger.Utilities.Callback5 r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsController.lambda$getStarGiftsCached$109(org.telegram.messenger.MessagesStorage, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, org.telegram.messenger.Utilities$Callback5):void");
     }
 
     public static void lambda$getStarGiftsRemote$111(TLObject tLObject, Utilities.Callback callback) {
@@ -2727,7 +2729,9 @@ public class StarsController {
         return starGift.sold_out ? 1 : 0;
     }
 
-    public void lambda$loadStarGifts$103(ArrayList arrayList, Integer num, Long l) {
+    public void lambda$loadStarGifts$103(ArrayList arrayList, Integer num, Long l, ArrayList arrayList2, ArrayList arrayList3) {
+        MessagesController.getInstance(this.currentAccount).putUsers(arrayList2, true);
+        MessagesController.getInstance(this.currentAccount).putChats(arrayList3, true);
         this.giftsCacheLoaded = true;
         this.gifts.clear();
         this.gifts.addAll(arrayList);
@@ -2787,6 +2791,7 @@ public class StarsController {
             TL_stars.TL_starGifts tL_starGifts = (TL_stars.TL_starGifts) starGifts;
             MessagesController.getInstance(this.currentAccount).putUsers(tL_starGifts.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tL_starGifts.chats, false);
+            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_starGifts.users, tL_starGifts.chats, true, true);
             this.gifts.clear();
             this.gifts.addAll(tL_starGifts.gifts);
             this.birthdaySortedGifts.clear();
@@ -4519,10 +4524,10 @@ public class StarsController {
                     }
                 });
             } else {
-                getStarGiftsCached(new Utilities.Callback3() {
+                getStarGiftsCached(new Utilities.Callback5() {
                     @Override
-                    public final void run(Object obj, Object obj2, Object obj3) {
-                        StarsController.this.lambda$loadStarGifts$103((ArrayList) obj, (Integer) obj2, (Long) obj3);
+                    public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                        StarsController.this.lambda$loadStarGifts$103((ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
                     }
                 });
             }
