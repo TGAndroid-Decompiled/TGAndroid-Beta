@@ -1005,6 +1005,9 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             if (closestTab == 14) {
                 ProfileGiftsContainer.Page currentPage = SharedMediaLayout.this.giftsContainer.getCurrentPage();
                 final StarsController.GiftsList giftsList = currentPage.list;
+                if (giftsList == null) {
+                    return;
+                }
                 final boolean canFilterHidden = SharedMediaLayout.this.giftsContainer.canFilterHidden();
                 final ItemOptions makeOptions = ItemOptions.makeOptions(SharedMediaLayout.this.profileActivity, SharedMediaLayout.this.photoVideoOptionsItem);
                 if (giftsList.isCollection) {

@@ -1015,15 +1015,21 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return LocaleController.getString(R.string.Loading);
             }
             boolean isPremium = UserConfig.getInstance(i).isPremium();
-            boolean z = subscriptionTier.getMonths() == 12;
-            String formattedPricePerYear = z ? subscriptionTier.getFormattedPricePerYear() : subscriptionTier.getFormattedPricePerMonth();
+            boolean z = subscriptionTier.getMonths() > 12 && subscriptionTier.getMonths() % 12 == 0;
+            boolean z2 = subscriptionTier.getMonths() == 12;
+            String formattedPricePerYear = z2 ? subscriptionTier.getFormattedPricePerYear() : subscriptionTier.getFormattedPricePerMonth();
             if (isPremium) {
-                i2 = z ? R.string.UpgradePremiumPerYear : R.string.UpgradePremiumPerMonth;
-            } else if (!z || MessagesController.getInstance(i).showAnnualPerMonth) {
-                formattedPricePerYear = subscriptionTier.getFormattedPricePerMonth();
+                i2 = z2 ? R.string.UpgradePremiumPerYear : R.string.UpgradePremiumPerMonth;
             } else {
-                i2 = R.string.SubscribeToPremiumPerYear;
-                formattedPricePerYear = subscriptionTier.getFormattedPrice();
+                if (z2) {
+                    if (!MessagesController.getInstance(i).showAnnualPerMonth) {
+                        i2 = R.string.SubscribeToPremiumPerYear;
+                        formattedPricePerYear = subscriptionTier.getFormattedPrice();
+                    }
+                } else if (z && !MessagesController.getInstance(i).showAnnualPerMonth) {
+                    return LocaleController.formatString(R.string.SubscribeToPremiumPerCustom, subscriptionTier.getFormattedPrice(), LocaleController.formatPluralString("Years", subscriptionTier.getMonths() / 12, new Object[0]));
+                }
+                formattedPricePerYear = subscriptionTier.getFormattedPricePerMonth();
             }
             return LocaleController.formatString(i2, formattedPricePerYear);
         }

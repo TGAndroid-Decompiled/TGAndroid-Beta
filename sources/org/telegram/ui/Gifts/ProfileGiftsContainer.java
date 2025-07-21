@@ -224,14 +224,15 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 @Override
                 public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
                     ProfileGiftsView profileGiftsView;
-                    if (!Page.this.reordering || !canReorder(getSavedGift(viewHolder)) || !canReorder(getSavedGift(viewHolder2))) {
+                    Page page = Page.this;
+                    if (page.list == null || !page.reordering || !canReorder(getSavedGift(viewHolder)) || !canReorder(getSavedGift(viewHolder2))) {
                         return false;
                     }
                     int adapterPosition = viewHolder.getAdapterPosition();
                     int adapterPosition2 = viewHolder2.getAdapterPosition();
-                    Page page = Page.this;
-                    boolean z = page.isCollection;
-                    StarsController.GiftsList giftsList = page.list;
+                    Page page2 = Page.this;
+                    boolean z = page2.isCollection;
+                    StarsController.GiftsList giftsList = page2.list;
                     if (z) {
                         giftsList.reorder(adapterPosition, adapterPosition2);
                         profileGiftsContainer.collections.updateIcon(Page.this.list.collectionId);
@@ -254,7 +255,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i2) {
                     Page page = Page.this;
                     if (i2 == 0) {
-                        page.list.reorderDone();
+                        StarsController.GiftsList giftsList = page.list;
+                        if (giftsList != null) {
+                            giftsList.reorderDone();
+                        }
                     } else {
                         if (page.listView != null) {
                             Page.this.listView.cancelClickRunnables(false);
@@ -285,18 +289,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         public void lambda$onItemClick$3() {
-            UniversalAdapter universalAdapter;
-            UniversalRecyclerView universalRecyclerView = this.listView;
-            if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
-                return;
-            }
-            universalAdapter.update(false);
+            update(false);
         }
 
         public void lambda$onItemClick$4(TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftUnique tL_starGiftUnique, Long l) {
             Bulletin createSimpleBulletin;
             this.list.gifts.remove(savedStarGift);
-            this.listView.adapter.update(true);
+            update(true);
             if (l.longValue() == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 createSimpleBulletin = BulletinFactory.of(this.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ',')));
             } else {
@@ -451,7 +450,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         public void lambda$updateEmptyView$0(View view) {
-            this.list.resetFilters();
+            StarsController.GiftsList giftsList = this.list;
+            if (giftsList != null) {
+                giftsList.resetFilters();
+            }
         }
 
         public void lambda$updateEmptyView$1(View view) {
@@ -587,8 +589,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
             this.isCollection = z;
             this.list = giftsList;
-            giftsList.load();
-            this.listView.adapter.update(false);
+            if (giftsList != null) {
+                giftsList.load();
+            }
+            update(false);
             if (this.list != null) {
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
             }
@@ -600,16 +604,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
         @Override
         public void didReceivedNotification(int i, int i2, Object... objArr) {
-            UniversalAdapter universalAdapter;
             if (i == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.list) {
-                UniversalRecyclerView universalRecyclerView = this.listView;
-                if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
-                    universalAdapter.update(true);
+                update(true);
+                if (this.list == null || !isAttachedToWindow()) {
+                    return;
                 }
-                if (isAttachedToWindow()) {
-                    if (!canScrollVertically(1) || isLoadingVisible()) {
-                        this.list.load();
-                    }
+                if (!this.listView.canScrollVertically(1) || isLoadingVisible()) {
+                    this.list.load();
                 }
             }
         }
@@ -698,6 +699,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
+            if (this.list == null) {
+                return;
+            }
             Object obj = uItem.object;
             if (obj instanceof TL_stars.SavedStarGift) {
                 final TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
@@ -739,7 +743,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             boolean z2;
             final String str;
             int i2 = 0;
-            if (!(view instanceof GiftSheet.GiftCell)) {
+            if (this.list == null || !(view instanceof GiftSheet.GiftCell)) {
                 return false;
             }
             Object obj = uItem.object;
@@ -949,7 +953,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
         public void resetReordering() {
             if (this.reordering) {
-                this.list.sendPinnedOrder();
+                StarsController.GiftsList giftsList = this.list;
+                if (giftsList != null) {
+                    giftsList.sendPinnedOrder();
+                }
                 setReordering(false);
             }
         }
@@ -977,6 +984,18 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             FrameLayout frameLayout2 = this.emptyView2;
             if (frameLayout2 != null) {
                 frameLayout2.setTranslationY((-(getMeasuredHeight() - this.visibleHeight)) / 2.0f);
+            }
+        }
+
+        public void update(boolean z) {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView == null || universalRecyclerView.adapter == null) {
+                return;
+            }
+            boolean z2 = !universalRecyclerView.canScrollVertically(-1);
+            this.listView.adapter.update(z);
+            if (z2) {
+                this.listView.scrollToPosition(0);
             }
         }
 
@@ -1874,7 +1893,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
     public void lambda$addGifts$18(int i, Page page, ArrayList arrayList) {
         this.collections.addGifts(i, arrayList, true);
-        page.listView.adapter.update(true);
+        page.update(true);
         this.viewPager.fillTabs(true);
         updateTabsShown(true);
     }
@@ -2263,11 +2282,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     }
 
     public void addGifts() {
+        StarsController.GiftsList giftsList;
         final Page currentPage = getCurrentPage();
-        if (currentPage == null || !currentPage.isCollection) {
+        if (currentPage == null || (giftsList = currentPage.list) == null || !currentPage.isCollection) {
             return;
         }
-        final int i = currentPage.list.collectionId;
+        final int i = giftsList.collectionId;
         new SelectGiftsBottomSheet(this.fragment, this.dialogId, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -2456,8 +2476,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftCollectionsLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
         Page currentPage = getCurrentPage();
-        if (currentPage != null && currentPage.listView != null && currentPage.listView.adapter != null) {
-            currentPage.listView.adapter.update(false);
+        if (currentPage != null) {
+            currentPage.update(false);
         }
         ViewPagerFixed viewPagerFixed = this.viewPager;
         if (viewPagerFixed != null) {

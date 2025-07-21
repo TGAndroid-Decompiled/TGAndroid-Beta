@@ -4504,7 +4504,7 @@ public class TL_stars {
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return super.deserializeResponse(inputSerializedData, i, z);
+            return TL_starGiftCollection.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override

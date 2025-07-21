@@ -6245,6 +6245,8 @@
     <string name="PremiumStoriesViewsDescription">Check who opens your stories — even after they expire.</string>
     <string name="PremiumSubscribers">Premium subscribers</string>
     <string name="PremiumTierAnnual">Annual</string>
+    <string name="PremiumTierAnnualYears_one">%d-Year</string>
+    <string name="PremiumTierAnnualYears_other">%d-Year</string>
     <string name="PremiumTierMonthly">Monthly</string>
     <string name="PremiumTierSemiannual">Semiannual</string>
     <string name="PrepaidGiveawayMonths_one">%1$d-month</string>
@@ -8177,6 +8179,7 @@
     <string name="SubscribeToPremiumNotAvailable">Subscription not available</string>
     <string name="SubscribeToPremiumOfficialAppNeeded">**Official app needed**</string>
     <string name="SubscribeToPremiumOfficialAppNeededDescription">You need an official Telegram app to subscribe to **Telegram Premium**.\n\nOnce subscribed, you will be able to use the benefits of Telegram Premium in any apps that support it, including unofficial ones.</string>
+    <string name="SubscribeToPremiumPerCustom">Subscribe for %1$s / %2$s</string>
     <string name="SubscribeToPremiumPerYear">Subscribe for %s per year</string>
     <string name="Subscribers_one">%1$d subscriber</string>
     <string name="Subscribers_other">%1$d subscribers</string>
@@ -9523,7 +9526,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2549_com_google_firebase_crashlytics_mapping_file_id">345530f0d8bc413d85e343672e478ec2</string>
+    <string name="res_0x7f0f254c_com_google_firebase_crashlytics_mapping_file_id">8fa253cd2ade4f06b78328733d477f6e</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>
