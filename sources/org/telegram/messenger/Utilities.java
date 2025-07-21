@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -624,6 +625,12 @@ public class Utilities {
         canvas.restore();
         stackBlurBitmap(createBitmap, Math.max(10, Math.max(max, max2) / 150));
         return createBitmap;
+    }
+
+    public static <T> void swapItems(List<T> list, int i, int i2) {
+        T t = list.get(i);
+        list.set(i, list.get(i2));
+        list.set(i2, t);
     }
 
     public static native void unpinBitmap(Bitmap bitmap);

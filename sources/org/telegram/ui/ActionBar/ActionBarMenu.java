@@ -2,6 +2,7 @@ package org.telegram.ui.ActionBar;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
@@ -296,6 +297,11 @@ public class ActionBarMenu extends LinearLayout {
         }
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
     public ActionBarMenuItem getItem(int i) {
         View findViewWithTag = findViewWithTag(Integer.valueOf(i));
         if (findViewWithTag instanceof ActionBarMenuItem) {
@@ -396,6 +402,11 @@ public class ActionBarMenu extends LinearLayout {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        return super.onTouchEvent(motionEvent);
     }
 
     public void openSearchField(boolean z, boolean z2, String str, boolean z3) {

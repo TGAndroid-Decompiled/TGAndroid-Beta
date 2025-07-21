@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import androidx.core.util.Consumer;
@@ -22,6 +23,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -36,11 +38,13 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -119,6 +123,7 @@ public class StarsController {
     public final ArrayList gifts = new ArrayList();
     public final ArrayList sortedGifts = new ArrayList();
     public final ArrayList birthdaySortedGifts = new ArrayList();
+    public final LongSparseArray giftCollections = new LongSparseArray();
     public final LongSparseArray giftLists = new LongSparseArray();
     private ConcurrentHashMap giftPreviews = new ConcurrentHashMap();
     public final ConcurrentHashMap justAgreedToNotAskDialogs = new ConcurrentHashMap();
@@ -126,8 +131,467 @@ public class StarsController {
     private final Set sendingPaidMessagesIds = Collections.newSetFromMap(new ConcurrentHashMap());
     private final ConcurrentHashMap postponedPaidMessages = new ConcurrentHashMap();
 
+    public static class GiftsCollections {
+        public GiftsList all;
+        private ArrayList collections;
+        public boolean creating;
+        public final int currentAccount;
+        public int currentRequestId;
+        public final long dialogId;
+        private ArrayList filteredCollections;
+        public HashMap gifts;
+        public boolean loaded;
+        public boolean loading;
+        public boolean shown;
+
+        public GiftsCollections(int i, long j) {
+            this(i, j, true);
+        }
+
+        public GiftsCollections(int i, long j, boolean z) {
+            this.collections = new ArrayList();
+            this.filteredCollections = new ArrayList();
+            this.gifts = new HashMap();
+            this.currentRequestId = -1;
+            this.currentAccount = i;
+            this.dialogId = j;
+            if (z) {
+                load();
+            }
+        }
+
+        private long getHash(ArrayList arrayList) {
+            Iterator it = arrayList.iterator();
+            long j = 0;
+            while (it.hasNext()) {
+                j = MediaDataController.calcHash(j, ((TL_stars.TL_starGiftCollection) it.next()).hash);
+            }
+            return j;
+        }
+
+        public void lambda$addGifts$4(TLObject tLObject, GiftsList giftsList, int i) {
+            if (tLObject instanceof TL_stars.TL_starGiftCollection) {
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) tLObject;
+                int indexOf = indexOf(tL_starGiftCollection.collection_id);
+                if (indexOf >= 0) {
+                    this.collections.set(indexOf, tL_starGiftCollection);
+                }
+                if (giftsList == null || giftsList.endReached) {
+                    return;
+                }
+                giftsList.totalCount += i;
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), giftsList);
+            }
+        }
+
+        public void lambda$addGifts$5(final GiftsList giftsList, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StarsController.GiftsCollections.this.lambda$addGifts$4(tLObject, giftsList, i);
+                }
+            });
+        }
+
+        public void lambda$createCollection$2(TLObject tLObject, TL_stars.TL_starGiftCollection tL_starGiftCollection, GiftsList giftsList, Utilities.Callback callback, TLRPC.TL_error tL_error) {
+            BaseFragment safeLastFragment;
+            this.creating = false;
+            if (!(tLObject instanceof TL_stars.TL_starGiftCollection)) {
+                if (tL_error != null && (safeLastFragment = LaunchActivity.getSafeLastFragment()) != null) {
+                    BulletinFactory.of(safeLastFragment).showForError(tL_error);
+                }
+                this.collections.remove(tL_starGiftCollection);
+                this.gifts.remove(-1);
+                refilterCollections();
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(this.dialogId), this);
+                return;
+            }
+            TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject;
+            this.collections.remove(tL_starGiftCollection);
+            this.collections.add(tL_starGiftCollection2);
+            this.gifts.remove(-1);
+            int i = tL_starGiftCollection2.collection_id;
+            giftsList.collectionId = i;
+            this.gifts.put(Integer.valueOf(i), giftsList);
+            refilterCollections();
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(this.dialogId), this);
+            if (callback != null) {
+                callback.run(tL_starGiftCollection2);
+            }
+        }
+
+        public void lambda$createCollection$3(final TL_stars.TL_starGiftCollection tL_starGiftCollection, final GiftsList giftsList, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StarsController.GiftsCollections.this.lambda$createCollection$2(tLObject, tL_starGiftCollection, giftsList, callback, tL_error);
+                }
+            });
+        }
+
+        public void lambda$load$0(TLObject tLObject) {
+            if (!(tLObject instanceof TL_stars.TL_starGiftCollections)) {
+                if (tLObject instanceof TL_stars.TL_starGiftCollectionsNotModified) {
+                    refilterCollections();
+                    this.loaded = true;
+                    this.loading = false;
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(this.dialogId), this);
+                    return;
+                }
+                return;
+            }
+            this.collections.clear();
+            this.collections.addAll(((TL_stars.TL_starGiftCollections) tLObject).collections);
+            refilterCollections();
+            Iterator it = this.collections.iterator();
+            while (it.hasNext()) {
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) it.next();
+                if (getListById(tL_starGiftCollection.collection_id) == null) {
+                    GiftsList giftsList = new GiftsList(this.currentAccount, this.dialogId, false);
+                    giftsList.setCollectionId(tL_starGiftCollection.collection_id);
+                    this.gifts.put(Integer.valueOf(tL_starGiftCollection.collection_id), giftsList);
+                }
+            }
+            this.loaded = true;
+            this.loading = false;
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(this.dialogId), this);
+        }
+
+        public void lambda$load$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StarsController.GiftsCollections.this.lambda$load$0(tLObject);
+                }
+            });
+        }
+
+        public void lambda$removeGifts$6(TLObject tLObject, GiftsList giftsList, int i) {
+            if (tLObject instanceof TL_stars.TL_starGiftCollection) {
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) tLObject;
+                int indexOf = indexOf(tL_starGiftCollection.collection_id);
+                if (indexOf >= 0) {
+                    this.collections.set(indexOf, tL_starGiftCollection);
+                }
+                if (giftsList != null) {
+                    giftsList.totalCount = Math.max(giftsList.totalCount - i, 0);
+                }
+            }
+        }
+
+        public void lambda$removeGifts$7(final GiftsList giftsList, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StarsController.GiftsCollections.this.lambda$removeGifts$6(tLObject, giftsList, i);
+                }
+            });
+        }
+
+        private void refilterCollections() {
+            this.filteredCollections.clear();
+            for (int i = 0; i < this.collections.size(); i++) {
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.collections.get(i);
+                if (tL_starGiftCollection.gifts_count > 0) {
+                    this.filteredCollections.add(tL_starGiftCollection);
+                }
+            }
+        }
+
+        public void addGift(int i, TL_stars.SavedStarGift savedStarGift, boolean z) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(savedStarGift);
+            addGifts(i, arrayList, z);
+        }
+
+        public void addGifts(int i, ArrayList arrayList, boolean z) {
+            TL_stars.TL_inputSavedStarGiftUser tL_inputSavedStarGiftUser;
+            if (arrayList.isEmpty()) {
+                return;
+            }
+            final GiftsList listById = getListById(i);
+            if (z) {
+                listById.gifts.addAll(0, arrayList);
+                listById.totalCount += arrayList.size();
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), listById);
+                updateIcon(i);
+            }
+            TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
+            updatestargiftcollection.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            updatestargiftcollection.collection_id = i;
+            updatestargiftcollection.flags |= 4;
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
+                updateGiftsCollections(savedStarGift, i, true);
+                if (savedStarGift.msg_id > 0) {
+                    TL_stars.TL_inputSavedStarGiftUser tL_inputSavedStarGiftUser2 = new TL_stars.TL_inputSavedStarGiftUser();
+                    tL_inputSavedStarGiftUser2.msg_id = savedStarGift.msg_id;
+                    tL_inputSavedStarGiftUser = tL_inputSavedStarGiftUser2;
+                } else if (savedStarGift.saved_id != 0) {
+                    TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = new TL_stars.TL_inputSavedStarGiftChat();
+                    tL_inputSavedStarGiftChat.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                    tL_inputSavedStarGiftChat.saved_id = savedStarGift.saved_id;
+                    tL_inputSavedStarGiftUser = tL_inputSavedStarGiftChat;
+                } else {
+                    FileLog.w("can't convert gift to inputgift to add into the collection");
+                }
+                updatestargiftcollection.add_stargift.add(tL_inputSavedStarGiftUser);
+            }
+            final int size = updatestargiftcollection.add_stargift.size();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftcollection, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StarsController.GiftsCollections.this.lambda$addGifts$5(listById, size, tLObject, tL_error);
+                }
+            });
+        }
+
+        public void createCollection(String str, final Utilities.Callback callback) {
+            if (this.creating) {
+                return;
+            }
+            this.creating = true;
+            final TL_stars.TL_starGiftCollection tL_starGiftCollection = new TL_stars.TL_starGiftCollection();
+            tL_starGiftCollection.collection_id = -1;
+            tL_starGiftCollection.title = str;
+            this.collections.add(tL_starGiftCollection);
+            refilterCollections();
+            final GiftsList giftsList = new GiftsList(this.currentAccount, this.dialogId, false);
+            giftsList.setCollectionId(-1);
+            giftsList.totalCount = 0;
+            giftsList.endReached = true;
+            this.gifts.put(-1, giftsList);
+            TL_stars.createStarGiftCollection createstargiftcollection = new TL_stars.createStarGiftCollection();
+            createstargiftcollection.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            createstargiftcollection.title = str;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(createstargiftcollection, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StarsController.GiftsCollections.this.lambda$createCollection$3(tL_starGiftCollection, giftsList, callback, tLObject, tL_error);
+                }
+            });
+        }
+
+        public TL_stars.TL_starGiftCollection findById(int i) {
+            for (int i2 = 0; i2 < this.collections.size(); i2++) {
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.collections.get(i2);
+                if (i == tL_starGiftCollection.collection_id) {
+                    return tL_starGiftCollection;
+                }
+            }
+            return null;
+        }
+
+        public ArrayList getCollections() {
+            return isMine() ? this.collections : this.filteredCollections;
+        }
+
+        public GiftsList getListById(int i) {
+            return (GiftsList) this.gifts.get(Integer.valueOf(i));
+        }
+
+        public GiftsList getListByIndex(int i) {
+            if (i < 0 || i >= getCollections().size()) {
+                return null;
+            }
+            return getListById(((TL_stars.TL_starGiftCollection) getCollections().get(i)).collection_id);
+        }
+
+        public int indexOf(int i) {
+            for (int i2 = 0; i2 < this.collections.size(); i2++) {
+                if (i == ((TL_stars.TL_starGiftCollection) this.collections.get(i2)).collection_id) {
+                    return i2;
+                }
+            }
+            return -1;
+        }
+
+        public void invalidate(boolean z) {
+            if (this.currentRequestId != -1) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.currentRequestId, true);
+                this.currentRequestId = -1;
+            }
+            this.loading = false;
+            this.loaded = false;
+            if (z || this.shown) {
+                load();
+            }
+        }
+
+        public boolean isMine() {
+            long j = this.dialogId;
+            return j >= 0 ? j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId() : ChatObject.canUserDoAction(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)), 5);
+        }
+
+        public void load() {
+            if (this.loading || this.loaded) {
+                return;
+            }
+            this.loading = true;
+            TL_stars.getStarGiftCollections getstargiftcollections = new TL_stars.getStarGiftCollections();
+            getstargiftcollections.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            getstargiftcollections.hash = getHash(this.collections);
+            this.currentRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getstargiftcollections, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StarsController.GiftsCollections.this.lambda$load$1(tLObject, tL_error);
+                }
+            });
+        }
+
+        public void removeCollection(int i) {
+            int indexOf = indexOf(i);
+            if (indexOf == -1) {
+                return;
+            }
+            TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.collections.remove(indexOf);
+            this.gifts.remove(Integer.valueOf(tL_starGiftCollection.collection_id));
+            TL_stars.deleteStarGiftCollection deletestargiftcollection = new TL_stars.deleteStarGiftCollection();
+            deletestargiftcollection.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            deletestargiftcollection.collection_id = tL_starGiftCollection.collection_id;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(deletestargiftcollection, null);
+        }
+
+        public void removeGift(int i, TL_stars.SavedStarGift savedStarGift) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(savedStarGift);
+            removeGifts(i, arrayList);
+        }
+
+        public void removeGifts(int i, ArrayList arrayList) {
+            TL_stars.TL_inputSavedStarGiftUser tL_inputSavedStarGiftUser;
+            if (arrayList.isEmpty()) {
+                return;
+            }
+            final GiftsList listById = getListById(i);
+            if (listById != null && !listById.gifts.isEmpty()) {
+                int i2 = 0;
+                while (i2 < listById.gifts.size()) {
+                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) listById.gifts.get(i2);
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 >= arrayList.size()) {
+                            break;
+                        }
+                        if (StarsController.eq(savedStarGift, (TL_stars.SavedStarGift) arrayList.get(i3))) {
+                            listById.gifts.remove(i2);
+                            listById.totalCount = Math.max(0, listById.totalCount - 1);
+                            i2--;
+                            break;
+                        }
+                        i3++;
+                    }
+                    i2++;
+                }
+            }
+            updateIcon(i);
+            TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
+            updatestargiftcollection.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            updatestargiftcollection.collection_id = i;
+            updatestargiftcollection.flags |= 2;
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) it.next();
+                updateGiftsCollections(savedStarGift2, i, false);
+                if (savedStarGift2.msg_id > 0) {
+                    TL_stars.TL_inputSavedStarGiftUser tL_inputSavedStarGiftUser2 = new TL_stars.TL_inputSavedStarGiftUser();
+                    tL_inputSavedStarGiftUser2.msg_id = savedStarGift2.msg_id;
+                    tL_inputSavedStarGiftUser = tL_inputSavedStarGiftUser2;
+                } else if (savedStarGift2.saved_id != 0) {
+                    TL_stars.TL_inputSavedStarGiftChat tL_inputSavedStarGiftChat = new TL_stars.TL_inputSavedStarGiftChat();
+                    tL_inputSavedStarGiftChat.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                    tL_inputSavedStarGiftChat.saved_id = savedStarGift2.saved_id;
+                    tL_inputSavedStarGiftUser = tL_inputSavedStarGiftChat;
+                } else {
+                    FileLog.w("can't convert gift to inputgift to add into the collection");
+                }
+                updatestargiftcollection.delete_stargift.add(tL_inputSavedStarGiftUser);
+            }
+            final int size = updatestargiftcollection.delete_stargift.size();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftcollection, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StarsController.GiftsCollections.this.lambda$removeGifts$7(listById, size, tLObject, tL_error);
+                }
+            });
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), listById);
+        }
+
+        public void rename(int i, String str) {
+            TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
+            updatestargiftcollection.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            updatestargiftcollection.collection_id = i;
+            updatestargiftcollection.flags |= 1;
+            updatestargiftcollection.title = str;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftcollection, null);
+        }
+
+        public void reorder(ArrayList arrayList) {
+            HashMap hashMap = new HashMap();
+            Iterator it = this.collections.iterator();
+            while (it.hasNext()) {
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) it.next();
+                hashMap.put(Integer.valueOf(tL_starGiftCollection.collection_id), tL_starGiftCollection);
+            }
+            ArrayList arrayList2 = new ArrayList();
+            Iterator it2 = arrayList.iterator();
+            while (it2.hasNext()) {
+                Integer num = (Integer) it2.next();
+                num.intValue();
+                TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) hashMap.get(num);
+                if (tL_starGiftCollection2 != null) {
+                    arrayList2.add(tL_starGiftCollection2);
+                }
+            }
+            this.collections.clear();
+            this.collections.addAll(arrayList2);
+            refilterCollections();
+        }
+
+        public void sendOrder() {
+            TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
+            reorderstargiftcollections.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            Iterator it = this.collections.iterator();
+            while (it.hasNext()) {
+                reorderstargiftcollections.order.add(Integer.valueOf(((TL_stars.TL_starGiftCollection) it.next()).collection_id));
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(reorderstargiftcollections, null);
+            refilterCollections();
+        }
+
+        public void updateGiftsCollections(TL_stars.SavedStarGift savedStarGift, int i, boolean z) {
+            Iterator it = this.gifts.values().iterator();
+            while (it.hasNext()) {
+                ((GiftsList) it.next()).updateGiftsCollections(savedStarGift, i, z);
+            }
+            GiftsList giftsList = this.all;
+            if (giftsList != null) {
+                giftsList.updateGiftsCollections(savedStarGift, i, z);
+            }
+        }
+
+        public void updateIcon(int i) {
+            GiftsList listById = getListById(i);
+            TL_stars.TL_starGiftCollection findById = findById(i);
+            if (listById == null || findById == null) {
+                return;
+            }
+            TL_stars.SavedStarGift savedStarGift = listById.gifts.isEmpty() ? null : (TL_stars.SavedStarGift) listById.gifts.get(0);
+            if (savedStarGift == null) {
+                findById.flags &= -2;
+                findById.icon = null;
+            } else {
+                findById.flags |= 1;
+                findById.icon = savedStarGift.gift.getDocument();
+            }
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(this.dialogId), this);
+        }
+    }
+
     public static class GiftsList implements IGiftsList {
         public Boolean chat_notifications_enabled;
+        public int collectionId;
         public final int currentAccount;
         public int currentRequestId;
         public final long dialogId;
@@ -138,6 +602,7 @@ public class StarsController {
         public boolean include_limited;
         public boolean include_unique;
         public boolean include_unlimited;
+        public boolean isCollection;
         public String lastOffset;
         public boolean loading;
         private ArrayList savedPinnedState;
@@ -150,6 +615,7 @@ public class StarsController {
         }
 
         public GiftsList(int i, long j, boolean z) {
+            this.isCollection = false;
             this.sort_by_date = true;
             this.include_unlimited = true;
             this.include_limited = true;
@@ -207,6 +673,16 @@ public class StarsController {
 
         public static int lambda$togglePinned$3(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
             return savedStarGift2.date - savedStarGift.date;
+        }
+
+        public boolean contains(TL_stars.SavedStarGift savedStarGift) {
+            Iterator it = this.gifts.iterator();
+            while (it.hasNext()) {
+                if (StarsController.eq((TL_stars.SavedStarGift) it.next(), savedStarGift)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public boolean eq(ArrayList arrayList, ArrayList arrayList2) {
@@ -308,14 +784,24 @@ public class StarsController {
             getsavedstargifts.peer = this.dialogId == 0 ? new TLRPC.TL_inputPeerSelf() : MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
             getsavedstargifts.offset = z ? "" : this.lastOffset;
             getsavedstargifts.limit = z ? Math.max(MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit, 15) : 30;
+            final int[] iArr = new int[1];
+            if (this.isCollection) {
+                getsavedstargifts.flags |= 64;
+                getsavedstargifts.collection_id = this.collectionId;
+            }
             int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedstargifts, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarsController.GiftsList.this.lambda$load$1(r2, z, tLObject, tL_error);
+                    StarsController.GiftsList.this.lambda$load$1(iArr, z, tLObject, tL_error);
                 }
             });
             this.currentRequestId = sendRequest;
-            final int[] iArr = {sendRequest};
+            iArr[0] = sendRequest;
+        }
+
+        public void reorder(int i, int i2) {
+            ArrayList arrayList = this.gifts;
+            arrayList.add(i2, (TL_stars.SavedStarGift) arrayList.remove(i));
         }
 
         public void reorderDone() {
@@ -361,6 +847,11 @@ public class StarsController {
                     StarsController.GiftsList.lambda$sendPinnedOrder$4(tLObject, tL_error);
                 }
             }, 64);
+        }
+
+        public void setCollectionId(int i) {
+            this.isCollection = true;
+            this.collectionId = i;
         }
 
         public void setPinned(ArrayList arrayList) {
@@ -425,6 +916,20 @@ public class StarsController {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
             sendPinnedOrder();
             return z3;
+        }
+
+        public void updateGiftsCollections(TL_stars.SavedStarGift savedStarGift, int i, boolean z) {
+            Iterator it = this.gifts.iterator();
+            while (it.hasNext()) {
+                TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) it.next();
+                if (StarsController.eq(savedStarGift2, savedStarGift)) {
+                    if (!z) {
+                        savedStarGift2.collection_id.remove(Integer.valueOf(i));
+                    } else if (!savedStarGift2.collection_id.contains(Integer.valueOf(i))) {
+                        savedStarGift2.collection_id.add(Integer.valueOf(i));
+                    }
+                }
+            }
         }
     }
 
@@ -1010,6 +1515,11 @@ public class StarsController {
             str = tL_error.text;
         }
         bulletinError(str);
+    }
+
+    public static boolean eq(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
+        int i = savedStarGift.flags;
+        return (((i & 2048) == 0 || (savedStarGift2.flags & 2048) == 0 || savedStarGift.saved_id != savedStarGift2.saved_id) && ((i & 8) == 0 || (savedStarGift2.flags & 8) == 0 || savedStarGift.msg_id != savedStarGift2.msg_id)) ? false : true;
     }
 
     public static TL_stars.StarGiftAttribute findAttribute(ArrayList arrayList, Class cls) {
@@ -1992,62 +2502,90 @@ public class StarsController {
         }
     }
 
-    public static void lambda$buyStarGift$128(final ProfileActivity profileActivity, TL_stars.StarGift starGift, long j, String str) {
+    public static void lambda$buyStarGift$128(final ProfileActivity profileActivity, TL_stars.StarGift starGift, CharSequence charSequence, long j, String str) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
                 StarsController.lambda$buyStarGift$127(ProfileActivity.this);
             }
         }, 200L);
-        BulletinFactory.of(profileActivity).createEmojiBulletin(starGift.sticker, LocaleController.getString(R.string.StarsGiftCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedChannelText", (int) j, str))).show(false);
+        BulletinFactory of = BulletinFactory.of(profileActivity);
+        TLRPC.Document document = starGift.sticker;
+        String string = LocaleController.getString(R.string.StarsGiftCompleted);
+        if (charSequence == null) {
+            charSequence = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedChannelText", (int) j, str));
+        }
+        of.createEmojiBulletin(document, string, charSequence).show(false);
     }
 
-    public static void lambda$buyStarGift$129(ChatActivity chatActivity, TL_stars.StarGift starGift, long j) {
-        BulletinFactory.of(chatActivity).createEmojiBulletin(starGift.sticker, LocaleController.getString(R.string.StarsGiftCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedText", (int) j, new Object[0]))).show(true);
+    public static void lambda$buyStarGift$129(ChatActivity chatActivity, TL_stars.StarGift starGift, CharSequence charSequence, long j) {
+        BulletinFactory of = BulletinFactory.of(chatActivity);
+        TLRPC.Document document = starGift.sticker;
+        String string = LocaleController.getString(R.string.StarsGiftCompleted);
+        if (charSequence == null) {
+            charSequence = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedText", (int) j, new Object[0]));
+        }
+        of.createEmojiBulletin(document, string, charSequence).show(true);
     }
 
     public void lambda$buyStarGift$130(TLObject tLObject, TLRPC.TL_error tL_error, final Utilities.Callback2 callback2, Context context, Theme.ResourcesProvider resourcesProvider, final long j, final String str, final TL_stars.StarGift starGift, final boolean z, final boolean z2, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities) {
+        Runnable runnable;
+        ChatActivity chatActivity;
+        String str2;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         BulletinFactory global = (lastFragment == null || lastFragment.visibleDialog != null) ? BulletinFactory.global() : BulletinFactory.of(lastFragment);
+        SpannableStringBuilder spannableStringBuilder = null;
         if (!(tLObject instanceof TLRPC.TL_payments_paymentResult)) {
-            if (tL_error == null || !"BALANCE_TOO_LOW".equals(tL_error.text)) {
-                if (tL_error == null || !"STARGIFT_USAGE_LIMITED".equals(tL_error.text)) {
+            if (tL_error != null && "BALANCE_TOO_LOW".equals(tL_error.text)) {
+                if (!MessagesController.getInstance(this.currentAccount).starsPurchaseAvailable()) {
                     if (callback2 != null) {
                         callback2.run(Boolean.FALSE, null);
                     }
-                    global.createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, tL_error != null ? tL_error.text : "FAILED_SEND_STARS")).show();
+                    showNoSupportDialog(context, resourcesProvider);
                     return;
                 } else {
-                    if (callback2 != null) {
-                        callback2.run(Boolean.FALSE, "STARGIFT_USAGE_LIMITED");
-                        return;
-                    }
+                    final boolean[] zArr = {false};
+                    StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, j, 6, str, new Runnable() {
+                        @Override
+                        public final void run() {
+                            StarsController.this.lambda$buyStarGift$124(zArr, starGift, z, z2, j2, tL_textWithEntities, callback2);
+                        }
+                    });
+                    starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public final void onDismiss(DialogInterface dialogInterface) {
+                            StarsController.lambda$buyStarGift$125(Utilities.Callback2.this, zArr, dialogInterface);
+                        }
+                    });
+                    starsNeededSheet.show();
                     return;
                 }
             }
-            if (!MessagesController.getInstance(this.currentAccount).starsPurchaseAvailable()) {
-                if (callback2 != null) {
-                    callback2.run(Boolean.FALSE, null);
+            if (tL_error != null) {
+                str2 = "STARGIFT_USAGE_LIMITED";
+                if ("STARGIFT_USAGE_LIMITED".equals(tL_error.text)) {
+                    if (callback2 == null) {
+                        return;
+                    }
+                    callback2.run(Boolean.FALSE, str2);
+                    return;
                 }
-                showNoSupportDialog(context, resourcesProvider);
-                return;
-            } else {
-                final boolean[] zArr = {false};
-                StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, j, 6, str, new Runnable() {
-                    @Override
-                    public final void run() {
-                        StarsController.this.lambda$buyStarGift$124(zArr, starGift, z, z2, j2, tL_textWithEntities, callback2);
-                    }
-                });
-                starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public final void onDismiss(DialogInterface dialogInterface) {
-                        StarsController.lambda$buyStarGift$125(Utilities.Callback2.this, zArr, dialogInterface);
-                    }
-                });
-                starsNeededSheet.show();
-                return;
             }
+            if (tL_error != null) {
+                str2 = "STARGIFT_USER_USAGE_LIMITED";
+                if ("STARGIFT_USER_USAGE_LIMITED".equals(tL_error.text)) {
+                    if (callback2 == null) {
+                        return;
+                    }
+                    callback2.run(Boolean.FALSE, str2);
+                    return;
+                }
+            }
+            if (callback2 != null) {
+                callback2.run(Boolean.FALSE, null);
+            }
+            global.createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, tL_error != null ? tL_error.text : "FAILED_SEND_STARS")).show();
+            return;
         }
         final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
         Utilities.stageQueue.postRunnable(new Runnable() {
@@ -2064,6 +2602,11 @@ public class StarsController {
         }
         if (BirthdayController.getInstance(this.currentAccount).contains(j2)) {
             MessagesController.getInstance(this.currentAccount).getMainSettings().edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j2, false).apply();
+        }
+        if (starGift != null && starGift.limited_per_user) {
+            int i = starGift.per_user_remains - 1;
+            starGift.per_user_remains = i;
+            spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2SentRemainsLimit", Math.max(0, i)));
         }
         if (j2 < 0) {
             long j3 = -j2;
@@ -2082,31 +2625,49 @@ public class StarsController {
                         profileActivity.sharedMediaLayout.scrollToPage(14);
                         profileActivity.scrollToSharedMedia();
                     }
-                    BulletinFactory.of(lastFragment).createEmojiBulletin(starGift.sticker, LocaleController.getString(R.string.StarsGiftCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedChannelText", (int) j, str))).show(false);
+                    BulletinFactory of = BulletinFactory.of(lastFragment);
+                    TLRPC.Document document = starGift.sticker;
+                    String string = LocaleController.getString(R.string.StarsGiftCompleted);
+                    if (spannableStringBuilder == null) {
+                        spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedChannelText", (int) j, str));
+                    }
+                    of.createEmojiBulletin(document, string, spannableStringBuilder).show(false);
                 }
             }
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", j3);
             bundle.putBoolean("open_gifts", true);
             final ProfileActivity profileActivity2 = new ProfileActivity(bundle);
-            profileActivity2.whenFullyVisible(new Runnable() {
+            final SpannableStringBuilder spannableStringBuilder2 = spannableStringBuilder;
+            runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    StarsController.lambda$buyStarGift$128(ProfileActivity.this, starGift, j, str);
+                    StarsController.lambda$buyStarGift$128(ProfileActivity.this, starGift, spannableStringBuilder2, j, str);
                 }
-            });
-            lastFragment.presentFragment(profileActivity2);
+            };
+            chatActivity = profileActivity2;
+            chatActivity.whenFullyVisible(runnable);
+            lastFragment.presentFragment(chatActivity);
         } else if ((lastFragment instanceof ChatActivity) && ((ChatActivity) lastFragment).getDialogId() == j2) {
-            BulletinFactory.of(lastFragment).createEmojiBulletin(starGift.sticker, LocaleController.getString(R.string.StarsGiftCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedText", (int) j, new Object[0]))).show(true);
+            BulletinFactory of2 = BulletinFactory.of(lastFragment);
+            TLRPC.Document document2 = starGift.sticker;
+            String string2 = LocaleController.getString(R.string.StarsGiftCompleted);
+            if (spannableStringBuilder == null) {
+                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedText", (int) j, new Object[0]));
+            }
+            of2.createEmojiBulletin(document2, string2, spannableStringBuilder).show(true);
         } else {
-            final ChatActivity of = ChatActivity.of(j2);
-            of.whenFullyVisible(new Runnable() {
+            final ChatActivity of3 = ChatActivity.of(j2);
+            final SpannableStringBuilder spannableStringBuilder3 = spannableStringBuilder;
+            runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    StarsController.lambda$buyStarGift$129(ChatActivity.this, starGift, j);
+                    StarsController.lambda$buyStarGift$129(ChatActivity.this, starGift, spannableStringBuilder3, j);
                 }
-            });
-            lastFragment.presentFragment(of);
+            };
+            chatActivity = of3;
+            chatActivity.whenFullyVisible(runnable);
+            lastFragment.presentFragment(chatActivity);
         }
         MessagesController.getInstance(this.currentAccount).getMainSettings().edit().putBoolean("show_gift_for_" + j2, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j2, true).apply();
         LaunchActivity launchActivity = LaunchActivity.instance;
@@ -4272,6 +4833,17 @@ public class StarsController {
         return getPendingPaidReactions(fromChatId, i);
     }
 
+    public GiftsCollections getProfileGiftCollectionsList(long j, boolean z) {
+        GiftsCollections giftsCollections = (GiftsCollections) this.giftCollections.get(j);
+        if (giftsCollections != null || !z) {
+            return giftsCollections;
+        }
+        LongSparseArray longSparseArray = this.giftCollections;
+        GiftsCollections giftsCollections2 = new GiftsCollections(this.currentAccount, j);
+        longSparseArray.put(j, giftsCollections2);
+        return giftsCollections2;
+    }
+
     public GiftsList getProfileGiftsList(long j) {
         return getProfileGiftsList(j, true);
     }
@@ -4445,14 +5017,25 @@ public class StarsController {
         if (profileGiftsList != null) {
             profileGiftsList.invalidate(false);
         }
+        GiftsCollections giftsCollections = (GiftsCollections) this.giftCollections.get(j);
+        if (giftsCollections != null) {
+            giftsCollections.invalidate(false);
+        }
     }
 
     public void invalidateProfileGifts(TLRPC.UserFull userFull) {
-        GiftsList profileGiftsList;
-        if (userFull == null || (profileGiftsList = getProfileGiftsList(userFull.id, false)) == null || profileGiftsList.totalCount == userFull.stargifts_count) {
+        if (userFull == null) {
             return;
         }
-        profileGiftsList.invalidate(false);
+        long j = userFull.id;
+        GiftsList profileGiftsList = getProfileGiftsList(j, false);
+        if (profileGiftsList != null && profileGiftsList.totalCount != userFull.stargifts_count) {
+            profileGiftsList.invalidate(false);
+        }
+        GiftsCollections giftsCollections = (GiftsCollections) this.giftCollections.get(j);
+        if (giftsCollections != null) {
+            giftsCollections.invalidate(false);
+        }
     }
 
     public void invalidateStarGifts() {

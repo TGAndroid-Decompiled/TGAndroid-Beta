@@ -87,10 +87,20 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.dialogsActivity = dialogsActivity;
         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
             @Override
+            public boolean canSelectStories() {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+            }
+
+            @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                 boolean lambda$new$1;
                 lambda$new$1 = DialogOrContactPickerActivity.this.lambda$new$1(dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                 return lambda$new$1;
+            }
+
+            @Override
+            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
             }
         });
         this.dialogsActivity.onFragmentCreate();
@@ -138,7 +148,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             i2 = R.string.UserBlocked;
         }
         AlertsCreator.showSimpleToast(this, LocaleController.getString(i2));
-        lambda$onBackPressed$354();
+        lambda$onBackPressed$355();
     }
 
     public static float lambda$static$0(float f) {
@@ -245,7 +255,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DialogOrContactPickerActivity.this.lambda$onBackPressed$354();
+                    DialogOrContactPickerActivity.this.lambda$onBackPressed$355();
                 }
             }
         });

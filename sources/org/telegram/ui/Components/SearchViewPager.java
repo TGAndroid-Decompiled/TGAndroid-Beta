@@ -837,7 +837,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 }
                 AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0, 0L);
             }
-            dialogsActivity.lambda$onBackPressed$354();
+            dialogsActivity.lambda$onBackPressed$355();
         } else {
             long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();
@@ -1307,10 +1307,20 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             DialogsActivity dialogsActivity = new DialogsActivity(bundle);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
+                public boolean canSelectStories() {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                }
+
+                @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                     boolean lambda$onActionBarItemClick$3;
                     lambda$onActionBarItemClick$3 = SearchViewPager.this.lambda$onActionBarItemClick$3(dialogsActivity2, arrayList2, charSequence, z, z2, i2, topicsFragment);
                     return lambda$onActionBarItemClick$3;
+                }
+
+                @Override
+                public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
                 }
             });
             this.parent.presentFragment(dialogsActivity);

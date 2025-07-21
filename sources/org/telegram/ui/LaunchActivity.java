@@ -2533,10 +2533,20 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 DialogsActivity dialogsActivity2 = new DialogsActivity(bundle);
                 dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                     @Override
+                    public boolean canSelectStories() {
+                        return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                    }
+
+                    @Override
                     public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z, boolean z2, int i3, TopicsFragment topicsFragment) {
                         boolean lambda$processAttachMenuBot$119;
                         lambda$processAttachMenuBot$119 = LaunchActivity.this.lambda$processAttachMenuBot$119(user2, str3, i, dialogsActivity3, arrayList4, charSequence, z, z2, i3, topicsFragment);
                         return lambda$processAttachMenuBot$119;
+                    }
+
+                    @Override
+                    public boolean didSelectStories(DialogsActivity dialogsActivity3) {
+                        return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity3);
                     }
                 });
                 dialogsActivity = dialogsActivity2;
@@ -3567,10 +3577,20 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         final TLRPC.User user4 = MessagesController.getInstance(i2).getUser(l3);
                         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                             @Override
+                            public boolean canSelectStories() {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                            }
+
+                            @Override
                             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList3, CharSequence charSequence, boolean z11, boolean z12, int i6, TopicsFragment topicsFragment) {
                                 boolean lambda$runLinkRequest$68;
                                 lambda$runLinkRequest$68 = LaunchActivity.this.lambda$runLinkRequest$68(str, i2, user4, dialogsActivity2, arrayList3, charSequence, z11, z12, i6, topicsFragment);
                                 return lambda$runLinkRequest$68;
+                            }
+
+                            @Override
+                            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
                             }
                         });
                         getActionBarLayout().presentFragment(dialogsActivity, !AndroidUtilities.isTablet() ? this.actionBarLayout.getFragmentStack().size() <= 1 || !(this.actionBarLayout.getFragmentStack().get(this.actionBarLayout.getFragmentStack().size() - 1) instanceof DialogsActivity) : this.layersActionBarLayout.getFragmentStack().size() <= 0 || !(this.layersActionBarLayout.getFragmentStack().get(this.layersActionBarLayout.getFragmentStack().size() - 1) instanceof DialogsActivity), true, true, false);
@@ -3728,10 +3748,20 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         final String str32 = str31;
                         dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                             @Override
+                            public boolean canSelectStories() {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                            }
+
+                            @Override
                             public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList5, CharSequence charSequence, boolean z12, boolean z13, int i6, TopicsFragment topicsFragment) {
                                 boolean lambda$runLinkRequest$73;
                                 lambda$runLinkRequest$73 = LaunchActivity.this.lambda$runLinkRequest$73(i2, user6, str12, str32, dialogsActivity2, dialogsActivity3, arrayList5, charSequence, z12, z13, i6, topicsFragment);
                                 return lambda$runLinkRequest$73;
+                            }
+
+                            @Override
+                            public boolean didSelectStories(DialogsActivity dialogsActivity3) {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity3);
                             }
                         });
                         lambda$runLinkRequest$93(dialogsActivity2);
@@ -5236,6 +5266,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.navBarAnimator.start();
     }
 
+    @Override
+    public boolean canSelectStories() {
+        ArrayList arrayList = this.photoPathsArray;
+        return (arrayList != null && arrayList.size() == 1) || this.videoPath != null;
+    }
+
     public void checkAppUpdate(boolean z, final Browser.Progress progress) {
         if (ApplicationLoader.isStandaloneBuild() || ApplicationLoader.isBetaBuild()) {
             if (z || BuildVars.CHECK_UPDATES) {
@@ -5297,6 +5333,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r43, final java.util.ArrayList r44, final java.lang.CharSequence r45, final boolean r46, boolean r47, int r48, org.telegram.ui.TopicsFragment r49) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, org.telegram.ui.TopicsFragment):boolean");
+    }
+
+    @Override
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
     @Override
@@ -5620,7 +5661,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (actionBarLayout3 != null && actionBarLayout3.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$354();
+                        baseFragment.lambda$onBackPressed$355();
                         return;
                     }
                     return;

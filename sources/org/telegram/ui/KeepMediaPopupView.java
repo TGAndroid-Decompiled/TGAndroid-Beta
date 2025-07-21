@@ -209,10 +209,20 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
+                public boolean canSelectStories() {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                }
+
+                @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                     boolean lambda$new$1;
                     lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
                     return lambda$new$1;
+                }
+
+                @Override
+                public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
                 }
             });
             cacheChatsExceptionsFragment = dialogsActivity;

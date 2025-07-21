@@ -1124,6 +1124,22 @@ public final class BulletinFactory {
         return create(twoLineLayout, 5000);
     }
 
+    public Bulletin createSimpleMultiBulletin(TLRPC.Document document, CharSequence charSequence) {
+        if (document == null) {
+            return new Bulletin.EmptyBulletin();
+        }
+        Bulletin.TwoLineLayout twoLineLayout = new Bulletin.TwoLineLayout(getContext(), this.resourcesProvider);
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(28.0f), true, null, false);
+        twoLineLayout.imageView.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(28.0f), true, closestPhotoSizeWithSize, true), document), "28_28", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "28_28", null, 0L, 0, null);
+        twoLineLayout.imageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(5.0f));
+        twoLineLayout.titleTextView.setText(charSequence);
+        twoLineLayout.titleTextView.setTextSize(1, 14.0f);
+        twoLineLayout.titleTextView.setMaxLines(3);
+        twoLineLayout.titleTextView.setTypeface(null);
+        twoLineLayout.subtitleTextView.setVisibility(8);
+        return create(twoLineLayout, charSequence.length() < 20 ? 1500 : 2750);
+    }
+
     public Bulletin createStaticEmojiBulletin(TLRPC.Document document, CharSequence charSequence) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         if (MessageObject.isTextColorEmoji(document)) {

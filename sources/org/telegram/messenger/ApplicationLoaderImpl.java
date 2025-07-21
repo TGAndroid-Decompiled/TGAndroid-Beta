@@ -28,6 +28,10 @@ import org.telegram.ui.IUpdateLayout;
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
 
+    private String getVersionName(int i) {
+        return i != 0 ? i != 1 ? i != 4 ? i != 5 ? i != 6 ? i != 7 ? "unknown" : "release" : "standalone" : "hardcore" : "public" : "private" : "local-debug";
+    }
+
     public static void lambda$startAppCenterInternal$0(String str) {
         if (str != null) {
             Utilities.setupNativeCrashesListener(str);
@@ -203,7 +207,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 }
                 FirebaseCrashlytics firebaseCrashlytics = FirebaseCrashlytics.getInstance();
                 firebaseCrashlytics.setUserId(str5);
-                firebaseCrashlytics.setCustomKey("version", BuildVars.DEBUG_PRIVATE_VERSION ? "private" : "public");
+                firebaseCrashlytics.setCustomKey("version", getVersionName(4));
                 firebaseCrashlytics.setCustomKey("model", Build.MODEL);
                 firebaseCrashlytics.setCustomKey("manufacturer", Build.MANUFACTURER);
                 if (Build.VERSION.SDK_INT >= 31) {

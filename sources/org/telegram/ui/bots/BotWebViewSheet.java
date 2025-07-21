@@ -81,7 +81,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda312;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda298;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -158,6 +158,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     private final Rect navInsets;
     private boolean needCloseConfirmation;
     private boolean needsContext;
+    private Utilities.Callback4 onVerifiedAge;
     private ValueAnimator openAnimator;
     private float openedProgress;
     private ItemOptions options;
@@ -708,10 +709,20 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             final OverlayActionBarLayoutDialog overlayActionBarLayoutDialog = new OverlayActionBarLayoutDialog(this.val$context, this.val$resourcesProvider);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
+                public boolean canSelectStories() {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                }
+
+                @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                     boolean lambda$onWebAppSwitchInlineQuery$15;
                     lambda$onWebAppSwitchInlineQuery$15 = BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSwitchInlineQuery$15(user, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                     return lambda$onWebAppSwitchInlineQuery$15;
+                }
+
+                @Override
+                public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
                 }
             });
             overlayActionBarLayoutDialog.show();
@@ -1061,7 +1072,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         };
         this.webViewContainer = botWebViewContainer;
-        botWebViewContainer.setDelegate(new AnonymousClass3(context, resourcesProvider));
+        botWebViewContainer.setOnVerifiedAge(this.onVerifiedAge);
+        this.webViewContainer.setDelegate(new AnonymousClass3(context, resourcesProvider));
         this.linePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
         this.linePaint.setStrokeCap(Paint.Cap.ROUND);
@@ -1875,7 +1887,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.fileItems.clear();
         if (botDownloads.hasFiles()) {
             final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
-            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda312(makeOptions));
+            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda298(makeOptions));
             makeSwipeback.addGap();
             Iterator it2 = botDownloads.getFiles().iterator();
             while (it2.hasNext()) {
@@ -1897,12 +1909,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             });
             makeOptions.addGap();
         }
-        makeOptions.add(R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot), new Runnable() {
+        makeOptions.addIf(this.onVerifiedAge == null, R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot), new Runnable() {
             @Override
             public final void run() {
                 BotWebViewSheet.this.lambda$openOptions$35();
             }
-        }).addIf(this.hasSettings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings), new Runnable() {
+        }).addIf(this.onVerifiedAge == null && this.hasSettings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings), new Runnable() {
             @Override
             public final void run() {
                 BotWebViewSheet.this.lambda$openOptions$36();
@@ -1912,17 +1924,17 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             public final void run() {
                 BotWebViewSheet.this.lambda$openOptions$37();
             }
-        }).addIf(user != null && user.bot_has_main_app, R.drawable.msg_home, LocaleController.getString(R.string.AddShortcut), new Runnable() {
+        }).addIf(this.onVerifiedAge == null && user != null && user.bot_has_main_app, R.drawable.msg_home, LocaleController.getString(R.string.AddShortcut), new Runnable() {
             @Override
             public final void run() {
                 BotWebViewSheet.this.lambda$openOptions$38();
             }
-        }).add(R.drawable.menu_intro, LocaleController.getString(R.string.BotWebViewToS), new Runnable() {
+        }).addIf(this.onVerifiedAge == null, R.drawable.menu_intro, LocaleController.getString(R.string.BotWebViewToS), new Runnable() {
             @Override
             public final void run() {
                 BotWebViewSheet.this.lambda$openOptions$39();
             }
-        }).addIf(tL_attachMenuBot != null && (tL_attachMenuBot.show_in_side_menu || tL_attachMenuBot.show_in_attach_menu), R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot), new Runnable() {
+        }).addIf(this.onVerifiedAge == null && tL_attachMenuBot != null && (tL_attachMenuBot.show_in_side_menu || tL_attachMenuBot.show_in_attach_menu), R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot), new Runnable() {
             @Override
             public final void run() {
                 BotWebViewSheet.this.lambda$openOptions$41();
@@ -2093,6 +2105,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         if (this.dismissed) {
             return;
         }
+        if (this.onVerifiedAge != null) {
+            z = false;
+        }
         this.dismissed = true;
         setOpen(false);
         AndroidUtilities.cancelRunOnUIThread(this.pollRunnable);
@@ -2148,7 +2163,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1164getWindowView() {
+    public WindowView mo1170getWindowView() {
         return this.windowView;
     }
 
@@ -2674,6 +2689,14 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
 
     public void setNeedsContext(boolean z) {
         this.needsContext = z;
+    }
+
+    public void setOnVerifiedAge(Utilities.Callback4 callback4) {
+        this.onVerifiedAge = callback4;
+        BotWebViewContainer botWebViewContainer = this.webViewContainer;
+        if (botWebViewContainer != null) {
+            botWebViewContainer.setOnVerifiedAge(callback4);
+        }
     }
 
     public void setOpen(final boolean z) {

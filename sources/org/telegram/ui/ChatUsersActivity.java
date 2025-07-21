@@ -198,7 +198,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
             BaseFragment baseFragment = (BaseFragment) ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 2);
             if (!(baseFragment instanceof ChatEditActivity)) {
-                ChatUsersActivity.this.lambda$onBackPressed$354();
+                ChatUsersActivity.this.lambda$onBackPressed$355();
                 return;
             }
             baseFragment.removeSelfFromStack();
@@ -207,7 +207,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             ChatEditActivity chatEditActivity = new ChatEditActivity(bundle);
             chatEditActivity.setInfo(ChatUsersActivity.this.info);
             ((BaseFragment) ChatUsersActivity.this).parentLayout.addFragmentToStack(chatEditActivity, ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 1);
-            ChatUsersActivity.this.lambda$onBackPressed$354();
+            ChatUsersActivity.this.lambda$onBackPressed$355();
             chatEditActivity.showConvertTooltip();
         }
 
@@ -1360,7 +1360,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$354();
+        lambda$onBackPressed$355();
     }
 
     public static void lambda$createMenuForParticipant$10(Utilities.Callback callback) {
@@ -2197,7 +2197,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (chatUsersActivityDelegate != null) {
                 chatUsersActivityDelegate.didKickParticipant(j);
             }
-            lambda$onBackPressed$354();
+            lambda$onBackPressed$355();
         }
     }
 
@@ -2394,7 +2394,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     removeSelfFromStack();
                     return;
                 } else {
-                    lambda$onBackPressed$354();
+                    lambda$onBackPressed$355();
                     return;
                 }
             }

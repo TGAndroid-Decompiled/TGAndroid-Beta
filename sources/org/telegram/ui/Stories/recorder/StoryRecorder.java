@@ -2673,7 +2673,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             int[] iArr = new int[2];
             imageView.getLocationOnScreen(iArr);
             anonymousClass4.screenRect.set(iArr[0], iArr[1], r6 + imageView.getWidth(), iArr[1] + imageView.getHeight());
-            anonymousClass4.backgroundDrawable = new ShareDialogCell.RepostStoryDrawable(imageView.getContext(), null, false, shareDialogCell.resourcesProvider);
+            anonymousClass4.backgroundDrawable = new ShareDialogCell.RepostStoryDrawable(imageView.getContext(), (View) null, false, shareDialogCell.resourcesProvider);
             anonymousClass4.rounding = Math.max(anonymousClass4.screenRect.width(), anonymousClass4.screenRect.height()) / 2.0f;
             return anonymousClass4;
         }
@@ -6012,12 +6012,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$openEdit$0(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda5(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda26(this));
         this.previewButtons.appear(true, true);
     }
 
     public void lambda$openForward$1(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda5(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda26(this));
     }
 
     public void lambda$openPremium$99(DialogInterface dialogInterface) {
@@ -6217,7 +6217,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.outputEntry = null;
         }
         StoryEntry storyEntry2 = this.outputEntry;
-        if (storyEntry2 == null || (!storyEntry2.isEdit && (!storyEntry2.isRepost || storyEntry2.isRepostMessage))) {
+        if (storyEntry2 == null || !(storyEntry2.isShare || storyEntry2.isEdit || (storyEntry2.isRepost && !storyEntry2.isRepostMessage))) {
             navigateTo(0, true);
         } else {
             close(true);
@@ -7787,7 +7787,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         builder.setTitle(LocaleController.getString(R.string.DiscardChanges));
         builder.setMessage(LocaleController.getString(R.string.PhotoEditorDiscardAlert));
         StoryEntry storyEntry = this.outputEntry;
-        if (storyEntry != null && !storyEntry.isEdit) {
+        if (storyEntry != null && !storyEntry.isEdit && !storyEntry.isShare) {
             builder.setNeutralButton(LocaleController.getString(storyEntry.isDraft ? R.string.StoryKeepDraft : R.string.StorySaveDraft), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
@@ -8608,7 +8608,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.containerView.setScaleY(1.0f);
         this.dismissProgress = 0.0f;
         AndroidUtilities.lockOrientation(this.activity, 1);
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda5(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda26(this));
         addNotificationObservers();
         this.botId = 0L;
         this.botLang = "";
@@ -8677,7 +8677,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         switchToEditMode(-1, false);
         this.previewButtons.appear(false, false);
         this.previewButtons.appear(true, true);
-        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda5(this));
+        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda26(this));
         addNotificationObservers();
     }
 
@@ -8858,7 +8858,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.previewButtons.appear(true, false);
         navigateTo(1, false);
         switchToEditMode(-1, false);
-        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda5(this));
+        animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda26(this));
         addNotificationObservers();
         this.botId = 0L;
         this.botLang = "";

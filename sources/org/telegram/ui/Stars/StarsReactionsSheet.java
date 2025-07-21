@@ -133,6 +133,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         public final Paint bPaint = new Paint(3);
         public final Rect rect = new Rect();
         private float speed = 1.0f;
+        private float lifetime = 1.0f;
         private boolean firstDraw = true;
 
         public class Particle {
@@ -204,7 +205,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
 
         public void gen(Particle particle, long j, boolean z) {
             particle.start = j;
-            particle.lifetime = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat());
+            particle.lifetime = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat()) * this.lifetime;
             if (z) {
                 particle.start -= ((float) r4) * Utilities.clamp01(Utilities.fastRandom.nextFloat());
             }

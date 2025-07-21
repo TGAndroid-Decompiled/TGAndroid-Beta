@@ -2875,7 +2875,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$354();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$355();
                 }
             }
         });

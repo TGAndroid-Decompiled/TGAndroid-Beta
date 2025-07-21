@@ -1,6 +1,6 @@
 package org.telegram.ui;
 
-public final class ChatActivity$$ExternalSyntheticLambda291 implements Runnable {
+public final class ChatActivity$$ExternalSyntheticLambda321 implements Runnable {
     public final ChatActivity f$0;
 
     @Override

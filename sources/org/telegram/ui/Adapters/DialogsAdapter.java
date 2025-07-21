@@ -38,6 +38,7 @@ import org.telegram.ui.Stories.StoriesListPlaceProvider;
 
 public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements DialogCell.DialogCellDelegate {
     private static final boolean ALLOW_UPDATE_IN_BACKGROUND = BuildVars.DEBUG_PRIVATE_VERSION;
+    private boolean allowForwardAsStories;
     private Drawable arrowDrawable;
     private boolean collapsedView;
     private int currentAccount;
@@ -437,6 +438,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         if (this.hasHints) {
             i -= MessagesController.getInstance(this.currentAccount).hintDialogs.size() + 2;
         }
+        if (this.allowForwardAsStories && this.dialogsType == 3) {
+            i--;
+        }
         int i2 = this.dialogsType;
         return (i2 == 11 || i2 == 13) ? i - 2 : i2 == 12 ? i - 1 : i;
     }
@@ -514,6 +518,10 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     @Override
     public int getItemViewType(int i) {
         return ((ItemInternal) this.itemInternals.get(i)).viewType;
+    }
+
+    public boolean isAllowForwardAsStories() {
+        return this.allowForwardAsStories;
     }
 
     public boolean isDataSetChanged() {
@@ -642,6 +650,10 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         if (dialogsPreloader != null) {
             dialogsPreloader.resume();
         }
+    }
+
+    public void setAllowForwardAsStories(boolean z) {
+        this.allowForwardAsStories = z;
     }
 
     public void setArchivedPullDrawable(PullForegroundDrawable pullForegroundDrawable) {

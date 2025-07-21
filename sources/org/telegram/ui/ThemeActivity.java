@@ -19,18 +19,21 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -53,6 +56,7 @@ import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.AppIconsSelectorCell;
@@ -72,6 +76,7 @@ import org.telegram.ui.Cells.ThemePreviewMessagesCell;
 import org.telegram.ui.Cells.ThemeTypeCell;
 import org.telegram.ui.Cells.ThemesHorizontalListCell;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PermissionRequest;
@@ -81,8 +86,12 @@ import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.SwipeGestureSettingsView;
+import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.PeerColorActivity;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.ThemeActivity;
+import org.telegram.ui.bots.BotWebViewSheet;
+import org.telegram.ui.bots.WebViewRequestProps;
 import org.telegram.ui.web.SearchEngine;
 import org.telegram.ui.web.WebBrowserSettings;
 
@@ -1078,7 +1087,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         builder.setPositiveButton(LocaleController.getString("CreateTheme", R.string.CreateTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ThemeActivity.this.lambda$createNewTheme$14(alertDialog, i);
+                ThemeActivity.this.lambda$createNewTheme$16(alertDialog, i);
             }
         });
         showDialog(builder.create());
@@ -1098,11 +1107,30 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return LocaleController.formatString("AutoNightUpdateLocationInfo", R.string.AutoNightUpdateLocationInfo, String.format("%02d:%02d", Integer.valueOf(i4), Integer.valueOf(i3 - (i4 * 60))), format);
     }
 
-    public void lambda$createNewTheme$14(AlertDialog alertDialog, int i) {
+    public void lambda$createNewTheme$16(AlertDialog alertDialog, int i) {
         AlertsCreator.createThemeCreateDialog(this, 0, null, null);
     }
 
-    public void lambda$createView$10(int i, TextSettingsCell textSettingsCell, TimePicker timePicker, int i2, int i3) {
+    public void lambda$createView$10(final Runnable runnable, AlertDialog alertDialog, int i) {
+        verifyAge(getContext(), this.currentAccount, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ThemeActivity.this.lambda$createView$9(runnable, (Boolean) obj);
+            }
+        }, getResourceProvider());
+    }
+
+    public void lambda$createView$11(int i, DialogInterface dialogInterface, int i2) {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putInt("sortContactsBy", i2);
+        edit.commit();
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter != null) {
+            listAdapter.notifyItemChanged(i);
+        }
+    }
+
+    public void lambda$createView$12(int i, TextSettingsCell textSettingsCell, TimePicker timePicker, int i2, int i3) {
         String string;
         String format;
         int i4 = (i2 * 60) + i3;
@@ -1118,7 +1146,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         textSettingsCell.setTextAndValue(string, format, true);
     }
 
-    public void lambda$createView$11(Context context, final View view, final int i, float f, float f2) {
+    public void lambda$createView$13(Context context, final View view, final int i, float f, float f2) {
         BaseFragment liteModeSettingsActivity;
         int i2;
         String str;
@@ -1261,7 +1289,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                                     builder.setItems(new CharSequence[]{LocaleController.getString("Default", R.string.Default), LocaleController.getString("SortFirstName", R.string.SortFirstName), LocaleController.getString("SortLastName", R.string.SortLastName)}, new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public final void onClick(DialogInterface dialogInterface, int i9) {
-                                                            ThemeActivity.this.lambda$createView$9(i, dialogInterface, i9);
+                                                            ThemeActivity.this.lambda$createView$11(i, dialogInterface, i9);
                                                         }
                                                     });
                                                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1350,7 +1378,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                                                 showDialog(new TimePickerDialog(getParentActivity(), new TimePickerDialog.OnTimeSetListener() {
                                                                     @Override
                                                                     public final void onTimeSet(TimePicker timePicker, int i13, int i14) {
-                                                                        ThemeActivity.this.lambda$createView$10(i, textSettingsCell, timePicker, i13, i14);
+                                                                        ThemeActivity.this.lambda$createView$12(i, textSettingsCell, timePicker, i13, i14);
                                                                     }
                                                                 }, i11, i12, true));
                                                                 return;
@@ -1397,10 +1425,16 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                                 textCheckCell = (TextCheckCell) view;
                                                 chatBlurEnabled = getMessagesController().showSensitiveContent();
                                             } else {
+                                                final Runnable runnable = new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        ThemeActivity.this.lambda$createView$8(view);
+                                                    }
+                                                };
                                                 builder = new AlertDialog.Builder(context, this.resourceProvider).setTitle(LocaleController.getString(R.string.ConfirmSensitiveContentTitle)).setMessage(LocaleController.getString(R.string.ConfirmSensitiveContentText)).setPositiveButton(LocaleController.getString(R.string.Confirm), new AlertDialog.OnButtonClickListener() {
                                                     @Override
                                                     public final void onClick(AlertDialog alertDialog, int i13) {
-                                                        ThemeActivity.this.lambda$createView$8(view, alertDialog, i13);
+                                                        ThemeActivity.this.lambda$createView$10(runnable, alertDialog, i13);
                                                     }
                                                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                                                 create = builder.create();
@@ -1485,17 +1519,17 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         textCheckCell.setChecked(chatBlurEnabled);
     }
 
-    public int lambda$createView$12() {
+    public int lambda$createView$14() {
         return this.sensitiveContentRow;
     }
 
-    public void lambda$createView$13() {
+    public void lambda$createView$15() {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {
-                int lambda$createView$12;
-                lambda$createView$12 = ThemeActivity.this.lambda$createView$12();
-                return lambda$createView$12;
+                int lambda$createView$14;
+                lambda$createView$14 = ThemeActivity.this.lambda$createView$14();
+                return lambda$createView$14;
             }
         });
     }
@@ -1583,20 +1617,18 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$8(View view, AlertDialog alertDialog, int i) {
+    public void lambda$createView$8(View view) {
         getMessagesController().setContentSettings(true);
         if (view instanceof TextCheckCell) {
             ((TextCheckCell) view).setChecked(getMessagesController().showSensitiveContent());
         }
     }
 
-    public void lambda$createView$9(int i, DialogInterface dialogInterface, int i2) {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        edit.putInt("sortContactsBy", i2);
-        edit.commit();
-        ListAdapter listAdapter = this.listAdapter;
-        if (listAdapter != null) {
-            listAdapter.notifyItemChanged(i);
+    public void lambda$createView$9(Runnable runnable, Boolean bool) {
+        if (bool.booleanValue()) {
+            runnable.run();
+        } else {
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
         }
     }
 
@@ -1606,7 +1638,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         this.sharingAccent = null;
     }
 
-    public void lambda$getThemeDescriptions$18() {
+    public void lambda$getThemeDescriptions$24() {
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
             if (childAt instanceof AppIconsSelectorCell) {
@@ -1645,7 +1677,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return Integer.compare(themeInfo.sortIndex, themeInfo2.sortIndex);
     }
 
-    public void lambda$updateSunTime$15(AlertDialog alertDialog, int i) {
+    public void lambda$updateSunTime$21(AlertDialog alertDialog, int i) {
         if (getParentActivity() == null) {
             return;
         }
@@ -1655,7 +1687,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$updateSunTime$16(String str) {
+    public void lambda$updateSunTime$22(String str) {
         RecyclerListView.Holder holder;
         Theme.autoNightCityName = str;
         if (str == null) {
@@ -1672,7 +1704,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$updateSunTime$17() {
+    public void lambda$updateSunTime$23() {
         final String str;
         List<Address> fromLocation;
         try {
@@ -1684,7 +1716,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeActivity.this.lambda$updateSunTime$16(str);
+                    ThemeActivity.this.lambda$updateSunTime$22(str);
                 }
             });
         }
@@ -1692,7 +1724,76 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ThemeActivity.this.lambda$updateSunTime$16(str);
+                ThemeActivity.this.lambda$updateSunTime$22(str);
+            }
+        });
+    }
+
+    public static void lambda$verifyAge$17(int i, BotWebViewSheet botWebViewSheet, Utilities.Callback callback, Boolean bool, Double d, String str, Double d2) {
+        boolean booleanValue = d != null ? d.doubleValue() >= ((double) i) : bool.booleanValue();
+        botWebViewSheet.lambda$openOptions$40();
+        callback.run(Boolean.valueOf(booleanValue));
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (!booleanValue || safeLastFragment == null) {
+            return;
+        }
+        BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.AgeVerificationPassedTitle)).show();
+    }
+
+    public static void lambda$verifyAge$18(ButtonWithCounterView buttonWithCounterView, MessagesController messagesController, int i, Context context, Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, BottomSheet[] bottomSheetArr, Long l) {
+        if (l == null) {
+            buttonWithCounterView.setLoading(false);
+            return;
+        }
+        TLRPC.User user = messagesController.getUser(l);
+        if (user == null) {
+            buttonWithCounterView.setLoading(false);
+            return;
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            buttonWithCounterView.setLoading(false);
+            return;
+        }
+        WebViewRequestProps of = WebViewRequestProps.of(i, l.longValue(), l.longValue(), null, null, 4, 0, 0L, false, null, false, null, user, 0, false, false);
+        final BotWebViewSheet botWebViewSheet = new BotWebViewSheet(context, resourcesProvider);
+        botWebViewSheet.setOnVerifiedAge(new Utilities.Callback4() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                ThemeActivity.lambda$verifyAge$17(i2, botWebViewSheet, callback, (Boolean) obj, (Double) obj2, (String) obj3, (Double) obj4);
+            }
+        });
+        botWebViewSheet.setDefaultFullsize(true);
+        botWebViewSheet.setNeedsContext(false);
+        botWebViewSheet.setParentActivity(safeLastFragment.getParentActivity());
+        botWebViewSheet.requestWebView(safeLastFragment, of);
+        botWebViewSheet.show();
+        buttonWithCounterView.setLoading(false);
+        bottomSheetArr[0].lambda$new$0();
+    }
+
+    public static void lambda$verifyAge$19(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, Boolean bool) {
+        if (bool.booleanValue()) {
+            messagesController.getUserNameResolver().resolve(str, new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    ThemeActivity.lambda$verifyAge$18(ButtonWithCounterView.this, messagesController, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Long) obj);
+                }
+            });
+        } else {
+            buttonWithCounterView.setLoading(false);
+        }
+    }
+
+    public static void lambda$verifyAge$20(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, final String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, View view) {
+        if (buttonWithCounterView.isLoading()) {
+            return;
+        }
+        buttonWithCounterView.setLoading(true);
+        PermissionRequest.ensurePermission(R.raw.permission_request_camera, R.string.AgeVerificationNeedCameraPermission, "android.permission.CAMERA", new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ThemeActivity.lambda$verifyAge$19(ButtonWithCounterView.this, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Boolean) obj);
             }
         });
     }
@@ -1839,7 +1940,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     builder.setPositiveButton(LocaleController.getString("ConnectingToProxyEnable", R.string.ConnectingToProxyEnable), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i) {
-                            ThemeActivity.this.lambda$updateSunTime$15(alertDialog, i);
+                            ThemeActivity.this.lambda$updateSunTime$21(alertDialog, i);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1879,7 +1980,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ThemeActivity.this.lambda$updateSunTime$17();
+                ThemeActivity.this.lambda$updateSunTime$23();
             }
         });
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findViewHolderForAdapterPosition(this.scheduleLocationInfoRow);
@@ -1892,6 +1993,52 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         if (Theme.autoNightScheduleByLocation && Theme.selectedAutoNightType == 1) {
             Theme.checkAutoNightThemeConditions();
         }
+    }
+
+    public static void verifyAge(final Context context, final int i, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
+        final MessagesController messagesController = MessagesController.getInstance(i);
+        final String str = messagesController.verifyAgeBotUsername;
+        String str2 = messagesController.verifyAgeCountry;
+        final int i2 = messagesController.verifyAgeMin;
+        if (TextUtils.isEmpty(str) || !messagesController.config.needAgeVideoVerification.get()) {
+            callback.run(Boolean.TRUE);
+            return;
+        }
+        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        builder.setCustomView(linearLayout);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.filled_verify_age);
+        frameLayout.addView(imageView, LayoutHelper.createFrame(50, 50, 17));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(80, 80, 1, 0, 20, 0, 8));
+        int i3 = Theme.key_dialogTextBlack;
+        TextView makeTextView = TextHelper.makeTextView(context, 20.0f, i3, true, resourcesProvider);
+        makeTextView.setText(LocaleController.getString(R.string.AgeVerificationTitle));
+        makeTextView.setGravity(17);
+        linearLayout.addView(makeTextView, LayoutHelper.createLinear(-1, -2, 7, 24, 8, 24, 8));
+        TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, i3, false, resourcesProvider);
+        makeTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("AgeVerificationText" + str2)));
+        makeTextView2.setGravity(17);
+        linearLayout.addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 7, 24, 0, 24, 0));
+        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        buttonWithCounterView.setText(LocaleController.getString(R.string.AgeVerificationButton), false);
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                ThemeActivity.lambda$verifyAge$20(ButtonWithCounterView.this, messagesController, str, i, context, resourcesProvider, i2, callback, r9, view);
+            }
+        });
+        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 7, 2, 29, 2, 14));
+        BottomSheet show = builder.show();
+        final BottomSheet[] bottomSheetArr = {show};
+        show.fixNavigationBar();
     }
 
     public void checkCurrentDayNight() {
@@ -1982,7 +2129,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
             @Override
             public final void onItemClick(View view, int i3, float f, float f2) {
-                ThemeActivity.this.lambda$createView$11(context, view, i3, f, f2);
+                ThemeActivity.this.lambda$createView$13(context, view, i3, f, f2);
             }
         });
         if (this.currentType == 0) {
@@ -2000,7 +2147,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeActivity.this.lambda$createView$13();
+                    ThemeActivity.this.lambda$createView$15();
                 }
             }, 200L);
         }
@@ -2055,33 +2202,37 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         } else {
             if (i != NotificationCenter.themeUploadError) {
-                if (i != NotificationCenter.needShareTheme) {
-                    if (i == NotificationCenter.needSetDayNightTheme) {
-                        updateMenuItem();
-                        checkCurrentDayNight();
-                        return;
-                    } else {
-                        if (i != NotificationCenter.emojiPreviewThemesChanged || (i3 = this.themeListRow2) < 0) {
-                            return;
-                        }
-                        this.listAdapter.notifyItemChanged(i3);
+                if (i == NotificationCenter.needShareTheme) {
+                    if (getParentActivity() == null || this.isPaused) {
                         return;
                     }
-                }
-                if (getParentActivity() == null || this.isPaused) {
+                    this.sharingTheme = (Theme.ThemeInfo) objArr[0];
+                    this.sharingAccent = (Theme.ThemeAccent) objArr[1];
+                    AlertDialog alertDialog2 = new AlertDialog(getParentActivity(), 3);
+                    this.sharingProgressDialog = alertDialog2;
+                    alertDialog2.setCanCancel(true);
+                    showDialog(this.sharingProgressDialog, new DialogInterface.OnDismissListener() {
+                        @Override
+                        public final void onDismiss(DialogInterface dialogInterface) {
+                            ThemeActivity.this.lambda$didReceivedNotification$1(dialogInterface);
+                        }
+                    });
                     return;
                 }
-                this.sharingTheme = (Theme.ThemeInfo) objArr[0];
-                this.sharingAccent = (Theme.ThemeAccent) objArr[1];
-                AlertDialog alertDialog2 = new AlertDialog(getParentActivity(), 3);
-                this.sharingProgressDialog = alertDialog2;
-                alertDialog2.setCanCancel(true);
-                showDialog(this.sharingProgressDialog, new DialogInterface.OnDismissListener() {
-                    @Override
-                    public final void onDismiss(DialogInterface dialogInterface) {
-                        ThemeActivity.this.lambda$didReceivedNotification$1(dialogInterface);
+                if (i == NotificationCenter.needSetDayNightTheme) {
+                    updateMenuItem();
+                    checkCurrentDayNight();
+                    return;
+                }
+                if (i == NotificationCenter.emojiPreviewThemesChanged) {
+                    i3 = this.themeListRow2;
+                    if (i3 < 0) {
+                        return;
                     }
-                });
+                } else if ((i != NotificationCenter.contentSettingsLoaded && i != NotificationCenter.appConfigUpdated) || (i3 = this.sensitiveContentRow) < 0) {
+                    return;
+                }
+                this.listAdapter.notifyItemChanged(i3);
                 return;
             }
             Theme.ThemeInfo themeInfo2 = (Theme.ThemeInfo) objArr[0];
@@ -2188,7 +2339,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ThemeActivity.this.lambda$getThemeDescriptions$18();
+                ThemeActivity.this.lambda$getThemeDescriptions$24();
             }
 
             @Override
@@ -2214,6 +2365,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.needShareTheme);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.needSetDayNightTheme);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiPreviewThemesChanged);
+        getNotificationCenter().addObserver(this, NotificationCenter.appConfigUpdated);
+        getNotificationCenter().addObserver(this, NotificationCenter.contentSettingsLoaded);
         getNotificationCenter().addObserver(this, NotificationCenter.themeUploadedToServer);
         getNotificationCenter().addObserver(this, NotificationCenter.themeUploadError);
         if (this.currentType == 0) {
@@ -2235,6 +2388,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.needShareTheme);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.needSetDayNightTheme);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiPreviewThemesChanged);
+        getNotificationCenter().removeObserver(this, NotificationCenter.appConfigUpdated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.contentSettingsLoaded);
         getNotificationCenter().removeObserver(this, NotificationCenter.themeUploadedToServer);
         getNotificationCenter().removeObserver(this, NotificationCenter.themeUploadError);
         Theme.saveAutoNightThemeConfig();

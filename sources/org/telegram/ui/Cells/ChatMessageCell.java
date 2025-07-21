@@ -755,6 +755,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private final MaskDrawable[] selectorMaskDrawable;
     private Text sensitiveText;
     private Text sensitiveTextShort;
+    private Text sensitiveTextShort2;
     private AnimatorSet shakeAnimation;
     private ChatMessageSharedResources sharedResources;
     public boolean shouldCheckVisibleOnScreen;
@@ -7215,7 +7216,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOutboundsContent(android.graphics.Canvas):void");
     }
 
-    public void drawOverlays(android.graphics.Canvas r66) {
+    public void drawOverlays(android.graphics.Canvas r63) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 

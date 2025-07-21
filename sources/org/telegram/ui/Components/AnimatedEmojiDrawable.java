@@ -1240,6 +1240,20 @@ public class AnimatedEmojiDrawable extends Drawable {
         updateAttachState();
     }
 
+    public void addViewListening(View view) {
+        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View view2) {
+                AnimatedEmojiDrawable.this.addView(view2);
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View view2) {
+                AnimatedEmojiDrawable.this.removeView(view2);
+            }
+        });
+    }
+
     public boolean canOverrideColor() {
         boolean z = true;
         if (this.cacheType == 19) {

@@ -134,10 +134,10 @@ public abstract class BotVerifySheet {
         String str;
         TLRPC.Chat chat;
         if (topicsFragment != null) {
-            topicsFragment.lambda$onBackPressed$354();
+            topicsFragment.lambda$onBackPressed$355();
             dialogsActivity.removeSelfFromStack();
         } else {
-            dialogsActivity.lambda$onBackPressed$354();
+            dialogsActivity.lambda$onBackPressed$355();
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
@@ -412,10 +412,20 @@ public abstract class BotVerifySheet {
         dialogsActivity.setCurrentAccount(i);
         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
             @Override
+            public boolean canSelectStories() {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+            }
+
+            @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                 boolean lambda$openVerify$1;
                 lambda$openVerify$1 = BotVerifySheet.lambda$openVerify$1(DialogsActivity.this, i, j, botverifiersettings, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
                 return lambda$openVerify$1;
+            }
+
+            @Override
+            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
             }
         });
         safeLastFragment.presentFragment(dialogsActivity);

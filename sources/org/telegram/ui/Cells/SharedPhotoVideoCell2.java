@@ -87,8 +87,12 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     private Paint privacyPaint;
     private int privacyType;
     private final Paint progressPaint;
+    private final Path rectPath;
     private boolean reorder;
     private final Paint scrimPaint;
+    private Text sensitiveText;
+    private Text sensitiveTextShort;
+    private Text sensitiveTextShort2;
     private Shaker shaker;
     SharedResources sharedResources;
     boolean showVideoLayout;
@@ -177,6 +181,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         this.viewsAlpha = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.viewsText = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.path = new Path();
+        this.rectPath = new Path();
         this.style = 0;
         this.scrimPaint = new Paint(1);
         this.progressPaint = new Paint(1);
@@ -499,7 +504,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r20) {
+    protected void onDraw(android.graphics.Canvas r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedPhotoVideoCell2.onDraw(android.graphics.Canvas):void");
     }
 

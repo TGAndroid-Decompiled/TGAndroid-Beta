@@ -84,7 +84,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
             this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.lambda$onBackPressed$354();
+        dialogsActivity.lambda$onBackPressed$355();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }
@@ -97,10 +97,20 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         DialogsActivity dialogsActivity = new DialogsActivity(bundle);
         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
             @Override
+            public boolean canSelectStories() {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+            }
+
+            @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                 boolean lambda$share$4;
                 lambda$share$4 = GiftInfoAdapter.this.lambda$share$4(str, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                 return lambda$share$4;
+            }
+
+            @Override
+            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
             }
         });
         this.baseFragment.presentFragment(dialogsActivity);

@@ -186,6 +186,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private final Runnable notifyLocationChecked;
     private Runnable onCloseListener;
     private Runnable onPermissionsRequestResultCallback;
+    private Utilities.Callback4 onVerifiedAge;
     private MyWebView opener;
     private Activity parentActivity;
     private boolean preserving;
@@ -888,7 +889,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public void onPageStarted(WebView webView, String str, Bitmap bitmap) {
                 String str2;
-                MyWebView.this.getSettings().setMediaPlaybackRequiresUserGesture(true);
+                if (MyWebView.this.botWebViewContainer == null || !MyWebView.this.botWebViewContainer.isVerifyingAge()) {
+                    MyWebView.this.getSettings().setMediaPlaybackRequiresUserGesture(true);
+                }
                 if (MyWebView.this.currentSheet != null) {
                     MyWebView.this.currentSheet.dismiss();
                     MyWebView.this.currentSheet = null;
@@ -1815,6 +1818,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         permissionRequest.deny();
                         return;
                     }
+                    if (MyWebView.this.botWebViewContainer.isVerifyingAge()) {
+                        permissionRequest.grant(resources);
+                        return;
+                    }
                     str.hashCode();
                     if (str.equals("android.webkit.resource.VIDEO_CAPTURE")) {
                         createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(MyWebView.this.botWebViewContainer.parentActivity, MyWebView.this.botWebViewContainer.resourcesProvider, new String[]{"android.permission.CAMERA"}, R.raw.permission_request_camera, LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraPermission : R.string.WebViewRequestCameraPermission, userName), LocaleController.formatString(this.val$bot ? R.string.BotWebViewRequestCameraPermissionWithHint : R.string.WebViewRequestCameraPermissionWithHint, userName), new Consumer() {
@@ -2409,7 +2416,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         public boolean onTouchEvent(MotionEvent motionEvent) {
             if (motionEvent.getAction() == 0) {
                 this.botWebViewContainer.lastClickMs = System.currentTimeMillis();
-                getSettings().setMediaPlaybackRequiresUserGesture(false);
+                if (!this.botWebViewContainer.isVerifyingAge()) {
+                    getSettings().setMediaPlaybackRequiresUserGesture(false);
+                }
             }
             return super.onTouchEvent(motionEvent);
         }
@@ -2663,7 +2672,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.notifyLocationChecked = new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$new$48();
+                BotWebViewContainer.this.lambda$new$49();
             }
         };
         this.lastDialogType = -1;
@@ -2893,6 +2902,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return str != null && isTonsite(Uri.parse(str));
     }
 
+    public boolean isVerifyingAge() {
+        return this.onVerifiedAge != null;
+    }
+
     public void lambda$evaluateJs$3(boolean z, String str) {
         if (z) {
             checkCreateWebView();
@@ -2918,7 +2931,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         updateKeyboardFocusable();
     }
 
-    public void lambda$new$48() {
+    public void lambda$new$49() {
         notifyEvent("location_checked", this.location.checkObject());
     }
 
@@ -3381,6 +3394,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }, 500L);
     }
 
+    public void lambda$onEventReceived$47(boolean z, double d, String str, double d2) {
+        this.onVerifiedAge.run(Boolean.valueOf(z), Double.valueOf(d), str, Double.valueOf(d2));
+    }
+
     public void lambda$onEventReceived$5(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
         alertDialog.dismiss();
         try {
@@ -3454,7 +3471,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$restoreStorageKey$47(String str, String str2, BotStorage botStorage, String str3, String str4, String str5) {
+    public void lambda$restoreStorageKey$48(String str, String str2, BotStorage botStorage, String str3, String str4, String str5) {
         if (str5 == null) {
             notifyEvent(str, obj("req_id", str2, "error", "RESTORE_CANCELLED"));
             return;
@@ -3471,7 +3488,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         consumer.accept(Boolean.valueOf(checkPermissions(strArr)));
     }
 
-    public void lambda$showDialog$49(Runnable runnable, DialogInterface dialogInterface) {
+    public void lambda$showDialog$50(Runnable runnable, DialogInterface dialogInterface) {
         if (runnable != null) {
             runnable.run();
         }
@@ -3793,7 +3810,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         botStorage.showChooseStorage(getContext(), storagesWithKey, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                BotWebViewContainer.this.lambda$restoreStorageKey$47(str3, string, botStorage, optString, str2, (String) obj);
+                                BotWebViewContainer.this.lambda$restoreStorageKey$48(str3, string, botStorage, optString, str2, (String) obj);
                             }
                         });
                     }
@@ -3914,9 +3931,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             AndroidUtilities.removeFromParent(myWebView);
         }
         try {
-            if (SharedConfig.debugWebView) {
-                WebView.setWebContentsDebuggingEnabled(true);
-            }
+            WebView.setWebContentsDebuggingEnabled(SharedConfig.debugWebView && !isVerifyingAge());
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -3970,6 +3985,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (Build.VERSION.SDK_INT >= 26) {
                 settings.setSafeBrowsingEnabled(true);
             }
+        }
+        if (isVerifyingAge()) {
+            settings.setMediaPlaybackRequiresUserGesture(false);
         }
         try {
             String replace = settings.getUserAgentString().replace("; wv)", ")");
@@ -4037,7 +4055,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BotWebViewContainer.this.lambda$showDialog$49(runnable, dialogInterface);
+                BotWebViewContainer.this.lambda$showDialog$50(runnable, dialogInterface);
             }
         });
         this.currentDialog = alertDialog;
@@ -4589,6 +4607,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (myWebView != null) {
             myWebView.setCloseListener(runnable);
         }
+    }
+
+    public void setOnVerifiedAge(Utilities.Callback4<Boolean, Double, String, Double> callback4) {
+        this.onVerifiedAge = callback4;
     }
 
     public void setOpener(MyWebView myWebView) {

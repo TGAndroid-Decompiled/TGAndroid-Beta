@@ -8,6 +8,10 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
 
 public class AppGlobalConfig {
+    public final ConfigBoolean needAgeVideoVerification;
+    public final ConfigInt stargiftsCollectionGiftsLimit;
+    public final ConfigInt stargiftsCollectionsLimit;
+    public final ConfigString starsRatingLearnMoreUrl;
     public final ConfigTime starsSuggestedPostAgeMin;
     public final ConfigTime starsSuggestedPostFutureMax;
     public final ConfigTime starsSuggestedPostFutureMin;
@@ -24,7 +28,7 @@ public class AppGlobalConfig {
     public static class ConfigBoolean {
         private final Internal handler;
 
-        private static class Internal implements ConfigInternal {
+        public static class Internal implements ConfigInternal {
             private final boolean defaultValue;
             private final String name;
             private boolean value;
@@ -261,6 +265,10 @@ public class AppGlobalConfig {
         this.starsSuggestedPostFutureMin = ofTime("stars_suggested_post_future_min", 300L, timeUnit);
         this.starsSuggestedPostFutureMax = ofTime("stars_suggested_post_future_max", 2678400L, timeUnit);
         this.tonUsdRate = ofDouble("ton_usd_rate", 3.0d);
+        this.starsRatingLearnMoreUrl = ofString("stars_rating_learnmore_url", "https://telegram.org/blog/telegram-stars");
+        this.needAgeVideoVerification = ofBoolean("need_age_video_verification", false);
+        this.stargiftsCollectionsLimit = ofInt("stargifts_collections_limit", 100);
+        this.stargiftsCollectionGiftsLimit = ofInt("stargifts_collection_gifts_limit", 100);
     }
 
     private ConfigBoolean ofBoolean(String str, boolean z) {

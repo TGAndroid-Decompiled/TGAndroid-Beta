@@ -60,6 +60,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.AvatarSpan;
+import org.telegram.ui.Cells.ShareDialogCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -215,6 +216,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public boolean isSavedDialog;
     public boolean isSavedDialogCell;
     private boolean isSelected;
+    private boolean isShareToStoryCell;
     private boolean isSliding;
     private boolean isTopic;
     public boolean isTransitionSupport;
@@ -289,6 +291,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int readOutboxMaxId;
     private RectF rect;
     private float reorderIconProgress;
+    public ShareDialogCell.RepostStoryDrawable repostStoryDrawable;
     private final Theme.ResourcesProvider resourcesProvider;
     public float rightFragmentOffset;
     private float rightFragmentOpenedProgress;
@@ -1112,7 +1115,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if ((!this.isTopic && motionEvent.getAction() == 1) || motionEvent.getAction() == 3) {
+        if ((!this.isTopic && !this.isShareToStoryCell && motionEvent.getAction() == 1) || motionEvent.getAction() == 3) {
             this.storyParams.checkOnTouchEvent(motionEvent, this);
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -1421,10 +1424,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.rightFragmentOpenedProgress == 0.0f && !this.isTopic && this.storyParams.checkOnTouchEvent(motionEvent, this)) {
-            return true;
+        if (this.rightFragmentOpenedProgress != 0.0f || this.isTopic || this.isShareToStoryCell || !this.storyParams.checkOnTouchEvent(motionEvent, this)) {
+            return super.onInterceptTouchEvent(motionEvent);
         }
-        return super.onInterceptTouchEvent(motionEvent);
+        return true;
     }
 
     @Override
@@ -1699,6 +1702,11 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             pullForegroundDrawable.setCell(this);
         }
         update(0, z2);
+    }
+
+    public void setIsShareToStoryCell() {
+        this.repostStoryDrawable = new ShareDialogCell.RepostStoryDrawable(getContext(), this, R.drawable.forward_to_stories, this.resourcesProvider);
+        this.isShareToStoryCell = true;
     }
 
     public void setIsTransitionSupport(boolean z) {

@@ -8194,7 +8194,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         TLRPC.User user = this.accountInstance.getMessagesController().getUser(Long.valueOf(j));
         if (user == null) {
-            dialogsActivity.lambda$onBackPressed$354();
+            dialogsActivity.lambda$onBackPressed$355();
             return true;
         }
         long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -8216,7 +8216,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 return true;
             }
         }
-        dialogsActivity.lambda$onBackPressed$354();
+        dialogsActivity.lambda$onBackPressed$355();
         return true;
     }
 
@@ -8252,7 +8252,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_sendBotRequestedPeer, null);
         }
-        dialogsActivity.lambda$onBackPressed$354();
+        dialogsActivity.lambda$onBackPressed$355();
         return true;
     }
 
@@ -10346,10 +10346,20 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         DialogsActivity dialogsActivity = new DialogsActivity(bundle);
                         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                             @Override
+                            public boolean canSelectStories() {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                            }
+
+                            @Override
                             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                                 boolean lambda$didPressedBotButton$71;
                                 lambda$didPressedBotButton$71 = ChatActivityEnterView.this.lambda$didPressedBotButton$71(messageObject22, keyboardButton2, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
                                 return lambda$didPressedBotButton$71;
+                            }
+
+                            @Override
+                            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
                             }
                         });
                         this.parentFragment.presentFragment(dialogsActivity);
@@ -10395,10 +10405,20 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         DialogsActivity dialogsActivity2 = new DialogsActivity(bundle3);
                         dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                             @Override
+                            public boolean canSelectStories() {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                            }
+
+                            @Override
                             public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                                 boolean lambda$didPressedBotButton$73;
                                 lambda$didPressedBotButton$73 = ChatActivityEnterView.this.lambda$didPressedBotButton$73(messageObject22, tL_keyboardButtonRequestPeer, dialogsActivity3, arrayList, charSequence, z, z2, i2, topicsFragment);
                                 return lambda$didPressedBotButton$73;
+                            }
+
+                            @Override
+                            public boolean didSelectStories(DialogsActivity dialogsActivity3) {
+                                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity3);
                             }
                         });
                         this.parentFragment.presentFragment(dialogsActivity2);

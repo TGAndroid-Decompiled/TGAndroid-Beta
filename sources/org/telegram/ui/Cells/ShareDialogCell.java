@@ -81,7 +81,11 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         private final RLottieDrawable lottieDrawable;
         private final Paint paint;
 
-        public RepostStoryDrawable(Context context, View view, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        public RepostStoryDrawable(Context context, View view, int i, Theme.ResourcesProvider resourcesProvider) {
+            this(context, view, false, i, resourcesProvider);
+        }
+
+        public RepostStoryDrawable(Context context, View view, boolean z, int i, Theme.ResourcesProvider resourcesProvider) {
             Paint paint = new Paint(1);
             this.paint = paint;
             this.alpha = 255;
@@ -90,7 +94,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             paint.setShader(linearGradient);
             if (!z) {
                 this.lottieDrawable = null;
-                Drawable mutate = context.getResources().getDrawable(R.drawable.large_repost_story).mutate();
+                Drawable mutate = context.getResources().getDrawable(i).mutate();
                 this.drawable = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 return;
@@ -100,6 +104,10 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             rLottieDrawable.setMasterParent(view);
             AndroidUtilities.runOnUIThread(new ShareDialogCell$RepostStoryDrawable$$ExternalSyntheticLambda0(rLottieDrawable), 450L);
             this.drawable = null;
+        }
+
+        public RepostStoryDrawable(Context context, View view, boolean z, Theme.ResourcesProvider resourcesProvider) {
+            this(context, view, z, R.drawable.large_repost_story, resourcesProvider);
         }
 
         @Override
@@ -340,7 +348,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         if (j == Long.MAX_VALUE) {
             this.nameTextView.setText(repostToCustomName());
             if (this.repostStoryDrawable == null) {
-                this.repostStoryDrawable = new RepostStoryDrawable(getContext(), this.imageView, true, this.resourcesProvider);
+                this.repostStoryDrawable = new RepostStoryDrawable(getContext(), (View) this.imageView, true, this.resourcesProvider);
             }
             this.imageView.setImage((ImageLocation) null, (String) null, this.repostStoryDrawable, (Object) null);
         } else {

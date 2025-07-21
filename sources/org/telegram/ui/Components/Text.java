@@ -77,6 +77,10 @@ public class Text {
         return this;
     }
 
+    public void detach() {
+        AnimatedEmojiSpan.release(this.parentView, this.animatedEmojis);
+    }
+
     public void draw(Canvas canvas) {
         if (this.layout == null) {
             return;

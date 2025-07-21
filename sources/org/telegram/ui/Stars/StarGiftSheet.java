@@ -3025,7 +3025,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
         if (tL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$354();
+            twoStepVerificationActivity.lambda$onBackPressed$355();
             if (tLObject instanceof TL_stars.starGiftWithdrawalUrl) {
                 Browser.openUrlInSystemBrowser(getContext(), ((TL_stars.starGiftWithdrawalUrl) tLObject).url);
                 return;
@@ -3044,7 +3044,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$354();
+                twoStepVerificationActivity.lambda$onBackPressed$355();
             }
             BulletinFactory.showError(tL_error);
             return;
@@ -4809,18 +4809,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void onBuyPressed() {
-        final TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
-        if (this.button.isLoading() || uniqueGift == null) {
-            return;
-        }
-        this.button.setLoading(true);
-        final long clientUserId = (this.slugStarGift == null || !this.resale) ? UserConfig.getInstance(this.currentAccount).getClientUserId() : this.dialogId;
-        StarsController.getInstance(this.currentAccount).getResellingGiftForm(uniqueGift, clientUserId, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                StarGiftSheet.this.lambda$onBuyPressed$122(clientUserId, uniqueGift, (TLRPC.TL_payments_paymentFormStarGift) obj);
-            }
-        });
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.onBuyPressed():void");
     }
 
     @Override

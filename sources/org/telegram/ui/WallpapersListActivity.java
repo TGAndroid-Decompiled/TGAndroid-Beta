@@ -264,7 +264,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                         SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(sb.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
                     }
                 }
-                dialogsActivity.lambda$onBackPressed$354();
+                dialogsActivity.lambda$onBackPressed$355();
             } else {
                 long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle bundle = new Bundle();
@@ -292,7 +292,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         public void onItemClick(int i) {
             if (i == -1) {
                 if (!((BaseFragment) WallpapersListActivity.this).actionBar.isActionModeShowed()) {
-                    WallpapersListActivity.this.lambda$onBackPressed$354();
+                    WallpapersListActivity.this.lambda$onBackPressed$355();
                     return;
                 }
                 WallpapersListActivity.this.selectedWallPapers.clear();
@@ -308,10 +308,20 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     DialogsActivity dialogsActivity = new DialogsActivity(bundle);
                     dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
+                        public boolean canSelectStories() {
+                            return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                        }
+
+                        @Override
                         public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                             boolean lambda$onItemClick$3;
                             lambda$onItemClick$3 = WallpapersListActivity.AnonymousClass2.this.lambda$onItemClick$3(dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
                             return lambda$onItemClick$3;
+                        }
+
+                        @Override
+                        public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                            return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
                         }
                     });
                     WallpapersListActivity.this.presentFragment(dialogsActivity);

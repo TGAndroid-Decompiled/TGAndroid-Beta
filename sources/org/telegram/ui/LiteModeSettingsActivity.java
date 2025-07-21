@@ -980,7 +980,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LiteModeSettingsActivity.this.lambda$onBackPressed$354();
+                    LiteModeSettingsActivity.this.lambda$onBackPressed$355();
                 }
             }
         });

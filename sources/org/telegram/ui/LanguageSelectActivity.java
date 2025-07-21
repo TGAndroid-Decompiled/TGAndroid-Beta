@@ -436,7 +436,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LanguageSelectActivity.this.lambda$onBackPressed$354();
+                    LanguageSelectActivity.this.lambda$onBackPressed$355();
                 }
             }
         });

@@ -45,6 +45,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.RLottieDrawable;
@@ -103,6 +104,7 @@ public class StoryEntry {
     public boolean isError;
     public boolean isRepost;
     public boolean isRepostMessage;
+    public boolean isShare;
     public boolean isVideo;
     public float left;
     public ArrayList mediaEntities;
@@ -274,6 +276,14 @@ public class StoryEntry {
             return path.substring(lastIndexOf + 1);
         }
         return null;
+    }
+
+    public static StoryEntry fromMedia(ArrayList arrayList) {
+        ArrayList createEntriesFromMedia = ChatActivity.createEntriesFromMedia(arrayList, false, null);
+        if (createEntriesFromMedia.isEmpty()) {
+            return null;
+        }
+        return fromPhotoEntry((MediaController.PhotoEntry) createEntriesFromMedia.get(0));
     }
 
     public static StoryEntry fromPhotoEntry(MediaController.PhotoEntry photoEntry) {
@@ -1092,6 +1102,7 @@ public class StoryEntry {
         storyEntry.fromCamera = this.fromCamera;
         storyEntry.thumbPathBitmap = this.thumbPathBitmap;
         storyEntry.isRepost = this.isRepost;
+        storyEntry.isShare = this.isShare;
         storyEntry.round = this.round;
         storyEntry.roundLeft = this.roundLeft;
         storyEntry.roundRight = this.roundRight;

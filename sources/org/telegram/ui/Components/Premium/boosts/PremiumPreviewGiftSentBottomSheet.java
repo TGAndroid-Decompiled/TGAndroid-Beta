@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
@@ -25,6 +24,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
@@ -143,7 +143,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
     }
 
     public PremiumPreviewGiftSentBottomSheet(BaseFragment baseFragment, int i, List list, Theme.ResourcesProvider resourcesProvider) {
-        super(baseFragment, i, null, null, resourcesProvider);
+        super(baseFragment, i, null, null, null, resourcesProvider);
         ArrayList arrayList = new ArrayList();
         this.selectedUsers = arrayList;
         arrayList.addAll(list);
@@ -217,7 +217,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
     @Override
     public void setTitle(boolean z) {
         String formatString;
-        TextView textView;
+        LinkSpanDrawable.LinksTextView linksTextView;
         String string;
         ((PremiumPreviewBottomSheet) this).titleView[0].setTextSize(1, 20.0f);
         this.subtitleView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
@@ -239,13 +239,13 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         this.subtitleView.append("\n");
         this.subtitleView.append("\n");
         if (this.selectedUsers.size() == 1) {
-            textView = this.subtitleView;
+            linksTextView = this.subtitleView;
             string = LocaleController.formatString("GiftPremiumGiftsSentStatusForUser", R.string.GiftPremiumGiftsSentStatusForUser, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)));
         } else {
-            textView = this.subtitleView;
+            linksTextView = this.subtitleView;
             string = LocaleController.getString("GiftPremiumGiftsSentStatus", R.string.GiftPremiumGiftsSentStatus);
         }
-        textView.append(AndroidUtilities.replaceTags(string));
+        linksTextView.append(AndroidUtilities.replaceTags(string));
     }
 
     @Override

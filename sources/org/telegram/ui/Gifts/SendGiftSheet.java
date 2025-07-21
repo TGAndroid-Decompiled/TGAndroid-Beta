@@ -61,7 +61,7 @@ import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.PreviewView;
 
-public class SendGiftSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
+public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private final TLRPC.MessageAction action;
     private final ChatActionCell actionCell;
     private UniversalAdapter adapter;
@@ -667,6 +667,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$buyStarGift$2(Boolean bool, String str) {
+        TL_stars.StarGift starGift;
         if (bool.booleanValue()) {
             Runnable runnable = this.closeParentSheet;
             if (runnable != null) {
@@ -678,6 +679,15 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             AndroidUtilities.hideKeyboard(this.messageEdit);
             lambda$new$0();
             StarsController.getInstance(this.currentAccount).makeStarGiftSoldOut(this.starGift);
+            return;
+        } else if ("STARGIFT_USER_USAGE_LIMITED".equalsIgnoreCase(str)) {
+            AndroidUtilities.hideKeyboard(this.messageEdit);
+            lambda$new$0();
+            BulletinFactory parentBulletinFactory = getParentBulletinFactory();
+            if (parentBulletinFactory == null || (starGift = this.starGift) == null || !starGift.limited_per_user) {
+                return;
+            }
+            parentBulletinFactory.createSimpleMultiBulletin(starGift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2PerUserLimit", this.starGift.per_user_total))).show();
             return;
         }
         this.button.setLoading(false);
@@ -733,7 +743,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.lambda$onBackPressed$354();
+                        baseFragment.lambda$onBackPressed$355();
                     }
                     baseFragment.removeSelfFromStack();
                 }
@@ -817,6 +827,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
     public void fillItems(java.util.ArrayList r12, org.telegram.ui.Components.UniversalAdapter r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.SendGiftSheet.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
+
+    protected abstract BulletinFactory getParentBulletinFactory();
 
     @Override
     protected CharSequence getTitle() {

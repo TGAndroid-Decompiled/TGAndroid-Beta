@@ -6660,7 +6660,7 @@ public class MessageObject {
         if (!this.messageOwner.restriction_reason.isEmpty()) {
             for (int i = 0; i < this.messageOwner.restriction_reason.size(); i++) {
                 TLRPC.RestrictionReason restrictionReason = this.messageOwner.restriction_reason.get(i);
-                if ("sensitive".equals(restrictionReason.reason) && ("all".equals(restrictionReason.platform) || (((!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp()) || BuildVars.DEBUG_PRIVATE_VERSION) && "android".equals(restrictionReason.platform)))) {
+                if ("sensitive".equals(restrictionReason.reason) && ("all".equals(restrictionReason.platform) || (("android".equals(restrictionReason.platform) && ((!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp()) || BuildVars.DEBUG_PRIVATE_VERSION)) || "android-all".equals(restrictionReason.platform)))) {
                     break;
                 }
             }
@@ -6668,7 +6668,7 @@ public class MessageObject {
         if (getDialogId() < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) != null && chat.restriction_reason != null) {
             for (int i2 = 0; i2 < chat.restriction_reason.size(); i2++) {
                 TLRPC.RestrictionReason restrictionReason2 = chat.restriction_reason.get(i2);
-                if (!"sensitive".equals(restrictionReason2.reason) || (!"all".equals(restrictionReason2.platform) && (((ApplicationLoader.isStandaloneBuild() || BuildVars.isBetaApp()) && !BuildVars.DEBUG_PRIVATE_VERSION) || !"android".equals(restrictionReason2.platform)))) {
+                if (!"sensitive".equals(restrictionReason2.reason) || (!"all".equals(restrictionReason2.platform) && ((!"android".equals(restrictionReason2.platform) || ((ApplicationLoader.isStandaloneBuild() || BuildVars.isBetaApp()) && !BuildVars.DEBUG_PRIVATE_VERSION)) && !"android-all".equals(restrictionReason2.platform)))) {
                 }
                 this.isSensitiveCached = Boolean.TRUE;
                 return true;

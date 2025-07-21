@@ -184,6 +184,7 @@ public class LinkActionView extends LinearLayout {
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setSingleLine(true);
         linearLayout.addView(textView4, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
+        linearLayout.setClickable(true);
         textView4.setVisibility(8);
         addView(linearLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 12.0f, 0.0f, 0.0f));
         AvatarsContainer avatarsContainer = new AvatarsContainer(context);
