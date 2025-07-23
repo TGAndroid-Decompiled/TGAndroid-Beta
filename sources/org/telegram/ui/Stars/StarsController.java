@@ -802,8 +802,16 @@ public class StarsController {
         }
 
         public void reorder(int i, int i2) {
-            ArrayList arrayList = this.gifts;
-            arrayList.add(i2, (TL_stars.SavedStarGift) arrayList.remove(i));
+            int clamp = Utilities.clamp(i, this.gifts.size() - 1, 0);
+            if (clamp < 0 || clamp >= this.gifts.size()) {
+                return;
+            }
+            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.gifts.remove(clamp);
+            int clamp2 = Utilities.clamp(i2, this.gifts.size() - 1, 0);
+            if (clamp2 < 0 || clamp2 >= this.gifts.size()) {
+                return;
+            }
+            this.gifts.add(clamp2, savedStarGift);
         }
 
         public void reorderDone() {
@@ -820,8 +828,7 @@ public class StarsController {
             if (this.savedPinnedState == null) {
                 this.savedPinnedState = getPinned();
             }
-            ArrayList arrayList = this.gifts;
-            arrayList.add(i2, (TL_stars.SavedStarGift) arrayList.remove(i));
+            reorder(i, i2);
         }
 
         public void resetFilters() {
@@ -957,11 +964,16 @@ public class StarsController {
 
         public void updateGiftsUnsaved(TL_stars.SavedStarGift savedStarGift, boolean z) {
             Iterator it = this.gifts.iterator();
+            boolean z2 = false;
             while (it.hasNext()) {
                 TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) it.next();
-                if (StarsController.eq(savedStarGift2, savedStarGift)) {
+                if (StarsController.eq(savedStarGift2, savedStarGift) && savedStarGift2.unsaved != z) {
                     savedStarGift2.unsaved = z;
+                    z2 = true;
                 }
+            }
+            if (z2) {
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
             }
         }
     }
