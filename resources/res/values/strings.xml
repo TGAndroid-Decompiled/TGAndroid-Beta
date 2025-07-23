@@ -3672,6 +3672,9 @@
     <string name="Gift2AddSenderName">Add sender\'s name to the gift</string>
     <string name="Gift2AddSenderNameComment">Add sender\'s name and comment</string>
     <string name="Gift2AddToCollection">Add to Collection</string>
+    <string name="Gift2AddedToCollection">**%1$s** added to **%2$s**.</string>
+    <string name="Gift2AddedToCollectionMany_one">**%1$d gift** added to **%2$s**.</string>
+    <string name="Gift2AddedToCollectionMany_other">**%1$d gifts** added to **%2$s**.</string>
     <string name="Gift2AttributeBackdrop">Backdrop</string>
     <string name="Gift2AttributeModel">Model</string>
     <string name="Gift2AttributeOriginalDetails">Gifted by %1$s to %2$s on %3$s.</string>
@@ -3859,6 +3862,9 @@
     <string name="Gift2Refunded">This gift was downgraded because a request to refund the payment related to this gift was made, and the money was returned.</string>
     <string name="Gift2ReleasedBy">released by **%s**</string>
     <string name="Gift2RemoveFromCollection">Remove From Collection</string>
+    <string name="Gift2RemovedFromCollection">**%1$s** removed from **%2$s**.</string>
+    <string name="Gift2RemovedFromCollectionMany_one">**%1$d gift** removed from **%2$s**.</string>
+    <string name="Gift2RemovedFromCollectionMany_other">**%1$d gifts** removed from **%2$s**.</string>
     <string name="Gift2Reorder">Reorder</string>
     <string name="Gift2ReplacedPinSubtitle">replacing %s</string>
     <string name="Gift2ReplacedPinTitle">%s pinned</string>
@@ -9526,7 +9532,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f254c_com_google_firebase_crashlytics_mapping_file_id">8fa253cd2ade4f06b78328733d477f6e</string>
+    <string name="res_0x7f0f2552_com_google_firebase_crashlytics_mapping_file_id">12a435232561494d881855ecb65a77bb</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

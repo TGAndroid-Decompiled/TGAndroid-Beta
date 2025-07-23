@@ -169,26 +169,21 @@ public class StarsController {
             return j;
         }
 
-        public void lambda$addGifts$4(TLObject tLObject, GiftsList giftsList, int i) {
+        public void lambda$addGifts$4(TLObject tLObject) {
             if (tLObject instanceof TL_stars.TL_starGiftCollection) {
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) tLObject;
                 int indexOf = indexOf(tL_starGiftCollection.collection_id);
                 if (indexOf >= 0) {
                     this.collections.set(indexOf, tL_starGiftCollection);
                 }
-                if (giftsList == null || giftsList.endReached) {
-                    return;
-                }
-                giftsList.totalCount += i;
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), giftsList);
             }
         }
 
-        public void lambda$addGifts$5(final GiftsList giftsList, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$addGifts$5(final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarsController.GiftsCollections.this.lambda$addGifts$4(tLObject, giftsList, i);
+                    StarsController.GiftsCollections.this.lambda$addGifts$4(tLObject);
                 }
             });
         }
@@ -266,24 +261,21 @@ public class StarsController {
             });
         }
 
-        public void lambda$removeGifts$6(TLObject tLObject, GiftsList giftsList, int i) {
+        public void lambda$removeGifts$6(TLObject tLObject) {
             if (tLObject instanceof TL_stars.TL_starGiftCollection) {
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) tLObject;
                 int indexOf = indexOf(tL_starGiftCollection.collection_id);
                 if (indexOf >= 0) {
                     this.collections.set(indexOf, tL_starGiftCollection);
                 }
-                if (giftsList != null) {
-                    giftsList.totalCount = Math.max(giftsList.totalCount - i, 0);
-                }
             }
         }
 
-        public void lambda$removeGifts$7(final GiftsList giftsList, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$removeGifts$7(final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarsController.GiftsCollections.this.lambda$removeGifts$6(tLObject, giftsList, i);
+                    StarsController.GiftsCollections.this.lambda$removeGifts$6(tLObject);
                 }
             });
         }
@@ -309,7 +301,7 @@ public class StarsController {
             if (arrayList.isEmpty()) {
                 return;
             }
-            final GiftsList listById = getListById(i);
+            GiftsList listById = getListById(i);
             if (z) {
                 listById.gifts.addAll(0, arrayList);
                 listById.totalCount += arrayList.size();
@@ -338,11 +330,10 @@ public class StarsController {
                 }
                 updatestargiftcollection.add_stargift.add(tL_inputSavedStarGiftUser);
             }
-            final int size = updatestargiftcollection.add_stargift.size();
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftcollection, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarsController.GiftsCollections.this.lambda$addGifts$5(listById, size, tLObject, tL_error);
+                    StarsController.GiftsCollections.this.lambda$addGifts$5(tLObject, tL_error);
                 }
             });
         }
@@ -464,7 +455,7 @@ public class StarsController {
             if (arrayList.isEmpty()) {
                 return;
             }
-            final GiftsList listById = getListById(i);
+            GiftsList listById = getListById(i);
             if (listById != null && !listById.gifts.isEmpty()) {
                 int i2 = 0;
                 while (i2 < listById.gifts.size()) {
@@ -508,11 +499,11 @@ public class StarsController {
                 }
                 updatestargiftcollection.delete_stargift.add(tL_inputSavedStarGiftUser);
             }
-            final int size = updatestargiftcollection.delete_stargift.size();
+            updatestargiftcollection.delete_stargift.size();
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftcollection, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarsController.GiftsCollections.this.lambda$removeGifts$7(listById, size, tLObject, tL_error);
+                    StarsController.GiftsCollections.this.lambda$removeGifts$7(tLObject, tL_error);
                 }
             });
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), listById);
@@ -568,6 +559,17 @@ public class StarsController {
             GiftsList giftsList = this.all;
             if (giftsList != null) {
                 giftsList.updateGiftsCollections(savedStarGift, i, z);
+            }
+        }
+
+        public void updateGiftsUnsaved(TL_stars.SavedStarGift savedStarGift, boolean z) {
+            Iterator it = this.gifts.values().iterator();
+            while (it.hasNext()) {
+                ((GiftsList) it.next()).updateGiftsUnsaved(savedStarGift, z);
+            }
+            GiftsList giftsList = this.all;
+            if (giftsList != null) {
+                giftsList.updateGiftsUnsaved(savedStarGift, z);
             }
         }
 
@@ -949,6 +951,16 @@ public class StarsController {
                     } else if (!savedStarGift2.collection_id.contains(Integer.valueOf(i))) {
                         savedStarGift2.collection_id.add(Integer.valueOf(i));
                     }
+                }
+            }
+        }
+
+        public void updateGiftsUnsaved(TL_stars.SavedStarGift savedStarGift, boolean z) {
+            Iterator it = this.gifts.iterator();
+            while (it.hasNext()) {
+                TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) it.next();
+                if (StarsController.eq(savedStarGift2, savedStarGift)) {
+                    savedStarGift2.unsaved = z;
                 }
             }
         }

@@ -272,6 +272,14 @@ public class UniversalRecyclerView extends RecyclerListView {
         return null;
     }
 
+    public int getSpanCount() {
+        LinearLayoutManager linearLayoutManager = this.layoutManager;
+        if (linearLayoutManager instanceof ExtendedGridLayoutManager) {
+            return ((ExtendedGridLayoutManager) linearLayoutManager).getSpanCount();
+        }
+        return -1;
+    }
+
     public boolean isReorderAllowed() {
         return this.reorderingAllowed;
     }

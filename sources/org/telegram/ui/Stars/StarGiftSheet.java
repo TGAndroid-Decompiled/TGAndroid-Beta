@@ -2374,7 +2374,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
     public static String getGiftName(TL_stars.StarGift starGift) {
         if (!(starGift instanceof TL_stars.TL_starGiftUnique)) {
-            return "";
+            return (!(starGift instanceof TL_stars.TL_starGift) || TextUtils.isEmpty(starGift.title)) ? LocaleController.getString(R.string.Gift2Gift) : starGift.title;
         }
         return ((TL_stars.TL_starGiftUnique) starGift).title + " #" + LocaleController.formatNumber(r3.num, ',');
     }

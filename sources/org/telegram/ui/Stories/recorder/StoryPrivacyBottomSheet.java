@@ -2733,7 +2733,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     }
                 } else {
                     if (containsRule(arrayList, TLRPC.TL_privacyValueAllowContacts.class) == null) {
-                        this.type = 3;
+                        this.type = 4;
                         return;
                     }
                     this.type = 2;

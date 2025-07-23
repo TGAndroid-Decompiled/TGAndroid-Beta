@@ -2451,7 +2451,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (ProfileActivity.this.bottomButtonsContainer == null) {
                 return 0;
             }
-            return AndroidUtilities.lerp((int) (((AndroidUtilities.dp(72.0f) - ProfileActivity.this.bottomButtonsContainer.getTranslationY()) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 9.0f)) * ProfileActivity.this.bottomButtonContainer[1].getTranslationY())) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 8.0f)) * ProfileActivity.this.bottomButtonContainer[0].getTranslationY())), 0, Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 14.0f)));
+            float clamp01 = Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 14.0f));
+            int dp = (int) (((AndroidUtilities.dp(72.0f) - ProfileActivity.this.bottomButtonsContainer.getTranslationY()) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 9.0f)) * ProfileActivity.this.bottomButtonContainer[1].getTranslationY())) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 8.0f)) * ProfileActivity.this.bottomButtonContainer[0].getTranslationY()));
+            ProfileGiftsContainer profileGiftsContainer = ProfileActivity.this.sharedMediaLayout.giftsContainer;
+            return AndroidUtilities.lerp(dp, profileGiftsContainer != null ? profileGiftsContainer.getBottomOffset() : 0, clamp01);
         }
 
         @Override
@@ -14439,7 +14442,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (ProfileActivity.this.bottomButtonsContainer == null) {
                     return 0;
                 }
-                return AndroidUtilities.lerp((int) (((AndroidUtilities.dp(72.0f) - ProfileActivity.this.bottomButtonsContainer.getTranslationY()) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 9.0f)) * ProfileActivity.this.bottomButtonContainer[1].getTranslationY())) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 8.0f)) * ProfileActivity.this.bottomButtonContainer[0].getTranslationY())), 0, Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 14.0f)));
+                float clamp01 = Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 14.0f));
+                int dp = (int) (((AndroidUtilities.dp(72.0f) - ProfileActivity.this.bottomButtonsContainer.getTranslationY()) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 9.0f)) * ProfileActivity.this.bottomButtonContainer[1].getTranslationY())) - (Utilities.clamp01(1.0f - Math.abs(ProfileActivity.this.sharedMediaLayout.getTabProgress() - 8.0f)) * ProfileActivity.this.bottomButtonContainer[0].getTranslationY()));
+                ProfileGiftsContainer profileGiftsContainer = ProfileActivity.this.sharedMediaLayout.giftsContainer;
+                return AndroidUtilities.lerp(dp, profileGiftsContainer != null ? profileGiftsContainer.getBottomOffset() : 0, clamp01);
             }
 
             @Override

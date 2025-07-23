@@ -1132,6 +1132,7 @@ public final class BulletinFactory {
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(28.0f), true, null, false);
         twoLineLayout.imageView.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(28.0f), true, closestPhotoSizeWithSize, true), document), "28_28", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "28_28", null, 0L, 0, null);
         twoLineLayout.imageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(5.0f));
+        twoLineLayout.titleTextView.setSingleLine(false);
         twoLineLayout.titleTextView.setText(charSequence);
         twoLineLayout.titleTextView.setTextSize(1, 14.0f);
         twoLineLayout.titleTextView.setMaxLines(3);
