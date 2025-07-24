@@ -118,6 +118,7 @@ import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.Gifts.ProfileGiftsContainer;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
@@ -4534,7 +4535,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public SharedMediaLayout(android.content.Context r36, long r37, org.telegram.ui.Components.SharedMediaLayout.SharedMediaPreloader r39, int r40, java.util.ArrayList r41, org.telegram.tgnet.TLRPC.ChatFull r42, org.telegram.tgnet.TLRPC.UserFull r43, int r44, org.telegram.ui.ActionBar.BaseFragment r45, org.telegram.ui.Components.SharedMediaLayout.Delegate r46, int r47, org.telegram.ui.ActionBar.Theme.ResourcesProvider r48) {
+    public SharedMediaLayout(final android.content.Context r36, long r37, org.telegram.ui.Components.SharedMediaLayout.SharedMediaPreloader r39, int r40, java.util.ArrayList r41, org.telegram.tgnet.TLRPC.ChatFull r42, org.telegram.tgnet.TLRPC.UserFull r43, int r44, org.telegram.ui.ActionBar.BaseFragment r45, org.telegram.ui.Components.SharedMediaLayout.Delegate r46, int r47, org.telegram.ui.ActionBar.Theme.ResourcesProvider r48) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.<init>(android.content.Context, long, org.telegram.ui.Components.SharedMediaLayout$SharedMediaPreloader, int, java.util.ArrayList, org.telegram.tgnet.TLRPC$ChatFull, org.telegram.tgnet.TLRPC$UserFull, int, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.SharedMediaLayout$Delegate, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -5538,26 +5539,31 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         ((CheckBoxCell) view).setChecked(z, true);
     }
 
-    public void lambda$new$13() {
-        this.profileActivity.presentFragment(new ThemeActivity(0).highlightSensitiveRow());
+    public static void lambda$new$13(BaseFragment baseFragment) {
+        baseFragment.presentFragment(new ThemeActivity(0).highlightSensitiveRow());
     }
 
-    public void lambda$new$14(MessagesController messagesController, Utilities.Callback callback, Boolean bool) {
+    public static void lambda$new$14(MessagesController messagesController, Utilities.Callback callback, Boolean bool) {
+        final BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!bool.booleanValue()) {
-            BulletinFactory.of(this.profileActivity).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
-            return;
-        }
-        messagesController.setContentSettings(true);
-        BulletinFactory.of(this.profileActivity).createSimpleBulletinDetail(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new Runnable() {
-            @Override
-            public final void run() {
-                SharedMediaLayout.this.lambda$new$13();
+            if (safeLastFragment != null) {
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
             }
-        }), true)).show(true);
-        callback.run(Boolean.TRUE);
+        } else {
+            messagesController.setContentSettings(true);
+            if (safeLastFragment != null) {
+                BulletinFactory.of(safeLastFragment).createSimpleBulletinDetail(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new Runnable() {
+                    @Override
+                    public final void run() {
+                        SharedMediaLayout.lambda$new$13(BaseFragment.this);
+                    }
+                }), true)).show(true);
+            }
+            callback.run(Boolean.TRUE);
+        }
     }
 
-    public void lambda$new$15(final SharedPhotoVideoCell2 sharedPhotoVideoCell2, final float f, final float f2, boolean[] zArr, boolean z, TL_account.contentSettings contentsettings, int i, final MessagesController messagesController, AlertDialog alertDialog, int i2) {
+    public static void lambda$new$15(final SharedPhotoVideoCell2 sharedPhotoVideoCell2, final float f, final float f2, boolean[] zArr, boolean z, TL_account.contentSettings contentsettings, Context context, int i, final MessagesController messagesController, AlertDialog alertDialog, int i2) {
         Boolean bool;
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
@@ -5569,12 +5575,13 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             bool = Boolean.FALSE;
         } else {
             if (z || (contentsettings != null && contentsettings.sensitive_can_change)) {
-                ThemeActivity.verifyAge(getContext(), i, new Utilities.Callback() {
+                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                ThemeActivity.verifyAge(context, i, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        SharedMediaLayout.this.lambda$new$14(messagesController, callback, (Boolean) obj);
+                        SharedMediaLayout.lambda$new$14(MessagesController.this, callback, (Boolean) obj);
                     }
-                }, this.profileActivity.getResourceProvider());
+                }, safeLastFragment == null ? null : safeLastFragment.getResourceProvider());
                 return;
             }
             bool = Boolean.TRUE;
@@ -5582,16 +5589,17 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         callback.run(bool);
     }
 
-    public void lambda$new$16(AlertDialog alertDialog, final MessagesController messagesController, final SharedPhotoVideoCell2 sharedPhotoVideoCell2, final float f, final float f2, final int i, final TL_account.contentSettings contentsettings) {
+    public void lambda$new$16(AlertDialog alertDialog, final MessagesController messagesController, final Context context, final SharedPhotoVideoCell2 sharedPhotoVideoCell2, final float f, final float f2, final int i, final TL_account.contentSettings contentsettings) {
         alertDialog.dismissUnless(200L);
         final boolean z = messagesController.config.needAgeVideoVerification.get() && !TextUtils.isEmpty(messagesController.verifyAgeBotUsername);
         boolean z2 = (contentsettings == null || !contentsettings.sensitive_can_change) && z;
         final boolean[] zArr = new boolean[1];
-        FrameLayout frameLayout = new FrameLayout(getContext());
+        FrameLayout frameLayout = new FrameLayout(context);
         if (z) {
             zArr[0] = true;
         } else if (contentsettings != null && contentsettings.sensitive_can_change) {
-            CheckBoxCell checkBoxCell = new CheckBoxCell(getContext(), 1, this.profileActivity.getResourceProvider());
+            BaseFragment baseFragment = this.profileActivity;
+            CheckBoxCell checkBoxCell = new CheckBoxCell(context, 1, baseFragment == null ? null : baseFragment.getResourceProvider());
             checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
             checkBoxCell.setText(LocaleController.getString(R.string.MessageShowSensitiveContentAlways), "", zArr[0], false);
             checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
@@ -5603,19 +5611,25 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
             });
         }
-        AlertDialog.Builder negativeButton = new AlertDialog.Builder(getContext(), this.profileActivity.getResourceProvider()).setTitle(LocaleController.getString(R.string.MessageShowSensitiveContentMediaTitle)).setMessage(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentMediaTextClosed : R.string.MessageShowSensitiveContentMediaText)).setView(frameLayout).setCustomViewOffset(9).setNegativeButton(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentMediaTextClosedButton : R.string.Cancel), null);
+        BaseFragment baseFragment2 = this.profileActivity;
+        AlertDialog.Builder negativeButton = new AlertDialog.Builder(context, baseFragment2 == null ? null : baseFragment2.getResourceProvider()).setTitle(LocaleController.getString(R.string.MessageShowSensitiveContentMediaTitle)).setMessage(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentMediaTextClosed : R.string.MessageShowSensitiveContentMediaText)).setView(frameLayout).setCustomViewOffset(9).setNegativeButton(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentMediaTextClosedButton : R.string.Cancel), null);
         if (!z2) {
             negativeButton.setPositiveButton(LocaleController.getString(R.string.MessageShowSensitiveContentButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i2) {
-                    SharedMediaLayout.this.lambda$new$15(sharedPhotoVideoCell2, f, f2, zArr, z, contentsettings, i, messagesController, alertDialog2, i2);
+                    SharedMediaLayout.lambda$new$15(SharedPhotoVideoCell2.this, f, f2, zArr, z, contentsettings, context, i, messagesController, alertDialog2, i2);
                 }
             });
         }
-        this.profileActivity.showDialog(negativeButton.create());
+        BaseFragment baseFragment3 = this.profileActivity;
+        if (baseFragment3 == null || baseFragment3.getContext() == null) {
+            negativeButton.show();
+        } else {
+            this.profileActivity.showDialog(negativeButton.create());
+        }
     }
 
-    public void lambda$new$17(MediaPage mediaPage, View view, int i, final float f, final float f2) {
+    public void lambda$new$17(MediaPage mediaPage, final Context context, View view, int i, final float f, final float f2) {
         MessageObject message;
         ChatActivity chatActivity;
         BaseFragment baseFragment;
@@ -5641,19 +5655,19 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     if (mediaPage.selectedType == 0 && (view instanceof SharedPhotoVideoCell2)) {
                         final SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
                         MessageObject messageObject = sharedPhotoVideoCell2.getMessageObject();
-                        if (messageObject.isSensitive()) {
+                        if (messageObject != null && messageObject.isSensitive()) {
                             BaseFragment baseFragment3 = this.profileActivity;
                             if (baseFragment3 == null) {
                                 return;
                             }
                             final int currentAccount = baseFragment3.getCurrentAccount();
                             final MessagesController messagesController = MessagesController.getInstance(currentAccount);
-                            final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
+                            final AlertDialog alertDialog = new AlertDialog(context, 3);
                             alertDialog.showDelayed(200L);
                             messagesController.getContentSettings(new Utilities.Callback() {
                                 @Override
                                 public final void run(Object obj) {
-                                    SharedMediaLayout.this.lambda$new$16(alertDialog, messagesController, sharedPhotoVideoCell2, f, f2, currentAccount, (TL_account.contentSettings) obj);
+                                    SharedMediaLayout.this.lambda$new$16(alertDialog, messagesController, context, sharedPhotoVideoCell2, f, f2, currentAccount, (TL_account.contentSettings) obj);
                                 }
                             });
                             return;
@@ -5662,13 +5676,16 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                             sharedPhotoVideoCell2.startRevealMedia(f, f2);
                             return;
                         }
-                        i2 = 0;
-                        sharedMediaLayout = this;
-                        i3 = i;
-                        view2 = view;
-                        message = messageObject;
-                        i4 = mediaPage.selectedType;
-                        sharedMediaLayout.onItemClick(i3, view2, message, i2, i4);
+                        if (messageObject != null) {
+                            i2 = mediaPage.selectedType;
+                            sharedMediaLayout = this;
+                            i3 = i;
+                            view2 = view;
+                            message = messageObject;
+                            i4 = 0;
+                            sharedMediaLayout.onItemClick(i3, view2, message, i4, i2);
+                            return;
+                        }
                         return;
                     }
                     if ((mediaPage.selectedType == 8 || mediaPage.selectedType == 9) && (view instanceof SharedPhotoVideoCell2)) {
@@ -5763,12 +5780,12 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                         baseFragment = this.profileActivity;
                     }
                 }
-                i4 = mediaPage.selectedType;
-                i2 = 0;
+                i2 = mediaPage.selectedType;
+                i4 = 0;
                 sharedMediaLayout = this;
                 i3 = i;
                 view2 = view;
-                sharedMediaLayout.onItemClick(i3, view2, message, i2, i4);
+                sharedMediaLayout.onItemClick(i3, view2, message, i4, i2);
                 return;
             }
             TLRPC.Chat chat = ((ProfileSearchCell) view).getChat();

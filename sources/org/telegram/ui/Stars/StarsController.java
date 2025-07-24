@@ -302,7 +302,7 @@ public class StarsController {
                 return;
             }
             GiftsList listById = getListById(i);
-            if (z) {
+            if (listById != null && z) {
                 listById.gifts.addAll(0, arrayList);
                 listById.totalCount += arrayList.size();
                 NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), listById);

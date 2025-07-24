@@ -2393,7 +2393,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.loadingPinnedDialogs = new SparseIntArray();
         this.faqSearchArray = new ArrayList<>();
         this.suggestContacts = true;
-        this.themeCheckRunnable = new MessagesController$$ExternalSyntheticLambda73();
+        this.themeCheckRunnable = new MessagesController$$ExternalSyntheticLambda75();
         this.passwordCheckRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -3105,7 +3105,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 this.proxyDialogAddress = null;
                 this.nextPromoInfoCheckTime = getConnectionsManager().getCurrentTime() + 3600;
                 getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda52(this));
             }
         }
     }
@@ -4600,36 +4600,44 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public static void lambda$checkSensitive$399(BaseFragment baseFragment) {
-        baseFragment.presentFragment(new ThemeActivity(0).highlightSensitiveRow());
+        if (baseFragment != null) {
+            baseFragment.presentFragment(new ThemeActivity(0).highlightSensitiveRow());
+        }
     }
 
-    public void lambda$checkSensitive$400(long j, final BaseFragment baseFragment, boolean[] zArr, Runnable runnable, Boolean bool) {
+    public void lambda$checkSensitive$400(long j, boolean[] zArr, Runnable runnable, Boolean bool) {
+        final BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!bool.booleanValue()) {
-            BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
+            if (safeLastFragment != null) {
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
+                return;
+            }
             return;
         }
         this.sensitiveAgreed.add(Long.valueOf(j));
         setContentSettings(true);
-        BulletinFactory.of(baseFragment).createSimpleBulletinDetail(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new Runnable() {
-            @Override
-            public final void run() {
-                MessagesController.lambda$checkSensitive$399(BaseFragment.this);
-            }
-        }), true)).show(true);
+        if (safeLastFragment != null) {
+            BulletinFactory.of(safeLastFragment).createSimpleBulletinDetail(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.lambda$checkSensitive$399(BaseFragment.this);
+                }
+            }), true)).show(true);
+        }
         zArr[0] = true;
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public void lambda$checkSensitive$401(boolean z, boolean[] zArr, TL_account.contentSettings contentsettings, final BaseFragment baseFragment, final long j, final boolean[] zArr2, final Runnable runnable, AlertDialog alertDialog, int i) {
+    public void lambda$checkSensitive$401(boolean z, boolean[] zArr, TL_account.contentSettings contentsettings, Context context, final long j, final boolean[] zArr2, final Runnable runnable, Theme.ResourcesProvider resourcesProvider, AlertDialog alertDialog, int i) {
         if (z || (zArr[0] && contentsettings != null && contentsettings.sensitive_can_change)) {
-            ThemeActivity.verifyAge(baseFragment.getContext(), this.currentAccount, new Utilities.Callback() {
+            ThemeActivity.verifyAge(context, this.currentAccount, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    MessagesController.this.lambda$checkSensitive$400(j, baseFragment, zArr2, runnable, (Boolean) obj);
+                    MessagesController.this.lambda$checkSensitive$400(j, zArr2, runnable, (Boolean) obj);
                 }
-            }, baseFragment.getResourceProvider());
+            }, resourcesProvider);
             return;
         }
         this.sensitiveAgreed.add(Long.valueOf(j));
@@ -4639,16 +4647,31 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$checkSensitive$402(AlertDialog alertDialog, final BaseFragment baseFragment, final Runnable runnable, final long j, final Runnable runnable2, final TL_account.contentSettings contentsettings) {
-        alertDialog.dismissUnless(200L);
+    public void lambda$checkSensitive$402(AlertDialog alertDialog, BaseFragment baseFragment, final Runnable runnable, final long j, final Runnable runnable2, final TL_account.contentSettings contentsettings) {
+        if (alertDialog != null) {
+            alertDialog.dismissUnless(200L);
+        }
+        Context context = baseFragment.getContext();
+        if (context == null) {
+            context = AndroidUtilities.findActivity(LaunchActivity.instance);
+        }
+        if (context == null) {
+            context = LaunchActivity.instance;
+        }
+        if (context == null) {
+            context = ApplicationLoader.applicationContext;
+        }
+        final Context context2 = context;
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        final Theme.ResourcesProvider resourceProvider = safeLastFragment == null ? null : safeLastFragment.getResourceProvider();
         final boolean[] zArr = new boolean[1];
-        FrameLayout frameLayout = new FrameLayout(baseFragment.getContext());
-        final boolean z = this.config.needAgeVideoVerification.get() && !TextUtils.isEmpty(this.verifyAgeBotUsername);
+        FrameLayout frameLayout = new FrameLayout(context2);
+        boolean z = this.config.needAgeVideoVerification.get() && !TextUtils.isEmpty(this.verifyAgeBotUsername);
         boolean z2 = (contentsettings == null || !contentsettings.sensitive_can_change) && z;
         if (z) {
             zArr[0] = true;
         } else if (contentsettings != null && contentsettings.sensitive_can_change) {
-            CheckBoxCell checkBoxCell = new CheckBoxCell(baseFragment.getContext(), 1, baseFragment.getResourceProvider());
+            CheckBoxCell checkBoxCell = new CheckBoxCell(context2, 1, resourceProvider);
             checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
             checkBoxCell.setText(LocaleController.getString(R.string.MessageShowSensitiveContentAlways), "", zArr[0], false);
             checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
@@ -4661,17 +4684,18 @@ public class MessagesController extends BaseController implements NotificationCe
             });
         }
         final boolean[] zArr2 = new boolean[1];
-        AlertDialog.Builder onDismissListener = new AlertDialog.Builder(baseFragment.getContext(), baseFragment.getResourceProvider()).setTitle(LocaleController.getString(R.string.MessageShowSensitiveContentChannelTitle)).setMessage(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosed : R.string.MessageShowSensitiveContentChannelText)).setView(frameLayout).setCustomViewOffset(9).setNegativeButton(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosedButton : R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+        AlertDialog.Builder onDismissListener = new AlertDialog.Builder(context2, resourceProvider).setTitle(LocaleController.getString(R.string.MessageShowSensitiveContentChannelTitle)).setMessage(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosed : R.string.MessageShowSensitiveContentChannelText)).setView(frameLayout).setCustomViewOffset(9).setNegativeButton(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosedButton : R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 MessagesController.lambda$checkSensitive$398(zArr2, runnable, dialogInterface);
             }
         });
         if (!z2) {
+            final boolean z3 = z;
             onDismissListener.setPositiveButton(LocaleController.getString(R.string.MessageShowSensitiveContentButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
-                    MessagesController.this.lambda$checkSensitive$401(z, zArr, contentsettings, baseFragment, j, zArr2, runnable2, alertDialog2, i);
+                    MessagesController.this.lambda$checkSensitive$401(z3, zArr, contentsettings, context2, j, zArr2, runnable2, resourceProvider, alertDialog2, i);
                 }
             });
         }
@@ -11951,29 +11975,46 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void checkSensitive(final BaseFragment baseFragment, final long j, final Runnable runnable, final Runnable runnable2) {
         TLRPC.User user;
-        ArrayList<TLRPC.RestrictionReason> arrayList = null;
+        ArrayList<TLRPC.RestrictionReason> arrayList;
         if (j < 0) {
             TLRPC.Chat chat = getChat(Long.valueOf(-j));
             if (chat != null) {
                 arrayList = chat.restriction_reason;
             }
-        } else if (j >= 0 && (user = getUser(Long.valueOf(j))) != null) {
-            arrayList = user.restriction_reason;
+            arrayList = null;
+        } else {
+            if (j >= 0 && (user = getUser(Long.valueOf(j))) != null) {
+                arrayList = user.restriction_reason;
+            }
+            arrayList = null;
         }
         if (!isSensitive(arrayList) || this.sensitiveAgreed.contains(Long.valueOf(j))) {
             if (runnable != null) {
                 runnable.run();
+                return;
             }
-        } else {
-            final AlertDialog alertDialog = new AlertDialog(baseFragment.getContext(), 3);
-            alertDialog.showDelayed(200L);
-            getContentSettings(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    MessagesController.this.lambda$checkSensitive$402(alertDialog, baseFragment, runnable2, j, runnable, (TL_account.contentSettings) obj);
-                }
-            });
+            return;
         }
+        Context context = baseFragment.getContext();
+        if (context == null) {
+            context = AndroidUtilities.findActivity(LaunchActivity.instance);
+        }
+        if (context == null) {
+            context = LaunchActivity.instance;
+        }
+        if (context == null) {
+            context = ApplicationLoader.applicationContext;
+        }
+        final AlertDialog alertDialog = context != null ? new AlertDialog(context, 3) : null;
+        if (alertDialog != null) {
+            alertDialog.showDelayed(200L);
+        }
+        getContentSettings(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                MessagesController.this.lambda$checkSensitive$402(alertDialog, baseFragment, runnable2, j, runnable, (TL_account.contentSettings) obj);
+            }
+        });
     }
 
     public void checkUnreadReactions(final long j, final long j2, final SparseBooleanArray sparseBooleanArray) {
