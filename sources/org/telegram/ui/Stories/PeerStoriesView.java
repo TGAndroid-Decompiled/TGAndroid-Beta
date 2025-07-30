@@ -130,6 +130,7 @@ import org.telegram.ui.Components.EmojiPacksAlert;
 import org.telegram.ui.Components.HashtagActivity;
 import org.telegram.ui.Components.HintView;
 import org.telegram.ui.Components.InstantCameraView;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.MediaActivity;
@@ -182,6 +183,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     public static boolean DISABLE_STORY_REPOSTING = false;
     private static int activeCount;
     private boolean BIG_SCREEN;
+    private ActionBarMenuSubItem albumItem;
+    private ViewGroup albumLayout;
     private boolean allowDrawSurface;
     Runnable allowDrawSurfaceRunnable;
     private boolean allowRepost;
@@ -1499,6 +1502,62 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.val$popupStillVisible = zArr;
         }
 
+        private void addAlbumsLayout(final ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, boolean z) {
+            final TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
+            if (storyItem == null) {
+                return;
+            }
+            final HashSet hashSet = storyItem.albums != null ? new HashSet(storyItem.albums) : new HashSet();
+            ItemOptions swipeback = ItemOptions.swipeback(actionBarPopupWindowLayout, this.val$resourcesProvider);
+            swipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.AnonymousClass8.lambda$addAlbumsLayout$3(ActionBarPopupWindow.ActionBarPopupWindowLayout.this);
+                }
+            });
+            swipeback.addGap();
+            StoriesController.StoriesCollections storyAlbumsList = PeerStoriesView.this.getStoriesController().getStoryAlbumsList(PeerStoriesView.this.dialogId);
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            boolean canCreateNewAlbum = peerStoriesView.storiesController.canCreateNewAlbum(peerStoriesView.dialogId);
+            final Theme.ResourcesProvider resourcesProvider = this.val$resourcesProvider;
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.AnonymousClass8.this.lambda$addAlbumsLayout$5(resourcesProvider);
+                }
+            };
+            final Theme.ResourcesProvider resourcesProvider2 = this.val$resourcesProvider;
+            ItemOptions.addAlbumsItemOptions(swipeback, storyAlbumsList, hashSet, canCreateNewAlbum, runnable, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    PeerStoriesView.AnonymousClass8.this.lambda$addAlbumsLayout$6(hashSet, storyItem, resourcesProvider2, (StoriesController.StoryAlbum) obj);
+                }
+            });
+            PeerStoriesView.this.albumLayout = swipeback.getLinearLayout();
+            final int addViewToSwipeBack = actionBarPopupWindowLayout.addViewToSwipeBack(PeerStoriesView.this.albumLayout);
+            PeerStoriesView.this.albumItem = new ActionBarMenuSubItem(PeerStoriesView.this.getContext(), false, false, false, this.val$resourcesProvider);
+            PeerStoriesView.this.albumItem.setTextAndIcon(LocaleController.getString(R.string.StoriesAlbumAddToAlbum), R.drawable.menu_album_add, null);
+            PeerStoriesView.this.albumItem.openSwipeBackLayout = new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.AnonymousClass8.lambda$addAlbumsLayout$7(ActionBarPopupWindow.ActionBarPopupWindowLayout.this, addViewToSwipeBack);
+                }
+            };
+            PeerStoriesView.this.albumItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    PeerStoriesView.AnonymousClass8.this.lambda$addAlbumsLayout$8(view);
+                }
+            });
+            actionBarPopupWindowLayout.addView(PeerStoriesView.this.albumItem);
+            actionBarPopupWindowLayout.swipeBackGravityRight = true;
+            if (z) {
+                ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(PeerStoriesView.this.getContext(), this.val$resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                gapView.setTag(R.id.fit_width_tag, 1);
+                actionBarPopupWindowLayout.addView((View) gapView, LayoutHelper.createLinear(-1, 8));
+            }
+        }
+
         private void addSpeedLayout(final ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, boolean z) {
             PeerStoriesView peerStoriesView;
             StoryItemHolder storyItemHolder;
@@ -1579,6 +1638,57 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             });
         }
 
+        public static void lambda$addAlbumsLayout$3(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+            if (actionBarPopupWindowLayout.getSwipeBack() != null) {
+                actionBarPopupWindowLayout.getSwipeBack().closeForeground();
+            }
+        }
+
+        public void lambda$addAlbumsLayout$4(String str) {
+            PeerStoriesView.this.getStoriesController().createAlbum(PeerStoriesView.this.dialogId, str);
+        }
+
+        public void lambda$addAlbumsLayout$5(Theme.ResourcesProvider resourcesProvider) {
+            AlertsCreator.createStoriesAlbumEnterNameForCreate(PeerStoriesView.this.getContext(), null, resourcesProvider, new MessagesStorage.StringCallback() {
+                @Override
+                public final void run(String str) {
+                    PeerStoriesView.AnonymousClass8.this.lambda$addAlbumsLayout$4(str);
+                }
+            });
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
+            }
+        }
+
+        public void lambda$addAlbumsLayout$6(HashSet hashSet, TL_stories.StoryItem storyItem, Theme.ResourcesProvider resourcesProvider, StoriesController.StoryAlbum storyAlbum) {
+            String formatString;
+            if (hashSet.contains(Integer.valueOf(storyAlbum.album_id))) {
+                PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                peerStoriesView.storiesController.addStoryToAlbum(peerStoriesView.dialogId, storyAlbum.album_id, storyItem);
+                formatString = LocaleController.formatString(R.string.StoryAddedToAlbumX, storyAlbum.title);
+            } else {
+                PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+                peerStoriesView2.storiesController.removeStoryFromAlbum(peerStoriesView2.dialogId, storyAlbum.album_id, storyItem);
+                formatString = LocaleController.formatString(R.string.StoryRemovedFromAlbumX, storyAlbum.title);
+            }
+            BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.contact_check, AndroidUtilities.replaceTags(formatString)).show();
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
+            }
+        }
+
+        public static void lambda$addAlbumsLayout$7(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i) {
+            if (actionBarPopupWindowLayout.getSwipeBack() != null) {
+                actionBarPopupWindowLayout.getSwipeBack().openForeground(i);
+            }
+        }
+
+        public void lambda$addAlbumsLayout$8(View view) {
+            PeerStoriesView.this.albumItem.openSwipeBack();
+        }
+
         public static void lambda$addSpeedLayout$1(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i) {
             if (actionBarPopupWindowLayout.getSwipeBack() != null) {
                 actionBarPopupWindowLayout.getSwipeBack().openForeground(i);
@@ -1611,7 +1721,110 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             });
         }
 
-        public void lambda$onCreate$10(Theme.ResourcesProvider resourcesProvider, Context context, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
+        public void lambda$onCreate$10(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories.StoryItem storyItem, View view) {
+            PeerStoriesView.this.editPrivacy(storyPrivacy, storyItem);
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
+            }
+        }
+
+        public void lambda$onCreate$11() {
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            peerStoriesView.editOpened = true;
+            peerStoriesView.setActive(false);
+        }
+
+        public static void lambda$onCreate$12(Runnable runnable) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            AndroidUtilities.runOnUIThread(runnable);
+        }
+
+        public static void lambda$onCreate$13(Runnable runnable, long j) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
+        }
+
+        public void lambda$onCreate$14(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
+            final long currentTimeMillis = System.currentTimeMillis();
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
+            StoryViewer.VideoPlayerHolder videoPlayerHolder = videoPlayerSharedScope.player;
+            if (videoPlayerHolder == null) {
+                peerStoriesView.delegate.setPopupIsVisible(false);
+                PeerStoriesView.this.setActive(true);
+                PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+                peerStoriesView2.editOpened = false;
+                peerStoriesView2.onImageReceiverThumbLoaded = new Runnable() {
+                    @Override
+                    public final void run() {
+                        PeerStoriesView.AnonymousClass8.lambda$onCreate$12(runnable);
+                    }
+                };
+                if (bool.booleanValue()) {
+                    PeerStoriesView.this.updatePosition();
+                }
+                AndroidUtilities.runOnUIThread(runnable, 400L);
+                return;
+            }
+            videoPlayerHolder.firstFrameRendered = false;
+            videoPlayerSharedScope.firstFrameRendered = false;
+            videoPlayerHolder.setOnReadyListener(new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$13(runnable, currentTimeMillis);
+                }
+            });
+            PeerStoriesView.this.delegate.setPopupIsVisible(false);
+            if (PeerStoriesView.this.muteIconView != null) {
+                PeerStoriesView.this.muteIconView.setAnimation(sharedResources.muteDrawable);
+            }
+            PeerStoriesView.this.setActive(((PeerStoriesView.this.videoDuration <= 0 || l.longValue() <= PeerStoriesView.this.videoDuration - 1400) ? l : 0L).longValue(), true);
+            PeerStoriesView.this.editOpened = false;
+            AndroidUtilities.runOnUIThread(runnable, 400L);
+            if (bool.booleanValue()) {
+                PeerStoriesView.this.updatePosition();
+            }
+        }
+
+        public void lambda$onCreate$15(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) {
+            File file;
+            StoryViewer.VideoPlayerHolder videoPlayerHolder;
+            StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
+            VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
+            long j = (videoPlayerSharedScope == null || (videoPlayerHolder = videoPlayerSharedScope.player) == null) ? 0L : videoPlayerHolder.currentPosition;
+            DraftsController draftsController = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController().getDraftsController();
+            TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
+            StoryEntry forEdit = draftsController.getForEdit(storyItem.dialogId, storyItem);
+            if (forEdit == null || forEdit.isRepostMessage || (file = forEdit.file) == null || !file.exists()) {
+                forEdit = StoryEntry.fromStoryItem(PeerStoriesView.this.currentStory.getPath(), PeerStoriesView.this.currentStory.storyItem);
+                forEdit.editStoryPeerId = PeerStoriesView.this.dialogId;
+            }
+            StoryEntry copy = forEdit.copy();
+            if (PeerStoriesView.this.isBotsPreview()) {
+                copy.botId = PeerStoriesView.this.dialogId;
+                copy.editingBotPreview = MessagesController.toInputMedia(PeerStoriesView.this.currentStory.storyItem.media);
+                StoriesController.StoriesList storiesList = storyViewer.storiesList;
+                if (storiesList instanceof StoriesController.BotPreviewsList) {
+                    copy.botLang = ((StoriesController.BotPreviewsList) storiesList).lang_code;
+                }
+            }
+            storyRecorder.openEdit(StoryRecorder.SourceView.fromStoryViewer(storyViewer), copy, j, true);
+            storyRecorder.setOnFullyOpenListener(new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$11();
+                }
+            });
+            storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
+                @Override
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$14(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
+                }
+            });
+        }
+
+        public void lambda$onCreate$16(Theme.ResourcesProvider resourcesProvider, Context context, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
             if (view.getAlpha() < 1.0f) {
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
                 AndroidUtilities.shakeViewSpring(view, peerStoriesView.shiftDp = -peerStoriesView.shiftDp);
@@ -1630,7 +1843,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$9(findActivity, storyViewer, sharedResources);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$15(findActivity, storyViewer, sharedResources);
                 }
             };
             if (PeerStoriesView.this.delegate.releasePlayer(runnable)) {
@@ -1639,7 +1852,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public static void lambda$onCreate$11(StoriesController.BotPreviewsList botPreviewsList, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+        public static void lambda$onCreate$17(StoriesController.BotPreviewsList botPreviewsList, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
             TL_stories.StoryItem storyItem2;
             TLRPC.MessageMedia messageMedia;
             TLRPC.Document document;
@@ -1654,7 +1867,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             callback.run(null);
         }
 
-        public void lambda$onCreate$12(TLObject tLObject, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+        public void lambda$onCreate$18(TLObject tLObject, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
             TLRPC.Document document;
             if (tLObject instanceof TL_stories.TL_stories_stories) {
                 TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
@@ -1671,22 +1884,22 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             callback.run(document);
         }
 
-        public void lambda$onCreate$13(final TL_stories.StoryItem storyItem, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onCreate$19(final TL_stories.StoryItem storyItem, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$12(tLObject, storyItem, callback);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$18(tLObject, storyItem, callback);
                 }
             });
         }
 
-        public void lambda$onCreate$14(final TL_stories.StoryItem storyItem, final TL_stories.StoryItem storyItem2, final Utilities.Callback callback) {
+        public void lambda$onCreate$20(final TL_stories.StoryItem storyItem, final TL_stories.StoryItem storyItem2, final Utilities.Callback callback) {
             final StoriesController.BotPreviewsList botPreviewsList;
             if ((storyItem instanceof StoriesController.BotPreview) && (botPreviewsList = ((StoriesController.BotPreview) storyItem).list) != null) {
                 botPreviewsList.reload(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.lambda$onCreate$11(StoriesController.BotPreviewsList.this, storyItem2, callback);
+                        PeerStoriesView.AnonymousClass8.lambda$onCreate$17(StoriesController.BotPreviewsList.this, storyItem2, callback);
                     }
                 });
                 return;
@@ -1697,28 +1910,28 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             ConnectionsManager.getInstance(PeerStoriesView.this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$13(storyItem, callback, tLObject, tL_error);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$19(storyItem, callback, tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$onCreate$15() {
+        public void lambda$onCreate$21() {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.editOpened = true;
             peerStoriesView.setActive(false);
         }
 
-        public static void lambda$onCreate$16(Runnable runnable) {
+        public static void lambda$onCreate$22(Runnable runnable) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable);
         }
 
-        public static void lambda$onCreate$17(Runnable runnable, long j) {
+        public static void lambda$onCreate$23(Runnable runnable, long j) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
         }
 
-        public void lambda$onCreate$18(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
+        public void lambda$onCreate$24(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
             final long currentTimeMillis = System.currentTimeMillis();
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
@@ -1731,7 +1944,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 peerStoriesView2.onImageReceiverThumbLoaded = new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.lambda$onCreate$16(runnable);
+                        PeerStoriesView.AnonymousClass8.lambda$onCreate$22(runnable);
                     }
                 };
                 if (bool.booleanValue()) {
@@ -1745,7 +1958,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             videoPlayerHolder.setOnReadyListener(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$17(runnable, currentTimeMillis);
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$23(runnable, currentTimeMillis);
                 }
             });
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
@@ -1760,7 +1973,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$19(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) {
+        public void lambda$onCreate$25(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -1775,7 +1988,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             copy.updateDocumentRef = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$14(storyItem2, storyItem, (Utilities.Callback) obj);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$20(storyItem2, storyItem, (Utilities.Callback) obj);
                 }
             };
             if (PeerStoriesView.this.isBotsPreview()) {
@@ -1790,18 +2003,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyRecorder.setOnFullyOpenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$15();
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$21();
                 }
             });
             storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$18(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$24(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
                 }
             });
         }
 
-        public void lambda$onCreate$20(Context context, final TL_stories.StoryItem storyItem, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
+        public void lambda$onCreate$26(Context context, final TL_stories.StoryItem storyItem, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
             File path = PeerStoriesView.this.currentStory.getPath();
             if (path == null || !path.exists()) {
                 PeerStoriesView.this.showDownloadAlert();
@@ -1819,7 +2032,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$19(findActivity, storyItem, storyViewer, sharedResources);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$25(findActivity, storyItem, storyViewer, sharedResources);
                 }
             };
             if (PeerStoriesView.this.delegate.releasePlayer(runnable)) {
@@ -1828,7 +2041,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$21(TL_stories.StoryItem storyItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
+        public void lambda$onCreate$27(TL_stories.StoryItem storyItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
             BulletinFactory of;
             int i;
             int i2;
@@ -1855,13 +2068,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             createSimpleBulletin.show();
         }
 
-        public void lambda$onCreate$22(final TL_stories.StoryItem storyItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
+        public void lambda$onCreate$28(final TL_stories.StoryItem storyItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(storyItem);
             MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController().updateStoriesPinned(PeerStoriesView.this.dialogId, arrayList, z, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$21(storyItem, z, resourcesProvider, (Boolean) obj);
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$27(storyItem, z, resourcesProvider, (Boolean) obj);
                 }
             });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1870,7 +2083,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$23(View view) {
+        public void lambda$onCreate$29(View view) {
             PeerStoriesView.this.saveToGallery();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1878,7 +2091,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$24(View view) {
+        public void lambda$onCreate$30(View view) {
             AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
             PeerStoriesView.this.onLinkCopied();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1887,7 +2100,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$25(View view) {
+        public void lambda$onCreate$31(View view) {
             PeerStoriesView.this.shareStory(false);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1895,7 +2108,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$26(View view) {
+        public void lambda$onCreate$32(View view) {
             PeerStoriesView.this.deleteStory();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1903,7 +2116,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$27(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
+        public void lambda$onCreate$33(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit().putBoolean("stories_" + str, false).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0L);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryMutedHint", R.string.NotificationsStoryMutedHint, str2))).setTag(2).show();
@@ -1913,7 +2126,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$28(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
+        public void lambda$onCreate$34(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit().putBoolean("stories_" + str, true).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0L);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryUnmutedHint", R.string.NotificationsStoryUnmutedHint, str2))).setTag(2).show();
@@ -1923,7 +2136,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$29(View view) {
+        public void lambda$onCreate$35(View view) {
             MediaDataController.getInstance(PeerStoriesView.this.currentAccount).removePeer(PeerStoriesView.this.dialogId);
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.storiesController.toggleHidden(peerStoriesView.dialogId, true, false, true);
@@ -1933,19 +2146,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$3(View view) {
-            StoriesController.UploadingStory uploadingStory = PeerStoriesView.this.currentStory.uploadingStory;
-            if (uploadingStory != null) {
-                uploadingStory.cancel();
-                PeerStoriesView.this.updateStoryItems();
-            }
-            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
-            if (customPopupMenu != null) {
-                customPopupMenu.dismiss();
-            }
-        }
-
-        public void lambda$onCreate$30(View view) {
+        public void lambda$onCreate$36(View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1954,7 +2155,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$31(View view) {
+        public void lambda$onCreate$37(View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1963,7 +2164,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$32(View view) {
+        public void lambda$onCreate$38(View view) {
             PeerStoriesView.this.saveToGallery();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -1971,24 +2172,24 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$33(StoryViewer storyViewer) {
+        public void lambda$onCreate$39(StoryViewer storyViewer) {
             PeerStoriesView.this.delegate.showDialog(new PremiumFeatureBottomSheet(storyViewer.fragment, 14, false));
         }
 
-        public void lambda$onCreate$34(ActionBarMenuSubItem actionBarMenuSubItem, final StoryViewer storyViewer, View view) {
+        public void lambda$onCreate$40(ActionBarMenuSubItem actionBarMenuSubItem, final StoryViewer storyViewer, View view) {
             actionBarMenuSubItem.performHapticFeedback(3);
             BulletinFactory global = BulletinFactory.global();
             if (global != null) {
                 global.createSimpleBulletin(R.raw.ic_save_to_gallery, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SaveStoryToGalleryPremiumHint), new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.this.lambda$onCreate$33(storyViewer);
+                        PeerStoriesView.AnonymousClass8.this.lambda$onCreate$39(storyViewer);
                     }
                 })).show();
             }
         }
 
-        public void lambda$onCreate$35(View view) {
+        public void lambda$onCreate$41(View view) {
             AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
             PeerStoriesView.this.onLinkCopied();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1997,7 +2198,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$36(View view) {
+        public void lambda$onCreate$42(View view) {
             PeerStoriesView.this.shareStory(false);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -2005,7 +2206,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$37(View view) {
+        public void lambda$onCreate$43(View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.currentStory.storyItem.translated = false;
             StoriesStorage storiesStorage = MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().getStoriesStorage();
@@ -2019,7 +2220,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$38() {
+        public void lambda$onCreate$44() {
             Delegate delegate = PeerStoriesView.this.delegate;
             if (delegate != null) {
                 delegate.setTranslating(false);
@@ -2030,19 +2231,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             peerStoriesView.storyCaptionView.expand(true);
         }
 
-        public static void lambda$onCreate$39(Runnable runnable, long j) {
+        public static void lambda$onCreate$45(Runnable runnable, long j) {
             AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 500 - (System.currentTimeMillis() - j)));
         }
 
-        public void lambda$onCreate$4(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories.StoryItem storyItem, View view) {
-            PeerStoriesView.this.editPrivacy(storyPrivacy, storyItem);
-            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
-            if (customPopupMenu != null) {
-                customPopupMenu.dismiss();
-            }
-        }
-
-        public void lambda$onCreate$40(View view) {
+        public void lambda$onCreate$46(View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.currentStory.storyItem.translated = true;
             peerStoriesView.cancelTextSelection();
@@ -2057,13 +2250,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$38();
+                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$44();
                 }
             };
             MessagesController.getInstance(PeerStoriesView.this.currentAccount).getTranslateController().translateStory(PeerStoriesView.this.currentStory.storyItem, new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$39(runnable, currentTimeMillis);
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$45(runnable, currentTimeMillis);
                 }
             });
             PeerStoriesView.this.updatePosition();
@@ -2076,13 +2269,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public static void lambda$onCreate$41(StoryViewer storyViewer, Boolean bool) {
+        public static void lambda$onCreate$47(StoryViewer storyViewer, Boolean bool) {
             if (storyViewer != null) {
                 storyViewer.setOverlayVisible(false);
             }
         }
 
-        public void lambda$onCreate$42(final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
+        public void lambda$onCreate$48(final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
             if (storyViewer != null) {
                 storyViewer.setOverlayVisible(true);
             }
@@ -2092,7 +2285,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             ReportBottomSheet.openStory(i, context, peerStoriesView.currentStory.storyItem, BulletinFactory.of(peerStoriesView.storyContainer, resourcesProvider), resourcesProvider, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$41(StoryViewer.this, (Boolean) obj);
+                    PeerStoriesView.AnonymousClass8.lambda$onCreate$47(StoryViewer.this, (Boolean) obj);
                 }
             });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2101,7 +2294,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$43(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
+        public void lambda$onCreate$49(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
             Delegate delegate;
             EmojiPacksAlert alert = storyContainsEmojiButton.getAlert();
             if (alert == null || (delegate = PeerStoriesView.this.delegate) == null) {
@@ -2111,102 +2304,19 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView.this.popupMenu.dismiss();
         }
 
-        public void lambda$onCreate$5() {
-            PeerStoriesView peerStoriesView = PeerStoriesView.this;
-            peerStoriesView.editOpened = true;
-            peerStoriesView.setActive(false);
-        }
-
-        public static void lambda$onCreate$6(Runnable runnable) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            AndroidUtilities.runOnUIThread(runnable);
-        }
-
-        public static void lambda$onCreate$7(Runnable runnable, long j) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
-        }
-
-        public void lambda$onCreate$8(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
-            final long currentTimeMillis = System.currentTimeMillis();
-            PeerStoriesView peerStoriesView = PeerStoriesView.this;
-            VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
-            StoryViewer.VideoPlayerHolder videoPlayerHolder = videoPlayerSharedScope.player;
-            if (videoPlayerHolder == null) {
-                peerStoriesView.delegate.setPopupIsVisible(false);
-                PeerStoriesView.this.setActive(true);
-                PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
-                peerStoriesView2.editOpened = false;
-                peerStoriesView2.onImageReceiverThumbLoaded = new Runnable() {
-                    @Override
-                    public final void run() {
-                        PeerStoriesView.AnonymousClass8.lambda$onCreate$6(runnable);
-                    }
-                };
-                if (bool.booleanValue()) {
-                    PeerStoriesView.this.updatePosition();
-                }
-                AndroidUtilities.runOnUIThread(runnable, 400L);
-                return;
+        public void lambda$onCreate$9(View view) {
+            StoriesController.UploadingStory uploadingStory = PeerStoriesView.this.currentStory.uploadingStory;
+            if (uploadingStory != null) {
+                uploadingStory.cancel();
+                PeerStoriesView.this.updateStoryItems();
             }
-            videoPlayerHolder.firstFrameRendered = false;
-            videoPlayerSharedScope.firstFrameRendered = false;
-            videoPlayerHolder.setOnReadyListener(new Runnable() {
-                @Override
-                public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$7(runnable, currentTimeMillis);
-                }
-            });
-            PeerStoriesView.this.delegate.setPopupIsVisible(false);
-            if (PeerStoriesView.this.muteIconView != null) {
-                PeerStoriesView.this.muteIconView.setAnimation(sharedResources.muteDrawable);
-            }
-            PeerStoriesView.this.setActive(((PeerStoriesView.this.videoDuration <= 0 || l.longValue() <= PeerStoriesView.this.videoDuration - 1400) ? l : 0L).longValue(), true);
-            PeerStoriesView.this.editOpened = false;
-            AndroidUtilities.runOnUIThread(runnable, 400L);
-            if (bool.booleanValue()) {
-                PeerStoriesView.this.updatePosition();
+            CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
+            if (customPopupMenu != null) {
+                customPopupMenu.dismiss();
             }
         }
 
-        public void lambda$onCreate$9(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) {
-            File file;
-            StoryViewer.VideoPlayerHolder videoPlayerHolder;
-            StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
-            VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
-            long j = (videoPlayerSharedScope == null || (videoPlayerHolder = videoPlayerSharedScope.player) == null) ? 0L : videoPlayerHolder.currentPosition;
-            DraftsController draftsController = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController().getDraftsController();
-            TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
-            StoryEntry forEdit = draftsController.getForEdit(storyItem.dialogId, storyItem);
-            if (forEdit == null || forEdit.isRepostMessage || (file = forEdit.file) == null || !file.exists()) {
-                forEdit = StoryEntry.fromStoryItem(PeerStoriesView.this.currentStory.getPath(), PeerStoriesView.this.currentStory.storyItem);
-                forEdit.editStoryPeerId = PeerStoriesView.this.dialogId;
-            }
-            StoryEntry copy = forEdit.copy();
-            if (PeerStoriesView.this.isBotsPreview()) {
-                copy.botId = PeerStoriesView.this.dialogId;
-                copy.editingBotPreview = MessagesController.toInputMedia(PeerStoriesView.this.currentStory.storyItem.media);
-                StoriesController.StoriesList storiesList = storyViewer.storiesList;
-                if (storiesList instanceof StoriesController.BotPreviewsList) {
-                    copy.botLang = ((StoriesController.BotPreviewsList) storiesList).lang_code;
-                }
-            }
-            storyRecorder.openEdit(StoryRecorder.SourceView.fromStoryViewer(storyViewer), copy, j, true);
-            storyRecorder.setOnFullyOpenListener(new Runnable() {
-                @Override
-                public final void run() {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$5();
-                }
-            });
-            storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
-                @Override
-                public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                    PeerStoriesView.AnonymousClass8.this.lambda$onCreate$8(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
-                }
-            });
-        }
-
-        public void lambda$onDismissed$44() {
+        public void lambda$onDismissed$50() {
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
         }
 
@@ -2221,7 +2331,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.this.lambda$onDismissed$44();
+                        PeerStoriesView.AnonymousClass8.this.lambda$onDismissed$50();
                     }
                 });
             }
@@ -4718,9 +4828,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().load();
         }
         boolean z = this.isSelf || MessagesController.getInstance(this.currentAccount).getStoriesController().canEditStory(this.currentStory.storyItem);
-        boolean z2 = this.isSelf || ((this.isChannel || isBotsPreview()) && z);
-        boolean z3 = this.currentStory.isVideo;
-        AnonymousClass8 anonymousClass8 = new AnonymousClass8(getContext(), resourcesProvider, z3, resourcesProvider, storyViewer, z3, z2, z, context, sharedResources, zArr);
+        AnonymousClass8 anonymousClass8 = new AnonymousClass8(getContext(), resourcesProvider, true, resourcesProvider, storyViewer, this.currentStory.isVideo, this.isSelf || ((this.isChannel || isBotsPreview()) && z), z, context, sharedResources, zArr);
         this.popupMenu = anonymousClass8;
         anonymousClass8.show(this.optionsIconView, 0, (-ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(6.0f));
     }
@@ -6034,6 +6142,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public int getSelectedPosition() {
         return this.selectedPosition;
+    }
+
+    public StoriesController getStoriesController() {
+        return MessagesController.getInstance(this.currentAccount).getStoriesController();
     }
 
     public int getStoriesCount() {

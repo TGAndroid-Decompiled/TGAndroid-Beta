@@ -32,39 +32,7 @@ import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_stories;
 
 public class TLRPC {
-    public static final int FLAG_0 = 1;
-    public static final int FLAG_1 = 2;
-    public static final int FLAG_10 = 1024;
-    public static final int FLAG_11 = 2048;
-    public static final int FLAG_12 = 4096;
-    public static final int FLAG_13 = 8192;
-    public static final int FLAG_14 = 16384;
-    public static final int FLAG_15 = 32768;
-    public static final int FLAG_16 = 65536;
-    public static final int FLAG_17 = 131072;
-    public static final int FLAG_18 = 262144;
-    public static final int FLAG_19 = 524288;
-    public static final int FLAG_2 = 4;
-    public static final int FLAG_20 = 1048576;
-    public static final int FLAG_21 = 2097152;
-    public static final int FLAG_22 = 4194304;
-    public static final int FLAG_23 = 8388608;
-    public static final int FLAG_24 = 16777216;
-    public static final int FLAG_25 = 33554432;
-    public static final int FLAG_26 = 67108864;
-    public static final int FLAG_27 = 134217728;
-    public static final int FLAG_28 = 268435456;
-    public static final int FLAG_29 = 536870912;
-    public static final int FLAG_3 = 8;
-    public static final int FLAG_30 = 1073741824;
-    public static final int FLAG_31 = Integer.MIN_VALUE;
-    public static final int FLAG_4 = 16;
-    public static final int FLAG_5 = 32;
-    public static final int FLAG_6 = 64;
-    public static final int FLAG_7 = 128;
-    public static final int FLAG_8 = 256;
-    public static final int FLAG_9 = 512;
-    public static final int LAYER = 210;
+    public static final int LAYER = 211;
     public static final int MESSAGE_FLAG_EDITED = 32768;
     public static final int MESSAGE_FLAG_FWD = 4;
     public static final int MESSAGE_FLAG_HAS_BOT_ID = 2048;
@@ -458,6 +426,9 @@ public class TLRPC {
                     break;
                 case 648939889:
                     tL_channelAdminLogEventActionStopPoll = new TL_channelAdminLogEventActionToggleSignatures();
+                    break;
+                case 663693416:
+                    tL_channelAdminLogEventActionStopPoll = new TL_channelAdminLogEventActionSendMessage();
                     break;
                 case 771095562:
                     tL_channelAdminLogEventActionStopPoll = new TL_channelAdminLogEventActionDefaultBannedRights();
@@ -2757,6 +2728,9 @@ public class TLRPC {
                 case -1020867857:
                     tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceSlug();
                     break;
+                case -1012968668:
+                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftResale();
+                    break;
                 case -977967015:
                     tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceMessage();
                     break;
@@ -2774,9 +2748,6 @@ public class TLRPC {
                     break;
                 case 1300335965:
                     tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftUpgrade();
-                    break;
-                case 1674298252:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftResale();
                     break;
                 case 1710230755:
                     tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStars();
@@ -2824,73 +2795,79 @@ public class TLRPC {
         public ArrayList<DocumentAttribute> attributes = new ArrayList<>();
 
         public static InputMedia TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            InputMedia tL_inputMediaEmpty;
+            InputMedia tL_inputMediaStory;
             switch (i) {
+                case -1979852936:
+                    tL_inputMediaStory = new TL_inputMediaStory();
+                    break;
                 case -1771768449:
-                    tL_inputMediaEmpty = new TL_inputMediaEmpty();
+                    tL_inputMediaStory = new TL_inputMediaEmpty();
                     break;
                 case -1759532989:
-                    tL_inputMediaEmpty = new TL_inputMediaGeoLive();
+                    tL_inputMediaStory = new TL_inputMediaGeoLive();
                     break;
                 case -1614454818:
-                    tL_inputMediaEmpty = new TL_inputMediaTodo();
+                    tL_inputMediaStory = new TL_inputMediaTodo();
                     break;
                 case -1468646731:
-                    tL_inputMediaEmpty = new TL_inputMediaDocument();
+                    tL_inputMediaStory = new TL_inputMediaDocument();
                     break;
                 case -1436147773:
-                    tL_inputMediaEmpty = new TL_inputMediaPaidMedia_layer186();
+                    tL_inputMediaStory = new TL_inputMediaPaidMedia_layer186();
                     break;
                 case -1279654347:
-                    tL_inputMediaEmpty = new TL_inputMediaPhoto();
+                    tL_inputMediaStory = new TL_inputMediaPhoto();
                     break;
                 case -1052959727:
-                    tL_inputMediaEmpty = new TL_inputMediaVenue();
+                    tL_inputMediaStory = new TL_inputMediaVenue();
                     break;
                 case -1038383031:
-                    tL_inputMediaEmpty = new TL_inputMediaWebPage();
+                    tL_inputMediaStory = new TL_inputMediaWebPage();
                     break;
                 case -1005571194:
-                    tL_inputMediaEmpty = new TL_inputMediaPaidMedia();
+                    tL_inputMediaStory = new TL_inputMediaPaidMedia();
                     break;
                 case -750828557:
-                    tL_inputMediaEmpty = new TL_inputMediaGame();
+                    tL_inputMediaStory = new TL_inputMediaGame();
                     break;
                 case -440664550:
-                    tL_inputMediaEmpty = new TL_inputMediaPhotoExternal();
+                    tL_inputMediaStory = new TL_inputMediaPhotoExternal();
                     break;
                 case -428884101:
-                    tL_inputMediaEmpty = new TL_inputMediaDice();
+                    tL_inputMediaStory = new TL_inputMediaDice();
                     break;
                 case -122978821:
-                    tL_inputMediaEmpty = new TL_inputMediaContact();
+                    tL_inputMediaStory = new TL_inputMediaContact();
                     break;
                 case -104578748:
-                    tL_inputMediaEmpty = new TL_inputMediaGeoPoint();
+                    tL_inputMediaStory = new TL_inputMediaGeoPoint();
                     break;
                 case 58495792:
-                    tL_inputMediaEmpty = new TL_inputMediaUploadedDocument();
+                    tL_inputMediaStory = new TL_inputMediaUploadedDocument();
                     break;
                 case 261416433:
-                    tL_inputMediaEmpty = new TL_inputMediaPoll();
+                    tL_inputMediaStory = new TL_inputMediaPoll();
                     break;
                 case 505969924:
-                    tL_inputMediaEmpty = new TL_inputMediaUploadedPhoto();
+                    tL_inputMediaStory = new TL_inputMediaUploadedPhoto();
+                    break;
+                case 1080028941:
+                    tL_inputMediaStory = new TL_inputMediaInvoice();
                     break;
                 case 2006319353:
-                    tL_inputMediaEmpty = new TL_inputMediaDocumentExternal();
+                    tL_inputMediaStory = new TL_inputMediaDocumentExternal();
                     break;
                 default:
-                    tL_inputMediaEmpty = null;
+                    tL_inputMediaStory = null;
                     break;
             }
-            if (tL_inputMediaEmpty == null && z) {
+            if (tL_inputMediaStory == null && z) {
                 throw new RuntimeException(String.format("can't parse magic %x in InputMedia", Integer.valueOf(i)));
             }
-            if (tL_inputMediaEmpty != null) {
-                tL_inputMediaEmpty.readParams(inputSerializedData, z);
+            if (tL_inputMediaStory != null) {
+                tL_inputMediaStory.readParams(inputSerializedData, z);
             }
-            return tL_inputMediaEmpty;
+            return tL_inputMediaStory;
         }
     }
 
@@ -3228,6 +3205,9 @@ public class TLRPC {
                 case 1232373075:
                     tL_inputStickerSetShortName = new TL_inputStickerSetEmojiChannelDefaultStatuses();
                     break;
+                case 2044861011:
+                    tL_inputStickerSetShortName = new TL_inputStickerSetDice_layer111();
+                    break;
                 default:
                     tL_inputStickerSetShortName = null;
                     break;
@@ -3315,14 +3295,37 @@ public class TLRPC {
         public long user_id;
 
         public static InputUser TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            InputUser tL_inputUserFromMessage = i != -1182234929 ? i != -233744186 ? i != -138301121 ? i != 497305826 ? null : new TL_inputUserFromMessage() : new TL_inputUserSelf() : new TL_inputUser() : new TL_inputUserEmpty();
-            if (tL_inputUserFromMessage == null && z) {
+            InputUser tL_inputUserEmpty;
+            switch (i) {
+                case -1182234929:
+                    tL_inputUserEmpty = new TL_inputUserEmpty();
+                    break;
+                case -668391402:
+                    tL_inputUserEmpty = new TL_inputUser_layer132();
+                    break;
+                case -233744186:
+                    tL_inputUserEmpty = new TL_inputUser();
+                    break;
+                case -138301121:
+                    tL_inputUserEmpty = new TL_inputUserSelf();
+                    break;
+                case 497305826:
+                    tL_inputUserEmpty = new TL_inputUserFromMessage();
+                    break;
+                case 756118935:
+                    tL_inputUserEmpty = new TL_inputUserFromMessage_layer132();
+                    break;
+                default:
+                    tL_inputUserEmpty = null;
+                    break;
+            }
+            if (tL_inputUserEmpty == null && z) {
                 throw new RuntimeException(String.format("can't parse magic %x in InputUser", Integer.valueOf(i)));
             }
-            if (tL_inputUserFromMessage != null) {
-                tL_inputUserFromMessage.readParams(inputSerializedData, z);
+            if (tL_inputUserEmpty != null) {
+                tL_inputUserEmpty.readParams(inputSerializedData, z);
             }
-            return tL_inputUserFromMessage;
+            return tL_inputUserEmpty;
         }
     }
 
@@ -3749,6 +3752,9 @@ public class TLRPC {
         protected void writeAttachPath(OutputSerializedData outputSerializedData) {
             HashMap<String, String> hashMap;
             HashMap<String, String> hashMap2;
+            if (ApplicationLoader.isAndroidTestEnvironment()) {
+                return;
+            }
             if ((this instanceof TL_message_secret) || (this instanceof TL_message_secret_layer72)) {
                 String str = this.attachPath;
                 if (str == null) {
@@ -3768,8 +3774,8 @@ public class TLRPC {
                 if (this.params == null) {
                     this.params = new HashMap<>();
                 }
-                this.layer = 210;
-                this.params.put("legacy_layer", "210");
+                this.layer = 211;
+                this.params.put("legacy_layer", "211");
             }
             if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
                 for (Map.Entry<String, String> entry2 : this.params.entrySet()) {
@@ -4007,7 +4013,7 @@ public class TLRPC {
                     tL_messageActionPhoneCall = new TL_messageActionGiveawayResults_layer186();
                     break;
                 case 775611918:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique();
+                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique_layer210();
                     break;
                 case 805187450:
                     tL_messageActionPhoneCall = new TL_messageActionConferenceCall();
@@ -4017,6 +4023,9 @@ public class TLRPC {
                     break;
                 case 858499565:
                     tL_messageActionPhoneCall = new TL_messageActionGiveawayLaunch_layer186();
+                    break;
+                case 888627955:
+                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique();
                     break;
                 case 1007897979:
                     tL_messageActionPhoneCall = new TL_messageActionSetMessagesTTL();
@@ -4643,6 +4652,9 @@ public class TLRPC {
                 case -677274263:
                     tL_pagePart_layer67 = new TL_pageFull_layer67();
                     break;
+                case -241590104:
+                    tL_pagePart_layer67 = new TL_page_layer88();
+                    break;
                 case 1433323434:
                     tL_pagePart_layer67 = new TL_pageFull_layer82();
                     break;
@@ -4845,7 +4857,6 @@ public class TLRPC {
     }
 
     public static class PaymentForm extends TLObject {
-        public static final int constructor = -1610250415;
         public long bot_id;
         public boolean can_save_credentials;
         public String description;
@@ -4877,7 +4888,6 @@ public class TLRPC {
     }
 
     public static class PaymentReceipt extends TLObject {
-        public static final int constructor = 1891958275;
         public long bot_id;
         public String credentials_title;
         public String currency;
@@ -5254,6 +5264,10 @@ public class TLRPC {
             }
             return tL_photoPathSize;
         }
+
+        public static PhotoSize TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLdeserialize(0L, 0L, 0L, inputSerializedData, i, z);
+        }
     }
 
     public static abstract class Poll extends TLObject {
@@ -5281,7 +5295,6 @@ public class TLRPC {
     }
 
     public static class PollAnswer extends TLObject {
-        public static final int constructor = 1823064809;
         public byte[] option;
         public TL_textWithEntities text = new TL_textWithEntities();
 
@@ -5584,6 +5597,9 @@ public class TLRPC {
                 case -1685456582:
                     tL_inputReportReasonCopyright = new TL_inputReportReasonCopyright();
                     break;
+                case -1631091139:
+                    tL_inputReportReasonCopyright = new TL_inputReportReasonPersonalDetails();
+                    break;
                 case -1376497949:
                     tL_inputReportReasonCopyright = new TL_inputReportReasonChildAbuse();
                     break;
@@ -5595,6 +5611,9 @@ public class TLRPC {
                     break;
                 case -170010905:
                     tL_inputReportReasonCopyright = new TL_inputReportReasonFake();
+                    break;
+                case 177124030:
+                    tL_inputReportReasonCopyright = new TL_inputReportReasonIllegalDrugs();
                     break;
                 case 505595789:
                     tL_inputReportReasonCopyright = new TL_inputReportReasonViolence();
@@ -5740,6 +5759,55 @@ public class TLRPC {
                 tL_textStrike.readParams(inputSerializedData, z);
             }
             return tL_textStrike;
+        }
+    }
+
+    public static class SearchPostsFlood extends TLObject {
+        public static final int constructor = 1040931690;
+        public int flags;
+        public boolean query_is_free;
+        public int remains;
+        public long stars_amount;
+        public int total_daily;
+        public int wait_till;
+
+        public static SearchPostsFlood TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (i != 1040931690) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in SearchPostsFlood", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            SearchPostsFlood searchPostsFlood = new SearchPostsFlood();
+            searchPostsFlood.readParams(inputSerializedData, z);
+            return searchPostsFlood;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.query_is_free = (readInt32 & 1) != 0;
+            this.total_daily = inputSerializedData.readInt32(z);
+            this.remains = inputSerializedData.readInt32(z);
+            if ((this.flags & 2) != 0) {
+                this.wait_till = inputSerializedData.readInt32(z);
+            }
+            this.stars_amount = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1040931690);
+            int i = this.query_is_free ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            outputSerializedData.writeInt32(i);
+            outputSerializedData.writeInt32(this.total_daily);
+            outputSerializedData.writeInt32(this.remains);
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeInt32(this.wait_till);
+            }
+            outputSerializedData.writeInt64(this.stars_amount);
         }
     }
 
@@ -5927,6 +5995,9 @@ public class TLRPC {
                 case -1234857938:
                     tL_sendMessageRecordRoundAction = new TL_sendMessageEmojiInteractionSeen();
                     break;
+                case -1150187996:
+                    tL_sendMessageRecordRoundAction = new TL_sendMessageUploadRoundAction_layer66();
+                    break;
                 case -774682074:
                     tL_sendMessageRecordRoundAction = new TL_sendMessageUploadPhotoAction();
                     break;
@@ -6108,12 +6179,12 @@ public class TLRPC {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
-            this.accepted = TLRPC.hasFlag(readInt32, 2);
-            this.rejected = TLRPC.hasFlag(this.flags, 4);
-            if (TLRPC.hasFlag(this.flags, 8)) {
+            this.accepted = TLObject.hasFlag(readInt32, 2);
+            this.rejected = TLObject.hasFlag(this.flags, 4);
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.price = TL_stars.StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if (TLRPC.hasFlag(this.flags, 1)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.schedule_date = inputSerializedData.readInt32(z);
             }
         }
@@ -6121,17 +6192,17 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(244201445);
-            int flag = TLRPC.setFlag(this.flags, 2, this.accepted);
+            int flag = TLObject.setFlag(this.flags, 2, this.accepted);
             this.flags = flag;
-            int flag2 = TLRPC.setFlag(flag, 4, this.rejected);
+            int flag2 = TLObject.setFlag(flag, 4, this.rejected);
             this.flags = flag2;
-            int flag3 = TLRPC.setFlag(flag2, 8, this.price != null);
+            int flag3 = TLObject.setFlag(flag2, 8, this.price != null);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            if (TLRPC.hasFlag(this.flags, 8)) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.price.serializeToStream(outputSerializedData);
             }
-            if (TLRPC.hasFlag(this.flags, 1)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.schedule_date);
             }
         }
@@ -6219,7 +6290,9 @@ public class TLRPC {
             this.side_menu_disclaimer_needed = (readInt32 & 32) != 0;
             this.bot_id = inputSerializedData.readInt64(z);
             this.short_name = inputSerializedData.readString(z);
-            this.peer_types = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBot$$ExternalSyntheticLambda0(), z);
+            if ((this.flags & 8) != 0) {
+                this.peer_types = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBot$$ExternalSyntheticLambda0(), z);
+            }
             this.icons = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBot$$ExternalSyntheticLambda1(), z);
         }
 
@@ -6241,7 +6314,9 @@ public class TLRPC {
             outputSerializedData.writeInt32(i6);
             outputSerializedData.writeInt64(this.bot_id);
             outputSerializedData.writeString(this.short_name);
-            Vector.serialize(outputSerializedData, this.peer_types);
+            if ((this.flags & 8) != 0) {
+                Vector.serialize(outputSerializedData, this.peer_types);
+            }
             Vector.serialize(outputSerializedData, this.icons);
         }
     }
@@ -7378,6 +7453,7 @@ public class TLRPC {
                 outputSerializedData.writeByteArray(this.nonce);
             }
             if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt64(this.play_integrity_project_id);
                 outputSerializedData.writeByteArray(this.play_integrity_nonce);
             }
             if ((this.flags & 2) != 0) {
@@ -8425,7 +8501,7 @@ public class TLRPC {
             outputSerializedData.writeInt32(-2137335386);
             int i = this.invert_media ? this.flags | 8 : this.flags & (-9);
             this.flags = i;
-            int i2 = this.force_large_media ? i | 8 : i & (-17);
+            int i2 = this.force_large_media ? i | 16 : i & (-17);
             this.flags = i2;
             int i3 = this.force_small_media ? i2 | 32 : i2 & (-33);
             this.flags = i3;
@@ -10307,7 +10383,7 @@ public class TLRPC {
             if ((this.flags2 & 262144) != 0) {
                 this.stargifts_count = inputSerializedData.readInt32(z);
             }
-            if (TLRPC.hasFlag(this.flags2, 2097152)) {
+            if (TLObject.hasFlag(this.flags2, 2097152)) {
                 this.send_paid_messages_stars = inputSerializedData.readInt64(z);
             }
         }
@@ -10470,7 +10546,7 @@ public class TLRPC {
             if ((this.flags2 & 262144) != 0) {
                 outputSerializedData.writeInt32(this.stargifts_count);
             }
-            if (TLRPC.hasFlag(this.flags2, 2097152)) {
+            if (TLObject.hasFlag(this.flags2, 2097152)) {
                 outputSerializedData.writeInt64(this.send_paid_messages_stars);
             }
         }
@@ -19622,6 +19698,26 @@ public class TLRPC {
         }
     }
 
+    public static class TL_channels_checkSearchPostsFlood extends TLObject {
+        public static final int constructor = 576090389;
+        public int flags;
+        public String query;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return SearchPostsFlood.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(576090389);
+            outputSerializedData.writeInt32(this.flags);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeString(this.query);
+            }
+        }
+    }
+
     public static class TL_channels_checkUsername extends TLObject {
         public static final int constructor = 283557164;
         public InputChannel channel;
@@ -20506,12 +20602,15 @@ public class TLRPC {
     }
 
     public static class TL_channels_searchPosts extends TLObject {
-        public static final int constructor = -778069893;
+        public static final int constructor = -221973939;
+        public long allow_paid_stars;
+        public int flags;
         public String hashtag;
         public int limit;
         public int offset_id;
         public InputPeer offset_peer;
         public int offset_rate;
+        public String query;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
@@ -20520,12 +20619,21 @@ public class TLRPC {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-778069893);
-            outputSerializedData.writeString(this.hashtag);
+            outputSerializedData.writeInt32(-221973939);
+            outputSerializedData.writeInt32(this.flags);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeString(this.hashtag);
+            }
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeString(this.query);
+            }
             outputSerializedData.writeInt32(this.offset_rate);
             this.offset_peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.offset_id);
             outputSerializedData.writeInt32(this.limit);
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt64(this.allow_paid_stars);
+            }
         }
     }
 
@@ -21110,7 +21218,7 @@ public class TLRPC {
             this.post_stories = (readInt32 & 16384) != 0;
             this.edit_stories = (32768 & readInt32) != 0;
             this.delete_stories = (65536 & readInt32) != 0;
-            this.manage_direct_messages = TLRPC.hasFlag(readInt32, 131072);
+            this.manage_direct_messages = TLObject.hasFlag(readInt32, 131072);
         }
 
         @Override
@@ -21146,7 +21254,7 @@ public class TLRPC {
             this.flags = i14;
             int i15 = this.delete_stories ? i14 | 65536 : i14 & (-65537);
             this.flags = i15;
-            int flag = TLRPC.setFlag(i15, 131072, this.manage_direct_messages);
+            int flag = TLObject.setFlag(i15, 131072, this.manage_direct_messages);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
         }
@@ -21274,66 +21382,70 @@ public class TLRPC {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            int i;
             outputSerializedData.writeInt32(-1626209256);
-            boolean z = this.send_photos;
-            if (z && this.send_videos && this.send_roundvideos && this.send_audios && this.send_voices && this.send_docs) {
-                this.send_media = true;
+            if (ApplicationLoader.isAndroidTestEnvironment()) {
+                i = this.flags;
             } else {
-                this.send_media = false;
+                boolean z = this.send_photos;
+                if (z && this.send_videos && this.send_roundvideos && this.send_audios && this.send_voices && this.send_docs) {
+                    this.send_media = true;
+                } else {
+                    this.send_media = false;
+                }
+                boolean z2 = this.send_plain;
+                if (z2 && this.send_media && this.send_stickers) {
+                    this.send_messages = true;
+                } else {
+                    this.send_messages = false;
+                }
+                int i2 = this.view_messages ? this.flags | 1 : this.flags & (-2);
+                this.flags = i2;
+                int i3 = this.send_messages ? i2 | 2 : i2 & (-3);
+                this.flags = i3;
+                int i4 = this.send_media ? i3 | 4 : i3 & (-5);
+                this.flags = i4;
+                int i5 = this.send_stickers ? i4 | 8 : i4 & (-9);
+                this.flags = i5;
+                int i6 = this.send_gifs ? i5 | 16 : i5 & (-17);
+                this.flags = i6;
+                int i7 = this.send_games ? i6 | 32 : i6 & (-33);
+                this.flags = i7;
+                int i8 = this.send_inline ? i7 | 64 : i7 & (-65);
+                this.flags = i8;
+                int i9 = this.embed_links ? i8 | 128 : i8 & (-129);
+                this.flags = i9;
+                int i10 = this.send_polls ? i9 | 256 : i9 & (-257);
+                this.flags = i10;
+                int i11 = this.change_info ? i10 | 1024 : i10 & (-1025);
+                this.flags = i11;
+                int i12 = this.invite_users ? i11 | 32768 : i11 & (-32769);
+                this.flags = i12;
+                int i13 = this.pin_messages ? i12 | 131072 : i12 & (-131073);
+                this.flags = i13;
+                int i14 = this.manage_topics ? i13 | 262144 : i13 & (-262145);
+                this.flags = i14;
+                int i15 = z ? 524288 | i14 : (-524289) & i14;
+                this.flags = i15;
+                int i16 = this.send_videos ? i15 | 1048576 : i15 & (-1048577);
+                this.flags = i16;
+                int i17 = this.send_roundvideos ? i16 | 2097152 : i16 & (-2097153);
+                this.flags = i17;
+                int i18 = this.send_audios ? i17 | 4194304 : i17 & (-4194305);
+                this.flags = i18;
+                int i19 = this.send_voices ? i18 | 8388608 : i18 & (-8388609);
+                this.flags = i19;
+                int i20 = this.send_docs ? i19 | 16777216 : i19 & (-16777217);
+                this.flags = i20;
+                i = z2 ? i20 | 33554432 : i20 & (-33554433);
+                this.flags = i;
             }
-            boolean z2 = this.send_plain;
-            if (z2 && this.send_media && this.send_stickers) {
-                this.send_messages = true;
-            } else {
-                this.send_messages = false;
-            }
-            int i = this.view_messages ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.send_messages ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.send_media ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.send_stickers ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int i5 = this.send_gifs ? i4 | 16 : i4 & (-17);
-            this.flags = i5;
-            int i6 = this.send_games ? i5 | 32 : i5 & (-33);
-            this.flags = i6;
-            int i7 = this.send_inline ? i6 | 64 : i6 & (-65);
-            this.flags = i7;
-            int i8 = this.embed_links ? i7 | 128 : i7 & (-129);
-            this.flags = i8;
-            int i9 = this.send_polls ? i8 | 256 : i8 & (-257);
-            this.flags = i9;
-            int i10 = this.change_info ? i9 | 1024 : i9 & (-1025);
-            this.flags = i10;
-            int i11 = this.invite_users ? i10 | 32768 : i10 & (-32769);
-            this.flags = i11;
-            int i12 = this.pin_messages ? i11 | 131072 : i11 & (-131073);
-            this.flags = i12;
-            int i13 = this.manage_topics ? i12 | 262144 : i12 & (-262145);
-            this.flags = i13;
-            int i14 = z ? 524288 | i13 : (-524289) & i13;
-            this.flags = i14;
-            int i15 = this.send_videos ? i14 | 1048576 : i14 & (-1048577);
-            this.flags = i15;
-            int i16 = this.send_roundvideos ? i15 | 2097152 : i15 & (-2097153);
-            this.flags = i16;
-            int i17 = this.send_audios ? i16 | 4194304 : i16 & (-4194305);
-            this.flags = i17;
-            int i18 = this.send_voices ? i17 | 8388608 : i17 & (-8388609);
-            this.flags = i18;
-            int i19 = this.send_docs ? i18 | 16777216 : i18 & (-16777217);
-            this.flags = i19;
-            int i20 = z2 ? i19 | 33554432 : i19 & (-33554433);
-            this.flags = i20;
-            outputSerializedData.writeInt32(i20);
+            outputSerializedData.writeInt32(i);
             outputSerializedData.writeInt32(this.until_date);
         }
     }
 
     public static class TL_chatChannelParticipant extends ChatParticipant {
-        public static final int constructor = -925415106;
         public ChannelParticipant channelParticipant;
     }
 
@@ -23837,8 +23949,8 @@ public class TLRPC {
             }
             if ((this.flags & 256) != 0) {
                 this.token = inputSerializedData.readString(z);
+                this.app_sandbox = inputSerializedData.readBool(z);
             }
-            this.app_sandbox = (this.flags & 256) != 0;
         }
 
         @Override
@@ -23854,21 +23966,20 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.allow_firebase ? i4 | 128 : i4 & (-129);
             this.flags = i5;
-            int i6 = this.app_sandbox ? i5 | 256 : i5 & (-257);
+            int i6 = this.unknown_number ? i5 | 512 : i5 & (-513);
             this.flags = i6;
-            int i7 = this.unknown_number ? i6 | 512 : i6 & (-513);
-            this.flags = i7;
-            outputSerializedData.writeInt32(i7);
+            outputSerializedData.writeInt32(i6);
             if ((this.flags & 64) != 0) {
                 outputSerializedData.writeInt32(481674261);
                 int size = this.logout_tokens.size();
                 outputSerializedData.writeInt32(size);
-                for (int i8 = 0; i8 < size; i8++) {
-                    outputSerializedData.writeByteArray(this.logout_tokens.get(i8));
+                for (int i7 = 0; i7 < size; i7++) {
+                    outputSerializedData.writeByteArray(this.logout_tokens.get(i7));
                 }
             }
             if ((this.flags & 256) != 0) {
                 outputSerializedData.writeString(this.token);
+                outputSerializedData.writeBool(this.app_sandbox);
             }
         }
     }
@@ -27283,7 +27394,7 @@ public class TLRPC {
             if ((this.flags & 128) != 0) {
                 this.effect = inputSerializedData.readInt64(z);
             }
-            if (TLRPC.hasFlag(this.flags, 256)) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.suggested_post = SuggestedPost.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -27295,7 +27406,7 @@ public class TLRPC {
             this.flags = i;
             int i2 = this.invert_media ? i | 64 : i & (-65);
             this.flags = i2;
-            int flag = TLRPC.setFlag(i2, 256, this.suggested_post != null);
+            int flag = TLObject.setFlag(i2, 256, this.suggested_post != null);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if ((this.flags & 16) != 0) {
@@ -27312,7 +27423,7 @@ public class TLRPC {
             if ((this.flags & 128) != 0) {
                 outputSerializedData.writeInt64(this.effect);
             }
-            if (TLRPC.hasFlag(this.flags, 256)) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.suggested_post.serializeToStream(outputSerializedData);
             }
         }
@@ -32025,19 +32136,22 @@ public class TLRPC {
     }
 
     public static class TL_inputInvoiceStarGiftResale extends InputInvoice {
-        public static final int constructor = 1674298252;
+        public static final int constructor = -1012968668;
         public String slug;
         public InputPeer to_id;
+        public boolean ton;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.ton = TLObject.hasFlag(inputSerializedData.readInt32(z), 1);
             this.slug = inputSerializedData.readString(z);
             this.to_id = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1674298252);
+            outputSerializedData.writeInt32(-1012968668);
+            outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.ton));
             outputSerializedData.writeString(this.slug);
             this.to_id.serializeToStream(outputSerializedData);
         }
@@ -32399,7 +32513,9 @@ public class TLRPC {
             }
             this.invoice.serializeToStream(outputSerializedData);
             outputSerializedData.writeByteArray(this.payload);
-            outputSerializedData.writeString(this.provider);
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeString(this.provider);
+            }
             this.provider_data.serializeToStream(outputSerializedData);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.start_param);
@@ -33792,7 +33908,7 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2036351472);
-            int flag = TLRPC.setFlag(this.flags, 32, this.monoforum_peer_id != null);
+            int flag = TLObject.setFlag(this.flags, 32, this.monoforum_peer_id != null);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt32(this.reply_to_msg_id);
@@ -33811,7 +33927,7 @@ public class TLRPC {
             if ((this.flags & 16) != 0) {
                 outputSerializedData.writeInt32(this.quote_offset);
             }
-            if (TLRPC.hasFlag(this.flags, 32)) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.monoforum_peer_id.serializeToStream(outputSerializedData);
             }
             if ((this.flags & 64) != 0) {
@@ -34162,6 +34278,19 @@ public class TLRPC {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-427863538);
             outputSerializedData.writeString(this.emoticon);
+        }
+    }
+
+    public static class TL_inputStickerSetDice_layer111 extends TL_inputStickerSetDice {
+        public static final int constructor = 2044861011;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2044861011);
         }
     }
 
@@ -34795,12 +34924,50 @@ public class TLRPC {
         }
     }
 
+    public static class TL_inputUserFromMessage_layer132 extends InputUser {
+        public static final int constructor = 756118935;
+        public int msg_id;
+        public InputPeer peer;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.msg_id = inputSerializedData.readInt32(z);
+            this.user_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(756118935);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.msg_id);
+            outputSerializedData.writeInt32((int) this.user_id);
+        }
+    }
+
     public static class TL_inputUserSelf extends InputUser {
         public static final int constructor = -138301121;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-138301121);
+        }
+    }
+
+    public static class TL_inputUser_layer132 extends InputUser {
+        public static final int constructor = -668391402;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.user_id = inputSerializedData.readInt32(z);
+            this.access_hash = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-668391402);
+            outputSerializedData.writeInt32((int) this.user_id);
+            outputSerializedData.writeInt64(this.access_hash);
         }
     }
 
@@ -36043,8 +36210,8 @@ public class TLRPC {
             this.flags2 = readInt322;
             this.offline = (readInt322 & 2) != 0;
             this.video_processing_pending = (readInt322 & 16) != 0;
-            this.paid_suggested_post_stars = TLRPC.hasFlag(readInt322, 256);
-            this.paid_suggested_post_ton = TLRPC.hasFlag(this.flags2, 512);
+            this.paid_suggested_post_stars = TLObject.hasFlag(readInt322, 256);
+            this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
             this.id = inputSerializedData.readInt32(z);
             if ((this.flags & 256) != 0) {
                 this.from_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -36128,7 +36295,7 @@ public class TLRPC {
             if ((this.flags2 & 64) != 0) {
                 this.paid_message_stars = inputSerializedData.readInt64(z);
             }
-            if (TLRPC.hasFlag(this.flags2, 128)) {
+            if (TLObject.hasFlag(this.flags2, 128)) {
                 this.suggested_post = SuggestedPost.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -36163,11 +36330,11 @@ public class TLRPC {
             this.flags2 = i12;
             int i13 = this.video_processing_pending ? i12 | 16 : i12 & (-17);
             this.flags2 = i13;
-            int flag = TLRPC.setFlag(i13, 128, this.suggested_post != null);
+            int flag = TLObject.setFlag(i13, 128, this.suggested_post != null);
             this.flags2 = flag;
-            int flag2 = TLRPC.setFlag(flag, 256, this.paid_suggested_post_stars);
+            int flag2 = TLObject.setFlag(flag, 256, this.paid_suggested_post_stars);
             this.flags2 = flag2;
-            int flag3 = TLRPC.setFlag(flag2, 512, this.paid_suggested_post_ton);
+            int flag3 = TLObject.setFlag(flag2, 512, this.paid_suggested_post_ton);
             this.flags2 = flag3;
             outputSerializedData.writeInt32(flag3);
             outputSerializedData.writeInt32(this.id);
@@ -36246,7 +36413,7 @@ public class TLRPC {
             if ((this.flags2 & 64) != 0) {
                 outputSerializedData.writeInt64(this.paid_message_stars);
             }
-            if (TLRPC.hasFlag(this.flags2, 128)) {
+            if (TLObject.hasFlag(this.flags2, 128)) {
                 this.suggested_post.serializeToStream(outputSerializedData);
             }
             writeAttachPath(outputSerializedData);
@@ -37023,7 +37190,7 @@ public class TLRPC {
             this.amount = inputSerializedData.readInt64(z);
             this.cryptoCurrency = inputSerializedData.readString(z);
             this.cryptoAmount = inputSerializedData.readInt64(z);
-            if (TLRPC.hasFlag(this.flags, 1)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.transaction_id = inputSerializedData.readString(z);
             }
         }
@@ -37036,7 +37203,7 @@ public class TLRPC {
             outputSerializedData.writeInt64(this.amount);
             outputSerializedData.writeString(this.cryptoCurrency);
             outputSerializedData.writeInt64(this.cryptoAmount);
-            if (TLRPC.hasFlag(this.flags, 1)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.transaction_id);
             }
         }
@@ -37068,6 +37235,10 @@ public class TLRPC {
 
     public static class TL_messageActionGiveawayLaunch_layer186 extends TL_messageActionGiveawayLaunch {
         public static final int constructor = 858499565;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
@@ -37862,7 +38033,7 @@ public class TLRPC {
     }
 
     public static class TL_messageActionStarGiftUnique extends MessageAction {
-        public static final int constructor = 775611918;
+        public static final int constructor = 888627955;
         public int can_export_at;
         public int can_resell_at;
         public int can_transfer_at;
@@ -37870,7 +38041,7 @@ public class TLRPC {
         public TL_stars.StarGift gift;
         public Peer peer;
         public boolean refunded;
-        public long resale_stars;
+        public TL_stars.StarsAmount resale_amount;
         public boolean saved;
         public long saved_id;
         public long transfer_stars;
@@ -37899,8 +38070,8 @@ public class TLRPC {
                 this.peer = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 256) != 0) {
-                this.resale_stars = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 256)) {
+                this.resale_amount = TL_stars.StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if ((this.flags & 512) != 0) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
@@ -37912,7 +38083,7 @@ public class TLRPC {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(775611918);
+            outputSerializedData.writeInt32(888627955);
             int i = this.upgrade ? this.flags | 1 : this.flags & (-2);
             this.flags = i;
             int i2 = this.transferred ? i | 2 : i & (-3);
@@ -37921,7 +38092,9 @@ public class TLRPC {
             this.flags = i3;
             int i4 = this.refunded ? i3 | 32 : i3 & (-33);
             this.flags = i4;
-            outputSerializedData.writeInt32(i4);
+            int flag = TLObject.setFlag(i4, 256, this.resale_amount != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.gift.serializeToStream(outputSerializedData);
             if ((this.flags & 8) != 0) {
                 outputSerializedData.writeInt32(this.can_export_at);
@@ -37936,8 +38109,8 @@ public class TLRPC {
                 this.peer.serializeToStream(outputSerializedData);
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 256) != 0) {
-                outputSerializedData.writeInt64(this.resale_stars);
+            if (TLObject.hasFlag(this.flags, 256)) {
+                this.resale_amount.serializeToStream(outputSerializedData);
             }
             if ((this.flags & 512) != 0) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
@@ -38059,6 +38232,93 @@ public class TLRPC {
             if ((this.flags & 128) != 0) {
                 this.peer.serializeToStream(outputSerializedData);
                 outputSerializedData.writeInt64(this.saved_id);
+            }
+        }
+    }
+
+    public static class TL_messageActionStarGiftUnique_layer210 extends TL_messageActionStarGiftUnique {
+        public static final int constructor = 775611918;
+        public int can_export_at;
+        public int can_resell_at;
+        public int can_transfer_at;
+        public Peer from_id;
+        public TL_stars.StarGift gift;
+        public Peer peer;
+        public boolean refunded;
+        public long resale_stars;
+        public boolean saved;
+        public long saved_id;
+        public long transfer_stars;
+        public boolean transferred;
+        public boolean upgrade;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.upgrade = (readInt32 & 1) != 0;
+            this.transferred = (readInt32 & 2) != 0;
+            this.saved = (readInt32 & 4) != 0;
+            this.refunded = (readInt32 & 32) != 0;
+            this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if ((this.flags & 8) != 0) {
+                this.can_export_at = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.transfer_stars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 64) != 0) {
+                this.from_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 128) != 0) {
+                this.peer = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.saved_id = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 256) != 0) {
+                this.resale_stars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 512) != 0) {
+                this.can_transfer_at = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 1024) != 0) {
+                this.can_resell_at = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(775611918);
+            int i = this.upgrade ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.transferred ? i | 2 : i & (-3);
+            this.flags = i2;
+            int i3 = this.saved ? i2 | 4 : i2 & (-5);
+            this.flags = i3;
+            int i4 = this.refunded ? i3 | 32 : i3 & (-33);
+            this.flags = i4;
+            outputSerializedData.writeInt32(i4);
+            this.gift.serializeToStream(outputSerializedData);
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt32(this.can_export_at);
+            }
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt64(this.transfer_stars);
+            }
+            if ((this.flags & 64) != 0) {
+                this.from_id.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 128) != 0) {
+                this.peer.serializeToStream(outputSerializedData);
+                outputSerializedData.writeInt64(this.saved_id);
+            }
+            if ((this.flags & 256) != 0) {
+                outputSerializedData.writeInt64(this.resale_stars);
+            }
+            if ((this.flags & 512) != 0) {
+                outputSerializedData.writeInt32(this.can_transfer_at);
+            }
+            if ((this.flags & 1024) != 0) {
+                outputSerializedData.writeInt32(this.can_resell_at);
             }
         }
     }
@@ -38227,15 +38487,15 @@ public class TLRPC {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
-            this.rejected = TLRPC.hasFlag(readInt32, 1);
-            this.balance_too_low = TLRPC.hasFlag(this.flags, 2);
-            if (TLRPC.hasFlag(this.flags, 4)) {
+            this.rejected = TLObject.hasFlag(readInt32, 1);
+            this.balance_too_low = TLObject.hasFlag(this.flags, 2);
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.reject_comment = inputSerializedData.readString(z);
             }
-            if (TLRPC.hasFlag(this.flags, 8)) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.schedule_date = inputSerializedData.readInt32(z);
             }
-            if (TLRPC.hasFlag(this.flags, 16)) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.price = TL_stars.StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -38243,22 +38503,22 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-293988970);
-            int flag = TLRPC.setFlag(this.flags, 1, this.rejected);
+            int flag = TLObject.setFlag(this.flags, 1, this.rejected);
             this.flags = flag;
-            int flag2 = TLRPC.setFlag(flag, 2, this.balance_too_low);
+            int flag2 = TLObject.setFlag(flag, 2, this.balance_too_low);
             this.flags = flag2;
-            int flag3 = TLRPC.setFlag(flag2, 4, this.reject_comment != null);
+            int flag3 = TLObject.setFlag(flag2, 4, this.reject_comment != null);
             this.flags = flag3;
-            int flag4 = TLRPC.setFlag(flag3, 16, this.price != null);
+            int flag4 = TLObject.setFlag(flag3, 16, this.price != null);
             this.flags = flag4;
             outputSerializedData.writeInt32(flag4);
-            if (TLRPC.hasFlag(this.flags, 4)) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.reject_comment);
             }
-            if (TLRPC.hasFlag(this.flags, 8)) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.schedule_date);
             }
-            if (TLRPC.hasFlag(this.flags, 16)) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.price.serializeToStream(outputSerializedData);
             }
         }
@@ -38272,13 +38532,13 @@ public class TLRPC {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
-            this.payer_initiated = TLRPC.hasFlag(readInt32, 1);
+            this.payer_initiated = TLObject.hasFlag(readInt32, 1);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1777932024);
-            int flag = TLRPC.setFlag(this.flags, 1, this.payer_initiated);
+            int flag = TLObject.setFlag(this.flags, 1, this.payer_initiated);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
         }
@@ -41045,18 +41305,6 @@ public class TLRPC {
 
     public static class TL_messageReactionsOld extends TL_messageReactions {
         public static final int constructor = 142306870;
-
-        public static TL_messageReactions TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (171155211 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_messageReactions", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_messageReactions tL_messageReactions = new TL_messageReactions();
-            tL_messageReactions.readParams(inputSerializedData, z);
-            return tL_messageReactions;
-        }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -47988,9 +48236,9 @@ public class TLRPC {
             this.flags = i5;
             int i6 = this.noforwards ? i5 | 16384 : i5 & (-16385);
             this.flags = i6;
-            int flag = TLRPC.setFlag(i6, 4194304, this.reply_to != null);
+            int flag = TLObject.setFlag(i6, 4194304, this.reply_to != null);
             this.flags = flag;
-            int flag2 = TLRPC.setFlag(flag, 8388608, this.suggested_post != null);
+            int flag2 = TLObject.setFlag(flag, 8388608, this.suggested_post != null);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             this.from_peer.serializeToStream(outputSerializedData);
@@ -48000,7 +48248,7 @@ public class TLRPC {
             if ((this.flags & 512) != 0) {
                 outputSerializedData.writeInt32(this.top_msg_id);
             }
-            if (TLRPC.hasFlag(this.flags, 4194304)) {
+            if (TLObject.hasFlag(this.flags, 4194304)) {
                 this.reply_to.serializeToStream(outputSerializedData);
             }
             if ((this.flags & 1024) != 0) {
@@ -48018,7 +48266,7 @@ public class TLRPC {
             if ((this.flags & 2097152) != 0) {
                 outputSerializedData.writeInt64(this.allow_paid_stars);
             }
-            if (TLRPC.hasFlag(this.flags, 8388608)) {
+            if (TLObject.hasFlag(this.flags, 8388608)) {
                 this.suggested_post.serializeToStream(outputSerializedData);
             }
         }
@@ -50410,6 +50658,51 @@ public class TLRPC {
     }
 
     public static class TL_messages_messagesSlice extends messages_Messages {
+        public static final int constructor = 1982539325;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.inexact = (readInt32 & 2) != 0;
+            this.count = inputSerializedData.readInt32(z);
+            if ((this.flags & 1) != 0) {
+                this.next_rate = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.offset_id_offset = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 8) != 0) {
+                this.search_flood = SearchPostsFlood.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.messages = Vector.deserialize(inputSerializedData, new TLRPC$TL_messages_channelMessages$$ExternalSyntheticLambda0(), z);
+            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
+            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1982539325);
+            int i = this.inexact ? this.flags | 2 : this.flags & (-3);
+            this.flags = i;
+            outputSerializedData.writeInt32(i);
+            outputSerializedData.writeInt32(this.count);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeInt32(this.next_rate);
+            }
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt32(this.offset_id_offset);
+            }
+            if ((this.flags & 8) != 0) {
+                this.search_flood.serializeToStream(outputSerializedData);
+            }
+            Vector.serialize(outputSerializedData, this.messages);
+            Vector.serialize(outputSerializedData, this.chats);
+            Vector.serialize(outputSerializedData, this.users);
+        }
+    }
+
+    public static class TL_messages_messagesSlice_layer210 extends TL_messages_messagesSlice {
         public static final int constructor = 978610270;
 
         @Override
@@ -51393,33 +51686,33 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1420701838);
-            int flag = TLRPC.setFlag(this.flags, 2, this.no_webpage);
+            int flag = TLObject.setFlag(this.flags, 2, this.no_webpage);
             this.flags = flag;
             ArrayList<MessageEntity> arrayList = this.entities;
-            int flag2 = TLRPC.setFlag(flag, 8, (arrayList == null || arrayList.isEmpty()) ? false : true);
+            int flag2 = TLObject.setFlag(flag, 8, (arrayList == null || arrayList.isEmpty()) ? false : true);
             this.flags = flag2;
-            int flag3 = TLRPC.setFlag(flag2, 16, this.reply_to != null);
+            int flag3 = TLObject.setFlag(flag2, 16, this.reply_to != null);
             this.flags = flag3;
-            int flag4 = TLRPC.setFlag(flag3, 64, this.invert_media);
+            int flag4 = TLObject.setFlag(flag3, 64, this.invert_media);
             this.flags = flag4;
-            int flag5 = TLRPC.setFlag(flag4, 256, this.suggested_post != null);
+            int flag5 = TLObject.setFlag(flag4, 256, this.suggested_post != null);
             this.flags = flag5;
             outputSerializedData.writeInt32(flag5);
-            if (TLRPC.hasFlag(this.flags, 16)) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.reply_to.serializeToStream(outputSerializedData);
             }
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeString(this.message);
-            if (TLRPC.hasFlag(this.flags, 8)) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 Vector.serialize(outputSerializedData, this.entities);
             }
-            if (TLRPC.hasFlag(this.flags, 32)) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.media.serializeToStream(outputSerializedData);
             }
-            if (TLRPC.hasFlag(this.flags, 128)) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt64(this.effect);
             }
-            if (TLRPC.hasFlag(this.flags, 256)) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.suggested_post.serializeToStream(outputSerializedData);
             }
         }
@@ -51486,8 +51779,8 @@ public class TLRPC {
             outputSerializedData.writeInt32(-130358751);
             Vector.serialize(outputSerializedData, this.dialogs);
             Vector.serialize(outputSerializedData, this.messages);
-            Vector.serialize(outputSerializedData, this.users);
             Vector.serialize(outputSerializedData, this.chats);
+            Vector.serialize(outputSerializedData, this.users);
         }
     }
 
@@ -51530,8 +51823,8 @@ public class TLRPC {
             outputSerializedData.writeInt32(this.count);
             Vector.serialize(outputSerializedData, this.dialogs);
             Vector.serialize(outputSerializedData, this.messages);
-            Vector.serialize(outputSerializedData, this.users);
             Vector.serialize(outputSerializedData, this.chats);
+            Vector.serialize(outputSerializedData, this.users);
         }
     }
 
@@ -52212,7 +52505,7 @@ public class TLRPC {
             this.flags = i5;
             int i6 = this.invert_media ? i5 | 65536 : i5 & (-65537);
             this.flags = i6;
-            int flag = TLRPC.setFlag(i6, 4194304, this.suggested_post != null);
+            int flag = TLObject.setFlag(i6, 4194304, this.suggested_post != null);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
@@ -52243,7 +52536,7 @@ public class TLRPC {
             if ((this.flags & 2097152) != 0) {
                 outputSerializedData.writeInt64(this.allow_paid_stars);
             }
-            if (TLRPC.hasFlag(this.flags, 4194304)) {
+            if (TLObject.hasFlag(this.flags, 4194304)) {
                 this.suggested_post.serializeToStream(outputSerializedData);
             }
         }
@@ -52346,7 +52639,7 @@ public class TLRPC {
             this.flags = i6;
             int i7 = this.invert_media ? i6 | 65536 : i6 & (-65537);
             this.flags = i7;
-            int flag = TLRPC.setFlag(i7, 4194304, this.suggested_post != null);
+            int flag = TLObject.setFlag(i7, 4194304, this.suggested_post != null);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
@@ -52376,7 +52669,7 @@ public class TLRPC {
             if ((this.flags & 2097152) != 0) {
                 outputSerializedData.writeInt64(this.allow_paid_stars);
             }
-            if (TLRPC.hasFlag(this.flags, 4194304)) {
+            if (TLObject.hasFlag(this.flags, 4194304)) {
                 this.suggested_post.serializeToStream(outputSerializedData);
             }
         }
@@ -53190,6 +53483,10 @@ public class TLRPC {
         public static final int constructor = -738646805;
 
         @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
+
+        @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-738646805);
         }
@@ -53426,17 +53723,17 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2130229924);
-            int flag = TLRPC.setFlag(this.flags, 2, this.reject);
+            int flag = TLObject.setFlag(this.flags, 2, this.reject);
             this.flags = flag;
-            int flag2 = TLRPC.setFlag(flag, 4, this.reject_comment != null);
+            int flag2 = TLObject.setFlag(flag, 4, this.reject_comment != null);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.msg_id);
-            if (TLRPC.hasFlag(this.flags, 1)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.schedule_date);
             }
-            if (TLRPC.hasFlag(this.flags, 4)) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.reject_comment);
             }
         }
@@ -54181,6 +54478,7 @@ public class TLRPC {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1001931436);
             outputSerializedData.writeInt32(this.date);
         }
     }
@@ -55530,6 +55828,37 @@ public class TLRPC {
         }
     }
 
+    public static class TL_page_layer88 extends TL_page {
+        public static final int constructor = -241590104;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.part = (readInt32 & 1) != 0;
+            this.rtl = (readInt32 & 2) != 0;
+            this.v2 = (readInt32 & 4) != 0;
+            this.blocks = Vector.deserialize(inputSerializedData, new TLRPC$TL_page$$ExternalSyntheticLambda0(), z);
+            this.photos = Vector.deserialize(inputSerializedData, new TLRPC$TL_page$$ExternalSyntheticLambda1(), z);
+            this.documents = Vector.deserialize(inputSerializedData, new TLRPC$TL_help_premiumPromo$$ExternalSyntheticLambda0(), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-241590104);
+            int i = this.part ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.rtl ? i | 2 : i & (-3);
+            this.flags = i2;
+            int i3 = this.v2 ? i2 | 4 : i2 & (-5);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
+            Vector.serialize(outputSerializedData, this.blocks);
+            Vector.serialize(outputSerializedData, this.photos);
+            Vector.serialize(outputSerializedData, this.documents);
+        }
+    }
+
     public static class TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow extends PasswordKdfAlgo {
         public static final int constructor = 982592842;
         public int g;
@@ -56227,10 +56556,10 @@ public class TLRPC {
             this.flags = i2;
             outputSerializedData.writeInt32(i2);
             outputSerializedData.writeInt32(this.start_date);
-            if ((this.flags & 1) != 0) {
+            if ((this.flags & 8) != 0) {
                 outputSerializedData.writeString(this.gift_code_slug);
             }
-            if ((this.flags & 1) != 0) {
+            if ((this.flags & 16) != 0) {
                 outputSerializedData.writeInt64(this.stars_prize);
             }
             outputSerializedData.writeInt32(this.finish_date);
@@ -56711,7 +57040,7 @@ public class TLRPC {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
-            if (TLRPC.hasFlag(readInt32, 1)) {
+            if (TLObject.hasFlag(readInt32, 1)) {
                 this.top_hours_graph = TL_stats.StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.revenue_graph = TL_stats.StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -56722,10 +57051,10 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1814066038);
-            int flag = TLRPC.setFlag(this.flags, 1, this.top_hours_graph != null);
+            int flag = TLObject.setFlag(this.flags, 1, this.top_hours_graph != null);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            if (TLRPC.hasFlag(this.flags, 1)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.top_hours_graph.serializeToStream(outputSerializedData);
             }
             this.revenue_graph.serializeToStream(outputSerializedData);
@@ -61478,6 +61807,19 @@ public class TLRPC {
         }
     }
 
+    public static class TL_sendMessageUploadRoundAction_layer66 extends TL_sendMessageUploadRoundAction {
+        public static final int constructor = -1150187996;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1150187996);
+        }
+    }
+
     public static class TL_sendMessageUploadVideoAction extends SendMessageAction {
         public static final int constructor = -378127636;
 
@@ -63807,7 +64149,7 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1738720581);
-            int i = this.via_chatlist ? this.flags | 8 : this.flags & 8;
+            int i = this.via_chatlist ? this.flags | 8 : this.flags & (-9);
             this.flags = i;
             outputSerializedData.writeInt32(i);
             outputSerializedData.writeInt64(this.channel_id);
@@ -64924,7 +65266,7 @@ public class TLRPC {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
-            this.exception = TLRPC.hasFlag(readInt32, 1);
+            this.exception = TLObject.hasFlag(readInt32, 1);
             this.channel_id = inputSerializedData.readInt64(z);
             this.saved_peer_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
@@ -64932,7 +65274,7 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1618924792);
-            int flag = TLRPC.setFlag(this.flags, 1, this.exception);
+            int flag = TLObject.setFlag(this.flags, 1, this.exception);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.channel_id);
@@ -64987,6 +65329,18 @@ public class TLRPC {
                 this.date = inputSerializedData.readInt32(z);
                 this.device = inputSerializedData.readString(z);
                 this.location = inputSerializedData.readString(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1991136273);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt64(this.hash);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeInt32(this.date);
+                outputSerializedData.writeString(this.device);
+                outputSerializedData.writeString(this.location);
             }
         }
     }
@@ -65733,6 +66087,7 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-131960447);
+            outputSerializedData.writeInt32(this.flags);
             Vector.serializeInt(outputSerializedData, this.messages);
             outputSerializedData.writeInt32(this.pts);
             outputSerializedData.writeInt32(this.pts_count);
@@ -65954,6 +66309,13 @@ public class TLRPC {
             this.update = Update.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
         }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2027216577);
+            this.update.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.date);
+        }
     }
 
     public static class TL_updateShortChatMessage extends Updates {
@@ -65988,6 +66350,34 @@ public class TLRPC {
             }
             if ((this.flags & 33554432) != 0) {
                 this.ttl_period = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1299050149);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt64(this.from_id);
+            outputSerializedData.writeInt64(this.chat_id);
+            outputSerializedData.writeString(this.message);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+            outputSerializedData.writeInt32(this.date);
+            if ((this.flags & 4) != 0) {
+                this.fwd_from.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2048) != 0) {
+                outputSerializedData.writeInt64(this.via_bot_id);
+            }
+            if ((this.flags & 8) != 0) {
+                this.reply_to.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 128) != 0) {
+                Vector.serialize(outputSerializedData, this.entities);
+            }
+            if ((this.flags & 33554432) != 0) {
+                outputSerializedData.writeInt32(this.ttl_period);
             }
         }
     }
@@ -66025,6 +66415,33 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
         }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(826001400);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeString(this.message);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+            outputSerializedData.writeInt32(this.date);
+            if ((this.flags & 4) != 0) {
+                this.fwd_from.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2048) != 0) {
+                outputSerializedData.writeInt64(this.via_bot_id);
+            }
+            if ((this.flags & 8) != 0) {
+                this.reply_to.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 128) != 0) {
+                Vector.serialize(outputSerializedData, this.entities);
+            }
+            if ((this.flags & 33554432) != 0) {
+                outputSerializedData.writeInt32(this.ttl_period);
+            }
+        }
     }
 
     public static class TL_updateShortSentMessage extends Updates {
@@ -66047,6 +66464,25 @@ public class TLRPC {
             }
             if ((this.flags & 33554432) != 0) {
                 this.ttl_period = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1877614335);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+            outputSerializedData.writeInt32(this.date);
+            if ((this.flags & 512) != 0) {
+                this.media.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 128) != 0) {
+                Vector.serialize(outputSerializedData, this.entities);
+            }
+            if ((this.flags & 33554432) != 0) {
+                outputSerializedData.writeInt32(this.ttl_period);
             }
         }
     }
@@ -66441,6 +66877,16 @@ public class TLRPC {
             this.date = inputSerializedData.readInt32(z);
             this.seq = inputSerializedData.readInt32(z);
         }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1957577280);
+            Vector.serialize(outputSerializedData, this.updates);
+            Vector.serialize(outputSerializedData, this.users);
+            Vector.serialize(outputSerializedData, this.chats);
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeInt32(this.seq);
+        }
     }
 
     public static class TL_updatesCombined extends Updates {
@@ -66455,10 +66901,26 @@ public class TLRPC {
             this.seq_start = inputSerializedData.readInt32(z);
             this.seq = inputSerializedData.readInt32(z);
         }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1918567619);
+            Vector.serialize(outputSerializedData, this.updates);
+            Vector.serialize(outputSerializedData, this.users);
+            Vector.serialize(outputSerializedData, this.chats);
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeInt32(this.seq_start);
+            outputSerializedData.writeInt32(this.seq);
+        }
     }
 
     public static class TL_updatesTooLong extends Updates {
         public static final int constructor = -484987010;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-484987010);
+        }
     }
 
     public static class TL_updates_channelDifference extends updates_ChannelDifference {
@@ -67525,7 +67987,7 @@ public class TLRPC {
     }
 
     public static class TL_userFull extends UserFull {
-        public static final int constructor = 702447806;
+        public static final int constructor = 2120470047;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -67633,14 +68095,18 @@ public class TLRPC {
             if ((this.flags2 & 32768) != 0) {
                 this.disallowed_stargifts = DisallowedGiftsSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if (TLRPC.hasFlag(this.flags2, 131072)) {
+            if (TLObject.hasFlag(this.flags2, 131072)) {
                 this.stars_rating = TL_stars.Tl_starsRating.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if (TLObject.hasFlag(this.flags2, 262144)) {
+                this.stars_my_pending_rating = TL_stars.Tl_starsRating.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.stars_my_pending_rating_date = inputSerializedData.readInt32(z);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(702447806);
+            outputSerializedData.writeInt32(2120470047);
             int i = this.blocked ? this.flags | 1 : this.flags & (-2);
             this.flags = i;
             int i2 = this.phone_calls_available ? i | 16 : i & (-17);
@@ -67676,9 +68142,11 @@ public class TLRPC {
             this.flags2 = i16;
             int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
             this.flags2 = i17;
-            int flag = TLRPC.setFlag(i17, 131072, this.stars_rating != null);
+            int flag = TLObject.setFlag(i17, 131072, this.stars_rating != null);
             this.flags2 = flag;
-            outputSerializedData.writeInt32(flag);
+            int flag2 = TLObject.setFlag(flag, 262144, this.stars_my_pending_rating != null);
+            this.flags2 = flag2;
+            outputSerializedData.writeInt32(flag2);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67762,8 +68230,12 @@ public class TLRPC {
             if ((this.flags2 & 32768) != 0) {
                 this.disallowed_stargifts.serializeToStream(outputSerializedData);
             }
-            if (TLRPC.hasFlag(this.flags2, 131072)) {
+            if (TLObject.hasFlag(this.flags2, 131072)) {
                 this.stars_rating.serializeToStream(outputSerializedData);
+            }
+            if (TLObject.hasFlag(this.flags2, 262144)) {
+                this.stars_my_pending_rating.serializeToStream(outputSerializedData);
+                outputSerializedData.writeInt32(this.stars_my_pending_rating_date);
             }
         }
     }
@@ -71154,6 +71626,250 @@ public class TLRPC {
             }
             if ((this.flags2 & 32768) != 0) {
                 this.disallowed_stargifts.serializeToStream(outputSerializedData);
+            }
+        }
+    }
+
+    public static class TL_userFull_layer210 extends TL_userFull {
+        public static final int constructor = 702447806;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.blocked = (readInt32 & 1) != 0;
+            this.phone_calls_available = (readInt32 & 16) != 0;
+            this.phone_calls_private = (readInt32 & 32) != 0;
+            this.can_pin_message = (readInt32 & 128) != 0;
+            this.has_scheduled = (readInt32 & 4096) != 0;
+            this.video_calls_available = (readInt32 & 8192) != 0;
+            this.voice_messages_forbidden = (1048576 & readInt32) != 0;
+            this.translations_disabled = (8388608 & readInt32) != 0;
+            this.stories_pinned_available = (67108864 & readInt32) != 0;
+            this.blocked_my_stories_from = (134217728 & readInt32) != 0;
+            this.wallpaper_overridden = (268435456 & readInt32) != 0;
+            this.contact_require_premium = (536870912 & readInt32) != 0;
+            this.read_dates_private = (readInt32 & 1073741824) != 0;
+            int readInt322 = inputSerializedData.readInt32(z);
+            this.flags2 = readInt322;
+            this.sponsored_enabled = (readInt322 & 128) != 0;
+            this.can_view_revenue = (readInt322 & 512) != 0;
+            this.bot_can_manage_emoji_status = (readInt322 & 1024) != 0;
+            this.display_gifts_button = (readInt322 & 65536) != 0;
+            this.id = inputSerializedData.readInt64(z);
+            if ((this.flags & 2) != 0) {
+                this.about = inputSerializedData.readString(z);
+            }
+            this.settings = PeerSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if ((this.flags & 2097152) != 0) {
+                this.personal_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.profile_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 4194304) != 0) {
+                this.fallback_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if ((this.flags & 8) != 0) {
+                this.bot_info = TL_bots.BotInfo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 64) != 0) {
+                this.pinned_msg_id = inputSerializedData.readInt32(z);
+            }
+            this.common_chats_count = inputSerializedData.readInt32(z);
+            if ((this.flags & 2048) != 0) {
+                this.folder_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 16384) != 0) {
+                this.ttl_period = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 32768) != 0) {
+                this.theme_emoticon = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 65536) != 0) {
+                this.private_forward_name = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 131072) != 0) {
+                this.bot_group_admin_rights = TL_chatAdminRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 262144) != 0) {
+                this.bot_broadcast_admin_rights = TL_chatAdminRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 16777216) != 0) {
+                this.wallpaper = WallPaper.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 33554432) != 0) {
+                this.stories = TL_stories.PeerStories.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 1) != 0) {
+                this.business_work_hours = TL_account.TL_businessWorkHours.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 2) != 0) {
+                this.business_location = TL_businessLocation.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 4) != 0) {
+                this.business_greeting_message = TL_account.TL_businessGreetingMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 8) != 0) {
+                this.business_away_message = TL_account.TL_businessAwayMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 16) != 0) {
+                this.business_intro = TL_account.TL_businessIntro.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 32) != 0) {
+                this.birthday = TL_account.TL_birthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 64) != 0) {
+                this.personal_channel_id = inputSerializedData.readInt64(z);
+                this.personal_channel_message = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags2 & 256) != 0) {
+                this.stargifts_count = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags2 & 2048) != 0) {
+                this.starref_program = TL_payments.starRefProgram.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 4096) != 0) {
+                this.bot_verification = TL_bots.botVerification.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags2 & 16384) != 0) {
+                this.send_paid_messages_stars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags2 & 32768) != 0) {
+                this.disallowed_stargifts = DisallowedGiftsSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if (TLObject.hasFlag(this.flags2, 131072)) {
+                this.stars_rating = TL_stars.Tl_starsRating.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(702447806);
+            int i = this.blocked ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.phone_calls_available ? i | 16 : i & (-17);
+            this.flags = i2;
+            int i3 = this.phone_calls_private ? i2 | 32 : i2 & (-33);
+            this.flags = i3;
+            int i4 = this.can_pin_message ? i3 | 128 : i3 & (-129);
+            this.flags = i4;
+            int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
+            this.flags = i5;
+            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = i6;
+            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            this.flags = i7;
+            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            this.flags = i8;
+            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            this.flags = i9;
+            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            this.flags = i10;
+            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            this.flags = i11;
+            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            this.flags = i12;
+            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
+            this.flags = i13;
+            outputSerializedData.writeInt32(i13);
+            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i14;
+            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            this.flags2 = i15;
+            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
+            this.flags2 = i16;
+            int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
+            this.flags2 = i17;
+            int flag = TLObject.setFlag(i17, 131072, this.stars_rating != null);
+            this.flags2 = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.id);
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeString(this.about);
+            }
+            this.settings.serializeToStream(outputSerializedData);
+            if ((this.flags & 2097152) != 0) {
+                this.personal_photo.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 4) != 0) {
+                this.profile_photo.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 4194304) != 0) {
+                this.fallback_photo.serializeToStream(outputSerializedData);
+            }
+            this.notify_settings.serializeToStream(outputSerializedData);
+            if ((this.flags & 8) != 0) {
+                this.bot_info.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 64) != 0) {
+                outputSerializedData.writeInt32(this.pinned_msg_id);
+            }
+            outputSerializedData.writeInt32(this.common_chats_count);
+            if ((this.flags & 2048) != 0) {
+                outputSerializedData.writeInt32(this.folder_id);
+            }
+            if ((this.flags & 16384) != 0) {
+                outputSerializedData.writeInt32(this.ttl_period);
+            }
+            if ((this.flags & 32768) != 0) {
+                outputSerializedData.writeString(this.theme_emoticon);
+            }
+            if ((this.flags & 65536) != 0) {
+                outputSerializedData.writeString(this.private_forward_name);
+            }
+            if ((this.flags & 131072) != 0) {
+                this.bot_group_admin_rights.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 262144) != 0) {
+                this.bot_broadcast_admin_rights.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 16777216) != 0) {
+                this.wallpaper.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 33554432) != 0) {
+                this.stories.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 1) != 0) {
+                this.business_work_hours.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 2) != 0) {
+                this.business_location.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 4) != 0) {
+                this.business_greeting_message.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 8) != 0) {
+                this.business_away_message.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 16) != 0) {
+                this.business_intro.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 32) != 0) {
+                this.birthday.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 64) != 0) {
+                outputSerializedData.writeInt64(this.personal_channel_id);
+                outputSerializedData.writeInt32(this.personal_channel_message);
+            }
+            if ((this.flags2 & 256) != 0) {
+                outputSerializedData.writeInt32(this.stargifts_count);
+            }
+            if ((this.flags2 & 2048) != 0) {
+                this.starref_program.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 4096) != 0) {
+                this.bot_verification.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags2 & 16384) != 0) {
+                outputSerializedData.writeInt64(this.send_paid_messages_stars);
+            }
+            if ((this.flags2 & 32768) != 0) {
+                this.disallowed_stargifts.serializeToStream(outputSerializedData);
+            }
+            if (TLObject.hasFlag(this.flags2, 131072)) {
+                this.stars_rating.serializeToStream(outputSerializedData);
             }
         }
     }
@@ -75254,6 +75970,22 @@ public class TLRPC {
         }
     }
 
+    public static class TL_webPageAttributeStarGiftCollection extends WebPageAttribute {
+        public static final int constructor = 835375875;
+        public ArrayList<Document> icons = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.icons = Vector.deserialize(inputSerializedData, new TLRPC$TL_help_premiumPromo$$ExternalSyntheticLambda0(), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(835375875);
+            Vector.serialize(outputSerializedData, this.icons);
+        }
+    }
+
     public static class TL_webPageAttributeStickerSet extends WebPageAttribute {
         public static final int constructor = 1355547603;
         public boolean emojis;
@@ -75448,6 +76180,10 @@ public class TLRPC {
 
     public static class TL_webPageNotModified_layer110 extends TL_webPageNotModified {
         public static final int constructor = -2054908813;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
@@ -76885,6 +77621,8 @@ public class TLRPC {
         public boolean sponsored_enabled;
         public int stargifts_count;
         public TL_payments.starRefProgram starref_program;
+        public TL_stars.Tl_starsRating stars_my_pending_rating;
+        public int stars_my_pending_rating_date;
         public TL_stars.Tl_starsRating stars_rating;
         public TL_stories.PeerStories stories;
         public boolean stories_pinned_available;
@@ -76958,7 +77696,7 @@ public class TLRPC {
                     tL_userFull_layer199_2 = new TL_userFull_layer176();
                     break;
                 case 702447806:
-                    tL_userFull_layer199_2 = new TL_userFull();
+                    tL_userFull_layer199_2 = new TL_userFull_layer210();
                     break;
                 case 1301765052:
                     tL_userFull_layer199_2 = new TL_userFull_layer199();
@@ -76971,6 +77709,9 @@ public class TLRPC {
                     break;
                 case 1951750604:
                     tL_userFull_layer199_2 = new TL_userFull_layer101();
+                    break;
+                case 2120470047:
+                    tL_userFull_layer199_2 = new TL_userFull();
                     break;
                 default:
                     tL_userFull_layer199_2 = null;
@@ -77216,6 +77957,10 @@ public class TLRPC {
             }
             return tL_videoSize;
         }
+
+        public static VideoSize TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLdeserialize(0L, 0L, inputSerializedData, i, z);
+        }
     }
 
     public static abstract class WallPaper extends TLObject {
@@ -77381,6 +78126,9 @@ public class TLRPC {
                     break;
                 case 781501415:
                     tL_webPageAttributeStory_layer162 = new TL_webPageAttributeStory();
+                    break;
+                case 835375875:
+                    tL_webPageAttributeStory_layer162 = new TL_webPageAttributeStarGiftCollection();
                     break;
                 case 1355547603:
                     tL_webPageAttributeStory_layer162 = new TL_webPageAttributeStickerSet();
@@ -78014,20 +78762,41 @@ public class TLRPC {
         public int next_rate;
         public int offset_id_offset;
         public int pts;
+        public SearchPostsFlood search_flood;
         public ArrayList<Message> messages = new ArrayList<>();
         public ArrayList<Chat> chats = new ArrayList<>();
         public ArrayList<User> users = new ArrayList<>();
         public ArrayList<TL_forumTopic> topics = new ArrayList<>();
 
         public static messages_Messages TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            messages_Messages tL_messages_messagesNotModified = i != -1938715001 ? i != -948520370 ? i != 978610270 ? i != 1951620897 ? null : new TL_messages_messagesNotModified() : new TL_messages_messagesSlice() : new TL_messages_channelMessages() : new TL_messages_messages();
-            if (tL_messages_messagesNotModified == null && z) {
+            messages_Messages tL_messages_messages;
+            switch (i) {
+                case -1938715001:
+                    tL_messages_messages = new TL_messages_messages();
+                    break;
+                case -948520370:
+                    tL_messages_messages = new TL_messages_channelMessages();
+                    break;
+                case 978610270:
+                    tL_messages_messages = new TL_messages_messagesSlice_layer210();
+                    break;
+                case 1951620897:
+                    tL_messages_messages = new TL_messages_messagesNotModified();
+                    break;
+                case 1982539325:
+                    tL_messages_messages = new TL_messages_messagesSlice();
+                    break;
+                default:
+                    tL_messages_messages = null;
+                    break;
+            }
+            if (tL_messages_messages == null && z) {
                 throw new RuntimeException(String.format("can't parse magic %x in messages_Messages", Integer.valueOf(i)));
             }
-            if (tL_messages_messagesNotModified != null) {
-                tL_messages_messagesNotModified.readParams(inputSerializedData, z);
+            if (tL_messages_messages != null) {
+                tL_messages_messages.readParams(inputSerializedData, z);
             }
-            return tL_messages_messagesNotModified;
+            return tL_messages_messages;
         }
     }
 
@@ -78403,13 +79172,5 @@ public class TLRPC {
     public static <T extends TLObject> T deserialize(T t, InputSerializedData inputSerializedData, boolean z) {
         t.readParams(inputSerializedData, z);
         return t;
-    }
-
-    public static boolean hasFlag(int i, int i2) {
-        return (i & i2) != 0;
-    }
-
-    public static int setFlag(int i, int i2, boolean z) {
-        return z ? i | i2 : i & (i2 ^ (-1));
     }
 }

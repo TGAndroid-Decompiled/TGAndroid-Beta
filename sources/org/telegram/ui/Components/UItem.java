@@ -46,6 +46,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public Object object;
     public Object object2;
     public int pad;
+    public int parentSpanCount;
     public boolean red;
     public boolean reordering;
     public int spanCount;

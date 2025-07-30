@@ -923,16 +923,16 @@ public class TL_account {
         public ArrayList<TLRPC.InputUser> users = new ArrayList<>();
         public ArrayList<TLRPC.InputUser> exclude_users = new ArrayList<>();
 
-        public static TL_inputBusinessRecipients TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 1871393450) {
+        public static TL_inputBusinessBotRecipients TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (i != -991587810) {
                 if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_inputBusinessRecipients", Integer.valueOf(i)));
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_inputBusinessBotRecipients", Integer.valueOf(i)));
                 }
                 return null;
             }
-            TL_inputBusinessRecipients tL_inputBusinessRecipients = new TL_inputBusinessRecipients();
-            tL_inputBusinessRecipients.readParams(inputSerializedData, z);
-            return tL_inputBusinessRecipients;
+            TL_inputBusinessBotRecipients tL_inputBusinessBotRecipients = new TL_inputBusinessBotRecipients();
+            tL_inputBusinessBotRecipients.readParams(inputSerializedData, z);
+            return tL_inputBusinessBotRecipients;
         }
 
         @Override

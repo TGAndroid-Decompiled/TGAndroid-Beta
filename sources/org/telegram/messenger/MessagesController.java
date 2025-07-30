@@ -506,9 +506,6 @@ public class MessagesController extends BaseController implements NotificationCe
     public long starsPaidPostAmountMax;
     public long starsPaidReactionAmountMax;
     public long starsRevenueWithdrawalMin;
-    public long starsStargiftResaleAmountMax;
-    public long starsStargiftResaleAmountMin;
-    public int starsStargiftResaleCommisionPermille;
     public long starsSubscriptionAmountMax;
     public float starsUsdSellRate1000;
     public float starsUsdWithdrawRate1000;
@@ -2591,9 +2588,6 @@ public class MessagesController extends BaseController implements NotificationCe
         this.uploadMaxFileParts = i3;
         this.uploadMaxFilePartsPremium = this.mainPreferences.getInt("uploadMaxFilePartsPremium", i3 * 2);
         this.premiumInvoiceSlug = this.mainPreferences.getString("premiumInvoiceSlug", null);
-        this.starsStargiftResaleAmountMax = this.mainPreferences.getLong("starsStargiftResaleAmountMax", 35000L);
-        this.starsStargiftResaleAmountMin = this.mainPreferences.getLong("starsStargiftResaleAmountMin", 125L);
-        this.starsStargiftResaleCommisionPermille = this.mainPreferences.getInt("starsStargiftResaleCommisionPermille", 800);
         this.verifyAgeBotUsername = this.mainPreferences.getString("verifyAgeBotUsername", null);
         this.verifyAgeCountry = this.mainPreferences.getString("verifyAgeCountry", "GB");
         this.verifyAgeMin = this.mainPreferences.getInt("verifyAgeMin", 18);
@@ -2934,7 +2928,7 @@ public class MessagesController extends BaseController implements NotificationCe
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.activeGroupCallsUpdated, new Object[0]);
     }
 
-    private void applyAppConfig(org.telegram.tgnet.TLRPC.TL_jsonObject r33) {
+    private void applyAppConfig(org.telegram.tgnet.TLRPC.TL_jsonObject r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.applyAppConfig(org.telegram.tgnet.TLRPC$TL_jsonObject):void");
     }
 

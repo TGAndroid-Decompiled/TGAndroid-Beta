@@ -488,32 +488,32 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     }
 
     public void selectTabWithId(int i, float f) {
-        int i2 = this.idToPosition.get(i, -1);
-        if (i2 < 0) {
-            return;
-        }
-        if (f < 0.0f) {
-            f = 0.0f;
-        } else if (f > 1.0f) {
-            f = 1.0f;
-        }
-        TextView textView = (TextView) this.tabsContainer.getChildAt(this.currentPosition);
-        TextView textView2 = (TextView) this.tabsContainer.getChildAt(i2);
-        if (textView != null && textView2 != null) {
-            this.animateIndicatorStartWidth = getChildWidth(textView);
-            this.animateIndicatorStartX = textView.getLeft() + ((textView.getMeasuredWidth() - this.animateIndicatorStartWidth) / 2);
-            this.animateIndicatorToWidth = getChildWidth(textView2);
-            this.animateIndicatorToX = textView2.getLeft() + ((textView2.getMeasuredWidth() - this.animateIndicatorToWidth) / 2);
-            setAnimationProgressInernal(textView2, textView, f);
-            if (f >= 1.0f) {
-                textView.setTag(Integer.valueOf(this.unactiveTextColorKey));
-                textView2.setTag(Integer.valueOf(this.activeTextColorKey));
+        int i2;
+        int i3 = this.idToPosition.get(i, -1);
+        if (i3 >= 0 && (i2 = this.currentPosition) != i3) {
+            if (f < 0.0f) {
+                f = 0.0f;
+            } else if (f > 1.0f) {
+                f = 1.0f;
             }
-            scrollToChild(this.tabsContainer.indexOfChild(textView2), true);
-        }
-        if (f >= 1.0f) {
-            this.currentPosition = i2;
-            this.selectedTabId = i;
+            TextView textView = (TextView) this.tabsContainer.getChildAt(i2);
+            TextView textView2 = (TextView) this.tabsContainer.getChildAt(i3);
+            if (textView != null && textView2 != null) {
+                this.animateIndicatorStartWidth = getChildWidth(textView);
+                this.animateIndicatorStartX = textView.getLeft() + ((textView.getMeasuredWidth() - this.animateIndicatorStartWidth) / 2);
+                this.animateIndicatorToWidth = getChildWidth(textView2);
+                this.animateIndicatorToX = textView2.getLeft() + ((textView2.getMeasuredWidth() - this.animateIndicatorToWidth) / 2);
+                setAnimationProgressInernal(textView2, textView, f);
+                if (f >= 1.0f) {
+                    textView.setTag(Integer.valueOf(this.unactiveTextColorKey));
+                    textView2.setTag(Integer.valueOf(this.activeTextColorKey));
+                }
+                scrollToChild(this.tabsContainer.indexOfChild(textView2), true);
+            }
+            if (f >= 1.0f) {
+                this.currentPosition = i3;
+                this.selectedTabId = i;
+            }
         }
     }
 

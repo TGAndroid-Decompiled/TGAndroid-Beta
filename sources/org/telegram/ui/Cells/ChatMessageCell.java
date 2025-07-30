@@ -4662,6 +4662,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                                 i = R.string.OpenUniqueGift;
                             } else if (i3 == 27) {
                                 i2 = R.string.JoinCall;
+                            } else if (i3 == 28) {
+                                str = "VIEW COLLECTION";
                             } else {
                                 i = R.string.InstantView;
                             }

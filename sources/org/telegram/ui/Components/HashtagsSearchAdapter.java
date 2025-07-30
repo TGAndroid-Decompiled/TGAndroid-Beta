@@ -82,6 +82,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         }
         this.hasList = true;
         TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
+        tL_channels_searchPosts.flags |= 1;
         this.hashtagQuery = str;
         tL_channels_searchPosts.hashtag = str;
         tL_channels_searchPosts.limit = 10;

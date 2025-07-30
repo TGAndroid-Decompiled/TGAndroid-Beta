@@ -12,9 +12,17 @@ public class AppGlobalConfig {
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
     public final ConfigString starsRatingLearnMoreUrl;
+    public final ConfigInt starsStarGiftResaleAmountMax;
+    public final ConfigInt starsStarGiftResaleAmountMin;
+    public final ConfigInt starsStarGiftResaleCommissionPermille;
     public final ConfigTime starsSuggestedPostAgeMin;
     public final ConfigTime starsSuggestedPostFutureMax;
     public final ConfigTime starsSuggestedPostFutureMin;
+    public final ConfigInt storiesAlbumStoriesLimit;
+    public final ConfigInt storiesAlbumsLimit;
+    public final ConfigLong tonStarGiftResaleAmountMax;
+    public final ConfigLong tonStarGiftResaleAmountMin;
+    public final ConfigInt tonStarGiftResaleCommissionPermille;
     public final ConfigDouble tonUsdRate;
     private final HashMap<String, ConfigInternal> map = new HashMap<>();
     public final ConfigInt starsPaidMessagesChannelAmountDefault = ofInt("stars_paid_messages_channel_amount_default", 10);
@@ -267,8 +275,16 @@ public class AppGlobalConfig {
         this.tonUsdRate = ofDouble("ton_usd_rate", 3.0d);
         this.starsRatingLearnMoreUrl = ofString("stars_rating_learnmore_url", "https://telegram.org/blog/telegram-stars");
         this.needAgeVideoVerification = ofBoolean("need_age_video_verification", false);
+        this.starsStarGiftResaleCommissionPermille = ofInt("stars_stargift_resale_commission_permille", 800);
+        this.tonStarGiftResaleCommissionPermille = ofInt("ton_stargift_resale_commission_permille", 800);
+        this.starsStarGiftResaleAmountMin = ofInt("stars_stargift_resale_amount_min", 125);
+        this.starsStarGiftResaleAmountMax = ofInt("stars_stargift_resale_amount_max", 35000);
+        this.tonStarGiftResaleAmountMin = ofLong("ton_stargift_resale_amount_min", 10000000L);
+        this.tonStarGiftResaleAmountMax = ofLong("ton_stargift_resale_amount_max", 10000000000000L);
         this.stargiftsCollectionsLimit = ofInt("stargifts_collections_limit", 100);
         this.stargiftsCollectionGiftsLimit = ofInt("stargifts_collection_gifts_limit", 100);
+        this.storiesAlbumsLimit = ofInt("stories_albums_limit", 100);
+        this.storiesAlbumStoriesLimit = ofInt("stories_album_stories_limit", 100);
     }
 
     private ConfigBoolean ofBoolean(String str, boolean z) {

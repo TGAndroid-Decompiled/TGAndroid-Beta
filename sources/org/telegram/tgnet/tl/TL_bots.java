@@ -694,6 +694,7 @@ public class TL_bots {
             int i = this.can_modify_custom_description ? this.flags | 2 : this.flags & (-3);
             this.flags = i;
             outputSerializedData.writeInt32(i);
+            outputSerializedData.writeInt64(this.icon);
             outputSerializedData.writeString(this.company);
             if ((this.flags & 1) != 0) {
                 outputSerializedData.writeString(this.custom_description);

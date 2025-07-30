@@ -11,11 +11,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
@@ -23,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -42,7 +42,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -66,7 +65,6 @@ import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
@@ -78,6 +76,7 @@ import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
@@ -113,6 +112,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     private final long dialogId;
     private final BaseFragment fragment;
     private final StarsController.GiftsList list;
+    private int pendingScrollToCollectionId;
     private boolean reorderingCollections;
     private final Theme.ResourcesProvider resourcesProvider;
     private final Runnable sendCollectionsOrder;
@@ -1625,251 +1625,35 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public ProfileGiftsContainer(final BaseFragment baseFragment, Context context, final int i, long j, final Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        String string;
-        TLRPC.EncryptedChat encryptedChat;
-        this.checkboxRequestId = -1;
-        this.sendCollectionsOrder = new Runnable() {
-            @Override
-            public final void run() {
-                ProfileGiftsContainer.this.lambda$new$10();
-            }
-        };
-        this.visibleHeight = AndroidUtilities.displaySize.y;
-        this.fragment = baseFragment;
-        this.currentAccount = i;
-        this.dialogId = (!DialogObject.isEncryptedDialog(j) || (encryptedChat = MessagesController.getInstance(i).getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(j)))) == null) ? j : encryptedChat.user_id;
-        StarsController.getInstance(i).invalidateProfileGifts(this.dialogId);
-        StarsController.GiftsList profileGiftsList = StarsController.getInstance(i).getProfileGiftsList(this.dialogId);
-        this.list = profileGiftsList;
-        StarsController.GiftsCollections profileGiftCollectionsList = StarsController.getInstance(i).getProfileGiftCollectionsList(this.dialogId, true);
-        this.collections = profileGiftCollectionsList;
-        profileGiftCollectionsList.all = profileGiftsList;
-        profileGiftsList.shown = true;
-        profileGiftsList.resetFilters();
-        profileGiftsList.load();
-        this.resourcesProvider = resourcesProvider;
-        ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context) {
-            @Override
-            protected void addMoreTabs() {
-                if (!ProfileGiftsContainer.this.canAdd() || ProfileGiftsContainer.this.tabsView == null) {
-                    return;
-                }
-                if (ProfileGiftsContainer.this.addCollectionTabText == null) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ " + LocaleController.getString(R.string.Gift2NewCollection));
-                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.poll_add_plus);
-                    coloredImageSpan.spaceScaleX = 0.8f;
-                    spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
-                    ProfileGiftsContainer.this.addCollectionTabText = spannableStringBuilder;
-                }
-                ProfileGiftsContainer.this.tabsView.addTab(-1, ProfileGiftsContainer.this.addCollectionTabText);
-            }
+    public ProfileGiftsContainer(final org.telegram.ui.ActionBar.BaseFragment r23, final android.content.Context r24, final int r25, long r26, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.ProfileGiftsContainer.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    }
 
-            @Override
-            public boolean canScroll(MotionEvent motionEvent) {
-                return !ProfileGiftsContainer.this.isReordering();
-            }
-
-            @Override
-            public void onTabAnimationUpdate(boolean z) {
-                super.onTabAnimationUpdate(z);
-                ProfileGiftsContainer.this.updateButton();
-            }
-
-            @Override
-            public void onTabScrollEnd(int i2) {
-                super.onTabScrollEnd(i2);
-                ProfileGiftsContainer.this.updateButton();
-            }
-        };
-        this.viewPager = viewPagerFixed;
-        viewPagerFixed.setAllowDisallowInterceptTouch(true);
-        viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter() {
-            @Override
-            public void applyReorder(ArrayList arrayList) {
-                ArrayList arrayList2 = new ArrayList();
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    Integer num = (Integer) it.next();
-                    int intValue = num.intValue();
-                    if (intValue != -1 && intValue != -2) {
-                        arrayList2.add(num);
-                    }
-                }
-                ProfileGiftsContainer.this.collections.reorder(arrayList2);
-                Page currentPage = ProfileGiftsContainer.this.getCurrentPage();
-                if (currentPage != null) {
-                    int indexOf = !currentPage.isCollection ? 0 : ProfileGiftsContainer.this.collections.indexOf(currentPage.list.collectionId) + 1;
-                    ProfileGiftsContainer.this.tabsView.selectTab(indexOf, indexOf, 0.0f);
-                }
-                AndroidUtilities.cancelRunOnUIThread(ProfileGiftsContainer.this.sendCollectionsOrder);
-                AndroidUtilities.runOnUIThread(ProfileGiftsContainer.this.sendCollectionsOrder, 1000L);
-            }
-
-            @Override
-            public void bindView(View view, int i2, int i3) {
-                StarsController.GiftsList listByIndex;
-                boolean z;
-                Page page = (Page) view;
-                if (i3 == 0) {
-                    listByIndex = ProfileGiftsContainer.this.list;
-                    z = false;
-                } else {
-                    listByIndex = ProfileGiftsContainer.this.collections.getListByIndex(i2 - 1);
-                    z = true;
-                }
-                page.bind(z, listByIndex);
-                page.setVisibleHeight(ProfileGiftsContainer.this.visibleHeight);
-            }
-
-            @Override
-            public boolean canReorder(int i2) {
-                return i2 != 0;
-            }
-
-            @Override
-            public View createView(int i2) {
-                if (i2 == -1) {
-                    return null;
-                }
-                return new Page(ProfileGiftsContainer.this, i, resourcesProvider);
-            }
-
-            @Override
-            public int getItemCount() {
-                return ProfileGiftsContainer.this.collections.getCollections().size() + 1;
-            }
-
-            @Override
-            public int getItemId(int i2) {
-                if (i2 == 0) {
-                    return -2;
-                }
-                return ((TL_stars.TL_starGiftCollection) ProfileGiftsContainer.this.collections.getCollections().get(i2 - 1)).collection_id;
-            }
-
-            @Override
-            public CharSequence getItemTitle(int i2) {
-                if (i2 == 0) {
-                    return LocaleController.getString(R.string.Gift2CollectionAll);
-                }
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) ProfileGiftsContainer.this.collections.getCollections().get(i2 - 1);
-                if (tL_starGiftCollection == null) {
-                    return null;
-                }
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_starGiftCollection.title);
-                if (tL_starGiftCollection.icon != null) {
-                    TextPaint textPaint = new TextPaint(1);
-                    textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
-                    spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
-                    spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
-                }
-                return spannableStringBuilder;
-            }
-
-            @Override
-            public int getItemViewType(int i2) {
-                return i2 == 0 ? 0 : 1;
-            }
-        });
-        addView(viewPagerFixed, LayoutHelper.createFrame(-1, -1, 119));
-        ViewPagerFixed.TabsView createTabsView = viewPagerFixed.createTabsView(true, 9);
-        this.tabsView = createTabsView;
-        createTabsView.tabMarginDp = 12;
-        createTabsView.setPreTabClick(new Utilities.Callback2Return() {
-            @Override
-            public final Object run(Object obj, Object obj2) {
-                Boolean lambda$new$0;
-                lambda$new$0 = ProfileGiftsContainer.this.lambda$new$0((Integer) obj, (Integer) obj2);
-                return lambda$new$0;
-            }
-        });
-        createTabsView.setOnTabLongClick(new Utilities.Callback2Return() {
-            @Override
-            public final Object run(Object obj, Object obj2) {
-                Boolean lambda$new$5;
-                lambda$new$5 = ProfileGiftsContainer.this.lambda$new$5(baseFragment, (Integer) obj, (View) obj2);
-                return lambda$new$5;
-            }
-        });
-        createTabsView.setBackgroundColor(this.backgroundColor);
-        addView(createTabsView, LayoutHelper.createFrame(-1, 42, 48));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.buttonContainer = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-        addView(frameLayout, LayoutHelper.createFrame(-1, -2, 87));
-        View view = new View(context);
-        this.buttonShadow = view;
-        view.setBackgroundColor(Theme.getColor(Theme.key_dialogGrayLine, resourcesProvider));
-        frameLayout.addView(view, LayoutHelper.createFrame(-1.0f, 1.0f / AndroidUtilities.density, 55));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.bulletinContainer = frameLayout2;
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.checkboxLayout = linearLayout;
-        linearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
-        linearLayout.setClipToPadding(false);
-        linearLayout.setOrientation(0);
-        linearLayout.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
-        CheckBox2 checkBox2 = new CheckBox2(context, 24, resourcesProvider);
-        this.checkbox = checkBox2;
-        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
-        checkBox2.setDrawUnchecked(true);
-        checkBox2.setChecked(false, false);
-        checkBox2.setDrawBackgroundAsArc(10);
-        linearLayout.addView(checkBox2, LayoutHelper.createLinear(26, 26, 16, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.checkboxTextView = textView;
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
-        textView.setTextSize(1, 14.0f);
-        textView.setText(LocaleController.getString(R.string.Gift2ChannelNotify));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 16, 9, 0, 0, 0));
-        frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, 38.0f, 17, 0.0f, (1.0f / AndroidUtilities.density) + 6.0f, 0.0f, 6.0f));
-        ScaleStateListAnimator.apply(linearLayout, 0.025f, 1.5f);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                ProfileGiftsContainer.this.lambda$new$8(resourcesProvider, i, view2);
-            }
-        });
-        Boolean bool = profileGiftsList.chat_notifications_enabled;
-        if (bool != null) {
-            checkBox2.setChecked(bool.booleanValue(), false);
+    private void checkScrollToCollection() {
+        TL_stars.TL_starGiftCollection tL_starGiftCollection;
+        if (this.pendingScrollToCollectionId <= 0) {
+            return;
         }
-        TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(this.dialogId));
-        final boolean z = this.dialogId < 0 || !(user == null || UserObject.isUserSelf(user) || UserObject.isBot(user));
-        StringBuilder sb = new StringBuilder();
-        sb.append("G ");
-        if (z) {
-            long j2 = this.dialogId;
-            string = j2 < 0 ? LocaleController.getString(R.string.ProfileGiftsSendChannel) : LocaleController.formatString(R.string.ProfileGiftsSendUser, DialogObject.getShortName(j2));
-        } else {
-            string = LocaleController.getString(R.string.ProfileGiftsSend);
-        }
-        sb.append(string);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb.toString());
-        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_gift_simple), 0, 1, 33);
-        this.sendGiftsToFriendsText = spannableStringBuilder;
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("+ " + LocaleController.getString(R.string.ProfileGiftsAdd));
-        spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.filled_add_album), 0, 1, 33);
-        this.addGiftsText = spannableStringBuilder2;
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(spannableStringBuilder, false);
-        frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                ProfileGiftsContainer.this.lambda$new$9(z, i, view2);
+        ArrayList collections = this.collections.getCollections();
+        int i = 0;
+        while (true) {
+            if (i >= collections.size()) {
+                i = -1;
+                tL_starGiftCollection = null;
+                break;
+            } else {
+                if (((TL_stars.TL_starGiftCollection) collections.get(i)).collection_id == this.pendingScrollToCollectionId) {
+                    tL_starGiftCollection = (TL_stars.TL_starGiftCollection) collections.get(i);
+                    break;
+                }
+                i++;
             }
-        });
-        buttonWithCounterView.setVisibility(canSwitchNotify() ? 8 : 0);
-        linearLayout.setVisibility(canSwitchNotify() ? 0 : 8);
-        this.buttonContainerHeightDp = canSwitchNotify() ? 50 : 68;
-        addView(frameLayout2, LayoutHelper.createFrame(-1, 200, 87));
-        updateColors();
-        updateTabsShown(false);
+        }
+        if (i < 0 || tL_starGiftCollection == null) {
+            return;
+        }
+        this.pendingScrollToCollectionId = 0;
+        this.tabsView.scrollToTab(tL_starGiftCollection.collection_id, i + 1);
     }
 
     public void fillTabs(boolean z) {
@@ -1878,9 +1662,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             return;
         }
         viewPagerFixed.fillTabs(z);
+        checkScrollToCollection();
     }
 
-    public void lambda$addGifts$18(int i, Page page, ArrayList arrayList) {
+    public void lambda$addGifts$19(int i, Page page, ArrayList arrayList) {
         Bulletin createSimpleMultiBulletin;
         this.collections.addGifts(i, arrayList, true);
         page.update(true);
@@ -1902,7 +1687,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public void lambda$createCollection$16(TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+    public void lambda$createCollection$17(TL_stars.TL_starGiftCollection tL_starGiftCollection) {
         fillTabs(true);
         ViewPagerFixed.TabsView tabsView = this.tabsView;
         int i = tL_starGiftCollection.collection_id;
@@ -1914,11 +1699,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         updateTabsShown(true);
     }
 
-    public void lambda$createCollection$17(String str) {
+    public void lambda$createCollection$18(String str) {
         this.collections.createCollection(str, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$createCollection$16((TL_stars.TL_starGiftCollection) obj);
+                ProfileGiftsContainer.this.lambda$createCollection$17((TL_stars.TL_starGiftCollection) obj);
             }
         });
     }
@@ -1932,30 +1717,70 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         return Boolean.TRUE;
     }
 
-    public void lambda$new$1(TL_stars.TL_starGiftCollection tL_starGiftCollection, String str) {
+    public void lambda$new$1(int i, String str, TL_stars.TL_starGiftCollection tL_starGiftCollection, Context context, Theme.ResourcesProvider resourcesProvider, final BaseFragment baseFragment) {
+        String str2 = MessagesController.getInstance(i).linkPrefix + "/" + str + "/c/" + tL_starGiftCollection.collection_id;
+        new ShareAlert(context, null, str2, false, str2, false, resourcesProvider) {
+            @Override
+            public void onSend(LongSparseArray longSparseArray, int i2, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+                BulletinFactory of;
+                Bulletin createSimpleBulletin;
+                if (z && (of = BulletinFactory.of(baseFragment)) != null) {
+                    if (longSparseArray.size() == 1) {
+                        long keyAt = longSparseArray.keyAt(0);
+                        if (keyAt == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                            createSimpleBulletin = of.createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])), 5000);
+                        } else if (keyAt < 0) {
+                            createSimpleBulletin = of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, tL_forumTopic != null ? tL_forumTopic.title : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-keyAt)).title)), 5000);
+                        } else {
+                            createSimpleBulletin = of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(keyAt)).first_name)), 5000);
+                        }
+                    } else {
+                        createSimpleBulletin = of.createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", longSparseArray.size(), Integer.valueOf(longSparseArray.size()))));
+                    }
+                    createSimpleBulletin.hideAfterBottomSheet(false).show();
+                    try {
+                        ProfileGiftsContainer.this.performHapticFeedback(3);
+                    } catch (Exception unused) {
+                    }
+                }
+            }
+        }.show();
+    }
+
+    public void lambda$new$10(boolean z, int i, View view) {
+        if (this.collections.isMine() && this.viewPager.getCurrentPosition() != 0) {
+            addGifts();
+        } else if (z) {
+            new GiftSheet(getContext(), i, this.dialogId, null, null).setBirthday(BirthdayController.getInstance(i).isToday(this.dialogId)).show();
+        } else {
+            UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());
+        }
+    }
+
+    public void lambda$new$11() {
+        this.collections.sendOrder();
+    }
+
+    public void lambda$new$2(TL_stars.TL_starGiftCollection tL_starGiftCollection, String str) {
         this.collections.rename(tL_starGiftCollection.collection_id, str);
         tL_starGiftCollection.title = str;
         fillTabs(true);
     }
 
-    public void lambda$new$10() {
-        this.collections.sendOrder();
-    }
-
-    public void lambda$new$2(final TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+    public void lambda$new$3(final TL_stars.TL_starGiftCollection tL_starGiftCollection) {
         openEnterNameAlert(tL_starGiftCollection.title, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$new$1(tL_starGiftCollection, (String) obj);
+                ProfileGiftsContainer.this.lambda$new$2(tL_starGiftCollection, (String) obj);
             }
         });
     }
 
-    public void lambda$new$3() {
+    public void lambda$new$4() {
         setReorderingCollections(true);
     }
 
-    public void lambda$new$4(int i, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+    public void lambda$new$5(int i, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
         if (i != -1) {
             this.collections.removeCollection(tL_starGiftCollection.collection_id);
             fillTabs(true);
@@ -1968,28 +1793,31 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public Boolean lambda$new$5(BaseFragment baseFragment, Integer num, View view) {
+    public Boolean lambda$new$6(final int i, final BaseFragment baseFragment, final Context context, final Theme.ResourcesProvider resourcesProvider, Integer num, View view) {
         final TL_stars.TL_starGiftCollection tL_starGiftCollection;
-        final int i = -1;
+        final int i2;
         if (num.intValue() == -1 || num.intValue() == -2 || num.intValue() == 0 || this.reorderingCollections) {
             return Boolean.FALSE;
         }
         if (!this.collections.isMine()) {
             return Boolean.FALSE;
         }
-        int i2 = 0;
+        int i3 = 0;
         while (true) {
-            if (i2 >= this.collections.getCollections().size()) {
+            if (i3 >= this.collections.getCollections().size()) {
                 tL_starGiftCollection = null;
+                i2 = -1;
                 break;
             }
-            if (((TL_stars.TL_starGiftCollection) this.collections.getCollections().get(i2)).collection_id == num.intValue()) {
-                tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.collections.getCollections().get(i2);
-                i = i2;
+            if (((TL_stars.TL_starGiftCollection) this.collections.getCollections().get(i3)).collection_id == num.intValue()) {
+                i2 = i3;
+                tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.collections.getCollections().get(i3);
                 break;
             }
-            i2++;
+            i3++;
         }
+        final String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i).getUserOrChat(this.dialogId));
+        final TL_stars.TL_starGiftCollection tL_starGiftCollection2 = tL_starGiftCollection;
         ItemOptions add = ItemOptions.makeOptions(baseFragment, view).setScrimViewBackground(new Drawable() {
             private final Drawable bg;
             private final Rect bgBounds = new Rect();
@@ -2012,32 +1840,37 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
 
             @Override
-            public void setAlpha(int i3) {
-                this.bg.setAlpha(i3);
+            public void setAlpha(int i4) {
+                this.bg.setAlpha(i4);
             }
 
             @Override
             public void setColorFilter(ColorFilter colorFilter) {
             }
-        }).add(R.drawable.msg_addbot, LocaleController.getString(R.string.Gift2CollectionsAdd), new Runnable() {
+        }).add(R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new Runnable() {
             @Override
             public final void run() {
                 ProfileGiftsContainer.this.addGifts();
             }
+        }).addIf(!TextUtils.isEmpty(publicUsername), R.drawable.msg_share, LocaleController.getString(R.string.Gift2CollectionsShare), new Runnable() {
+            @Override
+            public final void run() {
+                ProfileGiftsContainer.this.lambda$new$1(i, publicUsername, tL_starGiftCollection2, context, resourcesProvider, baseFragment);
+            }
         }).add(R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$2(tL_starGiftCollection);
+                ProfileGiftsContainer.this.lambda$new$3(tL_starGiftCollection);
             }
         }).add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$3();
+                ProfileGiftsContainer.this.lambda$new$4();
             }
         }).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Gift2CollectionsDelete), true, new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$4(i, tL_starGiftCollection);
+                ProfileGiftsContainer.this.lambda$new$5(i2, tL_starGiftCollection);
             }
         });
         this.currentMenu = add;
@@ -2045,23 +1878,23 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         return Boolean.TRUE;
     }
 
-    public void lambda$new$6(TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) {
+    public void lambda$new$7(TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) {
         this.checkboxRequestId = -1;
         if (tL_error != null) {
             BulletinFactory.of(this.bulletinContainer, resourcesProvider).showForError(tL_error);
         }
     }
 
-    public void lambda$new$7(final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$new$8(final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$6(tL_error, resourcesProvider);
+                ProfileGiftsContainer.this.lambda$new$7(tL_error, resourcesProvider);
             }
         });
     }
 
-    public void lambda$new$8(final Theme.ResourcesProvider resourcesProvider, int i, View view) {
+    public void lambda$new$9(final Theme.ResourcesProvider resourcesProvider, int i, View view) {
         this.checkbox.setChecked(!r7.isChecked(), true);
         boolean isChecked = this.checkbox.isChecked();
         BulletinFactory.of(this.bulletinContainer, resourcesProvider).createSimpleBulletinDetail(isChecked ? R.raw.silent_unmute : R.raw.silent_mute, LocaleController.getString(isChecked ? R.string.Gift2ChannelNotifyChecked : R.string.Gift2ChannelNotifyNotChecked)).show();
@@ -2076,22 +1909,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         ConnectionsManager.getInstance(i).sendRequest(togglechatstargiftnotifications, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ProfileGiftsContainer.this.lambda$new$7(resourcesProvider, tLObject, tL_error);
+                ProfileGiftsContainer.this.lambda$new$8(resourcesProvider, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$9(boolean z, int i, View view) {
-        if (this.collections.isMine() && this.viewPager.getCurrentPosition() != 0) {
-            addGifts();
-        } else if (z) {
-            new GiftSheet(getContext(), i, this.dialogId, null, null).setBirthday(BirthdayController.getInstance(i).isToday(this.dialogId)).show();
-        } else {
-            UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());
-        }
-    }
-
-    public static void lambda$openEnterNameAlert$12(EditTextCaption editTextCaption, Utilities.Callback callback, AlertDialog alertDialog, int i) {
+    public static void lambda$openEnterNameAlert$13(EditTextCaption editTextCaption, Utilities.Callback callback, AlertDialog alertDialog, int i) {
         String obj = editTextCaption.getText().toString();
         if (obj.length() <= 0 || obj.length() > 12) {
             AndroidUtilities.shakeView(editTextCaption);
@@ -2101,17 +1924,17 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public void lambda$openEnterNameAlert$14(EditTextCaption editTextCaption, Activity activity, DialogInterface dialogInterface) {
+    public void lambda$openEnterNameAlert$15(EditTextCaption editTextCaption, Activity activity, DialogInterface dialogInterface) {
         AndroidUtilities.hideKeyboard(editTextCaption);
         AndroidUtilities.requestAdjustResize(activity, this.fragment.getClassGuid());
     }
 
-    public static void lambda$openEnterNameAlert$15(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+    public static void lambda$openEnterNameAlert$16(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
         editTextCaption.requestFocus();
         AndroidUtilities.showKeyboard(editTextCaption);
     }
 
-    public static void lambda$setReorderingCollections$11(BaseFragment baseFragment) {
+    public static void lambda$setReorderingCollections$12(BaseFragment baseFragment) {
         ((ProfileActivity) baseFragment).scrollToSharedMedia(true);
     }
 
@@ -2240,7 +2063,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         builder.setPositiveButton(LocaleController.getString(str != null ? R.string.Edit : R.string.Create), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$12(EditTextCaption.this, callback, alertDialog, i);
+                ProfileGiftsContainer.lambda$openEnterNameAlert$13(EditTextCaption.this, callback, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -2258,13 +2081,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ProfileGiftsContainer.this.lambda$openEnterNameAlert$14(editTextCaption, findActivity, dialogInterface);
+                ProfileGiftsContainer.this.lambda$openEnterNameAlert$15(editTextCaption, findActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$15(EditTextCaption.this, dialogInterface);
+                ProfileGiftsContainer.lambda$openEnterNameAlert$16(EditTextCaption.this, dialogInterface);
             }
         });
         alertDialogArr[0].show();
@@ -2295,13 +2118,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         new SelectGiftsBottomSheet(this.fragment, this.dialogId, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$addGifts$18(i, currentPage, (ArrayList) obj);
+                ProfileGiftsContainer.this.lambda$addGifts$19(i, currentPage, (ArrayList) obj);
             }
         }).show();
     }
 
     public boolean canAdd() {
-        return this.collections.isMine() && this.collections.getCollections().size() + 1 < MessagesController.getInstance(this.currentAccount).config.stargiftsCollectionsLimit.get();
+        return this.collections.isMine() && this.collections.getCollections().size() < MessagesController.getInstance(this.currentAccount).config.stargiftsCollectionsLimit.get();
     }
 
     public boolean canFilter() {
@@ -2335,7 +2158,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         openEnterNameAlert(null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileGiftsContainer.this.lambda$createCollection$17((String) obj);
+                ProfileGiftsContainer.this.lambda$createCollection$18((String) obj);
             }
         });
     }
@@ -2403,9 +2226,16 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
     public int getGiftsCount() {
         int i;
-        StarsController.GiftsList giftsList = this.list;
-        if (giftsList != null && (i = giftsList.totalCount) > 0) {
-            return i;
+        StarsController.GiftsList giftsList;
+        int i2;
+        Page currentPage = getCurrentPage();
+        if (currentPage == null || (giftsList = currentPage.list) == this.list) {
+            StarsController.GiftsList giftsList2 = this.list;
+            if (giftsList2 != null && (i = giftsList2.totalCount) > 0) {
+                return i;
+            }
+        } else if (giftsList != null && (i2 = giftsList.totalCount) > 0) {
+            return i2;
         }
         long j = this.dialogId;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -2536,6 +2366,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         setReorderingCollections(false);
     }
 
+    public void scrollToCollectionId(int i) {
+        this.pendingScrollToCollectionId = i;
+        checkScrollToCollection();
+    }
+
     public void setReordering(boolean z) {
         Page currentPage = getCurrentPage();
         if (currentPage != null) {
@@ -2557,7 +2392,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.lambda$setReorderingCollections$11(BaseFragment.this);
+                        ProfileGiftsContainer.lambda$setReorderingCollections$12(BaseFragment.this);
                     }
                 });
             }

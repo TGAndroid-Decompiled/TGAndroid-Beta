@@ -98,7 +98,7 @@ public class RecyclerListView extends RecyclerView {
     onMultiSelectionChanged multiSelectionListener;
     boolean multiselectScrollRunning;
     boolean multiselectScrollToTop;
-    private RecyclerView.AdapterDataObserver observer;
+    private final RecyclerView.AdapterDataObserver observer;
     private OnInterceptTouchListener onInterceptTouchListener;
     private OnItemClickListener onItemClickListener;
     private OnItemClickListenerExtended onItemClickListenerExtended;

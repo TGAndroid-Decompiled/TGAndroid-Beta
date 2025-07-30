@@ -316,6 +316,7 @@ public class TL_payments {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1261053863);
+            outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt32(this.count);
             Vector.serialize(outputSerializedData, this.suggested_bots);
             Vector.serialize(outputSerializedData, this.users);

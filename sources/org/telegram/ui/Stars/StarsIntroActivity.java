@@ -16,7 +16,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -71,6 +70,8 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.WebFile;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -1157,7 +1158,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                                 str2 = str3;
                             }
                         } else {
-                            str2 = i == 5 ? "StarsNeededTextReactions" : i == 6 ? "StarsNeededTextGift" : i == 12 ? "StarsNeededTextGiftChannel" : i == 13 ? "StarsNeededTextPrivateMessage" : i == 10 ? "StarsNeededTextGiftUpgrade" : i == 11 ? "StarsNeededTextGiftTransfer" : i == 9 ? "StarsNeededBizText" : "StarsNeededText";
+                            str2 = i == 5 ? "StarsNeededTextReactions" : i == 6 ? "StarsNeededTextGift" : i == 12 ? "StarsNeededTextGiftChannel" : i == 13 ? "StarsNeededTextPrivateMessage" : i == 10 ? "StarsNeededTextGiftUpgrade" : i == 11 ? "StarsNeededTextGiftTransfer" : i == 9 ? "StarsNeededBizText" : i == 14 ? "StarsNeededTextGiftBuyResale" : "StarsNeededText";
                         }
                     }
                 }
@@ -2186,7 +2187,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             StarsController.getInstance(i).getStarGift(starGift.id, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    StarsIntroActivity.lambda$addAvailabilityRow$102(textView, (TL_stars.StarGift) obj);
+                    StarsIntroActivity.lambda$addAvailabilityRow$97(textView, (TL_stars.StarGift) obj);
                 }
             });
             return;
@@ -2253,53 +2254,71 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static CharSequence formatStarsAmount(TL_stars.StarsAmount starsAmount, float f, char c) {
+        String str;
+        int i;
+        String sb;
         if (floatFormat == null) {
             floatFormat = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
-            DecimalFormat decimalFormat = floatFormat;
-            double d = starsAmount.amount;
-            Double.isNaN(d);
-            String format = decimalFormat.format(d / 1.0E9d);
-            spannableStringBuilder.append((CharSequence) format);
-            int indexOf = format.indexOf(".");
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new RelativeSizeSpan(f), indexOf, spannableStringBuilder.length(), 33);
+        boolean z = starsAmount instanceof TL_stars.TL_starsTonAmount;
+        long j = starsAmount.amount;
+        if (!z) {
+            int i2 = starsAmount.nanos;
+            if (i2 < 0 && j > 0) {
+                str = ".";
+                i = -1;
+            } else if (i2 <= 0 || j >= 0) {
+                str = ".";
+                i = 0;
+            } else {
+                str = ".";
+                i = 1;
             }
-        } else {
-            long j = starsAmount.amount;
-            int i = starsAmount.nanos;
-            boolean z = false;
-            long j2 = ((i >= 0 || j <= 0) ? (i <= 0 || j >= 0) ? 0 : 1 : -1) + j;
-            if (j != 0 ? j < 0 : i < 0) {
-                z = true;
-            }
-            if (i != 0) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(z ? "-" : "");
-                sb.append(LocaleController.formatNumber(Math.abs(j2), c));
-                spannableStringBuilder.append((CharSequence) sb.toString());
-                DecimalFormat decimalFormat2 = floatFormat;
-                int i2 = starsAmount.nanos;
-                double d2 = i2;
-                if (i2 < 0) {
-                    Double.isNaN(d2);
-                    d2 += 1.0E9d;
+            long j2 = i + j;
+            boolean z2 = j != 0 ? j < 0 : i2 < 0;
+            if (i2 != 0) {
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append(z2 ? "-" : "");
+                sb2.append(LocaleController.formatNumber(Math.abs(j2), c));
+                spannableStringBuilder.append((CharSequence) sb2.toString());
+                DecimalFormat decimalFormat = floatFormat;
+                int i3 = starsAmount.nanos;
+                double d = i3;
+                if (i3 < 0) {
+                    Double.isNaN(d);
+                    d += 1.0E9d;
                 }
-                String format2 = decimalFormat2.format(d2 / 1.0E9d);
-                int indexOf2 = format2.indexOf(".");
-                if (indexOf2 >= 0) {
+                String format = decimalFormat.format(d / 1.0E9d);
+                int indexOf = format.indexOf(str);
+                if (indexOf >= 0) {
                     int length = spannableStringBuilder.length();
-                    spannableStringBuilder.append((CharSequence) format2.substring(indexOf2));
+                    spannableStringBuilder.append((CharSequence) format.substring(indexOf));
                     spannableStringBuilder.setSpan(new RelativeSizeSpan(f), length + 1, spannableStringBuilder.length(), 33);
                 }
             } else {
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(z ? "-" : "");
-                sb2.append(LocaleController.formatNumber(Math.abs(j2), ' '));
-                spannableStringBuilder.append((CharSequence) sb2.toString());
+                StringBuilder sb3 = new StringBuilder();
+                sb3.append(z2 ? "-" : "");
+                sb3.append(LocaleController.formatNumber(Math.abs(j2), c));
+                sb = sb3.toString();
+                spannableStringBuilder.append((CharSequence) sb);
             }
+        } else if (j % 1000000000 != 0) {
+            DecimalFormat decimalFormat2 = floatFormat;
+            double d2 = j;
+            Double.isNaN(d2);
+            String format2 = decimalFormat2.format(d2 / 1.0E9d);
+            spannableStringBuilder.append((CharSequence) format2);
+            int indexOf2 = format2.indexOf(".");
+            if (indexOf2 >= 0) {
+                spannableStringBuilder.setSpan(new RelativeSizeSpan(f), indexOf2, spannableStringBuilder.length(), 33);
+            }
+        } else {
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append(starsAmount.negative() ? "-" : "");
+            sb4.append(LocaleController.formatNumber(Math.abs(starsAmount.amount / 1000000000), c));
+            sb = sb4.toString();
+            spannableStringBuilder.append((CharSequence) sb);
         }
         return spannableStringBuilder;
     }
@@ -2376,6 +2395,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     public static CharSequence formatStarsAmountString(TL_stars.StarsAmount starsAmount, float f, char c) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
+            if (floatFormat == null) {
+                floatFormat = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
+            }
             DecimalFormat decimalFormat = floatFormat;
             double d = starsAmount.amount;
             Double.isNaN(d);
@@ -2388,11 +2410,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         } else {
             long j = starsAmount.amount;
             int i = starsAmount.nanos;
-            boolean z = false;
             long j2 = ((i >= 0 || j <= 0) ? (i <= 0 || j >= 0) ? 0 : 1 : -1) + j;
-            if (j != 0 ? j < 0 : i < 0) {
-                z = true;
-            }
+            boolean z = j != 0 ? j < 0 : i < 0;
             if (i != 0) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(z ? "-" : "");
@@ -2439,7 +2458,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.getTransactionTitle(int, boolean, org.telegram.tgnet.tl.TL_stars$StarsTransaction):java.lang.CharSequence");
     }
 
-    public static void lambda$addAvailabilityRow$102(TextView textView, TL_stars.StarGift starGift) {
+    public static void lambda$addAvailabilityRow$97(TextView textView, TL_stars.StarGift starGift) {
         int i;
         String formatPluralStringComma;
         String str;
@@ -2742,88 +2761,17 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void lambda$showGiftResellPriceSheet$100(BottomSheet[] bottomSheetArr, final EditTextBoldCursor editTextBoldCursor) {
-        bottomSheetArr[0].setFocusable(true);
-        editTextBoldCursor.requestFocus();
-        AndroidUtilities.runOnUIThread(new Runnable() {
+    public static void lambda$showGiftResellPriceSheet$94(SellGiftEnterPriceSheet[] sellGiftEnterPriceSheetArr) {
+        sellGiftEnterPriceSheetArr[0].lambda$new$0();
+    }
+
+    public static void lambda$showGiftResellPriceSheet$95(Utilities.Callback2 callback2, final SellGiftEnterPriceSheet[] sellGiftEnterPriceSheetArr, AmountUtils$Amount amountUtils$Amount) {
+        callback2.run(amountUtils$Amount, new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
+                StarsIntroActivity.lambda$showGiftResellPriceSheet$94(sellGiftEnterPriceSheetArr);
             }
         });
-    }
-
-    public static void lambda$showGiftResellPriceSheet$94(OutlineTextContainerView outlineTextContainerView, EditTextBoldCursor editTextBoldCursor, View view, boolean z) {
-        outlineTextContainerView.animateSelection(z, !TextUtils.isEmpty(editTextBoldCursor.getText()));
-    }
-
-    public static void lambda$showGiftResellPriceSheet$95(BottomSheet[] bottomSheetArr) {
-        bottomSheetArr[0].lambda$new$0();
-    }
-
-    public static boolean lambda$showGiftResellPriceSheet$96(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, EditTextBoldCursor editTextBoldCursor, OutlineTextContainerView outlineTextContainerView, long j, final BottomSheet[] bottomSheetArr, TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
-        }
-        if (zArr[0]) {
-            return true;
-        }
-        if (callback2 != null) {
-            zArr[0] = true;
-            buttonWithCounterView.setLoading(true);
-            try {
-                long parseLong = Long.parseLong(editTextBoldCursor.getText().toString());
-                if (parseLong < j) {
-                    AndroidUtilities.shakeViewSpring(outlineTextContainerView);
-                    return true;
-                }
-                callback2.run(Long.valueOf(parseLong), new Runnable() {
-                    @Override
-                    public final void run() {
-                        StarsIntroActivity.lambda$showGiftResellPriceSheet$95(bottomSheetArr);
-                    }
-                });
-            } catch (Exception e) {
-                FileLog.e(e);
-                AndroidUtilities.shakeViewSpring(outlineTextContainerView);
-                return true;
-            }
-        } else {
-            bottomSheetArr[0].lambda$new$0();
-        }
-        return true;
-    }
-
-    public static void lambda$showGiftResellPriceSheet$97(BottomSheet[] bottomSheetArr) {
-        bottomSheetArr[0].lambda$new$0();
-    }
-
-    public static void lambda$showGiftResellPriceSheet$98(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, EditTextBoldCursor editTextBoldCursor, OutlineTextContainerView outlineTextContainerView, long j, final BottomSheet[] bottomSheetArr, View view) {
-        if (zArr[0]) {
-            return;
-        }
-        if (callback2 == null) {
-            bottomSheetArr[0].lambda$new$0();
-            return;
-        }
-        zArr[0] = true;
-        buttonWithCounterView.setLoading(true);
-        try {
-            long parseLong = Long.parseLong(editTextBoldCursor.getText().toString());
-            if (parseLong < j) {
-                AndroidUtilities.shakeViewSpring(outlineTextContainerView);
-            } else {
-                callback2.run(Long.valueOf(parseLong), new Runnable() {
-                    @Override
-                    public final void run() {
-                        StarsIntroActivity.lambda$showGiftResellPriceSheet$97(bottomSheetArr);
-                    }
-                });
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.shakeViewSpring(outlineTextContainerView);
-        }
     }
 
     public static void lambda$showMediaPriceSheet$83(OutlineTextContainerView outlineTextContainerView, EditTextBoldCursor editTextBoldCursor, View view, boolean z) {
@@ -2923,7 +2871,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         });
     }
 
-    public static void lambda$showSoldOutGiftSheet$101(BottomSheet[] bottomSheetArr, View view) {
+    public static void lambda$showSoldOutGiftSheet$96(BottomSheet[] bottomSheetArr, View view) {
         bottomSheetArr[0].lambda$new$0();
     }
 
@@ -3936,201 +3884,27 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return bottomSheetArr[0];
     }
 
-    public static BottomSheet showGiftResellPriceSheet(Context context, int i, long j, final Utilities.Callback2 callback2, final Theme.ResourcesProvider resourcesProvider) {
-        final long j2 = MessagesController.getInstance(i).starsStargiftResaleAmountMin;
-        final long j3 = MessagesController.getInstance(i).starsStargiftResaleAmountMax;
-        final int i2 = MessagesController.getInstance(i).starsStargiftResaleCommisionPermille;
-        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(R.string.ResellGiftTitle));
-        textView.setTextSize(1, 20.0f);
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i3, resourcesProvider));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 4.0f, 0.0f, 4.0f, 14.0f));
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        final OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context, resourcesProvider);
-        outlineTextContainerView.setForceForceUseCenter(true);
-        outlineTextContainerView.setText(LocaleController.getString(R.string.ResellGiftPriceTitle));
-        outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(36.0f));
-        editTextBoldCursor.setTextColor(Theme.getColor(i3, resourcesProvider));
-        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setBackground(null);
-        editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setMaxLines(1);
-        int dp = AndroidUtilities.dp(16.0f);
-        editTextBoldCursor.setPadding(AndroidUtilities.dp(6.0f), dp, dp, dp);
-        editTextBoldCursor.setInputType(2);
-        editTextBoldCursor.setTypeface(Typeface.DEFAULT);
-        editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, resourcesProvider));
-        editTextBoldCursor.setHandlesColor(Theme.getColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
-        editTextBoldCursor.setGravity(LocaleController.isRTL ? 5 : 3);
-        editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public final void onFocusChange(View view, boolean z) {
-                StarsIntroActivity.lambda$showGiftResellPriceSheet$94(OutlineTextContainerView.this, editTextBoldCursor, view, z);
-            }
-        });
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(0);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(R.drawable.star_small_inner);
-        linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 19, 14, 0, 0, 0));
-        linearLayout2.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 1.0f, 119));
-        outlineTextContainerView.attachEditText(editTextBoldCursor);
-        outlineTextContainerView.addView(linearLayout2, LayoutHelper.createFrame(-1, -2, 48));
-        linearLayout.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, -2));
-        FrameLayout frameLayout = new FrameLayout(context);
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 14.0f, 3.0f, 14.0f, 21.0f));
-        final LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-        float f = i2 / 1000.0f;
-        linksTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("ResellGiftInfo", (int) (((float) j2) * f))));
-        linksTextView.setTextSize(1, 12.0f);
-        int i4 = Theme.key_windowBackgroundWhiteGrayText2;
-        linksTextView.setTextColor(Theme.getColor(i4, resourcesProvider));
-        int i5 = Theme.key_chat_messageLinkIn;
-        linksTextView.setLinkTextColor(Theme.getColor(i5, resourcesProvider));
-        linksTextView.setGravity(3);
-        frameLayout.addView(linksTextView, LayoutHelper.createFrame(-1, -1, 19));
-        final LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
-        linksTextView2.setTextSize(1, 12.0f);
-        linksTextView2.setTextColor(Theme.getColor(i4, resourcesProvider));
-        linksTextView2.setLinkTextColor(Theme.getColor(i5, resourcesProvider));
-        linksTextView2.setGravity(5);
-        frameLayout.addView(linksTextView2, LayoutHelper.createFrame(-1, -1, 21));
-        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.ResellGiftButton), false);
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
-        builder.setCustomView(linearLayout);
-        final BottomSheet[] bottomSheetArr = {builder.create()};
-        editTextBoldCursor.setText(Long.toString(j));
-        linksTextView2.setAlpha(1.0f);
-        StringBuilder sb = new StringBuilder();
-        sb.append("≈");
-        BillingController billingController = BillingController.getInstance();
-        double d = ((float) j) * f;
-        Double.isNaN(d);
-        double d2 = MessagesController.getInstance(UserConfig.selectedAccount).starsUsdWithdrawRate1000;
-        Double.isNaN(d2);
-        sb.append(billingController.formatCurrency((long) ((d / 1000.0d) * d2), "USD"));
-        linksTextView2.setText(sb.toString());
-        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
-            private boolean ignore;
-            private int shakeDp = 2;
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                long j4;
-                LinkSpanDrawable.LinksTextView linksTextView3;
-                String formatPluralStringComma;
-                if (this.ignore) {
-                    return;
-                }
-                try {
-                    j4 = TextUtils.isEmpty(editable) ? 0L : Long.parseLong(editable.toString());
-                    long j5 = j3;
-                    if (j4 > j5) {
-                        this.ignore = true;
-                        editTextBoldCursor.setText(Long.toString(j5));
-                        EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-                        OutlineTextContainerView outlineTextContainerView2 = outlineTextContainerView;
-                        int i6 = -this.shakeDp;
-                        this.shakeDp = i6;
-                        AndroidUtilities.shakeViewSpring(outlineTextContainerView2, i6);
-                        j4 = j5;
-                    }
-                } catch (Exception unused) {
-                    this.ignore = true;
-                    EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursor;
-                    j4 = j2;
-                    editTextBoldCursor3.setText(Long.toString(j4));
-                    EditTextBoldCursor editTextBoldCursor4 = editTextBoldCursor;
-                    editTextBoldCursor4.setSelection(editTextBoldCursor4.getText().length());
-                }
-                boolean z = false;
-                this.ignore = false;
-                ButtonWithCounterView buttonWithCounterView2 = buttonWithCounterView;
-                if (j4 >= j2 && j4 <= j3) {
-                    z = true;
-                }
-                buttonWithCounterView2.setEnabled(z);
-                long j6 = j2;
-                LinkSpanDrawable.LinksTextView linksTextView4 = linksTextView;
-                if (j4 < j6) {
-                    linksTextView4.setTextColor(Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
-                    linksTextView3 = linksTextView;
-                    formatPluralStringComma = LocaleController.formatPluralStringComma("ResellGiftInfoMin", (int) j2);
-                } else {
-                    linksTextView4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-                    linksTextView3 = linksTextView;
-                    formatPluralStringComma = LocaleController.formatPluralStringComma("ResellGiftInfo", (int) (((float) j4) * (i2 / 1000.0f)));
-                }
-                linksTextView3.setText(AndroidUtilities.replaceTags(formatPluralStringComma));
-                outlineTextContainerView.animateSelection(editTextBoldCursor.isFocused(), true ^ TextUtils.isEmpty(editTextBoldCursor.getText()));
-                if (j4 < j2) {
-                    linksTextView2.animate().alpha(0.0f).start();
-                    linksTextView2.setText("");
-                    return;
-                }
-                linksTextView2.animate().alpha(1.0f).start();
-                LinkSpanDrawable.LinksTextView linksTextView5 = linksTextView2;
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append("≈");
-                BillingController billingController2 = BillingController.getInstance();
-                double d3 = ((float) j4) * (i2 / 1000.0f);
-                Double.isNaN(d3);
-                double d4 = MessagesController.getInstance(UserConfig.selectedAccount).starsUsdWithdrawRate1000;
-                Double.isNaN(d4);
-                sb2.append(billingController2.formatCurrency((long) ((d3 / 1000.0d) * d4), "USD"));
-                linksTextView5.setText(sb2.toString());
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
-            }
-        });
-        final boolean[] zArr = {false};
-        editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public final boolean onEditorAction(TextView textView2, int i6, KeyEvent keyEvent) {
-                boolean lambda$showGiftResellPriceSheet$96;
-                lambda$showGiftResellPriceSheet$96 = StarsIntroActivity.lambda$showGiftResellPriceSheet$96(zArr, callback2, buttonWithCounterView, editTextBoldCursor, outlineTextContainerView, j2, bottomSheetArr, textView2, i6, keyEvent);
-                return lambda$showGiftResellPriceSheet$96;
-            }
-        });
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                StarsIntroActivity.lambda$showGiftResellPriceSheet$98(zArr, callback2, buttonWithCounterView, editTextBoldCursor, outlineTextContainerView, j2, bottomSheetArr, view);
-            }
-        });
-        bottomSheetArr[0].fixNavigationBar();
-        bottomSheetArr[0].show();
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StarsIntroActivity.lambda$showGiftResellPriceSheet$100(bottomSheetArr, editTextBoldCursor);
-            }
-        }, lastFragment instanceof ChatActivity ? ((ChatActivity) lastFragment).needEnterText() : false ? 200L : 80L);
-        return bottomSheetArr[0];
+    public static BottomSheet showGiftResellPriceSheet(Context context, int i, Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {
+        return showGiftResellPriceSheet(context, i, null, null, callback2, resourcesProvider);
     }
 
-    public static BottomSheet showGiftResellPriceSheet(Context context, int i, Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {
-        return showGiftResellPriceSheet(context, i, MessagesController.getInstance(i).starsStargiftResaleAmountMin, callback2, resourcesProvider);
+    public static BottomSheet showGiftResellPriceSheet(Context context, int i, TL_stars.StarGift starGift, AmountUtils$Amount amountUtils$Amount, final Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {
+        if (amountUtils$Amount == null) {
+            if (starGift == null) {
+                amountUtils$Amount = AmountUtils$Amount.fromDecimal(MessagesController.getInstance(i).config.starsStarGiftResaleAmountMin.get(), AmountUtils$Currency.STARS);
+            } else {
+                amountUtils$Amount = starGift.getResellAmount(starGift.resale_ton_only ? AmountUtils$Currency.TON : AmountUtils$Currency.STARS);
+            }
+        }
+        SellGiftEnterPriceSheet sellGiftEnterPriceSheet = new SellGiftEnterPriceSheet(context, resourcesProvider, i, amountUtils$Amount, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                StarsIntroActivity.lambda$showGiftResellPriceSheet$95(Utilities.Callback2.this, r2, (AmountUtils$Amount) obj);
+            }
+        });
+        final SellGiftEnterPriceSheet[] sellGiftEnterPriceSheetArr = {sellGiftEnterPriceSheet};
+        sellGiftEnterPriceSheet.show();
+        return sellGiftEnterPriceSheetArr[0];
     }
 
     public static BottomSheet showMediaPriceSheet(final Context context, final long j, final boolean z, final Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {
@@ -4316,7 +4090,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.lambda$showSoldOutGiftSheet$101(bottomSheetArr, view);
+                StarsIntroActivity.lambda$showSoldOutGiftSheet$96(bottomSheetArr, view);
             }
         });
         bottomSheetArr[0].fixNavigationBar();

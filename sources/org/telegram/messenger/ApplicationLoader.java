@@ -193,6 +193,10 @@ public class ApplicationLoader extends Application {
         }, 1000L);
     }
 
+    public static boolean isAndroidTestEnvironment() {
+        return applicationLoaderInstance.isAndroidTestEnv();
+    }
+
     public static boolean isBetaBuild() {
         return applicationLoaderInstance.isBeta();
     }
@@ -487,6 +491,10 @@ public class ApplicationLoader extends Application {
 
     public BetaUpdate getUpdate() {
         return null;
+    }
+
+    protected boolean isAndroidTestEnv() {
+        return false;
     }
 
     protected boolean isBeta() {

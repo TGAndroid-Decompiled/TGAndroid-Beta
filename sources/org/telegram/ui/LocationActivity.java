@@ -2265,7 +2265,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r60) {
+    public android.view.View createView(final android.content.Context r59) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LocationActivity.createView(android.content.Context):android.view.View");
     }
 

@@ -148,6 +148,10 @@ public class TextCheckbox2Cell extends FrameLayout {
         super.setBackgroundColor(i);
     }
 
+    public void setCheckboxGravityTop() {
+        this.checkbox.setLayoutParams(LayoutHelper.createFrame(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 22.0f, 22.0f, 0.0f));
+    }
+
     public void setChecked(boolean z) {
         this.checkbox.setChecked(z, true);
     }

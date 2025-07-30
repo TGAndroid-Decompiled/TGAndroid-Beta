@@ -4594,6 +4594,7 @@ public class StarsController {
         TLRPC.TL_inputInvoiceStarGiftResale tL_inputInvoiceStarGiftResale = new TLRPC.TL_inputInvoiceStarGiftResale();
         tL_inputInvoiceStarGiftResale.slug = starGift.slug;
         tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        tL_inputInvoiceStarGiftResale.ton = this.ton;
         TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
         JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(resourceProvider);
         if (makeThemeParams != null) {
@@ -4925,6 +4926,7 @@ public class StarsController {
         TLRPC.TL_inputInvoiceStarGiftResale tL_inputInvoiceStarGiftResale = new TLRPC.TL_inputInvoiceStarGiftResale();
         tL_inputInvoiceStarGiftResale.slug = starGift.slug;
         tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        tL_inputInvoiceStarGiftResale.ton = this.ton;
         TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
         JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(resourceProvider);
         if (makeThemeParams != null) {

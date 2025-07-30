@@ -386,8 +386,9 @@ public class HashtagSearchController {
                     final int[] iArr = {sendRequest};
                 }
                 TLRPC.TL_channels_searchPosts tL_channels_searchPosts3 = new TLRPC.TL_channels_searchPosts();
-                tL_channels_searchPosts3.limit = 21;
+                tL_channels_searchPosts3.flags |= 1;
                 tL_channels_searchPosts3.hashtag = str5;
+                tL_channels_searchPosts3.limit = 21;
                 tL_channels_searchPosts3.offset_peer = new TLRPC.TL_inputPeerEmpty();
                 tL_channels_searchPosts2 = tL_channels_searchPosts3;
                 if (searchResult.lastOffsetPeer != null) {

@@ -195,6 +195,9 @@ public class FileLog {
             privateFields.add("mContext");
             privateFields.add("priority");
             privateFields.add("constructor");
+            for (int i = 0; i < 32; i++) {
+                privateFields.add("FLAG_" + i);
+            }
             HashSet<String> hashSet2 = new HashSet<>();
             excludeRequests = hashSet2;
             hashSet2.add("TL_upload_getFile");

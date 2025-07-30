@@ -771,11 +771,13 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public void lambda$makeButtonLoading$9(View view) {
+    public void lambda$makeButtonLoading$9(View view, boolean z) {
         if (view instanceof TextViewWithLoading) {
             ((TextViewWithLoading) view).setLoading(false, true);
         }
-        dismiss();
+        if (z) {
+            dismiss();
+        }
     }
 
     public void lambda$new$0() {
@@ -913,8 +915,16 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return this.containerView;
     }
 
+    public FrameLayout getFullscreenContainerView() {
+        return this.fullscreenContainerView;
+    }
+
     public int getItemsCount() {
         return this.itemViews.size();
+    }
+
+    public BalanceCloud getStarsBalanceCloud() {
+        return this.starsBalanceCloud;
     }
 
     public ArrayList getThemeDescriptions() {
@@ -936,8 +946,14 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     }
 
     public Browser.Progress makeButtonLoading(int i) {
+        return makeButtonLoading(i, true, true);
+    }
+
+    public Browser.Progress makeButtonLoading(int i, final boolean z, boolean z2) {
         final View button = getButton(i);
-        this.dismissDialogByButtons = false;
+        if (z2) {
+            this.dismissDialogByButtons = false;
+        }
         return new Browser.Progress(new Runnable() {
             @Override
             public final void run() {
@@ -946,7 +962,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }, new Runnable() {
             @Override
             public final void run() {
-                AlertDialog.this.lambda$makeButtonLoading$9(button);
+                AlertDialog.this.lambda$makeButtonLoading$9(button, z);
             }
         });
     }

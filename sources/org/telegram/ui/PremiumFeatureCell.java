@@ -21,13 +21,13 @@ import org.telegram.ui.PremiumPreviewFragment;
 
 public class PremiumFeatureCell extends FrameLayout {
     public PremiumPreviewFragment.PremiumFeatureData data;
-    private final TextView description;
+    public final TextView description;
     boolean drawDivider;
     public AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable imageDrawable;
     public ImageView imageView;
     public final ImageView nextIcon;
     private Drawable premiumStar;
-    private final SimpleTextView title;
+    public final SimpleTextView title;
 
     public PremiumFeatureCell(Context context) {
         this(context, null);

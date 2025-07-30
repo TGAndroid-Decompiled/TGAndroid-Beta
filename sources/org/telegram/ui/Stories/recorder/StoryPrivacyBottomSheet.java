@@ -76,6 +76,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -86,6 +87,7 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.GroupCreateSpan;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RadioButton;
@@ -93,6 +95,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class StoryPrivacyBottomSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
@@ -115,7 +118,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     private Utilities.Callback onDismiss;
     private DoneCallback onDone;
     private Utilities.Callback onDone2;
+    private Utilities.Callback onSelectedAlbums;
     private Utilities.Callback onSelectedPeer;
+    private final HashSet selectedAlbums;
     private final ArrayList selectedContacts;
     private final HashMap selectedContactsByGroup;
     private int selectedContactsCount;
@@ -459,6 +464,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         public boolean checked;
         public Drawable drawable;
         public boolean halfChecked;
+        public int id;
         public int padHeight;
         public boolean red;
         public int resId;
@@ -475,10 +481,19 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.padHeight = -1;
         }
 
-        public static ItemInner asButton(CharSequence charSequence, Drawable drawable) {
+        public static ItemInner asButton(int i, CharSequence charSequence, Drawable drawable) {
             ItemInner itemInner = new ItemInner(9, false);
             itemInner.text = charSequence;
             itemInner.drawable = drawable;
+            itemInner.id = i;
+            return itemInner;
+        }
+
+        public static ItemInner asButton(int i, CharSequence charSequence, CharSequence charSequence2) {
+            ItemInner itemInner = new ItemInner(9, false);
+            itemInner.text = charSequence;
+            itemInner.text2 = charSequence2;
+            itemInner.id = i;
             return itemInner;
         }
 
@@ -603,7 +618,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 return false;
             }
             if (this.viewType != 7 || (this.resId == itemInner.resId && TextUtils.equals(this.text, itemInner.text) && this.checked == itemInner.checked)) {
-                return this.viewType != 9 || (this.drawable == itemInner.drawable && TextUtils.equals(this.text, itemInner.text) && TextUtils.equals(this.text2, itemInner.text2));
+                return this.viewType != 9 || (this.id == itemInner.id && this.drawable == itemInner.drawable && TextUtils.equals(this.text, itemInner.text) && TextUtils.equals(this.text2, itemInner.text2));
             }
             return false;
         }
@@ -694,6 +709,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 View view;
                 RecyclerView.LayoutParams layoutParams;
                 int i3;
+                int i4;
                 if (Page.this.items == null || i < 0 || i >= Page.this.items.size()) {
                     return;
                 }
@@ -715,15 +731,15 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     }
                     itemInner = null;
                 }
-                boolean z2 = itemInner != null && itemInner.viewType == itemViewType;
+                boolean z2 = itemInner != null && ((i4 = itemInner.viewType) == itemViewType || (i4 == 9 && itemInner.id == 1));
                 if (itemViewType == 3) {
                     UserCell userCell = (UserCell) viewHolder.itemView;
                     boolean z3 = itemInner2.sendAs;
                     userCell.setIsSendAs(z3, !z3);
-                    int i4 = itemInner2.type;
+                    int i5 = itemInner2.type;
                     float f = 1.0f;
-                    if (i4 > 0) {
-                        userCell.setType(i4, itemInner2.typeCount, itemInner2.user);
+                    if (i5 > 0) {
+                        userCell.setType(i5, itemInner2.typeCount, itemInner2.user);
                     } else {
                         TLRPC.User user = itemInner2.user;
                         if (user == null) {
@@ -1111,7 +1127,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
                 @Override
                 public final void onItemClick(View view, int i2, float f, float f2) {
-                    StoryPrivacyBottomSheet.Page.this.lambda$new$7(context, view, i2, f, f2);
+                    StoryPrivacyBottomSheet.Page.this.lambda$new$10(context, view, i2, f, f2);
                 }
             });
             frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1185,6 +1201,12 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             addView(buttonContainer, LayoutHelper.createFrame(-1, -2, 87));
         }
 
+        private long getDialogId() {
+            StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+            TLRPC.InputPeer inputPeer = storyPrivacyBottomSheet.selectedPeer;
+            return inputPeer != null ? DialogObject.getPeerDialogId(inputPeer) : UserConfig.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).getClientUserId();
+        }
+
         private float getSearchFieldTop() {
             float f = -Math.max(0, Math.min(AndroidUtilities.dp(150.0f), this.searchField.resultContainerHeight) - AndroidUtilities.dp(150.0f));
             for (int i = 0; i < this.listView.getChildCount(); i++) {
@@ -1210,83 +1232,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$2(TLRPC.InputPeer inputPeer) {
-            StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-            storyPrivacyBottomSheet.selectedPeer = inputPeer;
-            if (storyPrivacyBottomSheet.onSelectedPeer != null) {
-                StoryPrivacyBottomSheet.this.onSelectedPeer.run(StoryPrivacyBottomSheet.this.selectedPeer);
-            }
-            updateItems(true);
-        }
-
-        public void lambda$new$3(long j, TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants) {
-            int i;
-            long j2;
-            AlertDialog alertDialog = this.progressDialog;
-            if (alertDialog != null) {
-                alertDialog.dismissUnless(350L);
-                this.progressDialog = null;
-            }
-            if (tL_channels_channelParticipants == null || tL_channels_channelParticipants.participants.isEmpty()) {
-                return;
-            }
-            TLRPC.TL_chatParticipants tL_chatParticipants = new TLRPC.TL_chatParticipants();
-            while (i < tL_channels_channelParticipants.participants.size()) {
-                TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i);
-                TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                TLRPC.Peer peer = channelParticipant.peer;
-                if (peer != null) {
-                    j2 = DialogObject.getPeerDialogId(peer);
-                    i = j2 < 0 ? i + 1 : 0;
-                } else {
-                    j2 = channelParticipant.user_id;
-                }
-                tL_chatParticipant.user_id = j2;
-                tL_chatParticipants.participants.add(tL_chatParticipant);
-            }
-            selectChat(j, tL_chatParticipants);
-        }
-
-        public void lambda$new$4(boolean z, final long j) {
-            if (z) {
-                MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).loadChannelParticipants(Long.valueOf(j), new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$new$3(j, (TLRPC.TL_channels_channelParticipants) obj);
-                    }
-                }, 200);
-            } else {
-                MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).loadFullChat(j, 0, true);
-            }
-        }
-
-        public void lambda$new$5(long j, TLRPC.ChatFull chatFull) {
-            selectChat(j, chatFull.participants);
-        }
-
-        public void lambda$new$6(TLRPC.Chat chat, MessagesStorage messagesStorage, final long j) {
-            TLRPC.ChatParticipants chatParticipants;
-            ArrayList<TLRPC.ChatParticipant> arrayList;
-            final boolean isChannel = ChatObject.isChannel(chat);
-            final TLRPC.ChatFull loadChatInfoInQueue = messagesStorage.loadChatInfoInQueue(j, isChannel, true, true, 0);
-            if (loadChatInfoInQueue == null || (chatParticipants = loadChatInfoInQueue.participants) == null || ((arrayList = chatParticipants.participants) != null && arrayList.size() < loadChatInfoInQueue.participants_count - 1)) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryPrivacyBottomSheet.Page.this.lambda$new$4(isChannel, j);
-                    }
-                });
-            } else {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryPrivacyBottomSheet.Page.this.lambda$new$5(j, loadChatInfoInQueue);
-                    }
-                });
-            }
-        }
-
-        public void lambda$new$7(Context context, View view, int i, float f, float f2) {
+        public void lambda$new$10(Context context, View view, int i, float f, float f2) {
             BulletinFactory of;
             int i2;
             int i3;
@@ -1304,10 +1250,37 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             int i6 = itemInner.viewType;
             if (i6 != 3) {
                 if (i6 != 7) {
-                    if (i6 != 9 || StoryPrivacyBottomSheet.this.whenCoverClicked == null) {
-                        return;
+                    if (i6 == 9) {
+                        int i7 = itemInner.id;
+                        if (i7 == 0) {
+                            if (StoryPrivacyBottomSheet.this.whenCoverClicked != null) {
+                                StoryPrivacyBottomSheet.this.whenCoverClicked.run();
+                                return;
+                            }
+                            return;
+                        } else {
+                            if (i7 == 1) {
+                                final long dialogId = getDialogId();
+                                final ItemOptions makeOptions = ItemOptions.makeOptions(this, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider, view);
+                                makeOptions.add(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        StoryPrivacyBottomSheet.Page.this.lambda$new$8(dialogId);
+                                    }
+                                });
+                                makeOptions.addGap();
+                                ItemOptions.addAlbumsItemOptions(makeOptions, StoryPrivacyBottomSheet.this.getStoriesController().getStoryAlbumsList(dialogId), StoryPrivacyBottomSheet.this.selectedAlbums, false, null, new Utilities.Callback() {
+                                    @Override
+                                    public final void run(Object obj) {
+                                        StoryPrivacyBottomSheet.Page.this.lambda$new$9(makeOptions, (StoriesController.StoryAlbum) obj);
+                                    }
+                                });
+                                makeOptions.show();
+                                return;
+                            }
+                            return;
+                        }
                     }
-                    StoryPrivacyBottomSheet.this.whenCoverClicked.run();
                     return;
                 }
                 if (view instanceof TextCell) {
@@ -1346,10 +1319,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                         i3 = z2 ? R.string.StoryChannelDisableKeep : R.string.StoryDisableKeep;
                     }
                     of.createSimpleBulletin(i2, LocaleController.getString(i3), 4).setDuration(5000).show(true);
-                    if (StoryPrivacyBottomSheet.this.whenCoverClicked != null) {
-                        updateItems(true);
-                        return;
-                    }
+                    updateItems(true);
                     return;
                 }
                 return;
@@ -1363,8 +1333,8 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).show();
                 return;
             }
-            int i7 = itemInner.type;
-            if (i7 == 1) {
+            int i8 = itemInner.type;
+            if (i8 == 1) {
                 if (StoryPrivacyBottomSheet.this.selectedType == 1 || StoryPrivacyBottomSheet.this.getCloseFriends().isEmpty()) {
                     StoryPrivacyBottomSheet.this.activePage = 1;
                     StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(1);
@@ -1373,7 +1343,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 updateCheckboxes(true);
                 return;
             }
-            if (i7 == 3) {
+            if (i8 == 3) {
                 if (StoryPrivacyBottomSheet.this.selectedType == 3 || (StoryPrivacyBottomSheet.this.selectedContacts.isEmpty() && StoryPrivacyBottomSheet.this.selectedContactsByGroup.isEmpty())) {
                     StoryPrivacyBottomSheet.this.activePage = 3;
                     StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(1);
@@ -1382,7 +1352,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 updateCheckboxes(true);
                 return;
             }
-            if (i7 == 2) {
+            if (i8 == 2) {
                 if (StoryPrivacyBottomSheet.this.selectedType == 2) {
                     StoryPrivacyBottomSheet.this.activePage = 2;
                     StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(1);
@@ -1391,7 +1361,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 updateCheckboxes(true);
                 return;
             }
-            if (i7 == 4) {
+            if (i8 == 4) {
                 if (StoryPrivacyBottomSheet.this.selectedType == 4) {
                     StoryPrivacyBottomSheet.this.activePage = 4;
                     StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(1);
@@ -1400,7 +1370,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 updateCheckboxes(true);
                 return;
             }
-            if (i7 > 0) {
+            if (i8 > 0) {
                 this.selectedUsers.clear();
                 this.selectedUsersByGroup.clear();
                 StoryPrivacyBottomSheet.this.selectedType = itemInner.type;
@@ -1501,27 +1471,110 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.scrollToBottom();
         }
 
-        public void lambda$onButton1Click$10(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
+        public void lambda$new$2(TLRPC.InputPeer inputPeer) {
+            StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+            storyPrivacyBottomSheet.selectedPeer = inputPeer;
+            storyPrivacyBottomSheet.selectedAlbums.clear();
+            if (StoryPrivacyBottomSheet.this.onSelectedPeer != null) {
+                StoryPrivacyBottomSheet.this.onSelectedPeer.run(StoryPrivacyBottomSheet.this.selectedPeer);
+            }
+            if (StoryPrivacyBottomSheet.this.onSelectedAlbums != null) {
+                StoryPrivacyBottomSheet.this.onSelectedAlbums.run(new HashSet(StoryPrivacyBottomSheet.this.selectedAlbums));
+            }
+            updateItems(true);
+        }
+
+        public void lambda$new$3(long j, TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants) {
+            int i;
+            long j2;
+            AlertDialog alertDialog = this.progressDialog;
+            if (alertDialog != null) {
+                alertDialog.dismissUnless(350L);
+                this.progressDialog = null;
+            }
+            if (tL_channels_channelParticipants == null || tL_channels_channelParticipants.participants.isEmpty()) {
+                return;
+            }
+            TLRPC.TL_chatParticipants tL_chatParticipants = new TLRPC.TL_chatParticipants();
+            while (i < tL_channels_channelParticipants.participants.size()) {
+                TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i);
+                TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
+                TLRPC.Peer peer = channelParticipant.peer;
+                if (peer != null) {
+                    j2 = DialogObject.getPeerDialogId(peer);
+                    i = j2 < 0 ? i + 1 : 0;
+                } else {
+                    j2 = channelParticipant.user_id;
+                }
+                tL_chatParticipant.user_id = j2;
+                tL_chatParticipants.participants.add(tL_chatParticipant);
+            }
+            selectChat(j, tL_chatParticipants);
+        }
+
+        public void lambda$new$4(boolean z, final long j) {
+            if (z) {
+                MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).loadChannelParticipants(Long.valueOf(j), new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        StoryPrivacyBottomSheet.Page.this.lambda$new$3(j, (TLRPC.TL_channels_channelParticipants) obj);
+                    }
+                }, 200);
+            } else {
+                MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).loadFullChat(j, 0, true);
+            }
+        }
+
+        public void lambda$new$5(long j, TLRPC.ChatFull chatFull) {
+            selectChat(j, chatFull.participants);
+        }
+
+        public void lambda$new$6(TLRPC.Chat chat, MessagesStorage messagesStorage, final long j) {
+            TLRPC.ChatParticipants chatParticipants;
+            ArrayList<TLRPC.ChatParticipant> arrayList;
+            final boolean isChannel = ChatObject.isChannel(chat);
+            final TLRPC.ChatFull loadChatInfoInQueue = messagesStorage.loadChatInfoInQueue(j, isChannel, true, true, 0);
+            if (loadChatInfoInQueue == null || (chatParticipants = loadChatInfoInQueue.participants) == null || ((arrayList = chatParticipants.participants) != null && arrayList.size() < loadChatInfoInQueue.participants_count - 1)) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoryPrivacyBottomSheet.Page.this.lambda$new$4(isChannel, j);
+                    }
+                });
+            } else {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoryPrivacyBottomSheet.Page.this.lambda$new$5(j, loadChatInfoInQueue);
+                    }
+                });
+            }
+        }
+
+        public void lambda$new$7(long j, String str) {
+            StoryPrivacyBottomSheet.this.getStoriesController().createAlbum(j, str);
+        }
+
+        public void lambda$new$8(final long j) {
+            Context context = getContext();
+            StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+            AlertsCreator.createStoriesAlbumEnterNameForCreate(context, storyPrivacyBottomSheet.attachedFragment, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider, new MessagesStorage.StringCallback() {
                 @Override
-                public final void run() {
-                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$9(tLObject, messagesController);
+                public final void run(String str) {
+                    StoryPrivacyBottomSheet.Page.this.lambda$new$7(j, str);
                 }
             });
         }
 
-        public void lambda$onButton1Click$11() {
-            Bulletin.removeDelegate(StoryPrivacyBottomSheet.this.container);
-            StoryPrivacyBottomSheet.super.lambda$new$0();
+        public void lambda$new$9(ItemOptions itemOptions, StoriesController.StoryAlbum storyAlbum) {
+            itemOptions.dismiss();
+            updateItems(true);
+            if (StoryPrivacyBottomSheet.this.onSelectedAlbums != null) {
+                StoryPrivacyBottomSheet.this.onSelectedAlbums.run(new HashSet(StoryPrivacyBottomSheet.this.selectedAlbums));
+            }
         }
 
-        public void lambda$onButton1Click$12() {
-            this.button.setLoading(false);
-            StoryPrivacyBottomSheet.this.closeKeyboard();
-            StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(0);
-        }
-
-        public void lambda$onButton1Click$9(TLObject tLObject, MessagesController messagesController) {
+        public void lambda$onButton1Click$12(TLObject tLObject, MessagesController messagesController) {
             boolean contains;
             this.button.setLoading(false);
             if (tLObject != null) {
@@ -1545,16 +1598,36 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$onButton2Click$13(ArrayList arrayList) {
+        public void lambda$onButton1Click$13(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$12(tLObject, messagesController);
+                }
+            });
+        }
+
+        public void lambda$onButton1Click$14() {
+            Bulletin.removeDelegate(StoryPrivacyBottomSheet.this.container);
+            StoryPrivacyBottomSheet.super.lambda$new$0();
+        }
+
+        public void lambda$onButton1Click$15() {
+            this.button.setLoading(false);
+            StoryPrivacyBottomSheet.this.closeKeyboard();
+            StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(0);
+        }
+
+        public void lambda$onButton2Click$16(ArrayList arrayList) {
             StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
             storyPrivacyBottomSheet.done(new StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(StoryPrivacyBottomSheet.this));
         }
 
-        public void lambda$onMeasure$17() {
+        public void lambda$onMeasure$20() {
             this.keyboardMoving = false;
         }
 
-        public void lambda$selectChat$8(long j, ArrayList arrayList, AlertDialog alertDialog, int i) {
+        public void lambda$selectChat$11(long j, ArrayList arrayList, AlertDialog alertDialog, int i) {
             this.selectedUsersByGroup.put(Long.valueOf(j), arrayList);
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
@@ -1567,16 +1640,16 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.scrollToBottom();
         }
 
-        public void lambda$updateItems$14() {
+        public void lambda$updateItems$17() {
             StoryPrivacyBottomSheet.this.activePage = 6;
             StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(1);
         }
 
-        public void lambda$updateSearchFieldTop$15(ValueAnimator valueAnimator) {
+        public void lambda$updateSearchFieldTop$18(ValueAnimator valueAnimator) {
             this.searchField.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
         }
 
-        public void lambda$updateSectionCell$16(View view) {
+        public void lambda$updateSectionCell$19(View view) {
             Iterator it = this.selectedUsers.iterator();
             while (it.hasNext()) {
                 this.changelog.put(((Long) it.next()).longValue(), Boolean.FALSE);
@@ -1668,7 +1741,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     ConnectionsManager.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).sendRequest(tL_editCloseFriends, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$10(messagesController, tLObject, tL_error);
+                            StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$13(messagesController, tLObject, tL_error);
                         }
                     });
                     return;
@@ -1697,7 +1770,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             runnable = new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$11();
+                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$14();
                                 }
                             };
                         } else if (StoryPrivacyBottomSheet.this.mergeUsers(this.selectedUsers, this.selectedUsersByGroup).isEmpty()) {
@@ -1712,7 +1785,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getStoriesController().updateBlockedUsers(mergeUsers2, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$12();
+                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$15();
                                 }
                             });
                             return;
@@ -1771,7 +1844,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 StoryPrivacyBottomSheet whenSelectedShare = new StoryPrivacyBottomSheet(i, getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).whenSelectedShare(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$onButton2Click$13((ArrayList) obj);
+                        StoryPrivacyBottomSheet.Page.this.lambda$onButton2Click$16((ArrayList) obj);
                     }
                 });
                 whenSelectedShare.storyPeriod = StoryPrivacyBottomSheet.this.storyPeriod;
@@ -1813,7 +1886,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             (arrayList.isEmpty() ? new AlertDialog.Builder(getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).setMessage("All group members are not in your contact list.") : new AlertDialog.Builder(getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).setMessage(arrayList2.size() + " members are not in your contact list").setPositiveButton("Add " + arrayList.size() + " contacts", new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    StoryPrivacyBottomSheet.Page.this.lambda$selectChat$8(j, arrayList, alertDialog, i3);
+                    StoryPrivacyBottomSheet.Page.this.lambda$selectChat$11(j, arrayList, alertDialog, i3);
                 }
             })).setNegativeButton("Cancel", null).show();
         }
@@ -1872,7 +1945,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$updateSearchFieldTop$15(valueAnimator3);
+                        StoryPrivacyBottomSheet.Page.this.lambda$updateSearchFieldTop$18(valueAnimator3);
                     }
                 });
                 this.searchFieldAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1895,7 +1968,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$updateSectionCell$16(view);
+                        StoryPrivacyBottomSheet.Page.this.lambda$updateSectionCell$19(view);
                     }
                 });
             } else if (z) {
@@ -2080,7 +2153,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     this.underKeyboardView.animate().translationY(0.0f).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            StoryPrivacyBottomSheet.Page.this.lambda$onMeasure$17();
+                            StoryPrivacyBottomSheet.Page.this.lambda$onMeasure$20();
                         }
                     }).start();
                 }
@@ -2153,7 +2226,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             updateItems(z, true);
         }
 
-        public void updateItems(boolean r19, boolean r20) {
+        public void updateItems(boolean r20, boolean r21) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.Page.updateItems(boolean, boolean):void");
         }
 
@@ -3343,6 +3416,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.selectedContacts = new ArrayList();
         this.selectedContactsByGroup = new HashMap();
         this.selectedContactsCount = 0;
+        this.selectedAlbums = new HashSet();
         this.allowScreenshots = true;
         this.keepOnMyPage = false;
         this.allowCover = true;
@@ -3392,6 +3466,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.selectedContacts = new ArrayList();
         this.selectedContactsByGroup = new HashMap();
         this.selectedContactsCount = 0;
+        this.selectedAlbums = new HashSet();
         this.allowScreenshots = true;
         this.keepOnMyPage = false;
         this.allowCover = true;
@@ -4025,6 +4100,10 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
+    public StoriesController getStoriesController() {
+        return MessagesController.getInstance(this.currentAccount).getStoriesController();
+    }
+
     public StoryPrivacyBottomSheet isEdit(boolean z) {
         this.isEdit = z;
         ViewPagerFixed viewPagerFixed = this.viewPager;
@@ -4101,6 +4180,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
     public StoryPrivacyBottomSheet setPeer(TLRPC.InputPeer inputPeer) {
         this.selectedPeer = inputPeer;
+        this.selectedAlbums.clear();
         View[] viewPages = this.viewPager.getViewPages();
         View view = viewPages[0];
         if (view instanceof Page) {
@@ -4165,6 +4245,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
     public StoryPrivacyBottomSheet whenDismiss(Utilities.Callback callback) {
         this.onDismiss = callback;
+        return this;
+    }
+
+    public StoryPrivacyBottomSheet whenSelectedAlbums(Utilities.Callback callback) {
+        this.onSelectedAlbums = callback;
         return this;
     }
 

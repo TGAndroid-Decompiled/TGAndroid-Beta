@@ -3,7 +3,9 @@ package org.telegram.messenger.utils.tlutils;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
 
 public class AmountUtils$Amount {
@@ -24,6 +26,15 @@ public class AmountUtils$Amount {
 
     public static boolean equals(TL_stars.StarsAmount starsAmount, TL_stars.StarsAmount starsAmount2) {
         return equals(of(starsAmount), of(starsAmount2));
+    }
+
+    public static AmountUtils$Amount fromDecimal(double d, AmountUtils$Currency amountUtils$Currency) {
+        if (amountUtils$Currency == null) {
+            return null;
+        }
+        double decimals = getDecimals(amountUtils$Currency);
+        Double.isNaN(decimals);
+        return new AmountUtils$Amount(amountUtils$Currency, (long) (d * decimals));
     }
 
     public static AmountUtils$Amount fromDecimal(long j, AmountUtils$Currency amountUtils$Currency) {
@@ -56,6 +67,10 @@ public class AmountUtils$Amount {
         return 1000000000L;
     }
 
+    private static int getTenPow(AmountUtils$Currency amountUtils$Currency) {
+        return 9;
+    }
+
     public static AmountUtils$Amount of(TL_stars.StarsAmount starsAmount) {
         if (starsAmount instanceof TL_stars.TL_starsAmount) {
             long j = starsAmount.amount;
@@ -71,6 +86,10 @@ public class AmountUtils$Amount {
     public static AmountUtils$Amount ofSafe(TL_stars.StarsAmount starsAmount) {
         AmountUtils$Amount of = of(starsAmount);
         return of != null ? of : fromNano(0L, AmountUtils$Currency.STARS);
+    }
+
+    public AmountUtils$Amount applyPerMille(int i) {
+        return fromNano((this.nanos * i) / 1000, this.currency);
     }
 
     public long asDecimal() {
@@ -89,8 +108,55 @@ public class AmountUtils$Amount {
         return d / decimals;
     }
 
+    public String asFormatString() {
+        return asFormatString(',');
+    }
+
+    public String asFormatString(char c) {
+        StringBuilder sb = new StringBuilder(LocaleController.formatNumber(asDecimal(), c));
+        long decimals = this.nanos % getDecimals(this.currency);
+        if (decimals == 0) {
+            return sb.toString();
+        }
+        sb.append('.');
+        String l = Long.toString(decimals);
+        int tenPow = getTenPow(this.currency) - l.length();
+        for (int i = 0; i < tenPow; i++) {
+            sb.append('0');
+        }
+        int length = l.length();
+        while (length > 0 && l.charAt(length - 1) == '0') {
+            length--;
+        }
+        sb.append((CharSequence) l, 0, length);
+        return sb.toString();
+    }
+
     public long asNano() {
         return this.nanos;
+    }
+
+    public AmountUtils$Amount convertTo(AmountUtils$Currency amountUtils$Currency) {
+        double asDouble;
+        AmountUtils$Currency amountUtils$Currency2 = this.currency;
+        if (amountUtils$Currency2 == amountUtils$Currency) {
+            return this;
+        }
+        AmountUtils$Currency amountUtils$Currency3 = AmountUtils$Currency.STARS;
+        if (amountUtils$Currency2 == amountUtils$Currency3) {
+            double asDouble2 = asDouble() / 1000.0d;
+            double d = MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000;
+            Double.isNaN(d);
+            asDouble = (asDouble2 * d) / 100.0d;
+        } else {
+            asDouble = amountUtils$Currency2 == AmountUtils$Currency.TON ? asDouble() * MessagesController.getInstance(UserConfig.selectedAccount).config.tonUsdRate.get() : 0.0d;
+        }
+        if (amountUtils$Currency != amountUtils$Currency3) {
+            return amountUtils$Currency == AmountUtils$Currency.TON ? fromDecimal(asDouble / MessagesController.getInstance(UserConfig.selectedAccount).config.tonUsdRate.get(), amountUtils$Currency) : fromNano(0L, amountUtils$Currency);
+        }
+        double d2 = MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000;
+        Double.isNaN(d2);
+        return fromDecimal(((asDouble * 100.0d) / d2) * 1000.0d, amountUtils$Currency);
     }
 
     public boolean equals(Object obj) {

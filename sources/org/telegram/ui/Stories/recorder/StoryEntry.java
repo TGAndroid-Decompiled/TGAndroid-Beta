@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
@@ -52,6 +53,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class StoryEntry {
+    public HashSet albums;
     public boolean allowScreenshots;
     public String audioAuthor;
     public long audioDuration;
@@ -1033,6 +1035,7 @@ public class StoryEntry {
         storyEntry.scheduleDate = this.scheduleDate;
         storyEntry.blurredVideoThumb = this.blurredVideoThumb;
         storyEntry.uploadThumbFile = this.uploadThumbFile;
+        storyEntry.albums = this.albums;
         File file = this.uploadThumbFile;
         if (file != null && file.exists()) {
             File makeCacheFile2 = makeCacheFile(this.currentAccount, ext(this.uploadThumbFile));

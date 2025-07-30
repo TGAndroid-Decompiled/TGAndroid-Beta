@@ -877,6 +877,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.searchHashtagRequest, true);
         }
         TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
+        tL_channels_searchPosts.flags = 1 | tL_channels_searchPosts.flags;
         tL_channels_searchPosts.hashtag = str;
         tL_channels_searchPosts.limit = 3;
         tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();

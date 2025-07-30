@@ -11,6 +11,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -207,6 +208,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         return false;
+    }
+
+    public TextPaint getTextPaint() {
+        return this.text.getPaint();
     }
 
     @Override

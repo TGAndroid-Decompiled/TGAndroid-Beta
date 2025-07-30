@@ -260,7 +260,8 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         ArrayList arrayList = null;
         TLRPC.ChatFull chatFull = null;
         TLRPC.UserFull userFull = null;
-        SharedMediaLayout sharedMediaLayout = new SharedMediaLayout(context, j, new SharedMediaLayout.SharedMediaPreloader(null), i3, arrayList, chatFull, userFull, 8, this, new SharedMediaLayout.Delegate() {
+        int i4 = 8;
+        SharedMediaLayout sharedMediaLayout = new SharedMediaLayout(context, j, new SharedMediaLayout.SharedMediaPreloader(null), i3, arrayList, chatFull, userFull, i4, 0, this, new SharedMediaLayout.Delegate() {
             @Override
             public boolean canSearchMembers() {
                 return false;

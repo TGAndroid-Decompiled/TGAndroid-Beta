@@ -19,13 +19,13 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
     private final Paint bgPaint;
     private final Path clipPath;
     private final Path clipPath2;
-    private final LinearLayout linearLayout;
+    public final LinearLayout linearLayout;
     private int selectedIndex;
     private final AnimatedFloat selectorEndX;
     private final AnimatedFloat selectorStartX;
     private final TextPaint textPaint;
 
-    private static class RoundTabView extends View {
+    public static class RoundTabView extends View {
         private Text text;
 
         public RoundTabView(Context context) {

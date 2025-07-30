@@ -376,6 +376,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private final TextView subtitleView;
         private Text title;
         private final TextView titleView;
+        private final ImageView tonOnlySaleView;
         private TL_stars.SavedStarGift userGift;
 
         public static class Factory extends UItem.UItemFactory {
@@ -554,6 +555,12 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             frameLayout2.addView(imageView, LayoutHelper.createFrame(12.66f, 12.66f, 17));
             frameLayout.addView(frameLayout2, LayoutHelper.createFrame(20, 20.0f, 51, 2.0f, 2.0f, 2.0f, 2.0f));
+            ImageView imageView2 = new ImageView(context);
+            this.tonOnlySaleView = imageView2;
+            imageView2.setImageResource(R.drawable.ton_16);
+            imageView2.setVisibility(8);
+            imageView2.setScaleType(ImageView.ScaleType.CENTER);
+            frameLayout.addView(imageView2, LayoutHelper.createFrame(20, 20.0f, 51, 3.0f, 3.0f, 3.0f, 3.0f));
         }
 
         private TL_stars.TL_starGiftUnique getUniqueStarGift() {
@@ -611,7 +618,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 TL_stars.StarGift starGift2 = savedStarGift.gift;
                 if (starGift2 instanceof TL_stars.TL_starGiftUnique) {
                     this.ribbon.setVisibility(0);
-                    if (this.userGift.gift.resell_stars > 0) {
+                    if (this.userGift.gift.resell_amount != null) {
                         int blendOver = Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.04f));
                         this.ribbon.setColor(Theme.getColor(Theme.key_color_green, this.resourcesProvider));
                         this.ribbon.setStrokeColor(blendOver);
@@ -983,11 +990,11 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
         }
 
-        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.SavedStarGift r18, boolean r19, boolean r20) {
+        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.SavedStarGift r21, boolean r22, boolean r23) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.GiftCell.setStarsGift(org.telegram.tgnet.tl.TL_stars$SavedStarGift, boolean, boolean):boolean");
         }
 
-        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.StarGift r19, boolean r20, boolean r21, boolean r22, boolean r23) {
+        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.StarGift r21, boolean r22, boolean r23, boolean r24, boolean r25) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.GiftCell.setStarsGift(org.telegram.tgnet.tl.TL_stars$StarGift, boolean, boolean, boolean, boolean):boolean");
         }
     }
@@ -1463,7 +1470,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     BulletinFactory.of(this.container, this.resourcesProvider).createSimpleMultiBulletin(starGift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2PerUserLimit", starGift.per_user_total))).show();
                     return;
                 }
-                if (starGift.require_premium && !UserConfig.getInstance(i).isPremium()) {
+                if (starGift.require_premium && starGift.availability_resale <= 0 && !UserConfig.getInstance(i).isPremium()) {
                     BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
                     if (safeLastFragment == null) {
                         return;
