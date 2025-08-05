@@ -22,7 +22,7 @@ import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.Ref$ObjectRef;
 import kotlin.sequences.Sequence;
-import kotlin.sequences.SequencesKt;
+import kotlin.sequences.SequencesKt__SequenceBuilderKt;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.internal.LockFreeLinkedListKt;
 import kotlinx.coroutines.internal.LockFreeLinkedListNode;
@@ -880,7 +880,9 @@ public class JobSupport implements Job, ChildJob, ParentJob {
 
     @Override
     public final Sequence getChildren() {
-        return SequencesKt.sequence(new JobSupport$children$1(this, null));
+        Sequence sequence;
+        sequence = SequencesKt__SequenceBuilderKt.sequence(new JobSupport$children$1(this, null));
+        return sequence;
     }
 
     public final Object getCompletedInternal$kotlinx_coroutines_core() {
