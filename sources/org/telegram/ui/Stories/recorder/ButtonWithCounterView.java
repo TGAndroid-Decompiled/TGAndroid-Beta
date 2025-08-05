@@ -42,7 +42,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private boolean enabled;
     private ValueAnimator enabledAnimator;
     private float enabledT;
-    private final boolean filled;
+    private boolean filled;
     private boolean flickeringLoading;
     private LoadingDrawable flickeringLoadingDrawable;
     private int globalAlpha;
@@ -408,6 +408,21 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             this.enabledAnimator.start();
         }
         super.setEnabled(z);
+    }
+
+    public void setFilled(boolean z) {
+        if (this.filled == z) {
+            return;
+        }
+        this.filled = z;
+        if (z) {
+            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)));
+            this.text.setTypeface(AndroidUtilities.bold());
+        } else {
+            setBackground(null);
+            this.text.setTypeface(null);
+        }
+        updateColors();
     }
 
     public void setFlickeringLoading(boolean z) {

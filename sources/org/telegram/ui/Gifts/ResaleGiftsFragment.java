@@ -631,6 +631,11 @@ public class ResaleGiftsFragment extends BaseFragment {
         }
 
         @Override
+        public int findGiftToUpgrade(int i) {
+            return -1;
+        }
+
+        @Override
         public Object get(int i) {
             return this.gifts.get(i);
         }
@@ -672,6 +677,10 @@ public class ResaleGiftsFragment extends BaseFragment {
             if (callback != null) {
                 callback.run(Boolean.TRUE);
             }
+        }
+
+        @Override
+        public void set(int i, Object obj) {
         }
 
         public void setSorting(Sorting sorting) {

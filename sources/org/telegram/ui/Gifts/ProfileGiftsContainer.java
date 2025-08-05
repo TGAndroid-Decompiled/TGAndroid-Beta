@@ -383,7 +383,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 public BulletinFactory getBulletinFactory() {
                     return BulletinFactory.of(Page.this.parent.fragment);
                 }
-            }.set(savedStarGift, null).toggleWear(false);
+            }.set(savedStarGift, (StarsController.IGiftsList) null).toggleWear(false);
         }
 
         public void lambda$onItemLongPress$17(String str) {
@@ -397,7 +397,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 public BulletinFactory getBulletinFactory() {
                     return BulletinFactory.of(Page.this.parent.fragment);
                 }
-            }.set(savedStarGift, null).onSharePressed(null);
+            }.set(savedStarGift, (StarsController.IGiftsList) null).onSharePressed(null);
         }
 
         public void lambda$onItemLongPress$19() {
@@ -424,7 +424,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 public BulletinFactory getBulletinFactory() {
                     return BulletinFactory.of(Page.this.parent.fragment);
                 }
-            }.set(savedStarGift, null).openTransfer();
+            }.set(savedStarGift, (StarsController.IGiftsList) null).openTransfer();
         }
 
         public void lambda$onItemLongPress$22(TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions) {
@@ -1357,7 +1357,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                         }
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
                         if (!savedStarGift.collection_id.contains(Integer.valueOf(this.collectionId))) {
-                            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, true, false).setChecked(this.selectedGiftIds.contains(Integer.valueOf(savedStarGift.msg_id))).setSpanCount(1));
+                            UItem asStarGift = GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, true, false);
+                            HashSet hashSet = this.selectedGiftIds;
+                            int i3 = savedStarGift.msg_id;
+                            arrayList.add(asStarGift.setChecked(hashSet.contains(Long.valueOf(i3 == 0 ? savedStarGift.saved_id : i3))).setSpanCount(1));
                             i--;
                             if (i == 0) {
                                 break;
@@ -1399,17 +1402,17 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             ArrayList arrayList = new ArrayList();
             Iterator it = this.selectedGiftIds.iterator();
             while (it.hasNext()) {
-                int intValue = ((Integer) it.next()).intValue();
+                long longValue = ((Long) it.next()).longValue();
                 Iterator it2 = this.list.gifts.iterator();
                 while (true) {
                     if (!it2.hasNext()) {
                         savedStarGift = null;
                         break;
-                    } else {
-                        savedStarGift = (TL_stars.SavedStarGift) it2.next();
-                        if (savedStarGift.msg_id == intValue) {
-                            break;
-                        }
+                    }
+                    savedStarGift = (TL_stars.SavedStarGift) it2.next();
+                    int i = savedStarGift.msg_id;
+                    if ((i != 0 && i == longValue) || savedStarGift.saved_id == longValue) {
+                        break;
                     }
                 }
                 if (savedStarGift != null) {
@@ -1428,12 +1431,14 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
             Object obj = item.object;
             if (obj instanceof TL_stars.SavedStarGift) {
-                int i2 = ((TL_stars.SavedStarGift) obj).msg_id;
-                if (this.selectedGiftIds.contains(Integer.valueOf(i2))) {
-                    this.selectedGiftIds.remove(Integer.valueOf(i2));
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
+                int i2 = savedStarGift.msg_id;
+                long j = i2 == 0 ? savedStarGift.saved_id : i2;
+                if (this.selectedGiftIds.contains(Long.valueOf(j))) {
+                    this.selectedGiftIds.remove(Long.valueOf(j));
                     ((GiftSheet.GiftCell) view).setChecked(false, true);
                 } else {
-                    this.selectedGiftIds.add(Integer.valueOf(i2));
+                    this.selectedGiftIds.add(Long.valueOf(j));
                     ((GiftSheet.GiftCell) view).setChecked(true, true);
                 }
                 this.button.setEnabled(this.selectedGiftIds.size() > 0);

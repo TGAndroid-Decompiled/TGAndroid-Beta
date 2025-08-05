@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -1937,6 +1938,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
                 Intent createChooser;
+                int mode;
                 MyWebView myWebView;
                 String str;
                 Activity findActivity = AndroidUtilities.findActivity(MyWebView.this.getContext());
@@ -1950,7 +1952,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         }
                         MyWebView.this.botWebViewContainer.mFilePathCallback = valueCallback;
                         if (Build.VERSION.SDK_INT >= 21) {
+                            mode = fileChooserParams.getMode();
+                            boolean z = mode == 1;
                             createChooser = fileChooserParams.createIntent();
+                            if (z) {
+                                createChooser.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
+                            }
                         } else {
                             Intent intent = new Intent("android.intent.action.GET_CONTENT");
                             intent.addCategory("android.intent.category.OPENABLE");
@@ -4337,10 +4344,25 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public void onActivityResult(int i, int i2, Intent intent) {
+        Uri[] uriArr;
         if (i != 3000 || this.mFilePathCallback == null) {
             return;
         }
-        this.mFilePathCallback.onReceiveValue((i2 != -1 || intent == null || intent.getDataString() == null) ? null : new Uri[]{Uri.parse(intent.getDataString())});
+        if (i2 == -1 && intent != null) {
+            if (intent.getClipData() != null) {
+                ClipData clipData = intent.getClipData();
+                uriArr = new Uri[clipData.getItemCount()];
+                for (int i3 = 0; i3 < clipData.getItemCount(); i3++) {
+                    uriArr[i3] = clipData.getItemAt(i3).getUri();
+                }
+            } else if (intent.getData() != null) {
+                uriArr = new Uri[]{intent.getData()};
+            }
+            this.mFilePathCallback.onReceiveValue(uriArr);
+            this.mFilePathCallback = null;
+        }
+        uriArr = null;
+        this.mFilePathCallback.onReceiveValue(uriArr);
         this.mFilePathCallback = null;
     }
 

@@ -1256,7 +1256,6 @@ public class ReactionsLayoutInBubble {
     }
 
     public void measure(int i, int i2) {
-        int currentWidth;
         this.height = 0;
         this.width = 0;
         this.positionOffsetY = 0;
@@ -1289,12 +1288,7 @@ public class ReactionsLayoutInBubble {
             } else {
                 reactionButton.width = AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(reactionButton.animatedEmojiDrawable != null ? 6.0f : 4.0f);
                 if (reactionButton.avatarsDrawable == null || reactionButton.users.size() <= 0) {
-                    if (reactionButton.hasName) {
-                        currentWidth = (int) (reactionButton.width + reactionButton.textDrawable.getAnimateToWidth() + AndroidUtilities.dp(8.0f));
-                    } else if (reactionButton.counterDrawable.getCurrentWidth() > 0) {
-                        currentWidth = reactionButton.width + reactionButton.counterDrawable.getCurrentWidth() + AndroidUtilities.dp(8.0f);
-                    }
-                    reactionButton.width = currentWidth;
+                    reactionButton.width = reactionButton.hasName ? (int) (reactionButton.width + reactionButton.textDrawable.getAnimateToWidth() + AndroidUtilities.dp(8.0f)) : reactionButton.counterDrawable.getCurrentWidth() > 0 ? reactionButton.width + reactionButton.counterDrawable.getCurrentWidth() + AndroidUtilities.dp(8.0f) : reactionButton.width - AndroidUtilities.dp(1.0f);
                 } else {
                     reactionButton.users.size();
                     reactionButton.width = (int) (reactionButton.width + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + ((reactionButton.users.size() > 1 ? reactionButton.users.size() - 1 : 0) * AndroidUtilities.dp(20.0f) * 0.8f) + AndroidUtilities.dp(1.0f));

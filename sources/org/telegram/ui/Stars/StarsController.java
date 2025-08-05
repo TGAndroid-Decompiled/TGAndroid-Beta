@@ -703,6 +703,24 @@ public class StarsController {
         }
 
         @Override
+        public int findGiftToUpgrade(int i) {
+            if (!StarGiftSheet.isMineWithActions(this.currentAccount, this.dialogId)) {
+                return -1;
+            }
+            for (int i2 = i + 1; i2 < this.gifts.size(); i2++) {
+                if (((TL_stars.SavedStarGift) this.gifts.get(i2)).can_upgrade) {
+                    return i2;
+                }
+            }
+            for (int i3 = i - 1; i3 >= 0; i3--) {
+                if (((TL_stars.SavedStarGift) this.gifts.get(i3)).can_upgrade) {
+                    return i3;
+                }
+            }
+            return -1;
+        }
+
+        @Override
         public Object get(int i) {
             if (i < 0 || i >= this.gifts.size()) {
                 return null;
@@ -879,6 +897,17 @@ public class StarsController {
             connectionsManager.sendRequest(togglestargiftspinnedtotop, requestDelegate, 64);
         }
 
+        @Override
+        public void set(int i, Object obj) {
+            if (obj instanceof TL_stars.SavedStarGift) {
+                try {
+                    this.gifts.set(i, (TL_stars.SavedStarGift) obj);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        }
+
         public void setCollectionId(int i) {
             this.isCollection = true;
             this.collectionId = i;
@@ -979,6 +1008,8 @@ public class StarsController {
     }
 
     public interface IGiftsList {
+        int findGiftToUpgrade(int i);
+
         Object get(int i);
 
         int getLoadedCount();
@@ -988,6 +1019,8 @@ public class StarsController {
         int indexOf(Object obj);
 
         void load();
+
+        void set(int i, Object obj);
     }
 
     public static class MessageId {

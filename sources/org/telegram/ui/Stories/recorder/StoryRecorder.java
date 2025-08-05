@@ -6691,7 +6691,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.storiesSelector.set(arrayList, this.selectedEntriesOrder, this.selectedEntries);
                 this.storiesSelector.setSelected(this.entries.indexOf(this.outputEntry));
             }
-            this.timelineView.setMaxCount((z || z2 || this.entries != null || ((storyEntry5 = this.outputEntry) != null && storyEntry5.isCollage())) ? 1 : 3);
+            this.timelineView.setMaxCount((z || z2 || this.entries != null || ((storyEntry5 = this.outputEntry) != null && (storyEntry5.isCollage() || !this.outputEntry.isVideo))) ? 1 : 3);
             StoryEntry storyEntry16 = this.outputEntry;
             if (storyEntry16 == null || !(storyEntry16.isDraft || storyEntry16.isEdit || this.isReposting)) {
                 this.captionEdit.clear();

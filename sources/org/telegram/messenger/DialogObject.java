@@ -101,7 +101,7 @@ public class DialogObject {
     }
 
     public static long getEmojiStatusCollectibleId(TLRPC.EmojiStatus emojiStatus) {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() || !(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
             return 0L;
         }
         TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
@@ -130,9 +130,6 @@ public class DialogObject {
     }
 
     public static long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            return 0L;
-        }
         if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
             TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
             if ((tL_emojiStatus.flags & 1) == 0 || tL_emojiStatus.until > ((int) (System.currentTimeMillis() / 1000))) {
@@ -398,7 +395,7 @@ public class DialogObject {
     }
 
     public static boolean isEmojiStatusCollectible(TLRPC.EmojiStatus emojiStatus) {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() || !(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
             return false;
         }
         TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;

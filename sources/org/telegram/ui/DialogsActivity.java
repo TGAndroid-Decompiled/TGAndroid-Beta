@@ -1801,7 +1801,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     TL_stars.SavedStarGift findUserStarGift = StarsController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).findUserStarGift(tL_starGiftUnique.id);
                     if (findUserStarGift != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                         MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
-                        new StarGiftSheet(getContext(), ((BaseFragment) DialogsActivity.this).currentAccount, UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getClientUserId(), ((BaseFragment) DialogsActivity.this).resourceProvider).set(findUserStarGift, null).setupWearPage().show();
+                        new StarGiftSheet(getContext(), ((BaseFragment) DialogsActivity.this).currentAccount, UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getClientUserId(), ((BaseFragment) DialogsActivity.this).resourceProvider).set(findUserStarGift, (StarsController.IGiftsList) null).setupWearPage().show();
                         if (r15[0] != null) {
                             DialogsActivity.this.selectAnimatedEmojiDialog = null;
                             r15[0].dismiss();
@@ -11194,8 +11194,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public boolean onlyDialogsAdapter() {
-        SearchViewPager searchViewPager;
-        return this.onlySelect || !((searchViewPager = this.searchViewPager) == null || searchViewPager.dialogsSearchAdapter.hasRecentSearch()) || (getMessagesController().getTotalDialogsCount() <= 10 && !this.hasStories);
+        return this.onlySelect || (getMessagesController().getTotalDialogsCount() <= 10 && !this.hasStories);
     }
 
     public void openSetAvatar() {
@@ -11612,7 +11611,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                             TL_stars.SavedStarGift findUserStarGift = StarsController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).findUserStarGift(tL_starGiftUnique.id);
                             if (findUserStarGift != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                                 MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
-                                new StarGiftSheet(getContext(), ((BaseFragment) DialogsActivity.this).currentAccount, UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getClientUserId(), ((BaseFragment) DialogsActivity.this).resourceProvider).set(findUserStarGift, null).setupWearPage().show();
+                                new StarGiftSheet(getContext(), ((BaseFragment) DialogsActivity.this).currentAccount, UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getClientUserId(), ((BaseFragment) DialogsActivity.this).resourceProvider).set(findUserStarGift, (StarsController.IGiftsList) null).setupWearPage().show();
                                 if (r15[0] != null) {
                                     DialogsActivity.this.selectAnimatedEmojiDialog = null;
                                     r15[0].dismiss();

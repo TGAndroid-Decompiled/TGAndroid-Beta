@@ -1457,7 +1457,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                             GiftSheet giftSheet = GiftSheet.this;
                             return BulletinFactory.of(giftSheet.container, giftSheet.resourcesProvider);
                         }
-                    }.set(savedStarGift, null);
+                    }.set(savedStarGift, (StarsController.IGiftsList) null);
                     starGiftSheet.openTransferAlert(j, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj2) {

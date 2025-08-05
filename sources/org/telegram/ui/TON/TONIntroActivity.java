@@ -838,7 +838,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
     }
 
     @Override
-    public View getHeader(Context context) {
+    protected View getHeader(Context context) {
         return super.getHeader(context);
     }
 
