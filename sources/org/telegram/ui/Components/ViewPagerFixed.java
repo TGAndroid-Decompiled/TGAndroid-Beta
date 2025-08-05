@@ -1857,9 +1857,7 @@ public class ViewPagerFixed extends FrameLayout {
                     viewPagerFixed4.setTranslationX(viewPagerFixed4.viewPages[0], 0.0f);
                     ViewPagerFixed.this.viewPages[1] = null;
                 }
-                ViewPagerFixed viewPagerFixed5 = ViewPagerFixed.this;
-                viewPagerFixed5.currentPosition = viewPagerFixed5.nextPosition;
-                viewPagerFixed5.manualScrolling = null;
+                ViewPagerFixed.this.manualScrolling = null;
                 ViewPagerFixed.this.onTabAnimationUpdate(true);
                 TabsView tabsView = ViewPagerFixed.this.tabsView;
                 if (tabsView != null) {
