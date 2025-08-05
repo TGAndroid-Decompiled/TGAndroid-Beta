@@ -2052,6 +2052,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public static class UpgradeIcon extends CompatDrawable {
+        private float alpha;
         private final Path arrow;
         private final long start;
         private final Paint strokePaint;
@@ -2064,6 +2065,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             Path path = new Path();
             this.arrow = path;
             this.start = System.currentTimeMillis();
+            this.alpha = 1.0f;
             this.view = view;
             this.paint.setColor(-1);
             paint.setStyle(Paint.Style.STROKE);
@@ -2078,15 +2080,18 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
         @Override
         public void draw(Canvas canvas) {
+            this.paint.setAlpha((int) (this.alpha * 255.0f));
             canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, this.paint);
             float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.start) % 400)) / 400.0f;
+            int alpha = this.strokePaint.getAlpha();
+            this.strokePaint.setAlpha((int) (alpha * this.alpha));
             this.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
             canvas.save();
             canvas.translate(getBounds().centerX(), getBounds().centerY() - (((AndroidUtilities.dpf2(2.16f) * 3.0f) + (AndroidUtilities.dpf2(1.166f) * 2.0f)) / 2.0f));
             int i = 0;
             while (i < 4) {
                 float f = i == 0 ? 1.0f - currentTimeMillis : i == 3 ? currentTimeMillis : 1.0f;
-                this.strokePaint.setAlpha((int) (255.0f * f));
+                this.strokePaint.setAlpha((int) (f * 255.0f));
                 canvas.save();
                 float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f);
                 canvas.scale(lerp, lerp);
@@ -2096,6 +2101,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 i++;
             }
             canvas.restore();
+            this.strokePaint.setAlpha(alpha);
             View view = this.view;
             if (view != null) {
                 view.invalidate();
@@ -2110,6 +2116,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         @Override
         public int getIntrinsicWidth() {
             return AndroidUtilities.dp(18.0f);
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.alpha = i / 255.0f;
         }
     }
 
@@ -4134,7 +4145,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$set$43(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda54(this)).show();
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda52(this)).show();
     }
 
     public void lambda$set$44(View view) {
@@ -4154,11 +4165,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$set$49(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda54(this)).show();
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda52(this)).show();
     }
 
     public void lambda$set$51(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda54(this)).show();
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda52(this)).show();
     }
 
     public void lambda$set$52(View view) {
@@ -4528,7 +4539,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().setShowStarsBalance(true).show();
     }
 
-    public void openUpgrade() {
+    private void openUpgrade() {
         TL_stars.InputSavedStarGift inputStarGift;
         boolean z;
         boolean z2;
@@ -5379,7 +5390,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return this;
     }
 
-    public org.telegram.ui.Stars.StarGiftSheet set(org.telegram.messenger.MessageObject r50) {
+    public org.telegram.ui.Stars.StarGiftSheet set(org.telegram.messenger.MessageObject r48) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.set(org.telegram.messenger.MessageObject):org.telegram.ui.Stars.StarGiftSheet");
     }
 

@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.text.SpannableStringBuilder;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -31,6 +32,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -53,6 +55,8 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.GradientHeaderActivity;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stars.BotStarsActivity;
+import org.telegram.ui.Stars.BotStarsController;
 import org.telegram.ui.Stars.ExplainStarsSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -65,15 +69,20 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
     private FrameLayout aboveTitleView;
     private UniversalAdapter adapter;
     private LinearLayout balanceLayout;
+    private ButtonWithCounterView buyButton;
     private View emptyLayout;
     private FireworksOverlay fireworksOverlay;
     private boolean hadTransactions;
     private GLIconTextureView iconTextureView;
+    private FrameLayout oneButtonsLayout;
     private SpannableStringBuilder starBalanceIcon;
     private AnimatedTextView starBalanceTextView;
     private AnimatedTextView starBalanceTitleView;
     private ButtonWithCounterView topUpButton;
     private StarsIntroActivity.StarsTransactionsLayout transactionsLayout;
+    private boolean twoButtons;
+    private LinearLayout twoButtonsLayout;
+    private ButtonWithCounterView withdrawButton;
     private boolean expanded = false;
     private final int BUTTON_EXPAND = -1;
     private final int BUTTON_GIFT = -2;
@@ -81,12 +90,12 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
     private final int BUTTON_AFFILIATE = -4;
     private final boolean allowTopUp = allowTopUp();
 
-    public class AnonymousClass2 extends StarParticlesView {
+    public class AnonymousClass4 extends StarParticlesView {
         Paint[] paints;
         final int val$particlesCount;
         final int val$type;
 
-        AnonymousClass2(Context context, int i, int i2) {
+        AnonymousClass4(Context context, int i, int i2) {
             super(context);
             this.val$particlesCount = i;
             this.val$type = i2;
@@ -121,7 +130,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                         @Override
                         public final Object run(Object obj) {
                             Paint lambda$configure$0;
-                            lambda$configure$0 = TONIntroActivity.AnonymousClass2.this.lambda$configure$0((Integer) obj);
+                            lambda$configure$0 = TONIntroActivity.AnonymousClass4.this.lambda$configure$0((Integer) obj);
                             return lambda$configure$0;
                         }
                     };
@@ -516,11 +525,33 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         Browser.openUrlInSystemBrowser(getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
     }
 
+    public void lambda$createView$3(View view) {
+        Browser.openUrlInSystemBrowser(getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+    }
+
+    public void lambda$createView$4(View view) {
+        presentFragment(new BotStarsActivity(1, getUserConfig().getClientUserId()));
+    }
+
+    public void lambda$updateButtonsLayouts$5(boolean z) {
+        if (z) {
+            this.oneButtonsLayout.setVisibility(8);
+        }
+    }
+
+    public void lambda$updateButtonsLayouts$6(boolean z) {
+        if (z) {
+            return;
+        }
+        this.twoButtonsLayout.setVisibility(8);
+    }
+
     public static StarParticlesView makeParticlesView(Context context, int i, int i2) {
-        return new AnonymousClass2(context, i, i2);
+        return new AnonymousClass4(context, i, i2);
     }
 
     private void updateBalance() {
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
         StarsController tonInstance = StarsController.getTonInstance(this.currentAccount);
         double d = getMessagesController().config.tonUsdRate.get();
         TL_stars.StarsAmount balance = tonInstance.getBalance();
@@ -531,11 +562,40 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         double d2 = balance.amount;
         Double.isNaN(d2);
         int i = (int) ((d2 / 1.0E9d) * d * 100.0d);
-        if (i <= 0) {
+        if (i > 0) {
+            this.starBalanceTitleView.setText("≈" + BillingController.getInstance().formatCurrency(i, "USD"));
+        } else {
             this.starBalanceTitleView.setText(LocaleController.getString(R.string.YourTonBalance));
+        }
+        TLRPC.TL_payments_starsRevenueStats tONRevenueStats = BotStarsController.getInstance(this.currentAccount).getTONRevenueStats(getUserConfig().getClientUserId(), true);
+        updateButtonsLayouts((tONRevenueStats == null || (tL_starsRevenueStatus = tONRevenueStats.status) == null || !tL_starsRevenueStatus.overall_revenue.positive()) ? false : true, true);
+    }
+
+    private void updateButtonsLayouts(final boolean z, boolean z2) {
+        this.twoButtons = z;
+        if (z2) {
+            this.oneButtonsLayout.setVisibility(0);
+            this.twoButtonsLayout.setVisibility(0);
+            this.oneButtonsLayout.animate().alpha(z ? 0.0f : 1.0f).withEndAction(new Runnable() {
+                @Override
+                public final void run() {
+                    TONIntroActivity.this.lambda$updateButtonsLayouts$5(z);
+                }
+            }).start();
+            this.twoButtonsLayout.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
+                @Override
+                public final void run() {
+                    TONIntroActivity.this.lambda$updateButtonsLayouts$6(z);
+                }
+            }).start();
             return;
         }
-        this.starBalanceTitleView.setText("≈" + BillingController.getInstance().formatCurrency(i, "USD"));
+        this.oneButtonsLayout.animate().cancel();
+        this.twoButtonsLayout.animate().cancel();
+        this.twoButtonsLayout.setAlpha(z ? 1.0f : 0.0f);
+        this.oneButtonsLayout.setAlpha(z ? 0.0f : 1.0f);
+        this.twoButtonsLayout.setVisibility(z ? 0 : 8);
+        this.oneButtonsLayout.setVisibility(z ? 8 : 0);
     }
 
     public boolean attachedTransactionsLayout() {
@@ -665,16 +725,64 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.starBalanceTitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourceProvider));
         this.balanceLayout.addView(this.starBalanceTitleView, LayoutHelper.createFrame(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
         if (this.allowTopUp) {
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            FrameLayout frameLayout3 = new FrameLayout(getContext()) {
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (TONIntroActivity.this.twoButtons) {
+                        return false;
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+            };
+            this.oneButtonsLayout = frameLayout3;
+            frameLayout2.addView(frameLayout3);
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourceProvider);
-            this.topUpButton = buttonWithCounterView;
+            this.buyButton = buttonWithCounterView;
             buttonWithCounterView.setText(LocaleController.getString(R.string.TopUpViaFragment), false);
-            this.topUpButton.setOnClickListener(new View.OnClickListener() {
+            this.buyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
                     TONIntroActivity.this.lambda$createView$2(view2);
                 }
             });
-            this.balanceLayout.addView(this.topUpButton, LayoutHelper.createLinear(-1, 48, 17, 20, 6, 20, 4));
+            this.oneButtonsLayout.addView(this.buyButton, LayoutHelper.createFrame(-1, 48, 119));
+            LinearLayout linearLayout2 = new LinearLayout(getContext()) {
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (TONIntroActivity.this.twoButtons) {
+                        return super.dispatchTouchEvent(motionEvent);
+                    }
+                    return false;
+                }
+            };
+            this.twoButtonsLayout = linearLayout2;
+            frameLayout2.addView(linearLayout2);
+            this.topUpButton = new ButtonWithCounterView(getContext(), this.resourceProvider);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
+            spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.mini_topup, 2), 0, 1, 33);
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.TonTopUp));
+            this.topUpButton.setText(spannableStringBuilder, false);
+            this.topUpButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    TONIntroActivity.this.lambda$createView$3(view2);
+                }
+            });
+            this.twoButtonsLayout.addView(this.topUpButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 8, 0));
+            this.withdrawButton = new ButtonWithCounterView(getContext(), this.resourceProvider);
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  ");
+            spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.mini_stats, 2), 0, 1, 33);
+            spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.TonStats));
+            this.withdrawButton.setText(spannableStringBuilder2, false);
+            this.withdrawButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    TONIntroActivity.this.lambda$createView$4(view2);
+                }
+            });
+            this.twoButtonsLayout.addView(this.withdrawButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 0, 0));
+            this.balanceLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 48.0f, 17, 20.0f, 6.0f, 20.0f, 4.0f));
         }
         updateBalance();
         UniversalAdapter universalAdapter = this.adapter;

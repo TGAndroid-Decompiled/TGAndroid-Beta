@@ -68,7 +68,7 @@ public class PremiumGradient {
         public float cy;
         public boolean darkColors;
         public boolean exactly;
-        Matrix matrix;
+        final Matrix matrix;
         public final Paint paint;
         private final Theme.ResourcesProvider resourcesProvider;
         Shader shader;
@@ -117,43 +117,47 @@ public class PremiumGradient {
             int color4 = i2 < 0 ? 0 : getColor(i2);
             int i3 = this.colorKey5;
             int color5 = i3 < 0 ? 0 : getColor(i3);
-            int[] iArr = this.colors;
-            if (iArr[0] == color && iArr[1] == color2 && iArr[2] == color3 && iArr[3] == color4 && iArr[4] == color5) {
-                return;
+            if (this.shader != null) {
+                int[] iArr = this.colors;
+                if (iArr[0] == color && iArr[1] == color2 && iArr[2] == color3 && iArr[3] == color4 && iArr[4] == color5) {
+                    return;
+                }
             }
-            iArr[0] = color;
-            iArr[1] = color2;
-            iArr[2] = color3;
-            iArr[3] = color4;
-            iArr[4] = color5;
+            int[] iArr2 = this.colors;
+            iArr2[0] = color;
+            iArr2[1] = color2;
+            iArr2[2] = color3;
+            iArr2[3] = color4;
+            iArr2[4] = color5;
             if (color3 == 0) {
                 float f = this.x1 * 100.0f;
                 float f2 = this.y1 * 100.0f;
                 float f3 = this.x2 * 100.0f;
                 float f4 = this.y2 * 100.0f;
-                int[] iArr2 = this.colors;
-                this.shader = new LinearGradient(f, f2, f3, f4, new int[]{iArr2[0], iArr2[1]}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                int[] iArr3 = this.colors;
+                this.shader = new LinearGradient(f, f2, f3, f4, new int[]{iArr3[0], iArr3[1]}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
             } else if (color4 == 0) {
                 float f5 = this.x1 * 100.0f;
                 float f6 = this.y1 * 100.0f;
                 float f7 = this.x2 * 100.0f;
                 float f8 = this.y2 * 100.0f;
-                int[] iArr3 = this.colors;
-                this.shader = new LinearGradient(f5, f6, f7, f8, new int[]{iArr3[0], iArr3[1], iArr3[2]}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP);
+                int[] iArr4 = this.colors;
+                this.shader = new LinearGradient(f5, f6, f7, f8, new int[]{iArr4[0], iArr4[1], iArr4[2]}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP);
             } else {
                 float f9 = this.x1;
                 if (color5 == 0) {
                     float f10 = this.y1 * 100.0f;
                     float f11 = this.x2 * 100.0f;
                     float f12 = this.y2 * 100.0f;
-                    int[] iArr4 = this.colors;
-                    linearGradient = new LinearGradient(f9 * 100.0f, f10, f11, f12, new int[]{iArr4[0], iArr4[1], iArr4[2], iArr4[3]}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
-                } else {
-                    float f13 = this.y1 * 100.0f;
-                    float f14 = this.x2 * 100.0f;
-                    float f15 = this.y2 * 100.0f;
                     int[] iArr5 = this.colors;
-                    linearGradient = new LinearGradient(f9 * 100.0f, f13, f14, f15, new int[]{iArr5[0], iArr5[1], iArr5[2], iArr5[3], iArr5[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+                    linearGradient = new LinearGradient(f9 * 100.0f, f10, f11, f12, new int[]{iArr5[0], iArr5[1], iArr5[2], iArr5[3]}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+                } else {
+                    float f13 = f9 * 100.0f;
+                    float f14 = this.y1 * 100.0f;
+                    float f15 = this.x2 * 100.0f;
+                    float f16 = 100.0f * this.y2;
+                    int[] iArr6 = this.colors;
+                    linearGradient = new LinearGradient(f13, f14, f15, f16, new int[]{iArr6[0], iArr6[1], iArr6[2], iArr6[3], iArr6[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
                 }
                 this.shader = linearGradient;
             }

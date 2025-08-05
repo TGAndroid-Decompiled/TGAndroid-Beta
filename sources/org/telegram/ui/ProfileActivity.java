@@ -2919,8 +2919,22 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public class AnonymousClass55 extends FilterCreateActivity.NewSpan {
-        AnonymousClass55(boolean z, int i) {
+    public class AnonymousClass55 extends LinkSpanDrawable.LinksTextView {
+        AnonymousClass55(Context context) {
+            super(context);
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            if (getAlpha() < 0.9f) {
+                return false;
+            }
+            return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    public class AnonymousClass56 extends FilterCreateActivity.NewSpan {
+        AnonymousClass56(boolean z, int i) {
             super(z, i);
         }
 
@@ -3450,7 +3464,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (ProfileActivity.this.myProfile) {
                 int size = sparseArray.size();
                 int selectedTab = getSelectedTab();
-                char c = SharedMediaLayout.isStoryAlbumPageType(selectedTab) ? (char) 0 : selectedTab == 9 ? (char) 1 : (char) 65535;
+                char c = (SharedMediaLayout.isStoryAlbumPageType(selectedTab) || selectedTab == 8) ? (char) 0 : selectedTab == 9 ? (char) 1 : (char) 65535;
                 if (c < 0 || c > 1) {
                     return;
                 }
@@ -3470,6 +3484,19 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.AnonymousClass9.this.lambda$onAttachedToWindow$1();
                 }
             });
+        }
+
+        @Override
+        public void onBottomButtonVisibilityChange() {
+            super.onBottomButtonVisibilityChange();
+            ProfileActivity profileActivity = ProfileActivity.this;
+            if (!profileActivity.myProfile || profileActivity.bottomButtonContainer[0] == null) {
+                return;
+            }
+            ProfileActivity profileActivity2 = ProfileActivity.this;
+            if (profileActivity2.sharedMediaLayout != null) {
+                profileActivity2.bottomButtonContainer[0].setTranslationY(AndroidUtilities.dp(72.0f) * (1.0f - ProfileActivity.this.sharedMediaLayout.getBottomButtonStoriesVisibility()));
+            }
         }
 
         @Override
@@ -3506,7 +3533,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (profileActivity.sharedMediaLayout != null && profileActivity.myProfile) {
                 if (profileActivity.bottomButtonContainer[0] != null) {
                     ProfileActivity.this.bottomButtonContainer[0].setTranslationX(ProfileActivity.this.sharedMediaLayout.getTabTranslationX(8, true));
-                    ProfileActivity.this.bottomButtonContainer[0].setTranslationY(AndroidUtilities.dp(72.0f) * (1.0f - ProfileActivity.this.sharedMediaLayout.getBottomButtonVisibility()));
                 }
                 if (ProfileActivity.this.bottomButtonContainer[1] != null) {
                     ProfileActivity.this.bottomButtonContainer[1].setTranslationX(ProfileActivity.this.sharedMediaLayout.getTabTranslationX(9, false));
@@ -8421,8 +8447,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     private static CharSequence createNewSpan(String str, int i) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        AnonymousClass55 anonymousClass55 = new FilterCreateActivity.NewSpan(false, 9) {
-            AnonymousClass55(boolean z, int i2) {
+        AnonymousClass56 anonymousClass56 = new FilterCreateActivity.NewSpan(false, 9) {
+            AnonymousClass56(boolean z, int i2) {
                 super(z, i2);
             }
 
@@ -8434,9 +8460,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 canvas.restore();
             }
         };
-        anonymousClass55.setText(str);
-        anonymousClass55.setColor(i);
-        spannableStringBuilder.setSpan(anonymousClass55, 0, spannableStringBuilder.length(), 0);
+        anonymousClass56.setText(str);
+        anonymousClass56.setColor(i);
+        spannableStringBuilder.setSpan(anonymousClass56, 0, spannableStringBuilder.length(), 0);
         return spannableStringBuilder;
     }
 
@@ -8973,7 +8999,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
             };
             getMessagesController().getStoriesController().removeStoriesFromAlbum(dialogId, storyAlbums_getAlbumIdByTabType, arrayList);
-            BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_archived, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StoryAddedToAlbumTitle", arrayList.size(), albumName)), LocaleController.getString(R.string.Undo), runnable2).show();
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_archived, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StoryRemovedFromAlbumTitle", arrayList.size(), albumName)), LocaleController.getString(R.string.Undo), runnable2).show();
             return;
         }
         final long clientUserId = getUserConfig().getClientUserId();
@@ -11107,6 +11133,33 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         updateListAnimated(false);
     }
 
+    public static void lambda$showStarRatingBottomSheet$132(LinkSpanDrawable.LinksTextView[] linksTextViewArr, Boolean bool) {
+        ViewPropertyAnimator scaleY = linksTextViewArr[0].animate().alpha(bool.booleanValue() ? 0.0f : 1.0f).scaleX(bool.booleanValue() ? 0.8f : 1.0f).scaleY(bool.booleanValue() ? 0.8f : 1.0f);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        scaleY.setInterpolator(cubicBezierInterpolator).setDuration(600L).start();
+        linksTextViewArr[1].animate().alpha(bool.booleanValue() ? 1.0f : 0.0f).scaleX(!bool.booleanValue() ? 0.8f : 1.0f).scaleY(bool.booleanValue() ? 1.0f : 0.8f).setInterpolator(cubicBezierInterpolator).setDuration(600L).start();
+    }
+
+    public static void lambda$showStarRatingBottomSheet$133(LimitPreviewView limitPreviewView, TLRPC.UserFull userFull, Utilities.Callback callback) {
+        limitPreviewView.animateStarRating(userFull.stars_rating, userFull.stars_my_pending_rating);
+        callback.run(Boolean.TRUE);
+    }
+
+    public static void lambda$showStarRatingBottomSheet$134(LimitPreviewView limitPreviewView, TLRPC.UserFull userFull, Utilities.Callback callback, View view) {
+        limitPreviewView.animateStarRating(userFull.stars_rating, userFull.stars_my_pending_rating);
+        callback.run(Boolean.TRUE);
+    }
+
+    public static void lambda$showStarRatingBottomSheet$135(LimitPreviewView limitPreviewView, TLRPC.UserFull userFull, Utilities.Callback callback) {
+        limitPreviewView.animateStarRating(userFull.stars_my_pending_rating, userFull.stars_rating);
+        callback.run(Boolean.FALSE);
+    }
+
+    public static void lambda$showStarRatingBottomSheet$136(LimitPreviewView limitPreviewView, TLRPC.UserFull userFull, Utilities.Callback callback, View view) {
+        limitPreviewView.animateStarRating(userFull.stars_my_pending_rating, userFull.stars_rating);
+        callback.run(Boolean.FALSE);
+    }
+
     public void lambda$updateExceptions$2(HashSet hashSet) {
         ListAdapter listAdapter;
         ArrayList arrayList = new ArrayList(hashSet);
@@ -12954,89 +13007,209 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void showStarRatingBottomSheet(View view) {
-        Context context = getContext();
-        TLRPC.UserFull userInfo = getUserInfo();
+        Context context;
+        BottomSheet.Builder builder;
+        Runnable runnable;
+        int i;
+        float f;
+        char c;
+        Context context2 = getContext();
+        final TLRPC.UserFull userInfo = getUserInfo();
         if (userInfo == null || userInfo.stars_rating == null) {
             return;
         }
-        BottomSheet.Builder builder = new BottomSheet.Builder(getContext());
-        final Runnable dismissRunnable = builder.getDismissRunnable();
-        LinearLayout linearLayout = new LinearLayout(context);
+        BottomSheet.Builder builder2 = new BottomSheet.Builder(getContext());
+        Runnable dismissRunnable = builder2.getDismissRunnable();
+        LinearLayout linearLayout = new LinearLayout(context2);
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
-        LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.filled_rating_crown, 0, 0, this.resourcesProvider);
-        limitPreviewView.setStarRating(userInfo.stars_rating, false);
+        final LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.filled_rating_crown, 0, 0, this.resourcesProvider);
+        limitPreviewView.setHideNegativeValues(getDialogId() != UserConfig.getInstance(this.currentAccount).getClientUserId());
+        limitPreviewView.setStarRating(userInfo.stars_rating);
         limitPreviewView.setTranslationY(-AndroidUtilities.dp(14.0f));
         linearLayout.addView(limitPreviewView, LayoutHelper.createLinear(-1, -2, 17, 0, 20, 0, 10));
-        if (userInfo.stars_my_pending_rating != null) {
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-            linksTextView.setGravity(17);
-            linksTextView.setTextSize(1, 12.0f);
-            linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
-            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
-            linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 20, -12, 20, 20));
-            int max = Math.max(1, (userInfo.stars_my_pending_rating_date - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) / 86400);
-            long j = userInfo.stars_my_pending_rating.stars - userInfo.stars_rating.stars;
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append(userInfo.stars_my_pending_rating.level > userInfo.stars_rating.level ? TextUtils.concat(LocaleController.formatPluralStringComma("StarRatingFuture", max), "\n", LocaleController.formatPluralStringComma("StarRatingFuturePendingPointsAndLevel1", (int) j), " ", LocaleController.formatPluralStringComma("StarRatingFuturePendingPointsAndLevel2", userInfo.stars_my_pending_rating.level)) : TextUtils.concat(LocaleController.formatPluralStringComma("StarRatingFuture", max), "\n", LocaleController.formatPluralStringComma("StarRatingFuturePendingPoints", (int) j)));
-            linksTextView.setText(spannableStringBuilder);
+        if (BuildVars.DEBUG_PRIVATE_VERSION && userInfo.stars_my_pending_rating == null) {
+            TL_stars.Tl_starsRating tl_starsRating = new TL_stars.Tl_starsRating();
+            userInfo.stars_my_pending_rating = tl_starsRating;
+            TL_stars.Tl_starsRating tl_starsRating2 = userInfo.stars_rating;
+            tl_starsRating.current_level_stars = tl_starsRating2.stars < 0 ? 0L : tl_starsRating2.current_level_stars;
+            tl_starsRating.next_level_stars = tl_starsRating2.next_level_stars + 1000;
+            tl_starsRating.level = tl_starsRating2.level + 1;
+            tl_starsRating.stars = tl_starsRating2.next_level_stars + 500;
+            userInfo.stars_my_pending_rating_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + 1814400;
         }
-        TextView textView = new TextView(context);
+        int i2 = 17;
+        if (userInfo.stars_my_pending_rating != null) {
+            FrameLayout frameLayout = new FrameLayout(context2);
+            linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 17, 40, -12, 40, 20));
+            final LinkSpanDrawable.LinksTextView[] linksTextViewArr = new LinkSpanDrawable.LinksTextView[2];
+            int i3 = 0;
+            for (int i4 = 2; i3 < i4; i4 = 2) {
+                int i5 = i3;
+                AnonymousClass55 anonymousClass55 = new LinkSpanDrawable.LinksTextView(context2) {
+                    AnonymousClass55(Context context22) {
+                        super(context22);
+                    }
+
+                    @Override
+                    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                        if (getAlpha() < 0.9f) {
+                            return false;
+                        }
+                        return super.dispatchTouchEvent(motionEvent);
+                    }
+                };
+                linksTextViewArr[i5] = anonymousClass55;
+                anonymousClass55.setGravity(i2);
+                linksTextViewArr[i5].setTextSize(1, 12.0f);
+                linksTextViewArr[i5].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+                linksTextViewArr[i5].setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
+                frameLayout.addView(linksTextViewArr[i5], LayoutHelper.createFrame(-1, -1, 119));
+                linksTextViewArr[i5].setAlpha(i5 == 0 ? 1.0f : 0.0f);
+                linksTextViewArr[i5].setScaleX(i5 == 0 ? 1.0f : 0.8f);
+                linksTextViewArr[i5].setScaleY(i5 == 0 ? 1.0f : 0.8f);
+                i3 = i5 + 1;
+                i2 = 17;
+            }
+            final Utilities.Callback callback = new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    ProfileActivity.lambda$showStarRatingBottomSheet$132(linksTextViewArr, (Boolean) obj);
+                }
+            };
+            boolean z = getDialogId() == UserConfig.getInstance(this.currentAccount).getClientUserId();
+            long j = userInfo.stars_rating.stars;
+            TL_stars.Tl_starsRating tl_starsRating3 = userInfo.stars_my_pending_rating;
+            long j2 = (-j) - (tl_starsRating3 != null ? tl_starsRating3.stars - j : 0L);
+            int max = Math.max(1, (userInfo.stars_my_pending_rating_date - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) / 86400);
+            context = context22;
+            long j3 = userInfo.stars_my_pending_rating.stars;
+            builder = builder2;
+            runnable = dismissRunnable;
+            long j4 = userInfo.stars_rating.stars;
+            long j5 = j3 - j4;
+            if ((j4 >= 0 || z) && (!z || j2 <= 0)) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                spannableStringBuilder.append(TextUtils.concat(LocaleController.formatPluralStringComma("StarRatingFuture", max), "\n", LocaleController.formatPluralStringComma("StarRatingFuturePendingPoints", (int) j5)));
+                spannableStringBuilder.append((CharSequence) " ");
+                spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.StarRatingFuturePendingPointsPreview), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ProfileActivity.lambda$showStarRatingBottomSheet$133(LimitPreviewView.this, userInfo, callback);
+                    }
+                }), true));
+                c = 0;
+                linksTextViewArr[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        ProfileActivity.lambda$showStarRatingBottomSheet$134(LimitPreviewView.this, userInfo, callback, view2);
+                    }
+                });
+                linksTextViewArr[0].setText(spannableStringBuilder);
+            } else {
+                c = 0;
+                linksTextViewArr[0].setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                if (z) {
+                    linksTextViewArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarRatingLevelNegativeYou", (int) j2)));
+                } else {
+                    linksTextViewArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarRatingLevelNegativeOther, DialogObject.getName(getDialogId()))));
+                    c = 0;
+                }
+            }
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            String formatPluralStringComma = LocaleController.formatPluralStringComma("StarRatingFuturePreview1", max);
+            String formatPluralStringComma2 = LocaleController.formatPluralStringComma("StarRatingFuturePreview2", (int) j5);
+            CharSequence[] charSequenceArr = new CharSequence[3];
+            charSequenceArr[c] = formatPluralStringComma;
+            charSequenceArr[1] = "\n";
+            charSequenceArr[2] = formatPluralStringComma2;
+            spannableStringBuilder2.append(TextUtils.concat(charSequenceArr));
+            spannableStringBuilder2.append((CharSequence) " ");
+            spannableStringBuilder2.append(AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.StarRatingFuturePendingPointsPreviewBack), new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.lambda$showStarRatingBottomSheet$135(LimitPreviewView.this, userInfo, callback);
+                }
+            }), true));
+            linksTextViewArr[1].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    ProfileActivity.lambda$showStarRatingBottomSheet$136(LimitPreviewView.this, userInfo, callback, view2);
+                }
+            });
+            linksTextViewArr[1].setText(spannableStringBuilder2);
+        } else {
+            context = context22;
+            builder = builder2;
+            runnable = dismissRunnable;
+        }
+        Context context3 = context;
+        TextView textView = new TextView(context3);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.StarRatingTitle));
         textView.setTextSize(1, 20.0f);
-        int i = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        int i6 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i6, this.resourcesProvider));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 6));
-        TextView textView2 = new TextView(context);
+        TextView textView2 = new TextView(context3);
         textView2.setGravity(17);
-        textView2.setText(AndroidUtilities.replaceTags(userInfo.id == UserConfig.getInstance(this.currentAccount).getClientUserId() ? LocaleController.getString(R.string.StarRatingSelfDescription) : LocaleController.formatString(R.string.StarRatingDescription, DialogObject.getName(getDialogId()))));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        if (userInfo.id == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.StarRatingSelfDescription)));
+            f = 14.0f;
+            i = 1;
+        } else {
+            i = 1;
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarRatingDescription, DialogObject.getName(getDialogId()))));
+            f = 14.0f;
+        }
+        textView2.setTextSize(i, f);
+        textView2.setTextColor(Theme.getColor(i6, this.resourcesProvider));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 12));
-        PremiumFeatureCell premiumFeatureCell = new PremiumFeatureCell(context, this.resourcesProvider);
+        PremiumFeatureCell premiumFeatureCell = new PremiumFeatureCell(context3, this.resourcesProvider);
         premiumFeatureCell.title.setText(LocaleController.getString(R.string.StarRatingTitle1));
         TextView textView3 = premiumFeatureCell.description;
-        int i2 = R.string.StarRatingDescription1;
-        int i3 = R.string.StarRatingAdded;
-        String string = LocaleController.getString(i3);
-        int i4 = Theme.key_premiumGradient1;
-        textView3.setText(LocaleController.formatSpannable(i2, createNewSpan(string, Theme.getColor(i4))));
+        int i7 = R.string.StarRatingDescription1;
+        int i8 = R.string.StarRatingAdded;
+        String string = LocaleController.getString(i8);
+        int i9 = Theme.key_featuredStickers_addButton;
+        textView3.setText(LocaleController.formatSpannable(i7, createNewSpan(string, Theme.getColor(i9, this.resourcesProvider))));
         premiumFeatureCell.nextIcon.setVisibility(8);
         premiumFeatureCell.imageView.setImageResource(R.drawable.menu_gift);
-        premiumFeatureCell.imageView.setColorFilter(Theme.getColor(i, this.resourcesProvider));
+        premiumFeatureCell.imageView.setColorFilter(Theme.getColor(i6, this.resourcesProvider));
         linearLayout.addView(premiumFeatureCell, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, -2.0f));
-        PremiumFeatureCell premiumFeatureCell2 = new PremiumFeatureCell(context, this.resourcesProvider);
+        PremiumFeatureCell premiumFeatureCell2 = new PremiumFeatureCell(context3, this.resourcesProvider);
         premiumFeatureCell2.title.setText(LocaleController.getString(R.string.StarRatingTitle2));
-        premiumFeatureCell2.description.setText(LocaleController.formatSpannable(R.string.StarRatingDescription2, createNewSpan(LocaleController.getString(i3), Theme.getColor(i4))));
+        premiumFeatureCell2.description.setText(LocaleController.formatSpannable(R.string.StarRatingDescription2, createNewSpan(LocaleController.getString(i8), Theme.getColor(i9, this.resourcesProvider))));
         premiumFeatureCell2.nextIcon.setVisibility(8);
         premiumFeatureCell2.imageView.setImageResource(R.drawable.menu_stars_gift);
-        premiumFeatureCell2.imageView.setColorFilter(Theme.getColor(i, this.resourcesProvider));
+        premiumFeatureCell2.imageView.setColorFilter(Theme.getColor(i6, this.resourcesProvider));
         linearLayout.addView(premiumFeatureCell2, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, -2.0f));
-        PremiumFeatureCell premiumFeatureCell3 = new PremiumFeatureCell(context, this.resourcesProvider);
+        PremiumFeatureCell premiumFeatureCell3 = new PremiumFeatureCell(context3, this.resourcesProvider);
         premiumFeatureCell3.title.setText(LocaleController.getString(R.string.StarRatingTitle3));
-        premiumFeatureCell3.description.setText(LocaleController.formatSpannable(R.string.StarRatingDescription3, createNewSpan(LocaleController.getString(R.string.StarRatingDeduces), Theme.getColor(Theme.key_windowBackgroundWhiteGrayText))));
+        premiumFeatureCell3.description.setText(LocaleController.formatSpannable(R.string.StarRatingDescription3, createNewSpan(LocaleController.getString(R.string.StarRatingDeduces), Theme.isCurrentThemeDark() ? ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, this.resourcesProvider), -16777216, 0.25f) : Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider))));
         premiumFeatureCell3.nextIcon.setVisibility(8);
         premiumFeatureCell3.imageView.setImageResource(R.drawable.menu_refund);
-        premiumFeatureCell3.imageView.setColorFilter(Theme.getColor(i, this.resourcesProvider));
+        premiumFeatureCell3.imageView.setColorFilter(Theme.getColor(i6, this.resourcesProvider));
         linearLayout.addView(premiumFeatureCell3, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, 8.0f));
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-        spannableStringBuilder2.append((CharSequence) "c ");
-        spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.filled_understood), 0, 1, 33);
-        spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.StarRatingButtonUnderstood));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider);
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
+        spannableStringBuilder3.append((CharSequence) "c ");
+        spannableStringBuilder3.setSpan(new ColoredImageSpan(R.drawable.filled_understood), 0, 1, 33);
+        spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.StarRatingButtonUnderstood));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context3, this.resourcesProvider);
+        final Runnable runnable2 = runnable;
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                dismissRunnable.run();
+                runnable2.run();
             }
         });
-        buttonWithCounterView.setText(spannableStringBuilder2, false);
+        buttonWithCounterView.setText(spannableStringBuilder3, false);
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 16.0f, 10.0f, 16.0f, 8.0f));
-        builder.setCustomView(linearLayout);
-        builder.show();
+        BottomSheet.Builder builder3 = builder;
+        builder3.setCustomView(linearLayout);
+        builder3.show();
     }
 
     private void updateAutoDeleteItem() {
@@ -13282,7 +13455,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void updateProfileData(boolean r36) {
+    public void updateProfileData(boolean r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.updateProfileData(boolean):void");
     }
 
@@ -15343,7 +15516,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateCollectibleHint();
             HintView2 hintView22 = this.collectibleHint;
             Objects.requireNonNull(hintView22);
-            AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda57(hintView22), 6000L);
+            AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda62(hintView22), 6000L);
         }
     }
 

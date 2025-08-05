@@ -32,6 +32,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EllipsizeSpanAnimator;
@@ -41,21 +42,29 @@ import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 
 public class LimitPreviewView extends LinearLayout {
+    private boolean animate;
+    private boolean animateArrowFadeIn;
+    private boolean animateArrowFadeOut;
+    private boolean animateBackgroundFade;
     private boolean animateIncrease;
     private int animateIncreaseWidth;
+    private Runnable animateStarRatingRunnable;
     private boolean animatingRotation;
     boolean animationCanPlay;
     private ValueAnimator arrowAnimator;
     private int currentValue;
     private DarkGradientProvider darkGradientProvider;
     TextView defaultCount;
-    private final TextView defaultText;
+    private final FrameLayout defaultLayout;
+    private final AnimatedTextView defaultText;
     public int gradientTotalHeight;
     int gradientYOffset;
+    private boolean hideNegativeValues;
     int icon;
     boolean inc;
     public boolean invalidationEnabled;
     private boolean isBoostsStyle;
+    private boolean isRatingNegative;
     private boolean isRatingStyle;
     private boolean isSimpleStyle;
     public boolean isStatistic;
@@ -65,7 +74,8 @@ public class LimitPreviewView extends LinearLayout {
     private View parentVideForGradient;
     private float percent;
     private float position;
-    TextView premiumCount;
+    AnimatedTextView premiumCount;
+    private final FrameLayout premiumLayout;
     private final int premiumLimit;
     private boolean premiumLocked;
     private final TextView premiumText;
@@ -369,10 +379,11 @@ public class LimitPreviewView extends LinearLayout {
         TextView textView;
         int i4;
         int i5;
+        AnimatedTextView animatedTextView;
         float f4;
         float f5;
-        TextView textView2;
         int i6;
+        float f6;
         int i7;
         this.animationCanPlay = true;
         this.ratingPaint = new Paint(1);
@@ -392,80 +403,71 @@ public class LimitPreviewView extends LinearLayout {
             this.limitIcon.setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(14.0f));
             addView(this.limitIcon, LayoutHelper.createLinear(-2, -2, 0.0f, 3));
         }
-        final TextViewHolder textViewHolder = new TextViewHolder(context, true);
-        TextView textView3 = new TextView(context);
-        this.defaultText = textView3;
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setText(LocaleController.getString(R.string.LimitFree));
-        textView3.setGravity(16);
+        TextViewHolder textViewHolder = new TextViewHolder(context, true);
+        this.defaultLayout = textViewHolder;
+        AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
+        this.defaultText = animatedTextView2;
+        animatedTextView2.setTextSize(AndroidUtilities.dp(14.0f));
+        animatedTextView2.setTypeface(AndroidUtilities.bold());
+        animatedTextView2.setText(LocaleController.getString(R.string.LimitFree));
+        animatedTextView2.setGravity(16);
         int i8 = Theme.key_windowBackgroundWhiteBlackText;
-        textView3.setTextColor(Theme.getColor(i8, resourcesProvider));
-        TextView textView4 = new TextView(context);
-        this.defaultCount = textView4;
-        textView4.setTypeface(AndroidUtilities.bold());
+        animatedTextView2.setTextColor(Theme.getColor(i8, resourcesProvider));
+        TextView textView2 = new TextView(context);
+        this.defaultCount = textView2;
+        textView2.setTypeface(AndroidUtilities.bold());
         this.defaultCount.setText(String.format("%d", Integer.valueOf(i3)));
         this.defaultCount.setGravity(16);
         this.defaultCount.setTextColor(Theme.getColor(i8, resourcesProvider));
         if (LocaleController.isRTL) {
             f2 = 12.0f;
             f3 = 0.0f;
-            textViewHolder.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
+            textViewHolder.addView(animatedTextView2, LayoutHelper.createFrame(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
             textView = this.defaultCount;
             i4 = -2;
             i5 = 3;
         } else {
             f2 = 12.0f;
             f3 = 0.0f;
-            textViewHolder.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
+            textViewHolder.addView(animatedTextView2, LayoutHelper.createFrame(-1, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
             textView = this.defaultCount;
             i4 = -2;
             i5 = 5;
         }
         textViewHolder.addView(textView, LayoutHelper.createFrame(i4, 30.0f, i5, f2, f3, 12.0f, 0.0f));
-        final TextViewHolder textViewHolder2 = new TextViewHolder(context, false);
-        TextView textView5 = new TextView(context);
-        this.premiumText = textView5;
-        textView5.setTypeface(AndroidUtilities.bold());
-        textView5.setText(LocaleController.getString(R.string.LimitPremium));
-        textView5.setGravity(16);
-        textView5.setTextColor(-1);
-        TextView textView6 = new TextView(context) {
-            @Override
-            public void setAlpha(float f6) {
-                super.setAlpha(f6);
-            }
-
-            @Override
-            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(charSequence, bufferType);
-            }
-
-            @Override
-            public void setTextColor(int i9) {
-                super.setTextColor(i9);
-            }
-        };
-        this.premiumCount = textView6;
-        textView6.setTypeface(AndroidUtilities.bold());
+        TextViewHolder textViewHolder2 = new TextViewHolder(context, false);
+        this.premiumLayout = textViewHolder2;
+        TextView textView3 = new TextView(context);
+        this.premiumText = textView3;
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setText(LocaleController.getString(R.string.LimitPremium));
+        textView3.setGravity(16);
+        textView3.setTextColor(-1);
+        AnimatedTextView animatedTextView3 = new AnimatedTextView(context);
+        this.premiumCount = animatedTextView3;
+        animatedTextView3.setTextSize(AndroidUtilities.dp(14.0f));
+        this.premiumCount.setTypeface(AndroidUtilities.bold());
         this.premiumCount.setText(String.format("%d", Integer.valueOf(i3)));
-        this.premiumCount.setGravity(16);
+        this.premiumCount.setGravity(21);
         this.premiumCount.setTextColor(-1);
         if (LocaleController.isRTL) {
+            textViewHolder2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
+            animatedTextView = this.premiumCount;
             f4 = 12.0f;
             f5 = 0.0f;
-            textViewHolder2.addView(textView5, LayoutHelper.createFrame(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
-            textView2 = this.premiumCount;
             i6 = -2;
+            f6 = 30.0f;
             i7 = 3;
         } else {
+            textViewHolder2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
+            animatedTextView = this.premiumCount;
             f4 = 12.0f;
             f5 = 0.0f;
-            textViewHolder2.addView(textView5, LayoutHelper.createFrame(-1, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
-            textView2 = this.premiumCount;
             i6 = -2;
+            f6 = 30.0f;
             i7 = 5;
         }
-        textViewHolder2.addView(textView2, LayoutHelper.createFrame(i6, 30.0f, i7, f4, f5, 12.0f, 0.0f));
+        textViewHolder2.addView(animatedTextView, LayoutHelper.createFrame(i6, f6, i7, 12.0f, 0.0f, f4, f5));
         FrameLayout frameLayout = new FrameLayout(context) {
             Paint grayPaint = new Paint();
             Paint whitePaint;
@@ -513,19 +515,36 @@ public class LimitPreviewView extends LinearLayout {
                         mainGradientPaint = premiumGradientTools.paint;
                         premiumGradientTools.gradientMatrixLinear(r6.gradientTotalHeight, -r6.gradientYOffset);
                     } else {
-                        float f6 = 0.0f;
+                        float f7 = 0.0f;
                         for (View view2 = this; view2 != view; view2 = (View) view2.getParent()) {
-                            f6 += view2.getY();
+                            f7 += view2.getY();
                         }
-                        PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getLeft(), -f6);
+                        PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getLeft(), -f7);
                     }
                 } else {
                     PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, LimitPreviewView.this.getMeasuredWidth(), LimitPreviewView.this.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getLeft(), -getTop());
                 }
+                int alpha = mainGradientPaint.getAlpha();
+                if (LimitPreviewView.this.animateArrowFadeOut && LimitPreviewView.this.percent <= 0.0f && LimitPreviewView.this.arrowAnimator != null) {
+                    RectF rectF2 = AndroidUtilities.rectTmp;
+                    rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    mainGradientPaint.setAlpha((int) (alpha * ((Float) LimitPreviewView.this.arrowAnimator.getAnimatedValue()).floatValue()));
+                    if (LimitPreviewView.this.animateBackgroundFade) {
+                        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mainGradientPaint);
+                    }
+                    mainGradientPaint.setAlpha(alpha);
+                } else if (LimitPreviewView.this.animateArrowFadeOut && LimitPreviewView.this.arrowAnimator != null) {
+                    mainGradientPaint.setAlpha((int) (alpha * (1.0f - ((Float) LimitPreviewView.this.arrowAnimator.getAnimatedValue()).floatValue())));
+                }
                 if (LimitPreviewView.this.isBoostsStyle) {
-                    AndroidUtilities.rectTmp.set(0.0f, 0.0f, LimitPreviewView.this.width1, getMeasuredHeight());
+                    if (LimitPreviewView.this.isRatingNegative) {
+                        AndroidUtilities.rectTmp.set(LimitPreviewView.this.width1, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    } else {
+                        AndroidUtilities.rectTmp.set(0.0f, 0.0f, LimitPreviewView.this.width1, getMeasuredHeight());
+                    }
                 }
                 canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mainGradientPaint);
+                mainGradientPaint.setAlpha(alpha);
                 canvas.restore();
                 LimitPreviewView limitPreviewView2 = LimitPreviewView.this;
                 if (limitPreviewView2.staticGradient == null && limitPreviewView2.invalidationEnabled) {
@@ -550,47 +569,57 @@ public class LimitPreviewView extends LinearLayout {
 
             @Override
             protected void onMeasure(int i9, int i10) {
-                TextView textView7;
+                AnimatedTextView animatedTextView4;
                 if (getChildCount() != 2) {
                     super.onMeasure(i9, i10);
                     return;
                 }
                 int size = View.MeasureSpec.getSize(i9);
                 int size2 = View.MeasureSpec.getSize(i10);
-                textViewHolder.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                int max = Math.max(textViewHolder.getMeasuredWidth(), AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultText.getMeasuredWidth() + (LimitPreviewView.this.defaultCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultCount.getMeasuredWidth() : 0));
-                textViewHolder2.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                LimitPreviewView.this.defaultLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                int max = Math.max(LimitPreviewView.this.defaultLayout.getMeasuredWidth(), AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultText.getMeasuredWidth() + (LimitPreviewView.this.defaultCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultCount.getMeasuredWidth() : 0));
+                LimitPreviewView.this.premiumLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                 if (LimitPreviewView.this.isBoostsStyle) {
                     int i11 = -1;
                     if (LimitPreviewView.this.percent == 0.0f) {
                         LimitPreviewView limitPreviewView = LimitPreviewView.this;
                         limitPreviewView.width1 = 0;
-                        limitPreviewView.premiumCount.setTextColor(limitPreviewView.hasDarkGradientProvider() ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-                        textView7 = LimitPreviewView.this.defaultText;
-                        if (!LimitPreviewView.this.hasDarkGradientProvider()) {
-                            i11 = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider);
+                        if (!limitPreviewView.animateArrowFadeIn && !LimitPreviewView.this.animateArrowFadeOut) {
+                            LimitPreviewView limitPreviewView2 = LimitPreviewView.this;
+                            limitPreviewView2.premiumCount.setTextColor((limitPreviewView2.isRatingNegative || LimitPreviewView.this.hasDarkGradientProvider()) ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+                            animatedTextView4 = LimitPreviewView.this.defaultText;
+                            if (!LimitPreviewView.this.hasDarkGradientProvider()) {
+                                i11 = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider);
+                            }
+                            animatedTextView4.setTextColor(i11);
                         }
                     } else {
                         if (LimitPreviewView.this.percent < 1.0f) {
-                            float measuredWidth = textViewHolder.getMeasuredWidth() - AndroidUtilities.dp(8.0f);
-                            LimitPreviewView limitPreviewView2 = LimitPreviewView.this;
-                            limitPreviewView2.width1 = (int) (measuredWidth + (((size - measuredWidth) - (textViewHolder2.getMeasuredWidth() - AndroidUtilities.dp(8.0f))) * limitPreviewView2.percent));
+                            float measuredWidth = LimitPreviewView.this.isRatingNegative ? 0.0f : LimitPreviewView.this.defaultLayout.getMeasuredWidth() - AndroidUtilities.dp(8.0f);
+                            float measuredWidth2 = (size - measuredWidth) - (LimitPreviewView.this.isRatingNegative ? 0.0f : LimitPreviewView.this.premiumLayout.getMeasuredWidth() - AndroidUtilities.dp(8.0f));
                             LimitPreviewView limitPreviewView3 = LimitPreviewView.this;
-                            limitPreviewView3.premiumCount.setTextColor(limitPreviewView3.hasDarkGradientProvider() ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+                            limitPreviewView3.width1 = (int) (measuredWidth + (measuredWidth2 * limitPreviewView3.percent));
+                            if (!LimitPreviewView.this.animateArrowFadeIn && !LimitPreviewView.this.animateArrowFadeOut) {
+                                LimitPreviewView limitPreviewView4 = LimitPreviewView.this;
+                                limitPreviewView4.premiumCount.setTextColor((limitPreviewView4.isRatingNegative || LimitPreviewView.this.hasDarkGradientProvider()) ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+                                animatedTextView4 = LimitPreviewView.this.defaultText;
+                            }
                         } else {
-                            LimitPreviewView limitPreviewView4 = LimitPreviewView.this;
-                            limitPreviewView4.width1 = size;
-                            limitPreviewView4.premiumCount.setTextColor(-1);
+                            LimitPreviewView limitPreviewView5 = LimitPreviewView.this;
+                            limitPreviewView5.width1 = size;
+                            if (!limitPreviewView5.animateArrowFadeIn && !LimitPreviewView.this.animateArrowFadeOut) {
+                                LimitPreviewView.this.premiumCount.setTextColor(-1);
+                                animatedTextView4 = LimitPreviewView.this.defaultText;
+                            }
                         }
-                        textView7 = LimitPreviewView.this.defaultText;
+                        animatedTextView4.setTextColor(i11);
                     }
-                    textView7.setTextColor(i11);
                 } else {
-                    int max2 = Math.max(textViewHolder2.getMeasuredWidth(), AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumText.getMeasuredWidth() + (LimitPreviewView.this.premiumCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumCount.getMeasuredWidth() : 0));
-                    LimitPreviewView limitPreviewView5 = LimitPreviewView.this;
-                    limitPreviewView5.width1 = (int) Utilities.clamp(size * limitPreviewView5.percent, size - max2, max);
-                    textViewHolder.measure(View.MeasureSpec.makeMeasureSpec(LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    textViewHolder2.measure(View.MeasureSpec.makeMeasureSpec(size - LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                    int max2 = Math.max(LimitPreviewView.this.premiumLayout.getMeasuredWidth(), AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumText.getMeasuredWidth() + (LimitPreviewView.this.premiumCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumCount.getMeasuredWidth() : 0));
+                    LimitPreviewView limitPreviewView6 = LimitPreviewView.this;
+                    limitPreviewView6.width1 = (int) Utilities.clamp(size * limitPreviewView6.percent, size - max2, max);
+                    LimitPreviewView.this.defaultLayout.measure(View.MeasureSpec.makeMeasureSpec(LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                    LimitPreviewView.this.premiumLayout.measure(View.MeasureSpec.makeMeasureSpec(size - LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                 }
                 setMeasuredDimension(size, size2);
             }
@@ -613,41 +642,274 @@ public class LimitPreviewView extends LinearLayout {
         return this.darkGradientProvider != null;
     }
 
-    public void lambda$onLayout$0(boolean z, float f, float f2, float f3, float f4, boolean z2, float f5, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float min = Math.min(1.0f, floatValue);
-        if (floatValue > 1.0f && z) {
-            if (!this.wasHaptic) {
-                this.wasHaptic = true;
-                try {
-                    this.limitIcon.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
+    public void lambda$animateStarRating$2(TL_stars.Tl_starsRating tl_starsRating) {
+        AnimatedTextView animatedTextView;
+        String formatString;
+        this.animateStarRatingRunnable = null;
+        if (isAttachedToWindow()) {
+            ValueAnimator valueAnimator = this.arrowAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
-            this.limitIcon.setRotation(this.limitIconRotation + ((floatValue - 1.0f) * 60.0f));
-        } else if (!this.animatingRotation) {
-            this.limitIcon.setRotation(this.limitIconRotation);
+            this.isRatingNegative = false;
+            this.ratingPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+            long j = tl_starsRating.stars;
+            if (j <= 0) {
+                this.percent = 0.0f;
+                this.defaultText.setText("");
+                this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+                this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
+                this.isRatingNegative = true;
+            } else {
+                long j2 = tl_starsRating.next_level_stars;
+                if (j2 == 0) {
+                    this.percent = 1.0f;
+                    AnimatedTextView animatedTextView2 = this.defaultText;
+                    int i = R.string.StarRatingLevel;
+                    animatedTextView2.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level - 1)));
+                    animatedTextView = this.premiumCount;
+                    formatString = LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level));
+                } else {
+                    long j3 = tl_starsRating.current_level_stars;
+                    this.percent = MathUtils.clamp(((float) (j - j3)) / ((float) (j2 - j3)), 0.0f, 1.0f);
+                    AnimatedTextView animatedTextView3 = this.defaultText;
+                    int i2 = R.string.StarRatingLevel;
+                    animatedTextView3.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level)));
+                    animatedTextView = this.premiumCount;
+                    formatString = LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1));
+                }
+                animatedTextView.setText(formatString);
+            }
+            setArrowX(0.0f);
+            this.limitIcon.setScaleX(0.6f);
+            this.limitIcon.setScaleY(0.6f);
+            this.limitIcon.setAlpha(0.0f);
+            this.animate = true;
+            this.animateArrowFadeIn = true;
+            this.animateArrowFadeOut = false;
+            this.animateBackgroundFade = false;
+            this.animateIncreaseWidth = this.width1;
+            this.limitsContainer.requestLayout();
+            requestLayout();
+            this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            this.defaultText.setTextColor(-1);
+            setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, false);
         }
-        if (valueAnimator == this.arrowAnimator) {
-            float f6 = 1.0f - min;
-            this.limitIcon.setTranslationX((f * f6) + (f2 * min));
-            float f7 = (f3 * f6) + (f4 * min);
-            this.limitIcon.setArrowCenter(f7);
-            this.limitIcon.setPivotX(r6.getMeasuredWidth() * f7);
+    }
+
+    public void lambda$animateStarRating$3(TL_stars.Tl_starsRating tl_starsRating) {
+        AnimatedTextView animatedTextView;
+        String formatString;
+        this.animateStarRatingRunnable = null;
+        if (isAttachedToWindow()) {
+            ValueAnimator valueAnimator = this.arrowAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.isRatingNegative = false;
+            this.ratingPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+            long j = tl_starsRating.stars;
+            if (j <= 0) {
+                this.percent = 0.5f;
+                this.defaultText.setText("");
+                this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+                this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
+                this.isRatingNegative = true;
+            } else {
+                long j2 = tl_starsRating.next_level_stars;
+                if (j2 == 0) {
+                    this.percent = 1.0f;
+                    AnimatedTextView animatedTextView2 = this.defaultText;
+                    int i = R.string.StarRatingLevel;
+                    animatedTextView2.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level - 1)));
+                    animatedTextView = this.premiumCount;
+                    formatString = LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level));
+                } else {
+                    long j3 = tl_starsRating.current_level_stars;
+                    this.percent = MathUtils.clamp(((float) (j - j3)) / ((float) (j2 - j3)), 0.0f, 1.0f);
+                    AnimatedTextView animatedTextView3 = this.defaultText;
+                    int i2 = R.string.StarRatingLevel;
+                    animatedTextView3.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level)));
+                    animatedTextView = this.premiumCount;
+                    formatString = LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1));
+                }
+                animatedTextView.setText(formatString);
+            }
+            setArrowX(1.0f);
+            this.limitIcon.setScaleX(0.6f);
+            this.limitIcon.setScaleY(0.6f);
+            this.limitIcon.setAlpha(0.0f);
+            this.animate = true;
+            this.animateArrowFadeIn = true;
+            this.animateArrowFadeOut = false;
+            this.animateBackgroundFade = false;
+            this.animateIncreaseWidth = this.width1;
+            this.limitsContainer.requestLayout();
+            requestLayout();
+            this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            this.defaultText.setTextColor(-1);
+            setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, false);
         }
-        float min2 = Math.min(1.0f, 2.0f * min);
-        if (z2) {
-            this.width1 = (int) AndroidUtilities.lerp(this.animateIncreaseWidth, f5, min);
-            this.limitsContainer.invalidate();
-        } else {
-            this.limitIcon.setScaleX(min2);
-            this.limitIcon.setScaleY(min2);
-        }
+    }
+
+    public void lambda$onLayout$0(boolean r9, float r10, float r11, float r12, float r13, boolean r14, float r15, boolean r16, boolean r17, android.animation.ValueAnimator r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.LimitPreviewView.lambda$onLayout$0(boolean, float, float, float, float, boolean, float, boolean, boolean, android.animation.ValueAnimator):void");
     }
 
     public void lambda$onLayout$1(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.limitIconRotation = floatValue < 0.5f ? (floatValue / 0.5f) * (-7.0f) : (1.0f - ((floatValue - 0.5f) / 0.5f)) * (-7.0f);
+    }
+
+    private void setArrowX(float f) {
+        this.width1 = f >= 1.0f ? this.limitsContainer.getMeasuredWidth() : 0;
+        float dp = AndroidUtilities.dp(14.0f);
+        this.limitIcon.setTranslationX(Utilities.clamp((Math.max(this.width1, (getMeasuredWidth() - (r0 * 2)) * f) + dp) - (this.limitIcon.getMeasuredWidth() / 2.0f), (getMeasuredWidth() - r0) - this.limitIcon.getMeasuredWidth(), dp));
+        this.limitIcon.setArrowCenter(f);
+        this.limitIcon.setPivotX(r0.getMeasuredWidth() * f);
+    }
+
+    public void animateStarRating(TL_stars.Tl_starsRating tl_starsRating, final TL_stars.Tl_starsRating tl_starsRating2) {
+        AnimatedTextView animatedTextView;
+        String formatString;
+        Runnable runnable;
+        AnimatedTextView animatedTextView2;
+        String formatString2;
+        AnimatedTextView animatedTextView3;
+        String formatString3;
+        AndroidUtilities.cancelRunOnUIThread(this.animateStarRatingRunnable);
+        this.animateStarRatingRunnable = null;
+        Paint paint = this.ratingPaint;
+        int i = Theme.key_featuredStickers_addButton;
+        paint.setColor(Theme.getColor(i, this.resourcesProvider));
+        this.isRatingNegative = false;
+        int i2 = tl_starsRating.level;
+        int i3 = tl_starsRating2.level;
+        if (i2 == i3) {
+            long j = tl_starsRating2.stars;
+            if (j <= 0) {
+                this.percent = 0.0f;
+                this.defaultText.setText("");
+                this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+                this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
+                this.isRatingNegative = true;
+            } else {
+                long j2 = tl_starsRating2.next_level_stars;
+                if (j2 == 0) {
+                    this.percent = 1.0f;
+                    AnimatedTextView animatedTextView4 = this.defaultText;
+                    int i4 = R.string.StarRatingLevel;
+                    animatedTextView4.setText(LocaleController.formatString(i4, Integer.valueOf(i3 - 1)));
+                    animatedTextView3 = this.premiumCount;
+                    formatString3 = LocaleController.formatString(i4, Integer.valueOf(tl_starsRating2.level));
+                } else {
+                    long j3 = tl_starsRating2.current_level_stars;
+                    this.percent = MathUtils.clamp(((float) (j - j3)) / ((float) (j2 - j3)), 0.0f, 1.0f);
+                    AnimatedTextView animatedTextView5 = this.defaultText;
+                    int i5 = R.string.StarRatingLevel;
+                    animatedTextView5.setText(LocaleController.formatString(i5, Integer.valueOf(tl_starsRating2.level)));
+                    animatedTextView3 = this.premiumCount;
+                    formatString3 = LocaleController.formatString(i5, Integer.valueOf(tl_starsRating2.level + 1));
+                }
+                animatedTextView3.setText(formatString3);
+            }
+            this.animate = true;
+            this.animateArrowFadeIn = false;
+            this.animateArrowFadeOut = false;
+            this.animateBackgroundFade = false;
+            this.animateIncreaseWidth = this.width1;
+            this.limitsContainer.requestLayout();
+            requestLayout();
+            this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            this.defaultText.setTextColor(-1);
+            setIconValue((int) tl_starsRating2.stars, (int) tl_starsRating2.next_level_stars, false);
+            return;
+        }
+        if (i3 > i2) {
+            if (tl_starsRating.stars <= 0) {
+                this.defaultText.setText("");
+                this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+                this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
+                this.isRatingNegative = true;
+            } else {
+                if (tl_starsRating.next_level_stars == 0) {
+                    AnimatedTextView animatedTextView6 = this.defaultText;
+                    int i6 = R.string.StarRatingLevel;
+                    animatedTextView6.setText(LocaleController.formatString(i6, Integer.valueOf(i2 - 1)));
+                    animatedTextView2 = this.premiumCount;
+                    formatString2 = LocaleController.formatString(i6, Integer.valueOf(tl_starsRating.level));
+                } else {
+                    AnimatedTextView animatedTextView7 = this.defaultText;
+                    int i7 = R.string.StarRatingLevel;
+                    animatedTextView7.setText(LocaleController.formatString(i7, Integer.valueOf(i2)));
+                    animatedTextView2 = this.premiumCount;
+                    formatString2 = LocaleController.formatString(i7, Integer.valueOf(tl_starsRating.level + 1));
+                }
+                animatedTextView2.setText(formatString2);
+            }
+            this.percent = 1.0f;
+            this.animate = true;
+            this.animateArrowFadeIn = false;
+            this.animateArrowFadeOut = true;
+            this.animateBackgroundFade = ((tl_starsRating.stars > 0L ? 1 : (tl_starsRating.stars == 0L ? 0 : -1)) <= 0) == ((tl_starsRating2.stars > 0L ? 1 : (tl_starsRating2.stars == 0L ? 0 : -1)) <= 0);
+            this.animateIncreaseWidth = this.width1;
+            this.limitsContainer.requestLayout();
+            requestLayout();
+            this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            this.defaultText.setTextColor(-1);
+            setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, false);
+            runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    LimitPreviewView.this.lambda$animateStarRating$2(tl_starsRating2);
+                }
+            };
+        } else {
+            if (i3 >= i2) {
+                return;
+            }
+            this.ratingPaint.setColor(Theme.getColor(i, this.resourcesProvider));
+            this.isRatingNegative = false;
+            if (tl_starsRating.stars <= 0) {
+                this.defaultText.setText("");
+                this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+                this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
+                this.isRatingNegative = true;
+            } else {
+                long j4 = tl_starsRating.next_level_stars;
+                AnimatedTextView animatedTextView8 = this.defaultText;
+                int i8 = R.string.StarRatingLevel;
+                if (j4 == 0) {
+                    animatedTextView8.setText(LocaleController.formatString(i8, Integer.valueOf(tl_starsRating.level - 1)));
+                    animatedTextView = this.premiumCount;
+                    formatString = LocaleController.formatString(i8, Integer.valueOf(tl_starsRating.level));
+                } else {
+                    animatedTextView8.setText(LocaleController.formatString(i8, Integer.valueOf(tl_starsRating.level)));
+                    animatedTextView = this.premiumCount;
+                    formatString = LocaleController.formatString(i8, Integer.valueOf(tl_starsRating.level + 1));
+                }
+                animatedTextView.setText(formatString);
+            }
+            this.percent = 0.0f;
+            this.animate = true;
+            this.animateArrowFadeIn = false;
+            this.animateArrowFadeOut = true;
+            this.animateBackgroundFade = ((tl_starsRating.stars > 0L ? 1 : (tl_starsRating.stars == 0L ? 0 : -1)) <= 0) == ((tl_starsRating2.stars > 0L ? 1 : (tl_starsRating2.stars == 0L ? 0 : -1)) <= 0);
+            this.animateIncreaseWidth = this.width1;
+            this.limitsContainer.requestLayout();
+            requestLayout();
+            this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            this.defaultText.setTextColor(-1);
+            setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, false);
+            runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    LimitPreviewView.this.lambda$animateStarRating$3(tl_starsRating2);
+                }
+            };
+        }
+        this.animateStarRatingRunnable = runnable;
+        AndroidUtilities.runOnUIThread(runnable, 600L);
     }
 
     @Override
@@ -686,7 +948,7 @@ public class LimitPreviewView extends LinearLayout {
     }
 
     @Override
-    protected void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
+    protected void onLayout(boolean r20, int r21, int r22, int r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.LimitPreviewView.onLayout(boolean, int, int, int, int):void");
     }
 
@@ -696,24 +958,24 @@ public class LimitPreviewView extends LinearLayout {
 
     public void setBoosts(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, boolean z) {
         int i;
-        TextView textView;
+        AnimatedTextView animatedTextView;
         String formatString;
         if ((tL_premium_boostsStatus.current_level_boosts == tL_premium_boostsStatus.boosts && z) || (i = tL_premium_boostsStatus.next_level_boosts) == 0) {
             this.percent = 1.0f;
-            TextView textView2 = this.defaultText;
+            AnimatedTextView animatedTextView2 = this.defaultText;
             int i2 = R.string.BoostsLevel;
-            textView2.setText(LocaleController.formatString("BoostsLevel", i2, Integer.valueOf(tL_premium_boostsStatus.level - 1)));
-            textView = this.premiumCount;
+            animatedTextView2.setText(LocaleController.formatString("BoostsLevel", i2, Integer.valueOf(tL_premium_boostsStatus.level - 1)));
+            animatedTextView = this.premiumCount;
             formatString = LocaleController.formatString("BoostsLevel", i2, Integer.valueOf(tL_premium_boostsStatus.level));
         } else {
             this.percent = MathUtils.clamp((r2 - r1) / (i - r1), 0.0f, 1.0f);
-            TextView textView3 = this.defaultText;
+            AnimatedTextView animatedTextView3 = this.defaultText;
             int i3 = R.string.BoostsLevel;
-            textView3.setText(LocaleController.formatString("BoostsLevel", i3, Integer.valueOf(tL_premium_boostsStatus.level)));
-            textView = this.premiumCount;
+            animatedTextView3.setText(LocaleController.formatString("BoostsLevel", i3, Integer.valueOf(tL_premium_boostsStatus.level)));
+            animatedTextView = this.premiumCount;
             formatString = LocaleController.formatString("BoostsLevel", i3, Integer.valueOf(tL_premium_boostsStatus.level + 1));
         }
-        textView.setText(formatString);
+        animatedTextView.setText(formatString);
         ((FrameLayout.LayoutParams) this.premiumCount.getLayoutParams()).gravity = 5;
         setType(17);
         this.defaultCount.setVisibility(8);
@@ -732,7 +994,15 @@ public class LimitPreviewView extends LinearLayout {
         this.animationCanPlay = false;
     }
 
+    public void setHideNegativeValues(boolean z) {
+        this.hideNegativeValues = z;
+    }
+
     public void setIconValue(int i, int i2, boolean z) {
+        if (i < 0) {
+            setIconValue(i, z);
+            return;
+        }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "d").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").setSpan(new RelativeSizeSpan(0.8f), 1, 2, 0);
@@ -747,10 +1017,13 @@ public class LimitPreviewView extends LinearLayout {
     }
 
     public void setIconValue(int i, boolean z) {
+        ColoredImageSpan coloredImageSpan = i < 0 ? new ColoredImageSpan(R.drawable.warning_sign) : new ColoredImageSpan(this.icon);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").setSpan(new RelativeSizeSpan(0.8f), 1, 2, 0);
-        spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(i, ','));
+        spannableStringBuilder.append((CharSequence) "d").setSpan(coloredImageSpan, 0, 1, 0);
+        if (i >= 0 || !this.hideNegativeValues) {
+            spannableStringBuilder.append((CharSequence) " ").setSpan(new RelativeSizeSpan(0.8f), 1, 2, 0);
+            spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(i, ','));
+        }
         this.limitIcon.setText(spannableStringBuilder, z);
         this.limitIcon.requestLayout();
     }
@@ -768,34 +1041,45 @@ public class LimitPreviewView extends LinearLayout {
         this.premiumLocked = true;
     }
 
-    public void setStarRating(TL_stars.Tl_starsRating tl_starsRating, boolean z) {
-        TextView textView;
+    public void setStarRating(TL_stars.Tl_starsRating tl_starsRating) {
+        AnimatedTextView animatedTextView;
         String formatString;
+        this.isRatingNegative = false;
+        this.ratingPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
         long j = tl_starsRating.current_level_stars;
-        long j2 = tl_starsRating.next_level_stars;
-        if (j2 == 0) {
-            this.percent = 1.0f;
-            TextView textView2 = this.defaultText;
-            int i = R.string.StarRatingLevel;
-            textView2.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level - 1)));
-            textView = this.premiumCount;
-            formatString = LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level));
+        long j2 = tl_starsRating.stars;
+        if (j2 <= 0) {
+            this.percent = 0.5f;
+            this.defaultText.setText("");
+            this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+            this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
+            this.isRatingNegative = true;
         } else {
-            this.percent = MathUtils.clamp(((float) (tl_starsRating.stars - j)) / ((float) (j2 - j)), 0.0f, 1.0f);
-            TextView textView3 = this.defaultText;
-            int i2 = R.string.StarRatingLevel;
-            textView3.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level)));
-            textView = this.premiumCount;
-            formatString = LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1));
+            long j3 = tl_starsRating.next_level_stars;
+            if (j3 == 0) {
+                this.percent = 1.0f;
+                AnimatedTextView animatedTextView2 = this.defaultText;
+                int i = R.string.StarRatingLevel;
+                animatedTextView2.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level - 1)));
+                animatedTextView = this.premiumCount;
+                formatString = LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level));
+            } else {
+                this.percent = MathUtils.clamp(((float) (j2 - j)) / ((float) (j3 - j)), 0.0f, 1.0f);
+                AnimatedTextView animatedTextView3 = this.defaultText;
+                int i2 = R.string.StarRatingLevel;
+                animatedTextView3.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level)));
+                animatedTextView = this.premiumCount;
+                formatString = LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1));
+            }
+            animatedTextView.setText(formatString);
         }
-        textView.setText(formatString);
         ((FrameLayout.LayoutParams) this.premiumCount.getLayoutParams()).gravity = 5;
         setType(17);
         this.defaultCount.setVisibility(8);
         this.premiumText.setVisibility(8);
-        this.premiumCount.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+        this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         this.defaultText.setTextColor(-1);
-        setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, z);
+        setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, false);
         this.isBoostsStyle = true;
         this.isSimpleStyle = true;
         this.isRatingStyle = true;
@@ -806,7 +1090,7 @@ public class LimitPreviewView extends LinearLayout {
     }
 
     public void setType(int i) {
-        TextView textView;
+        AnimatedTextView animatedTextView;
         String str;
         if (i == 6) {
             str = "4 GB";
@@ -816,7 +1100,7 @@ public class LimitPreviewView extends LinearLayout {
                 spannableStringBuilder.append((CharSequence) (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() ? "4 GB" : "2 GB"));
                 this.limitIcon.setText(spannableStringBuilder, false);
             }
-            textView = this.premiumCount;
+            animatedTextView = this.premiumCount;
         } else {
             if (i != 11) {
                 return;
@@ -826,10 +1110,10 @@ public class LimitPreviewView extends LinearLayout {
                 spannableStringBuilder2.append((CharSequence) "d").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
                 this.limitIcon.setText(spannableStringBuilder2, false);
             }
-            textView = this.premiumCount;
+            animatedTextView = this.premiumCount;
             str = "";
         }
-        textView.setText(str);
+        animatedTextView.setText(str);
     }
 
     public void startDelayedAnimation() {

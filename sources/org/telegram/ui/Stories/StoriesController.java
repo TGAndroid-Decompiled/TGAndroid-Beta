@@ -881,13 +881,28 @@ public class StoriesController {
             while (it.hasNext()) {
                 tL_updateAlbum.add_stories.add(Integer.valueOf(((TL_stories.StoryItem) it.next()).id));
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_updateAlbum, null);
-            StoriesController.this.getStoriesList(this.dialogId, 0, i).updateStories(arrayList, true);
-            Iterator it2 = this.collections.iterator();
+            Iterator it2 = arrayList.iterator();
             while (it2.hasNext()) {
-                StoriesList storiesList = StoriesController.this.getStoriesList(this.dialogId, 0, ((StoryAlbum) it2.next()).album_id, false);
-                if (storiesList != null) {
-                    storiesList.updateStoryItemsAlbums(i, tL_updateAlbum.add_stories, false);
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) it2.next();
+                ArrayList<Integer> arrayList2 = storyItem.albums;
+                if (arrayList2 == null) {
+                    ArrayList<Integer> arrayList3 = new ArrayList<>();
+                    storyItem.albums = arrayList3;
+                    arrayList3.add(Integer.valueOf(i));
+                } else if (!arrayList2.contains(Integer.valueOf(i))) {
+                    storyItem.albums.add(Integer.valueOf(i));
+                }
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_updateAlbum, null);
+            StoriesList storiesList = StoriesController.this.getStoriesList(this.dialogId, 0, i, false);
+            if (storiesList != null) {
+                storiesList.updateStories(arrayList, true);
+            }
+            Iterator it3 = this.collections.iterator();
+            while (it3.hasNext()) {
+                StoriesList storiesList2 = StoriesController.this.getStoriesList(this.dialogId, 0, ((StoryAlbum) it3.next()).album_id, false);
+                if (storiesList2 != null) {
+                    storiesList2.updateStoryItemsAlbums(i, tL_updateAlbum.add_stories, false);
                 }
             }
         }
@@ -982,13 +997,27 @@ public class StoriesController {
             while (it.hasNext()) {
                 tL_updateAlbum.delete_stories.add(Integer.valueOf(((TL_stories.StoryItem) it.next()).id));
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_updateAlbum, null);
-            StoriesController.this.getStoriesList(this.dialogId, 0, i).updateDeletedStories(arrayList);
-            Iterator it2 = this.collections.iterator();
+            Iterator it2 = arrayList.iterator();
             while (it2.hasNext()) {
-                StoriesList storiesList = StoriesController.this.getStoriesList(this.dialogId, 0, ((StoryAlbum) it2.next()).album_id, false);
-                if (storiesList != null) {
-                    storiesList.updateStoryItemsAlbums(i, tL_updateAlbum.delete_stories, true);
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) it2.next();
+                ArrayList<Integer> arrayList2 = storyItem.albums;
+                if (arrayList2 != null) {
+                    arrayList2.remove(Integer.valueOf(i));
+                    if (storyItem.albums.isEmpty()) {
+                        storyItem.albums = null;
+                    }
+                }
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_updateAlbum, null);
+            StoriesList storiesList = StoriesController.this.getStoriesList(this.dialogId, 0, i, false);
+            if (storiesList != null) {
+                storiesList.updateDeletedStories(arrayList);
+            }
+            Iterator it3 = this.collections.iterator();
+            while (it3.hasNext()) {
+                StoriesList storiesList2 = StoriesController.this.getStoriesList(this.dialogId, 0, ((StoryAlbum) it3.next()).album_id, false);
+                if (storiesList2 != null) {
+                    storiesList2.updateStoryItemsAlbums(i, tL_updateAlbum.delete_stories, true);
                 }
             }
         }
@@ -1105,12 +1134,12 @@ public class StoriesController {
                     StoriesController.StoriesList.this.lambda$new$1(callback);
                 }
             };
-            if (i3 > 0) {
-                this.cachedObjects = new LinkedHashSet();
-                treeSet = new LinkedHashSet();
-            } else {
+            if (i2 != 0 || i3 <= 0) {
                 this.cachedObjects = new TreeSet(Comparator$CC.reverseOrder());
                 treeSet = new TreeSet(Comparator$CC.reverseOrder());
+            } else {
+                this.cachedObjects = new LinkedHashSet();
+                treeSet = new LinkedHashSet();
             }
             this.loadedObjects = treeSet;
             preloadCache();
@@ -1448,24 +1477,34 @@ public class StoriesController {
                 }
             });
             ArrayList arrayList2 = new ArrayList();
-            if (this.type == 0 && !this.pinnedIds.isEmpty()) {
+            int i = this.type;
+            if (i == 0 && this.albumId > 0) {
+                ArrayList arrayList3 = new ArrayList();
+                Iterator it = this.messageObjects.iterator();
+                while (it.hasNext()) {
+                    arrayList3.add(Integer.valueOf(((MessageObject) it.next()).storyItem.id));
+                }
+                arrayList2.add(arrayList3);
+                return arrayList2;
+            }
+            if (i == 0 && !this.pinnedIds.isEmpty()) {
                 arrayList2.add(new ArrayList(this.pinnedIds));
             }
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                TreeSet treeSet = (TreeSet) this.groupedByDay.get((Long) it.next());
+            Iterator it2 = arrayList.iterator();
+            while (it2.hasNext()) {
+                TreeSet treeSet = (TreeSet) this.groupedByDay.get((Long) it2.next());
                 if (treeSet != null) {
-                    ArrayList arrayList3 = new ArrayList(treeSet);
+                    ArrayList arrayList4 = new ArrayList(treeSet);
                     if (this.type == 0 && !this.pinnedIds.isEmpty()) {
-                        Iterator it2 = this.pinnedIds.iterator();
-                        while (it2.hasNext()) {
-                            Integer num = (Integer) it2.next();
+                        Iterator it3 = this.pinnedIds.iterator();
+                        while (it3.hasNext()) {
+                            Integer num = (Integer) it3.next();
                             num.intValue();
-                            arrayList3.remove(num);
+                            arrayList4.remove(num);
                         }
                     }
-                    if (!arrayList3.isEmpty()) {
-                        arrayList2.add(arrayList3);
+                    if (!arrayList4.isEmpty()) {
+                        arrayList2.add(arrayList4);
                     }
                 }
             }
@@ -1574,23 +1613,21 @@ public class StoriesController {
                 return false;
             }
             int i2 = this.type;
-            if (i2 == 0) {
-                if (this.albumId > 0) {
-                    TL_stories.TL_stories_getAlbumStories tL_stories_getAlbumStories = new TL_stories.TL_stories_getAlbumStories();
-                    tL_stories_getAlbumStories.album_id = this.albumId;
-                    tL_stories_getAlbumStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                    lastLoadedId = this.loadedObjects.size();
-                    tL_stories_getAlbumStories.offset = lastLoadedId;
-                    tL_stories_getAlbumStories.limit = i;
-                    tL_stories_getStoriesArchive = tL_stories_getAlbumStories;
-                } else {
-                    TL_stories.TL_stories_getPinnedStories tL_stories_getPinnedStories = new TL_stories.TL_stories_getPinnedStories();
-                    tL_stories_getPinnedStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                    lastLoadedId = lastLoadedId();
-                    tL_stories_getPinnedStories.offset_id = lastLoadedId;
-                    tL_stories_getPinnedStories.limit = i;
-                    tL_stories_getStoriesArchive = tL_stories_getPinnedStories;
-                }
+            if (i2 == 0 && this.albumId > 0) {
+                TL_stories.TL_stories_getAlbumStories tL_stories_getAlbumStories = new TL_stories.TL_stories_getAlbumStories();
+                tL_stories_getAlbumStories.album_id = this.albumId;
+                tL_stories_getAlbumStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                lastLoadedId = this.loadedObjects.size();
+                tL_stories_getAlbumStories.offset = lastLoadedId;
+                tL_stories_getAlbumStories.limit = i;
+                tL_stories_getStoriesArchive = tL_stories_getAlbumStories;
+            } else if (i2 == 0) {
+                TL_stories.TL_stories_getPinnedStories tL_stories_getPinnedStories = new TL_stories.TL_stories_getPinnedStories();
+                tL_stories_getPinnedStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                lastLoadedId = lastLoadedId();
+                tL_stories_getPinnedStories.offset_id = lastLoadedId;
+                tL_stories_getPinnedStories.limit = i;
+                tL_stories_getStoriesArchive = tL_stories_getPinnedStories;
             } else if (i2 == 2) {
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
@@ -1740,15 +1777,15 @@ public class StoriesController {
             fill(true);
         }
 
-        public void updateOrderInAlbum(ArrayList arrayList, boolean z) {
-            reorder(this.cachedObjects, arrayList);
-            reorder(this.loadedObjects, arrayList);
+        public void updateOrderInAlbum(List list, boolean z) {
+            reorder(this.cachedObjects, list);
+            reorder(this.loadedObjects, list);
             fill(false);
             if (z) {
                 TL_stories.TL_updateAlbum tL_updateAlbum = new TL_stories.TL_updateAlbum();
                 tL_updateAlbum.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
                 tL_updateAlbum.album_id = this.albumId;
-                tL_updateAlbum.order = new ArrayList<>(arrayList);
+                tL_updateAlbum.order = new ArrayList<>(list);
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_updateAlbum, null);
             }
         }
@@ -1842,12 +1879,18 @@ public class StoriesController {
             if (list == null) {
                 return;
             }
+            ArrayList arrayList = new ArrayList();
             boolean z2 = false;
             for (int i2 = 0; i2 < list.size(); i2++) {
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) list.get(i2);
                 if (storyItem != null) {
                     boolean z3 = this.loadedObjects.contains(Integer.valueOf(storyItem.id)) || this.cachedObjects.contains(Integer.valueOf(storyItem.id));
-                    boolean z4 = (this.type == 1 || this.albumId > 0) ? true : storyItem.pinned;
+                    boolean z4 = this.type == 1 || storyItem.pinned;
+                    int i3 = this.albumId;
+                    if (i3 > 0) {
+                        ArrayList<Integer> arrayList2 = storyItem.albums;
+                        z4 = arrayList2 != null && arrayList2.contains(Integer.valueOf(i3));
+                    }
                     if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
                         z4 = false;
                     }
@@ -1855,17 +1898,18 @@ public class StoriesController {
                         if (!z4) {
                             FileLog.d("StoriesList remove story " + storyItem.id);
                             removeObject(storyItem.id, true);
-                            int i3 = this.totalCount;
-                            if (i3 != -1) {
-                                i = i3 - 1;
+                            int i4 = this.totalCount;
+                            if (i4 != -1) {
+                                i = i4 - 1;
                                 this.totalCount = i;
                             }
                         } else if (this.done) {
                             FileLog.d("StoriesList put story " + storyItem.id);
                             pushObject(toMessageObject(storyItem, null), false);
-                            int i4 = this.totalCount;
-                            if (i4 != -1) {
-                                i = i4 + 1;
+                            arrayList.add(Integer.valueOf(storyItem.id));
+                            int i5 = this.totalCount;
+                            if (i5 != -1) {
+                                i = i5 + 1;
                                 this.totalCount = i;
                             }
                         } else if (!this.loading) {
@@ -1878,6 +1922,9 @@ public class StoriesController {
                     }
                     z2 = true;
                 }
+            }
+            if (this.albumId > 0 && !arrayList.isEmpty()) {
+                updateOrderInAlbum(arrayList, false);
             }
             if (z2) {
                 fill(true);
@@ -3841,8 +3888,8 @@ public class StoriesController {
         loadStoriesRead();
     }
 
-    public void createAlbum(long j, String str) {
-        getStoryAlbumsList(j).createCollection(str, null);
+    public void createAlbum(long j, String str, Utilities.Callback callback) {
+        getStoryAlbumsList(j).createCollection(str, callback);
     }
 
     public void deleteStories(long j, ArrayList arrayList) {
@@ -4878,6 +4925,7 @@ public class StoriesController {
     }
 
     public void updateStoriesInLists(long j, List list, boolean z) {
+        ArrayList arrayList;
         FileLog.d("updateStoriesInLists " + j + " storyItems[" + list.size() + "] {" + storyItemIds(list) + "}");
         StoriesList storiesList = getStoriesList(j, 0, false);
         StoriesList storiesList2 = getStoriesList(j, 1, false);
@@ -4890,6 +4938,17 @@ public class StoriesController {
         Iterator it = this.attachedSearchLists.iterator();
         while (it.hasNext()) {
             ((SearchStoriesList) it.next()).updateStories(list, z);
+        }
+        StoriesCollections storyAlbumsList = getStoryAlbumsList(j, false);
+        if (storyAlbumsList == null || (arrayList = storyAlbumsList.collections) == null) {
+            return;
+        }
+        Iterator it2 = arrayList.iterator();
+        while (it2.hasNext()) {
+            StoriesList storiesList3 = getStoriesList(j, 0, ((StoryAlbum) it2.next()).album_id, false);
+            if (storiesList3 != null) {
+                storiesList3.updateStories(list, z);
+            }
         }
     }
 

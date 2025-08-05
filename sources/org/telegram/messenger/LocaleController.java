@@ -1120,6 +1120,9 @@ public class LocaleController {
     }
 
     public static String formatNumber(long j, char c) {
+        if (j < 0) {
+            return "-" + formatNumber(-j, c);
+        }
         StringBuilder sb = new StringBuilder(String.format("%d", Long.valueOf(j)));
         for (int length = sb.length() - 3; length > 0; length -= 3) {
             sb.insert(length, c);

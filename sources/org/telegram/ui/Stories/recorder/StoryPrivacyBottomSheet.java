@@ -1127,7 +1127,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
                 @Override
                 public final void onItemClick(View view, int i2, float f, float f2) {
-                    StoryPrivacyBottomSheet.Page.this.lambda$new$10(context, view, i2, f, f2);
+                    StoryPrivacyBottomSheet.Page.this.lambda$new$11(context, view, i2, f, f2);
                 }
             });
             frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1232,7 +1232,15 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$10(Context context, View view, int i, float f, float f2) {
+        public void lambda$new$10(ItemOptions itemOptions, StoriesController.StoryAlbum storyAlbum) {
+            itemOptions.dismiss();
+            updateItems(true);
+            if (StoryPrivacyBottomSheet.this.onSelectedAlbums != null) {
+                StoryPrivacyBottomSheet.this.onSelectedAlbums.run(new HashSet(StoryPrivacyBottomSheet.this.selectedAlbums));
+            }
+        }
+
+        public void lambda$new$11(Context context, View view, int i, float f, float f2) {
             BulletinFactory of;
             int i2;
             int i3;
@@ -1265,14 +1273,14 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                                 makeOptions.add(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new Runnable() {
                                     @Override
                                     public final void run() {
-                                        StoryPrivacyBottomSheet.Page.this.lambda$new$8(dialogId);
+                                        StoryPrivacyBottomSheet.Page.this.lambda$new$9(dialogId);
                                     }
                                 });
                                 makeOptions.addGap();
                                 ItemOptions.addAlbumsItemOptions(makeOptions, StoryPrivacyBottomSheet.this.getStoriesController().getStoryAlbumsList(dialogId), StoryPrivacyBottomSheet.this.selectedAlbums, false, null, new Utilities.Callback() {
                                     @Override
                                     public final void run(Object obj) {
-                                        StoryPrivacyBottomSheet.Page.this.lambda$new$9(makeOptions, (StoriesController.StoryAlbum) obj);
+                                        StoryPrivacyBottomSheet.Page.this.lambda$new$10(makeOptions, (StoriesController.StoryAlbum) obj);
                                     }
                                 });
                                 makeOptions.show();
@@ -1551,30 +1559,35 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$7(long j, String str) {
-            StoryPrivacyBottomSheet.this.getStoriesController().createAlbum(j, str);
-        }
-
-        public void lambda$new$8(final long j) {
-            Context context = getContext();
-            StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-            AlertsCreator.createStoriesAlbumEnterNameForCreate(context, storyPrivacyBottomSheet.attachedFragment, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider, new MessagesStorage.StringCallback() {
-                @Override
-                public final void run(String str) {
-                    StoryPrivacyBottomSheet.Page.this.lambda$new$7(j, str);
-                }
-            });
-        }
-
-        public void lambda$new$9(ItemOptions itemOptions, StoriesController.StoryAlbum storyAlbum) {
-            itemOptions.dismiss();
+        public void lambda$new$7(StoriesController.StoryAlbum storyAlbum) {
+            StoryPrivacyBottomSheet.this.selectedAlbums.add(Integer.valueOf(storyAlbum.album_id));
             updateItems(true);
             if (StoryPrivacyBottomSheet.this.onSelectedAlbums != null) {
                 StoryPrivacyBottomSheet.this.onSelectedAlbums.run(new HashSet(StoryPrivacyBottomSheet.this.selectedAlbums));
             }
         }
 
-        public void lambda$onButton1Click$12(TLObject tLObject, MessagesController messagesController) {
+        public void lambda$new$8(long j, String str) {
+            StoryPrivacyBottomSheet.this.getStoriesController().createAlbum(j, str, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    StoryPrivacyBottomSheet.Page.this.lambda$new$7((StoriesController.StoryAlbum) obj);
+                }
+            });
+        }
+
+        public void lambda$new$9(final long j) {
+            Context context = getContext();
+            StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+            AlertsCreator.createStoriesAlbumEnterNameForCreate(context, storyPrivacyBottomSheet.attachedFragment, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider, new MessagesStorage.StringCallback() {
+                @Override
+                public final void run(String str) {
+                    StoryPrivacyBottomSheet.Page.this.lambda$new$8(j, str);
+                }
+            });
+        }
+
+        public void lambda$onButton1Click$13(TLObject tLObject, MessagesController messagesController) {
             boolean contains;
             this.button.setLoading(false);
             if (tLObject != null) {
@@ -1598,36 +1611,36 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$onButton1Click$13(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onButton1Click$14(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$12(tLObject, messagesController);
+                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$13(tLObject, messagesController);
                 }
             });
         }
 
-        public void lambda$onButton1Click$14() {
+        public void lambda$onButton1Click$15() {
             Bulletin.removeDelegate(StoryPrivacyBottomSheet.this.container);
             StoryPrivacyBottomSheet.super.lambda$new$0();
         }
 
-        public void lambda$onButton1Click$15() {
+        public void lambda$onButton1Click$16() {
             this.button.setLoading(false);
             StoryPrivacyBottomSheet.this.closeKeyboard();
             StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(0);
         }
 
-        public void lambda$onButton2Click$16(ArrayList arrayList) {
+        public void lambda$onButton2Click$17(ArrayList arrayList) {
             StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
             storyPrivacyBottomSheet.done(new StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(StoryPrivacyBottomSheet.this));
         }
 
-        public void lambda$onMeasure$20() {
+        public void lambda$onMeasure$21() {
             this.keyboardMoving = false;
         }
 
-        public void lambda$selectChat$11(long j, ArrayList arrayList, AlertDialog alertDialog, int i) {
+        public void lambda$selectChat$12(long j, ArrayList arrayList, AlertDialog alertDialog, int i) {
             this.selectedUsersByGroup.put(Long.valueOf(j), arrayList);
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
@@ -1640,16 +1653,16 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.scrollToBottom();
         }
 
-        public void lambda$updateItems$17() {
+        public void lambda$updateItems$18() {
             StoryPrivacyBottomSheet.this.activePage = 6;
             StoryPrivacyBottomSheet.this.viewPager.scrollToPosition(1);
         }
 
-        public void lambda$updateSearchFieldTop$18(ValueAnimator valueAnimator) {
+        public void lambda$updateSearchFieldTop$19(ValueAnimator valueAnimator) {
             this.searchField.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
         }
 
-        public void lambda$updateSectionCell$19(View view) {
+        public void lambda$updateSectionCell$20(View view) {
             Iterator it = this.selectedUsers.iterator();
             while (it.hasNext()) {
                 this.changelog.put(((Long) it.next()).longValue(), Boolean.FALSE);
@@ -1741,7 +1754,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     ConnectionsManager.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).sendRequest(tL_editCloseFriends, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$13(messagesController, tLObject, tL_error);
+                            StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$14(messagesController, tLObject, tL_error);
                         }
                     });
                     return;
@@ -1770,7 +1783,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             runnable = new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$14();
+                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$15();
                                 }
                             };
                         } else if (StoryPrivacyBottomSheet.this.mergeUsers(this.selectedUsers, this.selectedUsersByGroup).isEmpty()) {
@@ -1785,7 +1798,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getStoriesController().updateBlockedUsers(mergeUsers2, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$15();
+                                    StoryPrivacyBottomSheet.Page.this.lambda$onButton1Click$16();
                                 }
                             });
                             return;
@@ -1844,7 +1857,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 StoryPrivacyBottomSheet whenSelectedShare = new StoryPrivacyBottomSheet(i, getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).whenSelectedShare(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$onButton2Click$16((ArrayList) obj);
+                        StoryPrivacyBottomSheet.Page.this.lambda$onButton2Click$17((ArrayList) obj);
                     }
                 });
                 whenSelectedShare.storyPeriod = StoryPrivacyBottomSheet.this.storyPeriod;
@@ -1886,7 +1899,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             (arrayList.isEmpty() ? new AlertDialog.Builder(getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).setMessage("All group members are not in your contact list.") : new AlertDialog.Builder(getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).setMessage(arrayList2.size() + " members are not in your contact list").setPositiveButton("Add " + arrayList.size() + " contacts", new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    StoryPrivacyBottomSheet.Page.this.lambda$selectChat$11(j, arrayList, alertDialog, i3);
+                    StoryPrivacyBottomSheet.Page.this.lambda$selectChat$12(j, arrayList, alertDialog, i3);
                 }
             })).setNegativeButton("Cancel", null).show();
         }
@@ -1945,7 +1958,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$updateSearchFieldTop$18(valueAnimator3);
+                        StoryPrivacyBottomSheet.Page.this.lambda$updateSearchFieldTop$19(valueAnimator3);
                     }
                 });
                 this.searchFieldAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1968,7 +1981,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StoryPrivacyBottomSheet.Page.this.lambda$updateSectionCell$19(view);
+                        StoryPrivacyBottomSheet.Page.this.lambda$updateSectionCell$20(view);
                     }
                 });
             } else if (z) {
@@ -2153,7 +2166,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     this.underKeyboardView.animate().translationY(0.0f).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            StoryPrivacyBottomSheet.Page.this.lambda$onMeasure$20();
+                            StoryPrivacyBottomSheet.Page.this.lambda$onMeasure$21();
                         }
                     }).start();
                 }

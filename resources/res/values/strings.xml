@@ -3860,10 +3860,10 @@
     <string name="Gift2PremiumSubtitleMany_other">Subscribe to **Telegram Premium** to send up to **%d** of these gifts and unlock access to multiple additional features.</string>
     <string name="Gift2PremiumTitle">Premium Gift</string>
     <string name="Gift2PriceUnique">Unique</string>
-    <string name="Gift2ProfileInvisible3">This gift is hidden from your page. **Show &gt;**</string>
+    <string name="Gift2ProfileInvisible4">This gift is hidden. **Show on Profile &gt;**</string>
     <string name="Gift2ProfileMakeInvisible">Hide from my Page</string>
     <string name="Gift2ProfileMakeVisible">Display on my Page</string>
-    <string name="Gift2ProfileVisible3">This gift is visible on your page. **Hide &gt;**</string>
+    <string name="Gift2ProfileVisible4">This gift is visible. **Hide from profile &gt;**</string>
     <string name="Gift2Quantity">Quantity</string>
     <string name="Gift2QuantityIssued1_other">%d/</string>
     <string name="Gift2QuantityIssued2_other">%d issued</string>
@@ -5017,6 +5017,7 @@
     <string name="MonetizationProceedsStarsTONInfoLink">https://telegram.org/tos/content-creator-rewards</string>
     <string name="MonetizationProceedsTONInfo">TON from your total balance become available for spending on ads and rewards 3 days after they are earned.</string>
     <string name="MonetizationProceedsTONInfoLink">https://telegram.org/tos/content-creator-rewards</string>
+    <string name="MonetizationSelfWithdraw">Withdraw via Fragment</string>
     <string name="MonetizationStarsAds">Buy Ads</string>
     <string name="MonetizationStarsBalance">Stars balance</string>
     <string name="MonetizationStarsInfo">You can withdraw Stars using Fragment, or use Stars to advertise your channel. **Learn more &gt;**</string>
@@ -7233,6 +7234,8 @@
     <string name="SearchMusic">Search music</string>
     <string name="SearchMyChannels">Channels you joined</string>
     <string name="SearchMyMessages">My Chats</string>
+    <string name="SearchPaidStars_one">**%d Star** spent on extra search.</string>
+    <string name="SearchPaidStars_other">**%d Stars** spent on extra search.</string>
     <string name="SearchPosts">Posts</string>
     <string name="SearchPostsButton">Search</string>
     <string name="SearchPostsButtonPay_one">Search for ⭐️%d</string>
@@ -7674,9 +7677,17 @@
     <string name="StarRatingFuturePendingPointsPreviewBack">**Back &gt;**</string>
     <string name="StarRatingFuturePendingPoints_one">%d point are pending.</string>
     <string name="StarRatingFuturePendingPoints_other">%d points are pending.</string>
+    <string name="StarRatingFuturePreview1_one">This will be your rating in %d day, after</string>
+    <string name="StarRatingFuturePreview1_other">This will be your rating in %d days, after</string>
+    <string name="StarRatingFuturePreview2_one">%d point are added.</string>
+    <string name="StarRatingFuturePreview2_other">%d points are added.</string>
     <string name="StarRatingFuture_one">The rating will update in %d day after purchases.</string>
     <string name="StarRatingFuture_other">The rating will update in %d days after purchases.</string>
     <string name="StarRatingLevel">Level %d</string>
+    <string name="StarRatingLevelNegative">Negative Rating</string>
+    <string name="StarRatingLevelNegativeOther">A negative rating indicates that **%1$s’s** payments are unreliable.</string>
+    <string name="StarRatingLevelNegativeYou_one">A negative rating indicates that your payments are unreliable. Spend **%1$d Star** to fix this issue.</string>
+    <string name="StarRatingLevelNegativeYou_other">A negative rating indicates that your payments are unreliable. Spend **%1$d Stars** to fix this issue.</string>
     <string name="StarRatingSelfDescription">This rating reflects your activity\non Telegram. What affects it:</string>
     <string name="StarRatingTitle">Rating</string>
     <string name="StarRatingTitle1">Gifts from Telegram</string>
@@ -7755,6 +7766,7 @@
     <string name="StarsNeededTextLink_subs">Buy **Stars** to keep your channel subscriptions.</string>
     <string name="StarsNeededTextPrivateMessage">Buy **Stars** to send message to **%s** and others.</string>
     <string name="StarsNeededTextReactions">Buy **Stars** to send paid reactions to **%s** and other channels.</string>
+    <string name="StarsNeededTextSearch">Buy **Stars** to search posts.</string>
     <string name="StarsNeededTitle_one">%d Star Needed</string>
     <string name="StarsNeededTitle_other">%d Stars Needed</string>
     <string name="StarsNotAvailableText">Sorry, no star purchases are available from your country.</string>
@@ -7866,6 +7878,7 @@
     <string name="StarsTransactionMessageFeeInfoLink">**Change Fee &gt;**</string>
     <string name="StarsTransactionMessageFee_one">Fee for %d Message</string>
     <string name="StarsTransactionMessageFee_other">Fee for %d Messages</string>
+    <string name="StarsTransactionPostsSearch">Posts Search</string>
     <string name="StarsTransactionPremiumGift">Telegram Premium</string>
     <string name="StarsTransactionPremiumGiftDuration">Duration</string>
     <string name="StarsTransactionRecipient">From</string>
@@ -7883,7 +7896,6 @@
     <string name="StarsTransactionsAll">All Transactions</string>
     <string name="StarsTransactionsIncoming">Incoming</string>
     <string name="StarsTransactionsOutgoing">Outgoing</string>
-    <string name="StarsWithdraw">Withdraw</string>
     <string name="Stars_one">%d Star</string>
     <string name="Stars_other">%d Stars</string>
     <string name="Start">Start</string>
@@ -8227,6 +8239,8 @@
     <string name="StoryReactionsWidgetLimit2_other">You can’t add up more than %d reactions tags to a story.</string>
     <string name="StoryRemoveRoundMessage">Are you sure you want to remove your video message?</string>
     <string name="StoryRemoveRoundTitle">Remove Video</string>
+    <string name="StoryRemovedFromAlbumTitle_one" formatted="false">%d story removed from **%s**</string>
+    <string name="StoryRemovedFromAlbumTitle_other" formatted="false">%d stories removed from**%s**</string>
     <string name="StoryRemovedFromAlbumX">This story has been removed from **%s** album.</string>
     <string name="StoryRepliesLocked">Replies restricted</string>
     <string name="StoryRepliesLockedButton">Unlock</string>
@@ -8637,6 +8651,8 @@
     <string name="TonNeededTextGiftBuyResale">Buy **TON** to buy gifts.</string>
     <string name="TonNeededTextSuggestMessage">Buy **TON** to suggest message to **%s** and others.</string>
     <string name="TonNeededTitle">%s TON Needed</string>
+    <string name="TonStats">Stats</string>
+    <string name="TonTopUp">Top Up</string>
     <string name="TooLargeError">Too large</string>
     <string name="TooLongError">Too long</string>
     <string name="TooManyCommunities">Too Many Communities</string>
@@ -9635,7 +9651,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f25b9_com_google_firebase_crashlytics_mapping_file_id">e1d8f9e633eb4f97a63211952a4dbd78</string>
+    <string name="res_0x7f0f25c9_com_google_firebase_crashlytics_mapping_file_id">01c90b30d2fb4f88b09ea346f7e6c694</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

@@ -86,7 +86,7 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
             return;
         }
         if (amountUtils$Currency == AmountUtils$Currency.TON) {
-            this.textView1.setText(StarsIntroActivity.replaceStarsWithPlain(true, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2MessageStarsInfoTON, balanceAmount.asDecimalString())), 0.6f, this.coloredImageSpansTon));
+            this.textView1.setText(StarsIntroActivity.replaceStarsWithPlain(true, (CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2MessageStarsInfoTON, balanceAmount.asDecimalString())), 0.6f, this.coloredImageSpansTon));
             this.coloredImageSpansTon[0].setColorKey(Theme.key_undo_cancelColor);
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');

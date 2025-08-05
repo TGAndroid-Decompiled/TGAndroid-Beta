@@ -2767,7 +2767,7 @@ public abstract class AlertsCreator {
         editTextCaption.setTextSize(1, 18.0f);
         editTextCaption.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
         editTextCaption.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
-        editTextCaption.setHintText("Title");
+        editTextCaption.setHintText(str3);
         editTextCaption.setFocusable(true);
         editTextCaption.setInputType(147457);
         editTextCaption.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));

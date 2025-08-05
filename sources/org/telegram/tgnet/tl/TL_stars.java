@@ -416,6 +416,7 @@ public class TL_stars {
         public StarsTransactionPeer peer;
         public boolean pending;
         public TLRPC.WebDocument photo;
+        public boolean posts_search;
         public boolean premium_gift;
         public int premium_gift_months;
         public boolean reaction;
@@ -2583,7 +2584,8 @@ public class TL_stars {
             this.paid_message = (readInt32 & 524288) != 0;
             this.premium_gift = (readInt32 & 1048576) != 0;
             this.business_transfer = (2097152 & readInt32) != 0;
-            this.stargift_resale = (readInt32 & 4194304) != 0;
+            this.stargift_resale = (4194304 & readInt32) != 0;
+            this.posts_search = (readInt32 & 16777216) != 0;
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
@@ -2668,7 +2670,9 @@ public class TL_stars {
             this.flags = i11;
             int i12 = this.stargift_resale ? i11 | 4194304 : i11 & (-4194305);
             this.flags = i12;
-            outputSerializedData.writeInt32(i12);
+            int i13 = this.posts_search ? i12 | 16777216 : i12 & (-16777217);
+            this.flags = i13;
+            outputSerializedData.writeInt32(i13);
             outputSerializedData.writeString(this.id);
             this.amount.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.date);

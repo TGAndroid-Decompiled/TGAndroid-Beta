@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 
-public class PipActivityContentLayout extends FrameLayout {
+class PipActivityContentLayout extends FrameLayout {
     private final Activity activity;
     private boolean isViewInPip;
     private int originalHeight;
